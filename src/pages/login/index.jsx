@@ -1,11 +1,10 @@
 import { Stack } from "../../components/layout/Stack";
+import { Heading } from "../../components/data/Heading";
 
 import {
   StyledLoginContainer,
   StyledWelcomeContainer,
   StyledOutletContainer,
-  StyledHead2,
-  StyledHead3,
   StyledImage,
 } from "./styles";
 
@@ -16,15 +15,23 @@ function Login() {
     <StyledLoginContainer>
       <StyledWelcomeContainer>
         <Stack>
-          <StyledHead2>Bienvenido</StyledHead2>
-          <StyledHead2>Portal de clientes</StyledHead2>
+          <Heading level="2" token="headlineLarge">
+            Bienvenido
+          </Heading>
+          <Heading level="2" token="headlineLarge">
+            Portal de clientes
+          </Heading>
         </Stack>
         <StyledImage src={selsaLogo} alt="Sistemas Enlinea" />
       </StyledWelcomeContainer>
       <StyledOutletContainer>
         <Stack>
-          <StyledHead2>Validando credenciales</StyledHead2>
-          <StyledHead3>Espere un momento, por favor.</StyledHead3>
+          <Heading level="2" token="headlineLarge">
+            Validando credenciales
+          </Heading>
+          <Heading level="3" token="headlineSmall">
+            Espere un momento, por favor.
+          </Heading>
         </Stack>
         <p>Spinner</p>
       </StyledOutletContainer>
