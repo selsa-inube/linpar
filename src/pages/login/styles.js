@@ -7,6 +7,11 @@ const StyledLoginContainer = styled.div`
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr;
+    grid-template-rows: 40% 60%;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-rows: 25% 75%;
   }
 `;
 
