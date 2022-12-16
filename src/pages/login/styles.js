@@ -29,11 +29,6 @@ const StyledOutletContainer = styled(StyledWelcomeContainer)`
   background-color: white;
 `;
 
-const StyledStack = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const StyledHead2 = styled.h2`
   font-family: "Roboto", sans-serif;
   font-size: 32px;
@@ -58,7 +53,6 @@ export {
   StyledLoginContainer,
   StyledWelcomeContainer,
   StyledOutletContainer,
-  StyledStack,
   StyledHead2,
   StyledHead3,
   StyledImage,
