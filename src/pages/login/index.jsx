@@ -1,6 +1,7 @@
 import { Stack } from "../../components/layout/Stack";
 import { Heading } from "../../components/data/Heading";
 import { Text } from "../../components/data/Text";
+import { CircularProgress } from "../../components/feedback/CircularProgress";
 
 import {
   StyledLoginContainer,
@@ -28,7 +29,7 @@ function Login() {
           <Text token="headlineLarge">Validando credenciales</Text>
           <Text token="headlineSmall">Espere un momento, por favor.</Text>
         </Stack>
-        <p>Spinner</p>
+        <CircularProgress />
       </StyledOutletContainer>
     </StyledLoginContainer>
   );
