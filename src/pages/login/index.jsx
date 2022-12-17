@@ -1,5 +1,6 @@
 import { Stack } from "../../components/layout/Stack";
 import { Heading } from "../../components/data/Heading";
+import { Text } from "../../components/data/Text";
 
 import {
   StyledLoginContainer,
@@ -15,9 +16,7 @@ function Login() {
     <StyledLoginContainer>
       <StyledWelcomeContainer>
         <Stack>
-          <Heading level="2" token="headlineLarge">
-            Bienvenido
-          </Heading>
+          <Text token="headlineLarge">Bienvenido</Text>
           <Heading level="2" token="headlineLarge">
             Portal de clientes
           </Heading>
@@ -26,12 +25,8 @@ function Login() {
       </StyledWelcomeContainer>
       <StyledOutletContainer>
         <Stack>
-          <Heading level="2" token="headlineLarge">
-            Validando credenciales
-          </Heading>
-          <Heading level="3" token="headlineSmall">
-            Espere un momento, por favor.
-          </Heading>
+          <Text token="headlineLarge">Validando credenciales</Text>
+          <Text token="headlineSmall">Espere un momento, por favor.</Text>
         </Stack>
         <p>Spinner</p>
       </StyledOutletContainer>
