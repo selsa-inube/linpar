@@ -1,11 +1,27 @@
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
+
 import { GlobalStyles } from "./styles/global";
 import { Login } from "./pages/login";
+import { CheckingCredentials } from "./pages/login/outlets/CheckingCredentials";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Login />}>
+      <Route path="checking-credentials" element={<CheckingCredentials />} />
+    </Route>
+  )
+);
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Login />
+      <RouterProvider router={router} />
     </>
   );
 }

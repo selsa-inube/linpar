@@ -1,7 +1,8 @@
+import { Outlet } from "react-router-dom";
+
 import { Stack } from "../../components/layout/Stack";
 import { Heading } from "../../components/data/Heading";
 import { Text } from "../../components/data/Text";
-import { CircularProgress } from "../../components/feedback/CircularProgress";
 
 import {
   StyledLoginContainer,
@@ -25,11 +26,7 @@ function Login() {
         <StyledImage src={selsaLogo} alt="Sistemas Enlinea" />
       </StyledWelcomeContainer>
       <StyledOutletContainer>
-        <Stack>
-          <Text token="headlineLarge">Validando credenciales</Text>
-          <Text token="headlineSmall">Espere un momento, por favor.</Text>
-        </Stack>
-        <CircularProgress />
+        <Outlet />
       </StyledOutletContainer>
     </StyledLoginContainer>
   );
