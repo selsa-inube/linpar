@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledLoginContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100vh;
+  min-height: 100vh;
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr;
@@ -27,6 +27,7 @@ const StyledWelcomeContainer = styled.div`
 
 const StyledOutletContainer = styled(StyledWelcomeContainer)`
   background-color: white;
+  padding: 32px 16px;
 `;
 
 const StyledHead2 = styled.h2`
