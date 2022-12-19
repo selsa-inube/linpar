@@ -7,7 +7,7 @@ const StyledLoginContainer = styled.div`
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 40% 60%;
+    grid-template-rows: 40% 1fr;
   }
 
   @media screen and (max-width: 600px) {
