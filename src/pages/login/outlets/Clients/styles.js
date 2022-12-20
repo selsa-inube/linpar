@@ -7,6 +7,7 @@ const StyledClients = styled.div`
     align-items: center;
     gap: 8px;
     width: 500px;
+    margin: 0 auto;
     margin-top: 32px;
 
     @media screen and (max-width: 532px) {

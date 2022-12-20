@@ -7,11 +7,7 @@ const StyledLoginContainer = styled.div`
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 40% 1fr;
-  }
-
-  @media screen and (max-width: 600px) {
-    grid-template-rows: 25% 75%;
+    grid-template-rows: minmax(200px, 30vh) 1fr;
   }
 `;
 
@@ -23,6 +19,10 @@ const StyledWelcomeContainer = styled.div`
   align-items: center;
   text-align: center;
   gap: 32px;
+
+  @media screen and (max-width: 600px) {
+    gap: 16px;
+  }
 `;
 
 const StyledOutletContainer = styled(StyledWelcomeContainer)`
@@ -47,7 +47,15 @@ const StyledHead3 = styled.h3`
 `;
 
 const StyledImage = styled.img`
-  max-width: 40%;
+  max-width: 240px;
+
+  @media screen and (max-width: 1000px) {
+    max-width: 200px;
+  }
+
+  @media screen and (max-width: 600px) {
+    max-width: 160px;
+  }
 `;
 
 export {
