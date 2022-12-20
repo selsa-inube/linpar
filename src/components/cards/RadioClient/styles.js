@@ -3,8 +3,8 @@ import styled from "styled-components";
 const StyledRadioClient = styled.label`
   box-sizing: border-box;
   padding: 16px 24px;
-  width: 500px;
   height: 72px;
+  width: 100%;
   display: grid;
   grid-template-columns: auto 1fr 30%;
   gap: 16px;
@@ -15,8 +15,8 @@ const StyledRadioClient = styled.label`
   cursor: pointer;
 
   @media screen and (max-width: 532px) {
-    width: auto;
     height: auto;
+    padding: 8px 16px;
   }
 
   @media screen and (max-width: 360px) {
