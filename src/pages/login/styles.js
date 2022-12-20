@@ -7,7 +7,7 @@ const StyledLoginContainer = styled.div`
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 25% 1fr;
+    grid-template-rows: minmax(200px, 30vh) 1fr;
   }
 `;
 
@@ -19,6 +19,10 @@ const StyledWelcomeContainer = styled.div`
   align-items: center;
   text-align: center;
   gap: 32px;
+
+  @media screen and (max-width: 600px) {
+    gap: 16px;
+  }
 `;
 
 const StyledOutletContainer = styled(StyledWelcomeContainer)`
