@@ -7,6 +7,7 @@ const StyledParagraph = styled.p`
   font-size: ${({ token }) => typography.sys.typescale[token].size};
   letter-spacing: ${({ token }) => typography.sys.typescale[token].tracking};
   font-weight: ${({ token }) => typography.sys.typescale[token].weight};
+  text-align: ${({ align }) => align};
 `;
 
 export { StyledParagraph };

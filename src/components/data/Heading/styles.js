@@ -8,6 +8,7 @@ const styles = css`
   font-size: ${({ token }) => typography.sys.typescale[token].size};
   letter-spacing: ${({ token }) => typography.sys.typescale[token].tracking};
   font-weight: ${({ token }) => typography.sys.typescale[token].weight};
+  text-align: ${({ align }) => align};
 `;
 
 const StyledH1 = styled.h1`

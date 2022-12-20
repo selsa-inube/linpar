@@ -18,8 +18,10 @@ function Login() {
     <StyledLoginContainer>
       <StyledWelcomeContainer>
         <Stack>
-          <Text token="headlineLarge">Bienvenido</Text>
-          <Heading level="2" token="headlineLarge">
+          <Text token="headlineLarge" align="center">
+            Bienvenido
+          </Text>
+          <Heading level="1" token="headlineLarge">
             Portal de clientes
           </Heading>
         </Stack>
