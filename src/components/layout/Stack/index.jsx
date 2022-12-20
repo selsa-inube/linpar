@@ -1,10 +1,15 @@
 import { StyledStack } from "./styles";
 
 function Stack(props) {
-  const { children, direction, spacing } = props;
+  const { children, direction, spacing, justify, align } = props;
 
   return (
-    <StyledStack direction={direction} spacing={spacing}>
+    <StyledStack
+      direction={direction}
+      spacing={spacing}
+      justify={justify}
+      align={align}
+    >
       {children}
     </StyledStack>
   );
