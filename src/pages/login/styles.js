@@ -7,11 +7,7 @@ const StyledLoginContainer = styled.div`
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 40% 1fr;
-  }
-
-  @media screen and (max-width: 600px) {
-    grid-template-rows: 25% 75%;
+    grid-template-rows: 25% 1fr;
   }
 `;
 
@@ -47,7 +43,15 @@ const StyledHead3 = styled.h3`
 `;
 
 const StyledImage = styled.img`
-  max-width: 40%;
+  max-width: 240px;
+
+  @media screen and (max-width: 1000px) {
+    max-width: 200px;
+  }
+
+  @media screen and (max-width: 600px) {
+    max-width: 160px;
+  }
 `;
 
 export {
