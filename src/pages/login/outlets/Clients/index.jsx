@@ -5,7 +5,7 @@ import { Heading } from "../../../../components/data/Heading";
 import { Text } from "../../../../components/data/Text";
 import { Button } from "../../../../components/inputs/Button";
 
-import { StyledClients } from "./styles";
+import { StyledClients, StyledClientsList, StyledClientsItem } from "./styles";
 
 import { mockClients } from "../../../../mocks/login/mock.clients";
 
@@ -19,16 +19,20 @@ function Clients() {
         Selecciona la empresa a la que vas a representar
       </Text>
       <Form>
-        {mockClients.map((client) => (
-          <RadioClient
-            name="client"
-            label={client.name}
-            id={client.id}
-            key={client.id}
-            value={client.name}
-            logo={client.logo}
-          />
-        ))}
+        <StyledClientsList scroll={mockClients.length > 5}>
+          {mockClients.map((client) => (
+            <StyledClientsItem>
+              <RadioClient
+                name="client"
+                label={client.name}
+                id={client.id}
+                key={client.id}
+                value={client.name}
+                logo={client.logo}
+              />
+            </StyledClientsItem>
+          ))}
+        </StyledClientsList>
         <Button label="Continuar" type="submit" />
       </Form>
     </StyledClients>

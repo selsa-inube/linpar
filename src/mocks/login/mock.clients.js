@@ -24,6 +24,16 @@ const mockClients = [
     name: "Presente Fondo de Empleados Grupo Éxito",
     logo: "https://res.cloudinary.com/wfercanas/image/upload/w_500/v1671482962/linpar/presente_trxel5",
   },
+  {
+    id: 6,
+    name: "Fondoccidente Fondo de Empleados",
+    logo: "https://res.cloudinary.com/wfercanas/image/upload/w_500/v1671482962/linpar/fondoccidente_psx5fp",
+  },
+  {
+    id: 7,
+    name: "Presente Fondo de Empleados Grupo Éxito",
+    logo: "https://res.cloudinary.com/wfercanas/image/upload/w_500/v1671482962/linpar/presente_trxel5",
+  },
 ];
 
 export { mockClients };
