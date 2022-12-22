@@ -21,12 +21,11 @@ function Clients() {
       <Form>
         <StyledClientsList scroll={mockClients.length > 5}>
           {mockClients.map((client) => (
-            <StyledClientsItem>
+            <StyledClientsItem key={client.id}>
               <RadioClient
                 name="client"
                 label={client.name}
                 id={client.id}
-                key={client.id}
                 value={client.name}
                 logo={client.logo}
               />
