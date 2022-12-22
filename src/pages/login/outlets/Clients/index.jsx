@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Form } from "react-router-dom";
 
 import { RadioClient } from "../../../../components/cards/RadioClient";
@@ -8,8 +9,21 @@ import { Button } from "../../../../components/inputs/Button";
 import { StyledClients, StyledClientsList, StyledClientsItem } from "./styles";
 
 import { mockClients } from "../../../../mocks/login/mock.clients";
+import { SearchInput } from "../../../../components/inputs/Input";
 
 function Clients() {
+  const [search, setSearch] = useState("");
+
+  function handleSearchChange({ target }) {
+    setSearch(target.value);
+  }
+
+  function filterClients() {
+    return mockClients.filter((client) =>
+      client.name.toUpperCase().includes(search.toUpperCase())
+    );
+  }
+
   return (
     <StyledClients>
       <Heading level="2" token="titleLarge" align="center">
@@ -19,8 +33,15 @@ function Clients() {
         Selecciona la empresa a la que vas a representar
       </Text>
       <Form>
+        {mockClients.length > 10 && (
+          <SearchInput
+            placeholder="Search"
+            value={search}
+            handleChange={handleSearchChange}
+          />
+        )}
         <StyledClientsList scroll={mockClients.length > 5}>
-          {mockClients.map((client) => (
+          {filterClients().map((client) => (
             <StyledClientsItem key={client.id}>
               <RadioClient
                 name="client"
