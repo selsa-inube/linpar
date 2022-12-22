@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const StyledClients = styled.div`
+  & form {
+    margin: 48px auto 0px;
+  }
+
   & button {
     margin-top: 24px;
   }
@@ -8,7 +12,6 @@ const StyledClients = styled.div`
 
 const StyledClientsList = styled.ul`
   list-style: none;
-  margin: 32px auto 0;
   width: 500px;
   max-height: 430px;
   padding: 0px 8px;

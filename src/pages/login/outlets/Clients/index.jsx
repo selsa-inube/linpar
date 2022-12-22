@@ -8,6 +8,7 @@ import { Button } from "../../../../components/inputs/Button";
 import { StyledClients, StyledClientsList, StyledClientsItem } from "./styles";
 
 import { mockClients } from "../../../../mocks/login/mock.clients";
+import { SearchInput } from "../../../../components/inputs/Input";
 
 function Clients() {
   return (
@@ -19,6 +20,7 @@ function Clients() {
         Selecciona la empresa a la que vas a representar
       </Text>
       <Form>
+        {mockClients.length > 10 && <SearchInput placeholder="Search" />}
         <StyledClientsList scroll={mockClients.length > 5}>
           {mockClients.map((client) => (
             <StyledClientsItem key={client.id}>
