@@ -14,6 +14,13 @@ const StyledButton = styled.button`
   line-height: ${typography.sys.typescale.bodyMedium.lineHeight};
   letter-spacing: ${typography.sys.typescale.bodyMedium.tracking};
   cursor: pointer;
+
+  &:disabled {
+    background-color: white;
+    border: none;
+    color: #b3bac5;
+    cursor: not-allowed;
+  }
 `;
 
 export { StyledButton };
