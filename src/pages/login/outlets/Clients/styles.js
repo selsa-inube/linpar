@@ -14,6 +14,7 @@ const StyledClientsList = styled.ul`
   list-style: none;
   width: 500px;
   max-height: 430px;
+  min-height: 300px;
   padding: 0px 8px;
 
   display: flex;

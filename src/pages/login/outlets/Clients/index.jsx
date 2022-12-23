@@ -13,6 +13,7 @@ import { SearchInput } from "../../../../components/inputs/Input";
 
 function Clients() {
   const [search, setSearch] = useState("");
+  const [client, setClient] = useState("");
 
   function handleSearchChange({ target }) {
     setSearch(target.value);
@@ -22,6 +23,10 @@ function Clients() {
     return mockClients.filter((client) =>
       client.name.toUpperCase().includes(search.toUpperCase())
     );
+  }
+
+  function handleClientChange({ target }) {
+    setClient(target.value);
   }
 
   return (
@@ -49,11 +54,16 @@ function Clients() {
                 id={client.id}
                 value={client.name}
                 logo={client.logo}
+                handleChange={handleClientChange}
               />
             </StyledClientsItem>
           ))}
         </StyledClientsList>
-        <Button label="Continuar" type="submit" />
+        <Button
+          label="Continuar"
+          type="submit"
+          disabled={client ? false : true}
+        />
       </Form>
     </StyledClients>
   );
