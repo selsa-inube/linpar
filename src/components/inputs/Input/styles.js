@@ -20,6 +20,14 @@ const StyledInput = styled.input`
   border: none;
   outline: none;
   background-color: transparent;
+
+  @media screen and (min-width: 400px) {
+    font-family: ${typography.sys.typescale.bodyMedium.font};
+    font-size: ${typography.sys.typescale.bodyMedium.size};
+    font-weight: ${typography.sys.typescale.bodyMedium.weight};
+    line-height: ${typography.sys.typescale.bodyMedium.lineHeight};
+    letter-spacing: ${typography.sys.typescale.bodyMedium.tracking};
+  }
 `;
 
 const StyledIcon = styled.i`
