@@ -31,7 +31,7 @@ function Clients() {
 
   return (
     <StyledClients>
-      <Heading level="2" token="titleLarge" align="center">
+      <Heading level="2" typoToken="titleLarge" align="center">
         Clientes
       </Heading>
       <Text align="center">

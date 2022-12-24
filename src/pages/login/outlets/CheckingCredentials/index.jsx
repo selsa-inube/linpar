@@ -8,10 +8,10 @@ function CheckingCredentials() {
   return (
     <StyledCheckingCredentials>
       <Stack>
-        <Text token="titleLarge" align="center">
+        <Text typoToken="titleLarge" align="center">
           Validando credenciales
         </Text>
-        <Text token="titleSmall" align="center">
+        <Text typoToken="titleSmall" align="center">
           Espere un momento, por favor.
         </Text>
       </Stack>
