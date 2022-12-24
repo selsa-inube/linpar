@@ -1,10 +1,10 @@
 import { StyledParagraph } from "./styles";
 
 function Text(props) {
-  const { children, token = "bodyMedium", align = "left" } = props;
+  const { children, typoToken = "bodyMedium", align = "left" } = props;
 
   return (
-    <StyledParagraph token={token} align={align}>
+    <StyledParagraph typoToken={typoToken} align={align}>
       {children}
     </StyledParagraph>
   );
