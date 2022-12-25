@@ -5,17 +5,36 @@ import { RadioClient } from "../../../../components/cards/RadioClient";
 import { Heading } from "../../../../components/data/Heading";
 import { Text } from "../../../../components/data/Text";
 import { Button } from "../../../../components/inputs/Button";
-
-import { StyledClients, StyledClientsList, StyledClientsItem } from "./styles";
+import { SearchInput } from "../../../../components/inputs/Input";
 
 import { mockClients } from "../../../../mocks/login/mock.clients";
-import { SearchInput } from "../../../../components/inputs/Input";
+
+import {
+  StyledClients,
+  StyledClientsList,
+  StyledNoResults,
+  StyledClientsItem,
+} from "./styles";
 
 function Clients() {
   const [search, setSearch] = useState("");
-  const [client, setClient] = useState("");
+  const [client, setClient] = useState({
+    ref: undefined,
+    value: undefined,
+  });
+
+  function clientReset() {
+    return {
+      ref: undefined,
+      value: undefined,
+    };
+  }
 
   function handleSearchChange({ target }) {
+    if (client.ref) {
+      client.ref.checked = false;
+    }
+    setClient(clientReset());
     setSearch(target.value);
   }
 
@@ -29,7 +48,10 @@ function Clients() {
   }
 
   function handleClientChange({ target }) {
-    setClient(target.value);
+    setClient({
+      ref: target,
+      value: target.value,
+    });
   }
 
   return (
@@ -48,6 +70,12 @@ function Clients() {
             handleChange={handleSearchChange}
           />
         )}
+        {!filterClients().length && (
+          <StyledNoResults>
+            <Text>{`No se encontraron resultados para "${search}".`}</Text>
+            <Text>{`Por favor, intenta modificando los parámetros de búsqueda.`}</Text>
+          </StyledNoResults>
+        )}
         <StyledClientsList scroll={mockClients.length > 5}>
           {filterClients().map((client) => (
             <StyledClientsItem key={client.id}>
@@ -65,7 +93,7 @@ function Clients() {
         <Button
           label="Continuar"
           type="submit"
-          disabled={client ? false : true}
+          disabled={client.value ? false : true}
         />
       </Form>
     </StyledClients>

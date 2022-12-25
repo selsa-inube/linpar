@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { typography } from "../../../styles/typography";
 
 const StyledIconInput = styled.div`
+  box-sizing: border-box;
+  width: 100%;
   padding: 12px;
   display: grid;
   grid-template-columns: auto 1fr;
