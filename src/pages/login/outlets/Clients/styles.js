@@ -3,6 +3,11 @@ import styled from "styled-components";
 const StyledClients = styled.div`
   & form {
     margin: 48px auto 0px;
+    width: 500px;
+
+    @media screen and (max-width: 532px) {
+      width: auto;
+    }
   }
 
   & button {
@@ -12,9 +17,9 @@ const StyledClients = styled.div`
 
 const StyledClientsList = styled.ul`
   list-style: none;
-  width: 500px;
-  max-height: 430px;
   min-height: 300px;
+  max-height: 430px;
+  width: inherit;
   padding: 0px 8px;
 
   display: flex;
@@ -23,12 +28,12 @@ const StyledClientsList = styled.ul`
   gap: 8px;
 
   overflow-y: ${({ scroll }) => (scroll ? "scroll" : "visible")};
+`;
 
-  @media screen and (max-width: 532px) {
-    width: auto;
-  }
+const StyledNoResults = styled.div`
+  margin: 16px 0;
 `;
 
 const StyledClientsItem = styled.li``;
 
-export { StyledClients, StyledClientsList, StyledClientsItem };
+export { StyledClients, StyledClientsList, StyledNoResults, StyledClientsItem };

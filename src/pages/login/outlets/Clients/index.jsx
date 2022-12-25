@@ -5,17 +5,23 @@ import { RadioClient } from "../../../../components/cards/RadioClient";
 import { Heading } from "../../../../components/data/Heading";
 import { Text } from "../../../../components/data/Text";
 import { Button } from "../../../../components/inputs/Button";
-
-import { StyledClients, StyledClientsList, StyledClientsItem } from "./styles";
+import { SearchInput } from "../../../../components/inputs/Input";
 
 import { mockClients } from "../../../../mocks/login/mock.clients";
-import { SearchInput } from "../../../../components/inputs/Input";
+
+import {
+  StyledClients,
+  StyledClientsList,
+  StyledNoResults,
+  StyledClientsItem,
+} from "./styles";
 
 function Clients() {
   const [search, setSearch] = useState("");
   const [client, setClient] = useState("");
 
   function handleSearchChange({ target }) {
+    setClient("");
     setSearch(target.value);
   }
 
@@ -47,6 +53,12 @@ function Clients() {
             value={search}
             handleChange={handleSearchChange}
           />
+        )}
+        {!filterClients().length && (
+          <StyledNoResults>
+            <Text>{`No se encontraron resultados para "${search}".`}</Text>
+            <Text>{`Por favor, intenta modificando los parámetros de búsqueda.`}</Text>
+          </StyledNoResults>
         )}
         <StyledClientsList scroll={mockClients.length > 5}>
           {filterClients().map((client) => (
