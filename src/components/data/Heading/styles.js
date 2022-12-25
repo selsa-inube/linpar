@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 
 import { typography } from "../../../styles/typography";
+import { colors } from "../../../styles/colors";
 
 const styles = css`
   font-family: ${({ typoToken }) => typography.sys.typescale[typoToken].font};
@@ -11,6 +12,7 @@ const styles = css`
     typography.sys.typescale[typoToken].tracking};
   font-weight: ${({ typoToken }) => typography.sys.typescale[typoToken].weight};
   text-align: ${({ align }) => align};
+  color: ${({ colorToken }) => colors.sys.text[colorToken]};
 `;
 
 const StyledH1 = styled.h1`

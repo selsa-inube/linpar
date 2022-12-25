@@ -19,7 +19,7 @@ function Heading(props) {
   const Current = headings[level - 1];
 
   return (
-    <Current typoToken={typoToken} align={align}>
+    <Current typoToken={typoToken} align={align} colorToken="primary">
       {children}
     </Current>
   );

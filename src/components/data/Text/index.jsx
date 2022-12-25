@@ -4,7 +4,7 @@ function Text(props) {
   const { children, typoToken = "bodyMedium", align = "left" } = props;
 
   return (
-    <StyledParagraph typoToken={typoToken} align={align}>
+    <StyledParagraph typoToken={typoToken} align={align} colorToken="primary">
       {children}
     </StyledParagraph>
   );
