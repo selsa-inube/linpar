@@ -4,6 +4,9 @@ const StyledClients = styled.div`
   & form {
     margin: 48px auto 0px;
     width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     @media screen and (max-width: 532px) {
       width: auto;
@@ -28,6 +31,10 @@ const StyledClientsList = styled.ul`
   gap: 8px;
 
   overflow-y: ${({ scroll }) => (scroll ? "scroll" : "visible")};
+
+  @media screen and (max-height: 1000px) {
+    min-height: 200px;
+  }
 `;
 
 const StyledNoResults = styled.div`
