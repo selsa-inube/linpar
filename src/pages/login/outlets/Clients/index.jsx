@@ -20,9 +20,12 @@ function Clients() {
   }
 
   function filterClients() {
-    return mockClients.filter((client) =>
-      client.name.toUpperCase().includes(search.toUpperCase())
-    );
+    return mockClients.filter((client) => {
+      return (
+        client.name.toUpperCase().includes(search.toUpperCase()) ||
+        client.sigla.toUpperCase().includes(search.toUpperCase())
+      );
+    });
   }
 
   function handleClientChange({ target }) {
