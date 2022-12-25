@@ -18,10 +18,23 @@ import {
 
 function Clients() {
   const [search, setSearch] = useState("");
-  const [client, setClient] = useState("");
+  const [client, setClient] = useState({
+    ref: undefined,
+    value: undefined,
+  });
+
+  function clientReset() {
+    return {
+      ref: undefined,
+      value: undefined,
+    };
+  }
 
   function handleSearchChange({ target }) {
-    setClient("");
+    if (client.ref) {
+      client.ref.checked = false;
+    }
+    setClient(clientReset());
     setSearch(target.value);
   }
 
@@ -35,7 +48,10 @@ function Clients() {
   }
 
   function handleClientChange({ target }) {
-    setClient(target.value);
+    setClient({
+      ref: target,
+      value: target.value,
+    });
   }
 
   return (
@@ -77,7 +93,7 @@ function Clients() {
         <Button
           label="Continuar"
           type="submit"
-          disabled={client ? false : true}
+          disabled={client.value ? false : true}
         />
       </Form>
     </StyledClients>
