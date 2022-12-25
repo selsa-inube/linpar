@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { typography } from "../../../styles/typography";
+import { colors } from "../../../styles/colors";
 
 const StyledParagraph = styled.p`
   font-family: ${({ typoToken }) => typography.sys.typescale[typoToken].font};
@@ -10,6 +11,7 @@ const StyledParagraph = styled.p`
     typography.sys.typescale[typoToken].tracking};
   font-weight: ${({ typoToken }) => typography.sys.typescale[typoToken].weight};
   text-align: ${({ align }) => align};
+  color: ${({ colorToken }) => colors.sys.text[colorToken]};
 `;
 
 export { StyledParagraph };
