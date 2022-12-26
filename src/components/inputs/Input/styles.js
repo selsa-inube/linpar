@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { typography } from "../../../styles/typography";
+import { colors } from "../../../styles/colors";
 
 const StyledIconInput = styled.div`
   box-sizing: border-box;
@@ -10,7 +11,7 @@ const StyledIconInput = styled.div`
   grid-template-columns: auto 1fr;
   gap: 8px;
   border-radius: 4px;
-  background-color: #ebecf0;
+  background-color: ${colors.ref.palette.lightNeutral.ln200};
 `;
 
 const StyledInput = styled.input`

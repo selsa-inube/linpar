@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 import { typography } from "../../../styles/typography";
+import { colors } from "../../../styles/colors";
 
 const StyledButton = styled.button`
   padding: 8px 16px;
-  color: white;
-  background-color: #0052cc;
+  color: ${colors.ref.palette.lightNeutral.ln50};
+  background-color: ${colors.sys.actions.primary};
   border: none;
   border-radius: 4px;
   font-family: ${typography.sys.typescale.bodyMedium.font};
@@ -16,9 +17,9 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   &:disabled {
-    background-color: white;
+    background-color: ${colors.ref.palette.lightNeutral.ln50};
     border: none;
-    color: #b3bac5;
+    color: ${colors.ref.palette.lightNeutral.ln600};
     cursor: not-allowed;
   }
 `;

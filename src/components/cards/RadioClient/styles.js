@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { colors } from "../../../styles/colors";
+
 const StyledRadioClient = styled.label`
   box-sizing: border-box;
   padding: 16px 24px;
@@ -10,8 +12,8 @@ const StyledRadioClient = styled.label`
   gap: 16px;
   align-items: center;
   align-content: center;
-  box-shadow: 1px 2px 2px 1px #eaeaea;
-  border: 1px solid #eaeaea;
+  box-shadow: 1px 2px 2px 1px ${colors.ref.palette.lightNeutral.ln200};
+  border: 1px solid ${colors.ref.palette.lightNeutral.ln200};
   cursor: pointer;
 
   @media screen and (max-width: 532px) {
