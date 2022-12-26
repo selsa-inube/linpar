@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { colors } from "../../styles/colors";
+
 const StyledLoginContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -12,7 +14,7 @@ const StyledLoginContainer = styled.div`
 `;
 
 const StyledWelcomeContainer = styled.div`
-  background-color: #ebecf0;
+  background-color: ${colors.ref.palette.lightNeutral.ln200};
   display: flex;
   flex-direction: column;
   justify-content: center;
