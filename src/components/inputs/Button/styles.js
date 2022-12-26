@@ -4,6 +4,9 @@ import { typography } from "../../../styles/typography";
 import { colors } from "../../../styles/colors";
 
 const StyledButton = styled.button`
+  max-width: fit-content;
+  display: flex;
+  align-items: center;
   padding: 8px 16px;
   color: ${colors.ref.palette.lightNeutral.ln50};
   background-color: ${colors.sys.actions.primary};

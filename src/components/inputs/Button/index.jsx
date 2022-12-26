@@ -10,4 +10,15 @@ function Button(props) {
   );
 }
 
-export { Button };
+function IconButton(props) {
+  const { label, type = "button", disabled = false, icon } = props;
+
+  return (
+    <StyledButton type={type} disabled={disabled}>
+      {icon}
+      {label}
+    </StyledButton>
+  );
+}
+
+export { Button, IconButton };
