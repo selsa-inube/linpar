@@ -41,6 +41,8 @@ const StyledNoResults = styled.div`
   margin: 16px 0;
 `;
 
-const StyledClientsItem = styled.li``;
+const StyledClientsItem = styled.li`
+  width: 100%;
+`;
 
 export { StyledClients, StyledClientsList, StyledNoResults, StyledClientsItem };

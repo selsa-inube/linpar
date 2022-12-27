@@ -6,6 +6,7 @@ const StyledRadioClient = styled.label`
   box-sizing: border-box;
   padding: 16px 24px;
   height: 72px;
+  min-height: 58px;
   width: 100%;
   display: grid;
   grid-template-columns: auto 1fr 30%;
