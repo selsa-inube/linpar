@@ -11,6 +11,7 @@ const StyledHeader = styled.header`
 
   @media (min-width: 851px) {
     grid-template-columns: 1fr auto;
+    padding: 0px;
     .menu-icon {
       display: none;
     }
@@ -19,7 +20,7 @@ const StyledHeader = styled.header`
 
 const StyledLogo = styled.img`
   max-width: 100px;
-  margin-left: 20px;
+  margin-left: 16px;
 `;
 
 export { StyledHeader, StyledLogo };
