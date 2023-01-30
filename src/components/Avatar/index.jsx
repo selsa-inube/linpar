@@ -5,14 +5,15 @@ import { StyledAvatar, StyledAvatarText, StyledAvatarIcon } from "./styles";
 
 import avatar from "../../assets/images/avatar.png";
 
-function Avatar() {
+function Avatar(props) {
+  const { username, businessName } = props;
   return (
     <StyledAvatar>
       <Stack direction="row" spacing="16" align="center">
         <StyledAvatarText>
           <Stack align="center">
-            <Text>Leonardo Garzón</Text>
-            <Text typoToken="bodySmall">Fondoccidente</Text>
+            <Text>{username}</Text>
+            <Text typoToken="bodySmall">{businessName}</Text>
           </Stack>
         </StyledAvatarText>
         <StyledAvatarIcon src={avatar} alt="" />

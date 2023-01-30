@@ -6,7 +6,11 @@ const story = {
   title: "components/Avatar",
 };
 
-const Default = () => <Avatar />;
+const Default = (args) => <Avatar {...args} />;
+Default.args = {
+  username: "Leonardo Garzón",
+  businessName: "Fondoccidente",
+};
 
 export default story;
 
