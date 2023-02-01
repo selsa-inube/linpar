@@ -2,14 +2,14 @@ import React from "react";
 import { Avatar } from "../Avatar";
 import { StyledHeader, StyledLogo } from "./styles";
 import { MdMenu } from "react-icons/md";
-import linparLogo from "../../assets/images/linpar.png";
 
-function Header() {
+function Header(props) {
+  const { username, businessName, appLogo, appLogoAlt } = props;
   return (
     <StyledHeader>
       <MdMenu size={24} />
-      <StyledLogo src={linparLogo} alt="LinPar" />
-      <Avatar />
+      <StyledLogo src={appLogo} alt={appLogoAlt} />
+      <Avatar username={username} businessName={businessName} />
     </StyledHeader>
   );
 }
