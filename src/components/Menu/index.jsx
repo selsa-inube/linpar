@@ -8,20 +8,19 @@ import {
 import { Text } from "../data/Text";
 import { Stack } from "../layout/Stack";
 import { IconButtonMenu } from "../inputs/Button";
-import { mockApps } from "../../mocks/home/apps.mock";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-function Menu() {
+function Menu(props) {
+  const { apps, title } = props;
   return (
     <StyledMenu>
       <Stack>
         <StyledTitle>
-          <Text typoToken="titleSmall">Menú</Text>
+          <Text typoToken="titleSmall">{title}</Text>
         </StyledTitle>
         <StyledButtons>
-          {mockApps.map((app, index) => (
+          {apps.map((app, index) => (
             <IconButtonMenu
-              id={app.id}
               label={app.label}
               icon={app.icon}
               icon2={<MdKeyboardArrowRight />}

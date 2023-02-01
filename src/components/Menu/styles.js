@@ -26,6 +26,7 @@ const StyledButtons = styled.div`
     column-gap: 25px;
     padding: 0px 12px 0px 18px;
     height: 40px;
+    text-align: left;
     min-width: 100%;
     font-weight: 400;
     border-left: 5px solid transparent;
