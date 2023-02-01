@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "../../components/Header";
+import { Header } from "../../Header";
 import { StyledAppPage, StyledContainer, StyledMain } from "./styles";
 
-function AppPageUI() {
+function AppPage() {
   return (
     <StyledAppPage>
       <Header />
@@ -21,4 +21,4 @@ function AppPageUI() {
   );
 }
 
-export { AppPageUI };
+export { AppPage };
