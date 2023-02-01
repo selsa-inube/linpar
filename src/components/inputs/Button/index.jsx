@@ -21,4 +21,23 @@ function IconButton(props) {
   );
 }
 
-export { Button, IconButton };
+function IconButtonMenu(props) {
+  const {
+    label,
+    type = "button",
+    disabled = false,
+    icon,
+    icon2,
+    className = "",
+  } = props;
+
+  return (
+    <StyledButton type={type} disabled={disabled} className={className}>
+      {icon}
+      {label}
+      {icon2}
+    </StyledButton>
+  );
+}
+
+export { Button, IconButton, IconButtonMenu };
