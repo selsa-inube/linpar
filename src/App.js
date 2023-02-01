@@ -12,11 +12,13 @@ import { CheckingCredentials } from "./pages/login/outlets/CheckingCredentials";
 import { Clients } from "./pages/login/outlets/Clients";
 import { LoadingApp } from "./pages/login/outlets/LoadingApp";
 import { LoginErrorBoundary } from "./pages/login/errors";
+import { Privileges } from "./pages/privileges";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Home />} />
+      <Route path="privileges" element={<Privileges />} />
       <Route
         path="login"
         element={<Login />}
