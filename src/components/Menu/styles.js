@@ -3,7 +3,6 @@ import { colors } from "../../styles/colors";
 
 const StyledMenu = styled.div`
   width: 248px;
-  height: 970px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
