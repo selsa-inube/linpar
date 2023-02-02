@@ -11,6 +11,7 @@ Default.args = {
   username: "Leonardo Garzón",
   businessName: "Fondoccidente",
   appLogo: linparLogo,
+  appLogoAlt: "Linpar",
 };
 
 export default story;
