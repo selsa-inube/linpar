@@ -1,11 +1,17 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../../Header";
 import { StyledAppPage, StyledContainer, StyledMain } from "./styles";
+import linparLogo from "../../../assets/images/linpar.png";
 
 function AppPage() {
   return (
     <StyledAppPage>
-      <Header />
+      <Header
+        appLogo={linparLogo}
+        appLogoAlt="linpar"
+        username="Leonardo Garzón"
+        businessName="Fondoccidente"
+      />
       <StyledContainer>
         <nav>
           <h5>Menú</h5>
