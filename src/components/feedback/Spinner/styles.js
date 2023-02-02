@@ -8,7 +8,7 @@ const spin = keyframes`
   }
 `;
 
-const StyledCircularProgress = styled.div`
+const StyledSpinner = styled.div`
   position: relative;
   border: 4px solid ${colors.sys.actions.secondary};
   border-left-color: ${colors.sys.actions.primary};
@@ -19,4 +19,4 @@ const StyledCircularProgress = styled.div`
   animation: ${spin} 1s linear infinite;
 `;
 
-export { StyledCircularProgress };
+export { StyledSpinner };
