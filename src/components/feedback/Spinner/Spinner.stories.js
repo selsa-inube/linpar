@@ -5,9 +5,6 @@ const story = {
   title: "components/feedback/Spinner",
 };
 
-const Template = (args) => <Spinner {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = () => <Spinner />;
 
 export default story;
