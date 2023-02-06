@@ -3,7 +3,7 @@ import { MdVpnKey } from "react-icons/md";
 
 const story = {
   component: [AppCard],
-  title: "components/AppCard",
+  title: "components/cards/AppCard",
 };
 
 const Template = (args) => <AppCard {...args} />;
