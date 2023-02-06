@@ -1,6 +1,6 @@
 import { Stack } from "../../../../components/layout/Stack";
 import { Text } from "../../../../components/data/Text";
-import { CircularProgress } from "../../../../components/feedback/CircularProgress";
+import { Spinner } from "../../../../components/feedback/Spinner";
 
 function CheckingCredentialsUI() {
   return (
@@ -14,7 +14,7 @@ function CheckingCredentialsUI() {
         </Text>
       </Stack>
       <Stack align="center">
-        <CircularProgress />
+        <Spinner />
       </Stack>
     </Stack>
   );
