@@ -7,13 +7,6 @@ const story = {
   argTypes: {
     handleChange: { action: "checked" },
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: "800px" }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 const Default = (args) => <RadioClient {...args} />;

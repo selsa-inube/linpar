@@ -9,7 +9,7 @@ const StyledRadioClient = styled.label`
   min-height: 58px;
   width: 100%;
   display: grid;
-  grid-template-columns: auto 1fr 30%;
+  grid-template-columns: auto 1fr 130px;
   gap: 16px;
   align-items: center;
   align-content: center;
