@@ -29,25 +29,29 @@ const StyledLink = styled.button`
   display: grid;
   grid-template-columns: auto 1fr 1fr;
   column-gap: 25px;
-  padding: ${(props) =>
-    props.active ? "0px 12px 0px 13px" : "0px 12px 0px 18px"};
   height: 40px;
   text-align: left;
   min-width: 100%;
-  font-weight: ${(props) => (props.active ? "550" : "400")};
-  border-left: ${(props) =>
-    props.active
-      ? `5px solid ${colors.ref.palette.darkNeutral.dn500};`
-      : "0px"};
   border-top: 0;
   border-right: 0;
   border-bottom: 0;
   border-radius: 2px;
+  color: ${colors.ref.palette.darkNeutral.dn500};
+
+  font-weight: ${(props) => (props.active ? "550" : "400")};
+
+  border-left: ${(props) =>
+    props.active
+      ? `5px solid ${colors.ref.palette.darkNeutral.dn500};`
+      : "0px"};
+
   background: ${(props) =>
     props.active
       ? colors.ref.palette.lightNeutral.ln200
       : colors.ref.palette.lightNeutral.ln50};
-  color: ${colors.ref.palette.darkNeutral.dn500};
+
+  padding: ${(props) =>
+    props.active ? "0px 12px 0px 13px" : "0px 12px 0px 18px"};
 
   & svg {
     width: 24px;
@@ -62,10 +66,11 @@ const StyledLink = styled.button`
   }
 
   & svg:last-child {
-    display: ${(props) => (props.active ? "block" : "none")};
     width: 27px;
     height: 26.6px;
     justify-self: end;
+
+    display: ${(props) => (props.active ? "block" : "none")};
   }
 `;
 
