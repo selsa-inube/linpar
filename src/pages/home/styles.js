@@ -7,17 +7,6 @@ const StyledHome = styled.div`
   overflow-y: scroll;
 `;
 
-const StyledGreetingContainer = styled.div`
-  max-width: 1400px;
-  padding: 0 32px;
-  margin: 40px auto 32px;
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
 const StyledAppsList = styled.ul`
   box-sizing: border-box;
   max-width: 1400px;
@@ -46,6 +35,4 @@ const StyledAppsList = styled.ul`
   }
 `;
 
-const StyledIcon = styled.img``;
-
-export { StyledHome, StyledGreetingContainer, StyledAppsList, StyledIcon };
+export { StyledHome, StyledAppsList };
