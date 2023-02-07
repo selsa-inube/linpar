@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
 
-const StyledMenu = styled.div`
+const StyledMenu = styled.nav`
   width: 248px;
-  height: 970px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11,65 +10,72 @@ const StyledMenu = styled.div`
 `;
 
 const StyledTitle = styled.div`
-  & p {
-    padding: 20px 17px;
-  }
+  padding: 20px 17px;
 `;
 
-const StyledButtons = styled.div`
+const StyledNavList = styled.ul`
+  padding: 0px;
+  margin: 0px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(1fr));
   gap: 5px;
-  & button {
-    display: grid;
-    grid-template-columns: auto 1fr 1fr;
-    column-gap: 25px;
-    padding: 0px 12px 0px 18px;
-    height: 40px;
-    text-align: left;
-    min-width: 100%;
-    font-weight: 400;
-    border-left: 5px solid transparent;
-    border-radius: 2px;
-    background-color: ${colors.ref.palette.lightNeutral.ln50};
-    color: ${colors.ref.palette.darkNeutral.dn500};
-  }
+`;
+
+const StyledLink = styled.button`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  column-gap: 25px;
+  padding: ${(props) =>
+    props.active ? "0px 12px 0px 13px" : "0px 12px 0px 18px"};
+  height: 40px;
+  text-align: left;
+  min-width: 100%;
+  font-weight: ${(props) => (props.active ? "550" : "400")};
+  border-left: ${(props) =>
+    props.active
+      ? `5px solid ${colors.ref.palette.darkNeutral.dn500};`
+      : "0px"};
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-radius: 2px;
+  background: ${(props) =>
+    props.active
+      ? colors.ref.palette.lightNeutral.ln200
+      : colors.ref.palette.lightNeutral.ln50};
+  color: ${colors.ref.palette.darkNeutral.dn500};
 
   & svg {
     width: 24px;
     height: 24px;
   }
 
+  & svg:first-child {
+    color: ${(props) =>
+      props.active
+        ? colors.ref.palette.blue.b500
+        : colors.ref.palette.darkNeutral.dn500};
+  }
+
   & svg:last-child {
-    display: none;
-    justify-self: end;
-  }
-
-  & .active {
-    background: ${colors.ref.palette.lightNeutral.ln200};
-    border-left: 5px solid ${colors.ref.palette.darkNeutral.dn500};
-    font-weight: 500;
-  }
-
-  & .active svg:first-child {
-    color: ${colors.ref.palette.blue.b500};
-  }
-
-  & .active svg:last-child {
-    display: block;
+    display: ${(props) => (props.active ? "block" : "none")};
     width: 27px;
     height: 26.6px;
+    justify-self: end;
   }
 `;
 
-const StyledDivisor = styled.div`
-  background-color: ${colors.ref.palette.lightNeutral.ln500};
+const StyledDivisor = styled.hr`
+  border-top: 1px solid ${colors.ref.palette.lightNeutral.ln500};
   margin: 8px 17px;
   width: 216px;
-  height: 1px;
 `;
 
-const StyledFooter = styled.div`
+const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   & p {
@@ -79,4 +85,11 @@ const StyledFooter = styled.div`
   }
 `;
 
-export { StyledMenu, StyledTitle, StyledButtons, StyledDivisor, StyledFooter };
+export {
+  StyledMenu,
+  StyledTitle,
+  StyledNavList,
+  StyledDivisor,
+  StyledFooter,
+  StyledLink,
+};

@@ -10,7 +10,7 @@ const Template = (args) => <Menu {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  apps: mockApps,
+  links: mockApps,
   title: "Menú",
 };
 

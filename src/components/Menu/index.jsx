@@ -1,34 +1,53 @@
 import {
   StyledMenu,
   StyledTitle,
-  StyledButtons,
+  StyledNavList,
   StyledDivisor,
   StyledFooter,
+  StyledLink,
 } from "./styles";
 import { Text } from "../data/Text";
 import { Stack } from "../layout/Stack";
-import { IconButtonMenu } from "../inputs/Button";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
+function NavLink(props) {
+  const {
+    label,
+    type = "button",
+    disabled = false,
+    icon,
+    icon2,
+    active,
+  } = props;
+
+  return (
+    <StyledLink type={type} disabled={disabled} active={active}>
+      {icon}
+      {label}
+      {icon2}
+    </StyledLink>
+  );
+}
+
 function Menu(props) {
-  const { apps, title } = props;
+  const { links, title } = props;
   return (
     <StyledMenu>
       <Stack>
         <StyledTitle>
           <Text typoToken="titleSmall">{title}</Text>
         </StyledTitle>
-        <StyledButtons>
-          {apps.map((app, index) => (
-            <IconButtonMenu
-              label={app.label}
-              icon={app.icon}
+        <StyledNavList>
+          {links.map((link, index) => (
+            <NavLink
+              label={link.label}
+              icon={link.icon}
               icon2={<MdKeyboardArrowRight />}
-              //change number to style test
-              className={index === 0 ? "active" : ""}
+              //change value to style test
+              active={index === 0 ? true : false}
             />
           ))}
-        </StyledButtons>
+        </StyledNavList>
         <StyledDivisor />
       </Stack>
       <StyledFooter>
