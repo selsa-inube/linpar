@@ -11,7 +11,7 @@ function PageTitle(props) {
       <Stack spacing="8">
         <Stack direction="row" spacing="8" align="center">
           <StyledIcon> {icon} </StyledIcon>
-          <Heading level="1"> {title} </Heading>
+          <Heading> {title} </Heading>
         </Stack>
         <Text> {description} </Text>
       </Stack>
