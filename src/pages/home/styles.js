@@ -7,6 +7,11 @@ const StyledHome = styled.div`
   overflow-y: scroll;
 `;
 
+const StyledPageTitle = styled.div`
+  max-width: 1400px;
+  padding: 0 32px;
+`;
+
 const StyledAppsList = styled.ul`
   box-sizing: border-box;
   max-width: 1400px;
@@ -35,4 +40,4 @@ const StyledAppsList = styled.ul`
   }
 `;
 
-export { StyledHome, StyledAppsList };
+export { StyledHome, StyledAppsList, StyledPageTitle };

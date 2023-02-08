@@ -13,7 +13,7 @@ function PageTitle(props) {
           <StyledIcon> {icon} </StyledIcon>
           <Heading> {title} </Heading>
         </Stack>
-        <Text> {description} </Text>
+        <Text color="secondary"> {description} </Text>
       </Stack>
     </StyledGreetingContainer>
   );
