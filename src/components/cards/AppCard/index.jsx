@@ -4,10 +4,10 @@ import { Stack } from "../../layout/Stack";
 import { StyledAppCard, StyledIcon } from "./styles";
 
 function AppCard(props) {
-  const { label, description, icon } = props;
+  const { label, description, icon, url } = props;
 
   return (
-    <StyledAppCard>
+    <StyledAppCard to={url}>
       <Stack spacing="16">
         <Text typoToken="titleMedium">{label}</Text>
         <Text>{description}</Text>
