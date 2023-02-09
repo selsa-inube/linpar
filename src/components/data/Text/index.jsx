@@ -5,11 +5,15 @@ function Text(props) {
     children,
     typoToken = "bodyMedium",
     align = "left",
-    color = "primary",
+    colorToken = "primary",
   } = props;
 
   return (
-    <StyledParagraph typoToken={typoToken} align={align} colorToken={color}>
+    <StyledParagraph
+      typoToken={typoToken}
+      align={align}
+      colorToken={colorToken}
+    >
       {children}
     </StyledParagraph>
   );

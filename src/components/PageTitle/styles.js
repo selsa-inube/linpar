@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const StyledGreetingContainer = styled.div`
-  margin: 40px auto 32px;
+const StyledPageTitle = styled.div`
+  margin: 40px 0 32px;
 `;
 
 const StyledIcon = styled.picture`
@@ -11,4 +11,4 @@ const StyledIcon = styled.picture`
   }
 `;
 
-export { StyledGreetingContainer, StyledIcon };
+export { StyledPageTitle, StyledIcon };
