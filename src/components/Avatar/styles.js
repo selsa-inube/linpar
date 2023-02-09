@@ -5,7 +5,7 @@ import { colors } from "../../styles/colors";
 const StyledAvatar = styled.div`
   box-sizing: border-box;
   padding: 8px 16px;
-  border-left: 1px solid ${colors.ref.palette.lightNeutral.ln400};
+  border-left: 1px solid ${colors.ref.palette.neutral.n50};
   cursor: pointer;
 `;
 
