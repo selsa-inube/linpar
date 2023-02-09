@@ -14,7 +14,7 @@ const StyledLoginContainer = styled.div`
 `;
 
 const StyledWelcomeContainer = styled.div`
-  background-color: ${colors.ref.palette.lightNeutral.ln200};
+  background-color: ${colors.ref.palette.neutral.n30};
   display: flex;
   flex-direction: column;
   justify-content: center;

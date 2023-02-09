@@ -11,8 +11,8 @@ const StyledAppCard = styled.li`
   flex-direction: column;
   justify-content: space-between;
   border-radius: 4px;
-  border: 1px solid ${colors.ref.palette.lightNeutral.ln200};
-  box-shadow: 3px 3px 5px 1px ${colors.ref.palette.lightNeutral.ln200};
+  border: 1px solid ${colors.ref.palette.neutral.n30};
+  box-shadow: 3px 3px 5px 1px ${colors.ref.palette.neutral.n30};
   cursor: pointer;
 
   &:hover {

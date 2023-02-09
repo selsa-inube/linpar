@@ -11,7 +11,7 @@ const StyledIconInput = styled.div`
   grid-template-columns: auto 1fr;
   gap: 8px;
   border-radius: 4px;
-  background-color: ${colors.ref.palette.lightNeutral.ln200};
+  background-color: ${colors.ref.palette.neutral.n30};
 `;
 
 const StyledInput = styled.input`

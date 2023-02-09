@@ -8,7 +8,7 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   padding: 8px 16px;
-  color: ${colors.ref.palette.lightNeutral.ln50};
+  color: ${colors.ref.palette.neutral.n0};
   background-color: ${colors.sys.actions.primary};
   border: none;
   border-radius: 4px;
@@ -20,9 +20,9 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   &:disabled {
-    background-color: ${colors.ref.palette.lightNeutral.ln50};
+    background-color: ${colors.ref.palette.neutral.n0};
     border: none;
-    color: ${colors.ref.palette.lightNeutral.ln600};
+    color: ${colors.ref.palette.neutral.n60};
     cursor: not-allowed;
   }
 `;

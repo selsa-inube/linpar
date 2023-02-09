@@ -13,8 +13,8 @@ const StyledRadioClient = styled.label`
   gap: 16px;
   align-items: center;
   align-content: center;
-  box-shadow: 1px 2px 2px 1px ${colors.ref.palette.lightNeutral.ln200};
-  border: 1px solid ${colors.ref.palette.lightNeutral.ln200};
+  box-shadow: 1px 2px 2px 1px ${colors.ref.palette.neutral.n30};
+  border: 1px solid ${colors.ref.palette.neutral.n30};
   cursor: pointer;
 
   @media screen and (max-width: 532px) {
