@@ -10,21 +10,14 @@ import { Text } from "../data/Text";
 import { Stack } from "../layout/Stack";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-function NavLink(props) {
-  const {
-    label,
-    type = "button",
-    disabled = false,
-    icon,
-    icon2,
-    active,
-  } = props;
+function MenuLink(props) {
+  const { label, disabled = false, icon, selected, url } = props;
 
   return (
-    <StyledLink type={type} disabled={disabled} active={active}>
+    <StyledLink disabled={disabled} selected={selected} to={url}>
       {icon}
-      {label}
-      {icon2}
+      <Text typoToken={selected ? "labelLarge" : "bodyMedium"}>{label}</Text>
+      <MdKeyboardArrowRight />
     </StyledLink>
   );
 }
@@ -39,13 +32,14 @@ function Menu(props) {
         </StyledTitle>
         <StyledNavList>
           {links.map((link, index) => (
-            <NavLink
-              label={link.label}
-              icon={link.icon}
-              icon2={<MdKeyboardArrowRight />}
-              //change value to style test
-              active={index === 0 ? true : false}
-            />
+            <li key={link.id}>
+              <MenuLink
+                label={link.label}
+                icon={link.icon}
+                selected={index === 0 ? true : false}
+                to={link.url}
+              />
+            </li>
           ))}
         </StyledNavList>
         <StyledDivisor />
@@ -57,4 +51,4 @@ function Menu(props) {
   );
 }
 
-export { Menu };
+export { Menu, MenuLink };

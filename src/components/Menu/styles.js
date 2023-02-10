@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { Link } from "react-router-dom";
 
 const StyledMenu = styled.nav`
   width: 248px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-right: 1px solid ${colors.ref.palette.lightNeutral.ln500};
+  border-right: 1px solid ${colors.ref.palette.neutral.n60};
 `;
 
 const StyledTitle = styled.div`
@@ -21,7 +22,7 @@ const StyledNavList = styled.ul`
   gap: 5px;
 `;
 
-const StyledLink = styled.button`
+const StyledLink = styled(Link)`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -31,38 +32,32 @@ const StyledLink = styled.button`
   column-gap: 25px;
   height: 40px;
   text-align: left;
-  min-width: 100%;
-  border-top: 0;
-  border-right: 0;
-  border-bottom: 0;
+  width: 100%;
   border-radius: 2px;
-  color: ${colors.ref.palette.darkNeutral.dn500};
-
-  font-weight: ${(props) => (props.active ? "550" : "400")};
-
-  border-left: ${(props) =>
-    props.active
-      ? `5px solid ${colors.ref.palette.darkNeutral.dn500};`
-      : "0px"};
-
-  background: ${(props) =>
-    props.active
-      ? colors.ref.palette.lightNeutral.ln200
-      : colors.ref.palette.lightNeutral.ln50};
-
-  padding: ${(props) =>
-    props.active ? "0px 12px 0px 13px" : "0px 12px 0px 18px"};
+  color: ${colors.ref.palette.neutral.n900};
+  text-decoration: none;
 
   & svg {
     width: 24px;
     height: 24px;
   }
 
+  border-left: ${(props) =>
+    props.selected ? `5px solid ${colors.ref.palette.neutral.n900};` : "0px"};
+
+  background: ${(props) =>
+    props.selected
+      ? colors.ref.palette.neutral.n30
+      : colors.ref.palette.neutral.n0};
+
+  padding: ${(props) =>
+    props.selected ? "0px 12px 0px 13px" : "0px 12px 0px 18px"};
+
   & svg:first-child {
     color: ${(props) =>
-      props.active
-        ? colors.ref.palette.blue.b500
-        : colors.ref.palette.darkNeutral.dn500};
+      props.selected
+        ? colors.ref.palette.blue.b400
+        : colors.ref.palette.neutral.n900};
   }
 
   & svg:last-child {
@@ -70,12 +65,24 @@ const StyledLink = styled.button`
     height: 26.6px;
     justify-self: end;
 
-    display: ${(props) => (props.active ? "block" : "none")};
+    display: ${(props) => (props.selected ? "block" : "none")};
+  }
+
+  &:hover {
+    background: ${colors.ref.palette.neutral.n30};
+  }
+
+  &:hover p {
+    font-weight: 500;
+  }
+
+  &:hover svg:first-child {
+    color: ${colors.ref.palette.blue.b400};
   }
 `;
 
 const StyledDivisor = styled.hr`
-  border-top: 1px solid ${colors.ref.palette.lightNeutral.ln500};
+  border-top: 1px solid ${colors.ref.palette.neutral.n60};
   margin: 8px 17px;
   width: 216px;
 `;
@@ -84,7 +91,7 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   & p {
-    color: ${colors.ref.palette.lightNeutral.ln500};
+    color: ${colors.ref.palette.neutral.n60};
     padding: 24px;
     margin: 0px;
   }
