@@ -8,7 +8,6 @@ const StyledAppMenuCard = styled(Link)`
   justify-content: center;
   padding: 16px;
   width: 191px;
-  height: 135px;
   text-decoration: none;
   color: ${colors.ref.palette.neutral.n900};
   :hover {
