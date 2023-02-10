@@ -21,12 +21,15 @@ function HomeUI(props) {
       </StyledPageTitle>
       <StyledAppsList>
         {apps.map((app) => (
-          <AppCard
-            key={app.id}
-            label={app.label}
-            description={app.description}
-            icon={app.icon}
-          />
+          <li key={app.url}>
+            <AppCard
+              key={app.id}
+              label={app.label}
+              description={app.description}
+              icon={app.icon}
+              url={app.url}
+            />
+          </li>
         ))}
       </StyledAppsList>
     </StyledHome>
