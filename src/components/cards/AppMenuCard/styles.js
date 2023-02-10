@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 
 const StyledAppMenuCard = styled(Link)`
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
   padding: 16px;
   width: 191px;
+  height: 140px;
   text-decoration: none;
   color: ${colors.ref.palette.neutral.n900};
   :hover {

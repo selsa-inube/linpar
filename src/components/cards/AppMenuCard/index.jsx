@@ -5,19 +5,19 @@ import { StyledAppMenuCard, StyledIcon } from "./styles";
 function AppMenuCard(props) {
   const { icon, label, description, url } = props;
   return (
-    <StyledAppMenuCard to={url}>
-      <Stack spacing="4" align="center">
-        <StyledIcon> {icon} </StyledIcon>
-        <Text align="center" typoToken="titleLarge">
-          {" "}
-          {label}{" "}
-        </Text>
-        <Text align="center" typoToken="bodySmall">
-          {" "}
-          {description}{" "}
-        </Text>
-      </Stack>
-    </StyledAppMenuCard>
+    <Stack>
+      <StyledAppMenuCard to={url}>
+        <Stack spacing="4" align="center">
+          <StyledIcon>{icon}</StyledIcon>
+          <Text align="center" typoToken="titleLarge">
+            {label}
+          </Text>
+          <Text align="center" typoToken="bodySmall">
+            {description}
+          </Text>
+        </Stack>
+      </StyledAppMenuCard>
+    </Stack>
   );
 }
 
