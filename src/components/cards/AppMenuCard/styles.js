@@ -3,6 +3,7 @@ import { colors } from "../../../styles/colors";
 import { Link } from "react-router-dom";
 
 const StyledAppMenuCard = styled(Link)`
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   padding: 16px;

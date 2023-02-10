@@ -12,7 +12,10 @@ function AppMenuCard(props) {
           {" "}
           {label}{" "}
         </Text>
-        <Text align="center"> {description} </Text>
+        <Text align="center" typoToken="bodySmall">
+          {" "}
+          {description}{" "}
+        </Text>
       </Stack>
     </StyledAppMenuCard>
   );
