@@ -1,6 +1,11 @@
-import { Menu } from "../..";
+import { Menu } from "..";
+import { Header } from "../../../Header";
 import { mockApps } from "../../../../mocks/home/apps.mock";
-import { StyledContainer, StyledStoryContainer } from "./stories.styles";
+import {
+  StyledContainer,
+  StyledStoryContainer,
+  StyledHeaderContainer,
+} from "./stories.styles";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
@@ -18,9 +23,12 @@ const story = {
   ],
 };
 
-const withGrid = (Template) => (args) =>
+const withLayout = (Template) => (args) =>
   (
     <StyledContainer>
+      <StyledHeaderContainer>
+        <Header />
+      </StyledHeaderContainer>
       <StyledStoryContainer>
         <Template {...args} />
       </StyledStoryContainer>
@@ -29,8 +37,14 @@ const withGrid = (Template) => (args) =>
 
 const Template = (args) => <Menu {...args} />;
 
-export const Default = withGrid(Template.bind({}));
+export const Default = Template.bind({});
 Default.args = {
+  links: mockApps,
+  title: "Menú",
+};
+
+export const Layout = withLayout(Template.bind({}));
+Layout.args = {
   links: mockApps,
   title: "Menú",
 };
