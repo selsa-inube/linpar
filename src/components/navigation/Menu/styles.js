@@ -19,15 +19,15 @@ const StyledNavList = styled.ul`
   padding: 0px;
   margin: 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1fr));
-  gap: 5px;
+  gap: 4px;
   list-style: none;
 `;
 
 const StyledDivisor = styled.hr`
+  box-sizing: border-box;
   border-top: 1px solid ${colors.ref.palette.neutral.n40};
-  margin: 8px 17px;
-  max-width: 100%;
+  margin: 8px 16px;
+  width: auto;
 `;
 
 const StyledFooter = styled.footer`

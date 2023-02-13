@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "../../../styles/colors";
+import { typography } from "../../../styles/typography";
 
 const StyledLink = styled(Link)`
   box-sizing: border-box;
@@ -52,7 +53,7 @@ const StyledLink = styled(Link)`
   }
 
   &:hover p {
-    font-weight: 500;
+    font-weight: ${typography.ref.typeface.weight.medium};
   }
 
   &:hover svg:first-child {

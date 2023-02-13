@@ -22,6 +22,15 @@ Default.args = {
   label: mockApps[0].label,
   icon: mockApps[0].icon,
   icon2: <MdKeyboardArrowRight />,
+  selected: false,
+  url: mockApps[0].url,
+};
+
+export const Selected = Template.bind({});
+Selected.args = {
+  label: mockApps[0].label,
+  icon: mockApps[0].icon,
+  icon2: <MdKeyboardArrowRight />,
   selected: true,
   url: mockApps[0].url,
 };
