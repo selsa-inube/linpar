@@ -120,6 +120,7 @@ const sys = {
 
 const typography = {
   sys,
+  ref,
 };
 
 export { typography };
