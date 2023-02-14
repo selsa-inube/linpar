@@ -94,10 +94,17 @@ const ref = {
 
 const sys = {
   text: {
-    primary: ref.palette.neutral.n900,
+    primary: ref.palette.blue.b400,
     secondary: ref.palette.neutral.n300,
-    link: ref.palette.blue.b400,
-    hover: ref.palette.neutral.n900,
+    information: ref.palette.blue.b400,
+    success: ref.palette.green.g400,
+    warning: ref.palette.yellow.y400,
+    error: ref.palette.red.r400,
+    help: ref.palette.purple.p400,
+    dark: ref.palette.neutral.n900,
+    light: ref.palette.neutral.n0,
+    link: ref.palette.blue.b500,
+    hover: ref.palette.blue.b300,
   },
   actions: {
     primary: ref.palette.blue.b400,
