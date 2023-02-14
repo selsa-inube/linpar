@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import { Header } from "../../Header";
 import { StyledAppPage, StyledContainer, StyledMain } from "./styles";
 import linparLogo from "../../../assets/images/linpar.png";
+import { Menu } from "../../navigation/Menu";
+import { mockApps } from "../../../mocks/home/apps.mock";
 
 function AppPage() {
   return (
@@ -13,12 +15,7 @@ function AppPage() {
         businessName="Fondoccidente"
       />
       <StyledContainer>
-        <nav>
-          <h5>Menú</h5>
-          <ul>
-            <li>Privilegios</li>
-          </ul>
-        </nav>
+        <Menu links={mockApps} title="Menú" />
         <StyledMain>
           <Outlet />
         </StyledMain>
