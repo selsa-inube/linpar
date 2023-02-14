@@ -15,7 +15,7 @@ function AppPage() {
         businessName="Fondoccidente"
       />
       <StyledContainer>
-        <Menu links={mockApps} title="Menú"></Menu>
+        <Menu links={mockApps} title="Menú" />
         <StyledMain>
           <Outlet />
         </StyledMain>
