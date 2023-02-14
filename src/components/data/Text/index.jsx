@@ -5,7 +5,7 @@ function Text(props) {
     children,
     typoToken = "bodyMedium",
     align = "left",
-    colorToken = "primary",
+    colorToken = "dark",
   } = props;
 
   return (
