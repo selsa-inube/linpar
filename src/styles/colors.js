@@ -95,7 +95,7 @@ const ref = {
 const sys = {
   text: {
     primary: ref.palette.blue.b400,
-    secondary: ref.palette.neutral.n30,
+    secondary: ref.palette.neutral.n300,
     information: ref.palette.blue.b400,
     success: ref.palette.green.g400,
     warning: ref.palette.yellow.y400,
