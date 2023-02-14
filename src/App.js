@@ -19,14 +19,11 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Home />} />
       <Route path="privileges" element={<Privileges />} />
-      <Route
-        path="login"
-        element={<Login />}
-        errorElement={<LoginErrorBoundary />}
-      >
+      <Route path="login" element={<Login />}>
         <Route path="checking-credentials" element={<CheckingCredentials />} />
         <Route path="clients" element={<Clients />} />
         <Route path="loading-app" element={<LoadingApp />} />
+        <Route path="*" element={<LoginErrorBoundary />} />
       </Route>
     </>
   )
