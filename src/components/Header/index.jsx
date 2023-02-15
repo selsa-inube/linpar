@@ -1,13 +1,19 @@
 import React from "react";
 import { Avatar } from "../Avatar";
 import { StyledHeader, StyledLogo } from "./styles";
-import { MdMenu } from "react-icons/md";
+import { MdMenu, MdClose } from "react-icons/md";
 
 function Header(props) {
-  const { username, businessName, appLogo, appLogoAlt } = props;
+  const { username, businessName, appLogo, appLogoAlt, handleMenu, menu } =
+    props;
+
   return (
     <StyledHeader>
-      <MdMenu size={24} />
+      {menu ? (
+        <MdClose size={24} onClick={handleMenu} />
+      ) : (
+        <MdMenu size={24} onClick={handleMenu} />
+      )}
       <StyledLogo src={appLogo} alt={appLogoAlt} />
       <Avatar username={username} businessName={businessName} />
     </StyledHeader>
