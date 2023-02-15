@@ -25,6 +25,7 @@ const StyledCompanyLogo = styled.img`
 `;
 
 const StyledGrid = styled.div`
+  align-items: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 64px;
