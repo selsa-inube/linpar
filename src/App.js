@@ -13,6 +13,7 @@ import { Clients } from "./pages/login/outlets/Clients";
 import { LoadingApp } from "./pages/login/outlets/LoadingApp";
 import { LoginErrorBoundary } from "./pages/login/errors";
 import { Privileges } from "./pages/privileges";
+import AppContextProvider from "./context";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,10 +32,10 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <>
+    <AppContextProvider>
       <GlobalStyles />
       <RouterProvider router={router} />
-    </>
+    </AppContextProvider>
   );
 }
 

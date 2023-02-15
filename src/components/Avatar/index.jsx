@@ -1,25 +1,10 @@
-import { Text } from "../data/Text";
-import { Stack } from "../layout/Stack";
+import { AvatarUI } from "./interface";
+import { AppContext } from "../../context";
+import { useContext } from "react";
 
-import { StyledAvatar, StyledAvatarText, StyledAvatarIcon } from "./styles";
-
-import avatar from "../../assets/images/avatar.png";
-
-function Avatar(props) {
-  const { username, businessName } = props;
-  return (
-    <StyledAvatar>
-      <Stack direction="row" spacing="16" align="center">
-        <StyledAvatarText>
-          <Stack align="center">
-            <Text>{username}</Text>
-            <Text typoToken="bodySmall">{businessName}</Text>
-          </Stack>
-        </StyledAvatarText>
-        <StyledAvatarIcon src={avatar} alt="" />
-      </Stack>
-    </StyledAvatar>
-  );
+function Avatar() {
+  const { user } = useContext(AppContext);
+  return <AvatarUI username={user.username} businessName={user.company} />;
 }
 
 export { Avatar };
