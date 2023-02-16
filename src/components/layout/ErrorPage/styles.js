@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledErrorBoundary = styled.div`
+const StyledErrorPage = styled.div`
   padding: 80px;
   display: flex;
   flex-direction: column;
@@ -25,6 +25,7 @@ const StyledCompanyLogo = styled.img`
 `;
 
 const StyledGrid = styled.div`
+  align-items: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 64px;
@@ -44,4 +45,4 @@ const StyledErrorImage = styled.img`
   max-width: 100%;
 `;
 
-export { StyledErrorBoundary, StyledCompanyLogo, StyledGrid, StyledErrorImage };
+export { StyledErrorPage, StyledCompanyLogo, StyledGrid, StyledErrorImage };
