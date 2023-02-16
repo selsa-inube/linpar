@@ -5,8 +5,7 @@ import { StyledAppPage, StyledContainer, StyledMain } from "./styles";
 import { Menu } from "../../navigation/Menu";
 import { mockApps } from "../../../mocks/home/apps.mock";
 
-function AppPage(props) {
-  const { Outlet } = props;
+function AppPage() {
   const [menu, setMenu] = useState(false);
 
   const handleMenu = () => {
@@ -18,7 +17,9 @@ function AppPage(props) {
       <Header handleMenu={handleMenu} menu={menu} />
       <StyledContainer menu={menu}>
         <Menu links={mockApps} title="Menú" />
-        <StyledMain>{Outlet}</StyledMain>
+        <StyledMain>
+          <Outlet />
+        </StyledMain>
       </StyledContainer>
     </StyledAppPage>
   );
