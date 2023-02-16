@@ -2,32 +2,23 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Header } from "../../Header";
 import { StyledAppPage, StyledContainer, StyledMain } from "./styles";
-import linparLogo from "../../../assets/images/linpar.png";
 import { Menu } from "../../navigation/Menu";
 import { mockApps } from "../../../mocks/home/apps.mock";
 
-function AppPage() {
-  const [menu, setMenuOpen] = useState(false);
+function AppPage(props) {
+  const { Outlet } = props;
+  const [menu, setMenu] = useState(false);
 
   const handleMenu = () => {
-    setMenuOpen(!menu);
+    setMenu(!menu);
   };
 
   return (
     <StyledAppPage>
-      <Header
-        appLogo={linparLogo}
-        appLogoAlt="linpar"
-        username="Leonardo Garzón"
-        businessName="Fondoccidente"
-        handleMenu={handleMenu}
-        menu={menu}
-      />
+      <Header handleMenu={handleMenu} menu={menu} />
       <StyledContainer menu={menu}>
         <Menu links={mockApps} title="Menú" />
-        <StyledMain>
-          <Outlet />
-        </StyledMain>
+        <StyledMain>{Outlet}</StyledMain>
       </StyledContainer>
     </StyledAppPage>
   );

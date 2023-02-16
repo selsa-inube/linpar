@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
 const StyledMenu = styled.nav`
+  box-sizing: border-box;
   width: 248px;
   height: 100%;
   display: flex;

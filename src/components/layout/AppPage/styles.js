@@ -14,18 +14,11 @@ const StyledContainer = styled.div`
     grid-template-columns: auto;
     & nav {
       width: 100%;
-      height: calc(100vh - 53px);
-      border-right: 0px;
-      display: ${(props) => (props.menu ? "flex" : "none")};
+      display: ${(props) => (props.menu ? "" : "none")};
     }
 
-    & nav div p:first-child {
-      font-size: 24px;
-      font-weight: 400;
-    }
-
-    & nav > div > div:first-child {
-      padding: 32px 16px;
+    & main {
+      display: ${(props) => (props.menu ? "none" : "")};
     }
   }
 `;

@@ -12,16 +12,23 @@ const StyledHeader = styled.header`
   @media (min-width: 850px) {
     grid-template-columns: 1fr auto;
   }
-
-  & svg {
-    @media (min-width: 850px) {
-      display: none;
-    }
-  }
 `;
 
 const StyledLogo = styled.img`
   max-width: 100px;
 `;
 
-export { StyledHeader, StyledLogo };
+const StyledIcon = styled.div`
+  display: flex;
+  color: ${colors.ref.palette.neutral.n900};
+  & svg {
+    width: ${(props) => props.size + "px"};
+    height: ${(props) => props.size + "px"};
+  }
+
+  @media (min-width: 850px) {
+    display: none;
+  }
+`;
+
+export { StyledHeader, StyledLogo, StyledIcon };

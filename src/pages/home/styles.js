@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledHome = styled.div`
   box-sizing: border-box;
   padding-bottom: 40px;
-  height: 100vh;
+  height: 100%;
   overflow-y: scroll;
 `;
 
@@ -24,11 +24,11 @@ const StyledAppsList = styled.ul`
   gap: 24px;
 
   @media screen and (max-width: 1420px) {
-    grid-template-columns: repeat(4, 250px);
+    grid-template-columns: repeat(3, 250px);
   }
 
   @media screen and (max-width: 1130px) {
-    grid-template-columns: repeat(3, 250px);
+    grid-template-columns: repeat(2, 250px);
   }
 
   @media screen and (max-width: 850px) {

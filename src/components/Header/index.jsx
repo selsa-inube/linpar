@@ -1,22 +1,19 @@
-import React from "react";
-import { Avatar } from "../Avatar";
-import { StyledHeader, StyledLogo } from "./styles";
-import { MdMenu, MdClose } from "react-icons/md";
+import { useContext } from "react";
+import { HeaderUI } from "./interface";
+import { AppContext } from "../../context";
 
 function Header(props) {
-  const { username, businessName, appLogo, appLogoAlt, handleMenu, menu } =
-    props;
-
+  const { user } = useContext(AppContext);
+  const { handleMenu, menu } = props;
   return (
-    <StyledHeader>
-      {menu ? (
-        <MdClose size={24} onClick={handleMenu} />
-      ) : (
-        <MdMenu size={24} onClick={handleMenu} />
-      )}
-      <StyledLogo src={appLogo} alt={appLogoAlt} />
-      <Avatar username={username} businessName={businessName} />
-    </StyledHeader>
+    <HeaderUI
+      username={user.username}
+      businessName={user.company}
+      appLogo={user.operator.logo}
+      appLogoAlt={user.operator.name}
+      menu={menu}
+      handleMenu={handleMenu}
+    />
   );
 }
 
