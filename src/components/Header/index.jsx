@@ -1,16 +1,16 @@
-import React from "react";
-import { Avatar } from "../Avatar";
-import { StyledHeader, StyledLogo } from "./styles";
-import { MdMenu } from "react-icons/md";
+import { useContext } from "react";
+import { HeaderUI } from "./interface";
+import { AppContext } from "../../context";
 
-function Header(props) {
-  const { username, businessName, appLogo, appLogoAlt } = props;
+function Header() {
+  const { user } = useContext(AppContext);
   return (
-    <StyledHeader>
-      <MdMenu size={24} />
-      <StyledLogo src={appLogo} alt={appLogoAlt} />
-      <Avatar username={username} businessName={businessName} />
-    </StyledHeader>
+    <HeaderUI
+      username={user.username}
+      businessName={user.company}
+      appLogo={user.operator.logo}
+      appLogoAlt={user.operator.name}
+    />
   );
 }
 
