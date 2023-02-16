@@ -11,10 +11,12 @@ import { Home } from "./pages/home";
 import { CheckingCredentials } from "./pages/login/outlets/CheckingCredentials";
 import { Clients } from "./pages/login/outlets/Clients";
 import { LoadingApp } from "./pages/login/outlets/LoadingApp";
+import { LoginErrorBoundary } from "./pages/login/errors";
 import { Privileges } from "./pages/privileges";
 import { ErrorPage } from "./components/layout/ErrorPage";
 import { ErrorNotAvailable } from "./pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "./pages/login/errors/ErrorNotClient";
+import AppContextProvider from "./context";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,10 +40,10 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <>
+    <AppContextProvider>
       <GlobalStyles />
       <RouterProvider router={router} />
-    </>
+    </AppContextProvider>
   );
 }
 
