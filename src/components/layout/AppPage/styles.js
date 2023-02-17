@@ -10,15 +10,15 @@ const StyledAppPage = styled.div`
 const StyledContainer = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
+  & nav {
+    width: 249px;
+    display: flex;
+  }
+
   @media (max-width: 849px) {
     grid-template-columns: auto;
     & nav {
-      width: 100%;
-      display: ${(props) => (props.menu ? "" : "none")};
-    }
-
-    & main {
-      display: ${(props) => (props.menu ? "none" : "")};
+      display: none;
     }
   }
 `;

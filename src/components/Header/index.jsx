@@ -1,10 +1,16 @@
+import { useState } from "react";
 import { useContext } from "react";
 import { HeaderUI } from "./interface";
 import { AppContext } from "../../context";
 
-function Header(props) {
+function Header() {
   const { user } = useContext(AppContext);
-  const { handleMenu, menu } = props;
+  const [menu, setMenu] = useState(false);
+
+  const handleMenu = () => {
+    setMenu(!menu);
+  };
+
   return (
     <HeaderUI
       username={user.username}

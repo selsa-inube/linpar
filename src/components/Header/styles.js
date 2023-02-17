@@ -20,10 +20,11 @@ const StyledLogo = styled.img`
 
 const StyledIcon = styled.div`
   display: flex;
+  justify-content: flex-end;
   color: ${colors.ref.palette.neutral.n900};
   & svg {
-    width: ${(props) => props.size + "px"};
-    height: ${(props) => props.size + "px"};
+    width: 24px;
+    height: 24px;
   }
 
   @media (min-width: 850px) {
@@ -31,4 +32,12 @@ const StyledIcon = styled.div`
   }
 `;
 
-export { StyledHeader, StyledLogo, StyledIcon };
+const StyledMenuWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
+export { StyledHeader, StyledLogo, StyledIcon, StyledMenuWrapper };

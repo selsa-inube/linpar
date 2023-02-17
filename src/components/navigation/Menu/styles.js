@@ -3,13 +3,21 @@ import { colors } from "../../../styles/colors";
 
 const StyledMenu = styled.nav`
   box-sizing: border-box;
-  width: 248px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: ${colors.ref.palette.neutral.n10};
   border-right: 1px solid ${colors.ref.palette.neutral.n40};
+
+  & div > div > svg {
+    padding: 24px 16px 0px;
+  }
+
+  @media (min-width: 850px) {
+    display: none;
+  }
 `;
 
 const StyledTitle = styled.div`
