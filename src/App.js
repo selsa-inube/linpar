@@ -11,8 +11,10 @@ import { Home } from "./pages/home";
 import { CheckingCredentials } from "./pages/login/outlets/CheckingCredentials";
 import { Clients } from "./pages/login/outlets/Clients";
 import { LoadingApp } from "./pages/login/outlets/LoadingApp";
-import { LoginErrorBoundary } from "./pages/login/errors";
 import { Privileges } from "./pages/privileges";
+import { ErrorPage } from "./components/layout/ErrorPage";
+import { ErrorNotAvailable } from "./pages/login/errors/ErrorNotAvailable";
+import { ErrorNotClient } from "./pages/login/errors/ErrorNotClient";
 import AppContextProvider from "./context";
 
 const router = createBrowserRouter(
@@ -24,8 +26,13 @@ const router = createBrowserRouter(
         <Route path="checking-credentials" element={<CheckingCredentials />} />
         <Route path="clients" element={<Clients />} />
         <Route path="loading-app" element={<LoadingApp />} />
-        <Route path="*" element={<LoginErrorBoundary />} />
       </Route>
+      <Route path="login/*" element={<ErrorPage />} />
+      <Route
+        path="login/error/not-related-clients"
+        element={<ErrorNotClient />}
+      />
+      <Route path="login/error/not-available" element={<ErrorNotAvailable />} />
     </>
   )
 );
