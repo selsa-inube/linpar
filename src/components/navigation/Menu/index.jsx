@@ -16,11 +16,11 @@ function Menu(props) {
   return (
     <StyledMenu>
       <Stack>
-        {menu ? (
+        {menu && (
           <StyledIcon>
             <MdClose onClick={handleMenu} />
           </StyledIcon>
-        ) : null}
+        )}
 
         <StyledTitle>
           <Text typoToken="titleSmall">{title}</Text>

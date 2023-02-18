@@ -25,6 +25,7 @@ const StyledIcon = styled.div`
   & svg {
     width: 24px;
     height: 24px;
+    cursor: pointer;
   }
 
   @media (min-width: 850px) {
@@ -38,6 +39,11 @@ const StyledMenuWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+
+  & nav {
+    height: 100vh;
+    overflow-y: auto;
+  }
 `;
 
 export { StyledHeader, StyledLogo, StyledIcon, StyledMenuWrapper };
