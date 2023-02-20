@@ -6,7 +6,7 @@ import {
 } from "./styles";
 import { PageTitle } from "../../PageTitle";
 import { AppMenuCard } from "../../../components/cards/AppMenuCard/index";
-import { Stack } from "../Stack";
+import { Text } from "../../data/Text";
 
 function AppMenu(props) {
   const { appName, appDescription, appIcon, appOptions } = props;
@@ -14,9 +14,7 @@ function AppMenu(props) {
   return (
     <StyledAppMenu>
       <StyledBreadcrumbs>
-        <ul>
-          <li>home / privileges</li>
-        </ul>
+        <Text typoToken="labelLarge">home / privileges</Text>
       </StyledBreadcrumbs>
       <StyledTitle>
         <PageTitle
