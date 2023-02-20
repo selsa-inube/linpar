@@ -13,30 +13,28 @@ function AppMenu(props) {
 
   return (
     <StyledAppMenu>
-      <Stack>
-        <StyledBreadcrumbs>
-          <ul>
-            <li>home / privileges</li>
-          </ul>
-        </StyledBreadcrumbs>
-        <StyledTitle>
-          <PageTitle
-            title={appName}
-            icon={appIcon}
-            description={appDescription}
+      <StyledBreadcrumbs>
+        <ul>
+          <li>home / privileges</li>
+        </ul>
+      </StyledBreadcrumbs>
+      <StyledTitle>
+        <PageTitle
+          title={appName}
+          icon={appIcon}
+          description={appDescription}
+        />
+      </StyledTitle>
+      <StyledCards>
+        {appOptions.map((item) => (
+          <AppMenuCard
+            icon={item.icon}
+            label={item.label}
+            description={item.description}
+            url={item.url}
           />
-        </StyledTitle>
-        <StyledCards>
-          {appOptions.map((item) => (
-            <AppMenuCard
-              icon={item.icon}
-              label={item.label}
-              description={item.description}
-              url={item.url}
-            />
-          ))}
-        </StyledCards>
-      </Stack>
+        ))}
+      </StyledCards>
     </StyledAppMenu>
   );
 }

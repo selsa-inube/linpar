@@ -5,7 +5,7 @@ const StyledAppMenu = styled.div`
   width: 100%;
 `;
 
-const StyledBreadcrumbs = styled.div`
+const StyledBreadcrumbs = styled.p`
   padding: 32px 65px;
 `;
 
@@ -18,14 +18,16 @@ const StyledTitle = styled.div`
 
 const StyledCards = styled.ul`
   box-sizing: border-box;
-  max-width: 1400px;
+  width: 100%;
   list-style: none;
   margin: 48px auto;
   padding: 0px 32px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  justify-content: flex-start;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  & div {
+    margin: 0;
+  }
 `;
 
 export { StyledAppMenu, StyledCards, StyledTitle, StyledBreadcrumbs };
