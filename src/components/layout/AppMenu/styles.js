@@ -23,7 +23,8 @@ const StyledCards = styled.ul`
   margin: 48px auto;
   padding: 0px 32px;
   display: grid;
-  grid-template-columns: repeat(5, 220px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-content: flex-start;
   gap: 20px;
 `;
 
