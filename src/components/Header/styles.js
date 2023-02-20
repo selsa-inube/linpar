@@ -12,16 +12,38 @@ const StyledHeader = styled.header`
   @media (min-width: 850px) {
     grid-template-columns: 1fr auto;
   }
-
-  & svg {
-    @media (min-width: 850px) {
-      display: none;
-    }
-  }
 `;
 
 const StyledLogo = styled.img`
   max-width: 100px;
 `;
 
-export { StyledHeader, StyledLogo };
+const StyledIcon = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  color: ${colors.ref.palette.neutral.n900};
+  & svg {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  @media (min-width: 850px) {
+    display: none;
+  }
+`;
+
+const StyledMenuWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  & nav {
+    height: 100vh;
+    overflow-y: auto;
+  }
+`;
+
+export { StyledHeader, StyledLogo, StyledIcon, StyledMenuWrapper };
