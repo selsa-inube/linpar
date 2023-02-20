@@ -1,5 +1,5 @@
 import { BreadcrumbItem } from "../BreadcrumbItem";
-import { StyledUl } from "./styles";
+import { StyledBreadcrumbs } from "./styles";
 
 function Breadcrumbs(props) {
   const { route } = props;
@@ -12,12 +12,14 @@ function Breadcrumbs(props) {
   });
 
   return (
-    <StyledUl>
-      <BreadcrumbItem to="/">Home</BreadcrumbItem>
+    <StyledBreadcrumbs>
+      <BreadcrumbItem to="/" key="home">
+        Home
+      </BreadcrumbItem>
       {breadcrumbItems.map((item) => (
-        <BreadcrumbItem to={item.path} children={item.crumb} />
+        <BreadcrumbItem to={item.path} children={item.crumb} key={item.path} />
       ))}
-    </StyledUl>
+    </StyledBreadcrumbs>
   );
 }
 

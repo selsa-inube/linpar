@@ -1,14 +1,17 @@
-import { StyledLi, StyledLink } from "./styles";
+import { StyledBreadcrumbItem, StyledLink } from "./styles";
+import { Text } from "../../data/Text";
 
 function BreadcrumbItem(props) {
-  const { to, children, typoToken = "labelLarge", colorToken = "dark" } = props;
+  const { to, children } = props;
 
   return (
-    <StyledLi>
-      <StyledLink to={to} typoToken={typoToken} colorToken={colorToken}>
-        {children}
+    <StyledBreadcrumbItem>
+      <StyledLink to={to}>
+        <Text typoToken="labelLarge" colorToken="dark">
+          {children}
+        </Text>
       </StyledLink>
-    </StyledLi>
+    </StyledBreadcrumbItem>
   );
 }
 
