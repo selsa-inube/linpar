@@ -7,6 +7,9 @@ import { BrowserRouter } from "react-router-dom";
 const story = {
   components: [AppMenu],
   title: "layouts/AppMenu",
+  parameters: {
+    layout: "fullscreen",
+  },
   decorators: [
     (Story) => (
       <BrowserRouter>

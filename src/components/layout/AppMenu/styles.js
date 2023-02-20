@@ -6,24 +6,24 @@ const StyledAppMenu = styled.div`
 `;
 
 const StyledBreadcrumbs = styled.div`
-  margin: 15px 0 auto;
-  padding: 0 32px;
+  padding: 32px 65px;
 `;
 
 const StyledTitle = styled.div`
-  max-width: 1400px;
-  padding: 0 32px;
+  padding: 0 65px;
+  & div {
+    margin: 0;
+  }
 `;
 
-const StyledCards = styled.div`
+const StyledCards = styled.ul`
   box-sizing: border-box;
   max-width: 1400px;
   list-style: none;
-  margin: 20px auto;
+  margin: 48px auto;
   padding: 0px 32px;
   display: grid;
   grid-template-columns: repeat(5, 220px);
-  justify-content: center;
   gap: 20px;
 `;
 
