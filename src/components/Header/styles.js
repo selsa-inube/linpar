@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
   max-height: 56px;
@@ -16,6 +17,10 @@ const StyledHeader = styled.header`
 
 const StyledLogo = styled.img`
   max-width: 100px;
+`;
+
+const StyledcontentImg = styled(Link)`
+  width: 100px;
 `;
 
 const StyledIcon = styled.div`
@@ -46,4 +51,10 @@ const StyledMenuWrapper = styled.div`
   }
 `;
 
-export { StyledHeader, StyledLogo, StyledIcon, StyledMenuWrapper };
+export {
+  StyledHeader,
+  StyledLogo,
+  StyledIcon,
+  StyledMenuWrapper,
+  StyledcontentImg,
+};

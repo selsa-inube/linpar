@@ -2,6 +2,7 @@ import { Avatar } from "../Avatar";
 import {
   StyledHeader,
   StyledLogo,
+  StyledcontentImg,
   StyledIcon,
   StyledMenuWrapper,
 } from "./styles";
@@ -20,7 +21,9 @@ function HeaderUI(props) {
         <StyledIcon>
           <MdMenu onClick={handleMenu} />
         </StyledIcon>
-        <StyledLogo src={appLogo} alt={appLogoAlt} />
+        <StyledcontentImg to="/">
+          <StyledLogo src={appLogo} alt={appLogoAlt} />
+        </StyledcontentImg>
         <Avatar username={username} businessName={businessName} />
       </StyledHeader>
       {menu &&
