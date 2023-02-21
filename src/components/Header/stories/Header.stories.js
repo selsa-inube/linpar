@@ -1,8 +1,7 @@
-import { Header } from "../Header";
-import linparLogo from "../../assets/images/linpar.png";
+import { Header } from "..";
+import linparLogo from "../../../assets/images/linpar.png";
 import { BrowserRouter } from "react-router-dom";
-import { useState } from "react";
-import { HeaderUI } from "./interface";
+import { Controller } from "./HeaderController";
 
 const story = {
   components: [Header],
@@ -25,17 +24,6 @@ Default.args = {
   businessName: "Fondoccidente",
   appLogo: linparLogo,
   appLogoAlt: "Linpar",
-};
-
-const Controller = (args) => {
-  const [menu, setMenu] = useState(false);
-  const handleMenu = (event) => {
-    console.log(event);
-  };
-
-  const props = { ...args, menu, handleMenu };
-
-  return <HeaderUI {...props} />;
 };
 
 export default story;
