@@ -1,7 +1,6 @@
 import { Form } from "react-router-dom";
 
 import { RadioClient } from "../../../../components/cards/RadioClient";
-import { Heading } from "../../../../components/data/Heading";
 import { Text } from "../../../../components/data/Text";
 import { Button } from "../../../../components/inputs/Button";
 import { SearchInput } from "../../../../components/inputs/Input";
@@ -25,9 +24,9 @@ function ClientsUI(props) {
 
   return (
     <StyledClients>
-      <Heading level="2" typoToken="titleLarge" align="center">
+      <Text as="h2" align="center" typoToken="titleLarge">
         Clientes
-      </Heading>
+      </Text>
       <Text align="center">
         Selecciona la empresa a la que vas a representar
       </Text>
