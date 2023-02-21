@@ -2,7 +2,7 @@ import { useState } from "react";
 import { HeaderUI } from "../interface";
 
 const Controller = (args) => {
-  const [menu, setMenu] = useState(false);
+  const [menu] = useState(false);
   const handleMenu = (event) => {
     console.log(event);
   };
