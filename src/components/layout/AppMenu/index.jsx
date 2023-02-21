@@ -1,21 +1,15 @@
-import {
-  StyledAppMenu,
-  StyledTitle,
-  StyledCards,
-  StyledBreadcrumbs,
-} from "./styles";
+import { StyledAppMenu, StyledTitle, StyledCards } from "./styles";
 import { PageTitle } from "../../PageTitle";
 import { AppMenuCard } from "../../../components/cards/AppMenuCard/index";
-import { Text } from "../../data/Text";
+
+import { Breadcrumbs } from "../../navigation/Breadcrumbs";
 
 function AppMenu(props) {
-  const { appName, appDescription, appIcon, appOptions } = props;
+  const { appName, appDescription, appIcon, appOptions, appRoute } = props;
 
   return (
     <StyledAppMenu>
-      <StyledBreadcrumbs>
-        <Text typoToken="labelLarge">home / privileges</Text>
-      </StyledBreadcrumbs>
+      <Breadcrumbs route={appRoute} />
       <StyledTitle>
         <PageTitle
           title={appName}
@@ -26,6 +20,7 @@ function AppMenu(props) {
       <StyledCards>
         {appOptions.map((item) => (
           <AppMenuCard
+            key={item.id}
             icon={item.icon}
             label={item.label}
             description={item.description}
