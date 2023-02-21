@@ -9,7 +9,7 @@ const StyledHome = styled.div`
 
 const StyledPageTitle = styled.div`
   max-width: 1400px;
-  padding: 0 32px;
+  padding: 32px;
 `;
 
 const StyledAppsList = styled.ul`
