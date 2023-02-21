@@ -2,6 +2,7 @@ import { Avatar } from "../Avatar";
 import {
   StyledHeader,
   StyledLogo,
+  StyledcontentImg,
   StyledIcon,
   StyledMenuWrapper,
 } from "./styles";
@@ -11,8 +12,15 @@ import { mockApps } from "../../mocks/home/apps.mock";
 import { MdMenu } from "react-icons/md";
 
 function HeaderUI(props) {
-  const { username, businessName, appLogo, appLogoAlt, handleMenu, menu } =
-    props;
+  const {
+    username,
+    businessName,
+    appLogo,
+    appLogoAlt,
+    handleMenu,
+    menu,
+    appLogoRedirect = "/",
+  } = props;
 
   return (
     <>
@@ -20,7 +28,9 @@ function HeaderUI(props) {
         <StyledIcon>
           <MdMenu onClick={handleMenu} />
         </StyledIcon>
-        <StyledLogo src={appLogo} alt={appLogoAlt} />
+        <StyledcontentImg to={appLogoRedirect}>
+          <StyledLogo src={appLogo} alt={appLogoAlt} />
+        </StyledcontentImg>
         <Avatar username={username} businessName={businessName} />
       </StyledHeader>
       {menu &&
