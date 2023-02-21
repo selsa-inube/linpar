@@ -20,7 +20,7 @@ import AppContextProvider from "./context";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
       <Route path="privileges" element={<Privileges />} />
       <Route path="login" element={<Login />}>
         <Route path="checking-credentials" element={<CheckingCredentials />} />
