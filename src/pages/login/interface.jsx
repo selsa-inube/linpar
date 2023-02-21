@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 
 import { Stack } from "../../components/layout/Stack";
-import { Heading } from "../../components/data/Heading";
 import { Text } from "../../components/data/Text";
 
 import selsaLogo from "../../assets/images/selsa.png";
@@ -21,9 +20,9 @@ function LoginUI() {
           <Text typoToken="headlineSmall" align="center">
             Bienvenido
           </Text>
-          <Heading level="1" typoToken="headlineLarge">
+          <Text as="h1" typoToken="headlineLarge">
             Portal de clientes
-          </Heading>
+          </Text>
         </Stack>
         <StyledImage src={selsaLogo} alt="Sistemas Enlinea" />
       </StyledWelcomeContainer>

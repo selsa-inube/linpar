@@ -6,6 +6,7 @@ function Text(props) {
     typoToken = "bodyMedium",
     align = "left",
     colorToken = "dark",
+    as,
   } = props;
 
   return (
@@ -13,6 +14,7 @@ function Text(props) {
       typoToken={typoToken}
       align={align}
       colorToken={colorToken}
+      as={as}
     >
       {children}
     </StyledParagraph>
