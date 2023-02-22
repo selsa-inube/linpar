@@ -15,7 +15,7 @@ const StyledCards = styled.ul`
   list-style: none;
   margin: 48px auto;
   display: grid;
-  grid-template-columns: repeat(5, 250px);
+  grid-template-columns: repeat(4, 250px);
   justify-content: center;
   gap: 24px;
 
@@ -23,11 +23,11 @@ const StyledCards = styled.ul`
     grid-template-columns: repeat(4, 250px);
   }
 
-  @media screen and (max-width: 1130px) {
+  @media screen and (max-width: 1360px) {
     grid-template-columns: repeat(3, 250px);
   }
 
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 1100px) {
     grid-template-columns: repeat(2, 250px);
   }
 
