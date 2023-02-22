@@ -59,7 +59,7 @@ function ClientsUI(props) {
           ))}
         </StyledClientsList>
         <Button
-          label="Continuar"
+          children="Continuar"
           type="submit"
           disabled={client.value ? false : true}
         />

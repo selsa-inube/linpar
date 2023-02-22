@@ -1,24 +1,29 @@
 import { StyledButton } from "./styles";
+import { Text } from "../../data/Text";
 
 function Button(props) {
-  const { label, type = "button", disabled = false } = props;
+  const {
+    type = "text",
+    disabled = false,
+    children,
+    appearance,
+    iconBefore,
+    spacing,
+    handleClick,
+  } = props;
 
   return (
-    <StyledButton type={type} disabled={disabled}>
-      {label}
+    <StyledButton
+      type={type}
+      disabled={disabled}
+      appearance={appearance}
+      spacing={spacing}
+      handleClick={handleClick}
+    >
+      {iconBefore}
+      <Text typoToken="labelLarge">{children}</Text>
     </StyledButton>
   );
 }
 
-function IconButton(props) {
-  const { label, type = "button", disabled = false, icon } = props;
-
-  return (
-    <StyledButton type={type} disabled={disabled}>
-      {icon}
-      {label}
-    </StyledButton>
-  );
-}
-
-export { Button, IconButton };
+export { Button };

@@ -11,7 +11,8 @@ const StyledButton = styled.button`
   color: ${colors.ref.palette.neutral.n0};
   background-color: ${colors.sys.actions.primary};
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  gap: ${({ spacing }) => (spacing ? `${spacing}px` : `8px`)};
   font-family: ${typography.sys.typescale.bodyMedium.font};
   font-size: ${typography.sys.typescale.bodyMedium.size};
   font-weight: ${typography.sys.typescale.bodyMedium.weight};
@@ -24,6 +25,10 @@ const StyledButton = styled.button`
     border: none;
     color: ${colors.ref.palette.neutral.n60};
     cursor: not-allowed;
+  }
+
+  & p {
+    color: ${colors.ref.palette.neutral.n0};
   }
 `;
 
