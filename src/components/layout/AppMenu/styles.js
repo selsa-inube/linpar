@@ -18,6 +18,7 @@ const StyledCards = styled.ul`
   grid-template-columns: repeat(4, 250px);
   justify-content: center;
   gap: 24px;
+  padding: 0;
 
   @media screen and (max-width: 1420px) {
     grid-template-columns: repeat(4, 250px);
