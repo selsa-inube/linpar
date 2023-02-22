@@ -7,12 +7,13 @@ const StyledButton = styled.button`
   max-width: fit-content;
   display: flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: ${({ spacing }) =>
+    spacing === "compact" ? `4px 12px` : `8px 16px`};
   color: ${colors.ref.palette.neutral.n0};
   background-color: ${colors.sys.actions.primary};
   border: none;
   border-radius: 8px;
-  gap: ${({ spacing }) => (spacing ? `${spacing}px` : `8px`)};
+  gap: 8px;
   font-family: ${typography.sys.typescale.bodyMedium.font};
   font-size: ${typography.sys.typescale.bodyMedium.size};
   font-weight: ${typography.sys.typescale.bodyMedium.weight};
@@ -25,10 +26,6 @@ const StyledButton = styled.button`
     border: none;
     color: ${colors.ref.palette.neutral.n60};
     cursor: not-allowed;
-  }
-
-  & p {
-    color: ${colors.ref.palette.neutral.n0};
   }
 `;
 

@@ -21,7 +21,9 @@ function Button(props) {
       handleClick={handleClick}
     >
       {iconBefore}
-      <Text typoToken="labelLarge">{children}</Text>
+      <Text typoToken="labelLarge" colorToken="light">
+        {children}
+      </Text>
     </StyledButton>
   );
 }
