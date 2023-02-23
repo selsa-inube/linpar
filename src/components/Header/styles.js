@@ -3,6 +3,7 @@ import { colors } from "../../styles/colors";
 import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
+  position: relative;
   max-height: 56px;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -10,11 +11,11 @@ const StyledHeader = styled.header`
   padding: 0px 0px 0px 16px;
   border-bottom: 1px solid ${colors.ref.palette.neutral.n40};
   column-gap: 16px;
-  box-shadow: 0px 1px 2px ${colors.ref.palette.neutral.n30},
-    0px 1px 3px 1px ${colors.ref.palette.neutral.n30};
-  z-index: 1;
+  box-shadow: 0px 1px 2px ${colors.ref.palette.neutral.n20},
+    0px 1px 3px 1px ${colors.ref.palette.neutral.n20};
   @media (min-width: 850px) {
     grid-template-columns: 1fr auto;
+    z-index: 1;
   }
 `;
 
