@@ -7,7 +7,10 @@ function Privileges() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/privileges") {
+    if (
+      location.pathname === "/privileges" ||
+      location.pathname === "/privileges/"
+    ) {
       navigate("/privileges/options");
     }
   }, [location, navigate]);

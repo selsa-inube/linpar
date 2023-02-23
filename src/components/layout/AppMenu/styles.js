@@ -15,25 +15,25 @@ const StyledCards = styled.ul`
   list-style: none;
   margin: 48px auto;
   display: grid;
-  grid-template-columns: repeat(4, 250px);
+  grid-template-columns: repeat(6, auto);
   justify-content: center;
   gap: 24px;
   padding: 0;
 
-  @media screen and (max-width: 1420px) {
-    grid-template-columns: repeat(4, 250px);
+  @media screen and (max-width: 1580px) {
+    grid-template-columns: repeat(5, auto);
   }
 
-  @media screen and (max-width: 1360px) {
-    grid-template-columns: repeat(3, 250px);
+  @media screen and (max-width: 1375px) {
+    grid-template-columns: repeat(4, auto);
   }
 
-  @media screen and (max-width: 1100px) {
-    grid-template-columns: repeat(2, 250px);
+  @media screen and (max-width: 1170px) {
+    grid-template-columns: repeat(3, auto);
   }
 
-  @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(1, 250px);
+  @media screen and (max-width: 960px) {
+    grid-template-columns: repeat(2, auto);
   }
 `;
 
