@@ -3,7 +3,6 @@ import { colors } from "../../styles/colors";
 import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
-  position: relative;
   max-height: 56px;
   display: grid;
   grid-template-columns: auto 1fr auto;
