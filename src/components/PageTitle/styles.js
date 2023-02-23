@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-const StyledPageTitle = styled.div`
-  margin: 40px 0 32px;
-`;
+const StyledPageTitle = styled.div``;
 
 const StyledIcon = styled.picture`
   & svg {

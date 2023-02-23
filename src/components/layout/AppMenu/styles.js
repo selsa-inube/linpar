@@ -1,23 +1,19 @@
 import styled from "styled-components";
 
-const StyledHome = styled.div`
+const StyledAppMenu = styled.div`
   box-sizing: border-box;
-  padding-bottom: 40px;
-  height: 100vh;
-  overflow-y: scroll;
+  width: 100%;
+  padding: 32px 64px 32px;
 `;
 
-const StyledPageTitle = styled.div`
-  max-width: 1400px;
-  padding: 32px;
+const StyledTitle = styled.div`
+  margin: 32px 0px;
 `;
 
-const StyledAppsList = styled.ul`
-  box-sizing: border-box;
+const StyledCards = styled.ul`
   max-width: 1400px;
   list-style: none;
-  margin: 40px auto;
-  padding: 0px 32px;
+  margin: 48px auto;
   display: grid;
   grid-template-columns: repeat(5, 250px);
   justify-content: center;
@@ -40,4 +36,4 @@ const StyledAppsList = styled.ul`
   }
 `;
 
-export { StyledHome, StyledAppsList, StyledPageTitle };
+export { StyledAppMenu, StyledCards, StyledTitle };

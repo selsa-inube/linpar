@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { typography } from "../../../styles/typography";
 import { colors } from "../../../styles/colors";
 
-const StyledParagraph = styled.p`
+const StyledText = styled.p`
   font-family: ${({ typoToken }) => typography.sys.typescale[typoToken].font};
   line-height: ${({ typoToken }) =>
     typography.sys.typescale[typoToken].lineHeight};
@@ -14,4 +14,4 @@ const StyledParagraph = styled.p`
   color: ${({ colorToken }) => colors.sys.text[colorToken]};
 `;
 
-export { StyledParagraph };
+export { StyledText };

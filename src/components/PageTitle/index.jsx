@@ -1,5 +1,4 @@
 import { Stack } from "../layout/Stack";
-import { Heading } from "../data/Heading";
 import { Text } from "../data/Text";
 import { StyledPageTitle, StyledIcon } from "./styles";
 
@@ -11,7 +10,9 @@ function PageTitle(props) {
       <Stack spacing="8">
         <Stack direction="row" spacing="8" align="center">
           <StyledIcon> {icon} </StyledIcon>
-          <Heading> {title} </Heading>
+          <Text as="h1" typoToken="titleLarge">
+            {title}
+          </Text>
         </Stack>
         <Text colorToken="secondary"> {description} </Text>
       </Stack>

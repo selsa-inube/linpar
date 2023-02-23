@@ -1,4 +1,4 @@
-import { StyledParagraph } from "./styles";
+import { StyledText } from "./styles";
 
 function Text(props) {
   const {
@@ -6,16 +6,18 @@ function Text(props) {
     typoToken = "bodyMedium",
     align = "left",
     colorToken = "dark",
+    as,
   } = props;
 
   return (
-    <StyledParagraph
+    <StyledText
       typoToken={typoToken}
       align={align}
       colorToken={colorToken}
+      as={as}
     >
       {children}
-    </StyledParagraph>
+    </StyledText>
   );
 }
 
