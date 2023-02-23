@@ -10,8 +10,11 @@ const StyledHeader = styled.header`
   padding: 0px 0px 0px 16px;
   border-bottom: 1px solid ${colors.ref.palette.neutral.n40};
   column-gap: 16px;
+  box-shadow: 0px 1px 2px ${colors.ref.palette.neutral.n20},
+    0px 1px 3px 1px ${colors.ref.palette.neutral.n20};
   @media (min-width: 850px) {
     grid-template-columns: 1fr auto;
+    z-index: 1;
   }
 `;
 
