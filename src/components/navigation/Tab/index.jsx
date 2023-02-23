@@ -1,0 +1,16 @@
+import { Text } from "../../data/Text";
+import { StyledTab } from "./styles";
+
+function Tab(props) {
+  const { id, title, isActive, handleClick } = props;
+
+  return (
+    <StyledTab isActive={isActive} onClick={() => handleClick(id)}>
+      <Text typoToken="labelMedium" colorToken={isActive}>
+        {title}
+      </Text>
+    </StyledTab>
+  );
+}
+
+export { Tab };
