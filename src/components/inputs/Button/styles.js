@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { typography } from "../../../styles/typography";
 import { colors } from "../../../styles/colors";
 
 const getBackgroundColor = ({ appearance }) => {
