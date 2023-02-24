@@ -15,13 +15,16 @@ import { Privileges } from "./pages/privileges";
 import { ErrorPage } from "./components/layout/ErrorPage";
 import { ErrorNotAvailable } from "./pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "./pages/login/errors/ErrorNotClient";
+import { PrivilegesOptions } from "./pages/privileges/outlets/options";
 import AppContextProvider from "./context";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
-      <Route path="privileges" element={<Privileges />} />
+      <Route path="privileges" element={<Privileges />}>
+        <Route path="options" element={<PrivilegesOptions />} />
+      </Route>
       <Route path="login" element={<Login />}>
         <Route path="checking-credentials" element={<CheckingCredentials />} />
         <Route path="clients" element={<Clients />} />
