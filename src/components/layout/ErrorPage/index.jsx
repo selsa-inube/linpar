@@ -31,7 +31,7 @@ function ErrorPage(props) {
             <Text typoToken="titleLarge">{heading}</Text>
             <Text typoToken="titleMedium">{description}</Text>
           </Stack>
-          <Button children="Exit" iconBefore={<MdChevronLeft size={18} />} />
+          <Button iconBefore={<MdChevronLeft size={18} />}>Exit</Button>
         </Stack>
         <StyledErrorImage src={image} alt={imageAlt} />
       </StyledGrid>

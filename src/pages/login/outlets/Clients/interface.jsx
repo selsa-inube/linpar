@@ -58,11 +58,9 @@ function ClientsUI(props) {
             </StyledClientsItem>
           ))}
         </StyledClientsList>
-        <Button
-          children="Continuar"
-          type="submit"
-          disabled={client.value ? false : true}
-        />
+        <Button type="submit" disabled={client.value ? false : true}>
+          Continuar
+        </Button>
       </Form>
     </StyledClients>
   );
