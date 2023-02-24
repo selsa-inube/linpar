@@ -28,10 +28,6 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 8px;
   gap: 8px;
-  font-size: ${typography.sys.typescale.bodyMedium.size};
-  font-weight: ${typography.sys.typescale.bodyMedium.weight};
-  line-height: ${typography.sys.typescale.bodyMedium.lineHeight};
-  letter-spacing: ${typography.sys.typescale.bodyMedium.tracking};
   cursor: pointer;
 
   &:disabled {
