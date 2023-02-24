@@ -9,10 +9,10 @@ function AppMenuCard(props) {
       <StyledAppMenuCard to={url}>
         <Stack spacing="4" align="center">
           <StyledIcon>{icon}</StyledIcon>
-          <Text align="center" typoToken="titleLarge">
+          <Text align="center" typoToken="titleMedium">
             {label}
           </Text>
-          <Text align="center" typoToken="bodySmall">
+          <Text align="center" typoToken="bodySmall" colorToken="secondary">
             {description}
           </Text>
         </Stack>
