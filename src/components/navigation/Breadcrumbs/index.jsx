@@ -17,7 +17,9 @@ function Breadcrumbs(props) {
         Home
       </BreadcrumbItem>
       {breadcrumbItems.map((item) => (
-        <BreadcrumbItem to={item.path} children={item.crumb} key={item.path} />
+        <BreadcrumbItem to={item.path} key={item.path}>
+          {item.crumb.charAt(0).toUpperCase() + item.crumb.slice(1)}
+        </BreadcrumbItem>
       ))}
     </StyledBreadcrumbs>
   );
