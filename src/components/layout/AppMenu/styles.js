@@ -35,6 +35,18 @@ const StyledCards = styled.ul`
   @media screen and (max-width: 960px) {
     grid-template-columns: repeat(2, auto);
   }
+
+  @media screen and (max-width: 850px) {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @media screen and (max-width: 710px) {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  @media screen and (max-width: 490px) {
+    grid-template-columns: repeat(1, auto);
+  }
 `;
 
 export { StyledAppMenu, StyledCards, StyledTitle };
