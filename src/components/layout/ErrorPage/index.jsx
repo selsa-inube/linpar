@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack } from "../../../components/layout/Stack";
 import { Text } from "../../../components/data/Text";
-import { IconButton } from "../../../components/inputs/Button";
+import { Button } from "../../../components/inputs/Button";
 import {
   StyledErrorPage,
   StyledCompanyLogo,
@@ -31,7 +31,7 @@ function ErrorPage(props) {
             <Text typoToken="titleLarge">{heading}</Text>
             <Text typoToken="titleMedium">{description}</Text>
           </Stack>
-          <IconButton label="Exit" icon={<MdChevronLeft />} />
+          <Button iconBefore={<MdChevronLeft size={18} />}>Exit</Button>
         </Stack>
         <StyledErrorImage src={image} alt={imageAlt} />
       </StyledGrid>
