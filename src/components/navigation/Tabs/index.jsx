@@ -1,24 +1,29 @@
 import { Tab } from "../Tab";
 import { StyledTabsContainer, StyledLine } from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Tabs(props) {
-  const { titles } = props;
-  const [activeTab, setActiveTab] = useState(0);
+  const { tabs, selected, handleTabChange } = props;
+  const [activeTab, setActiveTab] = useState(selected);
 
-  const handleClick = (tabIndex) => {
-    setActiveTab(tabIndex);
+  useEffect(() => {
+    setActiveTab(selected);
+  }, [selected]);
+
+  const handleClick = (tabId) => {
+    setActiveTab(tabId);
+    handleTabChange(tabId);
   };
 
   return (
     <>
       <StyledTabsContainer>
-        {titles.map((title, id) => (
+        {tabs.map(({ id, content }) => (
           <Tab
             key={id}
             id={id}
-            title={title}
-            isActive={activeTab === id}
+            title={content.charAt(0).toUpperCase() + content.slice(1)}
+            isActive={id === activeTab}
             handleClick={handleClick}
           />
         ))}

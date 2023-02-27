@@ -12,10 +12,6 @@ const StyledTab = styled.li`
 
   color: ${(props) =>
     props.isActive ? colors.sys.text.primary : colors.sys.text.dark};
-
-  &:first-child {
-    margin-left: 16px;
-  }
 `;
 
 export { StyledTab };

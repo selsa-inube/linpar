@@ -5,7 +5,7 @@ const StyledTabsContainer = styled.ul`
   list-style-type: none;
   display: flex;
   gap: 24px;
-  margin: 0;
+  margin: 0 16px;
   padding: 0;
 `;
 
