@@ -35,7 +35,7 @@ function Menu(props) {
               <MenuLink
                 label={link.label}
                 icon={link.icon}
-                selected={link.url === currentUrl}
+                selected={currentUrl.startsWith(link.url)}
                 url={link.url}
               />
             </li>
