@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tabs } from "../Tabs";
+import { Tabs } from "..";
 
 function TabsController(props) {
   const { tabs } = props;

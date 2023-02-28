@@ -2,10 +2,10 @@ import { Text } from "../../data/Text";
 import { StyledTab } from "./styles";
 
 function Tab(props) {
-  const { id, title, isActive, handleClick } = props;
+  const { id, title, isActive, handleTabChange } = props;
 
   return (
-    <StyledTab isActive={isActive} onClick={() => handleClick(id)}>
+    <StyledTab isActive={isActive} onClick={() => handleTabChange(id)}>
       <Text typoToken="labelMedium" colorToken={isActive}>
         {title}
       </Text>

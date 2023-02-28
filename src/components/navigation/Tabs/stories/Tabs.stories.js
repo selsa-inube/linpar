@@ -1,4 +1,4 @@
-import { TabsController } from "../TabsController";
+import { TabsController } from "./TabsController";
 
 const story = {
   component: [TabsController],
