@@ -22,7 +22,7 @@ const title = [
 const action = [
   {
     actionName: "Activate",
-    content: <MdToggleOff />,
+    content: <MdToggleOff size={32} />,
   },
   {
     actionName: "Edit",

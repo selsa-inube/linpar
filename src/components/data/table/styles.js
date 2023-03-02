@@ -3,7 +3,6 @@ import { colors } from "../../../styles/colors";
 
 const StyledContentTable = styled.div`
   box-sizing: border-box;
-  width: 100%;
 `;
 
 const StyledTable = styled.table`
@@ -13,6 +12,7 @@ const StyledTable = styled.table`
 `;
 
 const StyledTableThead = styled.thead`
+  border-bottom: solid 1px ${colors.ref.palette.neutral.n40};
   background-color: ${colors.ref.palette.neutral.n0};
 `;
 
@@ -23,28 +23,32 @@ const StyledTableTbody = styled.tbody`
 const StyledTableTr = styled.tr``;
 
 const StyledTableTh = styled.th`
-  padding: 12px 16px 12px;
-  &:nth-last-of-type(1),
-  &:nth-last-of-type(2),
-  &:nth-last-of-type(3) {
+  padding: 12px 16px;
+  &:nth-last-of-type(-n + 3) {
     background-color: ${colors.ref.palette.neutral.n30};
-    width: 30px;
+    width: 80px;
   }
 `;
 
 const StyledTableTd = styled.td`
-  border-bottom: solid 2px;
-  border-color: ${colors.ref.palette.neutral.n30};
-  padding: 12px 16px 12px;
+  border-bottom: solid 1px ${colors.ref.palette.neutral.n40};
+  padding: 12px 16px;
   text-align: center;
 
-  & svg {
-    width: 32px;
-    height: 16px;
+  &:nth-last-of-type(3) > svg {
+    color: ${colors.ref.palette.neutral.n200};
   }
 
-  & svg:hover {
+  &:nth-last-of-type(-n + 2) > svg {
+    color: ${colors.ref.palette.neutral.n900};
+  }
+
+  &:nth-last-of-type(1) > svg:hover {
     color: ${colors.ref.palette.red.r300};
+  }
+
+  &:nth-last-of-type(2) > svg:hover {
+    color: ${colors.ref.palette.blue.b400};
   }
 `;
 

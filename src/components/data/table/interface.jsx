@@ -24,7 +24,9 @@ function TableUI(props) {
             ))}
             {actions.map((item, index) => (
               <StyledTableTh key={index}>
-                <Text typoToken="labelMedium">{item.actionName}</Text>
+                <Text typoToken="labelMedium" align="center">
+                  {item.actionName}
+                </Text>
               </StyledTableTh>
             ))}
           </StyledTableTr>
