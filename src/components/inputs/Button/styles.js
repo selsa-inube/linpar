@@ -4,13 +4,13 @@ import { colors } from "../../../styles/colors";
 
 const getBackgroundColor = ({ appearance }) => {
   const actions = {
-    primary: colors.sys.actions.primary,
-    secondary: colors.sys.actions.secondary,
-    confirm: colors.sys.actions.confirm,
-    warning: colors.sys.actions.warning,
-    help: colors.sys.actions.help,
+    primary: colors.sys.actions.primary.filled,
+    secondary: colors.sys.actions.secondary.filled,
+    confirm: colors.sys.actions.confirm.filled,
+    warning: colors.sys.actions.warning.filled,
+    help: colors.sys.actions.help.filled,
   };
-  return actions[appearance] || colors.sys.actions.primary;
+  return actions[appearance] || colors.sys.actions.primary.filled;
 };
 
 const StyledButton = styled.button`
@@ -30,7 +30,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   &:disabled {
-    background-color: ${colors.sys.actions.secondary};
+    background-color: ${colors.sys.actions.secondary.filled};
     border: none;
     color: ${colors.sys.text.disabled};
     cursor: not-allowed;

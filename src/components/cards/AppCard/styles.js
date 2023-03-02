@@ -20,8 +20,8 @@ const StyledAppCard = styled(Link)`
   cursor: pointer;
 
   &:hover {
-    color: ${colors.sys.actions.primary};
-    background-color: ${colors.sys.actions.secondary};
+    color: ${colors.sys.actions.primary.filled};
+    background-color: ${colors.sys.actions.secondary.filled};
     box-shadow: none;
   }
 `;
