@@ -3,18 +3,26 @@ import styled from "styled-components";
 import { typography } from "../../../styles/typography";
 import { colors } from "../../../styles/colors";
 
-const StyledIconInput = styled.div`
+const StyledInputContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: 12px;
+  padding: ${(props) => (props.size === "compact" ? "8px 16px" : "12px 16px")};
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: ${(props) =>
+    props.iconAfter ? "1fr auto" : "auto 1fr"};
   gap: 8px;
-  border-radius: 4px;
-  background-color: ${colors.ref.palette.neutral.n30};
+  border-radius: 8px;
+  border: ${(props) => (props.isInvalid ? "2px" : "1px")} solid
+    ${(props) =>
+      props.isDisabled
+        ? colors.ref.palette.neutral.n60
+        : props.isInvalid
+        ? colors.ref.palette.red.r400
+        : colors.ref.palette.neutral.n300};
 `;
 
 const StyledInput = styled.input`
+  color: ${colors.sys.text.dark};
   font-family: ${typography.sys.typescale.bodyLarge.font};
   font-size: ${typography.sys.typescale.bodyLarge.size};
   font-weight: ${typography.sys.typescale.bodyLarge.weight};
@@ -24,12 +32,13 @@ const StyledInput = styled.input`
   outline: none;
   background-color: transparent;
 
-  @media screen and (min-width: 400px) {
-    font-family: ${typography.sys.typescale.bodyMedium.font};
-    font-size: ${typography.sys.typescale.bodyMedium.size};
-    font-weight: ${typography.sys.typescale.bodyMedium.weight};
-    line-height: ${typography.sys.typescale.bodyMedium.lineHeight};
-    letter-spacing: ${typography.sys.typescale.bodyMedium.tracking};
+  &:disabled {
+    border: none;
+    ::placeholder {
+      color: ${(props) =>
+        props.disabled ? colors.sys.text.disabled : colors.sys.text.secondary};
+    }
+    cursor: not-allowed;
   }
 `;
 
@@ -38,9 +47,29 @@ const StyledIcon = styled.i`
   align-items: center;
 
   & svg {
-    width: 18px;
-    height: 18px;
+    color: ${colors.sys.text.dark};
   }
 `;
 
-export { StyledIconInput, StyledIcon, StyledInput };
+const StyledLabel = styled.label`
+  & p {
+    padding: 4px 16px;
+  }
+`;
+
+const StyledInvalidMessage = styled.div`
+  padding: 4px 16px;
+  & p {
+    display: flex;
+    aling-content: center;
+    gap: 4px;
+  }
+`;
+
+export {
+  StyledInputContainer,
+  StyledIcon,
+  StyledInput,
+  StyledLabel,
+  StyledInvalidMessage,
+};
