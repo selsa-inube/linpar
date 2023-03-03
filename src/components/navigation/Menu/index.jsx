@@ -37,6 +37,8 @@ function Menu(props) {
                 icon={link.icon}
                 selected={currentUrl.startsWith(link.url)}
                 url={link.url}
+                menu={menu}
+                handleMenu={handleMenu}
               />
             </li>
           ))}
