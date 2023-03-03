@@ -11,10 +11,10 @@ const StyledAppMenuCard = styled(Link)`
   color: ${colors.ref.palette.neutral.n900};
   :hover {
     & svg {
-      color: ${colors.sys.actions.primary};
+      color: ${colors.sys.actions.primary.filled};
     }
     & picture {
-      background-color: ${colors.sys.actions.secondary};
+      background-color: ${colors.sys.actions.secondary.filled};
     }
   }
 `;
