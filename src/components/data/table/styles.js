@@ -27,13 +27,19 @@ const StyledTableTh = styled.th`
   &:nth-last-of-type(-n + 3) {
     background-color: ${colors.ref.palette.neutral.n30};
     width: 80px;
+    padding: 12px 0px;
   }
 `;
 
 const StyledTableTd = styled.td`
   border-bottom: solid 1px ${colors.ref.palette.neutral.n40};
-  padding: 12px 16px;
+  height: 40px;
+  padding: 0px 16px;
   text-align: center;
+
+  & svg {
+    cursor: pointer;
+  }
 
   &:nth-last-of-type(3) > svg {
     color: ${colors.ref.palette.neutral.n200};
