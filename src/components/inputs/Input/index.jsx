@@ -40,6 +40,7 @@ function Input(props) {
         isDisabled={isDisabled}
         isInvalid={isInvalid}
         iconAfter={iconAfter}
+        iconBefore={iconBefore}
         size={size}
       >
         {iconBefore && <StyledIcon>{iconBefore}</StyledIcon>}

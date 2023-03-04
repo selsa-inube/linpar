@@ -6,10 +6,11 @@ import { colors } from "../../../styles/colors";
 const StyledInputContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: ${(props) => (props.size === "compact" ? "8px 16px" : "12px 16px")};
+  height: ${(props) => (props.size === "compact" ? "40px" : "48px")};
+  padding: 0px 16px;
   display: grid;
   grid-template-columns: ${(props) =>
-    props.iconAfter ? "1fr auto" : "auto 1fr"};
+    props.iconAfter ? "1fr auto" : props.iconBefore ? "auto 1fr" : "auto"};
   gap: 8px;
   border-radius: 8px;
   border: ${(props) => (props.isInvalid ? "2px" : "1px")} solid

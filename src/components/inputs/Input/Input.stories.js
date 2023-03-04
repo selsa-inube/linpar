@@ -12,6 +12,7 @@ Default.args = {
   placeholder: "Write your full name",
   isRequired: false,
   isDisabled: false,
+  iconBefore: <MdSearch size={24} />,
 };
 
 export const Invalid = (args) => <Input {...args} />;
@@ -31,7 +32,6 @@ Compact.args = {
 
 export const Search = (args) => <Input {...args} />;
 Search.args = {
-  type: "search",
   placeholder: "Search...",
   iconAfter: <MdSearch size={24} />,
 };
