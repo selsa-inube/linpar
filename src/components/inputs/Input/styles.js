@@ -4,29 +4,29 @@ import { typography } from "../../../styles/typography";
 import { colors } from "../../../styles/colors";
 
 function getGridTemplateColumns(props) {
-  if (props.iconAfter) {
-    return "1fr auto";
+  let columns = "auto";
+
+  if (props.iconBefore && props.iconAfter) {
+    columns = "auto 1fr auto";
   } else if (props.iconBefore) {
-    return "auto 1fr";
-  } else {
-    return "auto";
+    columns = "auto 1fr";
+  } else if (props.iconAfter) {
+    columns = "1fr auto";
   }
+
+  return columns;
 }
 
-function getBorderStyle(props) {
-  let borderWidth = "1px";
+function getBorderColor(props) {
   let borderColor = colors.ref.palette.neutral.n300;
 
   if (props.isInvalid) {
-    borderWidth = "2px";
     borderColor = colors.ref.palette.red.r400;
-  }
-
-  if (props.isDisabled) {
+  } else if (props.isDisabled) {
     borderColor = colors.ref.palette.neutral.n60;
   }
 
-  return `${borderWidth} solid ${borderColor}`;
+  return borderColor;
 }
 
 const StyledInputContainer = styled.div`
@@ -38,7 +38,9 @@ const StyledInputContainer = styled.div`
   border-radius: 8px;
   height: ${(props) => (props.size === "compact" ? "40px" : "48px")};
   grid-template-columns: ${getGridTemplateColumns};
-  border: ${getBorderStyle};
+  border-style: solid;
+  border-color: ${getBorderColor};
+  border-width: ${(props) => (props.isInvalid ? "2px" : "1px")};
 `;
 
 const StyledInput = styled.input`
