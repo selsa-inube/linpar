@@ -8,42 +8,47 @@ const StyledContentPagination = styled.div`
   align-items: center;
   height: 52px;
   width: 100%;
+`;
 
-  & button {
-    cursor: pointer;
-    background-color: ${colors.ref.palette.neutral.n0};
-    border: none;
-    height: 52px;
-    padding: 0px 8px;
-  }
+const StyledContentButtons = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0px 25px 0px;
+  margin-left: 16px;
+  gap: 8px;
+`;
 
-  & button:nth-of-type(1),
-  button:nth-of-type(4) {
-    width: 49px;
-  }
+const StyledButton = styled.button`
+  cursor: pointer;
+  background-color: ${colors.ref.palette.neutral.n0};
+  border: none;
+  border-radius: 5px;
+  padding: 4px;
+  width: 24px;
+  height: 24px;
 
-  & button:nth-of-type(1) {
-    text-align: right;
-  }
-
-  & button:nth-of-type(4) {
-    text-align: left;
-  }
-
-  & button:nth-of-type(2),
-  button:nth-of-type(3) {
-    width: 32px;
+  &:hover {
+    background-color: ${colors.sys.actions.disabled.filled};
   }
 
   & svg {
     width: 16px;
     height: 16px;
-    color: ${colors.ref.palette.neutral.n900};
+    color: ${colors.sys.text.dark};
+  }
+
+  & svg:hover {
+    color: ${colors.sys.text.information};
   }
 `;
 
 const StyledContentText = styled.div`
-  padding: 18px 16px;
+  padding: 16px 0px;
 `;
 
-export { StyledContentPagination, StyledContentText };
+export {
+  StyledContentPagination,
+  StyledContentText,
+  StyledButton,
+  StyledContentButtons,
+};

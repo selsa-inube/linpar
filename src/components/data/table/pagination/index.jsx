@@ -4,7 +4,12 @@ import {
   MdFirstPage,
   MdLastPage,
 } from "react-icons/md";
-import { StyledContentPagination, StyledContentText } from "./styles";
+import {
+  StyledContentPagination,
+  StyledContentText,
+  StyledButton,
+  StyledContentButtons,
+} from "./styles";
 
 import { Text } from "../../Text";
 
@@ -24,18 +29,20 @@ function Pagination(props) {
           1 -{valuePage} of {valueData}
         </Text>
       </StyledContentText>
-      <button onClick={handleStartPage}>
-        <MdFirstPage />
-      </button>
-      <button onClick={handlePrevPage}>
-        <MdNavigateBefore />
-      </button>
-      <button onClick={handleNextPage}>
-        <MdNavigateNext />
-      </button>
-      <button onClick={handleEndPage}>
-        <MdLastPage />
-      </button>
+      <StyledContentButtons>
+        <StyledButton onClick={handleStartPage}>
+          <MdFirstPage />
+        </StyledButton>
+        <StyledButton onClick={handlePrevPage}>
+          <MdNavigateBefore />
+        </StyledButton>
+        <StyledButton onClick={handleNextPage}>
+          <MdNavigateNext />
+        </StyledButton>
+        <StyledButton onClick={handleEndPage}>
+          <MdLastPage />
+        </StyledButton>
+      </StyledContentButtons>
     </StyledContentPagination>
   );
 }
