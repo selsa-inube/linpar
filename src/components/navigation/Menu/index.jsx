@@ -39,7 +39,6 @@ function Menu(props) {
                 icon={link.icon}
                 isSelected={isSelected(link.url, menu)}
                 url={link.url}
-                menu={menu}
                 handleClick={handleMenu}
               />
             </li>
