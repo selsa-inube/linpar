@@ -11,7 +11,6 @@ Default.args = {
   label: "Username",
   placeholder: "Write your full name",
   isRequired: false,
-  isDisabled: false,
   iconBefore: <MdSearch size={24} />,
 };
 
@@ -34,6 +33,13 @@ export const Search = (args) => <Input {...args} />;
 Search.args = {
   placeholder: "Search...",
   iconAfter: <MdSearch size={24} />,
+};
+
+export const Disabled = (args) => <Input {...args} />;
+Disabled.args = {
+  label: "Username",
+  value: "Leonardo Garzón",
+  isDisabled: true,
 };
 
 export default story;
