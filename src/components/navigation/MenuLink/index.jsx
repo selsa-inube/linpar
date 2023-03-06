@@ -8,23 +8,25 @@ function MenuLink(props) {
     label,
     disabled = false,
     icon,
-    selected,
+    isSelected,
     url,
     menu,
-    handleMenu,
+    handleClick,
   } = props;
 
   return (
     <StyledLink
       disabled={disabled}
-      selected={selected}
+      selected={isSelected}
       to={url}
       menu={menu}
-      onClick={handleMenu}
+      onClick={handleClick}
     >
       <Stack direction="row" spacing="24" align="center">
         {icon}
-        <Text typoToken={selected ? "labelLarge" : "bodyMedium"}>{label}</Text>
+        <Text typoToken={isSelected ? "labelLarge" : "bodyMedium"}>
+          {label}
+        </Text>
       </Stack>
       <MdKeyboardArrowRight />
     </StyledLink>

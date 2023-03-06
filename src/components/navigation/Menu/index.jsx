@@ -17,6 +17,8 @@ function Menu(props) {
   const location = useLocation();
   const currentUrl = location.pathname;
 
+  const isSelected = (url, menu) => currentUrl.startsWith(url) && !menu;
+
   return (
     <StyledMenu>
       <Stack>
@@ -35,10 +37,10 @@ function Menu(props) {
               <MenuLink
                 label={link.label}
                 icon={link.icon}
-                selected={currentUrl.startsWith(link.url)}
+                isSelected={isSelected(link.url, menu)}
                 url={link.url}
                 menu={menu}
-                handleMenu={handleMenu}
+                handleClick={handleMenu}
               />
             </li>
           ))}
