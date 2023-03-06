@@ -24,28 +24,28 @@ const titles = [
 
 const entries = [
   {
-    id: 1,
+    id: 11,
     username: "David Leonardo Garzón",
     code: "LGARZON",
     userID: "1256545",
     position: "Credit Analyst",
   },
   {
-    id: 2,
+    id: 12,
     username: "Angie Pinilla",
     code: "APINILLA",
     userID: "789654",
     position: "Adviser",
   },
   {
-    id: 3,
+    id: 13,
     username: "Cristian Rojas",
     code: "CROJAS",
     userID: "258963",
     position: "Credit Analyst",
   },
   {
-    id: 4,
+    id: 14,
     username: "Johan Nova",
     code: "JNOVA",
     userID: "589647",
@@ -55,16 +55,19 @@ const entries = [
 
 const actions = [
   {
+    id: 1,
     actionName: "Activate",
     content: <MdToggleOff size={32} />,
     type: "secondary",
   },
   {
+    id: 2,
     actionName: "Edit",
     content: <MdModeEdit />,
     type: "primary",
   },
   {
+    id: 3,
     actionName: "Delete",
     content: <MdOutlineDelete />,
     type: "remove",

@@ -6,7 +6,7 @@ function Table(props) {
     titles,
     actions,
     entries,
-    filter = "",
+    // filter = "",
     pageLength = 10,
     valuePage = 10,
     valueData = 15,

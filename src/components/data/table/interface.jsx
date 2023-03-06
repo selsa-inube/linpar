@@ -17,12 +17,12 @@ function TableUI(props) {
       <StyledThead>
         <StyledTr>
           {titles.map((item) => (
-            <StyledThTitle key={item.id}>
+            <StyledThTitle key={`title-${item.id}`}>
               <Text typoToken="labelMedium">{item.titleName}</Text>
             </StyledThTitle>
           ))}
           {actions.map((item) => (
-            <StyledThAction key={item.id}>
+            <StyledThAction key={`action-${item.id}`}>
               <Text typoToken="labelMedium" align="center">
                 {item.actionName}
               </Text>
@@ -33,16 +33,16 @@ function TableUI(props) {
       <StyledTbody>
         {entries.map((itemEntry) => (
           <StyledTr key={itemEntry.id}>
-            <StyledTd key={itemEntry.id}>
+            <StyledTd>
               <Text typoToken="bodySmall">{itemEntry.username}</Text>
             </StyledTd>
-            <StyledTd key={itemEntry.id}>
+            <StyledTd>
               <Text typoToken="bodySmall">{itemEntry.code}</Text>
             </StyledTd>
-            <StyledTd key={itemEntry.id}>
+            <StyledTd>
               <Text typoToken="bodySmall">{itemEntry.userID}</Text>
             </StyledTd>
-            <StyledTd key={itemEntry.id}>
+            <StyledTd>
               <Text typoToken="bodySmall">{itemEntry.position}</Text>
             </StyledTd>
             {actions.map((itemAction) => (
