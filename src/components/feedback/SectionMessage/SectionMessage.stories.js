@@ -2,7 +2,7 @@ import { SectionMessage } from "../SectionMessage";
 import { MdWarning } from "react-icons/md";
 
 const argTypes = {
-  aspect: {
+  appearance: {
     options: ["primary", "confirm", "warning", "remove"],
     control: {
       type: "select",
@@ -30,7 +30,7 @@ Default.args = {
   title: "Oh no! Something has happened...",
   description: "We could not get the values of the query, please try again",
   icon: <MdWarning />,
-  aspect: "warning",
+  appearance: "warning",
 };
 
 export default story;

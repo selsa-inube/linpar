@@ -1,20 +1,21 @@
 import { Text } from "../../data/Text";
-import { StyledContainer, StyledIcon, StyledText, StyledTitle } from "./styles";
+import { Stack } from "../../layout/Stack";
+import { StyledContainer, StyledIcon, StyledDescription } from "./styles";
 import { MdClear } from "react-icons/md";
 
 function SectionMessage(props) {
-  const { icon, title, description, aspect } = props;
+  const { icon, title, description, appearance } = props;
 
   return (
-    <StyledContainer aspect={aspect}>
-      <StyledIcon aspect={aspect}>{icon}</StyledIcon>
-      <StyledText>
-        <StyledTitle>
-          <Text typoToken="labelLarge">{title} </Text>
+    <StyledContainer appearance={appearance}>
+      <StyledIcon appearance={appearance}>{icon}</StyledIcon>
+      <StyledDescription>
+        <Stack direction="row" justify="space-between">
+          <Text typoToken="labelLarge">{title}</Text>
           <MdClear />
-        </StyledTitle>
+        </Stack>
         <Text typoToken="bodySmall">{description}</Text>
-      </StyledText>
+      </StyledDescription>
     </StyledContainer>
   );
 }

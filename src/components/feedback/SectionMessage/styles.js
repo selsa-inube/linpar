@@ -1,20 +1,19 @@
 import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
-const getBackgroundColor = ({ aspect }) => {
+const getBackgroundColor = ({ appearance }) => {
   const actions = {
     primary: colors.ref.palette.blue.b50,
     confirm: colors.ref.palette.green.g50,
     warning: colors.ref.palette.yellow.y50,
     remove: colors.ref.palette.red.r50,
   };
-  return actions[aspect] || colors.ref.palette.neutral.n50;
+  return actions[appearance] || colors.ref.palette.neutral.n50;
 };
 
 const StyledContainer = styled.div`
   position: fixed;
   display: flex;
-  flex-direction: row;
   right: 64px;
   bottom: 32px;
   height: auto;
@@ -34,22 +33,21 @@ const StyledIcon = styled.figure`
   svg {
     width: 24px;
     height: auto;
-    color: ${({ aspect }) => colors.sys.actions[aspect].filled};
+    color: ${({ appearance }) => colors.sys.actions[appearance].filled};
   }
 `;
 
-const StyledText = styled.div`
+const StyledDescription = styled.div`
   margin: 16px 0;
-`;
 
-const StyledTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 4px;
-  svg {
+  & > *:first-child {
+    margin-bottom: 4px;
+  }
+
+  & > *:first-child > svg {
     width: 16px;
     height: 16px;
   }
 `;
 
-export { StyledContainer, StyledIcon, StyledText, StyledTitle };
+export { StyledContainer, StyledIcon, StyledDescription };
