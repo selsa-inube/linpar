@@ -3,18 +3,48 @@ import styled from "styled-components";
 import { typography } from "../../../styles/typography";
 import { colors } from "../../../styles/colors";
 
-const StyledIconInput = styled.div`
+function getGridTemplateColumns(props) {
+  let columns = "auto";
+
+  if (props.iconBefore && props.iconAfter) {
+    columns = "auto 1fr auto";
+  } else if (props.iconBefore) {
+    columns = "auto 1fr";
+  } else if (props.iconAfter) {
+    columns = "1fr auto";
+  }
+
+  return columns;
+}
+
+function getBorderColor(props) {
+  let borderColor = colors.ref.palette.neutral.n300;
+
+  if (props.isInvalid) {
+    borderColor = colors.ref.palette.red.r400;
+  } else if (props.isDisabled) {
+    borderColor = colors.ref.palette.neutral.n60;
+  }
+
+  return borderColor;
+}
+
+const StyledInputContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: 12px;
+  padding: 0px 16px;
   display: grid;
-  grid-template-columns: auto 1fr;
   gap: 8px;
-  border-radius: 4px;
-  background-color: ${colors.ref.palette.neutral.n30};
+  border-radius: 8px;
+  height: ${(props) => (props.size === "compact" ? "40px" : "48px")};
+  grid-template-columns: ${getGridTemplateColumns};
+  border-style: solid;
+  border-color: ${getBorderColor};
+  border-width: ${(props) => (props.isInvalid ? "2px" : "1px")};
 `;
 
 const StyledInput = styled.input`
+  color: ${colors.sys.text.dark};
   font-family: ${typography.sys.typescale.bodyLarge.font};
   font-size: ${typography.sys.typescale.bodyLarge.size};
   font-weight: ${typography.sys.typescale.bodyLarge.weight};
@@ -24,12 +54,14 @@ const StyledInput = styled.input`
   outline: none;
   background-color: transparent;
 
-  @media screen and (min-width: 400px) {
-    font-family: ${typography.sys.typescale.bodyMedium.font};
-    font-size: ${typography.sys.typescale.bodyMedium.size};
-    font-weight: ${typography.sys.typescale.bodyMedium.weight};
-    line-height: ${typography.sys.typescale.bodyMedium.lineHeight};
-    letter-spacing: ${typography.sys.typescale.bodyMedium.tracking};
+  &:disabled {
+    border: none;
+    color: ${colors.sys.text.disabled};
+    ::placeholder {
+      color: ${(props) =>
+        props.disabled ? colors.sys.text.disabled : colors.sys.text.secondary};
+    }
+    cursor: not-allowed;
   }
 `;
 
@@ -38,9 +70,29 @@ const StyledIcon = styled.i`
   align-items: center;
 
   & svg {
-    width: 18px;
-    height: 18px;
+    color: ${colors.sys.text.dark};
   }
 `;
 
-export { StyledIconInput, StyledIcon, StyledInput };
+const StyledLabel = styled.label`
+  & p {
+    padding: 4px 16px;
+  }
+`;
+
+const StyledInvalidMessage = styled.div`
+  padding: 4px 16px;
+  & p {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+`;
+
+export {
+  StyledInputContainer,
+  StyledIcon,
+  StyledInput,
+  StyledLabel,
+  StyledInvalidMessage,
+};
