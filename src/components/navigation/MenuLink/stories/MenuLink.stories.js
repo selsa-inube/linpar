@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 
 const story = {
   component: [MenuLink],
-  title: "components/MenuLink",
+  title: "components/navigation/MenuLink",
   decorators: [
     (Story) => (
       <BrowserRouter>
@@ -22,7 +22,7 @@ Default.args = {
   label: mockApps[0].label,
   icon: mockApps[0].icon,
   icon2: <MdKeyboardArrowRight />,
-  selected: false,
+  isSelected: false,
   url: mockApps[0].url,
 };
 
@@ -31,7 +31,7 @@ Selected.args = {
   label: mockApps[0].label,
   icon: mockApps[0].icon,
   icon2: <MdKeyboardArrowRight />,
-  selected: true,
+  isSelected: true,
   url: mockApps[0].url,
 };
 
