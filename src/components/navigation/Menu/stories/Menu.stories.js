@@ -9,7 +9,7 @@ import { mockApps } from "../../../../mocks/home/apps.mock";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
-  title: "components/Menu",
+  title: "components/navigation/Menu",
   component: [Menu],
   parameters: {
     layout: "fullscreen",

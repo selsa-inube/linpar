@@ -4,13 +4,20 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { StyledLink } from "./styles";
 
 function MenuLink(props) {
-  const { label, disabled = false, icon, selected, url } = props;
+  const { label, disabled = false, icon, isSelected, url, handleClick } = props;
 
   return (
-    <StyledLink disabled={disabled} selected={selected} to={url}>
+    <StyledLink
+      disabled={disabled}
+      isSelected={isSelected}
+      to={url}
+      onClick={handleClick}
+    >
       <Stack direction="row" spacing="24" align="center">
         {icon}
-        <Text typoToken={selected ? "labelLarge" : "bodyMedium"}>{label}</Text>
+        <Text typoToken={isSelected ? "labelLarge" : "bodyMedium"}>
+          {label}
+        </Text>
       </Stack>
       <MdKeyboardArrowRight />
     </StyledLink>

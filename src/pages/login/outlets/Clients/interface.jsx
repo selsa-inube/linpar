@@ -3,7 +3,8 @@ import { Form } from "react-router-dom";
 import { RadioClient } from "../../../../components/cards/RadioClient";
 import { Text } from "../../../../components/data/Text";
 import { Button } from "../../../../components/inputs/Button";
-import { SearchInput } from "../../../../components/inputs/Input";
+import { Input } from "../../../../components/inputs/Input";
+import { MdSearch } from "react-icons/md";
 
 import {
   StyledClients,
@@ -32,10 +33,12 @@ function ClientsUI(props) {
       </Text>
       <Form>
         {clients.length > 10 && (
-          <SearchInput
+          <Input
             placeholder="Search"
+            type="search"
             value={search}
             handleChange={handleSearchChange}
+            iconBefore={<MdSearch size={22} />}
           />
         )}
         {!filterClients().length && (

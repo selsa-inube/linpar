@@ -1,24 +1,68 @@
-import { MdSearch } from "react-icons/md";
-import { StyledIconInput, StyledIcon, StyledInput } from "./styles";
+import { MdError } from "react-icons/md";
+import {
+  StyledInputContainer,
+  StyledIcon,
+  StyledInput,
+  StyledLabel,
+  StyledInvalidMessage,
+} from "./styles";
+import { Text } from "../../data/Text";
 
-function IconInput(props) {
-  const { type = "text", value, icon, placeholder, handleChange } = props;
+function Input(props) {
+  const {
+    label,
+    placeholder,
+    isDisabled = false,
+    type = "text",
+    value,
+    handleChange,
+    iconBefore,
+    iconAfter,
+    isRequired = false,
+    isInvalid,
+    errorMessage,
+    size,
+  } = props;
 
   return (
-    <StyledIconInput>
-      <StyledIcon>{icon}</StyledIcon>
-      <StyledInput
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={handleChange}
-      />
-    </StyledIconInput>
+    <>
+      {label && (
+        <StyledLabel>
+          <Text
+            typoToken="labelLarge"
+            colorToken={isDisabled ? "disabled" : isInvalid ? "error" : "dark"}
+          >
+            {label}
+          </Text>
+        </StyledLabel>
+      )}
+      <StyledInputContainer
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+        iconAfter={iconAfter}
+        iconBefore={iconBefore}
+        size={size}
+      >
+        {iconBefore && <StyledIcon>{iconBefore}</StyledIcon>}
+        <StyledInput
+          type={type}
+          disabled={isDisabled}
+          value={value}
+          placeholder={placeholder}
+          onChange={handleChange}
+          required={isRequired}
+        />
+        {iconAfter && <StyledIcon>{iconAfter}</StyledIcon>}
+      </StyledInputContainer>
+      {isInvalid && (
+        <StyledInvalidMessage>
+          <Text typoToken="bodySmall" colorToken="error">
+            <MdError size={14} />({errorMessage})
+          </Text>
+        </StyledInvalidMessage>
+      )}
+    </>
   );
 }
 
-function SearchInput(props) {
-  return <IconInput {...props} icon={<MdSearch />} />;
-}
-
-export { IconInput, SearchInput };
+export { Input };

@@ -23,19 +23,19 @@ const StyledLink = styled(Link)`
   }
 
   border-left: ${(props) =>
-    props.selected ? `5px solid ${colors.ref.palette.neutral.n900};` : "0px"};
+    props.isSelected ? `5px solid ${colors.ref.palette.neutral.n900};` : "0px"};
 
   background: ${(props) =>
-    props.selected
+    props.isSelected
       ? colors.ref.palette.neutral.n30
       : colors.ref.palette.neutral.n0a};
 
   padding: ${(props) =>
-    props.selected ? "0px 12px 0px 13px" : "0px 12px 0px 18px"};
+    props.isSelected ? "0px 12px 0px 13px" : "0px 12px 0px 18px"};
 
   & svg:first-child {
     color: ${(props) =>
-      props.selected
+      props.isSelected
         ? colors.ref.palette.blue.b400
         : colors.ref.palette.neutral.n900};
   }
@@ -45,7 +45,7 @@ const StyledLink = styled(Link)`
     height: 26.6px;
     justify-self: end;
 
-    display: ${(props) => (props.selected ? "block" : "none")};
+    display: ${(props) => (props.isSelected ? "block" : "none")};
   }
 
   &:hover {
