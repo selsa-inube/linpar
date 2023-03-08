@@ -16,38 +16,38 @@ function TableUI(props) {
     <StyledTable>
       <StyledThead>
         <StyledTr>
-          {titles.map((item) => (
-            <StyledThTitle key={`title-${item.id}`}>
-              <Text typoToken="labelMedium">{item.titleName}</Text>
+          {titles.map((title) => (
+            <StyledThTitle key={`title-${title.id}`}>
+              <Text typoToken="labelMedium">{title.titleName}</Text>
             </StyledThTitle>
           ))}
-          {actions.map((item) => (
-            <StyledThAction key={`action-${item.id}`}>
+          {actions.map((action) => (
+            <StyledThAction key={`action-${action.id}`}>
               <Text typoToken="labelMedium" align="center">
-                {item.actionName}
+                {action.actionName}
               </Text>
             </StyledThAction>
           ))}
         </StyledTr>
       </StyledThead>
       <StyledTbody>
-        {entries.map((itemEntry) => (
-          <StyledTr key={itemEntry.id}>
+        {entries.map((entry) => (
+          <StyledTr key={entry.id}>
             <StyledTd>
-              <Text typoToken="bodySmall">{itemEntry.username}</Text>
+              <Text typoToken="bodySmall">{entry.username}</Text>
             </StyledTd>
             <StyledTd>
-              <Text typoToken="bodySmall">{itemEntry.code}</Text>
+              <Text typoToken="bodySmall">{entry.code}</Text>
             </StyledTd>
             <StyledTd>
-              <Text typoToken="bodySmall">{itemEntry.userID}</Text>
+              <Text typoToken="bodySmall">{entry.userID}</Text>
             </StyledTd>
             <StyledTd>
-              <Text typoToken="bodySmall">{itemEntry.position}</Text>
+              <Text typoToken="bodySmall">{entry.position}</Text>
             </StyledTd>
-            {actions.map((itemAction) => (
-              <StyledTd key={itemAction.id} colorToken={itemAction.type}>
-                {itemAction.content}
+            {actions.map((action) => (
+              <StyledTd key={`${entry.id}-${action.id}`}>
+                {action.content}
               </StyledTd>
             ))}
           </StyledTr>

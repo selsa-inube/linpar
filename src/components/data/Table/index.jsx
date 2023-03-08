@@ -8,26 +8,18 @@ function Table(props) {
     entries,
     // filter = "",
     pageLength = 10,
-    valuePage = 10,
-    valueData = 15,
-    handleStartPage,
-    handlePrevPage,
-    handleNextPage,
-    handleEndPage,
   } = props;
+
+  const pagination = () => {
+    const currentPage = 0;
+    return entries.slice(currentPage, currentPage + pageLength);
+  };
 
   return (
     <>
-      <TableUI titles={titles} actions={actions} entries={entries} />
+      <TableUI titles={titles} actions={actions} entries={pagination()} />
       {entries.length > pageLength && (
-        <Pagination
-          valuePage={valuePage}
-          valueData={valueData}
-          handleStartPage={handleStartPage}
-          handlePrevPage={handlePrevPage}
-          handleNextPage={handleNextPage}
-          handleEndPage={handleEndPage}
-        />
+        <Pagination valuePage="10" valueData="15" />
       )}
     </>
   );

@@ -28,7 +28,7 @@ const StyledButton = styled.button`
   height: 24px;
 
   &:hover {
-    background-color: ${colors.sys.actions.disabled.filled};
+    background-color: ${colors.sys.actions.secondary.filled};
   }
 
   & svg {

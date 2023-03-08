@@ -1,6 +1,7 @@
-import { Table } from "./index";
-
-import { MdModeEdit, MdOutlineDelete, MdToggleOff } from "react-icons/md";
+import { Table } from "../index";
+import { Edit } from "./Edit";
+import { Delete } from "./Delete";
+import { Switch } from "./Switch";
 
 const titles = [
   {
@@ -57,19 +58,19 @@ const actions = [
   {
     id: 1,
     actionName: "Activate",
-    content: <MdToggleOff size={32} />,
+    content: <Switch />,
     type: "secondary",
   },
   {
     id: 2,
     actionName: "Edit",
-    content: <MdModeEdit />,
+    content: <Edit />,
     type: "primary",
   },
   {
     id: 3,
     actionName: "Delete",
-    content: <MdOutlineDelete />,
+    content: <Delete />,
     type: "remove",
   },
 ];

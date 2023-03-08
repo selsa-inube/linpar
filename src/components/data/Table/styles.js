@@ -17,7 +17,10 @@ const StyledTbody = styled.tbody`
   background-color: ${colors.ref.palette.neutral.n0};
 `;
 
-const StyledTr = styled.tr``;
+const StyledTr = styled.tr`
+  border-bottom: solid 1px ${colors.ref.palette.neutral.n40};
+  height: 40px;
+`;
 
 const StyledThTitle = styled.th`
   padding: 12px 16px;
@@ -30,29 +33,8 @@ const StyledThAction = styled.th`
 `;
 
 const StyledTd = styled.td`
-  border-bottom: solid 1px ${colors.ref.palette.neutral.n40};
-  height: 40px;
   padding: 0px 16px;
   text-align: center;
-
-  & svg {
-    cursor: pointer;
-  }
-
-  &:nth-last-of-type(3) > svg {
-    color: ${colors.ref.palette.neutral.n200};
-  }
-
-  &:nth-last-of-type(-n + 2) > svg {
-    color: ${colors.ref.palette.neutral.n900};
-  }
-
-  & svg:hover {
-    color: ${({ colorToken }) =>
-      colors.sys.actions[colorToken]
-        ? colors.sys.actions[colorToken].filled
-        : colors.sys.actions.primary.filled};
-  }
 `;
 
 export {
