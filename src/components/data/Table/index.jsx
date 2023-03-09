@@ -10,28 +10,14 @@ function Table(props) {
     pageLength = 10,
   } = props;
 
-  function IterateList() {
-    const lists = entries.map((element) => {
-      const listDetails = titles.map((t) => {
-        return element[t.id] ? element[t.id] : null;
-      });
-      return listDetails;
-    });
-    return lists;
-  }
-
   const pagination = () => {
     const currentPage = 0;
-    return IterateList().slice(currentPage, currentPage + pageLength);
+    return entries.slice(currentPage, currentPage + pageLength);
   };
 
   return (
     <>
-      <TableUI
-        titles={titles}
-        actions={actions}
-        iterateEntries={pagination()}
-      />
+      <TableUI titles={titles} actions={actions} entries={pagination()} />
       {entries.length > pageLength && (
         <Pagination valuePage="10" valueData="15" />
       )}
