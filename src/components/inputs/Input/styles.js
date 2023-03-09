@@ -41,6 +41,7 @@ const StyledInputContainer = styled.div`
   border-style: solid;
   border-color: ${getBorderColor};
   border-width: ${(props) => (props.isInvalid ? "2px" : "1px")};
+  background-color: ${colors.ref.palette.neutral.n10};
 `;
 
 const StyledInput = styled.input`
@@ -52,7 +53,7 @@ const StyledInput = styled.input`
   letter-spacing: ${typography.sys.typescale.bodyLarge.tracking};
   border: none;
   outline: none;
-  background-color: ${colors.ref.palette.neutral.n10};
+  background-color: inherit;
 
   ::placeholder {
     color: ${colors.sys.text.secondary};
