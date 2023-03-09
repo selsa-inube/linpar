@@ -18,7 +18,7 @@ function getGridTemplateColumns(props) {
 }
 
 function getBorderColor(props) {
-  let borderColor = colors.ref.palette.neutral.n300;
+  let borderColor = colors.ref.palette.neutral.n40;
 
   if (props.isInvalid) {
     borderColor = colors.ref.palette.red.r400;
@@ -52,14 +52,17 @@ const StyledInput = styled.input`
   letter-spacing: ${typography.sys.typescale.bodyLarge.tracking};
   border: none;
   outline: none;
-  background-color: transparent;
+  background-color: ${colors.ref.palette.neutral.n10};
+
+  ::placeholder {
+    color: ${colors.sys.text.secondary};
+  }
 
   &:disabled {
     border: none;
     color: ${colors.sys.text.disabled};
     ::placeholder {
-      color: ${(props) =>
-        props.disabled ? colors.sys.text.disabled : colors.sys.text.secondary};
+      color: ${colors.sys.text.disabled};
     }
     cursor: not-allowed;
   }
