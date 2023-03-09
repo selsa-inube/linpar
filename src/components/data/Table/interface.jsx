@@ -10,7 +10,7 @@ import {
 import { Text } from "../Text";
 
 function TableUI(props) {
-  const { titles, actions, entries } = props;
+  const { titles, actions, iterateEntries } = props;
 
   return (
     <StyledTable>
@@ -31,24 +31,15 @@ function TableUI(props) {
         </StyledTr>
       </StyledThead>
       <StyledTbody>
-        {entries.map((entry) => (
-          <StyledTr key={entry.id}>
-            <StyledTd>
-              <Text typoToken="bodySmall">{entry.username}</Text>
-            </StyledTd>
-            <StyledTd>
-              <Text typoToken="bodySmall">{entry.code}</Text>
-            </StyledTd>
-            <StyledTd>
-              <Text typoToken="bodySmall">{entry.userID}</Text>
-            </StyledTd>
-            <StyledTd>
-              <Text typoToken="bodySmall">{entry.position}</Text>
-            </StyledTd>
-            {actions.map((action) => (
-              <StyledTd key={`${entry.id}-${action.id}`}>
-                {action.content}
+        {iterateEntries.map((entry, i) => (
+          <StyledTr key={`entry-${i}`}>
+            {entry.map((entryValue, i) => (
+              <StyledTd key={`entryValue-${i}`}>
+                <Text typoToken="bodySmall">{entryValue}</Text>
               </StyledTd>
+            ))}
+            {actions.map((action) => (
+              <StyledTd key={`${i}-${action.id}`}>{action.content}</StyledTd>
             ))}
           </StyledTr>
         ))}
