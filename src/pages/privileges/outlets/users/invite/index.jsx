@@ -3,16 +3,14 @@ import { StyledPageUsers, StyledFormContainer, StyledSpinner } from "./styles";
 import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../../components/PageTitle";
 import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
+import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
 import { Input } from "../../../../../components/inputs/Input";
 import { Stack } from "../../../../../components/layout/Stack";
 import { Button } from "../../../../../components/inputs/Button";
-import {
-  MdOutlineShortcut,
-  MdThumbUpOffAlt,
-  MdErrorOutline,
-} from "react-icons/md";
+import { MdOutlineShortcut } from "react-icons/md";
 import { Spinner } from "../../../../../components/feedback/Spinner";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
+import { Text } from "../../../../../components/data/Text";
 
 function Invite() {
   const [loading, setLoading] = useState(false);
@@ -66,40 +64,42 @@ function Invite() {
   };
 
   function renderMessages() {
-    if (showMessage) {
-      return (
-        <SectionMessage
-          title="¡Envío exitoso!"
-          description={
-            <>
-              Hemos enviado con éxito la invitación al usuario <br />
-              {inputName}
-            </>
-          }
-          icon={<MdThumbUpOffAlt size={18} />}
-          appearance="confirm"
-        />
-      );
-    }
+    let messageIndex = -1;
 
-    if (
+    if (showMessage) {
+      messageIndex = 0;
+    } else if (
       (inputNameInvalid ||
         inputIdInvalid ||
         inputNumberInvalid ||
         inputMailInvalid) &&
       submitted
     ) {
-      return (
-        <SectionMessage
-          title="¡Uy, algo salió mal!"
-          description={
-            <>Algunos de los campos tienen errores intente nuevamente</>
-          }
-          icon={<MdErrorOutline size={18} />}
-          appearance="remove"
-        />
-      );
+      messageIndex = 1;
     }
+
+    if (messageIndex === -1) {
+      return null;
+    }
+
+    return (
+      <SectionMessage
+        title={messageInvitationSent[messageIndex].title}
+        description={
+          messageIndex === 0 ? (
+            <>
+              {messageInvitationSent[messageIndex].description}
+              <br />
+              <Text typoToken="labelLarge">{inputName}</Text>
+            </>
+          ) : (
+            messageInvitationSent[messageIndex].description
+          )
+        }
+        icon={messageInvitationSent[messageIndex].icon}
+        appearance={messageInvitationSent[messageIndex].appearance}
+      />
+    );
   }
 
   return (

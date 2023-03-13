@@ -25,7 +25,6 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
       <Route path="privileges" element={<Privileges />}>
         <Route path="options" element={<PrivilegesOptions />} />
-        //this is a provisional route while users component is ready
         <Route path="users/invite" element={<Invite />} />
       </Route>
       <Route path="login" element={<Login />}>
