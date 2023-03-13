@@ -19,33 +19,35 @@ function Users() {
 
   return (
     <StyledContainer>
-      <Stack spacing="32">
-        <Breadcrumbs route={mockPrivilegeOptions[0].url} />
-        <PageTitle
-          title={mockPrivilegeOptions[0].label}
-          icon={mockPrivilegeOptions[0].icon}
-          description={mockPrivilegeOptions[0].description}
-        />
-      </Stack>
-      <Stack spacing="32">
-        <Tabs
-          tabs={mockPrivilegeUserTabs}
-          selected={isSelected}
-          handleTabChange={handleTabChange}
-        />
-        <StyledInputsContainer>
-          <Input
-            placeholder="Search..."
-            type="search"
-            iconBefore={<MdSearch size={18} />}
-            size="compact"
+      <Stack spacing="48">
+        <Stack spacing="32">
+          <Breadcrumbs route={mockPrivilegeOptions[0].url} />
+          <PageTitle
+            title={mockPrivilegeOptions[0].label}
+            icon={mockPrivilegeOptions[0].icon}
+            description={mockPrivilegeOptions[0].description}
           />
-          <Button
-            iconBefore={<MdPersonAddAlt size={18} />}
-            spacing="compact"
-            children="Invite user"
+        </Stack>
+        <Stack spacing="32">
+          <Tabs
+            tabs={mockPrivilegeUserTabs}
+            selected={isSelected}
+            handleTabChange={handleTabChange}
           />
-        </StyledInputsContainer>
+          <StyledInputsContainer>
+            <Input
+              placeholder="Search..."
+              type="search"
+              iconBefore={<MdSearch size={18} />}
+              size="compact"
+            />
+            <Button
+              iconBefore={<MdPersonAddAlt size={18} />}
+              spacing="compact"
+              children="Invite user"
+            />
+          </StyledInputsContainer>
+        </Stack>
       </Stack>
     </StyledContainer>
   );
