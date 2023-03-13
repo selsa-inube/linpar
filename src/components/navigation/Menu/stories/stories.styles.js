@@ -10,6 +10,10 @@ const StyledContainer = styled.div`
 const StyledStoryContainer = styled.div`
   grid-column: 1 / 2;
   grid-row: 2 / 3;
+
+  & nav {
+    display: flex;
+  }
 `;
 
 const StyledHeaderContainer = styled.div`
