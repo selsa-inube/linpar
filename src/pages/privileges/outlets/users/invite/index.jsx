@@ -1,52 +1,27 @@
 import { useState } from "react";
-import { StyledPageUsers, StyledFormContainer, StyledSpinner } from "./styles";
-import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
-import { PageTitle } from "../../../../../components/PageTitle";
-import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
-import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
-import { Input } from "../../../../../components/inputs/Input";
-import { Stack } from "../../../../../components/layout/Stack";
-import { Button } from "../../../../../components/inputs/Button";
-import { MdOutlineShortcut } from "react-icons/md";
-import { Spinner } from "../../../../../components/feedback/Spinner";
-import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
-import { Text } from "../../../../../components/data/Text";
+import { InviteUI } from "./interface";
 
 function Invite() {
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const [inputName, setInputName] = useState("");
-  const [inputNameInvalid, setInputNameInvalid] = useState(true);
+  const [inputsState, setInputsState] = useState({
+    inputName: { value: "", valid: true },
+    inputId: { value: "", valid: true },
+    inputNumber: { value: "", valid: true },
+    inputMail: { value: "", valid: true },
+  });
 
-  const [inputId, setInputId] = useState("");
-  const [inputIdInvalid, setInputIdInvalid] = useState(true);
-
-  const [inputNumber, setInputNumber] = useState("");
-  const [inputNumberInvalid, setInputNumberInvalid] = useState(true);
-
-  const [inputMail, setInputMail] = useState("");
-  const [inputMailInvalid, setInputMailInvalid] = useState(true);
-
-  const handleNameChange = (event) => {
-    setInputName(event.target.value);
-    setInputNameInvalid(!event.target.validity.valid);
+  const handleInputChange = (key, value, validity) => {
+    setInputsState((prevInputsState) => ({
+      ...prevInputsState,
+      [key]: { value: value, valid: validity },
+    }));
   };
 
-  const handleIdChange = (event) => {
-    setInputId(event.target.value);
-    setInputIdInvalid(!event.target.validity.valid);
-  };
-
-  const handleNumberChange = (event) => {
-    setInputNumber(event.target.value);
-    setInputNumberInvalid(!event.target.validity.valid);
-  };
-
-  const handleMailChange = (event) => {
-    setInputMail(event.target.value);
-    setInputMailInvalid(!event.target.validity.valid);
+  const handleClickSubmit = (event) => {
+    setSubmitted(event);
   };
 
   const handleSubmit = (event) => {
@@ -63,135 +38,16 @@ function Invite() {
     }, loadingTimeout);
   };
 
-  function renderMessages() {
-    let messageIndex = -1;
-
-    if (showMessage) {
-      messageIndex = 0;
-    } else if (
-      (inputNameInvalid ||
-        inputIdInvalid ||
-        inputNumberInvalid ||
-        inputMailInvalid) &&
-      submitted
-    ) {
-      messageIndex = 1;
-    }
-
-    if (messageIndex === -1) {
-      return null;
-    }
-
-    return (
-      <SectionMessage
-        title={messageInvitationSent[messageIndex].title}
-        description={
-          messageIndex === 0 ? (
-            <>
-              {messageInvitationSent[messageIndex].description}
-              <br />
-              <Text typoToken="labelLarge">{inputName}</Text>
-            </>
-          ) : (
-            messageInvitationSent[messageIndex].description
-          )
-        }
-        icon={messageInvitationSent[messageIndex].icon}
-        appearance={messageInvitationSent[messageIndex].appearance}
-      />
-    );
-  }
-
   return (
-    <StyledPageUsers>
-      <Stack spacing={48}>
-        <Stack spacing={32}>
-          <Breadcrumbs route={usersInvitations[0].route} />
-          <PageTitle
-            title={usersInvitations[0].title}
-            icon={usersInvitations[0].icon}
-            description={usersInvitations[0].description}
-          />
-        </Stack>
-        <form onSubmit={handleSubmit}>
-          <Stack spacing={32} align="end">
-            <StyledFormContainer>
-              <Stack>
-                <Input
-                  label="Nombre (Requerido)"
-                  placeholder="Ingresa su nombre completo"
-                  handleChange={handleNameChange}
-                  value={inputName}
-                  isRequired={true}
-                  type="text"
-                  isInvalid={inputNameInvalid && submitted}
-                  errorMessage="Este campo no puede estar vacío"
-                  isDisabled={loading && true}
-                  size="compact"
-                ></Input>
-              </Stack>
-              <Stack>
-                <Input
-                  label="Identificación (Requerido)"
-                  placeholder="Ingrese su número de identificación"
-                  handleChange={handleIdChange}
-                  value={inputId}
-                  isRequired={true}
-                  type="number"
-                  isInvalid={inputIdInvalid && submitted}
-                  errorMessage="Este campo debe contener un número de identificación"
-                  isDisabled={loading && true}
-                  size="compact"
-                ></Input>
-              </Stack>
-              <Stack>
-                <Input
-                  label="Número de teléfono (Requerido)"
-                  placeholder="Ingrese su número telefónico"
-                  handleChange={handleNumberChange}
-                  value={inputNumber}
-                  isRequired={true}
-                  type="number"
-                  isInvalid={inputNumberInvalid && submitted}
-                  errorMessage="Este campo debe tener un número de teléfono"
-                  isDisabled={loading && true}
-                  size="compact"
-                ></Input>
-              </Stack>
-              <Stack>
-                <Input
-                  label="Correo (Requerido)"
-                  placeholder="Ingrese su dirección de correo electrónico"
-                  handleChange={handleMailChange}
-                  value={inputMail}
-                  isRequired={true}
-                  type="email"
-                  isInvalid={inputMailInvalid && submitted}
-                  errorMessage="Este campo debe tener una dirección de correo electrónico válida"
-                  isDisabled={loading && true}
-                  size="compact"
-                ></Input>
-              </Stack>
-            </StyledFormContainer>
-            <Button
-              type="submitted"
-              appearance="confirm"
-              iconBefore={!loading && <MdOutlineShortcut size={18} />}
-              handleClick={() => setSubmitted(true)}
-            >
-              {loading ? (
-                <StyledSpinner>
-                  <Spinner />
-                </StyledSpinner>
-              ) : (
-                "Enviar"
-              )}
-            </Button>
-          </Stack>
-        </form>
-      </Stack>
-      {renderMessages()}
-    </StyledPageUsers>
+    <InviteUI
+      loading={loading}
+      showMessage={showMessage}
+      inputsState={inputsState}
+      submitted={submitted}
+      handleInputChange={handleInputChange}
+      handleSubmit={handleSubmit}
+      handleClickSubmit={handleClickSubmit}
+    />
   );
 }
 
