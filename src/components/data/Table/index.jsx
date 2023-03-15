@@ -11,15 +11,16 @@ function Table(props) {
     pageLength = 10,
   } = props;
 
-  const [currentPage, setCurrentPage] = useState(1),
-    totalPages = Math.ceil(entries.length / pageLength),
-    numRecordMax = pageLength * currentPage,
-    numRecordsPerPage = numRecordMax - pageLength,
-    firstEntryInPage = numRecordsPerPage + 1,
-    EndEntryInPage = getPageEntries().length + numRecordsPerPage;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(entries.length / pageLength);
+  const firstEntryInPage = (currentPage - 1) * pageLength;
+  const LastEntryInPage = Math.min(
+    firstEntryInPage + pageLength,
+    entries.length
+  );
 
   function getPageEntries() {
-    return entries.slice(numRecordsPerPage, numRecordMax);
+    return entries.slice(firstEntryInPage, LastEntryInPage);
   }
 
   function goToFirstPage() {
@@ -48,7 +49,7 @@ function Table(props) {
       {entries.length > pageLength && (
         <Pagination
           valueDataFirst={firstEntryInPage}
-          valueDataEnd={EndEntryInPage}
+          valueDataEnd={LastEntryInPage}
           totalRecords={entries.length}
           handleStartPage={goToFirstPage}
           handlePrevPage={prevPage}

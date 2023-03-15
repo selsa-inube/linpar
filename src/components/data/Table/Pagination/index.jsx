@@ -27,7 +27,7 @@ function Pagination(props) {
     <StyledContentPagination>
       <StyledContentText>
         <Text typoToken="bodySmall">
-          {valueDataFirst} - {valueDataEnd} of {totalRecords}
+          {valueDataFirst + 1} - {valueDataEnd} of {totalRecords}
         </Text>
       </StyledContentText>
       <StyledContentButtons>
