@@ -8,56 +8,63 @@ function Table(props) {
     actions,
     entries,
     // filter = "",
-    pageLength = 7,
+    pageLength = 10,
   } = props;
 
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [entriesIndex, setEntriesIndex] = useState(0);
 
-  function pagination() {
-    return entries.slice(currentPage, currentPage + pageLength);
+  const totalPages = Math.ceil(entries.length / pageLength);
+
+  function getPageEntries() {
+    const numRecordMax = pageLength * currentPage;
+    return entries.slice(numRecordMax - pageLength, numRecordMax);
   }
 
-  function startPage() {
-    setCurrentPage(0);
+  function goToFirstPage() {
+    setCurrentPage(1);
+    setEntriesIndex(0);
   }
 
-  function endPage() {
-    const records = Math.ceil(entries.length / pageLength);
-    setCurrentPage((records - 1) * pageLength);
+  function goToEndPage() {
+    setCurrentPage(totalPages);
+    setEntriesIndex((totalPages - 1) * pageLength);
   }
 
   function nextPage() {
-    if (entries.length > currentPage + pageLength) {
-      setCurrentPage(currentPage + pageLength);
+    if (currentPage !== totalPages) {
+      setCurrentPage(currentPage + 1);
+      setEntriesIndex(entriesIndex + pageLength);
     }
   }
 
   function prevPage() {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - pageLength);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      setEntriesIndex(entriesIndex - pageLength);
     }
   }
 
   function numRecordsEnd() {
-    return pagination().length + currentPage;
+    return getPageEntries().length + entriesIndex;
   }
 
   function numRecordsFirst() {
-    return currentPage + 1;
+    return entriesIndex + 1;
   }
 
   return (
     <>
-      <TableUI titles={titles} actions={actions} entries={pagination()} />
+      <TableUI titles={titles} actions={actions} entries={getPageEntries()} />
       {entries.length > pageLength && (
         <Pagination
           valueDataFirst={numRecordsFirst()}
           valueDataEnd={numRecordsEnd()}
           totalRecords={entries.length}
-          handleStartPage={startPage}
+          handleStartPage={goToFirstPage}
           handlePrevPage={prevPage}
           handleNextPage={nextPage}
-          handleEndPage={endPage}
+          handleEndPage={goToEndPage}
         />
       )}
     </>

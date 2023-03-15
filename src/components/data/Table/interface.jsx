@@ -33,13 +33,13 @@ function TableUI(props) {
       <StyledTbody>
         {entries.map((entry) => (
           <StyledTr key={`entry-${entry.id}`}>
-            {titles.map((entryValue) =>
-              entry[entryValue.id] ? (
-                <StyledTd key={`e-${entry[entryValue.id]}`}>
-                  <Text typoToken="bodySmall">{entry[entryValue.id]}</Text>
+            {titles.map((title) =>
+              entry[title.id] ? (
+                <StyledTd key={`e-${entry[title.id]}`}>
+                  <Text typoToken="bodySmall">{entry[title.id]}</Text>
                 </StyledTd>
               ) : (
-                <StyledTd key={`e-${entry[entryValue.id]}`}>
+                <StyledTd key={`e-${entry[title.id]}`}>
                   <Text typoToken="bodySmall">{null}</Text>
                 </StyledTd>
               )
