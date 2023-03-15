@@ -6,7 +6,7 @@ const StyledPageUsers = styled.div`
     height: 120vh;
   }
 
-  @media (max-width: 530px) {
+  @media (max-width: 565px) {
     padding: 32px 16px;
   }
 `;
@@ -32,7 +32,7 @@ const StyledSpinner = styled.div`
 `;
 
 const StyledMessage = styled.div`
-  @media (max-width: 530px) {
+  @media (max-width: 565px) {
     & div {
       width: auto;
       right: 16px;

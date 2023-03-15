@@ -5,19 +5,23 @@ function Invite() {
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  const [inputsState, setInputsState] = useState({
-    inputName: { value: "", valid: true },
-    inputId: { value: "", valid: true },
-    inputNumber: { value: "", valid: true },
-    inputMail: { value: "", valid: true },
+  const [invitation, setInvitation] = useState({
+    name: { value: "", valid: true },
+    id: { value: "", valid: true },
+    phone: { value: "", valid: true },
+    email: { value: "", valid: true },
   });
 
-  const handleInputChange = (key, value, validity) => {
-    setInputsState((prevInputsState) => ({
-      ...prevInputsState,
-      [key]: { value: value, valid: validity },
-    }));
+  const SHOW_MESSAGE_TIMEOUT = 5000;
+  const LOADING_TIMEOUT = 2500;
+
+  const handleInputChange = (event) => {
+    const { name, value, validity } = event.target;
+
+    setInvitation({
+      ...invitation,
+      [name]: { value, valid: !validity.valid },
+    });
   };
 
   const handleClickSubmit = (event) => {
@@ -25,24 +29,21 @@ function Invite() {
   };
 
   const handleSubmit = (event) => {
-    const showMessageTimeout = 5000;
-    const loadingTimeout = 2500;
-
     event.preventDefault();
     setLoading(true);
     setSubmitted(false);
     setTimeout(() => {
       setLoading(false);
       setShowMessage(true);
-      setTimeout(() => setShowMessage(false), showMessageTimeout);
-    }, loadingTimeout);
+      setTimeout(() => setShowMessage(false), SHOW_MESSAGE_TIMEOUT);
+    }, LOADING_TIMEOUT);
   };
 
   return (
     <InviteUI
       loading={loading}
       showMessage={showMessage}
-      inputsState={inputsState}
+      invitation={invitation}
       submitted={submitted}
       handleInputChange={handleInputChange}
       handleSubmit={handleSubmit}
