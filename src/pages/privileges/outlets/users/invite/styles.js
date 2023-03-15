@@ -7,7 +7,7 @@ const StyledPageUsers = styled.div`
   }
 
   @media (max-width: 565px) {
-    padding: 32px 16px;
+    padding: 16px;
   }
 `;
 
