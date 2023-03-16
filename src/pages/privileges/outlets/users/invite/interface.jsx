@@ -1,9 +1,4 @@
-import {
-  StyledPageUsers,
-  StyledFormContainer,
-  StyledSpinner,
-  StyledMessage,
-} from "./styles";
+import { StyledPageUsers, StyledFormContainer, StyledSpinner } from "./styles";
 import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../../components/PageTitle";
 import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
@@ -22,38 +17,32 @@ function InviteUI(props) {
     invitation,
     handleInputChange,
     handleSubmit,
-    submitted,
-    handleClickSubmit,
+    formInvalid,
   } = props;
 
   function renderMessages() {
-    let messageIndex = -1;
+    let messageType = -1;
 
     if (showMessage) {
-      messageIndex = 0;
+      messageType = "success";
     } else if (
-      (invitation.name.valid ||
-        invitation.id.valid ||
-        invitation.phone.valid ||
-        invitation.email.valid) &&
-      submitted
+      Object.values(invitation).some((prop) => prop.isInvalid) &&
+      formInvalid
     ) {
-      messageIndex = 1;
+      messageType = "failed";
     }
 
-    if (messageIndex === -1) {
+    if (messageType === -1) {
       return null;
     }
 
     return (
-      <StyledMessage>
-        <SectionMessage
-          title={messageInvitationSent[messageIndex].title}
-          description={messageInvitationSent[messageIndex].description}
-          icon={messageInvitationSent[messageIndex].icon}
-          appearance={messageInvitationSent[messageIndex].appearance}
-        />
-      </StyledMessage>
+      <SectionMessage
+        title={messageInvitationSent[messageType].title}
+        description={messageInvitationSent[messageType].description}
+        icon={messageInvitationSent[messageType].icon}
+        appearance={messageInvitationSent[messageType].appearance}
+      />
     );
   }
 
@@ -77,9 +66,8 @@ function InviteUI(props) {
                 name="name"
                 handleChange={handleInputChange}
                 value={invitation.name.value}
-                isRequired={true}
                 type="text"
-                isInvalid={invitation.name.valid && submitted}
+                isInvalid={invitation.name.isInvalid && formInvalid}
                 errorMessage="Este campo no puede estar vacío"
                 isDisabled={loading && true}
                 size="compact"
@@ -90,9 +78,8 @@ function InviteUI(props) {
                 name="id"
                 handleChange={handleInputChange}
                 value={invitation.id.value}
-                isRequired={true}
                 type="number"
-                isInvalid={invitation.id.valid && submitted}
+                isInvalid={invitation.id.isInvalid && formInvalid}
                 errorMessage="Este campo debe contener un número de identificación"
                 isDisabled={loading && true}
                 size="compact"
@@ -103,9 +90,8 @@ function InviteUI(props) {
                 name="phone"
                 handleChange={handleInputChange}
                 value={invitation.phone.value}
-                isRequired={true}
                 type="number"
-                isInvalid={invitation.phone.valid && submitted}
+                isInvalid={invitation.phone.isInvalid && formInvalid}
                 errorMessage="Este campo debe tener un número de teléfono"
                 isDisabled={loading && true}
                 size="compact"
@@ -116,19 +102,17 @@ function InviteUI(props) {
                 name="email"
                 handleChange={handleInputChange}
                 value={invitation.email.value}
-                isRequired={true}
                 type="email"
-                isInvalid={invitation.email.valid && submitted}
+                isInvalid={invitation.email.isInvalid && formInvalid}
                 errorMessage="Este campo debe tener una dirección de correo electrónico válida"
                 isDisabled={loading && true}
                 size="compact"
               />
             </StyledFormContainer>
             <Button
-              type="submitted"
+              type="submit"
               appearance="confirm"
               iconBefore={!loading && <MdOutlineShortcut size={18} />}
-              handleClick={() => handleClickSubmit(true)}
             >
               {loading ? (
                 <StyledSpinner>

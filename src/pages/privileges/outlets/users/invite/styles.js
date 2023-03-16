@@ -31,24 +31,4 @@ const StyledSpinner = styled.div`
   }
 `;
 
-const StyledMessage = styled.div`
-  @media (max-width: 565px) {
-    & div {
-      width: auto;
-      right: 16px;
-      left: 16px;
-      padding: 0px 5px;
-      justify-content: space-between;
-    }
-
-    & svg:last-of-type {
-      margin-left: 20px;
-    }
-
-    & p:last-child {
-      display: none;
-    }
-  }
-`;
-
-export { StyledPageUsers, StyledFormContainer, StyledSpinner, StyledMessage };
+export { StyledPageUsers, StyledFormContainer, StyledSpinner };

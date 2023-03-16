@@ -4,12 +4,12 @@ import { InviteUI } from "./interface";
 function Invite() {
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [formInvalid, setFormInvalid] = useState(false);
   const [invitation, setInvitation] = useState({
-    name: { value: "", valid: true },
-    id: { value: "", valid: true },
-    phone: { value: "", valid: true },
-    email: { value: "", valid: true },
+    name: { value: "", isInvalid: true },
+    id: { value: "", isInvalid: true },
+    phone: { value: "", isInvalid: true },
+    email: { value: "", isInvalid: true },
   });
 
   const SHOW_MESSAGE_TIMEOUT = 5000;
@@ -20,18 +20,21 @@ function Invite() {
 
     setInvitation({
       ...invitation,
-      [name]: { value, valid: !validity.valid },
+      [name]: {
+        value,
+        isInvalid: value === "" || !validity.valid,
+      },
     });
-  };
-
-  const handleClickSubmit = (event) => {
-    setSubmitted(event);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (Object.values(invitation).some((prop) => prop.isInvalid)) {
+      setFormInvalid(true);
+      return;
+    }
     setLoading(true);
-    setSubmitted(false);
     setTimeout(() => {
       setLoading(false);
       setShowMessage(true);
@@ -44,10 +47,9 @@ function Invite() {
       loading={loading}
       showMessage={showMessage}
       invitation={invitation}
-      submitted={submitted}
+      formInvalid={formInvalid}
       handleInputChange={handleInputChange}
       handleSubmit={handleSubmit}
-      handleClickSubmit={handleClickSubmit}
     />
   );
 }
