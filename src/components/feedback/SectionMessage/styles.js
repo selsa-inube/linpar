@@ -46,7 +46,7 @@ const StyledIcon = styled.figure`
 `;
 
 const StyledDescription = styled.div`
-  margin: 16px;
+  margin: 16px 0px;
 
   & > *:first-child {
     margin-bottom: 4px;
@@ -58,6 +58,7 @@ const StyledDescription = styled.div`
   }
 
   @media (max-width: 565px) {
+    margin-right: 16px;
     & p:last-child {
       display: none;
     }
