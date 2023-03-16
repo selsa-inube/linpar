@@ -3,24 +3,26 @@ import { TableUI } from "./interface";
 import { useState } from "react";
 
 function Table(props) {
-  const {
-    titles,
-    actions,
-    entries,
-    // filter = "",
-    pageLength = 10,
-  } = props;
+  const { titles, actions, entries, filter = "", pageLength = 10 } = props;
+
+  function filterTable() {
+    if (filter.length === 0) return entries;
+
+    return entries.filter((entry) =>
+      entry.username.toLowerCase().includes(filter.toLowerCase())
+    );
+  }
 
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(entries.length / pageLength);
+  const totalPages = Math.ceil(filterTable().length / pageLength);
   const firstEntryInPage = (currentPage - 1) * pageLength;
   const LastEntryInPage = Math.min(
     firstEntryInPage + pageLength,
-    entries.length
+    filterTable().length
   );
 
   function getPageEntries() {
-    return entries.slice(firstEntryInPage, LastEntryInPage);
+    return filterTable().slice(firstEntryInPage, LastEntryInPage);
   }
 
   function goToFirstPage() {
@@ -46,11 +48,11 @@ function Table(props) {
   return (
     <>
       <TableUI titles={titles} actions={actions} entries={getPageEntries()} />
-      {entries.length > pageLength && (
+      {filterTable().length > pageLength && (
         <Pagination
-          valueDataFirst={firstEntryInPage}
-          valueDataEnd={LastEntryInPage}
-          totalRecords={entries.length}
+          firstEntryInPage={firstEntryInPage}
+          LastEntryInPage={LastEntryInPage}
+          totalRecords={filterTable().length}
           handleStartPage={goToFirstPage}
           handlePrevPage={prevPage}
           handleNextPage={nextPage}
