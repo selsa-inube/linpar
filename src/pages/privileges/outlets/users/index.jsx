@@ -1,14 +1,14 @@
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Tabs } from "../../../../components/navigation/Tabs";
-import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
-import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
 import { Input } from "../../../../components/inputs/Input";
 import { Button } from "../../../../components/inputs/Button";
-import { StyledContainer, StyledInputsContainer } from "./styles";
-import { MdSearch, MdPersonAddAlt } from "react-icons/md";
-import { useState } from "react";
 import { Stack } from "../../../../components/layout/Stack";
+import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
+import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
+import { StyledContainer } from "./styles";
+import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
+import { useState } from "react";
 
 function Users() {
   const [isSelected, setIsSelected] = useState(mockPrivilegeUserTabs[0].id);
@@ -34,19 +34,18 @@ function Users() {
             selected={isSelected}
             handleTabChange={handleTabChange}
           />
-          <StyledInputsContainer>
+          <Stack direction="row" justify="space-between" align="center">
             <Input
               placeholder="Search..."
               type="search"
               iconBefore={<MdSearch size={18} />}
               size="compact"
             />
-            <Button
-              iconBefore={<MdPersonAddAlt size={18} />}
-              spacing="compact"
-              children="Invite user"
-            />
-          </StyledInputsContainer>
+            <Button iconBefore={<MdPersonAddAlt size={18} />} spacing="compact">
+              Invite user
+            </Button>
+            <MdOutlineMoreHoriz size={24} />
+          </Stack>
         </Stack>
       </Stack>
     </StyledContainer>
