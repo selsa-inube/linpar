@@ -1,11 +1,11 @@
 import { Tab } from "../Tab";
-import { StyledTabsContainer, StyledLine } from "./styles";
+import { StyledContainer, StyledTabsContainer, StyledLine } from "./styles";
 
 function Tabs(props) {
   const { tabs, selected, handleTabChange } = props;
 
   return (
-    <>
+    <StyledContainer>
       <StyledTabsContainer>
         {tabs.map(({ id, content }) => (
           <Tab
@@ -18,7 +18,7 @@ function Tabs(props) {
         ))}
       </StyledTabsContainer>
       <StyledLine />
-    </>
+    </StyledContainer>
   );
 }
 

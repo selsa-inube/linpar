@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
+const StyledContainer = styled.div``;
+
 const StyledTabsContainer = styled.ul`
   list-style-type: none;
   display: flex;
@@ -14,4 +16,4 @@ const StyledLine = styled.hr`
   margin: 0;
 `;
 
-export { StyledTabsContainer, StyledLine };
+export { StyledContainer, StyledTabsContainer, StyledLine };
