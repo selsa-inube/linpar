@@ -18,7 +18,7 @@ function Button(props) {
       disabled={disabled}
       appearance={appearance}
       spacing={spacing}
-      handleClick={handleClick}
+      onClick={handleClick}
     >
       {iconBefore}
       <Text typoToken="labelLarge" colorToken={null}>

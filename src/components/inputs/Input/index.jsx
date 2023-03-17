@@ -15,6 +15,7 @@ function Input(props) {
     isDisabled = false,
     type = "text",
     value,
+    name,
     handleChange,
     iconBefore,
     iconAfter,
@@ -25,7 +26,7 @@ function Input(props) {
   } = props;
 
   return (
-    <>
+    <div>
       {label && (
         <StyledLabel>
           <Text
@@ -45,6 +46,7 @@ function Input(props) {
       >
         {iconBefore && <StyledIcon>{iconBefore}</StyledIcon>}
         <StyledInput
+          name={name}
           type={type}
           disabled={isDisabled}
           value={value}
@@ -61,7 +63,7 @@ function Input(props) {
           </Text>
         </StyledInvalidMessage>
       )}
-    </>
+    </div>
   );
 }
 
