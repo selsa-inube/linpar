@@ -21,27 +21,30 @@ function InviteUI(props) {
   } = props;
 
   function renderMessages() {
-    let messageType = -1;
+    let messageType;
 
     if (showMessage) {
       messageType = "success";
-    } else if (
-      Object.values(invitation).some((prop) => prop.isInvalid) &&
-      formInvalid
-    ) {
-      messageType = "failed";
+    } else {
+      const invalidPropExists = Object.values(invitation).some(
+        (prop) => prop.isInvalid
+      );
+      messageType = invalidPropExists && formInvalid ? "failed" : undefined;
     }
 
-    if (messageType === -1) {
+    if (!messageType) {
       return null;
     }
 
+    const { title, description, icon, appearance } =
+      messageInvitationSent[messageType];
+
     return (
       <SectionMessage
-        title={messageInvitationSent[messageType].title}
-        description={messageInvitationSent[messageType].description}
-        icon={messageInvitationSent[messageType].icon}
-        appearance={messageInvitationSent[messageType].appearance}
+        title={title}
+        description={description}
+        icon={icon}
+        appearance={appearance}
       />
     );
   }
