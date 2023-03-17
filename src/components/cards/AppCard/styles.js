@@ -30,6 +30,10 @@ const StyledAppCard = styled(Link)`
     width: 100%;
     min-height: 104px;
     gap: 8px;
+
+    div {
+      gap: 4px;
+    }
   }
 `;
 
