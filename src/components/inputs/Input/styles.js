@@ -54,6 +54,7 @@ const StyledInput = styled.input`
   border: none;
   outline: none;
   background-color: inherit;
+  min-width: 80px;
 
   ::placeholder {
     color: ${colors.sys.text.secondary};

@@ -36,7 +36,7 @@ const StyledAppsList = styled.ul`
   }
 
   @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(1, 250px);
+    grid-template-columns: repeat(1, 100%);
   }
 `;
 
