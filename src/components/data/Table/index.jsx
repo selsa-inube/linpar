@@ -5,12 +5,22 @@ import { useState } from "react";
 function Table(props) {
   const { titles, actions, entries, filter = "", pageLength = 10 } = props;
 
+  function filterArray() {
+    return entries.filter((element) => {
+      let valueExists = false;
+      Object.values(element).map((word) => {
+        if (word.toString().toLowerCase().includes(filter.toLowerCase())) {
+          valueExists = true;
+        }
+      });
+      return valueExists;
+    });
+  }
+
   function filterTable() {
     if (filter.length === 0) return entries;
 
-    return entries.filter((entry) =>
-      entry.username.toLowerCase().includes(filter.toLowerCase())
-    );
+    return filterArray();
   }
 
   const [currentPage, setCurrentPage] = useState(1);

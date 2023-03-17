@@ -2,7 +2,6 @@ import { Table } from "../index";
 import { Edit } from "./Edit";
 import { Delete } from "./Delete";
 import { Switch } from "./Switch";
-import { Pagination } from "../Pagination";
 
 const titles = [
   {
