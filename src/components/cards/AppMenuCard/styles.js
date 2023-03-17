@@ -35,7 +35,7 @@ const StyledAppMenuCard = styled(Link)`
 
 const StyledIcon = styled.picture`
   background-color: transparent;
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   border-radius: 50%;
   display: flex;
