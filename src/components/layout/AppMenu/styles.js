@@ -3,7 +3,10 @@ import styled from "styled-components";
 const StyledAppMenu = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: 32px 64px 32px;
+  padding: 32px 64px;
+  @media (max-width: 490px) {
+    padding: 16px;
+  }
 `;
 
 const StyledTitle = styled.div`
@@ -45,7 +48,7 @@ const StyledCards = styled.ul`
   }
 
   @media screen and (max-width: 490px) {
-    grid-template-columns: repeat(1, auto);
+    grid-template-columns: repeat(1, 100%);
   }
 `;
 

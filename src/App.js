@@ -17,6 +17,7 @@ import { ErrorNotAvailable } from "./pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "./pages/login/errors/ErrorNotClient";
 import { PrivilegesOptions } from "./pages/privileges/outlets/options";
 import { Invite } from "./pages/privileges/outlets/users/invite";
+import { Users } from "./pages/privileges/outlets/users";
 import AppContextProvider from "./context";
 
 const router = createBrowserRouter(
@@ -25,6 +26,8 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
       <Route path="privileges" element={<Privileges />}>
         <Route path="options" element={<PrivilegesOptions />} />
+
+        <Route path="users" element={<Users />} />
         <Route path="users/invite" element={<Invite />} />
       </Route>
       <Route path="login" element={<Login />}>

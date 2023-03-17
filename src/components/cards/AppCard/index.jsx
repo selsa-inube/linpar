@@ -10,7 +10,7 @@ function AppCard(props) {
     <StyledAppCard to={url}>
       <Stack spacing="16">
         <Text typoToken="titleMedium">{label}</Text>
-        <Text>{description}</Text>
+        <Text typoToken="bodySmall">{description}</Text>
       </Stack>
       <Stack align="end">
         <StyledIcon>{icon}</StyledIcon>

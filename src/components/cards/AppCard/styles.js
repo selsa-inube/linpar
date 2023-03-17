@@ -24,6 +24,17 @@ const StyledAppCard = styled(Link)`
     background-color: ${colors.sys.actions.secondary.filled};
     box-shadow: none;
   }
+
+  @media (max-width: 600px) {
+    padding: 16px;
+    width: 100%;
+    min-height: 104px;
+    gap: 8px;
+
+    div {
+      gap: 4px;
+    }
+  }
 `;
 
 const StyledIcon = styled.i`
