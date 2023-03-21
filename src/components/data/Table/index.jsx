@@ -6,20 +6,26 @@ function Table(props) {
   const { titles, actions, entries, filter = "", pageLength = 10 } = props;
 
   function filterArray() {
-    return entries.filter((element) => {
+    const TitlesColumn = titles.map((i) => i.id);
+    return entries.filter((entry) => {
       let valueExists = false;
-      Object.values(element).map((word) => {
-        if (word.toString().toLowerCase().includes(filter.toLowerCase())) {
+      for (const attribute in entry) {
+        if (
+          TitlesColumn.includes(attribute) &&
+          entry[attribute]
+            .toString()
+            .toLowerCase()
+            .includes(filter.toLowerCase())
+        ) {
           valueExists = true;
         }
-      });
+      }
       return valueExists;
     });
   }
 
   function filterTable() {
     if (filter.length === 0) return entries;
-
     return filterArray();
   }
 
