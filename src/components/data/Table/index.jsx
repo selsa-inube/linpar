@@ -6,21 +6,20 @@ function Table(props) {
   const { titles, actions, entries, filter = "", pageLength = 10 } = props;
 
   function filterArray() {
-    const TitlesColumn = titles.map((i) => i.id);
+    const titlesId = titles.map((i) => i.id);
     return entries.filter((entry) => {
-      let valueExists = false;
       for (const attribute in entry) {
         if (
-          TitlesColumn.includes(attribute) &&
+          titlesId.includes(attribute) &&
           entry[attribute]
             .toString()
             .toLowerCase()
             .includes(filter.toLowerCase())
         ) {
-          valueExists = true;
+          return true;
         }
       }
-      return valueExists;
+      return false;
     });
   }
 
