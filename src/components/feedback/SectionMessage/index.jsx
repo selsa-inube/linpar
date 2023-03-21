@@ -10,7 +10,7 @@ function SectionMessage(props) {
     <StyledContainer appearance={appearance}>
       <StyledIcon appearance={appearance}>{icon}</StyledIcon>
       <StyledDescription>
-        <Stack direction="row" justify="space-between">
+        <Stack direction="row" justify="space-between" spacing={26}>
           <Text typoToken="labelLarge">{title}</Text>
           <MdClear />
         </Stack>

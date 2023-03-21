@@ -17,11 +17,25 @@ const StyledAppMenuCard = styled(Link)`
       background-color: ${colors.sys.actions.secondary.filled};
     }
   }
+
+  @media (max-width: 490px) {
+    display: flex;
+    padding: 16px 8px;
+    width: 100%;
+    height: 72px;
+    & div:first-child {
+      flex-direction: row;
+      gap: 8px;
+    }
+    & p {
+      text-align: left;
+    }
+  }
 `;
 
 const StyledIcon = styled.picture`
   background-color: transparent;
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   border-radius: 50%;
   display: flex;
@@ -29,8 +43,8 @@ const StyledIcon = styled.picture`
   align-items: center;
 
   & svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 `;
 

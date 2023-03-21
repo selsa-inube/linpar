@@ -22,6 +22,14 @@ const StyledContainer = styled.div`
   background-color: ${getBackgroundColor};
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
     0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+
+  @media (max-width: 565px) {
+    width: auto;
+    right: 16px;
+    left: 16px;
+    padding: 0px 5px;
+    justify-content: space-between;
+  }
 `;
 
 const StyledIcon = styled.figure`
@@ -38,7 +46,7 @@ const StyledIcon = styled.figure`
 `;
 
 const StyledDescription = styled.div`
-  margin: 16px 0;
+  margin: 16px 0px;
 
   & > *:first-child {
     margin-bottom: 4px;
@@ -47,6 +55,13 @@ const StyledDescription = styled.div`
   & > *:first-child > svg {
     width: 16px;
     height: 16px;
+  }
+
+  @media (max-width: 565px) {
+    margin-right: 16px;
+    & p:last-child {
+      display: none;
+    }
   }
 `;
 
