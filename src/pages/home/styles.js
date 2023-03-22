@@ -12,6 +12,10 @@ const StyledPageTitle = styled.div`
   padding: 32px 64px;
 
   @media screen and (max-width: 660px) {
+    padding: 24px 32px 32px;
+  }
+
+  @media screen and (max-width: 590px) {
     padding: 24px 16px 32px;
 
     div {
@@ -44,6 +48,10 @@ const StyledAppsList = styled.ul`
   }
 
   @media screen and (max-width: 660px) {
+    padding: 0px 32px;
+  }
+
+  @media screen and (max-width: 590px) {
     grid-template-columns: repeat(1, 100%);
     padding: 0px 16px;
   }
