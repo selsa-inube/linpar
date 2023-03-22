@@ -25,7 +25,7 @@ const StyledAppCard = styled(Link)`
     box-shadow: none;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 590px) {
     padding: 16px;
     width: 100%;
     min-height: 104px;
