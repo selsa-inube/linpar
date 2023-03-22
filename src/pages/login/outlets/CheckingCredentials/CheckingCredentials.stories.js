@@ -1,19 +1,11 @@
 import { CheckingCredentials } from "./index";
-import { BrowserRouter } from "react-router-dom";
 
 const story = {
   components: [CheckingCredentials],
   title: "layouts/login/CheckingCredentials",
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
-  decorators: [
-    (Story) => (
-      <BrowserRouter>
-        <Story />
-      </BrowserRouter>
-    ),
-  ],
 };
 
 const Default = () => <CheckingCredentials />;
