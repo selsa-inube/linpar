@@ -2,9 +2,9 @@ import { CheckingCredentials } from "./index";
 
 const story = {
   components: [CheckingCredentials],
-  title: "layouts/login/CheckingCredentials",
+  title: "layouts/login/outlets/checking-credentials",
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
 };
 
