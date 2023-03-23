@@ -8,26 +8,58 @@ import {
   StyledTd,
 } from "./styles";
 import { Text } from "../Text";
+import { MdOpenInNew } from "react-icons/md";
+import { useMediaQuery } from "@inube/design-system/src/hooks/useMediaQuery";
+
+function showActionTitle(actionTitle, size) {
+  return size === "large" ? (
+    <>
+      {actionTitle.map((action) => (
+        <StyledThAction key={`action-${action.id}`}>
+          <Text typoToken="labelMedium" align="center">
+            {action.actionName}
+          </Text>
+        </StyledThAction>
+      ))}
+    </>
+  ) : (
+    <StyledThAction>
+      <Text typoToken="labelMedium" align="center">
+        Open
+      </Text>
+    </StyledThAction>
+  );
+}
+
+function ShowAction(actionContent, entry, size) {
+  return size === "large" ? (
+    <>
+      {actionContent.map((action) => (
+        <StyledTd key={`${entry.id}-${action.id}`}>{action.content}</StyledTd>
+      ))}
+    </>
+  ) : (
+    <StyledTd>
+      <MdOpenInNew />
+    </StyledTd>
+  );
+}
 
 function TableUI(props) {
+  const screen = useMediaQuery("(min-width: 850px)");
+  const size = screen ? "large" : "small";
   const { titles, actions, entries } = props;
 
   return (
     <StyledTable>
-      <StyledThead>
+      <StyledThead size={size}>
         <StyledTr>
           {titles.map((title) => (
             <StyledThTitle key={`title-${title.id}`}>
               <Text typoToken="labelMedium">{title.titleName}</Text>
             </StyledThTitle>
           ))}
-          {actions.map((action) => (
-            <StyledThAction key={`action-${action.id}`}>
-              <Text typoToken="labelMedium" align="center">
-                {action.actionName}
-              </Text>
-            </StyledThAction>
-          ))}
+          {showActionTitle(actions, size)}
         </StyledTr>
       </StyledThead>
       <StyledTbody>
@@ -44,11 +76,7 @@ function TableUI(props) {
                 </StyledTd>
               )
             )}
-            {actions.map((action) => (
-              <StyledTd key={`${entry.id}-${action.id}`}>
-                {action.content}
-              </StyledTd>
-            ))}
+            {ShowAction(actions, entry, size)}
           </StyledTr>
         ))}
       </StyledTbody>
