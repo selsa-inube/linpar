@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 
 const story = {
   components: [Users],
-  title: "layouts/Users",
+  title: "layouts/privileges/outlets/users",
   parameters: {
     layout: "fullscreen",
   },
