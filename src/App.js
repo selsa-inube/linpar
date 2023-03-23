@@ -14,7 +14,6 @@ import { Invite } from "./pages/privileges/outlets/users/invite";
 import { Users } from "./pages/privileges/outlets/users";
 import AppContextProvider from "./context";
 import { LoginRoutes } from "./routes/login";
-import { Login } from "./pages/login";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,9 +24,7 @@ const router = createBrowserRouter(
         <Route path="users" element={<Users />} />
         <Route path="users/invite" element={<Invite />} />
       </Route>
-      <Route path="login" element={<Login />}>
-        {LoginRoutes()}
-      </Route>
+      <Route path="login*" element={<LoginRoutes />} />
     </>
   )
 );
