@@ -11,7 +11,6 @@ import { Home } from "./pages/home";
 import { CheckingCredentials } from "./pages/login/outlets/CheckingCredentials";
 import { Clients } from "./pages/login/outlets/Clients";
 import { LoadingApp } from "./pages/login/outlets/LoadingApp";
-import { Privileges } from "./pages/privileges";
 import { ErrorPage } from "./components/layout/ErrorPage";
 import { ErrorNotAvailable } from "./pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "./pages/login/errors/ErrorNotClient";
@@ -22,9 +21,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
-      <Route path="privileges" element={<Privileges />}>
-        {PrivilegesRoutes()}
-      </Route>
+      <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="login" element={<Login />}>
         <Route path="checking-credentials" element={<CheckingCredentials />} />
         <Route path="clients" element={<Clients />} />
