@@ -1,6 +1,6 @@
 import { RadioClient } from "../../../../components/cards/RadioClient";
 import { Text } from "../../../../components/data/Text";
-import { Button } from "../../../../components/inputs/Button";
+import { Button } from "@inube/design-system/dist/components/inputs/Button";
 import { Input } from "../../../../components/inputs/Input";
 import { MdSearch } from "react-icons/md";
 
@@ -60,7 +60,11 @@ function ClientsUI(props) {
             </StyledClientsItem>
           ))}
         </StyledClientsList>
-        <Button type="submit" disabled={client.value ? false : true}>
+        <Button
+          type="submit"
+          isDisabled={client.value ? false : true}
+          handleClick={handleSubmit}
+        >
           Continuar
         </Button>
       </form>

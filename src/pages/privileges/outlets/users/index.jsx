@@ -2,7 +2,7 @@ import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Tabs } from "../../../../components/navigation/Tabs";
 import { Input } from "../../../../components/inputs/Input";
-import { Button } from "../../../../components/inputs/Button";
+import { Button } from "@inube/design-system/dist/components/inputs/Button";
 import { Stack } from "../../../../components/layout/Stack";
 import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
 import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
@@ -16,6 +16,11 @@ function Users() {
   const handleTabChange = (tabId) => {
     setIsSelected(tabId);
   };
+
+  //function created while giving functionality to the button
+  function handleButtonClick() {
+    console.log("button clicked");
+  }
 
   return (
     <StyledContainer>
@@ -41,7 +46,11 @@ function Users() {
               iconBefore={<MdSearch size={18} />}
               size="compact"
             />
-            <Button iconBefore={<MdPersonAddAlt size={18} />} spacing="compact">
+            <Button
+              iconBefore={<MdPersonAddAlt size={18} />}
+              spacing="compact"
+              handleClick={handleButtonClick}
+            >
               Invite user
             </Button>
             <MdOutlineMoreHoriz size={24} />

@@ -5,7 +5,7 @@ import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.m
 import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
 import { Input } from "../../../../../components/inputs/Input";
 import { Stack } from "../../../../../components/layout/Stack";
-import { Button } from "../../../../../components/inputs/Button";
+import { Button } from "@inube/design-system/dist/components/inputs/Button";
 import { MdOutlineShortcut } from "react-icons/md";
 import { Spinner } from "../../../../../components/feedback/Spinner";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
@@ -115,15 +115,11 @@ function InviteUI(props) {
             <Button
               type="submit"
               appearance="confirm"
-              iconBefore={!loading && <MdOutlineShortcut size={18} />}
+              iconBefore={<MdOutlineShortcut size={18} />}
+              isLoading={loading}
+              handleClick={handleSubmit}
             >
-              {loading ? (
-                <StyledSpinner>
-                  <Spinner />
-                </StyledSpinner>
-              ) : (
-                "Enviar"
-              )}
+              Enviar
             </Button>
           </Stack>
         </form>
