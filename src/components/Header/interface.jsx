@@ -11,12 +11,15 @@ import { Menu } from "../navigation/Menu";
 import { mockApps } from "../../mocks/home/apps.mock";
 import { MdMenu } from "react-icons/md";
 import { User } from "@inube/design-system/dist/components/data/User";
+import { useMediaQuery } from "@inube/design-system/dist/hooks/useMediaQuery";
 
 function HeaderUI(props) {
+  const actualSize = useMediaQuery("(max-width: 450px)");
+
   const {
     userName,
     businessUnit,
-    size,
+    size = actualSize,
     appLogo,
     appLogoAlt,
     handleMenu,
@@ -34,7 +37,11 @@ function HeaderUI(props) {
           <StyledLogo src={appLogo} alt={appLogoAlt} />
         </StyledcontentImg>
         <StyledUser>
-          <User userName={userName} businessUnit={businessUnit} size={size} />
+          <User
+            userName={userName}
+            businessUnit={businessUnit}
+            size={size ? "small" : "large"}
+          />
         </StyledUser>
       </StyledHeader>
       {menu &&
