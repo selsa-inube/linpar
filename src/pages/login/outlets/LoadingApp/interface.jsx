@@ -1,6 +1,6 @@
 import { Stack } from "../../../../components/layout/Stack";
 import { Text } from "../../../../components/data/Text";
-import { Spinner } from "@inube/design-system/dist/components/feedback/Spinner";
+import { Spinner } from "@inube/design-system";
 
 function LoadingAppUI() {
   return (
