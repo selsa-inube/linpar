@@ -1,4 +1,4 @@
-import { StyledPageUsers, StyledFormContainer, StyledSpinner } from "./styles";
+import { StyledPageUsers, StyledFormContainer } from "./styles";
 import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../../components/PageTitle";
 import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
@@ -7,7 +7,6 @@ import { Input } from "../../../../../components/inputs/Input";
 import { Stack } from "../../../../../components/layout/Stack";
 import { Button } from "../../../../../components/inputs/Button";
 import { MdOutlineShortcut } from "react-icons/md";
-import { Spinner } from "../../../../../components/feedback/Spinner";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
 
 function InviteUI(props) {
@@ -116,15 +115,7 @@ function InviteUI(props) {
               type="submit"
               appearance="confirm"
               iconBefore={!loading && <MdOutlineShortcut size={18} />}
-            >
-              {loading ? (
-                <StyledSpinner>
-                  <Spinner />
-                </StyledSpinner>
-              ) : (
-                "Enviar"
-              )}
-            </Button>
+            ></Button>
           </Stack>
         </form>
       </Stack>
