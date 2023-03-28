@@ -1,5 +1,3 @@
-import { Form } from "react-router-dom";
-
 import { RadioClient } from "../../../../components/cards/RadioClient";
 import { Text } from "../../../../components/data/Text";
 import { Button } from "../../../../components/inputs/Button";
@@ -21,6 +19,7 @@ function ClientsUI(props) {
     handleSearchChange,
     handleClientChange,
     filterClients,
+    handleSubmit,
   } = props;
 
   return (
@@ -31,7 +30,7 @@ function ClientsUI(props) {
       <Text align="center">
         Selecciona la empresa a la que vas a representar
       </Text>
-      <Form>
+      <form onSubmit={handleSubmit}>
         {clients.length > 10 && (
           <Input
             placeholder="Search"
@@ -64,7 +63,7 @@ function ClientsUI(props) {
         <Button type="submit" disabled={client.value ? false : true}>
           Continuar
         </Button>
-      </Form>
+      </form>
     </StyledClients>
   );
 }

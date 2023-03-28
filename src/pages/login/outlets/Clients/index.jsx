@@ -41,6 +41,10 @@ function Clients() {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   return (
     <ClientsUI
       clients={mockClients}
@@ -49,6 +53,7 @@ function Clients() {
       handleSearchChange={handleSearchChange}
       handleClientChange={handleClientChange}
       filterClients={filterClients}
+      handleSubmit={handleSubmit}
     />
   );
 }
