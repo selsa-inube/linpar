@@ -2,7 +2,7 @@ import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Tabs } from "../../../../components/navigation/Tabs";
 import { Input } from "../../../../components/inputs/Input";
-import { Button } from "@inube/design-system/dist/components/inputs/Button";
+import { Button } from "@inube/design-system";
 import { Stack } from "../../../../components/layout/Stack";
 import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
 import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";

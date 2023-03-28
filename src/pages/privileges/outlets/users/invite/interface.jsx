@@ -5,7 +5,7 @@ import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.m
 import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
 import { Input } from "../../../../../components/inputs/Input";
 import { Stack } from "../../../../../components/layout/Stack";
-import { Button } from "@inube/design-system/dist/components/inputs/Button";
+import { Button } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
 

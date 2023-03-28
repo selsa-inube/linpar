@@ -1,6 +1,6 @@
 import { RadioClient } from "../../../../components/cards/RadioClient";
 import { Text } from "../../../../components/data/Text";
-import { Button } from "@inube/design-system/dist/components/inputs/Button";
+import { Button } from "@inube/design-system";
 import { Input } from "../../../../components/inputs/Input";
 import { MdSearch } from "react-icons/md";
 
