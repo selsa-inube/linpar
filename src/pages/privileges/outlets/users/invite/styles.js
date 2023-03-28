@@ -22,13 +22,4 @@ const StyledFormContainer = styled.div`
   }
 `;
 
-const StyledSpinner = styled.div`
-  & div {
-    margin: 0px 22.5px;
-    height: 12px;
-    width: 12px;
-    border-left-color: transparent;
-  }
-`;
-
-export { StyledPageUsers, StyledFormContainer, StyledSpinner };
+export { StyledPageUsers, StyledFormContainer };
