@@ -9,7 +9,7 @@ function MenuLink(props) {
   return (
     <StyledLink
       disabled={disabled}
-      isselected={isSelected ? "selected" : undefined}
+      selected={isSelected}
       to={url}
       onClick={handleClick}
     >
