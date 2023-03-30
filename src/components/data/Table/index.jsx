@@ -43,8 +43,6 @@ function Table(props) {
     filterTable().length
   );
 
-  console.log(lastEntryInPage);
-
   function getPageEntries() {
     return filterTable().slice(firstEntryInPage, lastEntryInPage);
   }
