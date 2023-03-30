@@ -41,6 +41,13 @@ const StyledIcon = styled.div`
   }
 `;
 
+const StyledUser = styled.div`
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border-left: 1px solid ${colors.ref.palette.neutral.n40};
+  cursor: pointer;
+`;
+
 const StyledMenuWrapper = styled.div`
   position: absolute;
   top: 0;
@@ -58,6 +65,7 @@ export {
   StyledHeader,
   StyledLogo,
   StyledIcon,
+  StyledUser,
   StyledMenuWrapper,
   StyledcontentImg,
 };
