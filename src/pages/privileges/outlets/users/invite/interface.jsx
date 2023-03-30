@@ -5,9 +5,9 @@ import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.m
 import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
 import { Input } from "../../../../../components/inputs/Input";
 import { Stack } from "../../../../../components/layout/Stack";
-import { Button } from "../../../../../components/inputs/Button";
 import { MdOutlineShortcut } from "react-icons/md";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
+import { Button } from "@inube/design-system";
 
 function InviteUI(props) {
   const {
@@ -114,8 +114,11 @@ function InviteUI(props) {
             <Button
               type="submit"
               appearance="confirm"
-              iconBefore={!loading && <MdOutlineShortcut size={18} />}
-            ></Button>
+              iconBefore={<MdOutlineShortcut size={18} />}
+              isLoading={loading}
+            >
+              Enviar
+            </Button>
           </Stack>
         </form>
       </Stack>
