@@ -10,8 +10,7 @@ import { createPortal } from "react-dom";
 import { Menu } from "../navigation/Menu";
 import { mockApps } from "../../mocks/home/apps.mock";
 import { MdMenu } from "react-icons/md";
-import { User } from "@inube/design-system";
-import { useMediaQuery } from "@inube/design-system";
+import { User, useMediaQuery } from "@inube/design-system";
 
 function HeaderUI(props) {
   const actualSize = useMediaQuery("(max-width: 450px)");
