@@ -29,8 +29,8 @@ const withLayout = (Template) => (args) =>
     <StyledContainer>
       <StyledHeaderContainer>
         <Header
-          username="Leonardo Garzón"
-          businessName="Fondoccidente"
+          userName="Leonardo Garzón"
+          businessUnit="Fondoccidente"
           appLogoAlt="Linpar"
           appLogo={linparLogo}
         />
