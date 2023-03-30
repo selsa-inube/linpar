@@ -1,20 +1,24 @@
-import { Avatar } from "../Avatar";
 import {
   StyledHeader,
   StyledLogo,
   StyledcontentImg,
   StyledIcon,
+  StyledUser,
   StyledMenuWrapper,
 } from "./styles";
 import { createPortal } from "react-dom";
 import { Menu } from "../navigation/Menu";
 import { mockApps } from "../../mocks/home/apps.mock";
 import { MdMenu } from "react-icons/md";
+import { User, useMediaQuery } from "@inube/design-system";
 
 function HeaderUI(props) {
+  const actualSize = useMediaQuery("(max-width: 450px)");
+
   const {
-    username,
-    businessName,
+    userName,
+    businessUnit,
+    size = actualSize,
     appLogo,
     appLogoAlt,
     handleMenu,
@@ -31,7 +35,13 @@ function HeaderUI(props) {
         <StyledcontentImg to={appLogoRedirect}>
           <StyledLogo src={appLogo} alt={appLogoAlt} />
         </StyledcontentImg>
-        <Avatar username={username} businessName={businessName} />
+        <StyledUser>
+          <User
+            userName={userName}
+            businessUnit={businessUnit}
+            size={size ? "small" : "large"}
+          />
+        </StyledUser>
       </StyledHeader>
       {menu &&
         createPortal(

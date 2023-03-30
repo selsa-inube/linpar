@@ -20,8 +20,8 @@ const Default = (args) => {
 };
 
 Default.args = {
-  username: "Leonardo Garzón",
-  businessName: "Fondoccidente",
+  userName: "Leonardo Garzón",
+  businessUnit: "Fondoccidente",
   appLogo: linparLogo,
   appLogoAlt: "Linpar",
 };
