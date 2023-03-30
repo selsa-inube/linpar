@@ -7,19 +7,22 @@ const titles = [
   {
     id: "username",
     titleName: "Username",
+    responsiveOrder: 2,
   },
   {
     id: "code",
     titleName: "Code",
+    responsiveOrder: 3,
   },
   {
     id: "userID",
     titleName: "User Id",
+    responsiveOrder: 1,
   },
-
   {
     id: "position",
     titleName: "Position",
+    responsiveOrder: 4,
   },
 ];
 
@@ -42,6 +45,18 @@ const actions = [
     content: <Delete />,
     type: "remove",
   },
+];
+
+const breakPoints = [
+  { breakpoint: "(min-width: 1353px)", totalColumns: 5 },
+  { breakpoint: "(max-width: 1220px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 980px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 850px)", totalColumns: 5 },
+  { breakpoint: "(max-width: 800px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 680px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 550px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
 const entriesDefault = [
@@ -294,13 +309,6 @@ const story = {
   parameters: {
     layout: "fullscreen",
   },
-  argTypes: {
-    onSearchChange: { action: "checked" },
-    handleStartPage: { action: "checked" },
-    handlePrevPage: { action: "checked" },
-    handleNextPage: { action: "checked" },
-    handleEndPage: { action: "checked" },
-  },
 };
 
 const Default = (args) => <Table {...args} />;
@@ -310,6 +318,7 @@ Default.args = {
   actions,
   filter: "",
   pageLength: 10,
+  breakPoints,
 };
 
 const Paginations = (args) => <Table {...args} />;
@@ -319,6 +328,7 @@ Paginations.args = {
   actions,
   filter: "",
   pageLength: 10,
+  breakPoints,
 };
 
 export default story;

@@ -3,10 +3,17 @@ import { TableUI } from "./interface";
 import { useState } from "react";
 
 function Table(props) {
-  const { titles, actions, entries, filter = "", pageLength = 10 } = props;
+  const {
+    titles,
+    actions,
+    entries,
+    filter = "",
+    pageLength = 10,
+    breakPoints,
+  } = props;
 
   function filterArray() {
-    const titlesId = titles.map((i) => i.id);
+    const titlesId = titles.map((title) => title.id);
     return entries.filter((entry) => {
       for (const attribute in entry) {
         if (
@@ -31,13 +38,15 @@ function Table(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(filterTable().length / pageLength);
   const firstEntryInPage = (currentPage - 1) * pageLength;
-  const LastEntryInPage = Math.min(
+  const lastEntryInPage = Math.min(
     firstEntryInPage + pageLength,
     filterTable().length
   );
 
+  console.log(lastEntryInPage);
+
   function getPageEntries() {
-    return filterTable().slice(firstEntryInPage, LastEntryInPage);
+    return filterTable().slice(firstEntryInPage, lastEntryInPage);
   }
 
   function goToFirstPage() {
@@ -62,11 +71,16 @@ function Table(props) {
 
   return (
     <>
-      <TableUI titles={titles} actions={actions} entries={getPageEntries()} />
+      <TableUI
+        titles={titles}
+        actions={actions}
+        entries={getPageEntries()}
+        breakPoints={breakPoints}
+      />
       {filterTable().length > pageLength && (
         <Pagination
           firstEntryInPage={firstEntryInPage}
-          LastEntryInPage={LastEntryInPage}
+          lastEntryInPage={lastEntryInPage}
           totalRecords={filterTable().length}
           handleStartPage={goToFirstPage}
           handlePrevPage={prevPage}

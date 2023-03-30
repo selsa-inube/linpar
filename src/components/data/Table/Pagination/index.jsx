@@ -16,7 +16,7 @@ import { Text } from "../../Text";
 function Pagination(props) {
   const {
     firstEntryInPage,
-    LastEntryInPage,
+    lastEntryInPage,
     totalRecords,
     handleStartPage,
     handlePrevPage,
@@ -27,7 +27,7 @@ function Pagination(props) {
     <StyledContentPagination>
       <StyledContentText>
         <Text typoToken="bodySmall">
-          {firstEntryInPage + 1} - {LastEntryInPage} of {totalRecords}
+          {firstEntryInPage + 1} - {lastEntryInPage} of {totalRecords}
         </Text>
       </StyledContentText>
       <StyledContentButtons>

@@ -44,6 +44,18 @@ const actions = [
   },
 ];
 
+const breakPoints = [
+  { breakpoint: "(min-width: 1353px)", totalColumns: 5 },
+  { breakpoint: "(max-width: 1220px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 980px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 850px)", totalColumns: 5 },
+  { breakpoint: "(max-width: 800px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 680px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 550px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 360px)", totalColumns: 1 },
+];
+
 const entries = [
   {
     id: 11,
@@ -271,4 +283,4 @@ const entries = [
   },
 ];
 
-export { actions, titles, entries };
+export { actions, titles, breakPoints, entries };
