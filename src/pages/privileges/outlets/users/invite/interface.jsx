@@ -1,14 +1,13 @@
-import { StyledPageUsers, StyledFormContainer, StyledSpinner } from "./styles";
+import { StyledPageUsers, StyledFormContainer } from "./styles";
 import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../../components/PageTitle";
 import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
 import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
 import { Input } from "../../../../../components/inputs/Input";
 import { Stack } from "../../../../../components/layout/Stack";
-import { Button } from "../../../../../components/inputs/Button";
 import { MdOutlineShortcut } from "react-icons/md";
-import { Spinner } from "../../../../../components/feedback/Spinner";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
+import { Button } from "@inube/design-system";
 
 function InviteUI(props) {
   const {
@@ -115,15 +114,10 @@ function InviteUI(props) {
             <Button
               type="submit"
               appearance="confirm"
-              iconBefore={!loading && <MdOutlineShortcut size={18} />}
+              iconBefore={<MdOutlineShortcut size={18} />}
+              isLoading={loading}
             >
-              {loading ? (
-                <StyledSpinner>
-                  <Spinner />
-                </StyledSpinner>
-              ) : (
-                "Enviar"
-              )}
+              Enviar
             </Button>
           </Stack>
         </form>
