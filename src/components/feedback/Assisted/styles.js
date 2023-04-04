@@ -22,10 +22,8 @@ const StyledAssisted = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 750px) {
-    & button {
-      min-width: auto;
-    }
+  & button {
+    min-width: ${(props) => props.isAssistedResponsive && "auto"};
   }
 `;
 
@@ -35,7 +33,7 @@ const StyledStepsMobileId = styled.div`
   width: 16px;
   height: 16px;
   border-style: solid;
-  border-color: ${colors.sys.actions.primary.filled};
+  border-color: ${colors.sys.status.inProgress};
   border-radius: 50%;
 `;
 

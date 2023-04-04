@@ -3,29 +3,35 @@ import { colors } from "../../../../styles/colors";
 
 function getBackgroundColor(props) {
   if (props.isActive || props.stepActual) {
-    return colors.sys.actions.primary.filled;
+    return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;
 }
 
 function getLeftLineDisplay(props) {
-  return props.isFirstStep ? "none" : "block";
+  if (props.isFirstStep) {
+    return "none";
+  }
+  return "block";
 }
 
 function getLeftLineColor(props) {
   if (props.isActive || props.stepActual) {
-    return colors.sys.actions.primary.filled;
+    return colors.sys.status.inProgress;
   }
   return colors.ref.palette.neutral.n40;
 }
 
 function getRightLineDisplay(props) {
-  return props.isLastStep ? "none" : "block";
+  if (props.isLastStep) {
+    return "none";
+  }
+  return "block";
 }
 
 function getRightLineColor(props) {
   if (props.isActive) {
-    return colors.sys.actions.primary.filled;
+    return colors.sys.status.inProgress;
   }
   return colors.ref.palette.neutral.n40;
 }

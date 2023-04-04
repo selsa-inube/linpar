@@ -36,21 +36,21 @@ function StepIndicator(props) {
   const getAppearance = () => {
     if (stepActual) {
       return "primary";
-    } else if (isActive) {
-      return "light";
-    } else {
-      return "disabled";
     }
+    if (isActive) {
+      return "light";
+    }
+    return "disabled";
   };
 
   const getLabelAppearance = () => {
     if (stepActual) {
       return "hover";
-    } else if (isActive) {
-      return "dark";
-    } else {
-      return "disabled";
     }
+    if (isActive) {
+      return "dark";
+    }
+    return "disabled";
   };
 
   return (

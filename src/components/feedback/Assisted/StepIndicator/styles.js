@@ -3,7 +3,7 @@ import { colors } from "../../../../styles/colors";
 
 const getSvgColor = (props) => {
   if (props.stepActual) {
-    return colors.sys.text.primary;
+    return colors.sys.status.inProgress;
   }
 
   return "transparent";
@@ -11,9 +11,8 @@ const getSvgColor = (props) => {
 
 const getStepNumberBackgroundColor = (props) => {
   if (props.isActive) {
-    return colors.sys.actions.primary.filled;
+    return colors.sys.status.inProgress;
   }
-  return "transparent";
 };
 
 const getStepNumberBorderColor = (props) => {
@@ -31,7 +30,7 @@ const getLeftLineStyle = (props) => {
     return "transparent";
   }
   if (props.stepActual || props.isActive) {
-    return colors.sys.actions.primary.filled;
+    return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;
 };
@@ -41,7 +40,7 @@ const getRightLineStyle = (props) => {
     return "transparent";
   }
   if (props.isActive) {
-    return colors.sys.actions.primary.filled;
+    return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;
 };
