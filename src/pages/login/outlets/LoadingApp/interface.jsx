@@ -1,6 +1,6 @@
 import { Stack } from "../../../../components/layout/Stack";
 import { Text } from "../../../../components/data/Text";
-import { Spinner } from "../../../../components/feedback/Spinner";
+import { Spinner } from "@inube/design-system";
 
 function LoadingAppUI() {
   return (
@@ -14,7 +14,7 @@ function LoadingAppUI() {
         </Text>
       </Stack>
       <Stack align="center">
-        <Spinner />
+        <Spinner size="large" />
       </Stack>
     </Stack>
   );
