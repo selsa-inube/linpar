@@ -1,15 +1,15 @@
 import { Text } from "../../data/Text";
-import { Stack } from "../../layout/Stack";
+import { Stack } from "@inube/design-system";
 import { StyledAppMenuCard, StyledIcon } from "./styles";
 
 function AppMenuCard(props) {
   const { icon, label, description, url } = props;
   return (
-    <Stack>
+    <Stack direction="column">
       <StyledAppMenuCard to={url}>
-        <Stack spacing="4" align="center">
+        <Stack gap="4px" alignItems="center" direction="column">
           <StyledIcon>{icon}</StyledIcon>
-          <Stack spacing="4" direction="column">
+          <Stack gap="4px" direction="column">
             <Text align="center" typoToken="titleMedium">
               {label}
             </Text>

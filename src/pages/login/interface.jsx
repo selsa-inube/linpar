@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import { Stack } from "../../components/layout/Stack";
+import { Stack } from "@inube/design-system";
 import { Text } from "../../components/data/Text";
 
 import selsaLogo from "../../assets/images/selsa.png";
@@ -16,7 +16,7 @@ function LoginUI() {
   return (
     <StyledLoginContainer>
       <StyledWelcomeContainer>
-        <Stack>
+        <Stack direction="column">
           <Text typoToken="headlineSmall" align="center">
             Bienvenido
           </Text>
