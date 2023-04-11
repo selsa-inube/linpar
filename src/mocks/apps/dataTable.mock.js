@@ -46,7 +46,7 @@ const actions = [
 
 const breakPoints = [
   { breakpoint: "(min-width: 1353px)", totalColumns: 5 },
-  { breakpoint: "(max-width: 1220px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 1352px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
   { breakpoint: "(max-width: 980px)", totalColumns: 2 },
   { breakpoint: "(max-width: 850px)", totalColumns: 5 },

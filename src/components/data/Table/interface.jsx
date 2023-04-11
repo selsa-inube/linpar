@@ -76,11 +76,11 @@ function TableUI(props) {
   const mediaActionOpen = useMediaQuery("(max-width: 850px)");
 
   ///////////////////////////////////////////////////////////////
+  const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
+  //bucle infinito
+
   const media = useMediaQueries(breakPoints);
   console.log("useMediaQueries: ", media);
-
-  //const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
-  //bucle infinito
 
   ////////////////////////////////////////////////////////////////
 
