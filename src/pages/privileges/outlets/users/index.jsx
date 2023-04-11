@@ -3,7 +3,7 @@ import { PageTitle } from "../../../../components/PageTitle";
 import { Tabs } from "../../../../components/navigation/Tabs";
 import { Input } from "../../../../components/inputs/Input";
 import { Button } from "../../../../components/inputs/Button";
-import { Stack } from "../../../../components/layout/Stack";
+import { Stack } from "@inube/design-system";
 import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
 import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
 import { StyledContainer } from "./styles";
@@ -19,8 +19,8 @@ function Users() {
 
   return (
     <StyledContainer>
-      <Stack spacing="48">
-        <Stack spacing="32">
+      <Stack gap="48px" direction="column">
+        <Stack gap="32px" direction="column">
           <Breadcrumbs route={mockPrivilegeOptions[0].url} />
           <PageTitle
             title={mockPrivilegeOptions[0].label}
@@ -28,13 +28,13 @@ function Users() {
             description={mockPrivilegeOptions[0].description}
           />
         </Stack>
-        <Stack spacing="32">
+        <Stack gap="32px" direction="column">
           <Tabs
             tabs={mockPrivilegeUserTabs}
             selected={isSelected}
             handleTabChange={handleTabChange}
           />
-          <Stack direction="row" justify="space-between" align="center">
+          <Stack justifyContent="space-between" alignItems="center">
             <Input
               placeholder="Search..."
               type="search"
