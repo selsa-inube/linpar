@@ -7,7 +7,7 @@ import {
 } from "./styles";
 import { Text } from "../../data/Text";
 import { useLocation } from "react-router-dom";
-import { Stack } from "../../layout/Stack";
+import { Stack } from "@inube/design-system";
 import { MenuLink } from "../MenuLink";
 import { StyledIcon } from "../../Header/styles";
 import { MdClose } from "react-icons/md";
@@ -21,7 +21,7 @@ function Menu(props) {
 
   return (
     <StyledMenu>
-      <Stack>
+      <Stack direction="column">
         {menu && (
           <StyledIcon>
             <MdClose onClick={handleMenu} />
