@@ -1,5 +1,5 @@
 import { Text } from "../../data/Text";
-import { Stack } from "../../layout/Stack";
+import { Stack } from "@inube/design-system";
 import { StyledContainer, StyledIcon, StyledDescription } from "./styles";
 import { MdClear } from "react-icons/md";
 
@@ -10,7 +10,7 @@ function SectionMessage(props) {
     <StyledContainer appearance={appearance}>
       <StyledIcon appearance={appearance}>{icon}</StyledIcon>
       <StyledDescription>
-        <Stack direction="row" justify="space-between" spacing={26}>
+        <Stack justifyContent="space-between" gap="26px">
           <Text typoToken="labelLarge">{title}</Text>
           <MdClear />
         </Stack>

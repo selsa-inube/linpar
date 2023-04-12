@@ -13,8 +13,8 @@ function Header() {
 
   return (
     <HeaderUI
-      username={user.username}
-      businessName={user.company}
+      userName={user.username}
+      businessUnit={user.company}
       appLogo={user.operator.logo}
       appLogoAlt={user.operator.name}
       menu={menu}

@@ -1,11 +1,11 @@
-import { Stack } from "../../../../components/layout/Stack";
+import { Stack } from "@inube/design-system";
 import { Text } from "../../../../components/data/Text";
-import { Spinner } from "../../../../components/feedback/Spinner";
+import { Spinner } from "@inube/design-system";
 
 function LoadingAppUI() {
   return (
-    <Stack spacing="16">
-      <Stack>
+    <Stack gap="16px" direction="column">
+      <Stack direction="column">
         <Text typoToken="titleLarge" align="center">
           Cargando la aplicación
         </Text>
@@ -13,8 +13,8 @@ function LoadingAppUI() {
           Espere un momento, por favor.
         </Text>
       </Stack>
-      <Stack align="center">
-        <Spinner />
+      <Stack alignItems="center" direction="column">
+        <Spinner size="large" />
       </Stack>
     </Stack>
   );
