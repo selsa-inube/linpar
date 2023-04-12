@@ -77,9 +77,9 @@ function TableUI(props) {
 
   ///////////////////////////////////////////////////////////////
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
-  //bucle infinito
 
-  const media = useMediaQueries(breakPoints);
+  const media = useMediaQueries(queriesArray);
+
   console.log("useMediaQueries: ", media);
 
   ////////////////////////////////////////////////////////////////

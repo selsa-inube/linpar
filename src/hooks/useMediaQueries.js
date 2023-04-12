@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
 const useMediaQueries = (queries) => {
-  const getQueries = () => {
-    const media = {};
-    queries.forEach(({ breakpoint }) => {
-      media[breakpoint] = false;
+  const initializeState = () => {
+    const initialState = {};
+    queries.forEach((breakpoint) => {
+      initialState[breakpoint] = false;
     });
-    return media;
+    return initialState;
   };
 
-  const [matches, setMatches] = useState(getQueries());
+  const [matches, setMatches] = useState(initializeState());
 
-  const updateState = (mediaQueries) => {
+  const checkAllQueries = (mediaQueries) => {
     const updateMedia = { ...matches };
     mediaQueries.forEach((i) => {
       updateMedia[i.media] = i.matches;
@@ -19,41 +19,35 @@ const useMediaQueries = (queries) => {
     return updateMedia;
   };
 
-  const validationState = (mediaQueries) => {
+  const validationState = (mediaQueryList) => {
     const validationMedia = {};
-    const { matches, media } = mediaQueries.findLast(
-      (mediaQueries) => mediaQueries.matches
+    const { matches, media } = mediaQueryList.findLast(
+      (mediaQueryList) => mediaQueryList.matches
     );
     validationMedia[media] = matches;
     return validationMedia;
   };
 
-  const handleChange = (mediaQueries) =>
-    setMatches(validationState(mediaQueries));
+  const handleChange = (mediaQueryList) =>
+    setMatches(validationState(mediaQueryList));
 
-  const handleUpdateState = (mediaQueries) =>
-    setMatches(updateState(mediaQueries));
+  const handleUpdateState = (mediaQueryList) =>
+    setMatches(checkAllQueries(mediaQueryList));
 
   useEffect(() => {
-    const mediaQueryLists = queries.map(({ breakpoint }) =>
-      window.matchMedia(breakpoint)
-    );
+    const lists = queries.map((breakpoint) => window.matchMedia(breakpoint));
 
-    handleChange(mediaQueryLists);
+    handleUpdateState(lists);
 
-    handleUpdateState(mediaQueryLists);
-
-    mediaQueryLists.forEach((i) =>
-      i.addEventListener("change", () => handleChange(mediaQueryLists))
+    lists.forEach((i) =>
+      i.addEventListener("change", () => handleChange(lists))
     );
 
     return () =>
-      mediaQueryLists.forEach((i) =>
-        i.removeEventListener("change", () =>
-          handleUpdateState(mediaQueryLists)
-        )
+      lists.forEach((i) =>
+        i.removeEventListener("change", () => handleUpdateState(lists))
       );
-  }, [queries]);
+  }, []);
 
   return matches;
 };
