@@ -1,22 +1,32 @@
-import { Text } from "../../data/Text";
-import { Stack } from "../../layout/Stack";
-import { StyledContainer, StyledIcon, StyledDescription } from "./styles";
-import { MdClear } from "react-icons/md";
+import { useState } from "react";
+import { SectionMessageUI } from "./interface";
+import { useMediaQuery } from "@inube/design-system";
 
-function SectionMessage(props) {
-  const { icon, title, description, appearance } = props;
+function SectionMessage({ icon, title, description, appearance, duration }) {
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+
+  const handleHideSectionMessage = () => setIsHidden(true);
+
+  const isMessageResponsive = useMediaQuery("(max-width: 750px)");
 
   return (
-    <StyledContainer appearance={appearance}>
-      <StyledIcon appearance={appearance}>{icon}</StyledIcon>
-      <StyledDescription>
-        <Stack direction="row" justify="space-between" spacing={26}>
-          <Text typoToken="labelLarge">{title}</Text>
-          <MdClear />
-        </Stack>
-        <Text typoToken="bodySmall">{description}</Text>
-      </StyledDescription>
-    </StyledContainer>
+    <SectionMessageUI
+      icon={icon}
+      title={title}
+      description={description}
+      appearance={appearance}
+      duration={duration}
+      handleHideSectionMessage={handleHideSectionMessage}
+      handleMouseEnter={handleMouseEnter}
+      handleMouseLeave={handleMouseLeave}
+      isHidden={isHidden}
+      isPaused={isPaused}
+      isMessageResponsive={isMessageResponsive}
+    />
   );
 }
 

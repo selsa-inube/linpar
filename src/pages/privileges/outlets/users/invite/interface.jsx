@@ -44,6 +44,7 @@ function InviteUI(props) {
         description={description}
         icon={icon}
         appearance={appearance}
+        duration={messageType === "success" ? 5 : undefined}
       />
     );
   }
