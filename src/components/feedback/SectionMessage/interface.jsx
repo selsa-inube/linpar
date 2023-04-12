@@ -53,6 +53,7 @@ function SectionMessageUI({
           isPaused={isPaused}
           colorToken={appearance}
           duration={duration}
+          size={4}
         />
       )}
     </StyledSectionMessage>

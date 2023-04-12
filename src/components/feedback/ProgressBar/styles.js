@@ -14,7 +14,7 @@ const getBarColor = ({ colorToken }) => {
 
 const StyledProgressBar = styled.div`
   width: 100%;
-  height: 4px;
+  height: ${(props) => props.size}px;
   background-color: ${getBarColor};
   transform-origin: left;
   transition: transform;

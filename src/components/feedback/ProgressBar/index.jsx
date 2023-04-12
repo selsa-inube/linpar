@@ -1,12 +1,12 @@
 import { StyledProgressBar } from "./styles";
-import { useState } from "react";
 
-function ProgressBar({ duration = 10, colorToken, isPaused }) {
+function ProgressBar({ duration = 10, colorToken, isPaused, size = 4 }) {
   return (
     <StyledProgressBar
       duration={duration}
       colorToken={colorToken}
       isPaused={isPaused}
+      size={size}
     ></StyledProgressBar>
   );
 }
