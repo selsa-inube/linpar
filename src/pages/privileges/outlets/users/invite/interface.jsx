@@ -7,7 +7,6 @@ import { Input } from "../../../../../components/inputs/Input";
 import { Stack, Button } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
-import { Button } from "@inube/design-system";
 
 function InviteUI(props) {
   const {
