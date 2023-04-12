@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack } from "../../../components/layout/Stack";
+import { Stack } from "@inube/design-system";
 import { Text } from "../../../components/data/Text";
 import { Button } from "../../../components/inputs/Button";
 import {
@@ -26,8 +26,8 @@ function ErrorPage(props) {
     <StyledErrorPage>
       <StyledCompanyLogo src={logo} alt={logoAlt} />
       <StyledGrid>
-        <Stack spacing="24">
-          <Stack spacing="16">
+        <Stack gap="24px" direction="column">
+          <Stack gap="16px" direction="column">
             <Text typoToken="titleLarge">{heading}</Text>
             <Text typoToken="titleMedium">{description}</Text>
           </Stack>

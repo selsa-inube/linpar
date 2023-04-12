@@ -1,4 +1,4 @@
-import { Stack } from "../layout/Stack";
+import { Stack } from "@inube/design-system";
 import { Text } from "../data/Text";
 import { StyledPageTitle, StyledIcon } from "./styles";
 
@@ -7,8 +7,8 @@ function PageTitle(props) {
 
   return (
     <StyledPageTitle>
-      <Stack spacing="8">
-        <Stack direction="row" spacing="8" align="center">
+      <Stack gap="8px" direction="column">
+        <Stack gap="8px" alignItems="center">
           <StyledIcon> {icon} </StyledIcon>
           <Text as="h1" typoToken="titleLarge">
             {title}
