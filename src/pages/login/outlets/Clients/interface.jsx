@@ -60,11 +60,7 @@ function ClientsUI(props) {
             </StyledClientsItem>
           ))}
         </StyledClientsList>
-        <Button
-          type="submit"
-          isDisabled={client.value ? false : true}
-          handleClick={handleSubmit}
-        >
+        <Button type="submit" isDisabled={client.value ? false : true}>
           Continuar
         </Button>
       </form>

@@ -1,7 +1,6 @@
 import React from "react";
-import { Stack } from "@inube/design-system";
+import { Stack, Button } from "@inube/design-system";
 import { Text } from "../../../components/data/Text";
-import { Button } from "@inube/design-system";
 import {
   StyledErrorPage,
   StyledCompanyLogo,
@@ -22,11 +21,6 @@ function ErrorPage(props) {
     imageAlt = "Ha surgido un error. Revisa la descripción",
   } = props;
 
-  //function created while giving functionality to the button
-  function handleButtonClick() {
-    console.log("button clicked");
-  }
-
   return (
     <StyledErrorPage>
       <StyledCompanyLogo src={logo} alt={logoAlt} />
@@ -36,12 +30,7 @@ function ErrorPage(props) {
             <Text typoToken="titleLarge">{heading}</Text>
             <Text typoToken="titleMedium">{description}</Text>
           </Stack>
-          <Button
-            iconBefore={<MdChevronLeft size={18} />}
-            handleClick={handleButtonClick}
-          >
-            Exit
-          </Button>
+          <Button iconBefore={<MdChevronLeft size={18} />}>Exit</Button>
         </Stack>
         <StyledErrorImage src={image} alt={imageAlt} />
       </StyledGrid>

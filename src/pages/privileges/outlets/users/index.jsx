@@ -16,11 +16,6 @@ function Users() {
     setIsSelected(tabId);
   };
 
-  //function created while giving functionality to the button
-  function handleButtonClick() {
-    console.log("button clicked");
-  }
-
   return (
     <StyledContainer>
       <Stack gap="48px" direction="column">
@@ -45,11 +40,7 @@ function Users() {
               iconBefore={<MdSearch size={18} />}
               size="compact"
             />
-            <Button
-              iconBefore={<MdPersonAddAlt size={18} />}
-              spacing="compact"
-              handleClick={handleButtonClick}
-            >
+            <Button iconBefore={<MdPersonAddAlt size={18} />} spacing="compact">
               Invite user
             </Button>
             <MdOutlineMoreHoriz size={24} />

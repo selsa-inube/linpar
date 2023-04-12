@@ -115,7 +115,6 @@ function InviteUI(props) {
               appearance="confirm"
               iconBefore={<MdOutlineShortcut size={18} />}
               isLoading={loading}
-              handleClick={handleSubmit}
             >
               Enviar
             </Button>

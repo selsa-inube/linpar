@@ -6,10 +6,6 @@ const StyledErrorPage = styled.div`
   flex-direction: column;
   gap: 120px;
 
-  button {
-    width: 82px;
-  }
-
   @media screen and (max-width: 1000px) {
     gap: 64px;
   }
