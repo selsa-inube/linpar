@@ -4,7 +4,7 @@ import { PageTitle } from "../../../../../components/PageTitle";
 import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
 import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
 import { Input } from "../../../../../components/inputs/Input";
-import { Stack } from "../../../../../components/layout/Stack";
+import { Stack } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
 import { Button } from "@inube/design-system";
@@ -51,8 +51,8 @@ function InviteUI(props) {
 
   return (
     <StyledPageUsers>
-      <Stack spacing={48}>
-        <Stack spacing={32}>
+      <Stack gap="48px" direction="column">
+        <Stack gap="32px" direction="column">
           <Breadcrumbs route={usersInvitations[0].route} />
           <PageTitle
             title={usersInvitations[0].title}
@@ -61,7 +61,7 @@ function InviteUI(props) {
           />
         </Stack>
         <form onSubmit={handleSubmit}>
-          <Stack spacing={32} align="end">
+          <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
               <Input
                 label="Nombre (Requerido)"
