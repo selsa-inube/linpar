@@ -1,49 +1,34 @@
 import { useEffect, useState } from "react";
 
 const useMediaQueries = (queries) => {
+  const mediaQueryList = queries.map((query) => window.matchMedia(query));
+
   const initializeState = () => {
     const initialState = {};
-    queries.forEach((breakpoint) => {
-      initialState[breakpoint] = false;
+    mediaQueryList.forEach((query) => {
+      initialState[query.media] = query.matches;
     });
     return initialState;
   };
 
-  const [matches, setMatches] = useState(initializeState());
+  const [matches, setMatches] = useState(initializeState);
 
-  const checkAllQueries = (mediaQueryObject) => {
-    const updateMedia = { ...matches };
-    mediaQueryObject.forEach((query) => {
-      updateMedia[query.media] = query.matches;
-    });
-    return updateMedia;
+  const handleChange = (event) => {
+    setMatches((prevState) => ({ ...prevState, [event.media]: event.matches }));
   };
 
-  const handleChange = (mediaQueryList) => {
-    // setMatches({...matches, [mediaQueryList.media]:true})
-    // setMatches({ [mediaQueryList.media]:mediaQueryList.matches });
-    setMatches({ ...matches, [mediaQueryList.media]: mediaQueryList.matches });
-  };
-
-  const updateState = (mediaQueryList) =>
-    setMatches(checkAllQueries(mediaQueryList));
+  const updateState = () => setMatches(initializeState());
 
   useEffect(() => {
-    const mediaQueryList = queries.map((breakpoint) =>
-      window.matchMedia(breakpoint)
-    );
-
-    updateState(mediaQueryList);
+    updateState();
 
     mediaQueryList.forEach((mediaQueryObject) =>
-      mediaQueryObject.addEventListener("change", () =>
-        handleChange(mediaQueryObject)
-      )
+      mediaQueryObject.addEventListener("change", handleChange)
     );
 
     return () =>
-      mediaQueryList.forEach((i) =>
-        i.removeEventListener("change", () => updateState(mediaQueryList))
+      mediaQueryList.forEach((mediaQueryObject) =>
+        mediaQueryObject.removeEventListener("change", updateState)
       );
   }, []);
 
