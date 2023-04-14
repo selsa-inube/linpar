@@ -25,7 +25,6 @@ const getIconColor = ({ appearance }) => {
 
 const StyledSectionMessage = styled.div`
   background-color: ${getBackgroundColor};
-  display: ${(props) => (props.isHidden ? "none" : "block")};
   width: ${(props) => (props.isMessageResponsive ? "auto" : "400px")};
   right: ${(props) => (props.isMessageResponsive ? "16px" : "64px")};
   bottom: ${(props) => (props.isMessageResponsive ? "16px" : "32px")};
@@ -36,6 +35,10 @@ const StyledSectionMessage = styled.div`
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
     0px 1px 3px 1px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+
+  & > div:first-child {
+    padding: 16px;
+  }
 `;
 
 const StyledIcon = styled.div`
@@ -48,11 +51,4 @@ const StyledIcon = styled.div`
   }
 `;
 
-const StyledMessage = styled.div`
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-  padding: 16px;
-`;
-
-export { StyledSectionMessage, StyledIcon, StyledMessage };
+export { StyledSectionMessage, StyledIcon };

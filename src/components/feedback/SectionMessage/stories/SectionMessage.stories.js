@@ -33,16 +33,16 @@ Default.args = {
   icon: <MdWarning />,
 };
 
-export const WhitDuration = Template.bind({});
-WhitDuration.args = {
+export const WithDuration = Template.bind({});
+WithDuration.args = {
   title: "Title",
   description: "Description",
   icon: <MdWarning />,
-  duration: 5,
+  duration: 10000,
 };
 
-export const whitFullText = Template.bind({});
-whitFullText.args = {
+export const WithFullText = Template.bind({});
+WithFullText.args = {
   title: "Oops, something has gone wrong!",
   description:
     "We have presented problems when carrying out the user creation action. This can have many causes, the name does not meet the necessary requirements, the identification number does not contain the number of characters. so please try again.  (this text no longer appears because it exceeds the character limit of the component)",

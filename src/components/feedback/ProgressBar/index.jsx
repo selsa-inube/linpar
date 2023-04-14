@@ -1,13 +1,14 @@
 import { StyledProgressBar } from "./styles";
 
-function ProgressBar({ duration = 10, colorToken, isPaused, size = 4 }) {
+function ProgressBar(props) {
+  const { duration = 10000, colorToken, isPaused, size = 4 } = props;
   return (
     <StyledProgressBar
       duration={duration}
       colorToken={colorToken}
       isPaused={isPaused}
       size={size}
-    ></StyledProgressBar>
+    />
   );
 }
 

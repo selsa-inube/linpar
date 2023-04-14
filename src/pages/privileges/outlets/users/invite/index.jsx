@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InviteUI } from "./interface";
 
 function Invite() {
@@ -12,7 +12,7 @@ function Invite() {
     email: { value: "", isInvalid: true },
   });
 
-  const SHOW_MESSAGE_TIMEOUT = 5000;
+  const SHOW_MESSAGE_TIMEOUT = 10000;
   const LOADING_TIMEOUT = 2500;
 
   const handleInputChange = (event) => {
@@ -38,8 +38,42 @@ function Invite() {
     setTimeout(() => {
       setLoading(false);
       setShowMessage(true);
-      setTimeout(() => setShowMessage(false), SHOW_MESSAGE_TIMEOUT);
+      setTimeout(() => setShowMessage(true), SHOW_MESSAGE_TIMEOUT);
     }, LOADING_TIMEOUT);
+  };
+
+  function handleHideSectionMessage() {
+    setShowMessage(false);
+  }
+
+  const [timeMessage, setTimeMessage] = useState(SHOW_MESSAGE_TIMEOUT);
+  const [paused, setPaused] = useState(false);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    let intervalId = null;
+    if (!paused && started) {
+      intervalId = setInterval(() => {
+        setTimeMessage((prevTime) => {
+          if (prevTime <= 0) {
+            clearInterval(intervalId);
+            return 10000;
+          }
+          return prevTime - 4;
+        });
+      }, 1);
+    }
+    return () => clearInterval(intervalId);
+  }, [paused, started]);
+
+  const handleStartMessage = () => {
+    if (!started) {
+      setStarted(true);
+    }
+  };
+
+  const handlePauseMessage = () => {
+    setPaused((prevPaused) => !prevPaused);
   };
 
   return (
@@ -50,6 +84,11 @@ function Invite() {
       formInvalid={formInvalid}
       handleInputChange={handleInputChange}
       handleSubmit={handleSubmit}
+      MessageTimer={SHOW_MESSAGE_TIMEOUT}
+      handleHideSectionMessage={handleHideSectionMessage}
+      timeMessage={timeMessage}
+      handlePauseMessage={handlePauseMessage}
+      handleStartMessage={handleStartMessage}
     />
   );
 }

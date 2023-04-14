@@ -1,23 +1,24 @@
 import { Stack, Text } from "@inube/design-system";
 import { MdClear } from "react-icons/md";
 import { ProgressBar } from "../ProgressBar";
-import { StyledSectionMessage, StyledIcon, StyledMessage } from "./styles";
+import { StyledSectionMessage, StyledIcon } from "./styles";
 
-const MAX_DESCRIPTION_LENGTH = 240;
+function SectionMessageUI(props) {
+  const {
+    icon,
+    title,
+    description,
+    appearance,
+    duration,
+    handleMouseEnter,
+    handleHideSectionMessage,
+    handleMouseLeave,
+    isPaused,
+    isMessageResponsive,
+  } = props;
 
-function SectionMessageUI({
-  icon,
-  title,
-  description,
-  appearance,
-  duration,
-  handleHideSectionMessage,
-  handleMouseEnter,
-  handleMouseLeave,
-  isHidden,
-  isPaused,
-  isMessageResponsive,
-}) {
+  const MAX_DESCRIPTION_LENGTH = 240;
+
   const newDescription = description.substring(0, MAX_DESCRIPTION_LENGTH);
 
   return (
@@ -25,10 +26,9 @@ function SectionMessageUI({
       appearance={appearance}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      isHidden={isHidden}
       isMessageResponsive={isMessageResponsive}
     >
-      <StyledMessage>
+      <Stack justifyContent="space-between">
         <Stack gap="16px" alignItems={isMessageResponsive && "center"}>
           <StyledIcon appearance={appearance}>{icon}</StyledIcon>
           <Stack direction="column" gap="6px">
@@ -47,7 +47,7 @@ function SectionMessageUI({
             onClick={handleHideSectionMessage}
           />
         </Stack>
-      </StyledMessage>
+      </Stack>
       {duration && (
         <ProgressBar
           isPaused={isPaused}

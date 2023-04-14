@@ -18,7 +18,7 @@ const StyledProgressBar = styled.div`
   background-color: ${getBarColor};
   transform-origin: left;
   transition: transform;
-  animation: progressBarAnimation ${(props) => props.duration}s linear;
+  animation: progressBarAnimation ${(props) => props.duration}ms linear forwards;
   animation-play-state: ${(props) => (props.isPaused ? "paused" : "running")};
 
   @keyframes progressBarAnimation {

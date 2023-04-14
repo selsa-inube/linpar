@@ -2,14 +2,19 @@ import { useState } from "react";
 import { SectionMessageUI } from "./interface";
 import { useMediaQuery } from "@inube/design-system";
 
-function SectionMessage({ icon, title, description, appearance, duration }) {
+function SectionMessage(props) {
+  const {
+    icon,
+    title,
+    description,
+    appearance,
+    duration,
+    handleHideSectionMessage,
+  } = props;
   const [isPaused, setIsPaused] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
 
   const handleMouseEnter = () => setIsPaused(true);
   const handleMouseLeave = () => setIsPaused(false);
-
-  const handleHideSectionMessage = () => setIsHidden(true);
 
   const isMessageResponsive = useMediaQuery("(max-width: 750px)");
 
@@ -23,7 +28,6 @@ function SectionMessage({ icon, title, description, appearance, duration }) {
       handleHideSectionMessage={handleHideSectionMessage}
       handleMouseEnter={handleMouseEnter}
       handleMouseLeave={handleMouseLeave}
-      isHidden={isHidden}
       isPaused={isPaused}
       isMessageResponsive={isMessageResponsive}
     />
