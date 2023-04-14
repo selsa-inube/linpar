@@ -5,6 +5,8 @@ function Invite() {
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [started, setStarted] = useState(false);
   const [invitation, setInvitation] = useState({
     name: { value: "", isInvalid: true },
     id: { value: "", isInvalid: true },
@@ -14,6 +16,8 @@ function Invite() {
 
   const SHOW_MESSAGE_TIMEOUT = 10000;
   const LOADING_TIMEOUT = 2500;
+
+  const [timeMessage, setTimeMessage] = useState(SHOW_MESSAGE_TIMEOUT);
 
   const handleInputChange = (event) => {
     const { name, value, validity } = event.target;
@@ -44,11 +48,8 @@ function Invite() {
 
   function handleHideSectionMessage() {
     setShowMessage(false);
+    setTimeMessage(0);
   }
-
-  const [timeMessage, setTimeMessage] = useState(SHOW_MESSAGE_TIMEOUT);
-  const [paused, setPaused] = useState(false);
-  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     let intervalId = null;
@@ -57,7 +58,7 @@ function Invite() {
         setTimeMessage((prevTime) => {
           if (prevTime <= 0) {
             clearInterval(intervalId);
-            return 10000;
+            return 0;
           }
           return prevTime - 4;
         });

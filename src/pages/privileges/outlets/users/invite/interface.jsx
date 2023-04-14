@@ -37,7 +37,7 @@ function InviteUI(props) {
       messageType = invalidPropExists && formInvalid ? "failed" : undefined;
     }
 
-    if (!messageType || timeMessage === MessageTimer) {
+    if (!messageType || timeMessage === 0) {
       return null;
     }
 
