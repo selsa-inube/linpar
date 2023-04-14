@@ -4,10 +4,9 @@ import { PageTitle } from "../../../../../components/PageTitle";
 import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
 import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
 import { Input } from "../../../../../components/inputs/Input";
-import { Stack } from "@inube/design-system";
+import { Stack, Button } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
-import { Button } from "@inube/design-system";
 
 function InviteUI(props) {
   const {
