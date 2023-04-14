@@ -12,10 +12,20 @@ import { MdOpenInNew } from "react-icons/md";
 import { useMediaQuery } from "@inube/design-system";
 import { useMediaQueries } from "../../../hooks/useMediaQueries";
 
-function showColBreakpoint(breakPoints, query, validation) {
+function mediaQueryAct(media) {
+  let mediaAct = "";
+  for (const mediaquery in media) {
+    if (media[mediaquery]) {
+      mediaAct = mediaquery;
+    }
+  }
+  return mediaAct;
+}
+
+function showColBreakpoint(breakPoints, media) {
   let numcolumns;
   breakPoints.forEach((breakPoint) => {
-    if (validation && breakPoint.breakpoint === query) {
+    if (breakPoint.breakpoint === mediaQueryAct(media)) {
       numcolumns = breakPoint.totalColumns;
     }
   });
@@ -26,15 +36,12 @@ function Ordertitles(titles) {
   return titles.sort((a, b) => a.responsiveOrder - b.responsiveOrder);
 }
 
-function totalColumns(titles, breakpoints, query, validation) {
+function totalColumns(titles, breakPoints, media) {
   let ColumnTitles = titles;
-  if ((breakpoints, query, validation) < 4) {
+  if (showColBreakpoint(breakPoints, media) < 4) {
     ColumnTitles = Ordertitles(titles);
   }
-  return ColumnTitles.slice(
-    0,
-    showColBreakpoint(breakpoints, query, validation)
-  );
+  return ColumnTitles.slice(0, showColBreakpoint(breakPoints, media));
 }
 
 function showActionTitle(actionTitle, mediaQuery) {
@@ -75,20 +82,15 @@ function TableUI(props) {
   const { titles, actions, entries, breakPoints } = props;
   const mediaActionOpen = useMediaQuery("(max-width: 850px)");
 
-  ///////////////////////////////////////////////////////////////
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
 
   const media = useMediaQueries(queriesArray);
-
-  console.log("useMediaQueries: ", media);
-
-  ////////////////////////////////////////////////////////////////
 
   return (
     <StyledTable>
       <StyledThead>
         <StyledTr>
-          {titles.map((title) => (
+          {totalColumns(titles, breakPoints, media).map((title) => (
             <StyledThTitle key={`title-${title.id}`}>
               <Text typoToken="labelMedium">{title.titleName}</Text>
             </StyledThTitle>
@@ -99,7 +101,7 @@ function TableUI(props) {
       <StyledTbody>
         {entries.map((entry) => (
           <StyledTr key={`entry-${entry.id}`}>
-            {titles.map((title) =>
+            {totalColumns(titles, breakPoints, media).map((title) =>
               entry[title.id] ? (
                 <StyledTd key={`e-${entry[title.id]}`}>
                   <Text typoToken="bodySmall">{entry[title.id]}</Text>
