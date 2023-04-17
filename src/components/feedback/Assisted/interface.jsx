@@ -15,8 +15,6 @@ import {
 
 function AssistedUI(props) {
   const {
-    isFirstStep,
-    isLastStep,
     currentStep,
     currentStepInfo,
     handleNextStep,
@@ -25,18 +23,16 @@ function AssistedUI(props) {
     steps,
   } = props;
 
-  function renderStep(step) {
+  function renderStep(step, index) {
     const Step = isAssistedResponsive ? StepBar : StepIndicator;
     return (
       <Step
-        key={step.id}
-        id={step.id}
+        key={index}
+        stepNumber={index + 1}
         stepName={step.stepName}
-        isFirstStep={isFirstStep}
-        isLastStep={isLastStep}
         stepActual={currentStep === step.id}
         isActive={currentStep > step.id}
-        isVerification={isLastStep === step.id}
+        isVerification={step.isVerification}
       />
     );
   }
@@ -48,11 +44,11 @@ function AssistedUI(props) {
           variant="none"
           iconBefore={<MdKeyboardArrowLeft size={20} />}
           handleClick={handlePreviousStep}
-          isDisabled={currentStep === isFirstStep}
+          isDisabled={currentStep === steps[0].id}
         >
           <Text
             typo="labelLarge"
-            appearance={currentStep === isFirstStep ? "disabled" : "primary"}
+            appearance={currentStep === steps[0].id ? "disabled" : "primary"}
           >
             {!isAssistedResponsive && "Prev"}
           </Text>
@@ -62,7 +58,7 @@ function AssistedUI(props) {
             <Stack gap="8px" alignItems="center">
               <StyledStepsMobileId>
                 <Text typo="labelMedium" appearance="primary">
-                  {isLastStep === currentStep ? (
+                  {steps[steps.length - 1].id === currentStep ? (
                     <MdCheckCircle size={16} />
                   ) : (
                     currentStep

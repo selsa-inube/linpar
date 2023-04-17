@@ -12,15 +12,7 @@ import {
 } from "./styles";
 
 function StepIndicator(props) {
-  const {
-    id,
-    stepActual,
-    stepName,
-    isActive,
-    isVerification,
-    isFirstStep,
-    isLastStep,
-  } = props;
+  const { stepNumber, stepActual, stepName, isActive, isVerification } = props;
 
   const renderStepNumber = () => {
     if (isVerification) {
@@ -30,7 +22,7 @@ function StepIndicator(props) {
         <MdCheckCircleOutline size={30} />
       );
     }
-    return id;
+    return stepNumber;
   };
 
   const getAppearance = () => {
@@ -59,14 +51,14 @@ function StepIndicator(props) {
         <MdKeyboardArrowDown size={24} />
         <StyledStepNumber stepActual={stepActual} isActive={isActive}>
           <StyledLeftLine
-            isFirstStep={isFirstStep === id}
+            isFirstStep={stepNumber === 1}
             stepActual={stepActual}
             isActive={isActive}
           />
           <Text typo="titleSmall" appearance={getAppearance()}>
             {renderStepNumber()}
           </Text>
-          <StyledRightLine isLastStep={isLastStep === id} isActive={isActive} />
+          <StyledRightLine isLastStep={isVerification} isActive={isActive} />
         </StyledStepNumber>
         <Text
           typo="labelMedium"

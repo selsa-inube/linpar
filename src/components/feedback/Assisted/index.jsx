@@ -4,20 +4,18 @@ import { useMediaQuery } from "@inube/design-system";
 
 function Assisted(props) {
   const { steps } = props;
-  const isFirstStep = steps[0].id;
-  const isLastStep = steps[steps.length - 1].id;
 
-  const [currentStep, setCurrentStep] = useState(isFirstStep);
+  const [currentStep, setCurrentStep] = useState(steps[0].id);
 
   const isAssistedResponsive = useMediaQuery("(max-width: 750px)");
 
   const handleNextStep = () => {
-    if (currentStep === isLastStep) return;
+    if (currentStep === steps[steps.length - 1].id) return;
     setCurrentStep(currentStep + 1);
   };
 
   const handlePreviousStep = () => {
-    if (currentStep === isFirstStep) return;
+    if (currentStep === steps[0].id) return;
     setCurrentStep(currentStep - 1);
   };
 
@@ -25,8 +23,6 @@ function Assisted(props) {
 
   return (
     <AssistedUI
-      isFirstStep={isFirstStep}
-      isLastStep={isLastStep}
       currentStep={currentStep}
       currentStepInfo={currentStepInfo}
       handleNextStep={handleNextStep}

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
-//styled-components while width on stack works correctly in design system
-
 const StyledSteps = styled.ul`
   display: flex;
   width: 100%;

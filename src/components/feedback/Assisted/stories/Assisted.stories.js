@@ -34,6 +34,7 @@ const stepsMock = [
     id: 5,
     stepName: "Name 5",
     stepDescription: "Example description 5",
+    isVerification: true,
   },
 ];
 
@@ -42,7 +43,6 @@ const Template = (args) => <Assisted {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   steps: stepsMock,
-  isVerification: true,
 };
 
 export default story;

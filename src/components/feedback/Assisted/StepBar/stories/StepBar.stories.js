@@ -18,7 +18,6 @@ const Template = (args) => <StepBar {...args} />;
 export const Default = withLayout(Template.bind({}));
 Default.args = {
   id: 1,
-  stepName: "Text",
   stepActual: false,
   isActive: false,
   isVerification: false,
@@ -27,14 +26,12 @@ Default.args = {
 export const stepActual = withLayout(Template.bind({}));
 stepActual.args = {
   id: 1,
-  stepName: "Text",
   stepActual: true,
 };
 
 export const isActive = withLayout(Template.bind({}));
 isActive.args = {
   id: 1,
-  stepName: "Text",
   isActive: true,
 };
 
