@@ -18,26 +18,19 @@ function InviteUI(props) {
     handleSubmit,
     formInvalid,
     MessageTimer,
-    handleHideSectionMessage,
-    timeMessage,
-    handlePauseMessage,
-    handleStartMessage,
+    handleCloseSectionMessage,
   } = props;
 
   function renderMessages() {
     let messageType;
 
     if (showMessage) {
-      messageType = "success";
-      handleStartMessage();
+      if (formInvalid) {
+        messageType = "failed";
+      } else {
+        messageType = "success";
+      }
     } else {
-      const invalidPropExists = Object.values(invitation).some(
-        (prop) => prop.isInvalid
-      );
-      messageType = invalidPropExists && formInvalid ? "failed" : undefined;
-    }
-
-    if (!messageType || timeMessage === 0) {
       return null;
     }
 
@@ -50,8 +43,8 @@ function InviteUI(props) {
         description={description}
         icon={icon}
         appearance={appearance}
-        duration={messageType === "success" ? MessageTimer : undefined}
-        handleHideSectionMessage={handleHideSectionMessage}
+        duration={MessageTimer}
+        closeSectionMessage={handleCloseSectionMessage}
       />
     );
   }
@@ -130,9 +123,7 @@ function InviteUI(props) {
           </Stack>
         </form>
       </Stack>
-      <div onMouseEnter={handlePauseMessage} onMouseLeave={handlePauseMessage}>
-        {renderMessages()}
-      </div>
+      {renderMessages()}
     </StyledPageUsers>
   );
 }

@@ -1,5 +1,6 @@
 import { SectionMessage } from "..";
 import { MdWarning } from "react-icons/md";
+import { action } from "@storybook/addon-actions";
 
 const argTypes = {
   appearance: {
@@ -22,6 +23,13 @@ const story = {
   component: SectionMessage,
   argTypes,
   icon: <MdWarning />,
+  parameters: {
+    layout: "fullscreen",
+  },
+};
+
+const closeSectionMessage = () => {
+  action("SectionMessage closed")();
 };
 
 const Template = (args) => <SectionMessage {...args} />;
@@ -31,6 +39,7 @@ Default.args = {
   title: "Title",
   description: "Description",
   icon: <MdWarning />,
+  closeSectionMessage: closeSectionMessage,
 };
 
 export const WithDuration = Template.bind({});
@@ -39,6 +48,7 @@ WithDuration.args = {
   description: "Description",
   icon: <MdWarning />,
   duration: 10000,
+  closeSectionMessage: closeSectionMessage,
 };
 
 export const WithFullText = Template.bind({});
@@ -48,6 +58,7 @@ WithFullText.args = {
     "We have presented problems when carrying out the user creation action. This can have many causes, the name does not meet the necessary requirements, the identification number does not contain the number of characters. so please try again.  (this text no longer appears because it exceeds the character limit of the component)",
   icon: <MdWarning />,
   appearance: "remove",
+  closeSectionMessage: closeSectionMessage,
 };
 
 export default story;

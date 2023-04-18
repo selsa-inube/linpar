@@ -11,7 +11,7 @@ function SectionMessageUI(props) {
     appearance,
     duration,
     handleMouseEnter,
-    handleHideSectionMessage,
+    closeSectionMessage,
     handleMouseLeave,
     isPaused,
     isMessageResponsive,
@@ -29,23 +29,22 @@ function SectionMessageUI(props) {
       isMessageResponsive={isMessageResponsive}
     >
       <Stack justifyContent="space-between">
-        <Stack gap="16px" alignItems={isMessageResponsive && "center"}>
+        <Stack
+          gap="16px"
+          alignItems={isMessageResponsive ? "center" : undefined}
+        >
           <StyledIcon appearance={appearance}>{icon}</StyledIcon>
           <Stack direction="column" gap="6px">
             <Text typo="labelLarge">{title}</Text>
-            {!isMessageResponsive && (
+            {!isMessageResponsive ? (
               <Text typo="bodySmall" appearance="secondary">
                 {newDescription}
               </Text>
-            )}
+            ) : null}
           </Stack>
         </Stack>
-        <Stack alignItems={isMessageResponsive && "center"}>
-          <MdClear
-            size={16}
-            cursor="pointer"
-            onClick={handleHideSectionMessage}
-          />
+        <Stack alignItems={isMessageResponsive ? "center" : undefined}>
+          <MdClear size={16} cursor="pointer" onClick={closeSectionMessage} />
         </Stack>
       </Stack>
       {duration && (
@@ -54,6 +53,7 @@ function SectionMessageUI(props) {
           colorToken={appearance}
           duration={duration}
           size={4}
+          handleAnimationEnd={closeSectionMessage}
         />
       )}
     </StyledSectionMessage>

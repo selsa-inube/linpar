@@ -9,14 +9,14 @@ function SectionMessage(props) {
     description,
     appearance,
     duration,
-    handleHideSectionMessage,
+    closeSectionMessage,
   } = props;
   const [isPaused, setIsPaused] = useState(false);
 
   const handleMouseEnter = () => setIsPaused(true);
   const handleMouseLeave = () => setIsPaused(false);
 
-  const isMessageResponsive = useMediaQuery("(max-width: 750px)");
+  const isMessageResponsive = useMediaQuery("(max-width: 565px)");
 
   return (
     <SectionMessageUI
@@ -25,7 +25,7 @@ function SectionMessage(props) {
       description={description}
       appearance={appearance}
       duration={duration}
-      handleHideSectionMessage={handleHideSectionMessage}
+      closeSectionMessage={closeSectionMessage}
       handleMouseEnter={handleMouseEnter}
       handleMouseLeave={handleMouseLeave}
       isPaused={isPaused}
