@@ -12,36 +12,28 @@ import { MdOpenInNew } from "react-icons/md";
 import { useMediaQuery } from "@inube/design-system";
 import { useMediaQueries } from "../../../hooks/useMediaQueries";
 
-function mediaQueryAct(media) {
-  let mediaAct = "";
-  for (const mediaquery in media) {
-    if (media[mediaquery]) {
-      mediaAct = mediaquery;
-    }
-  }
-  return mediaAct;
+function findCurrentMediaQuery(currentMediaQuery) {
+  const lastIndexMedia = Object.values(currentMediaQuery).lastIndexOf(true);
+  return lastIndexMedia !== -1 ? lastIndexMedia : 0;
 }
 
-function showColBreakpoint(breakPoints, media) {
-  let numcolumns;
-  breakPoints.forEach((breakPoint) => {
-    if (breakPoint.breakpoint === mediaQueryAct(media)) {
-      numcolumns = breakPoint.totalColumns;
-    }
-  });
-  return numcolumns;
+function priorityColumns(titles, numColumns) {
+  const columnTitles = [...titles];
+  const numColRemove = columnTitles.length - numColumns;
+
+  if (numColRemove <= 0) return titles;
+
+  columnTitles.sort((a, b) => a.priority - b.priority);
+  const titleToRemove = columnTitles.splice(-numColRemove).map((i) => i.id);
+  return titles.filter((title) => !titleToRemove.includes(title.id));
 }
 
-function Ordertitles(titles) {
-  return titles.sort((a, b) => a.responsiveOrder - b.responsiveOrder);
-}
+function totalTitleColumns(titles, breakPoints, media) {
+  const numColumns = breakPoints[findCurrentMediaQuery(media)].totalColumns;
 
-function totalColumns(titles, breakPoints, media) {
-  let ColumnTitles = titles;
-  if (showColBreakpoint(breakPoints, media) < 4) {
-    ColumnTitles = Ordertitles(titles);
-  }
-  return ColumnTitles.slice(0, showColBreakpoint(breakPoints, media));
+  if (numColumns >= 4) return titles.slice(0, numColumns);
+
+  return priorityColumns(titles, numColumns);
 }
 
 function showActionTitle(actionTitle, mediaQuery) {
@@ -90,7 +82,7 @@ function TableUI(props) {
     <StyledTable>
       <StyledThead>
         <StyledTr>
-          {totalColumns(titles, breakPoints, media).map((title) => (
+          {totalTitleColumns(titles, breakPoints, media).map((title) => (
             <StyledThTitle key={`title-${title.id}`}>
               <Text typoToken="labelMedium">{title.titleName}</Text>
             </StyledThTitle>
@@ -101,7 +93,7 @@ function TableUI(props) {
       <StyledTbody>
         {entries.map((entry) => (
           <StyledTr key={`entry-${entry.id}`}>
-            {totalColumns(titles, breakPoints, media).map((title) =>
+            {totalTitleColumns(titles, breakPoints, media).map((title) =>
               entry[title.id] ? (
                 <StyledTd key={`e-${entry[title.id]}`}>
                   <Text typoToken="bodySmall">{entry[title.id]}</Text>

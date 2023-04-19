@@ -4,22 +4,22 @@ const titles = [
   {
     id: "username",
     titleName: "Username",
-    responsiveOrder: 2,
+    priority: 2,
   },
   {
     id: "code",
     titleName: "Code",
-    responsiveOrder: 3,
+    priority: 3,
   },
   {
     id: "userID",
     titleName: "User Id",
-    responsiveOrder: 1,
+    priority: 1,
   },
   {
     id: "position",
     titleName: "Position",
-    responsiveOrder: 4,
+    priority: 4,
   },
 ];
 
