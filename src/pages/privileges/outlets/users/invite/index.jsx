@@ -12,19 +12,16 @@ function Invite() {
     email: { value: "", isInvalid: true },
   });
 
-  const SHOW_MESSAGE_TIMEOUT = 10000;
   const LOADING_TIMEOUT = 2500;
 
   const handleInputChange = (event) => {
     const { name, value, validity } = event.target;
+    const isInvalid = value === "" || !validity.valid;
 
-    setInvitation({
-      ...invitation,
-      [name]: {
-        value,
-        isInvalid: value === "" || !validity.valid,
-      },
-    });
+    setInvitation((prevInvitation) => ({
+      ...prevInvitation,
+      [name]: { value, isInvalid },
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -40,13 +37,12 @@ function Invite() {
       setLoading(false);
       setFormInvalid(false);
       setShowMessage(true);
-      setTimeout(() => setShowMessage(true), SHOW_MESSAGE_TIMEOUT);
     }, LOADING_TIMEOUT);
   };
 
-  function handleCloseSectionMessage() {
+  const handleCloseSectionMessage = () => {
     setShowMessage(false);
-  }
+  };
 
   return (
     <InviteUI
@@ -56,7 +52,6 @@ function Invite() {
       formInvalid={formInvalid}
       handleInputChange={handleInputChange}
       handleSubmit={handleSubmit}
-      MessageTimer={SHOW_MESSAGE_TIMEOUT}
       handleCloseSectionMessage={handleCloseSectionMessage}
     />
   );

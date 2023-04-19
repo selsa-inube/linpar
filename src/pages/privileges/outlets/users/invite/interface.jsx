@@ -17,15 +17,22 @@ function InviteUI(props) {
     handleInputChange,
     handleSubmit,
     formInvalid,
-    MessageTimer,
     handleCloseSectionMessage,
   } = props;
 
   function renderMessages() {
     let messageType;
 
+    const invalidPropExists = Object.values(invitation).some(
+      (prop) => prop.isInvalid
+    );
+
     if (showMessage) {
       if (formInvalid) {
+        if (!invalidPropExists) {
+          handleCloseSectionMessage();
+          return null;
+        }
         messageType = "failed";
       } else {
         messageType = "success";
@@ -43,7 +50,7 @@ function InviteUI(props) {
         description={description}
         icon={icon}
         appearance={appearance}
-        duration={MessageTimer}
+        duration={10000}
         closeSectionMessage={handleCloseSectionMessage}
       />
     );
