@@ -18,8 +18,8 @@ function findCurrentMediaQuery(currentMediaQuery) {
 }
 
 function priorityColumns(titles, numColumns) {
-  const priorityCol = numColumns - 1;
-  return titles.filter((title) => title.priority <= priorityCol);
+  const maxPriorityToDisplay = numColumns - 1;
+  return titles.filter((title) => title.priority <= maxPriorityToDisplay);
 }
 
 function totalTitleColumns(titles, breakPoints, media) {
