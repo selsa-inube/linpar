@@ -2,28 +2,27 @@ import { Table } from "../index";
 import { Edit } from "./Edit";
 import { Delete } from "./Delete";
 import { Switch } from "./Switch";
-import {} from "../../../../hooks/useMediaQueries";
 
 const titles = [
   {
     id: "username",
     titleName: "Username",
-    responsiveOrder: 2,
+    priority: 1,
   },
   {
     id: "code",
     titleName: "Code",
-    responsiveOrder: 3,
+    priority: 2,
   },
   {
     id: "userID",
     titleName: "User Id",
-    responsiveOrder: 1,
+    priority: 0,
   },
   {
     id: "position",
     titleName: "Position",
-    responsiveOrder: 4,
+    priority: 3,
   },
 ];
 
@@ -49,12 +48,10 @@ const actions = [
 ];
 
 const breakPoints = [
-  { breakpoint: "(min-width: 1353px)", totalColumns: 5 },
-  { breakpoint: "(max-width: 1352px)", totalColumns: 4 },
+  { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
   { breakpoint: "(max-width: 980px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 850px)", totalColumns: 5 },
-  { breakpoint: "(max-width: 800px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 850px)", totalColumns: 4 },
   { breakpoint: "(max-width: 680px)", totalColumns: 3 },
   { breakpoint: "(max-width: 550px)", totalColumns: 2 },
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
