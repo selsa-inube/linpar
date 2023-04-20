@@ -25,7 +25,6 @@ const StyledContainer = styled.div`
 
 const StyledMain = styled.main`
   box-sizing: border-box;
-  overflow-y: scroll;
 `;
 
 export { StyledAppPage, StyledContainer, StyledMain };
