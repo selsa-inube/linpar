@@ -7,62 +7,48 @@ const getBackgroundColor = ({ appearance }) => {
     confirm: colors.ref.palette.green.g50,
     warning: colors.ref.palette.yellow.y50,
     remove: colors.ref.palette.red.r50,
+    help: colors.ref.palette.purple.p50,
   };
-  return actions[appearance] || colors.ref.palette.neutral.n50;
+  return actions[appearance] || actions.primary;
 };
 
-const StyledContainer = styled.div`
-  position: fixed;
-  display: flex;
-  right: 64px;
-  bottom: 32px;
-  height: auto;
-  width: 400px;
-  border-radius: 4px;
+const getIconColor = ({ appearance }) => {
+  const actions = {
+    primary: colors.sys.actions.primary.filled,
+    confirm: colors.sys.actions.confirm.filled,
+    warning: colors.sys.actions.warning.filled,
+    remove: colors.sys.actions.remove.filled,
+    help: colors.sys.actions.help.filled,
+  };
+  return actions[appearance] || actions.primary;
+};
+
+const StyledSectionMessage = styled.div`
   background-color: ${getBackgroundColor};
+  width: ${(props) => (props.isMessageResponsive ? "auto" : "400px")};
+  right: ${(props) => (props.isMessageResponsive ? "16px" : "64px")};
+  bottom: ${(props) => (props.isMessageResponsive ? "16px" : "32px")};
+  left: ${(props) => (props.isMessageResponsive ? "16px" : "auto")};
+  height: auto;
+  position: fixed;
+  border-radius: 4px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
-    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 
-  @media (max-width: 565px) {
-    width: auto;
-    right: 16px;
-    left: 16px;
-    padding: 0px 5px;
-    justify-content: space-between;
+  & > div:first-child {
+    padding: 16px;
   }
 `;
 
-const StyledIcon = styled.figure`
-  width: 56px;
-  margin: 0;
+const StyledIcon = styled.div`
+  margin: auto 0px;
   display: flex;
-  justify-content: center;
-
-  svg {
+  & svg {
+    color: ${getIconColor};
     width: 24px;
-    height: auto;
-    color: ${({ appearance }) => colors.sys.actions[appearance].filled};
+    height: 24px;
   }
 `;
 
-const StyledDescription = styled.div`
-  margin: 16px 0px;
-
-  & > *:first-child {
-    margin-bottom: 4px;
-  }
-
-  & > *:first-child > svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  @media (max-width: 565px) {
-    margin-right: 16px;
-    & p:last-child {
-      display: none;
-    }
-  }
-`;
-
-export { StyledContainer, StyledIcon, StyledDescription };
+export { StyledSectionMessage, StyledIcon };
