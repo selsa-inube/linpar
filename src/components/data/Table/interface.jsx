@@ -18,22 +18,14 @@ function findCurrentMediaQuery(currentMediaQuery) {
 }
 
 function priorityColumns(titles, numColumns) {
-  const columnTitles = [...titles];
-  const numColRemove = columnTitles.length - numColumns;
-
-  if (numColRemove <= 0) return titles;
-
-  columnTitles.sort((a, b) => a.priority - b.priority);
-  const titleToRemove = columnTitles
-    .splice(-numColRemove)
-    .map((title) => title.id);
-  return titles.filter((title) => !titleToRemove.includes(title.id));
+  const priorityCol = numColumns - 1;
+  return titles.filter((title) => title.priority <= priorityCol);
 }
 
 function totalTitleColumns(titles, breakPoints, media) {
   const numColumns = breakPoints[findCurrentMediaQuery(media)].totalColumns;
 
-  if (numColumns >= 4) return titles.slice(0, numColumns);
+  if (numColumns >= titles.length) return titles;
 
   return priorityColumns(titles, numColumns);
 }
@@ -80,11 +72,13 @@ function TableUI(props) {
 
   const media = useMediaQueries(queriesArray);
 
+  const TitleColumns = totalTitleColumns(titles, breakPoints, media);
+
   return (
     <StyledTable>
       <StyledThead>
         <StyledTr>
-          {totalTitleColumns(titles, breakPoints, media).map((title) => (
+          {TitleColumns.map((title) => (
             <StyledThTitle key={`title-${title.id}`}>
               <Text typoToken="labelMedium">{title.titleName}</Text>
             </StyledThTitle>
@@ -95,7 +89,7 @@ function TableUI(props) {
       <StyledTbody>
         {entries.map((entry) => (
           <StyledTr key={`entry-${entry.id}`}>
-            {totalTitleColumns(titles, breakPoints, media).map((title) =>
+            {TitleColumns.map((title) =>
               entry[title.id] ? (
                 <StyledTd key={`e-${entry[title.id]}`}>
                   <Text typoToken="bodySmall">{entry[title.id]}</Text>
