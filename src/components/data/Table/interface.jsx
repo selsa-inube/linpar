@@ -24,7 +24,9 @@ function priorityColumns(titles, numColumns) {
   if (numColRemove <= 0) return titles;
 
   columnTitles.sort((a, b) => a.priority - b.priority);
-  const titleToRemove = columnTitles.splice(-numColRemove).map((i) => i.id);
+  const titleToRemove = columnTitles
+    .splice(-numColRemove)
+    .map((title) => title.id);
   return titles.filter((title) => !titleToRemove.includes(title.id));
 }
 
