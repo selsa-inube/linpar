@@ -12,19 +12,16 @@ function Invite() {
     email: { value: "", isInvalid: true },
   });
 
-  const SHOW_MESSAGE_TIMEOUT = 5000;
   const LOADING_TIMEOUT = 2500;
 
   const handleInputChange = (event) => {
     const { name, value, validity } = event.target;
+    const isInvalid = value === "" || !validity.valid;
 
-    setInvitation({
-      ...invitation,
-      [name]: {
-        value,
-        isInvalid: value === "" || !validity.valid,
-      },
-    });
+    setInvitation((prevInvitation) => ({
+      ...prevInvitation,
+      [name]: { value, isInvalid },
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -32,14 +29,19 @@ function Invite() {
 
     if (Object.values(invitation).some((prop) => prop.isInvalid)) {
       setFormInvalid(true);
+      setShowMessage(true);
       return;
     }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
+      setFormInvalid(false);
       setShowMessage(true);
-      setTimeout(() => setShowMessage(false), SHOW_MESSAGE_TIMEOUT);
     }, LOADING_TIMEOUT);
+  };
+
+  const handleCloseSectionMessage = () => {
+    setShowMessage(false);
   };
 
   return (
@@ -50,6 +52,7 @@ function Invite() {
       formInvalid={formInvalid}
       handleInputChange={handleInputChange}
       handleSubmit={handleSubmit}
+      handleCloseSectionMessage={handleCloseSectionMessage}
     />
   );
 }

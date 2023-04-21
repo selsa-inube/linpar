@@ -2,12 +2,9 @@ import styled from "styled-components";
 
 const StyledPageUsers = styled.div`
   padding: 32px 64px;
-  @media (max-width: 1111px) {
-    height: 120vh;
-  }
 
   @media (max-width: 565px) {
-    padding: 16px;
+    padding: 16px 16px 100px 16px;
   }
 `;
 
