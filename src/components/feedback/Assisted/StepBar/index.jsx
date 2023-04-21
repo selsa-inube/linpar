@@ -1,17 +1,17 @@
-import { StyledStep, StyledLeftLine, StyledRightLine } from "./styles";
+import { StyledStep, StyledLine } from "./styles";
 
 function StepBar(props) {
-  const { stepNumber, stepActual, isActive, isVerification } = props;
-
+  const { stepNumber, actualStep, isVerification } = props;
+  const isActualStep = actualStep === stepNumber;
+  const isActive = stepNumber < actualStep || (isActualStep && isVerification);
   return (
     <>
-      <StyledLeftLine
+      <StyledLine
         isFirstStep={stepNumber === 1}
-        stepActual={stepActual}
+        isActualStep={isActualStep}
         isActive={isActive}
       />
-      <StyledStep stepActual={stepActual} isActive={isActive}></StyledStep>
-      <StyledRightLine isLastStep={isVerification} isActive={isActive} />
+      <StyledStep isActualStep={isActualStep} isActive={isActive}></StyledStep>
     </>
   );
 }

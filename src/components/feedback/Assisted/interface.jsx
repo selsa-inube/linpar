@@ -30,8 +30,7 @@ function AssistedUI(props) {
         key={index}
         stepNumber={index + 1}
         stepName={step.stepName}
-        stepActual={currentStep === step.id}
-        isActive={currentStep > step.id}
+        actualStep={currentStep}
         isVerification={step.isVerification}
       />
     );

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { colors } from "../../../../styles/colors";
 
-const getSvgColor = (props) => {
-  if (props.stepActual) {
+const getIconColor = (props) => {
+  if (props.isActualStep) {
     return colors.sys.status.inProgress;
   }
 
@@ -16,7 +16,7 @@ const getStepNumberBackgroundColor = (props) => {
 };
 
 const getStepNumberBorderColor = (props) => {
-  if (props.stepActual) {
+  if (props.isActualStep) {
     return colors.sys.text.primary;
   }
   if (props.isActive) {
@@ -25,21 +25,11 @@ const getStepNumberBorderColor = (props) => {
   return colors.sys.text.disabled;
 };
 
-const getLeftLineStyle = (props) => {
+const getStyledLine = (props) => {
   if (props.isFirstStep) {
     return "transparent";
   }
-  if (props.stepActual || props.isActive) {
-    return colors.sys.status.inProgress;
-  }
-  return colors.sys.actions.disabled.stroke;
-};
-
-const getRightLineStyle = (props) => {
-  if (props.isLastStep) {
-    return "transparent";
-  }
-  if (props.isActive) {
+  if (props.isActualStep || props.isActive) {
     return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;
@@ -48,10 +38,10 @@ const getRightLineStyle = (props) => {
 const StyledStep = styled.li`
   list-style: none;
   width: 100%;
+`;
 
-  & div > svg {
-    color: ${getSvgColor};
-  }
+const StyledArrowDown = styled.div`
+  color: ${getIconColor};
 `;
 
 const StyledStepNumber = styled.div`
@@ -73,16 +63,10 @@ const StyledStepNumber = styled.div`
   }
 `;
 
-const StyledLeftLine = styled.div`
-  background-color: ${getLeftLineStyle};
+const StyledLine = styled.div`
+  background-color: ${getStyledLine};
   width: 100%;
   height: 3px;
 `;
 
-const StyledRightLine = styled.div`
-  background-color: ${getRightLineStyle};
-  width: 100%;
-  height: 3px;
-`;
-
-export { StyledStep, StyledStepNumber, StyledLeftLine, StyledRightLine };
+export { StyledStep, StyledStepNumber, StyledLine, StyledArrowDown };

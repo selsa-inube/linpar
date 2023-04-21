@@ -11,16 +11,16 @@ export const Default = Template.bind({});
 Default.args = {
   stepNumber: 0,
   stepName: "Text",
-  stepActual: false,
+  isActualStep: false,
   isActive: false,
   isVerification: false,
 };
 
-export const stepActual = Template.bind({});
-stepActual.args = {
+export const isActualStep = Template.bind({});
+isActualStep.args = {
   stepNumber: 0,
   stepName: "Text",
-  stepActual: true,
+  isActualStep: true,
 };
 
 export const isActive = Template.bind({});

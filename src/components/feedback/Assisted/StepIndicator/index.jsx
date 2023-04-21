@@ -1,32 +1,24 @@
 import { Text, Stack } from "@inube/design-system";
-import {
-  MdKeyboardArrowDown,
-  MdCheckCircle,
-  MdCheckCircleOutline,
-} from "react-icons/md";
+import { MdKeyboardArrowDown, MdCheckCircleOutline } from "react-icons/md";
 import {
   StyledStep,
   StyledStepNumber,
-  StyledLeftLine,
-  StyledRightLine,
+  StyledLine,
+  StyledArrowDown,
 } from "./styles";
 
 function StepIndicator(props) {
-  const { stepNumber, stepActual, stepName, isActive, isVerification } = props;
+  const { stepNumber, actualStep, stepName, isVerification } = props;
 
-  const renderStepNumber = () => {
-    if (isVerification) {
-      return stepActual || isActive ? (
-        <MdCheckCircle size={30} />
-      ) : (
-        <MdCheckCircleOutline size={30} />
-      );
-    }
-    return stepNumber;
-  };
+  const isActualStep = actualStep === stepNumber;
+
+  const isActive = stepNumber < actualStep || (isActualStep && isVerification);
 
   const getAppearance = () => {
-    if (stepActual) {
+    if (isActualStep) {
+      if (isVerification) {
+        return "light";
+      }
       return "primary";
     }
     if (isActive) {
@@ -36,7 +28,7 @@ function StepIndicator(props) {
   };
 
   const getLabelAppearance = () => {
-    if (stepActual) {
+    if (isActualStep) {
       return "hover";
     }
     if (isActive) {
@@ -46,24 +38,26 @@ function StepIndicator(props) {
   };
 
   return (
-    <StyledStep stepActual={stepActual}>
+    <StyledStep>
       <Stack direction="column" alignItems="center">
-        <MdKeyboardArrowDown size={24} />
-        <StyledStepNumber stepActual={stepActual} isActive={isActive}>
-          <StyledLeftLine
-            isFirstStep={stepNumber === 1}
-            stepActual={stepActual}
-            isActive={isActive}
-          />
+        <StyledArrowDown isActualStep={isActualStep}>
+          <MdKeyboardArrowDown size={24} />
+        </StyledArrowDown>
+        <StyledStepNumber isActualStep={isActualStep} isActive={isActive}>
+          {stepNumber === 1 ? null : (
+            <StyledLine
+              isFirstStep={stepNumber === 1}
+              isActualStep={isActualStep}
+              isActive={isActive}
+            />
+          )}
           <Text typo="titleSmall" appearance={getAppearance()}>
-            {renderStepNumber()}
+            {isVerification ? <MdCheckCircleOutline size={30} /> : stepNumber}
           </Text>
-          <StyledRightLine isLastStep={isVerification} isActive={isActive} />
         </StyledStepNumber>
         <Text
           typo="labelMedium"
           appearance={getLabelAppearance()}
-          align="center"
           padding="8px"
         >
           {stepName}
