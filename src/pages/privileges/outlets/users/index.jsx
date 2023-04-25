@@ -51,13 +51,13 @@ function Users() {
             </Button>
             <MdOutlineMoreHoriz size={24} />
           </Stack>
+          <Table
+            titles={titles}
+            entries={entries}
+            actions={actions}
+            breakPoints={breakPoints}
+          ></Table>
         </Stack>
-        <Table
-          titles={titles}
-          entries={entries}
-          actions={actions}
-          breakPoints={breakPoints}
-        ></Table>
       </Stack>
     </StyledContainer>
   );
