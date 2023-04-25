@@ -1,11 +1,13 @@
 const mockPrivilegeUserTabs = [
   {
     id: "privileges-users",
-    content: "users",
+    isDisabled: false,
+    label: "Users",
   },
   {
     id: "privileges-invitations",
-    content: "invitations",
+    isDisabled: false,
+    label: "Invitations",
   },
 ];
 
