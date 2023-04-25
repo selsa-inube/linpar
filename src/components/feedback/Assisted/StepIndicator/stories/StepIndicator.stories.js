@@ -1,39 +1,41 @@
 import { StepIndicator } from "../../StepIndicator";
 
-const story = {
-  component: [StepIndicator],
+const StepIndicatorStories = {
+  component: StepIndicator,
   title: "components/feedback/Assisted/StepIndicator",
+  argTypes: {
+    options: {
+      control: {
+        type: "select",
+        options: ["default", "actual", "active", "verification"],
+      },
+    },
+  },
 };
 
-const Template = (args) => <StepIndicator {...args} />;
+const Template = ({ options, ...args }) => {
+  const values = {
+    default: { stepNumber: 1, actualStep: 0, isVerification: false },
+    actual: { stepNumber: 2, actualStep: 2, isVerification: false },
+    active: { stepNumber: 3, actualStep: 4, isVerification: false },
+    verification: { stepNumber: 4, actualStep: 0, isVerification: true },
+  };
+  const { stepNumber, actualStep, isVerification } =
+    values[options] || values.default;
+
+  return (
+    <StepIndicator
+      {...args}
+      stepNumber={stepNumber}
+      actualStep={actualStep}
+      isVerification={isVerification}
+    />
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
-  stepNumber: 0,
   stepName: "Text",
-  isActualStep: false,
-  isActive: false,
-  isVerification: false,
 };
 
-export const isActualStep = Template.bind({});
-isActualStep.args = {
-  stepNumber: 0,
-  stepName: "Text",
-  isActualStep: true,
-};
-
-export const isActive = Template.bind({});
-isActive.args = {
-  stepNumber: 0,
-  stepName: "Text",
-  isActive: true,
-};
-
-export const isVerification = Template.bind({});
-isVerification.args = {
-  stepName: "Text",
-  isVerification: true,
-};
-
-export default story;
+export default StepIndicatorStories;

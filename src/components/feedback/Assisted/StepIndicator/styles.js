@@ -25,11 +25,21 @@ const getStepNumberBorderColor = (props) => {
   return colors.sys.text.disabled;
 };
 
-const getStyledLine = (props) => {
+const getLeftLineStyle = (props) => {
   if (props.isFirstStep) {
     return "transparent";
   }
   if (props.isActualStep || props.isActive) {
+    return colors.sys.status.inProgress;
+  }
+  return colors.sys.actions.disabled.stroke;
+};
+
+const getRightLineStyle = (props) => {
+  if (props.isLastStep) {
+    return "transparent";
+  }
+  if (props.isActive) {
     return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;
@@ -63,10 +73,22 @@ const StyledStepNumber = styled.div`
   }
 `;
 
-const StyledLine = styled.div`
-  background-color: ${getStyledLine};
+const StyledLeftLine = styled.div`
+  background-color: ${getLeftLineStyle};
   width: 100%;
   height: 3px;
 `;
 
-export { StyledStep, StyledStepNumber, StyledLine, StyledArrowDown };
+const StyledRightLine = styled.div`
+  background-color: ${getRightLineStyle};
+  width: 100%;
+  height: 3px;
+`;
+
+export {
+  StyledStep,
+  StyledStepNumber,
+  StyledLeftLine,
+  StyledRightLine,
+  StyledArrowDown,
+};

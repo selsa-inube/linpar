@@ -34,7 +34,7 @@ const StyledStep = styled.div`
 const StyledLine = styled.div`
   display: ${getLineDisplay};
   background-color: ${getLineColor};
-  width: calc(50% - 3px);
+  width: 100%;
 `;
 
 export { StyledStep, StyledLine };

@@ -3,7 +3,8 @@ import { MdKeyboardArrowDown, MdCheckCircleOutline } from "react-icons/md";
 import {
   StyledStep,
   StyledStepNumber,
-  StyledLine,
+  StyledLeftLine,
+  StyledRightLine,
   StyledArrowDown,
 } from "./styles";
 
@@ -44,16 +45,16 @@ function StepIndicator(props) {
           <MdKeyboardArrowDown size={24} />
         </StyledArrowDown>
         <StyledStepNumber isActualStep={isActualStep} isActive={isActive}>
-          {stepNumber === 1 ? null : (
-            <StyledLine
-              isFirstStep={stepNumber === 1}
-              isActualStep={isActualStep}
-              isActive={isActive}
-            />
-          )}
+          <StyledLeftLine
+            isFirstStep={stepNumber === 1}
+            isActualStep={isActualStep}
+            isActive={isActive}
+          />
+
           <Text typo="titleSmall" appearance={getAppearance()}>
             {isVerification ? <MdCheckCircleOutline size={30} /> : stepNumber}
           </Text>
+          <StyledRightLine isLastStep={isVerification} isActive={isActive} />
         </StyledStepNumber>
         <Text
           typo="labelMedium"
