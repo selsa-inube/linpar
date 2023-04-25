@@ -1,10 +1,17 @@
+import {
+  actions,
+  titles,
+  breakPoints,
+  entries,
+} from "../../../../mocks/apps/dataTable.mock";
+import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
+import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Tabs } from "../../../../components/navigation/Tabs";
 import { Input } from "../../../../components/inputs/Input";
+import { Table } from "../../../../components/data/Table";
 import { Stack, Button } from "@inube/design-system";
-import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
-import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
 import { StyledContainer } from "./styles";
 import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
@@ -46,6 +53,12 @@ function Users() {
             <MdOutlineMoreHoriz size={24} />
           </Stack>
         </Stack>
+        <Table
+          titles={titles}
+          entries={entries}
+          actions={actions}
+          breakPoints={breakPoints}
+        ></Table>
       </Stack>
     </StyledContainer>
   );
