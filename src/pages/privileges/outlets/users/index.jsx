@@ -69,7 +69,6 @@ function Users() {
               <Button
                 iconBefore={<MdPersonAddAlt size={18} />}
                 spacing="compact"
-                handleClick={handleVisibleModal}
               >
                 Invite user
               </Button>
