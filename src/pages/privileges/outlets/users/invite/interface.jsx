@@ -3,8 +3,7 @@ import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../../components/PageTitle";
 import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
 import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
-import { Input } from "../../../../../components/inputs/Input";
-import { Stack, Button } from "@inube/design-system";
+import { Stack, Button, TextField } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
 
@@ -13,10 +12,14 @@ function InviteUI(props) {
     loading,
     showMessage,
     invitation,
-    handleInputChange,
+    handleChange,
+    handleFocus,
+    handleBlur,
     handleSubmit,
     formInvalid,
     handleCloseSectionMessage,
+    state,
+    form,
   } = props;
 
   function renderMessages() {
@@ -69,53 +72,86 @@ function InviteUI(props) {
         <form onSubmit={handleSubmit}>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
-              <Input
-                label="Nombre (Requerido)"
+              <TextField
+                label="Nombre"
                 placeholder="Ingresa su nombre completo"
                 name="name"
-                handleChange={handleInputChange}
+                id="name"
                 value={invitation.name.value}
                 type="text"
-                isInvalid={invitation.name.isInvalid && formInvalid}
+                isRequired={true}
                 errorMessage="Este campo no puede estar vacío"
+                validMessage="bien"
                 isDisabled={loading && true}
                 size="compact"
+                isFullWidth={true}
+                maxLength={30}
+                minLength={1}
+                state={invitation.name.state}
+                handleChange={handleChange}
+                handleFocus={handleFocus}
+                handleBlur={handleBlur}
               />
-              <Input
-                label="Identificación (Requerido)"
+
+              <TextField
+                label="Identificación"
                 placeholder="Ingrese su número de identificación"
                 name="id"
-                handleChange={handleInputChange}
+                id="id"
                 value={invitation.id.value}
                 type="number"
-                isInvalid={invitation.id.isInvalid && formInvalid}
+                isRequired={true}
                 errorMessage="Este campo debe contener un número de identificación"
+                validMessage=""
                 isDisabled={loading && true}
                 size="compact"
+                isFullWidth={true}
+                min={3}
+                state={invitation.id.state}
+                handleChange={handleChange}
+                handleFocus={handleFocus}
+                handleBlur={handleBlur}
               />
-              <Input
+
+              <TextField
                 label="Número de teléfono (Requerido)"
                 placeholder="Ingrese su número telefónico"
                 name="phone"
-                handleChange={handleInputChange}
+                id="phone"
                 value={invitation.phone.value}
                 type="number"
-                isInvalid={invitation.phone.isInvalid && formInvalid}
+                isRequired={true}
                 errorMessage="Este campo debe tener un número de teléfono"
+                validMessage=""
                 isDisabled={loading && true}
                 size="compact"
+                isFullWidth={true}
+                min={10}
+                state={invitation.phone.state}
+                handleChange={handleChange}
+                handleFocus={handleFocus}
+                handleBlur={handleBlur}
               />
-              <Input
-                label="Correo (Requerido)"
+
+              <TextField
+                label="Correo"
                 placeholder="Ingrese su dirección de correo electrónico"
                 name="email"
-                handleChange={handleInputChange}
+                id="email"
                 value={invitation.email.value}
                 type="email"
-                isInvalid={invitation.email.isInvalid && formInvalid}
+                isRequired={true}
+                // isInvalid={invitation.email.isInvalid && formInvalid}
                 errorMessage="Este campo debe tener una dirección de correo electrónico válida"
+                validMessage=""
                 isDisabled={loading && true}
                 size="compact"
+                isFullWidth={true}
+                minLength={5}
+                state={invitation.email.state}
+                handleChange={handleChange}
+                handleFocus={handleFocus}
+                handleBlur={handleBlur}
               />
             </StyledFormContainer>
             <Button
@@ -129,7 +165,7 @@ function InviteUI(props) {
           </Stack>
         </form>
       </Stack>
-      {renderMessages()}
+      {/* {renderMessages()} */}
     </StyledPageUsers>
   );
 }

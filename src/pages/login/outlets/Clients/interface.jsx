@@ -1,7 +1,7 @@
 import { RadioClient } from "../../../../components/cards/RadioClient";
 import { Text } from "../../../../components/data/Text";
-import { Button } from "@inube/design-system";
-import { Input } from "../../../../components/inputs/Input";
+import { Button, TextField } from "@inube/design-system";
+
 import { MdSearch } from "react-icons/md";
 
 import {
@@ -32,13 +32,19 @@ function ClientsUI(props) {
       </Text>
       <form onSubmit={handleSubmit}>
         {clients.length > 10 && (
-          <Input
-            placeholder="Search"
-            type="search"
-            value={search}
-            handleChange={handleSearchChange}
-            iconBefore={<MdSearch size={22} />}
-          />
+          <>
+            <TextField
+              placeholder="Search"
+              type="search"
+              name="searchClients"
+              id="searchClients"
+              value={search}
+              minLength={1}
+              isFullWidth={true}
+              handleChange={handleSearchChange}
+              iconBefore={<MdSearch size={22} />}
+            />
+          </>
         )}
         {!filterClients().length && (
           <StyledNoResults>

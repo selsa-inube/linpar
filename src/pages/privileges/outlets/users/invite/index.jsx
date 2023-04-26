@@ -5,39 +5,64 @@ function Invite() {
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
+
   const [invitation, setInvitation] = useState({
-    name: { value: "", isInvalid: true },
-    id: { value: "", isInvalid: true },
-    phone: { value: "", isInvalid: true },
-    email: { value: "", isInvalid: true },
+    name: { value: "", state: "pending" },
+    id: { value: "", state: "pending" },
+    phone: { value: "", state: "pending" },
+    email: { value: "", state: "pending" },
   });
 
   const LOADING_TIMEOUT = 2500;
 
-  const handleInputChange = (event) => {
-    const { name, value, validity } = event.target;
-    const isInvalid = value === "" || !validity.valid;
-
-    setInvitation((prevInvitation) => ({
+  const changeStatus = (event, state) => {
+    const { name, value } = event.target;
+    return setInvitation((prevInvitation) => ({
       ...prevInvitation,
-      [name]: { value, isInvalid },
+      [name]: { value, state },
     }));
   };
+
+  const handleChange = (event) => {
+    changeStatus(event, "pending");
+  };
+
+  function isAlphabetical(value) {
+    return /^[a-zA-Z]+$/.test(value);
+  }
+
+  const handleFocus = (event) => {
+    if (invitation.state === "invalid") {
+      return changeStatus(event, "invalid");
+    }
+    changeStatus(event, "pending");
+  };
+
+  const handleBlur = (event) => {
+    const { validity } = event.target;
+    const valid = !validity.valid;
+    const isValid = isAlphabetical(event.target.value);
+    changeStatus(event, isValid ? "valid" : "invalid");
+
+    console.log("validityBlur", valid);
+  };
+
+  console.log("Inicio invitation", invitation);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (Object.values(invitation).some((prop) => prop.isInvalid)) {
-      setFormInvalid(true);
-      setShowMessage(true);
-      return;
-    }
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setFormInvalid(false);
-      setShowMessage(true);
-    }, LOADING_TIMEOUT);
+    //   if (Object.values(invitation).some((prop) => prop.isInvalid)) {
+    //     setFormInvalid(true);
+    //     setShowMessage(true);
+    //     return;
+    //   }
+    //   setLoading(true);
+    //   setTimeout(() => {
+    //     setLoading(false);
+    //     setFormInvalid(false);
+    //     setShowMessage(true);
+    //   }, LOADING_TIMEOUT);
   };
 
   const handleCloseSectionMessage = () => {
@@ -50,9 +75,12 @@ function Invite() {
       showMessage={showMessage}
       invitation={invitation}
       formInvalid={formInvalid}
-      handleInputChange={handleInputChange}
+      handleChange={handleChange}
       handleSubmit={handleSubmit}
       handleCloseSectionMessage={handleCloseSectionMessage}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
+      state={invitation}
     />
   );
 }
