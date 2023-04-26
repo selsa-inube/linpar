@@ -1,7 +1,15 @@
+import {
+  actions,
+  titles,
+  breakPoints,
+  entries,
+} from "../../../../mocks/apps/dataTable.mock";
+import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
+import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Tabs } from "../../../../components/navigation/Tabs";
-import { Stack, Button, TextField } from "@inube/design-system";
+import { Stack, Button } from "@inube/design-system";
 import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
 import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
 import { StyledContainer } from "./styles";
@@ -29,8 +37,8 @@ function Users() {
         <Stack gap="32px" direction="column">
           <Tabs
             tabs={mockPrivilegeUserTabs}
-            selected={isSelected}
-            handleTabChange={handleTabChange}
+            selectedTab={isSelected}
+            handleSelectedTab={handleTabChange}
           />
           <Stack justifyContent="space-between" alignItems="center">
             <TextField
@@ -38,7 +46,6 @@ function Users() {
               id="searchUser"
               placeholder="Search..."
               type="search"
-              // value={search}
               minLength={1}
               iconBefore={<MdSearch size={18} />}
               size="compact"
@@ -49,6 +56,12 @@ function Users() {
             </Button>
             <MdOutlineMoreHoriz size={24} />
           </Stack>
+          <Table
+            titles={titles}
+            entries={entries}
+            actions={actions}
+            breakPoints={breakPoints}
+          />
         </Stack>
       </Stack>
     </StyledContainer>
