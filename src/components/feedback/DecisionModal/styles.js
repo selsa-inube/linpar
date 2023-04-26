@@ -3,12 +3,13 @@ import { colors } from "../../../styles/colors";
 
 const StyledModal = styled.div`
   background-color: ${colors.ref.palette.neutral.n10};
-  width: 487px;
+  min-width: ${(props) => (props.isModalResponsive ? "300px" : "400px")};
+  max-width: ${(props) => (props.isModalResponsive ? "328px" : "500px")};
   height: auto;
   border-radius: 8px;
-
+  margin: 16px;
   & > div {
-    padding: 32px;
+    padding: ${(props) => (props.isModalResponsive ? "24px" : "32px")};
   }
 `;
 
