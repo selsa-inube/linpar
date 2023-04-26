@@ -56,7 +56,7 @@ function Users() {
             entries={entries}
             actions={actions}
             breakPoints={breakPoints}
-          ></Table>
+          />
         </Stack>
       </Stack>
     </StyledContainer>
