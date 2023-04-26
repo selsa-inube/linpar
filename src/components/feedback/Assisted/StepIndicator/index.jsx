@@ -12,17 +12,14 @@ function StepIndicator(props) {
   const { stepNumber, actualStep, stepName, isVerification } = props;
 
   const isActualStep = actualStep === stepNumber;
-
-  const isActive = stepNumber < actualStep || (isActualStep && isVerification);
+  const isPreviousStep = stepNumber < actualStep;
+  const inVerification = isActualStep && isVerification;
 
   const getAppearance = () => {
-    if (isActualStep) {
-      if (isVerification) {
-        return "light";
-      }
+    if (isActualStep && !inVerification) {
       return "primary";
     }
-    if (isActive) {
+    if (isPreviousStep || inVerification) {
       return "light";
     }
     return "disabled";
@@ -32,7 +29,7 @@ function StepIndicator(props) {
     if (isActualStep) {
       return "hover";
     }
-    if (isActive) {
+    if (isPreviousStep) {
       return "dark";
     }
     return "disabled";
@@ -44,17 +41,23 @@ function StepIndicator(props) {
         <StyledArrowDown isActualStep={isActualStep}>
           <MdKeyboardArrowDown size={24} />
         </StyledArrowDown>
-        <StyledStepNumber isActualStep={isActualStep} isActive={isActive}>
+        <StyledStepNumber
+          isActualStep={isActualStep}
+          isPreviousStep={isPreviousStep || inVerification}
+        >
           <StyledLeftLine
             isFirstStep={stepNumber === 1}
             isActualStep={isActualStep}
-            isActive={isActive}
+            isPreviousStep={isPreviousStep || inVerification}
           />
 
           <Text typo="titleSmall" appearance={getAppearance()}>
             {isVerification ? <MdCheckCircleOutline size={30} /> : stepNumber}
           </Text>
-          <StyledRightLine isLastStep={isVerification} isActive={isActive} />
+          <StyledRightLine
+            isLastStep={isVerification}
+            isPreviousStep={isPreviousStep || inVerification}
+          />
         </StyledStepNumber>
         <Text
           typo="labelMedium"

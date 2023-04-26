@@ -10,7 +10,7 @@ const getIconColor = (props) => {
 };
 
 const getStepNumberBackgroundColor = (props) => {
-  if (props.isActive) {
+  if (props.isPreviousStep) {
     return colors.sys.status.inProgress;
   }
 };
@@ -19,7 +19,7 @@ const getStepNumberBorderColor = (props) => {
   if (props.isActualStep) {
     return colors.sys.text.primary;
   }
-  if (props.isActive) {
+  if (props.isPreviousStep) {
     return "transparent";
   }
   return colors.sys.text.disabled;
@@ -29,7 +29,7 @@ const getLeftLineStyle = (props) => {
   if (props.isFirstStep) {
     return "transparent";
   }
-  if (props.isActualStep || props.isActive) {
+  if (props.isActualStep || props.isPreviousStep) {
     return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;
@@ -39,7 +39,7 @@ const getRightLineStyle = (props) => {
   if (props.isLastStep) {
     return "transparent";
   }
-  if (props.isActive) {
+  if (props.isPreviousStep) {
     return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;

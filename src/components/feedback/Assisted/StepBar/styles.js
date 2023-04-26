@@ -2,10 +2,17 @@ import styled from "styled-components";
 import { colors } from "../../../../styles/colors";
 
 function getBackgroundColor(props) {
-  if (props.isActive || props.isActualStep) {
+  if (props.isPreviousStep || props.isActualStep) {
     return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;
+}
+
+function getLineColor(props) {
+  if (props.isPreviousStep || props.isActualStep) {
+    return colors.sys.status.inProgress;
+  }
+  return colors.ref.palette.neutral.n40;
 }
 
 function getLineDisplay(props) {
@@ -13,13 +20,6 @@ function getLineDisplay(props) {
     return "none";
   }
   return "block";
-}
-
-function getLineColor(props) {
-  if (props.isActive || props.isActualStep) {
-    return colors.sys.status.inProgress;
-  }
-  return colors.ref.palette.neutral.n40;
 }
 
 const StyledStep = styled.div`

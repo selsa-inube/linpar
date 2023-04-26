@@ -1,17 +1,9 @@
 import { StepBar } from "..";
 import { StyledContainer } from "./styles";
 
-const StepBarStories = {
-  component: StepBar,
+const story = {
+  component: [StepBar],
   title: "components/feedback/Assisted/StepBar",
-  argTypes: {
-    option: {
-      control: {
-        type: "select",
-        options: ["default", "activeOrActual"],
-      },
-    },
-  },
 };
 
 const withLayout = (Template) => (args) =>
@@ -21,17 +13,18 @@ const withLayout = (Template) => (args) =>
     </StyledContainer>
   );
 
-const Template = ({ option, ...args }) => {
-  const values = {
-    default: { stepNumber: 2, actualStep: 1 },
-    activeOrActual: { stepNumber: 2, actualStep: 2 },
-  };
-  const { stepNumber, actualStep } = values[option] || values.default;
-
-  return <StepBar {...args} stepNumber={stepNumber} actualStep={actualStep} />;
-};
+const Template = (args) => <StepBar {...args} />;
 
 export const Default = withLayout(Template.bind({}));
-Default.args = {};
+Default.args = {
+  stepNumber: 2,
+  actualStep: 1,
+};
 
-export default StepBarStories;
+export const isPreviousStep = withLayout(Template.bind({}));
+isPreviousStep.args = {
+  stepNumber: 2,
+  actualStep: 2,
+};
+
+export default story;
