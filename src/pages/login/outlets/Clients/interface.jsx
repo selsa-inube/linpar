@@ -34,7 +34,7 @@ function ClientsUI(props) {
         {clients.length > 10 && (
           <>
             <TextField
-              placeholder="Search"
+              placeholder="Search..."
               type="search"
               name="searchClients"
               id="searchClients"

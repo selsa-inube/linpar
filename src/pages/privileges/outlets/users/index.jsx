@@ -10,7 +10,7 @@ import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Table } from "../../../../components/data/Table";
 import { Stack, Button, Tabs, TextField } from "@inube/design-system";
-import { StyledContainer } from "./styles";
+import { StyledContainer, StyledTextFieldContainer } from "./styles";
 import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
 
@@ -39,17 +39,18 @@ function Users() {
             handleSelectedTab={handleTabChange}
           />
           <Stack justifyContent="space-between" alignItems="center">
-            <TextField
-              name="searchUser"
-              id="searchUser"
-              placeholder="Search..."
-              type="search"
-              minLength={1}
-              iconBefore={<MdSearch size={18} />}
-              size="compact"
-              isFullWidth={true}
-              state="pending"
-            />
+            <StyledTextFieldContainer>
+              <TextField
+                name="searchUser"
+                id="searchUser"
+                placeholder="Search..."
+                type="search"
+                minLength={1}
+                iconBefore={<MdSearch size={18} />}
+                size="compact"
+                isFullWidth={true}
+              />
+            </StyledTextFieldContainer>
             <Button iconBefore={<MdPersonAddAlt size={18} />} spacing="compact">
               Invite user
             </Button>

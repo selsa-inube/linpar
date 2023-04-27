@@ -3,14 +3,6 @@ import styled from "styled-components";
 const StyledContainer = styled.div`
   padding: 32px 64px;
 
-  div > div:last-of-type > div:nth-of-type(2) {
-    gap: 8px;
-  }
-
-  div > div:last-of-type > div:nth-of-type(2) > div {
-    max-width: 282px;
-  }
-
   div:last-of-type > div:nth-of-type(2) > svg {
     display: none;
   }
@@ -28,4 +20,8 @@ const StyledContainer = styled.div`
   }
 `;
 
-export { StyledContainer };
+const StyledTextFieldContainer = styled.div`
+  width: 280px;
+`;
+
+export { StyledContainer, StyledTextFieldContainer };
