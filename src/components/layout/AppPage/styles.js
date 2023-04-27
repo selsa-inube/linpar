@@ -10,6 +10,7 @@ const StyledAppPage = styled.div`
 const StyledContainer = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
+  overflow: hidden;
   & nav {
     width: 249px;
     display: flex;
@@ -25,6 +26,7 @@ const StyledContainer = styled.div`
 
 const StyledMain = styled.main`
   box-sizing: border-box;
+  overflow-y: auto;
 `;
 
 export { StyledAppPage, StyledContainer, StyledMain };
