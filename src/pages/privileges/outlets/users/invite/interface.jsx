@@ -14,19 +14,20 @@ function InviteUI(props) {
     invitation,
     handleChange,
     handleFocus,
-    handleBlur,
+    handleBlurText,
+    handleBlurEmail,
+    handleBlurNumber,
+    handleBlurPhone,
     handleSubmit,
     formInvalid,
     handleCloseSectionMessage,
-    state,
-    form,
   } = props;
 
   function renderMessages() {
     let messageType;
 
     const invalidPropExists = Object.values(invitation).some(
-      (prop) => prop.isInvalid
+      (prop) => prop.state === "invalid"
     );
 
     if (showMessage) {
@@ -79,9 +80,10 @@ function InviteUI(props) {
                 id="name"
                 value={invitation.name.value}
                 type="text"
+                isInvalid={invitation.name.isInvalid && formInvalid}
                 isRequired={true}
                 errorMessage="Este campo no puede estar vacío"
-                validMessage="bien"
+                validMessage="El nombre es valido"
                 isDisabled={loading && true}
                 size="compact"
                 isFullWidth={true}
@@ -90,7 +92,7 @@ function InviteUI(props) {
                 state={invitation.name.state}
                 handleChange={handleChange}
                 handleFocus={handleFocus}
-                handleBlur={handleBlur}
+                handleBlur={handleBlurText}
               />
 
               <TextField
@@ -100,37 +102,37 @@ function InviteUI(props) {
                 id="id"
                 value={invitation.id.value}
                 type="number"
+                isInvalid={invitation.id.isInvalid && formInvalid}
                 isRequired={true}
                 errorMessage="Este campo debe contener un número de identificación"
-                validMessage=""
+                validMessage="El número de identificación es valido"
                 isDisabled={loading && true}
                 size="compact"
                 isFullWidth={true}
-                min={3}
                 state={invitation.id.state}
                 handleChange={handleChange}
                 handleFocus={handleFocus}
-                handleBlur={handleBlur}
+                handleBlur={handleBlurNumber}
               />
 
               <TextField
-                label="Número de teléfono (Requerido)"
+                label="Número de teléfono"
                 placeholder="Ingrese su número telefónico"
                 name="phone"
                 id="phone"
                 value={invitation.phone.value}
                 type="number"
+                isInvalid={invitation.phone.isInvalid && formInvalid}
                 isRequired={true}
                 errorMessage="Este campo debe tener un número de teléfono"
-                validMessage=""
+                validMessage="El número de teléfono es valido"
                 isDisabled={loading && true}
                 size="compact"
                 isFullWidth={true}
-                min={10}
                 state={invitation.phone.state}
                 handleChange={handleChange}
                 handleFocus={handleFocus}
-                handleBlur={handleBlur}
+                handleBlur={handleBlurPhone}
               />
 
               <TextField
@@ -141,17 +143,16 @@ function InviteUI(props) {
                 value={invitation.email.value}
                 type="email"
                 isRequired={true}
-                // isInvalid={invitation.email.isInvalid && formInvalid}
+                isInvalid={invitation.email.isInvalid && formInvalid}
                 errorMessage="Este campo debe tener una dirección de correo electrónico válida"
-                validMessage=""
+                validMessage="El correo electrónico es valido"
                 isDisabled={loading && true}
                 size="compact"
                 isFullWidth={true}
-                minLength={5}
                 state={invitation.email.state}
                 handleChange={handleChange}
                 handleFocus={handleFocus}
-                handleBlur={handleBlur}
+                handleBlur={handleBlurEmail}
               />
             </StyledFormContainer>
             <Button
@@ -165,7 +166,7 @@ function InviteUI(props) {
           </Stack>
         </form>
       </Stack>
-      {/* {renderMessages()} */}
+      {renderMessages()}
     </StyledPageUsers>
   );
 }

@@ -47,6 +47,7 @@ function Users() {
               minLength={1}
               iconBefore={<MdSearch size={18} />}
               size="compact"
+              isFullWidth={true}
               state="pending"
             />
             <Button iconBefore={<MdPersonAddAlt size={18} />} spacing="compact">

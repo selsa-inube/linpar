@@ -15,6 +15,17 @@ function Invite() {
 
   const LOADING_TIMEOUT = 2500;
 
+  const itertationInvitation = Object.values(invitation);
+
+  const isAlphabetical = (value) => /(^[a-zA-Z])|(\s+[a-zA-Z])/g.test(value);
+
+  const isEmail = (value) =>
+    /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(value);
+
+  const isPhone = (value) => /^\d{10}/g.test(value);
+
+  const isNumber = (value) => /^\d/g.test(value);
+
   const changeStatus = (event, state) => {
     const { name, value } = event.target;
     return setInvitation((prevInvitation) => ({
@@ -27,42 +38,55 @@ function Invite() {
     changeStatus(event, "pending");
   };
 
-  function isAlphabetical(value) {
-    return /^[a-zA-Z]+$/.test(value);
-  }
-
   const handleFocus = (event) => {
-    if (invitation.state === "invalid") {
-      return changeStatus(event, "invalid");
-    }
-    changeStatus(event, "pending");
+    itertationInvitation.forEach((invitation) => {
+      if (invitation.state === "invalid") {
+        return changeStatus(event, "invalid");
+      }
+      changeStatus(event, "pending");
+    });
   };
 
-  const handleBlur = (event) => {
-    const { validity } = event.target;
-    const valid = !validity.valid;
+  const handleBlurText = (event) => {
     const isValid = isAlphabetical(event.target.value);
     changeStatus(event, isValid ? "valid" : "invalid");
-
-    console.log("validityBlur", valid);
   };
 
-  console.log("Inicio invitation", invitation);
+  const handleBlurEmail = (event) => {
+    const isValid = isEmail(event.target.value);
+    changeStatus(event, isValid ? "valid" : "invalid");
+  };
+
+  const handleBlurNumber = (event) => {
+    const isValid = isNumber(event.target.value);
+    changeStatus(event, isValid ? "valid" : "invalid");
+  };
+
+  const handleBlurPhone = (event) => {
+    const isValid = isPhone(event.target.value);
+    changeStatus(event, isValid ? "valid" : "invalid");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    //   if (Object.values(invitation).some((prop) => prop.isInvalid)) {
-    //     setFormInvalid(true);
-    //     setShowMessage(true);
-    //     return;
-    //   }
-    //   setLoading(true);
-    //   setTimeout(() => {
-    //     setLoading(false);
-    //     setFormInvalid(false);
-    //     setShowMessage(true);
-    //   }, LOADING_TIMEOUT);
+    itertationInvitation.forEach((invitation) => {
+      if (invitation.state === "pending" || invitation.value === "")
+        return (invitation.state = "invalid");
+    });
+
+    if (itertationInvitation.some((prop) => prop.state === "invalid")) {
+      setFormInvalid(true);
+      setShowMessage(true);
+      return;
+    }
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setFormInvalid(false);
+      setShowMessage(true);
+    }, LOADING_TIMEOUT);
   };
 
   const handleCloseSectionMessage = () => {
@@ -79,7 +103,10 @@ function Invite() {
       handleSubmit={handleSubmit}
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleFocus={handleFocus}
-      handleBlur={handleBlur}
+      handleBlurText={handleBlurText}
+      handleBlurEmail={handleBlurEmail}
+      handleBlurNumber={handleBlurNumber}
+      handleBlurPhone={handleBlurPhone}
       state={invitation}
     />
   );

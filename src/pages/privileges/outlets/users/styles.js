@@ -8,7 +8,7 @@ const StyledContainer = styled.div`
   }
 
   div > div:last-of-type > div:nth-of-type(2) > div {
-    max-width: 280px;
+    max-width: 282px;
   }
 
   div:last-of-type > div:nth-of-type(2) > svg {
