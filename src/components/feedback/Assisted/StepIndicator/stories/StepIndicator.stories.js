@@ -9,7 +9,7 @@ const Template = (args) => <StepIndicator {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  stepName: "Text",
+  stepName: "Step 1",
   stepNumber: 1,
   actualStep: 0,
   isVerification: false,
@@ -19,7 +19,7 @@ Default.args = {
 
 export const isActualStep = Template.bind({});
 isActualStep.args = {
-  stepName: "Text",
+  stepName: "Step 2",
   stepNumber: 2,
   actualStep: 2,
   isVerification: false,
@@ -29,7 +29,7 @@ isActualStep.args = {
 
 export const isPreviousStep = Template.bind({});
 isPreviousStep.args = {
-  stepName: "Text",
+  stepName: "Step 3",
   stepNumber: 3,
   actualStep: 4,
   isVerification: false,
@@ -37,7 +37,7 @@ isPreviousStep.args = {
 
 export const isVerification = Template.bind({});
 isVerification.args = {
-  stepName: "Text",
+  stepName: "Step 4",
   stepNumber: 4,
   actualStep: 0,
   isVerification: true,

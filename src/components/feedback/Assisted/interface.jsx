@@ -1,16 +1,12 @@
 import { Button, Text, Stack } from "@inube/design-system";
-import {
-  MdKeyboardArrowLeft,
-  MdKeyboardArrowRight,
-  MdCheckCircle,
-} from "react-icons/md";
+import { MdArrowBack, MdArrowForward, MdCheckCircle } from "react-icons/md";
 import { StepIndicator } from "./StepIndicator";
 import { StepBar } from "./StepBar";
 import {
-  StyledAssisted,
   StyledSteps,
   StyledStepsMobile,
   StyledStepsMobileId,
+  StyledButton,
 } from "./styles";
 
 function AssistedUI(props) {
@@ -36,12 +32,51 @@ function AssistedUI(props) {
     );
   }
 
+  if (isAssistedResponsive) {
+    return (
+      <Stack gap="16px" alignItems="center">
+        <StyledButton>
+          <Button
+            variant="none"
+            iconBefore={<MdArrowBack size={20} />}
+            handleClick={handlePreviousStep}
+            isDisabled={currentStep === steps[0].id}
+          />
+        </StyledButton>
+        <StyledStepsMobile>
+          <Stack gap="8px" alignItems="center">
+            <StyledStepsMobileId>
+              <Text typo="labelMedium" appearance="primary">
+                {steps[steps.length - 1].id === currentStep ? (
+                  <MdCheckCircle size={16} />
+                ) : (
+                  currentStep
+                )}
+              </Text>
+            </StyledStepsMobileId>
+            <Text typo="labelMedium" appearance="dark">
+              {currentStepInfo.stepName}
+            </Text>
+          </Stack>
+          <StyledSteps>{steps.map(renderStep)}</StyledSteps>
+        </StyledStepsMobile>
+        <StyledButton>
+          <Button
+            variant="none"
+            iconAfter={<MdArrowForward size={20} />}
+            handleClick={handleNextStep}
+          />
+        </StyledButton>
+      </Stack>
+    );
+  }
+
   return (
-    <Stack direction="column" gap="8px" alignItems="center">
-      <StyledAssisted isAssistedResponsive={isAssistedResponsive}>
+    <Stack direction="column" gap="8px">
+      <Stack alignItems="center">
         <Button
           variant="none"
-          iconBefore={<MdKeyboardArrowLeft size={20} />}
+          iconBefore={<MdArrowBack size={18} />}
           handleClick={handlePreviousStep}
           isDisabled={currentStep === steps[0].id}
         >
@@ -49,44 +84,22 @@ function AssistedUI(props) {
             typo="labelLarge"
             appearance={currentStep === steps[0].id ? "disabled" : "primary"}
           >
-            {!isAssistedResponsive && "Prev"}
+            Prev
           </Text>
         </Button>
-        {isAssistedResponsive ? (
-          <StyledStepsMobile>
-            <Stack gap="8px" alignItems="center">
-              <StyledStepsMobileId>
-                <Text typo="labelMedium" appearance="primary">
-                  {steps[steps.length - 1].id === currentStep ? (
-                    <MdCheckCircle size={16} />
-                  ) : (
-                    currentStep
-                  )}
-                </Text>
-              </StyledStepsMobileId>
-              <Text typo="labelMedium" appearance="dark">
-                {currentStepInfo.stepName}
-              </Text>
-            </Stack>
-            <StyledSteps>{steps.map(renderStep)}</StyledSteps>
-          </StyledStepsMobile>
-        ) : (
-          <StyledSteps>{steps.map(renderStep)}</StyledSteps>
-        )}
-
+        <StyledSteps>{steps.map(renderStep)}</StyledSteps>
         <Button
           variant="none"
-          iconAfter={<MdKeyboardArrowRight size={20} />}
+          iconAfter={<MdArrowForward size={18} />}
           handleClick={handleNextStep}
         >
           <Text typo="labelLarge" appearance="primary">
-            {!isAssistedResponsive && "Next"}
+            Next
           </Text>
         </Button>
-      </StyledAssisted>
-
-      <Text typo="labelLarge" appearance="secondary">
-        {!isAssistedResponsive && currentStepInfo.stepDescription}
+      </Stack>
+      <Text typo="labelLarge" appearance="secondary" align="center">
+        {currentStepInfo.stepDescription}
       </Text>
     </Stack>
   );

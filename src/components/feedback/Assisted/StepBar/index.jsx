@@ -15,7 +15,7 @@ function StepBar(props) {
       <StyledStep
         isActualStep={isActualStep}
         isPreviousStep={isPreviousStep || inVerification}
-      ></StyledStep>
+      />
     </>
   );
 }

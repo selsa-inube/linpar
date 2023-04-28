@@ -8,32 +8,42 @@ const story = {
 const stepsMock = [
   {
     id: 1,
-    stepName: "Name 1",
-    stepDescription: "Example description 1",
+    stepName: "Información general",
+    stepDescription:
+      "Ver la información general del usuario y si es necesario editarla",
   },
 
   {
     id: 2,
-    stepName: "Name 2",
-    stepDescription: "Example description 2",
+    stepName: "Ramas",
+    stepDescription: "Asigna las ramas que el usuario administrará",
   },
 
   {
     id: 3,
-    stepName: "Name 3",
-    stepDescription: "Example description 3",
+    stepName: "Proyectos",
+    stepDescription: "Agrega los proyectos que el usuario administrará.",
   },
 
   {
     id: 4,
-    stepName: "Name 4",
-    stepDescription: "Example description 4",
+    stepName: "Unidades de ayuda",
+    stepDescription:
+      "Configura las unidades presupuestarias de ayuda que el usuario administrará.",
   },
 
   {
     id: 5,
-    stepName: "Name 5",
-    stepDescription: "Example description 5",
+    stepName: "Nómina",
+    stepDescription:
+      "Configura la nómina del usuario, incluyendo detalles como el salario base, deducciones y beneficios.",
+  },
+
+  {
+    id: 6,
+    stepName: "Verificación",
+    stepDescription:
+      "Centro de coste para clasificar costes y gastos y aplicarlos a las órdenes de producción",
     isVerification: true,
   },
 ];

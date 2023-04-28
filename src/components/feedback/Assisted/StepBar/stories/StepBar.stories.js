@@ -1,27 +1,27 @@
 import { StepBar } from "..";
-import { StyledContainer } from "./styles";
+import { Stack } from "@inube/design-system";
 
 const story = {
   component: [StepBar],
   title: "components/feedback/Assisted/StepBar",
+  decorators: [
+    (Story) => (
+      <Stack>
+        <Story />
+      </Stack>
+    ),
+  ],
 };
-
-const withLayout = (Template) => (args) =>
-  (
-    <StyledContainer>
-      <Template {...args} />
-    </StyledContainer>
-  );
 
 const Template = (args) => <StepBar {...args} />;
 
-export const Default = withLayout(Template.bind({}));
+export const Default = Template.bind({});
 Default.args = {
   stepNumber: 2,
   actualStep: 1,
 };
 
-export const isPreviousStep = withLayout(Template.bind({}));
+export const isPreviousStep = Template.bind({});
 isPreviousStep.args = {
   stepNumber: 2,
   actualStep: 2,

@@ -63,6 +63,7 @@ function StepIndicator(props) {
           typo="labelMedium"
           appearance={getLabelAppearance()}
           padding="8px"
+          align="center"
         >
           {stepName}
         </Text>

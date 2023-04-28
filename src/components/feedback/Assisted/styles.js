@@ -15,24 +15,21 @@ const StyledStepsMobile = styled.div`
   gap: 8px;
 `;
 
-const StyledAssisted = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-
+const StyledButton = styled.div`
   & button {
-    min-width: ${(props) => props.isAssistedResponsive && "auto"};
+    min-width: auto;
+    padding: 0px;
   }
 `;
 
 const StyledStepsMobileId = styled.div`
   display: flex;
   justify-content: center;
-  width: 16px;
+  min-width: 16px;
   height: 16px;
   border-style: solid;
   border-color: ${colors.sys.status.inProgress};
   border-radius: 50%;
 `;
 
-export { StyledSteps, StyledAssisted, StyledStepsMobile, StyledStepsMobileId };
+export { StyledButton, StyledSteps, StyledStepsMobile, StyledStepsMobileId };
