@@ -13,7 +13,7 @@ function InviteUI(props) {
     showMessage,
     invitation,
     handleChange,
-    handleBlur,
+    runValidations,
     handleSubmit,
     formInvalid,
     handleCloseSectionMessage,
@@ -87,7 +87,7 @@ function InviteUI(props) {
                 minLength={1}
                 state={invitation.name.state}
                 handleChange={handleChange}
-                handleBlur={handleBlur}
+                handleBlur={runValidations}
               />
 
               <TextField
@@ -106,7 +106,7 @@ function InviteUI(props) {
                 isFullWidth={true}
                 state={invitation.id.state}
                 handleChange={handleChange}
-                handleBlur={handleBlur}
+                handleBlur={runValidations}
               />
 
               <TextField
@@ -125,7 +125,7 @@ function InviteUI(props) {
                 isFullWidth={true}
                 state={invitation.phone.state}
                 handleChange={handleChange}
-                handleBlur={handleBlur}
+                handleBlur={runValidations}
               />
 
               <TextField
@@ -144,7 +144,7 @@ function InviteUI(props) {
                 isFullWidth={true}
                 state={invitation.email.state}
                 handleChange={handleChange}
-                handleBlur={handleBlur}
+                handleBlur={runValidations}
               />
             </StyledFormContainer>
             <Button

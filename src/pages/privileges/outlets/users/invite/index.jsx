@@ -31,13 +31,13 @@ function Invite() {
     }));
   };
 
-  const handleChange = (event) => {
-    changeStatus(event, "pending");
-  };
-
   const runValidations = (event) => {
     const isValid = validations[event.target.name](event.target.value);
     changeStatus(event, isValid ? "valid" : "invalid");
+  };
+
+  const handleChange = (event) => {
+    changeStatus(event, "pending");
   };
 
   const handleSubmit = (event) => {
@@ -76,7 +76,7 @@ function Invite() {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       handleCloseSectionMessage={handleCloseSectionMessage}
-      handleBlur={runValidations}
+      runValidations={runValidations}
     />
   );
 }
