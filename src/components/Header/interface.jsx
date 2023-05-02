@@ -13,12 +13,12 @@ import { MdMenu } from "react-icons/md";
 import { User, useMediaQuery } from "@inube/design-system";
 
 function HeaderUI(props) {
-  const actualSize = useMediaQuery("(max-width: 450px)");
+  const smallScreen = useMediaQuery("(max-width: 450px)");
+  const actualSize = smallScreen ? "small" : "large";
 
   const {
     userName,
     businessUnit,
-    size = actualSize,
     appLogo,
     appLogoAlt,
     handleMenu,
@@ -39,7 +39,7 @@ function HeaderUI(props) {
           <User
             userName={userName}
             businessUnit={businessUnit}
-            size={size ? "small" : "large"}
+            size={actualSize}
           />
         </StyledUser>
       </StyledHeader>
