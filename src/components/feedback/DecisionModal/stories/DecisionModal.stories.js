@@ -16,8 +16,8 @@ export const Default = Template.bind({});
 Default.args = {
   title: "Text title",
   description: "Text description",
-  textAction: "Text Action",
-  toggleModal: closeDecisionModal,
+  actionText: "Text Action",
+  closeModal: closeDecisionModal,
 };
 
 export default story;

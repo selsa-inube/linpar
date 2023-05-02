@@ -10,10 +10,10 @@ import { MdClear } from "react-icons/md";
 import { useState } from "react";
 
 function DecisionModal(props) {
-  const { title, description, appearance, textAction, toggleModal } = props;
+  const { title, description, appearance, actionText, closeModal } = props;
   const [isLoading, setIsLoading] = useState(false);
 
-  const isModalResponsive = useMediaQuery("(max-width: 580px)");
+  const smallScreen = useMediaQuery("(max-width: 580px)");
 
   const handleIsLoading = () => {
     setIsLoading(true);
@@ -21,25 +21,25 @@ function DecisionModal(props) {
 
   return (
     <Blanket>
-      <StyledModal isModalResponsive={isModalResponsive}>
-        <Stack direction="column" gap="24px">
+      <StyledModal smallScreen={smallScreen}>
+        <Stack direction="column" gap={smallScreen ? "16px" : "24px"}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text typo={isModalResponsive ? "titleSmall" : "titleLarge"}>
+            <Text typo={smallScreen ? "titleSmall" : "titleLarge"}>
               {title}
             </Text>
-            <MdClear size={24} cursor="pointer" onClick={toggleModal} />
+            <MdClear size={24} cursor="pointer" onClick={closeModal} />
           </Stack>
           <Text
             appearance="secondary"
-            typo={isModalResponsive ? "bodyMedium" : undefined}
+            typo={smallScreen ? "bodyMedium" : undefined}
           >
             {description}
           </Text>
           <Stack justifyContent="flex-end" gap="8px">
             <Button
               appearance="secondary"
-              handleClick={toggleModal}
-              spacing={isModalResponsive ? "compact" : undefined}
+              handleClick={closeModal}
+              spacing={smallScreen ? "compact" : undefined}
             >
               Cancel
             </Button>
@@ -47,9 +47,9 @@ function DecisionModal(props) {
               appearance={appearance}
               isLoading={isLoading}
               handleClick={handleIsLoading}
-              spacing={isModalResponsive ? "compact" : undefined}
+              spacing={smallScreen ? "compact" : undefined}
             >
-              {textAction}
+              {actionText}
             </Button>
           </Stack>
         </Stack>

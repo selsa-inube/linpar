@@ -11,20 +11,8 @@ const StyledContainer = styled.div`
     max-width: 280px;
   }
 
-  div:last-of-type > div:nth-of-type(2) > svg {
-    display: none;
-  }
-
   @media screen and (max-width: 580px) {
     padding: 16px;
-
-    button {
-      display: none;
-    }
-
-    div:last-of-type > div:last-of-type > svg {
-      display: flex;
-    }
   }
 `;
 
