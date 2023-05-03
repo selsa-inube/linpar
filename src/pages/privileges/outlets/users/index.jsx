@@ -30,7 +30,7 @@ function Users() {
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
   return (
-    <StyledContainer>
+    <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs route={mockPrivilegeOptions[0].url} />
@@ -61,9 +61,9 @@ function Users() {
             </StyledTextFieldContainer>
 
             {smallScreen ? (
-              <div>
+              <Stack>
                 <MdOutlineMoreHoriz size={24} cursor="pointer" />
-              </div>
+              </Stack>
             ) : (
               <Button
                 iconBefore={<MdPersonAddAlt size={18} />}
