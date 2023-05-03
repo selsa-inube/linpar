@@ -1,4 +1,4 @@
-import { StepIndicator } from "../../StepIndicator";
+import { StepIndicator } from "..";
 
 const story = {
   component: [StepIndicator],
