@@ -9,7 +9,13 @@ import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mo
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Table } from "../../../../components/data/Table";
-import { Stack, Button, Tabs, TextField } from "@inube/design-system";
+import {
+  Stack,
+  Button,
+  Tabs,
+  TextField,
+  useMediaQuery,
+} from "@inube/design-system";
 import { StyledContainer, StyledTextFieldContainer } from "./styles";
 import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
@@ -21,8 +27,10 @@ function Users() {
     setIsSelected(tabId);
   };
 
+  const smallScreen = useMediaQuery("(max-width: 580px)");
+
   return (
-    <StyledContainer>
+    <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs route={mockPrivilegeOptions[0].url} />
@@ -51,10 +59,19 @@ function Users() {
                 isFullWidth={true}
               />
             </StyledTextFieldContainer>
-            <Button iconBefore={<MdPersonAddAlt size={18} />} spacing="compact">
-              Invite user
-            </Button>
-            <MdOutlineMoreHoriz size={24} />
+
+            {smallScreen ? (
+              <Stack>
+                <MdOutlineMoreHoriz size={24} cursor="pointer" />
+              </Stack>
+            ) : (
+              <Button
+                iconBefore={<MdPersonAddAlt size={18} />}
+                spacing="compact"
+              >
+                Invite user
+              </Button>
+            )}
           </Stack>
           <Table
             titles={titles}
