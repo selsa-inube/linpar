@@ -1,5 +1,15 @@
 import { MdModeEdit, MdOutlineDelete, MdToggleOff } from "react-icons/md";
 
+const breakPointsConfig = [
+  { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 980px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 850px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 680px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 550px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 360px)", totalColumns: 1 },
+];
+
 const titlesConfig = [
   {
     id: "username",
@@ -44,4 +54,4 @@ const actionsConfig = [
   },
 ];
 
-export { actionsConfig, titlesConfig };
+export { breakPointsConfig, actionsConfig, titlesConfig };

@@ -1,13 +1,3 @@
-const breakPointsDataMock = [
-  { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
-  { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 980px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 850px)", totalColumns: 4 },
-  { breakpoint: "(max-width: 680px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 550px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 360px)", totalColumns: 1 },
-];
-
 const entriesDataMock = [
   {
     id: 11,
@@ -235,4 +225,4 @@ const entriesDataMock = [
   },
 ];
 
-export { breakPointsDataMock, entriesDataMock };
+export { entriesDataMock };

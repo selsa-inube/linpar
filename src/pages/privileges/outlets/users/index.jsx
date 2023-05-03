@@ -1,10 +1,8 @@
-import {
-  breakPointsDataMock,
-  entriesDataMock,
-} from "../../../../mocks/apps/dataTable.mock";
+import { entriesDataMock } from "../../../../mocks/apps/dataTable.mock";
 import {
   actionsConfig,
   titlesConfig,
+  breakPointsConfig,
 } from "../../../../components/data/Table/config/dataTable.config";
 import { mockPrivilegeOptionsConfig } from "../config/privileges.config";
 import { mockPrivilegeUserTabsConfig } from "../users/config/privilegesUsers.config";
@@ -81,7 +79,7 @@ function Users() {
             titles={titlesConfig}
             entries={entriesDataMock}
             actions={actionsConfig}
-            breakPoints={breakPointsDataMock}
+            breakPoints={breakPointsConfig}
           />
         </Stack>
       </Stack>

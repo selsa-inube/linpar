@@ -1,4 +1,4 @@
-const mockUsersDecisionModalOptions = {
+const mockUsersDecisionModalOptionsConfig = {
   resend: {
     title: "Resend invitation",
     description: "Are you sure you want to resend the invitation?",
@@ -13,4 +13,4 @@ const mockUsersDecisionModalOptions = {
   },
 };
 
-export { mockUsersDecisionModalOptions };
+export { mockUsersDecisionModalOptionsConfig };
