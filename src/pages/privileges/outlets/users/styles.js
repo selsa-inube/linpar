@@ -7,13 +7,13 @@ const StyledContainer = styled.div`
     gap: 8px;
   }
 
-  div > div:last-of-type > div:nth-of-type(2) > div {
-    max-width: 280px;
-  }
-
   @media screen and (max-width: 580px) {
     padding: 16px;
   }
 `;
 
-export { StyledContainer };
+const StyledTextFieldContainer = styled.div`
+  width: 280px;
+`;
+
+export { StyledContainer, StyledTextFieldContainer };
