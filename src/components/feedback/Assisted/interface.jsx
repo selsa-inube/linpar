@@ -15,12 +15,12 @@ function AssistedUI(props) {
     currentStepInfo,
     handleNextStep,
     handlePreviousStep,
-    isAssistedResponsive,
+    smallScreen,
     steps,
   } = props;
 
   function renderStep(step, index) {
-    const Step = isAssistedResponsive ? StepBar : StepIndicator;
+    const Step = smallScreen ? StepBar : StepIndicator;
     return (
       <Step
         key={index}
@@ -32,7 +32,7 @@ function AssistedUI(props) {
     );
   }
 
-  if (isAssistedResponsive) {
+  if (smallScreen) {
     return (
       <Stack gap="16px" alignItems="center">
         <StyledButton>
