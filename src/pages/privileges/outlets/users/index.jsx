@@ -8,10 +8,9 @@ import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
 import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
-import { Input } from "../../../../components/inputs/Input";
 import { Table } from "../../../../components/data/Table";
-import { Stack, Button, Tabs } from "@inube/design-system";
-import { StyledContainer } from "./styles";
+import { Stack, Button, Tabs, TextField } from "@inube/design-system";
+import { StyledContainer, StyledTextFieldContainer } from "./styles";
 import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
 
@@ -40,12 +39,18 @@ function Users() {
             handleSelectedTab={handleTabChange}
           />
           <Stack justifyContent="space-between" alignItems="center">
-            <Input
-              placeholder="Search..."
-              type="search"
-              iconBefore={<MdSearch size={18} />}
-              size="compact"
-            />
+            <StyledTextFieldContainer>
+              <TextField
+                name="searchUser"
+                id="searchUser"
+                placeholder="Search..."
+                type="search"
+                minLength={1}
+                iconBefore={<MdSearch size={18} />}
+                size="compact"
+                isFullWidth={true}
+              />
+            </StyledTextFieldContainer>
             <Button iconBefore={<MdPersonAddAlt size={18} />} spacing="compact">
               Invite user
             </Button>
