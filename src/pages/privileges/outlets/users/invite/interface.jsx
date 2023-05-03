@@ -1,10 +1,10 @@
 import { StyledPageUsers, StyledFormContainer } from "./styles";
 import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../../components/PageTitle";
-import { messageInvitationSentConfig } from "../../../../../components/feedback/SectionMessage/config/sectionMessage.config";
-import { usersInvitationsConfig } from "../invite/config/usersInvitations.config";
+import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
+import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
 import { Input } from "../../../../../components/inputs/Input";
-import { Stack, Button } from "@inube/design-system";
+import { Stack, Button, TextField } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
 
@@ -13,7 +13,8 @@ function InviteUI(props) {
     loading,
     showMessage,
     invitation,
-    handleInputChange,
+    handleChange,
+    runValidations,
     handleSubmit,
     formInvalid,
     handleCloseSectionMessage,
@@ -23,7 +24,7 @@ function InviteUI(props) {
     let messageType;
 
     const invalidPropExists = Object.values(invitation).some(
-      (prop) => prop.isInvalid
+      (prop) => prop.state === "invalid"
     );
 
     if (showMessage) {
@@ -69,53 +70,82 @@ function InviteUI(props) {
         <form onSubmit={handleSubmit}>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
-              <Input
-                label="Nombre (Requerido)"
+              <TextField
+                label="Nombre"
                 placeholder="Ingresa su nombre completo"
                 name="name"
-                handleChange={handleInputChange}
+                id="name"
                 value={invitation.name.value}
                 type="text"
                 isInvalid={invitation.name.isInvalid && formInvalid}
+                isRequired={true}
                 errorMessage="Este campo no puede estar vacío"
+                validMessage="El nombre es valido"
                 isDisabled={loading && true}
                 size="compact"
+                isFullWidth={true}
+                maxLength={30}
+                minLength={1}
+                state={invitation.name.state}
+                handleChange={handleChange}
+                handleBlur={runValidations}
               />
-              <Input
-                label="Identificación (Requerido)"
+
+              <TextField
+                label="Identificación"
                 placeholder="Ingrese su número de identificación"
                 name="id"
-                handleChange={handleInputChange}
+                id="id"
                 value={invitation.id.value}
                 type="number"
                 isInvalid={invitation.id.isInvalid && formInvalid}
+                isRequired={true}
                 errorMessage="Este campo debe contener un número de identificación"
+                validMessage="El número de identificación es valido"
                 isDisabled={loading && true}
                 size="compact"
+                isFullWidth={true}
+                state={invitation.id.state}
+                handleChange={handleChange}
+                handleBlur={runValidations}
               />
-              <Input
-                label="Número de teléfono (Requerido)"
+
+              <TextField
+                label="Número de teléfono"
                 placeholder="Ingrese su número telefónico"
                 name="phone"
-                handleChange={handleInputChange}
+                id="phone"
                 value={invitation.phone.value}
                 type="number"
                 isInvalid={invitation.phone.isInvalid && formInvalid}
+                isRequired={true}
                 errorMessage="Este campo debe tener un número de teléfono"
+                validMessage="El número de teléfono es valido"
                 isDisabled={loading && true}
                 size="compact"
+                isFullWidth={true}
+                state={invitation.phone.state}
+                handleChange={handleChange}
+                handleBlur={runValidations}
               />
-              <Input
-                label="Correo (Requerido)"
+
+              <TextField
+                label="Correo"
                 placeholder="Ingrese su dirección de correo electrónico"
                 name="email"
-                handleChange={handleInputChange}
+                id="email"
                 value={invitation.email.value}
                 type="email"
+                isRequired={true}
                 isInvalid={invitation.email.isInvalid && formInvalid}
                 errorMessage="Este campo debe tener una dirección de correo electrónico válida"
+                validMessage="El correo electrónico es valido"
                 isDisabled={loading && true}
                 size="compact"
+                isFullWidth={true}
+                state={invitation.email.state}
+                handleChange={handleChange}
+                handleBlur={runValidations}
               />
             </StyledFormContainer>
             <Button

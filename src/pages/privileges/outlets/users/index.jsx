@@ -10,10 +10,15 @@ import { mockPrivilegeOptionsConfig } from "../config/privileges.config";
 import { mockPrivilegeUserTabsConfig } from "../users/config/privilegesUsers.config";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
-import { Input } from "../../../../components/inputs/Input";
 import { Table } from "../../../../components/data/Table";
-import { Stack, Button, Tabs } from "@inube/design-system";
-import { StyledContainer } from "./styles";
+import {
+  Stack,
+  Button,
+  Tabs,
+  TextField,
+  useMediaQuery,
+} from "@inube/design-system";
+import { StyledContainer, StyledTextFieldContainer } from "./styles";
 import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
 
@@ -26,8 +31,10 @@ function Users() {
     setIsSelected(tabId);
   };
 
+  const smallScreen = useMediaQuery("(max-width: 580px)");
+
   return (
-    <StyledContainer>
+    <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs route={mockPrivilegeOptionsConfig[0].url} />
@@ -44,16 +51,31 @@ function Users() {
             handleSelectedTab={handleTabChange}
           />
           <Stack justifyContent="space-between" alignItems="center">
-            <Input
-              placeholder="Search..."
-              type="search"
-              iconBefore={<MdSearch size={18} />}
-              size="compact"
-            />
-            <Button iconBefore={<MdPersonAddAlt size={18} />} spacing="compact">
-              Invite user
-            </Button>
-            <MdOutlineMoreHoriz size={24} />
+            <StyledTextFieldContainer>
+              <TextField
+                name="searchUser"
+                id="searchUser"
+                placeholder="Search..."
+                type="search"
+                minLength={1}
+                iconBefore={<MdSearch size={18} />}
+                size="compact"
+                isFullWidth={true}
+              />
+            </StyledTextFieldContainer>
+
+            {smallScreen ? (
+              <Stack>
+                <MdOutlineMoreHoriz size={24} cursor="pointer" />
+              </Stack>
+            ) : (
+              <Button
+                iconBefore={<MdPersonAddAlt size={18} />}
+                spacing="compact"
+              >
+                Invite user
+              </Button>
+            )}
           </Stack>
           <Table
             titles={titlesConfig}
