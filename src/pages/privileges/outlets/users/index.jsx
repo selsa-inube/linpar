@@ -1,30 +1,59 @@
 import {
-  actions,
-  titles,
-  breakPoints,
-  entries,
-} from "../../../../mocks/apps/dataTable.mock";
-import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
-import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
-import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
-import { PageTitle } from "../../../../components/PageTitle";
-import { Table } from "../../../../components/data/Table";
-import {
-  Stack,
   Button,
+  Stack,
   Tabs,
   TextField,
   useMediaQuery,
 } from "@inube/design-system";
-import { StyledContainer, StyledTextFieldContainer } from "./styles";
-import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
+import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { PageTitle } from "../../../../components/PageTitle";
+import { Table } from "../../../../components/data/Table";
+import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
+import {
+  actions,
+  breakPoints,
+  entries,
+  titles,
+} from "../../../../mocks/apps/dataTable.mock";
+import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
+import { invitationEntriesDataMock } from "../../../../mocks/apps/privileges/clientsInvitations.mock";
+import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
+import {
+  invitationActionsConfig,
+  invitationBreakpointsConfig,
+  invitationTitlesConfig,
+} from "../../../../pages/privileges/outlets/users/config/dataTableInvitations.config";
+import { StyledContainer, StyledTextFieldContainer } from "./styles";
 
 function Users() {
   const [isSelected, setIsSelected] = useState(mockPrivilegeUserTabs[0].id);
 
   const handleTabChange = (tabId) => {
     setIsSelected(tabId);
+  };
+
+  const renderSelectedTab = () => {
+    switch (isSelected) {
+      case mockPrivilegeUserTabs[1].id:
+        return (
+          <Table
+            titles={invitationTitlesConfig}
+            entries={invitationEntriesDataMock}
+            actions={invitationActionsConfig}
+            breakPoints={invitationBreakpointsConfig}
+          />
+        );
+      default:
+        return (
+          <Table
+            titles={titles}
+            entries={entries}
+            actions={actions}
+            breakPoints={breakPoints}
+          />
+        );
+    }
   };
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -73,12 +102,7 @@ function Users() {
               </Button>
             )}
           </Stack>
-          <Table
-            titles={titles}
-            entries={entries}
-            actions={actions}
-            breakPoints={breakPoints}
-          />
+          {renderSelectedTab()}
         </Stack>
       </Stack>
     </StyledContainer>
