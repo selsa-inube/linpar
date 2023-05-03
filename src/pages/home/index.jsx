@@ -1,9 +1,9 @@
 import { HomeUI } from "./interface";
 
-import { mockApps } from "../../mocks/home/apps.mock";
+import { mockAppsConfig } from "../home/config/apps.config";
 
 function Home() {
-  return <HomeUI apps={mockApps} />;
+  return <HomeUI apps={mockAppsConfig} />;
 }
 
 export { Home };

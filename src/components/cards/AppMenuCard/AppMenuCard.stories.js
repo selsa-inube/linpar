@@ -1,6 +1,6 @@
 import React from "react";
 import { AppMenuCard } from "./index";
-import { mockApps } from "../../../mocks/home/apps.mock";
+import { mockAppsConfig } from "../../../pages/home/config/apps.config";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
@@ -17,7 +17,7 @@ const story = {
 
 const Default = (args) => <AppMenuCard {...args} />;
 Default.args = {
-  icon: mockApps[0].icon,
+  icon: mockAppsConfig[0].icon,
   label: "users",
   description: "invite, edit, activate and delete Linix users",
   url: "/",

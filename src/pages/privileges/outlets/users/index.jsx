@@ -1,11 +1,13 @@
 import {
-  actions,
-  titles,
-  breakPoints,
-  entries,
+  breakPointsDataMock,
+  entriesDataMock,
 } from "../../../../mocks/apps/dataTable.mock";
-import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
-import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
+import {
+  actionsConfig,
+  titlesConfig,
+} from "../../../../components/data/Table/config/dataTable.config";
+import { mockPrivilegeOptionsConfig } from "../config/privileges.config";
+import { mockPrivilegeUserTabsConfig } from "../users/config/privilegesUsers.config";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Input } from "../../../../components/inputs/Input";
@@ -16,7 +18,9 @@ import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
 
 function Users() {
-  const [isSelected, setIsSelected] = useState(mockPrivilegeUserTabs[0].id);
+  const [isSelected, setIsSelected] = useState(
+    mockPrivilegeUserTabsConfig[0].id
+  );
 
   const handleTabChange = (tabId) => {
     setIsSelected(tabId);
@@ -26,16 +30,16 @@ function Users() {
     <StyledContainer>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={mockPrivilegeOptions[0].url} />
+          <Breadcrumbs route={mockPrivilegeOptionsConfig[0].url} />
           <PageTitle
-            title={mockPrivilegeOptions[0].label}
-            icon={mockPrivilegeOptions[0].icon}
-            description={mockPrivilegeOptions[0].description}
+            title={mockPrivilegeOptionsConfig[0].label}
+            icon={mockPrivilegeOptionsConfig[0].icon}
+            description={mockPrivilegeOptionsConfig[0].description}
           />
         </Stack>
         <Stack gap="32px" direction="column">
           <Tabs
-            tabs={mockPrivilegeUserTabs}
+            tabs={mockPrivilegeUserTabsConfig}
             selectedTab={isSelected}
             handleSelectedTab={handleTabChange}
           />
@@ -52,10 +56,10 @@ function Users() {
             <MdOutlineMoreHoriz size={24} />
           </Stack>
           <Table
-            titles={titles}
-            entries={entries}
-            actions={actions}
-            breakPoints={breakPoints}
+            titles={titlesConfig}
+            entries={entriesDataMock}
+            actions={actionsConfig}
+            breakPoints={breakPointsDataMock}
           />
         </Stack>
       </Stack>

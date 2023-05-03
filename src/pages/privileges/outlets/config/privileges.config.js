@@ -8,7 +8,7 @@ import {
   MdInventory2,
 } from "react-icons/md";
 
-const mockPrivilegeOptions = [
+const mockPrivilegeOptionsConfig = [
   {
     id: 1,
     icon: <MdPerson />,
@@ -60,4 +60,4 @@ const mockPrivilegeOptions = [
   },
 ];
 
-export { mockPrivilegeOptions };
+export { mockPrivilegeOptionsConfig };

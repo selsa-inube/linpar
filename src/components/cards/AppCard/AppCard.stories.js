@@ -1,5 +1,5 @@
 import { AppCard } from "../AppCard";
-import { mockApps } from "../../../mocks/home/apps.mock";
+import { mockAppsConfig } from "../../../pages/home/config/apps.config";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
@@ -18,10 +18,10 @@ const Template = (args) => <AppCard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: mockApps[0].label,
-  description: mockApps[0].description,
-  icon: mockApps[0].icon,
-  url: mockApps[0].url,
+  label: mockAppsConfig[0].label,
+  description: mockAppsConfig[0].description,
+  icon: mockAppsConfig[0].icon,
+  url: mockAppsConfig[0].url,
 };
 
 export default story;

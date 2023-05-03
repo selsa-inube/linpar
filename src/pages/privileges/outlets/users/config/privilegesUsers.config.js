@@ -1,4 +1,4 @@
-const mockPrivilegeUserTabs = [
+const mockPrivilegeUserTabsConfig = [
   {
     id: "privileges-users",
     isDisabled: false,
@@ -11,4 +11,4 @@ const mockPrivilegeUserTabs = [
   },
 ];
 
-export { mockPrivilegeUserTabs };
+export { mockPrivilegeUserTabsConfig };

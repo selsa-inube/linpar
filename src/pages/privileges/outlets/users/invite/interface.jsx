@@ -1,8 +1,8 @@
 import { StyledPageUsers, StyledFormContainer } from "./styles";
 import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../../components/PageTitle";
-import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
-import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
+import { messageInvitationSentConfig } from "../../../../../components/feedback/SectionMessage/config/sectionMessage.config";
+import { usersInvitationsConfig } from "../invite/config/usersInvitations.config";
 import { Input } from "../../../../../components/inputs/Input";
 import { Stack, Button } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
@@ -41,7 +41,7 @@ function InviteUI(props) {
     }
 
     const { title, description, icon, appearance } =
-      messageInvitationSent[messageType];
+      messageInvitationSentConfig[messageType];
 
     return (
       <SectionMessage
@@ -59,11 +59,11 @@ function InviteUI(props) {
     <StyledPageUsers>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={usersInvitations[0].route} />
+          <Breadcrumbs route={usersInvitationsConfig[0].route} />
           <PageTitle
-            title={usersInvitations[0].title}
-            icon={usersInvitations[0].icon}
-            description={usersInvitations[0].description}
+            title={usersInvitationsConfig[0].title}
+            icon={usersInvitationsConfig[0].icon}
+            description={usersInvitationsConfig[0].description}
           />
         </Stack>
         <form onSubmit={handleSubmit}>
