@@ -1,9 +1,8 @@
 import { StyledPageUsers, StyledFormContainer } from "./styles";
 import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../../components/PageTitle";
-import { messageInvitationSent } from "../../../../../mocks/apps/messagesCards.mock";
-import { usersInvitations } from "../../../../../mocks/apps/usersInvitations.mock";
-import { Input } from "../../../../../components/inputs/Input";
+import { messageInvitationSentConfig } from "../../../../../components/feedback/SectionMessage/config/sectionMessage.config";
+import { usersInvitationsConfig } from "../invite/config/usersInvitations.config";
 import { Stack, Button, TextField } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
