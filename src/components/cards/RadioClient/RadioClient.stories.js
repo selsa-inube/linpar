@@ -1,5 +1,5 @@
 import { RadioClient } from "./index";
-import { mockClients } from "../../../mocks/login/clients.mock";
+import { clientsDataMock } from "../../../mocks/login/clients.mock";
 
 const story = {
   components: [RadioClient],
@@ -11,11 +11,11 @@ const story = {
 
 const Default = (args) => <RadioClient {...args} />;
 Default.args = {
-  id: mockClients[2].id,
+  id: clientsDataMock[2].id,
   name: "client",
-  value: mockClients[2].name,
-  label: mockClients[2].name,
-  logo: mockClients[2].logo,
+  value: clientsDataMock[2].name,
+  label: clientsDataMock[2].name,
+  logo: clientsDataMock[2].logo,
 };
 
 export default story;

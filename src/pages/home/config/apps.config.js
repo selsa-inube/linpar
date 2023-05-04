@@ -10,7 +10,7 @@ import {
   MdTableView,
 } from "react-icons/md";
 
-const mockAppsConfig = [
+const appsConfig = [
   {
     id: 1,
     label: "Privilegios",
@@ -78,4 +78,4 @@ const mockAppsConfig = [
   },
 ];
 
-export { mockAppsConfig };
+export { appsConfig };

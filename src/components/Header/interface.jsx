@@ -8,7 +8,7 @@ import {
 } from "./styles";
 import { createPortal } from "react-dom";
 import { Menu } from "../navigation/Menu";
-import { mockAppsConfig } from "../../pages/home/config/apps.config";
+import { appsConfig } from "../../pages/home/config/apps.config";
 import { MdMenu } from "react-icons/md";
 import { User, useMediaQuery } from "@inube/design-system";
 
@@ -48,7 +48,7 @@ function HeaderUI(props) {
           <StyledMenuWrapper>
             <Menu
               title="Menu"
-              links={mockAppsConfig}
+              links={appsConfig}
               handleMenu={handleMenu}
               menu={menu}
             />

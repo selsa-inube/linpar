@@ -1,6 +1,6 @@
 import { MenuLink } from "../../MenuLink";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { mockAppsConfig } from "../../../../pages/home/config/apps.config";
+import { appsConfig } from "../../../../pages/home/config/apps.config";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
@@ -19,20 +19,20 @@ const Template = (args) => <MenuLink {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: mockAppsConfig[0].label,
-  icon: mockAppsConfig[0].icon,
+  label: appsConfig[0].label,
+  icon: appsConfig[0].icon,
   icon2: <MdKeyboardArrowRight />,
   isSelected: false,
-  url: mockAppsConfig[0].url,
+  url: appsConfig[0].url,
 };
 
 export const Selected = Template.bind({});
 Selected.args = {
-  label: mockAppsConfig[0].label,
-  icon: mockAppsConfig[0].icon,
+  label: appsConfig[0].label,
+  icon: appsConfig[0].icon,
   icon2: <MdKeyboardArrowRight />,
   isSelected: true,
-  url: mockAppsConfig[0].url,
+  url: appsConfig[0].url,
 };
 
 export default story;

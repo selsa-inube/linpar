@@ -4,8 +4,8 @@ import {
   titlesConfig,
   breakPointsConfig,
 } from "../../../../components/data/Table/config/dataTable.config";
-import { mockPrivilegeOptionsConfig } from "../config/privileges.config";
-import { mockPrivilegeUserTabsConfig } from "../users/config/privilegesUsers.config";
+import { privilegeOptionsConfig } from "../config/privileges.config";
+import { privilegeUserTabsConfig } from "../users/config/privilegesUsers.config";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Table } from "../../../../components/data/Table";
@@ -21,9 +21,7 @@ import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
 
 function Users() {
-  const [isSelected, setIsSelected] = useState(
-    mockPrivilegeUserTabsConfig[0].id
-  );
+  const [isSelected, setIsSelected] = useState(privilegeUserTabsConfig[0].id);
 
   const handleTabChange = (tabId) => {
     setIsSelected(tabId);
@@ -35,16 +33,16 @@ function Users() {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={mockPrivilegeOptionsConfig[0].url} />
+          <Breadcrumbs route={privilegeOptionsConfig[0].url} />
           <PageTitle
-            title={mockPrivilegeOptionsConfig[0].label}
-            icon={mockPrivilegeOptionsConfig[0].icon}
-            description={mockPrivilegeOptionsConfig[0].description}
+            title={privilegeOptionsConfig[0].label}
+            icon={privilegeOptionsConfig[0].icon}
+            description={privilegeOptionsConfig[0].description}
           />
         </Stack>
         <Stack gap="32px" direction="column">
           <Tabs
-            tabs={mockPrivilegeUserTabsConfig}
+            tabs={privilegeUserTabsConfig}
             selectedTab={isSelected}
             handleSelectedTab={handleTabChange}
           />

@@ -1,5 +1,5 @@
 import { PageTitle } from "./index";
-import { mockAppsConfig } from "../../pages/home/config/apps.config";
+import { appsConfig } from "../../pages/home/config/apps.config";
 
 const story = {
   component: [PageTitle],
@@ -10,9 +10,9 @@ const Template = (args) => <PageTitle {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  title: mockAppsConfig[0].label,
-  description: mockAppsConfig[0].description,
-  icon: mockAppsConfig[0].icon,
+  title: appsConfig[0].label,
+  description: appsConfig[0].description,
+  icon: appsConfig[0].icon,
 };
 
 export default story;

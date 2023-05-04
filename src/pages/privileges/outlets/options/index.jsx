@@ -1,15 +1,15 @@
 import { PrivilegesOptionsUI } from "./interface";
-import { mockPrivilegeOptionsConfig } from "../config/privileges.config";
-import { mockAppsConfig } from "../../../home/config/apps.config";
+import { privilegeOptionsConfig } from "../config/privileges.config";
+import { appsConfig } from "../../../home/config/apps.config";
 
 function PrivilegesOptions() {
   return (
     <PrivilegesOptionsUI
-      appName={mockAppsConfig[0].label}
-      appDescription={mockAppsConfig[0].description}
-      appIcon={mockAppsConfig[0].icon}
-      appOptions={mockPrivilegeOptionsConfig}
-      appRoute={mockAppsConfig[0].url}
+      appName={appsConfig[0].label}
+      appDescription={appsConfig[0].description}
+      appIcon={appsConfig[0].icon}
+      appOptions={privilegeOptionsConfig}
+      appRoute={appsConfig[0].url}
     />
   );
 }
