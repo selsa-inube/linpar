@@ -1,17 +1,20 @@
-import { BsArrow90DegRight, BsClipboardCheck } from "react-icons/bs";
-import { MdOutlineDelete } from "react-icons/md";
+import {
+  MdOutlineDelete,
+  MdOutlineLibraryAddCheck,
+  MdOutlineSubdirectoryArrowRight,
+} from "react-icons/md";
 
 const invitationActionsConfig = [
   {
     id: 1,
     actionName: "Complete",
-    content: <BsClipboardCheck />,
+    content: <MdOutlineLibraryAddCheck />,
     type: "secondary",
   },
   {
     id: 2,
     actionName: "Resend",
-    content: <BsArrow90DegRight />,
+    content: <MdOutlineSubdirectoryArrowRight />,
     type: "primary",
   },
   {

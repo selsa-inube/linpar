@@ -3,7 +3,7 @@ const invitationEntriesDataMock = [
     id: 10,
     userID: "45645",
     username: "David Leonardo Garzón",
-    mail: "LGARZON",
+    mail: "lgarzon@gmail.com",
     invitationDate: "11/JUN/2022",
     status: "Sent",
   },
