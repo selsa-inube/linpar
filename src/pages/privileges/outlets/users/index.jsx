@@ -3,7 +3,7 @@ import {
   actionsConfig,
   titlesConfig,
   breakPointsConfig,
-} from "../../../../components/data/Table/config/dataTable.config";
+} from "./config/dataTable.config";
 import { privilegeOptionsConfig } from "../config/privileges.config";
 import { privilegeUserTabsConfig } from "../users/config/privilegesUsers.config";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
