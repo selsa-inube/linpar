@@ -68,6 +68,8 @@ function Users() {
               <Button
                 iconBefore={<MdPersonAddAlt size={18} />}
                 spacing="compact"
+                type="link"
+                path="/privileges/users/invite"
               >
                 Invite user
               </Button>
