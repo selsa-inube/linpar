@@ -1,6 +1,6 @@
 import { MdModeEdit, MdOutlineDelete, MdToggleOff } from "react-icons/md";
 
-const breakPointsConfig = [
+const usersBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
   { breakpoint: "(max-width: 980px)", totalColumns: 2 },
@@ -10,7 +10,7 @@ const breakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-const titlesConfig = [
+const usersTitlesConfig = [
   {
     id: "username",
     titleName: "Username",
@@ -33,7 +33,7 @@ const titlesConfig = [
   },
 ];
 
-const actionsConfig = [
+const usersActionsConfig = [
   {
     id: 1,
     actionName: "Activate",
@@ -54,4 +54,4 @@ const actionsConfig = [
   },
 ];
 
-export { breakPointsConfig, actionsConfig, titlesConfig };
+export { usersBreakPointsConfig, usersActionsConfig, usersTitlesConfig };

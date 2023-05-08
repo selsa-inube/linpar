@@ -1,11 +1,11 @@
-import { entriesDataMock } from "../../../../mocks/apps/dataTable.mock";
+import { entriesDataMock } from "../../../../mocks/apps/privileges/users.mock";
 import {
-  actionsConfig,
-  titlesConfig,
-  breakPointsConfig,
-} from "./config/dataTable.config";
-import { privilegeOptionsConfig } from "../config/privileges.config";
-import { privilegeUserTabsConfig } from "../users/config/privilegesUsers.config";
+  usersActionsConfig,
+  usersTitlesConfig,
+  usersBreakPointsConfig,
+} from "./config/usersTable.config";
+import { privilegeOptionsConfig } from "../options/config/privileges.config";
+import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Table } from "../../../../components/data/Table";
@@ -76,10 +76,10 @@ function Users() {
             )}
           </Stack>
           <Table
-            titles={titlesConfig}
+            titles={usersTitlesConfig}
             entries={entriesDataMock}
-            actions={actionsConfig}
-            breakPoints={breakPointsConfig}
+            actions={usersActionsConfig}
+            breakPoints={usersBreakPointsConfig}
           />
         </Stack>
       </Stack>
