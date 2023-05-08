@@ -1,4 +1,4 @@
-import { Breadcrumbs } from "../Breadcrumbs";
+import { Breadcrumbs } from ".";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {

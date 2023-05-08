@@ -1,4 +1,4 @@
-import { MenuLink } from "../../MenuLink";
+import { MenuLink } from "..";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { mockApps } from "../../../../mocks/home/apps.mock";
 import { BrowserRouter } from "react-router-dom";
