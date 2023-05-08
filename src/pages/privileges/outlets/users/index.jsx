@@ -21,10 +21,15 @@ import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
 
 function Users() {
-  const [isSelected, setIsSelected] = useState(privilegeUserTabsConfig[0].id);
+  const [isSelected, setIsSelected] = useState(mockPrivilegeUserTabs[0].id);
+  const [searchText, setSearchText] = useState("");
 
   const handleTabChange = (tabId) => {
     setIsSelected(tabId);
+  };
+
+  const handleSearchText = (event) => {
+    setSearchText(event.target.value);
   };
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -57,6 +62,8 @@ function Users() {
                 iconBefore={<MdSearch size={18} />}
                 size="compact"
                 isFullWidth={true}
+                value={searchText}
+                handleChange={handleSearchText}
               />
             </StyledTextFieldContainer>
 
@@ -76,10 +83,11 @@ function Users() {
             )}
           </Stack>
           <Table
-            titles={usersTitlesConfig}
-            entries={entriesDataMock}
-            actions={usersActionsConfig}
-            breakPoints={usersBreakPointsConfig}
+            titles={titles}
+            entries={entries}
+            actions={actions}
+            breakPoints={breakPoints}
+            filter={searchText}
           />
         </Stack>
       </Stack>
