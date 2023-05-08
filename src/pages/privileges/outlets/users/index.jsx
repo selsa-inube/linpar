@@ -21,7 +21,7 @@ import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
 
 function Users() {
-  const [isSelected, setIsSelected] = useState(mockPrivilegeUserTabs[0].id);
+  const [isSelected, setIsSelected] = useState(privilegeUserTabsConfig[0].id);
   const [searchText, setSearchText] = useState("");
 
   const handleTabChange = (tabId) => {
@@ -83,10 +83,10 @@ function Users() {
             )}
           </Stack>
           <Table
-            titles={titles}
-            entries={entries}
-            actions={actions}
-            breakPoints={breakPoints}
+            titles={usersTitlesConfig}
+            entries={entriesDataMock}
+            actions={usersActionsConfig}
+            breakPoints={usersBreakPointsConfig}
             filter={searchText}
           />
         </Stack>
