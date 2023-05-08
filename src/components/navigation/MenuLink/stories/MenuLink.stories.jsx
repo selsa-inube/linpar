@@ -1,4 +1,4 @@
-import { MenuLink } from "../../MenuLink";
+import { MenuLink } from "..";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { appsConfig } from "../../../../pages/home/config/apps.config";
 import { BrowserRouter } from "react-router-dom";

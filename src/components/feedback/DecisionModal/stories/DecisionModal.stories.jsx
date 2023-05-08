@@ -1,4 +1,4 @@
-import { DecisionModal } from "../../DecisionModal";
+import { DecisionModal } from "..";
 import { action } from "@storybook/addon-actions";
 
 const story = {
