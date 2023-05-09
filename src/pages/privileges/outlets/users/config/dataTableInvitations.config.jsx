@@ -54,13 +54,17 @@ const invitationTitlesConfig = [
 ];
 
 const invitationBreakpointsConfig = [
-  { breakpoint: "(min-width: 1091px)", totalColumns: 5 },
-  { breakpoint: "(max-width: 1080px)", totalColumns: 4 },
-  { breakpoint: "(max-width: 980px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 850px)", totalColumns: 5 },
-  { breakpoint: "(max-width: 680px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 550px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 360px)", totalColumns: 2 },
+  { breakpoint: "(min-width: 1229px)", totalColumns: 5 },
+  { breakpoint: "(max-width: 1228px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 1127px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 1011px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 851px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 849px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 715px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 602px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 579px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 506px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 316px)", totalColumns: 1 },
 ];
 
 export {
