@@ -1,11 +1,11 @@
+import { entriesDataMock } from "../../../../mocks/apps/privileges/users.mock";
 import {
-  actions,
-  titles,
-  breakPoints,
-  entries,
-} from "../../../../mocks/apps/dataTable.mock";
-import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
-import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
+  usersActionsConfig,
+  usersTitlesConfig,
+  usersBreakPointsConfig,
+} from "./config/usersTable.config";
+import { privilegeOptionsConfig } from "../options/config/privileges.config";
+import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Table } from "../../../../components/data/Table";
@@ -21,7 +21,7 @@ import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import { useState } from "react";
 
 function Users() {
-  const [isSelected, setIsSelected] = useState(mockPrivilegeUserTabs[0].id);
+  const [isSelected, setIsSelected] = useState(privilegeUserTabsConfig[0].id);
   const [searchText, setSearchText] = useState("");
 
   const handleTabChange = (tabId) => {
@@ -38,16 +38,16 @@ function Users() {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={mockPrivilegeOptions[0].url} />
+          <Breadcrumbs route={privilegeOptionsConfig[0].url} />
           <PageTitle
-            title={mockPrivilegeOptions[0].label}
-            icon={mockPrivilegeOptions[0].icon}
-            description={mockPrivilegeOptions[0].description}
+            title={privilegeOptionsConfig[0].label}
+            icon={privilegeOptionsConfig[0].icon}
+            description={privilegeOptionsConfig[0].description}
           />
         </Stack>
         <Stack gap="32px" direction="column">
           <Tabs
-            tabs={mockPrivilegeUserTabs}
+            tabs={privilegeUserTabsConfig}
             selectedTab={isSelected}
             handleSelectedTab={handleTabChange}
           />
@@ -83,10 +83,10 @@ function Users() {
             )}
           </Stack>
           <Table
-            titles={titles}
-            entries={entries}
-            actions={actions}
-            breakPoints={breakPoints}
+            titles={usersTitlesConfig}
+            entries={entriesDataMock}
+            actions={usersActionsConfig}
+            breakPoints={usersBreakPointsConfig}
             filter={searchText}
           />
         </Stack>
