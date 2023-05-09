@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { mockClients } from "../../../../mocks/login/mock.clients";
+import { clientsDataMock } from "../../../../mocks/login/clients.mock";
 import { ClientsUI } from "./interface";
 
 function Clients() {
@@ -26,7 +26,7 @@ function Clients() {
   }
 
   function filterClients() {
-    return mockClients.filter((client) => {
+    return clientsDataMock.filter((client) => {
       return (
         client.name.toUpperCase().includes(search.toUpperCase()) ||
         client.sigla.toUpperCase().includes(search.toUpperCase())
@@ -47,7 +47,7 @@ function Clients() {
 
   return (
     <ClientsUI
-      clients={mockClients}
+      clients={clientsDataMock}
       search={search}
       client={client}
       handleSearchChange={handleSearchChange}

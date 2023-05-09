@@ -1,5 +1,5 @@
 import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
-const messageInvitationSent = {
+const messageInvitationSentConfig = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
@@ -16,4 +16,4 @@ const messageInvitationSent = {
   },
 };
 
-export { messageInvitationSent };
+export { messageInvitationSentConfig };
