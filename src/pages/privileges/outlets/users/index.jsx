@@ -28,9 +28,14 @@ import { StyledContainer, StyledTextFieldContainer } from "./styles";
 
 function Users() {
   const [isSelected, setIsSelected] = useState(mockPrivilegeUserTabs[0].id);
+  const [searchText, setSearchText] = useState("");
 
   const handleTabChange = (tabId) => {
     setIsSelected(tabId);
+  };
+
+  const handleSearchText = (event) => {
+    setSearchText(event.target.value);
   };
 
   const renderSelectedTab = () => {
@@ -86,6 +91,8 @@ function Users() {
                 iconBefore={<MdSearch size={18} />}
                 size="compact"
                 isFullWidth={true}
+                value={searchText}
+                handleChange={handleSearchText}
               />
             </StyledTextFieldContainer>
 
@@ -97,6 +104,8 @@ function Users() {
               <Button
                 iconBefore={<MdPersonAddAlt size={18} />}
                 spacing="compact"
+                type="link"
+                path="/privileges/users/invite"
               >
                 Invite user
               </Button>

@@ -1,4 +1,4 @@
-import { AppCard } from "../AppCard";
+import { AppCard } from ".";
 import { mockApps } from "../../../mocks/home/apps.mock";
 import { BrowserRouter } from "react-router-dom";
 
