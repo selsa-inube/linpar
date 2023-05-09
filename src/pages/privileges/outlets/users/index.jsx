@@ -11,23 +11,25 @@ import { PageTitle } from "../../../../components/PageTitle";
 import { Table } from "../../../../components/data/Table";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
 import {
-  actions,
-  breakPoints,
-  entries,
-  titles,
-} from "../../../../mocks/apps/dataTable.mock";
-import { mockPrivilegeOptions } from "../../../../mocks/apps/privileges.mock";
-import { invitationEntriesDataMock } from "../../../../mocks/apps/privileges/clientsInvitations.mock";
-import { mockPrivilegeUserTabs } from "../../../../mocks/apps/privilegesUsers.mock";
+  invitationEntriesDataMock,
+  userEntriesDataMock,
+} from "../../../../mocks/apps/privileges/users.mock";
+import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import {
   invitationActionsConfig,
   invitationBreakpointsConfig,
   invitationTitlesConfig,
-} from "../../../../pages/privileges/outlets/users/config/dataTableInvitations.config";
+} from "./config/dataTableInvitations.config";
+import {
+  usersActionsConfig,
+  usersBreakPointsConfig,
+  usersTitlesConfig,
+} from "./config/usersTable.config";
+import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { StyledContainer, StyledTextFieldContainer } from "./styles";
 
 function Users() {
-  const [isSelected, setIsSelected] = useState(mockPrivilegeUserTabs[0].id);
+  const [isSelected, setIsSelected] = useState(privilegeUserTabsConfig[0].id);
   const [searchText, setSearchText] = useState("");
 
   const handleTabChange = (tabId) => {
@@ -41,16 +43,16 @@ function Users() {
   const renderSelectedTab = () => {
     return (
       <>
-        {isSelected === mockPrivilegeUserTabs[0].id && (
+        {isSelected === privilegeUserTabsConfig[0].id && (
           <Table
-            titles={titles}
-            entries={entries}
-            actions={actions}
-            breakPoints={breakPoints}
+            titles={usersTitlesConfig}
+            entries={userEntriesDataMock}
+            actions={usersActionsConfig}
+            breakPoints={usersBreakPointsConfig}
             filter={searchText}
           />
         )}
-        {isSelected === mockPrivilegeUserTabs[1].id && (
+        {isSelected === privilegeUserTabsConfig[1].id && (
           <Table
             titles={invitationTitlesConfig}
             entries={invitationEntriesDataMock}
@@ -69,16 +71,16 @@ function Users() {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={mockPrivilegeOptions[0].url} />
+          <Breadcrumbs route={privilegeOptionsConfig[0].url} />
           <PageTitle
-            title={mockPrivilegeOptions[0].label}
-            icon={mockPrivilegeOptions[0].icon}
-            description={mockPrivilegeOptions[0].description}
+            title={privilegeOptionsConfig[0].label}
+            icon={privilegeOptionsConfig[0].icon}
+            description={privilegeOptionsConfig[0].description}
           />
         </Stack>
         <Stack gap="32px" direction="column">
           <Tabs
-            tabs={mockPrivilegeUserTabs}
+            tabs={privilegeUserTabsConfig}
             selectedTab={isSelected}
             handleSelectedTab={handleTabChange}
           />

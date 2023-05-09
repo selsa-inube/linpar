@@ -1,6 +1,6 @@
 import { Menu } from "..";
 import { Default as Header } from "../../../Header/stories/Header.stories";
-import { mockApps } from "../../../../mocks/home/apps.mock";
+import { appsConfig } from "../../../../pages/home/config/apps.config";
 import linparLogo from "../../../../assets/images/linpar.png";
 import {
   StyledContainer,
@@ -52,13 +52,13 @@ const Template = (args) => <Menu {...args} />;
 
 export const Default = withFullDisplay(Template.bind({}));
 Default.args = {
-  links: mockApps,
+  links: appsConfig,
   title: "Menú",
 };
 
 export const Layout = withLayout(Template.bind({}));
 Layout.args = {
-  links: mockApps,
+  links: appsConfig,
   title: "Menú",
 };
 
