@@ -1,4 +1,5 @@
 import { MdModeEdit, MdOutlineDelete, MdToggleOff } from "react-icons/md";
+import { ActivateUserConfig } from "../../pages/privileges/outlets/users/ActivateUserConfig";
 
 const titles = [
   {
@@ -27,7 +28,7 @@ const actions = [
   {
     id: 1,
     actionName: "Activate",
-    content: <MdToggleOff size={32} />,
+    content: (entry) => <ActivateUserConfig entry={entry} id={entry.id} />,
     type: "secondary",
   },
   {

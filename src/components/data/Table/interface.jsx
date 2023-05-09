@@ -54,7 +54,11 @@ function ShowAction(actionContent, entry, mediaQuery) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
-        <StyledTd key={`${entry.id}-${action.id}`}>{action.content}</StyledTd>
+        <StyledTd key={`${entry.id}-${action.id}`}>
+          {typeof action.content === "function"
+            ? action.content(entry)
+            : action.content}
+        </StyledTd>
       ))}
     </>
   ) : (
@@ -92,7 +96,7 @@ function TableUI(props) {
             {TitleColumns.map((title) =>
               entry[title.id] ? (
                 <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{entry[title.id]}</Text>
+                  <Text typoToken="bodySmall">{entry[title.id]} </Text>
                 </StyledTd>
               ) : (
                 <StyledTd key={`e-${entry[title.id]}`}>

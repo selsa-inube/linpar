@@ -10,10 +10,22 @@ import { MdClear } from "react-icons/md";
 import { useState } from "react";
 
 function DecisionModal(props) {
-  const { title, description, appearance, actionText, closeModal } = props;
+  const {
+    title,
+    description,
+    appearance,
+    actionText,
+    closeModal,
+    handleClick,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+
+  const handleAllFunction = () => {
+    handleIsLoading();
+    handleClick();
+  };
 
   const handleIsLoading = () => {
     setIsLoading(true);
@@ -46,7 +58,7 @@ function DecisionModal(props) {
             <Button
               appearance={appearance}
               isLoading={isLoading}
-              handleClick={handleIsLoading}
+              handleClick={handleAllFunction}
               spacing={smallScreen ? "compact" : undefined}
             >
               {actionText}
