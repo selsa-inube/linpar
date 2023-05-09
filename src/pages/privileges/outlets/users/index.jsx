@@ -47,6 +47,7 @@ function Users() {
             entries={entries}
             actions={actions}
             breakPoints={breakPoints}
+            filter={searchText}
           />
         )}
         {isSelected === mockPrivilegeUserTabs[1].id && (
@@ -55,6 +56,7 @@ function Users() {
             entries={invitationEntriesDataMock}
             actions={invitationActionsConfig}
             breakPoints={invitationBreakpointsConfig}
+            filter={searchText}
           />
         )}
       </>
