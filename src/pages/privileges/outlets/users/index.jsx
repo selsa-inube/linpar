@@ -34,26 +34,26 @@ function Users() {
   };
 
   const renderSelectedTab = () => {
-    switch (isSelected) {
-      case mockPrivilegeUserTabs[1].id:
-        return (
-          <Table
-            titles={invitationTitlesConfig}
-            entries={invitationEntriesDataMock}
-            actions={invitationActionsConfig}
-            breakPoints={invitationBreakpointsConfig}
-          />
-        );
-      default:
-        return (
+    return (
+      <>
+        {isSelected === mockPrivilegeUserTabs[0].id && (
           <Table
             titles={titles}
             entries={entries}
             actions={actions}
             breakPoints={breakPoints}
           />
-        );
-    }
+        )}
+        {isSelected === mockPrivilegeUserTabs[1].id && (
+          <Table
+            titles={invitationTitlesConfig}
+            entries={invitationEntriesDataMock}
+            actions={invitationActionsConfig}
+            breakPoints={invitationBreakpointsConfig}
+          />
+        )}
+      </>
+    );
   };
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
