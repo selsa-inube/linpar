@@ -8,6 +8,7 @@ import {
 import { StyledModal } from "./styles";
 import { MdClear } from "react-icons/md";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 
 function DecisionModal(props) {
   const {
@@ -34,7 +35,7 @@ function DecisionModal(props) {
     }, 1000);
   };
 
-  return (
+  return createPortal(
     <Blanket>
       <StyledModal smallScreen={smallScreen}>
         <Stack direction="column" gap={smallScreen ? "16px" : "24px"}>
@@ -69,7 +70,8 @@ function DecisionModal(props) {
           </Stack>
         </Stack>
       </StyledModal>
-    </Blanket>
+    </Blanket>,
+    document.getElementById("decision")
   );
 }
 

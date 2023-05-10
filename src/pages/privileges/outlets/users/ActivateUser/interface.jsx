@@ -55,17 +55,12 @@ function ActivateUserUI(props) {
       />
 
       {showActivateUserModal &&
-        createPortal(
-          <>
-            {ActivateUserModal(
-              checked,
-              showActivateUserModal,
-              entry,
-              handleCloseModal,
-              onActionConfirm
-            )}
-          </>,
-          document.getElementById("decision")
+        ActivateUserModal(
+          checked,
+          showActivateUserModal,
+          entry,
+          handleCloseModal,
+          onActionConfirm
         )}
     </form>
   );
