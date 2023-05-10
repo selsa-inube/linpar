@@ -1,10 +1,10 @@
 import { Table } from "../../../../../../components/data/Table";
-import { invitationEntriesDataMock } from "../../../../../../mocks/apps/privileges/users.mock";
+import { invitationEntriesDataMock } from "../../../../../../mocks/apps/privileges/invitations.mock";
 import {
   invitationActionsConfig,
   invitationBreakpointsConfig,
   invitationTitlesConfig,
-} from "../../config/dataTableInvitations.config";
+} from "../../config/invitationsTable.config";
 
 export default function InvitationsTab(props) {
   const { searchText } = props;
