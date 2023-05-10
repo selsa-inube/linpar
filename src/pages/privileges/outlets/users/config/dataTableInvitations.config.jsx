@@ -1,20 +1,20 @@
 import {
   MdOutlineDelete,
-  MdOutlineLibraryAddCheck,
-  MdOutlineSubdirectoryArrowRight,
+  MdOutlineAssignmentTurnedIn,
+  MdShortcut,
 } from "react-icons/md";
 
 const invitationActionsConfig = [
   {
     id: 1,
     actionName: "Complete",
-    content: <MdOutlineLibraryAddCheck />,
+    content: <MdOutlineAssignmentTurnedIn />,
     type: "secondary",
   },
   {
     id: 2,
     actionName: "Resend",
-    content: <MdOutlineSubdirectoryArrowRight />,
+    content: <MdShortcut />,
     type: "primary",
   },
   {
