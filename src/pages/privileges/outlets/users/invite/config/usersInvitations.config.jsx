@@ -1,6 +1,6 @@
 import { MdPersonAddAlt } from "react-icons/md";
 
-const usersInvitations = [
+const usersInvitationsConfig = [
   {
     id: 1,
     icon: <MdPersonAddAlt />,
@@ -11,4 +11,4 @@ const usersInvitations = [
   },
 ];
 
-export { usersInvitations };
+export { usersInvitationsConfig };

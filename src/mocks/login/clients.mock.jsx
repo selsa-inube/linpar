@@ -1,4 +1,4 @@
-const mockClients = [
+const clientsDataMock = [
   {
     id: 1,
     name: "Fondo de Empleados y Trabajadores de la Universidad del Valle",
@@ -67,4 +67,4 @@ const mockClients = [
   },
 ];
 
-export { mockClients };
+export { clientsDataMock };
