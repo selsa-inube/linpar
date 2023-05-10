@@ -22,13 +22,16 @@ function DecisionModal(props) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
-  const handleAllFunction = () => {
-    handleIsLoading();
-    handleClick();
-  };
-
   const handleIsLoading = () => {
     setIsLoading(true);
+  };
+
+  const handleButtonClick = () => {
+    handleIsLoading();
+    setTimeout(() => {
+      closeModal();
+      handleClick();
+    }, 1000);
   };
 
   return (
@@ -58,7 +61,7 @@ function DecisionModal(props) {
             <Button
               appearance={appearance}
               isLoading={isLoading}
-              handleClick={handleAllFunction}
+              handleClick={handleButtonClick}
               spacing={smallScreen ? "compact" : undefined}
             >
               {actionText}

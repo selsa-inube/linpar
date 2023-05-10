@@ -1,4 +1,5 @@
-import { MdModeEdit, MdOutlineDelete, MdToggleOff } from "react-icons/md";
+import { MdModeEdit, MdOutlineDelete } from "react-icons/md";
+import { ActivateUserConfig } from "../ActivateUserConfig/index";
 
 const usersBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
@@ -37,7 +38,7 @@ const usersActionsConfig = [
   {
     id: 1,
     actionName: "Activate",
-    content: <MdToggleOff size={32} />,
+    content: (entry) => <ActivateUserConfig entry={entry} id={entry.id} />,
     type: "secondary",
   },
   {

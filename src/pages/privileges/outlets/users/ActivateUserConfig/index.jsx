@@ -1,5 +1,6 @@
+import { createPortal } from "react-dom";
 import { Switch } from "@inube/design-system";
-import { useState } from "react";
+import React, { useState } from "react";
 import { DecisionModal } from "../../../../../components/feedback/DecisionModal";
 import { activateUserDecisionConfig } from "./config/decisionModalMessages.config";
 
@@ -7,8 +8,6 @@ function ActivateUserConfig(props) {
   const { entry, id } = props;
   const [actUsermodal, setActUserModal] = useState(false);
   const [checked, setChecked] = useState(false);
-
-  const timeLoading = 1000;
 
   const handelOpenModal = () => {
     setActUserModal(true);
@@ -49,14 +48,8 @@ function ActivateUserConfig(props) {
     );
   };
 
-  const onActionConfirm = (event) => {
-    if (event) {
-      event.preventDefault();
-      setTimeout(() => {
-        handleCloseModal();
-        setChecked(!checked);
-      }, timeLoading);
-    }
+  const onActionConfirm = () => {
+    setChecked(!checked);
   };
 
   return (
@@ -66,7 +59,12 @@ function ActivateUserConfig(props) {
         handleChange={handleChange}
         id={id.toString()}
       />
-      {activationUserModal()}
+
+      {actUsermodal &&
+        createPortal(
+          <>{activationUserModal()}</>,
+          document.getElementById("decision")
+        )}
     </form>
   );
 }
