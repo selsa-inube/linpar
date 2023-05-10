@@ -3,7 +3,6 @@ import { StyledIconDelete } from "./styles";
 import { createPortal } from "react-dom";
 import { DecisionModal } from "../../../../../components/feedback/DecisionModal";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
-import { entries } from "../../../../../mocks/apps/dataTable.mock";
 
 import {
   decisionModalConfig,
