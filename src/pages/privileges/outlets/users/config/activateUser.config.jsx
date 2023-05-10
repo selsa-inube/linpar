@@ -1,4 +1,4 @@
-const activateUserDecisionConfig = {
+const activateUserConfig = {
   activation: {
     title: "Activate user",
     description: ({ code }) =>
@@ -16,4 +16,4 @@ const activateUserDecisionConfig = {
   },
 };
 
-export { activateUserDecisionConfig };
+export { activateUserConfig };
