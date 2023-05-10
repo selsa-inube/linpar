@@ -1,7 +1,7 @@
+import { Stack } from "@inube/design-system";
+import { useState } from "react";
 import { Pagination } from "./Pagination";
 import { TableUI } from "./interface";
-import { useState } from "react";
-import { Stack } from "@inube/design-system";
 
 function Table(props) {
   const {
