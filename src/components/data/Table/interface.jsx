@@ -54,7 +54,11 @@ function ShowAction(actionContent, entry, mediaQuery) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
-        <StyledTd key={`${entry.id}-${action.id}`}>{action.content}</StyledTd>
+        <StyledTd key={`${entry.id}-${action.id}`}>
+          {typeof action.content === "function"
+            ? action.content(entry)
+            : action.content}
+        </StyledTd>
       ))}
     </>
   ) : (

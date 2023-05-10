@@ -1,4 +1,5 @@
 import { MdModeEdit, MdOutlineDelete, MdToggleOff } from "react-icons/md";
+import { DeleteUser } from "../../pages/privileges/outlets/users/DeleteUser";
 
 const titles = [
   {
@@ -39,7 +40,7 @@ const actions = [
   {
     id: 3,
     actionName: "Delete",
-    content: <MdOutlineDelete />,
+    content: (entry) => <DeleteUser id={entry.id} />,
     type: "remove",
   },
 ];
