@@ -7,10 +7,10 @@ const activateUserDecisionConfig = {
     appearance: "confirm",
   },
 
-  desactivation: {
+  deactivation: {
     title: "Deactivate user",
     description: ({ code }) =>
-      `Are you sure you want to desactivate the user  ${code}?`,
+      `Are you sure you want to deactivate the user  ${code}?`,
     textAction: "Deactivate",
     appearance: "remove",
   },

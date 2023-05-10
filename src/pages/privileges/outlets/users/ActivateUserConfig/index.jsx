@@ -26,7 +26,7 @@ function ActivateUserConfig(props) {
     if (!checked) {
       messageType = "activation";
     } else {
-      messageType = "desactivation";
+      messageType = "deactivation";
     }
 
     const { title, description, textAction, appearance } =
