@@ -1,4 +1,4 @@
-const entriesDataMock = [
+const userEntriesDataMock = [
   {
     id: 11,
     username: "David Leonardo Garzón",
@@ -225,4 +225,4 @@ const entriesDataMock = [
   },
 ];
 
-export { entriesDataMock };
+export { userEntriesDataMock };
