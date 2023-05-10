@@ -1,4 +1,3 @@
-import { createPortal } from "react-dom";
 import { Switch } from "@inube/design-system";
 import { DecisionModal } from "../../../../../components/feedback/DecisionModal";
 import { activateUserConfig } from "../config/activateUser.config";
@@ -54,14 +53,13 @@ function ActivateUserUI(props) {
         id={id.toString()}
       />
 
-      {showActivateUserModal &&
-        ActivateUserModal(
-          checked,
-          showActivateUserModal,
-          entry,
-          handleCloseModal,
-          onActionConfirm
-        )}
+      {ActivateUserModal(
+        checked,
+        showActivateUserModal,
+        entry,
+        handleCloseModal,
+        onActionConfirm
+      )}
     </form>
   );
 }
