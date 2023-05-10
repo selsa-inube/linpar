@@ -2,7 +2,8 @@ import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
 const decisionModalConfig = {
   delete: {
     title: "Eliminar Usuario",
-    description: "¿Está seguro de que desea eliminar al usuario?",
+    description: ({ code }) =>
+      `¿Está seguro de que desea eliminar al usuario ${code}?`,
     actionText: "Eliminar",
     appearance: "remove",
   },
@@ -13,14 +14,15 @@ const sectionMessageConfig = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: "Hemos eliminado con éxito al usuario.",
+    description: ({ code }) => `Hemos eliminado con éxito al usuario ${code}.`,
     appearance: "confirm",
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
-    description: "Hemos presentado problemas eliminando al usuario.",
+    description: ({ code }) =>
+      `Hemos presentado problemas eliminando al usuario ${code}.`,
     appearance: "remove",
   },
 };

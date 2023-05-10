@@ -50,7 +50,7 @@ const usersActionsConfig = [
   {
     id: 3,
     actionName: "Delete",
-    content: (entry) => <DeleteUser id={entry.id} />,
+    content: (entry) => <DeleteUser entry={entry} id={entry.id} />,
     type: "remove",
   },
 ];

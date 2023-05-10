@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 
 function DeleteUser(props) {
-  const { id } = props;
+  const { id, entry } = props;
   const [showModal, setShowModal] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -45,7 +45,7 @@ function DeleteUser(props) {
     return (
       <DecisionModal
         title={title}
-        description={description}
+        description={description(entry)}
         appearance={appearance}
         actionText={actionText}
         closeModal={closeModal}
@@ -63,7 +63,7 @@ function DeleteUser(props) {
     return (
       <SectionMessage
         title={title}
-        description={description}
+        description={description(entry)}
         icon={icon}
         appearance={appearance}
         duration={2000}
