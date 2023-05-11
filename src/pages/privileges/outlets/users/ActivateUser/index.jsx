@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { ActivateUserUI } from "./interface";
 
 function ActivateUser(props) {
-  const { entry, id } = props;
+  const { user } = props;
   const [showActivateUserModal, setShowActivateUserModal] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [active, setActive] = useState(false);
 
   const handelOpenModal = () => {
     setShowActivateUserModal(true);
@@ -19,15 +19,15 @@ function ActivateUser(props) {
   };
 
   const onActionConfirm = () => {
-    setChecked(!checked);
+    setActive(!active);
   };
 
   return (
     <ActivateUserUI
-      checked={checked}
+      active={active}
       showActivateUserModal={showActivateUserModal}
-      entry={entry}
-      id={id}
+      user={user}
+      id={user.id}
       handleChange={handleChange}
       handleCloseModal={handleCloseModal}
       onActionConfirm={onActionConfirm}

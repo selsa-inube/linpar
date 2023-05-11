@@ -38,7 +38,7 @@ const usersActionsConfig = [
   {
     id: 1,
     actionName: "Activate",
-    content: (entry) => <ActivateUser entry={entry} id={entry.id} />,
+    content: (user) => <ActivateUser user={user} />,
     type: "secondary",
   },
   {

@@ -2,15 +2,9 @@ import { Switch } from "@inube/design-system";
 import { DecisionModal } from "../../../../../components/feedback/DecisionModal";
 import { activateUserConfig } from "../config/activateUser.config";
 
-function ActivateUserModal(
-  checked,
-  showActivateUserModal,
-  entry,
-  handleCloseModal,
-  onActionConfirm
-) {
+function ActivateUserModal(active, user, handleCloseModal, onActionConfirm) {
   let messageType;
-  if (!checked) {
+  if (!active) {
     messageType = "activation";
   } else {
     messageType = "deactivation";
@@ -21,46 +15,41 @@ function ActivateUserModal(
 
   return (
     <>
-      {showActivateUserModal && (
-        <DecisionModal
-          title={title}
-          description={description(entry)}
-          actionText={textAction}
-          appearance={appearance}
-          closeModal={handleCloseModal}
-          handleClick={onActionConfirm}
-        />
-      )}
+      <DecisionModal
+        title={title}
+        description={description(user)}
+        actionText={textAction}
+        appearance={appearance}
+        closeModal={handleCloseModal}
+        handleClick={onActionConfirm}
+      />
     </>
   );
 }
 
 function ActivateUserUI(props) {
   const {
-    checked,
+    active,
     showActivateUserModal,
-    entry,
+    user,
     id,
     handleChange,
     handleCloseModal,
     onActionConfirm,
   } = props;
   return (
-    <form onSubmit={onActionConfirm}>
-      <Switch
-        checked={checked}
-        handleChange={handleChange}
-        id={id.toString()}
-      />
+    <>
+      <form onSubmit={onActionConfirm}>
+        <Switch
+          checked={active}
+          handleChange={handleChange}
+          id={id.toString()}
+        />
 
-      {ActivateUserModal(
-        checked,
-        showActivateUserModal,
-        entry,
-        handleCloseModal,
-        onActionConfirm
-      )}
-    </form>
+        {showActivateUserModal &&
+          ActivateUserModal(active, user, handleCloseModal, onActionConfirm)}
+      </form>
+    </>
   );
 }
 export { ActivateUserUI };
