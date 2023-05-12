@@ -1,4 +1,4 @@
-import { MdModeEdit, MdOutlineDelete, MdToggleOff } from "react-icons/md";
+import { MdModeEdit, MdToggleOff } from "react-icons/md";
 import { DeleteUser } from "../DeleteUser";
 
 const usersBreakPointsConfig = [
@@ -50,7 +50,9 @@ const usersActionsConfig = [
   {
     id: 3,
     actionName: "Delete",
-    content: (entry) => <DeleteUser entry={entry} id={entry.id} />,
+    content: (entry, handleDeleteTableRow) => (
+      <DeleteUser user={entry} handleDeleteTableRow={handleDeleteTableRow} />
+    ),
     type: "remove",
   },
 ];

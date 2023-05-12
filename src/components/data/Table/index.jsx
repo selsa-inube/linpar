@@ -13,6 +13,12 @@ function Table(props) {
     breakPoints,
   } = props;
 
+  const [newEntries, setNewEntries] = useState(entries);
+
+  const handleDeleteTableRow = (id) => {
+    setNewEntries(newEntries.filter((entry) => id != entry.id));
+  };
+
   function filterArray() {
     const titlesId = titles.map((title) => title.id);
     return entries.filter((entry) => {
@@ -32,7 +38,7 @@ function Table(props) {
   }
 
   function filterTable() {
-    if (filter.length === 0) return entries;
+    if (filter.length === 0) return newEntries;
     return filterArray();
   }
 
@@ -73,6 +79,7 @@ function Table(props) {
       <TableUI
         titles={titles}
         actions={actions}
+        handleDeleteTableRow={handleDeleteTableRow}
         entries={getPageEntries()}
         breakPoints={breakPoints}
       />

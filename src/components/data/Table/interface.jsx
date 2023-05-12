@@ -50,13 +50,13 @@ function showActionTitle(actionTitle, mediaQuery) {
   );
 }
 
-function ShowAction(actionContent, entry, mediaQuery) {
+function ShowAction(actionContent, entry, mediaQuery, handleDeleteTableRow) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
         <StyledTd key={`${entry.id}-${action.id}`}>
           {typeof action.content === "function"
-            ? action.content(entry)
+            ? action.content(entry, handleDeleteTableRow)
             : action.content}
         </StyledTd>
       ))}
@@ -69,7 +69,7 @@ function ShowAction(actionContent, entry, mediaQuery) {
 }
 
 function TableUI(props) {
-  const { titles, actions, entries, breakPoints } = props;
+  const { titles, actions, entries, breakPoints, handleDeleteTableRow } = props;
   const mediaActionOpen = useMediaQuery("(max-width: 850px)");
 
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
@@ -104,7 +104,7 @@ function TableUI(props) {
                 </StyledTd>
               )
             )}
-            {ShowAction(actions, entry, mediaActionOpen)}
+            {ShowAction(actions, entry, mediaActionOpen, handleDeleteTableRow)}
           </StyledTr>
         ))}
       </StyledTbody>

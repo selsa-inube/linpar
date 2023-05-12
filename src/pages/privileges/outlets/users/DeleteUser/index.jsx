@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 
 function DeleteUser(props) {
-  const { id, entry } = props;
+  const { user, handleDeleteTableRow } = props;
   const [showModal, setShowModal] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -33,7 +33,7 @@ function DeleteUser(props) {
 
   const handleConfirmDelete = () => {
     handleShowMessage();
-    alert("usuario eliminado!");
+    handleDeleteTableRow(user.id);
   };
 
   function renderModal() {
@@ -45,7 +45,7 @@ function DeleteUser(props) {
     return (
       <DecisionModal
         title={title}
-        description={description(entry)}
+        description={description(user)}
         appearance={appearance}
         actionText={actionText}
         closeModal={closeModal}
@@ -63,7 +63,7 @@ function DeleteUser(props) {
     return (
       <SectionMessage
         title={title}
-        description={description(entry)}
+        description={description(user)}
         icon={icon}
         appearance={appearance}
         duration={2000}
