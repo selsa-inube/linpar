@@ -6,33 +6,25 @@ function ResendInvitation(props) {
   const [showResendInvModal, setShowResendInvModal] = useState(false);
   const [showResendInvMessage, setShowResendInvMessage] = useState(false);
 
-  const handleOpenModal = () => {
-    setShowResendInvModal(true);
+  const handleToggleModal = () => {
+    setShowResendInvModal(!showResendInvModal);
   };
 
-  const handleCloseModal = () => {
-    setShowResendInvModal(false);
-  };
-
-  const handleOpenMessage = () => {
-    setShowResendInvMessage(true);
-  };
-  const handleClosenMessage = () => {
-    setShowResendInvMessage(false);
+  const handleToggleMessage = () => {
+    setShowResendInvMessage(!showResendInvMessage);
   };
 
   const resendInvitationUser = () => {
-    handleOpenMessage();
+    handleToggleMessage();
   };
   return (
     <ResendInvitationUI
       showResendInvModal={showResendInvModal}
-      handleOpenModal={handleOpenModal}
-      handleCloseModal={handleCloseModal}
+      handleToggleModal={handleToggleModal}
       resendInvitationUser={resendInvitationUser}
       user={user}
       showResendInvMessage={showResendInvMessage}
-      handleCloseMessage={handleClosenMessage}
+      handleToggleMessage={handleToggleMessage}
     />
   );
 }

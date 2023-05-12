@@ -7,7 +7,7 @@ import {
 import { DecisionModal } from "../../../../../components/feedback/DecisionModal";
 import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
 
-function renderMessages(user, handleCloseMessage, showResendInvMessage) {
+function renderMessages(user, handleToggleMessage, showResendInvMessage) {
   let messageType;
   if (showResendInvMessage) {
     messageType = "success";
@@ -20,13 +20,11 @@ function renderMessages(user, handleCloseMessage, showResendInvMessage) {
   return (
     <SectionMessage
       title={title}
-      description={
-        typeof description === "function" ? description(user) : description
-      }
+      description={description(user)}
       icon={icon}
       appearance={appearance}
       duration={2500}
-      closeSectionMessage={handleCloseMessage}
+      closeSectionMessage={handleToggleMessage}
     />
   );
 }
@@ -34,12 +32,11 @@ function renderMessages(user, handleCloseMessage, showResendInvMessage) {
 function ResendInvitationUI(props) {
   const {
     showResendInvModal,
-    handleOpenModal,
-    handleCloseModal,
+    handleToggleModal,
     resendInvitationUser,
     user,
     showResendInvMessage,
-    handleCloseMessage,
+    handleToggleMessage,
   } = props;
   const { title, description, textAction, appearance } =
     resendInvitationUserConfig["invitation"];
@@ -47,7 +44,7 @@ function ResendInvitationUI(props) {
   return (
     <>
       <StyledIconResend>
-        <MdOutlineLibraryAddCheck onClick={handleOpenModal} />
+        <MdOutlineLibraryAddCheck onClick={handleToggleModal} />
       </StyledIconResend>
 
       {showResendInvModal && (
@@ -56,13 +53,13 @@ function ResendInvitationUI(props) {
           description={description(user)}
           actionText={textAction}
           appearance={appearance}
-          closeModal={handleCloseModal}
+          closeModal={handleToggleModal}
           handleClick={resendInvitationUser}
         />
       )}
 
       {showResendInvMessage &&
-        renderMessages(user, handleCloseMessage, showResendInvMessage)}
+        renderMessages(user, handleToggleMessage, showResendInvMessage)}
     </>
   );
 }
