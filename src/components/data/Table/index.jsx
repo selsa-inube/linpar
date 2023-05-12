@@ -50,7 +50,7 @@ function Table(props) {
   }
 
   function filterTable() {
-    if (filter.length === 0) return entries;
+    if (filter.length === 0) return entriesData;
     return filterArray();
   }
 

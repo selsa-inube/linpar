@@ -5,12 +5,20 @@ import {
   Text,
   useMediaQuery,
 } from "@inube/design-system";
-import { StyledModal } from "./styles";
-import { MdClear } from "react-icons/md";
 import { useState } from "react";
+import { createPortal } from "react-dom";
+import { MdClear } from "react-icons/md";
+import { StyledModal } from "./styles";
 
 function DecisionModal(props) {
-  const { title, description, appearance, actionText, closeModal } = props;
+  const {
+    title,
+    description,
+    appearance,
+    actionText,
+    closeModal,
+    handleConfirm,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -19,7 +27,15 @@ function DecisionModal(props) {
     setIsLoading(true);
   };
 
-  return (
+  const onConfirm = () => {
+    handleIsLoading();
+    setTimeout(() => {
+      closeModal();
+      handleConfirm();
+    }, 1000);
+  };
+
+  return createPortal(
     <Blanket>
       <StyledModal smallScreen={smallScreen}>
         <Stack direction="column" gap={smallScreen ? "16px" : "24px"}>
@@ -46,15 +62,16 @@ function DecisionModal(props) {
             <Button
               appearance={appearance}
               isLoading={isLoading}
-              handleClick={handleIsLoading}
               spacing={smallScreen ? "compact" : undefined}
+              handleClick={onConfirm}
             >
               {actionText}
             </Button>
           </Stack>
         </Stack>
       </StyledModal>
-    </Blanket>
+    </Blanket>,
+    document.getElementById("decision")
   );
 }
 

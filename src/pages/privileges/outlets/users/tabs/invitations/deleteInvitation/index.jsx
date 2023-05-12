@@ -2,20 +2,21 @@ import { useState } from "react";
 import DeleteInvitationUI from "./interface";
 
 function DeleteInvitation(props) {
-  const { invitation, onRemoveInvitation } = props;
+  const { invitation, handleChangeInvitation } = props;
   const [showModal, setShowModal] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
+
   const toggleMessage = () => {
     setShowMessage(!showMessage);
   };
 
   const handleRemoveInvitation = () => {
     toggleMessage();
-    onRemoveInvitation(invitation.id);
+    handleChangeInvitation(invitation, true);
   };
 
   return (
@@ -23,6 +24,9 @@ function DeleteInvitation(props) {
       handleRemoveInvitation={handleRemoveInvitation}
       toggleModal={toggleModal}
       toggleMessage={toggleMessage}
+      showMessage={showMessage}
+      showModal={showModal}
+      invitation={invitation}
     />
   );
 }

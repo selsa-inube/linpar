@@ -238,8 +238,9 @@ const invitationEntriesDataMock = [
 const deleteInvitationUserDecisionMock = {
   id: 1,
   title: "Eliminar Invitacion",
-  description: "¿Esta seguro de eliminar la invitacion?",
-  textAction: "Eliminar",
+  description: ({ username }) =>
+    `¿Esta seguro de eliminar la invitacion a ${username}?`,
+  actionText: "Eliminar",
   appearance: "remove",
 };
 
@@ -248,17 +249,19 @@ const deleteInvitationUserMessageMock = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: ({ code }) =>
-      `Hemos eliminado con éxito la invitacion${code}.`,
+    description: ({ username }) =>
+      `Hemos eliminado con éxito la invitacion a ${username}.`,
     appearance: "confirm",
+    duration: 2000,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
-    description: ({ code }) =>
-      `Hemos presentado problemas eliminando la invitacion ${code}.`,
+    description: ({ username }) =>
+      `Hemos presentado problemas eliminando la invitacion de ${username}.`,
     appearance: "remove",
+    duration: 2000,
   },
 };
 
