@@ -1,8 +1,5 @@
-import {
-  MdOutlineDelete,
-  MdOutlineAssignmentTurnedIn,
-  MdShortcut,
-} from "react-icons/md";
+import { MdOutlineDelete, MdOutlineAssignmentTurnedIn } from "react-icons/md";
+import { ResendInvitation } from "../ResendInvitation/index";
 
 const invitationActionsConfig = [
   {
@@ -14,7 +11,7 @@ const invitationActionsConfig = [
   {
     id: 2,
     actionName: "Resend",
-    content: <MdShortcut />,
+    content: (user) => <ResendInvitation user={user} />,
     type: "primary",
   },
   {

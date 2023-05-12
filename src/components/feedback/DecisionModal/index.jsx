@@ -8,9 +8,17 @@ import {
 import { StyledModal } from "./styles";
 import { MdClear } from "react-icons/md";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 
 function DecisionModal(props) {
-  const { title, description, appearance, actionText, closeModal } = props;
+  const {
+    title,
+    description,
+    appearance,
+    actionText,
+    closeModal,
+    handleClick,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -19,7 +27,15 @@ function DecisionModal(props) {
     setIsLoading(true);
   };
 
-  return (
+  const handleButtonClick = () => {
+    handleIsLoading();
+    setTimeout(() => {
+      closeModal();
+      handleClick();
+    }, 1000);
+  };
+
+  return createPortal(
     <Blanket>
       <StyledModal smallScreen={smallScreen}>
         <Stack direction="column" gap={smallScreen ? "16px" : "24px"}>
@@ -46,7 +62,7 @@ function DecisionModal(props) {
             <Button
               appearance={appearance}
               isLoading={isLoading}
-              handleClick={handleIsLoading}
+              handleClick={handleButtonClick}
               spacing={smallScreen ? "compact" : undefined}
             >
               {actionText}
@@ -54,7 +70,8 @@ function DecisionModal(props) {
           </Stack>
         </Stack>
       </StyledModal>
-    </Blanket>
+    </Blanket>,
+    document.getElementById("decision")
   );
 }
 
