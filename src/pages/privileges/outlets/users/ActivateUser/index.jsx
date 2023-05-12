@@ -6,7 +6,7 @@ function ActivateUser(props) {
   const [showActivateUserModal, setShowActivateUserModal] = useState(false);
   const [active, setActive] = useState(false);
 
-  const handelOpenModal = () => {
+  const handleOpenModal = () => {
     setShowActivateUserModal(true);
   };
 
@@ -15,7 +15,7 @@ function ActivateUser(props) {
   };
 
   const handleChange = () => {
-    handelOpenModal();
+    handleOpenModal();
   };
 
   const onActionConfirm = () => {
