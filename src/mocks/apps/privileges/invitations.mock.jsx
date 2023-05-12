@@ -1,3 +1,5 @@
+import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+
 const invitationEntriesDataMock = [
   {
     id: 10,
@@ -233,4 +235,35 @@ const invitationEntriesDataMock = [
   },
 ];
 
-export { invitationEntriesDataMock };
+const deleteInvitationUserDecisionMock = {
+  id: 1,
+  title: "Eliminar Invitacion",
+  description: "¿Esta seguro de eliminar la invitacion?",
+  textAction: "Eliminar",
+  appearance: "remove",
+};
+
+const deleteInvitationUserMessageMock = {
+  success: {
+    id: 1,
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "¡Eliminación exitosa!",
+    description: ({ code }) =>
+      `Hemos eliminado con éxito la invitacion${code}.`,
+    appearance: "confirm",
+  },
+  failed: {
+    id: 2,
+    icon: <MdErrorOutline size={18} />,
+    title: "¡Uy, algo salió mal!",
+    description: ({ code }) =>
+      `Hemos presentado problemas eliminando la invitacion ${code}.`,
+    appearance: "remove",
+  },
+};
+
+export {
+  invitationEntriesDataMock,
+  deleteInvitationUserDecisionMock,
+  deleteInvitationUserMessageMock,
+};

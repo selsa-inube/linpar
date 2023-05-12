@@ -12,6 +12,24 @@ function Table(props) {
     pageLength = 10,
     breakPoints,
   } = props;
+  const [entriesData, setEntriesData] = useState(entries);
+
+  const handleChangeEntry = (entry, removeRow) => {
+    if (removeRow) {
+      setEntriesData(
+        entriesData.filter((oldEntry) => entry.id !== oldEntry.id)
+      );
+    } else {
+      setEntriesData(
+        entriesData.map((oldEntry) => {
+          if (oldEntry.id === entry.id) {
+            return entry;
+          }
+          return oldEntry;
+        })
+      );
+    }
+  };
 
   function filterArray() {
     const titlesId = titles.map((title) => title.id);
@@ -75,6 +93,7 @@ function Table(props) {
         actions={actions}
         entries={getPageEntries()}
         breakPoints={breakPoints}
+        handleChangeEntry={handleChangeEntry}
       />
       {filterTable().length > pageLength && (
         <Pagination

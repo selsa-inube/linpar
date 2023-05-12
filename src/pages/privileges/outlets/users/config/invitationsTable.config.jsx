@@ -1,8 +1,5 @@
-import {
-  MdOutlineDelete,
-  MdOutlineAssignmentTurnedIn,
-  MdShortcut,
-} from "react-icons/md";
+import { MdOutlineAssignmentTurnedIn, MdShortcut } from "react-icons/md";
+import { DeleteInvitation } from "../tabs/invitations/deleteInvitation";
 
 const invitationActionsConfig = [
   {
@@ -20,7 +17,12 @@ const invitationActionsConfig = [
   {
     id: 3,
     actionName: "Delete",
-    content: <MdOutlineDelete />,
+    content: (entry, handleChangeEntry) => (
+      <DeleteInvitation
+        invitation={entry}
+        handleChangeInvitation={handleChangeEntry}
+      />
+    ),
     type: "remove",
   },
 ];
