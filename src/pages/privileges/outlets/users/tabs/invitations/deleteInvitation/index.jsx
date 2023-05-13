@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DeleteInvitationUI from "./interface";
+import { DeleteInvitationUI } from "./interface";
 
 function DeleteInvitation(props) {
   const { invitation, handleChangeInvitation } = props;
