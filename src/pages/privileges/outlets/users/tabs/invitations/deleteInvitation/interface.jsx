@@ -26,7 +26,7 @@ function DeleteUserMessagesUI(props) {
   );
 }
 
-export default function DeleteInvitationUI(props) {
+function DeleteInvitationUI(props) {
   const {
     handleRemoveInvitation,
     showModal,
@@ -36,10 +36,11 @@ export default function DeleteInvitationUI(props) {
     invitation,
   } = props;
 
-  const { title, description, actionText } = deleteInvitationUserDecisionMock;
+  const { title, description, actionText, appearance } =
+    deleteInvitationUserDecisionMock;
 
   return (
-    <form>
+    <>
       <StyledIconDelete>
         <MdOutlineDelete onClick={toggleModal} />
       </StyledIconDelete>
@@ -50,6 +51,7 @@ export default function DeleteInvitationUI(props) {
           actionText={actionText}
           closeModal={toggleModal}
           handleConfirm={handleRemoveInvitation}
+          appearance={appearance}
         />
       )}
       {showMessage && (
@@ -58,6 +60,8 @@ export default function DeleteInvitationUI(props) {
           toggleMessage={toggleMessage}
         />
       )}
-    </form>
+    </>
   );
 }
+
+export { DeleteInvitationUI };
