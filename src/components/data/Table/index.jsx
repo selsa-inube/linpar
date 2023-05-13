@@ -13,10 +13,23 @@ function Table(props) {
     breakPoints,
   } = props;
 
-  const [newEntries, setNewEntries] = useState(entries);
+  const [entriesData, setEntriesData] = useState(entries);
 
-  const handleDeleteTableRow = (id) => {
-    setNewEntries(newEntries.filter((entry) => id != entry.id));
+  const handleChangeEntry = (entry, removeRow) => {
+    if (removeRow) {
+      setEntriesData(
+        entriesData.filter((oldEntry) => entry.id !== oldEntry.id)
+      );
+    } else {
+      setEntriesData(
+        entriesData.map((oldEntry) => {
+          if (oldEntry.id === entry.id) {
+            return entry;
+          }
+          return oldEntry;
+        })
+      );
+    }
   };
 
   function filterArray() {
@@ -38,7 +51,7 @@ function Table(props) {
   }
 
   function filterTable() {
-    if (filter.length === 0) return newEntries;
+    if (filter.length === 0) return entriesData;
     return filterArray();
   }
 
@@ -79,7 +92,7 @@ function Table(props) {
       <TableUI
         titles={titles}
         actions={actions}
-        handleDeleteTableRow={handleDeleteTableRow}
+        handleChangeEntry={handleChangeEntry}
         entries={getPageEntries()}
         breakPoints={breakPoints}
       />

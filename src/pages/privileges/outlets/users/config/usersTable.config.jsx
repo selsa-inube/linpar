@@ -50,8 +50,8 @@ const usersActionsConfig = [
   {
     id: 3,
     actionName: "Delete",
-    content: (entry, handleDeleteTableRow) => (
-      <DeleteUser user={entry} handleDeleteTableRow={handleDeleteTableRow} />
+    content: (entry, handleChangeEntry) => (
+      <DeleteUser user={entry} handleChangeDeleteUser={handleChangeEntry} />
     ),
     type: "remove",
   },

@@ -1,7 +1,7 @@
 import {
   decisionModalConfig,
   sectionMessageConfig,
-} from "./config/deleteUser.config";
+} from "../config/deleteUser.config";
 import { MdOutlineDelete } from "react-icons/md";
 import { StyledIconDelete } from "./styles";
 import { DecisionModal } from "../../../../../components/feedback/DecisionModal";
@@ -54,9 +54,11 @@ function DeleteUserUI(props) {
   } = props;
   return (
     <>
-      <StyledIconDelete>
-        <MdOutlineDelete cursor="pointer" onClick={handleShowModal} />
-      </StyledIconDelete>
+      <form>
+        <StyledIconDelete>
+          <MdOutlineDelete onClick={handleShowModal} />
+        </StyledIconDelete>
+      </form>
       {showModal && DeleteUserModal(user, closeModal, handleConfirmDelete)}
       {showMessage && DeleteUserMessages(user, closeMessage)}
     </>

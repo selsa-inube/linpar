@@ -2,7 +2,7 @@ import { DeleteUserUI } from "./interface";
 import { useState } from "react";
 
 function DeleteUser(props) {
-  const { user, handleDeleteTableRow } = props;
+  const { user, handleChangeDeleteUser } = props;
   const [showModal, setShowModal] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -20,7 +20,7 @@ function DeleteUser(props) {
 
   const handleConfirmDelete = () => {
     setShowMessage(true);
-    handleDeleteTableRow(user.id);
+    handleChangeDeleteUser(user, true);
   };
 
   return (
