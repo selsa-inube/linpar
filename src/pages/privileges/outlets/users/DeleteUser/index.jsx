@@ -2,9 +2,8 @@ import { DeleteUserUI } from "./interface";
 import { useState } from "react";
 
 function DeleteUser(props) {
-  const { user, handleChangeDeleteUser } = props;
+  const { user, handleChangeDeleteUser, HandleShowMessage } = props;
   const [showModal, setShowModal] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -14,12 +13,8 @@ function DeleteUser(props) {
     setShowModal(false);
   };
 
-  const closeMessage = () => {
-    setShowMessage(false);
-  };
-
   const handleConfirmDelete = () => {
-    setShowMessage(true);
+    HandleShowMessage();
     handleChangeDeleteUser(user, true);
   };
 
@@ -27,11 +22,9 @@ function DeleteUser(props) {
     <DeleteUserUI
       user={user}
       showModal={showModal}
-      showMessage={showMessage}
       handleShowModal={handleShowModal}
       handleConfirmDelete={handleConfirmDelete}
       closeModal={closeModal}
-      closeMessage={closeMessage}
     ></DeleteUserUI>
   );
 }

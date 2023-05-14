@@ -14,15 +14,14 @@ const sectionMessageConfig = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: ({ code }) => `Hemos eliminado con éxito al usuario ${code}.`,
+    description: `Hemos eliminado con éxito al usuario.`,
     appearance: "confirm",
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
-    description: ({ code }) =>
-      `Hemos presentado problemas eliminando al usuario ${code}.`,
+    description: `Hemos presentado problemas eliminando al usuario.`,
     appearance: "remove",
   },
 };

@@ -8,9 +8,12 @@ import {
   StyledTd,
 } from "./styles";
 import { Text } from "../Text";
+import { useState } from "react";
 import { MdOpenInNew } from "react-icons/md";
 import { useMediaQuery } from "@inube/design-system";
 import { useMediaQueries } from "../../../hooks/useMediaQueries";
+import { SectionMessage } from "../../../components/feedback/SectionMessage";
+import { sectionMessageConfig } from "../../../pages/privileges/outlets/users/config/deleteUser.config";
 
 function findCurrentMediaQuery(currentMediaQuery) {
   const lastIndexMedia = Object.values(currentMediaQuery).lastIndexOf(true);
@@ -28,6 +31,24 @@ function totalTitleColumns(titles, breakPoints, media) {
   if (numColumns >= titles.length) return titles;
 
   return priorityColumns(titles, numColumns);
+}
+
+function DeleteUserMessages({ closeMessage }) {
+  let messageType = "success";
+
+  const { title, description, icon, appearance } =
+    sectionMessageConfig[messageType];
+
+  return (
+    <SectionMessage
+      title={title}
+      description={description}
+      icon={icon}
+      appearance={appearance}
+      duration={2000}
+      closeSectionMessage={closeMessage}
+    />
+  );
 }
 
 function showActionTitle(actionTitle, mediaQuery) {
@@ -50,13 +71,19 @@ function showActionTitle(actionTitle, mediaQuery) {
   );
 }
 
-function ShowAction(actionContent, entry, mediaQuery, handleChangeEntry) {
+function ShowAction(
+  actionContent,
+  entry,
+  mediaQuery,
+  handleChangeEntry,
+  HandleShowMessage
+) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
         <StyledTd key={`${entry.id}-${action.id}`}>
           {typeof action.content === "function"
-            ? action.content(entry, handleChangeEntry)
+            ? action.content(entry, handleChangeEntry, HandleShowMessage)
             : action.content}
         </StyledTd>
       ))}
@@ -78,37 +105,59 @@ function TableUI(props) {
 
   const TitleColumns = totalTitleColumns(titles, breakPoints, media);
 
+  const [showMessage, setShowMessage] = useState(false);
+
+  const closeMessage = () => {
+    setShowMessage(false);
+  };
+
+  const HandleShowMessage = () => {
+    setShowMessage(true);
+  };
+
   return (
-    <StyledTable>
-      <StyledThead>
-        <StyledTr>
-          {TitleColumns.map((title) => (
-            <StyledThTitle key={`title-${title.id}`}>
-              <Text typoToken="labelMedium">{title.titleName}</Text>
-            </StyledThTitle>
-          ))}
-          {showActionTitle(actions, mediaActionOpen)}
-        </StyledTr>
-      </StyledThead>
-      <StyledTbody>
-        {entries.map((entry) => (
-          <StyledTr key={`entry-${entry.id}`}>
-            {TitleColumns.map((title) =>
-              entry[title.id] ? (
-                <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{entry[title.id]}</Text>
-                </StyledTd>
-              ) : (
-                <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{null}</Text>
-                </StyledTd>
-              )
-            )}
-            {ShowAction(actions, entry, mediaActionOpen, handleChangeEntry)}
+    <>
+      <StyledTable>
+        <StyledThead>
+          <StyledTr>
+            {TitleColumns.map((title) => (
+              <StyledThTitle key={`title-${title.id}`}>
+                <Text typoToken="labelMedium">{title.titleName}</Text>
+              </StyledThTitle>
+            ))}
+            {showActionTitle(actions, mediaActionOpen)}
           </StyledTr>
-        ))}
-      </StyledTbody>
-    </StyledTable>
+        </StyledThead>
+        <StyledTbody>
+          {entries.map((entry) => (
+            <StyledTr key={`entry-${entry.id}`}>
+              {TitleColumns.map((title) =>
+                entry[title.id] ? (
+                  <StyledTd key={`e-${entry[title.id]}`}>
+                    <Text typoToken="bodySmall">{entry[title.id]}</Text>
+                  </StyledTd>
+                ) : (
+                  <StyledTd key={`e-${entry[title.id]}`}>
+                    <Text typoToken="bodySmall">{null}</Text>
+                  </StyledTd>
+                )
+              )}
+              {ShowAction(
+                actions,
+                entry,
+                mediaActionOpen,
+                handleChangeEntry,
+                HandleShowMessage,
+                closeMessage
+              )}
+            </StyledTr>
+          ))}
+        </StyledTbody>
+        {showMessage && (
+          <DeleteUserMessages closeMessage={closeMessage}></DeleteUserMessages>
+        )}
+      </StyledTable>
+    </>
   );
 }
 
