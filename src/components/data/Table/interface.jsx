@@ -147,8 +147,7 @@ function TableUI(props) {
                 entry,
                 mediaActionOpen,
                 handleChangeEntry,
-                HandleShowMessage,
-                closeMessage
+                HandleShowMessage
               )}
             </StyledTr>
           ))}
