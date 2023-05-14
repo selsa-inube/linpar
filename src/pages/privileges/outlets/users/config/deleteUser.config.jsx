@@ -2,8 +2,8 @@ import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
 const decisionModalConfig = {
   delete: {
     title: "Eliminar Usuario",
-    description: ({ code }) =>
-      `¿Está seguro de que desea eliminar al usuario ${code}?`,
+    description: ({ username }) =>
+      `¿Está seguro de que desea eliminar al usuario ${username}?`,
     actionText: "Eliminar",
     appearance: "remove",
   },

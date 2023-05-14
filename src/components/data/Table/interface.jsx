@@ -153,10 +153,10 @@ function TableUI(props) {
             </StyledTr>
           ))}
         </StyledTbody>
-        {showMessage && (
-          <DeleteUserMessages closeMessage={closeMessage}></DeleteUserMessages>
-        )}
       </StyledTable>
+      {showMessage && (
+        <DeleteUserMessages closeMessage={closeMessage}></DeleteUserMessages>
+      )}
     </>
   );
 }
