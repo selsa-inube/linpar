@@ -1,43 +1,13 @@
 import { MdOutlineDelete } from "react-icons/md";
 import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
-import { SectionMessage } from "../../../../../../../components/feedback/SectionMessage";
-import {
-  deleteInvitationUserDecisionMock,
-  deleteInvitationUserMessageMock,
-} from "../../../../../../../mocks/apps/privileges/invitations.mock";
+import { deleteInvitationUserDecisionConfig } from "../../../config/invitationsTable.config";
 import { StyledIconDelete } from "./styles";
 
-function DeleteUserMessagesUI(props) {
-  const { invitation, toggleMessage } = props;
-  let messageType = "success";
-
-  const { title, description, icon, appearance, duration } =
-    deleteInvitationUserMessageMock[messageType];
-
-  return (
-    <SectionMessage
-      title={title}
-      description={description(invitation)}
-      icon={icon}
-      appearance={appearance}
-      duration={duration}
-      closeSectionMessage={toggleMessage}
-    />
-  );
-}
-
 function DeleteInvitationUI(props) {
-  const {
-    handleRemoveInvitation,
-    showModal,
-    showMessage,
-    toggleModal,
-    toggleMessage,
-    invitation,
-  } = props;
+  const { handleRemoveInvitation, showModal, toggleModal } = props;
 
   const { title, description, actionText, appearance } =
-    deleteInvitationUserDecisionMock;
+    deleteInvitationUserDecisionConfig;
 
   return (
     <>
@@ -47,17 +17,11 @@ function DeleteInvitationUI(props) {
       {showModal && (
         <DecisionModal
           title={title}
-          description={description(invitation)}
+          description={description}
           actionText={actionText}
           closeModal={toggleModal}
           handleConfirm={handleRemoveInvitation}
           appearance={appearance}
-        />
-      )}
-      {showMessage && (
-        <DeleteUserMessagesUI
-          invitation={invitation}
-          toggleMessage={toggleMessage}
         />
       )}
     </>

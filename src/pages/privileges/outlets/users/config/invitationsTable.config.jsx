@@ -1,4 +1,9 @@
-import { MdOutlineAssignmentTurnedIn, MdShortcut } from "react-icons/md";
+import {
+  MdErrorOutline,
+  MdOutlineAssignmentTurnedIn,
+  MdShortcut,
+  MdThumbUpOffAlt,
+} from "react-icons/md";
 import { DeleteInvitation } from "../tabs/invitations/deleteInvitation";
 
 const invitationActionsConfig = [
@@ -17,10 +22,11 @@ const invitationActionsConfig = [
   {
     id: 3,
     actionName: "Delete",
-    content: (entry, handleChangeEntry) => (
+    content: (entry, handleChangeEntry, handleMessage) => (
       <DeleteInvitation
         invitation={entry}
         handleChangeInvitation={handleChangeEntry}
+        handleMessage={handleMessage}
       />
     ),
     type: "remove",
@@ -69,8 +75,39 @@ const invitationBreakpointsConfig = [
   { breakpoint: "(max-width: 316px)", totalColumns: 1 },
 ];
 
+const deleteInvitationUserDecisionConfig = {
+  id: 1,
+  title: "Delete invitation",
+  description: "Are you sure you want to remove the invitation?",
+  actionText: "Delete",
+  appearance: "remove",
+};
+
+const deleteInvitationUserMessageConfig = {
+  success: {
+    id: 1,
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "Successful forwarding!",
+    description: (value) =>
+      `We have successfully forward the invitation to the user ${value}.`,
+    appearance: "confirm",
+    duration: 2000,
+  },
+  failed: {
+    id: 2,
+    icon: <MdErrorOutline size={18} />,
+    title: "Oops, something has gone wrong!",
+    description: (value) =>
+      `We have presented problems forwarding the invitation to the user ${value}.`,
+    appearance: "remove",
+    duration: 2000,
+  },
+};
+
 export {
   invitationActionsConfig,
   invitationTitlesConfig,
   invitationBreakpointsConfig,
+  deleteInvitationUserDecisionConfig,
+  deleteInvitationUserMessageConfig,
 };
