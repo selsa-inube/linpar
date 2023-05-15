@@ -11,10 +11,15 @@ function DeleteInvitation(props) {
   };
 
   const handleRemoveInvitation = () => {
-    handleChangeInvitation(invitation, true);
+    let responseType = "success";
+    try {
+      handleChangeInvitation(invitation, true);
+    } catch (e) {
+      responseType = "failed";
+    }
 
     const { icon, title, description, appearance } =
-      deleteInvitationUserMessageConfig["success"];
+      deleteInvitationUserMessageConfig[responseType];
 
     handleMessage(title, description(invitation.username), icon, appearance);
   };
