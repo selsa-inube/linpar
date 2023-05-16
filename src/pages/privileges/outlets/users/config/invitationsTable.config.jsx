@@ -1,7 +1,7 @@
 import { MdOutlineDelete, MdOutlineAssignmentTurnedIn } from "react-icons/md";
-import { ResendInvitation } from "../ResendInvitation/index";
+import { ResendInvitation } from "../tabs/ResendInvitation";
 
-const invitationActionsConfig = [
+const invitationsTableActions = [
   {
     id: 1,
     actionName: "Complete",
@@ -22,7 +22,7 @@ const invitationActionsConfig = [
   },
 ];
 
-const invitationTitlesConfig = [
+const invitationsTableTitles = [
   {
     id: "userID",
     titleName: "User Id",
@@ -50,7 +50,7 @@ const invitationTitlesConfig = [
   },
 ];
 
-const invitationBreakpointsConfig = [
+const invitationsTableBreakpoints = [
   { breakpoint: "(min-width: 1229px)", totalColumns: 5 },
   { breakpoint: "(max-width: 1228px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1127px)", totalColumns: 3 },
@@ -65,7 +65,7 @@ const invitationBreakpointsConfig = [
 ];
 
 export {
-  invitationActionsConfig,
-  invitationTitlesConfig,
-  invitationBreakpointsConfig,
+  invitationsTableActions,
+  invitationsTableTitles,
+  invitationsTableBreakpoints,
 };

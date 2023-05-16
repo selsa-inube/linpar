@@ -1,9 +1,9 @@
 import { Table } from "../../../../../../components/data/Table";
 import { invitationEntriesDataMock } from "../../../../../../mocks/apps/privileges/invitations.mock";
 import {
-  invitationActionsConfig,
-  invitationBreakpointsConfig,
-  invitationTitlesConfig,
+  invitationsTableActions,
+  invitationsTableBreakpoints,
+  invitationsTableTitles,
 } from "../../config/invitationsTable.config";
 
 export default function InvitationsTab(props) {
@@ -11,10 +11,10 @@ export default function InvitationsTab(props) {
 
   return (
     <Table
-      titles={invitationTitlesConfig}
+      titles={invitationsTableTitles}
       entries={invitationEntriesDataMock}
-      actions={invitationActionsConfig}
-      breakPoints={invitationBreakpointsConfig}
+      actions={invitationsTableActions}
+      breakPoints={invitationsTableBreakpoints}
       filter={searchText}
     />
   );

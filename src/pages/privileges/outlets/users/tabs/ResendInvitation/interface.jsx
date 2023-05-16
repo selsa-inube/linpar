@@ -1,13 +1,13 @@
 import { StyledIconResend } from "./styles";
 import { MdOutlineLibraryAddCheck } from "react-icons/md";
 import {
-  resendInvitationUserConfig,
-  messageResendInvUserConfig,
-} from "../config/resendInvitationUser.config";
-import { DecisionModal } from "../../../../../components/feedback/DecisionModal";
-import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
+  resendInvitationModal,
+  resendInvitationMessages,
+} from "../../config/resendInvitationUser.config";
+import { DecisionModal } from "../../../../../../components/feedback/DecisionModal";
+import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
 
-function renderMessages(user, handleToggleMessage, showResendInvMessage) {
+function renderMessages(user, toggleSectionMessage, showResendInvMessage) {
   let messageType;
   if (showResendInvMessage) {
     messageType = "success";
@@ -16,7 +16,7 @@ function renderMessages(user, handleToggleMessage, showResendInvMessage) {
   }
 
   const { title, description, icon, appearance } =
-    messageResendInvUserConfig[messageType];
+    resendInvitationMessages[messageType];
   return (
     <SectionMessage
       title={title}
@@ -24,7 +24,7 @@ function renderMessages(user, handleToggleMessage, showResendInvMessage) {
       icon={icon}
       appearance={appearance}
       duration={2500}
-      closeSectionMessage={handleToggleMessage}
+      closeSectionMessage={toggleSectionMessage}
     />
   );
 }
@@ -32,19 +32,18 @@ function renderMessages(user, handleToggleMessage, showResendInvMessage) {
 function ResendInvitationUI(props) {
   const {
     showResendInvModal,
-    handleToggleModal,
+    toggleModal,
     resendInvitationUser,
     user,
     showResendInvMessage,
-    handleToggleMessage,
+    toggleSectionMessage,
   } = props;
-  const { title, description, textAction, appearance } =
-    resendInvitationUserConfig["invitation"];
+  const { title, description, textAction, appearance } = resendInvitationModal;
 
   return (
     <>
       <StyledIconResend>
-        <MdOutlineLibraryAddCheck onClick={handleToggleModal} />
+        <MdOutlineLibraryAddCheck onClick={toggleModal} />
       </StyledIconResend>
 
       {showResendInvModal && (
@@ -53,13 +52,13 @@ function ResendInvitationUI(props) {
           description={description(user)}
           actionText={textAction}
           appearance={appearance}
-          closeModal={handleToggleModal}
+          closeModal={toggleModal}
           handleClick={resendInvitationUser}
         />
       )}
 
       {showResendInvMessage &&
-        renderMessages(user, handleToggleMessage, showResendInvMessage)}
+        renderMessages(user, toggleSectionMessage, showResendInvMessage)}
     </>
   );
 }

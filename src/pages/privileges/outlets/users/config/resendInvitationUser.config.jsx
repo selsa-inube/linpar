@@ -1,16 +1,14 @@
 import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
 
-const resendInvitationUserConfig = {
-  invitation: {
-    title: "resend invitation",
-    description: ({ username }) =>
-      `Are you sure you want to resend the invitation ${username} ?`,
-    textAction: "Resend",
-    appearance: "confirm",
-  },
+const resendInvitationModal = {
+  title: "resend invitation",
+  description: ({ username }) =>
+    `Are you sure you want to resend the invitation ${username} ?`,
+  textAction: "Resend",
+  appearance: "confirm",
 };
 
-const messageResendInvUserConfig = {
+const resendInvitationMessages = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
@@ -29,4 +27,4 @@ const messageResendInvUserConfig = {
   },
 };
 
-export { resendInvitationUserConfig, messageResendInvUserConfig };
+export { resendInvitationModal, resendInvitationMessages };
