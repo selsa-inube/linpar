@@ -1,5 +1,5 @@
 import { DeleteUserUI } from "./interface";
-import { sectionMessageConfig } from "../config/deleteUser.config";
+import { sectionMessageConfig } from "../../config/deleteUser.config";
 import { useState } from "react";
 
 function DeleteUser(props) {

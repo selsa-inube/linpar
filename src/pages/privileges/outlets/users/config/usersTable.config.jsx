@@ -1,5 +1,5 @@
 import { MdModeEdit, MdToggleOff } from "react-icons/md";
-import { DeleteUser } from "../DeleteUser";
+import { DeleteUser } from "../tabs/DeleteUser";
 
 const usersBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
