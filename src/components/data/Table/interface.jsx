@@ -1,19 +1,17 @@
+import { useMediaQuery } from "@inube/design-system";
+import { MdOpenInNew } from "react-icons/md";
+import { useMediaQueries } from "../../../hooks/useMediaQueries";
+import { SectionMessage } from "../../feedback/SectionMessage";
+import { Text } from "../Text";
 import {
   StyledTable,
-  StyledThead,
   StyledTbody,
-  StyledTr,
+  StyledTd,
   StyledThAction,
   StyledThTitle,
-  StyledTd,
+  StyledThead,
+  StyledTr,
 } from "./styles";
-import { Text } from "../Text";
-import { useState } from "react";
-import { MdOpenInNew } from "react-icons/md";
-import { useMediaQuery } from "@inube/design-system";
-import { useMediaQueries } from "../../../hooks/useMediaQueries";
-import { SectionMessage } from "../../../components/feedback/SectionMessage";
-import { sectionMessageConfig } from "../../../pages/privileges/outlets/users/config/deleteUser.config";
 
 function findCurrentMediaQuery(currentMediaQuery) {
   const lastIndexMedia = Object.values(currentMediaQuery).lastIndexOf(true);
@@ -31,24 +29,6 @@ function totalTitleColumns(titles, breakPoints, media) {
   if (numColumns >= titles.length) return titles;
 
   return priorityColumns(titles, numColumns);
-}
-
-function DeleteUserMessages({ closeMessage }) {
-  let messageType = "success";
-
-  const { title, description, icon, appearance } =
-    sectionMessageConfig[messageType];
-
-  return (
-    <SectionMessage
-      title={title}
-      description={description}
-      icon={icon}
-      appearance={appearance}
-      duration={2000}
-      closeSectionMessage={closeMessage}
-    />
-  );
 }
 
 function showActionTitle(actionTitle, mediaQuery) {
@@ -76,14 +56,14 @@ function ShowAction(
   entry,
   mediaQuery,
   handleChangeEntry,
-  HandleShowMessage
+  handleMessage
 ) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
         <StyledTd key={`${entry.id}-${action.id}`}>
           {typeof action.content === "function"
-            ? action.content(entry, handleChangeEntry, HandleShowMessage)
+            ? action.content(entry, handleChangeEntry, handleMessage)
             : action.content}
         </StyledTd>
       ))}
@@ -95,8 +75,36 @@ function ShowAction(
   );
 }
 
+function ActionMessage({
+  title,
+  description,
+  icon,
+  appearance,
+  onCloseMessage,
+}) {
+  return (
+    <SectionMessage
+      title={title}
+      description={description}
+      icon={icon}
+      appearance={appearance}
+      duration={2000}
+      closeSectionMessage={onCloseMessage}
+    />
+  );
+}
+
 function TableUI(props) {
-  const { titles, actions, entries, breakPoints, handleChangeEntry } = props;
+  const {
+    titles,
+    actions,
+    entries,
+    breakPoints,
+    handleChangeEntry,
+    message,
+    onHandleMessage,
+    onToggleMessage,
+  } = props;
   const mediaActionOpen = useMediaQuery("(max-width: 850px)");
 
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
@@ -104,16 +112,6 @@ function TableUI(props) {
   const media = useMediaQueries(queriesArray);
 
   const TitleColumns = totalTitleColumns(titles, breakPoints, media);
-
-  const [showMessage, setShowMessage] = useState(false);
-
-  const closeMessage = () => {
-    setShowMessage(false);
-  };
-
-  const HandleShowMessage = () => {
-    setShowMessage(true);
-  };
 
   return (
     <>
@@ -147,14 +145,20 @@ function TableUI(props) {
                 entry,
                 mediaActionOpen,
                 handleChangeEntry,
-                HandleShowMessage
+                onHandleMessage
               )}
             </StyledTr>
           ))}
         </StyledTbody>
       </StyledTable>
-      {showMessage && (
-        <DeleteUserMessages closeMessage={closeMessage}></DeleteUserMessages>
+      {message.show && (
+        <ActionMessage
+          title={message.title}
+          description={message.description}
+          appearance={message.appearance}
+          icon={message.icon}
+          onCloseMessage={onToggleMessage}
+        />
       )}
     </>
   );

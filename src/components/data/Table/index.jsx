@@ -12,8 +12,14 @@ function Table(props) {
     pageLength = 10,
     breakPoints,
   } = props;
-
   const [entriesData, setEntriesData] = useState(entries);
+  const [message, setMessage] = useState({
+    show: false,
+    title: "",
+    description: "",
+    icon: "",
+    appearance: "",
+  });
 
   const handleChangeEntry = (entry, removeRow) => {
     if (removeRow) {
@@ -87,14 +93,31 @@ function Table(props) {
     }
   }
 
+  const onToggleMessage = () => {
+    setMessage({ ...message, show: !message.show });
+  };
+
+  const onHandleMessage = (title, description, icon, appearance) => {
+    setMessage({
+      show: true,
+      title,
+      description,
+      icon,
+      appearance,
+    });
+  };
+
   return (
     <Stack direction="column">
       <TableUI
         titles={titles}
         actions={actions}
-        handleChangeEntry={handleChangeEntry}
         entries={getPageEntries()}
         breakPoints={breakPoints}
+        handleChangeEntry={handleChangeEntry}
+        message={message}
+        onHandleMessage={onHandleMessage}
+        onToggleMessage={onToggleMessage}
       />
       {filterTable().length > pageLength && (
         <Pagination

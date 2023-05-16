@@ -1,8 +1,9 @@
 import { DeleteUserUI } from "./interface";
+import { sectionMessageConfig } from "../config/deleteUser.config";
 import { useState } from "react";
 
 function DeleteUser(props) {
-  const { user, handleChangeDeleteUser, HandleShowMessage } = props;
+  const { user, handleChangeDeleteUser, handleMessage } = props;
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
@@ -14,8 +15,17 @@ function DeleteUser(props) {
   };
 
   const handleConfirmDelete = () => {
-    HandleShowMessage();
-    handleChangeDeleteUser(user, true);
+    let responseType = "success";
+    try {
+      handleChangeDeleteUser(user, true);
+    } catch (e) {
+      responseType = "failed";
+    }
+
+    const { icon, title, description, appearance } =
+      sectionMessageConfig[responseType];
+
+    handleMessage(title, description(user.code), icon, appearance);
   };
 
   return (
