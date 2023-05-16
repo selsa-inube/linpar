@@ -4,23 +4,32 @@ import { deleteInvitationUserDecisionConfig } from "../../../config/invitationsT
 import { StyledIconDelete } from "./styles";
 
 function DeleteInvitationUI(props) {
-  const { handleRemoveInvitation, showModal, toggleModal } = props;
+  const {
+    handleRemoveInvitation,
+    showModal,
+    toggleModal,
+    deleteFormRef,
+    handleConfirmModal,
+  } = props;
 
   const { title, description, actionText, appearance } =
     deleteInvitationUserDecisionConfig;
 
   return (
     <>
-      <StyledIconDelete>
-        <MdOutlineDelete onClick={toggleModal} />
-      </StyledIconDelete>
+      <form ref={deleteFormRef} onSubmit={handleRemoveInvitation}>
+        <StyledIconDelete>
+          <MdOutlineDelete onClick={toggleModal} />
+        </StyledIconDelete>
+      </form>
+
       {showModal && (
         <DecisionModal
           title={title}
           description={description}
           actionText={actionText}
           closeModal={toggleModal}
-          handleConfirm={handleRemoveInvitation}
+          handleConfirm={handleConfirmModal}
           appearance={appearance}
         />
       )}

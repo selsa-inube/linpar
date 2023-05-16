@@ -1,27 +1,24 @@
-import { useState } from "react";
-import { deleteInvitationUserMessageConfig } from "../../../config/invitationsTable.config";
+import { useRef, useState } from "react";
 import { DeleteInvitationUI } from "./interface";
 
 function DeleteInvitation(props) {
-  const { invitation, handleChangeInvitation, handleMessage } = props;
+  const { invitation, handleTriggerAction } = props;
   const [showModal, setShowModal] = useState(false);
+  const deleteFormRef = useRef(null);
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
-  const handleRemoveInvitation = () => {
-    let responseType = "success";
-    try {
-      handleChangeInvitation(invitation, true);
-    } catch (e) {
-      responseType = "failed";
-    }
+  const handleRemoveInvitation = (e) => {
+    e.preventDefault();
+    handleTriggerAction(invitation, "removeInvitation");
+  };
 
-    const { icon, title, description, appearance } =
-      deleteInvitationUserMessageConfig[responseType];
-
-    handleMessage(title, description(invitation.username), icon, appearance);
+  const handleConfirmModal = () => {
+    deleteFormRef.current.dispatchEvent(
+      new Event("submit", { cancelable: true, bubbles: true })
+    );
   };
 
   return (
@@ -29,6 +26,8 @@ function DeleteInvitation(props) {
       handleRemoveInvitation={handleRemoveInvitation}
       toggleModal={toggleModal}
       showModal={showModal}
+      deleteFormRef={deleteFormRef}
+      handleConfirmModal={handleConfirmModal}
     />
   );
 }

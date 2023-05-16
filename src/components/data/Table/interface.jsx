@@ -51,19 +51,13 @@ function showActionTitle(actionTitle, mediaQuery) {
   );
 }
 
-function ShowAction(
-  actionContent,
-  entry,
-  mediaQuery,
-  handleChangeEntry,
-  handleMessage
-) {
+function ShowAction(actionContent, entry, mediaQuery, onTriggerAction) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
         <StyledTd key={`${entry.id}-${action.id}`}>
           {typeof action.content === "function"
-            ? action.content(entry, handleChangeEntry, handleMessage)
+            ? action.content(entry, onTriggerAction)
             : action.content}
         </StyledTd>
       ))}
@@ -75,36 +69,8 @@ function ShowAction(
   );
 }
 
-function ActionMessage({
-  title,
-  description,
-  icon,
-  appearance,
-  onCloseMessage,
-}) {
-  return (
-    <SectionMessage
-      title={title}
-      description={description}
-      icon={icon}
-      appearance={appearance}
-      duration={2000}
-      closeSectionMessage={onCloseMessage}
-    />
-  );
-}
-
 function TableUI(props) {
-  const {
-    titles,
-    actions,
-    entries,
-    breakPoints,
-    handleChangeEntry,
-    message,
-    onHandleMessage,
-    onToggleMessage,
-  } = props;
+  const { titles, actions, entries, breakPoints, onTriggerAction } = props;
   const mediaActionOpen = useMediaQuery("(max-width: 850px)");
 
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
@@ -114,53 +80,36 @@ function TableUI(props) {
   const TitleColumns = totalTitleColumns(titles, breakPoints, media);
 
   return (
-    <>
-      <StyledTable>
-        <StyledThead>
-          <StyledTr>
-            {TitleColumns.map((title) => (
-              <StyledThTitle key={`title-${title.id}`}>
-                <Text typoToken="labelMedium">{title.titleName}</Text>
-              </StyledThTitle>
-            ))}
-            {showActionTitle(actions, mediaActionOpen)}
-          </StyledTr>
-        </StyledThead>
-        <StyledTbody>
-          {entries.map((entry) => (
-            <StyledTr key={`entry-${entry.id}`}>
-              {TitleColumns.map((title) =>
-                entry[title.id] ? (
-                  <StyledTd key={`e-${entry[title.id]}`}>
-                    <Text typoToken="bodySmall">{entry[title.id]}</Text>
-                  </StyledTd>
-                ) : (
-                  <StyledTd key={`e-${entry[title.id]}`}>
-                    <Text typoToken="bodySmall">{null}</Text>
-                  </StyledTd>
-                )
-              )}
-              {ShowAction(
-                actions,
-                entry,
-                mediaActionOpen,
-                handleChangeEntry,
-                onHandleMessage
-              )}
-            </StyledTr>
+    <StyledTable>
+      <StyledThead>
+        <StyledTr>
+          {TitleColumns.map((title) => (
+            <StyledThTitle key={`title-${title.id}`}>
+              <Text typoToken="labelMedium">{title.titleName}</Text>
+            </StyledThTitle>
           ))}
-        </StyledTbody>
-      </StyledTable>
-      {message.show && (
-        <ActionMessage
-          title={message.title}
-          description={message.description}
-          appearance={message.appearance}
-          icon={message.icon}
-          onCloseMessage={onToggleMessage}
-        />
-      )}
-    </>
+          {showActionTitle(actions, mediaActionOpen)}
+        </StyledTr>
+      </StyledThead>
+      <StyledTbody>
+        {entries.map((entry) => (
+          <StyledTr key={`entry-${entry.id}`}>
+            {TitleColumns.map((title) =>
+              entry[title.id] ? (
+                <StyledTd key={`e-${entry[title.id]}`}>
+                  <Text typoToken="bodySmall">{entry[title.id]}</Text>
+                </StyledTd>
+              ) : (
+                <StyledTd key={`e-${entry[title.id]}`}>
+                  <Text typoToken="bodySmall">{null}</Text>
+                </StyledTd>
+              )
+            )}
+            {ShowAction(actions, entry, mediaActionOpen, onTriggerAction)}
+          </StyledTr>
+        ))}
+      </StyledTbody>
+    </StyledTable>
   );
 }
 

@@ -22,11 +22,10 @@ const invitationActionsConfig = [
   {
     id: 3,
     actionName: "Delete",
-    content: (entry, handleChangeEntry, handleMessage) => (
+    content: (entry, onTriggerAction) => (
       <DeleteInvitation
         invitation={entry}
-        handleChangeInvitation={handleChangeEntry}
-        handleMessage={handleMessage}
+        handleTriggerAction={onTriggerAction}
       />
     ),
     type: "remove",
