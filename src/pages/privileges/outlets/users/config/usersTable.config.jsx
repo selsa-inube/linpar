@@ -1,5 +1,5 @@
 import { MdModeEdit, MdOutlineDelete } from "react-icons/md";
-import { ActivateUser } from "../ActivateUser/index";
+import { ActivateUser } from "../../users/tabs/ActivateUser";
 
 const usersBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },

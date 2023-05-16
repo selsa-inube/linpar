@@ -1,8 +1,9 @@
 import { Switch } from "@inube/design-system";
-import { DecisionModal } from "../../../../../components/feedback/DecisionModal";
-import { activateUserConfig } from "../config/activateUser.config";
+import { DecisionModal } from "../../../../../../components/feedback/DecisionModal";
+import { activateUserConfig } from "../../config/activateUser.config";
 
-function ActivateUserModal(active, user, handleCloseModal, onActionConfirm) {
+function ActivateUserModal(props) {
+  const { active, user, handleToggleModal, onActionConfirm } = props;
   let messageType;
   if (!active) {
     messageType = "activation";
@@ -20,7 +21,7 @@ function ActivateUserModal(active, user, handleCloseModal, onActionConfirm) {
         description={description(user)}
         actionText={textAction}
         appearance={appearance}
-        closeModal={handleCloseModal}
+        closeModal={handleToggleModal}
         handleClick={onActionConfirm}
       />
     </>
@@ -33,22 +34,26 @@ function ActivateUserUI(props) {
     showActivateUserModal,
     user,
     id,
-    handleChange,
-    handleCloseModal,
+    handleToggleModal,
     onActionConfirm,
   } = props;
+
   return (
     <>
-      <form onSubmit={onActionConfirm}>
-        <Switch
-          checked={active}
-          handleChange={handleChange}
-          id={id.toString()}
-        />
+      <Switch
+        checked={active}
+        handleChange={handleToggleModal}
+        id={id.toString()}
+      />
 
-        {showActivateUserModal &&
-          ActivateUserModal(active, user, handleCloseModal, onActionConfirm)}
-      </form>
+      {showActivateUserModal && (
+        <ActivateUserModal
+          active={active}
+          user={user}
+          handleToggleModal={handleToggleModal}
+          onActionConfirm={onActionConfirm}
+        />
+      )}
     </>
   );
 }
