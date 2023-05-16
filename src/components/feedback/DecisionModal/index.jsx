@@ -27,7 +27,7 @@ function DecisionModal(props) {
     setIsLoading(true);
   };
 
-  const handleButtonClick = () => {
+  const handleConfirmationClick = () => {
     handleIsLoading();
     setTimeout(() => {
       closeModal();
@@ -62,7 +62,7 @@ function DecisionModal(props) {
             <Button
               appearance={appearance}
               isLoading={isLoading}
-              handleClick={handleButtonClick}
+              handleClick={handleConfirmationClick}
               spacing={smallScreen ? "compact" : undefined}
             >
               {actionText}
