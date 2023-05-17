@@ -5,10 +5,10 @@ import {
   Text,
   useMediaQuery,
 } from "@inube/design-system";
+import { StyledModal } from "./styles";
+import { MdClear } from "react-icons/md";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { MdClear } from "react-icons/md";
-import { StyledModal } from "./styles";
 
 function DecisionModal(props) {
   const {
@@ -17,7 +17,7 @@ function DecisionModal(props) {
     appearance,
     actionText,
     closeModal,
-    handleConfirm,
+    handleClick,
   } = props;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,11 +27,11 @@ function DecisionModal(props) {
     setIsLoading(true);
   };
 
-  const onConfirm = () => {
+  const handleConfirmationClick = () => {
     handleIsLoading();
     setTimeout(() => {
       closeModal();
-      handleConfirm();
+      handleClick();
     }, 1000);
   };
 
@@ -62,8 +62,8 @@ function DecisionModal(props) {
             <Button
               appearance={appearance}
               isLoading={isLoading}
+              handleClick={handleConfirmationClick}
               spacing={smallScreen ? "compact" : undefined}
-              handleClick={onConfirm}
             >
               {actionText}
             </Button>

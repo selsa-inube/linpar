@@ -29,7 +29,7 @@ function DeleteInvitationUI(props) {
           description={description}
           actionText={actionText}
           closeModal={toggleModal}
-          handleConfirm={handleConfirmModal}
+          handleClick={handleConfirmModal}
           appearance={appearance}
         />
       )}
