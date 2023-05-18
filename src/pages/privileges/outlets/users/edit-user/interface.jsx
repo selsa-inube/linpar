@@ -27,13 +27,6 @@ function EditUserUI(props) {
             selectedTab={isSelected}
             handleSelectedTab={handleTabChange}
           />
-          <Stack justifyContent="space-between" alignItems="center">
-            {smallScreen && (
-              <Stack>
-                <MdOutlineMoreHoriz size={24} cursor="pointer" />
-              </Stack>
-            )}
-          </Stack>
           {isSelected === editUserTabsConfig.generalInformation.id && (
             <GeneralInformation />
           )}
