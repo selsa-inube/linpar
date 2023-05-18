@@ -44,9 +44,9 @@ const invitationBreakpointsConfig = [
 
 const deleteInvitationUserDecisionConfig = {
   id: 1,
-  title: "Delete invitation",
-  description: "Are you sure you want to remove the invitation?",
-  actionText: "Delete",
+  title: "Borrar invitación",
+  description: "¿Seguro que quieres eliminar la invitación?",
+  actionText: "Eliminar",
   appearance: "remove",
 };
 
@@ -54,18 +54,18 @@ const deleteInvitationUserMessageConfig = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
-    title: "Successful forwarding!",
+    title: "¡Eliminación exitosa!",
     description: (value) =>
-      `We have successfully forward the invitation to the user ${value}.`,
+      `Hemos eliminado correctamente la invitación del usuario ${value}.`,
     appearance: "confirm",
     duration: 2000,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
-    title: "Oops, something has gone wrong!",
+    title: "¡Uy, algo ha salido mal!",
     description: (value) =>
-      `We have presented problems forwarding the invitation to the user ${value}.`,
+      `Hemos presentado problemas al eliminar la invitación del usuario ${value}.`,
     appearance: "remove",
     duration: 2000,
   },
