@@ -1,6 +1,3 @@
-import { MdModeEdit, MdToggleOff } from "react-icons/md";
-import { DeleteUser } from "../tabs/DeleteUser";
-
 const usersBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
@@ -34,31 +31,4 @@ const usersTitlesConfig = [
   },
 ];
 
-const usersActionsConfig = [
-  {
-    id: 1,
-    actionName: "Activate",
-    content: <MdToggleOff size={32} />,
-    type: "secondary",
-  },
-  {
-    id: 2,
-    actionName: "Edit",
-    content: <MdModeEdit />,
-    type: "primary",
-  },
-  {
-    id: 3,
-    actionName: "Delete",
-    content: (entry, handleChangeEntry, handleMessage) => (
-      <DeleteUser
-        user={entry}
-        handleChangeDeleteUser={handleChangeEntry}
-        handleMessage={handleMessage}
-      />
-    ),
-    type: "remove",
-  },
-];
-
-export { usersBreakPointsConfig, usersActionsConfig, usersTitlesConfig };
+export { usersBreakPointsConfig, usersTitlesConfig };

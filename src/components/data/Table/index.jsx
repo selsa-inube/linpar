@@ -12,31 +12,6 @@ function Table(props) {
     pageLength = 10,
     breakPoints,
   } = props;
-  const [entriesData, setEntriesData] = useState(entries);
-  const [message, setMessage] = useState({
-    show: false,
-    title: "",
-    description: "",
-    icon: "",
-    appearance: "",
-  });
-
-  const handleChangeEntry = (entry, removeRow) => {
-    if (removeRow) {
-      setEntriesData(
-        entriesData.filter((oldEntry) => entry.id !== oldEntry.id)
-      );
-    } else {
-      setEntriesData(
-        entriesData.map((oldEntry) => {
-          if (oldEntry.id === entry.id) {
-            return entry;
-          }
-          return oldEntry;
-        })
-      );
-    }
-  };
 
   function filterArray() {
     const titlesId = titles.map((title) => title.id);
@@ -57,7 +32,7 @@ function Table(props) {
   }
 
   function filterTable() {
-    if (filter.length === 0) return entriesData;
+    if (filter.length === 0) return entries;
     return filterArray();
   }
 
@@ -93,20 +68,6 @@ function Table(props) {
     }
   }
 
-  const onToggleMessage = () => {
-    setMessage({ ...message, show: !message.show });
-  };
-
-  const onHandleMessage = (title, description, icon, appearance) => {
-    setMessage({
-      show: true,
-      title,
-      description,
-      icon,
-      appearance,
-    });
-  };
-
   return (
     <Stack direction="column">
       <TableUI
@@ -114,10 +75,6 @@ function Table(props) {
         actions={actions}
         entries={getPageEntries()}
         breakPoints={breakPoints}
-        handleChangeEntry={handleChangeEntry}
-        message={message}
-        onHandleMessage={onHandleMessage}
-        onToggleMessage={onToggleMessage}
       />
       {filterTable().length > pageLength && (
         <Pagination
