@@ -2,7 +2,7 @@ import { StyledAppMenu, StyledTitle, StyledCards } from "./styles";
 import { PageTitle } from "../../PageTitle";
 import { AppMenuCard } from "../../../components/cards/AppMenuCard/index";
 
-import { Breadcrumbs } from "../../navigation/Breadcrumbs";
+import { Breadcrumbs } from "@inube/design-system";
 
 function AppMenu(props) {
   const { appName, appDescription, appIcon, appOptions, appRoute } = props;

@@ -1,11 +1,10 @@
-import { StyledPageUsers, StyledFormContainer } from "./styles";
-import { Breadcrumbs } from "../../../../../components/navigation/Breadcrumbs";
+import { Breadcrumbs, Button, Stack, TextField } from "@inube/design-system";
+import { MdOutlineShortcut } from "react-icons/md";
 import { PageTitle } from "../../../../../components/PageTitle";
+import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
-import { Stack, Button, TextField } from "@inube/design-system";
-import { MdOutlineShortcut } from "react-icons/md";
-import { SectionMessage } from "../../../../../components/feedback/SectionMessage";
+import { StyledFormContainer, StyledPageUsers } from "./styles";
 
 function InviteUI(props) {
   const {
