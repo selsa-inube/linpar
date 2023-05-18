@@ -4,8 +4,8 @@ const editUserOptionsConfig = [
   {
     id: 1,
     icon: <MdModeEdit />,
-    label: "User edition",
-    description: "Edit user properties and privileges",
+    label: "Editar Usuario",
+    description: "Editar las propiedades y privilegios del usuario",
     url: "/privileges/users/user edition",
   },
 ];

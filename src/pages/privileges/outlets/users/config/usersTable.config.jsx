@@ -1,5 +1,5 @@
-import { MdModeEdit, MdOutlineDelete, MdToggleOff } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { MdOutlineDelete, MdToggleOff } from "react-icons/md";
+import { EditUser } from "../tabs/users/EditUser";
 
 const usersBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
@@ -44,11 +44,7 @@ const usersActionsConfig = [
   {
     id: 2,
     actionName: "Edit",
-    content: (entry) => (
-      <Link to={`edit/${entry.id}`}>
-        <MdModeEdit />
-      </Link>
-    ),
+    content: (entry) => <EditUser entry={entry} />,
     type: "primary",
   },
   {

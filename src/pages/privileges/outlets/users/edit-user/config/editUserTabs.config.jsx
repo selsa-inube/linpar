@@ -2,32 +2,32 @@ const editUserTabsConfig = {
   generalInformation: {
     id: "general-information",
     isDisabled: false,
-    label: "General information",
+    label: "Informacion General",
   },
   branches: {
     id: "branches",
     isDisabled: false,
-    label: "Branches",
+    label: "Oficinas",
   },
   projects: {
     id: "projects",
     isDisabled: false,
-    label: "Projects",
+    label: "Proyectos",
   },
   events: {
     id: "events",
     isDisabled: false,
-    label: "Events",
+    label: "Eventos",
   },
   aidBudgetUnits: {
     id: "aid-budget-units",
     isDisabled: false,
-    label: "Aid Budget Units",
+    label: "Unidades presupuestarias de ayuda",
   },
   payroll: {
     id: "payroll",
     isDisabled: false,
-    label: "Payroll",
+    label: "Nómina",
   },
 };
 
