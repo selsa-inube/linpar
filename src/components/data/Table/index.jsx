@@ -11,7 +11,6 @@ function Table(props) {
     filter = "",
     pageLength = 10,
     breakPoints,
-    onTriggerAction,
   } = props;
 
   function filterArray() {
@@ -76,7 +75,6 @@ function Table(props) {
         actions={actions}
         entries={getPageEntries()}
         breakPoints={breakPoints}
-        onTriggerAction={onTriggerAction}
       />
       {filterTable().length > pageLength && (
         <Pagination

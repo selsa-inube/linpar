@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { DeleteInvitationUI } from "./interface";
 
 function DeleteInvitation(props) {
-  const { invitation, handleTriggerAction } = props;
+  const { invitation, handleDelete } = props;
   const [showModal, setShowModal] = useState(false);
   const deleteFormRef = useRef(null);
 
@@ -12,7 +12,7 @@ function DeleteInvitation(props) {
 
   const handleRemoveInvitation = (e) => {
     e.preventDefault();
-    handleTriggerAction(invitation, "removeInvitation");
+    handleDelete(invitation);
   };
 
   const handleConfirmModal = () => {

@@ -1,36 +1,4 @@
-import {
-  MdErrorOutline,
-  MdOutlineAssignmentTurnedIn,
-  MdShortcut,
-  MdThumbUpOffAlt,
-} from "react-icons/md";
-import { DeleteInvitation } from "../tabs/invitations/deleteInvitation";
-
-const invitationActionsConfig = [
-  {
-    id: 1,
-    actionName: "Complete",
-    content: <MdOutlineAssignmentTurnedIn />,
-    type: "secondary",
-  },
-  {
-    id: 2,
-    actionName: "Resend",
-    content: <MdShortcut />,
-    type: "primary",
-  },
-  {
-    id: 3,
-    actionName: "Delete",
-    content: (entry, onTriggerAction) => (
-      <DeleteInvitation
-        invitation={entry}
-        handleTriggerAction={onTriggerAction}
-      />
-    ),
-    type: "remove",
-  },
-];
+import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
 const invitationTitlesConfig = [
   {
@@ -104,7 +72,6 @@ const deleteInvitationUserMessageConfig = {
 };
 
 export {
-  invitationActionsConfig,
   invitationTitlesConfig,
   invitationBreakpointsConfig,
   deleteInvitationUserDecisionConfig,

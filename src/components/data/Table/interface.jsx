@@ -1,7 +1,6 @@
 import { useMediaQuery } from "@inube/design-system";
 import { MdOpenInNew } from "react-icons/md";
 import { useMediaQueries } from "../../../hooks/useMediaQueries";
-import { SectionMessage } from "../../feedback/SectionMessage";
 import { Text } from "../Text";
 import {
   StyledTable,
@@ -51,13 +50,13 @@ function showActionTitle(actionTitle, mediaQuery) {
   );
 }
 
-function ShowAction(actionContent, entry, mediaQuery, onTriggerAction) {
+function ShowAction(actionContent, entry, mediaQuery) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
         <StyledTd key={`${entry.id}-${action.id}`}>
           {typeof action.content === "function"
-            ? action.content(entry, onTriggerAction)
+            ? action.content(entry)
             : action.content}
         </StyledTd>
       ))}
@@ -70,7 +69,7 @@ function ShowAction(actionContent, entry, mediaQuery, onTriggerAction) {
 }
 
 function TableUI(props) {
-  const { titles, actions, entries, breakPoints, onTriggerAction } = props;
+  const { titles, actions, entries, breakPoints } = props;
   const mediaActionOpen = useMediaQuery("(max-width: 850px)");
 
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
@@ -105,7 +104,7 @@ function TableUI(props) {
                 </StyledTd>
               )
             )}
-            {ShowAction(actions, entry, mediaActionOpen, onTriggerAction)}
+            {ShowAction(actions, entry, mediaActionOpen)}
           </StyledTr>
         ))}
       </StyledTbody>
