@@ -1,6 +1,6 @@
 import { Switch } from "@inube/design-system";
-import { DecisionModal } from "../../../../../../components/feedback/DecisionModal";
-import { activateUserConfig } from "../../config/activateUser.config";
+import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
+import { activateUserConfig } from "../../../config/activateUser.config";
 
 function ActivateUserModal(props) {
   const { active, user, handleToggleModal, onActionConfirm } = props;

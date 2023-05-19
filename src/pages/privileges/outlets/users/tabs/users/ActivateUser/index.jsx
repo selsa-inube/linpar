@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ActivateUserUI } from "./interface";
 
 function ActivateUser(props) {
-  const { user } = props;
+  const { user, handleActivateUser } = props;
   const [showActivateUserModal, setShowActivateUserModal] = useState(false);
   const [active, setActive] = useState(false);
 
@@ -11,7 +11,7 @@ function ActivateUser(props) {
   };
 
   const onActionConfirm = () => {
-    setActive(!active);
+    setActive(handleActivateUser(active));
   };
 
   return (
