@@ -39,7 +39,7 @@ export default function UsersTab(props) {
     const { icon, title, description, appearance } =
       sectionMessageConfig[MessageType];
 
-    handleShowMessage(title, description(user.code), icon, appearance);
+    handleShowMessage(title, description(user), icon, appearance);
   };
 
   const handleShowMessage = (title, description, icon, appearance) => {
@@ -72,8 +72,8 @@ export default function UsersTab(props) {
     {
       id: 3,
       actionName: "Delete",
-      content: (entry) => (
-        <DeleteUser user={entry} handleDeleteUser={handleDeleteUser} />
+      content: (user) => (
+        <DeleteUser user={user} handleDeleteUser={handleDeleteUser} />
       ),
       type: "remove",
     },

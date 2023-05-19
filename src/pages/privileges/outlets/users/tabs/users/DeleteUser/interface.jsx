@@ -25,11 +25,9 @@ function DeleteUserUI(props) {
     props;
   return (
     <>
-      <form>
-        <StyledIconDelete>
-          <MdOutlineDelete onClick={handleShowModal} />
-        </StyledIconDelete>
-      </form>
+      <StyledIconDelete>
+        <MdOutlineDelete onClick={handleShowModal} />
+      </StyledIconDelete>
       {showModal && DeleteUserModal(user, closeModal, handleConfirmDelete)}
     </>
   );
