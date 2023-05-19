@@ -5,7 +5,7 @@ import { useState } from "react";
 import { InfoModal } from "../../feedback/InfoModal";
 
 function SubjectCard(props) {
-  const { userData, title } = props;
+  const { subjectData, title } = props;
   const [showModal, setshowModal] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -15,26 +15,32 @@ function SubjectCard(props) {
   };
 
   return (
-    <StyledSubjectCard smallScreen={smallScreen} isActive={showModal}>
-      <Stack direction="column">
-        <Text typo="labelMedium" align="end">
-          {userData.name}
-        </Text>
-        <Text typo="bodySmall" align="end">
-          {userData.identification}
-        </Text>
-      </Stack>
-      <StyledIcon onClick={handleToggleModal} isActive={showModal}>
-        <MdOutlinePushPin size={24} />
-      </StyledIcon>
+    <>
+      <StyledSubjectCard
+        onClick={handleToggleModal}
+        smallScreen={smallScreen}
+        isActive={showModal}
+      >
+        <Stack direction="column">
+          <Text typo="labelMedium" align="end">
+            {Object.values(subjectData)[0]}
+          </Text>
+          <Text typo="bodySmall" align="end">
+            {Object.values(subjectData)[1]}
+          </Text>
+        </Stack>
+        <StyledIcon isActive={showModal}>
+          <MdOutlinePushPin size={24} />
+        </StyledIcon>
+      </StyledSubjectCard>
       {showModal && (
         <InfoModal
           title={title}
           closeModal={handleToggleModal}
-          dataUser={userData}
+          infoData={subjectData}
         />
       )}
-    </StyledSubjectCard>
+    </>
   );
 }
 

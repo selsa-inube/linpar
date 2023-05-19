@@ -14,17 +14,17 @@ const story = {
 };
 
 const data = {
-  name: "David Leonardo Garzón Páramo",
-  identification: "1013614213",
-  phone: "320 5510052",
-  mail: "d.garzon@sistemasenlinea.com.co",
+  Name: "David Leonardo Garzón Páramo",
+  Identification: "1013614213",
+  Phone: "320 5510052",
+  Mail: "d.garzon@sistemasenlinea.com.co",
 };
 
 const Template = (args) => <SubjectCard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  userData: data,
+  subjectData: data,
   title: "User Information",
 };
 
