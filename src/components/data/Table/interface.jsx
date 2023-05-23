@@ -9,8 +9,7 @@ import {
 } from "./styles";
 import { Text } from "../Text";
 import { MdOpenInNew } from "react-icons/md";
-import { useMediaQuery } from "@inube/design-system";
-import { useMediaQueries } from "../../../hooks/useMediaQueries";
+import { useMediaQuery, useMediaQueries } from "@inube/design-system";
 
 function findCurrentMediaQuery(currentMediaQuery) {
   const lastIndexMedia = Object.values(currentMediaQuery).lastIndexOf(true);
