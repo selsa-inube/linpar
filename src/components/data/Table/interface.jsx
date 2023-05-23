@@ -1,6 +1,5 @@
-import { useMediaQuery } from "@inube/design-system";
+import { useMediaQueries, useMediaQuery } from "@inube/design-system";
 import { MdOpenInNew } from "react-icons/md";
-import { useMediaQueries } from "../../../hooks/useMediaQueries";
 import { Text } from "../Text";
 import {
   StyledTable,
