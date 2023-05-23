@@ -1,9 +1,9 @@
 import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
 
 const resendInvitationModal = {
-  title: "resend invitation",
+  title: "resend  invitation",
   description: ({ username }) =>
-    `Are you sure you want to resend the invitation ${username} ?`,
+    `Are you sure you want to resend the  invitation ${username} ?`,
   textAction: "Resend",
   appearance: "confirm",
 };
@@ -12,9 +12,9 @@ const resendInvitationMessages = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
-    title: "Successful forwarding!",
+    title: "Successful  forwarding!",
     description: ({ username }) =>
-      `We have successfully forward the invitation to the user ${username}`,
+      `We have successfully  forward the invitation  to the user ${username}`,
     appearance: "confirm",
   },
   failed: {
