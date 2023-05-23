@@ -26,6 +26,7 @@ const StyledIcon = styled.i`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 1000ms ease;
   transform: rotate(${(props) => (props.isActive ? "90" : "0")}deg);
   color: ${(props) =>
     props.isActive

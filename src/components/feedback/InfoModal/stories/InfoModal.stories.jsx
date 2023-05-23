@@ -10,7 +10,7 @@ const story = {
 const data = {
   Name: "David Leonardo Garzón Páramo",
   Identification: "1013614213",
-  Phone: "320 5510052",
+  Phone: "3205510052",
   Mail: "d.garzon@sistemasenlinea.com.co",
 };
 

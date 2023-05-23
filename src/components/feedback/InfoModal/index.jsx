@@ -23,9 +23,9 @@ function InfoModal(props) {
             <Text typo="headlineSmall">{title}</Text>
             <MdClear size={24} cursor="pointer" onClick={closeModal} />
           </Stack>
-          {Object.keys(infoData).map((key, index) => (
+          {Object.keys(infoData).map((key, id) => (
             <TextField
-              key={index}
+              key={id}
               label={key}
               name={key}
               id={key}
@@ -40,7 +40,7 @@ function InfoModal(props) {
         </Stack>
       </StyledModal>
     </Blanket>,
-    document.getElementById("info")
+    document.getElementById("portal")
   );
 }
 

@@ -6,12 +6,12 @@ import { InfoModal } from "../../feedback/InfoModal";
 
 function SubjectCard(props) {
   const { subjectData, title } = props;
-  const [showModal, setshowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
   const handleToggleModal = () => {
-    setshowModal(!showModal);
+    setShowModal(!showModal);
   };
 
   return (
