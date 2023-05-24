@@ -1,15 +1,15 @@
+import { useMediaQueries, useMediaQuery } from "@inube/design-system";
+import { MdOpenInNew } from "react-icons/md";
+import { Text } from "../Text";
 import {
   StyledTable,
-  StyledThead,
   StyledTbody,
-  StyledTr,
+  StyledTd,
   StyledThAction,
   StyledThTitle,
-  StyledTd,
+  StyledThead,
+  StyledTr,
 } from "./styles";
-import { Text } from "../Text";
-import { MdOpenInNew } from "react-icons/md";
-import { useMediaQuery, useMediaQueries } from "@inube/design-system";
 
 function findCurrentMediaQuery(currentMediaQuery) {
   const lastIndexMedia = Object.values(currentMediaQuery).lastIndexOf(true);
@@ -53,7 +53,11 @@ function ShowAction(actionContent, entry, mediaQuery) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
-        <StyledTd key={`${entry.id}-${action.id}`}>{action.content}</StyledTd>
+        <StyledTd key={`${entry.id}-${action.id}`}>
+          {typeof action.content === "function"
+            ? action.content(entry)
+            : action.content}
+        </StyledTd>
       ))}
     </>
   ) : (
