@@ -34,7 +34,7 @@ function InfoModal(props) {
               isFullWidth={true}
               type="text"
               size="compact"
-              readonly
+              readOnly={true}
             />
           ))}
         </Stack>
