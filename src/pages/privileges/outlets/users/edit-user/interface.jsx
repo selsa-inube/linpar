@@ -14,11 +14,11 @@ function EditUserUI(props) {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={editUserOptionsConfig[0].url} />
+          <Breadcrumbs route={editUserOptionsConfig.editUserPage.url} />
           <PageTitle
-            title={editUserOptionsConfig[0].label}
-            icon={editUserOptionsConfig[0].icon}
-            description={editUserOptionsConfig[0].description}
+            title={editUserOptionsConfig.editUserPage.label}
+            icon={editUserOptionsConfig.editUserPage.icon}
+            description={editUserOptionsConfig.editUserPage.description}
           />
         </Stack>
         <Stack gap="32px" direction="column">
