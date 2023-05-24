@@ -1,5 +1,5 @@
-import { Table } from "../../../../../../components/data/Table";
-import { invitationEntriesDataMock } from "../../../../../../mocks/apps/privileges/invitations.mock";
+import { Table } from "@src/components/data/Table";
+import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
 import {
   invitationActionsConfig,
   invitationBreakpointsConfig,

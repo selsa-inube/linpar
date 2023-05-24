@@ -1,5 +1,5 @@
-import { Table } from "../../../../../../components/data/Table";
-import { userEntriesDataMock } from "../../../../../../mocks/apps/privileges/users.mock";
+import { Table } from "@src/components/data/Table";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
 import {
   usersActionsConfig,
   usersBreakPointsConfig,
