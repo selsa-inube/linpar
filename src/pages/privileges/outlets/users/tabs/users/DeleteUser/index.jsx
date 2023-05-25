@@ -13,18 +13,14 @@ function DeleteUser(props) {
     setShowModal(false);
   };
 
-  const handleConfirmDelete = () => {
-    handleDeleteUser(user);
-  };
-
   return (
     <DeleteUserUI
       user={user}
       showModal={showModal}
       handleShowModal={handleShowModal}
-      handleConfirmDelete={handleConfirmDelete}
+      handleDeleteUser={handleDeleteUser}
       closeModal={closeModal}
-    ></DeleteUserUI>
+    />
   );
 }
 

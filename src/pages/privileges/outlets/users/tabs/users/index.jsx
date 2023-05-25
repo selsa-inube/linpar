@@ -1,7 +1,7 @@
 import { Table } from "../../../../../../components/data/Table";
 import { userEntriesDataMock } from "../../../../../../mocks/apps/privileges/users.mock";
 import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
-import { sectionMessageConfig } from "../../config/deleteUser.config";
+import { deleteUserMessages } from "../../config/deleteUser.config";
 import { MdToggleOff } from "react-icons/md";
 import { EditUser } from "./EditUser";
 import { DeleteUser } from "./DeleteUser";
@@ -26,7 +26,7 @@ export default function UsersTab(props) {
 
   const [message, setMessage] = useState(initialMessageState);
 
-  const handleDeleteUser = (user) => {
+  const deleteUser = (user) => {
     let MessageType = "success";
 
     try {
@@ -38,7 +38,7 @@ export default function UsersTab(props) {
     }
 
     const { icon, title, description, appearance } =
-      sectionMessageConfig[MessageType];
+      deleteUserMessages[MessageType];
 
     handleShowMessage(title, description(user), icon, appearance);
   };
@@ -74,7 +74,7 @@ export default function UsersTab(props) {
       id: 3,
       actionName: "Delete",
       content: (user) => (
-        <DeleteUser user={user} handleDeleteUser={handleDeleteUser} />
+        <DeleteUser user={user} handleDeleteUser={() => deleteUser(user)} />
       ),
       type: "remove",
     },

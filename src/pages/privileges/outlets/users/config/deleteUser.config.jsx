@@ -1,5 +1,5 @@
 import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
-const decisionModalConfig = {
+const deleteUserModal = {
   delete: {
     title: "Eliminar Usuario",
     description: ({ code }) =>
@@ -9,7 +9,7 @@ const decisionModalConfig = {
   },
 };
 
-const sectionMessageConfig = {
+const deleteUserMessages = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
@@ -27,4 +27,4 @@ const sectionMessageConfig = {
   },
 };
 
-export { sectionMessageConfig, decisionModalConfig };
+export { deleteUserMessages, deleteUserModal };
