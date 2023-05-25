@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { MdOutlineAssignmentTurnedIn, MdShortcut } from "react-icons/md";
+import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { Table } from "../../../../../../components/data/Table";
 import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
 import { invitationEntriesDataMock } from "../../../../../../mocks/apps/privileges/invitations.mock";
+import { resendInvitationMessages } from "../../../users/config/resendInvitationUser.config";
 import {
   deleteInvitationMessagesConfig,
-  invitationBreakpointsConfig,
-  invitationTitlesConfig,
+  invitationsTableBreakpoints,
+  invitationsTableTitles,
 } from "../../config/invitationsTable.config";
 import { DeleteInvitation } from "./DeleteInvitation";
+import { ResendInvitation } from "./ResendInvitation";
 
 const initialMessageState = {
   show: false,
@@ -23,7 +25,7 @@ export default function InvitationsTab(props) {
   const [message, setMessage] = useState(initialMessageState);
   const [invitations, setInvitations] = useState(invitationEntriesDataMock);
 
-  const invitationActionsConfig = [
+  const invitationsTableActions = [
     {
       id: 1,
       actionName: "Complete",
@@ -33,7 +35,12 @@ export default function InvitationsTab(props) {
     {
       id: 2,
       actionName: "Resend",
-      content: <MdShortcut />,
+      content: (invitation) => (
+        <ResendInvitation
+          invitation={invitation}
+          handleResendInvitation={() => handleResendInvitation(invitation)}
+        />
+      ),
       type: "primary",
     },
     {
@@ -71,6 +78,21 @@ export default function InvitationsTab(props) {
     );
   };
 
+  const handleResendInvitation = (invitation) => {
+    let messageType = "success";
+
+    try {
+      handleCloseMessage();
+    } catch (error) {
+      messageType = "failed";
+    }
+
+    const { title, description, icon, appearance } =
+      resendInvitationMessages[messageType];
+
+    handleShowMessage(title, description(invitation), icon, appearance);
+  };
+
   const handleShowMessage = (title, description, icon, appearance) => {
     setMessage({
       show: true,
@@ -81,17 +103,17 @@ export default function InvitationsTab(props) {
     });
   };
 
-  const onCloseMessage = () => {
+  const handleCloseMessage = () => {
     setMessage(initialMessageState);
   };
 
   return (
     <>
       <Table
-        titles={invitationTitlesConfig}
+        titles={invitationsTableTitles}
         entries={invitations}
-        actions={invitationActionsConfig}
-        breakPoints={invitationBreakpointsConfig}
+        actions={invitationsTableActions}
+        breakPoints={invitationsTableBreakpoints}
         filter={searchText}
       />
       {message.show && (
@@ -101,7 +123,7 @@ export default function InvitationsTab(props) {
           icon={message.icon}
           appearance={message.appearance}
           duration={2000}
-          closeSectionMessage={onCloseMessage}
+          closeSectionMessage={handleCloseMessage}
         />
       )}
     </>

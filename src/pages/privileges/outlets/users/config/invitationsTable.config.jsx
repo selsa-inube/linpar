@@ -1,6 +1,6 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
-const invitationTitlesConfig = [
+const invitationsTableTitles = [
   {
     id: "userID",
     titleName: "User Id",
@@ -28,7 +28,7 @@ const invitationTitlesConfig = [
   },
 ];
 
-const invitationBreakpointsConfig = [
+const invitationsTableBreakpoints = [
   { breakpoint: "(min-width: 1229px)", totalColumns: 5 },
   { breakpoint: "(max-width: 1228px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1127px)", totalColumns: 3 },
@@ -72,8 +72,8 @@ const deleteInvitationMessagesConfig = {
 };
 
 export {
-  invitationTitlesConfig,
-  invitationBreakpointsConfig,
+  invitationsTableTitles,
+  invitationsTableBreakpoints,
   deleteInvitationModalConfig,
   deleteInvitationMessagesConfig,
 };
