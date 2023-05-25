@@ -7,7 +7,7 @@ function Assisted(props) {
 
   const [currentStep, setCurrentStep] = useState(steps[0].id);
 
-  const smallScreen = useMediaQuery("(max-width: 750px)");
+  const smallScreen = useMediaQuery("(max-width: 1100px)");
 
   const handleNextStep = () => {
     if (currentStep === steps[steps.length - 1].id) return;

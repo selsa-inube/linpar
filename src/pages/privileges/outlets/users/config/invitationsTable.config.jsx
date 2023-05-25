@@ -1,14 +1,11 @@
-import {
-  MdOutlineDelete,
-  MdOutlineAssignmentTurnedIn,
-  MdShortcut,
-} from "react-icons/md";
+import { MdOutlineDelete, MdShortcut } from "react-icons/md";
+import { CompleteInvitation } from "../tabs/invitations/complete-invitation";
 
 const invitationActionsConfig = [
   {
     id: 1,
     actionName: "Complete",
-    content: <MdOutlineAssignmentTurnedIn />,
+    content: (entry) => <CompleteInvitation user={entry} />,
     type: "secondary",
   },
   {
