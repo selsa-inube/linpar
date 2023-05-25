@@ -2,7 +2,8 @@ import { Table } from "../../../../../../components/data/Table";
 import { userEntriesDataMock } from "../../../../../../mocks/apps/privileges/users.mock";
 import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
 import { sectionMessageConfig } from "../../config/deleteUser.config";
-import { MdModeEdit, MdToggleOff } from "react-icons/md";
+import { MdToggleOff } from "react-icons/md";
+import { EditUser } from "./EditUser";
 import { DeleteUser } from "./DeleteUser";
 import { useState } from "react";
 import {
@@ -66,7 +67,7 @@ export default function UsersTab(props) {
     {
       id: 2,
       actionName: "Edit",
-      content: <MdModeEdit />,
+      content: (entry) => <EditUser entry={entry} />,
       type: "primary",
     },
     {
