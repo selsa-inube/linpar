@@ -16,7 +16,7 @@ function PrivilegesRoutes() {
         <Route path="users/invite" element={<Invite />} />
         <Route path="users/edit/:id" element={<EditUser />} />
         <Route
-          path="users/complete-invitation/:id"
+          path="users/complete-register/:id"
           element={<CompleteRegister />}
         />
       </Route>

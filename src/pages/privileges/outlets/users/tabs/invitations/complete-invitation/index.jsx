@@ -7,7 +7,7 @@ function CompleteInvitation(props) {
   return (
     <StyledLink
       status={user.status}
-      to={user.status === "Pending" && `complete-invitation/${user.id}`}
+      to={user.status === "Pending" && `complete-register/${user.id}`}
     >
       <MdOutlineAssignmentTurnedIn />
     </StyledLink>
