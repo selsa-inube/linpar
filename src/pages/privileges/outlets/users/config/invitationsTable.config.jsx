@@ -1,28 +1,4 @@
-import { MdOutlineDelete, MdShortcut } from "react-icons/md";
-import { CompleteInvitation } from "../tabs/invitations/complete-invitation";
-
-const invitationActionsConfig = [
-  {
-    id: 1,
-    actionName: "Complete",
-    content: (entry) => <CompleteInvitation user={entry} />,
-    type: "secondary",
-  },
-  {
-    id: 2,
-    actionName: "Resend",
-    content: <MdShortcut />,
-    type: "primary",
-  },
-  {
-    id: 3,
-    actionName: "Delete",
-    content: <MdOutlineDelete />,
-    type: "remove",
-  },
-];
-
-const invitationTitlesConfig = [
+const invitationsTableTitles = [
   {
     id: "userID",
     titleName: "User Id",
@@ -50,7 +26,7 @@ const invitationTitlesConfig = [
   },
 ];
 
-const invitationBreakpointsConfig = [
+const invitationsTableBreakpoints = [
   { breakpoint: "(min-width: 1229px)", totalColumns: 5 },
   { breakpoint: "(max-width: 1228px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1127px)", totalColumns: 3 },
@@ -64,8 +40,4 @@ const invitationBreakpointsConfig = [
   { breakpoint: "(max-width: 316px)", totalColumns: 1 },
 ];
 
-export {
-  invitationActionsConfig,
-  invitationTitlesConfig,
-  invitationBreakpointsConfig,
-};
+export { invitationsTableTitles, invitationsTableBreakpoints };
