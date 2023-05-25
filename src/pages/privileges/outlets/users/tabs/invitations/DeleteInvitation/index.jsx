@@ -9,12 +9,9 @@ function DeleteInvitation(props) {
     setShowModal(!showModal);
   };
 
-  const handleRemoveInvitation = (e) => {
-    handleDelete();
-  };
   return (
     <DeleteInvitationUI
-      handleRemoveInvitation={handleRemoveInvitation}
+      handleRemoveInvitation={handleDelete}
       toggleModal={toggleModal}
       showModal={showModal}
     />
