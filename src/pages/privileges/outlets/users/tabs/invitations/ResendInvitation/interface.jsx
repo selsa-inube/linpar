@@ -4,7 +4,8 @@ import { resendInvitationModal } from "../../../config/resendInvitationUser.conf
 import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
 
 function ResendInvitationUI(props) {
-  const { showResendInvModal, toggleModal, resendInvitationUser, user } = props;
+  const { showResendInvModal, toggleModal, resendInvitationUser, invitation } =
+    props;
   const { title, description, textAction, appearance } = resendInvitationModal;
 
   return (
@@ -16,7 +17,7 @@ function ResendInvitationUI(props) {
       {showResendInvModal && (
         <DecisionModal
           title={title}
-          description={description(user)}
+          description={description(invitation)}
           actionText={textAction}
           appearance={appearance}
           closeModal={toggleModal}

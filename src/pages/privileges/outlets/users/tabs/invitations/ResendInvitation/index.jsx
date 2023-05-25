@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ResendInvitationUI } from "./interface";
 
 function ResendInvitation(props) {
-  const { user, handleResendInvitation } = props;
+  const { invitation, handleResendInvitation } = props;
   const [showResendInvModal, setShowResendInvModal] = useState(false);
 
   const toggleModal = () => {
@@ -10,14 +10,14 @@ function ResendInvitation(props) {
   };
 
   const resendInvitationUser = () => {
-    handleResendInvitation(user);
+    handleResendInvitation();
   };
   return (
     <ResendInvitationUI
       showResendInvModal={showResendInvModal}
       toggleModal={toggleModal}
       resendInvitationUser={resendInvitationUser}
-      user={user}
+      invitation={invitation}
     />
   );
 }

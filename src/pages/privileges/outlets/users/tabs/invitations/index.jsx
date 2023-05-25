@@ -22,7 +22,7 @@ export default function InvitationsTab(props) {
   const { searchText } = props;
   const [showResendInvMessage, setShowResendInvMessage] =
     useState(initialMessageState);
-  const [invitations, setInvitations] = useState(invitationEntriesDataMock);
+  const [invitations] = useState(invitationEntriesDataMock);
 
   const invitationsTableActions = [
     {
@@ -34,10 +34,10 @@ export default function InvitationsTab(props) {
     {
       id: 2,
       actionName: "Resend",
-      content: (user) => (
+      content: (invitation) => (
         <ResendInvitation
-          user={user}
-          handleResendInvitation={handleResendInvitation}
+          invitation={invitation}
+          handleResendInvitation={() => handleResendInvitation(invitation)}
         />
       ),
       type: "primary",
