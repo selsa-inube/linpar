@@ -42,7 +42,7 @@ const invitationBreakpointsConfig = [
   { breakpoint: "(max-width: 316px)", totalColumns: 1 },
 ];
 
-const deleteInvitationUserDecisionConfig = {
+const deleteInvitationModalConfig = {
   id: 1,
   title: "Borrar invitación",
   description: "¿Seguro que quieres eliminar la invitación?",
@@ -50,7 +50,7 @@ const deleteInvitationUserDecisionConfig = {
   appearance: "remove",
 };
 
-const deleteInvitationUserMessageConfig = {
+const deleteInvitationMessagesConfig = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
@@ -74,6 +74,6 @@ const deleteInvitationUserMessageConfig = {
 export {
   invitationTitlesConfig,
   invitationBreakpointsConfig,
-  deleteInvitationUserDecisionConfig,
-  deleteInvitationUserMessageConfig,
+  deleteInvitationModalConfig,
+  deleteInvitationMessagesConfig,
 };

@@ -4,7 +4,7 @@ import { Table } from "../../../../../../components/data/Table";
 import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
 import { invitationEntriesDataMock } from "../../../../../../mocks/apps/privileges/invitations.mock";
 import {
-  deleteInvitationUserMessageConfig,
+  deleteInvitationMessagesConfig,
   invitationBreakpointsConfig,
   invitationTitlesConfig,
 } from "../../config/invitationsTable.config";
@@ -39,14 +39,14 @@ export default function InvitationsTab(props) {
     {
       id: 3,
       actionName: "Delete",
-      content: (entry) => (
-        <DeleteInvitation invitation={entry} handleDelete={handleDelete} />
+      content: (invitation) => (
+        <DeleteInvitation handleDelete={() => deleteInvitation(invitation)} />
       ),
       type: "remove",
     },
   ];
 
-  const handleDelete = (invitation) => {
+  const deleteInvitation = (invitation) => {
     // Create fetch request here...
     let responseType = "success";
 
@@ -61,7 +61,7 @@ export default function InvitationsTab(props) {
     }
 
     const { icon, title, description, appearance } =
-      deleteInvitationUserMessageConfig[responseType];
+      deleteInvitationMessagesConfig[responseType];
 
     handleShowMessage(
       title,

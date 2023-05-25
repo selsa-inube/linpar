@@ -1,27 +1,19 @@
 import { MdOutlineDelete } from "react-icons/md";
 import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
-import { deleteInvitationUserDecisionConfig } from "../../../config/invitationsTable.config";
+import { deleteInvitationModalConfig } from "../../../config/invitationsTable.config";
 import { StyledIconDelete } from "./styles";
 
 function DeleteInvitationUI(props) {
-  const {
-    handleRemoveInvitation,
-    showModal,
-    toggleModal,
-    deleteFormRef,
-    handleConfirmModal,
-  } = props;
+  const { handleRemoveInvitation, showModal, toggleModal } = props;
 
   const { title, description, actionText, appearance } =
-    deleteInvitationUserDecisionConfig;
+    deleteInvitationModalConfig;
 
   return (
     <>
-      <form ref={deleteFormRef} onSubmit={handleRemoveInvitation}>
-        <StyledIconDelete>
-          <MdOutlineDelete onClick={toggleModal} />
-        </StyledIconDelete>
-      </form>
+      <StyledIconDelete>
+        <MdOutlineDelete onClick={toggleModal} />
+      </StyledIconDelete>
 
       {showModal && (
         <DecisionModal
@@ -29,7 +21,7 @@ function DeleteInvitationUI(props) {
           description={description}
           actionText={actionText}
           closeModal={toggleModal}
-          handleClick={handleConfirmModal}
+          handleClick={handleRemoveInvitation}
           appearance={appearance}
         />
       )}
