@@ -2,12 +2,14 @@ import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { StyledLink } from "./styles";
 
 function CompleteInvitation(props) {
-  const { user } = props;
+  const { invitation } = props;
 
   return (
     <StyledLink
-      status={user.status}
-      to={user.status === "Pending" && `complete-register/${user.id}`}
+      status={invitation.status}
+      to={
+        invitation.status === "Pending" && `complete-register/${invitation.id}`
+      }
     >
       <MdOutlineAssignmentTurnedIn />
     </StyledLink>

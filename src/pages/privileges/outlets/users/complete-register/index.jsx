@@ -6,7 +6,9 @@ import { invitationEntriesDataMock } from "../../../../../mocks/apps/privileges/
 function CompleteRegister() {
   const { id } = useParams();
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  const foundEntry = invitationEntriesDataMock.find((entry) => entry.id == id);
+  const foundEntry = invitationEntriesDataMock.find(
+    (invitation) => invitation.id == id
+  );
   const subjectCardData = {
     Nombre: foundEntry?.username || "",
     Identificación: foundEntry?.userID || "",

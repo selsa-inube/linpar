@@ -29,7 +29,7 @@ export default function InvitationsTab(props) {
     {
       id: 1,
       actionName: "Complete",
-      content: (entry) => <CompleteInvitation user={entry} />,
+      content: (invitation) => <CompleteInvitation invitation={invitation} />,
       type: "secondary",
     },
     {
