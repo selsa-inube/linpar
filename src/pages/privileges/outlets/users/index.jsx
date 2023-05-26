@@ -8,6 +8,7 @@ function Users() {
     privilegeUserTabsConfig.privilegesUsers.id
   );
   const [searchText, setSearchText] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleTabChange = (tabId) => {
     setIsSelected(tabId);
@@ -17,12 +18,21 @@ function Users() {
     setSearchText(event.target.value);
   };
 
+  const handleMenuInvitation = () => {
+    console.log("estoy aca");
+
+    setShowMenu(!showMenu);
+  };
+
+  console.log(showMenu);
   return (
     <UsersUI
       isSelected={isSelected}
       searchText={searchText}
       handleTabChange={handleTabChange}
       handleSearchText={handleSearchText}
+      showMenu={showMenu}
+      handleMenuInvitation={handleMenuInvitation}
     />
   );
 }

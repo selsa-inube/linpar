@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
-const StyledMenu = styled.nav`
+const StyledMenu = styled.div`
   position: absolute;
   width: fit-content;
   max-width: 160px;

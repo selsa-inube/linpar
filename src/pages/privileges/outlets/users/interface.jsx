@@ -8,14 +8,23 @@ import {
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { PageTitle } from "../../../../components/PageTitle";
 import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
+import { Menu } from "../../../../components/navigation/Menu";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
+import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { StyledContainer, StyledTextFieldContainer } from "./styles";
 import InvitationsTab from "./tabs/invitations";
 import UsersTab from "./tabs/users";
 
 export default function UsersUI(props) {
-  const { isSelected, searchText, handleTabChange, handleSearchText } = props;
+  const {
+    isSelected,
+    searchText,
+    handleTabChange,
+    handleSearchText,
+    showMenu,
+    handleMenuInvitation,
+  } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -53,9 +62,14 @@ export default function UsersUI(props) {
             </StyledTextFieldContainer>
 
             {smallScreen ? (
-              <Stack>
-                <MdOutlineMoreHoriz size={24} cursor="pointer" />
-              </Stack>
+              <div style={{ position: "relative", display: "inline-block" }}>
+                <MdOutlineMoreHoriz
+                  size={24}
+                  cursor="pointer"
+                  onClick={handleMenuInvitation}
+                />
+                {showMenu && <Menu links={menuInvitationLinks} />}
+              </div>
             ) : (
               <Button
                 iconBefore={<MdPersonAddAlt size={18} />}

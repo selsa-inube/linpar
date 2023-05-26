@@ -1,16 +1,14 @@
+import { User, useMediaQuery } from "@inube/design-system";
+import { createPortal } from "react-dom";
+import { MdMenu } from "react-icons/md";
 import {
   StyledHeader,
-  StyledLogo,
-  StyledcontentImg,
   StyledIcon,
-  StyledUser,
+  StyledLogo,
   StyledMenuWrapper,
+  StyledUser,
+  StyledcontentImg,
 } from "./styles";
-import { createPortal } from "react-dom";
-import { Menu } from "../navigation/Menu";
-import { appsConfig } from "../../pages/home/config/apps.config";
-import { MdMenu } from "react-icons/md";
-import { User, useMediaQuery } from "@inube/design-system";
 
 function HeaderUI(props) {
   const smallScreen = useMediaQuery("(max-width: 450px)");
@@ -46,12 +44,12 @@ function HeaderUI(props) {
       {menu &&
         createPortal(
           <StyledMenuWrapper>
-            <Menu
+            {/* <Menu
               title="Menu"
               links={appsConfig}
               handleMenu={handleMenu}
               menu={menu}
-            />
+            /> */}
           </StyledMenuWrapper>,
           document.getElementById("portal")
         )}
