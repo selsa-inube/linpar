@@ -7,7 +7,7 @@ import { GeneralInformation } from "./tabs/generalInformation";
 import { SubjectCard } from "../../../../../components/cards/SubjectCard";
 
 function EditUserUI(props) {
-  const { isSelected, handleTabChange, subjectCardData } = props;
+  const { isSelected, handleTabChange, user } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -22,10 +22,7 @@ function EditUserUI(props) {
               icon={editUserOptionsConfig.editUserPage.icon}
               description={editUserOptionsConfig.editUserPage.description}
             />
-            <SubjectCard
-              subjectData={subjectCardData}
-              title="Informacion del usuario"
-            />
+            <SubjectCard subjectData={user} title="Informacion del usuario" />
           </Stack>
         </Stack>
         <Stack gap="32px" direction="column">

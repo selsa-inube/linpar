@@ -6,13 +6,17 @@ import { useParams } from "react-router-dom";
 
 function EditUser() {
   const { id } = useParams();
-  const foundEntry = userEntriesDataMock.find((user) => user.id == id);
-  const subjectCardData = {
-    Nombre: foundEntry?.username || "",
-    Identificación: foundEntry?.userID || "",
-    Codigo: foundEntry?.code || "",
-    rol: foundEntry?.position || "",
-  };
+
+  function getUserInformation() {
+    const foundEntry = userEntriesDataMock.find((user) => user.id == id);
+    const subjectCardData = {
+      Nombre: foundEntry?.username || "",
+      Identificación: foundEntry?.userID || "",
+      Codigo: foundEntry?.code || "",
+      rol: foundEntry?.position || "",
+    };
+    return subjectCardData;
+  }
 
   const [isSelected, setIsSelected] = useState(
     editUserTabsConfig.generalInformation.id
@@ -26,7 +30,7 @@ function EditUser() {
     <EditUserUI
       isSelected={isSelected}
       handleTabChange={handleTabChange}
-      subjectCardData={subjectCardData}
+      user={getUserInformation()}
     />
   );
 }
