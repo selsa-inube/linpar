@@ -1,7 +1,6 @@
-import { MenuLink } from "..";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { appsConfig } from "../../../../pages/home/config/apps.config";
 import { BrowserRouter } from "react-router-dom";
+import { MenuLink } from "..";
+import { appsConfig } from "../../../../pages/home/config/apps.config";
 
 const story = {
   component: [MenuLink],
@@ -21,18 +20,14 @@ export const Default = Template.bind({});
 Default.args = {
   label: appsConfig[0].label,
   icon: appsConfig[0].icon,
-  icon2: <MdKeyboardArrowRight />,
-  isSelected: false,
-  url: appsConfig[0].url,
+  path: appsConfig[0].url,
 };
 
 export const Selected = Template.bind({});
 Selected.args = {
   label: appsConfig[0].label,
   icon: appsConfig[0].icon,
-  icon2: <MdKeyboardArrowRight />,
-  isSelected: true,
-  url: appsConfig[0].url,
+  path: appsConfig[0].url,
 };
 
 export default story;

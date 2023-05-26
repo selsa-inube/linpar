@@ -1,25 +1,16 @@
-import { Text } from "../../data/Text";
 import { Stack } from "@inube/design-system";
-import { MdKeyboardArrowRight } from "react-icons/md";
+import { Text } from "../../data/Text";
 import { StyledLink } from "./styles";
 
 function MenuLink(props) {
-  const { label, disabled = false, icon, isSelected, url, handleClick } = props;
+  const { label, icon, path } = props;
 
   return (
-    <StyledLink
-      disabled={disabled}
-      selected={isSelected}
-      to={url}
-      onClick={handleClick}
-    >
+    <StyledLink to={path}>
       <Stack gap="24px" alignItems="center">
         {icon}
-        <Text typoToken={isSelected ? "labelLarge" : "bodyMedium"}>
-          {label}
-        </Text>
+        <Text typoToken="bodyMedium">{label}</Text>
       </Stack>
-      <MdKeyboardArrowRight />
     </StyledLink>
   );
 }
