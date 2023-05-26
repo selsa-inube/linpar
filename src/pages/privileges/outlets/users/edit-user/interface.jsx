@@ -4,9 +4,10 @@ import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { StyledContainer } from "./styles";
 import { GeneralInformation } from "./tabs/generalInformation";
+import { SubjectCard } from "../../../../../components/cards/SubjectCard";
 
 function EditUserUI(props) {
-  const { isSelected, handleTabChange } = props;
+  const { isSelected, handleTabChange, subjectCardData } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -15,11 +16,17 @@ function EditUserUI(props) {
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs route={editUserOptionsConfig.editUserPage.url} />
-          <PageTitle
-            title={editUserOptionsConfig.editUserPage.label}
-            icon={editUserOptionsConfig.editUserPage.icon}
-            description={editUserOptionsConfig.editUserPage.description}
-          />
+          <Stack justifyContent="space-between" alignItems="center" gap="49px">
+            <PageTitle
+              title={editUserOptionsConfig.editUserPage.label}
+              icon={editUserOptionsConfig.editUserPage.icon}
+              description={editUserOptionsConfig.editUserPage.description}
+            />
+            <SubjectCard
+              subjectData={subjectCardData}
+              title="Informacion del usuario"
+            />
+          </Stack>
         </Stack>
         <Stack gap="32px" direction="column">
           <Tabs
