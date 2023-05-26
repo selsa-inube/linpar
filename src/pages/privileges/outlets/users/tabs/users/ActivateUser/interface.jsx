@@ -1,6 +1,6 @@
 import { Switch } from "@inube/design-system";
 import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
-import { activateUserConfig } from "../../../config/activateUser.config";
+import { activateUserModal } from "../../../config/activateUser.config";
 
 function ActivateUserModal(props) {
   const { active, user, handleToggleModal, onActionConfirm } = props;
@@ -12,7 +12,7 @@ function ActivateUserModal(props) {
   }
 
   const { title, description, textAction, appearance } =
-    activateUserConfig[messageType];
+    activateUserModal[messageType];
 
   return (
     <>

@@ -1,4 +1,6 @@
-const activateUserConfig = {
+import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
+
+const activateUserModal = {
   activation: {
     title: "Activate user",
     description: ({ code }) =>
@@ -16,4 +18,20 @@ const activateUserConfig = {
   },
 };
 
-export { activateUserConfig };
+const activateUserMessages = {
+  activate: {
+    id: 1,
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "Successful  forwarding!",
+    description: ({ username }) => `User ${username} is Activated `,
+    appearance: "confirm",
+  },
+  deactivate: {
+    id: 2,
+    icon: <MdErrorOutline size={18} />,
+    title: "Oops, something has gone wrong!",
+    description: ({ username }) => `User ${username} is Deactivated `,
+    appearance: "confirm",
+  },
+};
+export { activateUserModal, activateUserMessages };
