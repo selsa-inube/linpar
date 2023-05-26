@@ -1,15 +1,15 @@
+import { useMediaQueries, useMediaQuery } from "@inube/design-system";
+import { MdOpenInNew } from "react-icons/md";
+import { Text } from "../Text";
 import {
   StyledTable,
-  StyledThead,
   StyledTbody,
-  StyledTr,
+  StyledTd,
   StyledThAction,
   StyledThTitle,
-  StyledTd,
+  StyledThead,
+  StyledTr,
 } from "./styles";
-import { Text } from "../Text";
-import { MdOpenInNew } from "react-icons/md";
-import { useMediaQuery, useMediaQueries } from "@inube/design-system";
 
 function findCurrentMediaQuery(currentMediaQuery) {
   const lastIndexMedia = Object.values(currentMediaQuery).lastIndexOf(true);
