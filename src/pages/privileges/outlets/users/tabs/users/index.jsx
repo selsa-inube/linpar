@@ -1,14 +1,15 @@
 import { Table } from "../../../../../../components/data/Table";
 import { userEntriesDataMock } from "../../../../../../mocks/apps/privileges/users.mock";
-import { MdModeEdit, MdOutlineDelete } from "react-icons/md";
+import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
+import { deleteUserMessages } from "../../config/deleteUser.config";
+import { MdToggleOff } from "react-icons/md";
+import { EditUser } from "./EditUser";
+import { DeleteUser } from "./DeleteUser";
 import { useState } from "react";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "../../config/usersTable.config";
-import { ActivateUser } from "./ActivateUser";
-import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
-import { activateUserMessages } from "../../config/activateUser.config";
 
 const initialMessageState = {
   show: false,
@@ -20,45 +21,26 @@ const initialMessageState = {
 
 export default function UsersTab(props) {
   const { searchText } = props;
-  const [message, setMessage] = useState(initialMessageState);
-  const [users] = useState(userEntriesDataMock);
 
-  const actions = [
-    {
-      id: 1,
-      actionName: "Activate",
-      content: (user) => (
-        <ActivateUser
-          user={user}
-          handleActivateUser={(active) => handleActivateUser(user, active)}
-        />
-      ),
-      type: "secondary",
-    },
-    {
-      id: 2,
-      actionName: "Edit",
-      content: <MdModeEdit />,
-      type: "primary",
-    },
-    {
-      id: 3,
-      actionName: "Delete",
-      content: <MdOutlineDelete />,
-      type: "remove",
-    },
-  ];
-  const handleActivateUser = (user, active) => {
-    let messageType = "activate";
-    if (active) {
-      messageType = "deactivate";
+  const [users, setUsers] = useState(userEntriesDataMock);
+
+  const [message, setMessage] = useState(initialMessageState);
+
+  const deleteUser = (user) => {
+    let MessageType = "success";
+
+    try {
+      setUsers((prevUsers) =>
+        prevUsers.filter((oldUser) => user.id !== oldUser.id)
+      );
+    } catch (error) {
+      MessageType = "failed";
     }
 
-    const { title, description, icon, appearance } =
-      activateUserMessages[messageType];
+    const { icon, title, description, appearance } =
+      deleteUserMessages[MessageType];
 
     handleShowMessage(title, description(user), icon, appearance);
-    return !active;
   };
 
   const handleShowMessage = (title, description, icon, appearance) => {
@@ -71,9 +53,32 @@ export default function UsersTab(props) {
     });
   };
 
-  const handleCloseMessage = () => {
+  const onCloseMessage = () => {
     setMessage(initialMessageState);
   };
+
+  const actions = [
+    {
+      id: 1,
+      actionName: "Activate",
+      content: <MdToggleOff size={32} />,
+      type: "secondary",
+    },
+    {
+      id: 2,
+      actionName: "Edit",
+      content: (entry) => <EditUser entry={entry} />,
+      type: "primary",
+    },
+    {
+      id: 3,
+      actionName: "Delete",
+      content: (user) => (
+        <DeleteUser user={user} handleDeleteUser={() => deleteUser(user)} />
+      ),
+      type: "remove",
+    },
+  ];
 
   return (
     <>
@@ -90,8 +95,8 @@ export default function UsersTab(props) {
           description={message.description}
           icon={message.icon}
           appearance={message.appearance}
-          duration={2000}
-          closeSectionMessage={handleCloseMessage}
+          duration={1500}
+          closeSectionMessage={onCloseMessage}
         />
       )}
     </>
