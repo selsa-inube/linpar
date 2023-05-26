@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { useContext } from "react";
-import { HeaderUI } from "./interface";
+import { useContext, useState } from "react";
 import { AppContext } from "../../context";
+import { HeaderUI } from "./interface";
 
 function Header() {
   const { user } = useContext(AppContext);
-  const [menu, setMenu] = useState(false);
+  const [nav, setNav] = useState(false);
 
-  const handleMenu = () => {
-    setMenu(!menu);
+  const handleNav = () => {
+    setNav(!nav);
   };
 
   return (
@@ -17,8 +16,8 @@ function Header() {
       businessUnit={user.company}
       appLogo={user.operator.logo}
       appLogoAlt={user.operator.name}
-      menu={menu}
-      handleMenu={handleMenu}
+      nav={nav}
+      handleNav={handleNav}
     />
   );
 }
