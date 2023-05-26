@@ -25,10 +25,10 @@ function CompleteRegisterUI(props) {
             <SubjectCard
               subjectData={subjectCardData}
               title="Informacion del usuario"
-            ></SubjectCard>
+            />
           </Stack>
         </Stack>
-        <Assisted steps={stepsRegisterUserConfig}></Assisted>
+        <Assisted steps={stepsRegisterUserConfig} />
       </Stack>
     </StyledContainer>
   );
