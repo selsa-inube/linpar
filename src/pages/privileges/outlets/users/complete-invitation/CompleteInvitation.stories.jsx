@@ -1,9 +1,9 @@
-import { CompleteRegister } from "./index";
+import { CompleteInvitation } from "./index";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
-  components: [CompleteRegister],
-  title: "pages/privileges/outlets/users/complete-register",
+  components: [CompleteInvitation],
+  title: "pages/privileges/outlets/users/complete-invitation",
   parameters: {
     layout: "fullscreen",
   },
@@ -16,7 +16,7 @@ const story = {
   ],
 };
 
-const Default = () => <CompleteRegister />;
+const Default = () => <CompleteInvitation />;
 
 export default story;
 

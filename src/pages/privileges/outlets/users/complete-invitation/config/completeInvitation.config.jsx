@@ -48,7 +48,7 @@ const stepsRegisterUserConfig = [
   },
 ];
 
-const completeRegisterUserConfig = [
+const CompleteInvitationUserConfig = [
   {
     id: 1,
     icon: <MdOutlineAssignmentTurnedIn />,
@@ -59,4 +59,4 @@ const completeRegisterUserConfig = [
   },
 ];
 
-export { stepsRegisterUserConfig, completeRegisterUserConfig };
+export { stepsRegisterUserConfig, CompleteInvitationUserConfig };

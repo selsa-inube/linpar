@@ -10,7 +10,7 @@ import {
 } from "../../config/invitationsTable.config";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
-import { CompleteInvitation } from "./complete-invitation";
+import { CompleteInvitationLink } from "./complete-invitation-link";
 
 const initialMessageState = {
   show: false,
@@ -29,7 +29,9 @@ export default function InvitationsTab(props) {
     {
       id: 1,
       actionName: "Complete",
-      content: (invitation) => <CompleteInvitation invitation={invitation} />,
+      content: (invitation) => (
+        <CompleteInvitationLink invitation={invitation} />
+      ),
       type: "secondary",
     },
     {

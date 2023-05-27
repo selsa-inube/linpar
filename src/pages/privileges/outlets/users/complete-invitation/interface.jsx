@@ -3,24 +3,26 @@ import { PageTitle } from "../../../../../components/PageTitle";
 import { StyledContainer } from "./styles";
 import { Assisted } from "../../../../../components/feedback/Assisted";
 import { SubjectCard } from "../../../../../components/cards/SubjectCard";
+import { useMediaQuery } from "@inube/design-system";
 import {
   stepsRegisterUserConfig,
-  completeRegisterUserConfig,
-} from "./config/completeRegister.config";
+  CompleteInvitationUserConfig,
+} from "./config/completeInvitation.config";
 
-function CompleteRegisterUI(props) {
-  const { smallScreen, subjectCardData } = props;
+function CompleteInvitationUI(props) {
+  const { subjectCardData } = props;
+  const smallScreen = useMediaQuery("(max-width: 580px)");
 
   return (
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={completeRegisterUserConfig[0].route} />
-          <Stack justifyContent="space-between" alignItems="center" gap="49px">
+          <Breadcrumbs route={CompleteInvitationUserConfig[0].route} />
+          <Stack justifyContent="space-between" alignItems="center" gap="50px">
             <PageTitle
-              title={completeRegisterUserConfig[0].title}
-              icon={completeRegisterUserConfig[0].icon}
-              description={completeRegisterUserConfig[0].description}
+              title={CompleteInvitationUserConfig[0].title}
+              icon={CompleteInvitationUserConfig[0].icon}
+              description={CompleteInvitationUserConfig[0].description}
             />
             <SubjectCard
               subjectData={subjectCardData}
@@ -34,4 +36,4 @@ function CompleteRegisterUI(props) {
   );
 }
 
-export { CompleteRegisterUI };
+export { CompleteInvitationUI };

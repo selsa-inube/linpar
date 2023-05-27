@@ -1,7 +1,7 @@
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { StyledLink } from "./styles";
 
-function CompleteInvitation(props) {
+function CompleteInvitationLink(props) {
   const { invitation } = props;
 
   return (
@@ -15,4 +15,4 @@ function CompleteInvitation(props) {
     </StyledLink>
   );
 }
-export { CompleteInvitation };
+export { CompleteInvitationLink };
