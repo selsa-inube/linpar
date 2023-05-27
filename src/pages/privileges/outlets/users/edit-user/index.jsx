@@ -7,12 +7,14 @@ import { useParams } from "react-router-dom";
 function EditUser() {
   const { id } = useParams();
 
+  const userID = parseInt(id);
+
   const [isSelected, setIsSelected] = useState(
     editUserTabsConfig.generalInformation.id
   );
 
   function getUserInformation() {
-    const foundUser = userEntriesDataMock.find((user) => user.id == id);
+    const foundUser = userEntriesDataMock.find((user) => user.id === userID);
     const userCardData = {
       nombre: foundUser?.username || "",
       identificación: foundUser?.userID || "",
