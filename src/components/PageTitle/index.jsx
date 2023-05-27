@@ -20,8 +20,7 @@ function PageTitle(props) {
           colorToken="secondary"
           typoToken={smallScreen ? "bodySmall" : "bodyMedium"}
         >
-          {" "}
-          {description}{" "}
+          {description}
         </Text>
       </Stack>
     </StyledPageTitle>
