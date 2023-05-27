@@ -1,5 +1,5 @@
 import { MdOutlineDelete } from "react-icons/md";
-import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
+import { DecisionModal } from "@components/feedback/DecisionModal";
 import { deleteInvitationModalConfig } from "../../../config/invitationsTable.config";
 import { StyledIconDelete } from "./styles";
 

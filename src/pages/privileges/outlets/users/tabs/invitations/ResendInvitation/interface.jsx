@@ -1,7 +1,7 @@
 import { StyledIconResend } from "./styles";
 import { MdOutlineLibraryAddCheck } from "react-icons/md";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
-import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
+import { DecisionModal } from "@components/feedback/DecisionModal";
 
 function ResendInvitationUI(props) {
   const { showResendInvModal, toggleModal, resendInvitationUser, invitation } =

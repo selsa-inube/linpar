@@ -1,5 +1,5 @@
-import { RadioClient } from "../../../../components/cards/RadioClient";
-import { Text } from "../../../../components/data/Text";
+import { RadioClient } from "@components/cards/RadioClient";
+import { Text } from "@components/data/Text";
 import { Button, TextField } from "@inube/design-system";
 
 import { MdSearch } from "react-icons/md";

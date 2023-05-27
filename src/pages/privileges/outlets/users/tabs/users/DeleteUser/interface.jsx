@@ -1,7 +1,7 @@
 import { deleteUserModal } from "../../../config/deleteUser.config";
 import { MdOutlineDelete } from "react-icons/md";
 import { StyledIconDelete } from "./styles";
-import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
+import { DecisionModal } from "@components/feedback/DecisionModal";
 
 function DeleteUserModal(user, closeModal, handleDeleteUser) {
   let messageType = "delete";
