@@ -7,20 +7,20 @@ import { useParams } from "react-router-dom";
 function EditUser() {
   const { id } = useParams();
 
-  function getUserInformation() {
-    const foundEntry = userEntriesDataMock.find((user) => user.id == id);
-    const subjectCardData = {
-      Nombre: foundEntry?.username || "",
-      Identificación: foundEntry?.userID || "",
-      Codigo: foundEntry?.code || "",
-      rol: foundEntry?.position || "",
-    };
-    return subjectCardData;
-  }
-
   const [isSelected, setIsSelected] = useState(
     editUserTabsConfig.generalInformation.id
   );
+
+  function getUserInformation() {
+    const foundUser = userEntriesDataMock.find((user) => user.id == id);
+    const userCardData = {
+      nombre: foundUser?.username || "",
+      identificación: foundUser?.userID || "",
+      codigo: foundUser?.code || "",
+      rol: foundUser?.position || "",
+    };
+    return userCardData;
+  }
 
   const handleTabChange = (tabId) => {
     setIsSelected(tabId);
