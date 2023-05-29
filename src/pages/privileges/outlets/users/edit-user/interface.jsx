@@ -4,6 +4,7 @@ import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
+import { branchesEditUser } from "../../../../../mocks/apps/privileges/branchesForm.mock";
 
 function EditUserUI(props) {
   const { isSelected, handleTabChange } = props;
@@ -28,7 +29,7 @@ function EditUserUI(props) {
             handleSelectedTab={handleTabChange}
           />
           {isSelected === editUserTabsConfig.branches.id && (
-            <BranchesForm allowSubmit />
+            <BranchesForm allowSubmit currentBranches={branchesEditUser} />
           )}
         </Stack>
       </Stack>

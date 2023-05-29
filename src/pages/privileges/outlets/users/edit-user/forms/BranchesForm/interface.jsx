@@ -12,31 +12,36 @@ import { StyledBranchesContainer, StyledFieldset } from "./styles";
 
 function BranchesFormUI(props) {
   const {
-    handleAllDeallocate,
-    handleAllAllocate,
     branches,
+    handleToggleAllBranches,
     handleToggleBranch,
-    handleSubmit,
     isLoading,
+    currentBranches,
+    handleSubmitForm,
     allowSubmit,
+    handleCancelChanges,
   } = props;
+
   const smallScreen = useMediaQuery("(max-width: 580px)");
+
+  const hasChanges =
+    JSON.stringify(currentBranches) === JSON.stringify(branches);
 
   return (
     <form>
       <StyledFieldset>
         <legend>
           <Text typo={typography.sys.titleSmall}>
-            Select the branches to assign
+            Seleccione las sucursales que desea asignar
           </Text>
         </legend>
         <Stack justifyContent="space-between" alignItems="center">
           <TextField
             type="search"
             iconBefore={<MdSearch size={22} />}
-            placeholder="Search..."
-            name="searchClients"
-            id="searchClients"
+            placeholder="Buscar..."
+            name="searchBranches"
+            id="searchBranches"
             minLength={1}
             size="compact"
           />
@@ -47,12 +52,15 @@ function BranchesFormUI(props) {
               <Button
                 appearance="secondary"
                 spacing="compact"
-                handleClick={handleAllDeallocate}
+                handleClick={(e) => handleToggleAllBranches(e, false)}
               >
-                Deallocate all
+                Desasignar todos
               </Button>
-              <Button spacing="compact" handleClick={handleAllAllocate}>
-                Allocate all
+              <Button
+                spacing="compact"
+                handleClick={(e) => handleToggleAllBranches(e, true)}
+              >
+                Asignar todos
               </Button>
             </Stack>
           )}
@@ -73,13 +81,20 @@ function BranchesFormUI(props) {
       </StyledFieldset>
       {allowSubmit && (
         <Stack gap="8px" justifyContent="flex-end">
-          <Button appearance="secondary">Cancel</Button>
+          <Button
+            appearance="secondary"
+            isDisabled={hasChanges}
+            handleClick={handleCancelChanges}
+          >
+            Cancelar
+          </Button>
           <Button
             appearance="confirm"
-            handleClick={handleSubmit}
+            handleClick={handleSubmitForm}
             isLoading={isLoading}
+            isDisabled={hasChanges}
           >
-            Save
+            Guardar
           </Button>
         </Stack>
       )}
