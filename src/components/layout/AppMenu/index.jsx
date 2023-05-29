@@ -1,7 +1,6 @@
 import { StyledAppMenu, StyledTitle, StyledCards } from "./styles";
 import { PageTitle } from "../../PageTitle";
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
-
 import { Breadcrumbs } from "@inube/design-system";
 
 function AppMenu(props) {
