@@ -1,8 +1,8 @@
 import { Breadcrumbs, Stack } from "@inube/design-system";
-import { PageTitle } from "../../../../../components/PageTitle";
+import { PageTitle } from "@components/PageTitle";
 import { StyledContainer } from "./styles";
-import { Assisted } from "../../../../../components/feedback/Assisted";
-import { SubjectCard } from "../../../../../components/cards/SubjectCard";
+import { Assisted } from "@components/feedback/Assisted";
+import { SubjectCard } from "@components/cards/SubjectCard";
 import { useMediaQuery } from "@inube/design-system";
 import {
   stepsRegisterUserConfig,
@@ -10,8 +10,16 @@ import {
 } from "./config/completeInvitation.config";
 
 function CompleteInvitationUI(props) {
-  const { subjectCardData } = props;
+  const { invitation } = props;
+
   const smallScreen = useMediaQuery("(max-width: 580px)");
+
+  const invitationCardData = {
+    nombre: invitation.username,
+    identificación: invitation.userID,
+    correo: invitation.mail,
+    invitación: invitation.invitationDate,
+  };
 
   return (
     <StyledContainer smallScreen={smallScreen}>
@@ -25,7 +33,7 @@ function CompleteInvitationUI(props) {
               description={CompleteInvitationUserConfig[0].description}
             />
             <SubjectCard
-              subjectData={subjectCardData}
+              subjectData={invitationCardData}
               title="Informacion del usuario"
             />
           </Stack>
