@@ -5,21 +5,20 @@ import { userEntriesDataMock } from "../../../../../mocks/apps/privileges/users.
 import { useParams } from "react-router-dom";
 
 function EditUser() {
-  const { id } = useParams();
-
-  const userID = parseInt(id);
+  const { user_id } = useParams();
 
   const [isSelected, setIsSelected] = useState(
     editUserTabsConfig.generalInformation.id
   );
 
   function getUserInformation() {
-    const foundUser = userEntriesDataMock.find((user) => user.id === userID);
+    const userID = parseInt(user_id);
+    const user = userEntriesDataMock.find((user) => user.id === userID);
     const userCardData = {
-      nombre: foundUser?.username || "",
-      identificación: foundUser?.userID || "",
-      codigo: foundUser?.code || "",
-      rol: foundUser?.position || "",
+      nombre: user?.username || "",
+      identificación: user?.userID || "",
+      codigo: user?.code || "",
+      rol: user?.position || "",
     };
     return userCardData;
   }
