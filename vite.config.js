@@ -15,6 +15,8 @@ export default defineConfig({
     alias: {
       "@src": path.resolve(__dirname, "./src"),
       "@mocks": path.resolve(__dirname, "./src/mocks"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
     },
   },
 });
