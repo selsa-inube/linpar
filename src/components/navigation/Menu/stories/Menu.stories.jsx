@@ -5,9 +5,6 @@ import { menuInvitationLinks } from "../../../../pages/privileges/outlets/users/
 const story = {
   title: "components/navigation/Menu",
   component: [Menu],
-  parameters: {
-    layout: "fullscreen",
-  },
   decorators: [
     (Story) => (
       <BrowserRouter>
