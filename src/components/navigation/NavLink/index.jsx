@@ -3,7 +3,7 @@ import { Stack } from "@inube/design-system";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { StyledLink } from "./styles";
 
-function MenuLink(props) {
+function NavLink(props) {
   const { label, disabled = false, icon, isSelected, url, handleClick } = props;
 
   return (
@@ -24,4 +24,4 @@ function MenuLink(props) {
   );
 }
 
-export { MenuLink };
+export { NavLink };

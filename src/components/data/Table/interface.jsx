@@ -95,7 +95,7 @@ function TableUI(props) {
             {TitleColumns.map((title) =>
               entry[title.id] ? (
                 <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{entry[title.id]}</Text>
+                  <Text typoToken="bodySmall">{entry[title.id]} </Text>
                 </StyledTd>
               ) : (
                 <StyledTd key={`e-${entry[title.id]}`}>

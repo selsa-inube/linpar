@@ -1,4 +1,4 @@
-import { AppMenu } from "../../../../components/layout/AppMenu";
+import { AppMenu } from "@components/layout/AppMenu";
 
 function PrivilegesOptionsUI(props) {
   const { appName, appDescription, appIcon, appOptions, appRoute } = props;

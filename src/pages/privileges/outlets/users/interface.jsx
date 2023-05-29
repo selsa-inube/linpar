@@ -1,3 +1,4 @@
+import { PageTitle } from "@components/PageTitle";
 import {
   Breadcrumbs,
   Button,
@@ -7,7 +8,6 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { PageTitle } from "../../../../components/PageTitle";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { StyledContainer, StyledTextFieldContainer } from "./styles";
