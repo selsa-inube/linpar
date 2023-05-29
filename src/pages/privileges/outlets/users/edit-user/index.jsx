@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { EditUserUI } from "./interface";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
-import { userEntriesDataMock } from "../../../../../mocks/apps/privileges/users.mock";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
 import { useParams } from "react-router-dom";
 
 function EditUser() {
@@ -11,16 +11,18 @@ function EditUser() {
     editUserTabsConfig.generalInformation.id
   );
 
+  const handleTabChange = (tabId) => {
+    setSelectedTab(tabId);
+  };
+
   function getUserInformation() {
     const userID = parseInt(user_id);
     return userEntriesDataMock.find((user) => user.id === userID);
   }
 
-  const handleTabChange = (tabId) => {
-    setSelectedTab(tabId);
-  };
+  const user = getUserInformation();
 
-  if (!getUserInformation()) {
+  if (!user) {
     return <div>User not found</div>;
   }
 
@@ -28,7 +30,7 @@ function EditUser() {
     <EditUserUI
       selectedTab={selectedTab}
       handleTabChange={handleTabChange}
-      user={getUserInformation()}
+      user={user}
     />
   );
 }
