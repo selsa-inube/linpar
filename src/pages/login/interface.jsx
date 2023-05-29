@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import { Stack } from "@inube/design-system";
-import { Text } from "../../components/data/Text";
+import { Text } from "@components/data/Text";
 
 import selsaLogo from "../../assets/images/selsa.png";
 

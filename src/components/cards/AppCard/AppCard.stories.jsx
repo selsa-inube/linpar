@@ -1,5 +1,5 @@
 import { AppCard } from "../AppCard";
-import { appsConfig } from "../../../pages/home/config/apps.config";
+import { appsConfig } from "@pages/home/config/apps.config";
 
 import { BrowserRouter } from "react-router-dom";
 

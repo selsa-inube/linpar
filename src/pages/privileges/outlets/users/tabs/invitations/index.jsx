@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { MdOutlineDelete, MdOutlineAssignmentTurnedIn } from "react-icons/md";
-import { Table } from "../../../../../../components/data/Table";
-import { invitationEntriesDataMock } from "../../../../../../mocks/apps/privileges/invitations.mock";
+import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
+import { Table } from "@components/data/Table";
+import { SectionMessage } from "@components/feedback/SectionMessage";
+import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
+import { resendInvitationMessages } from "../../../users/config/resendInvitationUser.config";
 import {
+  deleteInvitationMessagesConfig,
   invitationsTableBreakpoints,
   invitationsTableTitles,
 } from "../../config/invitationsTable.config";
+import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
-import { resendInvitationMessages } from "../../../users/config/resendInvitationUser.config";
-import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
 
 const initialMessageState = {
   show: false,
@@ -20,9 +22,8 @@ const initialMessageState = {
 
 export default function InvitationsTab(props) {
   const { searchText } = props;
-  const [showResendInvMessage, setShowResendInvMessage] =
-    useState(initialMessageState);
-  const [invitations] = useState(invitationEntriesDataMock);
+  const [message, setMessage] = useState(initialMessageState);
+  const [invitations, setInvitations] = useState(invitationEntriesDataMock);
 
   const invitationsTableActions = [
     {
@@ -45,16 +46,43 @@ export default function InvitationsTab(props) {
     {
       id: 3,
       actionName: "Delete",
-      content: <MdOutlineDelete />,
+      content: (invitation) => (
+        <DeleteInvitation handleDelete={() => deleteInvitation(invitation)} />
+      ),
       type: "remove",
     },
   ];
+
+  const deleteInvitation = (invitation) => {
+    // Create fetch request here...
+    let responseType = "success";
+
+    try {
+      setInvitations((prevInvitations) =>
+        prevInvitations.filter(
+          (oldInvitation) => invitation.id !== oldInvitation.id
+        )
+      );
+    } catch (error) {
+      responseType = "failed";
+    }
+
+    const { icon, title, description, appearance } =
+      deleteInvitationMessagesConfig[responseType];
+
+    handleShowMessage(
+      title,
+      description(invitation.username),
+      icon,
+      appearance
+    );
+  };
 
   const handleResendInvitation = (invitation) => {
     let messageType = "success";
 
     try {
-      handleCloseResendMessage();
+      handleCloseMessage();
     } catch (error) {
       messageType = "failed";
     }
@@ -62,11 +90,11 @@ export default function InvitationsTab(props) {
     const { title, description, icon, appearance } =
       resendInvitationMessages[messageType];
 
-    resendInvitMessages(title, description(invitation), icon, appearance);
+    handleShowMessage(title, description(invitation), icon, appearance);
   };
 
-  const resendInvitMessages = (title, description, icon, appearance) => {
-    setShowResendInvMessage({
+  const handleShowMessage = (title, description, icon, appearance) => {
+    setMessage({
       show: true,
       title,
       description,
@@ -75,8 +103,8 @@ export default function InvitationsTab(props) {
     });
   };
 
-  const handleCloseResendMessage = () => {
-    setShowResendInvMessage(initialMessageState);
+  const handleCloseMessage = () => {
+    setMessage(initialMessageState);
   };
 
   return (
@@ -88,14 +116,14 @@ export default function InvitationsTab(props) {
         breakPoints={invitationsTableBreakpoints}
         filter={searchText}
       />
-      {showResendInvMessage.show && (
+      {message.show && (
         <SectionMessage
-          title={showResendInvMessage.title}
-          description={showResendInvMessage.description}
-          icon={showResendInvMessage.icon}
-          appearance={showResendInvMessage.appearance}
+          title={message.title}
+          description={message.description}
+          icon={message.icon}
+          appearance={message.appearance}
           duration={2000}
-          closeSectionMessage={handleCloseResendMessage}
+          closeSectionMessage={handleCloseMessage}
         />
       )}
     </>

@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-import { clientsDataMock } from "../../../../mocks/login/clients.mock";
+import { clientsDataMock } from "@mocks/login/clients.mock";
 import { ClientsUI } from "./interface";
 
 function Clients() {

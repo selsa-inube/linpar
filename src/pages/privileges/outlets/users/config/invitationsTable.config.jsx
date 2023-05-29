@@ -1,3 +1,5 @@
+import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+
 const invitationsTableTitles = [
   {
     id: "userID",
@@ -40,4 +42,38 @@ const invitationsTableBreakpoints = [
   { breakpoint: "(max-width: 316px)", totalColumns: 1 },
 ];
 
-export { invitationsTableTitles, invitationsTableBreakpoints };
+const deleteInvitationModalConfig = {
+  id: 1,
+  title: "Borrar invitación",
+  description: "¿Seguro que quieres eliminar la invitación?",
+  actionText: "Eliminar",
+  appearance: "remove",
+};
+
+const deleteInvitationMessagesConfig = {
+  success: {
+    id: 1,
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "¡Eliminación exitosa!",
+    description: (value) =>
+      `Hemos eliminado correctamente la invitación del usuario ${value}.`,
+    appearance: "confirm",
+    duration: 2000,
+  },
+  failed: {
+    id: 2,
+    icon: <MdErrorOutline size={18} />,
+    title: "¡Uy, algo ha salido mal!",
+    description: (value) =>
+      `Hemos presentado problemas al eliminar la invitación del usuario ${value}.`,
+    appearance: "remove",
+    duration: 2000,
+  },
+};
+
+export {
+  invitationsTableTitles,
+  invitationsTableBreakpoints,
+  deleteInvitationModalConfig,
+  deleteInvitationMessagesConfig,
+};
