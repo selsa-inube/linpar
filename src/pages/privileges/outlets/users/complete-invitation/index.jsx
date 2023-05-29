@@ -12,11 +12,13 @@ function CompleteInvitation() {
     );
   }
 
-  if (!getInvitationInformation()) {
+  const invitation = getInvitationInformation();
+
+  if (!invitation) {
     return <div>Invitation not found</div>;
   }
 
-  return <CompleteInvitationUI invitation={getInvitationInformation()} />;
+  return <CompleteInvitationUI invitation={invitation} />;
 }
 
 export { CompleteInvitation };
