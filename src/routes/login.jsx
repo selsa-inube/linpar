@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { CheckingCredentials } from "../pages/login/outlets/CheckingCredentials";
 import { Clients } from "../pages/login/outlets/Clients";
 import { LoadingApp } from "../pages/login/outlets/LoadingApp";
-import { ErrorPage } from "../components/layout/ErrorPage";
+import { ErrorPage } from "@components/layout/ErrorPage";
 import { ErrorNotAvailable } from "../pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "../pages/login/errors/ErrorNotClient";
 import { Login } from "../pages/login";

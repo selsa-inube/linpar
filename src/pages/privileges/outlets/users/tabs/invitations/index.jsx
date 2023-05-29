@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
-import { Table } from "../../../../../../components/data/Table";
-import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
+import { Table } from "@components/data/Table";
+import { SectionMessage } from "@components/feedback/SectionMessage";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
 import { resendInvitationMessages } from "../../../users/config/resendInvitationUser.config";
 import {
