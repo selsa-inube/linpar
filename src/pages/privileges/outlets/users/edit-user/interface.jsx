@@ -2,9 +2,8 @@ import { PageTitle } from "@components/PageTitle";
 import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
-import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
-import { branchesEditUser } from "../../../../../mocks/apps/privileges/branchesForm.mock";
+import { GeneralInformation } from "./tabs/generalInformation";
 
 function EditUserUI(props) {
   const { isSelected, handleTabChange } = props;
@@ -28,8 +27,8 @@ function EditUserUI(props) {
             selectedTab={isSelected}
             handleSelectedTab={handleTabChange}
           />
-          {isSelected === editUserTabsConfig.branches.id && (
-            <BranchesForm allowSubmit currentBranches={branchesEditUser} />
+          {isSelected === editUserTabsConfig.generalInformation.id && (
+            <GeneralInformation />
           )}
         </Stack>
       </Stack>

@@ -22,7 +22,7 @@ const branchesEditUser = [
   {
     id: "4457",
     city: "City 5",
-    isActive: false,
+    isActive: true,
   },
   {
     id: "4486",
@@ -42,7 +42,7 @@ const branchesEditUser = [
   {
     id: "2456",
     city: "City 9",
-    isActive: false,
+    isActive: true,
   },
   {
     id: "3456",
@@ -57,7 +57,7 @@ const branchesEditUser = [
   {
     id: "6456",
     city: "City 12",
-    isActive: false,
+    isActive: true,
   },
   {
     id: "7457",
@@ -72,7 +72,7 @@ const branchesEditUser = [
   {
     id: "4456",
     city: "City 15",
-    isActive: false,
+    isActive: true,
   },
   {
     id: "8856",
