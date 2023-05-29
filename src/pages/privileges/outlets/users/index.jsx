@@ -19,12 +19,9 @@ function Users() {
   };
 
   const handleMenuInvitation = () => {
-    console.log("estoy aca");
-
     setShowMenu(!showMenu);
   };
 
-  console.log(showMenu);
   return (
     <UsersUI
       isSelected={isSelected}
