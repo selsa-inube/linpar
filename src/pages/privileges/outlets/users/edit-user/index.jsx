@@ -7,29 +7,26 @@ import { useParams } from "react-router-dom";
 function EditUser() {
   const { user_id } = useParams();
 
-  const [isSelected, setIsSelected] = useState(
+  const [selectedTab, setSelectedTab] = useState(
     editUserTabsConfig.generalInformation.id
   );
 
   function getUserInformation() {
     const userID = parseInt(user_id);
-    const user = userEntriesDataMock.find((user) => user.id === userID);
-    const userCardData = {
-      nombre: user?.username || "",
-      identificación: user?.userID || "",
-      codigo: user?.code || "",
-      rol: user?.position || "",
-    };
-    return userCardData;
+    return userEntriesDataMock.find((user) => user.id === userID);
   }
 
   const handleTabChange = (tabId) => {
-    setIsSelected(tabId);
+    setSelectedTab(tabId);
   };
+
+  if (!getUserInformation()) {
+    return <div>User not found</div>;
+  }
 
   return (
     <EditUserUI
-      isSelected={isSelected}
+      selectedTab={selectedTab}
       handleTabChange={handleTabChange}
       user={getUserInformation()}
     />
