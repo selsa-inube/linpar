@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
-const StyledMenu = styled.nav`
+const StyledNav = styled.nav`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -49,4 +49,4 @@ const StyledFooter = styled.footer`
   }
 `;
 
-export { StyledMenu, StyledTitle, StyledNavList, StyledDivisor, StyledFooter };
+export { StyledNav, StyledTitle, StyledNavList, StyledDivisor, StyledFooter };

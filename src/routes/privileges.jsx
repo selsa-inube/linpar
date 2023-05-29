@@ -4,7 +4,7 @@ import { Invite } from "../pages/privileges/outlets/users/invite";
 import { EditUser } from "../pages/privileges/outlets/users/edit-user";
 import { Users } from "../pages/privileges/outlets/users";
 import { Privileges } from "../pages/privileges";
-import { ErrorPage } from "../components/layout/ErrorPage";
+import { ErrorPage } from "@components/layout/ErrorPage";
 
 function PrivilegesRoutes() {
   return (

@@ -1,4 +1,4 @@
-import { AppPage } from "../../components/layout/AppPage";
+import { AppPage } from "@components/layout/AppPage";
 
 function PrivilegesUI() {
   return <AppPage />;

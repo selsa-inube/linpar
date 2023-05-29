@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack, Button } from "@inube/design-system";
-import { Text } from "../../../components/data/Text";
+import { Text } from "@components/data/Text";
 import {
   StyledErrorPage,
   StyledCompanyLogo,

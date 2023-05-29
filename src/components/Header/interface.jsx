@@ -1,16 +1,16 @@
+import { User, useMediaQuery } from "@inube/design-system";
+import { createPortal } from "react-dom";
+import { MdMenu } from "react-icons/md";
+import { appsConfig } from "../../pages/home/config/apps.config";
+import { Nav } from "../navigation/Nav";
 import {
   StyledHeader,
-  StyledLogo,
-  StyledcontentImg,
   StyledIcon,
+  StyledLogo,
+  StyledNavWrapper,
   StyledUser,
-  StyledMenuWrapper,
+  StyledcontentImg,
 } from "./styles";
-import { createPortal } from "react-dom";
-import { Menu } from "../navigation/Menu";
-import { appsConfig } from "../../pages/home/config/apps.config";
-import { MdMenu } from "react-icons/md";
-import { User, useMediaQuery } from "@inube/design-system";
 
 function HeaderUI(props) {
   const smallScreen = useMediaQuery("(max-width: 450px)");
@@ -21,8 +21,8 @@ function HeaderUI(props) {
     businessUnit,
     appLogo,
     appLogoAlt,
-    handleMenu,
-    menu,
+    handleNav,
+    nav,
     appLogoRedirect = "/",
   } = props;
 
@@ -30,7 +30,7 @@ function HeaderUI(props) {
     <>
       <StyledHeader>
         <StyledIcon>
-          <MdMenu onClick={handleMenu} />
+          <MdMenu onClick={handleNav} />
         </StyledIcon>
         <StyledcontentImg to={appLogoRedirect}>
           <StyledLogo src={appLogo} alt={appLogoAlt} />
@@ -43,16 +43,16 @@ function HeaderUI(props) {
           />
         </StyledUser>
       </StyledHeader>
-      {menu &&
+      {nav &&
         createPortal(
-          <StyledMenuWrapper>
-            <Menu
+          <StyledNavWrapper>
+            <Nav
               title="Menu"
               links={appsConfig}
-              handleMenu={handleMenu}
-              menu={menu}
+              handleNav={handleNav}
+              menu={nav}
             />
-          </StyledMenuWrapper>,
+          </StyledNavWrapper>,
           document.getElementById("portal")
         )}
     </>

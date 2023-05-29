@@ -1,4 +1,4 @@
-import { Menu } from "..";
+import { Nav } from "..";
 import { Default as Header } from "../../../Header/stories/Header.stories";
 import { appsConfig } from "../../../../pages/home/config/apps.config";
 import linparLogo from "../../../../assets/images/linpar.png";
@@ -10,8 +10,8 @@ import {
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
-  title: "components/navigation/Menu",
-  component: [Menu],
+  title: "components/navigation/Nav",
+  component: [Nav],
   parameters: {
     layout: "fullscreen",
   },
@@ -48,7 +48,7 @@ const withFullDisplay = (Template) => (args) =>
     </StyledStoryContainer>
   );
 
-const Template = (args) => <Menu {...args} />;
+const Template = (args) => <Nav {...args} />;
 
 export const Default = withFullDisplay(Template.bind({}));
 Default.args = {

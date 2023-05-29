@@ -1,11 +1,11 @@
-import { MenuLink } from "..";
+import { NavLink } from "..";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { appsConfig } from "../../../../pages/home/config/apps.config";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
-  component: [MenuLink],
-  title: "components/navigation/MenuLink",
+  component: [NavLink],
+  title: "components/navigation/NavLink",
   decorators: [
     (Story) => (
       <BrowserRouter>
@@ -15,7 +15,7 @@ const story = {
   ],
 };
 
-const Template = (args) => <MenuLink {...args} />;
+const Template = (args) => <NavLink {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
