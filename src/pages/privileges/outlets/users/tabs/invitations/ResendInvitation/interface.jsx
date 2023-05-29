@@ -1,5 +1,5 @@
 import { StyledIconResend } from "./styles";
-import { MdOutlineLibraryAddCheck } from "react-icons/md";
+import { MdOutlineShortcut } from "react-icons/md";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 
@@ -11,7 +11,7 @@ function ResendInvitationUI(props) {
   return (
     <>
       <StyledIconResend>
-        <MdOutlineLibraryAddCheck onClick={toggleModal} />
+        <MdOutlineShortcut onClick={toggleModal} />
       </StyledIconResend>
 
       {showResendInvModal && (
