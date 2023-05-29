@@ -1,7 +1,7 @@
 import { User, useMediaQuery } from "@inube/design-system";
 import { createPortal } from "react-dom";
 import { MdMenu } from "react-icons/md";
-import { appsConfig } from "../../pages/home/config/apps.config";
+import { appsConfig } from "@pages/home/config/apps.config";
 import { Nav } from "../navigation/Nav";
 import {
   StyledHeader,

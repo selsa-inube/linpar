@@ -1,6 +1,6 @@
 import { NavLink } from "..";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { appsConfig } from "../../../../pages/home/config/apps.config";
+import { appsConfig } from "@pages/home/config/apps.config";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
