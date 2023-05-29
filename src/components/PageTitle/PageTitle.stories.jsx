@@ -1,5 +1,5 @@
 import { PageTitle } from "./index";
-import { appsConfig } from "../../pages/home/config/apps.config";
+import { appsConfig } from "@pages/home/config/apps.config";
 
 const story = {
   component: [PageTitle],
