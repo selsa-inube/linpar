@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { MenuLink } from "..";
-import { appsConfig } from "../../../../pages/home/config/apps.config";
+import { menuInvitationLinks } from "../../../../pages/privileges/outlets/users/config/menuInvitation.config";
 
 const story = {
   component: [MenuLink],
@@ -18,16 +18,9 @@ const Template = (args) => <MenuLink {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: appsConfig[0].label,
-  icon: appsConfig[0].icon,
-  path: appsConfig[0].url,
-};
-
-export const Selected = Template.bind({});
-Selected.args = {
-  label: appsConfig[0].label,
-  icon: appsConfig[0].icon,
-  path: appsConfig[0].url,
+  label: menuInvitationLinks[0].label,
+  icon: menuInvitationLinks[0].icon,
+  path: menuInvitationLinks[0].path,
 };
 
 export default story;
