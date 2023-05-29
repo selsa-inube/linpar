@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { typography } from "../../../styles/typography";
-import { colors } from "../../../styles/colors";
+import { typography } from "@styles/typography";
+import { colors } from "@styles/colors";
 
 const StyledText = styled.p`
   font-family: ${({ typoToken }) => typography.sys.typescale[typoToken].font};

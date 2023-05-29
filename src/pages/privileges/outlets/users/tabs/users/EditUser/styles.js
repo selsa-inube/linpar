@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { colors } from "../../../../../../../styles/colors";
+import { colors } from "@styles/colors";
 
 const StyledLink = styled(Link)`
   color: ${colors.ref.palette.neutral.n900};
