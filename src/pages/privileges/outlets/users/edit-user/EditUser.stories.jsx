@@ -1,5 +1,5 @@
-import { BrowserRouter } from "react-router-dom";
 import { EditUser } from "./index";
+import { MemoryRouter, Routes, Route } from "react-router";
 
 const story = {
   components: [EditUser],
@@ -9,9 +9,11 @@ const story = {
   },
   decorators: [
     (Story) => (
-      <BrowserRouter>
-        <Story />
-      </BrowserRouter>
+      <MemoryRouter initialEntries={["/path/14"]}>
+        <Routes>
+          <Route path="/path/:user_id" element={<Story />} />
+        </Routes>
+      </MemoryRouter>
     ),
   ],
 };
