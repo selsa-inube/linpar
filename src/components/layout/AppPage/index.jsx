@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
+import { appsConfig } from "../../../pages/home/config/apps.config";
 import { Header } from "../../Header";
+import { Nav } from "../../navigation/Nav";
 import { StyledAppPage, StyledContainer, StyledMain } from "./styles";
 
 function AppPage() {
@@ -7,7 +9,7 @@ function AppPage() {
     <StyledAppPage>
       <Header />
       <StyledContainer>
-        {/* <Menu links={appsConfig} title="Menú" /> */}
+        <Nav links={appsConfig} title="Menú" />
         <StyledMain>
           <Outlet />
         </StyledMain>

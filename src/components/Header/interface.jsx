@@ -1,11 +1,13 @@
 import { User, useMediaQuery } from "@inube/design-system";
 import { createPortal } from "react-dom";
 import { MdMenu } from "react-icons/md";
+import { appsConfig } from "../../pages/home/config/apps.config";
+import { Nav } from "../navigation/Nav";
 import {
   StyledHeader,
   StyledIcon,
   StyledLogo,
-  StyledMenuWrapper,
+  StyledNavWrapper,
   StyledUser,
   StyledcontentImg,
 } from "./styles";
@@ -19,8 +21,8 @@ function HeaderUI(props) {
     businessUnit,
     appLogo,
     appLogoAlt,
-    handleMenu,
-    menu,
+    handleNav,
+    nav,
     appLogoRedirect = "/",
   } = props;
 
@@ -28,7 +30,7 @@ function HeaderUI(props) {
     <>
       <StyledHeader>
         <StyledIcon>
-          <MdMenu onClick={handleMenu} />
+          <MdMenu onClick={handleNav} />
         </StyledIcon>
         <StyledcontentImg to={appLogoRedirect}>
           <StyledLogo src={appLogo} alt={appLogoAlt} />
@@ -41,16 +43,16 @@ function HeaderUI(props) {
           />
         </StyledUser>
       </StyledHeader>
-      {menu &&
+      {nav &&
         createPortal(
-          <StyledMenuWrapper>
-            {/* <Menu
+          <StyledNavWrapper>
+            <Nav
               title="Menu"
               links={appsConfig}
-              handleMenu={handleMenu}
-              menu={menu}
-            /> */}
-          </StyledMenuWrapper>,
+              handleNav={handleNav}
+              menu={nav}
+            />
+          </StyledNavWrapper>,
           document.getElementById("portal")
         )}
     </>
