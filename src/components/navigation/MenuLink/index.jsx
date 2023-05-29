@@ -7,9 +7,9 @@ function MenuLink(props) {
 
   return (
     <StyledLink to={path}>
-      <Stack gap="24px" alignItems="center">
+      <Stack gap="12px" alignItems="center">
         {icon}
-        <Text typoToken="bodyMedium">{label}</Text>
+        <Text typoToken="bodySmall">{label}</Text>
       </Stack>
     </StyledLink>
   );
