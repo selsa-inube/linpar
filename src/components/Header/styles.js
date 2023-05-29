@@ -48,7 +48,7 @@ const StyledUser = styled.div`
   cursor: pointer;
 `;
 
-const StyledMenuWrapper = styled.div`
+const StyledNavWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -66,6 +66,6 @@ export {
   StyledLogo,
   StyledIcon,
   StyledUser,
-  StyledMenuWrapper,
+  StyledNavWrapper,
   StyledcontentImg,
 };
