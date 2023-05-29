@@ -1,6 +1,6 @@
 import React from "react";
 import { AppMenuCard } from "./index";
-import { appsConfig } from "../../../pages/home/config/apps.config";
+import { appsConfig } from "@pages/home/config/apps.config";
 import { BrowserRouter } from "react-router-dom";
 
 const story = {
