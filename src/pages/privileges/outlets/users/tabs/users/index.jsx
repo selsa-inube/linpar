@@ -1,6 +1,6 @@
-import { Table } from "../../../../../../components/data/Table";
-import { userEntriesDataMock } from "../../../../../../mocks/apps/privileges/users.mock";
-import { SectionMessage } from "../../../../../../components/feedback/SectionMessage";
+import { Table } from "@components/data/Table";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
+import { SectionMessage } from "@components/feedback/SectionMessage";
 import { deleteUserMessages } from "../../config/deleteUser.config";
 import { MdToggleOff } from "react-icons/md";
 import { EditUser } from "./EditUser";

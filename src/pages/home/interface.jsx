@@ -1,10 +1,10 @@
-import { Header } from "../../components/Header";
+import { Header } from "@components/Header";
 
 import { MdOutlineDoorFront } from "react-icons/md";
 
 import { StyledHome, StyledAppsList, StyledPageTitle } from "./styles";
-import { AppCard } from "../../components/cards/AppCard";
-import { PageTitle } from "../../components/PageTitle";
+import { AppCard } from "@components/cards/AppCard";
+import { PageTitle } from "@components/PageTitle";
 
 function HomeUI(props) {
   const { apps } = props;

@@ -6,8 +6,8 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { PageTitle } from "../../../../components/PageTitle";
-import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
+import { PageTitle } from "@components/PageTitle";
+import { Breadcrumbs } from "@components/navigation/Breadcrumbs";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { StyledContainer, StyledTextFieldContainer } from "./styles";
