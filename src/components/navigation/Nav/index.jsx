@@ -1,30 +1,30 @@
+import { Stack } from "@inube/design-system";
+import { MdClose } from "react-icons/md";
+import { useLocation } from "react-router-dom";
+import { StyledIcon } from "../../Header/styles";
+import { Text } from "../../data/Text";
+import { NavLink } from "../NavLink";
 import {
-  StyledMenu,
-  StyledTitle,
-  StyledNavList,
   StyledDivisor,
   StyledFooter,
+  StyledNav,
+  StyledNavList,
+  StyledTitle,
 } from "./styles";
-import { Text } from "../../data/Text";
-import { useLocation } from "react-router-dom";
-import { Stack } from "@inube/design-system";
-import { MenuLink } from "../MenuLink";
-import { StyledIcon } from "../../Header/styles";
-import { MdClose } from "react-icons/md";
 
-function Menu(props) {
-  const { links, title, handleMenu, menu } = props;
+function Nav(props) {
+  const { links, title, handleNav, nav } = props;
   const location = useLocation();
   const currentUrl = location.pathname;
 
-  const isSelected = (url, menu) => currentUrl.startsWith(url) && !menu;
+  const isSelected = (url, nav) => currentUrl.startsWith(url) && !nav;
 
   return (
-    <StyledMenu>
+    <StyledNav>
       <Stack direction="column">
-        {menu && (
+        {nav && (
           <StyledIcon>
-            <MdClose onClick={handleMenu} />
+            <MdClose onClick={handleNav} />
           </StyledIcon>
         )}
 
@@ -34,12 +34,12 @@ function Menu(props) {
         <StyledNavList>
           {links.map((link) => (
             <li key={link.id}>
-              <MenuLink
+              <NavLink
                 label={link.label}
                 icon={link.icon}
-                isSelected={isSelected(link.url, menu)}
+                isSelected={isSelected(link.url, nav)}
                 url={link.url}
-                handleClick={handleMenu}
+                handleClick={handleNav}
               />
             </li>
           ))}
@@ -49,8 +49,8 @@ function Menu(props) {
       <StyledFooter>
         <Text typoToken="labelMedium">© 2023 Sistemas Enlinea S.A</Text>
       </StyledFooter>
-    </StyledMenu>
+    </StyledNav>
   );
 }
 
-export { Menu };
+export { Nav };
