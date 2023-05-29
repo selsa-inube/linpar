@@ -5,14 +5,18 @@ import {
   TextField,
   useMediaQuery,
 } from "@inube/design-system";
+import { Menu } from "@components/navigation/Menu";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { PageTitle } from "../../../../components/PageTitle";
-import { Breadcrumbs } from "../../../../components/navigation/Breadcrumbs";
-import { Menu } from "../../../../components/navigation/Menu";
+import { PageTitle } from "@components/PageTitle";
+import { Breadcrumbs } from "@components/navigation/Breadcrumbs";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
-import { StyledContainer, StyledTextFieldContainer } from "./styles";
+import {
+  StyledContainer,
+  StyledOptionsContainer,
+  StyledTextFieldContainer,
+} from "./styles";
 import InvitationsTab from "./tabs/invitations";
 import UsersTab from "./tabs/users";
 
@@ -62,14 +66,14 @@ export default function UsersUI(props) {
             </StyledTextFieldContainer>
 
             {smallScreen ? (
-              <div style={{ position: "relative", display: "inline-block" }}>
+              <StyledOptionsContainer>
                 <MdOutlineMoreHoriz
                   size={24}
                   cursor="pointer"
                   onClick={handleMenuInvitation}
                 />
                 {showMenu && <Menu links={menuInvitationLinks} />}
-              </div>
+              </StyledOptionsContainer>
             ) : (
               <Button
                 iconBefore={<MdPersonAddAlt size={18} />}
