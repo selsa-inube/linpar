@@ -68,15 +68,15 @@ function BranchesFormUI(props) {
               <Button
                 appearance="secondary"
                 spacing="compact"
-                handleClick={() => handleToggleAllBranches(false)}
-                type="button"
+                handleClick={(e) => handleToggleAllBranches(e, false)}
+                type="text"
               >
                 Desasignar todos
               </Button>
               <Button
                 spacing="compact"
-                handleClick={() => handleToggleAllBranches(true)}
-                type="button"
+                handleClick={(e) => handleToggleAllBranches(e, true)}
+                type="text"
               >
                 Asignar todos
               </Button>
@@ -103,7 +103,7 @@ function BranchesFormUI(props) {
             appearance="secondary"
             isDisabled={hasChanges}
             handleClick={handleCancelChanges}
-            type="button"
+            type="text"
           >
             Cancelar
           </Button>
@@ -112,7 +112,7 @@ function BranchesFormUI(props) {
             handleClick={handleSubmitForm}
             isLoading={isLoading}
             isDisabled={hasChanges}
-            type="button"
+            type="text"
           >
             Guardar
           </Button>

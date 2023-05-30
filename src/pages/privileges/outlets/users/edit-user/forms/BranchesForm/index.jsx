@@ -29,7 +29,8 @@ function FormWithSubmit(props) {
 
   const [branches, setBranches] = useState(currentBranches);
 
-  const handleToggleAllBranches = (allocate) => {
+  const handleToggleAllBranches = (e, allocate) => {
+    e.preventDefault();
     setBranches((prevBranches) => onToggleAllBranches(prevBranches, allocate));
   };
 
@@ -37,11 +38,13 @@ function FormWithSubmit(props) {
     setBranches((prevBranches) => onToggleBranch(prevBranches, id));
   };
 
-  const handleCancelChanges = () => {
+  const handleCancelChanges = (e) => {
+    e.preventDefault();
     setBranches(currentBranches);
   };
 
-  const handleSubmitForm = () => {
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
     handleSubmit(branches);
   };
 
@@ -65,7 +68,8 @@ function FormWithoutSubmit(props) {
   const { handleChange, currentBranches, isLoading, filter, handleFilter } =
     props;
 
-  const handleToggleAllBranches = (allocate) => {
+  const handleToggleAllBranches = (e, allocate) => {
+    e.preventDefault();
     handleChange(onToggleAllBranches(currentBranches, allocate));
   };
 
