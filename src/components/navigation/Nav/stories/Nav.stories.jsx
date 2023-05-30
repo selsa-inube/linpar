@@ -1,6 +1,6 @@
 import { Nav } from "..";
 import { Default as Header } from "../../../Header/stories/Header.stories";
-import { appsConfig } from "../../../../pages/home/config/apps.config";
+import { appsConfig } from "@pages/home/config/apps.config";
 import linparLogo from "../../../../assets/images/linpar.png";
 import {
   StyledContainer,
