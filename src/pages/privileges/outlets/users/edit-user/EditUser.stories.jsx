@@ -1,5 +1,5 @@
-import { BrowserRouter } from "react-router-dom";
 import { EditUser } from "./index";
+import { MemoryRouter, Routes, Route } from "react-router";
 
 const story = {
   components: [EditUser],
@@ -7,17 +7,18 @@ const story = {
   parameters: {
     layout: "fullscreen",
   },
-  decorators: [
-    (Story) => (
-      <BrowserRouter>
-        <Story />
-      </BrowserRouter>
-    ),
-  ],
 };
 
-const Default = () => <EditUser />;
+const Default = () => (
+  <MemoryRouter initialEntries={["/path/11"]}>
+    <Routes>
+      <Route path="/path/:user_id" element={<EditUser />} />
+    </Routes>
+  </MemoryRouter>
+);
+
+const UserNotFound = () => <EditUser />;
+
+export { Default, UserNotFound };
 
 export default story;
-
-export { Default };
