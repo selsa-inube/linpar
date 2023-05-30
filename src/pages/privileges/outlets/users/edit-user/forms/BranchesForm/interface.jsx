@@ -28,6 +28,12 @@ function BranchesFormUI(props) {
   const hasChanges =
     JSON.stringify(currentBranches) === JSON.stringify(branches);
 
+  const filteredRows = branches.filter(
+    (branch) =>
+      branch.city.toLowerCase().includes(filter.toLowerCase()) ||
+      branch.id.includes(filter.toLowerCase())
+  );
+
   return (
     <form>
       <StyledFieldset>
@@ -69,22 +75,17 @@ function BranchesFormUI(props) {
           )}
         </Stack>
         <StyledBranchesContainer>
-          {branches
-            .filter(
-              (branch) =>
-                branch.city.includes(filter) || branch.id.includes(filter)
-            )
-            .map((branch, i) => (
-              <Stack alignItems="center" key={i}>
-                <Switch
-                  id={branch.id}
-                  label={`${branch.id}-${branch.city}`}
-                  checked={branch.isActive}
-                  handleChange={() => handleToggleBranch(branch.id)}
-                  size="large"
-                />
-              </Stack>
-            ))}
+          {filteredRows.map((branch, i) => (
+            <Stack alignItems="center" key={i}>
+              <Switch
+                id={branch.id}
+                label={`${branch.id}-${branch.city}`}
+                checked={branch.isActive}
+                handleChange={() => handleToggleBranch(branch.id)}
+                size="large"
+              />
+            </Stack>
+          ))}
         </StyledBranchesContainer>
       </StyledFieldset>
       {allowSubmit && (
