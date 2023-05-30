@@ -7,7 +7,6 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import { typography } from "../../../../../../../styles/typography";
 import { StyledBranchesContainer, StyledFieldset } from "./styles";
 
 function BranchesFormUI(props) {
@@ -20,6 +19,8 @@ function BranchesFormUI(props) {
     handleSubmitForm,
     allowSubmit,
     handleCancelChanges,
+    filter,
+    handleFilter,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -31,7 +32,7 @@ function BranchesFormUI(props) {
     <form>
       <StyledFieldset>
         <legend>
-          <Text typo={typography.sys.titleSmall}>
+          <Text typo="titleSmall">
             Seleccione las sucursales que desea asignar
           </Text>
         </legend>
@@ -44,6 +45,8 @@ function BranchesFormUI(props) {
             id="searchBranches"
             minLength={1}
             size="compact"
+            handleChange={handleFilter}
+            value={filter}
           />
           {smallScreen ? (
             <MdOutlineMoreHoriz />
@@ -66,17 +69,22 @@ function BranchesFormUI(props) {
           )}
         </Stack>
         <StyledBranchesContainer>
-          {branches.map((branch, i) => (
-            <Stack alignItems="center" key={i}>
-              <Switch
-                id={branch.id}
-                label={`${branch.id}-${branch.city}`}
-                checked={branch.isActive}
-                handleChange={() => handleToggleBranch(branch.id)}
-                size="large"
-              />
-            </Stack>
-          ))}
+          {branches
+            .filter(
+              (branch) =>
+                branch.city.includes(filter) || branch.id.includes(filter)
+            )
+            .map((branch, i) => (
+              <Stack alignItems="center" key={i}>
+                <Switch
+                  id={branch.id}
+                  label={`${branch.id}-${branch.city}`}
+                  checked={branch.isActive}
+                  handleChange={() => handleToggleBranch(branch.id)}
+                  size="large"
+                />
+              </Stack>
+            ))}
         </StyledBranchesContainer>
       </StyledFieldset>
       {allowSubmit && (
