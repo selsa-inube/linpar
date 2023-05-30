@@ -7,19 +7,18 @@ const story = {
   parameters: {
     layout: "fullscreen",
   },
-  decorators: [
-    (Story) => (
-      <MemoryRouter initialEntries={["/path/14"]}>
-        <Routes>
-          <Route path="/path/:user_id" element={<Story />} />
-        </Routes>
-      </MemoryRouter>
-    ),
-  ],
 };
 
-const Default = () => <EditUser />;
+const Default = () => (
+  <MemoryRouter initialEntries={["/path/11"]}>
+    <Routes>
+      <Route path="/path/:user_id" element={<EditUser />} />
+    </Routes>
+  </MemoryRouter>
+);
+
+const UserNotFound = () => <EditUser />;
+
+export { Default, UserNotFound };
 
 export default story;
-
-export { Default };
