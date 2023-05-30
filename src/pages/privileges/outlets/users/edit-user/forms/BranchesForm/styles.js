@@ -9,6 +9,13 @@ const StyledFieldset = styled.fieldset`
   margin-bottom: 12px;
 `;
 
+const StyledHeadContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 16px;
+  align-items: center;
+`;
+
 const StyledBranchesContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,4 +25,4 @@ const StyledBranchesContainer = styled.div`
   margin-top: 32px;
 `;
 
-export { StyledFieldset, StyledBranchesContainer };
+export { StyledFieldset, StyledBranchesContainer, StyledHeadContainer };

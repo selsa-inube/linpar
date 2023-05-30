@@ -1,82 +1,82 @@
 const branchesEditUser = [
   {
     id: "1231",
-    city: "City 1",
+    city: "Bogotá",
     isActive: true,
   },
   {
     id: "2543",
-    city: "City 2",
+    city: "Barrancabermeja",
     isActive: false,
   },
   {
     id: "3654",
-    city: "City 3",
+    city: "Barranquilla",
     isActive: true,
   },
   {
     id: "4456",
-    city: "City 4",
+    city: "Armenia",
     isActive: false,
   },
   {
     id: "4457",
-    city: "City 5",
+    city: "Buga",
     isActive: true,
   },
   {
     id: "4486",
-    city: "City 6",
+    city: "Cali",
     isActive: false,
   },
   {
     id: "7456",
-    city: "City 7",
+    city: "Cartagena",
     isActive: false,
   },
   {
     id: "1456",
-    city: "City 8",
+    city: "Cúcuta",
     isActive: false,
   },
   {
     id: "2456",
-    city: "City 9",
+    city: "Ibagué",
     isActive: true,
   },
   {
     id: "3456",
-    city: "City 10",
+    city: "Medellín",
     isActive: false,
   },
   {
     id: "5456",
-    city: "City 11",
+    city: "Pereira",
     isActive: false,
   },
   {
     id: "6456",
-    city: "City 12",
+    city: "Popayán",
     isActive: true,
   },
   {
     id: "7457",
-    city: "City 13",
+    city: "Pasto",
     isActive: false,
   },
   {
     id: "8456",
-    city: "City 14",
+    city: "Riohacha",
     isActive: false,
   },
   {
     id: "4456",
-    city: "City 15",
+    city: "Tunja",
     isActive: true,
   },
   {
     id: "8856",
-    city: "City 16",
+    city: "Valledupar",
     isActive: false,
   },
 ];

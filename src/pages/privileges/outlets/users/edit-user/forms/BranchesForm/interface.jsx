@@ -7,7 +7,11 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import { StyledBranchesContainer, StyledFieldset } from "./styles";
+import {
+  StyledBranchesContainer,
+  StyledFieldset,
+  StyledHeadContainer,
+} from "./styles";
 
 function BranchesFormUI(props) {
   const {
@@ -17,13 +21,13 @@ function BranchesFormUI(props) {
     isLoading,
     currentBranches,
     handleSubmitForm,
-    allowSubmit,
+    allowSubmit = false,
     handleCancelChanges,
     filter,
     handleFilter,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 650px)");
+  const smallScreen = useMediaQuery("(max-width: 600px)");
 
   const hasChanges =
     JSON.stringify(currentBranches) === JSON.stringify(branches);
@@ -42,7 +46,7 @@ function BranchesFormUI(props) {
             Seleccione las sucursales que desea asignar
           </Text>
         </legend>
-        <Stack justifyContent="space-between" alignItems="center">
+        <StyledHeadContainer>
           <TextField
             type="search"
             iconBefore={<MdSearch size={22} />}
@@ -53,33 +57,38 @@ function BranchesFormUI(props) {
             size="compact"
             handleChange={handleFilter}
             value={filter}
+            isFullWidth
           />
           {smallScreen ? (
-            <MdOutlineMoreHoriz />
+            <Stack justifyContent="flex-end">
+              <MdOutlineMoreHoriz />
+            </Stack>
           ) : (
-            <Stack gap="8px">
+            <Stack gap="8px" justifyContent="flex-end">
               <Button
                 appearance="secondary"
                 spacing="compact"
-                handleClick={(e) => handleToggleAllBranches(e, false)}
+                handleClick={() => handleToggleAllBranches(false)}
+                type="button"
               >
                 Desasignar todos
               </Button>
               <Button
                 spacing="compact"
-                handleClick={(e) => handleToggleAllBranches(e, true)}
+                handleClick={() => handleToggleAllBranches(true)}
+                type="button"
               >
                 Asignar todos
               </Button>
             </Stack>
           )}
-        </Stack>
+        </StyledHeadContainer>
         <StyledBranchesContainer>
-          {filteredRows.map((branch, i) => (
-            <Stack alignItems="center" key={i}>
+          {filteredRows.map((branch) => (
+            <Stack alignItems="center" key={branch.id}>
               <Switch
                 id={branch.id}
-                label={`${branch.id}-${branch.city}`}
+                label={`${branch.id} - ${branch.city}`}
                 checked={branch.isActive}
                 handleChange={() => handleToggleBranch(branch.id)}
                 size="large"
@@ -94,6 +103,7 @@ function BranchesFormUI(props) {
             appearance="secondary"
             isDisabled={hasChanges}
             handleClick={handleCancelChanges}
+            type="button"
           >
             Cancelar
           </Button>
@@ -102,6 +112,7 @@ function BranchesFormUI(props) {
             handleClick={handleSubmitForm}
             isLoading={isLoading}
             isDisabled={hasChanges}
+            type="button"
           >
             Guardar
           </Button>

@@ -2,24 +2,10 @@ import { useState } from "react";
 import { BranchesFormUI } from "./interface";
 
 const onToggleAllBranches = (branches, allocate) => {
-  let newBranches = [];
-  if (allocate) {
-    newBranches = branches.map((branch) => {
-      return {
-        ...branch,
-        isActive: true,
-      };
-    });
-  } else {
-    newBranches = branches.map((branch) => {
-      return {
-        ...branch,
-        isActive: false,
-      };
-    });
-  }
-
-  return newBranches;
+  return branches.map((branch) => ({
+    ...branch,
+    isActive: allocate,
+  }));
 };
 
 const onToggleBranch = (branches, id) => {
@@ -43,9 +29,7 @@ function FormWithSubmit(props) {
 
   const [branches, setBranches] = useState(currentBranches);
 
-  const handleToggleAllBranches = (e, allocate) => {
-    e.preventDefault();
-
+  const handleToggleAllBranches = (allocate) => {
     setBranches((prevBranches) => onToggleAllBranches(prevBranches, allocate));
   };
 
@@ -53,15 +37,11 @@ function FormWithSubmit(props) {
     setBranches((prevBranches) => onToggleBranch(prevBranches, id));
   };
 
-  const handleCancelChanges = (e) => {
-    e.preventDefault();
-
+  const handleCancelChanges = () => {
     setBranches(currentBranches);
   };
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-
+  const handleSubmitForm = () => {
     handleSubmit(branches);
   };
 
@@ -85,9 +65,7 @@ function FormWithoutSubmit(props) {
   const { handleChange, currentBranches, isLoading, filter, handleFilter } =
     props;
 
-  const handleToggleAllBranches = (e, allocate) => {
-    e.preventDefault();
-
+  const handleToggleAllBranches = (allocate) => {
     handleChange(onToggleAllBranches(currentBranches, allocate));
   };
 
@@ -125,7 +103,7 @@ function BranchesForm(props) {
   if (allowSubmit) {
     return (
       <FormWithSubmit
-        allowSubmit={allowSubmit}
+        allowSubmit
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         currentBranches={currentBranches}
@@ -138,7 +116,6 @@ function BranchesForm(props) {
 
   return (
     <FormWithoutSubmit
-      allowSubmit={allowSubmit}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       currentBranches={currentBranches}
