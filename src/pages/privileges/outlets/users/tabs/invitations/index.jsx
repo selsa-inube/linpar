@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { Table } from "@components/data/Table";
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
@@ -11,6 +10,7 @@ import {
 } from "../../config/invitationsTable.config";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
+import { CompleteInvitationLink } from "./CompleteInvitationLink";
 
 const initialMessageState = {
   show: false,
@@ -29,7 +29,9 @@ export default function InvitationsTab(props) {
     {
       id: 1,
       actionName: "Complete",
-      content: <MdOutlineAssignmentTurnedIn />,
+      content: (invitation) => (
+        <CompleteInvitationLink invitation={invitation} />
+      ),
       type: "secondary",
     },
     {

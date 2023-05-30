@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../../styles/colors";
+import { colors } from "@styles/colors";
 
 function getBackgroundColor(props) {
   if (props.isPreviousStep || props.isActualStep) {
