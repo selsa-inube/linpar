@@ -9,10 +9,6 @@ function ActivateUser(props) {
     setShowActivateUserModal(!showActivateUserModal);
   };
 
-  const onActionConfirm = () => {
-    handleActivateUser();
-  };
-
   return (
     <>
       <ActivateUserUI
@@ -21,7 +17,7 @@ function ActivateUser(props) {
         user={user}
         id={user.id}
         handleToggleModal={handleToggleModal}
-        onActionConfirm={onActionConfirm}
+        handleActivateUser={handleActivateUser}
       />
     </>
   );

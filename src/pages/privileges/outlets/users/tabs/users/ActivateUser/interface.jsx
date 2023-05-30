@@ -3,7 +3,7 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { activateUserModal } from "../../../config/activateUser.config";
 
 function ActivateUserModal(props) {
-  const { active, user, handleToggleModal, onActionConfirm } = props;
+  const { active, user, handleToggleModal, handleActivateUser } = props;
   let messageType;
   if (!active) {
     messageType = "activation";
@@ -22,7 +22,7 @@ function ActivateUserModal(props) {
         actionText={textAction}
         appearance={appearance}
         closeModal={handleToggleModal}
-        handleClick={onActionConfirm}
+        handleClick={handleActivateUser}
       />
     </>
   );
@@ -35,7 +35,7 @@ function ActivateUserUI(props) {
     user,
     id,
     handleToggleModal,
-    onActionConfirm,
+    handleActivateUser,
   } = props;
 
   return (
@@ -51,7 +51,7 @@ function ActivateUserUI(props) {
           active={active}
           user={user}
           handleToggleModal={handleToggleModal}
-          onActionConfirm={onActionConfirm}
+          handleActivateUser={handleActivateUser}
         />
       )}
     </>

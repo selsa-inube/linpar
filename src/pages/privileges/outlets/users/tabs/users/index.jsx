@@ -42,9 +42,11 @@ export default function UsersTab(props) {
     handleShowMessage(title, description(user), icon, appearance);
   };
 
-  const activationUser = (actUsers, id) => {
-    const activeUsers = actUsers.map((actUser) => {
-      if (actUser.id === id) {
+  const handleActivateUser = (user) => {
+    let messageType = "activate";
+
+    const newUsers = users.map((actUser) => {
+      if (actUser.id === user.id) {
         return {
           ...actUser,
           active: !actUser.active,
@@ -53,19 +55,10 @@ export default function UsersTab(props) {
       return actUser;
     });
 
-    return activeUsers;
-  };
+    setUsers(newUsers);
 
-  const handleActivateUser = (user) => {
-    let messageType = "activate";
-    try {
-      setUsers((prevUsers) => activationUser(prevUsers, user.id));
-
-      if (user.active) {
-        messageType = "deactivate";
-      }
-    } catch (error) {
-      messageType = "failed";
+    if (user.active) {
+      messageType = "deactivate";
     }
 
     const { title, description, icon, appearance } =
