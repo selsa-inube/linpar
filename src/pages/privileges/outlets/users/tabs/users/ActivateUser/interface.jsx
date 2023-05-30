@@ -1,5 +1,5 @@
 import { Switch } from "@inube/design-system";
-import { DecisionModal } from "../../../../../../../components/feedback/DecisionModal";
+import { DecisionModal } from "@components/feedback/DecisionModal";
 import { activateUserModal } from "../../../config/activateUser.config";
 
 function ActivateUserModal(props) {

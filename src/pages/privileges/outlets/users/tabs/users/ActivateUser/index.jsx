@@ -4,20 +4,19 @@ import { ActivateUserUI } from "./interface";
 function ActivateUser(props) {
   const { user, handleActivateUser } = props;
   const [showActivateUserModal, setShowActivateUserModal] = useState(false);
-  const [active, setActive] = useState(false);
 
   const handleToggleModal = () => {
     setShowActivateUserModal(!showActivateUserModal);
   };
 
   const onActionConfirm = () => {
-    setActive(handleActivateUser(active));
+    handleActivateUser();
   };
 
   return (
     <>
       <ActivateUserUI
-        active={active}
+        active={user.active}
         showActivateUserModal={showActivateUserModal}
         user={user}
         id={user.id}
