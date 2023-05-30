@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import { colors } from "@styles/colors";
 
 const StyledSubjectCard = styled.div`
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 8px;
   border-radius: 8px;
   border: 1px solid ${colors.ref.palette.neutral.n30};
   cursor: pointer;

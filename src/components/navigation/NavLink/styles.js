@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { colors } from "../../../styles/colors";
-import { typography } from "../../../styles/typography";
+import { colors } from "@styles/colors";
+import { typography } from "@styles/typography";
 
 const StyledLink = styled(Link)`
   box-sizing: border-box;
