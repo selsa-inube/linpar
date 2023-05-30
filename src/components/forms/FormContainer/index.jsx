@@ -1,9 +1,16 @@
-import { StyledFormContainer, StyledSelect, StyledOption } from "./styles";
+import { StyledFormContainer, StyledSelect } from "./styles";
 import { TextField, Text, Stack } from "@inube/design-system";
 import { MdOutlineModeEdit } from "react-icons/md";
 
 function FormContainer(props) {
-  const { user, handleChange, isLoading, formInvalid, runValidations } = props;
+  const {
+    user,
+    handleFieldChange,
+    isLoading,
+    formInvalid,
+    runValidations,
+    isFieldModified,
+  } = props;
 
   return (
     <StyledFormContainer>
@@ -14,10 +21,18 @@ function FormContainer(props) {
         id="name"
         type="text"
         size="compact"
-        value={user.name.value}
-        handleChange={(event) => handleChange(event, "name")}
-        isDisabled={true}
         isFullWidth={true}
+        value={user.name.value}
+        handleChange={(event) => handleFieldChange(event, "name")}
+        isDisabled={isFieldModified("name")}
+        iconAfter={
+          user.name.value !== "" ? "" : <MdOutlineModeEdit size={18} />
+        }
+        isInvalid={user.name.isInvalid && formInvalid}
+        errorMessage="Este campo no puede estar vacío"
+        validMessage="El correo electrónico es valido"
+        handleBlur={runValidations}
+        state={user.name.state}
       />
 
       <TextField
@@ -27,10 +42,22 @@ function FormContainer(props) {
         id="identification"
         type="number"
         size="compact"
-        value={user.identification.value}
-        handleChange={(event) => handleChange(event, "identification")}
-        isDisabled={true}
         isFullWidth={true}
+        value={user.identification.value}
+        handleChange={(event) => handleFieldChange(event, "identification")}
+        isDisabled={isFieldModified("identification")}
+        iconAfter={
+          user.identification.value !== "" ? (
+            ""
+          ) : (
+            <MdOutlineModeEdit size={18} />
+          )
+        }
+        isInvalid={user.identification.isInvalid && formInvalid}
+        errorMessage="Este campo no puede estar vacío"
+        validMessage="El correo electrónico es valido"
+        handleBlur={runValidations}
+        state={user.identification.state}
       />
 
       <TextField
@@ -41,7 +68,7 @@ function FormContainer(props) {
         type="email"
         size="compact"
         value={user.email.value}
-        handleChange={(event) => handleChange(event, "email")}
+        handleChange={(event) => handleFieldChange(event, "email")}
         isFullWidth={true}
         iconAfter={<MdOutlineModeEdit size={18} />}
         isDisabled={isLoading && true}
@@ -60,7 +87,7 @@ function FormContainer(props) {
         type="number"
         size="compact"
         value={user.number.value}
-        handleChange={(event) => handleChange(event, "number")}
+        handleChange={(event) => handleFieldChange(event, "number")}
         isFullWidth={true}
         iconAfter={<MdOutlineModeEdit size={18} />}
         isDisabled={isLoading && true}
@@ -77,14 +104,15 @@ function FormContainer(props) {
         </Text>
         <StyledSelect
           value={user.rol.value}
-          onChange={(event) => handleChange(event, "rol")}
+          onChange={(event) => handleFieldChange(event, "rol")}
           disabled={isLoading && true}
           isInvalid={user.rol.isInvalid && formInvalid}
           handleBlur={runValidations}
         >
-          <StyledOption value="Diseñador">Diseñador</StyledOption>
-          <StyledOption value="Desarrollador">Desarrollador Web</StyledOption>
-          <StyledOption value="Product Manager">Product Manager</StyledOption>
+          <option value="Diseñador">Diseñador</option>
+          <option value="Desarrollador">Desarrollador Web</option>
+          <option value="Product Manager">Product Manager</option>
+          <option value=""></option>
         </StyledSelect>
       </Stack>
     </StyledFormContainer>

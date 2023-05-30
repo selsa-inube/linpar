@@ -1,14 +1,13 @@
-import { FormContainer } from "../../../../../../../components/forms/FormContainer";
+import { FormContainer } from "@components/forms/FormContainer";
 import { Button, Stack } from "@inube/design-system";
-import { SectionMessage } from "../../../../../../../components/feedback/SectionMessage";
+import { SectionMessage } from "@components/feedback/SectionMessage";
 import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
-import { StyledForm } from "./styles";
 
 function GeneralInformationFormUI(props) {
   const {
     isLoading,
     handleSubmit,
-    handleChange,
+    handleFieldChange,
     user,
     allowSubmit,
     formInvalid,
@@ -16,6 +15,8 @@ function GeneralInformationFormUI(props) {
     showMessage,
     handleCloseSectionMessage,
     handleButtons,
+    resetValues,
+    isFieldModified,
   } = props;
 
   function renderMessages() {
@@ -56,20 +57,21 @@ function GeneralInformationFormUI(props) {
 
   return (
     <>
-      <StyledForm onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <FormContainer
-          handleChange={handleChange}
+          handleFieldChange={handleFieldChange}
           user={user}
           isLoading={isLoading}
           formInvalid={formInvalid}
           runValidations={runValidations}
+          isFieldModified={isFieldModified}
         />
         {allowSubmit && (
           <Stack gap="8px" justifyContent="flex-end">
             <Button
               appearance="secondary"
-              type="link"
-              path="/privileges/users"
+              type="reset"
+              handleClick={resetValues}
               isDisabled={handleButtons}
             >
               Cancelar
@@ -84,7 +86,7 @@ function GeneralInformationFormUI(props) {
             </Button>
           </Stack>
         )}
-      </StyledForm>
+      </form>
       {renderMessages()}
     </>
   );

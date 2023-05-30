@@ -34,6 +34,4 @@ const StyledSelect = styled.select`
   }
 `;
 
-const StyledOption = styled.option``;
-
-export { StyledFormContainer, StyledSelect, StyledOption };
+export { StyledFormContainer, StyledSelect };
