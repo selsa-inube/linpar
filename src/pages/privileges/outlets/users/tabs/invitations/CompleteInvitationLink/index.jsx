@@ -8,7 +8,8 @@ function CompleteInvitationLink(props) {
     <StyledLink
       status={invitation.status}
       to={
-        invitation.status === "Pending" && `complete-register/${invitation.id}`
+        invitation.status === "Pending" &&
+        `complete-invitation/${invitation.id}`
       }
     >
       <MdOutlineAssignmentTurnedIn />
