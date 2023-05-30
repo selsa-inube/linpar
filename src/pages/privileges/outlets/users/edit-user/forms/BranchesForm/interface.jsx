@@ -23,7 +23,7 @@ function BranchesFormUI(props) {
     handleFilter,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const smallScreen = useMediaQuery("(max-width: 650px)");
 
   const hasChanges =
     JSON.stringify(currentBranches) === JSON.stringify(branches);
