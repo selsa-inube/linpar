@@ -6,7 +6,7 @@ const StyledMenu = styled.div`
   right: 0;
   width: fit-content;
   max-width: 200px;
-  min-width: 160px;
+  min-width: 135px;
   box-shadow: 0px 1px 2px ${colors.ref.palette.neutralAlpha.n50A};
   background-color: ${colors.ref.palette.neutral.n0};
   border-radius: 4px;

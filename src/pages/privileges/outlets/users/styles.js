@@ -11,9 +11,10 @@ const StyledContainer = styled.div`
 const StyledTextFieldContainer = styled.div`
   width: 280px;
 `;
+
 const StyledOptionsContainer = styled.div`
   position: relative;
-  display: "inline-block";
+  height: 24px;
 `;
 
 export { StyledContainer, StyledTextFieldContainer, StyledOptionsContainer };
