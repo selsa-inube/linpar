@@ -22,7 +22,7 @@ const editUserTabsConfig = {
   aidBudgetUnits: {
     id: "aid-budget-units",
     isDisabled: false,
-    label: "Unidades presupuestarias de ayuda",
+    label: "Unidades presupuetales de auxilios",
   },
   payroll: {
     id: "payroll",
