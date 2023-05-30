@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@inube/design-system";
+import { useMediaQueries, useMediaQuery } from "@inube/design-system";
 import { MdOpenInNew } from "react-icons/md";
 import { Text } from "../Text";
 import {
@@ -73,7 +73,7 @@ function TableUI(props) {
 
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
 
-  const media = ""; /* useMediaQueries(queriesArray); */
+  const media = useMediaQueries(queriesArray);
 
   const TitleColumns = totalTitleColumns(titles, breakPoints, media);
 

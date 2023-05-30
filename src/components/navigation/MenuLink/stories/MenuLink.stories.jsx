@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { MenuLink } from "..";
-import { menuInvitationLinks } from "../../../../pages/privileges/outlets/users/config/menuInvitation.config";
+import { menuInvitationLinks } from "@pages/privileges/outlets/users/config/menuInvitation.config";
 
 const story = {
   component: [MenuLink],
