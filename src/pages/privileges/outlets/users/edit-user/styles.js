@@ -6,6 +6,18 @@ const StyledContainer = styled.div`
   div > div:last-of-type > div:nth-of-type(2) {
     gap: 8px;
   }
+
+  div:last-child > div:last-child > div:last-child::-webkit-scrollbar {
+    display: none;
+  }
+
+  div:last-child > div:last-child > div:last-child {
+    -ms-overflow-style: none;
+  }
+
+  div:last-child > div:last-child > div:last-child {
+    scrollbar-width: none;
+  }
 `;
 
 export { StyledContainer };
