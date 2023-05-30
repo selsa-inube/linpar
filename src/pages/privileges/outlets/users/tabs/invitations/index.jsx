@@ -10,7 +10,7 @@ import {
 } from "../../config/invitationsTable.config";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
-import { CompleteInvitationLink } from "./complete-invitation-link";
+import { CompleteInvitationLink } from "./CompleteInvitationLink";
 
 const initialMessageState = {
   show: false,
