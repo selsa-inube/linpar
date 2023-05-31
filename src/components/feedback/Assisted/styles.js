@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import { colors } from "@styles/colors";
 
 const StyledSteps = styled.ul`
   display: flex;
@@ -32,4 +32,19 @@ const StyledStepsMobileId = styled.div`
   border-radius: 50%;
 `;
 
-export { StyledButton, StyledSteps, StyledStepsMobile, StyledStepsMobileId };
+const StyledAssited = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+`;
+
+export {
+  StyledButton,
+  StyledSteps,
+  StyledStepsMobile,
+  StyledStepsMobileId,
+  StyledAssited,
+};

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import { colors } from "@styles/colors";
 
 const StyledModal = styled.div`
   background-color: ${colors.ref.palette.neutral.n10};
