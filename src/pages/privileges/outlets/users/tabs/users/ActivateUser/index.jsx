@@ -10,16 +10,14 @@ function ActivateUser(props) {
   };
 
   return (
-    <>
-      <ActivateUserUI
-        active={user.active}
-        showActivateUserModal={showActivateUserModal}
-        user={user}
-        id={user.id}
-        handleToggleModal={handleToggleModal}
-        handleActivateUser={handleActivateUser}
-      />
-    </>
+    <ActivateUserUI
+      active={user.active}
+      showActivateUserModal={showActivateUserModal}
+      user={user}
+      id={user.id}
+      handleToggleModal={handleToggleModal}
+      handleActivateUser={handleActivateUser}
+    />
   );
 }
 
