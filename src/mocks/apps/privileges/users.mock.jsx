@@ -5,6 +5,7 @@ const userEntriesDataMock = [
     code: "LGARZON",
     userID: "1256545",
     position: "Credit Analyst",
+    active: false,
   },
   {
     id: 12,
@@ -12,6 +13,7 @@ const userEntriesDataMock = [
     code: "APINILLA",
     userID: "789654",
     position: "Adviser",
+    active: true,
   },
   {
     id: 13,
@@ -19,6 +21,7 @@ const userEntriesDataMock = [
     code: "CROJAS",
     userID: "258963",
     position: "Credit Analyst",
+    active: true,
   },
   {
     id: 14,
@@ -26,6 +29,7 @@ const userEntriesDataMock = [
     code: "JNOVA",
     userID: "589647",
     position: "Adviser",
+    active: false,
   },
   {
     id: 15,
@@ -33,6 +37,7 @@ const userEntriesDataMock = [
     code: "FCANAS",
     userID: "365224",
     position: "Credit Analyst",
+    active: true,
   },
   {
     id: 16,
@@ -40,6 +45,7 @@ const userEntriesDataMock = [
     code: "CBATATIVA",
     userID: "2357421",
     position: "Adviser",
+    active: false,
   },
   {
     id: 17,
@@ -47,6 +53,7 @@ const userEntriesDataMock = [
     code: "CMARIN",
     userID: "1000245",
     position: "Credit Analyst",
+    active: true,
   },
   {
     id: 18,
@@ -54,6 +61,7 @@ const userEntriesDataMock = [
     code: "PEREZ",
     userID: "687440",
     position: "Adviser",
+    active: true,
   },
   {
     id: 19,
@@ -61,6 +69,7 @@ const userEntriesDataMock = [
     code: "SHENAO",
     userID: "352411",
     position: "Adviser",
+    active: false,
   },
   {
     id: 20,
@@ -68,6 +77,7 @@ const userEntriesDataMock = [
     code: "DNOVOA",
     userID: "320145",
     position: "Credit Analyst",
+    active: true,
   },
   {
     id: 21,
@@ -75,6 +85,7 @@ const userEntriesDataMock = [
     code: "JGOMEZ",
     userID: "4578899",
     position: "Adviser",
+    active: false,
   },
   {
     id: 22,
@@ -82,6 +93,7 @@ const userEntriesDataMock = [
     code: "JCRUZ",
     userID: "586745",
     position: "Adviser",
+    active: true,
   },
   {
     id: 23,
@@ -89,6 +101,7 @@ const userEntriesDataMock = [
     code: "SMEJIA",
     userID: "235652",
     position: "Credit Analyst",
+    active: false,
   },
   {
     id: 24,
@@ -96,6 +109,7 @@ const userEntriesDataMock = [
     code: "LAMADO",
     userID: "3201153",
     position: "Adviser",
+    active: true,
   },
   {
     id: 25,
@@ -103,6 +117,7 @@ const userEntriesDataMock = [
     code: "JFERNANDEZ",
     userID: "0215451",
     position: "Credit Analyst",
+    active: true,
   },
   {
     id: 26,
@@ -110,6 +125,7 @@ const userEntriesDataMock = [
     code: "DMORALES",
     userID: "5656461",
     position: "Adviser",
+    active: false,
   },
   {
     id: 27,
@@ -117,6 +133,7 @@ const userEntriesDataMock = [
     code: "CGOMEZ",
     userID: "841216423",
     position: "Adviser",
+    active: true,
   },
   {
     id: 28,
@@ -124,6 +141,7 @@ const userEntriesDataMock = [
     code: "FJARAMILLO",
     userID: "47456444",
     position: "Adviser",
+    active: false,
   },
   {
     id: 29,
@@ -131,6 +149,7 @@ const userEntriesDataMock = [
     code: "JBELTRAN",
     userID: "22115151",
     position: "Credit Analyst",
+    active: false,
   },
   {
     id: 30,
@@ -138,6 +157,7 @@ const userEntriesDataMock = [
     code: "SGONZALES",
     userID: "84548774",
     position: "Credit Analyst",
+    active: true,
   },
   {
     id: 31,
@@ -145,6 +165,7 @@ const userEntriesDataMock = [
     code: "FALVAREZ",
     userID: "84545478",
     position: "Credit Analyst",
+    active: true,
   },
   {
     id: 32,
@@ -152,6 +173,7 @@ const userEntriesDataMock = [
     code: "FBAQUERO",
     userID: "78785744",
     position: "Adviser",
+    active: false,
   },
   {
     id: 33,
@@ -159,6 +181,7 @@ const userEntriesDataMock = [
     code: "TRODRIGUEZ",
     userID: "845456",
     position: "Adviser",
+    active: true,
   },
   {
     id: 34,
@@ -166,6 +189,7 @@ const userEntriesDataMock = [
     code: "DZAMORA",
     userID: "966586",
     position: "Credit Analyst",
+    active: false,
   },
   {
     id: 35,
@@ -173,6 +197,7 @@ const userEntriesDataMock = [
     code: "BPINEDA",
     userID: "7414542",
     position: "Adviser",
+    active: true,
   },
   {
     id: 36,
@@ -180,6 +205,7 @@ const userEntriesDataMock = [
     code: "JZAMBRANO",
     userID: "4001154",
     position: "Credit Analyst",
+    active: false,
   },
   {
     id: 37,
@@ -187,6 +213,7 @@ const userEntriesDataMock = [
     code: "ALOPEZ",
     userID: "41251321",
     position: "Credit Analyst",
+    active: false,
   },
   {
     id: 38,
@@ -194,6 +221,7 @@ const userEntriesDataMock = [
     code: "CPEDRAZA",
     userID: "843254432",
     position: "Credit Analyst",
+    active: true,
   },
   {
     id: 39,
@@ -201,6 +229,7 @@ const userEntriesDataMock = [
     code: "CTORRES",
     userID: "8641651",
     position: "Adviser",
+    active: true,
   },
   {
     id: 40,
@@ -208,6 +237,7 @@ const userEntriesDataMock = [
     code: "AROSALES",
     userID: "325215",
     position: "Adviser",
+    active: false,
   },
   {
     id: 41,
@@ -215,6 +245,7 @@ const userEntriesDataMock = [
     code: "RVARGAS",
     userID: "141740",
     position: "Credit Analyst",
+    active: false,
   },
   {
     id: 42,
@@ -222,6 +253,7 @@ const userEntriesDataMock = [
     code: "SMALDONADO",
     userID: "9556413",
     position: "Adviser",
+    active: true,
   },
 ];
 
