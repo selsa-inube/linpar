@@ -5,32 +5,27 @@ import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
+import { Formik } from "formik";
 
 function InviteUI(props) {
   const {
+    formik,
+    formInvalid,
     loading,
     showMessage,
-    invitation,
-    handleChange,
-    runValidations,
-    handleSubmit,
-    formInvalid,
     handleCloseSectionMessage,
   } = props;
 
+  function stateValue(formik, attribute) {
+    if (!formik.touched[attribute]) return undefined;
+    if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
+    return "valid";
+  }
+
   function renderMessages() {
     let messageType;
-
-    const invalidPropExists = Object.values(invitation).some(
-      (prop) => prop.state === "invalid"
-    );
-
     if (showMessage) {
-      if (formInvalid) {
-        if (!invalidPropExists) {
-          handleCloseSectionMessage();
-          return null;
-        }
+      if (Formik.errors) {
         messageType = "failed";
       } else {
         messageType = "success";
@@ -65,7 +60,7 @@ function InviteUI(props) {
             description={usersInvitationsConfig[0].description}
           />
         </Stack>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
               <TextField
@@ -73,20 +68,20 @@ function InviteUI(props) {
                 placeholder="Ingresa su nombre completo"
                 name="name"
                 id="name"
-                value={invitation.name.value}
+                value={formik.values.name}
                 type="text"
-                isInvalid={invitation.name.isInvalid && formInvalid}
+                isInvalid={formik.errors.name && formInvalid}
                 isRequired={true}
-                errorMessage="Este campo no puede estar vacío"
+                errorMessage={formik.errors.name}
                 validMessage="El nombre es valido"
-                isDisabled={loading && true}
+                isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
                 maxLength={30}
                 minLength={1}
-                state={invitation.name.state}
-                handleChange={handleChange}
-                handleBlur={runValidations}
+                state={stateValue(formik, "name")}
+                handleChange={formik.handleChange}
+                handleBlur={formik.handleBlur}
               />
 
               <TextField
@@ -94,18 +89,18 @@ function InviteUI(props) {
                 placeholder="Ingrese su número de identificación"
                 name="id"
                 id="id"
-                value={invitation.id.value}
+                value={formik.values.id}
                 type="number"
-                isInvalid={invitation.id.isInvalid && formInvalid}
+                isInvalid={formik.errors.id && formInvalid}
                 isRequired={true}
-                errorMessage="Este campo debe contener un número de identificación"
+                errorMessage={formik.errors.id}
                 validMessage="El número de identificación es valido"
-                isDisabled={loading && true}
+                isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={invitation.id.state}
-                handleChange={handleChange}
-                handleBlur={runValidations}
+                state={stateValue(formik, "id")}
+                handleChange={formik.handleChange}
+                handleBlur={formik.handleBlur}
               />
 
               <TextField
@@ -113,18 +108,18 @@ function InviteUI(props) {
                 placeholder="Ingrese su número telefónico"
                 name="phone"
                 id="phone"
-                value={invitation.phone.value}
+                value={formik.values.phone}
                 type="number"
-                isInvalid={invitation.phone.isInvalid && formInvalid}
+                isInvalid={formik.errors.phone && formInvalid}
                 isRequired={true}
-                errorMessage="Este campo debe tener un número de teléfono"
+                errorMessage={formik.errors.phone}
                 validMessage="El número de teléfono es valido"
-                isDisabled={loading && true}
+                isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={invitation.phone.state}
-                handleChange={handleChange}
-                handleBlur={runValidations}
+                state={stateValue(formik, "phone")}
+                handleChange={formik.handleChange}
+                handleBlur={formik.handleBlur}
               />
 
               <TextField
@@ -132,18 +127,20 @@ function InviteUI(props) {
                 placeholder="Ingrese su dirección de correo electrónico"
                 name="email"
                 id="email"
-                value={invitation.email.value}
+                value={formik.values.email}
                 type="email"
                 isRequired={true}
-                isInvalid={invitation.email.isInvalid && formInvalid}
-                errorMessage="Este campo debe tener una dirección de correo electrónico válida"
+                isInvalid={formik.errors.email && formInvalid}
+                errorMessage={formik.errors.email}
                 validMessage="El correo electrónico es valido"
-                isDisabled={loading && true}
+                isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={invitation.email.state}
-                handleChange={handleChange}
-                handleBlur={runValidations}
+                maxLength={30}
+                minLength={1}
+                state={stateValue(formik, "email")}
+                handleChange={formik.handleChange}
+                handleBlur={formik.handleBlur}
               />
             </StyledFormContainer>
             <Button
