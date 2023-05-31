@@ -2,15 +2,15 @@ import {
   Button,
   Stack,
   Switch,
-  Text,
   TextField,
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
+import { Fieldset } from "../../../../../../../components/feedback/Fieldset";
 import {
   StyledBranchesContainer,
-  StyledFieldset,
   StyledHeadContainer,
+  StyledSubmitContainer,
 } from "./styles";
 
 function BranchesFormUI(props) {
@@ -21,13 +21,12 @@ function BranchesFormUI(props) {
     isLoading,
     currentBranches,
     handleSubmitForm,
-    allowSubmit = false,
     handleCancelChanges,
     filter,
     handleFilter,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 600px)");
+  const smallScreen = useMediaQuery("(max-width: 650px)");
 
   const hasChanges =
     JSON.stringify(currentBranches) === JSON.stringify(branches);
@@ -40,12 +39,7 @@ function BranchesFormUI(props) {
 
   return (
     <form>
-      <StyledFieldset>
-        <legend>
-          <Text typo="titleSmall">
-            Seleccione las sucursales que desea asignar
-          </Text>
-        </legend>
+      <Fieldset title="Seleccione las sucursales que desea asignar">
         <StyledHeadContainer>
           <TextField
             type="search"
@@ -96,9 +90,9 @@ function BranchesFormUI(props) {
             </Stack>
           ))}
         </StyledBranchesContainer>
-      </StyledFieldset>
-      {allowSubmit && (
-        <Stack gap="8px" justifyContent="flex-end">
+      </Fieldset>
+      {handleSubmitForm && (
+        <StyledSubmitContainer>
           <Button
             appearance="secondary"
             isDisabled={hasChanges}
@@ -116,7 +110,7 @@ function BranchesFormUI(props) {
           >
             Guardar
           </Button>
-        </Stack>
+        </StyledSubmitContainer>
       )}
     </form>
   );

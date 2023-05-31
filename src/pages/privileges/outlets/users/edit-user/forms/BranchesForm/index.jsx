@@ -56,7 +56,6 @@ function FormWithSubmit(props) {
       handleToggleBranch={handleToggleBranch}
       handleSubmitForm={handleSubmitForm}
       isLoading={isLoading}
-      allowSubmit
       handleCancelChanges={handleCancelChanges}
       filter={filter}
       handleFilter={handleFilter}
@@ -90,13 +89,7 @@ function FormWithoutSubmit(props) {
 }
 
 function BranchesForm(props) {
-  const {
-    allowSubmit,
-    handleChange,
-    handleSubmit,
-    currentBranches,
-    isLoading,
-  } = props;
+  const { handleChange, handleSubmit, currentBranches, isLoading } = props;
 
   const [filter, setSearch] = useState("");
 
@@ -104,12 +97,10 @@ function BranchesForm(props) {
     setSearch(e.target.value);
   };
 
-  if (allowSubmit) {
+  if (handleChange) {
     return (
-      <FormWithSubmit
-        allowSubmit
+      <FormWithoutSubmit
         handleChange={handleChange}
-        handleSubmit={handleSubmit}
         currentBranches={currentBranches}
         isLoading={isLoading}
         filter={filter}
@@ -119,8 +110,7 @@ function BranchesForm(props) {
   }
 
   return (
-    <FormWithoutSubmit
-      handleChange={handleChange}
+    <FormWithSubmit
       handleSubmit={handleSubmit}
       currentBranches={currentBranches}
       isLoading={isLoading}

@@ -27,10 +27,14 @@ const handleSubmit = (branches) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  allowSubmit: true,
+  currentBranches: branchesEditUser,
+  handleSubmit,
+};
+
+export const withoutFormSubmit = Template.bind({});
+withoutFormSubmit.args = {
   currentBranches: branchesEditUser,
   handleChange,
-  handleSubmit,
 };
 
 export default story;

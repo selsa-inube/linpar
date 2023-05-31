@@ -1,13 +1,4 @@
-import { colors } from "@styles/colors";
 import styled from "styled-components";
-
-const StyledFieldset = styled.fieldset`
-  border-radius: 15px;
-  border-style: solid;
-  border-color: ${colors.ref.palette.neutral.n40};
-  padding: 10px 20px 20px 20px;
-  margin-bottom: 12px;
-`;
 
 const StyledHeadContainer = styled.div`
   display: grid;
@@ -25,4 +16,11 @@ const StyledBranchesContainer = styled.div`
   margin-top: 32px;
 `;
 
-export { StyledFieldset, StyledBranchesContainer, StyledHeadContainer };
+const StyledSubmitContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 10px;
+`;
+
+export { StyledBranchesContainer, StyledHeadContainer, StyledSubmitContainer };
