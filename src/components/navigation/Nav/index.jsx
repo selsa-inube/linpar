@@ -47,7 +47,7 @@ function Nav(props) {
         <StyledDivisor />
       </Stack>
       <StyledFooter>
-        <Text typoToken="labelMedium">© 2023 Sistemas Enlinea S.A</Text>
+        <Text typoToken="labelMedium">© 2023 Inube</Text>
       </StyledFooter>
     </StyledNav>
   );
