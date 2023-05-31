@@ -14,6 +14,7 @@ function GeneralInformationForm(props) {
     email: { value: userData.email, state: "pending" },
     rol: { value: userData.rol, state: "pending" },
   };
+
   const [user, setUser] = useState(initialUser);
 
   const LOADING_TIMEOUT = 2000;
@@ -21,7 +22,7 @@ function GeneralInformationForm(props) {
   const validations = {
     name: (value) => /(^[a-zA-Z])|(\s+[a-zA-Z])/g.test(value),
     identification: (value) => /^\d/g.test(value),
-    number: (value) => /^\d{10}$/g.test(value),
+    number: (value) => /^[0-9]{10}$/.test(value),
     email: (value) =>
       /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(value),
     rol: (value) => /(^[a-zA-Z])|(\s+[a-zA-Z])/g.test(value),
@@ -33,13 +34,21 @@ function GeneralInformationForm(props) {
 
   const handleFieldChange = (event, fieldName) => {
     const { value } = event.target;
+    const userValues = Object.values(initialUser);
+
+    let isValid = runValidations(fieldName, value);
+    let newState = isValid ? "valid" : "invalid";
+
+    if (isValid && userValues.find((prop) => prop.value == value)) {
+      newState = "pending";
+    }
 
     setUser((prevState) => ({
       ...prevState,
       [fieldName]: {
         ...prevState[fieldName],
-        value: value,
-        state: runValidations(fieldName, value) ? "valid" : "invalid",
+        value,
+        state: newState,
       },
     }));
   };
