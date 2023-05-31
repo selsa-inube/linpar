@@ -6,7 +6,7 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import { Fieldset } from "../../../../../../../components/feedback/Fieldset";
+import { Fieldset } from "@components/feedback/Fieldset";
 import {
   StyledBranchesContainer,
   StyledHeadContainer,
