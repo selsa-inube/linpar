@@ -18,8 +18,12 @@ function Users() {
     setSearchText(event.target.value);
   };
 
-  const handleMenuInvitation = () => {
-    setShowMenu(!showMenu);
+  const handleToggleMenuInvitation = () => {
+    setShowMenu((prevShowMenu) => !prevShowMenu);
+  };
+
+  const handleCloseMenuInvitation = () => {
+    setShowMenu(false);
   };
 
   return (
@@ -29,7 +33,8 @@ function Users() {
       handleTabChange={handleTabChange}
       handleSearchText={handleSearchText}
       showMenu={showMenu}
-      handleMenuInvitation={handleMenuInvitation}
+      handleToggleMenuInvitation={handleToggleMenuInvitation}
+      handleCloseMenuInvitation={handleCloseMenuInvitation}
     />
   );
 }

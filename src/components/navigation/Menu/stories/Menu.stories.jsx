@@ -18,7 +18,7 @@ const Template = (args) => <Menu {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  links: menuInvitationLinks,
+  options: menuInvitationLinks,
   title: "Menú",
 };
 

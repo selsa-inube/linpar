@@ -1,4 +1,5 @@
 import { PageTitle } from "@components/PageTitle";
+import { Menu } from "@components/navigation/Menu";
 import {
   Breadcrumbs,
   Button,
@@ -7,7 +8,6 @@ import {
   TextField,
   useMediaQuery,
 } from "@inube/design-system";
-import { Menu } from "@components/navigation/Menu";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
@@ -27,7 +27,8 @@ export default function UsersUI(props) {
     handleTabChange,
     handleSearchText,
     showMenu,
-    handleMenuInvitation,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -70,9 +71,14 @@ export default function UsersUI(props) {
                 <MdOutlineMoreHoriz
                   size={24}
                   cursor="pointer"
-                  onClick={handleMenuInvitation}
+                  onClick={handleToggleMenuInvitation}
                 />
-                {showMenu && <Menu links={menuInvitationLinks} />}
+                {showMenu && (
+                  <Menu
+                    options={menuInvitationLinks}
+                    handleClose={handleCloseMenuInvitation}
+                  />
+                )}
               </StyledOptionsContainer>
             ) : (
               <Button

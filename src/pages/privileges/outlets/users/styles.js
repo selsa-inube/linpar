@@ -13,7 +13,6 @@ const StyledTextFieldContainer = styled.div`
 `;
 
 const StyledOptionsContainer = styled.div`
-  position: relative;
   height: 24px;
 `;
 

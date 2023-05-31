@@ -1,22 +1,44 @@
 import { Stack } from "@inube/design-system";
-import { MenuLink } from "../MenuLink";
-import { StyledMenu } from "./styles";
+import { useEffect, useRef } from "react";
+import { MenuOption } from "../MenuOption";
+import { StyledMenu, StyledMenuContainer } from "./styles";
 
 function Menu(props) {
-  const { links } = props;
+  const { options, handleClose } = props;
+
+  const mobileMenuRef = useRef(null);
+
+  useEffect(() => {
+    window.addEventListener("mousedown", handleWindowClick);
+
+    return () => {
+      window.removeEventListener("mousedown", handleWindowClick);
+    };
+  }, []);
+
+  const handleWindowClick = (event) => {
+    if (
+      mobileMenuRef.current &&
+      !mobileMenuRef.current.contains(event.target)
+    ) {
+      handleClose();
+    }
+  };
 
   return (
-    <StyledMenu>
-      <Stack direction="column">
-        {links.map((link) => (
-          <MenuLink
-            label={link.label}
-            key={link.id}
-            icon={link.icon}
-            path={link.path}
-          />
-        ))}
-      </Stack>
+    <StyledMenu ref={mobileMenuRef}>
+      <StyledMenuContainer>
+        <Stack direction="column">
+          {options.map((option) => (
+            <MenuOption
+              label={option.label}
+              key={option.id}
+              icon={option.icon}
+              option={option.option}
+            />
+          ))}
+        </Stack>
+      </StyledMenuContainer>
     </StyledMenu>
   );
 }
