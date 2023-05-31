@@ -35,11 +35,6 @@ const StyledThAction = styled.th`
 const StyledTd = styled.td`
   padding: 0px 16px;
   text-align: center;
-
-  div {
-    justify-content: center;
-    gap: 0 !important;
-  }
 `;
 
 export {
