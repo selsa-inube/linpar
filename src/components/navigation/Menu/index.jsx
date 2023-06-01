@@ -2,6 +2,7 @@ import { Stack } from "@inube/design-system";
 import { useEffect, useRef } from "react";
 import { MenuOption } from "../MenuOption";
 import { StyledMenu, StyledMenuContainer } from "./styles";
+import { MenuLink } from "../MenuLink";
 
 function Menu(props) {
   const { options, handleClose } = props;
@@ -25,19 +26,33 @@ function Menu(props) {
     }
   };
 
+  const renderMenuItems = () => {
+    return options.map((option) => {
+      if (option.hasOwnProperty("path")) {
+        return (
+          <MenuLink
+            label={option.label}
+            key={option.id}
+            icon={option.icon}
+            path={option.path}
+          />
+        );
+      }
+      return (
+        <MenuOption
+          label={option.label}
+          key={option.id}
+          icon={option.icon}
+          handleClick={option.handleClick}
+        />
+      );
+    });
+  };
+
   return (
     <StyledMenu ref={mobileMenuRef}>
       <StyledMenuContainer>
-        <Stack direction="column">
-          {options.map((option) => (
-            <MenuOption
-              label={option.label}
-              key={option.id}
-              icon={option.icon}
-              option={option.option}
-            />
-          ))}
-        </Stack>
+        <Stack direction="column">{renderMenuItems()}</Stack>
       </StyledMenuContainer>
     </StyledMenu>
   );
