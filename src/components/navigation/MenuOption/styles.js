@@ -1,7 +1,5 @@
 import { colors } from "@styles/colors";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 const StyledOption = styled.button`
   color: ${colors.sys.text.dark};
   padding: 8px 12px;

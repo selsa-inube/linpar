@@ -1,8 +1,33 @@
 import { Stack } from "@inube/design-system";
 import { useEffect, useRef } from "react";
+import { MenuLink } from "../MenuLink";
 import { MenuOption } from "../MenuOption";
 import { StyledMenu, StyledMenuContainer } from "./styles";
-import { MenuLink } from "../MenuLink";
+
+const RenderMenuItems = (props) => {
+  const { options } = props;
+
+  return options.map((option) => {
+    if (option.hasOwnProperty("path")) {
+      return (
+        <MenuLink
+          label={option.label}
+          key={option.id}
+          icon={option.icon}
+          path={option.path}
+        />
+      );
+    }
+    return (
+      <MenuOption
+        label={option.label}
+        key={option.id}
+        icon={option.icon}
+        handleClick={option.handleClick}
+      />
+    );
+  });
+};
 
 function Menu(props) {
   const { options, handleClose } = props;
@@ -26,33 +51,12 @@ function Menu(props) {
     }
   };
 
-  const renderMenuItems = () => {
-    return options.map((option) => {
-      if (option.hasOwnProperty("path")) {
-        return (
-          <MenuLink
-            label={option.label}
-            key={option.id}
-            icon={option.icon}
-            path={option.path}
-          />
-        );
-      }
-      return (
-        <MenuOption
-          label={option.label}
-          key={option.id}
-          icon={option.icon}
-          handleClick={option.handleClick}
-        />
-      );
-    });
-  };
-
   return (
     <StyledMenu ref={mobileMenuRef}>
       <StyledMenuContainer>
-        <Stack direction="column">{renderMenuItems()}</Stack>
+        <Stack direction="column">
+          <RenderMenuItems options={options} />
+        </Stack>
       </StyledMenuContainer>
     </StyledMenu>
   );
