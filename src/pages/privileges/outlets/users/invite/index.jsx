@@ -51,13 +51,13 @@ function Invite() {
         .required("Este campo no puede estar vacío"),
     }),
 
-    onSubmit: () => {
+    onSubmit: (values, { resetForm }) => {
       setLoading(true);
       setTimeout(() => {
-        console.log(formik.errors);
         setLoading(false);
         setFormInvalid(false);
         setShowMessage(true);
+        resetForm({ values: "" });
       }, LOADING_TIMEOUT);
     },
   });

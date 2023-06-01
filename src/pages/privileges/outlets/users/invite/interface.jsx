@@ -148,6 +148,7 @@ function InviteUI(props) {
               appearance="confirm"
               iconBefore={<MdOutlineShortcut size={18} />}
               isLoading={loading}
+              onClick={() => formik.resetForm()}
             >
               Enviar
             </Button>
