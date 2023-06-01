@@ -9,7 +9,7 @@ function Invite() {
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
 
-  const LOADING_TIMEOUT = 1000;
+  const LOADING_TIMEOUT = 1500;
 
   const formik = useFormik({
     initialValues: {
@@ -50,17 +50,28 @@ function Invite() {
         )
         .required("Este campo no puede estar vacío"),
     }),
+  });
 
-    onSubmit: (values, { resetForm }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    formik.validateForm().then((errors) => {
+      if (Object.keys(errors).length > 0) {
+        formik.handleSubmit();
+        setShowMessage(true);
+        setFormInvalid(true);
+        return;
+      }
+
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
         setFormInvalid(false);
         setShowMessage(true);
-        resetForm({ values: "" });
+        formik.resetForm(formik.initialValues);
       }, LOADING_TIMEOUT);
-    },
-  });
+    });
+  };
 
   const handleCloseSectionMessage = () => {
     setShowMessage(false);
@@ -73,6 +84,7 @@ function Invite() {
       formInvalid={formInvalid}
       showMessage={showMessage}
       handleCloseSectionMessage={handleCloseSectionMessage}
+      handleSubmit={handleSubmit}
     />
   );
 }

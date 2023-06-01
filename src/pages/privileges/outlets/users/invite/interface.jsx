@@ -5,7 +5,6 @@ import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
-import { Formik } from "formik";
 
 function InviteUI(props) {
   const {
@@ -14,6 +13,7 @@ function InviteUI(props) {
     loading,
     showMessage,
     handleCloseSectionMessage,
+    handleSubmit,
   } = props;
 
   function stateValue(formik, attribute) {
@@ -25,7 +25,7 @@ function InviteUI(props) {
   function renderMessages() {
     let messageType;
     if (showMessage) {
-      if (Formik.errors) {
+      if (formInvalid) {
         messageType = "failed";
       } else {
         messageType = "success";
@@ -60,7 +60,7 @@ function InviteUI(props) {
             description={usersInvitationsConfig[0].description}
           />
         </Stack>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
               <TextField
@@ -148,7 +148,6 @@ function InviteUI(props) {
               appearance="confirm"
               iconBefore={<MdOutlineShortcut size={18} />}
               isLoading={loading}
-              onClick={() => formik.resetForm()}
             >
               Enviar
             </Button>
