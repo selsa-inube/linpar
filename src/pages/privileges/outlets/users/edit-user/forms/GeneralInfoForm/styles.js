@@ -1,6 +1,18 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
 
+const StyledFormContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+
+  @media (max-width: 1111px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
+
 const StyledSelect = styled.select`
   display: grid;
   align-items: center;
@@ -22,4 +34,4 @@ const StyledSelect = styled.select`
   }
 `;
 
-export { StyledSelect };
+export { StyledFormContainer, StyledSelect };

@@ -1,111 +1,92 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GeneralInformationFormUI } from "./interface";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 function GeneralInformationForm(props) {
-  const { allowSubmit, handleChange, userData } = props;
+  const { allowSubmit, userData, handleChange } = props;
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [formInvalid, setFormInvalid] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  const initialUser = {
-    name: { value: userData.name, state: "pending" },
-    identification: { value: userData.identification, state: "pending" },
-    number: { value: userData.number, state: "pending" },
-    email: { value: userData.email, state: "pending" },
-    rol: { value: userData.rol, state: "pending" },
-  };
+  const [formInvalid, setFormInvalid] = useState(false);
 
-  const [user, setUser] = useState(initialUser);
+  const LOADING_TIMEOUT = 1000;
 
-  const LOADING_TIMEOUT = 2000;
+  const formik = useFormik({
+    initialValues: {
+      name: userData.name,
+      identification: userData.identification,
+      email: userData.email,
+      phone: userData.phone,
+      rol: userData.rol,
+    },
 
-  const validations = {
-    name: (value) => /(^[a-zA-Z])|(\s+[a-zA-Z])/g.test(value),
-    identification: (value) => /^\d/g.test(value),
-    number: (value) => /^[0-9]{10}$/.test(value),
-    email: (value) =>
-      /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(value),
-    rol: (value) => /(^[a-zA-Z])|(\s+[a-zA-Z])/g.test(value),
-  };
+    validationSchema: Yup.object({
+      phone: Yup.string()
+        .matches(/^[0-9]{10}$/, "Este campo debe tener un número de teléfono")
+        .required("Este campo no puede estar vacío"),
 
-  const runValidations = (name, value) => {
-    return validations[name](value);
-  };
+      email: Yup.string()
+        .matches(
+          /^\w+([.-_+]?\w+)@\w+([.-]?\w+)(.\w{2,10})+$/i,
+          "Este campo debe tener una dirección de correo electrónico válida"
+        )
+        .required("Este campo no puede estar vacío")
+        .max(80, "Debe tener 80 maximo caracteres"),
+    }),
+  });
 
-  const handleFieldChange = (event, fieldName) => {
-    const { value } = event.target;
-    const userValues = Object.values(initialUser);
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    let isValid = runValidations(fieldName, value);
-    let newState = isValid ? "valid" : "invalid";
+    const submittedValues = {
+      name: formik.values.name,
+      identification: formik.values.identification,
+      email: formik.values.email,
+      phone: formik.values.phone,
+      rol: formik.values.rol,
+    };
 
-    if (isValid && userValues.find((prop) => prop.value == value)) {
-      newState = "pending";
+    props.handleChange(submittedValues);
+
+    if (!handleButtons) {
+      formik.validateForm().then((errors) => {
+        if (Object.keys(errors).length > 0) {
+          formik.handleSubmit();
+          setShowMessage(true);
+          setFormInvalid(true);
+          return;
+        }
+
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          setFormInvalid(false);
+          setShowMessage(true);
+        }, LOADING_TIMEOUT);
+      });
     }
-
-    setUser((prevState) => ({
-      ...prevState,
-      [fieldName]: {
-        ...prevState[fieldName],
-        value,
-        state: newState,
-      },
-    }));
   };
 
-  useEffect(() => {
-    handleChange(user);
-  }, [user]);
-
-  const handleButtons = Object.values(user).every(
-    (user) => user.state === "pending"
-  );
+  const handleButtons =
+    formik.values.email === formik.initialValues.email &&
+    formik.values.phone === formik.initialValues.phone &&
+    formik.values.rol === formik.initialValues.rol;
 
   const handleCloseSectionMessage = () => {
     setShowMessage(false);
   };
 
-  const resetValues = () => {
-    setUser(initialUser);
-  };
-
-  const isFieldModified = (fieldName) => {
-    return initialUser[fieldName].value !== "";
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (Object.values(user).some((prop) => prop.state === "invalid")) {
-      setFormInvalid(true);
-      setShowMessage(true);
-      return;
-    }
-
-    if (!handleButtons) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        setFormInvalid(false);
-        setShowMessage(true);
-      }, LOADING_TIMEOUT);
-    }
-  };
-
   return (
     <GeneralInformationFormUI
-      isLoading={isLoading}
-      handleSubmit={handleSubmit}
-      handleFieldChange={handleFieldChange}
-      user={user}
-      allowSubmit={allowSubmit}
-      formInvalid={formInvalid}
-      runValidations={runValidations}
+      loading={loading}
+      formik={formik}
       showMessage={showMessage}
+      allowSubmit={allowSubmit}
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleButtons={handleButtons}
-      resetValues={resetValues}
-      isFieldModified={isFieldModified}
+      formInvalid={formInvalid}
+      handleSubmit={handleSubmit}
     />
   );
 }

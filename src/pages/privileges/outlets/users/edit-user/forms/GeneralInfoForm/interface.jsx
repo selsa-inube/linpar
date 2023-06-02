@@ -1,39 +1,32 @@
-import { FormContainer } from "@components/forms/FormContainer";
-import { StyledSelect } from "./styles";
+import { StyledFormContainer, StyledSelect } from "./styles";
 import { Button, Stack, TextField, Text } from "@inube/design-system";
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
 import { MdOutlineModeEdit } from "react-icons/md";
+import { roles } from "@mocks/apps/privileges/users.mock";
 
 function GeneralInformationFormUI(props) {
   const {
-    isLoading,
-    handleSubmit,
-    handleFieldChange,
-    user,
+    formik,
+    loading,
     allowSubmit,
-    formInvalid,
-    runValidations,
     showMessage,
     handleCloseSectionMessage,
     handleButtons,
-    resetValues,
-    isFieldModified,
+    formInvalid,
+    handleSubmit,
   } = props;
+
+  function stateValue(formik, attribute) {
+    if (!formik.touched[attribute]) return "pending";
+    if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
+    return "valid";
+  }
 
   function renderMessages() {
     let messageType;
-
-    const invalidPropExists = Object.values(user).some(
-      (prop) => prop.state === "invalid"
-    );
-
     if (showMessage) {
       if (formInvalid) {
-        if (!invalidPropExists) {
-          handleCloseSectionMessage();
-          return null;
-        }
         messageType = "failed";
       } else {
         messageType = "success";
@@ -60,89 +53,71 @@ function GeneralInformationFormUI(props) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <FormContainer>
+        <StyledFormContainer>
           <TextField
             label="Nombre"
-            placeholder="Enter your full name"
+            placeholder="Ingresa su nombre completo"
             name="name"
             id="name"
+            value={formik.values.name}
             type="text"
+            isDisabled={true}
             size="compact"
             isFullWidth={true}
-            value={user.name.value}
-            handleChange={(event) => handleFieldChange(event, "name")}
-            isDisabled={isFieldModified("name")}
-            iconAfter={
-              user.name.value !== "" ? "" : <MdOutlineModeEdit size={18} />
-            }
-            isInvalid={user.name.isInvalid && formInvalid}
-            errorMessage="Este campo no puede estar vacío"
-            validMessage="El correo electrónico es valido"
-            handleBlur={runValidations}
-            state={user.name.state}
+            maxLength={40}
+            minLength={1}
+            readOnly={true}
           />
 
           <TextField
             label="Identificación"
-            placeholder="Enter your identification number"
-            name="identification"
-            id="identification"
+            placeholder="Ingrese su número de identificación"
+            name="Identificación"
+            id="Identificación"
+            value={formik.values.identification}
             type="number"
+            isDisabled={true}
             size="compact"
             isFullWidth={true}
-            value={user.identification.value}
-            handleChange={(event) => handleFieldChange(event, "identification")}
-            isDisabled={isFieldModified("identification")}
-            iconAfter={
-              user.identification.value !== "" ? (
-                ""
-              ) : (
-                <MdOutlineModeEdit size={18} />
-              )
-            }
-            isInvalid={user.identification.isInvalid && formInvalid}
-            errorMessage="Este campo no puede estar vacío"
-            validMessage="El correo electrónico es valido"
-            handleBlur={runValidations}
-            state={user.identification.state}
+            readOnly={true}
           />
 
           <TextField
             label="Correo"
-            placeholder="Enter your email address"
+            placeholder="Ingrese su dirección de correo electrónico"
             name="email"
             id="email"
+            value={formik.values.email}
             type="email"
-            size="compact"
-            value={user.email.value}
-            handleChange={(event) => handleFieldChange(event, "email")}
-            isFullWidth={true}
             iconAfter={<MdOutlineModeEdit size={18} />}
-            isDisabled={isLoading && true}
-            isInvalid={user.email.isInvalid && formInvalid}
-            errorMessage="Este campo no puede estar vacío"
-            validMessage="El correo electrónico es valido"
-            handleBlur={runValidations}
-            state={user.email.state}
+            isInvalid={formik.errors.email && formInvalid}
+            errorMessage={formik.errors.email}
+            validMessage="El correo electrónico ingresado es valido"
+            isDisabled={loading}
+            size="compact"
+            isFullWidth={true}
+            state={stateValue(formik, "email")}
+            handleChange={formik.handleChange}
+            handleBlur={formik.handleBlur}
           />
 
           <TextField
-            label="Teléfono"
-            placeholder="Enter your phone number"
-            name="number"
-            id="number"
+            label="Número de teléfono"
+            placeholder="Ingrese su número telefónico"
+            name="phone"
+            id="phone"
+            value={formik.values.phone}
             type="number"
-            size="compact"
-            value={user.number.value}
-            handleChange={(event) => handleFieldChange(event, "number")}
-            isFullWidth={true}
             iconAfter={<MdOutlineModeEdit size={18} />}
-            isDisabled={isLoading && true}
-            isInvalid={user.number.isInvalid && formInvalid}
-            errorMessage="Este campo no puede estar vacío o no contener 10 digitos"
-            validMessage="El número de teléfono es valido"
-            handleBlur={runValidations}
-            state={user.number.state}
+            isInvalid={formik.errors.phone && formInvalid}
+            errorMessage={formik.errors.phone}
+            validMessage="El número de teléfono ingresado es valido"
+            isDisabled={loading}
+            size="compact"
+            isFullWidth={true}
+            state={stateValue(formik, "phone")}
+            handleChange={formik.handleChange}
+            handleBlur={formik.handleBlur}
           />
 
           <Stack direction="column" gap="8px">
@@ -150,39 +125,41 @@ function GeneralInformationFormUI(props) {
               Cargo
             </Text>
             <StyledSelect
-              value={user.rol.value}
-              onChange={(event) => handleFieldChange(event, "rol")}
-              disabled={isLoading && true}
-              isInvalid={user.rol.isInvalid && formInvalid}
-              handleBlur={runValidations}
+              value={formik.values.rol}
+              name="rol"
+              id="rol"
+              onBlur={formik.handleBlur}
+              disabled={loading}
+              onChange={formik.handleChange}
             >
-              <option value="Diseñador">Diseñador</option>
-              <option value="Desarrollador">Desarrollador Web</option>
-              <option value="Product Manager">Product Manager</option>
-              <option value=""></option>
+              {roles.map((rol) => (
+                <option key={rol.value} value={rol.value}>
+                  {rol.label}
+                </option>
+              ))}
             </StyledSelect>
           </Stack>
-          {allowSubmit && (
-            <Stack gap="8px" justifyContent="flex-end">
-              <Button
-                appearance="secondary"
-                type="reset"
-                handleClick={resetValues}
-                isDisabled={handleButtons}
-              >
-                Cancelar
-              </Button>
-              <Button
-                type="submit"
-                appearance={"confirm"}
-                isLoading={isLoading}
-                isDisabled={handleButtons}
-              >
-                Guardar
-              </Button>
-            </Stack>
-          )}
-        </FormContainer>
+        </StyledFormContainer>
+        {allowSubmit && (
+          <Stack gap="8px" justifyContent="flex-end">
+            <Button
+              appearance="secondary"
+              type="reset"
+              handleClick={formik.resetForm}
+              isDisabled={handleButtons}
+            >
+              Cancelar
+            </Button>
+            <Button
+              type="text"
+              appearance={"confirm"}
+              isLoading={loading}
+              isDisabled={handleButtons}
+            >
+              Guardar
+            </Button>
+          </Stack>
+        )}
       </form>
       {renderMessages()}
     </>
