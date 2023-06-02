@@ -7,7 +7,7 @@ function BranchesFormUI(props) {
     currentBranches,
     isLoading,
     handleSubmitForm,
-    handleCancel,
+    handleReset,
     handleChangeBranches,
   } = props;
 
@@ -18,7 +18,7 @@ function BranchesFormUI(props) {
     <FormControl
       disabledButtons={hasChanges}
       handleSubmit={handleSubmitForm}
-      handleCancel={handleCancel}
+      handleReset={handleReset}
       isLoading={isLoading}
     >
       <AssignmentForm

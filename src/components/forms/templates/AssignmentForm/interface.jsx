@@ -1,4 +1,5 @@
-import { Fieldset } from "@components/feedback/Fieldset";
+import { Fieldset } from "@components/inputs/Fieldset";
+import { Menu } from "@components/navigation/Menu";
 import {
   Button,
   Stack,
@@ -13,7 +14,6 @@ import {
   StyledHeadContainer,
   StyledOptionsContainer,
 } from "./styles";
-import { Menu } from "@components/navigation/Menu";
 
 function AssignmentFormUI(props) {
   const {
@@ -72,14 +72,14 @@ function AssignmentFormUI(props) {
               <Button
                 appearance="secondary"
                 spacing="compact"
-                handleClick={(e) => handleToggleAllEntries(e, false)}
+                handleClick={() => handleToggleAllEntries(false)}
                 type="text"
               >
                 Desasignar todos
               </Button>
               <Button
                 spacing="compact"
-                handleClick={(e) => handleToggleAllEntries(e, true)}
+                handleClick={() => handleToggleAllEntries(true)}
                 type="text"
               >
                 Asignar todos

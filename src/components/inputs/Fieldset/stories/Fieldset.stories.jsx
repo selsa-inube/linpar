@@ -3,7 +3,7 @@ import { Fieldset } from "..";
 
 const story = {
   component: Fieldset,
-  title: "components/feedback/Fieldset",
+  title: "components/inputs/Fieldset",
 };
 
 const Template = (args) => <Fieldset {...args} />;

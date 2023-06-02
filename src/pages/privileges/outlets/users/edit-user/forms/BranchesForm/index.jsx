@@ -19,7 +19,7 @@ function BranchesForm(props) {
     setIsLoading(false);
   };
 
-  const handleCancel = () => {
+  const handleReset = () => {
     setBranches(currentBranches);
   };
 
@@ -27,7 +27,7 @@ function BranchesForm(props) {
     <BranchesFormUI
       handleChangeBranches={handleChangeBranches}
       handleSubmitForm={handleSubmitForm}
-      handleCancel={handleCancel}
+      handleReset={handleReset}
       isLoading={isLoading}
       currentBranches={currentBranches}
       branches={branches}

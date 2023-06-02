@@ -21,8 +21,7 @@ function AssignmentForm(props) {
     },
   ];
 
-  const handleToggleAllEntries = (e, allocate) => {
-    e.preventDefault();
+  const handleToggleAllEntries = (allocate) => {
     const newEntries = entries.map((entry) => ({
       ...entry,
       isActive: allocate,

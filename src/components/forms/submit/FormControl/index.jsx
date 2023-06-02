@@ -2,19 +2,19 @@ import { Button, Stack } from "@inube/design-system";
 import { StyledSubmitContainer } from "./styles";
 
 function FormControl(props) {
-  const { children, handleSubmit, handleCancel, disabledButtons, isLoading } =
+  const { children, handleSubmit, handleReset, disabledButtons, isLoading } =
     props;
 
   return (
     <Stack direction="column">
       <Stack>{children}</Stack>
-      {handleSubmit && handleCancel && (
+      {handleSubmit && handleReset && (
         <StyledSubmitContainer>
           <Button
             appearance="secondary"
             isDisabled={disabledButtons}
-            handleClick={handleCancel}
-            type="text"
+            handleClick={handleReset}
+            type="reset"
           >
             Cancelar
           </Button>
