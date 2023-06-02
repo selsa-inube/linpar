@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+const StyledForm = styled.form`
+  width: 100%;
+`;
+
 const StyledHeadContainer = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
@@ -7,7 +11,7 @@ const StyledHeadContainer = styled.div`
   align-items: center;
 `;
 
-const StyledBranchesContainer = styled.div`
+const StyledEntriesContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -16,11 +20,4 @@ const StyledBranchesContainer = styled.div`
   margin-top: 32px;
 `;
 
-const StyledSubmitContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 10px;
-`;
-
-export { StyledBranchesContainer, StyledHeadContainer, StyledSubmitContainer };
+export { StyledHeadContainer, StyledEntriesContainer, StyledForm };

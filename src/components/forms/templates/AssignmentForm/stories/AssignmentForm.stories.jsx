@@ -1,11 +1,11 @@
 import { branchesFormEditUser } from "@mocks/apps/privileges/branchesForm.mock";
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { BranchesForm } from "./index";
+import { AssignmentForm } from "..";
 
 const story = {
-  components: [BranchesForm],
-  title: "forms/edit-user/BranchesForm",
+  components: [AssignmentForm],
+  title: "components/forms/templates/AssignmentForm",
   decorators: [
     (Story) => (
       <BrowserRouter>
@@ -15,16 +15,17 @@ const story = {
   ],
 };
 
-const Template = (args) => <BranchesForm {...args} />;
+const Template = (args) => <AssignmentForm {...args} />;
 
-const handleSubmit = (newBranches) => {
-  action("Submit branches: ")(newBranches);
+const handleChange = (newEntries) => {
+  action("Form template changes: ")(newEntries);
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  currentBranches: branchesFormEditUser,
-  handleSubmit,
+  handleChange,
+  entries: branchesFormEditUser,
+  title: "Sucursales",
 };
 
 export default story;
