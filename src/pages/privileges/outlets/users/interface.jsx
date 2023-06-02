@@ -1,4 +1,5 @@
 import { PageTitle } from "@components/PageTitle";
+import { Menu } from "@components/navigation/Menu";
 import {
   Breadcrumbs,
   Button,
@@ -9,13 +10,26 @@ import {
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
+import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
-import { StyledContainer, StyledTextFieldContainer } from "./styles";
+import {
+  StyledContainer,
+  StyledOptionsContainer,
+  StyledTextFieldContainer,
+} from "./styles";
 import InvitationsTab from "./tabs/invitations";
 import UsersTab from "./tabs/users";
 
 export default function UsersUI(props) {
-  const { isSelected, searchText, handleTabChange, handleSearchText } = props;
+  const {
+    isSelected,
+    searchText,
+    handleTabChange,
+    handleSearchText,
+    showMenu,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
+  } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -53,9 +67,19 @@ export default function UsersUI(props) {
             </StyledTextFieldContainer>
 
             {smallScreen ? (
-              <Stack>
-                <MdOutlineMoreHoriz size={24} cursor="pointer" />
-              </Stack>
+              <StyledOptionsContainer>
+                <MdOutlineMoreHoriz
+                  size={24}
+                  cursor="pointer"
+                  onClick={handleToggleMenuInvitation}
+                />
+                {showMenu && (
+                  <Menu
+                    options={menuInvitationLinks}
+                    handleClose={handleCloseMenuInvitation}
+                  />
+                )}
+              </StyledOptionsContainer>
             ) : (
               <Button
                 iconBefore={<MdPersonAddAlt size={18} />}
