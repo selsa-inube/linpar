@@ -4,6 +4,22 @@ import { AssignmentFormUI } from "./interface";
 function AssignmentForm(props) {
   const { handleChange, entries, title } = props;
   const [filter, setFilter] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
+
+  const menuOptions = [
+    {
+      id: "deallocate-all",
+      label: "Desasignar todos",
+      handleClick: (e) => handleToggleAllEntries(e, true),
+      icon: null,
+    },
+    {
+      id: "allocate-all",
+      label: "Asignar todos",
+      handleClick: (e) => handleToggleAllEntries(e, false),
+      icon: null,
+    },
+  ];
 
   const handleToggleAllEntries = (e, allocate) => {
     e.preventDefault();
@@ -34,6 +50,14 @@ function AssignmentForm(props) {
     setFilter(e.target.value);
   };
 
+  const handleToggleMenuInvitation = () => {
+    setShowMenu((prevShowMenu) => !prevShowMenu);
+  };
+
+  const handleCloseMenuInvitation = () => {
+    setShowMenu(false);
+  };
+
   return (
     <AssignmentFormUI
       handleToggleAllEntries={handleToggleAllEntries}
@@ -42,6 +66,10 @@ function AssignmentForm(props) {
       handleFilter={handleFilter}
       entries={entries}
       title={title}
+      showMenu={showMenu}
+      handleToggleMenuInvitation={handleToggleMenuInvitation}
+      handleCloseMenuInvitation={handleCloseMenuInvitation}
+      menuOptions={menuOptions}
     />
   );
 }

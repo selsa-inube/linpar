@@ -11,7 +11,9 @@ import {
   StyledEntriesContainer,
   StyledForm,
   StyledHeadContainer,
+  StyledOptionsContainer,
 } from "./styles";
+import { Menu } from "@components/navigation/Menu";
 
 function AssignmentFormUI(props) {
   const {
@@ -21,6 +23,10 @@ function AssignmentFormUI(props) {
     handleToggleAllEntries,
     handleToggleEntry,
     entries,
+    showMenu,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
+    menuOptions,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 650px)");
@@ -48,9 +54,19 @@ function AssignmentFormUI(props) {
             isFullWidth
           />
           {smallScreen ? (
-            <Stack justifyContent="flex-end">
-              <MdOutlineMoreHoriz />
-            </Stack>
+            <StyledOptionsContainer>
+              <MdOutlineMoreHoriz
+                size={24}
+                cursor="pointer"
+                onClick={handleToggleMenuInvitation}
+              />
+              {showMenu && (
+                <Menu
+                  options={menuOptions}
+                  handleClose={handleCloseMenuInvitation}
+                />
+              )}
+            </StyledOptionsContainer>
           ) : (
             <Stack gap="8px" justifyContent="flex-end">
               <Button

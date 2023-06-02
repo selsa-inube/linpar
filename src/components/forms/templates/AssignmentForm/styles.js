@@ -20,4 +20,14 @@ const StyledEntriesContainer = styled.div`
   margin-top: 32px;
 `;
 
-export { StyledHeadContainer, StyledEntriesContainer, StyledForm };
+const StyledOptionsContainer = styled.div`
+  height: 24px;
+  text-align: right;
+`;
+
+export {
+  StyledHeadContainer,
+  StyledEntriesContainer,
+  StyledForm,
+  StyledOptionsContainer,
+};
