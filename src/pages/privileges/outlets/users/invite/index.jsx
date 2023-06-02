@@ -31,13 +31,7 @@ function Invite() {
           /^[0-9]{5,15}$/,
           "Este campo debe contener un número de identificación válido"
         )
-        .required("Este campo no puede estar vacío")
-        .test("id", "El número de identificación ya existe", function (value) {
-          return !Object.values(invitationEntriesDataMock).some(
-            (invitationEntriesDataMock) =>
-              invitationEntriesDataMock.userID === value
-          );
-        }),
+        .required("Este campo no puede estar vacío"),
 
       phone: Yup.string()
         .matches(/^[0-9]{10}$/, "Este campo debe tener un número de teléfono")
