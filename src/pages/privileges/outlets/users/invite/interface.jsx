@@ -77,8 +77,6 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                maxLength={30}
-                minLength={1}
                 state={stateValue(formik, "name")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
@@ -136,8 +134,6 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                maxLength={30}
-                minLength={1}
                 state={stateValue(formik, "email")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
