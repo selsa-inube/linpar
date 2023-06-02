@@ -18,6 +18,7 @@ Default.args = {
   description: "Text description",
   actionText: "Text Action",
   closeModal: closeDecisionModal,
+  handleClick: () => {},
 };
 
 export default story;

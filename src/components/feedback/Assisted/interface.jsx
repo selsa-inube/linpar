@@ -7,6 +7,7 @@ import {
   StyledStepsMobile,
   StyledStepsMobileId,
   StyledButton,
+  StyledAssited,
 } from "./styles";
 
 function AssistedUI(props) {
@@ -72,7 +73,7 @@ function AssistedUI(props) {
   }
 
   return (
-    <Stack direction="column" gap="8px">
+    <StyledAssited>
       <Stack alignItems="center">
         <Button
           variant="none"
@@ -101,7 +102,7 @@ function AssistedUI(props) {
       <Text typo="labelLarge" appearance="secondary" align="center">
         {currentStepInfo.stepDescription}
       </Text>
-    </Stack>
+    </StyledAssited>
   );
 }
 

@@ -5,6 +5,7 @@ import { EditUser } from "@pages/privileges/outlets/users/edit-user";
 import { Users } from "@pages/privileges/outlets/users";
 import { Privileges } from "@pages/privileges";
 import { ErrorPage } from "@components/layout/ErrorPage";
+import { CompleteInvitation } from "@pages/privileges/outlets/users/complete-invitation";
 
 function PrivilegesRoutes() {
   return (
@@ -14,6 +15,10 @@ function PrivilegesRoutes() {
         <Route path="users" element={<Users />} />
         <Route path="users/invite" element={<Invite />} />
         <Route path="users/edit/:user_id" element={<EditUser />} />
+        <Route
+          path="users/complete-invitation/:invitation_id"
+          element={<CompleteInvitation />}
+        />
       </Route>
       <Route path="/*" element={<ErrorPage />} />
     </Routes>

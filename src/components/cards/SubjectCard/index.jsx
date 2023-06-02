@@ -8,7 +8,7 @@ function SubjectCard(props) {
   const { subjectData, title } = props;
   const [showModal, setShowModal] = useState(false);
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const smallScreen = useMediaQuery("(max-width: 970px)");
 
   const handleToggleModal = () => {
     setShowModal(!showModal);

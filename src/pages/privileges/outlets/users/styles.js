@@ -12,4 +12,8 @@ const StyledTextFieldContainer = styled.div`
   width: 280px;
 `;
 
-export { StyledContainer, StyledTextFieldContainer };
+const StyledOptionsContainer = styled.div`
+  height: 24px;
+`;
+
+export { StyledContainer, StyledTextFieldContainer, StyledOptionsContainer };
