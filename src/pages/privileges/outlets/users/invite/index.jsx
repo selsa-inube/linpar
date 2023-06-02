@@ -39,7 +39,6 @@ function Invite() {
 
       email: Yup.string()
         .matches(
-          // /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
           /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i,
           "Este campo debe tener una dirección de correo electrónico válida"
         )
