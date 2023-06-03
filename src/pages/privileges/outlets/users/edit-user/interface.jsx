@@ -26,7 +26,6 @@ function EditUserUI(props) {
           <Stack justifyContent="space-between" alignItems="center" gap="49px">
             <PageTitle
               title={editUserOptionsConfig.editUserPage.label}
-              icon={editUserOptionsConfig.editUserPage.icon}
               description={editUserOptionsConfig.editUserPage.description}
             />
             <SubjectCard

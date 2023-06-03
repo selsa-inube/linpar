@@ -9,4 +9,13 @@ const StyledIcon = styled.picture`
   }
 `;
 
-export { StyledPageTitle, StyledIcon };
+const StyledArrowIcon = styled.div`
+  cursor: pointer;
+
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+export { StyledPageTitle, StyledIcon, StyledArrowIcon };

@@ -1,7 +1,6 @@
 import React from "react";
 import { AppMenu } from "./index";
 import {
-  MdVpnKey,
   MdPerson,
   MdOutlineExplore,
   MdOutlineAddTask,
@@ -31,7 +30,7 @@ const Privileges = (args) => <AppMenu {...args} />;
 Privileges.args = {
   appName: "Privilegios",
   appDescription: "Modifica las propiedades y permisos de tu cuenta",
-  appIcon: <MdVpnKey />,
+  navigatePage: "/",
   appRoute: "/privileges",
   appOptions: [
     {
