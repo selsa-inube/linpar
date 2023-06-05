@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { InviteUI } from "./interface";
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
