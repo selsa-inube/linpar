@@ -4,8 +4,8 @@ import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { StyledContainer } from "./styles";
 import { GeneralInformation } from "./tabs/generalInformation";
-import { SubjectCard } from "../../../../../components/cards/SubjectCard";
-import { ItemNotFound } from "../../../../../components/layout/ItemNotFound";
+import { SubjectCard } from "@components/cards/SubjectCard";
+import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 
 function EditUserUI(props) {
