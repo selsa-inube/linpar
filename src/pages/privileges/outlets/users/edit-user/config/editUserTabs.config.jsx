@@ -7,7 +7,7 @@ const editUserTabsConfig = {
   branches: {
     id: "branches",
     isDisabled: false,
-    label: "Oficinas",
+    label: "Sucursales",
   },
   projects: {
     id: "projects",
