@@ -1,5 +1,5 @@
-import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
+import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { StyledContainer } from "./styles";
