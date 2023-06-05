@@ -22,10 +22,6 @@ function EditUser() {
 
   const user = getUserInformation();
 
-  if (!user) {
-    return <div>User not found</div>;
-  }
-
   return (
     <EditUserUI
       selectedTab={selectedTab}
