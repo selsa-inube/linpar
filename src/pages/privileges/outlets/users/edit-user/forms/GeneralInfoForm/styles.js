@@ -23,6 +23,7 @@ const StyledSelect = styled.select`
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+  outline: none;
   color: ${colors.sys.text.dark};
   background-color: ${colors.ref.palette.neutral.n10};
   border-color: ${colors.ref.palette.neutral.n40};
