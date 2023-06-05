@@ -10,13 +10,13 @@ function AssignmentForm(props) {
     {
       id: "deallocate-all",
       label: "Desasignar todos",
-      handleClick: (e) => handleToggleAllEntries(e, true),
+      handleClick: () => handleToggleAllEntries(true),
       icon: null,
     },
     {
       id: "allocate-all",
       label: "Asignar todos",
-      handleClick: (e) => handleToggleAllEntries(e, false),
+      handleClick: () => handleToggleAllEntries(false),
       icon: null,
     },
   ];
