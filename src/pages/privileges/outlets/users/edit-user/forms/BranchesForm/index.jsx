@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BranchesFormUI } from "./interface";
 
 function BranchesForm(props) {
-  const { currentBranches, handleSubmit } = props;
+  const { currentBranches, handleSubmit, withSubmitButtons } = props;
   const [branches, setBranches] = useState(currentBranches);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -10,8 +10,7 @@ function BranchesForm(props) {
     setBranches(branches);
   };
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
+  const handleSubmitForm = () => {
     setIsLoading(true);
 
     // If this function is async, the form will be submitted before the state is updated
@@ -31,6 +30,7 @@ function BranchesForm(props) {
       isLoading={isLoading}
       currentBranches={currentBranches}
       branches={branches}
+      withSubmitButtons={withSubmitButtons}
     />
   );
 }

@@ -1,4 +1,4 @@
-import { FormControl } from "@components/forms/submit/FormControl";
+import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 
 function BranchesFormUI(props) {
@@ -9,24 +9,35 @@ function BranchesFormUI(props) {
     handleSubmitForm,
     handleReset,
     handleChangeBranches,
+    withSubmitButtons,
   } = props;
 
   const hasChanges =
     JSON.stringify(currentBranches) === JSON.stringify(branches);
 
+  if (withSubmitButtons) {
+    return (
+      <FormButtons
+        disabledButtons={hasChanges}
+        handleSubmit={handleSubmitForm}
+        handleReset={handleReset}
+        isLoading={isLoading}
+      >
+        <AssignmentForm
+          handleChange={handleChangeBranches}
+          entries={branches}
+          title="Seleccione las sucursales que desea asignar"
+        />
+      </FormButtons>
+    );
+  }
+
   return (
-    <FormControl
-      disabledButtons={hasChanges}
-      handleSubmit={handleSubmitForm}
-      handleReset={handleReset}
-      isLoading={isLoading}
-    >
-      <AssignmentForm
-        handleChange={handleChangeBranches}
-        entries={branches}
-        title="Seleccione las sucursales que desea asignar"
-      />
-    </FormControl>
+    <AssignmentForm
+      handleChange={handleChangeBranches}
+      entries={branches}
+      title="Seleccione las sucursales que desea asignar"
+    />
   );
 }
 

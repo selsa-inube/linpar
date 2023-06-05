@@ -25,6 +25,14 @@ export const Default = Template.bind({});
 Default.args = {
   currentBranches: branchesFormEditUser,
   handleSubmit,
+  withSubmitButtons: true,
+};
+
+export const WithoutSubmitButtons = Template.bind({});
+WithoutSubmitButtons.args = {
+  currentBranches: branchesFormEditUser,
+  handleSubmit,
+  withSubmitButtons: false,
 };
 
 export default story;
