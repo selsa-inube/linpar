@@ -16,7 +16,7 @@ function InviteUI(props) {
     handleSubmit,
   } = props;
 
-  function stateValue(formik, attribute) {
+  function stateValue(attribute) {
     if (!formik.touched[attribute]) return undefined;
     if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
     return "valid";
@@ -60,7 +60,7 @@ function InviteUI(props) {
             description={usersInvitationsConfig[0].description}
           />
         </Stack>
-        <form onSubmit={handleSubmit}>
+        <form>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
               <TextField
@@ -77,7 +77,7 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={stateValue(formik, "name")}
+                state={stateValue("name")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
@@ -96,7 +96,7 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={stateValue(formik, "id")}
+                state={stateValue("id")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
@@ -115,7 +115,7 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={stateValue(formik, "phone")}
+                state={stateValue("phone")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
@@ -134,16 +134,17 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={stateValue(formik, "email")}
+                state={stateValue("email")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
             </StyledFormContainer>
             <Button
-              type="submit"
+              type="text"
               appearance="confirm"
               iconBefore={<MdOutlineShortcut size={18} />}
               isLoading={loading}
+              handleClick={handleSubmit}
             >
               Enviar
             </Button>
