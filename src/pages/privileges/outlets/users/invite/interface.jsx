@@ -5,6 +5,7 @@ import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
+import { Formik } from "formik";
 
 function InviteUI(props) {
   const {
@@ -60,7 +61,7 @@ function InviteUI(props) {
             description={usersInvitationsConfig[0].description}
           />
         </Stack>
-        <form>
+        <form onSubmit={formik.handleSubmit}>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
               <TextField
