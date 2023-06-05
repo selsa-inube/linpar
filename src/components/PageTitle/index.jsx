@@ -9,11 +9,10 @@ function PageTitle(props) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const navigate = useNavigate();
-  const navigateBackwards = -1;
 
   const handleBackPage = () => {
     if (navigatePage) return navigate(navigatePage);
-    return navigate(navigateBackwards);
+    return navigate(-1);
   };
 
   return (

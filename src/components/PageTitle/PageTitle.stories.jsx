@@ -20,13 +20,13 @@ export const Default = Template.bind({});
 Default.args = {
   title: appsConfig[0].label,
   description: appsConfig[0].description,
-  icon: appsConfig[0].icon,
 };
 
-export const navigateBack = Template.bind({});
-navigateBack.args = {
+export const WithCustomIcon = Template.bind({});
+WithCustomIcon.args = {
   title: appsConfig[0].label,
   description: appsConfig[0].description,
+  icon: appsConfig[0].icon,
 };
 
 export default story;
