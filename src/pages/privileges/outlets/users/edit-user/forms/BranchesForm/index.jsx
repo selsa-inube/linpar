@@ -8,6 +8,7 @@ function BranchesForm(props) {
 
   const handleChangeBranches = (branches) => {
     setBranches(branches);
+    if (!withSubmitButtons) handleSubmit(branches);
   };
 
   const handleSubmitForm = () => {
