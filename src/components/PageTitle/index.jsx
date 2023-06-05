@@ -27,6 +27,7 @@ function PageTitle(props) {
               <MdArrowBack />
             </StyledArrowIcon>
           )}
+
           <Text as="h1" typoToken={smallScreen ? "titleMedium" : "titleLarge"}>
             {title}
           </Text>
