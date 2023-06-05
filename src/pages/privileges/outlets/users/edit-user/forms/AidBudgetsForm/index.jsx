@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AidBudgetsFormUI } from "./interface";
 
+const LOADING_TIMEOUT = 1500;
+
 function AidBudgetsForm(props) {
   const { currentAidBudgets, handleSubmit, withSubmitButtons } = props;
   const [aidBudgets, setAidBudgets] = useState(currentAidBudgets);
@@ -13,8 +15,11 @@ function AidBudgetsForm(props) {
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-    handleSubmit(aidBudgets);
-    setIsLoading(false);
+
+    setTimeout(() => {
+      handleSubmit(aidBudgets);
+      setIsLoading(false);
+    }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
