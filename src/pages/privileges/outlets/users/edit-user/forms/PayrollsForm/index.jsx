@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { PayrollsFormUI } from "./interface";
 
+const LOADING_TIMEOUT = 1500;
+
 function PayrollsForm(props) {
   const { currentPayrolls, handleSubmit, withSubmitButtons } = props;
   const [payrolls, setPayrolls] = useState(currentPayrolls);
@@ -13,8 +15,11 @@ function PayrollsForm(props) {
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-    handleSubmit(payrolls);
-    setIsLoading(false);
+
+    setTimeout(() => {
+      handleSubmit(payrolls);
+      setIsLoading(false);
+    }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
