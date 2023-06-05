@@ -16,7 +16,9 @@ function ProjectsForm(props) {
 
     // If this function is async, the form will be submitted before the state is updated
     handleSubmit(projects);
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
   };
 
   const handleReset = () => {
