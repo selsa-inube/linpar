@@ -58,6 +58,7 @@ function EditUserUI(props) {
             title={userNotFoundConfig.title}
             description={userNotFoundConfig.description}
             buttonDescription={userNotFoundConfig.buttonDescription}
+            route={userNotFoundConfig.route}
           />
         )}
       </Stack>

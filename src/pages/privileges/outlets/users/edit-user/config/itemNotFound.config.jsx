@@ -6,6 +6,7 @@ const userNotFoundConfig = {
   description:
     "El usuario no se encuentra en la base de datos, por favor modifique los parámetros de búsqueda.",
   buttonDescription: "Volver",
+  route: "/privileges/users",
 };
 
 export { userNotFoundConfig };
