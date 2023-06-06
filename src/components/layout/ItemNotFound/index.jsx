@@ -15,13 +15,15 @@ function ItemNotFound(props) {
     >
       <img src={image} alt="ItemNotFoundAlt" />
       <StyledInfo>
-        <Stack
-          direction="column"
-          gap={smallScreen ? "8px" : "24px"}
-          alignItems="center"
-        >
-          <Text typo={smallScreen ? "titleSmall" : "titleLarge"}>{title}</Text>
-          <Text typo={smallScreen ? "bodySmall" : "titleMedium"} align="center">
+        <Stack direction="column" gap={smallScreen ? "8px" : "24px"}>
+          <Text typo={smallScreen ? "titleSmall" : "titleLarge"} align="center">
+            {title}
+          </Text>
+          <Text
+            typo={smallScreen ? "bodySmall" : "titleMedium"}
+            align="center"
+            appearance="secondary"
+          >
             {description}
           </Text>
         </Stack>
