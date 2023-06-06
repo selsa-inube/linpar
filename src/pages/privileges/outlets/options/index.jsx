@@ -7,7 +7,6 @@ function PrivilegesOptions() {
     <PrivilegesOptionsUI
       appName={appsConfig[0].label}
       appDescription={appsConfig[0].description}
-      appIcon={appsConfig[0].icon}
       appOptions={privilegeOptionsConfig}
       appRoute={appsConfig[0].url}
     />
