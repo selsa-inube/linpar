@@ -5,7 +5,6 @@ import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
-import { Formik } from "formik";
 
 function InviteUI(props) {
   const {
@@ -141,7 +140,7 @@ function InviteUI(props) {
               />
             </StyledFormContainer>
             <Button
-              type="text"
+              type="button"
               appearance="confirm"
               iconBefore={<MdOutlineShortcut size={18} />}
               isLoading={loading}
