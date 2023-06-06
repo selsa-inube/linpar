@@ -26,7 +26,7 @@ function PayrollsFormUI(props) {
         <AssignmentForm
           handleChange={handleChangePayrolls}
           entries={payrolls}
-          title="Seleccione los detalles de nómina que desea asignar"
+          title="Seleccione los conceptos de nómina que desea asignar"
         />
       </FormButtons>
     );
@@ -36,7 +36,7 @@ function PayrollsFormUI(props) {
     <AssignmentForm
       handleChange={handleChangePayrolls}
       entries={payrolls}
-      title="Seleccione los detalles de nómina que desea asignar"
+      title="Seleccione los conceptos de nómina que desea asignar"
     />
   );
 }

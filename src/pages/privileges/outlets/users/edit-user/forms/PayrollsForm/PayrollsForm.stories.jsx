@@ -17,8 +17,8 @@ const story = {
 
 const Template = (args) => <PayrollsForm {...args} />;
 
-const handleSubmit = (newAidPayrolls) => {
-  action("Submit Payrolls: ")(newAidPayrolls);
+const handleSubmit = (newPayrolls) => {
+  action("Submit Payrolls: ")(newPayrolls);
 };
 
 export const Default = Template.bind({});
