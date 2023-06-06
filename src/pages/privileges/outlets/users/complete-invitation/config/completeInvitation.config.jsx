@@ -1,5 +1,3 @@
-import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
-
 const stepsRegisterUserConfig = [
   {
     id: 1,
@@ -51,7 +49,6 @@ const stepsRegisterUserConfig = [
 const CompleteInvitationUserConfig = [
   {
     id: 1,
-    icon: <MdOutlineAssignmentTurnedIn />,
     title: "Completar registro de usuario",
     description:
       "Complete la información para finalizar el proceso de registro.",

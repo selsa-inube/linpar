@@ -4,7 +4,7 @@ import { AppMenuCard } from "@components/cards/AppMenuCard/index";
 import { Breadcrumbs } from "@inube/design-system";
 
 function AppMenu(props) {
-  const { appName, appDescription, appIcon, appOptions, appRoute } = props;
+  const { appName, appDescription, appOptions, appRoute } = props;
 
   return (
     <StyledAppMenu>
@@ -12,8 +12,8 @@ function AppMenu(props) {
       <StyledTitle>
         <PageTitle
           title={appName}
-          icon={appIcon}
           description={appDescription}
+          navigatePage="/"
         />
       </StyledTitle>
       <StyledCards>
