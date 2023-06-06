@@ -9,7 +9,10 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { privilegeOptionsConfig } from "../options/config/privileges.config";
+import {
+  privilegeOptionsConfig,
+  privilegeConfig,
+} from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import {
@@ -39,9 +42,8 @@ export default function UsersUI(props) {
         <Stack gap="32px" direction="column">
           <Breadcrumbs route={privilegeOptionsConfig[0].url} />
           <PageTitle
-            title={privilegeOptionsConfig[0].label}
-            icon={privilegeOptionsConfig[0].icon}
-            description={privilegeOptionsConfig[0].description}
+            title={privilegeConfig.label}
+            description={privilegeConfig.description}
           />
         </Stack>
         <Stack gap="32px" direction="column">

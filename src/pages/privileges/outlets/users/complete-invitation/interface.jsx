@@ -29,7 +29,6 @@ function CompleteInvitationUI(props) {
           <Stack justifyContent="space-between" alignItems="center" gap="50px">
             <PageTitle
               title={CompleteInvitationUserConfig[0].title}
-              icon={CompleteInvitationUserConfig[0].icon}
               description={CompleteInvitationUserConfig[0].description}
             />
             <SubjectCard

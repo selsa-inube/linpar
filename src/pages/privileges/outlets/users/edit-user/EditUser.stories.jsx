@@ -1,5 +1,6 @@
 import { EditUser } from "./index";
 import { MemoryRouter, Routes, Route } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 
 const story = {
   components: [EditUser],
@@ -17,7 +18,11 @@ const Default = () => (
   </MemoryRouter>
 );
 
-const UserNotFound = () => <EditUser />;
+const UserNotFound = () => (
+  <BrowserRouter>
+    <EditUser />
+  </BrowserRouter>
+);
 
 export { Default, UserNotFound };
 

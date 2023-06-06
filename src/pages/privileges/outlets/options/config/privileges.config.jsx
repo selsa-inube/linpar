@@ -8,6 +8,11 @@ import {
   MdInventory2,
 } from "react-icons/md";
 
+const privilegeConfig = {
+  label: "Usuarios",
+  description: "invitar, editar, activar y eliminar usuarios de Linix",
+};
+
 const privilegeOptionsConfig = [
   {
     id: 1,
@@ -60,4 +65,4 @@ const privilegeOptionsConfig = [
   },
 ];
 
-export { privilegeOptionsConfig };
+export { privilegeOptionsConfig, privilegeConfig };

@@ -56,7 +56,6 @@ function InviteUI(props) {
           <Breadcrumbs route={usersInvitationsConfig[0].route} />
           <PageTitle
             title={usersInvitationsConfig[0].title}
-            icon={usersInvitationsConfig[0].icon}
             description={usersInvitationsConfig[0].description}
           />
         </Stack>
