@@ -17,8 +17,8 @@ const story = {
 
 const Template = (args) => <EventsForm {...args} />;
 
-const handleSubmit = (newIdEvents) => {
-  action("Submit Events: ")(newIdEvents);
+const handleSubmit = (newEvents) => {
+  action("Submit Events: ")(newEvents);
 };
 
 export const Default = Template.bind({});
