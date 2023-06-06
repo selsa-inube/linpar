@@ -5,6 +5,33 @@ import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { roles } from "@mocks/apps/privileges/users.mock";
 
+function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
+  let messageType;
+  if (showMessage) {
+    if (formInvalid) {
+      messageType = "failed";
+    } else {
+      messageType = "success";
+    }
+  } else {
+    return null;
+  }
+
+  const { title, description, icon, appearance } =
+    messageGeneralInfoConfig[messageType];
+
+  return (
+    <SectionMessage
+      title={title}
+      description={description}
+      icon={icon}
+      appearance={appearance}
+      duration={10000}
+      closeSectionMessage={handleCloseSectionMessage}
+    />
+  );
+}
+
 function GeneralInformationFormUI(props) {
   const {
     formik,
@@ -17,42 +44,15 @@ function GeneralInformationFormUI(props) {
     handleSubmit,
   } = props;
 
-  function stateValue(formik, attribute) {
+  function stateValue(attribute) {
     if (!formik.touched[attribute]) return "pending";
     if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
     return "valid";
   }
 
-  function renderMessages() {
-    let messageType;
-    if (showMessage) {
-      if (formInvalid) {
-        messageType = "failed";
-      } else {
-        messageType = "success";
-      }
-    } else {
-      return null;
-    }
-
-    const { title, description, icon, appearance } =
-      messageGeneralInfoConfig[messageType];
-
-    return (
-      <SectionMessage
-        title={title}
-        description={description}
-        icon={icon}
-        appearance={appearance}
-        duration={10000}
-        closeSectionMessage={handleCloseSectionMessage}
-      />
-    );
-  }
-
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <StyledFormContainer>
           <TextField
             label="Nombre"
@@ -96,7 +96,7 @@ function GeneralInformationFormUI(props) {
             isDisabled={loading}
             size="compact"
             isFullWidth={true}
-            state={stateValue(formik, "email")}
+            state={stateValue("email")}
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
           />
@@ -115,7 +115,7 @@ function GeneralInformationFormUI(props) {
             isDisabled={loading}
             size="compact"
             isFullWidth={true}
-            state={stateValue(formik, "phone")}
+            state={stateValue("phone")}
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
           />
@@ -151,17 +151,18 @@ function GeneralInformationFormUI(props) {
               Cancelar
             </Button>
             <Button
-              type="text"
+              type="button"
               appearance={"confirm"}
               isLoading={loading}
               isDisabled={handleButtons}
+              handleClick={handleSubmit}
             >
               Guardar
             </Button>
           </Stack>
         )}
       </form>
-      {renderMessages()}
+      {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
     </>
   );
 }

@@ -6,10 +6,8 @@ import { editUserData } from "@mocks/apps/privileges/users.mock";
 
 const story = {
   component: GeneralInformationForm,
-  title:
-    "layouts/privileges/outlets/users/edit-user/forms/GeneralInformationForm",
+  title: "forms/edit-user/GeneralInformationForm",
   parameters: {
-    layout: "fullscreen",
     actions: { onChange: "handleChange" },
   },
   decorators: [

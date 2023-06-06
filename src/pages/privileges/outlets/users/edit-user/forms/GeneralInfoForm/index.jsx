@@ -3,14 +3,28 @@ import { GeneralInformationFormUI } from "./interface";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+const LOADING_TIMEOUT = 1000;
+
+const validationSchema = Yup.object({
+  phone: Yup.string()
+    .matches(/^[0-9]{10}$/, "Este campo debe tener un número de teléfono")
+    .required("Este campo no puede estar vacío"),
+
+  email: Yup.string()
+    .matches(
+      /^\w+([.-_+]?\w+)@\w+([.-]?\w+)(.\w{2,10})+$/i,
+      "Este campo debe tener una dirección de correo electrónico válida"
+    )
+    .required("Este campo no puede estar vacío")
+    .max(80, "Debe tener 80 maximo caracteres"),
+});
+
 function GeneralInformationForm(props) {
   const { allowSubmit, userData, handleChange } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
-
-  const LOADING_TIMEOUT = 1000;
 
   const formik = useFormik({
     initialValues: {
@@ -20,25 +34,19 @@ function GeneralInformationForm(props) {
       phone: userData.phone,
       rol: userData.rol,
     },
+    validationSchema,
 
-    validationSchema: Yup.object({
-      phone: Yup.string()
-        .matches(/^[0-9]{10}$/, "Este campo debe tener un número de teléfono")
-        .required("Este campo no puede estar vacío"),
-
-      email: Yup.string()
-        .matches(
-          /^\w+([.-_+]?\w+)@\w+([.-]?\w+)(.\w{2,10})+$/i,
-          "Este campo debe tener una dirección de correo electrónico válida"
-        )
-        .required("Este campo no puede estar vacío")
-        .max(80, "Debe tener 80 maximo caracteres"),
-    }),
+    onSubmit: () => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setFormInvalid(false);
+        setShowMessage(true);
+      }, LOADING_TIMEOUT);
+    },
   });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleSubmit = () => {
     const submittedValues = {
       name: formik.values.name,
       identification: formik.values.identification,
@@ -47,23 +55,17 @@ function GeneralInformationForm(props) {
       rol: formik.values.rol,
     };
 
-    props.handleChange(submittedValues);
+    handleChange(submittedValues);
 
     if (!handleButtons) {
       formik.validateForm().then((errors) => {
         if (Object.keys(errors).length > 0) {
-          formik.handleSubmit();
           setShowMessage(true);
           setFormInvalid(true);
           return;
+        } else {
+          formik.handleSubmit();
         }
-
-        setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
-          setFormInvalid(false);
-          setShowMessage(true);
-        }, LOADING_TIMEOUT);
       });
     }
   };
