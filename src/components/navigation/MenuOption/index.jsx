@@ -5,7 +5,7 @@ function MenuOption(props) {
   const { label, icon, handleClick } = props;
 
   return (
-    <StyledOption variant="none" onClick={handleClick}>
+    <StyledOption variant="none" onClick={handleClick} type="button">
       <Stack gap="12px" alignItems="center">
         {icon}
         <Text typo="bodySmall">{label}</Text>
