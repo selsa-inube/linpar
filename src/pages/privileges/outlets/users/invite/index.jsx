@@ -14,21 +14,25 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   name: Yup.string()
-    .matches(/(^[a-zA-Z])|(\s+[a-zA-Z])/g, "Debe contener solo letras")
+    .matches(/^[a-zA-Z\s]*$/, "Debe contener solo letras")
     .max(80, "Debe tener 80 caracteres o menos")
     .min(8, "Debe tener más de 8 caracteres")
-    .required("Este campo no puede estar vacío"),
+    .required("Este campo debe contener un nombre"),
 
   id: Yup.string()
     .matches(
       /^[0-9]{5,15}$/,
       "Este campo debe contener un número de identificación válido"
     )
-    .required("Este campo no puede estar vacío"),
+    .min(5, "Debe tener más de 5 caracteres")
+    .max(15, "Debe tener 15 caracteres o menos")
+    .test("id", "holoooo", (value) => !value.includes("-"))
+    .required("Este campo debe contener un número de identificación"),
 
   phone: Yup.string()
-    .matches(/^[0-9]{10}$/, "Este campo debe tener un número de teléfono")
-    .required("Este campo no puede estar vacío"),
+    .matches(/^\d{10}$/, "Este campo debe tener un número de teléfono válido")
+    .max(10, "Debe tener 10 caracteres")
+    .required("Este campo debe contener un número de teléfono"),
 
   email: Yup.string()
     .matches(
@@ -36,7 +40,7 @@ const validationSchema = Yup.object({
       "Este campo debe tener una dirección de correo electrónico válida"
     )
     .max(80, "Debe tener 80 maximo caracteres")
-    .required("Este campo no puede estar vacío"),
+    .required("Este campo debe contener una dirección de correo electrónico"),
 });
 
 function Invite() {
@@ -63,7 +67,6 @@ function Invite() {
       if (Object.keys(errors).length > 0) {
         setShowMessage(true);
         setFormInvalid(true);
-        return;
       } else {
         formik.handleSubmit();
       }
