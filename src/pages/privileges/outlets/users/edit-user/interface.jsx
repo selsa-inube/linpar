@@ -13,14 +13,14 @@ function EditUserUI(props) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
-  if (user) {
-    var userCardData = {
-      nombre: user.username,
-      identificación: user.userID,
-      codigo: user.code,
-      rol: user.position,
-    };
-  }
+  const userCardData = user
+    ? {
+        nombre: user.username,
+        identificación: user.userID,
+        codigo: user.code,
+        rol: user.position,
+      }
+    : null;
 
   return (
     <StyledContainer smallScreen={smallScreen}>
