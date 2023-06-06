@@ -73,14 +73,14 @@ function AssignmentFormUI(props) {
                 appearance="secondary"
                 spacing="compact"
                 handleClick={() => handleToggleAllEntries(false)}
-                type="text"
+                type="button"
               >
                 Desasignar todos
               </Button>
               <Button
                 spacing="compact"
                 handleClick={() => handleToggleAllEntries(true)}
-                type="text"
+                type="button"
               >
                 Asignar todos
               </Button>
