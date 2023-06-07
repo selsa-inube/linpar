@@ -1,9 +1,9 @@
 import React from "react";
-import { InfoModal } from "..";
+import { InteractiveModal } from "..";
 import { action } from "@storybook/addon-actions";
 
 const story = {
-  component: InfoModal,
+  component: InteractiveModal,
   title: "components/feedback/InfoModal",
 };
 
@@ -14,7 +14,7 @@ const data = {
   Mail: "d.garzon@sistemasenlinea.com.co",
 };
 
-const Template = (args) => <InfoModal {...args} />;
+const Template = (args) => <InteractiveModal {...args} />;
 
 const closeInfoModal = () => {
   action("InfoModal closed");

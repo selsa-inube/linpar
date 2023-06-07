@@ -2,7 +2,7 @@ import { Text, Stack, useMediaQuery } from "@inube/design-system";
 import { StyledSubjectCard, StyledIcon } from "./styles";
 import { MdOutlinePushPin } from "react-icons/md";
 import { useState } from "react";
-import { InfoModal } from "../../feedback/InfoModal";
+import { InteractiveModal } from "@components/feedback/InteractiveModal";
 
 function SubjectCard(props) {
   const { subjectData, title } = props;
@@ -34,7 +34,7 @@ function SubjectCard(props) {
         </StyledIcon>
       </StyledSubjectCard>
       {showModal && (
-        <InfoModal
+        <InteractiveModal
           title={title}
           closeModal={handleToggleModal}
           infoData={subjectData}
