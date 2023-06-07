@@ -20,19 +20,16 @@ const validationSchema = Yup.object({
     .required("Este campo no puede estar vacio"),
 
   id: Yup.string()
-    .matches(
-      /^\d+[^Ee][^-+]\)*$/,
-      "Este campo debe contener un número de identificación válido"
-    )
     .min(5, "Debe tener más de 4 números")
     .max(15, "Debe tener 15 números o menos")
-    .required("Este campo no puede estar vacio"),
+    .test(
+      "validChars",
+      "Este campo debe contener un número de identificación válido",
+      (value) => typeof value !== "undefined"
+    ),
 
   phone: Yup.string()
-    .matches(
-      /^\d+[^Ee][^-+]\)*$/,
-      "Este campo debe tener un número de teléfono válido"
-    )
+    .matches(/^[0-9]*$/, "Este campo debe tener un número de teléfono válido")
     .min(10, "Debe tener 10 números")
     .max(10, "Debe tener 10 números")
     .required("Este campo no puede estar vacio"),
@@ -70,9 +67,8 @@ function Invite() {
       if (Object.keys(errors).length > 0) {
         setShowMessage(true);
         setFormInvalid(true);
-      } else {
-        formik.handleSubmit();
       }
+      formik.handleSubmit();
     });
   };
 

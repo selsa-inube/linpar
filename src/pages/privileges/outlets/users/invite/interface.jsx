@@ -59,7 +59,7 @@ function InviteUI(props) {
             description={usersInvitationsConfig[0].description}
           />
         </Stack>
-        <form onSubmit={formik.handleSubmit}>
+        <form>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
               <TextField
@@ -106,7 +106,7 @@ function InviteUI(props) {
                 name="phone"
                 id="phone"
                 value={formik.values.phone}
-                type="number"
+                type="tel"
                 isInvalid={formik.errors.phone && formInvalid}
                 isRequired={true}
                 errorMessage={formik.errors.phone}
