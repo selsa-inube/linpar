@@ -1,5 +1,6 @@
+import { MemoryRouter, Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import { CompleteInvitation } from "./index";
-import { MemoryRouter, Routes, Route } from "react-router";
 
 const story = {
   components: [CompleteInvitation],
@@ -17,8 +18,12 @@ const Default = () => (
   </MemoryRouter>
 );
 
-const InvitationNotFound = () => <CompleteInvitation />;
-
-export default story;
+const InvitationNotFound = () => (
+  <BrowserRouter>
+    <CompleteInvitation />
+  </BrowserRouter>
+);
 
 export { Default, InvitationNotFound };
+
+export default story;

@@ -1,6 +1,6 @@
-import { CompleteInvitationUI } from "./interface";
-import { useParams } from "react-router-dom";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
+import { useParams } from "react-router-dom";
+import { CompleteInvitationUI } from "./interface";
 
 function CompleteInvitation() {
   const { invitation_id } = useParams();
@@ -13,10 +13,6 @@ function CompleteInvitation() {
   }
 
   const invitation = getInvitationInformation();
-
-  if (!invitation) {
-    return <div>Invitation not found</div>;
-  }
 
   return <CompleteInvitationUI invitation={invitation} />;
 }
