@@ -15,24 +15,27 @@ const initialValues = {
 const validationSchema = Yup.object({
   name: Yup.string()
     .matches(/^[a-zA-Z\s]*$/, "Debe contener solo letras")
-    .max(80, "Debe tener 80 caracteres o menos")
     .min(8, "Debe tener más de 8 caracteres")
-    .required("Este campo debe contener un nombre"),
+    .max(80, "Debe tener 80 caracteres o menos")
+    .required("Este campo no puede estar vacio"),
 
   id: Yup.string()
     .matches(
-      /^[0-9]{5,15}$/,
+      /^\d+[^Ee][^-+]\)*$/,
       "Este campo debe contener un número de identificación válido"
     )
-    .min(5, "Debe tener más de 5 caracteres")
-    .max(15, "Debe tener 15 caracteres o menos")
-    .test("id", "holoooo", (value) => !value.includes("-"))
-    .required("Este campo debe contener un número de identificación"),
+    .min(5, "Debe tener más de 4 números")
+    .max(15, "Debe tener 15 números o menos")
+    .required("Este campo no puede estar vacio"),
 
   phone: Yup.string()
-    .matches(/^\d{10}$/, "Este campo debe tener un número de teléfono válido")
-    .max(10, "Debe tener 10 caracteres")
-    .required("Este campo debe contener un número de teléfono"),
+    .matches(
+      /^\d+[^Ee][^-+]\)*$/,
+      "Este campo debe tener un número de teléfono válido"
+    )
+    .min(10, "Debe tener 10 números")
+    .max(10, "Debe tener 10 números")
+    .required("Este campo no puede estar vacio"),
 
   email: Yup.string()
     .matches(
@@ -40,7 +43,7 @@ const validationSchema = Yup.object({
       "Este campo debe tener una dirección de correo electrónico válida"
     )
     .max(80, "Debe tener 80 maximo caracteres")
-    .required("Este campo debe contener una dirección de correo electrónico"),
+    .required("Este campo no puede estar vacio"),
 });
 
 function Invite() {
