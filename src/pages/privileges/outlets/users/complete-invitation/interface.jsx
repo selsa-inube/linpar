@@ -1,25 +1,28 @@
-import { Breadcrumbs, Stack } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
-import { StyledContainer } from "./styles";
-import { Assisted } from "@components/feedback/Assisted";
 import { SubjectCard } from "@components/cards/SubjectCard";
-import { useMediaQuery } from "@inube/design-system";
+import { Assisted } from "@components/feedback/Assisted";
+import { ItemNotFound } from "@components/layout/ItemNotFound";
+import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
 import {
-  stepsRegisterUserConfig,
   CompleteInvitationUserConfig,
+  stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
+import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
+import { StyledContainer } from "./styles";
 
 function CompleteInvitationUI(props) {
   const { invitation } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
-  const invitationCardData = {
-    nombre: invitation.username,
-    identificación: invitation.userID,
-    correo: invitation.mail,
-    invitación: invitation.invitationDate,
-  };
+  const invitationCardData = invitation
+    ? {
+        nombre: invitation.username,
+        identificación: invitation.userID,
+        correo: invitation.mail,
+        invitación: invitation.invitationDate,
+      }
+    : null;
 
   return (
     <StyledContainer smallScreen={smallScreen}>
@@ -31,13 +34,25 @@ function CompleteInvitationUI(props) {
               title={CompleteInvitationUserConfig[0].title}
               description={CompleteInvitationUserConfig[0].description}
             />
-            <SubjectCard
-              subjectData={invitationCardData}
-              title="Informacion del usuario"
-            />
+            {invitation && (
+              <SubjectCard
+                subjectData={invitationCardData}
+                title="Informacion del usuario"
+              />
+            )}
           </Stack>
         </Stack>
-        <Assisted steps={stepsRegisterUserConfig} />
+        {invitation ? (
+          <Assisted steps={stepsRegisterUserConfig} />
+        ) : (
+          <ItemNotFound
+            image={invitationNotFoundConfig.image}
+            title={invitationNotFoundConfig.title}
+            description={invitationNotFoundConfig.description}
+            buttonDescription={invitationNotFoundConfig.buttonDescription}
+            route={invitationNotFoundConfig.route}
+          />
+        )}
       </Stack>
     </StyledContainer>
   );
