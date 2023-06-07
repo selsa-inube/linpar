@@ -39,7 +39,7 @@ function GeneralInformationFormUI(props) {
     allowSubmit,
     showMessage,
     handleCloseSectionMessage,
-    handleButtons,
+    enableButtons,
     formInvalid,
     handleSubmit,
   } = props;
@@ -52,7 +52,7 @@ function GeneralInformationFormUI(props) {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit}>
+      <form>
         <StyledFormContainer>
           <TextField
             label="Nombre"
@@ -92,7 +92,7 @@ function GeneralInformationFormUI(props) {
             iconAfter={<MdOutlineModeEdit size={18} />}
             isInvalid={formik.errors.email && formInvalid}
             errorMessage={formik.errors.email}
-            validMessage="El correo electrónico ingresado es valido"
+            validMessage="El correo electrónico ingresado es válido"
             isDisabled={loading}
             size="compact"
             isFullWidth={true}
@@ -107,11 +107,11 @@ function GeneralInformationFormUI(props) {
             name="phone"
             id="phone"
             value={formik.values.phone}
-            type="number"
+            type="tel"
             iconAfter={<MdOutlineModeEdit size={18} />}
             isInvalid={formik.errors.phone && formInvalid}
             errorMessage={formik.errors.phone}
-            validMessage="El número de teléfono ingresado es valido"
+            validMessage="El número de teléfono ingresado es válido"
             isDisabled={loading}
             size="compact"
             isFullWidth={true}
@@ -128,7 +128,6 @@ function GeneralInformationFormUI(props) {
               value={formik.values.rol}
               name="rol"
               id="rol"
-              onBlur={formik.handleBlur}
               disabled={loading}
               onChange={formik.handleChange}
             >
@@ -146,7 +145,7 @@ function GeneralInformationFormUI(props) {
               appearance="secondary"
               type="reset"
               handleClick={formik.resetForm}
-              isDisabled={handleButtons}
+              isDisabled={enableButtons}
             >
               Cancelar
             </Button>
@@ -154,15 +153,15 @@ function GeneralInformationFormUI(props) {
               type="button"
               appearance={"confirm"}
               isLoading={loading}
-              isDisabled={handleButtons}
+              isDisabled={enableButtons}
               handleClick={handleSubmit}
             >
               Guardar
             </Button>
           </Stack>
         )}
+        {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
       </form>
-      {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
     </>
   );
 }
