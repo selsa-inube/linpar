@@ -54,14 +54,13 @@ function GeneralInformationForm(props) {
       if (Object.keys(errors).length > 0) {
         setShowMessage(true);
         setFormInvalid(true);
-      } else {
-        formik.handleSubmit();
       }
+      formik.handleSubmit();
     });
     handleChange(formik.values);
   };
 
-  const enableButtons =
+  const disabledButtons =
     JSON.stringify(formik.values) === JSON.stringify(formik.initialValues);
 
   const handleCloseSectionMessage = () => {
@@ -75,7 +74,7 @@ function GeneralInformationForm(props) {
       showMessage={showMessage}
       allowSubmit={allowSubmit}
       handleCloseSectionMessage={handleCloseSectionMessage}
-      enableButtons={enableButtons}
+      disabledButtons={disabledButtons}
       formInvalid={formInvalid}
       handleSubmit={handleSubmit}
     />

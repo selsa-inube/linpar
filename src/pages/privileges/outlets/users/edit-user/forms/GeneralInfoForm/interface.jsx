@@ -6,15 +6,12 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { roles } from "@mocks/apps/privileges/users.mock";
 
 function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
-  let messageType;
-  if (showMessage) {
-    if (formInvalid) {
-      messageType = "failed";
-    } else {
-      messageType = "success";
-    }
-  } else {
+  if (!showMessage) {
     return null;
+  }
+  let messageType = "success";
+  if (formInvalid) {
+    messageType = "failed";
   }
 
   const { title, description, icon, appearance } =
@@ -39,7 +36,7 @@ function GeneralInformationFormUI(props) {
     allowSubmit,
     showMessage,
     handleCloseSectionMessage,
-    enableButtons,
+    disabledButtons,
     formInvalid,
     handleSubmit,
   } = props;
@@ -145,15 +142,15 @@ function GeneralInformationFormUI(props) {
               appearance="secondary"
               type="reset"
               handleClick={formik.resetForm}
-              isDisabled={enableButtons}
+              isDisabled={disabledButtons}
             >
               Cancelar
             </Button>
             <Button
               type="button"
-              appearance={"confirm"}
+              appearance="confirm"
               isLoading={loading}
-              isDisabled={enableButtons}
+              isDisabled={disabledButtons}
               handleClick={handleSubmit}
             >
               Guardar
