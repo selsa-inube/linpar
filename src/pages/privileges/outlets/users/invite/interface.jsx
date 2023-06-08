@@ -6,53 +6,47 @@ import { messageInvitationSentConfig } from "./config/messageInvitationSent.conf
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
 
+function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
+  if (!showMessage) {
+    return null;
+  }
+
+  let messageType = "success";
+
+  if (formInvalid) {
+    messageType = "failed";
+  }
+
+  const { title, description, icon, appearance } =
+    messageInvitationSentConfig[messageType];
+
+  return (
+    <SectionMessage
+      title={title}
+      description={description}
+      icon={icon}
+      appearance={appearance}
+      duration={10000}
+      closeSectionMessage={handleCloseSectionMessage}
+    />
+  );
+}
+
+function stateValue(formik, attribute) {
+  if (!formik.touched[attribute]) return undefined;
+  if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
+  return "valid";
+}
+
 function InviteUI(props) {
   const {
+    formik,
+    formInvalid,
     loading,
     showMessage,
-    invitation,
-    handleChange,
-    runValidations,
-    handleSubmit,
-    formInvalid,
     handleCloseSectionMessage,
+    handleSubmit,
   } = props;
-
-  function renderMessages() {
-    let messageType;
-
-    const invalidPropExists = Object.values(invitation).some(
-      (prop) => prop.state === "invalid"
-    );
-
-    if (showMessage) {
-      if (formInvalid) {
-        if (!invalidPropExists) {
-          handleCloseSectionMessage();
-          return null;
-        }
-        messageType = "failed";
-      } else {
-        messageType = "success";
-      }
-    } else {
-      return null;
-    }
-
-    const { title, description, icon, appearance } =
-      messageInvitationSentConfig[messageType];
-
-    return (
-      <SectionMessage
-        title={title}
-        description={description}
-        icon={icon}
-        appearance={appearance}
-        duration={10000}
-        closeSectionMessage={handleCloseSectionMessage}
-      />
-    );
-  }
 
   return (
     <StyledPageUsers>
@@ -64,7 +58,7 @@ function InviteUI(props) {
             description={usersInvitationsConfig[0].description}
           />
         </Stack>
-        <form onSubmit={handleSubmit}>
+        <form>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
               <TextField
@@ -72,20 +66,18 @@ function InviteUI(props) {
                 placeholder="Ingresa su nombre completo"
                 name="name"
                 id="name"
-                value={invitation.name.value}
+                value={formik.values.name}
                 type="text"
-                isInvalid={invitation.name.isInvalid && formInvalid}
+                isInvalid={formik.errors.name && formInvalid}
                 isRequired={true}
-                errorMessage="Este campo no puede estar vacío"
+                errorMessage={formik.errors.name}
                 validMessage="El nombre es valido"
-                isDisabled={loading && true}
+                isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                maxLength={30}
-                minLength={1}
-                state={invitation.name.state}
-                handleChange={handleChange}
-                handleBlur={runValidations}
+                state={stateValue(formik, "name")}
+                handleChange={formik.handleChange}
+                handleBlur={formik.handleBlur}
               />
 
               <TextField
@@ -93,18 +85,18 @@ function InviteUI(props) {
                 placeholder="Ingrese su número de identificación"
                 name="id"
                 id="id"
-                value={invitation.id.value}
+                value={formik.values.id}
                 type="number"
-                isInvalid={invitation.id.isInvalid && formInvalid}
+                isInvalid={formik.errors.id && formInvalid}
                 isRequired={true}
-                errorMessage="Este campo debe contener un número de identificación"
+                errorMessage={formik.errors.id}
                 validMessage="El número de identificación es valido"
-                isDisabled={loading && true}
+                isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={invitation.id.state}
-                handleChange={handleChange}
-                handleBlur={runValidations}
+                state={stateValue(formik, "id")}
+                handleChange={formik.handleChange}
+                handleBlur={formik.handleBlur}
               />
 
               <TextField
@@ -112,18 +104,18 @@ function InviteUI(props) {
                 placeholder="Ingrese su número telefónico"
                 name="phone"
                 id="phone"
-                value={invitation.phone.value}
-                type="number"
-                isInvalid={invitation.phone.isInvalid && formInvalid}
+                value={formik.values.phone}
+                type="tel"
+                isInvalid={formik.errors.phone && formInvalid}
                 isRequired={true}
-                errorMessage="Este campo debe tener un número de teléfono"
+                errorMessage={formik.errors.phone}
                 validMessage="El número de teléfono es valido"
-                isDisabled={loading && true}
+                isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={invitation.phone.state}
-                handleChange={handleChange}
-                handleBlur={runValidations}
+                state={stateValue(formik, "phone")}
+                handleChange={formik.handleChange}
+                handleBlur={formik.handleBlur}
               />
 
               <TextField
@@ -131,32 +123,33 @@ function InviteUI(props) {
                 placeholder="Ingrese su dirección de correo electrónico"
                 name="email"
                 id="email"
-                value={invitation.email.value}
+                value={formik.values.email}
                 type="email"
                 isRequired={true}
-                isInvalid={invitation.email.isInvalid && formInvalid}
-                errorMessage="Este campo debe tener una dirección de correo electrónico válida"
+                isInvalid={formik.errors.email && formInvalid}
+                errorMessage={formik.errors.email}
                 validMessage="El correo electrónico es valido"
-                isDisabled={loading && true}
+                isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={invitation.email.state}
-                handleChange={handleChange}
-                handleBlur={runValidations}
+                state={stateValue(formik, "email")}
+                handleChange={formik.handleChange}
+                handleBlur={formik.handleBlur}
               />
             </StyledFormContainer>
             <Button
-              type="submit"
+              type="button"
               appearance="confirm"
               iconBefore={<MdOutlineShortcut size={18} />}
               isLoading={loading}
+              handleClick={handleSubmit}
             >
               Enviar
             </Button>
           </Stack>
         </form>
       </Stack>
-      {renderMessages()}
+      {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
     </StyledPageUsers>
   );
 }
