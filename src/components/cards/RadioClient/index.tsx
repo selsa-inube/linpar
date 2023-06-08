@@ -1,8 +1,16 @@
-import { Text } from "../../data/Text";
-
+import { Text } from "@components/data/Text";
 import { StyledRadioClient, StyledRadio, StyledImage } from "./styles";
 
-function RadioClient(props) {
+interface RadioClientProps {
+  name: string;
+  id: number;
+  value: string;
+  label: string;
+  logo: string;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+function RadioClient(props: RadioClientProps) {
   const { name, id, value, label, logo, handleChange } = props;
 
   return (
@@ -10,9 +18,8 @@ function RadioClient(props) {
       <StyledRadio
         type="radio"
         name={name}
-        id={id}
+        id={id.toString()}
         value={value}
-        label={label}
         onChange={handleChange}
       />
       <Text>{label}</Text>
@@ -22,3 +29,4 @@ function RadioClient(props) {
 }
 
 export { RadioClient };
+export type { RadioClientProps };
