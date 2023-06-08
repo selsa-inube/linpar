@@ -6,6 +6,38 @@ import { messageInvitationSentConfig } from "./config/messageInvitationSent.conf
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
 
+function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
+  if (!showMessage) {
+    return null;
+  }
+
+  let messageType = "success";
+
+  if (formInvalid) {
+    messageType = "failed";
+  }
+
+  const { title, description, icon, appearance } =
+    messageInvitationSentConfig[messageType];
+
+  return (
+    <SectionMessage
+      title={title}
+      description={description}
+      icon={icon}
+      appearance={appearance}
+      duration={10000}
+      closeSectionMessage={handleCloseSectionMessage}
+    />
+  );
+}
+
+function stateValue(formik, attribute) {
+  if (!formik.touched[attribute]) return undefined;
+  if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
+  return "valid";
+}
+
 function InviteUI(props) {
   const {
     formik,
@@ -15,39 +47,6 @@ function InviteUI(props) {
     handleCloseSectionMessage,
     handleSubmit,
   } = props;
-
-  function stateValue(attribute) {
-    if (!formik.touched[attribute]) return undefined;
-    if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
-    return "valid";
-  }
-
-  function renderMessages() {
-    let messageType;
-    if (showMessage) {
-      if (formInvalid) {
-        messageType = "failed";
-      } else {
-        messageType = "success";
-      }
-    } else {
-      return null;
-    }
-
-    const { title, description, icon, appearance } =
-      messageInvitationSentConfig[messageType];
-
-    return (
-      <SectionMessage
-        title={title}
-        description={description}
-        icon={icon}
-        appearance={appearance}
-        duration={10000}
-        closeSectionMessage={handleCloseSectionMessage}
-      />
-    );
-  }
 
   return (
     <StyledPageUsers>
@@ -76,7 +75,7 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={stateValue("name")}
+                state={stateValue(formik, "name")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
@@ -95,7 +94,7 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={stateValue("id")}
+                state={stateValue(formik, "id")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
@@ -114,7 +113,7 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={stateValue("phone")}
+                state={stateValue(formik, "phone")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
@@ -133,7 +132,7 @@ function InviteUI(props) {
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
-                state={stateValue("email")}
+                state={stateValue(formik, "email")}
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
@@ -150,7 +149,7 @@ function InviteUI(props) {
           </Stack>
         </form>
       </Stack>
-      {renderMessages()}
+      {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
     </StyledPageUsers>
   );
 }
