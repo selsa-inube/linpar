@@ -19,10 +19,10 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": ["./src/*"],
-      "@mocks/*": ["./mocks/*"],
-      "@components/*": ["./components/*"],
-      "@pages/*": ["./pages/*"],
-      "@styles/*": ["./styles/*"]
+      "@mocks/*": ["./src/mocks/*"],
+      "@components/*": ["./src/components/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"]
     }
   },
 

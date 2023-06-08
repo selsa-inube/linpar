@@ -5,9 +5,9 @@ import {
   Route,
 } from "react-router-dom";
 
-import { GlobalStyles } from "./styles/global";
-import { Home } from "./pages/home";
-import { ErrorPage } from "./components/layout/ErrorPage";
+import { GlobalStyles } from "@styles/global";
+import { Home } from "@pages/home";
+import { ErrorPage } from "@components/layout/ErrorPage";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import AppContextProvider from "./context";
