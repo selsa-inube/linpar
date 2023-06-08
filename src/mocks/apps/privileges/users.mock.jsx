@@ -257,4 +257,19 @@ const userEntriesDataMock = [
   },
 ];
 
-export { userEntriesDataMock };
+const editUserData = {
+  id: 1,
+  name: "David Leonardo Garzón Páramo",
+  identification: 1013614213,
+  email: "d.garzon@sistemasenlinea.com.co",
+  phone: "3123202874",
+  rol: "Diseñador",
+};
+
+const roles = [
+  { value: "Diseñador", label: "Diseñador" },
+  { value: "Desarrollador", label: "Desarrollador Web" },
+  { value: "Product Manager", label: "Product Manager" },
+];
+
+export { userEntriesDataMock, editUserData, roles };
