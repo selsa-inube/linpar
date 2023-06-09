@@ -5,7 +5,7 @@ import { InfoModal } from "../../feedback/InfoModal";
 import { StyledIcon, StyledSubjectCard } from "./styles";
 
 interface SubjectCardProps {
-  subjectData: Record<string, string>;
+  subjectData: Record<string, number>;
   title: string;
 }
 
