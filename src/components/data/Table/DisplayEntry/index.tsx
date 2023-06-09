@@ -1,9 +1,17 @@
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { useState } from "react";
 import { MdOpenInNew } from "react-icons/md";
+import { IAction, ITitles } from "../types";
 
-function DisplayEntry(props) {
-  const { entry, actions, title } = props;
+interface DisplayEntryProps {
+  entry: object;
+  actions: IAction[];
+  title: string;
+  titleFields: ITitles[];
+}
+
+function DisplayEntry(props: DisplayEntryProps) {
+  const { entry, actions, title, titleFields } = props;
 
   const [showModal, setShowModal] = useState(false);
 
@@ -20,6 +28,7 @@ function DisplayEntry(props) {
           closeModal={handleToggleModal}
           infoData={entry}
           actions={actions}
+          fields={titleFields}
         />
       )}
     </>
@@ -27,3 +36,4 @@ function DisplayEntry(props) {
 }
 
 export { DisplayEntry };
+export type { DisplayEntryProps };

@@ -49,7 +49,7 @@ function showActionTitle(actionTitle, mediaQuery) {
   );
 }
 
-function ShowAction(actionContent, entry, mediaQuery, modalTitle) {
+function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleFields) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
@@ -62,7 +62,12 @@ function ShowAction(actionContent, entry, mediaQuery, modalTitle) {
     </>
   ) : (
     <StyledTd>
-      <DisplayEntry entry={entry} title={modalTitle} actions={actionContent} />
+      <DisplayEntry
+        entry={entry}
+        title={modalTitle}
+        actions={actionContent}
+        titleFields={titleFields}
+      />
     </StyledTd>
   );
 }
@@ -103,7 +108,7 @@ function TableUI(props) {
                 </StyledTd>
               )
             )}
-            {ShowAction(actions, entry, mediaActionOpen, modalTitle)}
+            {ShowAction(actions, entry, mediaActionOpen, modalTitle, titles)}
           </StyledTr>
         ))}
       </StyledTbody>
