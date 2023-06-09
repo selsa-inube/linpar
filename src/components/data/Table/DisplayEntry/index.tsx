@@ -4,7 +4,7 @@ import { MdOpenInNew } from "react-icons/md";
 import { IAction, ITitles } from "../types";
 
 interface DisplayEntryProps {
-  entry: object;
+  entry: Record<string, string | number>;
   actions: IAction[];
   title: string;
   titleFields: ITitles[];

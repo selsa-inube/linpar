@@ -13,7 +13,7 @@ import { IAction, IField } from "./types";
 interface InteractiveModalProps {
   title: string;
   closeModal: () => void;
-  infoData: Record<string, any>;
+  infoData: Record<string, string | number>;
   actions?: IAction[];
   fields?: IField[];
 }
