@@ -1,11 +1,12 @@
-import { SubjectCard } from "../../SubjectCard";
+import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
+import { SubjectCard, SubjectCardProps } from "..";
 
 const story = {
   component: [SubjectCard],
   title: "components/cards/SubjectCard",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -20,7 +21,7 @@ const data = {
   Mail: "d.garzon@sistemasenlinea.com.co",
 };
 
-const Template = (args) => <SubjectCard {...args} />;
+const Template: StoryFn<SubjectCardProps> = (args) => <SubjectCard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

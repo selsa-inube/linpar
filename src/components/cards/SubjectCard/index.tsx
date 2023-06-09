@@ -1,10 +1,15 @@
-import { Text, Stack, useMediaQuery } from "@inube/design-system";
-import { StyledSubjectCard, StyledIcon } from "./styles";
-import { MdOutlinePushPin } from "react-icons/md";
+import { Stack, Text, useMediaQuery } from "@inube/design-system";
 import { useState } from "react";
+import { MdOutlinePushPin } from "react-icons/md";
 import { InfoModal } from "../../feedback/InfoModal";
+import { StyledIcon, StyledSubjectCard } from "./styles";
 
-function SubjectCard(props) {
+interface SubjectCardProps {
+  subjectData: Record<string, string>;
+  title: string;
+}
+
+function SubjectCard(props: SubjectCardProps) {
   const { subjectData, title } = props;
   const [showModal, setShowModal] = useState(false);
 
@@ -45,3 +50,4 @@ function SubjectCard(props) {
 }
 
 export { SubjectCard };
+export type { SubjectCardProps };
