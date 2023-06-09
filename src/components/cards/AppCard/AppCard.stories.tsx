@@ -1,5 +1,6 @@
 import { AppCard, AppCardProps } from "./index";
 import { appsConfig } from "@pages/home/config/apps.config";
+import { StoryFn } from "@storybook/react";
 
 import { BrowserRouter } from "react-router-dom";
 
@@ -7,7 +8,7 @@ const story = {
   component: [AppCard],
   title: "components/cards/AppCard",
   decorators: [
-    (Story: any) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
