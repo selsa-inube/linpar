@@ -4,6 +4,7 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
 import { Assisted } from "@src/components/feedback/Assisted";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
+import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import {
   CompleteInvitationUserConfig,
   stepsRegisterUserConfig,
@@ -57,6 +58,14 @@ function CompleteInvitationUI(props) {
             {currentStep === stepsRegisterUserConfig.projects.id && (
               <ProjectsForm
                 currentProjects={invitationData.projects.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+
+            {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
+              <AidBudgetsForm
+                currentAidBudgets={invitationData.aidBudgets.entries}
+                withSubmitButtons={true}
                 handleSubmit={handleSubmit}
               />
             )}
