@@ -3,6 +3,7 @@ import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
 import { Assisted } from "@src/components/feedback/Assisted";
+import { EventsForm } from "../edit-user/forms/EventsForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import {
@@ -61,11 +62,9 @@ function CompleteInvitationUI(props) {
                 handleSubmit={handleSubmit}
               />
             )}
-
-            {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
-              <AidBudgetsForm
-                currentAidBudgets={invitationData.aidBudgets.entries}
-                withSubmitButtons={true}
+            {currentStep === stepsRegisterUserConfig.events.id && (
+              <EventsForm
+                currentEvents={invitationData.events.entries}
                 handleSubmit={handleSubmit}
               />
             )}
