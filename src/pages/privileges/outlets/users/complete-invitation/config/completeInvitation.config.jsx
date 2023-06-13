@@ -26,7 +26,7 @@ const stepsRegisterUserConfig = {
     stepDescription:
       "Configura las unidades presupuestarias de ayuda que el usuario administrará.",
   },
-  payrolls: {
+  payroll: {
     id: 6,
     stepName: "Nómina",
     stepDescription:

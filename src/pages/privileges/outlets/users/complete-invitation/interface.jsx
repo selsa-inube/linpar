@@ -4,7 +4,6 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
 import { Assisted } from "@src/components/feedback/Assisted";
 import { EventsForm } from "../edit-user/forms/EventsForm";
-import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import {
   CompleteInvitationUserConfig,
@@ -65,12 +64,6 @@ function CompleteInvitationUI(props) {
             {currentStep === stepsRegisterUserConfig.events.id && (
               <EventsForm
                 currentEvents={invitationData.events.entries}
-                handleSubmit={handleSubmit}
-              />
-            )}
-            {currentStep === stepsRegisterUserConfig.payrolls.id && (
-              <PayrollsForm
-                currentPayrolls={invitationData.payrolls.entries}
                 handleSubmit={handleSubmit}
               />
             )}
