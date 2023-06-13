@@ -59,7 +59,6 @@ function CompleteInvitationUI(props) {
             {currentStep === stepsRegisterUserConfig.branches.id && (
               <BranchesForm
                 currentBranches={invitationData.branches.entries}
-                withSubmitButtons={true}
                 handleSubmit={handleSubmit}
               />
             )}
