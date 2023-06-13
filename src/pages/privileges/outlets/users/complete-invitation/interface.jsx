@@ -68,6 +68,12 @@ function CompleteInvitationUI(props) {
                 handleSubmit={handleSubmit}
               />
             )}
+            {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
+              <AidBudgetsForm
+                currentAidBudgetsUnits={invitationData.aidBudgetUnits.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
           </>
         ) : (
           <ItemNotFound
