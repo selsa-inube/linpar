@@ -10,8 +10,8 @@ import {
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
-  privilegeOptionsConfig,
   privilegeConfig,
+  privilegeOptionsConfig,
 } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
