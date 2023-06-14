@@ -9,6 +9,7 @@ import { AidBudgetsForm } from "./forms/AidBudgetsForm";
 import { EventsForm } from "./forms/EventsForm";
 import { PayrollsForm } from "./forms/PayrollsForm";
 import { ProjectsForm } from "./forms/ProjectsForm";
+import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
 
 function EditUserUI(props) {
@@ -48,6 +49,13 @@ function EditUserUI(props) {
               selectedTab={selectedTab}
               handleSelectedTab={handleTabChange}
             />
+            {selectedTab === editUserTabsConfig.branches.id && (
+              <BranchesForm
+                currentBranches={editData.branches.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+              />
+            )}
             {selectedTab === editUserTabsConfig.events.id && (
               <EventsForm
                 currentEvents={editData.events.entries}
