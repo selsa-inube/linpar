@@ -8,6 +8,7 @@ import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { StyledContainer } from "./styles";
 import { EventsForm } from "./forms/EventsForm";
 import { ProjectsForm } from "./forms/ProjectsForm";
+import { AidBudgetsForm } from "./forms/AidBudgetsForm";
 
 function EditUserUI(props) {
   const { selectedTab, handleTabChange, user, editData, handleSubmit } = props;
