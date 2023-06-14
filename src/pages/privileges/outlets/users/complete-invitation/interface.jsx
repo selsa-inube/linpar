@@ -6,6 +6,7 @@ import { Assisted } from "@src/components/feedback/Assisted";
 import { EventsForm } from "../edit-user/forms/EventsForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
+import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import {
   CompleteInvitationUserConfig,
   stepsRegisterUserConfig,
@@ -72,6 +73,12 @@ function CompleteInvitationUI(props) {
             {currentStep === stepsRegisterUserConfig.events.id && (
               <EventsForm
                 currentEvents={invitationData.events.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+            {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
+              <AidBudgetsForm
+                currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
               />
             )}
