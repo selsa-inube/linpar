@@ -11,6 +11,9 @@ import {
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
+import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
+import { EventsForm } from "../edit-user/forms/EventsForm";
+import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 
 function CompleteInvitationUI(props) {
   const {
@@ -77,6 +80,12 @@ function CompleteInvitationUI(props) {
             {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
               <AidBudgetsForm
                 currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+            {currentStep === stepsRegisterUserConfig.payrolls.id && (
+              <PayrollsForm
+                currentPayrolls={invitationData.payrolls.entries}
                 handleSubmit={handleSubmit}
               />
             )}
