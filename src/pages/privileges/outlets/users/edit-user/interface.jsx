@@ -1,27 +1,24 @@
 import { PageTitle } from "@components/PageTitle";
+import { SubjectCard } from "@components/cards/SubjectCard";
+import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
-import { StyledContainer } from "./styles";
-import { SubjectCard } from "@components/cards/SubjectCard";
-import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
-
-import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
+import { ProjectsForm } from "./forms/ProjectsForm";
+import { StyledContainer } from "./styles";
 
 function EditUserUI(props) {
   const { selectedTab, handleTabChange, user, editData, handleSubmit } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
-  const userCardData = user
-    ? {
-        nombre: user.username,
-        identificación: user.userID,
-        codigo: user.code,
-        rol: user.position,
-      }
-    : null;
+  const userCardData = user && {
+    nombre: user.username,
+    identificación: user.userID,
+    codigo: user.code,
+    rol: user.position,
+  };
 
   return (
     <StyledContainer smallScreen={smallScreen}>
@@ -48,11 +45,11 @@ function EditUserUI(props) {
               selectedTab={selectedTab}
               handleSelectedTab={handleTabChange}
             />
-            {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={editData.aidBudgetUnits.entries}
+            {selectedTab === editUserTabsConfig.projects.id && (
+              <ProjectsForm
+                currentProjects={editData.projects.entries}
                 handleSubmit={handleSubmit}
-                withSubmitButtons={true}
+                withSubmitButtons
               />
             )}
           </Stack>

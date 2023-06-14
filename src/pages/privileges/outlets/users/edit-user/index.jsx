@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { EditUserUI } from "./interface";
-import { editUserTabsConfig } from "./config/editUserTabs.config";
-import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
-import { useParams } from "react-router-dom";
+import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/aidBudgetsForm.mock";
 import { branchesFormEditUser } from "@mocks/apps/privileges/branchesForm.mock";
 import { eventsFormEditUser } from "@mocks/apps/privileges/eventsForm.mock";
 import { payrollsFormEditUser } from "@mocks/apps/privileges/payrollsForm.mock";
 import { projectsFormEditUser } from "@mocks/apps/privileges/projectsForm.mock";
-import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/aidBudgetsForm.mock";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { editUserTabsConfig } from "./config/editUserTabs.config";
+import { EditUserUI } from "./interface";
 
 function EditUser() {
   const { user_id } = useParams();
