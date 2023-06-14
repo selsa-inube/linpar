@@ -5,9 +5,10 @@ import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
-import { StyledContainer } from "./styles";
 import { EventsForm } from "./forms/EventsForm";
+import { PayrollsForm } from "./forms/PayrollsForm";
 import { ProjectsForm } from "./forms/ProjectsForm";
+import { StyledContainer } from "./styles";
 
 function EditUserUI(props) {
   const { selectedTab, handleTabChange, user, editData, handleSubmit } = props;
@@ -56,6 +57,13 @@ function EditUserUI(props) {
             {selectedTab === editUserTabsConfig.projects.id && (
               <ProjectsForm
                 currentProjects={editData.projects.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+              />
+            )}
+            {selectedTab === editUserTabsConfig.payrolls.id && (
+              <PayrollsForm
+                currentPayrolls={editData.payrolls.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
               />
