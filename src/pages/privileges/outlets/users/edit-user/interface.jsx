@@ -8,6 +8,7 @@ import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { StyledContainer } from "./styles";
 import { EventsForm } from "./forms/EventsForm";
 import { ProjectsForm } from "./forms/ProjectsForm";
+import { AidBudgetsForm } from "./forms/AidBudgetsForm";
 
 function EditUserUI(props) {
   const { selectedTab, handleTabChange, user, editData, handleSubmit } = props;
@@ -56,6 +57,13 @@ function EditUserUI(props) {
             {selectedTab === editUserTabsConfig.projects.id && (
               <ProjectsForm
                 currentProjects={editData.projects.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+              />
+            )}
+            {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
+              <AidBudgetsForm
+                currentAidBudgetUnits={editData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
               />
