@@ -6,6 +6,7 @@ import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { ProjectsForm } from "./forms/ProjectsForm";
+import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
 
 function EditUserUI(props) {
@@ -45,6 +46,13 @@ function EditUserUI(props) {
               selectedTab={selectedTab}
               handleSelectedTab={handleTabChange}
             />
+            {selectedTab === editUserTabsConfig.branches.id && (
+              <BranchesForm
+                currentBranches={editData.branches.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+              />
+            )}
             {selectedTab === editUserTabsConfig.projects.id && (
               <ProjectsForm
                 currentProjects={editData.projects.entries}
