@@ -57,7 +57,7 @@ function EditUserUI(props) {
               <AidBudgetsForm
                 currentAidBudgetUnits={editData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
-                withSubmitButtons={true}
+                withSubmitButtons
               />
             )}
           </Stack>
