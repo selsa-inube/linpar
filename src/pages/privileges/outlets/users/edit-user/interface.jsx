@@ -3,13 +3,14 @@ import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { StyledContainer } from "./styles";
-import { GeneralInformation } from "./tabs/generalInformation";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 
+import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
+
 function EditUserUI(props) {
-  const { selectedTab, handleTabChange, user } = props;
+  const { selectedTab, handleTabChange, user, editData, handleSubmit } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -47,8 +48,12 @@ function EditUserUI(props) {
               selectedTab={selectedTab}
               handleSelectedTab={handleTabChange}
             />
-            {selectedTab === editUserTabsConfig.generalInformation.id && (
-              <GeneralInformation />
+            {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
+              <AidBudgetsForm
+                currentAidBudgetUnits={editData.aidBudgetUnits.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons={true}
+              />
             )}
           </Stack>
         ) : (
