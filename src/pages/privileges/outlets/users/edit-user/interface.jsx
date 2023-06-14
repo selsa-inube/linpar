@@ -6,6 +6,7 @@ import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { ProjectsForm } from "./forms/ProjectsForm";
+import { AidBudgetsForm } from "./forms/AidBudgetsForm";
 import { StyledContainer } from "./styles";
 
 function EditUserUI(props) {
@@ -50,6 +51,13 @@ function EditUserUI(props) {
                 currentProjects={editData.projects.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
+              />
+            )}
+            {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
+              <AidBudgetsForm
+                currentAidBudgetUnits={editData.aidBudgetUnits.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons={true}
               />
             )}
           </Stack>
