@@ -23,14 +23,14 @@ const handleSubmit = (newAidBudgets) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  currentAidBudgets: aidBudgetsFormEditUser,
+  currentAidBudgetUnits: aidBudgetsFormEditUser,
   handleSubmit,
   withSubmitButtons: true,
 };
 
 export const WithoutSubmitButtons = Template.bind({});
 WithoutSubmitButtons.args = {
-  currentAidBudgets: aidBudgetsFormEditUser,
+  currentAidBudgetUnits: aidBudgetsFormEditUser,
   handleSubmit,
   withSubmitButtons: false,
 };
