@@ -21,7 +21,7 @@ function CompleteInvitation() {
     branches: { entries: branchesFormEditUser },
     projects: { entries: projectsFormEditUser },
     events: { entries: eventsFormEditUser },
-    aidBudgets: { entries: aidBudgetsFormEditUser },
+    aidBudgetUnits: { entries: aidBudgetsFormEditUser },
     payrolls: { entries: payrollsFormEditUser },
   });
 
