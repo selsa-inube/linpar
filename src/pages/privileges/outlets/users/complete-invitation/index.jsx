@@ -1,9 +1,9 @@
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
-import { aidBudgetsFormEditUser } from "@src/mocks/apps/privileges/aidBudgetsForm.mock";
-import { branchesFormEditUser } from "@src/mocks/apps/privileges/branchesForm.mock";
-import { eventsFormEditUser } from "@src/mocks/apps/privileges/eventsForm.mock";
-import { payrollsFormEditUser } from "@src/mocks/apps/privileges/payrollsForm.mock";
-import { projectsFormEditUser } from "@src/mocks/apps/privileges/projectsForm.mock";
+import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/aidBudgetsForm.mock";
+import { branchesFormEditUser } from "@mocks/apps/privileges/branchesForm.mock";
+import { eventsFormEditUser } from "@mocks/apps/privileges/eventsForm.mock";
+import { payrollsFormEditUser } from "@mocks/apps/privileges/payrollsForm.mock";
+import { projectsFormEditUser } from "@mocks/apps/privileges/projectsForm.mock";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";

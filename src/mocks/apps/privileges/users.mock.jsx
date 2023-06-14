@@ -322,6 +322,7 @@ const userEntriesDataMock = [
 ];
 
 const positions = [
+  { value: "", label: "" },
   { value: "Diseñador", label: "Diseñador" },
   { value: "Desarrollador", label: "Desarrollador Web" },
   { value: "Product Manager", label: "Product Manager" },

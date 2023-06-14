@@ -27,8 +27,8 @@ Default.args = {
   withSubmitButtons: true,
   currentInformation: {
     id: userEntriesDataMock[0].id,
-    username: userEntriesDataMock[0].username,
-    userID: userEntriesDataMock[0].userID,
+    name: userEntriesDataMock[0].username,
+    identification: userEntriesDataMock[0].userID,
     email: userEntriesDataMock[0].email,
     phone: userEntriesDataMock[0].phone,
     position: userEntriesDataMock[0].position,

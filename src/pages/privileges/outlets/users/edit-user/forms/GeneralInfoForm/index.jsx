@@ -31,8 +31,8 @@ function GeneralInformationForm(props) {
 
   const formik = useFormik({
     initialValues: {
-      name: currentInformation.username,
-      identification: currentInformation.userID,
+      name: currentInformation.name,
+      identification: currentInformation.identification,
       email: currentInformation.email,
       phone: currentInformation.phone,
       position: currentInformation.position,

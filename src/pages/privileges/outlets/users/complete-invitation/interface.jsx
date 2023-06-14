@@ -11,6 +11,7 @@ import {
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
+import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import { EventsForm } from "../edit-user/forms/EventsForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
@@ -29,8 +30,14 @@ function CompleteInvitationUI(props) {
   const invitationCardData = invitation && {
     nombre: invitation.username,
     identificación: invitation.userID,
-    correo: invitation.mail,
+    correo: invitation.email,
     invitación: invitation.invitationDate,
+  };
+
+  const userInformation = invitation && {
+    name: invitation.username,
+    identification: invitation.userID,
+    email: invitation.email,
   };
 
   return (
@@ -58,6 +65,9 @@ function CompleteInvitationUI(props) {
               handleStepChange={handleStepChange}
               currentStep={currentStep}
             />
+            {currentStep === stepsRegisterUserConfig.generalInformation.id && (
+              <GeneralInformationForm currentInformation={userInformation} />
+            )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
               <BranchesForm
                 currentBranches={invitationData.branches.entries}
