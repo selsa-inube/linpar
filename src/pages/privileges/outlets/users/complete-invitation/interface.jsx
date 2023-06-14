@@ -3,8 +3,9 @@ import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
 import { Assisted } from "@src/components/feedback/Assisted";
-import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
+import { EventsForm } from "../edit-user/forms/EventsForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
+import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import {
   CompleteInvitationUserConfig,
   stepsRegisterUserConfig,
@@ -55,15 +56,22 @@ function CompleteInvitationUI(props) {
               handleStepChange={handleStepChange}
               currentStep={currentStep}
             />
+            {currentStep === stepsRegisterUserConfig.branches.id && (
+              <BranchesForm
+                currentBranches={invitationData.branches.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+
             {currentStep === stepsRegisterUserConfig.projects.id && (
               <ProjectsForm
                 currentProjects={invitationData.projects.entries}
                 handleSubmit={handleSubmit}
               />
             )}
-            {currentStep === stepsRegisterUserConfig.payrolls.id && (
-              <PayrollsForm
-                currentPayrolls={invitationData.payrolls.entries}
+            {currentStep === stepsRegisterUserConfig.events.id && (
+              <EventsForm
+                currentEvents={invitationData.events.entries}
                 handleSubmit={handleSubmit}
               />
             )}
