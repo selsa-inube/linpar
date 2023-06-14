@@ -4,28 +4,26 @@ import { AidBudgetsFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 function AidBudgetsForm(props) {
-  const { currentAidBudgetsUnits, handleSubmit, withSubmitButtons } = props;
-  const [aidBudgetsUnits, setAidBudgetsUnits] = useState(
-    currentAidBudgetsUnits
-  );
+  const { currentAidBudgetUnits, handleSubmit, withSubmitButtons } = props;
+  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChangeAidBudgets = (aidBudgetsUnits) => {
-    setAidBudgetsUnits(aidBudgetsUnits);
-    if (!withSubmitButtons) handleSubmit(aidBudgetsUnits);
+  const handleChangeAidBudgets = (aidBudgetUnits) => {
+    setAidBudgetUnits(aidBudgetUnits);
+    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetsUnits);
+      handleSubmit(aidBudgetUnits);
       setIsLoading(false);
     }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
-    setAidBudgetsUnits(currentAidBudgetsUnits);
+    setAidBudgetUnits(currentAidBudgetUnits);
   };
 
   return (
@@ -34,8 +32,8 @@ function AidBudgetsForm(props) {
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      currentAidBudgetsUnits={currentAidBudgetsUnits}
-      aidBudgetsUnits={aidBudgetsUnits}
+      currentAidBudgetUnits={currentAidBudgetUnits}
+      aidBudgetUnits={aidBudgetUnits}
       withSubmitButtons={withSubmitButtons}
     />
   );

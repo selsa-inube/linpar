@@ -3,8 +3,8 @@ import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 
 function AidBudgetsFormUI(props) {
   const {
-    aidBudgetsUnits,
-    currentAidBudgetsUnits,
+    aidBudgetUnits,
+    currentAidBudgetUnits,
     isLoading,
     handleSubmitForm,
     handleReset,
@@ -13,7 +13,7 @@ function AidBudgetsFormUI(props) {
   } = props;
 
   const hasChanges =
-    JSON.stringify(currentAidBudgetsUnits) === JSON.stringify(aidBudgetsUnits);
+    JSON.stringify(currentAidBudgetUnits) === JSON.stringify(aidBudgetUnits);
 
   if (withSubmitButtons) {
     return (
@@ -25,7 +25,7 @@ function AidBudgetsFormUI(props) {
       >
         <AssignmentForm
           handleChange={handleChangeAidBudgets}
-          entries={aidBudgetsUnits}
+          entries={aidBudgetUnits}
           title="Seleccione los presupuestos que desea asignar"
         />
       </FormButtons>
@@ -35,7 +35,7 @@ function AidBudgetsFormUI(props) {
   return (
     <AssignmentForm
       handleChange={handleChangeAidBudgets}
-      entries={aidBudgetsUnits}
+      entries={aidBudgetUnits}
       title="Seleccione los presupuestos que desea asignar"
     />
   );
