@@ -5,6 +5,7 @@ import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
 import { Assisted } from "@src/components/feedback/Assisted";
 import { EventsForm } from "../edit-user/forms/EventsForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
+import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import {
   CompleteInvitationUserConfig,
   stepsRegisterUserConfig,
@@ -55,6 +56,13 @@ function CompleteInvitationUI(props) {
               handleStepChange={handleStepChange}
               currentStep={currentStep}
             />
+            {currentStep === stepsRegisterUserConfig.branches.id && (
+              <BranchesForm
+                currentBranches={invitationData.branches.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+
             {currentStep === stepsRegisterUserConfig.projects.id && (
               <ProjectsForm
                 currentProjects={invitationData.projects.entries}
