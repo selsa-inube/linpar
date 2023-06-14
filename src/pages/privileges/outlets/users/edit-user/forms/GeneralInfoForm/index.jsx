@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 });
 
 function GeneralInformationForm(props) {
-  const { allowSubmit, userData, handleChange } = props;
+  const { withSubmitButtons, currentInformation, handleChange } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -31,11 +31,11 @@ function GeneralInformationForm(props) {
 
   const formik = useFormik({
     initialValues: {
-      name: userData.name,
-      identification: userData.identification,
-      email: userData.email,
-      phone: userData.phone,
-      rol: userData.rol,
+      name: currentInformation.username,
+      identification: currentInformation.userID,
+      email: currentInformation.email,
+      phone: currentInformation.phone,
+      position: currentInformation.position,
     },
     validationSchema,
 
@@ -72,7 +72,7 @@ function GeneralInformationForm(props) {
       loading={loading}
       formik={formik}
       showMessage={showMessage}
-      allowSubmit={allowSubmit}
+      withSubmitButtons={withSubmitButtons}
       handleCloseSectionMessage={handleCloseSectionMessage}
       disabledButtons={disabledButtons}
       formInvalid={formInvalid}

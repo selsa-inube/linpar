@@ -3,7 +3,7 @@ import { Button, Stack, TextField, Text } from "@inube/design-system";
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
 import { MdOutlineModeEdit } from "react-icons/md";
-import { roles } from "@mocks/apps/privileges/users.mock";
+import { positions } from "@mocks/apps/privileges/users.mock";
 
 function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
   if (!showMessage) {
@@ -33,7 +33,7 @@ function GeneralInformationFormUI(props) {
   const {
     formik,
     loading,
-    allowSubmit,
+    withSubmitButtons,
     showMessage,
     handleCloseSectionMessage,
     disabledButtons,
@@ -122,21 +122,21 @@ function GeneralInformationFormUI(props) {
               Cargo
             </Text>
             <StyledSelect
-              value={formik.values.rol}
-              name="rol"
-              id="rol"
+              defaultValue={formik.values.position}
+              name="position"
+              id="position"
               disabled={loading}
               onChange={formik.handleChange}
             >
-              {roles.map((rol) => (
-                <option key={rol.value} value={rol.value}>
-                  {rol.label}
+              {positions.map((position) => (
+                <option key={position.value} value={position.value}>
+                  {position.label}
                 </option>
               ))}
             </StyledSelect>
           </Stack>
         </StyledFormContainer>
-        {allowSubmit && (
+        {withSubmitButtons && (
           <Stack gap="8px" justifyContent="flex-end">
             <Button
               appearance="secondary"
