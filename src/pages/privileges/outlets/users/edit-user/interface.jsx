@@ -9,6 +9,7 @@ import { AidBudgetsForm } from "./forms/AidBudgetsForm";
 import { EventsForm } from "./forms/EventsForm";
 import { PayrollsForm } from "./forms/PayrollsForm";
 import { ProjectsForm } from "./forms/ProjectsForm";
+import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
 
 function EditUserUI(props) {
