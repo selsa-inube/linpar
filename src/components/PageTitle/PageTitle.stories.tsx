@@ -15,13 +15,15 @@ const story = {
   ],
 };
 
-export const Default = (args: PageTitleProps) => <PageTitle {...args} />;
+const Template: StoryFn<PageTitleProps> = (args) => <PageTitle {...args} />;
+
+export const Default = Template.bind({});
 Default.args = {
   title: appsConfig[0].label,
   description: appsConfig[0].description,
 };
 
-export const WithCustomIcon = (args: PageTitleProps) => <PageTitle {...args} />;
+export const WithCustomIcon = Template.bind({});
 WithCustomIcon.args = {
   title: appsConfig[0].label,
   description: appsConfig[0].description,

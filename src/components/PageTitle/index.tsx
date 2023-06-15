@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 interface PageTitleProps {
   title: string;
-  icon: string;
+  icon: JSX.Element;
   description: string;
   navigatePage: string;
 }
