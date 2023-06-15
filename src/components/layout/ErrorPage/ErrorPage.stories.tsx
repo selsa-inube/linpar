@@ -1,4 +1,3 @@
-import React from "react";
 import { ErrorPage, ErrorPageProps } from "./index";
 import selsaLogo from "@src/assets/images/selsa.png";
 import errorImage from "@src/assets/images/timeout.png";

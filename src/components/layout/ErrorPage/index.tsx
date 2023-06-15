@@ -13,11 +13,11 @@ import selsaLogo from "@src/assets/images/selsa.png";
 import errorImage from "@src/assets/images/timeout.png";
 
 interface ErrorPageProps {
-  logo: JSX.Element;
+  logo: string;
   logoAlt: string;
   heading: string;
   description: string;
-  image: JSX.Element;
+  image: string;
   imageAlt: string;
 }
 
