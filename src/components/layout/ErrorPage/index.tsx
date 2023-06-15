@@ -8,10 +8,20 @@ import {
   StyledErrorImage,
 } from "./styles";
 import { MdChevronLeft } from "react-icons/md";
-import selsaLogo from "../../../assets/images/selsa.png";
-import errorImage from "../../../assets/images/timeout.png";
 
-function ErrorPage(props) {
+import selsaLogo from "@src/assets/images/selsa.png";
+import errorImage from "@src/assets/images/timeout.png";
+
+interface ErrorPageProps {
+  logo: JSX.Element;
+  logoAlt: string;
+  heading: string;
+  description: string;
+  image: JSX.Element;
+  imageAlt: string;
+}
+
+function ErrorPage(props: ErrorPageProps) {
   const {
     logo = selsaLogo,
     logoAlt = "Sistemas Enlinea",
@@ -39,3 +49,4 @@ function ErrorPage(props) {
 }
 
 export { ErrorPage };
+export type { ErrorPageProps };
