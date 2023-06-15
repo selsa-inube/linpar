@@ -1,13 +1,14 @@
 import { menuInvitationLinks } from "@pages/privileges/outlets/users/config/menuInvitation.config";
 import { action } from "@storybook/addon-actions";
+import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { MenuOption } from "..";
+import { MenuOption, MenuOptionProps } from "..";
 
 const story = {
   component: [MenuOption],
   title: "components/navigation/MenuOption",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -15,7 +16,7 @@ const story = {
   ],
 };
 
-const Template = (args) => <MenuOption {...args} />;
+const Template: StoryFn<MenuOptionProps> = (args) => <MenuOption {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
