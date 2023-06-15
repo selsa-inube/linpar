@@ -1,12 +1,13 @@
 import { BrowserRouter } from "react-router-dom";
-import { PageTitle } from "./index";
+import { PageTitle, PageTitleProps } from "./index";
 import { appsConfig } from "@pages/home/config/apps.config";
+import { StoryFn } from "@storybook/react";
 
 const story = {
   component: [PageTitle],
   title: "components/PageTitle",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -14,15 +15,13 @@ const story = {
   ],
 };
 
-const Template = (args) => <PageTitle {...args} />;
-
-export const Default = Template.bind({});
+export const Default = (args: PageTitleProps) => <PageTitle {...args} />;
 Default.args = {
   title: appsConfig[0].label,
   description: appsConfig[0].description,
 };
 
-export const WithCustomIcon = Template.bind({});
+export const WithCustomIcon = (args: PageTitleProps) => <PageTitle {...args} />;
 WithCustomIcon.args = {
   title: appsConfig[0].label,
   description: appsConfig[0].description,

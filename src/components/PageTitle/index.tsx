@@ -4,7 +4,14 @@ import { StyledPageTitle, StyledIcon, StyledArrowIcon } from "./styles";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-function PageTitle(props) {
+interface PageTitleProps {
+  title: string;
+  icon: string;
+  description: string;
+  navigatePage: string;
+}
+
+function PageTitle(props: PageTitleProps) {
   const { title, icon, description, navigatePage } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -43,3 +50,4 @@ function PageTitle(props) {
 }
 
 export { PageTitle };
+export type { PageTitleProps };
