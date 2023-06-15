@@ -1,11 +1,17 @@
 import { Stack, Text } from "@inube/design-system";
 import { StyledOption } from "./styles";
 
-function MenuOption(props) {
+interface MenuOptionProps {
+  label: string;
+  icon: JSX.Element;
+  handleClick: () => void;
+}
+
+function MenuOption(props: MenuOptionProps) {
   const { label, icon, handleClick } = props;
 
   return (
-    <StyledOption variant="none" onClick={handleClick} type="button">
+    <StyledOption onClick={handleClick} type="button">
       <Stack gap="12px" alignItems="center">
         {icon}
         <Text typo="bodySmall">{label}</Text>
@@ -15,3 +21,4 @@ function MenuOption(props) {
 }
 
 export { MenuOption };
+export type { MenuOptionProps };
