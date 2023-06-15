@@ -38,7 +38,7 @@ function GeneralInformationFormUI(props) {
     handleCloseSectionMessage,
     disabledButtons,
     formInvalid,
-    handleSubmit,
+    handleSubmitForm,
   } = props;
 
   function stateValue(attribute) {
@@ -54,9 +54,9 @@ function GeneralInformationFormUI(props) {
           <TextField
             label="Nombre"
             placeholder="Ingresa su nombre completo"
-            name="name"
-            id="name"
-            value={formik.values.name}
+            name="username"
+            id="username"
+            value={formik.values.username}
             type="text"
             isDisabled={true}
             size="compact"
@@ -69,9 +69,9 @@ function GeneralInformationFormUI(props) {
           <TextField
             label="Identificación"
             placeholder="Ingrese su número de identificación"
-            name="Identificación"
-            id="Identificación"
-            value={formik.values.identification}
+            name="userID"
+            id="userID"
+            value={formik.values.userID}
             type="number"
             isDisabled={true}
             size="compact"
@@ -151,7 +151,7 @@ function GeneralInformationFormUI(props) {
               appearance="confirm"
               isLoading={loading}
               isDisabled={disabledButtons}
-              handleClick={handleSubmit}
+              handleClick={handleSubmitForm}
             >
               Guardar
             </Button>

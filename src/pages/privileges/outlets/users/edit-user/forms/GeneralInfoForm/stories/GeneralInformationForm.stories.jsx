@@ -7,7 +7,7 @@ const story = {
   component: GeneralInformationForm,
   title: "forms/edit-user/GeneralInformationForm",
   parameters: {
-    actions: { onChange: "handleChange" },
+    actions: { onSubmit: "handleSubmit" },
   },
   decorators: [
     (Story) => (
@@ -18,8 +18,8 @@ const story = {
   ],
 };
 
-const handleChange = (values) => {
-  action("handleChange")(values);
+const handleSubmit = (values) => {
+  action("handleSubmit")(values);
 };
 
 const Default = (args) => <GeneralInformationForm {...args} />;
@@ -27,13 +27,13 @@ Default.args = {
   withSubmitButtons: true,
   currentInformation: {
     id: userEntriesDataMock[0].id,
-    name: userEntriesDataMock[0].username,
-    identification: userEntriesDataMock[0].userID,
+    username: userEntriesDataMock[0].username,
+    userID: userEntriesDataMock[0].userID,
     email: userEntriesDataMock[0].email,
     phone: userEntriesDataMock[0].phone,
     position: userEntriesDataMock[0].position,
   },
-  handleChange: handleChange,
+  handleSubmit: handleSubmit,
 };
 
 export default story;

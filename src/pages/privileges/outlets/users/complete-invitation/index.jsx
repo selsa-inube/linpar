@@ -17,7 +17,7 @@ function CompleteInvitation() {
   );
 
   const [invitationData, setInvitationData] = useState({
-    generalInformation: { entries: {} },
+    generalInformation: { entries: getInvitationInformation() },
     branches: { entries: branchesFormEditUser },
     projects: { entries: projectsFormEditUser },
     events: { entries: eventsFormEditUser },
@@ -46,11 +46,8 @@ function CompleteInvitation() {
     setCurrentStep(step);
   };
 
-  const invitation = getInvitationInformation();
-
   return (
     <CompleteInvitationUI
-      invitation={invitation}
       invitationData={invitationData}
       handleSubmit={handleSubmit}
       handleStepChange={handleStepChange}

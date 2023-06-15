@@ -17,27 +17,19 @@ import { EventsForm } from "../edit-user/forms/EventsForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 
 function CompleteInvitationUI(props) {
-  const {
-    invitationData,
-    handleSubmit,
-    handleStepChange,
-    currentStep,
-    invitation,
-  } = props;
+  const { invitationData, handleSubmit, handleStepChange, currentStep } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
-  const invitationCardData = invitation && {
-    nombre: invitation.username,
-    identificación: invitation.userID,
-    correo: invitation.email,
-    invitación: invitation.invitationDate,
-  };
+  const {
+    generalInformation: { entries: currentInformation },
+  } = invitationData;
 
-  const userInformation = invitation && {
-    name: invitation.username,
-    identification: invitation.userID,
-    email: invitation.email,
+  const invitationCardData = currentInformation && {
+    nombre: currentInformation.username,
+    identificación: currentInformation.userID,
+    correo: currentInformation.email,
+    invitación: currentInformation.invitationDate,
   };
 
   return (
@@ -50,7 +42,7 @@ function CompleteInvitationUI(props) {
               title={CompleteInvitationUserConfig[0].title}
               description={CompleteInvitationUserConfig[0].description}
             />
-            {invitation && (
+            {currentInformation && (
               <SubjectCard
                 subjectData={invitationCardData}
                 title="Informacion del usuario"
@@ -58,7 +50,7 @@ function CompleteInvitationUI(props) {
             )}
           </Stack>
         </Stack>
-        {invitation ? (
+        {currentInformation ? (
           <>
             <Assisted
               steps={Object.values(stepsRegisterUserConfig)}
@@ -66,7 +58,10 @@ function CompleteInvitationUI(props) {
               currentStep={currentStep}
             />
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
-              <GeneralInformationForm currentInformation={userInformation} />
+              <GeneralInformationForm
+                currentInformation={currentInformation}
+                handleSubmit={handleSubmit}
+              />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
               <BranchesForm
@@ -74,7 +69,6 @@ function CompleteInvitationUI(props) {
                 handleSubmit={handleSubmit}
               />
             )}
-
             {currentStep === stepsRegisterUserConfig.projects.id && (
               <ProjectsForm
                 currentProjects={invitationData.projects.entries}
