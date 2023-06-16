@@ -1,16 +1,16 @@
 import { Table } from "@components/data/Table";
-import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
 import { SectionMessage } from "@components/feedback/SectionMessage";
-import { deleteUserMessages } from "../../config/deleteUser.config";
-import { activateUserMessages } from "../../config/activateUser.config";
-import { ActivateUser } from "./ActivateUser";
-import { EditUser } from "./EditUser";
-import { DeleteUser } from "./DeleteUser";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
 import { useState } from "react";
+import { activateUserMessages } from "../../config/activateUser.config";
+import { deleteUserMessages } from "../../config/deleteUser.config";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "../../config/usersTable.config";
+import { ActivateUser } from "./ActivateUser";
+import { DeleteUser } from "./DeleteUser";
+import { EditUser } from "./EditUser";
 
 const initialMessageState = {
   show: false,
@@ -117,6 +117,7 @@ export default function UsersTab(props) {
         actions={actions}
         breakPoints={usersBreakPointsConfig}
         filter={searchText}
+        modalTitle="Usuario"
       />
       {message.show && (
         <SectionMessage
