@@ -1,12 +1,13 @@
-import { ItemNotFound } from "./index";
 import userNotFound from "@src/assets/images/ItemNotFound.png";
 import { BrowserRouter } from "react-router-dom";
+import { ItemNotFound, ItemNotFoundProps } from "./index";
+import { StoryFn } from "@storybook/react";
 
 const story = {
   components: [ItemNotFound],
   title: "layouts/ItemNotFound",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -14,7 +15,8 @@ const story = {
   ],
 };
 
-const Default = (args) => <ItemNotFound {...args} />;
+const Default = (args: ItemNotFoundProps) => <ItemNotFound {...args} />;
+
 Default.args = {
   image: userNotFound,
   title: "ItemNotFound title",

@@ -1,8 +1,15 @@
-import React from "react";
 import { StyledInfo } from "./styles";
 import { Stack, Text, Button, useMediaQuery } from "@inube/design-system";
 
-function ItemNotFound(props) {
+interface ItemNotFoundProps {
+  image: string;
+  title: string;
+  description: string;
+  buttonDescription: string;
+  route: string;
+}
+
+function ItemNotFound(props: ItemNotFoundProps) {
   const { image, title, description, buttonDescription, route } = props;
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -36,3 +43,4 @@ function ItemNotFound(props) {
 }
 
 export { ItemNotFound };
+export type { ItemNotFoundProps };
