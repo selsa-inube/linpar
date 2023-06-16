@@ -4,7 +4,19 @@ import { MenuLink } from "../MenuLink";
 import { MenuOption } from "../MenuOption";
 import { StyledMenu, StyledMenuContainer } from "./styles";
 
-const RenderMenuItems = (props) => {
+interface OptionProps {
+  id: string;
+  label: string;
+  icon: JSX.Element;
+  path?: string;
+  handleClick?: () => void;
+}
+
+interface RenderMenuItemsProps {
+  options: OptionProps[];
+}
+
+const RenderMenuItems = (props: RenderMenuItemsProps) => {
   const { options } = props;
 
   return options.map((option) => {
@@ -14,7 +26,7 @@ const RenderMenuItems = (props) => {
           label={option.label}
           key={option.id}
           icon={option.icon}
-          path={option.path}
+          path={option.path as string}
         />
       );
     }
@@ -23,16 +35,21 @@ const RenderMenuItems = (props) => {
         label={option.label}
         key={option.id}
         icon={option.icon}
-        handleClick={option.handleClick}
+        handleClick={option.handleClick as () => void}
       />
     );
   });
 };
 
-function Menu(props) {
+interface MenuProps {
+  options: OptionProps[];
+  handleClose: () => void;
+}
+
+function Menu(props: MenuProps) {
   const { options, handleClose } = props;
 
-  const mobileMenuRef = useRef(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.addEventListener("mousedown", handleWindowClick);
@@ -42,10 +59,10 @@ function Menu(props) {
     };
   }, []);
 
-  const handleWindowClick = (event) => {
+  const handleWindowClick = (event: MouseEvent) => {
     if (
       mobileMenuRef.current &&
-      !mobileMenuRef.current.contains(event.target)
+      !mobileMenuRef.current.contains(event.target as Node)
     ) {
       handleClose();
     }
@@ -54,12 +71,11 @@ function Menu(props) {
   return (
     <StyledMenu ref={mobileMenuRef}>
       <StyledMenuContainer>
-        <Stack direction="column">
-          <RenderMenuItems options={options} />
-        </Stack>
+        <Stack direction="column">{RenderMenuItems({ options })}</Stack>
       </StyledMenuContainer>
     </StyledMenu>
   );
 }
 
 export { Menu };
+export type { OptionProps, MenuProps };
