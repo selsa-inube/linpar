@@ -1,11 +1,18 @@
-import { Text, Stack, useMediaQuery } from "@inube/design-system";
-import { StyledSubjectCard, StyledIcon } from "./styles";
-import { MdOutlinePushPin } from "react-icons/md";
+import { Stack, Text, useMediaQuery } from "@inube/design-system";
+import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
+import { ILabel } from "@src/components/feedback/InteractiveModal/types";
 import { useState } from "react";
-import { InteractiveModal } from "@components/feedback/InteractiveModal";
+import { MdOutlinePushPin } from "react-icons/md";
+import { StyledIcon, StyledSubjectCard } from "./styles";
 
-function SubjectCard(props) {
-  const { subjectData, title } = props;
+interface SubjectCardProps {
+  subjectData: Record<string, string | number>;
+  title: string;
+  labels?: ILabel[];
+}
+
+function SubjectCard(props: SubjectCardProps) {
+  const { subjectData, title, labels } = props;
   const [showModal, setShowModal] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 970px)");
@@ -38,6 +45,7 @@ function SubjectCard(props) {
           title={title}
           closeModal={handleToggleModal}
           infoData={subjectData}
+          labels={labels}
         />
       )}
     </>
@@ -45,3 +53,4 @@ function SubjectCard(props) {
 }
 
 export { SubjectCard };
+export type { SubjectCardProps };

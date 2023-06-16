@@ -1,7 +1,12 @@
-import styled from "styled-components";
 import { colors } from "@styles/colors";
+import styled from "styled-components";
 
-const StyledSubjectCard = styled.div`
+interface IStyledSubjectCard {
+  isActive: boolean;
+  smallScreen: boolean;
+}
+
+const StyledSubjectCard = styled.div<IStyledSubjectCard>`
   box-sizing: border-box;
   display: flex;
   justify-content: flex-end;
@@ -23,7 +28,11 @@ const StyledSubjectCard = styled.div`
   }
 `;
 
-const StyledIcon = styled.i`
+interface IStyledIcon {
+  isActive: boolean;
+}
+
+const StyledIcon = styled.i<IStyledIcon>`
   display: flex;
   align-items: center;
   justify-content: center;

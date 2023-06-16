@@ -48,7 +48,7 @@ function showActionTitle(actionTitle, mediaQuery) {
   );
 }
 
-function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleFields) {
+function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleLabels) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
@@ -65,7 +65,7 @@ function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleFields) {
         entry={entry}
         title={modalTitle}
         actions={actionContent}
-        titleFields={titleFields}
+        titleLabels={titleLabels}
       />
     </StyledTd>
   );

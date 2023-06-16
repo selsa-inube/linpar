@@ -5,10 +5,10 @@ interface IAction {
   type: string;
 }
 
-interface IField {
+interface ILabel {
   id: string;
   titleName: string;
   priority: number;
 }
 
-export type { IAction, IField };
+export type { IAction, ILabel };
