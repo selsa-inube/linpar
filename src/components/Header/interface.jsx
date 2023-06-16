@@ -46,7 +46,7 @@ function HeaderUI(props) {
       {nav &&
         createPortal(
           <StyledNavWrapper>
-            <Nav navigation={navigationConfig} logoutPath="/logout" />
+            <Nav navigation={navigationConfig} logoutPath="/" />
           </StyledNavWrapper>,
           document.getElementById("portal")
         )}

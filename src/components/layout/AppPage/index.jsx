@@ -10,9 +10,7 @@ function AppPage() {
     <StyledAppPage>
       <Header />
       <StyledContainer smallScreen={smallScreen}>
-        {!smallScreen && (
-          <Nav navigation={navigationConfig} logoutPath="/logout" />
-        )}
+        {!smallScreen && <Nav navigation={navigationConfig} logoutPath="/" />}
 
         <StyledMain>
           <Outlet />
