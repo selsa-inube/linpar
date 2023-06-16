@@ -1,8 +1,12 @@
 import { Text } from "@inube/design-system";
-import React from "react";
 import { StyledFieldset } from "./styles";
 
-function Fieldset(props) {
+interface FieldsetProps {
+  title: string;
+  children: JSX.Element;
+}
+
+function Fieldset(props: FieldsetProps) {
   const { title, children } = props;
 
   return (
