@@ -1,6 +1,5 @@
-import { useMediaQueries, useMediaQuery } from "@inube/design-system";
+import { useMediaQueries, useMediaQuery, Text } from "@inube/design-system";
 import { MdOpenInNew } from "react-icons/md";
-import { Text } from "../Text";
 import {
   StyledTable,
   StyledTbody,
@@ -34,7 +33,7 @@ function showActionTitle(actionTitle, mediaQuery) {
     <>
       {actionTitle.map((action) => (
         <StyledThAction key={`action-${action.id}`}>
-          <Text typoToken="labelMedium" align="center">
+          <Text typo="labelMedium" align="center">
             {action.actionName}
           </Text>
         </StyledThAction>
@@ -42,7 +41,7 @@ function showActionTitle(actionTitle, mediaQuery) {
     </>
   ) : (
     <StyledThAction>
-      <Text typoToken="labelMedium" align="center">
+      <Text typo="labelMedium" align="center">
         Open
       </Text>
     </StyledThAction>
@@ -83,7 +82,7 @@ function TableUI(props) {
         <StyledTr>
           {TitleColumns.map((title) => (
             <StyledThTitle key={`title-${title.id}`}>
-              <Text typoToken="labelMedium">{title.titleName}</Text>
+              <Text typo="labelMedium">{title.titleName}</Text>
             </StyledThTitle>
           ))}
           {showActionTitle(actions, mediaActionOpen)}
@@ -95,11 +94,11 @@ function TableUI(props) {
             {TitleColumns.map((title) =>
               entry[title.id] ? (
                 <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{entry[title.id]} </Text>
+                  <Text typo="bodySmall">{entry[title.id]} </Text>
                 </StyledTd>
               ) : (
                 <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{null}</Text>
+                  <Text typo="bodySmall">{null}</Text>
                 </StyledTd>
               )
             )}

@@ -1,5 +1,4 @@
-import { Text } from "../../data/Text";
-import { Stack } from "@inube/design-system";
+import { Stack, Text } from "@inube/design-system";
 
 import { StyledAppCard, StyledIcon } from "./styles";
 
@@ -16,8 +15,8 @@ function AppCard(props: AppCardProps) {
   return (
     <StyledAppCard to={url}>
       <Stack gap="16px" direction="column">
-        <Text typoToken="titleMedium">{label}</Text>
-        <Text typoToken="bodySmall">{description}</Text>
+        <Text typo="titleMedium">{label}</Text>
+        <Text typo="bodySmall">{description}</Text>
       </Stack>
       <Stack alignItems="flex-end" direction="column">
         <StyledIcon>{icon}</StyledIcon>

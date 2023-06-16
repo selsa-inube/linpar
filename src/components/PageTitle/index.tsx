@@ -1,5 +1,4 @@
-import { Stack, useMediaQuery } from "@inube/design-system";
-import { Text } from "../data/Text";
+import { Stack, Text, useMediaQuery } from "@inube/design-system";
 import { StyledPageTitle, StyledIcon, StyledArrowIcon } from "./styles";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -34,13 +33,13 @@ function PageTitle(props: PageTitleProps) {
             </StyledArrowIcon>
           )}
 
-          <Text as="h1" typoToken={smallScreen ? "titleMedium" : "titleLarge"}>
+          <Text as="h1" typo={smallScreen ? "titleMedium" : "titleLarge"}>
             {title}
           </Text>
         </Stack>
         <Text
-          colorToken="secondary"
-          typoToken={smallScreen ? "bodySmall" : "bodyMedium"}
+          appearance="secondary"
+          typo={smallScreen ? "bodySmall" : "bodyMedium"}
         >
           {description}
         </Text>
