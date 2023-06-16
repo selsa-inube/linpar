@@ -2,7 +2,7 @@ import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
-import { Assisted } from "@src/components/feedback/Assisted";
+import { Assisted } from "@components/feedback/Assisted";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import {
@@ -11,26 +11,25 @@ import {
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
+import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import { EventsForm } from "../edit-user/forms/EventsForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 
 function CompleteInvitationUI(props) {
-  const {
-    invitationData,
-    handleSubmit,
-    handleStepChange,
-    currentStep,
-    invitation,
-  } = props;
+  const { invitationData, handleSubmit, handleStepChange, currentStep } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
-  const invitationCardData = invitation && {
-    nombre: invitation.username,
-    identificación: invitation.userID,
-    correo: invitation.mail,
-    invitación: invitation.invitationDate,
+  const {
+    generalInformation: { entries: currentInformation },
+  } = invitationData;
+
+  const invitationCardData = currentInformation && {
+    nombre: currentInformation.username,
+    identificación: currentInformation.userID,
+    correo: currentInformation.email,
+    invitación: currentInformation.invitationDate,
   };
 
   return (
@@ -43,7 +42,7 @@ function CompleteInvitationUI(props) {
               title={CompleteInvitationUserConfig[0].title}
               description={CompleteInvitationUserConfig[0].description}
             />
-            {invitation && (
+            {currentInformation && (
               <SubjectCard
                 subjectData={invitationCardData}
                 title="Informacion del usuario"
@@ -51,20 +50,25 @@ function CompleteInvitationUI(props) {
             )}
           </Stack>
         </Stack>
-        {invitation ? (
+        {currentInformation ? (
           <>
             <Assisted
               steps={Object.values(stepsRegisterUserConfig)}
               handleStepChange={handleStepChange}
               currentStep={currentStep}
             />
+            {currentStep === stepsRegisterUserConfig.generalInformation.id && (
+              <GeneralInformationForm
+                currentInformation={currentInformation}
+                handleSubmit={handleSubmit}
+              />
+            )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
               <BranchesForm
                 currentBranches={invitationData.branches.entries}
                 handleSubmit={handleSubmit}
               />
             )}
-
             {currentStep === stepsRegisterUserConfig.projects.id && (
               <ProjectsForm
                 currentProjects={invitationData.projects.entries}
