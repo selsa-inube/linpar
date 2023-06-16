@@ -34,8 +34,8 @@ function GeneralInformationForm(props) {
       username: currentInformation.username,
       userID: currentInformation.userID,
       email: currentInformation.email,
-      phone: currentInformation.phone,
-      position: currentInformation.position,
+      phone: currentInformation.phone || "",
+      position: currentInformation.position || "Diseñador",
     },
     validationSchema,
 
@@ -60,6 +60,20 @@ function GeneralInformationForm(props) {
     });
   };
 
+  const handleChangeForm = (event) => {
+    formik
+      .setFieldValue(event.target.name, event.target.value)
+      .then((errors) => {
+        if (withSubmitButtons) return;
+        if (Object.keys(errors).length === 0) {
+          handleSubmit({
+            ...formik.values,
+            [event.target.name]: event.target.value,
+          });
+        }
+      });
+  };
+
   const disabledButtons =
     JSON.stringify(formik.values) === JSON.stringify(formik.initialValues);
 
@@ -77,6 +91,7 @@ function GeneralInformationForm(props) {
       disabledButtons={disabledButtons}
       formInvalid={formInvalid}
       handleSubmitForm={handleSubmitForm}
+      handleChangeForm={handleChangeForm}
     />
   );
 }

@@ -1,6 +1,7 @@
 import { StyledFormContainer, StyledSelect } from "./styles";
-import { Button, Stack, TextField, Text } from "@inube/design-system";
+import { Stack, TextField, Text } from "@inube/design-system";
 import { SectionMessage } from "@components/feedback/SectionMessage";
+import { FormButtons } from "@components/forms/submit/FormButtons";
 import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { positions } from "@mocks/apps/privileges/users.mock";
@@ -39,6 +40,7 @@ function GeneralInformationFormUI(props) {
     disabledButtons,
     formInvalid,
     handleSubmitForm,
+    handleChangeForm,
   } = props;
 
   function stateValue(attribute) {
@@ -94,7 +96,7 @@ function GeneralInformationFormUI(props) {
             size="compact"
             isFullWidth={true}
             state={stateValue("email")}
-            handleChange={formik.handleChange}
+            handleChange={handleChangeForm}
             handleBlur={formik.handleBlur}
           />
 
@@ -113,7 +115,7 @@ function GeneralInformationFormUI(props) {
             size="compact"
             isFullWidth={true}
             state={stateValue("phone")}
-            handleChange={formik.handleChange}
+            handleChange={handleChangeForm}
             handleBlur={formik.handleBlur}
           />
 
@@ -126,7 +128,7 @@ function GeneralInformationFormUI(props) {
               name="position"
               id="position"
               disabled={loading}
-              onChange={formik.handleChange}
+              onChange={handleChangeForm}
             >
               {positions.map((position) => (
                 <option key={position.value} value={position.value}>
@@ -137,25 +139,12 @@ function GeneralInformationFormUI(props) {
           </Stack>
         </StyledFormContainer>
         {withSubmitButtons && (
-          <Stack gap="8px" justifyContent="flex-end">
-            <Button
-              appearance="secondary"
-              type="reset"
-              handleClick={formik.resetForm}
-              isDisabled={disabledButtons}
-            >
-              Cancelar
-            </Button>
-            <Button
-              type="button"
-              appearance="confirm"
-              isLoading={loading}
-              isDisabled={disabledButtons}
-              handleClick={handleSubmitForm}
-            >
-              Guardar
-            </Button>
-          </Stack>
+          <FormButtons
+            handleSubmit={handleSubmitForm}
+            handleReset={formik.resetForm}
+            disabledButtons={disabledButtons}
+            isLoading={loading}
+          />
         )}
         {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
       </form>

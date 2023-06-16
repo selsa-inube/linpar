@@ -2,7 +2,7 @@ import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
-import { Assisted } from "@src/components/feedback/Assisted";
+import { Assisted } from "@components/feedback/Assisted";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import {
