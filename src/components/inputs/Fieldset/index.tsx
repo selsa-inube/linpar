@@ -20,3 +20,4 @@ function Fieldset(props: FieldsetProps) {
 }
 
 export { Fieldset };
+export type { FieldsetProps };
