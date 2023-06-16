@@ -78,4 +78,4 @@ function Menu(props: MenuProps) {
 }
 
 export { Menu };
-export type { IOption, MenuProps };
+export type { MenuProps };
