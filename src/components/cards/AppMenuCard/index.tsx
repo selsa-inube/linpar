@@ -3,7 +3,7 @@ import { Stack } from "@inube/design-system";
 import { StyledAppMenuCard, StyledIcon } from "./styles";
 
 interface AppMenuCardProps {
-  icon: string;
+  icon: JSX.Element;
   label: string;
   description: string;
   url: string;

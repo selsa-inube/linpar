@@ -1,12 +1,12 @@
-import { Text } from "../../data/Text";
 import { Stack } from "@inube/design-system";
+import { Text } from "../../data/Text";
 
 import { StyledAppCard, StyledIcon } from "./styles";
 
 interface AppCardProps {
   label: string;
   description: string;
-  icon: string;
+  icon: JSX.Element;
   url: string;
 }
 
