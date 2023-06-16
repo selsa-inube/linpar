@@ -1,5 +1,6 @@
-import { useMediaQueries, useMediaQuery, Text } from "@inube/design-system";
-import { MdOpenInNew } from "react-icons/md";
+import { useMediaQueries, useMediaQuery } from "@inube/design-system";
+import { Text } from "../Text";
+import { DisplayEntry } from "./DisplayEntry";
 import {
   StyledTable,
   StyledTbody,
@@ -48,7 +49,7 @@ function showActionTitle(actionTitle, mediaQuery) {
   );
 }
 
-function ShowAction(actionContent, entry, mediaQuery) {
+function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleFields) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
@@ -61,13 +62,18 @@ function ShowAction(actionContent, entry, mediaQuery) {
     </>
   ) : (
     <StyledTd>
-      <MdOpenInNew />
+      <DisplayEntry
+        entry={entry}
+        title={modalTitle}
+        actions={actionContent}
+        titleFields={titleFields}
+      />
     </StyledTd>
   );
 }
 
 function TableUI(props) {
-  const { titles, actions, entries, breakPoints } = props;
+  const { titles, actions, entries, breakPoints, modalTitle } = props;
   const mediaActionOpen = useMediaQuery("(max-width: 850px)");
 
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
@@ -102,7 +108,7 @@ function TableUI(props) {
                 </StyledTd>
               )
             )}
-            {ShowAction(actions, entry, mediaActionOpen)}
+            {ShowAction(actions, entry, mediaActionOpen, modalTitle, titles)}
           </StyledTr>
         ))}
       </StyledTbody>
