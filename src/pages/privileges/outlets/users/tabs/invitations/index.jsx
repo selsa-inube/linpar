@@ -117,6 +117,7 @@ export default function InvitationsTab(props) {
         actions={invitationsTableActions}
         breakPoints={invitationsTableBreakpoints}
         filter={searchText}
+        modalTitle="Invitación"
       />
       {message.show && (
         <SectionMessage
