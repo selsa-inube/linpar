@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 });
 
 function GeneralInformationForm(props) {
-  const { allowSubmit, userData, handleChange } = props;
+  const { withSubmitButtons, currentInformation, handleSubmit } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -31,16 +31,17 @@ function GeneralInformationForm(props) {
 
   const formik = useFormik({
     initialValues: {
-      name: userData.name,
-      identification: userData.identification,
-      email: userData.email,
-      phone: userData.phone,
-      rol: userData.rol,
+      username: currentInformation.username,
+      userID: currentInformation.userID,
+      email: currentInformation.email,
+      phone: currentInformation.phone || "",
+      position: currentInformation.position || "Diseñador",
     },
     validationSchema,
 
     onSubmit: () => {
       setLoading(true);
+      handleSubmit(formik.values);
       setTimeout(() => {
         setFormInvalid(false);
         setLoading(false);
@@ -49,7 +50,7 @@ function GeneralInformationForm(props) {
     },
   });
 
-  const handleSubmit = () => {
+  const handleSubmitForm = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length > 0) {
         setShowMessage(true);
@@ -57,7 +58,20 @@ function GeneralInformationForm(props) {
       }
       formik.handleSubmit();
     });
-    handleChange(formik.values);
+  };
+
+  const handleChangeForm = (event) => {
+    formik
+      .setFieldValue(event.target.name, event.target.value)
+      .then((errors) => {
+        if (withSubmitButtons) return;
+        if (Object.keys(errors).length === 0) {
+          handleSubmit({
+            ...formik.values,
+            [event.target.name]: event.target.value,
+          });
+        }
+      });
   };
 
   const disabledButtons =
@@ -72,11 +86,12 @@ function GeneralInformationForm(props) {
       loading={loading}
       formik={formik}
       showMessage={showMessage}
-      allowSubmit={allowSubmit}
+      withSubmitButtons={withSubmitButtons}
       handleCloseSectionMessage={handleCloseSectionMessage}
       disabledButtons={disabledButtons}
       formInvalid={formInvalid}
-      handleSubmit={handleSubmit}
+      handleSubmitForm={handleSubmitForm}
+      handleChangeForm={handleChangeForm}
     />
   );
 }

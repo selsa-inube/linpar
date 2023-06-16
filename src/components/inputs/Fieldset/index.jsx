@@ -1,5 +1,4 @@
 import { Text } from "@inube/design-system";
-import React from "react";
 import { StyledFieldset } from "./styles";
 
 function Fieldset(props) {

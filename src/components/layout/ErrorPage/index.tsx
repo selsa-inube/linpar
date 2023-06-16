@@ -1,6 +1,4 @@
-import React from "react";
-import { Stack, Button } from "@inube/design-system";
-import { Text } from "@components/data/Text";
+import { Stack, Button, Text } from "@inube/design-system";
 import {
   StyledErrorPage,
   StyledCompanyLogo,
@@ -37,8 +35,8 @@ function ErrorPage(props: ErrorPageProps) {
       <StyledGrid>
         <Stack gap="24px" direction="column">
           <Stack gap="16px" direction="column">
-            <Text typoToken="titleLarge">{heading}</Text>
-            <Text typoToken="titleMedium">{description}</Text>
+            <Text typo="titleLarge">{heading}</Text>
+            <Text typo="titleMedium">{description}</Text>
           </Stack>
           <Button iconBefore={<MdChevronLeft size={18} />}>Exit</Button>
         </Stack>
