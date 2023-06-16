@@ -1,7 +1,13 @@
 import { Stack, Text } from "@inube/design-system";
 import { StyledLink } from "./styles";
 
-function MenuLink(props) {
+interface MenuLinkprops {
+  label: string;
+  icon: JSX.Element;
+  path: string;
+}
+
+function MenuLink(props: MenuLinkprops) {
   const { label, icon, path } = props;
 
   return (
@@ -15,3 +21,4 @@ function MenuLink(props) {
 }
 
 export { MenuLink };
+export type { MenuLinkprops };
