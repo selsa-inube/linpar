@@ -11,7 +11,7 @@ import {
   StyledContentButtons,
 } from "./styles";
 
-import { Text } from "../../Text";
+import { Text } from "@inube/design-system";
 
 function Pagination(props) {
   const {
@@ -26,7 +26,7 @@ function Pagination(props) {
   return (
     <StyledContentPagination>
       <StyledContentText>
-        <Text typoToken="bodySmall">
+        <Text typo="bodySmall">
           {firstEntryInPage + 1} - {lastEntryInPage} of {totalRecords}
         </Text>
       </StyledContentText>
