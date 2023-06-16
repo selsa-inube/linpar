@@ -1,14 +1,13 @@
-import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { GeneralInformationForm } from "../index";
 import { action } from "@storybook/addon-actions";
-import { editUserData } from "@mocks/apps/privileges/users.mock";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
 
 const story = {
   component: GeneralInformationForm,
   title: "forms/edit-user/GeneralInformationForm",
   parameters: {
-    actions: { onChange: "handleChange" },
+    actions: { onSubmit: "handleSubmit" },
   },
   decorators: [
     (Story) => (
@@ -19,22 +18,22 @@ const story = {
   ],
 };
 
-const handleChange = (values) => {
-  action("handleChange")(values);
+const handleSubmit = (values) => {
+  action("handleSubmit")(values);
 };
 
 const Default = (args) => <GeneralInformationForm {...args} />;
 Default.args = {
-  allowSubmit: true,
-  userData: {
-    id: editUserData.id,
-    name: editUserData.name,
-    identification: editUserData.identification,
-    email: editUserData.email,
-    phone: editUserData.phone,
-    rol: editUserData.rol,
+  withSubmitButtons: true,
+  currentInformation: {
+    id: userEntriesDataMock[0].id,
+    username: userEntriesDataMock[0].username,
+    userID: userEntriesDataMock[0].userID,
+    email: userEntriesDataMock[0].email,
+    phone: userEntriesDataMock[0].phone,
+    position: userEntriesDataMock[0].position,
   },
-  handleChange: handleChange,
+  handleSubmit: handleSubmit,
 };
 
 export default story;

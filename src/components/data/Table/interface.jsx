@@ -1,6 +1,5 @@
-import { useMediaQueries, useMediaQuery } from "@inube/design-system";
-import { MdOpenInNew } from "react-icons/md";
-import { Text } from "../Text";
+import { useMediaQueries, useMediaQuery, Text } from "@inube/design-system";
+import { DisplayEntry } from "./DisplayEntry";
 import {
   StyledTable,
   StyledTbody,
@@ -34,7 +33,7 @@ function showActionTitle(actionTitle, mediaQuery) {
     <>
       {actionTitle.map((action) => (
         <StyledThAction key={`action-${action.id}`}>
-          <Text typoToken="labelMedium" align="center">
+          <Text typo="labelMedium" align="center">
             {action.actionName}
           </Text>
         </StyledThAction>
@@ -42,14 +41,14 @@ function showActionTitle(actionTitle, mediaQuery) {
     </>
   ) : (
     <StyledThAction>
-      <Text typoToken="labelMedium" align="center">
+      <Text typo="labelMedium" align="center">
         Open
       </Text>
     </StyledThAction>
   );
 }
 
-function ShowAction(actionContent, entry, mediaQuery) {
+function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleLabels) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
@@ -62,13 +61,18 @@ function ShowAction(actionContent, entry, mediaQuery) {
     </>
   ) : (
     <StyledTd>
-      <MdOpenInNew />
+      <DisplayEntry
+        entry={entry}
+        title={modalTitle}
+        actions={actionContent}
+        titleLabels={titleLabels}
+      />
     </StyledTd>
   );
 }
 
 function TableUI(props) {
-  const { titles, actions, entries, breakPoints } = props;
+  const { titles, actions, entries, breakPoints, modalTitle } = props;
   const mediaActionOpen = useMediaQuery("(max-width: 850px)");
 
   const queriesArray = breakPoints.map((breakpoint) => breakpoint.breakpoint);
@@ -83,7 +87,7 @@ function TableUI(props) {
         <StyledTr>
           {TitleColumns.map((title) => (
             <StyledThTitle key={`title-${title.id}`}>
-              <Text typoToken="labelMedium">{title.titleName}</Text>
+              <Text typo="labelMedium">{title.titleName}</Text>
             </StyledThTitle>
           ))}
           {showActionTitle(actions, mediaActionOpen)}
@@ -95,15 +99,15 @@ function TableUI(props) {
             {TitleColumns.map((title) =>
               entry[title.id] ? (
                 <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{entry[title.id]} </Text>
+                  <Text typo="bodySmall">{entry[title.id]} </Text>
                 </StyledTd>
               ) : (
                 <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{null}</Text>
+                  <Text typo="bodySmall">{null}</Text>
                 </StyledTd>
               )
             )}
-            {ShowAction(actions, entry, mediaActionOpen)}
+            {ShowAction(actions, entry, mediaActionOpen, modalTitle, titles)}
           </StyledTr>
         ))}
       </StyledTbody>

@@ -1,15 +1,15 @@
-import React from "react";
-import { AppMenu } from "./index";
+import { StoryFn } from "@storybook/react";
 import {
-  MdPerson,
-  MdOutlineExplore,
-  MdOutlineAddTask,
-  MdOutlineSecurity,
-  MdOutlinePhonelinkSetup,
-  MdOutlinePendingActions,
   MdInventory2,
+  MdOutlineAddTask,
+  MdOutlineExplore,
+  MdOutlinePendingActions,
+  MdOutlinePhonelinkSetup,
+  MdOutlineSecurity,
+  MdPerson,
 } from "react-icons/md";
 import { BrowserRouter } from "react-router-dom";
+import { AppMenu, AppMenuProps } from "./index";
 
 const story = {
   components: [AppMenu],
@@ -18,7 +18,7 @@ const story = {
     layout: "fullscreen",
   },
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -26,7 +26,7 @@ const story = {
   ],
 };
 
-const Privileges = (args) => <AppMenu {...args} />;
+const Privileges = (args: AppMenuProps) => <AppMenu {...args} />;
 Privileges.args = {
   appName: "Privilegios",
   appDescription: "Modifica las propiedades y permisos de tu cuenta",

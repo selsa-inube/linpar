@@ -11,6 +11,7 @@ function Table(props) {
     filter = "",
     pageLength = 10,
     breakPoints,
+    modalTitle,
   } = props;
 
   function filterArray() {
@@ -75,6 +76,7 @@ function Table(props) {
         actions={actions}
         entries={getPageEntries()}
         breakPoints={breakPoints}
+        modalTitle={modalTitle}
       />
       {filterTable().length > pageLength && (
         <Pagination

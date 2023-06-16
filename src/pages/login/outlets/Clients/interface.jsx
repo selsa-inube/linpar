@@ -1,6 +1,5 @@
 import { RadioClient } from "@components/cards/RadioClient";
-import { Text } from "@components/data/Text";
-import { Button, TextField } from "@inube/design-system";
+import { Button, Text, TextField } from "@inube/design-system";
 
 import { MdSearch } from "react-icons/md";
 
@@ -24,10 +23,10 @@ function ClientsUI(props) {
 
   return (
     <StyledClients>
-      <Text as="h2" align="center" typoToken="titleLarge">
+      <Text as="h2" align="center" typo="titleLarge">
         Clientes
       </Text>
-      <Text align="center">
+      <Text typo="bodyMedium" align="center">
         Selecciona la empresa a la que vas a representar
       </Text>
       <form onSubmit={handleSubmit}>
@@ -48,8 +47,8 @@ function ClientsUI(props) {
         )}
         {!filterClients().length && (
           <StyledNoResults>
-            <Text>{`No se encontraron resultados para "${search}".`}</Text>
-            <Text>{`Por favor, intenta modificando los parámetros de búsqueda.`}</Text>
+            <Text typo="bodyMedium">{`No se encontraron resultados para "${search}".`}</Text>
+            <Text typo="bodyMedium">{`Por favor, intenta modificando los parámetros de búsqueda.`}</Text>
           </StyledNoResults>
         )}
         <StyledClientsList scroll={clients.length > 5}>
