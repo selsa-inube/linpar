@@ -16,8 +16,10 @@ function EditUser() {
     editUserTabsConfig.generalInformation.id
   );
 
+  const user = getUserInformation();
+
   const [editData, setEditData] = useState({
-    generalInformation: { entries: {} },
+    generalInformation: { entries: user },
     branches: { entries: branchesFormEditUser },
     projects: { entries: projectsFormEditUser },
     events: { entries: eventsFormEditUser },
@@ -44,8 +46,6 @@ function EditUser() {
       [editKey]: { entries: values },
     }));
   };
-
-  const user = getUserInformation();
 
   return (
     <EditUserUI
