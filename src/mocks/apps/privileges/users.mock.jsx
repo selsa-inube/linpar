@@ -6,6 +6,8 @@ const userEntriesDataMock = [
     userID: "1256545",
     position: "Credit Analyst",
     active: false,
+    email: "dgarzon@sistemasenlinea.com.co",
+    phone: "3123202874",
   },
   {
     id: 12,
@@ -14,6 +16,8 @@ const userEntriesDataMock = [
     userID: "789654",
     position: "Adviser",
     active: true,
+    email: "apinilla@sistemasenlinea.com.co",
+    phone: "1212145789",
   },
   {
     id: 13,
@@ -22,6 +26,8 @@ const userEntriesDataMock = [
     userID: "258963",
     position: "Credit Analyst",
     active: true,
+    email: "crojas@sistemasenlinea.com.co",
+    phone: "1322146789",
   },
   {
     id: 14,
@@ -30,6 +36,8 @@ const userEntriesDataMock = [
     userID: "589647",
     position: "Adviser",
     active: false,
+    email: "jgarcia@sistemasenlinea.com.co",
+    phone: "2322146351",
   },
   {
     id: 15,
@@ -38,6 +46,8 @@ const userEntriesDataMock = [
     userID: "365224",
     position: "Credit Analyst",
     active: true,
+    email: "fcanas@sistemasenlinea.com.co",
+    phone: "2322267530",
   },
   {
     id: 16,
@@ -46,6 +56,8 @@ const userEntriesDataMock = [
     userID: "2357421",
     position: "Adviser",
     active: false,
+    email: "cbabativa@sistemasenlinea.com.co",
+    phone: "1234567890",
   },
   {
     id: 17,
@@ -54,6 +66,8 @@ const userEntriesDataMock = [
     userID: "1000245",
     position: "Credit Analyst",
     active: true,
+    email: "cmarin@sistemasenlinea.com.co",
+    phone: "2322789456",
   },
   {
     id: 18,
@@ -62,6 +76,8 @@ const userEntriesDataMock = [
     userID: "687440",
     position: "Adviser",
     active: true,
+    email: "pperez@gmail.com",
+    phone: "1234567891",
   },
   {
     id: 19,
@@ -70,6 +86,8 @@ const userEntriesDataMock = [
     userID: "352411",
     position: "Adviser",
     active: false,
+    email: "shenao@gmail.com",
+    phone: "1234567892",
   },
   {
     id: 20,
@@ -78,6 +96,8 @@ const userEntriesDataMock = [
     userID: "320145",
     position: "Credit Analyst",
     active: true,
+    email: "dnovoa@gmail.com",
+    phone: "1234567893",
   },
   {
     id: 21,
@@ -86,6 +106,8 @@ const userEntriesDataMock = [
     userID: "4578899",
     position: "Adviser",
     active: false,
+    email: "jgomez@gmail.com",
+    phone: "1234567894",
   },
   {
     id: 22,
@@ -94,6 +116,8 @@ const userEntriesDataMock = [
     userID: "586745",
     position: "Adviser",
     active: true,
+    email: "jcruz@gmail.com",
+    phone: "1234567895",
   },
   {
     id: 23,
@@ -102,6 +126,8 @@ const userEntriesDataMock = [
     userID: "235652",
     position: "Credit Analyst",
     active: false,
+    email: "smejia@gmail.com",
+    phone: "12345678946",
   },
   {
     id: 24,
@@ -110,6 +136,8 @@ const userEntriesDataMock = [
     userID: "3201153",
     position: "Adviser",
     active: true,
+    email: "lamado@gmail.com",
+    phone: "1234567897",
   },
   {
     id: 25,
@@ -118,6 +146,8 @@ const userEntriesDataMock = [
     userID: "0215451",
     position: "Credit Analyst",
     active: true,
+    email: "jfernandez@gmail.com",
+    phone: "1234567898",
   },
   {
     id: 26,
@@ -126,6 +156,8 @@ const userEntriesDataMock = [
     userID: "5656461",
     position: "Adviser",
     active: false,
+    email: "dmorales@gmail.com",
+    phone: "1234567899",
   },
   {
     id: 27,
@@ -134,6 +166,8 @@ const userEntriesDataMock = [
     userID: "841216423",
     position: "Adviser",
     active: true,
+    email: "cgomez@gmail.com",
+    phone: "1234567800",
   },
   {
     id: 28,
@@ -142,14 +176,18 @@ const userEntriesDataMock = [
     userID: "47456444",
     position: "Adviser",
     active: false,
+    email: "fjaramillo@gmail.com",
+    phone: "1234567801",
   },
   {
     id: 29,
-    username: "Jsica Beltran",
+    username: "Jesica Beltran",
     code: "JBELTRAN",
     userID: "22115151",
     position: "Credit Analyst",
     active: false,
+    email: "jbletran@gmail.com",
+    phone: "1234567802",
   },
   {
     id: 30,
@@ -158,6 +196,8 @@ const userEntriesDataMock = [
     userID: "84548774",
     position: "Credit Analyst",
     active: true,
+    email: "sgonzales@gmail.com",
+    phone: "1234567803",
   },
   {
     id: 31,
@@ -166,6 +206,8 @@ const userEntriesDataMock = [
     userID: "84545478",
     position: "Credit Analyst",
     active: true,
+    email: "falvarez@gmail.com",
+    phone: "1234567810",
   },
   {
     id: 32,
@@ -174,6 +216,8 @@ const userEntriesDataMock = [
     userID: "78785744",
     position: "Adviser",
     active: false,
+    email: "fbaquero@gmail.com",
+    phone: "1234567811",
   },
   {
     id: 33,
@@ -182,6 +226,8 @@ const userEntriesDataMock = [
     userID: "845456",
     position: "Adviser",
     active: true,
+    email: "trodriguez@gmail.com",
+    phone: "1234567812",
   },
   {
     id: 34,
@@ -190,6 +236,8 @@ const userEntriesDataMock = [
     userID: "966586",
     position: "Credit Analyst",
     active: false,
+    email: "dzamora@gmail.com",
+    phone: "1234567816",
   },
   {
     id: 35,
@@ -198,6 +246,8 @@ const userEntriesDataMock = [
     userID: "7414542",
     position: "Adviser",
     active: true,
+    email: "bpineda@gmail.com",
+    phone: "1234567817",
   },
   {
     id: 36,
@@ -206,6 +256,8 @@ const userEntriesDataMock = [
     userID: "4001154",
     position: "Credit Analyst",
     active: false,
+    email: "jzambrano@gmail.com",
+    phone: "1234567820",
   },
   {
     id: 37,
@@ -214,6 +266,8 @@ const userEntriesDataMock = [
     userID: "41251321",
     position: "Credit Analyst",
     active: false,
+    email: "alopez@gmail.com",
+    phone: "1234567821",
   },
   {
     id: 38,
@@ -222,6 +276,8 @@ const userEntriesDataMock = [
     userID: "843254432",
     position: "Credit Analyst",
     active: true,
+    email: "cpedraza@gmail.com",
+    phone: "1234567822",
   },
   {
     id: 39,
@@ -230,6 +286,8 @@ const userEntriesDataMock = [
     userID: "8641651",
     position: "Adviser",
     active: true,
+    email: "ctorres@gmail.com",
+    phone: "1234567824",
   },
   {
     id: 40,
@@ -238,6 +296,8 @@ const userEntriesDataMock = [
     userID: "325215",
     position: "Adviser",
     active: false,
+    email: "arosales@gmail.com",
+    phone: "1234567825",
   },
   {
     id: 41,
@@ -246,6 +306,8 @@ const userEntriesDataMock = [
     userID: "141740",
     position: "Credit Analyst",
     active: false,
+    email: "rvargas@gmail.com",
+    phone: "1234567830",
   },
   {
     id: 42,
@@ -254,22 +316,17 @@ const userEntriesDataMock = [
     userID: "9556413",
     position: "Adviser",
     active: true,
+    email: "smaldonado@gmail.com",
+    phone: "1234567837",
   },
 ];
 
-const editUserData = {
-  id: 1,
-  name: "David Leonardo Garzón Páramo",
-  identification: 1013614213,
-  email: "d.garzon@sistemasenlinea.com.co",
-  phone: "3123202874",
-  rol: "Diseñador",
-};
-
-const roles = [
+const positions = [
   { value: "Diseñador", label: "Diseñador" },
   { value: "Desarrollador", label: "Desarrollador Web" },
   { value: "Product Manager", label: "Product Manager" },
+  { value: "Adviser", label: "Adviser" },
+  { value: "Credit Analyst", label: "Credit Analyst" },
 ];
 
-export { userEntriesDataMock, editUserData, roles };
+export { userEntriesDataMock, positions };
