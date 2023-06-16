@@ -1,9 +1,17 @@
-import { StyledAppMenu, StyledTitle, StyledCards } from "./styles";
-import { PageTitle } from "../../PageTitle";
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
 import { Breadcrumbs } from "@inube/design-system";
+import { PageTitle } from "../../PageTitle";
+import { StyledAppMenu, StyledCards, StyledTitle } from "./styles";
+import { IAppOption } from "./types";
 
-function AppMenu(props) {
+interface AppMenuProps {
+  appName: string;
+  appDescription: string;
+  appOptions: Array<IAppOption>;
+  appRoute: string;
+}
+
+function AppMenu(props: AppMenuProps) {
   const { appName, appDescription, appOptions, appRoute } = props;
 
   return (
@@ -32,3 +40,4 @@ function AppMenu(props) {
 }
 
 export { AppMenu };
+export type { AppMenuProps };
