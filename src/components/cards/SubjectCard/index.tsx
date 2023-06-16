@@ -39,7 +39,7 @@ function SubjectCard(props: SubjectCardProps) {
         </StyledIcon>
       </StyledSubjectCard>
       {showModal && (
-        <InfoModal
+        <InteractiveModal
           title={title}
           closeModal={handleToggleModal}
           infoData={subjectData}

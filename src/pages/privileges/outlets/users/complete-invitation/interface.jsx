@@ -1,28 +1,37 @@
 import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
-import { Assisted } from "@components/feedback/Assisted";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
+import { Assisted } from "@src/components/feedback/Assisted";
+import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
+import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import {
   CompleteInvitationUserConfig,
   stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
+import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
+import { EventsForm } from "../edit-user/forms/EventsForm";
+import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 
 function CompleteInvitationUI(props) {
-  const { invitation } = props;
+  const {
+    invitationData,
+    handleSubmit,
+    handleStepChange,
+    currentStep,
+    invitation,
+  } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
-  const invitationCardData = invitation
-    ? {
-        nombre: invitation.username,
-        identificación: invitation.userID,
-        correo: invitation.mail,
-        invitación: invitation.invitationDate,
-      }
-    : null;
+  const invitationCardData = invitation && {
+    nombre: invitation.username,
+    identificación: invitation.userID,
+    correo: invitation.mail,
+    invitación: invitation.invitationDate,
+  };
 
   return (
     <StyledContainer smallScreen={smallScreen}>
@@ -43,7 +52,44 @@ function CompleteInvitationUI(props) {
           </Stack>
         </Stack>
         {invitation ? (
-          <Assisted steps={stepsRegisterUserConfig} />
+          <>
+            <Assisted
+              steps={Object.values(stepsRegisterUserConfig)}
+              handleStepChange={handleStepChange}
+              currentStep={currentStep}
+            />
+            {currentStep === stepsRegisterUserConfig.branches.id && (
+              <BranchesForm
+                currentBranches={invitationData.branches.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+
+            {currentStep === stepsRegisterUserConfig.projects.id && (
+              <ProjectsForm
+                currentProjects={invitationData.projects.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+            {currentStep === stepsRegisterUserConfig.events.id && (
+              <EventsForm
+                currentEvents={invitationData.events.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+            {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
+              <AidBudgetsForm
+                currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+            {currentStep === stepsRegisterUserConfig.payrolls.id && (
+              <PayrollsForm
+                currentPayrolls={invitationData.payrolls.entries}
+                handleSubmit={handleSubmit}
+              />
+            )}
+          </>
         ) : (
           <ItemNotFound
             image={invitationNotFoundConfig.image}

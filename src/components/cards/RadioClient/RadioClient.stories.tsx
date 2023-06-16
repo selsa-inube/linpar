@@ -1,4 +1,4 @@
-import { RadioClient } from "./index";
+import { RadioClient, RadioClientProps } from "./index";
 import { clientsDataMock } from "@mocks/login/clients.mock";
 
 const story = {
@@ -9,7 +9,8 @@ const story = {
   },
 };
 
-const Default = (args) => <RadioClient {...args} />;
+const Default = (args: RadioClientProps) => <RadioClient {...args} />;
+
 Default.args = {
   id: clientsDataMock[2].id,
   name: "client",
