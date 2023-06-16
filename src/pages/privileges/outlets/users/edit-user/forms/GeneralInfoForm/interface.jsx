@@ -30,6 +30,103 @@ function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
   );
 }
 
+function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
+  function stateValue(attribute) {
+    if (!formik.touched[attribute]) return "pending";
+    if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
+    return "valid";
+  }
+
+  return (
+    <StyledFormContainer>
+      <TextField
+        label="Nombre"
+        placeholder="Ingresa su nombre completo"
+        name="username"
+        id="username"
+        value={formik.values.username}
+        type="text"
+        isDisabled={true}
+        size="compact"
+        isFullWidth={true}
+        maxLength={40}
+        minLength={1}
+        readOnly={true}
+      />
+
+      <TextField
+        label="Identificación"
+        placeholder="Ingrese su número de identificación"
+        name="userID"
+        id="userID"
+        value={formik.values.userID}
+        type="number"
+        isDisabled={true}
+        size="compact"
+        isFullWidth={true}
+        readOnly={true}
+      />
+
+      <TextField
+        label="Correo"
+        placeholder="Ingrese su dirección de correo electrónico"
+        name="email"
+        id="email"
+        value={formik.values.email}
+        type="email"
+        iconAfter={<MdOutlineModeEdit size={18} />}
+        isInvalid={formik.errors.email && formInvalid}
+        errorMessage={formik.errors.email}
+        validMessage="El correo electrónico ingresado es válido"
+        isDisabled={loading}
+        size="compact"
+        isFullWidth={true}
+        state={stateValue("email")}
+        handleChange={handleChangeForm}
+        handleBlur={formik.handleBlur}
+      />
+
+      <TextField
+        label="Número de teléfono"
+        placeholder="Ingrese su número telefónico"
+        name="phone"
+        id="phone"
+        value={formik.values.phone}
+        type="tel"
+        iconAfter={<MdOutlineModeEdit size={18} />}
+        isInvalid={formik.errors.phone && formInvalid}
+        errorMessage={formik.errors.phone}
+        validMessage="El número de teléfono ingresado es válido"
+        isDisabled={loading}
+        size="compact"
+        isFullWidth={true}
+        state={stateValue("phone")}
+        handleChange={handleChangeForm}
+        handleBlur={formik.handleBlur}
+      />
+
+      <Stack direction="column" gap="8px">
+        <Text typo="labelMedium" padding="0px 0px 0px 16px">
+          Cargo
+        </Text>
+        <StyledSelect
+          defaultValue={formik.values.position}
+          name="position"
+          id="position"
+          disabled={loading}
+          onChange={handleChangeForm}
+        >
+          {positions.map((position) => (
+            <option key={position.value} value={position.value}>
+              {position.label}
+            </option>
+          ))}
+        </StyledSelect>
+      </Stack>
+    </StyledFormContainer>
+  );
+}
+
 function GeneralInformationFormUI(props) {
   const {
     formik,
@@ -43,112 +140,24 @@ function GeneralInformationFormUI(props) {
     handleChangeForm,
   } = props;
 
-  function stateValue(attribute) {
-    if (!formik.touched[attribute]) return "pending";
-    if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
-    return "valid";
+  if (withSubmitButtons) {
+    return (
+      <>
+        <FormButtons
+          handleSubmit={handleSubmitForm}
+          handleReset={formik.resetForm}
+          disabledButtons={disabledButtons}
+          isLoading={loading}
+        >
+          {renderFormFields(formik, loading, formInvalid, handleChangeForm)}
+        </FormButtons>
+        {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
+      </>
+    );
   }
 
   return (
-    <>
-      <form>
-        <StyledFormContainer>
-          <TextField
-            label="Nombre"
-            placeholder="Ingresa su nombre completo"
-            name="username"
-            id="username"
-            value={formik.values.username}
-            type="text"
-            isDisabled={true}
-            size="compact"
-            isFullWidth={true}
-            maxLength={40}
-            minLength={1}
-            readOnly={true}
-          />
-
-          <TextField
-            label="Identificación"
-            placeholder="Ingrese su número de identificación"
-            name="userID"
-            id="userID"
-            value={formik.values.userID}
-            type="number"
-            isDisabled={true}
-            size="compact"
-            isFullWidth={true}
-            readOnly={true}
-          />
-
-          <TextField
-            label="Correo"
-            placeholder="Ingrese su dirección de correo electrónico"
-            name="email"
-            id="email"
-            value={formik.values.email}
-            type="email"
-            iconAfter={<MdOutlineModeEdit size={18} />}
-            isInvalid={formik.errors.email && formInvalid}
-            errorMessage={formik.errors.email}
-            validMessage="El correo electrónico ingresado es válido"
-            isDisabled={loading}
-            size="compact"
-            isFullWidth={true}
-            state={stateValue("email")}
-            handleChange={handleChangeForm}
-            handleBlur={formik.handleBlur}
-          />
-
-          <TextField
-            label="Número de teléfono"
-            placeholder="Ingrese su número telefónico"
-            name="phone"
-            id="phone"
-            value={formik.values.phone}
-            type="tel"
-            iconAfter={<MdOutlineModeEdit size={18} />}
-            isInvalid={formik.errors.phone && formInvalid}
-            errorMessage={formik.errors.phone}
-            validMessage="El número de teléfono ingresado es válido"
-            isDisabled={loading}
-            size="compact"
-            isFullWidth={true}
-            state={stateValue("phone")}
-            handleChange={handleChangeForm}
-            handleBlur={formik.handleBlur}
-          />
-
-          <Stack direction="column" gap="8px">
-            <Text typo="labelMedium" padding="0px 0px 0px 16px">
-              Cargo
-            </Text>
-            <StyledSelect
-              defaultValue={formik.values.position}
-              name="position"
-              id="position"
-              disabled={loading}
-              onChange={handleChangeForm}
-            >
-              {positions.map((position) => (
-                <option key={position.value} value={position.value}>
-                  {position.label}
-                </option>
-              ))}
-            </StyledSelect>
-          </Stack>
-        </StyledFormContainer>
-        {withSubmitButtons && (
-          <FormButtons
-            handleSubmit={handleSubmitForm}
-            handleReset={formik.resetForm}
-            disabledButtons={disabledButtons}
-            isLoading={loading}
-          />
-        )}
-        {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
-      </form>
-    </>
+    <>{renderFormFields(formik, loading, formInvalid, handleChangeForm)}</>
   );
 }
 

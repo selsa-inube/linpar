@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
 
-const StyledFormContainer = styled.div`
+const StyledFormContainer = styled.form`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
