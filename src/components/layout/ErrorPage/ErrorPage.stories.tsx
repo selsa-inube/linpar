@@ -1,14 +1,13 @@
-import React from "react";
-import { ErrorPage } from "./index";
-import selsaLogo from "../../../assets/images/selsa.png";
-import errorImage from "../../../assets/images/timeout.png";
+import { ErrorPage, ErrorPageProps } from "./index";
+import selsaLogo from "@src/assets/images/selsa.png";
+import errorImage from "@src/assets/images/timeout.png";
 
 const story = {
   components: [ErrorPage],
   title: "layouts/Error",
 };
 
-const Default = (args) => <ErrorPage {...args} />;
+const Default = (args: ErrorPageProps) => <ErrorPage {...args} />;
 Default.args = {
   logo: selsaLogo,
   logoAlt: "Sistemas Enlinea",
