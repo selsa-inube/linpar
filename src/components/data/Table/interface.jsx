@@ -1,5 +1,4 @@
-import { useMediaQueries, useMediaQuery } from "@inube/design-system";
-import { Text } from "../Text";
+import { useMediaQueries, useMediaQuery, Text } from "@inube/design-system";
 import { DisplayEntry } from "./DisplayEntry";
 import {
   StyledTable,
