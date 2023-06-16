@@ -7,7 +7,7 @@ import { IAppOption } from "./types";
 interface AppMenuProps {
   appName: string;
   appDescription: string;
-  appOptions: Array<IAppOption>;
+  appOptions: IAppOption[];
   appRoute: string;
 }
 
