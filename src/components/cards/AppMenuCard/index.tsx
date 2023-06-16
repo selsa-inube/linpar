@@ -1,5 +1,4 @@
-import { Text } from "@components/data/Text";
-import { Stack } from "@inube/design-system";
+import { Stack, Text } from "@inube/design-system";
 import { StyledAppMenuCard, StyledIcon } from "./styles";
 
 interface AppMenuCardProps {
@@ -17,10 +16,10 @@ function AppMenuCard(props: AppMenuCardProps) {
         <Stack gap="4px" alignItems="center" direction="column">
           <StyledIcon>{icon}</StyledIcon>
           <Stack gap="4px" direction="column">
-            <Text align="center" typoToken="titleMedium">
+            <Text align="center" typo="titleMedium">
               {label}
             </Text>
-            <Text align="center" typoToken="bodySmall" colorToken="secondary">
+            <Text align="center" typo="bodySmall" appearance="secondary">
               {description}
             </Text>
           </Stack>
