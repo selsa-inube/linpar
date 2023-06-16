@@ -78,4 +78,69 @@ const appsConfig = [
   },
 ];
 
-export { appsConfig };
+const navigationConfig = {
+  title: "Menú",
+  sections: {
+    administrate: {
+      name: "Administrar",
+      links: {
+        privileges: {
+          id: "privileges",
+          label: "Privilegios",
+          icon: <MdVpnKey />,
+          path: "/privileges",
+        },
+        accounting: {
+          id: "accounting",
+          label: "contabilidad",
+          icon: <MdMoney />,
+          path: "/accounting",
+        },
+        contacts: {
+          id: "contacts",
+          label: "contactos",
+          icon: <MdContacts />,
+          path: "/contacts",
+        },
+        crm: {
+          id: "crm",
+          label: "CRM",
+          icon: <MdSupervisedUserCircle />,
+          path: "/crm",
+        },
+        documents: {
+          id: "documents",
+          label: "Documentos",
+          icon: <MdFolder />,
+          path: "/documents",
+        },
+        marketing: {
+          id: "marketing",
+          label: "Marketing",
+          icon: <MdOutlineDesignServices />,
+          path: "/marketing",
+        },
+        inventory: {
+          id: "inventory",
+          label: "Inventario",
+          icon: <MdInventory />,
+          path: "/inventory",
+        },
+        workflows: {
+          id: "workflows",
+          label: "Flujos de trabajo",
+          icon: <MdLineStyle />,
+          path: "/workflows",
+        },
+        projects: {
+          id: "projects",
+          label: "Gestión de proyectos",
+          icon: <MdTableView />,
+          path: "/projects",
+        },
+      },
+    },
+  },
+};
+
+export { appsConfig, navigationConfig };

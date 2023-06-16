@@ -54,11 +54,6 @@ const StyledNavWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-
-  & nav {
-    height: 100vh;
-    overflow-y: auto;
-  }
 `;
 
 export {

@@ -1,15 +1,19 @@
 import { Outlet } from "react-router-dom";
-import { appsConfig } from "@pages/home/config/apps.config";
+import { navigationConfig } from "@pages/home/config/apps.config";
 import { Header } from "../../Header";
-import { Nav } from "../../navigation/Nav";
+import { Nav, useMediaQuery } from "@inube/design-system";
 import { StyledAppPage, StyledContainer, StyledMain } from "./styles";
 
 function AppPage() {
+  const smallScreen = useMediaQuery("(max-width: 849px)");
   return (
     <StyledAppPage>
       <Header />
-      <StyledContainer>
-        <Nav links={appsConfig} title="Menú" />
+      <StyledContainer smallScreen={smallScreen}>
+        {!smallScreen && (
+          <Nav navigation={navigationConfig} logoutPath="/logout" />
+        )}
+
         <StyledMain>
           <Outlet />
         </StyledMain>

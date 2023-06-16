@@ -9,19 +9,9 @@ const StyledAppPage = styled.div`
 
 const StyledContainer = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: ${(props) =>
+    props.smallScreen ? "auto" : "auto 1fr"};
   overflow: hidden;
-  & nav {
-    width: 249px;
-    display: flex;
-  }
-
-  @media (max-width: 849px) {
-    grid-template-columns: auto;
-    & nav {
-      display: none;
-    }
-  }
 `;
 
 const StyledMain = styled.main`
