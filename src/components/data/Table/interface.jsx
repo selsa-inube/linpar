@@ -1,5 +1,4 @@
-import { useMediaQueries, useMediaQuery } from "@inube/design-system";
-import { Text } from "../Text";
+import { useMediaQueries, useMediaQuery, Text } from "@inube/design-system";
 import { DisplayEntry } from "./DisplayEntry";
 import {
   StyledTable,
@@ -34,7 +33,7 @@ function showActionTitle(actionTitle, mediaQuery) {
     <>
       {actionTitle.map((action) => (
         <StyledThAction key={`action-${action.id}`}>
-          <Text typoToken="labelMedium" align="center">
+          <Text typo="labelMedium" align="center">
             {action.actionName}
           </Text>
         </StyledThAction>
@@ -42,14 +41,14 @@ function showActionTitle(actionTitle, mediaQuery) {
     </>
   ) : (
     <StyledThAction>
-      <Text typoToken="labelMedium" align="center">
+      <Text typo="labelMedium" align="center">
         Open
       </Text>
     </StyledThAction>
   );
 }
 
-function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleFields) {
+function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleLabels) {
   return !mediaQuery ? (
     <>
       {actionContent.map((action) => (
@@ -66,7 +65,7 @@ function ShowAction(actionContent, entry, mediaQuery, modalTitle, titleFields) {
         entry={entry}
         title={modalTitle}
         actions={actionContent}
-        titleFields={titleFields}
+        titleLabels={titleLabels}
       />
     </StyledTd>
   );
@@ -88,7 +87,7 @@ function TableUI(props) {
         <StyledTr>
           {TitleColumns.map((title) => (
             <StyledThTitle key={`title-${title.id}`}>
-              <Text typoToken="labelMedium">{title.titleName}</Text>
+              <Text typo="labelMedium">{title.titleName}</Text>
             </StyledThTitle>
           ))}
           {showActionTitle(actions, mediaActionOpen)}
@@ -100,11 +99,11 @@ function TableUI(props) {
             {TitleColumns.map((title) =>
               entry[title.id] ? (
                 <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{entry[title.id]} </Text>
+                  <Text typo="bodySmall">{entry[title.id]} </Text>
                 </StyledTd>
               ) : (
                 <StyledTd key={`e-${entry[title.id]}`}>
-                  <Text typoToken="bodySmall">{null}</Text>
+                  <Text typo="bodySmall">{null}</Text>
                 </StyledTd>
               )
             )}

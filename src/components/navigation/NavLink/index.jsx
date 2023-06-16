@@ -1,5 +1,4 @@
-import { Text } from "../../data/Text";
-import { Stack } from "@inube/design-system";
+import { Stack, Text } from "@inube/design-system";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { StyledLink } from "./styles";
 
@@ -15,9 +14,7 @@ function NavLink(props) {
     >
       <Stack gap="24px" alignItems="center">
         {icon}
-        <Text typoToken={isSelected ? "labelLarge" : "bodyMedium"}>
-          {label}
-        </Text>
+        <Text typo={isSelected ? "labelLarge" : "bodyMedium"}>{label}</Text>
       </Stack>
       <MdKeyboardArrowRight />
     </StyledLink>

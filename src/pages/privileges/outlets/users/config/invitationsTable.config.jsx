@@ -12,8 +12,8 @@ const invitationsTableTitles = [
     priority: 1,
   },
   {
-    id: "mail",
-    titleName: "Mail",
+    id: "email",
+    titleName: "Email",
     priority: 2,
   },
   {

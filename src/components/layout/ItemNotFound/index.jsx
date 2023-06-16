@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledInfo } from "./styles";
 import { Stack, Text, Button, useMediaQuery } from "@inube/design-system";
 

@@ -1,8 +1,7 @@
-import { Stack } from "@inube/design-system";
+import { Stack, Text } from "@inube/design-system";
 import { MdClose } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { StyledIcon } from "../../Header/styles";
-import { Text } from "../../data/Text";
 import { NavLink } from "../NavLink";
 import {
   StyledDivisor,
@@ -29,7 +28,7 @@ function Nav(props) {
         )}
 
         <StyledTitle>
-          <Text typoToken="titleSmall">{title}</Text>
+          <Text typo="titleSmall">{title}</Text>
         </StyledTitle>
         <StyledNavList>
           {links.map((link) => (
@@ -47,7 +46,7 @@ function Nav(props) {
         <StyledDivisor />
       </Stack>
       <StyledFooter>
-        <Text typoToken="labelMedium">© 2023 Inube</Text>
+        <Text typo="labelMedium">© 2023 Inube</Text>
       </StyledFooter>
     </StyledNav>
   );
