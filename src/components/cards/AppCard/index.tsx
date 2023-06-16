@@ -1,5 +1,4 @@
-import { Stack } from "@inube/design-system";
-import { Text } from "../../data/Text";
+import { Stack, Text } from "@inube/design-system";
 
 import { StyledAppCard, StyledIcon } from "./styles";
 
