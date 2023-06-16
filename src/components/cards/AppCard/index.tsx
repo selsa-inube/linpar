@@ -3,7 +3,14 @@ import { Stack } from "@inube/design-system";
 
 import { StyledAppCard, StyledIcon } from "./styles";
 
-function AppCard(props) {
+interface AppCardProps {
+  label: string;
+  description: string;
+  icon: string;
+  url: string;
+}
+
+function AppCard(props: AppCardProps) {
   const { label, description, icon, url } = props;
 
   return (
@@ -20,3 +27,4 @@ function AppCard(props) {
 }
 
 export { AppCard };
+export type { AppCardProps };

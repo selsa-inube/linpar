@@ -1,8 +1,15 @@
-import { Text } from "../../data/Text";
+import { Text } from "@components/data/Text";
 import { Stack } from "@inube/design-system";
 import { StyledAppMenuCard, StyledIcon } from "./styles";
 
-function AppMenuCard(props) {
+interface AppMenuCardProps {
+  icon: string;
+  label: string;
+  description: string;
+  url: string;
+}
+
+function AppMenuCard(props: AppMenuCardProps) {
   const { icon, label, description, url } = props;
   return (
     <Stack direction="column">
@@ -24,3 +31,4 @@ function AppMenuCard(props) {
 }
 
 export { AppMenuCard };
+export type { AppMenuCardProps };

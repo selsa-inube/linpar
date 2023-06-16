@@ -24,8 +24,8 @@ const editUserTabsConfig = {
     isDisabled: false,
     label: "Unidades presupuestales de auxilios",
   },
-  payroll: {
-    id: "payroll",
+  payrolls: {
+    id: "payrolls",
     isDisabled: false,
     label: "Nómina",
   },
