@@ -7,11 +7,11 @@ interface DisplayEntryProps {
   entry: Record<string, string | number>;
   actions: IAction[];
   title: string;
-  titleFields: ITitles[];
+  titleLabels: ITitles[];
 }
 
 function DisplayEntry(props: DisplayEntryProps) {
-  const { entry, actions, title, titleFields } = props;
+  const { entry, actions, title, titleLabels } = props;
 
   const [showModal, setShowModal] = useState(false);
 
@@ -28,7 +28,7 @@ function DisplayEntry(props: DisplayEntryProps) {
           closeModal={handleToggleModal}
           infoData={entry}
           actions={actions}
-          fields={titleFields}
+          labels={titleLabels}
         />
       )}
     </>

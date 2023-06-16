@@ -6,7 +6,7 @@ import {
   MdOutlineShortcut,
 } from "react-icons/md";
 import { InteractiveModal, InteractiveModalProps } from "..";
-import { IAction } from "../types";
+import { IAction, ILabel } from "../types";
 
 const story = {
   component: InteractiveModal,
@@ -54,7 +54,7 @@ const actions: IAction[] = [
   },
 ];
 
-const fields = [
+const labels: ILabel[] = [
   {
     id: "userID",
     titleName: "User Id",
@@ -89,12 +89,12 @@ Default.args = {
   infoData: data,
 };
 
-export const WithFields = Template.bind({});
-WithFields.args = {
+export const WithLabels = Template.bind({});
+WithLabels.args = {
   title: "User Information",
   closeModal: closeInteractiveModal,
   infoData: data,
-  fields,
+  labels,
 };
 
 export const WithActions = Template.bind({});
@@ -103,7 +103,7 @@ WithActions.args = {
   closeModal: closeInteractiveModal,
   infoData: data,
   actions,
-  fields,
+  labels,
 };
 
 export default story;

@@ -8,24 +8,24 @@ import {
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import { StyledActionContainer, StyledModal } from "./styles";
-import { IAction, IField } from "./types";
+import { IAction, ILabel } from "./types";
 
 interface InteractiveModalProps {
   title: string;
   closeModal: () => void;
   infoData: Record<string, string | number>;
   actions?: IAction[];
-  fields?: IField[];
+  labels?: ILabel[];
 }
 
 function InteractiveModal(props: InteractiveModalProps) {
-  const { title, closeModal, infoData, actions, fields } = props;
+  const { title, closeModal, infoData, actions, labels } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
   const hasActions = actions && actions.length > 0;
 
-  const hasFields = fields && fields.length > 0;
+  const hasLabels = labels && labels.length > 0;
 
   return createPortal(
     <Blanket>
@@ -37,8 +37,8 @@ function InteractiveModal(props: InteractiveModalProps) {
               <MdClear size={24} cursor="pointer" onClick={closeModal} />
             </Stack>
             {hasActions && <Text typo="titleMedium">Información</Text>}
-            {hasFields
-              ? fields.map(
+            {hasLabels
+              ? labels.map(
                   (field, id) =>
                     infoData[field.id] && (
                       <TextField
