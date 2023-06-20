@@ -1,4 +1,5 @@
-import { DecisionModal } from "..";
+import { StoryFn } from "@storybook/react";
+import { DecisionModal, DecisionModalProps } from "..";
 import { action } from "@storybook/addon-actions";
 
 const story = {
@@ -6,7 +7,9 @@ const story = {
   title: "components/feedback/DecisionModal",
 };
 
-const Template = (args) => <DecisionModal {...args} />;
+const Template: StoryFn<DecisionModalProps> = (args) => (
+  <DecisionModal {...args} />
+);
 
 const closeDecisionModal = () => {
   action("DecisionModal closed")();

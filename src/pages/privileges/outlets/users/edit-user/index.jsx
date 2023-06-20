@@ -17,7 +17,7 @@ function EditUser() {
   );
 
   const [editData, setEditData] = useState({
-    generalInformation: { entries: {} },
+    generalInformation: { entries: getUserInformation() },
     branches: { entries: branchesFormEditUser },
     projects: { entries: projectsFormEditUser },
     events: { entries: eventsFormEditUser },
@@ -45,13 +45,10 @@ function EditUser() {
     }));
   };
 
-  const user = getUserInformation();
-
   return (
     <EditUserUI
       selectedTab={selectedTab}
       handleTabChange={handleTabChange}
-      user={user}
       editData={editData}
       handleSubmit={handleSubmit}
     />
