@@ -5,6 +5,10 @@ function BranchesForm(props) {
   const { currentBranches, handleSubmit, withSubmitButtons } = props;
   const [branches, setBranches] = useState(currentBranches);
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState({
+    visible: false,
+    type: "",
+  });
 
   const handleChangeBranches = (branches) => {
     setBranches(branches);
@@ -14,15 +18,25 @@ function BranchesForm(props) {
   const handleSubmitForm = () => {
     setIsLoading(true);
 
-    // If this function is async, the form will be submitted before the state is updated
-    handleSubmit(branches);
     setTimeout(() => {
+      handleSubmit(branches);
       setIsLoading(false);
+      setMessage({
+        visible: true,
+        type: "success",
+      });
     }, 1500);
   };
 
   const handleReset = () => {
     setBranches(currentBranches);
+  };
+
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+      type: "",
+    });
   };
 
   return (
@@ -34,6 +48,8 @@ function BranchesForm(props) {
       currentBranches={currentBranches}
       branches={branches}
       withSubmitButtons={withSubmitButtons}
+      message={message}
+      onCloseSectionMessage={handleCloseSectionMessage}
     />
   );
 }

@@ -2,7 +2,7 @@ import { StyledFormContainer, StyledSelect } from "./styles";
 import { Stack, TextField, Text } from "@inube/design-system";
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
+import { generalInfoMessages } from "./config/messages.config";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { positions } from "@mocks/apps/privileges/users.mock";
 
@@ -16,7 +16,7 @@ function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
   }
 
   const { title, description, icon, appearance } =
-    messageGeneralInfoConfig[messageType];
+    generalInfoMessages[messageType];
 
   return (
     <SectionMessage
