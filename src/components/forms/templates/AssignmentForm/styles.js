@@ -15,8 +15,8 @@ const StyledEntriesContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 344px;
-  overflow-y: scroll;
+  max-height: 344px;
+  overflow-y: auto;
   margin-top: 32px;
 `;
 
@@ -26,8 +26,8 @@ const StyledOptionsContainer = styled.div`
 `;
 
 export {
-  StyledHeadContainer,
   StyledEntriesContainer,
   StyledForm,
+  StyledHeadContainer,
   StyledOptionsContainer,
 };
