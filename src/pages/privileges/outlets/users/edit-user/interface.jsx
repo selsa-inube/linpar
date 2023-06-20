@@ -5,6 +5,7 @@ import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
+import { GeneralInformationForm } from "./forms/GeneralInfoForm";
 import { AidBudgetsForm } from "./forms/AidBudgetsForm";
 import { EventsForm } from "./forms/EventsForm";
 import { PayrollsForm } from "./forms/PayrollsForm";
@@ -13,15 +14,19 @@ import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
 
 function EditUserUI(props) {
-  const { selectedTab, handleTabChange, user, editData, handleSubmit } = props;
+  const { selectedTab, handleTabChange, editData, handleSubmit } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
-  const userCardData = user && {
-    nombre: user.username,
-    identificación: user.userID,
-    codigo: user.code,
-    rol: user.position,
+  const {
+    generalInformation: { entries: currentInformation },
+  } = editData;
+
+  const userCardData = currentInformation && {
+    nombre: currentInformation.username,
+    identificación: currentInformation.userID,
+    codigo: currentInformation.code,
+    rol: currentInformation.position,
   };
 
   return (
@@ -34,7 +39,7 @@ function EditUserUI(props) {
               title={editUserOptionsConfig.editUserPage.label}
               description={editUserOptionsConfig.editUserPage.description}
             />
-            {user && (
+            {currentInformation && (
               <SubjectCard
                 subjectData={userCardData}
                 title="Informacion del usuario"
@@ -42,13 +47,20 @@ function EditUserUI(props) {
             )}
           </Stack>
         </Stack>
-        {user ? (
+        {currentInformation ? (
           <Stack gap="32px" direction="column">
             <Tabs
               tabs={Object.values(editUserTabsConfig)}
               selectedTab={selectedTab}
               handleSelectedTab={handleTabChange}
             />
+            {selectedTab === editUserTabsConfig.generalInformation.id && (
+              <GeneralInformationForm
+                currentInformation={editData.generalInformation.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+              />
+            )}
             {selectedTab === editUserTabsConfig.branches.id && (
               <BranchesForm
                 currentBranches={editData.branches.entries}
