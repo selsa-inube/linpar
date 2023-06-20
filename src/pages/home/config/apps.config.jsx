@@ -92,13 +92,13 @@ const navigationConfig = {
         },
         accounting: {
           id: "accounting",
-          label: "contabilidad",
+          label: "Contabilidad",
           icon: <MdMoney />,
           path: "/accounting",
         },
         contacts: {
           id: "contacts",
-          label: "contactos",
+          label: "Contactos",
           icon: <MdContacts />,
           path: "/contacts",
         },
