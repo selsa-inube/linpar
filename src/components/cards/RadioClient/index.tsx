@@ -1,4 +1,4 @@
-import { Text } from "@components/data/Text";
+import { Text } from "@inube/design-system";
 import { StyledRadioClient, StyledRadio, StyledImage } from "./styles";
 
 interface RadioClientProps {
@@ -22,7 +22,7 @@ function RadioClient(props: RadioClientProps) {
         value={value}
         onChange={handleChange}
       />
-      <Text>{label}</Text>
+      <Text typo="bodyMedium">{label}</Text>
       <StyledImage src={logo} alt="Logo de empresa" />
     </StyledRadioClient>
   );

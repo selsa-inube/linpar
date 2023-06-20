@@ -8,7 +8,8 @@ import {
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import { StyledActionContainer, StyledModal } from "./styles";
-import { IAction, ILabel } from "./types";
+import { IAction } from "@src/components/data/Table/types";
+import { ILabel } from "./types";
 
 interface InteractiveModalProps {
   title: string;
