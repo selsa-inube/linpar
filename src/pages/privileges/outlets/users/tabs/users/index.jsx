@@ -20,7 +20,7 @@ const initialMessageState = {
   appearance: "",
 };
 
-export default function UsersTab(props) {
+function UsersTab(props) {
   const { searchText } = props;
   const [users, setUsers] = useState(userEntriesDataMock);
   const [message, setMessage] = useState(initialMessageState);
@@ -132,3 +132,5 @@ export default function UsersTab(props) {
     </>
   );
 }
+
+export { UsersTab }
