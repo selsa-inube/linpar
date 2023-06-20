@@ -20,7 +20,7 @@ const initialMessageState = {
   appearance: "",
 };
 
-export default function InvitationsTab(props) {
+function InvitationsTab(props) {
   const { searchText } = props;
   const [message, setMessage] = useState(initialMessageState);
   const [invitations, setInvitations] = useState(invitationEntriesDataMock);
@@ -132,3 +132,5 @@ export default function InvitationsTab(props) {
     </>
   );
 }
+
+export { InvitationsTab }
