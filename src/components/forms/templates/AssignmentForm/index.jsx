@@ -8,14 +8,14 @@ function AssignmentForm(props) {
 
   const menuOptions = [
     {
-      id: "deallocate-all",
-      label: "Desasignar todos",
+      id: "allocate-all",
+      label: "Asignar todos",
       handleClick: () => handleToggleAllEntries(true),
       icon: null,
     },
     {
-      id: "allocate-all",
-      label: "Asignar todos",
+      id: "deallocate-all",
+      label: "Desasignar todos",
       handleClick: () => handleToggleAllEntries(false),
       icon: null,
     },
