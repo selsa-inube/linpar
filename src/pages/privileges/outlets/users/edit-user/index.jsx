@@ -16,10 +16,8 @@ function EditUser() {
     editUserTabsConfig.generalInformation.id
   );
 
-  const user = getUserInformation();
-
   const [editData, setEditData] = useState({
-    generalInformation: { entries: user },
+    generalInformation: { entries: getUserInformation() },
     branches: { entries: branchesFormEditUser },
     projects: { entries: projectsFormEditUser },
     events: { entries: eventsFormEditUser },
@@ -51,7 +49,6 @@ function EditUser() {
     <EditUserUI
       selectedTab={selectedTab}
       handleTabChange={handleTabChange}
-      user={user}
       editData={editData}
       handleSubmit={handleSubmit}
     />
