@@ -10,34 +10,34 @@ interface MenuProps {
   handleClose: () => void;
 }
 
+const renderMenuItems = (options: IOption[]) => {
+  return options.map((option) => {
+    if (option.path) {
+      return (
+        <MenuLink
+          label={option.label}
+          key={option.id}
+          icon={option.icon}
+          path={option.path}
+        />
+      );
+    }
+    if (option.handleClick) {
+      return (
+        <MenuOption
+          label={option.label}
+          key={option.id}
+          icon={option.icon}
+          handleClick={option.handleClick}
+        />
+      );
+    }
+    return null;
+  });
+};
+
 function Menu(props: MenuProps) {
   const { options, handleClose } = props;
-
-  const renderMenuItems = () => {
-    return options.map((option) => {
-      if (option.path) {
-        return (
-          <MenuLink
-            label={option.label}
-            key={option.id}
-            icon={option.icon}
-            path={option.path}
-          />
-        );
-      }
-      if (option.handleClick) {
-        return (
-          <MenuOption
-            label={option.label}
-            key={option.id}
-            icon={option.icon}
-            handleClick={option.handleClick}
-          />
-        );
-      }
-      return null;
-    });
-  };
 
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -61,7 +61,7 @@ function Menu(props: MenuProps) {
   return (
     <StyledMenu ref={mobileMenuRef}>
       <StyledMenuContainer>
-        <Stack direction="column">{renderMenuItems()}</Stack>
+        <Stack direction="column">{renderMenuItems(options)}</Stack>
       </StyledMenuContainer>
     </StyledMenu>
   );
