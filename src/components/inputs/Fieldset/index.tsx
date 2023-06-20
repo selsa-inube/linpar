@@ -1,7 +1,12 @@
 import { Text } from "@inube/design-system";
 import { StyledFieldset } from "./styles";
 
-function Fieldset(props) {
+interface FieldsetProps {
+  title: string;
+  children: JSX.Element;
+}
+
+function Fieldset(props: FieldsetProps) {
   const { title, children } = props;
 
   return (
@@ -15,3 +20,4 @@ function Fieldset(props) {
 }
 
 export { Fieldset };
+export type { FieldsetProps };

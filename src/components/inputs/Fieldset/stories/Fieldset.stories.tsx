@@ -1,12 +1,12 @@
-import React from "react";
-import { Fieldset } from "..";
+import { StoryFn } from "@storybook/react";
+import { Fieldset, FieldsetProps } from "..";
 
 const story = {
   component: Fieldset,
   title: "components/inputs/Fieldset",
 };
 
-const Template = (args) => <Fieldset {...args} />;
+const Template: StoryFn<FieldsetProps> = (args) => <Fieldset {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

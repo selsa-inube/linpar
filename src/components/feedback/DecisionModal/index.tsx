@@ -5,12 +5,21 @@ import {
   Text,
   useMediaQuery,
 } from "@inube/design-system";
-import { StyledModal } from "./styles";
-import { MdClear } from "react-icons/md";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import { MdClear } from "react-icons/md";
+import { StyledModal } from "./styles";
 
-function DecisionModal(props) {
+interface DecisionModalProps {
+  title: string;
+  description: string;
+  appearance: "primary" | "secondary" | "remove";
+  actionText: string;
+  closeModal: () => void;
+  handleClick: () => void;
+}
+
+function DecisionModal(props: DecisionModalProps) {
   const {
     title,
     description,
@@ -71,8 +80,9 @@ function DecisionModal(props) {
         </Stack>
       </StyledModal>
     </Blanket>,
-    document.getElementById("decision")
+    document.getElementById("decision")!
   );
 }
 
 export { DecisionModal };
+export type { DecisionModalProps };
