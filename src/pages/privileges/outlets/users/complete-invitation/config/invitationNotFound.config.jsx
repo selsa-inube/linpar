@@ -4,7 +4,7 @@ const invitationNotFoundConfig = {
   image: invitationNotFound,
   title: "¡Ups! Invitación no encontrada...",
   description:
-    "La invitación no se encuentra en la base de datos, por favor modifique los parámetros de búsqueda.",
+    "La invitación que estás buscando no se encuentra disponible en estos momentos.",
   buttonDescription: "Volver",
   route: "/privileges/users",
 };
