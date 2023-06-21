@@ -1,20 +1,20 @@
 import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
+import { Assisted } from "@components/feedback/Assisted";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
-import { Assisted } from "@components/feedback/Assisted";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
+import { EventsForm } from "../edit-user/forms/EventsForm";
+import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
+import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
+import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import {
   CompleteInvitationUserConfig,
   stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
-import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
-import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
-import { EventsForm } from "../edit-user/forms/EventsForm";
-import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 
 function CompleteInvitationUI(props) {
   const { invitationData, handleSubmit, handleStepChange, currentStep } = props;

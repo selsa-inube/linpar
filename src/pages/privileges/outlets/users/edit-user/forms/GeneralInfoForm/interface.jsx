@@ -3,7 +3,7 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { Stack, Text, TextField } from "@inube/design-system";
 import { positions } from "@mocks/apps/privileges/users.mock";
 import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
-import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
+import { generalInfoMessages } from "./config/messages.config";
 import {
   StyledErrorMessageContainer,
   StyledFormContainer,
@@ -20,7 +20,7 @@ function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
   }
 
   const { title, description, icon, appearance } =
-    messageGeneralInfoConfig[messageType];
+    generalInfoMessages[messageType];
 
   return (
     <SectionMessage
