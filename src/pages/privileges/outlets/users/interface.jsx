@@ -20,8 +20,8 @@ import {
   StyledOptionsContainer,
   StyledTextFieldContainer,
 } from "./styles";
-import InvitationsTab from "./tabs/invitations";
-import UsersTab from "./tabs/users";
+import { InvitationsTab } from "./tabs/invitations";
+import { UsersTab } from "./tabs/users";
 
 export default function UsersUI(props) {
   const {

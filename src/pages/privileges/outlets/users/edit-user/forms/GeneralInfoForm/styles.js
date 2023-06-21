@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { colors } from "@styles/colors";
+import styled from "styled-components";
 
 const StyledFormContainer = styled.form`
   width: 100%;
@@ -35,4 +35,19 @@ const StyledSelect = styled.select`
   }
 `;
 
-export { StyledFormContainer, StyledSelect };
+const StyledErrorMessageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  pointer-events: none;
+  color: ${colors.sys.actions.remove.filled};
+
+  & svg {
+    width: 14px;
+    height: 14px;
+    margin-top: 8px;
+    padding-left: 5px;
+  }
+`;
+
+export { StyledErrorMessageContainer, StyledFormContainer, StyledSelect };
