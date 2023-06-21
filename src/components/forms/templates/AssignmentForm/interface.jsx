@@ -40,7 +40,7 @@ function AssignmentFormUI(props) {
   return (
     <StyledForm>
       <Fieldset title={title}>
-        <StyledHeadContainer>
+        <StyledHeadContainer smallScreen={smallScreen}>
           <TextField
             type="search"
             iconBefore={<MdSearch size={22} />}
