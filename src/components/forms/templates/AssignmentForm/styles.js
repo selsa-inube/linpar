@@ -6,7 +6,8 @@ const StyledForm = styled.form`
 
 const StyledHeadContainer = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: ${(props) =>
+    props.smallScreen ? "auto 1fr" : "32% 1fr"};
   grid-gap: 16px;
   align-items: center;
 `;
