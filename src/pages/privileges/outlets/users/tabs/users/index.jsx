@@ -133,4 +133,4 @@ function UsersTab(props) {
   );
 }
 
-export { UsersTab }
+export { UsersTab };
