@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { InviteUI } from "./interface";
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
+import { InviteUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -36,7 +36,7 @@ const validationSchema = Yup.object({
 
   email: Yup.string()
     .matches(
-      /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i,
+      /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,63}$/i,
       "Este campo debe tener una dirección de correo electrónico válida"
     )
     .max(80, "Debe tener 80 maximo caracteres")
