@@ -7,6 +7,7 @@ import {
   StyledStepsMobile,
   StyledStepsMobileId,
   StyledButton,
+  StyledStepsDesktop,
 } from "./styles";
 
 function AssistedUI(props) {
@@ -34,7 +35,7 @@ function AssistedUI(props) {
 
   if (smallScreen) {
     return (
-      <Stack gap="16px" alignItems="center">
+      <Stack gap="16px" alignItems="center" justifyContent="center">
         <StyledButton>
           <Button
             variant="none"
@@ -72,36 +73,38 @@ function AssistedUI(props) {
   }
 
   return (
-    <Stack direction="column" gap="8px">
-      <Stack alignItems="center">
-        <Button
-          variant="none"
-          iconBefore={<MdArrowBack size={18} />}
-          handleClick={handlePreviousStep}
-          isDisabled={currentStep === steps[0].id}
-        >
-          <Text
-            typo="labelLarge"
-            appearance={currentStep === steps[0].id ? "disabled" : "primary"}
+    <StyledStepsDesktop>
+      <Stack direction="column" gap="8px">
+        <Stack alignItems="center">
+          <Button
+            variant="none"
+            iconBefore={<MdArrowBack size={18} />}
+            handleClick={handlePreviousStep}
+            isDisabled={currentStep === steps[0].id}
           >
-            Prev
-          </Text>
-        </Button>
-        <StyledSteps>{steps.map(renderStep)}</StyledSteps>
-        <Button
-          variant="none"
-          iconAfter={<MdArrowForward size={18} />}
-          handleClick={handleNextStep}
-        >
-          <Text typo="labelLarge" appearance="primary">
-            Next
-          </Text>
-        </Button>
+            <Text
+              typo="labelLarge"
+              appearance={currentStep === steps[0].id ? "disabled" : "primary"}
+            >
+              Prev
+            </Text>
+          </Button>
+          <StyledSteps>{steps.map(renderStep)}</StyledSteps>
+          <Button
+            variant="none"
+            iconAfter={<MdArrowForward size={18} />}
+            handleClick={handleNextStep}
+          >
+            <Text typo="labelLarge" appearance="primary">
+              Next
+            </Text>
+          </Button>
+        </Stack>
+        <Text typo="labelLarge" appearance="secondary" align="center">
+          {currentStepInfo.stepDescription}
+        </Text>
       </Stack>
-      <Text typo="labelLarge" appearance="secondary" align="center">
-        {currentStepInfo.stepDescription}
-      </Text>
-    </Stack>
+    </StyledStepsDesktop>
   );
 }
 
