@@ -1,10 +1,14 @@
-import { StyledFormContainer, StyledSelect } from "./styles";
-import { Stack, TextField, Text } from "@inube/design-system";
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
-import { MdOutlineModeEdit } from "react-icons/md";
+import { Stack, Text, TextField } from "@inube/design-system";
 import { positions } from "@mocks/apps/privileges/users.mock";
+import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
+import { messageGeneralInfoConfig } from "./config/messageGeneralInfoConfig";
+import {
+  StyledErrorMessageContainer,
+  StyledFormContainer,
+  StyledSelect,
+} from "./styles";
 
 function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
   if (!showMessage) {
@@ -115,6 +119,7 @@ function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
           id="position"
           disabled={loading}
           onChange={handleChangeForm}
+          required
         >
           {positions.map((position) => (
             <option key={position.value} value={position.value}>
@@ -122,6 +127,14 @@ function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
             </option>
           ))}
         </StyledSelect>
+        {formik.errors.position && formInvalid && (
+          <StyledErrorMessageContainer>
+            <MdOutlineError />
+            <Text typo="bodySmall" margin="8px 0px 0px 4px" appearance="error">
+              ({formik.errors.position})
+            </Text>
+          </StyledErrorMessageContainer>
+        )}
       </Stack>
     </StyledFormContainer>
   );
