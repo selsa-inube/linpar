@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { GeneralInformationFormUI } from "./interface";
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
+import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1000;
 
@@ -20,6 +20,8 @@ const validationSchema = Yup.object({
     .required("Este campo no puede estar vacío")
     .max(10, "Debe tener 10 caracteres")
     .min(10, "Debe tener 10 caracteres"),
+
+  position: Yup.string().required("Debe seleccionar una opción"),
 });
 
 function GeneralInformationForm(props) {
@@ -35,7 +37,7 @@ function GeneralInformationForm(props) {
       userID: currentInformation.userID,
       email: currentInformation.email,
       phone: currentInformation.phone || "",
-      position: currentInformation.position || "Diseñador",
+      position: currentInformation.position || "",
     },
     validationSchema,
 

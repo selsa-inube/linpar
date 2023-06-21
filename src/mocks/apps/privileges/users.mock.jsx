@@ -322,6 +322,7 @@ const userEntriesDataMock = [
 ];
 
 const positions = [
+  { value: "", label: "Seleccione una opción" },
   { value: "Diseñador", label: "Diseñador" },
   { value: "Desarrollador", label: "Desarrollador Web" },
   { value: "Product Manager", label: "Product Manager" },
@@ -329,4 +330,4 @@ const positions = [
   { value: "Credit Analyst", label: "Credit Analyst" },
 ];
 
-export { userEntriesDataMock, positions };
+export { positions, userEntriesDataMock };
