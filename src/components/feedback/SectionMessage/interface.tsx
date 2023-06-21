@@ -3,7 +3,20 @@ import { MdClear } from "react-icons/md";
 import { ProgressBar } from "../ProgressBar";
 import { StyledSectionMessage, StyledIcon } from "./styles";
 
-function SectionMessageUI(props) {
+interface SectionMessageUIProps {
+  icon: JSX.Element | null;
+  title: string;
+  description: string;
+  appearance: string;
+  duration: number;
+  handleMouseEnter: () => void;
+  closeSectionMessage: () => void;
+  handleMouseLeave: () => void;
+  isPaused: boolean;
+  isMessageResponsive: boolean;
+}
+
+function SectionMessageUI(props: SectionMessageUIProps) {
   const {
     icon,
     title,
@@ -61,3 +74,4 @@ function SectionMessageUI(props) {
 }
 
 export { SectionMessageUI };
+export type { SectionMessageUIProps };
