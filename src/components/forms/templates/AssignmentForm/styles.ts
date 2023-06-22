@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
+interface IStyledHeadContainer {
+  smallScreen: boolean;
+}
+
 const StyledForm = styled.form`
   width: 100%;
 `;
 
-const StyledHeadContainer = styled.div`
+const StyledHeadContainer = styled.div<IStyledHeadContainer>`
   display: grid;
   grid-template-columns: ${(props) =>
     props.smallScreen ? "auto 1fr" : "32% 1fr"};
