@@ -2,7 +2,16 @@ import { useState } from "react";
 import { SectionMessageUI } from "./interface";
 import { useMediaQuery } from "@inube/design-system";
 
-function SectionMessage(props) {
+interface SectionMessageProps {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  appearance: string;
+  duration: number;
+  closeSectionMessage: () => void;
+}
+
+function SectionMessage(props: SectionMessageProps) {
   const {
     icon,
     title,
@@ -35,3 +44,4 @@ function SectionMessage(props) {
 }
 
 export { SectionMessage };
+export type { SectionMessageProps };

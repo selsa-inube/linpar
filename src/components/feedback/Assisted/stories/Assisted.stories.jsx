@@ -53,6 +53,8 @@ const Template = (args) => <Assisted {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   steps: stepsMock,
+  handleStepChange: () => {},
+  currentStep: 3,
 };
 
 export default story;
