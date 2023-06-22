@@ -1,7 +1,8 @@
-import { deleteUserModal } from "../../../config/deleteUser.config";
-import { MdOutlineDelete } from "react-icons/md";
-import { StyledIconDelete } from "./styles";
 import { DecisionModal } from "@components/feedback/DecisionModal";
+import { Button } from "@inube/design-system";
+import { MdOutlineDelete } from "react-icons/md";
+import { deleteUserModal } from "../../../config/deleteUser.config";
+import { StyledIconDelete } from "./styles";
 
 function DeleteUserModal(user, closeModal, handleDeleteUser) {
   let messageType = "delete";
@@ -21,13 +22,31 @@ function DeleteUserModal(user, closeModal, handleDeleteUser) {
 }
 
 function DeleteUserUI(props) {
-  const { user, showModal, handleShowModal, handleDeleteUser, closeModal } =
-    props;
+  const {
+    user,
+    showModal,
+    handleShowModal,
+    handleDeleteUser,
+    closeModal,
+    showComplete,
+  } = props;
   return (
     <>
-      <StyledIconDelete>
-        <MdOutlineDelete onClick={handleShowModal} />
-      </StyledIconDelete>
+      {showComplete ? (
+        <Button
+          iconBefore={<MdOutlineDelete size={18} />}
+          handleClick={handleShowModal}
+          variant="none"
+          appearance="remove"
+        >
+          Delete
+        </Button>
+      ) : (
+        <StyledIconDelete>
+          <MdOutlineDelete onClick={handleShowModal} />
+        </StyledIconDelete>
+      )}
+
       {showModal && DeleteUserModal(user, closeModal, handleDeleteUser)}
     </>
   );
