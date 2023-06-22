@@ -133,4 +133,4 @@ function InvitationsTab(props) {
   );
 }
 
-export { InvitationsTab }
+export { InvitationsTab };
