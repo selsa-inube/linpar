@@ -14,6 +14,7 @@ import {
   StyledHeadContainer,
   StyledOptionsContainer,
 } from "./styles";
+import { IEntries } from "./types";
 import { IOption } from "@components/navigation/Menu/types";
 
 interface AssignmentFormUIProps {
@@ -22,11 +23,7 @@ interface AssignmentFormUIProps {
   handleFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleToggleAllEntries: (allocate: boolean) => void;
   handleToggleEntry: (id: string) => void;
-  entries: {
-    id: string;
-    value: string;
-    isActive: boolean;
-  }[];
+  entries: IEntries[];
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;

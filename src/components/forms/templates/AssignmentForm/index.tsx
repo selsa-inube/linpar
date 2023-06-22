@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { AssignmentFormUI } from "./interface";
+import { IEntries } from "./types";
 import { IOption } from "@components/navigation/Menu/types";
 
 interface AssignmentFormProps {
-  handleChange: (entries: any[]) => void;
-  entries: any[];
+  handleChange: (entries: IEntries[]) => void;
+  entries: IEntries[];
   title: string;
 }
 
