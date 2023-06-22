@@ -1,23 +1,20 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
 
-const StyledStepsDesktop = styled.div`
-  display: flex;
-  max-width: 1100px;
-  justify-content: center;
-`;
-
 const StyledSteps = styled.ul`
   display: flex;
-  width: 100%;
+  width: 90%;
+  max-width: 700px;
   margin: 0px;
   padding: 0px;
+  justify-content: center;
 `;
 
 const StyledStepsMobile = styled.div`
   display: flex;
-  width: 55vw;
+  width: 90%;
   max-width: 430px;
+  align-items: center;
   flex-direction: column;
   gap: 8px;
 `;
@@ -39,10 +36,4 @@ const StyledStepsMobileId = styled.div`
   border-radius: 50%;
 `;
 
-export {
-  StyledStepsDesktop,
-  StyledButton,
-  StyledSteps,
-  StyledStepsMobile,
-  StyledStepsMobileId,
-};
+export { StyledButton, StyledSteps, StyledStepsMobile, StyledStepsMobileId };

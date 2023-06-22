@@ -7,7 +7,6 @@ import {
   StyledStepsMobile,
   StyledStepsMobileId,
   StyledButton,
-  StyledStepsDesktop,
 } from "./styles";
 
 function AssistedUI(props) {
@@ -45,7 +44,7 @@ function AssistedUI(props) {
           />
         </StyledButton>
         <StyledStepsMobile>
-          <Stack gap="8px" alignItems="center">
+          <Stack gap="8px" alignItems="center" justifyContent="center">
             <StyledStepsMobileId>
               <Text typo="labelMedium" appearance="primary">
                 {steps[steps.length - 1].id === currentStep ? (
@@ -73,38 +72,36 @@ function AssistedUI(props) {
   }
 
   return (
-    <StyledStepsDesktop>
-      <Stack direction="column" gap="8px">
-        <Stack alignItems="center">
-          <Button
-            variant="none"
-            iconBefore={<MdArrowBack size={18} />}
-            handleClick={handlePreviousStep}
-            isDisabled={currentStep === steps[0].id}
+    <Stack direction="column" gap="8px">
+      <Stack alignItems="center" justifyContent="center">
+        <Button
+          variant="none"
+          iconBefore={<MdArrowBack size={18} />}
+          handleClick={handlePreviousStep}
+          isDisabled={currentStep === steps[0].id}
+        >
+          <Text
+            typo="labelLarge"
+            appearance={currentStep === steps[0].id ? "disabled" : "primary"}
           >
-            <Text
-              typo="labelLarge"
-              appearance={currentStep === steps[0].id ? "disabled" : "primary"}
-            >
-              Prev
-            </Text>
-          </Button>
-          <StyledSteps>{steps.map(renderStep)}</StyledSteps>
-          <Button
-            variant="none"
-            iconAfter={<MdArrowForward size={18} />}
-            handleClick={handleNextStep}
-          >
-            <Text typo="labelLarge" appearance="primary">
-              Next
-            </Text>
-          </Button>
-        </Stack>
-        <Text typo="labelLarge" appearance="secondary" align="center">
-          {currentStepInfo.stepDescription}
-        </Text>
+            Prev
+          </Text>
+        </Button>
+        <StyledSteps>{steps.map(renderStep)}</StyledSteps>
+        <Button
+          variant="none"
+          iconAfter={<MdArrowForward size={18} />}
+          handleClick={handleNextStep}
+        >
+          <Text typo="labelLarge" appearance="primary">
+            Next
+          </Text>
+        </Button>
       </Stack>
-    </StyledStepsDesktop>
+      <Text typo="labelLarge" appearance="secondary" align="center">
+        {currentStepInfo.stepDescription}
+      </Text>
+    </Stack>
   );
 }
 
