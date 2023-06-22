@@ -4,7 +4,7 @@ import { ProgressBar } from "../ProgressBar";
 import { StyledSectionMessage, StyledIcon } from "./styles";
 
 interface SectionMessageUIProps {
-  icon: JSX.Element | null;
+  icon: JSX.Element;
   title: string;
   description: string;
   appearance: string;
