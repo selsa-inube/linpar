@@ -14,7 +14,7 @@ import {
   StyledHeadContainer,
   StyledOptionsContainer,
 } from "./styles";
-import { IEntries } from "./types";
+import { IEntry } from "./types";
 import { IOption } from "@components/navigation/Menu/types";
 
 interface AssignmentFormUIProps {
@@ -23,7 +23,7 @@ interface AssignmentFormUIProps {
   handleFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleToggleAllEntries: (allocate: boolean) => void;
   handleToggleEntry: (id: string) => void;
-  entries: IEntries[];
+  entries: IEntry[];
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
@@ -55,7 +55,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
   return (
     <StyledForm>
       <Fieldset title={title}>
-        <>
+        <Stack direction="column">
           <StyledHeadContainer smallScreen={smallScreen}>
             <TextField
               type="search"
@@ -116,7 +116,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               </Stack>
             ))}
           </StyledEntriesContainer>
-        </>
+        </Stack>
       </Fieldset>
     </StyledForm>
   );

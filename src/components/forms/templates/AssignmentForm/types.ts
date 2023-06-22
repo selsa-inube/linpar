@@ -1,7 +1,7 @@
-interface IEntries {
+interface IEntry {
   id: string;
   value: string;
   isActive: boolean;
 }
 
-export type { IEntries };
+export type { IEntry };
