@@ -1,14 +1,15 @@
 import { Fieldset } from "@components/inputs/Fieldset";
 import { action } from "@storybook/addon-actions";
+import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { FormButtons } from "..";
+import { FormButtons, FormButtonsProps } from "..";
 import { StyledForm } from "./stories.styles";
 
 const story = {
   components: [FormButtons],
   title: "components/forms/submit/FormButtons",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -16,7 +17,7 @@ const story = {
   ],
 };
 
-const Template = (args) => <FormButtons {...args} />;
+const Template: StoryFn<FormButtonsProps> = (args) => <FormButtons {...args} />;
 
 const handleReset = () => {
   action("Form cancel ")();
@@ -28,7 +29,7 @@ const handleSubmit = () => {
 
 const ChildrenTemplate = (
   <StyledForm>
-    <Fieldset title="Form template" />
+    <Fieldset title="Form template" children={<></>} />
   </StyledForm>
 );
 

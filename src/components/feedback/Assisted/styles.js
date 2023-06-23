@@ -3,14 +3,18 @@ import { colors } from "@styles/colors";
 
 const StyledSteps = styled.ul`
   display: flex;
-  width: 100%;
+  width: 90%;
+  max-width: 700px;
   margin: 0px;
   padding: 0px;
+  justify-content: center;
 `;
 
 const StyledStepsMobile = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
+  max-width: 430px;
+  align-items: center;
   flex-direction: column;
   gap: 8px;
 `;

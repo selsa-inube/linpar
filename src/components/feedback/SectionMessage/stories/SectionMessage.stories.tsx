@@ -1,6 +1,7 @@
-import { SectionMessage } from "..";
+import { SectionMessage, SectionMessageProps } from "..";
 import { MdWarning } from "react-icons/md";
 import { action } from "@storybook/addon-actions";
+import { StoryFn } from "@storybook/react";
 
 const argTypes = {
   appearance: {
@@ -32,7 +33,9 @@ const closeSectionMessage = () => {
   action("SectionMessage closed")();
 };
 
-const Template = (args) => <SectionMessage {...args} />;
+const Template: StoryFn<SectionMessageProps> = (args) => (
+  <SectionMessage {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {

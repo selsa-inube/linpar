@@ -1,7 +1,15 @@
 import { Button, Stack } from "@inube/design-system";
 import { StyledSubmitContainer } from "./styles";
 
-function FormButtons(props) {
+interface FormButtonsProps {
+  children: React.ReactNode;
+  handleSubmit: () => void;
+  handleReset: () => void;
+  disabledButtons?: boolean;
+  isLoading?: boolean;
+}
+
+function FormButtons(props: FormButtonsProps) {
   const { children, handleSubmit, handleReset, disabledButtons, isLoading } =
     props;
 
@@ -32,3 +40,4 @@ function FormButtons(props) {
 }
 
 export { FormButtons };
+export type { FormButtonsProps };
