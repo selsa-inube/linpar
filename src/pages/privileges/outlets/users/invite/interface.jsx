@@ -46,6 +46,8 @@ function InviteUI(props) {
     showMessage,
     handleCloseSectionMessage,
     handleSubmit,
+    formErrors,
+    handleBlur,
   } = props;
 
   return (
@@ -68,16 +70,16 @@ function InviteUI(props) {
                 id="name"
                 value={formik.values.name}
                 type="text"
-                isInvalid={formik.errors.name && formInvalid}
+                isInvalid={formErrors.name && formInvalid}
                 isRequired={true}
-                errorMessage={formik.errors.name}
+                errorMessage={formErrors.name}
                 validMessage="El nombre es valido"
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
                 state={stateValue(formik, "name")}
                 handleChange={formik.handleChange}
-                handleBlur={formik.handleBlur}
+                handleBlur={handleBlur}
               />
 
               <TextField
@@ -87,16 +89,16 @@ function InviteUI(props) {
                 id="id"
                 value={formik.values.id}
                 type="number"
-                isInvalid={formik.errors.id && formInvalid}
+                isInvalid={formErrors.id && formInvalid}
                 isRequired={true}
-                errorMessage={formik.errors.id}
+                errorMessage={formErrors.id}
                 validMessage="El número de identificación es valido"
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
                 state={stateValue(formik, "id")}
                 handleChange={formik.handleChange}
-                handleBlur={formik.handleBlur}
+                handleBlur={handleBlur}
               />
 
               <TextField
@@ -106,16 +108,16 @@ function InviteUI(props) {
                 id="phone"
                 value={formik.values.phone}
                 type="tel"
-                isInvalid={formik.errors.phone && formInvalid}
+                isInvalid={formErrors.phone && formInvalid}
                 isRequired={true}
-                errorMessage={formik.errors.phone}
+                errorMessage={formErrors.phone}
                 validMessage="El número de teléfono es valido"
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
                 state={stateValue(formik, "phone")}
                 handleChange={formik.handleChange}
-                handleBlur={formik.handleBlur}
+                handleBlur={handleBlur}
               />
 
               <TextField
@@ -126,15 +128,15 @@ function InviteUI(props) {
                 value={formik.values.email}
                 type="email"
                 isRequired={true}
-                isInvalid={formik.errors.email && formInvalid}
-                errorMessage={formik.errors.email}
+                isInvalid={formErrors.email && formInvalid}
+                errorMessage={formErrors.email}
                 validMessage="El correo electrónico es valido"
                 isDisabled={loading}
                 size="compact"
                 isFullWidth={true}
                 state={stateValue(formik, "email")}
                 handleChange={formik.handleChange}
-                handleBlur={formik.handleBlur}
+                handleBlur={handleBlur}
               />
             </StyledFormContainer>
             <Button
