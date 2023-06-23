@@ -3,7 +3,7 @@ import { StyledLink } from "./styles";
 
 interface MenuLinkprops {
   label: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   path: string;
 }
 

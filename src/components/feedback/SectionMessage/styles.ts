@@ -1,8 +1,17 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
 
-const getBackgroundColor = ({ appearance }) => {
-  const actions = {
+interface IStyledSectionMessage {
+  isMessageResponsive: boolean;
+  appearance: string;
+}
+
+interface IStyledIcon {
+  appearance: string;
+}
+
+const getBackgroundColor = ({ appearance }: IStyledSectionMessage) => {
+  const actions: Record<string, string> = {
     primary: colors.ref.palette.blue.b50,
     confirm: colors.ref.palette.green.g50,
     warning: colors.ref.palette.yellow.y50,
@@ -12,8 +21,8 @@ const getBackgroundColor = ({ appearance }) => {
   return actions[appearance] || actions.primary;
 };
 
-const getIconColor = ({ appearance }) => {
-  const actions = {
+const getIconColor = ({ appearance }: IStyledIcon) => {
+  const actions: Record<string, string> = {
     primary: colors.sys.actions.primary.filled,
     confirm: colors.sys.actions.confirm.filled,
     warning: colors.sys.actions.warning.filled,
@@ -23,7 +32,7 @@ const getIconColor = ({ appearance }) => {
   return actions[appearance] || actions.primary;
 };
 
-const StyledSectionMessage = styled.div`
+const StyledSectionMessage = styled.div<IStyledSectionMessage>`
   background-color: ${getBackgroundColor};
   width: ${(props) => (props.isMessageResponsive ? "auto" : "400px")};
   right: ${(props) => (props.isMessageResponsive ? "16px" : "64px")};
@@ -41,9 +50,10 @@ const StyledSectionMessage = styled.div`
   }
 `;
 
-const StyledIcon = styled.div`
+const StyledIcon = styled.div<IStyledIcon>`
   margin: auto 0px;
   display: flex;
+
   & svg {
     color: ${getIconColor};
     width: 24px;
