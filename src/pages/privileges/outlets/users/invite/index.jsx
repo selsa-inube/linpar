@@ -51,6 +51,7 @@ function Invite() {
   const formik = useFormik({
     initialValues,
     validationSchema,
+    validateOnChange: false,
     onSubmit: () => {
       setLoading(true);
       setTimeout(() => {
