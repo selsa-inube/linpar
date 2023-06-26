@@ -47,34 +47,27 @@ function Invite() {
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
-  const [formErrors, setFormErrors] = useState({});
 
   const formik = useFormik({
     initialValues,
     validationSchema,
+    validateOnChange: false,
     onSubmit: () => {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
         setFormInvalid(false);
         setShowMessage(true);
-        formik.resetForm();
+        formik.resetForm(formik.initialValues);
       }, LOADING_TIMEOUT);
     },
   });
-
-  const handleErrorMessages = () => {
-    formik.validateForm().then((errors) => {
-      setFormErrors(errors);
-    });
-  };
 
   const handleSubmit = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length > 0) {
         setShowMessage(true);
         setFormInvalid(true);
-        handleErrorMessages();
       }
       formik.handleSubmit();
     });
@@ -84,18 +77,11 @@ function Invite() {
     setShowMessage(false);
   };
 
-  function handleBlur(event) {
-    formik.handleBlur(event);
-    handleErrorMessages();
-  }
-
   return (
     <InviteUI
       loading={loading}
       formik={formik}
       formInvalid={formInvalid}
-      formErrors={formErrors}
-      handleBlur={handleBlur}
       showMessage={showMessage}
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleSubmit={handleSubmit}
