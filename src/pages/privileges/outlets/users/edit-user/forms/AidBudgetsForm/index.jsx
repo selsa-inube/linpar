@@ -4,7 +4,13 @@ import { AidBudgetsFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 function AidBudgetsForm(props) {
-  const { currentAidBudgetUnits, handleSubmit, withSubmitButtons } = props;
+  const {
+    currentAidBudgetUnits,
+    handleSubmit,
+    withSubmitButtons,
+    onHasChanges,
+    validateDataReset,
+  } = props;
   const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -12,7 +18,11 @@ function AidBudgetsForm(props) {
     type: "",
   });
 
+  const hasChanges = (valueCompare) =>
+    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+
   const handleChangeAidBudgets = (aidBudgetUnits) => {
+    onHasChanges(hasChanges(aidBudgetUnits));
     setAidBudgetUnits(aidBudgetUnits);
     if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
   };
@@ -32,6 +42,7 @@ function AidBudgetsForm(props) {
 
   const handleReset = () => {
     setAidBudgetUnits(currentAidBudgetUnits);
+    validateDataReset(true);
   };
 
   const handleCloseSectionMessage = () => {
@@ -47,11 +58,11 @@ function AidBudgetsForm(props) {
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      currentAidBudgetUnits={currentAidBudgetUnits}
       aidBudgetUnits={aidBudgetUnits}
       withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
+      hasChanges={hasChanges}
     />
   );
 }

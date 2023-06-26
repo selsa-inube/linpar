@@ -2,7 +2,13 @@ import { useState } from "react";
 import { BranchesFormUI } from "./interface";
 
 function BranchesForm(props) {
-  const { currentBranches, handleSubmit, withSubmitButtons } = props;
+  const {
+    currentBranches,
+    handleSubmit,
+    withSubmitButtons,
+    onHasChanges,
+    validateDataReset,
+  } = props;
   const [branches, setBranches] = useState(currentBranches);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -10,7 +16,11 @@ function BranchesForm(props) {
     type: "",
   });
 
+  const hasChanges = (valueCompare) =>
+    JSON.stringify(currentBranches) !== JSON.stringify(valueCompare);
+
   const handleChangeBranches = (branches) => {
+    onHasChanges(hasChanges(branches));
     setBranches(branches);
     if (!withSubmitButtons) handleSubmit(branches);
   };
@@ -30,6 +40,7 @@ function BranchesForm(props) {
 
   const handleReset = () => {
     setBranches(currentBranches);
+    validateDataReset(true);
   };
 
   const handleCloseSectionMessage = () => {
@@ -50,6 +61,7 @@ function BranchesForm(props) {
       withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
+      hasChanges={hasChanges}
     />
   );
 }

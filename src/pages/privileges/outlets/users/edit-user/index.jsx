@@ -12,6 +12,13 @@ import { EditUserUI } from "./interface";
 function EditUser() {
   const { user_id } = useParams();
 
+  const [controlModal, setControlModal] = useState({
+    show: false,
+    continueTab: null,
+  });
+
+  const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
+
   const [selectedTab, setSelectedTab] = useState(
     editUserTabsConfig.generalInformation.id
   );
@@ -24,10 +31,6 @@ function EditUser() {
     aidBudgetUnits: { entries: aidBudgetsFormEditUser },
     payrolls: { entries: payrollsFormEditUser },
   });
-
-  const handleTabChange = (tabId) => {
-    setSelectedTab(tabId);
-  };
 
   function getUserInformation() {
     const userID = parseInt(user_id);
@@ -43,6 +46,39 @@ function EditUser() {
       ...prevEditData,
       [editKey]: { entries: values },
     }));
+    setCurrentFormHasChanges(false);
+  };
+
+  const handleTabChange = (tabId) => {
+    let modalUpdate = controlModal;
+    let selectTab = tabId;
+
+    if (currentFormHasChanges) {
+      modalUpdate = { show: true, continueTab: tabId };
+      selectTab = selectedTab;
+    }
+    setControlModal(modalUpdate);
+    setSelectedTab(selectTab);
+  };
+
+  const handleCloseModal = () => {
+    setControlModal((prevControlModal) => ({
+      ...prevControlModal,
+      show: false,
+    }));
+  };
+
+  const handleDataChange = (editData) => {
+    setCurrentFormHasChanges(editData);
+  };
+
+  const HandleContinueTab = () => {
+    setCurrentFormHasChanges(false);
+    setSelectedTab(controlModal.continueTab);
+  };
+
+  const validateDataReset = (resetData) => {
+    setCurrentFormHasChanges(resetData && false);
   };
 
   return (
@@ -51,6 +87,11 @@ function EditUser() {
       handleTabChange={handleTabChange}
       editData={editData}
       handleSubmit={handleSubmit}
+      controlModal={controlModal}
+      handleDataChange={handleDataChange}
+      handleCloseModal={handleCloseModal}
+      HandleContinueTab={HandleContinueTab}
+      validateDataReset={validateDataReset}
     />
   );
 }

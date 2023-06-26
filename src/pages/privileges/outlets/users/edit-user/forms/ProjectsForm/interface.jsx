@@ -26,7 +26,6 @@ const renderMessage = (message, onCloseSectionMessage) => {
 function ProjectsFormUI(props) {
   const {
     projects,
-    currentProjects,
     isLoading,
     handleSubmitForm,
     handleReset,
@@ -34,16 +33,14 @@ function ProjectsFormUI(props) {
     withSubmitButtons,
     message,
     onCloseSectionMessage,
+    hasChanges,
   } = props;
-
-  const hasChanges =
-    JSON.stringify(currentProjects) === JSON.stringify(projects);
 
   if (withSubmitButtons) {
     return (
       <>
         <FormButtons
-          disabledButtons={hasChanges}
+          disabledButtons={!hasChanges(projects)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           isLoading={isLoading}
