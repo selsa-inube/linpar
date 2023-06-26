@@ -65,6 +65,7 @@ function EditUserUI(props) {
             <PageTitle
               title={editUserOptionsConfig.editUserPage.label}
               description={editUserOptionsConfig.editUserPage.description}
+              navigatePage="/privileges/users"
             />
             {currentInformation && (
               <SubjectCard
