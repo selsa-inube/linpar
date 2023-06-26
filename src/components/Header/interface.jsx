@@ -1,8 +1,8 @@
-import { User, useMediaQuery } from "@inube/design-system";
+import { User, useMediaQuery, Nav } from "@inube/design-system";
 import { createPortal } from "react-dom";
 import { MdMenu } from "react-icons/md";
-import { appsConfig } from "@pages/home/config/apps.config";
-import { Nav } from "../navigation/Nav";
+import { navigationConfig } from "@pages/home/config/apps.config";
+
 import {
   StyledHeader,
   StyledIcon,
@@ -46,12 +46,7 @@ function HeaderUI(props) {
       {nav &&
         createPortal(
           <StyledNavWrapper>
-            <Nav
-              title="Menu"
-              links={appsConfig}
-              handleNav={handleNav}
-              menu={nav}
-            />
+            <Nav navigation={navigationConfig} logoutPath="/" />
           </StyledNavWrapper>,
           document.getElementById("portal")
         )}
