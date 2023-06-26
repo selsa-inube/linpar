@@ -41,6 +41,7 @@ function CompleteInvitationUI(props) {
             <PageTitle
               title={CompleteInvitationUserConfig[0].title}
               description={CompleteInvitationUserConfig[0].description}
+              navigatePage="/privileges/users"
             />
             {currentInformation && (
               <SubjectCard

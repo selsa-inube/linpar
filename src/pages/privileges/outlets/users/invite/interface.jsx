@@ -56,6 +56,7 @@ function InviteUI(props) {
           <PageTitle
             title={usersInvitationsConfig[0].title}
             description={usersInvitationsConfig[0].description}
+            navigatePage="/privileges/users"
           />
         </Stack>
         <form>

@@ -44,6 +44,7 @@ export default function UsersUI(props) {
           <PageTitle
             title={privilegeConfig.label}
             description={privilegeConfig.description}
+            navigatePage="/privileges"
           />
         </Stack>
         <Stack gap="32px" direction="column">
