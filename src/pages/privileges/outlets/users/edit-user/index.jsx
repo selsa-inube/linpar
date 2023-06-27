@@ -63,8 +63,8 @@ function EditUser() {
     }));
   };
 
-  const hasChanges = (editData) => {
-    setCurrentFormHasChanges(editData);
+  const handleDataChange = (hasChanges) => {
+    setCurrentFormHasChanges(hasChanges);
   };
 
   const handleContinueTab = () => {
@@ -79,7 +79,7 @@ function EditUser() {
       editData={editData}
       handleSubmit={handleSubmit}
       controlModal={controlModal}
-      hasChanges={hasChanges}
+      handleDataChange={handleDataChange}
       handleCloseModal={handleCloseModal}
       handleContinueTab={handleContinueTab}
     />

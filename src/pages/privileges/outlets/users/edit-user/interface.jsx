@@ -39,7 +39,7 @@ function EditUserUI(props) {
     handleSubmit,
     controlModal,
     handleCloseModal,
-    hasChanges,
+    handleDataChange,
     handleContinueTab,
   } = props;
 
@@ -87,7 +87,7 @@ function EditUserUI(props) {
                 currentInformation={editData.generalInformation.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={hasChanges}
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.branches.id && (
@@ -95,7 +95,7 @@ function EditUserUI(props) {
                 currentBranches={editData.branches.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={hasChanges}
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.events.id && (
@@ -103,7 +103,7 @@ function EditUserUI(props) {
                 currentEvents={editData.events.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={hasChanges}
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.projects.id && (
@@ -111,7 +111,7 @@ function EditUserUI(props) {
                 currentProjects={editData.projects.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={hasChanges}
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
@@ -119,7 +119,7 @@ function EditUserUI(props) {
                 currentAidBudgetUnits={editData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={hasChanges}
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.payrolls.id && (
@@ -127,7 +127,7 @@ function EditUserUI(props) {
                 currentPayrolls={editData.payrolls.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={hasChanges}
+                onHasChanges={handleDataChange}
               />
             )}
           </Stack>
