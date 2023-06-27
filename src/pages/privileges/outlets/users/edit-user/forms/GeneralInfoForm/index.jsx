@@ -39,6 +39,7 @@ function GeneralInformationForm(props) {
       email: currentInformation.email,
       phone: currentInformation.phone || "",
       position: currentInformation.position || "",
+      validateOnChange: false,
     },
     validationSchema,
 
@@ -67,11 +68,11 @@ function GeneralInformationForm(props) {
     });
   };
 
-  const disabledButtons = (valueCompare) =>
+  const hasChanges = (valueCompare) =>
     JSON.stringify(formik.initialValues) !== JSON.stringify(valueCompare);
 
   const handleChangeForm = (event) => {
-    onHasChanges(disabledButtons(formik.values));
+    onHasChanges(hasChanges(formik.values));
     formik
       .setFieldValue(event.target.name, event.target.value)
       .then((errors) => {
@@ -97,7 +98,7 @@ function GeneralInformationForm(props) {
       showMessage={showMessage}
       withSubmitButtons={withSubmitButtons}
       handleCloseSectionMessage={handleCloseSectionMessage}
-      disabledButtons={disabledButtons}
+      hasChanges={hasChanges}
       formInvalid={formInvalid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
