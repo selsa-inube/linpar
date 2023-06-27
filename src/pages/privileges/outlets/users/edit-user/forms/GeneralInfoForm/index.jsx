@@ -39,9 +39,10 @@ function GeneralInformationForm(props) {
       email: currentInformation.email,
       phone: currentInformation.phone || "",
       position: currentInformation.position || "",
-      validateOnChange: false,
     },
     validationSchema,
+
+    validateOnChange: false,
 
     onReset: () => {
       onHasChanges(false);
