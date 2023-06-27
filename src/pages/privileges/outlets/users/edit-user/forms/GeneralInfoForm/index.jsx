@@ -25,7 +25,8 @@ const validationSchema = Yup.object({
 });
 
 function GeneralInformationForm(props) {
-  const { withSubmitButtons, currentInformation, handleSubmit } = props;
+  const { withSubmitButtons, currentInformation, handleSubmit, onHasChanges } =
+    props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -40,6 +41,12 @@ function GeneralInformationForm(props) {
       position: currentInformation.position || "",
     },
     validationSchema,
+
+    validateOnChange: false,
+
+    onReset: () => {
+      onHasChanges(false);
+    },
 
     onSubmit: () => {
       setLoading(true);
@@ -62,11 +69,16 @@ function GeneralInformationForm(props) {
     });
   };
 
+  const hasChanges = (valueCompare) =>
+    JSON.stringify(formik.initialValues) !== JSON.stringify(valueCompare);
+
   const handleChangeForm = (event) => {
+    onHasChanges(hasChanges(formik.values));
     formik
       .setFieldValue(event.target.name, event.target.value)
       .then((errors) => {
         if (withSubmitButtons) return;
+
         if (Object.keys(errors).length === 0) {
           handleSubmit({
             ...formik.values,
@@ -75,9 +87,6 @@ function GeneralInformationForm(props) {
         }
       });
   };
-
-  const disabledButtons =
-    JSON.stringify(formik.values) === JSON.stringify(formik.initialValues);
 
   const handleCloseSectionMessage = () => {
     setShowMessage(false);
@@ -90,7 +99,7 @@ function GeneralInformationForm(props) {
       showMessage={showMessage}
       withSubmitButtons={withSubmitButtons}
       handleCloseSectionMessage={handleCloseSectionMessage}
-      disabledButtons={disabledButtons}
+      hasChanges={hasChanges}
       formInvalid={formInvalid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
