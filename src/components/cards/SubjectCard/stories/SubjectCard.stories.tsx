@@ -1,5 +1,6 @@
 import { ILabel } from "@src/components/feedback/InteractiveModal/types";
 import { StoryFn } from "@storybook/react";
+import { MdPersonOutline } from "react-icons/md";
 import { BrowserRouter } from "react-router-dom";
 import { SubjectCard, SubjectCardProps } from "..";
 
@@ -58,12 +59,14 @@ export const Default = Template.bind({});
 Default.args = {
   subjectData: data,
   title: "User Information",
+  icon: <MdPersonOutline size={24} />,
 };
 
 export const WithLabels = Template.bind({});
 WithLabels.args = {
   subjectData: data,
   title: "User Information",
+  icon: <MdPersonOutline size={24} />,
   labels,
 };
 
