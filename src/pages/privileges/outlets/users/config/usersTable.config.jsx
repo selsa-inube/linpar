@@ -12,7 +12,7 @@ const usersTitlesConfig = [
   {
     id: "username",
     titleName: "Username",
-    priority: 1,
+    priority: 0,
   },
   {
     id: "code",
@@ -22,7 +22,7 @@ const usersTitlesConfig = [
   {
     id: "userID",
     titleName: "User Id",
-    priority: 0,
+    priority: 1,
   },
   {
     id: "position",

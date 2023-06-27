@@ -4,12 +4,12 @@ const invitationsTableTitles = [
   {
     id: "userID",
     titleName: "User Id",
-    priority: 0,
+    priority: 1,
   },
   {
     id: "username",
     titleName: "Username",
-    priority: 1,
+    priority: 0,
   },
   {
     id: "email",
