@@ -2,26 +2,13 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import { GeneralInformationFormUI } from "./interface";
+import { validationRules } from "@validations/validationRules";
 
 const LOADING_TIMEOUT = 1000;
 
 const validationSchema = Yup.object({
-  email: Yup.string()
-    .matches(
-      /^\w+([.-_+]?\w+)@\w+([.-]?\w+)(.\w{2,10})+$/,
-      "Este campo debe tener una dirección de correo electrónico válida"
-    )
-    .required("Este campo no puede estar vacío")
-    .max(80, "Debe tener máximo 80 caracteres")
-    .min(5, "Debe tener mínimo 5 caracteres"),
-
-  phone: Yup.string()
-    .matches(/^[0-9]*$/, "Este campo debe tener un número de teléfono válido")
-    .required("Este campo no puede estar vacío")
-    .max(10, "Debe tener 10 caracteres")
-    .min(10, "Debe tener 10 caracteres"),
-
-  position: Yup.string().required("Debe seleccionar una opción"),
+  email: validationRules.email,
+  phone: validationRules.phone,
 });
 
 function GeneralInformationForm(props) {
