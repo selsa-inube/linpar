@@ -15,8 +15,8 @@ function BranchesForm(props) {
     JSON.stringify(currentBranches) !== JSON.stringify(valueCompare);
 
   const handleChangeBranches = (branches) => {
-    onHasChanges(hasChanges(branches));
     setBranches(branches);
+    if (onHasChanges) onHasChanges(hasChanges(branches));
     if (!withSubmitButtons) handleSubmit(branches);
   };
 

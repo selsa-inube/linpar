@@ -17,8 +17,8 @@ function EventsForm(props) {
     JSON.stringify(currentEvents) !== JSON.stringify(valueCompare);
 
   const handleChangeEvents = (events) => {
-    onHasChanges(hasChanges(events));
     setEvents(events);
+    if (onHasChanges) onHasChanges(hasChanges(events));
     if (!withSubmitButtons) handleSubmit(events);
   };
 
