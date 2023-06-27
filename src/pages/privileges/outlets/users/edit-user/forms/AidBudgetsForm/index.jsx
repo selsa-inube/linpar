@@ -9,7 +9,6 @@ function AidBudgetsForm(props) {
     handleSubmit,
     withSubmitButtons,
     onHasChanges,
-    validateDataReset,
   } = props;
   const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +41,7 @@ function AidBudgetsForm(props) {
 
   const handleReset = () => {
     setAidBudgetUnits(currentAidBudgetUnits);
-    validateDataReset(true);
+    onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {

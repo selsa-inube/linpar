@@ -25,13 +25,8 @@ const validationSchema = Yup.object({
 });
 
 function GeneralInformationForm(props) {
-  const {
-    withSubmitButtons,
-    currentInformation,
-    handleSubmit,
-    onHasChanges,
-    validateDataReset,
-  } = props;
+  const { withSubmitButtons, currentInformation, handleSubmit, onHasChanges } =
+    props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -48,7 +43,7 @@ function GeneralInformationForm(props) {
     validationSchema,
 
     onReset: () => {
-      validateDataReset(true);
+      onHasChanges(false);
     },
 
     onSubmit: () => {

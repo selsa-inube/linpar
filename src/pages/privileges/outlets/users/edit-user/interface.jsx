@@ -15,7 +15,7 @@ import { ProjectsForm } from "./forms/ProjectsForm";
 import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
 
-function continueModal(handleCloseModal, HandleContinueTab) {
+function continueModal(handleCloseModal, handleContinueTab) {
   const { title, description, actionText, appearance } =
     EditUserContinueModalConfig;
   return (
@@ -23,9 +23,10 @@ function continueModal(handleCloseModal, HandleContinueTab) {
       title={title}
       description={description}
       actionText={actionText}
+      loading={false}
       appearance={appearance}
       closeModal={handleCloseModal}
-      handleClick={HandleContinueTab}
+      handleClick={handleContinueTab}
     />
   );
 }
@@ -38,9 +39,8 @@ function EditUserUI(props) {
     handleSubmit,
     controlModal,
     handleCloseModal,
-    handleDataChange,
-    HandleContinueTab,
-    validateDataReset,
+    hasChanges,
+    handleContinueTab,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -87,8 +87,7 @@ function EditUserUI(props) {
                 currentInformation={editData.generalInformation.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={handleDataChange}
-                validateDataReset={validateDataReset}
+                onHasChanges={hasChanges}
               />
             )}
             {selectedTab === editUserTabsConfig.branches.id && (
@@ -96,8 +95,7 @@ function EditUserUI(props) {
                 currentBranches={editData.branches.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={handleDataChange}
-                validateDataReset={validateDataReset}
+                onHasChanges={hasChanges}
               />
             )}
             {selectedTab === editUserTabsConfig.events.id && (
@@ -105,8 +103,7 @@ function EditUserUI(props) {
                 currentEvents={editData.events.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={handleDataChange}
-                validateDataReset={validateDataReset}
+                onHasChanges={hasChanges}
               />
             )}
             {selectedTab === editUserTabsConfig.projects.id && (
@@ -114,8 +111,7 @@ function EditUserUI(props) {
                 currentProjects={editData.projects.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={handleDataChange}
-                validateDataReset={validateDataReset}
+                onHasChanges={hasChanges}
               />
             )}
             {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
@@ -123,8 +119,7 @@ function EditUserUI(props) {
                 currentAidBudgetUnits={editData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={handleDataChange}
-                validateDataReset={validateDataReset}
+                onHasChanges={hasChanges}
               />
             )}
             {selectedTab === editUserTabsConfig.payrolls.id && (
@@ -132,8 +127,7 @@ function EditUserUI(props) {
                 currentPayrolls={editData.payrolls.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
-                onHasChanges={handleDataChange}
-                validateDataReset={validateDataReset}
+                onHasChanges={hasChanges}
               />
             )}
           </Stack>
@@ -147,7 +141,7 @@ function EditUserUI(props) {
           />
         )}
       </Stack>
-      {controlModal.show && continueModal(handleCloseModal, HandleContinueTab)}
+      {controlModal.show && continueModal(handleCloseModal, handleContinueTab)}
     </StyledContainer>
   );
 }

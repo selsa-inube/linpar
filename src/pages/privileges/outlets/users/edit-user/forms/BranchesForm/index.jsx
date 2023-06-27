@@ -2,13 +2,8 @@ import { useState } from "react";
 import { BranchesFormUI } from "./interface";
 
 function BranchesForm(props) {
-  const {
-    currentBranches,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    validateDataReset,
-  } = props;
+  const { currentBranches, handleSubmit, withSubmitButtons, onHasChanges } =
+    props;
   const [branches, setBranches] = useState(currentBranches);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -40,7 +35,7 @@ function BranchesForm(props) {
 
   const handleReset = () => {
     setBranches(currentBranches);
-    validateDataReset(true);
+    onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {

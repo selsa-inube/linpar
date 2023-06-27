@@ -14,7 +14,7 @@ function EditUser() {
 
   const [controlModal, setControlModal] = useState({
     show: false,
-    continueTab: null,
+    continueTab: "",
   });
 
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
@@ -50,15 +50,10 @@ function EditUser() {
   };
 
   const handleTabChange = (tabId) => {
-    let modalUpdate = controlModal;
-    let selectTab = tabId;
-
-    if (currentFormHasChanges) {
-      modalUpdate = { show: true, continueTab: tabId };
-      selectTab = selectedTab;
-    }
-    setControlModal(modalUpdate);
-    setSelectedTab(selectTab);
+    setControlModal(
+      currentFormHasChanges ? { show: true, continueTab: tabId } : controlModal
+    );
+    setSelectedTab(currentFormHasChanges ? selectedTab : tabId);
   };
 
   const handleCloseModal = () => {
@@ -68,17 +63,13 @@ function EditUser() {
     }));
   };
 
-  const handleDataChange = (editData) => {
+  const hasChanges = (editData) => {
     setCurrentFormHasChanges(editData);
   };
 
-  const HandleContinueTab = () => {
+  const handleContinueTab = () => {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
-  };
-
-  const validateDataReset = (resetData) => {
-    setCurrentFormHasChanges(resetData && false);
   };
 
   return (
@@ -88,10 +79,9 @@ function EditUser() {
       editData={editData}
       handleSubmit={handleSubmit}
       controlModal={controlModal}
-      handleDataChange={handleDataChange}
+      hasChanges={hasChanges}
       handleCloseModal={handleCloseModal}
-      HandleContinueTab={HandleContinueTab}
-      validateDataReset={validateDataReset}
+      handleContinueTab={handleContinueTab}
     />
   );
 }

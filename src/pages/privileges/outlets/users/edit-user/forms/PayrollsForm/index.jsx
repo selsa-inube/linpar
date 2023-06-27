@@ -4,13 +4,8 @@ import { PayrollsFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 function PayrollsForm(props) {
-  const {
-    currentPayrolls,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    validateDataReset,
-  } = props;
+  const { currentPayrolls, handleSubmit, withSubmitButtons, onHasChanges } =
+    props;
   const [payrolls, setPayrolls] = useState(currentPayrolls);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -42,7 +37,7 @@ function PayrollsForm(props) {
 
   const handleReset = () => {
     setPayrolls(currentPayrolls);
-    validateDataReset(true);
+    onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
