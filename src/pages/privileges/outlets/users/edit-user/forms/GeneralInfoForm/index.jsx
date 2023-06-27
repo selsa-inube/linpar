@@ -72,16 +72,18 @@ function GeneralInformationForm(props) {
     JSON.stringify(formik.initialValues) !== JSON.stringify(valueCompare);
 
   const handleChangeForm = (event) => {
-    if (onHasChanges) onHasChanges(hasChanges(formik.values));
+    const formikValues = {
+      ...formik.values,
+      [event.target.name]: event.target.value,
+    };
+
+    if (onHasChanges) onHasChanges(hasChanges(formikValues));
     formik
       .setFieldValue(event.target.name, event.target.value)
       .then((errors) => {
         if (withSubmitButtons) return;
         if (errors && Object.keys(errors).length === 0) {
-          handleSubmit({
-            ...formik.values,
-            [event.target.name]: event.target.value,
-          });
+          handleSubmit(formikValues);
         }
       });
   };
