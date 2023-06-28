@@ -8,7 +8,7 @@ import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "@pages/login/errors/ErrorNotClient";
 import { Login } from "@pages/login";
 
-function LoginRoutes() {
+function LoginRoutes(): JSX.Element {
   return (
     <Routes>
       <Route path="/" element={<Login />}>
