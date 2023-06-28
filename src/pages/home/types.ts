@@ -1,4 +1,4 @@
-interface Iapps {
+interface IApps {
   id: number;
   label: string;
   description: string;
@@ -6,4 +6,4 @@ interface Iapps {
   url: string;
 }
 
-export type { Iapps };
+export type { IApps };

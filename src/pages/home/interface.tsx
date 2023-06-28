@@ -3,10 +3,10 @@ import { MdOutlineDoorFront } from "react-icons/md";
 import { StyledHome, StyledAppsList, StyledPageTitle } from "./styles";
 import { AppCard } from "@components/cards/AppCard";
 import { PageTitle } from "@components/PageTitle";
-import { Iapps } from "./types";
+import { IApps } from "./types";
 
 interface HomeUIProps {
-  apps: Iapps[];
+  apps: IApps[];
 }
 
 function HomeUI(props: HomeUIProps) {
