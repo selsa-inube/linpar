@@ -14,6 +14,7 @@ import { PayrollsForm } from "./forms/PayrollsForm";
 import { ProjectsForm } from "./forms/ProjectsForm";
 import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
+import { MdPersonOutline } from "react-icons/md";
 
 function continueModal(handleCloseModal, handleContinueTab) {
   const { title, description, actionText, appearance } =
@@ -71,6 +72,7 @@ function EditUserUI(props) {
               <SubjectCard
                 subjectData={userCardData}
                 title="Informacion del usuario"
+                icon={<MdPersonOutline size={24} />}
               />
             )}
           </Stack>
