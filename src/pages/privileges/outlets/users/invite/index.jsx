@@ -3,6 +3,7 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { InviteUI } from "./interface";
 import { validationRules } from "@validations/validationRules";
+import { validationMessages } from "@validations/validationMessages";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -14,10 +15,10 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object({
-  name: validationRules.username,
+  name: validationRules.username.required(validationMessages.required),
   id: validationRules.id,
-  phone: validationRules.phone,
-  email: validationRules.email,
+  phone: validationRules.phone.required(validationMessages.required),
+  email: validationRules.email.required(validationMessages.required),
 });
 
 function Invite() {

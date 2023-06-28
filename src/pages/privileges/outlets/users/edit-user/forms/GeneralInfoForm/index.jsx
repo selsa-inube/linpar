@@ -3,12 +3,13 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { GeneralInformationFormUI } from "./interface";
 import { validationRules } from "@validations/validationRules";
+import { validationMessages } from "@validations/validationMessages";
 
 const LOADING_TIMEOUT = 1000;
 
 const validationSchema = Yup.object({
-  email: validationRules.email,
-  phone: validationRules.phone,
+  email: validationRules.email.required(validationMessages.required),
+  phone: validationRules.phone.required(validationMessages.required),
 });
 
 function GeneralInformationForm(props) {
