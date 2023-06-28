@@ -9,7 +9,7 @@ import {
   StyledImage,
 } from "./styles";
 
-function LoginUI() {
+function LoginUI(): JSX.Element {
   return (
     <StyledLoginContainer>
       <StyledWelcomeContainer>

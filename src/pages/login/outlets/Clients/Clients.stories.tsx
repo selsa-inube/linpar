@@ -1,6 +1,14 @@
 import { Clients } from "./index";
 
-const story = {
+interface Story {
+  components: React.ComponentType[];
+  title: string;
+  parameters: {
+    layout: string;
+  };
+}
+
+const story: Story = {
   components: [Clients],
   title: "layouts/login/outlets/clients",
   parameters: {
@@ -8,7 +16,7 @@ const story = {
   },
 };
 
-const Default = () => <Clients />;
+const Default = (): JSX.Element => <Clients />;
 
 export default story;
 

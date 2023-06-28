@@ -1,6 +1,14 @@
 import { LoadingApp } from "./index";
 
-const story = {
+interface Story {
+  components: React.ComponentType[];
+  title: string;
+  parameters: {
+    layout: string;
+  };
+}
+
+const story: Story = {
   components: [LoadingApp],
   title: "layouts/login/outlets/loading-app",
   parameters: {
@@ -8,7 +16,7 @@ const story = {
   },
 };
 
-const Default = () => <LoadingApp />;
+const Default = (): JSX.Element => <LoadingApp />;
 
 export default story;
 

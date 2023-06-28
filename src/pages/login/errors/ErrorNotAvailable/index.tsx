@@ -1,6 +1,7 @@
-import React from "react";
 import { ErrorPage } from "@components/layout/ErrorPage";
 
-export const ErrorNotAvailable = () => {
+function ErrorNotAvailable(): JSX.Element {
   return <ErrorPage />;
-};
+}
+
+export { ErrorNotAvailable };

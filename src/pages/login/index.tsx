@@ -1,9 +1,8 @@
 import { LoginUI } from "./interface";
-
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-function Login() {
+function Login(): JSX.Element {
   const navigate = useNavigate();
   const location = useLocation();
 

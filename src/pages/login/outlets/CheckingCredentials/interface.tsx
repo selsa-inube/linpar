@@ -1,7 +1,7 @@
 import { Stack, Text } from "@inube/design-system";
 import { Spinner } from "@inube/design-system";
 
-function CheckingCredentialsUI() {
+function CheckingCredentialsUI(): JSX.Element {
   return (
     <Stack gap="16px" direction="column">
       <Stack direction="column">
