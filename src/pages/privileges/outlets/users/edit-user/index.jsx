@@ -33,8 +33,7 @@ function EditUser() {
   });
 
   function getUserInformation() {
-    const userID = parseInt(user_id);
-    return userEntriesDataMock.find((user) => user.id === userID);
+    return userEntriesDataMock.find((user) => user.id === user_id);
   }
 
   const handleSubmit = (values) => {

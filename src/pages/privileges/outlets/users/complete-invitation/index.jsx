@@ -1,7 +1,7 @@
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
 import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/aidBudgetsForm.mock";
 import { branchesFormEditUser } from "@mocks/apps/privileges/branchesForm.mock";
 import { eventsFormEditUser } from "@mocks/apps/privileges/eventsForm.mock";
+import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
 import { payrollsFormEditUser } from "@mocks/apps/privileges/payrollsForm.mock";
 import { projectsFormEditUser } from "@mocks/apps/privileges/projectsForm.mock";
 import { useState } from "react";
@@ -27,7 +27,7 @@ function CompleteInvitation() {
 
   function getInvitationInformation() {
     return invitationEntriesDataMock.find(
-      (invitation) => invitation.id === parseInt(invitation_id)
+      (invitation) => invitation.id === invitation_id
     );
   }
 
