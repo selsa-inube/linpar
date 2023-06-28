@@ -4,12 +4,12 @@ const invitationsTableTitles = [
   {
     id: "userID",
     titleName: "User Id",
-    priority: 0,
+    priority: 1,
   },
   {
     id: "username",
     titleName: "Username",
-    priority: 1,
+    priority: 0,
   },
   {
     id: "email",
@@ -31,7 +31,7 @@ const invitationsTableTitles = [
 const invitationsTableBreakpoints = [
   { breakpoint: "(min-width: 1229px)", totalColumns: 5 },
   { breakpoint: "(max-width: 1228px)", totalColumns: 4 },
-  { breakpoint: "(max-width: 1127px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 1150px)", totalColumns: 3 },
   { breakpoint: "(max-width: 1011px)", totalColumns: 2 },
   { breakpoint: "(max-width: 851px)", totalColumns: 2 },
   { breakpoint: "(max-width: 849px)", totalColumns: 4 },
@@ -72,8 +72,8 @@ const deleteInvitationMessagesConfig = {
 };
 
 export {
-  invitationsTableTitles,
-  invitationsTableBreakpoints,
-  deleteInvitationModalConfig,
   deleteInvitationMessagesConfig,
+  deleteInvitationModalConfig,
+  invitationsTableBreakpoints,
+  invitationsTableTitles,
 };
