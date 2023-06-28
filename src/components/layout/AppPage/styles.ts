@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IStyledContainer {
+  smallScreen: boolean;
+}
+
 const StyledAppPage = styled.div`
   box-sizing: border-box;
   height: 100vh;
@@ -7,7 +11,7 @@ const StyledAppPage = styled.div`
   grid-template-rows: auto 1fr;
 `;
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.div<IStyledContainer>`
   display: grid;
   grid-template-columns: ${(props) =>
     props.smallScreen ? "auto" : "auto 1fr"};
