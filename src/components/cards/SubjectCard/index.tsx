@@ -2,17 +2,17 @@ import { Stack, Text, useMediaQuery } from "@inube/design-system";
 import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
 import { ILabel } from "@src/components/feedback/InteractiveModal/types";
 import { useState } from "react";
-import { MdOutlinePushPin } from "react-icons/md";
 import { StyledIcon, StyledSubjectCard } from "./styles";
 
 interface SubjectCardProps {
   subjectData: Record<string, string | number>;
   title: string;
   labels?: ILabel[];
+  icon: JSX.Element;
 }
 
 function SubjectCard(props: SubjectCardProps) {
-  const { subjectData, title, labels } = props;
+  const { subjectData, title, labels, icon } = props;
   const [showModal, setShowModal] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 970px)");
@@ -36,9 +36,7 @@ function SubjectCard(props: SubjectCardProps) {
             {Object.values(subjectData)[1]}
           </Text>
         </Stack>
-        <StyledIcon isActive={showModal}>
-          <MdOutlinePushPin size={24} />
-        </StyledIcon>
+        <StyledIcon isActive={showModal}>{icon}</StyledIcon>
       </StyledSubjectCard>
       {showModal && (
         <InteractiveModal
