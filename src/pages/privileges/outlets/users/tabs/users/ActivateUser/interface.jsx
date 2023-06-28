@@ -45,7 +45,8 @@ function ActivateUserUI(props) {
         checked={active}
         handleChange={handleToggleModal}
         id={id.toString()}
-        label={showComplete ? "Activate" : ""}
+        label={showComplete ? "Activar" : ""}
+        padding="0px 0px 0px 16px"
       />
 
       {showActivateUserModal && (

@@ -38,8 +38,9 @@ function DeleteUserUI(props) {
           handleClick={handleShowModal}
           variant="none"
           appearance="remove"
+          spacing="compact"
         >
-          Delete
+          Eliminar
         </Button>
       ) : (
         <StyledIconDelete>

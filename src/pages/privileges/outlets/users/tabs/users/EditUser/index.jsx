@@ -15,7 +15,7 @@ function EditUser(props) {
           appearance="secondary"
           spacing="compact"
         >
-          Edit
+          Editar
         </Button>
       ) : (
         <StyledLink to={`edit/${entry.id}`}>
