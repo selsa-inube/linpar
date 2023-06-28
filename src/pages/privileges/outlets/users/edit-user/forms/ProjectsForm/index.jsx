@@ -15,8 +15,8 @@ function ProjectsForm(props) {
     JSON.stringify(currentProjects) !== JSON.stringify(valueCompare);
 
   const handleChangeProjects = (projects) => {
-    onHasChanges(hasChanges(projects));
     setProjects(projects);
+    if (onHasChanges) onHasChanges(hasChanges(projects));
     if (!withSubmitButtons) handleSubmit(projects);
   };
 

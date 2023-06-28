@@ -17,8 +17,8 @@ function PayrollsForm(props) {
     JSON.stringify(currentPayrolls) !== JSON.stringify(valueCompare);
 
   const handleChangePayrolls = (payrolls) => {
-    onHasChanges(hasChanges(payrolls));
     setPayrolls(payrolls);
+    if (onHasChanges) onHasChanges(hasChanges(payrolls));
     if (!withSubmitButtons) handleSubmit(payrolls);
   };
 

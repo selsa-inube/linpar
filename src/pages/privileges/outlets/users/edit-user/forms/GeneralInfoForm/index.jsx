@@ -41,11 +41,10 @@ function GeneralInformationForm(props) {
       position: currentInformation.position || "",
     },
     validationSchema,
-
     validateOnChange: false,
 
     onReset: () => {
-      onHasChanges(false);
+      if (onHasChanges) onHasChanges(false);
     },
 
     onSubmit: () => {
@@ -73,17 +72,18 @@ function GeneralInformationForm(props) {
     JSON.stringify(formik.initialValues) !== JSON.stringify(valueCompare);
 
   const handleChangeForm = (event) => {
-    onHasChanges(hasChanges(formik.values));
+    const formikValues = {
+      ...formik.values,
+      [event.target.name]: event.target.value,
+    };
+
+    if (onHasChanges) onHasChanges(hasChanges(formikValues));
     formik
       .setFieldValue(event.target.name, event.target.value)
       .then((errors) => {
         if (withSubmitButtons) return;
-
-        if (Object.keys(errors).length === 0) {
-          handleSubmit({
-            ...formik.values,
-            [event.target.name]: event.target.value,
-          });
+        if (errors && Object.keys(errors).length === 0) {
+          handleSubmit(formikValues);
         }
       });
   };

@@ -21,8 +21,8 @@ function AidBudgetsForm(props) {
     JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
 
   const handleChangeAidBudgets = (aidBudgetUnits) => {
-    onHasChanges(hasChanges(aidBudgetUnits));
     setAidBudgetUnits(aidBudgetUnits);
+    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
     if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
   };
 
