@@ -3,7 +3,7 @@ import { StyledOption } from "./styles";
 
 interface MenuOptionProps {
   label: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   handleClick: () => void;
 }
 

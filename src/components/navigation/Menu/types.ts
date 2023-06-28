@@ -1,7 +1,7 @@
 interface IOption {
   id: string;
   label: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   path?: string;
   handleClick?: () => void;
 }

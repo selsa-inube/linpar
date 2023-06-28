@@ -22,7 +22,8 @@
       "@mocks/*": ["./src/mocks/*"],
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@styles/*": ["./src/styles/*"],
+      "@validations/*": ["./src/validations/*"]
     }
   },
 

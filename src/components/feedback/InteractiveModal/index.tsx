@@ -5,11 +5,10 @@ import {
   TextField,
   useMediaQuery,
 } from "@inube/design-system";
-import { IAction } from "@src/components/data/Table/types";
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import { StyledModal } from "./styles";
-import { ILabel } from "./types";
+import { ILabel, IAction } from "./types";
 
 interface InteractiveModalProps {
   title: string;

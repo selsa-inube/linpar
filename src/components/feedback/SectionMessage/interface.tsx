@@ -1,9 +1,21 @@
-import { Stack, Text } from "@inube/design-system";
+import { CountdownBar, Stack, Text } from "@inube/design-system";
 import { MdClear } from "react-icons/md";
-import { ProgressBar } from "../ProgressBar";
-import { StyledSectionMessage, StyledIcon } from "./styles";
+import { StyledIcon, StyledSectionMessage } from "./styles";
 
-function SectionMessageUI(props) {
+interface SectionMessageUIProps {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  appearance: string;
+  duration: number;
+  handleMouseEnter: () => void;
+  closeSectionMessage: () => void;
+  handleMouseLeave: () => void;
+  isPaused: boolean;
+  isMessageResponsive: boolean;
+}
+
+function SectionMessageUI(props: SectionMessageUIProps) {
   const {
     icon,
     title,
@@ -48,12 +60,11 @@ function SectionMessageUI(props) {
         </Stack>
       </Stack>
       {duration && (
-        <ProgressBar
+        <CountdownBar
           isPaused={isPaused}
-          colorToken={appearance}
+          appearance={appearance}
           duration={duration}
-          size={4}
-          handleAnimationEnd={closeSectionMessage}
+          handleCountdown={closeSectionMessage}
         />
       )}
     </StyledSectionMessage>
@@ -61,3 +72,4 @@ function SectionMessageUI(props) {
 }
 
 export { SectionMessageUI };
+export type { SectionMessageUIProps };

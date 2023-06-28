@@ -26,7 +26,6 @@ const renderMessage = (message, onCloseSectionMessage) => {
 function BranchesFormUI(props) {
   const {
     branches,
-    currentBranches,
     isLoading,
     handleSubmitForm,
     handleReset,
@@ -34,16 +33,14 @@ function BranchesFormUI(props) {
     withSubmitButtons,
     message,
     onCloseSectionMessage,
+    hasChanges,
   } = props;
-
-  const hasChanges =
-    JSON.stringify(currentBranches) === JSON.stringify(branches);
 
   if (withSubmitButtons) {
     return (
       <>
         <FormButtons
-          disabledButtons={hasChanges}
+          disabledButtons={!hasChanges(branches)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           isLoading={isLoading}

@@ -12,6 +12,13 @@ import { EditUserUI } from "./interface";
 function EditUser() {
   const { user_id } = useParams();
 
+  const [controlModal, setControlModal] = useState({
+    show: false,
+    continueTab: "",
+  });
+
+  const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
+
   const [selectedTab, setSelectedTab] = useState(
     editUserTabsConfig.generalInformation.id
   );
@@ -25,13 +32,8 @@ function EditUser() {
     payrolls: { entries: payrollsFormEditUser },
   });
 
-  const handleTabChange = (tabId) => {
-    setSelectedTab(tabId);
-  };
-
   function getUserInformation() {
-    const userID = parseInt(user_id);
-    return userEntriesDataMock.find((user) => user.id === userID);
+    return userEntriesDataMock.find((user) => user.id === user_id);
   }
 
   const handleSubmit = (values) => {
@@ -43,6 +45,30 @@ function EditUser() {
       ...prevEditData,
       [editKey]: { entries: values },
     }));
+    setCurrentFormHasChanges(false);
+  };
+
+  const handleTabChange = (tabId) => {
+    setControlModal(
+      currentFormHasChanges ? { show: true, continueTab: tabId } : controlModal
+    );
+    setSelectedTab(currentFormHasChanges ? selectedTab : tabId);
+  };
+
+  const handleCloseModal = () => {
+    setControlModal((prevControlModal) => ({
+      ...prevControlModal,
+      show: false,
+    }));
+  };
+
+  const handleDataChange = (hasChanges) => {
+    setCurrentFormHasChanges(hasChanges);
+  };
+
+  const handleContinueTab = () => {
+    setCurrentFormHasChanges(false);
+    setSelectedTab(controlModal.continueTab);
   };
 
   return (
@@ -51,6 +77,10 @@ function EditUser() {
       handleTabChange={handleTabChange}
       editData={editData}
       handleSubmit={handleSubmit}
+      controlModal={controlModal}
+      handleDataChange={handleDataChange}
+      handleCloseModal={handleCloseModal}
+      handleContinueTab={handleContinueTab}
     />
   );
 }

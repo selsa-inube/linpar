@@ -34,7 +34,7 @@ function AssistedUI(props) {
 
   if (smallScreen) {
     return (
-      <Stack gap="16px" alignItems="center">
+      <Stack gap="16px" alignItems="center" justifyContent="center">
         <StyledButton>
           <Button
             variant="none"
@@ -44,7 +44,7 @@ function AssistedUI(props) {
           />
         </StyledButton>
         <StyledStepsMobile>
-          <Stack gap="8px" alignItems="center">
+          <Stack gap="8px" alignItems="center" justifyContent="center">
             <StyledStepsMobileId>
               <Text typo="labelMedium" appearance="primary">
                 {steps[steps.length - 1].id === currentStep ? (
@@ -73,7 +73,7 @@ function AssistedUI(props) {
 
   return (
     <Stack direction="column" gap="8px">
-      <Stack alignItems="center">
+      <Stack alignItems="center" justifyContent="center">
         <Button
           variant="none"
           iconBefore={<MdArrowBack size={18} />}

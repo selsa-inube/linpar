@@ -37,11 +37,10 @@ const StyledIcon = styled.i<IStyledIcon>`
   align-items: center;
   justify-content: center;
   transition: transform 1000ms ease;
-  transform: rotate(${(props) => (props.isActive ? "90deg" : "0deg")});
   color: ${(props) =>
     props.isActive
       ? colors.ref.palette.blue.b400
       : colors.ref.palette.neutral.n900};
 `;
 
-export { StyledSubjectCard, StyledIcon };
+export { StyledIcon, StyledSubjectCard };

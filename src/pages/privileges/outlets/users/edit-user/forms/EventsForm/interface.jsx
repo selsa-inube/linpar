@@ -26,7 +26,6 @@ const renderMessage = (message, onCloseSectionMessage) => {
 function EventsFormUI(props) {
   const {
     events,
-    currentEvents,
     isLoading,
     handleSubmitForm,
     handleReset,
@@ -34,15 +33,14 @@ function EventsFormUI(props) {
     withSubmitButtons,
     message,
     onCloseSectionMessage,
+    hasChanges,
   } = props;
-
-  const hasChanges = JSON.stringify(currentEvents) === JSON.stringify(events);
 
   if (withSubmitButtons) {
     return (
       <>
         <FormButtons
-          disabledButtons={hasChanges}
+          disabledButtons={!hasChanges(events)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           isLoading={isLoading}

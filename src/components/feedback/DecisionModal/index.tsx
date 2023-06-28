@@ -15,6 +15,7 @@ interface DecisionModalProps {
   description: string;
   appearance: "primary" | "secondary" | "remove";
   actionText: string;
+  loading: boolean;
   closeModal: () => void;
   handleClick: () => void;
 }
@@ -25,6 +26,7 @@ function DecisionModal(props: DecisionModalProps) {
     description,
     appearance,
     actionText,
+    loading = true,
     closeModal,
     handleClick,
   } = props;
@@ -33,15 +35,19 @@ function DecisionModal(props: DecisionModalProps) {
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
   const handleIsLoading = () => {
-    setIsLoading(true);
+    setIsLoading(loading);
   };
 
   const handleConfirmationClick = () => {
     handleIsLoading();
-    setTimeout(() => {
-      closeModal();
-      handleClick();
-    }, 1000);
+
+    setTimeout(
+      () => {
+        closeModal();
+        handleClick();
+      },
+      !loading ? 0 : 1000
+    );
   };
 
   return createPortal(
