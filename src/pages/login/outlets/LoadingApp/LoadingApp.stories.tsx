@@ -16,7 +16,7 @@ const story: Story = {
   },
 };
 
-const Default = (): JSX.Element => <LoadingApp />;
+const Default = () => <LoadingApp />;
 
 export default story;
 

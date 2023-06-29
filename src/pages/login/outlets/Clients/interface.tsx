@@ -29,7 +29,7 @@ interface Client {
   logo: string;
 }
 
-function ClientsUI(props: ClientsUIProps): JSX.Element {
+function ClientsUI(props: ClientsUIProps) {
   const {
     clients,
     search,

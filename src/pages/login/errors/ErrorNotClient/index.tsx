@@ -1,6 +1,6 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
 
-function ErrorNotClient(): JSX.Element {
+function ErrorNotClient() {
   return (
     <ErrorPage
       heading="No hay resultados..."

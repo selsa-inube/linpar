@@ -16,7 +16,7 @@ const story: Story = {
   },
 };
 
-const Default = (): JSX.Element => <Clients />;
+const Default = () => <Clients />;
 
 export default story;
 

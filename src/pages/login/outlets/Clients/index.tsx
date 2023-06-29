@@ -1,13 +1,11 @@
 import React, { useState, useRef } from "react";
 import { clientsDataMock } from "@mocks/login/clients.mock";
 import { ClientsUI } from "./interface";
+import { ClientState } from "./types";
 
-function Clients(): JSX.Element {
+function Clients() {
   const [search, setSearch] = useState("");
-  const [client, setClient] = useState<{
-    ref: React.RefObject<HTMLInputElement>;
-    value: string | undefined;
-  }>({
+  const [client, setClient] = useState<ClientState>({
     ref: useRef<HTMLInputElement>(null),
     value: undefined,
   });

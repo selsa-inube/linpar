@@ -1,6 +1,6 @@
 import { LoadingAppUI } from "./interface";
 
-function LoadingApp(): JSX.Element {
+function LoadingApp() {
   return <LoadingAppUI />;
 }
 

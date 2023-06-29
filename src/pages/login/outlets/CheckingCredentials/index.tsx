@@ -1,6 +1,6 @@
 import { CheckingCredentialsUI } from "./interface";
 
-function CheckingCredentials(): JSX.Element {
+function CheckingCredentials() {
   return <CheckingCredentialsUI />;
 }
 

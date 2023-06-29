@@ -1,6 +1,6 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
 
-function ErrorNotAvailable(): JSX.Element {
+function ErrorNotAvailable() {
   return <ErrorPage />;
 }
 
