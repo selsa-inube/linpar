@@ -1,13 +1,15 @@
+import { StoryFn } from "@storybook/react";
+import { BrowserRouter } from "react-router-dom";
 import { Header } from "..";
 import linparLogo from "../../../assets/images/linpar.png";
-import { BrowserRouter } from "react-router-dom";
 import { Controller } from "./HeaderController";
+import { HeaderUIProps } from "../interface";
 
 const story = {
   components: [Header],
   title: "components/Header",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -15,7 +17,7 @@ const story = {
   ],
 };
 
-const Default = (args) => {
+const Default = (args: HeaderUIProps) => {
   return <Controller {...args} />;
 };
 
