@@ -1,5 +1,5 @@
-import React from "react";
 import { Home } from "./index";
+import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import AppContextProvider from "../../context/index";
 
@@ -9,7 +9,7 @@ const story = {
     layout: "fullscreen",
   },
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <AppContextProvider>
         <BrowserRouter>
           <Story />

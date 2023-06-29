@@ -1,12 +1,15 @@
 import { Header } from "@components/Header";
-
 import { MdOutlineDoorFront } from "react-icons/md";
-
 import { StyledHome, StyledAppsList, StyledPageTitle } from "./styles";
 import { AppCard } from "@components/cards/AppCard";
 import { PageTitle } from "@components/PageTitle";
+import { IApps } from "./types";
 
-function HomeUI(props) {
+interface HomeUIProps {
+  apps: IApps[];
+}
+
+function HomeUI(props: HomeUIProps) {
   const { apps } = props;
 
   return (
@@ -37,3 +40,4 @@ function HomeUI(props) {
 }
 
 export { HomeUI };
+export type { HomeUIProps };
