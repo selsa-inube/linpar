@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { CheckingCredentials } from "@pages/login/outlets/CheckingCredentials";
 import { Clients } from "@pages/login/outlets/Clients";
@@ -8,7 +7,7 @@ import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "@pages/login/errors/ErrorNotClient";
 import { Login } from "@pages/login";
 
-function LoginRoutes(): JSX.Element {
+function LoginRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Login />}>

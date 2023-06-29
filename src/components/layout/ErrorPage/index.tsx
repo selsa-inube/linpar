@@ -11,12 +11,12 @@ import selsaLogo from "@src/assets/images/selsa.png";
 import errorImage from "@src/assets/images/timeout.png";
 
 interface ErrorPageProps {
-  logo: string;
-  logoAlt: string;
-  heading: string;
-  description: string;
-  image: string;
-  imageAlt: string;
+  logo?: string;
+  logoAlt?: string;
+  heading?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 function ErrorPage(props: ErrorPageProps) {
