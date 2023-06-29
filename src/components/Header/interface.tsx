@@ -1,7 +1,7 @@
-import { User, useMediaQuery, Nav } from "@inube/design-system";
+import { Nav, User, useMediaQuery } from "@inube/design-system";
+import { navigationConfig } from "@pages/home/config/apps.config";
 import { createPortal } from "react-dom";
 import { MdMenu } from "react-icons/md";
-import { navigationConfig } from "@pages/home/config/apps.config";
 
 import {
   StyledHeader,
@@ -12,7 +12,17 @@ import {
   StyledcontentImg,
 } from "./styles";
 
-function HeaderUI(props) {
+interface HeaderUIProps {
+  userName: string;
+  businessUnit: string;
+  appLogo: string;
+  appLogoAlt: string;
+  handleNav: () => void;
+  nav: boolean;
+  appLogoRedirect?: string;
+}
+
+function HeaderUI(props: HeaderUIProps) {
   const smallScreen = useMediaQuery("(max-width: 450px)");
   const actualSize = smallScreen ? "small" : "large";
 
@@ -48,10 +58,11 @@ function HeaderUI(props) {
           <StyledNavWrapper>
             <Nav navigation={navigationConfig} logoutPath="/" />
           </StyledNavWrapper>,
-          document.getElementById("portal")
+          document.getElementById("portal")!
         )}
     </>
   );
 }
 
 export { HeaderUI };
+export type { HeaderUIProps };
