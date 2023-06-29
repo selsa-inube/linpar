@@ -1,17 +1,6 @@
 import { createContext } from "react";
 import linparLogo from "../assets/images/linpar.png";
-
-export interface IAppContext {
-  user: {
-    username: string;
-    id: string;
-    company: string;
-    operator: {
-      name: string;
-      logo: string;
-    };
-  };
-}
+import { IAppContext } from "./types";
 
 const store: IAppContext = {
   user: {
