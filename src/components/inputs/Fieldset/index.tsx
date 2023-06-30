@@ -4,15 +4,20 @@ import { StyledFieldset } from "./styles";
 interface FieldsetProps {
   title: string;
   children: JSX.Element;
+  icon?: JSX.Element;
+  appearance?: JSX.Element;
 }
 
 function Fieldset(props: FieldsetProps) {
-  const { title, children } = props;
+  const { title, children, icon, appearance } = props;
 
   return (
     <StyledFieldset>
       <legend>
-        <Text typo="titleSmall">{title}</Text>
+        {icon}
+        <Text typo="titleSmall" appearance={appearance}>
+          {title}
+        </Text>
       </legend>
       {children}
     </StyledFieldset>

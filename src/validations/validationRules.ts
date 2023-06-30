@@ -8,7 +8,7 @@ const validationRules = {
     .min(8, validationMessages.minCharacters(8))
     .max(30, validationMessages.maxCharacters(30)),
 
-  id: Yup.string()
+  identification: Yup.string()
     .test(
       "testId",
       validationMessages.validIdentification,
@@ -26,6 +26,16 @@ const validationRules = {
     .matches(regex.emailFormat, validationMessages.validEmail)
     .min(8, validationMessages.minCharacters(8))
     .max(80, validationMessages.maxCharacters(80)),
+
+  password: Yup.string()
+    .matches(regex.passwordFormat, validationMessages.validPassword)
+    .min(8, validationMessages.minCharacters(8))
+    .max(30, validationMessages.maxCharacters(30)),
+
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), undefined], validationMessages.passwordMatch)
+    .min(8, validationMessages.minCharacters(8))
+    .max(30, validationMessages.maxCharacters(30)),
 };
 
 export { validationRules };

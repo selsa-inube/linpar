@@ -18,6 +18,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="login/*" element={<LoginRoutes />} />
+      <Route path="respond-invitation/:client/*" element={<LoginRoutes />} />
     </>
   )
 );
