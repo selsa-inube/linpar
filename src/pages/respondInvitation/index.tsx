@@ -6,9 +6,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { ErrorNotAvailable } from "../login/errors/ErrorNotAvailable";
-import { stepsRegisterUserConfig } from "../privileges/outlets/users/complete-invitation/config/completeInvitation.config";
-import { CompleteInvitationUI } from "../privileges/outlets/users/complete-invitation/interface";
 import { RespondInvitationUI } from "./interface";
+import { ErrorInvitationExpired } from "./cases/ErrorInvitationExpired";
 
 const LOADING_TIMEOUT = 1000;
 
@@ -23,17 +22,25 @@ const validationSchema = Yup.object({
   ),
 });
 
-function RespondInvitation() {
-  const { invitation_id } = useParams();
+interface RespondInvitationProps {
+  clientData: {
+    logo: string;
+    logoAlt: string;
+  };
+  invitationId: string;
+}
+
+function RespondInvitation(props: RespondInvitationProps) {
+  const { clientData, invitationId } = props;
   const [loading, setLoading] = useState(false);
 
   const invitation = getInvitationInformation();
 
   const formik = useFormik({
     initialValues: {
-      username: invitation.username,
-      userID: invitation.userID,
-      email: invitation.email,
+      username: invitation?.username,
+      userID: invitation?.userID,
+      email: invitation?.email,
       phone: "",
       password: "",
       confirmPassword: "",
@@ -52,7 +59,7 @@ function RespondInvitation() {
 
   function getInvitationInformation() {
     return invitationEntriesDataMock.find(
-      (invitation) => invitation.id === invitation_id
+      (invitation) => invitation.id === invitationId
     );
   }
 
