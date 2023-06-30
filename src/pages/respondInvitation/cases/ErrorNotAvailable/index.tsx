@@ -1,14 +1,13 @@
-import { ErrorPage } from "@src/components/layout/ErrorPage";
+import { ErrorPage } from "@components/layout/ErrorPage";
 import { IClient } from "../../types";
 
 interface ConfirmationRegisterCompleteProps {
   clientData: IClient;
 }
 
-function ConfirmationRegisterComplete(
-  props: ConfirmationRegisterCompleteProps
-) {
+export const ErrorNotAvailable = (props: ConfirmationRegisterCompleteProps) => {
   const { clientData } = props;
+
   return (
     <ErrorPage
       logo={clientData.logo}
@@ -18,6 +17,4 @@ function ConfirmationRegisterComplete(
       imageAlt="Su registro se ha realizado correctamente."
     />
   );
-}
-
-export { ConfirmationRegisterComplete };
+};

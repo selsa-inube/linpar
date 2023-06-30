@@ -1,8 +1,8 @@
-import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
 import { clientsDataMock } from "@src/mocks/login/clients.mock";
 import { themeClientsMock } from "@src/mocks/respondInvitation/themeClients.mock";
 import { RespondInvitation } from "@src/pages/respondInvitation";
 import { ConfirmationRegisterComplete } from "@src/pages/respondInvitation/cases/ConfirmationRegisterComplete";
+import { ErrorNotAvailable } from "@src/pages/respondInvitation/cases/ErrorNotAvailable";
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
@@ -30,6 +30,7 @@ function RespondInvitationRoutes() {
 
   if (!theme || !client_id || !clientData) {
     navigate("/*");
+    return;
   }
 
   return (
@@ -37,7 +38,12 @@ function RespondInvitationRoutes() {
       <Routes>
         <Route
           path="/"
-          element={<RespondInvitation clientData={clientData} />}
+          element={
+            <RespondInvitation
+              clientData={clientData}
+              invitationId={invitation_id}
+            />
+          }
         />
         <Route
           path="confirmation-register-complete/"

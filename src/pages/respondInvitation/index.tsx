@@ -3,11 +3,11 @@ import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import * as Yup from "yup";
-import { ErrorNotAvailable } from "../login/errors/ErrorNotAvailable";
-import { RespondInvitationUI } from "./interface";
 import { ErrorInvitationExpired } from "./cases/ErrorInvitationExpired";
+import { RespondInvitationUI } from "./interface";
+import { ErrorNotAvailable } from "./cases/ErrorNotAvailable";
+import { IClient } from "./types";
 
 const LOADING_TIMEOUT = 1000;
 
@@ -23,10 +23,7 @@ const validationSchema = Yup.object({
 });
 
 interface RespondInvitationProps {
-  clientData: {
-    logo: string;
-    logoAlt: string;
-  };
+  clientData: IClient;
   invitationId: string;
 }
 
