@@ -1,7 +1,8 @@
 import { createContext } from "react";
 import linparLogo from "../assets/images/linpar.png";
+import { IAppContext } from "./types";
 
-const store = {
+const store: IAppContext = {
   user: {
     username: "Leonardo Garzón",
     id: "abc123",
@@ -13,9 +14,13 @@ const store = {
   },
 };
 
-export const AppContext = createContext(null);
+export const AppContext = createContext<IAppContext>(store);
 
-export default function AppContextProvider(props) {
+interface AppContextProviderProps {
+  children: React.ReactNode;
+}
+
+export default function AppContextProvider(props: AppContextProviderProps) {
   const { children } = props;
   return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
 }

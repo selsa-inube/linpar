@@ -7,4 +7,12 @@ const editUserOptionsConfig = {
   },
 };
 
-export { editUserOptionsConfig };
+const EditUserContinueModalConfig = {
+  title: "Continuar sin guardar",
+  description:
+    "¿Seguro que desea salir? cualquier cambio no guardado se perderá",
+  actionText: "Continuar",
+  appearance: "confirm",
+};
+
+export { editUserOptionsConfig, EditUserContinueModalConfig };

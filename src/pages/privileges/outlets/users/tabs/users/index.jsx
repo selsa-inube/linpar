@@ -1,5 +1,5 @@
-import { Table } from "@components/data/Table";
 import { SectionMessage } from "@components/feedback/SectionMessage";
+import { Table } from "@inube/design-system";
 import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
 import { useState } from "react";
 import { activateUserMessages } from "../../config/activateUser.config";
@@ -83,7 +83,7 @@ function UsersTab(props) {
 
   const actions = [
     {
-      id: 1,
+      id: "1",
       actionName: "Activate",
       content: (user) => (
         <ActivateUser
@@ -94,13 +94,13 @@ function UsersTab(props) {
       type: "secondary",
     },
     {
-      id: 2,
+      id: "2",
       actionName: "Edit",
       content: (entry) => <EditUser entry={entry} />,
       type: "primary",
     },
     {
-      id: 3,
+      id: "3",
       actionName: "Delete",
       content: (user) => (
         <DeleteUser user={user} handleDeleteUser={() => deleteUser(user)} />
@@ -112,10 +112,11 @@ function UsersTab(props) {
   return (
     <>
       <Table
+        id="portal"
         titles={usersTitlesConfig}
-        entries={users}
         actions={actions}
-        breakPoints={usersBreakPointsConfig}
+        entries={users}
+        breakpoints={usersBreakPointsConfig}
         filter={searchText}
         modalTitle="Usuario"
       />

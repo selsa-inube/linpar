@@ -2,6 +2,8 @@ import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
+import { DecisionModal } from "@components/feedback/DecisionModal";
+import { EditUserContinueModalConfig } from "./config/editUser.config";
 import { editUserOptionsConfig } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
@@ -12,9 +14,35 @@ import { PayrollsForm } from "./forms/PayrollsForm";
 import { ProjectsForm } from "./forms/ProjectsForm";
 import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
+import { MdPersonOutline } from "react-icons/md";
+
+function continueModal(handleCloseModal, handleContinueTab) {
+  const { title, description, actionText, appearance } =
+    EditUserContinueModalConfig;
+  return (
+    <DecisionModal
+      title={title}
+      description={description}
+      actionText={actionText}
+      loading={false}
+      appearance={appearance}
+      closeModal={handleCloseModal}
+      handleClick={handleContinueTab}
+    />
+  );
+}
 
 function EditUserUI(props) {
-  const { selectedTab, handleTabChange, editData, handleSubmit } = props;
+  const {
+    selectedTab,
+    handleTabChange,
+    editData,
+    handleSubmit,
+    controlModal,
+    handleCloseModal,
+    handleDataChange,
+    handleContinueTab,
+  } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -44,6 +72,7 @@ function EditUserUI(props) {
               <SubjectCard
                 subjectData={userCardData}
                 title="Informacion del usuario"
+                icon={<MdPersonOutline size={24} />}
               />
             )}
           </Stack>
@@ -60,6 +89,7 @@ function EditUserUI(props) {
                 currentInformation={editData.generalInformation.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.branches.id && (
@@ -67,6 +97,7 @@ function EditUserUI(props) {
                 currentBranches={editData.branches.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.events.id && (
@@ -74,6 +105,7 @@ function EditUserUI(props) {
                 currentEvents={editData.events.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.projects.id && (
@@ -81,6 +113,7 @@ function EditUserUI(props) {
                 currentProjects={editData.projects.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
@@ -88,6 +121,7 @@ function EditUserUI(props) {
                 currentAidBudgetUnits={editData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
+                onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.payrolls.id && (
@@ -95,6 +129,7 @@ function EditUserUI(props) {
                 currentPayrolls={editData.payrolls.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
+                onHasChanges={handleDataChange}
               />
             )}
           </Stack>
@@ -108,6 +143,7 @@ function EditUserUI(props) {
           />
         )}
       </Stack>
+      {controlModal.show && continueModal(handleCloseModal, handleContinueTab)}
     </StyledContainer>
   );
 }

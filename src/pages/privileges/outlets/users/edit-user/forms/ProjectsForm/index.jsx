@@ -2,7 +2,8 @@ import { useState } from "react";
 import { ProjectsFormUI } from "./interface";
 
 function ProjectsForm(props) {
-  const { currentProjects, handleSubmit, withSubmitButtons } = props;
+  const { currentProjects, handleSubmit, withSubmitButtons, onHasChanges } =
+    props;
   const [projects, setProjects] = useState(currentProjects);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -10,8 +11,12 @@ function ProjectsForm(props) {
     type: "",
   });
 
+  const hasChanges = (valueCompare) =>
+    JSON.stringify(currentProjects) !== JSON.stringify(valueCompare);
+
   const handleChangeProjects = (projects) => {
     setProjects(projects);
+    if (onHasChanges) onHasChanges(hasChanges(projects));
     if (!withSubmitButtons) handleSubmit(projects);
   };
 
@@ -30,6 +35,7 @@ function ProjectsForm(props) {
 
   const handleReset = () => {
     setProjects(currentProjects);
+    onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
@@ -50,6 +56,7 @@ function ProjectsForm(props) {
       withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
+      hasChanges={hasChanges}
     />
   );
 }

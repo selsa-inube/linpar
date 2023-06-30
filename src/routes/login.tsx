@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { CheckingCredentials } from "@pages/login/outlets/CheckingCredentials";
 import { Clients } from "@pages/login/outlets/Clients";

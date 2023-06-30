@@ -4,7 +4,8 @@ import { PayrollsFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 function PayrollsForm(props) {
-  const { currentPayrolls, handleSubmit, withSubmitButtons } = props;
+  const { currentPayrolls, handleSubmit, withSubmitButtons, onHasChanges } =
+    props;
   const [payrolls, setPayrolls] = useState(currentPayrolls);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -12,8 +13,12 @@ function PayrollsForm(props) {
     type: "",
   });
 
+  const hasChanges = (valueCompare) =>
+    JSON.stringify(currentPayrolls) !== JSON.stringify(valueCompare);
+
   const handleChangePayrolls = (payrolls) => {
     setPayrolls(payrolls);
+    if (onHasChanges) onHasChanges(hasChanges(payrolls));
     if (!withSubmitButtons) handleSubmit(payrolls);
   };
 
@@ -32,6 +37,7 @@ function PayrollsForm(props) {
 
   const handleReset = () => {
     setPayrolls(currentPayrolls);
+    onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
@@ -52,6 +58,7 @@ function PayrollsForm(props) {
       withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
+      hasChanges={hasChanges}
     />
   );
 }

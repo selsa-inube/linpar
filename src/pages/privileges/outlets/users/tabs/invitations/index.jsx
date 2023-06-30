@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Table } from "@components/data/Table";
 import { SectionMessage } from "@components/feedback/SectionMessage";
+import { Table } from "@inube/design-system";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
+import { useState } from "react";
 import { resendInvitationMessages } from "../../../users/config/resendInvitationUser.config";
 import {
   deleteInvitationMessagesConfig,
   invitationsTableBreakpoints,
   invitationsTableTitles,
 } from "../../config/invitationsTable.config";
+import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
-import { CompleteInvitationLink } from "./CompleteInvitationLink";
 
 const initialMessageState = {
   show: false,
@@ -27,7 +27,7 @@ function InvitationsTab(props) {
 
   const invitationsTableActions = [
     {
-      id: 1,
+      id: "1",
       actionName: "Complete",
       content: (invitation) => (
         <CompleteInvitationLink invitation={invitation} />
@@ -35,7 +35,7 @@ function InvitationsTab(props) {
       type: "secondary",
     },
     {
-      id: 2,
+      id: "2",
       actionName: "Resend",
       content: (invitation) => (
         <ResendInvitation
@@ -46,7 +46,7 @@ function InvitationsTab(props) {
       type: "primary",
     },
     {
-      id: 3,
+      id: "3",
       actionName: "Delete",
       content: (invitation) => (
         <DeleteInvitation handleDelete={() => deleteInvitation(invitation)} />
@@ -112,10 +112,11 @@ function InvitationsTab(props) {
   return (
     <>
       <Table
+        id="portal"
         titles={invitationsTableTitles}
         entries={invitations}
         actions={invitationsTableActions}
-        breakPoints={invitationsTableBreakpoints}
+        breakpoints={invitationsTableBreakpoints}
         filter={searchText}
         modalTitle="Invitación"
       />

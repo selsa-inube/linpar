@@ -147,7 +147,7 @@ function GeneralInformationFormUI(props) {
     withSubmitButtons,
     showMessage,
     handleCloseSectionMessage,
-    disabledButtons,
+    hasChanges,
     formInvalid,
     handleSubmitForm,
     handleChangeForm,
@@ -159,7 +159,7 @@ function GeneralInformationFormUI(props) {
         <FormButtons
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
-          disabledButtons={disabledButtons}
+          hasChanges={!hasChanges(formik.values)}
           isLoading={loading}
         >
           {renderFormFields(formik, loading, formInvalid, handleChangeForm)}

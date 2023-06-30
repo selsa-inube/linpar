@@ -26,7 +26,6 @@ const renderMessage = (message, onCloseSectionMessage) => {
 function PayrollsFormUI(props) {
   const {
     payrolls,
-    currentPayrolls,
     isLoading,
     handleSubmitForm,
     handleReset,
@@ -34,16 +33,14 @@ function PayrollsFormUI(props) {
     withSubmitButtons,
     message,
     onCloseSectionMessage,
+    hasChanges,
   } = props;
-
-  const hasChanges =
-    JSON.stringify(currentPayrolls) === JSON.stringify(payrolls);
 
   if (withSubmitButtons) {
     return (
       <>
         <FormButtons
-          disabledButtons={hasChanges}
+          disabledButtons={!hasChanges(payrolls)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           isLoading={isLoading}

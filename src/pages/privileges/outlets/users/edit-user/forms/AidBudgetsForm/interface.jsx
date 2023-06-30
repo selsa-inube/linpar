@@ -26,7 +26,6 @@ const renderMessage = (message, onCloseSectionMessage) => {
 function AidBudgetsFormUI(props) {
   const {
     aidBudgetUnits,
-    currentAidBudgetUnits,
     isLoading,
     handleSubmitForm,
     handleReset,
@@ -34,16 +33,14 @@ function AidBudgetsFormUI(props) {
     withSubmitButtons,
     message,
     onCloseSectionMessage,
+    hasChanges,
   } = props;
-
-  const hasChanges =
-    JSON.stringify(currentAidBudgetUnits) === JSON.stringify(aidBudgetUnits);
 
   if (withSubmitButtons) {
     return (
       <>
         <FormButtons
-          disabledButtons={hasChanges}
+          disabledButtons={!hasChanges(aidBudgetUnits)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           isLoading={isLoading}

@@ -15,6 +15,7 @@ import {
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
+import { MdPersonOutline } from "react-icons/md";
 
 function CompleteInvitationUI(props) {
   const { invitationData, handleSubmit, handleStepChange, currentStep } = props;
@@ -47,6 +48,7 @@ function CompleteInvitationUI(props) {
               <SubjectCard
                 subjectData={invitationCardData}
                 title="Informacion del usuario"
+                icon={<MdPersonOutline size={24} />}
               />
             )}
           </Stack>
