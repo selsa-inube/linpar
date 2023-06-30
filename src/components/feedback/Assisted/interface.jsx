@@ -7,7 +7,12 @@ import {
   StyledStepsMobile,
   StyledStepsMobileId,
   StyledButton,
+  StyledMobile,
+  StyledDesktopContainer,
 } from "./styles";
+
+const MAX_STEPS_PER_VIEW = 9;
+let marginSteps = "";
 
 function AssistedUI(props) {
   const {
@@ -19,22 +24,51 @@ function AssistedUI(props) {
     steps,
   } = props;
 
+  const validateStepsPerView = MAX_STEPS_PER_VIEW > steps.length;
+
   function renderStep(step, index) {
     const Step = smallScreen ? StepBar : StepIndicator;
-    return (
-      <Step
-        key={index}
-        stepNumber={index + 1}
-        stepName={step.stepName}
-        actualStep={currentStep}
-        isVerification={step.isVerification}
-      />
-    );
+
+    const totalGroup = Math.ceil(steps.length / MAX_STEPS_PER_VIEW);
+
+    const currentGroup = Math.ceil(currentStep / MAX_STEPS_PER_VIEW);
+    const startIndex = (currentGroup - 1) * MAX_STEPS_PER_VIEW + 1;
+    const endIndex = currentGroup * MAX_STEPS_PER_VIEW;
+
+    if (validateStepsPerView) {
+      return (
+        <Step
+          key={index}
+          stepNumber={index + 1}
+          stepName={step.stepName}
+          actualStep={currentStep}
+          isVerification={step.isVerification}
+        />
+      );
+    }
+
+    if (step.id >= startIndex && step.id <= endIndex) {
+      marginSteps =
+        currentGroup === 1
+          ? "right"
+          : currentGroup === totalGroup
+          ? "left"
+          : "";
+      return (
+        <Step
+          key={index}
+          stepNumber={index + 1}
+          stepName={step.stepName}
+          actualStep={currentStep}
+          isVerification={step.isVerification}
+        />
+      );
+    }
   }
 
   if (smallScreen) {
     return (
-      <Stack gap="16px" alignItems="center" justifyContent="center">
+      <StyledMobile>
         <StyledButton>
           <Button
             variant="none"
@@ -65,14 +99,15 @@ function AssistedUI(props) {
             variant="none"
             iconAfter={<MdArrowForward size={20} />}
             handleClick={handleNextStep}
+            isDisabled={currentStep === steps.length}
           />
         </StyledButton>
-      </Stack>
+      </StyledMobile>
     );
   }
 
   return (
-    <Stack direction="column" gap="8px">
+    <StyledDesktopContainer>
       <Stack alignItems="center" justifyContent="center">
         <Button
           variant="none"
@@ -87,13 +122,19 @@ function AssistedUI(props) {
             Prev
           </Text>
         </Button>
-        <StyledSteps>{steps.map(renderStep)}</StyledSteps>
+        <StyledSteps marginSteps={marginSteps}>
+          {steps.map(renderStep)}
+        </StyledSteps>
         <Button
           variant="none"
           iconAfter={<MdArrowForward size={18} />}
           handleClick={handleNextStep}
+          isDisabled={currentStep === steps.length}
         >
-          <Text typo="labelLarge" appearance="primary">
+          <Text
+            typo="labelLarge"
+            appearance={currentStep === steps.length ? "disabled" : "primary"}
+          >
             Next
           </Text>
         </Button>
@@ -101,7 +142,7 @@ function AssistedUI(props) {
       <Text typo="labelLarge" appearance="secondary" align="center">
         {currentStepInfo.stepDescription}
       </Text>
-    </Stack>
+    </StyledDesktopContainer>
   );
 }
 
