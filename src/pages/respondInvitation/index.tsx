@@ -1,13 +1,14 @@
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
+import { clientsDataMock } from "@src/mocks/login/clients.mock";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
 import { useFormik } from "formik";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { ErrorInvitationExpired } from "./cases/ErrorInvitationExpired";
-import { RespondInvitationUI } from "./interface";
 import { ErrorNotAvailable } from "./cases/ErrorNotAvailable";
-import { IClient } from "./types";
+import { RespondInvitationUI } from "./interface";
 
 const LOADING_TIMEOUT = 1000;
 
@@ -22,15 +23,24 @@ const validationSchema = Yup.object({
   ),
 });
 
-interface RespondInvitationProps {
-  clientData: IClient;
-  invitationId: string;
-}
-
-function RespondInvitation(props: RespondInvitationProps) {
-  const { clientData, invitationId } = props;
+function RespondInvitation() {
+  const { client_id, invitation_id } = useParams();
   const [loading, setLoading] = useState(false);
 
+  const getInvitationInformation = () => {
+    return invitationEntriesDataMock.find(
+      (invitation) => invitation.id === invitation_id
+    );
+  };
+
+  const getClientData = () => {
+    if (!client_id) return;
+    return clientsDataMock.find(
+      (clientMock) => clientMock.id === parseInt(client_id)
+    );
+  };
+
+  const clientData = getClientData();
   const invitation = getInvitationInformation();
 
   const formik = useFormik({
@@ -54,29 +64,12 @@ function RespondInvitation(props: RespondInvitationProps) {
     },
   });
 
-  function getInvitationInformation() {
-    return invitationEntriesDataMock.find(
-      (invitation) => invitation.id === invitationId
-    );
-  }
-
-  /* const handleSubmit = (values) => {
-    const stepKey = Object.keys(stepsRegisterUserConfig).find(
-      (key) => stepsRegisterUserConfig[key].id === currentStep
-    );
-
-    setInvitationData((prevInvitationData) => ({
-      ...prevInvitationData,
-      [stepKey]: { entries: values },
-    }));
-  }; */
-
   if (!invitation) {
     return <ErrorNotAvailable />;
   }
 
   if (invitation.status === "Pending") {
-    return <ErrorInvitationExpired />;
+    return <ErrorInvitationExpired clientData={clientData} />;
   }
 
   return <RespondInvitationUI />;

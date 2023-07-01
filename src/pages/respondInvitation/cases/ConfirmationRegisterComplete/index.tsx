@@ -1,22 +1,28 @@
 import { ErrorPage } from "@src/components/layout/ErrorPage";
-import { IClient } from "../../types";
+import { clientsDataMock } from "@src/mocks/login/clients.mock";
+import { useParams } from "react-router-dom";
 
-interface ConfirmationRegisterCompleteProps {
-  clientData: IClient;
-}
+function ConfirmationRegisterComplete() {
+  const { client_id } = useParams();
 
-function ConfirmationRegisterComplete(
-  props: ConfirmationRegisterCompleteProps
-) {
-  const { clientData } = props;
-  return (
+  const getClientData = () => {
+    if (!client_id) return;
+    return clientsDataMock.find(
+      (clientMock) => clientMock.id === parseInt(client_id)
+    );
+  };
+
+  const clientData = getClientData();
+  return clientData ? (
     <ErrorPage
       logo={clientData.logo}
       logoAlt={`Logo ${clientData.name}`}
-      heading=" Gracias! Registro completado..."
+      heading="Gracias! Registro completado..."
       description="Hemos enviado la información, revisa tu correo electrónico para ingresar a nuestra plataforma."
       imageAlt="Su registro se ha realizado correctamente."
     />
+  ) : (
+    <ErrorPage />
   );
 }
 
