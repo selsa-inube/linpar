@@ -1,24 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { clientsDataMock } from "@mocks/login/clients.mock";
 import { ClientsUI } from "./interface";
-import { ClientState } from "./types";
+import { IClientState } from "./types";
 
 function Clients() {
   const [search, setSearch] = useState("");
-  const [client, setClient] = useState<ClientState>({
-    ref: useRef<HTMLInputElement>(null),
-    value: undefined,
+  const [client, setClient] = useState<IClientState>({
+    ref: null,
+    value: "",
   });
 
   function clientReset() {
     return {
       ref: client.ref,
-      value: undefined,
+      value: "",
     };
   }
 
   function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if (client.ref.current) {
+    if (client.ref && client.ref.current) {
       client.ref.current.checked = false;
     }
     setClient(clientReset());

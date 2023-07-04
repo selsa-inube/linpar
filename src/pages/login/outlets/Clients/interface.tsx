@@ -1,5 +1,6 @@
 import { RadioClient } from "@components/cards/RadioClient";
 import { Button, Text, TextField } from "@inube/design-system";
+import { IClientState } from "./types";
 
 import { MdSearch } from "react-icons/md";
 
@@ -13,10 +14,7 @@ import {
 interface ClientsUIProps {
   clients: Client[];
   search: string;
-  client: {
-    ref: React.RefObject<HTMLInputElement>;
-    value: string | undefined;
-  };
+  client: IClientState;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleClientChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   filterClients: () => Client[];

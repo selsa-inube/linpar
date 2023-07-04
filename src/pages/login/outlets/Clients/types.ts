@@ -1,6 +1,6 @@
-interface ClientState {
-  ref: React.RefObject<HTMLInputElement>;
-  value: string | undefined;
+interface IClientState {
+  ref: React.RefObject<HTMLInputElement> | null;
+  value: string;
 }
 
-export type { ClientState };
+export type { IClientState };
