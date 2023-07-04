@@ -5,6 +5,8 @@ const StyledDesktopContainer = styled.div`
   flex-direction: column;
   gap: 8px;
   background-color: ${colors.ref.palette.neutral.n20};
+  justify-items: center;
+  width: 100%;
 `;
 
 const StyledMobile = styled.div`
@@ -15,17 +17,17 @@ const StyledMobile = styled.div`
   padding: 12px;
   background-color: ${colors.ref.palette.neutral.n20};
 `;
+const StyledStepsContent = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: 700px;
+  justify-content: center;
+`;
 
 const StyledSteps = styled.ul`
   display: flex;
   width: 90%;
-  max-width: 700px;
-  margin: ${(props) =>
-    props.marginSteps === "right"
-      ? "0 40px 0 0"
-      : props.marginSteps === "left"
-      ? "0 0 0 40px"
-      : "0"};
+  margin: 0px;
   padding: 0px;
   justify-content: center;
 `;
@@ -63,4 +65,5 @@ export {
   StyledStepsMobileId,
   StyledMobile,
   StyledDesktopContainer,
+  StyledStepsContent,
 };

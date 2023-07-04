@@ -9,10 +9,10 @@ import {
   StyledButton,
   StyledMobile,
   StyledDesktopContainer,
+  StyledStepsContent,
 } from "./styles";
 
-const MAX_STEPS_PER_VIEW = 9;
-let marginSteps = "";
+const MAX_STEPS_PER_VIEW = 7;
 
 function AssistedUI(props) {
   const {
@@ -24,36 +24,17 @@ function AssistedUI(props) {
     steps,
   } = props;
 
-  const validateStepsPerView = MAX_STEPS_PER_VIEW > steps.length;
-
-  function renderStep(step, index) {
+  const renderStep = (step, index) => {
     const Step = smallScreen ? StepBar : StepIndicator;
-
     const totalGroup = Math.ceil(steps.length / MAX_STEPS_PER_VIEW);
-
     const currentGroup = Math.ceil(currentStep / MAX_STEPS_PER_VIEW);
     const startIndex = (currentGroup - 1) * MAX_STEPS_PER_VIEW + 1;
     const endIndex = currentGroup * MAX_STEPS_PER_VIEW;
 
-    if (validateStepsPerView) {
-      return (
-        <Step
-          key={index}
-          stepNumber={index + 1}
-          stepName={step.stepName}
-          actualStep={currentStep}
-          isVerification={step.isVerification}
-        />
-      );
-    }
+    const marginToLeft = totalGroup === currentGroup && step.id === startIndex;
+    const marginToRight = currentGroup === 1 && step.id === endIndex;
 
     if (step.id >= startIndex && step.id <= endIndex) {
-      marginSteps =
-        currentGroup === 1
-          ? "right"
-          : currentGroup === totalGroup
-          ? "left"
-          : "";
       return (
         <Step
           key={index}
@@ -61,10 +42,13 @@ function AssistedUI(props) {
           stepName={step.stepName}
           actualStep={currentStep}
           isVerification={step.isVerification}
+          marginToLeft={marginToLeft}
+          marginToRight={marginToRight}
         />
       );
     }
-  }
+    return null;
+  };
 
   if (smallScreen) {
     return (
@@ -122,9 +106,9 @@ function AssistedUI(props) {
             Prev
           </Text>
         </Button>
-        <StyledSteps marginSteps={marginSteps}>
-          {steps.map(renderStep)}
-        </StyledSteps>
+        <StyledStepsContent>
+          <StyledSteps>{steps.map(renderStep)}</StyledSteps>
+        </StyledStepsContent>
         <Button
           variant="none"
           iconAfter={<MdArrowForward size={18} />}
