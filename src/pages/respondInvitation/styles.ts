@@ -1,14 +1,14 @@
 import { colors } from "@styles/colors";
 import styled from "styled-components";
 
-const StyledRespondInvitationContainer = styled.div`
+const StyledPageContainer = styled.div`
   display: grid;
-  grid-template-columns: Ifr 2fr;
+  grid-template-columns: 1fr 2fr;
   min-height: 100vh;
 `;
 
-const Styledwelcomecontainer = styled.div`
-  background-color: ${colors.ref.palette.neutral.n3e};
+const StyledWelcomeContainer = styled.div`
+  background-color: ${colors.ref.palette.neutral.n30};
   padding: 64px;
   display: flex;
   flex-direction: column;
@@ -17,11 +17,14 @@ const Styledwelcomecontainer = styled.div`
 
 const Styledlmage = styled.img`
   width: 157px;
+  height: 52.3px;
   object-fit: cover;
 `;
 
-export {
-  StyledRespondInvitationContainer,
-  Styledlmage,
-  Styledwelcomecontainer,
-};
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+`;
+
+export { StyledForm, StyledPageContainer, StyledWelcomeContainer, Styledlmage };

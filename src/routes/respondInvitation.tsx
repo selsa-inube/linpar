@@ -1,4 +1,3 @@
-import { ErrorPage } from "@src/components/layout/ErrorPage";
 import { themeClientsMock } from "@src/mocks/respondInvitation/themeClients.mock";
 import { RespondInvitation } from "@src/pages/respondInvitation";
 import { ConfirmationRegisterComplete } from "@src/pages/respondInvitation/cases/ConfirmationRegisterComplete";

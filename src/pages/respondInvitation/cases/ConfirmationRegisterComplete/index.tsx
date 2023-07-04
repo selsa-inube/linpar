@@ -17,7 +17,7 @@ function ConfirmationRegisterComplete() {
     <ErrorPage
       logo={clientData.logo}
       logoAlt={`Logo ${clientData.name}`}
-      heading="Gracias! Registro completado..."
+      heading={`Gracias! Registro completado...`}
       description="Hemos enviado la información, revisa tu correo electrónico para ingresar a nuestra plataforma."
       imageAlt="Su registro se ha realizado correctamente."
     />

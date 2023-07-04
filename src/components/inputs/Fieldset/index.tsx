@@ -1,4 +1,4 @@
-import { Text } from "@inube/design-system";
+import { Stack, Text } from "@inube/design-system";
 import { StyledFieldset } from "./styles";
 
 interface FieldsetProps {
@@ -14,10 +14,12 @@ function Fieldset(props: FieldsetProps) {
   return (
     <StyledFieldset>
       <legend>
-        {icon}
-        <Text typo="titleSmall" appearance={appearance}>
-          {title}
-        </Text>
+        <Stack gap="8px" padding="4px" alignItems="center">
+          {icon}
+          <Text typo="titleSmall" appearance={appearance}>
+            {title}
+          </Text>
+        </Stack>
       </legend>
       {children}
     </StyledFieldset>
