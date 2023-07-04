@@ -7,19 +7,19 @@ function Clients() {
   const [search, setSearch] = useState("");
   const [client, setClient] = useState<IClientState>({
     ref: null,
-    value: "",
+    value: true,
   });
 
   function clientReset() {
     return {
-      ref: client.ref,
-      value: "",
+      ref: null,
+      value: true,
     };
   }
 
   function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if (client.ref && client.ref.current) {
-      client.ref.current.checked = false;
+    if (client.ref) {
+      client.ref.checked = false;
     }
     setClient(clientReset());
     setSearch(event.target.value);
@@ -36,8 +36,8 @@ function Clients() {
 
   function handleClientChange(event: React.ChangeEvent<HTMLInputElement>) {
     setClient({
-      ref: client.ref,
-      value: event.target.value,
+      ref: event.target,
+      value: false,
     });
   }
 

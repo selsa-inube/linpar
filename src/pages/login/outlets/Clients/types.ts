@@ -1,6 +1,6 @@
 interface IClientState {
-  ref: React.RefObject<HTMLInputElement> | null;
-  value: string;
+  ref: (EventTarget & HTMLInputElement) | null;
+  value: boolean;
 }
 
 export type { IClientState };
