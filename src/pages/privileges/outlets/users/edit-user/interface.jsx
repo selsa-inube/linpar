@@ -51,10 +51,10 @@ function EditUserUI(props) {
   } = editData;
 
   const userCardData = currentInformation && {
-    nombre: currentInformation.username,
-    identificación: currentInformation.userID,
-    codigo: currentInformation.code,
-    rol: currentInformation.position,
+    Nombre: currentInformation.username,
+    Identificación: currentInformation.userID,
+    Código: currentInformation.code,
+    Rol: currentInformation.position,
   };
 
   return (
