@@ -1,22 +1,20 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { IClient } from "../../types";
 
-interface ConfirmationRegisterCompleteProps {
+interface ErrorNotAvailableProps {
   clientData?: IClient;
 }
 
-export const ErrorNotAvailable = (props: ConfirmationRegisterCompleteProps) => {
+function ErrorNotAvailable(props: ErrorNotAvailableProps) {
   const { clientData } = props;
 
-  return clientData ? (
+  return (
     <ErrorPage
-      logo={clientData.logo}
-      logoAlt={`Logo ${clientData.name}`}
-      heading=" Gracias! Registro completado..."
-      description="Hemos enviado la información, revisa tu correo electrónico para ingresar a nuestra plataforma."
-      imageAlt="Su registro se ha realizado correctamente."
+      logo={clientData && clientData.logo}
+      logoAlt={clientData && `Logo ${clientData.name}`}
     />
-  ) : (
-    <ErrorPage />
   );
-};
+}
+
+export { ErrorNotAvailable };
+export type { ErrorNotAvailableProps };

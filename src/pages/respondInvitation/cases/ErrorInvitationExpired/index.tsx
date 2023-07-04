@@ -1,24 +1,25 @@
+import Expired from "@src/assets/images/Expired.png";
 import { ErrorPage } from "@src/components/layout/ErrorPage";
 import { IClient } from "../../types";
 
-interface ConfirmationRegisterCompleteProps {
+interface ErrorInvitationExpiredProps {
   clientData?: IClient;
 }
 
-function ErrorInvitationExpired(props: ConfirmationRegisterCompleteProps) {
+function ErrorInvitationExpired(props: ErrorInvitationExpiredProps) {
   const { clientData } = props;
 
-  return clientData ? (
+  return (
     <ErrorPage
-      logo={clientData.logo}
-      logoAlt={`Logo ${clientData.name}`}
-      heading=" Gracias! Registro completado..."
-      description="Hemos enviado la información, revisa tu correo electrónico para ingresar a nuestra plataforma."
-      imageAlt="Su registro se ha realizado correctamente."
+      logo={clientData && clientData.logo}
+      logoAlt={clientData && `Logo ${clientData.name}`}
+      heading="!Lo sentimos! no hay resultados..."
+      description="Su usuario no tiene clientes relacionados, por favor consulte con su administrador."
+      imageAlt="No hay resultados."
+      image={Expired}
     />
-  ) : (
-    <ErrorPage />
   );
 }
 
 export { ErrorInvitationExpired };
+export type { ErrorInvitationExpiredProps };

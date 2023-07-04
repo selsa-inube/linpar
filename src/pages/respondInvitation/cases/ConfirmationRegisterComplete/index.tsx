@@ -13,16 +13,14 @@ function ConfirmationRegisterComplete() {
   };
 
   const clientData = getClientData();
-  return clientData ? (
+  return (
     <ErrorPage
-      logo={clientData.logo}
-      logoAlt={`Logo ${clientData.name}`}
-      heading={`Gracias! Registro completado...`}
+      logo={clientData && clientData.logo}
+      logoAlt={clientData && `Logo ${clientData.name}`}
+      heading={`!Gracias! Registro completado...`}
       description="Hemos enviado la información, revisa tu correo electrónico para ingresar a nuestra plataforma."
       imageAlt="Su registro se ha realizado correctamente."
     />
-  ) : (
-    <ErrorPage />
   );
 }
 

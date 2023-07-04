@@ -6,6 +6,7 @@ const invitationEntriesDataMock = [
     email: "lgarzon@gmail.com",
     invitationDate: "11/JUN/2022",
     status: "Sent",
+    phone: "3123456789",
   },
   {
     id: "11",
@@ -14,6 +15,7 @@ const invitationEntriesDataMock = [
     email: "cristina_schmidt@gmail.com",
     invitationDate: "11/ENE/2022",
     status: "Pending",
+    phone: "3209876543",
   },
   {
     id: "12",
@@ -22,6 +24,7 @@ const invitationEntriesDataMock = [
     email: "roberta_wallace@gmail.com",
     invitationDate: "26/AGO/2022",
     status: "Sent",
+    phone: "3145678901",
   },
   {
     id: "13",
@@ -30,6 +33,7 @@ const invitationEntriesDataMock = [
     email: "gross_mendez@gmail.com",
     invitationDate: "17/MAY/2022",
     status: "Sent",
+    phone: "3187654321",
   },
   {
     id: "14",
@@ -38,6 +42,7 @@ const invitationEntriesDataMock = [
     email: "martinez_french@gmail.com",
     invitationDate: "07/OCT/2022",
     status: "Pending",
+    phone: "3198765432",
   },
   {
     id: "15",
@@ -46,6 +51,7 @@ const invitationEntriesDataMock = [
     email: "lowe_ellis@gmail.com",
     invitationDate: "05/ENE/2022",
     status: "Sent",
+    phone: "3134567890",
   },
   {
     id: "16",
@@ -54,6 +60,7 @@ const invitationEntriesDataMock = [
     email: "barlow_ballard@gmail.com",
     invitationDate: "03/MAR/2022",
     status: "Sent",
+    phone: "3176543210",
   },
   {
     id: "17",
@@ -62,6 +69,7 @@ const invitationEntriesDataMock = [
     email: "madeline_ayers@gmail.com",
     invitationDate: "20/JUL/2022",
     status: "Pending",
+    phone: "3156789012",
   },
   {
     id: "18",
@@ -70,6 +78,7 @@ const invitationEntriesDataMock = [
     email: "bowen_greene@gmail.com",
     invitationDate: "26/ABR/2022",
     status: "Sent",
+    phone: "3167890123",
   },
   {
     id: "19",
@@ -78,6 +87,7 @@ const invitationEntriesDataMock = [
     email: "deborah_elliott@gmail.com",
     invitationDate: "03/AGO/2022",
     status: "Pending",
+    phone: "3145678901",
   },
   {
     id: "20",
@@ -86,6 +96,7 @@ const invitationEntriesDataMock = [
     email: "karina_fitzgerald@gmail.com",
     invitationDate: "07/FEB/2022",
     status: "Pending",
+    phone: "3209876543",
   },
   {
     id: "21",
@@ -94,6 +105,7 @@ const invitationEntriesDataMock = [
     email: "rachel_carpenter@gmail.com",
     invitationDate: "24/FEB/2022",
     status: "Pending",
+    phone: "3176543210",
   },
   {
     id: "22",
@@ -102,6 +114,7 @@ const invitationEntriesDataMock = [
     email: "judith_santana@gmail.com",
     invitationDate: "10/JUN/2022",
     status: "Pending",
+    phone: "3187654321",
   },
   {
     id: "23",
@@ -110,6 +123,7 @@ const invitationEntriesDataMock = [
     email: "angelita_stein@gmail.com",
     invitationDate: "27/AGO/2022",
     status: "Pending",
+    phone: "3156789012",
   },
   {
     id: "24",
@@ -118,6 +132,7 @@ const invitationEntriesDataMock = [
     email: "pamela_gibbs@gmail.com",
     invitationDate: "01/JUN/2022",
     status: "Pending",
+    phone: "3134567890",
   },
   {
     id: "25",
@@ -126,6 +141,7 @@ const invitationEntriesDataMock = [
     email: "osborn_larsen@gmail.com",
     invitationDate: "09/AGO/2022",
     status: "Pending",
+    phone: "3198765432",
   },
   {
     id: "26",
@@ -134,6 +150,7 @@ const invitationEntriesDataMock = [
     email: "tisha_stevens@gmail.com",
     invitationDate: "20/JUN/2022",
     status: "Sent",
+    phone: "3123456789",
   },
   {
     id: "27",
@@ -142,6 +159,7 @@ const invitationEntriesDataMock = [
     email: "rosemarie_snow@gmail.com",
     invitationDate: "10/JUL/2022",
     status: "Sent",
+    phone: "3187654321",
   },
   {
     id: "28",
@@ -150,6 +168,7 @@ const invitationEntriesDataMock = [
     email: "terry_shaffer@gmail.com",
     invitationDate: "07/ABR/2022",
     status: "Sent",
+    phone: "3198765432",
   },
   {
     id: "29",
@@ -158,6 +177,7 @@ const invitationEntriesDataMock = [
     email: "sofia_osborn@gmail.com",
     invitationDate: "22/ABR/2022",
     status: "Sent",
+    phone: "3167890123",
   },
   {
     id: "30",
@@ -166,6 +186,7 @@ const invitationEntriesDataMock = [
     email: "campos_christensen@gmail.com",
     invitationDate: "18/MAR/2022",
     status: "Pending",
+    phone: "3145678901",
   },
   {
     id: "31",
@@ -174,6 +195,7 @@ const invitationEntriesDataMock = [
     email: "stacy_cooke@gmail.com",
     invitationDate: "23/MAR/2022",
     status: "Sent",
+    phone: "3134567890",
   },
   {
     id: "32",
@@ -182,6 +204,7 @@ const invitationEntriesDataMock = [
     email: "goff_mejia@gmail.com",
     invitationDate: "15/SEP/2022",
     status: "Pending",
+    phone: "3156789012",
   },
   {
     id: "33",
@@ -190,6 +213,7 @@ const invitationEntriesDataMock = [
     email: "mcintyre_wells@gmail.com",
     invitationDate: "12/FEB/2022",
     status: "Pending",
+    phone: "3176543210",
   },
   {
     id: "34",
@@ -198,6 +222,7 @@ const invitationEntriesDataMock = [
     email: "alyce_powers@gmail.com",
     invitationDate: "24/ABR/2022",
     status: "Sent",
+    phone: "3187654321",
   },
   {
     id: "35",
@@ -206,6 +231,7 @@ const invitationEntriesDataMock = [
     email: "kathleen_matthews@gmail.com",
     invitationDate: "30/OCT/2022",
     status: "Sent",
+    phone: "3123456789",
   },
   {
     id: "36",
@@ -214,6 +240,7 @@ const invitationEntriesDataMock = [
     email: "susana_davidson@gmail.com",
     invitationDate: "16/ABR/2022",
     status: "Sent",
+    phone: "3198765432",
   },
   {
     id: "37",
@@ -222,6 +249,7 @@ const invitationEntriesDataMock = [
     email: "carr_brady@gmail.com",
     invitationDate: "06/FEB/2022",
     status: "Pending",
+    phone: "3156789012",
   },
   {
     id: "38",
@@ -230,6 +258,7 @@ const invitationEntriesDataMock = [
     email: "whitney_copeland@gmail.com",
     invitationDate: "15/NOV/2022",
     status: "Sent",
+    phone: "3145678901",
   },
 ];
 

@@ -46,10 +46,11 @@ function RespondInvitation() {
 
   const formik = useFormik({
     initialValues: {
-      username: invitation?.username,
+      name: invitation?.username,
       userID: invitation?.userID,
       email: invitation?.email,
-      phone: "",
+      phone: invitation?.phone,
+      username: "",
       password: "",
       confirmPassword: "",
     },
@@ -77,10 +78,10 @@ function RespondInvitation() {
   };
 
   if (!invitation || !clientData) {
-    return <ErrorNotAvailable />;
+    return <ErrorNotAvailable clientData={clientData} />;
   }
 
-  if (invitation.status === "Pending") {
+  if (invitation.status === "Sent") {
     return <ErrorInvitationExpired clientData={clientData} />;
   }
 

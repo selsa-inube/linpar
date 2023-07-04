@@ -5,25 +5,34 @@ import { ErrorNotAvailable } from "@src/pages/respondInvitation/cases/ErrorNotAv
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
+function getClientTheme(clientId?: string) {
+  if (!clientId) {
+    return {};
+  }
+
+  const theme = themeClientsMock.find(
+    (theme) => theme.clientId === parseInt(clientId)
+  );
+
+  if (!theme) {
+    return {};
+  }
+
+  return theme;
+}
+
 function RespondInvitationRoutes() {
   const { client_id } = useParams();
   const navigate = useNavigate();
+  const clientTheme = getClientTheme(client_id);
 
-  const handleGetClientTheme = () => {
-    if (!client_id) return;
-    return themeClientsMock.find(
-      (theme) => theme.clientId === parseInt(client_id)
-    );
-  };
-
-  const theme = handleGetClientTheme();
-
-  if (!theme) {
-    navigate("/*");
+  if (!client_id || !clientTheme) {
+    navigate("/respond-invitation");
+    return null;
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={clientTheme}>
       <Routes>
         <Route path="/" element={<RespondInvitation />} />
         <Route
