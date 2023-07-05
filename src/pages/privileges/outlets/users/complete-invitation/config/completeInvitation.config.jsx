@@ -50,4 +50,31 @@ const CompleteInvitationUserConfig = [
   },
 ];
 
-export { CompleteInvitationUserConfig, stepsRegisterUserConfig };
+const completeInvitationSubjectCardLabels = [
+  {
+    id: "username",
+    titleName: "Nombre",
+    priority: 0,
+  },
+  {
+    id: "userID",
+    titleName: "Identificación",
+    priority: 1,
+  },
+  {
+    id: "email",
+    titleName: "Email",
+    priority: 2,
+  },
+  {
+    id: "invitationDate",
+    titleName: "Invitación",
+    priority: 3,
+  },
+];
+
+export {
+  CompleteInvitationUserConfig,
+  stepsRegisterUserConfig,
+  completeInvitationSubjectCardLabels,
+};

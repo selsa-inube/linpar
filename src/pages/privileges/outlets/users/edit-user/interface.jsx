@@ -4,7 +4,10 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EditUserContinueModalConfig } from "./config/editUser.config";
-import { editUserOptionsConfig } from "./config/editUser.config";
+import {
+  editUserOptionsConfig,
+  editUserSubjectCardLabels,
+} from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { GeneralInformationForm } from "./forms/GeneralInfoForm";
@@ -51,10 +54,10 @@ function EditUserUI(props) {
   } = editData;
 
   const userCardData = currentInformation && {
-    nombre: currentInformation.username,
-    identificación: currentInformation.userID,
-    código: currentInformation.code,
-    rol: currentInformation.position,
+    username: currentInformation.username,
+    userID: currentInformation.userID,
+    code: currentInformation.code,
+    position: currentInformation.position,
   };
 
   return (
@@ -73,6 +76,7 @@ function EditUserUI(props) {
                 subjectData={userCardData}
                 title="Informacion del usuario"
                 icon={<MdPersonOutline size={24} />}
+                labels={editUserSubjectCardLabels}
               />
             )}
           </Stack>

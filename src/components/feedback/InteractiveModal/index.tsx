@@ -27,10 +27,6 @@ function InteractiveModal(props: InteractiveModalProps) {
 
   const hasLabels = labels && labels.length > 0;
 
-  const capitalizeFirstLetter = (str: string): string => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
   return createPortal(
     <Blanket>
       <StyledModal smallScreen={smallScreen}>
@@ -47,7 +43,7 @@ function InteractiveModal(props: InteractiveModalProps) {
                     infoData[field.id] && (
                       <TextField
                         key={id}
-                        label={capitalizeFirstLetter(field.titleName)}
+                        label={field.titleName}
                         name={field.id}
                         id={field.id}
                         placeholder={field.titleName}
@@ -62,7 +58,7 @@ function InteractiveModal(props: InteractiveModalProps) {
               : Object.keys(infoData).map((key, id) => (
                   <TextField
                     key={id}
-                    label={capitalizeFirstLetter(key)}
+                    label={key}
                     name={key}
                     id={key}
                     placeholder={key}
