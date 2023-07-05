@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface StyledClientsListProps {
+  scroll?: boolean;
+}
+
 const StyledClients = styled.div`
   & form {
     margin: 48px auto 0px;
@@ -18,7 +22,7 @@ const StyledClients = styled.div`
   }
 `;
 
-const StyledClientsList = styled.ul`
+const StyledClientsList = styled.ul<StyledClientsListProps>`
   list-style: none;
   min-height: 300px;
   max-height: 430px;

@@ -1,5 +1,6 @@
 import { RadioClient } from "@components/cards/RadioClient";
 import { Button, Text, TextField } from "@inube/design-system";
+import { IClientState } from "./types";
 
 import { MdSearch } from "react-icons/md";
 
@@ -10,7 +11,23 @@ import {
   StyledClientsItem,
 } from "./styles";
 
-function ClientsUI(props) {
+interface ClientsUIProps {
+  clients: Client[];
+  search: string;
+  client: IClientState;
+  handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClientChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  filterClients: () => Client[];
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+
+interface Client {
+  id: number;
+  name: string;
+  logo: string;
+}
+
+function ClientsUI(props: ClientsUIProps) {
   const {
     clients,
     search,
@@ -65,7 +82,7 @@ function ClientsUI(props) {
             </StyledClientsItem>
           ))}
         </StyledClientsList>
-        <Button type="submit" isDisabled={client.value ? false : true}>
+        <Button type="submit" isDisabled={client.value}>
           Continuar
         </Button>
       </form>

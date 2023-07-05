@@ -48,6 +48,8 @@ const getRightLineStyle = (props) => {
 const StyledStep = styled.li`
   list-style: none;
   width: 100%;
+  margin: 0 ${(props) => (props.marginToRight ? "30px" : "0")} 0
+    ${(props) => (props.marginToLeft ? "30px" : "0")};
 `;
 
 const StyledArrowDown = styled.div`
