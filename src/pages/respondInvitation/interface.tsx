@@ -22,6 +22,24 @@ import {
 } from "./styles";
 import { IClient } from "./types";
 
+const renderHead = (clientData: IClient, smallScreen?: boolean) => {
+  return (
+    <>
+      <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
+      <Stack direction="column" gap={smallScreen ? "16px" : "36px"}>
+        <Stack direction="column">
+          <Text typo="headlineSmall">Bienvenido</Text>
+          <Text typo="headlineLarge">Portal de Clientes</Text>
+        </Stack>
+
+        <Text typo="bodyLarge">
+          Complete su invitación y pase a formar parte de la comunidad.
+        </Text>
+      </Stack>
+    </>
+  );
+};
+
 const renderForm = (
   formik: FormikValues,
   loading: boolean,
@@ -215,17 +233,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     return (
       <Stack direction="column" gap="32px" padding="16px">
         <Stack direction="column" gap="32px">
-          <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
-          <Stack direction="column" gap="16px">
-            <Stack direction="column">
-              <Text typo="headlineSmall">Bienvenido</Text>
-              <Text typo="headlineLarge">Portal de Clientes</Text>
-            </Stack>
-
-            <Text typo="bodyLarge">
-              Complete su invitación y pase a formar parte de la comunidad.
-            </Text>
-          </Stack>
+          {renderHead(clientData, smallScreen)}
         </Stack>
         {renderForm(
           formik,
@@ -240,17 +248,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
 
   return (
     <StyledPageContainer>
-      <StyledWelcomeContainer>
-        <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
-        <Stack direction="column" gap="8px">
-          <Text typo="headlineSmall">Bienvenido</Text>
-          <Text typo="headlineLarge">Portal de Clientes</Text>
-        </Stack>
-
-        <Text typo="bodyLarge">
-          Complete su invitación y pase a formar parte de la comunidad.
-        </Text>
-      </StyledWelcomeContainer>
+      <StyledWelcomeContainer>{renderHead(clientData)}</StyledWelcomeContainer>
       <Stack direction="column" gap="48px" padding="64px">
         {renderForm(formik, loading, formInvalid, handleSubmitForm)}
       </Stack>
