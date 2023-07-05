@@ -1,5 +1,7 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
 
-export const ErrorNotAvailable = () => {
+function ErrorNotAvailable() {
   return <ErrorPage />;
-};
+}
+
+export { ErrorNotAvailable };

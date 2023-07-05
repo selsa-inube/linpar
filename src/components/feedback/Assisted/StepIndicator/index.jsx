@@ -9,7 +9,14 @@ import {
 } from "./styles";
 
 function StepIndicator(props) {
-  const { stepNumber, actualStep, stepName, isVerification } = props;
+  const {
+    stepNumber,
+    actualStep,
+    stepName,
+    isVerification,
+    marginToLeft,
+    marginToRight,
+  } = props;
 
   const isActualStep = actualStep === stepNumber;
   const isPreviousStep = stepNumber < actualStep;
@@ -36,7 +43,7 @@ function StepIndicator(props) {
   };
 
   return (
-    <StyledStep>
+    <StyledStep marginToLeft={marginToLeft} marginToRight={marginToRight}>
       <Stack direction="column" alignItems="center">
         <StyledArrowDown isActualStep={isActualStep}>
           <MdKeyboardArrowDown size={24} />

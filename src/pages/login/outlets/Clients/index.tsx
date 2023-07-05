@@ -1,27 +1,28 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { clientsDataMock } from "@mocks/login/clients.mock";
 import { ClientsUI } from "./interface";
+import { IClientState } from "./types";
 
 function Clients() {
   const [search, setSearch] = useState("");
-  const [client, setClient] = useState({
-    ref: undefined,
-    value: undefined,
+  const [client, setClient] = useState<IClientState>({
+    ref: null,
+    value: true,
   });
 
   function clientReset() {
     return {
-      ref: undefined,
-      value: undefined,
+      ref: null,
+      value: true,
     };
   }
 
-  function handleSearchChange({ target }) {
+  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (client.ref) {
       client.ref.checked = false;
     }
     setClient(clientReset());
-    setSearch(target.value);
+    setSearch(event.target.value);
   }
 
   function filterClients() {
@@ -33,14 +34,14 @@ function Clients() {
     });
   }
 
-  function handleClientChange({ target }) {
+  function handleClientChange(event: React.ChangeEvent<HTMLInputElement>) {
     setClient({
-      ref: target,
-      value: target.value,
+      ref: event.target,
+      value: false,
     });
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
 
