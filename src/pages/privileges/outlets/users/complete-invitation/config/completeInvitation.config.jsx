@@ -68,7 +68,7 @@ const completeInvitationSubjectCardLabels = [
   },
   {
     id: "invitationDate",
-    titleName: "Invitación",
+    titleName: "Fecha de invitación",
     priority: 3,
   },
 ];
