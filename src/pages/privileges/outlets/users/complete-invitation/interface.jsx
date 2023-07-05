@@ -12,6 +12,7 @@ import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import {
   CompleteInvitationUserConfig,
   stepsRegisterUserConfig,
+  completeInvitationSubjectCardLabels,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
@@ -27,10 +28,10 @@ function CompleteInvitationUI(props) {
   } = invitationData;
 
   const invitationCardData = currentInformation && {
-    nombre: currentInformation.username,
-    identificación: currentInformation.userID,
-    correo: currentInformation.email,
-    invitación: currentInformation.invitationDate,
+    username: currentInformation.username,
+    userID: currentInformation.userID,
+    email: currentInformation.email,
+    invitationDate: currentInformation.invitationDate,
   };
 
   return (
@@ -49,6 +50,7 @@ function CompleteInvitationUI(props) {
                 subjectData={invitationCardData}
                 title="Informacion del usuario"
                 icon={<MdPersonOutline size={24} />}
+                labels={completeInvitationSubjectCardLabels}
               />
             )}
           </Stack>
