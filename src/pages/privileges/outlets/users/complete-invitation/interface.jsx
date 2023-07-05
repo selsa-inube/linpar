@@ -27,10 +27,10 @@ function CompleteInvitationUI(props) {
   } = invitationData;
 
   const invitationCardData = currentInformation && {
-    Nombre: currentInformation.username,
-    Identificación: currentInformation.userID,
-    Correo: currentInformation.email,
-    Invitación: currentInformation.invitationDate,
+    nombre: currentInformation.username,
+    identificación: currentInformation.userID,
+    correo: currentInformation.email,
+    invitación: currentInformation.invitationDate,
   };
 
   return (
