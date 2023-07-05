@@ -32,7 +32,7 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
           <Text typo="headlineLarge">Portal de Clientes</Text>
         </Stack>
 
-        <Text typo="bodyLarge">
+        <Text typo="bodyLarge" appearance="secondary">
           Complete su invitación y pase a formar parte de la comunidad.
         </Text>
       </Stack>
@@ -58,14 +58,14 @@ const renderForm = (
       <Stack direction="column">
         <Text typo="headlineSmall">Informacion de Contacto</Text>
 
-        <Text type="titleMedium">
+        <Text type="titleMedium" appearance="secondary">
           Complete your information to register in Linix
         </Text>
       </Stack>
       <StyledForm>
         <Fieldset
           title="Información Personal"
-          icon={<MdOutlinePhone size={24} />}
+          icon={<MdPersonOutline size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
             <TextField
@@ -100,7 +100,7 @@ const renderForm = (
         </Fieldset>
         <Fieldset
           title="Información de Contacto"
-          icon={<MdPersonOutline size={24} />}
+          icon={<MdOutlinePhone size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
             <TextField

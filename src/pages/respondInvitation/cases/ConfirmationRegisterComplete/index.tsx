@@ -1,3 +1,4 @@
+import Completed from "@src/assets/images/Completed.png";
 import { ErrorPage } from "@src/components/layout/ErrorPage";
 import { clientsDataMock } from "@src/mocks/login/clients.mock";
 import { useParams } from "react-router-dom";
@@ -20,6 +21,7 @@ function ConfirmationRegisterComplete() {
       heading={`!Gracias! Registro completado...`}
       description="Hemos enviado la información, revisa tu correo electrónico para ingresar a nuestra plataforma."
       imageAlt="Su registro se ha realizado correctamente."
+      image={Completed}
     />
   );
 }
