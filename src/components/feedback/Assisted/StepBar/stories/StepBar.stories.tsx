@@ -1,11 +1,13 @@
+import { StoryFn } from "@storybook/react";
 import { StepBar } from "..";
+import { IStepBarProps } from "../types";
 import { Stack } from "@inube/design-system";
 
 const story = {
   component: [StepBar],
   title: "components/feedback/Assisted/StepBar",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <Stack>
         <Story />
       </Stack>
@@ -13,7 +15,7 @@ const story = {
   ],
 };
 
-const Template = (args) => <StepBar {...args} />;
+const Template: StoryFn<IStepBarProps> = (args) => <StepBar {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

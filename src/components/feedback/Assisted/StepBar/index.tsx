@@ -1,10 +1,12 @@
 import { StyledStep, StyledLine } from "./styles";
+import { IStepBarProps } from "./types";
 
-function StepBar(props) {
+function StepBar(props: IStepBarProps) {
   const { stepNumber, actualStep, isVerification } = props;
-  const isActualStep = actualStep === stepNumber;
-  const isPreviousStep = stepNumber < actualStep;
-  const inVerification = isActualStep && isVerification;
+  const isActualStep: boolean = actualStep === stepNumber;
+  const isPreviousStep: boolean = stepNumber < actualStep;
+  const inVerification: boolean = isActualStep && isVerification;
+
   return (
     <>
       <StyledLine

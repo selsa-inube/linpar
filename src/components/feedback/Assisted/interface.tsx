@@ -1,4 +1,4 @@
-import { Button, Text, Stack } from "@inube/design-system";
+import { Button, Text, Stack, useMediaQuery } from "@inube/design-system";
 import { MdArrowBack, MdArrowForward, MdCheckCircle } from "react-icons/md";
 import { StepIndicator } from "./StepIndicator";
 import { StepBar } from "./StepBar";
@@ -11,36 +11,39 @@ import {
   StyledDesktopContainer,
   StyledStepsContent,
 } from "./styles";
+import { IStep, IAssistedUIProps } from "./types";
 
 const MAX_STEPS_PER_VIEW = 7;
 
-function AssistedUI(props) {
+function AssistedUI(props: IAssistedUIProps) {
   const {
     currentStep,
     currentStepInfo,
     handleNextStep,
     handlePreviousStep,
-    smallScreen,
     steps,
   } = props;
 
-  const renderStep = (step, index) => {
+  const smallScreen = useMediaQuery("(max-width: 1100px)");
+
+  const renderStep = (step: IStep, index: number) => {
     const Step = smallScreen ? StepBar : StepIndicator;
     const totalGroup = Math.ceil(steps.length / MAX_STEPS_PER_VIEW);
-    const currentGroup = Math.ceil(currentStep / MAX_STEPS_PER_VIEW);
+    const currentGroup = Math.ceil(Number(currentStep) / MAX_STEPS_PER_VIEW);
     const startIndex = (currentGroup - 1) * MAX_STEPS_PER_VIEW + 1;
     const endIndex = currentGroup * MAX_STEPS_PER_VIEW;
 
-    const marginToLeft = totalGroup === currentGroup && step.id === startIndex;
-    const marginToRight = currentGroup === 1 && step.id === endIndex;
+    const marginToLeft =
+      totalGroup === currentGroup && Number(step.id) === startIndex;
+    const marginToRight = currentGroup === 1 && Number(step.id) === endIndex;
 
-    if (step.id >= startIndex && step.id <= endIndex) {
+    if (Number(step.id) >= startIndex && Number(step.id) <= endIndex) {
       return (
         <Step
           key={index}
           stepNumber={index + 1}
           stepName={step.stepName}
-          actualStep={currentStep}
+          actualStep={Number(currentStep)}
           isVerification={step.isVerification}
           marginToLeft={marginToLeft}
           marginToRight={marginToRight}
@@ -73,7 +76,7 @@ function AssistedUI(props) {
               </Text>
             </StyledStepsMobileId>
             <Text typo="labelMedium" appearance="dark">
-              {currentStepInfo.stepName}
+              {currentStepInfo?.stepName}
             </Text>
           </Stack>
           <StyledSteps>{steps.map(renderStep)}</StyledSteps>
@@ -83,7 +86,7 @@ function AssistedUI(props) {
             variant="none"
             iconAfter={<MdArrowForward size={20} />}
             handleClick={handleNextStep}
-            isDisabled={currentStep === steps.length}
+            isDisabled={currentStep === String(steps.length)}
           />
         </StyledButton>
       </StyledMobile>
@@ -113,18 +116,20 @@ function AssistedUI(props) {
           variant="none"
           iconAfter={<MdArrowForward size={18} />}
           handleClick={handleNextStep}
-          isDisabled={currentStep === steps.length}
+          isDisabled={currentStep === String(steps.length)}
         >
           <Text
             typo="labelLarge"
-            appearance={currentStep === steps.length ? "disabled" : "primary"}
+            appearance={
+              currentStep === String(steps.length) ? "disabled" : "primary"
+            }
           >
             Next
           </Text>
         </Button>
       </Stack>
       <Text typo="labelLarge" appearance="secondary" align="center">
-        {currentStepInfo.stepDescription}
+        {currentStepInfo?.stepDescription}
       </Text>
     </StyledDesktopContainer>
   );

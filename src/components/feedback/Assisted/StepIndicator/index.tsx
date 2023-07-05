@@ -7,8 +7,9 @@ import {
   StyledRightLine,
   StyledArrowDown,
 } from "./styles";
+import { IStepIndicatorProps } from "./types";
 
-function StepIndicator(props) {
+function StepIndicator(props: IStepIndicatorProps) {
   const {
     stepNumber,
     actualStep,
