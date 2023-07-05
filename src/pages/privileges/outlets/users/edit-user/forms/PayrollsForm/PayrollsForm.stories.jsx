@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
 import { PayrollsForm } from "./index";
-import { payrollsFormEditUser } from "@mocks/apps/privileges/payrollsForm.mock";
+import { payrollsFormEditUser } from "@mocks/apps/privileges/users/payrollsForm.mock";
 
 const story = {
   components: [PayrollsForm],
