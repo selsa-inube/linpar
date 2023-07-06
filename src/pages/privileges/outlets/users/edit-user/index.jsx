@@ -1,4 +1,4 @@
-import { aidBudgetsFormEditUser } from "@src/mocks/apps/privileges/users/aidBudgetsForm.mock";
+import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
 import { branchesFormEditUser } from "@mocks/apps/privileges/users/branchesForm.mock";
 import { eventsFormEditUser } from "@mocks/apps/privileges/users/eventsForm.mock";
 import { payrollsFormEditUser } from "@mocks/apps/privileges/users/payrollsForm.mock";

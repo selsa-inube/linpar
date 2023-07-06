@@ -1,7 +1,7 @@
-import { themeClientsMock } from "@src/mocks/respondInvitation/themeClients.mock";
-import { RespondInvitation } from "@src/pages/respondInvitation";
-import { ConfirmationRegisterComplete } from "@src/pages/respondInvitation/cases/ConfirmationRegisterComplete";
-import { ErrorNotAvailable } from "@src/pages/respondInvitation/cases/ErrorNotAvailable";
+import { themeClientsMock } from "@mocks/respondInvitation/themeClients.mock";
+import { RespondInvitation } from "@pages/respondInvitation";
+import { ConfirmationRegisterComplete } from "@pages/respondInvitation/cases/ConfirmationRegisterComplete";
+import { ErrorNotAvailable } from "@pages/respondInvitation/cases/ErrorNotAvailable";
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 

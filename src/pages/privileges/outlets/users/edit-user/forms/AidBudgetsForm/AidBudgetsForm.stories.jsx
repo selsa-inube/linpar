@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
 import { AidBudgetsForm } from "./index";
-import { aidBudgetsFormEditUser } from "@src/mocks/apps/privileges/users/aidBudgetsForm.mock";
+import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
 
 const story = {
   components: [AidBudgetsForm],

@@ -1,5 +1,5 @@
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
-import { clientsDataMock } from "@src/mocks/login/clients.mock";
+import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
+import { clientsDataMock } from "@mocks/login/clients.mock";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
 import { useFormik } from "formik";

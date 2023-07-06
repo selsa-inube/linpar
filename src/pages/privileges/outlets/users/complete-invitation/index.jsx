@@ -1,4 +1,4 @@
-import { aidBudgetsFormInvitation } from "@src/mocks/apps/privileges/invitations/aidBudgetsForm.mock";
+import { aidBudgetsFormInvitation } from "@mocks/apps/privileges/invitations/aidBudgetsForm.mock";
 import { branchesFormInvitation } from "@mocks/apps/privileges/invitations/branchesForm.mock";
 import { eventsFormInvitation } from "@mocks/apps/privileges/invitations/eventsForm.mock";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
