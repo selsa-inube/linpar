@@ -1,16 +1,17 @@
 import {
+  Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  Route,
 } from "react-router-dom";
 
-import { GlobalStyles } from "@styles/global";
-import { Home } from "@pages/home";
 import { ErrorPage } from "@components/layout/ErrorPage";
+import { Home } from "@pages/home";
+import { GlobalStyles } from "@styles/global";
+import AppContextProvider from "./context";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
-import AppContextProvider from "./context";
+import { RespondInvitationRoutes } from "./routes/respondInvitation";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,10 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="login/*" element={<LoginRoutes />} />
+      <Route
+        path="respond-invitation/:client_id/:invitation_id/*"
+        element={<RespondInvitationRoutes />}
+      />
     </>
   )
 );

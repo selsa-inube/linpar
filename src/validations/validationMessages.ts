@@ -10,6 +10,8 @@ const validationMessages = {
   validEmail:
     "Este campo debe tener una dirección de correo electrónico válida",
   validPhone: "Este campo debe tener un número de teléfono válido",
+  validPassword: `Este campo debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número`,
+  passwordMatch: "Las contraseñas no coinciden",
 };
 
 export { validationMessages };
