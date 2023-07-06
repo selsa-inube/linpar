@@ -1,4 +1,4 @@
-import { clientsDataMock } from "@src/mocks/login/clients.mock";
+import { clientsDataMock } from "@mocks/login/clients.mock";
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { ErrorNotAvailable, ErrorNotAvailableProps } from "./index";

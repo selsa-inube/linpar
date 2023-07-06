@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
 import { EventsForm } from "./index";
-import { eventsFormEditUser } from "@mocks/apps/privileges/eventsForm.mock";
+import { eventsFormEditUser } from "@mocks/apps/privileges/users/eventsForm.mock";
 
 const story = {
   components: [EventsForm],

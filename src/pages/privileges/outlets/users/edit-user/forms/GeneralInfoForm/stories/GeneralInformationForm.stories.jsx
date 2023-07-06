@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { GeneralInformationForm } from "../index";
 import { action } from "@storybook/addon-actions";
-import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 
 const story = {
   component: GeneralInformationForm,

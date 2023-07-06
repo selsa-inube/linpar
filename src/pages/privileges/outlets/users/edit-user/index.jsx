@@ -1,9 +1,9 @@
-import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/aidBudgetsForm.mock";
-import { branchesFormEditUser } from "@mocks/apps/privileges/branchesForm.mock";
-import { eventsFormEditUser } from "@mocks/apps/privileges/eventsForm.mock";
-import { payrollsFormEditUser } from "@mocks/apps/privileges/payrollsForm.mock";
-import { projectsFormEditUser } from "@mocks/apps/privileges/projectsForm.mock";
-import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
+import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
+import { branchesFormEditUser } from "@mocks/apps/privileges/users/branchesForm.mock";
+import { eventsFormEditUser } from "@mocks/apps/privileges/users/eventsForm.mock";
+import { payrollsFormEditUser } from "@mocks/apps/privileges/users/payrollsForm.mock";
+import { projectsFormEditUser } from "@mocks/apps/privileges/users/projectsForm.mock";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
