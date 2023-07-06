@@ -66,14 +66,14 @@ function GeneralInformationForm(props) {
     };
 
     if (onHasChanges) onHasChanges(hasChanges(formikValues));
-    formik
-      .setFieldValue(event.target.name, event.target.value)
-      .then((errors) => {
-        if (withSubmitButtons) return;
-        if (errors && Object.keys(errors).length === 0) {
+    formik.setFieldValue(event.target.name, event.target.value).then(() => {
+      if (withSubmitButtons) return;
+      formik.validateForm().then((errors) => {
+        if (!errors || Object.keys(errors).length === 0) {
           handleSubmit(formikValues);
         }
       });
+    });
   };
 
   const handleCloseSectionMessage = () => {
