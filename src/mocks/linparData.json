@@ -4,7 +4,7 @@
   "name": "LinparData",
   "endpointPrefix": "",
   "latency": 0,
-  "port": 3000,
+  "port": 3001,
   "hostname": "",
   "folders": [
     {
@@ -30,6 +30,10 @@
         {
           "type": "folder",
           "uuid": "788a2fae-d13a-46d8-a7a8-92037785e2ea"
+        },
+        {
+          "type": "folder",
+          "uuid": "62453551-f7c0-4e47-b18f-e17a0ecb2aca"
         }
       ]
     },
@@ -52,6 +56,17 @@
         {
           "type": "route",
           "uuid": "e1fdb43d-80ee-49e5-b928-ce0eb39d4742"
+        }
+      ]
+    },
+    {
+      "uuid": "62453551-f7c0-4e47-b18f-e17a0ecb2aca",
+      "name": "positions",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "d8745e7d-cf59-4369-a9d9-eac8c6181824"
         }
       ]
     }
@@ -88,11 +103,16 @@
         },
         {
           "uuid": "4aa61e06-6051-4a42-93d4-c2445fe86c40",
-          "body": "{}",
+          "body": "[]",
           "latency": 0,
           "statusCode": 204,
           "label": "",
-          "headers": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -105,11 +125,16 @@
         },
         {
           "uuid": "ad3fc58f-5416-4b28-88be-9b5bdd9ae8e6",
-          "body": "{\n  error: \"General server-side error\"\n}",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
           "latency": 0,
           "statusCode": 500,
           "label": "",
-          "headers": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -155,11 +180,16 @@
         },
         {
           "uuid": "3708a819-e14a-49e5-bf61-4cae80d90ba3",
-          "body": "{}",
+          "body": "[]",
           "latency": 0,
           "statusCode": 204,
           "label": "",
-          "headers": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -172,11 +202,93 @@
         },
         {
           "uuid": "50364812-ae63-4e01-884c-26fa951b432d",
-          "body": "{\n  error: \"General server-side error\"\n}",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
           "latency": 0,
           "statusCode": 500,
           "label": "",
-          "headers": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "d8745e7d-cf59-4369-a9d9-eac8c6181824",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/positions",
+      "responses": [
+        {
+          "uuid": "57a91f44-50f6-4cb7-a654-a981ff75c35f",
+          "body": "[\r\n  { value: \"\", label: \"Seleccione una opción\" },\r\n  { value: \"Diseñador\", label: \"Diseñador\" },\r\n  { value: \"Desarrollador\", label: \"Desarrollador Web\" },\r\n  { value: \"Product Manager\", label: \"Product Manager\" },\r\n  { value: \"Adviser\", label: \"Adviser\" },\r\n  { value: \"Credit Analyst\", label: \"Credit Analyst\" },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "67b8d772-a5cf-4ff5-a1fa-7d7577f62369",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "14155058-d005-4459-85eb-47b8d272826f",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
