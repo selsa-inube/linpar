@@ -15,4 +15,31 @@ const EditUserContinueModalConfig = {
   appearance: "confirm",
 };
 
-export { editUserOptionsConfig, EditUserContinueModalConfig };
+const editUserSubjectCardLabels = [
+  {
+    id: "username",
+    titleName: "Nombre",
+    priority: 0,
+  },
+  {
+    id: "userID",
+    titleName: "Identificación",
+    priority: 1,
+  },
+  {
+    id: "code",
+    titleName: "Código",
+    priority: 2,
+  },
+  {
+    id: "position",
+    titleName: "Rol",
+    priority: 3,
+  },
+];
+
+export {
+  editUserOptionsConfig,
+  EditUserContinueModalConfig,
+  editUserSubjectCardLabels,
+};

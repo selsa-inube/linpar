@@ -7,7 +7,7 @@ interface PageTitleProps {
   title: string;
   icon?: JSX.Element;
   description: string;
-  navigatePage: string;
+  navigatePage?: string;
 }
 
 function PageTitle(props: PageTitleProps) {
