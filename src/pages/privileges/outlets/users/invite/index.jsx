@@ -16,7 +16,7 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   name: validationRules.username.required(validationMessages.required),
-  id: validationRules.id,
+  id: validationRules.identification,
   phone: validationRules.phone.required(validationMessages.required),
   email: validationRules.email.required(validationMessages.required),
 });

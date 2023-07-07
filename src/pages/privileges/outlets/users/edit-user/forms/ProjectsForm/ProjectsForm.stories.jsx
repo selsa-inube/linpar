@@ -1,4 +1,4 @@
-import { projectsFormEditUser } from "@mocks/apps/privileges/projectsForm.mock";
+import { projectsFormEditUser } from "@mocks/apps/privileges/users/projectsForm.mock";
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
 import { ProjectsForm } from "./index";

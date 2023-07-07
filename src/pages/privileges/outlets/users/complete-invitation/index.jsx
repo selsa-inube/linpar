@@ -1,9 +1,9 @@
-import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/aidBudgetsForm.mock";
-import { branchesFormEditUser } from "@mocks/apps/privileges/branchesForm.mock";
-import { eventsFormEditUser } from "@mocks/apps/privileges/eventsForm.mock";
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations.mock";
-import { payrollsFormEditUser } from "@mocks/apps/privileges/payrollsForm.mock";
-import { projectsFormEditUser } from "@mocks/apps/privileges/projectsForm.mock";
+import { aidBudgetsFormInvitation } from "@mocks/apps/privileges/invitations/aidBudgetsForm.mock";
+import { branchesFormInvitation } from "@mocks/apps/privileges/invitations/branchesForm.mock";
+import { eventsFormInvitation } from "@mocks/apps/privileges/invitations/eventsForm.mock";
+import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
+import { payrollsFormInvitation } from "@mocks/apps/privileges/invitations/payrollsForm.mock";
+import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
@@ -18,11 +18,11 @@ function CompleteInvitation() {
 
   const [invitationData, setInvitationData] = useState({
     generalInformation: { entries: getInvitationInformation() },
-    branches: { entries: branchesFormEditUser },
-    projects: { entries: projectsFormEditUser },
-    events: { entries: eventsFormEditUser },
-    aidBudgetUnits: { entries: aidBudgetsFormEditUser },
-    payrolls: { entries: payrollsFormEditUser },
+    branches: { entries: branchesFormInvitation },
+    projects: { entries: projectsFormInvitation },
+    events: { entries: eventsFormInvitation },
+    aidBudgetUnits: { entries: aidBudgetsFormInvitation },
+    payrolls: { entries: payrollsFormInvitation },
   });
 
   function getInvitationInformation() {
