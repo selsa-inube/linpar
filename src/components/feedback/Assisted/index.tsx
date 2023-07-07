@@ -1,10 +1,14 @@
-import { useMediaQuery } from "@inube/design-system";
 import { AssistedUI } from "./interface";
+import { IStep } from "./types";
 
-function Assisted(props) {
+interface AssistedProps {
+  steps: IStep[];
+  currentStep: number;
+  handleStepChange: (stepId: number) => void;
+}
+
+function Assisted(props: AssistedProps) {
   const { steps, currentStep, handleStepChange } = props;
-
-  const smallScreen = useMediaQuery("(max-width: 1100px)");
 
   const handleNextStep = () => {
     const currentStepIndex = steps.findIndex((step) => step.id === currentStep);
@@ -26,10 +30,10 @@ function Assisted(props) {
       currentStepInfo={currentStepInfo}
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
-      smallScreen={smallScreen}
       steps={steps}
     />
   );
 }
 
 export { Assisted };
+export type { AssistedProps };

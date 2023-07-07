@@ -1,5 +1,5 @@
 {
-  "uuid": "451d73ed-0ebb-4998-9590-c09e1e0f42e5",
+  "uuid": "f4934873-fd46-43bc-8897-7da012b386c8",
   "lastMigration": 27,
   "name": "LinparData",
   "endpointPrefix": "",
@@ -8,65 +8,65 @@
   "hostname": "",
   "folders": [
     {
-      "uuid": "3655f808-7862-4047-a877-d8e9b61d7895",
+      "uuid": "bb09db1d-e3d1-4be6-915d-bbb0a94dccab",
       "name": "v1",
       "collapsed": false,
       "children": [
         {
           "type": "folder",
-          "uuid": "73eb96af-9014-4681-899d-2a3e1f8d3a02"
+          "uuid": "ef34df09-91d5-403c-8e9c-27d80a50fe01"
         }
       ]
     },
     {
-      "uuid": "73eb96af-9014-4681-899d-2a3e1f8d3a02",
+      "uuid": "ef34df09-91d5-403c-8e9c-27d80a50fe01",
       "name": "privileges",
       "collapsed": false,
       "children": [
         {
           "type": "folder",
-          "uuid": "83a18e64-0bb9-4340-bf96-bceb3432f005"
+          "uuid": "e67974a8-5a8b-4b4e-b867-73e569feb8af"
         },
         {
           "type": "folder",
-          "uuid": "775be01e-f8c2-4a50-8dc4-f0878f835b71"
+          "uuid": "788a2fae-d13a-46d8-a7a8-92037785e2ea"
         }
       ]
     },
     {
-      "uuid": "83a18e64-0bb9-4340-bf96-bceb3432f005",
+      "uuid": "e67974a8-5a8b-4b4e-b867-73e569feb8af",
       "name": "users",
       "collapsed": false,
       "children": [
         {
           "type": "route",
-          "uuid": "dbaeafeb-96af-4672-84d4-35e83ff613d9"
+          "uuid": "d2ad1b76-f1e2-4aef-a6c2-e31f54f74935"
         }
       ]
     },
     {
-      "uuid": "775be01e-f8c2-4a50-8dc4-f0878f835b71",
+      "uuid": "788a2fae-d13a-46d8-a7a8-92037785e2ea",
       "name": "invitations",
       "collapsed": false,
       "children": [
         {
           "type": "route",
-          "uuid": "d53d5cd4-f07b-4bfc-9818-c52143127604"
+          "uuid": "e1fdb43d-80ee-49e5-b928-ce0eb39d4742"
         }
       ]
     }
   ],
   "routes": [
     {
-      "uuid": "dbaeafeb-96af-4672-84d4-35e83ff613d9",
+      "uuid": "d2ad1b76-f1e2-4aef-a6c2-e31f54f74935",
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "v1/privileges/users/:user_id/aid-budgets",
+      "endpoint": "v1/privileges/users/:user_id/branches",
       "responses": [
         {
-          "uuid": "41543931-1164-4e4e-b205-56fa4a2d1a20",
-          "body": "[\r\n  {\r\n    id: \"4701\",\r\n    value: \"Gastos operativos\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4702\",\r\n    value: \"Marketing y publicidad\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4703\",\r\n    value: \"Investigación y desarrollo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4704\",\r\n    value: \"Inversiones de capital\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4705\",\r\n    value: \"Capacitación y desarrollo del personal\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4706\",\r\n    value: \"Investigación de mercado\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4707\",\r\n    value: \"Proyectos especiales\",\r\n    isActive: false,\r\n  },\r\n]",
+          "uuid": "1082448f-b2d5-4c1a-8ddf-c028edc8f034",
+          "body": "[\r\n  {\r\n    id: \"1231\",\r\n    value: \"Bogotá\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2543\",\r\n    value: \"Barrancabermeja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3654\",\r\n    value: \"Barranquilla\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4456\",\r\n    value: \"Armenia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4457\",\r\n    value: \"Buga\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4486\",\r\n    value: \"Cali\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7456\",\r\n    value: \"Cartagena\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1456\",\r\n    value: \"Cúcuta\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2456\",\r\n    value: \"Ibagué\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"3456\",\r\n    value: \"Medellín\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"5456\",\r\n    value: \"Pereira\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"6456\",\r\n    value: \"Popayán\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"7457\",\r\n    value: \"Pasto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8456\",\r\n    value: \"Riohacha\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4459\",\r\n    value: \"Tunja\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"8856\",\r\n    value: \"Valledupar\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -87,17 +87,12 @@
           "default": true
         },
         {
-          "uuid": "72f0199a-4885-4426-ae75-d01c3da100d7",
+          "uuid": "4aa61e06-6051-4a42-93d4-c2445fe86c40",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
           "label": "",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
+          "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -109,8 +104,8 @@
           "default": false
         },
         {
-          "uuid": "bebf5681-602b-4728-9216-0b3709e96b9c",
-          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "uuid": "ad3fc58f-5416-4b28-88be-9b5bdd9ae8e6",
+          "body": "{\n  error: \"General server-side error\"\n}",
           "latency": 0,
           "statusCode": 500,
           "label": "",
@@ -130,15 +125,15 @@
       "responseMode": null
     },
     {
-      "uuid": "d53d5cd4-f07b-4bfc-9818-c52143127604",
+      "uuid": "e1fdb43d-80ee-49e5-b928-ce0eb39d4742",
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "v1/privileges/invitations/:invitations_id/aid-budgets",
+      "endpoint": "v1/privileges/invitations/:invitation_id/branches",
       "responses": [
         {
-          "uuid": "9147d241-2db2-49c3-827e-8f87513fe730",
-          "body": "[\r\n  {\r\n    id: \"4701\",\r\n    value: \"Gastos operativos\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4702\",\r\n    value: \"Marketing y publicidad\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4703\",\r\n    value: \"Investigación y desarrollo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4704\",\r\n    value: \"Inversiones de capital\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4705\",\r\n    value: \"Capacitación y desarrollo del personal\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4706\",\r\n    value: \"Investigación de mercado\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4707\",\r\n    value: \"Proyectos especiales\",\r\n    isActive: false,\r\n  },\r\n]",
+          "uuid": "9f46a502-7de9-4ba9-9d92-1a5982d2ae6b",
+          "body": "[\r\n  {\r\n    id: \"1231\",\r\n    value: \"Bogotá\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2543\",\r\n    value: \"Barrancabermeja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3654\",\r\n    value: \"Barranquilla\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4456\",\r\n    value: \"Armenia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4457\",\r\n    value: \"Buga\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4486\",\r\n    value: \"Cali\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7456\",\r\n    value: \"Cartagena\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1456\",\r\n    value: \"Cúcuta\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2456\",\r\n    value: \"Ibagué\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3456\",\r\n    value: \"Medellín\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"5456\",\r\n    value: \"Pereira\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"6456\",\r\n    value: \"Popayán\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7457\",\r\n    value: \"Pasto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8456\",\r\n    value: \"Riohacha\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4459\",\r\n    value: \"Tunja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8856\",\r\n    value: \"Valledupar\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -159,17 +154,12 @@
           "default": true
         },
         {
-          "uuid": "bea1dd79-c352-4fdf-b562-8fd9930fcd36",
+          "uuid": "3708a819-e14a-49e5-bf61-4cae80d90ba3",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
           "label": "",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
+          "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -181,17 +171,12 @@
           "default": false
         },
         {
-          "uuid": "f04b2e47-ac8a-4d09-90c0-ce167a6dbdf3",
-          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "uuid": "50364812-ae63-4e01-884c-26fa951b432d",
+          "body": "{\n  error: \"General server-side error\"\n}",
           "latency": 0,
           "statusCode": 500,
           "label": "",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
+          "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -210,7 +195,7 @@
   "rootChildren": [
     {
       "type": "folder",
-      "uuid": "3655f808-7862-4047-a877-d8e9b61d7895"
+      "uuid": "bb09db1d-e3d1-4be6-915d-bbb0a94dccab"
     }
   ],
   "proxyMode": false,
