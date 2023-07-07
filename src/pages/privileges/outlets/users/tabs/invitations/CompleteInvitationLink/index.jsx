@@ -11,10 +11,8 @@ function CompleteInvitationLink(props) {
         <Button
           iconBefore={<MdOutlineAssignmentTurnedIn size={18} />}
           type="link"
-          path={
-            invitation.status === "Pending" &&
-            `complete-invitation/${invitation.id}`
-          }
+          isDisabled={invitation.status === "Sent"}
+          path={`complete-invitation/${invitation.id}`}
           variant="none"
           appearance="secondary"
           spacing="compact"
