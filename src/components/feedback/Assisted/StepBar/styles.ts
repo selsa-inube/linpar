@@ -7,7 +7,7 @@ interface IStyledStep {
   isFirstStep?: boolean;
 }
 
-interface StyledLine extends IStyledStep {}
+interface IStyledLine extends IStyledStep {}
 
 function getBackgroundColor(props: IStyledStep) {
   if (props.isPreviousStep || props.isActualStep) {
@@ -16,14 +16,14 @@ function getBackgroundColor(props: IStyledStep) {
   return colors.sys.actions.disabled.stroke;
 }
 
-function getLineColor(props: IStyledStep) {
+function getLineColor(props: IStyledLine) {
   if (props.isPreviousStep || props.isActualStep) {
     return colors.sys.status.inProgress;
   }
   return colors.ref.palette.neutral.n40;
 }
 
-function getLineDisplay(props: IStyledStep) {
+function getLineDisplay(props: IStyledLine) {
   if (props.isFirstStep) {
     return "none";
   }
@@ -39,7 +39,7 @@ const StyledStep = styled.div<IStyledStep>`
   margin: 0 -3px;
 `;
 
-const StyledLine = styled.div<StyledLine>`
+const StyledLine = styled.div<IStyledLine>`
   display: ${getLineDisplay};
   background-color: ${getLineColor};
   width: 100%;

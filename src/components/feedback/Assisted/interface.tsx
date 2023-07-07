@@ -41,11 +41,10 @@ function AssistedUI(props: IAssistedUIProps) {
     const startIndex = (currentGroup - 1) * MAX_STEPS_PER_VIEW + 1;
     const endIndex = currentGroup * MAX_STEPS_PER_VIEW;
 
-    const marginToLeft =
-      totalGroup === currentGroup && Number(step.id) === startIndex;
-    const marginToRight = currentGroup === 1 && Number(step.id) === endIndex;
+    const marginToLeft = totalGroup === currentGroup && step.id === startIndex;
+    const marginToRight = currentGroup === 1 && step.id === endIndex;
 
-    if (Number(step.id) >= startIndex && Number(step.id) <= endIndex) {
+    if (step.id >= startIndex && step.id <= endIndex) {
       return (
         <Step
           key={index}
@@ -69,14 +68,14 @@ function AssistedUI(props: IAssistedUIProps) {
             variant="none"
             iconBefore={<MdArrowBack size={20} />}
             handleClick={handlePreviousStep}
-            isDisabled={currentStep === Number(steps[0].id)}
+            isDisabled={currentStep === steps[0].id}
           />
         </StyledButton>
         <StyledStepsMobile>
           <Stack gap="8px" alignItems="center" justifyContent="center">
             <StyledStepsMobileId>
               <Text typo="labelMedium" appearance="primary">
-                {currentStep === Number(steps[steps.length - 1].id) ? (
+                {currentStep === steps[steps.length - 1].id ? (
                   <MdCheckCircle size={16} />
                 ) : (
                   currentStep
@@ -108,13 +107,11 @@ function AssistedUI(props: IAssistedUIProps) {
           variant="none"
           iconBefore={<MdArrowBack size={18} />}
           handleClick={handlePreviousStep}
-          isDisabled={currentStep === Number(steps[0].id)}
+          isDisabled={currentStep === steps[0].id}
         >
           <Text
             typo="labelLarge"
-            appearance={
-              currentStep === Number(steps[0].id) ? "disabled" : "primary"
-            }
+            appearance={currentStep === steps[0].id ? "disabled" : "primary"}
           >
             Prev
           </Text>

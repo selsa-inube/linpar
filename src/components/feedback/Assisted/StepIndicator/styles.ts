@@ -18,21 +18,21 @@ interface IStyledLeftLine extends IStyledStep {}
 
 interface IStyledRightLine extends IStyledStep {}
 
-const getIconColor = (props: IStyledStep): string => {
+const getIconColor = (props: IStyledArrowDown): string => {
   if (props.isActualStep) {
     return colors.sys.status.inProgress;
   }
   return "transparent";
 };
 
-const getStepNumberBackgroundColor = (props: IStyledStep): string => {
+const getStepNumberBackgroundColor = (props: IStyledStepNumber): string => {
   if (props.isPreviousStep) {
     return colors.sys.status.inProgress;
   }
   return "transparent";
 };
 
-const getStepNumberBorderColor = (props: IStyledStep): string => {
+const getStepNumberBorderColor = (props: IStyledStepNumber): string => {
   if (props.isActualStep) {
     return colors.sys.text.primary;
   }
@@ -42,7 +42,7 @@ const getStepNumberBorderColor = (props: IStyledStep): string => {
   return colors.sys.text.disabled;
 };
 
-const getLeftLineStyle = (props: IStyledStep): string => {
+const getLeftLineStyle = (props: IStyledLeftLine): string => {
   if (props.isFirstStep) {
     return "transparent";
   }
@@ -52,7 +52,7 @@ const getLeftLineStyle = (props: IStyledStep): string => {
   return colors.sys.actions.disabled.stroke;
 };
 
-const getRightLineStyle = (props: IStyledStep): string => {
+const getRightLineStyle = (props: IStyledRightLine): string => {
   if (props.isLastStep) {
     return "transparent";
   }

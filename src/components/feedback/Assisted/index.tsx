@@ -4,7 +4,7 @@ import { IStep } from "./types";
 interface AssistedProps {
   steps: IStep[];
   currentStep: number;
-  handleStepChange: (stepId: string) => void;
+  handleStepChange: (stepId: number) => void;
 }
 
 function Assisted(props: AssistedProps) {
