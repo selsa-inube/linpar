@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
-import { IStepProps } from "./types";
+
+interface IStepProps {
+  isPreviousStep?: boolean;
+  isActualStep?: boolean;
+  isFirstStep?: boolean;
+}
 
 function getBackgroundColor(props: IStepProps) {
   if (props.isPreviousStep || props.isActualStep) {

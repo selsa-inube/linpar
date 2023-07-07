@@ -1,5 +1,5 @@
 import { Assisted } from "..";
-import { IAssistedProps } from "../types";
+import { IAssistedProps } from "../index";
 
 const story = {
   component: [Assisted],

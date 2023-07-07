@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
 
-import { IStepProps } from "./types";
+interface IStepProps {
+  marginToRight?: boolean;
+  marginToLeft?: boolean;
+  isFirstStep?: boolean;
+  isLastStep?: boolean;
+  isPreviousStep?: boolean;
+  isActualStep?: boolean;
+}
 
 const getIconColor = (props: IStepProps): string => {
   if (props.isActualStep) {

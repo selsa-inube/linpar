@@ -11,7 +11,15 @@ import {
   StyledDesktopContainer,
   StyledStepsContent,
 } from "./styles";
-import { IStep, IAssistedUIProps } from "./types";
+import { IStep } from "./types";
+
+interface IAssistedUIProps {
+  currentStep: string;
+  currentStepInfo: IStep | undefined;
+  handleNextStep: () => void;
+  handlePreviousStep: () => void;
+  steps: IStep[];
+}
 
 const MAX_STEPS_PER_VIEW = 7;
 

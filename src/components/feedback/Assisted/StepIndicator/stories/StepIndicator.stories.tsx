@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/react";
 import { StepIndicator } from "..";
-import { IStepIndicatorProps } from "../types";
+import { IStepIndicatorProps } from "../index";
 
 const story = {
   component: [StepIndicator],

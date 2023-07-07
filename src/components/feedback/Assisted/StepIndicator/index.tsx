@@ -7,7 +7,15 @@ import {
   StyledRightLine,
   StyledArrowDown,
 } from "./styles";
-import { IStepIndicatorProps } from "./types";
+
+interface IStepIndicatorProps {
+  stepNumber: number;
+  actualStep: number;
+  stepName: string;
+  isVerification: boolean;
+  marginToLeft?: boolean;
+  marginToRight?: boolean;
+}
 
 function StepIndicator(props: IStepIndicatorProps) {
   const {
@@ -81,3 +89,4 @@ function StepIndicator(props: IStepIndicatorProps) {
 }
 
 export { StepIndicator };
+export type { IStepIndicatorProps };

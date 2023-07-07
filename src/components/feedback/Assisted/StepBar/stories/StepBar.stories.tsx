@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/react";
 import { StepBar } from "..";
-import { IStepBarProps } from "../types";
+import { IStepBarProps } from "../index";
 import { Stack } from "@inube/design-system";
 
 const story = {

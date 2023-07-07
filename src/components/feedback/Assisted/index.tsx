@@ -1,5 +1,11 @@
 import { AssistedUI } from "./interface";
-import { IAssistedProps } from "./types";
+import { IStep } from "./types";
+
+interface IAssistedProps {
+  steps: IStep[];
+  currentStep: string;
+  handleStepChange: (stepId: string) => void;
+}
 
 function Assisted(props: IAssistedProps) {
   const { steps, currentStep, handleStepChange } = props;
@@ -30,3 +36,4 @@ function Assisted(props: IAssistedProps) {
 }
 
 export { Assisted };
+export type { IAssistedProps };
