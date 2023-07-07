@@ -1,4 +1,4 @@
-import { branchesFormEditUser } from "@src/mocks/apps/privileges/users/branchesForm.mock";
+import { branchesFormEditUser } from "@mocks/apps/privileges/users/branchesForm.mock";
 import { action } from "@storybook/addon-actions";
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
