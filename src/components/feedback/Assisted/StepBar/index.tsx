@@ -1,12 +1,12 @@
 import { StyledStep, StyledLine } from "./styles";
 
-interface IStepBarProps {
+interface StepBarProps {
   stepNumber: number;
   actualStep: number;
   isVerification: boolean;
 }
 
-function StepBar(props: IStepBarProps) {
+function StepBar(props: StepBarProps) {
   const { stepNumber, actualStep, isVerification } = props;
   const isActualStep: boolean = actualStep === stepNumber;
   const isPreviousStep: boolean = stepNumber < actualStep;
@@ -28,4 +28,4 @@ function StepBar(props: IStepBarProps) {
 }
 
 export { StepBar };
-export type { IStepBarProps };
+export type { StepBarProps };

@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/react";
 import { StepBar } from "..";
-import { IStepBarProps } from "../index";
+import { StepBarProps } from "../index";
 import { Stack } from "@inube/design-system";
 
 const story = {
@@ -15,7 +15,7 @@ const story = {
   ],
 };
 
-const Template: StoryFn<IStepBarProps> = (args) => <StepBar {...args} />;
+const Template: StoryFn<StepBarProps> = (args) => <StepBar {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

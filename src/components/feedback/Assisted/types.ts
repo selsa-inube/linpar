@@ -1,7 +1,7 @@
 interface IStep {
   id: string;
   stepName: string;
-  isVerification: boolean;
+  isVerification?: boolean;
   stepDescription: string;
 }
 

@@ -14,8 +14,8 @@ import {
 import { IStep } from "./types";
 
 interface IAssistedUIProps {
-  currentStep: string;
-  currentStepInfo: IStep | undefined;
+  currentStep: number;
+  currentStepInfo?: IStep;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
   steps: IStep[];
@@ -37,7 +37,7 @@ function AssistedUI(props: IAssistedUIProps) {
   const renderStep = (step: IStep, index: number) => {
     const Step = smallScreen ? StepBar : StepIndicator;
     const totalGroup = Math.ceil(steps.length / MAX_STEPS_PER_VIEW);
-    const currentGroup = Math.ceil(Number(currentStep) / MAX_STEPS_PER_VIEW);
+    const currentGroup = Math.ceil(currentStep / MAX_STEPS_PER_VIEW);
     const startIndex = (currentGroup - 1) * MAX_STEPS_PER_VIEW + 1;
     const endIndex = currentGroup * MAX_STEPS_PER_VIEW;
 
@@ -51,8 +51,8 @@ function AssistedUI(props: IAssistedUIProps) {
           key={index}
           stepNumber={index + 1}
           stepName={step.stepName}
-          actualStep={Number(currentStep)}
-          isVerification={step.isVerification}
+          actualStep={currentStep}
+          isVerification={step.isVerification ?? false}
           marginToLeft={marginToLeft}
           marginToRight={marginToRight}
         />
@@ -69,14 +69,14 @@ function AssistedUI(props: IAssistedUIProps) {
             variant="none"
             iconBefore={<MdArrowBack size={20} />}
             handleClick={handlePreviousStep}
-            isDisabled={currentStep === steps[0].id}
+            isDisabled={currentStep === Number(steps[0].id)}
           />
         </StyledButton>
         <StyledStepsMobile>
           <Stack gap="8px" alignItems="center" justifyContent="center">
             <StyledStepsMobileId>
               <Text typo="labelMedium" appearance="primary">
-                {steps[steps.length - 1].id === currentStep ? (
+                {currentStep === Number(steps[steps.length - 1].id) ? (
                   <MdCheckCircle size={16} />
                 ) : (
                   currentStep
@@ -94,7 +94,7 @@ function AssistedUI(props: IAssistedUIProps) {
             variant="none"
             iconAfter={<MdArrowForward size={20} />}
             handleClick={handleNextStep}
-            isDisabled={currentStep === String(steps.length)}
+            isDisabled={currentStep === steps.length}
           />
         </StyledButton>
       </StyledMobile>
@@ -108,11 +108,13 @@ function AssistedUI(props: IAssistedUIProps) {
           variant="none"
           iconBefore={<MdArrowBack size={18} />}
           handleClick={handlePreviousStep}
-          isDisabled={currentStep === steps[0].id}
+          isDisabled={currentStep === Number(steps[0].id)}
         >
           <Text
             typo="labelLarge"
-            appearance={currentStep === steps[0].id ? "disabled" : "primary"}
+            appearance={
+              currentStep === Number(steps[0].id) ? "disabled" : "primary"
+            }
           >
             Prev
           </Text>
@@ -124,13 +126,11 @@ function AssistedUI(props: IAssistedUIProps) {
           variant="none"
           iconAfter={<MdArrowForward size={18} />}
           handleClick={handleNextStep}
-          isDisabled={currentStep === String(steps.length)}
+          isDisabled={currentStep === steps.length}
         >
           <Text
             typo="labelLarge"
-            appearance={
-              currentStep === String(steps.length) ? "disabled" : "primary"
-            }
+            appearance={currentStep === steps.length ? "disabled" : "primary"}
           >
             Next
           </Text>

@@ -1,34 +1,36 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
 
-interface IStepProps {
+interface IStyledStep {
   isPreviousStep?: boolean;
   isActualStep?: boolean;
   isFirstStep?: boolean;
 }
 
-function getBackgroundColor(props: IStepProps) {
+interface StyledLine extends IStyledStep {}
+
+function getBackgroundColor(props: IStyledStep) {
   if (props.isPreviousStep || props.isActualStep) {
     return colors.sys.status.inProgress;
   }
   return colors.sys.actions.disabled.stroke;
 }
 
-function getLineColor(props: IStepProps) {
+function getLineColor(props: IStyledStep) {
   if (props.isPreviousStep || props.isActualStep) {
     return colors.sys.status.inProgress;
   }
   return colors.ref.palette.neutral.n40;
 }
 
-function getLineDisplay(props: IStepProps) {
+function getLineDisplay(props: IStyledStep) {
   if (props.isFirstStep) {
     return "none";
   }
   return "block";
 }
 
-const StyledStep = styled.div<IStepProps>`
+const StyledStep = styled.div<IStyledStep>`
   background-color: ${getBackgroundColor};
   position: relative;
   min-width: 6px;
@@ -37,7 +39,7 @@ const StyledStep = styled.div<IStepProps>`
   margin: 0 -3px;
 `;
 
-const StyledLine = styled.div<IStepProps>`
+const StyledLine = styled.div<StyledLine>`
   display: ${getLineDisplay};
   background-color: ${getLineColor};
   width: 100%;

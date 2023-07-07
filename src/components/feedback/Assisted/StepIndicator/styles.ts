@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
 
-interface IStepProps {
+interface IStyledStep {
   marginToRight?: boolean;
   marginToLeft?: boolean;
   isFirstStep?: boolean;
@@ -10,21 +10,29 @@ interface IStepProps {
   isActualStep?: boolean;
 }
 
-const getIconColor = (props: IStepProps): string => {
+interface IStyledArrowDown extends IStyledStep {}
+
+interface IStyledStepNumber extends IStyledStep {}
+
+interface IStyledLeftLine extends IStyledStep {}
+
+interface IStyledRightLine extends IStyledStep {}
+
+const getIconColor = (props: IStyledStep): string => {
   if (props.isActualStep) {
     return colors.sys.status.inProgress;
   }
   return "transparent";
 };
 
-const getStepNumberBackgroundColor = (props: IStepProps): string => {
+const getStepNumberBackgroundColor = (props: IStyledStep): string => {
   if (props.isPreviousStep) {
     return colors.sys.status.inProgress;
   }
   return "transparent";
 };
 
-const getStepNumberBorderColor = (props: IStepProps): string => {
+const getStepNumberBorderColor = (props: IStyledStep): string => {
   if (props.isActualStep) {
     return colors.sys.text.primary;
   }
@@ -34,7 +42,7 @@ const getStepNumberBorderColor = (props: IStepProps): string => {
   return colors.sys.text.disabled;
 };
 
-const getLeftLineStyle = (props: IStepProps): string => {
+const getLeftLineStyle = (props: IStyledStep): string => {
   if (props.isFirstStep) {
     return "transparent";
   }
@@ -44,7 +52,7 @@ const getLeftLineStyle = (props: IStepProps): string => {
   return colors.sys.actions.disabled.stroke;
 };
 
-const getRightLineStyle = (props: IStepProps): string => {
+const getRightLineStyle = (props: IStyledStep): string => {
   if (props.isLastStep) {
     return "transparent";
   }
@@ -54,18 +62,18 @@ const getRightLineStyle = (props: IStepProps): string => {
   return colors.sys.actions.disabled.stroke;
 };
 
-const StyledStep = styled.li<IStepProps>`
+const StyledStep = styled.li<IStyledStep>`
   list-style: none;
   width: 100%;
   margin: 0 ${(props) => (props.marginToRight ? "30px" : "0")} 0
     ${(props) => (props.marginToLeft ? "30px" : "0")};
 `;
 
-const StyledArrowDown = styled.div<IStepProps>`
+const StyledArrowDown = styled.div<IStyledArrowDown>`
   color: ${getIconColor};
 `;
 
-const StyledStepNumber = styled.div<IStepProps>`
+const StyledStepNumber = styled.div<IStyledStepNumber>`
   width: 100%;
   display: flex;
   align-items: center;
@@ -84,13 +92,13 @@ const StyledStepNumber = styled.div<IStepProps>`
   }
 `;
 
-const StyledLeftLine = styled.div<IStepProps>`
+const StyledLeftLine = styled.div<IStyledLeftLine>`
   background-color: ${getLeftLineStyle};
   width: 100%;
   height: 3px;
 `;
 
-const StyledRightLine = styled.div<IStepProps>`
+const StyledRightLine = styled.div<IStyledRightLine>`
   background-color: ${getRightLineStyle};
   width: 100%;
   height: 3px;

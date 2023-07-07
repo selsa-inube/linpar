@@ -1,13 +1,13 @@
 import { StoryFn } from "@storybook/react";
 import { StepIndicator } from "..";
-import { IStepIndicatorProps } from "../index";
+import { StepIndicatorProps } from "../index";
 
 const story = {
   component: [StepIndicator],
   title: "components/feedback/Assisted/StepIndicator",
 };
 
-const Template: StoryFn<IStepIndicatorProps> = (args) => (
+const Template: StoryFn<StepIndicatorProps> = (args) => (
   <StepIndicator {...args} />
 );
 

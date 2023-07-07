@@ -1,5 +1,5 @@
 import { Assisted } from "..";
-import { IAssistedProps } from "../index";
+import { AssistedProps } from "../index";
 
 const story = {
   component: [Assisted],
@@ -49,7 +49,7 @@ const stepsMock = [
   },
 ];
 
-export const Default = (args: IAssistedProps) => <Assisted {...args} />;
+export const Default = (args: AssistedProps) => <Assisted {...args} />;
 
 Default.args = {
   steps: stepsMock,
