@@ -1,21 +1,38 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
 
-const getIconColor = (props) => {
+interface IStyledStep {
+  marginToRight?: boolean;
+  marginToLeft?: boolean;
+  isFirstStep?: boolean;
+  isLastStep?: boolean;
+  isPreviousStep?: boolean;
+  isActualStep?: boolean;
+}
+
+interface IStyledArrowDown extends IStyledStep {}
+
+interface IStyledStepNumber extends IStyledStep {}
+
+interface IStyledLeftLine extends IStyledStep {}
+
+interface IStyledRightLine extends IStyledStep {}
+
+const getIconColor = (props: IStyledArrowDown): string => {
   if (props.isActualStep) {
     return colors.sys.status.inProgress;
   }
-
   return "transparent";
 };
 
-const getStepNumberBackgroundColor = (props) => {
+const getStepNumberBackgroundColor = (props: IStyledStepNumber): string => {
   if (props.isPreviousStep) {
     return colors.sys.status.inProgress;
   }
+  return "transparent";
 };
 
-const getStepNumberBorderColor = (props) => {
+const getStepNumberBorderColor = (props: IStyledStepNumber): string => {
   if (props.isActualStep) {
     return colors.sys.text.primary;
   }
@@ -25,7 +42,7 @@ const getStepNumberBorderColor = (props) => {
   return colors.sys.text.disabled;
 };
 
-const getLeftLineStyle = (props) => {
+const getLeftLineStyle = (props: IStyledLeftLine): string => {
   if (props.isFirstStep) {
     return "transparent";
   }
@@ -35,7 +52,7 @@ const getLeftLineStyle = (props) => {
   return colors.sys.actions.disabled.stroke;
 };
 
-const getRightLineStyle = (props) => {
+const getRightLineStyle = (props: IStyledRightLine): string => {
   if (props.isLastStep) {
     return "transparent";
   }
@@ -45,18 +62,18 @@ const getRightLineStyle = (props) => {
   return colors.sys.actions.disabled.stroke;
 };
 
-const StyledStep = styled.li`
+const StyledStep = styled.li<IStyledStep>`
   list-style: none;
   width: 100%;
   margin: 0 ${(props) => (props.marginToRight ? "30px" : "0")} 0
     ${(props) => (props.marginToLeft ? "30px" : "0")};
 `;
 
-const StyledArrowDown = styled.div`
+const StyledArrowDown = styled.div<IStyledArrowDown>`
   color: ${getIconColor};
 `;
 
-const StyledStepNumber = styled.div`
+const StyledStepNumber = styled.div<IStyledStepNumber>`
   width: 100%;
   display: flex;
   align-items: center;
@@ -75,13 +92,13 @@ const StyledStepNumber = styled.div`
   }
 `;
 
-const StyledLeftLine = styled.div`
+const StyledLeftLine = styled.div<IStyledLeftLine>`
   background-color: ${getLeftLineStyle};
   width: 100%;
   height: 3px;
 `;
 
-const StyledRightLine = styled.div`
+const StyledRightLine = styled.div<IStyledRightLine>`
   background-color: ${getRightLineStyle};
   width: 100%;
   height: 3px;

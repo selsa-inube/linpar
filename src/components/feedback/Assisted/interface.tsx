@@ -1,4 +1,4 @@
-import { Button, Text, Stack } from "@inube/design-system";
+import { Button, Text, Stack, useMediaQuery } from "@inube/design-system";
 import { MdArrowBack, MdArrowForward, MdCheckCircle } from "react-icons/md";
 import { StepIndicator } from "./StepIndicator";
 import { StepBar } from "./StepBar";
@@ -11,20 +11,30 @@ import {
   StyledDesktopContainer,
   StyledStepsContent,
 } from "./styles";
+import { IStep } from "./types";
+
+interface IAssistedUIProps {
+  currentStep: number;
+  currentStepInfo?: IStep;
+  handleNextStep: () => void;
+  handlePreviousStep: () => void;
+  steps: IStep[];
+}
 
 const MAX_STEPS_PER_VIEW = 7;
 
-function AssistedUI(props) {
+function AssistedUI(props: IAssistedUIProps) {
   const {
     currentStep,
     currentStepInfo,
     handleNextStep,
     handlePreviousStep,
-    smallScreen,
     steps,
   } = props;
 
-  const renderStep = (step, index) => {
+  const smallScreen = useMediaQuery("(max-width: 1100px)");
+
+  const renderStep = (step: IStep, index: number) => {
     const Step = smallScreen ? StepBar : StepIndicator;
     const totalGroup = Math.ceil(steps.length / MAX_STEPS_PER_VIEW);
     const currentGroup = Math.ceil(currentStep / MAX_STEPS_PER_VIEW);
@@ -41,7 +51,7 @@ function AssistedUI(props) {
           stepNumber={index + 1}
           stepName={step.stepName}
           actualStep={currentStep}
-          isVerification={step.isVerification}
+          isVerification={step.isVerification ?? false}
           marginToLeft={marginToLeft}
           marginToRight={marginToRight}
         />
@@ -65,7 +75,7 @@ function AssistedUI(props) {
           <Stack gap="8px" alignItems="center" justifyContent="center">
             <StyledStepsMobileId>
               <Text typo="labelMedium" appearance="primary">
-                {steps[steps.length - 1].id === currentStep ? (
+                {currentStep === steps[steps.length - 1].id ? (
                   <MdCheckCircle size={16} />
                 ) : (
                   currentStep
@@ -73,7 +83,7 @@ function AssistedUI(props) {
               </Text>
             </StyledStepsMobileId>
             <Text typo="labelMedium" appearance="dark">
-              {currentStepInfo.stepName}
+              {currentStepInfo?.stepName}
             </Text>
           </Stack>
           <StyledSteps>{steps.map(renderStep)}</StyledSteps>
@@ -124,7 +134,7 @@ function AssistedUI(props) {
         </Button>
       </Stack>
       <Text typo="labelLarge" appearance="secondary" align="center">
-        {currentStepInfo.stepDescription}
+        {currentStepInfo?.stepDescription}
       </Text>
     </StyledDesktopContainer>
   );

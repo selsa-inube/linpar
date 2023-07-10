@@ -1,4 +1,5 @@
-import { Assisted } from "../../Assisted";
+import { Assisted } from "..";
+import { AssistedProps } from "../index";
 
 const story = {
   component: [Assisted],
@@ -48,9 +49,8 @@ const stepsMock = [
   },
 ];
 
-const Template = (args) => <Assisted {...args} />;
+export const Default = (args: AssistedProps) => <Assisted {...args} />;
 
-export const Default = Template.bind({});
 Default.args = {
   steps: stepsMock,
   handleStepChange: () => {},
