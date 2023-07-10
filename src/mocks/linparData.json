@@ -65,6 +65,10 @@
         {
           "type": "route",
           "uuid": "b53ee43e-5981-4ea3-9e7a-e4aedaf01a53"
+        },
+        {
+          "type": "route",
+          "uuid": "ed4dd9a3-4e2f-4bc3-b0ba-a56081f07a20"
         }
       ]
     },
@@ -96,6 +100,10 @@
         {
           "type": "route",
           "uuid": "a61bf8eb-5a0e-46a8-b5ee-3b5309074dcf"
+        },
+        {
+          "type": "route",
+          "uuid": "bbf1d437-84fe-4e9b-8951-846b659d366f"
         }
       ]
     },
@@ -1098,6 +1106,160 @@
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "ed4dd9a3-4e2f-4bc3-b0ba-a56081f07a20",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/payrolls",
+      "responses": [
+        {
+          "uuid": "13d57b25-66ae-4352-ba9d-ae1d26a942be",
+          "body": "[\n  {\n    id: \"1001\",\n    value: \"Salario Fijo\",\n    isActive: true,\n  },\n  {\n    id: \"1002\",\n    value: \"Salario por hora\",\n    isActive: true,\n  },\n  {\n    id: \"1003\",\n    value: \"Auxilios\",\n    isActive: false,\n  },\n  {\n    id: \"1004\",\n    value: \"Bonificaciones\",\n    isActive: true,\n  },\n  {\n    id: \"1005\",\n    value: \"Remuneraciones\",\n    isActive: false,\n  },\n  {\n    id: \"1006\",\n    value: \"Deducciones\",\n    isActive: false,\n  },\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "30a664e1-37f2-431d-99d8-e6d51a9da29f",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "689078aa-02f0-4e82-a5ce-c88d9d4e93e8",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "bbf1d437-84fe-4e9b-8951-846b659d366f",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/payrolls",
+      "responses": [
+        {
+          "uuid": "95b85919-a793-4b55-810b-b760a7b0ebd5",
+          "body": "[\r\n  {\r\n    id: \"1001\",\r\n    value: \"Salario Fijo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1002\",\r\n    value: \"Salario por hora\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1003\",\r\n    value: \"Auxilios\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1004\",\r\n    value: \"Bonificaciones\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1005\",\r\n    value: \"Remuneraciones\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1006\",\r\n    value: \"Deducciones\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "9e58fe96-e299-47a7-be28-2fad96201466",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "bddfab28-2272-4d7e-95d1-8aa33ae7cbcf",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,
