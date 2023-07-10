@@ -985,7 +985,7 @@
         },
         {
           "uuid": "97b32593-84c3-4e9e-975a-9d08e15e43f0",
-          "body": "{}",
+          "body": "[]",
           "latency": 0,
           "statusCode": 204,
           "label": "",
@@ -1062,7 +1062,7 @@
         },
         {
           "uuid": "5c2f4c58-d253-4a1f-b1f2-6e01357b4e26",
-          "body": "{}",
+          "body": "[]",
           "latency": 0,
           "statusCode": 204,
           "label": "",
