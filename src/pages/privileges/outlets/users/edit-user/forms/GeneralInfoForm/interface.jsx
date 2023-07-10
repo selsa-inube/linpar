@@ -114,10 +114,9 @@ function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
           Cargo
         </Text>
         <StyledSelect
-          defaultValue={formik.values.position}
+          value={formik.values.position}
           name="position"
           id="position"
-          disabled={loading}
           onChange={handleChangeForm}
           required
         >
@@ -159,7 +158,7 @@ function GeneralInformationFormUI(props) {
         <FormButtons
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
-          hasChanges={!hasChanges(formik.values)}
+          disabledButtons={!hasChanges(formik.values)}
           isLoading={loading}
         >
           {renderFormFields(formik, loading, formInvalid, handleChangeForm)}
