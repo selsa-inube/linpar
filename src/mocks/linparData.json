@@ -53,6 +53,10 @@
         {
           "type": "route",
           "uuid": "10ba149d-481b-404a-9c47-93d62370ebe1"
+        },
+        {
+          "type": "route",
+          "uuid": "84b3337e-f74d-42a8-860e-0eb08bcae5ac"
         }
       ]
     },
@@ -80,6 +84,10 @@
         {
           "type": "route",
           "uuid": "5e83beda-a034-4227-9083-eeebcaa83cf2"
+        },
+        {
+          "type": "route",
+          "uuid": "f3c67a1e-f82a-4597-8d81-d3c61b01ce42"
         }
       ]
     },
@@ -770,6 +778,160 @@
           "statusCode": 500,
           "label": "",
           "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "84b3337e-f74d-42a8-860e-0eb08bcae5ac",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/projects",
+      "responses": [
+        {
+          "uuid": "73115da4-4c91-4234-b748-6290f56808f4",
+          "body": "[\r\n  {\r\n    id: \"1211\",\r\n    value: \"Inube\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1412\",\r\n    value: \"Linpar\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1913\",\r\n    value: \"LinixV6x\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1714\",\r\n    value: \"Linpro\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1315\",\r\n    value: \"Linfac\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1916\",\r\n    value: \"Lindoc\",\r\n    isActive: false,\r\n  },\r\n];",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "0c210418-c547-4d93-a271-e1b2e2af362e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "67356dec-deda-483d-9085-a2ffcaadb009",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "f3c67a1e-f82a-4597-8d81-d3c61b01ce42",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/projects",
+      "responses": [
+        {
+          "uuid": "e0258f2b-14a8-4b7b-9a6d-06922d84c51e",
+          "body": "[\r\n  {\r\n    id: \"1211\",\r\n    value: \"Inube\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1412\",\r\n    value: \"Linpar\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1913\",\r\n    value: \"LinixV6x\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1714\",\r\n    value: \"Linpro\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1315\",\r\n    value: \"Linfac\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1916\",\r\n    value: \"Lindoc\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "347efe84-cc4f-4e91-bf06-2bac2b29f602",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "9c7a6fbe-aeb5-49e5-86e3-d92ebbc9f221",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
