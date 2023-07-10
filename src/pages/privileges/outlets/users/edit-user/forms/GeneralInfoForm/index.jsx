@@ -20,14 +20,16 @@ function GeneralInformationForm(props) {
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
 
+  const initialValues = {
+    username: currentInformation.username,
+    userID: currentInformation.userID,
+    email: currentInformation.email,
+    phone: currentInformation.phone || "",
+    position: currentInformation.position || "",
+  };
+
   const formik = useFormik({
-    initialValues: {
-      username: currentInformation.username,
-      userID: currentInformation.userID,
-      email: currentInformation.email,
-      phone: currentInformation.phone || "",
-      position: currentInformation.position || "",
-    },
+    initialValues,
     validationSchema,
     validateOnChange: false,
 
@@ -57,7 +59,7 @@ function GeneralInformationForm(props) {
   };
 
   const hasChanges = (valueCompare) =>
-    JSON.stringify(formik.initialValues) !== JSON.stringify(valueCompare);
+    JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
   const handleChangeForm = (event) => {
     const formikValues = {
