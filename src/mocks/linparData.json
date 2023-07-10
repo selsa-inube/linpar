@@ -53,6 +53,14 @@
         {
           "type": "route",
           "uuid": "10ba149d-481b-404a-9c47-93d62370ebe1"
+        },
+        {
+          "type": "route",
+          "uuid": "bdc1945a-3d8c-4819-ab73-23520fd176ff"
+        },
+        {
+          "type": "route",
+          "uuid": "1ac45db9-80a5-41b5-b0bb-71db0be7a06c"
         }
       ]
     },
@@ -662,7 +670,7 @@
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
-          "default": false
+          "default": true
         },
         {
           "uuid": "df6794d3-1c67-48a8-89d1-e9efd6a7e1bb",
@@ -684,7 +692,7 @@
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
-          "default": true
+          "default": false
         },
         {
           "uuid": "f1e59f57-a59f-433e-b8c0-f121704461fa",
@@ -721,7 +729,7 @@
       "responses": [
         {
           "uuid": "68e9f403-8d61-42f5-85c3-76ca7392c6ea",
-          "body": "[\r\n  {{# switch (urlParam 'invitation_id')}}\r\n  {{# case '10' }}\r\n    {\r\n      id: \"10\",\r\n      userID: \"45645\",\r\n      username: \"David Leonardo Garzón\",\r\n      email: \"lgarzon@gmail.com\",\r\n      invitationDate: \"11/JUN/2022\",\r\n      status: \"Sent\",\r\n      phone: \"3123456789\",\r\n    },\r\n  {{/ case }}\r\n  {{# case '11' }}\r\n  {\r\n    id: \"11\",\r\n    userID: \"534693\",\r\n    username: \"Cristina Schmidt\",\r\n    email: \"cristina_schmidt@gmail.com\",\r\n    invitationDate: \"11/ENE/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '12' }}\r\n  {\r\n    id: \"12\",\r\n    userID: \"757712\",\r\n    username: \"Roberta Wallace\",\r\n    email: \"roberta_wallace@gmail.com\",\r\n    invitationDate: \"26/AGO/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '13' }}\r\n  {\r\n    id: \"13\",\r\n    userID: \"440652\",\r\n    username: \"Gross Mendez\",\r\n    email: \"gross_mendez@gmail.com\",\r\n    invitationDate: \"17/MAY/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '14' }}\r\n  {\r\n    id: \"14\",\r\n    userID: \"846779\",\r\n    username: \"Martinez French\",\r\n    email: \"martinez_french@gmail.com\",\r\n    invitationDate: \"07/OCT/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '15' }}\r\n  {\r\n    id: \"15\",\r\n    userID: \"838645\",\r\n    username: \"Lowe Ellis\",\r\n    email: \"lowe_ellis@gmail.com\",\r\n    invitationDate: \"05/ENE/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '16' }}\r\n  {\r\n    id: \"16\",\r\n    userID: \"835761\",\r\n    username: \"Barlow Ballard\",\r\n    email: \"barlow_ballard@gmail.com\",\r\n    invitationDate: \"03/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '17' }}\r\n  {\r\n    id: \"17\",\r\n    userID: \"592492\",\r\n    username: \"Madeline Ayers\",\r\n    email: \"madeline_ayers@gmail.com\",\r\n    invitationDate: \"20/JUL/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '18' }}\r\n  {\r\n    id: \"18\",\r\n    userID: \"683321\",\r\n    username: \"Bowen Greene\",\r\n    email: \"bowen_greene@gmail.com\",\r\n    invitationDate: \"26/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '19' }}\r\n  {\r\n    id: \"19\",\r\n    userID: \"695730\",\r\n    username: \"Deborah Elliott\",\r\n    email: \"deborah_elliott@gmail.com\",\r\n    invitationDate: \"03/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '20' }}\r\n  {\r\n    id: \"20\",\r\n    userID: \"682422\",\r\n    username: \"Karina Fitzgerald\",\r\n    email: \"karina_fitzgerald@gmail.com\",\r\n    invitationDate: \"07/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '21' }}\r\n  {\r\n    id: \"21\",\r\n    userID: \"746049\",\r\n    username: \"Rachel Carpenter\",\r\n    email: \"rachel_carpenter@gmail.com\",\r\n    invitationDate: \"24/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '22' }}\r\n  {\r\n    id: \"22\",\r\n    userID: \"816645\",\r\n    username: \"Judith Santana\",\r\n    email: \"judith_santana@gmail.com\",\r\n    invitationDate: \"10/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '23' }}\r\n  {\r\n    id: \"23\",\r\n    userID: \"486616\",\r\n    username: \"Angelita Stein\",\r\n    email: \"angelita_stein@gmail.com\",\r\n    invitationDate: \"27/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '24' }}\r\n  {\r\n    id: \"24\",\r\n    userID: \"774335\",\r\n    username: \"Pamela Gibbs\",\r\n    email: \"pamela_gibbs@gmail.com\",\r\n    invitationDate: \"01/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '25' }}\r\n  {\r\n    id: \"25\",\r\n    userID: \"536431\",\r\n    username: \"Osborn Larsen\",\r\n    email: \"osborn_larsen@gmail.com\",\r\n    invitationDate: \"09/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '26' }}\r\n  {\r\n    id: \"26\",\r\n    userID: \"479249\",\r\n    username: \"Tisha Stevens\",\r\n    email: \"tisha_stevens@gmail.com\",\r\n    invitationDate: \"20/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '27' }}\r\n  {\r\n    id: \"27\",\r\n    userID: \"448172\",\r\n    username: \"Rosemarie Snow\",\r\n    email: \"rosemarie_snow@gmail.com\",\r\n    invitationDate: \"10/JUL/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '28' }}\r\n  {\r\n    id: \"28\",\r\n    userID: \"898779\",\r\n    username: \"Terry Shaffer\",\r\n    email: \"terry_shaffer@gmail.com\",\r\n    invitationDate: \"07/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '29' }}\r\n  {\r\n    id: \"29\",\r\n    userID: \"692860\",\r\n    username: \"Sofia Osborn\",\r\n    email: \"sofia_osborn@gmail.com\",\r\n    invitationDate: \"22/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '30' }}\r\n  {\r\n    id: \"30\",\r\n    userID: \"666124\",\r\n    username: \"Campos Christensen\",\r\n    email: \"campos_christensen@gmail.com\",\r\n    invitationDate: \"18/MAR/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '31' }}\r\n  {\r\n    id: \"31\",\r\n    userID: \"454377\",\r\n    username: \"Stacy Cooke\",\r\n    email: \"stacy_cooke@gmail.com\",\r\n    invitationDate: \"23/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '32' }}\r\n  {\r\n    id: \"32\",\r\n    userID: \"404949\",\r\n    username: \"Goff Mejia\",\r\n    email: \"goff_mejia@gmail.com\",\r\n    invitationDate: \"15/SEP/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '33' }}\r\n  {\r\n    id: \"33\",\r\n    userID: \"615315\",\r\n    username: \"Mcintyre Wells\",\r\n    email: \"mcintyre_wells@gmail.com\",\r\n    invitationDate: \"12/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '34' }}\r\n  {\r\n    id: \"34\",\r\n    userID: \"842395\",\r\n    username: \"Alyce Powers\",\r\n    email: \"alyce_powers@gmail.com\",\r\n    invitationDate: \"24/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '35' }}\r\n  {\r\n    id: \"35\",\r\n    userID: \"801730\",\r\n    username: \"Kathleen Matthews\",\r\n    email: \"kathleen_matthews@gmail.com\",\r\n    invitationDate: \"30/OCT/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '36' }}\r\n  {\r\n    id: \"36\",\r\n    userID: \"700677\",\r\n    username: \"Susana Davidson\",\r\n    email: \"susana_davidson@gmail.com\",\r\n    invitationDate: \"16/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '37' }}\r\n  {\r\n    id: \"37\",\r\n    userID: \"421571\",\r\n    username: \"Carr Brady\",\r\n    email: \"carr_brady@gmail.com\",\r\n    invitationDate: \"06/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '38' }}\r\n  {\r\n    id: \"38\",\r\n    userID: \"576861\",\r\n    username: \"Whitney Copeland\",\r\n    email: \"whitney_copeland@gmail.com\",\r\n    invitationDate: \"15/NOV/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# default }}\r\n  {\r\n    id: \"{{urlParam 'invitation_id'}}\",\r\n    message:\"No se encontro id\"\r\n  }\r\n  {{/ default }}\r\n  {{/ switch}}\r\n]",
+          "body": "\r\n  {{# switch (urlParam 'invitation_id')}}\r\n  {{# case '10' }}\r\n    {\r\n      id: \"10\",\r\n      userID: \"45645\",\r\n      username: \"David Leonardo Garzón\",\r\n      email: \"lgarzon@gmail.com\",\r\n      invitationDate: \"11/JUN/2022\",\r\n      status: \"Sent\",\r\n      phone: \"3123456789\",\r\n    },\r\n  {{/ case }}\r\n  {{# case '11' }}\r\n  {\r\n    id: \"11\",\r\n    userID: \"534693\",\r\n    username: \"Cristina Schmidt\",\r\n    email: \"cristina_schmidt@gmail.com\",\r\n    invitationDate: \"11/ENE/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '12' }}\r\n  {\r\n    id: \"12\",\r\n    userID: \"757712\",\r\n    username: \"Roberta Wallace\",\r\n    email: \"roberta_wallace@gmail.com\",\r\n    invitationDate: \"26/AGO/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '13' }}\r\n  {\r\n    id: \"13\",\r\n    userID: \"440652\",\r\n    username: \"Gross Mendez\",\r\n    email: \"gross_mendez@gmail.com\",\r\n    invitationDate: \"17/MAY/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '14' }}\r\n  {\r\n    id: \"14\",\r\n    userID: \"846779\",\r\n    username: \"Martinez French\",\r\n    email: \"martinez_french@gmail.com\",\r\n    invitationDate: \"07/OCT/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '15' }}\r\n  {\r\n    id: \"15\",\r\n    userID: \"838645\",\r\n    username: \"Lowe Ellis\",\r\n    email: \"lowe_ellis@gmail.com\",\r\n    invitationDate: \"05/ENE/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '16' }}\r\n  {\r\n    id: \"16\",\r\n    userID: \"835761\",\r\n    username: \"Barlow Ballard\",\r\n    email: \"barlow_ballard@gmail.com\",\r\n    invitationDate: \"03/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '17' }}\r\n  {\r\n    id: \"17\",\r\n    userID: \"592492\",\r\n    username: \"Madeline Ayers\",\r\n    email: \"madeline_ayers@gmail.com\",\r\n    invitationDate: \"20/JUL/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '18' }}\r\n  {\r\n    id: \"18\",\r\n    userID: \"683321\",\r\n    username: \"Bowen Greene\",\r\n    email: \"bowen_greene@gmail.com\",\r\n    invitationDate: \"26/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '19' }}\r\n  {\r\n    id: \"19\",\r\n    userID: \"695730\",\r\n    username: \"Deborah Elliott\",\r\n    email: \"deborah_elliott@gmail.com\",\r\n    invitationDate: \"03/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '20' }}\r\n  {\r\n    id: \"20\",\r\n    userID: \"682422\",\r\n    username: \"Karina Fitzgerald\",\r\n    email: \"karina_fitzgerald@gmail.com\",\r\n    invitationDate: \"07/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '21' }}\r\n  {\r\n    id: \"21\",\r\n    userID: \"746049\",\r\n    username: \"Rachel Carpenter\",\r\n    email: \"rachel_carpenter@gmail.com\",\r\n    invitationDate: \"24/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '22' }}\r\n  {\r\n    id: \"22\",\r\n    userID: \"816645\",\r\n    username: \"Judith Santana\",\r\n    email: \"judith_santana@gmail.com\",\r\n    invitationDate: \"10/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '23' }}\r\n  {\r\n    id: \"23\",\r\n    userID: \"486616\",\r\n    username: \"Angelita Stein\",\r\n    email: \"angelita_stein@gmail.com\",\r\n    invitationDate: \"27/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '24' }}\r\n  {\r\n    id: \"24\",\r\n    userID: \"774335\",\r\n    username: \"Pamela Gibbs\",\r\n    email: \"pamela_gibbs@gmail.com\",\r\n    invitationDate: \"01/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '25' }}\r\n  {\r\n    id: \"25\",\r\n    userID: \"536431\",\r\n    username: \"Osborn Larsen\",\r\n    email: \"osborn_larsen@gmail.com\",\r\n    invitationDate: \"09/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '26' }}\r\n  {\r\n    id: \"26\",\r\n    userID: \"479249\",\r\n    username: \"Tisha Stevens\",\r\n    email: \"tisha_stevens@gmail.com\",\r\n    invitationDate: \"20/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '27' }}\r\n  {\r\n    id: \"27\",\r\n    userID: \"448172\",\r\n    username: \"Rosemarie Snow\",\r\n    email: \"rosemarie_snow@gmail.com\",\r\n    invitationDate: \"10/JUL/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '28' }}\r\n  {\r\n    id: \"28\",\r\n    userID: \"898779\",\r\n    username: \"Terry Shaffer\",\r\n    email: \"terry_shaffer@gmail.com\",\r\n    invitationDate: \"07/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '29' }}\r\n  {\r\n    id: \"29\",\r\n    userID: \"692860\",\r\n    username: \"Sofia Osborn\",\r\n    email: \"sofia_osborn@gmail.com\",\r\n    invitationDate: \"22/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '30' }}\r\n  {\r\n    id: \"30\",\r\n    userID: \"666124\",\r\n    username: \"Campos Christensen\",\r\n    email: \"campos_christensen@gmail.com\",\r\n    invitationDate: \"18/MAR/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '31' }}\r\n  {\r\n    id: \"31\",\r\n    userID: \"454377\",\r\n    username: \"Stacy Cooke\",\r\n    email: \"stacy_cooke@gmail.com\",\r\n    invitationDate: \"23/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '32' }}\r\n  {\r\n    id: \"32\",\r\n    userID: \"404949\",\r\n    username: \"Goff Mejia\",\r\n    email: \"goff_mejia@gmail.com\",\r\n    invitationDate: \"15/SEP/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '33' }}\r\n  {\r\n    id: \"33\",\r\n    userID: \"615315\",\r\n    username: \"Mcintyre Wells\",\r\n    email: \"mcintyre_wells@gmail.com\",\r\n    invitationDate: \"12/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '34' }}\r\n  {\r\n    id: \"34\",\r\n    userID: \"842395\",\r\n    username: \"Alyce Powers\",\r\n    email: \"alyce_powers@gmail.com\",\r\n    invitationDate: \"24/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '35' }}\r\n  {\r\n    id: \"35\",\r\n    userID: \"801730\",\r\n    username: \"Kathleen Matthews\",\r\n    email: \"kathleen_matthews@gmail.com\",\r\n    invitationDate: \"30/OCT/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '36' }}\r\n  {\r\n    id: \"36\",\r\n    userID: \"700677\",\r\n    username: \"Susana Davidson\",\r\n    email: \"susana_davidson@gmail.com\",\r\n    invitationDate: \"16/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '37' }}\r\n  {\r\n    id: \"37\",\r\n    userID: \"421571\",\r\n    username: \"Carr Brady\",\r\n    email: \"carr_brady@gmail.com\",\r\n    invitationDate: \"06/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '38' }}\r\n  {\r\n    id: \"38\",\r\n    userID: \"576861\",\r\n    username: \"Whitney Copeland\",\r\n    email: \"whitney_copeland@gmail.com\",\r\n    invitationDate: \"15/NOV/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# default }}\r\n  {\r\n    id: \"{{urlParam 'invitation_id'}}\",\r\n    message:\"No se encontro id\"\r\n  }\r\n  {{/ default }}\r\n  {{/ switch}}\r\n",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -770,6 +778,160 @@
           "statusCode": 500,
           "label": "",
           "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "bdc1945a-3d8c-4819-ab73-23520fd176ff",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users",
+      "responses": [
+        {
+          "uuid": "8de36298-14e6-484e-ab03-c44fff50c89d",
+          "body": "[\r\n  {\r\n    id: \"11\",\r\n    username: \"David Leonardo Garzón\",\r\n    code: \"LGARZON\",\r\n    userID: \"1256545\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"dgarzon@sistemasenlinea.com.co\",\r\n    phone: \"3123202874\",\r\n  },\r\n  {\r\n    id: \"12\",\r\n    username: \"Angie Pinilla\",\r\n    code: \"APINILLA\",\r\n    userID: \"789654\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"apinilla@sistemasenlinea.com.co\",\r\n    phone: \"1212145789\",\r\n  },\r\n  {\r\n    id: \"13\",\r\n    username: \"Cristian Rojas\",\r\n    code: \"CROJAS\",\r\n    userID: \"258963\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"crojas@sistemasenlinea.com.co\",\r\n    phone: \"1322146789\",\r\n  },\r\n  {\r\n    id: \"14\",\r\n    username: \"Johan Nova\",\r\n    code: \"JNOVA\",\r\n    userID: \"589647\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"jgarcia@sistemasenlinea.com.co\",\r\n    phone: \"2322146351\",\r\n  },\r\n  {\r\n    id: \"15\",\r\n    username: \"Fernando Cañas\",\r\n    code: \"FCANAS\",\r\n    userID: \"365224\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"fcanas@sistemasenlinea.com.co\",\r\n    phone: \"2322267530\",\r\n  },\r\n  {\r\n    id: \"16\",\r\n    username: \"Carlos Batativa\",\r\n    code: \"CBATATIVA\",\r\n    userID: \"2357421\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"cbabativa@sistemasenlinea.com.co\",\r\n    phone: \"1234567890\",\r\n  },\r\n  {\r\n    id: \"17\",\r\n    username: \"Cesar Marin\",\r\n    code: \"CMARIN\",\r\n    userID: \"1000245\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"cmarin@sistemasenlinea.com.co\",\r\n    phone: \"2322789456\",\r\n  },\r\n  {\r\n    id: \"18\",\r\n    username: \"Pedro Perez\",\r\n    code: \"PEREZ\",\r\n    userID: \"687440\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"pperez@gmail.com\",\r\n    phone: \"1234567891\",\r\n  },\r\n  {\r\n    id: \"19\",\r\n    username: \"Sofia Henao\",\r\n    code: \"SHENAO\",\r\n    userID: \"352411\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"shenao@gmail.com\",\r\n    phone: \"1234567892\",\r\n  },\r\n  {\r\n    id: \"20\",\r\n    username: \"Daniel Novoa\",\r\n    code: \"DNOVOA\",\r\n    userID: \"320145\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"dnovoa@gmail.com\",\r\n    phone: \"1234567893\",\r\n  },\r\n  {\r\n    id: \"21\",\r\n    username: \"Jose Gomez\",\r\n    code: \"JGOMEZ\",\r\n    userID: \"4578899\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"jgomez@gmail.com\",\r\n    phone: \"1234567894\",\r\n  },\r\n  {\r\n    id: \"22\",\r\n    username: \"Jeimmy Cruz\",\r\n    code: \"JCRUZ\",\r\n    userID: \"586745\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"jcruz@gmail.com\",\r\n    phone: \"1234567895\",\r\n  },\r\n  {\r\n    id: \"23\",\r\n    username: \"Samuel Mejia\",\r\n    code: \"SMEJIA\",\r\n    userID: \"235652\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"smejia@gmail.com\",\r\n    phone: \"12345678946\",\r\n  },\r\n  {\r\n    id: \"24\",\r\n    username: \"Laura Amado\",\r\n    code: \"LAMADO\",\r\n    userID: \"3201153\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"lamado@gmail.com\",\r\n    phone: \"1234567897\",\r\n  },\r\n  {\r\n    id: \"25\",\r\n    username: \"Jhonatan Fernandez\",\r\n    code: \"JFERNANDEZ\",\r\n    userID: \"0215451\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"jfernandez@gmail.com\",\r\n    phone: \"1234567898\",\r\n  },\r\n  {\r\n    id: \"26\",\r\n    username: \"Diego Morales\",\r\n    code: \"DMORALES\",\r\n    userID: \"5656461\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"dmorales@gmail.com\",\r\n    phone: \"1234567899\",\r\n  },\r\n  {\r\n    id: \"27\",\r\n    username: \"Carolina Gomez\",\r\n    code: \"CGOMEZ\",\r\n    userID: \"841216423\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"cgomez@gmail.com\",\r\n    phone: \"1234567800\",\r\n  },\r\n  {\r\n    id: \"28\",\r\n    username: \"Fabian Jaramillo\",\r\n    code: \"FJARAMILLO\",\r\n    userID: \"47456444\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"fjaramillo@gmail.com\",\r\n    phone: \"1234567801\",\r\n  },\r\n  {\r\n    id: \"29\",\r\n    username: \"Jesica Beltran\",\r\n    code: \"JBELTRAN\",\r\n    userID: \"22115151\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"jbletran@gmail.com\",\r\n    phone: \"1234567802\",\r\n  },\r\n  {\r\n    id: \"30\",\r\n    username: \"Sebastian Gonzales\",\r\n    code: \"SGONZALES\",\r\n    userID: \"84548774\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"sgonzales@gmail.com\",\r\n    phone: \"1234567803\",\r\n  },\r\n  {\r\n    id: \"31\",\r\n    username: \"Felipe Alvarez\",\r\n    code: \"FALVAREZ\",\r\n    userID: \"84545478\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"falvarez@gmail.com\",\r\n    phone: \"1234567810\",\r\n  },\r\n  {\r\n    id: \"32\",\r\n    username: \"freddy Baquero\",\r\n    code: \"FBAQUERO\",\r\n    userID: \"78785744\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"fbaquero@gmail.com\",\r\n    phone: \"1234567811\",\r\n  },\r\n  {\r\n    id: \"33\",\r\n    username: \"Tomas Rodriguez\",\r\n    code: \"TRODRIGUEZ\",\r\n    userID: \"845456\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"trodriguez@gmail.com\",\r\n    phone: \"1234567812\",\r\n  },\r\n  {\r\n    id: \"34\",\r\n    username: \"Daniel Zamora\",\r\n    code: \"DZAMORA\",\r\n    userID: \"966586\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"dzamora@gmail.com\",\r\n    phone: \"1234567816\",\r\n  },\r\n  {\r\n    id: \"35\",\r\n    username: \"Brandon Pineda\",\r\n    code: \"BPINEDA\",\r\n    userID: \"7414542\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"bpineda@gmail.com\",\r\n    phone: \"1234567817\",\r\n  },\r\n  {\r\n    id: \"36\",\r\n    username: \"Jeimmy Zambrano\",\r\n    code: \"JZAMBRANO\",\r\n    userID: \"4001154\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"jzambrano@gmail.com\",\r\n    phone: \"1234567820\",\r\n  },\r\n  {\r\n    id: \"37\",\r\n    username: \"Andres Lopez\",\r\n    code: \"ALOPEZ\",\r\n    userID: \"41251321\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"alopez@gmail.com\",\r\n    phone: \"1234567821\",\r\n  },\r\n  {\r\n    id: \"38\",\r\n    username: \"Carmen Pedraza\",\r\n    code: \"CPEDRAZA\",\r\n    userID: \"843254432\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"cpedraza@gmail.com\",\r\n    phone: \"1234567822\",\r\n  },\r\n  {\r\n    id: \"39\",\r\n    username: \"Camilo Torres\",\r\n    code: \"CTORRES\",\r\n    userID: \"8641651\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"ctorres@gmail.com\",\r\n    phone: \"1234567824\",\r\n  },\r\n  {\r\n    id: \"40\",\r\n    username: \"Alvaro Rosales\",\r\n    code: \"AROSALES\",\r\n    userID: \"325215\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"arosales@gmail.com\",\r\n    phone: \"1234567825\",\r\n  },\r\n  {\r\n    id: \"41\",\r\n    username: \"Roberto Vargas\",\r\n    code: \"RVARGAS\",\r\n    userID: \"141740\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"rvargas@gmail.com\",\r\n    phone: \"1234567830\",\r\n  },\r\n  {\r\n    id: \"42\",\r\n    username: \"Santiago Maldonado\",\r\n    code: \"SMALDONADO\",\r\n    userID: \"9556413\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"smaldonado@gmail.com\",\r\n    phone: \"1234567837\",\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "096f33be-6a57-4e25-8792-fdaeac2ddeec",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4fc7741c-159b-40b1-af38-d65e8208e6e0",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "1ac45db9-80a5-41b5-b0bb-71db0be7a06c",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id",
+      "responses": [
+        {
+          "uuid": "d9a30b7a-0703-4659-9374-3c9fb08e1017",
+          "body": "{{# switch (urlParam 'user_id') }}\r\n{{# case '11' }}\r\n{\r\n  \"id\": \"11\",\r\n  \"username\": \"David Leonardo Garzón\",\r\n  \"code\": \"LGARZON\",\r\n  \"userID\": \"1256545\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"dgarzon@sistemasenlinea.com.co\",\r\n  \"phone\": \"3123202874\"\r\n}\r\n{{/ case }}\r\n{{# case '12' }}\r\n{\r\n  \"id\": \"12\",\r\n  \"username\": \"Angie Pinilla\",\r\n  \"code\": \"APINILLA\",\r\n  \"userID\": \"789654\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"apinilla@sistemasenlinea.com.co\",\r\n  \"phone\": \"1212145789\"\r\n}\r\n{{/ case }}\r\n{{# case '13' }}\r\n{\r\n  \"id\": \"13\",\r\n  \"username\": \"Cristian Rojas\",\r\n  \"code\": \"CROJAS\",\r\n  \"userID\": \"258963\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"crojas@sistemasenlinea.com.co\",\r\n  \"phone\": \"1322146789\"\r\n}\r\n{{/ case }}\r\n{{# case '14' }}\r\n{\r\n  \"id\": \"14\",\r\n  \"username\": \"Johan Nova\",\r\n  \"code\": \"JNOVA\",\r\n  \"userID\": \"589647\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"jgarcia@sistemasenlinea.com.co\",\r\n  \"phone\": \"2322146351\"\r\n}\r\n{{/ case }}\r\n{{# case '15' }}\r\n{\r\n  \"id\": \"15\",\r\n  \"username\": \"Fernando Cañas\",\r\n  \"code\": \"FCANAS\",\r\n  \"userID\": \"365224\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"fcanas@sistemasenlinea.com.co\",\r\n  \"phone\": \"2322267530\"\r\n}\r\n{{/ case }}\r\n{{# case '16' }}\r\n{\r\n  \"id\": \"16\",\r\n  \"username\": \"Carlos Batativa\",\r\n  \"code\": \"CBATATIVA\",\r\n  \"userID\": \"2357421\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"cbabativa@sistemasenlinea.com.co\",\r\n  \"phone\": \"1234567890\"\r\n}\r\n{{/ case }}\r\n{{# case '17' }}\r\n{\r\n  \"id\": \"17\",\r\n  \"username\": \"Cesar Marin\",\r\n  \"code\": \"CMARIN\",\r\n  \"userID\": \"1000245\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"cmarin@sistemasenlinea.com.co\",\r\n  \"phone\": \"2322789456\"\r\n}\r\n{{/ case }}\r\n{{# case '18' }}\r\n{\r\n  \"id\": \"18\",\r\n  \"username\": \"Pedro Perez\",\r\n  \"code\": \"PEREZ\",\r\n  \"userID\": \"687440\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"pperez@gmail.com\",\r\n  \"phone\": \"1234567891\"\r\n}\r\n{{/ case }}\r\n{{# case '19' }}\r\n{\r\n  \"id\": \"19\",\r\n  \"username\": \"Sofia Henao\",\r\n  \"code\": \"SHENAO\",\r\n  \"userID\": \"352411\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"shenao@gmail.com\",\r\n  \"phone\": \"1234567892\"\r\n}\r\n{{/ case }}\r\n{{# case '20' }}\r\n{\r\n  \"id\": \"20\",\r\n  \"username\": \"Daniel Novoa\",\r\n  \"code\": \"DNOVOA\",\r\n  \"userID\": \"320145\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"dnovoa@gmail.com\",\r\n  \"phone\": \"1234567893\"\r\n}\r\n{{/ case }}\r\n{{# case '21' }}\r\n{\r\n  \"id\": \"21\",\r\n  \"username\": \"Jose Gomez\",\r\n  \"code\": \"JGOMEZ\",\r\n  \"userID\": \"4578899\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"jgomez@gmail.com\",\r\n  \"phone\": \"1234567894\"\r\n}\r\n{{/ case }}\r\n{{# case '22' }}\r\n{\r\n  \"id\": \"22\",\r\n  \"username\": \"Jeimmy Cruz\",\r\n  \"code\": \"JCRUZ\",\r\n  \"userID\": \"586745\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"jcruz@gmail.com\",\r\n  \"phone\": \"1234567895\"\r\n}\r\n{{/ case }}\r\n{{# case '23' }}\r\n{\r\n  \"id\": \"23\",\r\n  \"username\": \"Samuel Mejia\",\r\n  \"code\": \"SMEJIA\",\r\n  \"userID\": \"235652\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"smejia@gmail.com\",\r\n  \"phone\": \"12345678946\"\r\n}\r\n{{/ case }}\r\n{{# case '24' }}\r\n{\r\n  \"id\": \"24\",\r\n  \"username\": \"Laura Amado\",\r\n  \"code\": \"LAMADO\",\r\n  \"userID\": \"3201153\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"lamado@gmail.com\",\r\n  \"phone\": \"1234567897\"\r\n}\r\n{{/ case }}\r\n{{# case '25' }}\r\n{\r\n  \"id\": \"25\",\r\n  \"username\": \"Jhonatan Fernandez\",\r\n  \"code\": \"JFERNANDEZ\",\r\n  \"userID\": \"0215451\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"jfernandez@gmail.com\",\r\n  \"phone\": \"1234567898\"\r\n}\r\n{{/ case }}\r\n{{# case '26' }}\r\n{\r\n  \"id\": \"26\",\r\n  \"username\": \"Diego Morales\",\r\n  \"code\": \"DMORALES\",\r\n  \"userID\": \"5656461\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"dmorales@gmail.com\",\r\n  \"phone\": \"1234567899\"\r\n}\r\n{{/ case }}\r\n{{# case '27' }}\r\n{\r\n  \"id\": \"27\",\r\n  \"username\": \"Carolina Gomez\",\r\n  \"code\": \"CGOMEZ\",\r\n  \"userID\": \"841216423\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"cgomez@gmail.com\",\r\n  \"phone\": \"1234567800\"\r\n}\r\n{{/ case }}\r\n{{# case '28' }}\r\n{\r\n  \"id\": \"28\",\r\n  \"username\": \"Fabian Jaramillo\",\r\n  \"code\": \"FJARAMILLO\",\r\n  \"userID\": \"47456444\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"fjaramillo@gmail.com\",\r\n  \"phone\": \"1234567801\"\r\n}\r\n{{/ case }}\r\n{{# case '29' }}\r\n{\r\n  \"id\": \"29\",\r\n  \"username\": \"Jesica Beltran\",\r\n  \"code\": \"JBELTRAN\",\r\n  \"userID\": \"22115151\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"jbletran@gmail.com\",\r\n  \"phone\": \"1234567802\"\r\n}\r\n{{/ case }}\r\n{{# case '30' }}\r\n{\r\n  \"id\": \"30\",\r\n  \"username\": \"Sebastian Gonzales\",\r\n  \"code\": \"SGONZALES\",\r\n  \"userID\": \"84548774\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"sgonzales@gmail.com\",\r\n  \"phone\": \"1234567803\"\r\n}\r\n{{/ case }}\r\n{{# case '31' }}\r\n{\r\n  \"id\": \"31\",\r\n  \"username\": \"Felipe Alvarez\",\r\n  \"code\": \"FALVAREZ\",\r\n  \"userID\": \"84545478\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"falvarez@gmail.com\",\r\n  \"phone\": \"1234567810\"\r\n}\r\n{{/ case }}\r\n{{# case '32' }}\r\n{\r\n  \"id\": \"32\",\r\n  \"username\": \"freddy Baquero\",\r\n  \"code\": \"FBAQUERO\",\r\n  \"userID\": \"78785744\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"fbaquero@gmail.com\",\r\n  \"phone\": \"1234567811\"\r\n}\r\n{{/ case }}\r\n{{# case '33' }}\r\n{\r\n  \"id\": \"33\",\r\n  \"username\": \"Tomas Rodriguez\",\r\n  \"code\": \"TRODRIGUEZ\",\r\n  \"userID\": \"845456\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"trodriguez@gmail.com\",\r\n  \"phone\": \"1234567812\"\r\n}\r\n{{/ case }}\r\n{{# case '34' }}\r\n{\r\n  \"id\": \"34\",\r\n  \"username\": \"Daniel Zamora\",\r\n  \"code\": \"DZAMORA\",\r\n  \"userID\": \"966586\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"dzamora@gmail.com\",\r\n  \"phone\": \"1234567816\"\r\n}\r\n{{/ case }}\r\n{{# case '35' }}\r\n{\r\n  \"id\": \"35\",\r\n  \"username\": \"Brandon Pineda\",\r\n  \"code\": \"BPINEDA\",\r\n  \"userID\": \"7414542\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"bpineda@gmail.com\",\r\n  \"phone\": \"1234567817\"\r\n}\r\n{{/ case }}\r\n{{# case '36' }}\r\n{\r\n  \"id\": \"36\",\r\n  \"username\": \"Jeimmy Zambrano\",\r\n  \"code\": \"JZAMBRANO\",\r\n  \"userID\": \"4001154\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"jzambrano@gmail.com\",\r\n  \"phone\": \"1234567820\"\r\n}\r\n{{/ case }}\r\n{{# case '37' }}\r\n{\r\n  \"id\": \"37\",\r\n  \"username\": \"Andres Lopez\",\r\n  \"code\": \"ALOPEZ\",\r\n  \"userID\": \"41251321\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"alopez@gmail.com\",\r\n  \"phone\": \"1234567821\"\r\n}\r\n{{/ case }}\r\n{{# case '38' }}\r\n{\r\n  \"id\": \"38\",\r\n  \"username\": \"Carmen Pedraza\",\r\n  \"code\": \"CPEDRAZA\",\r\n  \"userID\": \"843254432\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"cpedraza@gmail.com\",\r\n  \"phone\": \"1234567822\"\r\n}\r\n{{/ case }}\r\n{{# case '39' }}\r\n{\r\n  \"id\": \"39\",\r\n  \"username\": \"Camilo Torres\",\r\n  \"code\": \"CTORRES\",\r\n  \"userID\": \"8641651\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"ctorres@gmail.com\",\r\n  \"phone\": \"1234567824\"\r\n}\r\n{{/ case }}\r\n{{# case '40' }}\r\n{\r\n  \"id\": \"40\",\r\n  \"username\": \"Alvaro Rosales\",\r\n  \"code\": \"AROSALES\",\r\n  \"userID\": \"325215\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"arosales@gmail.com\",\r\n  \"phone\": \"1234567825\"\r\n}\r\n{{/ case }}\r\n{{# case '41' }}\r\n{\r\n  \"id\": \"41\",\r\n  \"username\": \"Roberto Vargas\",\r\n  \"code\": \"RVARGAS\",\r\n  \"userID\": \"141740\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"rvargas@gmail.com\",\r\n  \"phone\": \"1234567830\"\r\n}\r\n{{/ case }}\r\n{{# case '42' }}\r\n{\r\n    id: \"42\",\r\n    username: \"Santiago Maldonado\",\r\n    code: \"SMALDONADO\",\r\n    userID: \"9556413\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"smaldonado@gmail.com\",\r\n    phone: \"1234567837\",\r\n  }\r\n{{/ case }}\r\n  {{/ switch}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "a4b2a3c8-82f7-42fb-9fbd-5b7b7e857eff",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "52f1ae5b-83c3-4a79-9c48-3df1cac0de3c",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
