@@ -49,6 +49,10 @@
         {
           "type": "route",
           "uuid": "fce761e5-e057-4b4d-9cac-76d3d3d970da"
+        },
+        {
+          "type": "route",
+          "uuid": "886f5cd7-bef3-45b7-8933-20af2600d4b0"
         }
       ]
     },
@@ -64,6 +68,10 @@
         {
           "type": "route",
           "uuid": "2d5bf073-5ce8-4cc8-96a2-27b25a4cd584"
+        },
+        {
+          "type": "route",
+          "uuid": "dccef8a9-e00d-4e6b-aacf-1be7a56cee09"
         }
       ]
     },
@@ -451,6 +459,140 @@
               "value": "application/json"
             }
           ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "886f5cd7-bef3-45b7-8933-20af2600d4b0",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/payrolls",
+      "responses": [
+        {
+          "uuid": "3fea2e93-bee4-4443-ab3b-64e834bbda7a",
+          "body": "[\r\n  {\r\n    id: \"1001\",\r\n    value: \"Salario Fijo\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1002\",\r\n    value: \"Salario por hora\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1003\",\r\n    value: \"Auxilios\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1004\",\r\n    value: \"Bonificaciones\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1005\",\r\n    value: \"Remuneraciones\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1006\",\r\n    value: \"Deducciones\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "b6a88707-13b1-4392-8189-6b323102c8cd",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "6ddfb99e-bd9a-4b50-bb7e-a3e218bec9c6",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "dccef8a9-e00d-4e6b-aacf-1be7a56cee09",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/payrolls",
+      "responses": [
+        {
+          "uuid": "122c455e-1505-4fc1-a8e9-c38c4ec0b7c4",
+          "body": "[\r\n  {\r\n    id: \"1001\",\r\n    value: \"Salario Fijo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1002\",\r\n    value: \"Salario por hora\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1003\",\r\n    value: \"Auxilios\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1004\",\r\n    value: \"Bonificaciones\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1005\",\r\n    value: \"Remuneraciones\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1006\",\r\n    value: \"Deducciones\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "68b1bfdb-e764-4bf6-8db0-892d5ca4fc5c",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "04e9538f-1095-4174-bb0a-c821e7b14ae6",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
