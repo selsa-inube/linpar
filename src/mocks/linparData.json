@@ -61,6 +61,10 @@
         {
           "type": "route",
           "uuid": "1ac45db9-80a5-41b5-b0bb-71db0be7a06c"
+        },
+        {
+          "type": "route",
+          "uuid": "78e2e585-49b7-4fcb-95e2-42dc6060b6e7"
         }
       ]
     },
@@ -88,6 +92,10 @@
         {
           "type": "route",
           "uuid": "5e83beda-a034-4227-9083-eeebcaa83cf2"
+        },
+        {
+          "type": "route",
+          "uuid": "65adbbe4-1a72-468e-aecb-250b01216ae4"
         }
       ]
     },
@@ -923,6 +931,160 @@
         {
           "uuid": "52f1ae5b-83c3-4a79-9c48-3df1cac0de3c",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "78e2e585-49b7-4fcb-95e2-42dc6060b6e7",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/payrolls",
+      "responses": [
+        {
+          "uuid": "1c7357f1-816b-4fcb-8b74-8ff620dfa7ad",
+          "body": "[\n  {\n    id: \"1001\",\n    value: \"Salario Fijo\",\n    isActive: true,\n  },\n  {\n    id: \"1002\",\n    value: \"Salario por hora\",\n    isActive: true,\n  },\n  {\n    id: \"1003\",\n    value: \"Auxilios\",\n    isActive: false,\n  },\n  {\n    id: \"1004\",\n    value: \"Bonificaciones\",\n    isActive: true,\n  },\n  {\n    id: \"1005\",\n    value: \"Remuneraciones\",\n    isActive: false,\n  },\n  {\n    id: \"1006\",\n    value: \"Deducciones\",\n    isActive: false,\n  },\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "97b32593-84c3-4e9e-975a-9d08e15e43f0",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "8a5aea4f-595b-45ae-b67f-54df4b21db03",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "65adbbe4-1a72-468e-aecb-250b01216ae4",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/payrolls",
+      "responses": [
+        {
+          "uuid": "612e4b5c-a1ee-4aad-a90e-de39666f62e8",
+          "body": "[\r\n  {\r\n    id: \"1001\",\r\n    value: \"Salario Fijo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1002\",\r\n    value: \"Salario por hora\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1003\",\r\n    value: \"Auxilios\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1004\",\r\n    value: \"Bonificaciones\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1005\",\r\n    value: \"Remuneraciones\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1006\",\r\n    value: \"Deducciones\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "5c2f4c58-d253-4a1f-b1f2-6e01357b4e26",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "edb415d4-8e47-44ef-9bb8-accd3035a510",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
           "latency": 0,
           "statusCode": 500,
           "label": "",
