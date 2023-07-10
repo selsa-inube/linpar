@@ -18,6 +18,8 @@ interface IStyledLeftLine extends IStyledStep {}
 
 interface IStyledRightLine extends IStyledStep {}
 
+interface IStyledStepCircle extends IStyledStep {}
+
 const getIconColor = (props: IStyledArrowDown): string => {
   if (props.isActualStep) {
     return colors.sys.status.inProgress;
@@ -25,20 +27,28 @@ const getIconColor = (props: IStyledArrowDown): string => {
   return "transparent";
 };
 
-const getStepNumberBackgroundColor = (props: IStyledStepNumber): string => {
+const getStepNumberBackgroundColor = (props: IStyledStepCircle): string => {
   if (props.isPreviousStep) {
     return colors.sys.status.inProgress;
   }
   return "transparent";
 };
 
-const getStepNumberBorderColor = (props: IStyledStepNumber): string => {
+const getStepNumberBorderColor = (props: IStyledStepCircle): string => {
   if (props.isActualStep) {
     return colors.sys.text.primary;
   }
   if (props.isPreviousStep) {
     return "transparent";
   }
+  return colors.sys.text.disabled;
+};
+
+const getStepVerificationColor = (props: IStyledStepCircle): string => {
+  if (props.isActualStep || props.isPreviousStep) {
+    return colors.sys.text.light;
+  }
+
   return colors.sys.text.disabled;
 };
 
@@ -77,18 +87,22 @@ const StyledStepNumber = styled.div<IStyledStepNumber>`
   width: 100%;
   display: flex;
   align-items: center;
+`;
 
-  & p {
-    background-color: ${getStepNumberBackgroundColor};
-    border-color: ${getStepNumberBorderColor};
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 50%;
-    min-width: 26px;
-    height: 26px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const StyledStepCircle = styled.div<IStyledStepCircle>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  min-width: 26px;
+  height: 26px;
+  cursor: pointer;
+  background-color: ${getStepNumberBackgroundColor};
+  border-color: ${getStepNumberBorderColor};
+  & svg {
+    color: ${getStepVerificationColor};
   }
 `;
 
@@ -110,4 +124,5 @@ export {
   StyledLeftLine,
   StyledRightLine,
   StyledArrowDown,
+  StyledStepCircle,
 };
