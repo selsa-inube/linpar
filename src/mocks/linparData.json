@@ -1,5 +1,5 @@
 {
-  "uuid": "f4934873-fd46-43bc-8897-7da012b386c8",
+  "uuid": "b6989954-6551-4496-adf7-a7d4ac3b0d81",
   "lastMigration": 27,
   "name": "LinparData",
   "endpointPrefix": "",
@@ -8,51 +8,51 @@
   "hostname": "",
   "folders": [
     {
-      "uuid": "bb09db1d-e3d1-4be6-915d-bbb0a94dccab",
+      "uuid": "f61650f2-b478-4952-8aae-aae13fb193ba",
       "name": "v1",
       "collapsed": false,
       "children": [
         {
           "type": "folder",
-          "uuid": "ef34df09-91d5-403c-8e9c-27d80a50fe01"
+          "uuid": "1da304c7-af46-4c78-a690-2ead6cc35805"
         }
       ]
     },
     {
-      "uuid": "ef34df09-91d5-403c-8e9c-27d80a50fe01",
+      "uuid": "1da304c7-af46-4c78-a690-2ead6cc35805",
       "name": "privileges",
       "collapsed": false,
       "children": [
         {
           "type": "folder",
-          "uuid": "e67974a8-5a8b-4b4e-b867-73e569feb8af"
+          "uuid": "c8913435-d1b3-4fa9-a09f-ce6ab4020e71"
         },
         {
           "type": "folder",
-          "uuid": "788a2fae-d13a-46d8-a7a8-92037785e2ea"
+          "uuid": "93ab3bfa-970e-42e9-aeb1-ed97bdb53128"
         },
         {
           "type": "folder",
-          "uuid": "62453551-f7c0-4e47-b18f-e17a0ecb2aca"
+          "uuid": "f13ded43-a85d-42ca-8285-ca13a3372b90"
         }
       ]
     },
     {
-      "uuid": "e67974a8-5a8b-4b4e-b867-73e569feb8af",
+      "uuid": "c8913435-d1b3-4fa9-a09f-ce6ab4020e71",
       "name": "users",
       "collapsed": false,
       "children": [
         {
           "type": "route",
-          "uuid": "d2ad1b76-f1e2-4aef-a6c2-e31f54f74935"
+          "uuid": "d8cdfc96-9af4-4e8b-9505-cceece93d1d5"
         },
         {
           "type": "route",
-          "uuid": "fce761e5-e057-4b4d-9cac-76d3d3d970da"
+          "uuid": "51080b41-057c-4c65-99fb-985755988271"
         },
         {
           "type": "route",
-          "uuid": "70716b26-121f-4515-86fd-ada55a4006d3"
+          "uuid": "10ba149d-481b-404a-9c47-93d62370ebe1"
         },
         {
           "type": "route",
@@ -65,46 +65,54 @@
       ]
     },
     {
-      "uuid": "788a2fae-d13a-46d8-a7a8-92037785e2ea",
+      "uuid": "93ab3bfa-970e-42e9-aeb1-ed97bdb53128",
       "name": "invitations",
       "collapsed": false,
       "children": [
         {
           "type": "route",
-          "uuid": "e1fdb43d-80ee-49e5-b928-ce0eb39d4742"
+          "uuid": "5fdc5632-b310-4c4e-83a5-f12f9982596b"
         },
         {
           "type": "route",
-          "uuid": "2d5bf073-5ce8-4cc8-96a2-27b25a4cd584"
+          "uuid": "72063ef0-46cc-4ffa-885d-eb15c8582012"
         },
         {
           "type": "route",
-          "uuid": "79d321b3-633d-4053-85b2-57b1ddabb92e"
+          "uuid": "d564c8cb-8871-4a60-b7f0-1405087b760f"
+        },
+        {
+          "type": "route",
+          "uuid": "a96d60f5-c8a0-47a8-8153-0c6d4cd5197e"
+        },
+        {
+          "type": "route",
+          "uuid": "5e83beda-a034-4227-9083-eeebcaa83cf2"
         }
       ]
     },
     {
-      "uuid": "62453551-f7c0-4e47-b18f-e17a0ecb2aca",
+      "uuid": "f13ded43-a85d-42ca-8285-ca13a3372b90",
       "name": "positions",
       "collapsed": false,
       "children": [
         {
           "type": "route",
-          "uuid": "d8745e7d-cf59-4369-a9d9-eac8c6181824"
+          "uuid": "52b38b08-d260-4cc1-983e-8a761666dc52"
         }
       ]
     }
   ],
   "routes": [
     {
-      "uuid": "d2ad1b76-f1e2-4aef-a6c2-e31f54f74935",
+      "uuid": "d8cdfc96-9af4-4e8b-9505-cceece93d1d5",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/users/:user_id/branches",
       "responses": [
         {
-          "uuid": "1082448f-b2d5-4c1a-8ddf-c028edc8f034",
+          "uuid": "1c862a3c-74e6-4f00-95b1-02461a4157a3",
           "body": "[\r\n  {\r\n    id: \"1231\",\r\n    value: \"Bogotá\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2543\",\r\n    value: \"Barrancabermeja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3654\",\r\n    value: \"Barranquilla\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4456\",\r\n    value: \"Armenia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4457\",\r\n    value: \"Buga\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4486\",\r\n    value: \"Cali\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7456\",\r\n    value: \"Cartagena\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1456\",\r\n    value: \"Cúcuta\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2456\",\r\n    value: \"Ibagué\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"3456\",\r\n    value: \"Medellín\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"5456\",\r\n    value: \"Pereira\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"6456\",\r\n    value: \"Popayán\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"7457\",\r\n    value: \"Pasto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8456\",\r\n    value: \"Riohacha\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4459\",\r\n    value: \"Tunja\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"8856\",\r\n    value: \"Valledupar\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -126,7 +134,7 @@
           "default": true
         },
         {
-          "uuid": "4aa61e06-6051-4a42-93d4-c2445fe86c40",
+          "uuid": "754c97a0-a3b9-4191-b3cf-506b07b738b0",
           "body": "[]",
           "latency": 0,
           "statusCode": 204,
@@ -148,7 +156,7 @@
           "default": false
         },
         {
-          "uuid": "ad3fc58f-5416-4b28-88be-9b5bdd9ae8e6",
+          "uuid": "981ed165-5dfe-469e-bdc9-51333e48ab96",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
           "latency": 0,
           "statusCode": 500,
@@ -174,14 +182,14 @@
       "responseMode": null
     },
     {
-      "uuid": "e1fdb43d-80ee-49e5-b928-ce0eb39d4742",
+      "uuid": "5fdc5632-b310-4c4e-83a5-f12f9982596b",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/invitations/:invitation_id/branches",
       "responses": [
         {
-          "uuid": "9f46a502-7de9-4ba9-9d92-1a5982d2ae6b",
+          "uuid": "d42389cc-c5f9-4901-a310-083c048a0617",
           "body": "[\r\n  {\r\n    id: \"1231\",\r\n    value: \"Bogotá\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2543\",\r\n    value: \"Barrancabermeja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3654\",\r\n    value: \"Barranquilla\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4456\",\r\n    value: \"Armenia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4457\",\r\n    value: \"Buga\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4486\",\r\n    value: \"Cali\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7456\",\r\n    value: \"Cartagena\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1456\",\r\n    value: \"Cúcuta\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2456\",\r\n    value: \"Ibagué\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3456\",\r\n    value: \"Medellín\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"5456\",\r\n    value: \"Pereira\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"6456\",\r\n    value: \"Popayán\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7457\",\r\n    value: \"Pasto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8456\",\r\n    value: \"Riohacha\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4459\",\r\n    value: \"Tunja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8856\",\r\n    value: \"Valledupar\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -203,7 +211,7 @@
           "default": true
         },
         {
-          "uuid": "3708a819-e14a-49e5-bf61-4cae80d90ba3",
+          "uuid": "3e7f820f-b4ac-41d2-9182-349c8dc8ed7c",
           "body": "[]",
           "latency": 0,
           "statusCode": 204,
@@ -225,7 +233,7 @@
           "default": false
         },
         {
-          "uuid": "50364812-ae63-4e01-884c-26fa951b432d",
+          "uuid": "7df1d544-dad1-46d8-b2ce-3e1a719ac33c",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
           "latency": 0,
           "statusCode": 500,
@@ -251,14 +259,14 @@
       "responseMode": null
     },
     {
-      "uuid": "d8745e7d-cf59-4369-a9d9-eac8c6181824",
+      "uuid": "52b38b08-d260-4cc1-983e-8a761666dc52",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/positions",
       "responses": [
         {
-          "uuid": "57a91f44-50f6-4cb7-a654-a981ff75c35f",
+          "uuid": "bf1b2a04-c074-4471-92fa-b4a7c760d784",
           "body": "[\r\n  { value: \"\", label: \"Seleccione una opción\" },\r\n  { value: \"Diseñador\", label: \"Diseñador\" },\r\n  { value: \"Desarrollador\", label: \"Desarrollador Web\" },\r\n  { value: \"Product Manager\", label: \"Product Manager\" },\r\n  { value: \"Adviser\", label: \"Adviser\" },\r\n  { value: \"Credit Analyst\", label: \"Credit Analyst\" },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -280,7 +288,7 @@
           "default": true
         },
         {
-          "uuid": "67b8d772-a5cf-4ff5-a1fa-7d7577f62369",
+          "uuid": "6d2281c8-c41f-4964-a290-7d798e0418e7",
           "body": "[]",
           "latency": 0,
           "statusCode": 204,
@@ -302,7 +310,7 @@
           "default": false
         },
         {
-          "uuid": "14155058-d005-4459-85eb-47b8d272826f",
+          "uuid": "69e8f55b-17c5-409a-af9b-15511f661393",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
           "latency": 0,
           "statusCode": 500,
@@ -328,14 +336,14 @@
       "responseMode": null
     },
     {
-      "uuid": "fce761e5-e057-4b4d-9cac-76d3d3d970da",
+      "uuid": "51080b41-057c-4c65-99fb-985755988271",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/users/:user_id/aid-budgets",
       "responses": [
         {
-          "uuid": "42a91773-9d44-41b2-860d-a657a470919e",
+          "uuid": "e013bc9a-2e8b-457c-aa9a-c184a5157517",
           "body": "[\r\n  {\r\n    id: \"4701\",\r\n    value: \"Gastos operativos\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4702\",\r\n    value: \"Marketing y publicidad\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4703\",\r\n    value: \"Investigación y desarrollo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4704\",\r\n    value: \"Inversiones de capital\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4705\",\r\n    value: \"Capacitación y desarrollo del personal\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4706\",\r\n    value: \"Investigación de mercado\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4707\",\r\n    value: \"Proyectos especiales\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -357,7 +365,7 @@
           "default": true
         },
         {
-          "uuid": "6623c313-1ab4-43bc-8539-8b60014b3912",
+          "uuid": "865d4bae-8368-4c4b-8669-a88e57a447fc",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -379,7 +387,7 @@
           "default": false
         },
         {
-          "uuid": "6ea68f09-5d8a-4c94-a890-8c3752e54af2",
+          "uuid": "c3bfc660-4897-48cb-baa9-dbe7fcfea4ec",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
@@ -405,14 +413,14 @@
       "responseMode": null
     },
     {
-      "uuid": "2d5bf073-5ce8-4cc8-96a2-27b25a4cd584",
+      "uuid": "72063ef0-46cc-4ffa-885d-eb15c8582012",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/invitations/:invitation_id/aid-budgets",
       "responses": [
         {
-          "uuid": "5d322f1e-60b8-46ec-bad2-4bb3b47666c6",
+          "uuid": "09f06b0e-7f7c-49eb-b961-a641b08b633d",
           "body": "[\r\n  {\r\n    id: \"4701\",\r\n    value: \"Gastos operativos\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4702\",\r\n    value: \"Marketing y publicidad\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4703\",\r\n    value: \"Investigación y desarrollo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4704\",\r\n    value: \"Inversiones de capital\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4705\",\r\n    value: \"Capacitación y desarrollo del personal\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4706\",\r\n    value: \"Investigación de mercado\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4707\",\r\n    value: \"Proyectos especiales\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -434,7 +442,7 @@
           "default": true
         },
         {
-          "uuid": "21180d7a-d3a3-4d88-bac8-fd32d173f135",
+          "uuid": "176d75a4-cc75-492f-9bc8-d83dfd172f28",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -456,7 +464,7 @@
           "default": false
         },
         {
-          "uuid": "65a791a3-d3db-4d2c-af27-770bfcd69897",
+          "uuid": "1ec901fd-b569-4cae-8c80-1cd3f681009b",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
@@ -482,14 +490,14 @@
       "responseMode": null
     },
     {
-      "uuid": "70716b26-121f-4515-86fd-ada55a4006d3",
+      "uuid": "10ba149d-481b-404a-9c47-93d62370ebe1",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/users/:user_id/events",
       "responses": [
         {
-          "uuid": "4d8b9ff7-3aa9-4931-a70a-07476dace15c",
+          "uuid": "05cf5946-668f-488f-80b8-3ea7fba6236d",
           "body": "[\r\n  {\r\n    id: \"2001\",\r\n    value: \"Conferencia\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2002\",\r\n    value: \"Seminario\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2003\",\r\n    value: \"Taller\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2004\",\r\n    value: \"Exposición\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2005\",\r\n    value: \"Networking\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2006\",\r\n    value: \"Celebración\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2007\",\r\n    value: \"Concierto\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2008\",\r\n    value: \"Feria\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2009\",\r\n    value: \"Charla\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2010\",\r\n    value: \"Presentación\",\r\n    isActive: true,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -511,7 +519,7 @@
           "default": true
         },
         {
-          "uuid": "109b643f-9e85-46e2-8c51-0db8507a411f",
+          "uuid": "058d59b6-7621-40c8-8a50-4ca72e853c69",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -533,7 +541,7 @@
           "default": false
         },
         {
-          "uuid": "f2f16e6f-9b18-488b-9d4d-ace34ad83d91",
+          "uuid": "b85fd2ef-d6e1-4cb2-bffb-949cd370e7f0",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
@@ -559,14 +567,14 @@
       "responseMode": null
     },
     {
-      "uuid": "79d321b3-633d-4053-85b2-57b1ddabb92e",
+      "uuid": "d564c8cb-8871-4a60-b7f0-1405087b760f",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/invitations/:invitation_id/events",
       "responses": [
         {
-          "uuid": "1f7bdeb9-5981-4dcd-bcb2-b3c407bcaebc",
+          "uuid": "45e93d96-bd83-49af-a75e-b7cce222b8f7",
           "body": "[\r\n  {\r\n    id: \"2001\",\r\n    value: \"Conferencia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2002\",\r\n    value: \"Seminario\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2003\",\r\n    value: \"Taller\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2004\",\r\n    value: \"Exposición\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2005\",\r\n    value: \"Networking\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2006\",\r\n    value: \"Celebración\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2007\",\r\n    value: \"Concierto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2008\",\r\n    value: \"Feria\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2009\",\r\n    value: \"Charla\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2010\",\r\n    value: \"Presentación\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -588,7 +596,7 @@
           "default": true
         },
         {
-          "uuid": "5230b9bb-4df8-46df-8c10-79189a591bc6",
+          "uuid": "457b7856-e900-46e7-9e40-0250ce41714c",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -610,7 +618,7 @@
           "default": false
         },
         {
-          "uuid": "4586f716-b2db-4051-8eec-edbdf7c7e804",
+          "uuid": "dc2c572f-693c-4f36-b349-e4007a5ba832",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
@@ -621,6 +629,155 @@
               "value": "application/json"
             }
           ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "a96d60f5-c8a0-47a8-8153-0c6d4cd5197e",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations",
+      "responses": [
+        {
+          "uuid": "eb614ee9-f7ec-4ebc-b654-5e5b3b6b1cce",
+          "body": "[\r\n  {\r\n    id: \"10\",\r\n    userID: \"45645\",\r\n    username: \"David Leonardo Garzón\",\r\n    email: \"lgarzon@gmail.com\",\r\n    invitationDate: \"11/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"11\",\r\n    userID: \"534693\",\r\n    username: \"Cristina Schmidt\",\r\n    email: \"cristina_schmidt@gmail.com\",\r\n    invitationDate: \"11/ENE/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {\r\n    id: \"12\",\r\n    userID: \"757712\",\r\n    username: \"Roberta Wallace\",\r\n    email: \"roberta_wallace@gmail.com\",\r\n    invitationDate: \"26/AGO/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"13\",\r\n    userID: \"440652\",\r\n    username: \"Gross Mendez\",\r\n    email: \"gross_mendez@gmail.com\",\r\n    invitationDate: \"17/MAY/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"14\",\r\n    userID: \"846779\",\r\n    username: \"Martinez French\",\r\n    email: \"martinez_french@gmail.com\",\r\n    invitationDate: \"07/OCT/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"15\",\r\n    userID: \"838645\",\r\n    username: \"Lowe Ellis\",\r\n    email: \"lowe_ellis@gmail.com\",\r\n    invitationDate: \"05/ENE/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"16\",\r\n    userID: \"835761\",\r\n    username: \"Barlow Ballard\",\r\n    email: \"barlow_ballard@gmail.com\",\r\n    invitationDate: \"03/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"17\",\r\n    userID: \"592492\",\r\n    username: \"Madeline Ayers\",\r\n    email: \"madeline_ayers@gmail.com\",\r\n    invitationDate: \"20/JUL/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"18\",\r\n    userID: \"683321\",\r\n    username: \"Bowen Greene\",\r\n    email: \"bowen_greene@gmail.com\",\r\n    invitationDate: \"26/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {\r\n    id: \"19\",\r\n    userID: \"695730\",\r\n    username: \"Deborah Elliott\",\r\n    email: \"deborah_elliott@gmail.com\",\r\n    invitationDate: \"03/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"20\",\r\n    userID: \"682422\",\r\n    username: \"Karina Fitzgerald\",\r\n    email: \"karina_fitzgerald@gmail.com\",\r\n    invitationDate: \"07/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {\r\n    id: \"21\",\r\n    userID: \"746049\",\r\n    username: \"Rachel Carpenter\",\r\n    email: \"rachel_carpenter@gmail.com\",\r\n    invitationDate: \"24/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"22\",\r\n    userID: \"816645\",\r\n    username: \"Judith Santana\",\r\n    email: \"judith_santana@gmail.com\",\r\n    invitationDate: \"10/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"23\",\r\n    userID: \"486616\",\r\n    username: \"Angelita Stein\",\r\n    email: \"angelita_stein@gmail.com\",\r\n    invitationDate: \"27/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"24\",\r\n    userID: \"774335\",\r\n    username: \"Pamela Gibbs\",\r\n    email: \"pamela_gibbs@gmail.com\",\r\n    invitationDate: \"01/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"25\",\r\n    userID: \"536431\",\r\n    username: \"Osborn Larsen\",\r\n    email: \"osborn_larsen@gmail.com\",\r\n    invitationDate: \"09/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"26\",\r\n    userID: \"479249\",\r\n    username: \"Tisha Stevens\",\r\n    email: \"tisha_stevens@gmail.com\",\r\n    invitationDate: \"20/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"27\",\r\n    userID: \"448172\",\r\n    username: \"Rosemarie Snow\",\r\n    email: \"rosemarie_snow@gmail.com\",\r\n    invitationDate: \"10/JUL/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"28\",\r\n    userID: \"898779\",\r\n    username: \"Terry Shaffer\",\r\n    email: \"terry_shaffer@gmail.com\",\r\n    invitationDate: \"07/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"29\",\r\n    userID: \"692860\",\r\n    username: \"Sofia Osborn\",\r\n    email: \"sofia_osborn@gmail.com\",\r\n    invitationDate: \"22/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {\r\n    id: \"30\",\r\n    userID: \"666124\",\r\n    username: \"Campos Christensen\",\r\n    email: \"campos_christensen@gmail.com\",\r\n    invitationDate: \"18/MAR/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"31\",\r\n    userID: \"454377\",\r\n    username: \"Stacy Cooke\",\r\n    email: \"stacy_cooke@gmail.com\",\r\n    invitationDate: \"23/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"32\",\r\n    userID: \"404949\",\r\n    username: \"Goff Mejia\",\r\n    email: \"goff_mejia@gmail.com\",\r\n    invitationDate: \"15/SEP/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"33\",\r\n    userID: \"615315\",\r\n    username: \"Mcintyre Wells\",\r\n    email: \"mcintyre_wells@gmail.com\",\r\n    invitationDate: \"12/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"34\",\r\n    userID: \"842395\",\r\n    username: \"Alyce Powers\",\r\n    email: \"alyce_powers@gmail.com\",\r\n    invitationDate: \"24/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"35\",\r\n    userID: \"801730\",\r\n    username: \"Kathleen Matthews\",\r\n    email: \"kathleen_matthews@gmail.com\",\r\n    invitationDate: \"30/OCT/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"36\",\r\n    userID: \"700677\",\r\n    username: \"Susana Davidson\",\r\n    email: \"susana_davidson@gmail.com\",\r\n    invitationDate: \"16/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"37\",\r\n    userID: \"421571\",\r\n    username: \"Carr Brady\",\r\n    email: \"carr_brady@gmail.com\",\r\n    invitationDate: \"06/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"38\",\r\n    userID: \"576861\",\r\n    username: \"Whitney Copeland\",\r\n    email: \"whitney_copeland@gmail.com\",\r\n    invitationDate: \"15/NOV/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "df6794d3-1c67-48a8-89d1-e9efd6a7e1bb",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "f1e59f57-a59f-433e-b8c0-f121704461fa",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5e83beda-a034-4227-9083-eeebcaa83cf2",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id",
+      "responses": [
+        {
+          "uuid": "68e9f403-8d61-42f5-85c3-76ca7392c6ea",
+          "body": "[\r\n  {{# switch (urlParam 'invitation_id')}}\r\n  {{# case '10' }}\r\n    {\r\n      id: \"10\",\r\n      userID: \"45645\",\r\n      username: \"David Leonardo Garzón\",\r\n      email: \"lgarzon@gmail.com\",\r\n      invitationDate: \"11/JUN/2022\",\r\n      status: \"Sent\",\r\n      phone: \"3123456789\",\r\n    },\r\n  {{/ case }}\r\n  {{# case '11' }}\r\n  {\r\n    id: \"11\",\r\n    userID: \"534693\",\r\n    username: \"Cristina Schmidt\",\r\n    email: \"cristina_schmidt@gmail.com\",\r\n    invitationDate: \"11/ENE/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '12' }}\r\n  {\r\n    id: \"12\",\r\n    userID: \"757712\",\r\n    username: \"Roberta Wallace\",\r\n    email: \"roberta_wallace@gmail.com\",\r\n    invitationDate: \"26/AGO/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '13' }}\r\n  {\r\n    id: \"13\",\r\n    userID: \"440652\",\r\n    username: \"Gross Mendez\",\r\n    email: \"gross_mendez@gmail.com\",\r\n    invitationDate: \"17/MAY/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '14' }}\r\n  {\r\n    id: \"14\",\r\n    userID: \"846779\",\r\n    username: \"Martinez French\",\r\n    email: \"martinez_french@gmail.com\",\r\n    invitationDate: \"07/OCT/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '15' }}\r\n  {\r\n    id: \"15\",\r\n    userID: \"838645\",\r\n    username: \"Lowe Ellis\",\r\n    email: \"lowe_ellis@gmail.com\",\r\n    invitationDate: \"05/ENE/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '16' }}\r\n  {\r\n    id: \"16\",\r\n    userID: \"835761\",\r\n    username: \"Barlow Ballard\",\r\n    email: \"barlow_ballard@gmail.com\",\r\n    invitationDate: \"03/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '17' }}\r\n  {\r\n    id: \"17\",\r\n    userID: \"592492\",\r\n    username: \"Madeline Ayers\",\r\n    email: \"madeline_ayers@gmail.com\",\r\n    invitationDate: \"20/JUL/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '18' }}\r\n  {\r\n    id: \"18\",\r\n    userID: \"683321\",\r\n    username: \"Bowen Greene\",\r\n    email: \"bowen_greene@gmail.com\",\r\n    invitationDate: \"26/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '19' }}\r\n  {\r\n    id: \"19\",\r\n    userID: \"695730\",\r\n    username: \"Deborah Elliott\",\r\n    email: \"deborah_elliott@gmail.com\",\r\n    invitationDate: \"03/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '20' }}\r\n  {\r\n    id: \"20\",\r\n    userID: \"682422\",\r\n    username: \"Karina Fitzgerald\",\r\n    email: \"karina_fitzgerald@gmail.com\",\r\n    invitationDate: \"07/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '21' }}\r\n  {\r\n    id: \"21\",\r\n    userID: \"746049\",\r\n    username: \"Rachel Carpenter\",\r\n    email: \"rachel_carpenter@gmail.com\",\r\n    invitationDate: \"24/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '22' }}\r\n  {\r\n    id: \"22\",\r\n    userID: \"816645\",\r\n    username: \"Judith Santana\",\r\n    email: \"judith_santana@gmail.com\",\r\n    invitationDate: \"10/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '23' }}\r\n  {\r\n    id: \"23\",\r\n    userID: \"486616\",\r\n    username: \"Angelita Stein\",\r\n    email: \"angelita_stein@gmail.com\",\r\n    invitationDate: \"27/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '24' }}\r\n  {\r\n    id: \"24\",\r\n    userID: \"774335\",\r\n    username: \"Pamela Gibbs\",\r\n    email: \"pamela_gibbs@gmail.com\",\r\n    invitationDate: \"01/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '25' }}\r\n  {\r\n    id: \"25\",\r\n    userID: \"536431\",\r\n    username: \"Osborn Larsen\",\r\n    email: \"osborn_larsen@gmail.com\",\r\n    invitationDate: \"09/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '26' }}\r\n  {\r\n    id: \"26\",\r\n    userID: \"479249\",\r\n    username: \"Tisha Stevens\",\r\n    email: \"tisha_stevens@gmail.com\",\r\n    invitationDate: \"20/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '27' }}\r\n  {\r\n    id: \"27\",\r\n    userID: \"448172\",\r\n    username: \"Rosemarie Snow\",\r\n    email: \"rosemarie_snow@gmail.com\",\r\n    invitationDate: \"10/JUL/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '28' }}\r\n  {\r\n    id: \"28\",\r\n    userID: \"898779\",\r\n    username: \"Terry Shaffer\",\r\n    email: \"terry_shaffer@gmail.com\",\r\n    invitationDate: \"07/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '29' }}\r\n  {\r\n    id: \"29\",\r\n    userID: \"692860\",\r\n    username: \"Sofia Osborn\",\r\n    email: \"sofia_osborn@gmail.com\",\r\n    invitationDate: \"22/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '30' }}\r\n  {\r\n    id: \"30\",\r\n    userID: \"666124\",\r\n    username: \"Campos Christensen\",\r\n    email: \"campos_christensen@gmail.com\",\r\n    invitationDate: \"18/MAR/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '31' }}\r\n  {\r\n    id: \"31\",\r\n    userID: \"454377\",\r\n    username: \"Stacy Cooke\",\r\n    email: \"stacy_cooke@gmail.com\",\r\n    invitationDate: \"23/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '32' }}\r\n  {\r\n    id: \"32\",\r\n    userID: \"404949\",\r\n    username: \"Goff Mejia\",\r\n    email: \"goff_mejia@gmail.com\",\r\n    invitationDate: \"15/SEP/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '33' }}\r\n  {\r\n    id: \"33\",\r\n    userID: \"615315\",\r\n    username: \"Mcintyre Wells\",\r\n    email: \"mcintyre_wells@gmail.com\",\r\n    invitationDate: \"12/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '34' }}\r\n  {\r\n    id: \"34\",\r\n    userID: \"842395\",\r\n    username: \"Alyce Powers\",\r\n    email: \"alyce_powers@gmail.com\",\r\n    invitationDate: \"24/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '35' }}\r\n  {\r\n    id: \"35\",\r\n    userID: \"801730\",\r\n    username: \"Kathleen Matthews\",\r\n    email: \"kathleen_matthews@gmail.com\",\r\n    invitationDate: \"30/OCT/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '36' }}\r\n  {\r\n    id: \"36\",\r\n    userID: \"700677\",\r\n    username: \"Susana Davidson\",\r\n    email: \"susana_davidson@gmail.com\",\r\n    invitationDate: \"16/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '37' }}\r\n  {\r\n    id: \"37\",\r\n    userID: \"421571\",\r\n    username: \"Carr Brady\",\r\n    email: \"carr_brady@gmail.com\",\r\n    invitationDate: \"06/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '38' }}\r\n  {\r\n    id: \"38\",\r\n    userID: \"576861\",\r\n    username: \"Whitney Copeland\",\r\n    email: \"whitney_copeland@gmail.com\",\r\n    invitationDate: \"15/NOV/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# default }}\r\n  {\r\n    id: \"{{urlParam 'invitation_id'}}\",\r\n    message:\"No se encontro id\"\r\n  }\r\n  {{/ default }}\r\n  {{/ switch}}\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "3612b0e1-55a8-4af1-83b2-e349074ff9ab",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "01259598-5db8-4d07-ab87-1ef28799eef4",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -793,7 +950,7 @@
   "rootChildren": [
     {
       "type": "folder",
-      "uuid": "bb09db1d-e3d1-4be6-915d-bbb0a94dccab"
+      "uuid": "f61650f2-b478-4952-8aae-aae13fb193ba"
     }
   ],
   "proxyMode": false,
