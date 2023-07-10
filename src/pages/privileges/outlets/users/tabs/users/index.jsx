@@ -1,6 +1,6 @@
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { Table } from "@inube/design-system";
-import { userEntriesDataMock } from "@mocks/apps/privileges/users.mock";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import { useState } from "react";
 import { activateUserMessages } from "../../config/activateUser.config";
 import { deleteUserMessages } from "../../config/deleteUser.config";

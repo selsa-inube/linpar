@@ -1,0 +1,1145 @@
+{
+  "uuid": "ce658d6c-2140-4b6d-8713-60e3ae1eb676",
+  "lastMigration": 27,
+  "name": "LinparData",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [
+    {
+      "uuid": "4cd8029b-4b65-432a-9c52-e1012dbe677d",
+      "name": "v1",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "396aa604-0905-4c70-818b-887bae3b16ef"
+        }
+      ]
+    },
+    {
+      "uuid": "396aa604-0905-4c70-818b-887bae3b16ef",
+      "name": "privileges",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "40888c47-a193-4021-b337-4f045e7f6362"
+        },
+        {
+          "type": "folder",
+          "uuid": "14886f05-3e7d-4493-b651-73dcd6db30fb"
+        },
+        {
+          "type": "folder",
+          "uuid": "097c123a-1125-4f32-9144-7e79591b29c3"
+        }
+      ]
+    },
+    {
+      "uuid": "40888c47-a193-4021-b337-4f045e7f6362",
+      "name": "users",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "1c320293-3ce9-4c4a-a11b-b35ab2ed51cc"
+        },
+        {
+          "type": "route",
+          "uuid": "19f4fcc2-1857-4de6-b759-4639415393ad"
+        },
+        {
+          "type": "route",
+          "uuid": "534ccce5-f21b-4860-9a54-5e83097af136"
+        },
+        {
+          "type": "route",
+          "uuid": "bdc1945a-3d8c-4819-ab73-23520fd176ff"
+        },
+        {
+          "type": "route",
+          "uuid": "1ac45db9-80a5-41b5-b0bb-71db0be7a06c"
+        },
+        {
+          "type": "route",
+          "uuid": "b53ee43e-5981-4ea3-9e7a-e4aedaf01a53"
+        }
+      ]
+    },
+    {
+      "uuid": "14886f05-3e7d-4493-b651-73dcd6db30fb",
+      "name": "invitations",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "3e31d0c4-89a5-4521-8a0e-d0ecaaa600a6"
+        },
+        {
+          "type": "route",
+          "uuid": "2e7049fa-e224-42d8-9f84-7a8e43983bc5"
+        },
+        {
+          "type": "route",
+          "uuid": "6ade1bba-fb84-4a8d-868e-4d445436e3e8"
+        },
+        {
+          "type": "route",
+          "uuid": "5dd06257-52c9-4ff0-809b-384c7ac9a6a2"
+        },
+        {
+          "type": "route",
+          "uuid": "36162412-831d-4d49-b1ab-9bdc479ad331"
+        },
+        {
+          "type": "route",
+          "uuid": "a61bf8eb-5a0e-46a8-b5ee-3b5309074dcf"
+        }
+      ]
+    },
+    {
+      "uuid": "097c123a-1125-4f32-9144-7e79591b29c3",
+      "name": "positions",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "8704e350-a00d-4d70-a1d5-14f69457de29"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "1c320293-3ce9-4c4a-a11b-b35ab2ed51cc",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/branches",
+      "responses": [
+        {
+          "uuid": "ecabde1a-398b-411d-b632-c289efdfa6ac",
+          "body": "[\r\n  {\r\n    id: \"1231\",\r\n    value: \"Bogotá\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2543\",\r\n    value: \"Barrancabermeja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3654\",\r\n    value: \"Barranquilla\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4456\",\r\n    value: \"Armenia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4457\",\r\n    value: \"Buga\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4486\",\r\n    value: \"Cali\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7456\",\r\n    value: \"Cartagena\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1456\",\r\n    value: \"Cúcuta\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2456\",\r\n    value: \"Ibagué\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"3456\",\r\n    value: \"Medellín\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"5456\",\r\n    value: \"Pereira\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"6456\",\r\n    value: \"Popayán\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"7457\",\r\n    value: \"Pasto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8456\",\r\n    value: \"Riohacha\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4459\",\r\n    value: \"Tunja\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"8856\",\r\n    value: \"Valledupar\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "e82441d2-ff50-41ed-9b0a-478496219697",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "cc624ac9-2199-427e-b881-fd5b55eef259",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "3e31d0c4-89a5-4521-8a0e-d0ecaaa600a6",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/branches",
+      "responses": [
+        {
+          "uuid": "b690fc79-c186-4210-ba5c-3eaac58f61c9",
+          "body": "[\r\n  {\r\n    id: \"1231\",\r\n    value: \"Bogotá\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2543\",\r\n    value: \"Barrancabermeja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3654\",\r\n    value: \"Barranquilla\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4456\",\r\n    value: \"Armenia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4457\",\r\n    value: \"Buga\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4486\",\r\n    value: \"Cali\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7456\",\r\n    value: \"Cartagena\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1456\",\r\n    value: \"Cúcuta\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2456\",\r\n    value: \"Ibagué\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3456\",\r\n    value: \"Medellín\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"5456\",\r\n    value: \"Pereira\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"6456\",\r\n    value: \"Popayán\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7457\",\r\n    value: \"Pasto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8456\",\r\n    value: \"Riohacha\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4459\",\r\n    value: \"Tunja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8856\",\r\n    value: \"Valledupar\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "a3abb610-7ffb-40e4-834f-d3f1147b8d62",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5dddf8cb-fb37-498d-989c-8480394adef9",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "8704e350-a00d-4d70-a1d5-14f69457de29",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/positions",
+      "responses": [
+        {
+          "uuid": "30b38226-3af2-4cf8-bd9b-4b459691fcc2",
+          "body": "[\r\n  { value: \"\", label: \"Seleccione una opción\" },\r\n  { value: \"Diseñador\", label: \"Diseñador\" },\r\n  { value: \"Desarrollador\", label: \"Desarrollador Web\" },\r\n  { value: \"Product Manager\", label: \"Product Manager\" },\r\n  { value: \"Adviser\", label: \"Adviser\" },\r\n  { value: \"Credit Analyst\", label: \"Credit Analyst\" },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "f65e7641-ba45-4884-b6fe-5ac35dc6186b",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "9a9cf419-2fcd-4198-9f60-d3c6c75243c7",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "19f4fcc2-1857-4de6-b759-4639415393ad",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/aid-budgets",
+      "responses": [
+        {
+          "uuid": "b5f96145-0d6c-4d9d-8906-e9ba9ce33a5e",
+          "body": "[\r\n  {\r\n    id: \"4701\",\r\n    value: \"Gastos operativos\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4702\",\r\n    value: \"Marketing y publicidad\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4703\",\r\n    value: \"Investigación y desarrollo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4704\",\r\n    value: \"Inversiones de capital\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4705\",\r\n    value: \"Capacitación y desarrollo del personal\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4706\",\r\n    value: \"Investigación de mercado\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4707\",\r\n    value: \"Proyectos especiales\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "c115da1d-55f0-4b47-8bf5-10bfb6b2dc74",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "20101191-507c-47e2-9b09-28190fcf8435",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "2e7049fa-e224-42d8-9f84-7a8e43983bc5",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/aid-budgets",
+      "responses": [
+        {
+          "uuid": "403abe78-058c-4426-8f04-5a20445136e4",
+          "body": "[\r\n  {\r\n    id: \"4701\",\r\n    value: \"Gastos operativos\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4702\",\r\n    value: \"Marketing y publicidad\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4703\",\r\n    value: \"Investigación y desarrollo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4704\",\r\n    value: \"Inversiones de capital\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4705\",\r\n    value: \"Capacitación y desarrollo del personal\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4706\",\r\n    value: \"Investigación de mercado\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4707\",\r\n    value: \"Proyectos especiales\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "a0b35368-904e-4512-b543-1acd0048cad7",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "a3caaf09-64f5-4f34-b31f-37cb7f7c952b",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "534ccce5-f21b-4860-9a54-5e83097af136",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/events",
+      "responses": [
+        {
+          "uuid": "675feeb6-e546-4886-93b0-a432f89718f3",
+          "body": "[\r\n  {\r\n    id: \"2001\",\r\n    value: \"Conferencia\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2002\",\r\n    value: \"Seminario\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2003\",\r\n    value: \"Taller\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2004\",\r\n    value: \"Exposición\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2005\",\r\n    value: \"Networking\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2006\",\r\n    value: \"Celebración\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2007\",\r\n    value: \"Concierto\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2008\",\r\n    value: \"Feria\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2009\",\r\n    value: \"Charla\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2010\",\r\n    value: \"Presentación\",\r\n    isActive: true,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "763546d0-c090-4dd2-9e90-c9967745634d",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "752c0b67-4a3c-4c4f-b622-aa07cb4cb108",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "6ade1bba-fb84-4a8d-868e-4d445436e3e8",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/events",
+      "responses": [
+        {
+          "uuid": "e6e0b457-53f6-43cc-8a16-3ae1c949df7b",
+          "body": "[\r\n  {\r\n    id: \"2001\",\r\n    value: \"Conferencia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2002\",\r\n    value: \"Seminario\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2003\",\r\n    value: \"Taller\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2004\",\r\n    value: \"Exposición\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2005\",\r\n    value: \"Networking\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2006\",\r\n    value: \"Celebración\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2007\",\r\n    value: \"Concierto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2008\",\r\n    value: \"Feria\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2009\",\r\n    value: \"Charla\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2010\",\r\n    value: \"Presentación\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "396d4935-8791-4b20-9a08-ede421ef1cd0",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "79e62837-e151-4f2e-977c-976baa0737bc",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5dd06257-52c9-4ff0-809b-384c7ac9a6a2",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations",
+      "responses": [
+        {
+          "uuid": "efb700d8-47be-4c27-95db-facc082f853b",
+          "body": "[\r\n  {\r\n    id: \"10\",\r\n    userID: \"45645\",\r\n    username: \"David Leonardo Garzón\",\r\n    email: \"lgarzon@gmail.com\",\r\n    invitationDate: \"11/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"11\",\r\n    userID: \"534693\",\r\n    username: \"Cristina Schmidt\",\r\n    email: \"cristina_schmidt@gmail.com\",\r\n    invitationDate: \"11/ENE/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {\r\n    id: \"12\",\r\n    userID: \"757712\",\r\n    username: \"Roberta Wallace\",\r\n    email: \"roberta_wallace@gmail.com\",\r\n    invitationDate: \"26/AGO/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"13\",\r\n    userID: \"440652\",\r\n    username: \"Gross Mendez\",\r\n    email: \"gross_mendez@gmail.com\",\r\n    invitationDate: \"17/MAY/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"14\",\r\n    userID: \"846779\",\r\n    username: \"Martinez French\",\r\n    email: \"martinez_french@gmail.com\",\r\n    invitationDate: \"07/OCT/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"15\",\r\n    userID: \"838645\",\r\n    username: \"Lowe Ellis\",\r\n    email: \"lowe_ellis@gmail.com\",\r\n    invitationDate: \"05/ENE/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"16\",\r\n    userID: \"835761\",\r\n    username: \"Barlow Ballard\",\r\n    email: \"barlow_ballard@gmail.com\",\r\n    invitationDate: \"03/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"17\",\r\n    userID: \"592492\",\r\n    username: \"Madeline Ayers\",\r\n    email: \"madeline_ayers@gmail.com\",\r\n    invitationDate: \"20/JUL/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"18\",\r\n    userID: \"683321\",\r\n    username: \"Bowen Greene\",\r\n    email: \"bowen_greene@gmail.com\",\r\n    invitationDate: \"26/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {\r\n    id: \"19\",\r\n    userID: \"695730\",\r\n    username: \"Deborah Elliott\",\r\n    email: \"deborah_elliott@gmail.com\",\r\n    invitationDate: \"03/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"20\",\r\n    userID: \"682422\",\r\n    username: \"Karina Fitzgerald\",\r\n    email: \"karina_fitzgerald@gmail.com\",\r\n    invitationDate: \"07/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {\r\n    id: \"21\",\r\n    userID: \"746049\",\r\n    username: \"Rachel Carpenter\",\r\n    email: \"rachel_carpenter@gmail.com\",\r\n    invitationDate: \"24/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"22\",\r\n    userID: \"816645\",\r\n    username: \"Judith Santana\",\r\n    email: \"judith_santana@gmail.com\",\r\n    invitationDate: \"10/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"23\",\r\n    userID: \"486616\",\r\n    username: \"Angelita Stein\",\r\n    email: \"angelita_stein@gmail.com\",\r\n    invitationDate: \"27/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"24\",\r\n    userID: \"774335\",\r\n    username: \"Pamela Gibbs\",\r\n    email: \"pamela_gibbs@gmail.com\",\r\n    invitationDate: \"01/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"25\",\r\n    userID: \"536431\",\r\n    username: \"Osborn Larsen\",\r\n    email: \"osborn_larsen@gmail.com\",\r\n    invitationDate: \"09/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"26\",\r\n    userID: \"479249\",\r\n    username: \"Tisha Stevens\",\r\n    email: \"tisha_stevens@gmail.com\",\r\n    invitationDate: \"20/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"27\",\r\n    userID: \"448172\",\r\n    username: \"Rosemarie Snow\",\r\n    email: \"rosemarie_snow@gmail.com\",\r\n    invitationDate: \"10/JUL/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"28\",\r\n    userID: \"898779\",\r\n    username: \"Terry Shaffer\",\r\n    email: \"terry_shaffer@gmail.com\",\r\n    invitationDate: \"07/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"29\",\r\n    userID: \"692860\",\r\n    username: \"Sofia Osborn\",\r\n    email: \"sofia_osborn@gmail.com\",\r\n    invitationDate: \"22/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {\r\n    id: \"30\",\r\n    userID: \"666124\",\r\n    username: \"Campos Christensen\",\r\n    email: \"campos_christensen@gmail.com\",\r\n    invitationDate: \"18/MAR/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"31\",\r\n    userID: \"454377\",\r\n    username: \"Stacy Cooke\",\r\n    email: \"stacy_cooke@gmail.com\",\r\n    invitationDate: \"23/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"32\",\r\n    userID: \"404949\",\r\n    username: \"Goff Mejia\",\r\n    email: \"goff_mejia@gmail.com\",\r\n    invitationDate: \"15/SEP/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"33\",\r\n    userID: \"615315\",\r\n    username: \"Mcintyre Wells\",\r\n    email: \"mcintyre_wells@gmail.com\",\r\n    invitationDate: \"12/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"34\",\r\n    userID: \"842395\",\r\n    username: \"Alyce Powers\",\r\n    email: \"alyce_powers@gmail.com\",\r\n    invitationDate: \"24/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"35\",\r\n    userID: \"801730\",\r\n    username: \"Kathleen Matthews\",\r\n    email: \"kathleen_matthews@gmail.com\",\r\n    invitationDate: \"30/OCT/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"36\",\r\n    userID: \"700677\",\r\n    username: \"Susana Davidson\",\r\n    email: \"susana_davidson@gmail.com\",\r\n    invitationDate: \"16/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"37\",\r\n    userID: \"421571\",\r\n    username: \"Carr Brady\",\r\n    email: \"carr_brady@gmail.com\",\r\n    invitationDate: \"06/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"38\",\r\n    userID: \"576861\",\r\n    username: \"Whitney Copeland\",\r\n    email: \"whitney_copeland@gmail.com\",\r\n    invitationDate: \"15/NOV/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "63947b9c-32b6-43a4-aa44-949d5c48cd51",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4b3c540d-d7fc-4537-8514-b86e9003bb51",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "36162412-831d-4d49-b1ab-9bdc479ad331",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id",
+      "responses": [
+        {
+          "uuid": "9195851b-a2a5-4dd7-be9b-631a3f0af34b",
+          "body": "\r\n  {{# switch (urlParam 'invitation_id')}}\r\n  {{# case '10' }}\r\n    {\r\n      id: \"10\",\r\n      userID: \"45645\",\r\n      username: \"David Leonardo Garzón\",\r\n      email: \"lgarzon@gmail.com\",\r\n      invitationDate: \"11/JUN/2022\",\r\n      status: \"Sent\",\r\n      phone: \"3123456789\",\r\n    },\r\n  {{/ case }}\r\n  {{# case '11' }}\r\n  {\r\n    id: \"11\",\r\n    userID: \"534693\",\r\n    username: \"Cristina Schmidt\",\r\n    email: \"cristina_schmidt@gmail.com\",\r\n    invitationDate: \"11/ENE/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '12' }}\r\n  {\r\n    id: \"12\",\r\n    userID: \"757712\",\r\n    username: \"Roberta Wallace\",\r\n    email: \"roberta_wallace@gmail.com\",\r\n    invitationDate: \"26/AGO/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '13' }}\r\n  {\r\n    id: \"13\",\r\n    userID: \"440652\",\r\n    username: \"Gross Mendez\",\r\n    email: \"gross_mendez@gmail.com\",\r\n    invitationDate: \"17/MAY/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '14' }}\r\n  {\r\n    id: \"14\",\r\n    userID: \"846779\",\r\n    username: \"Martinez French\",\r\n    email: \"martinez_french@gmail.com\",\r\n    invitationDate: \"07/OCT/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '15' }}\r\n  {\r\n    id: \"15\",\r\n    userID: \"838645\",\r\n    username: \"Lowe Ellis\",\r\n    email: \"lowe_ellis@gmail.com\",\r\n    invitationDate: \"05/ENE/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '16' }}\r\n  {\r\n    id: \"16\",\r\n    userID: \"835761\",\r\n    username: \"Barlow Ballard\",\r\n    email: \"barlow_ballard@gmail.com\",\r\n    invitationDate: \"03/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '17' }}\r\n  {\r\n    id: \"17\",\r\n    userID: \"592492\",\r\n    username: \"Madeline Ayers\",\r\n    email: \"madeline_ayers@gmail.com\",\r\n    invitationDate: \"20/JUL/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '18' }}\r\n  {\r\n    id: \"18\",\r\n    userID: \"683321\",\r\n    username: \"Bowen Greene\",\r\n    email: \"bowen_greene@gmail.com\",\r\n    invitationDate: \"26/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '19' }}\r\n  {\r\n    id: \"19\",\r\n    userID: \"695730\",\r\n    username: \"Deborah Elliott\",\r\n    email: \"deborah_elliott@gmail.com\",\r\n    invitationDate: \"03/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '20' }}\r\n  {\r\n    id: \"20\",\r\n    userID: \"682422\",\r\n    username: \"Karina Fitzgerald\",\r\n    email: \"karina_fitzgerald@gmail.com\",\r\n    invitationDate: \"07/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '21' }}\r\n  {\r\n    id: \"21\",\r\n    userID: \"746049\",\r\n    username: \"Rachel Carpenter\",\r\n    email: \"rachel_carpenter@gmail.com\",\r\n    invitationDate: \"24/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '22' }}\r\n  {\r\n    id: \"22\",\r\n    userID: \"816645\",\r\n    username: \"Judith Santana\",\r\n    email: \"judith_santana@gmail.com\",\r\n    invitationDate: \"10/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '23' }}\r\n  {\r\n    id: \"23\",\r\n    userID: \"486616\",\r\n    username: \"Angelita Stein\",\r\n    email: \"angelita_stein@gmail.com\",\r\n    invitationDate: \"27/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '24' }}\r\n  {\r\n    id: \"24\",\r\n    userID: \"774335\",\r\n    username: \"Pamela Gibbs\",\r\n    email: \"pamela_gibbs@gmail.com\",\r\n    invitationDate: \"01/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '25' }}\r\n  {\r\n    id: \"25\",\r\n    userID: \"536431\",\r\n    username: \"Osborn Larsen\",\r\n    email: \"osborn_larsen@gmail.com\",\r\n    invitationDate: \"09/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '26' }}\r\n  {\r\n    id: \"26\",\r\n    userID: \"479249\",\r\n    username: \"Tisha Stevens\",\r\n    email: \"tisha_stevens@gmail.com\",\r\n    invitationDate: \"20/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '27' }}\r\n  {\r\n    id: \"27\",\r\n    userID: \"448172\",\r\n    username: \"Rosemarie Snow\",\r\n    email: \"rosemarie_snow@gmail.com\",\r\n    invitationDate: \"10/JUL/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '28' }}\r\n  {\r\n    id: \"28\",\r\n    userID: \"898779\",\r\n    username: \"Terry Shaffer\",\r\n    email: \"terry_shaffer@gmail.com\",\r\n    invitationDate: \"07/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '29' }}\r\n  {\r\n    id: \"29\",\r\n    userID: \"692860\",\r\n    username: \"Sofia Osborn\",\r\n    email: \"sofia_osborn@gmail.com\",\r\n    invitationDate: \"22/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '30' }}\r\n  {\r\n    id: \"30\",\r\n    userID: \"666124\",\r\n    username: \"Campos Christensen\",\r\n    email: \"campos_christensen@gmail.com\",\r\n    invitationDate: \"18/MAR/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '31' }}\r\n  {\r\n    id: \"31\",\r\n    userID: \"454377\",\r\n    username: \"Stacy Cooke\",\r\n    email: \"stacy_cooke@gmail.com\",\r\n    invitationDate: \"23/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '32' }}\r\n  {\r\n    id: \"32\",\r\n    userID: \"404949\",\r\n    username: \"Goff Mejia\",\r\n    email: \"goff_mejia@gmail.com\",\r\n    invitationDate: \"15/SEP/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '33' }}\r\n  {\r\n    id: \"33\",\r\n    userID: \"615315\",\r\n    username: \"Mcintyre Wells\",\r\n    email: \"mcintyre_wells@gmail.com\",\r\n    invitationDate: \"12/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '34' }}\r\n  {\r\n    id: \"34\",\r\n    userID: \"842395\",\r\n    username: \"Alyce Powers\",\r\n    email: \"alyce_powers@gmail.com\",\r\n    invitationDate: \"24/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '35' }}\r\n  {\r\n    id: \"35\",\r\n    userID: \"801730\",\r\n    username: \"Kathleen Matthews\",\r\n    email: \"kathleen_matthews@gmail.com\",\r\n    invitationDate: \"30/OCT/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '36' }}\r\n  {\r\n    id: \"36\",\r\n    userID: \"700677\",\r\n    username: \"Susana Davidson\",\r\n    email: \"susana_davidson@gmail.com\",\r\n    invitationDate: \"16/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '37' }}\r\n  {\r\n    id: \"37\",\r\n    userID: \"421571\",\r\n    username: \"Carr Brady\",\r\n    email: \"carr_brady@gmail.com\",\r\n    invitationDate: \"06/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '38' }}\r\n  {\r\n    id: \"38\",\r\n    userID: \"576861\",\r\n    username: \"Whitney Copeland\",\r\n    email: \"whitney_copeland@gmail.com\",\r\n    invitationDate: \"15/NOV/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# default }}\r\n  {\r\n    id: \"{{urlParam 'invitation_id'}}\",\r\n    message:\"No se encontro id\"\r\n  }\r\n  {{/ default }}\r\n  {{/ switch}}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "0f48e055-53e3-4e57-9fb2-dcf1a7f3171a",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "5c772fa2-f8ab-448d-901c-b0915b84f202",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "bdc1945a-3d8c-4819-ab73-23520fd176ff",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users",
+      "responses": [
+        {
+          "uuid": "8de36298-14e6-484e-ab03-c44fff50c89d",
+          "body": "[\r\n  {\r\n    id: \"11\",\r\n    username: \"David Leonardo Garzón\",\r\n    code: \"LGARZON\",\r\n    userID: \"1256545\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"dgarzon@sistemasenlinea.com.co\",\r\n    phone: \"3123202874\",\r\n  },\r\n  {\r\n    id: \"12\",\r\n    username: \"Angie Pinilla\",\r\n    code: \"APINILLA\",\r\n    userID: \"789654\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"apinilla@sistemasenlinea.com.co\",\r\n    phone: \"1212145789\",\r\n  },\r\n  {\r\n    id: \"13\",\r\n    username: \"Cristian Rojas\",\r\n    code: \"CROJAS\",\r\n    userID: \"258963\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"crojas@sistemasenlinea.com.co\",\r\n    phone: \"1322146789\",\r\n  },\r\n  {\r\n    id: \"14\",\r\n    username: \"Johan Nova\",\r\n    code: \"JNOVA\",\r\n    userID: \"589647\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"jgarcia@sistemasenlinea.com.co\",\r\n    phone: \"2322146351\",\r\n  },\r\n  {\r\n    id: \"15\",\r\n    username: \"Fernando Cañas\",\r\n    code: \"FCANAS\",\r\n    userID: \"365224\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"fcanas@sistemasenlinea.com.co\",\r\n    phone: \"2322267530\",\r\n  },\r\n  {\r\n    id: \"16\",\r\n    username: \"Carlos Batativa\",\r\n    code: \"CBATATIVA\",\r\n    userID: \"2357421\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"cbabativa@sistemasenlinea.com.co\",\r\n    phone: \"1234567890\",\r\n  },\r\n  {\r\n    id: \"17\",\r\n    username: \"Cesar Marin\",\r\n    code: \"CMARIN\",\r\n    userID: \"1000245\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"cmarin@sistemasenlinea.com.co\",\r\n    phone: \"2322789456\",\r\n  },\r\n  {\r\n    id: \"18\",\r\n    username: \"Pedro Perez\",\r\n    code: \"PEREZ\",\r\n    userID: \"687440\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"pperez@gmail.com\",\r\n    phone: \"1234567891\",\r\n  },\r\n  {\r\n    id: \"19\",\r\n    username: \"Sofia Henao\",\r\n    code: \"SHENAO\",\r\n    userID: \"352411\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"shenao@gmail.com\",\r\n    phone: \"1234567892\",\r\n  },\r\n  {\r\n    id: \"20\",\r\n    username: \"Daniel Novoa\",\r\n    code: \"DNOVOA\",\r\n    userID: \"320145\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"dnovoa@gmail.com\",\r\n    phone: \"1234567893\",\r\n  },\r\n  {\r\n    id: \"21\",\r\n    username: \"Jose Gomez\",\r\n    code: \"JGOMEZ\",\r\n    userID: \"4578899\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"jgomez@gmail.com\",\r\n    phone: \"1234567894\",\r\n  },\r\n  {\r\n    id: \"22\",\r\n    username: \"Jeimmy Cruz\",\r\n    code: \"JCRUZ\",\r\n    userID: \"586745\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"jcruz@gmail.com\",\r\n    phone: \"1234567895\",\r\n  },\r\n  {\r\n    id: \"23\",\r\n    username: \"Samuel Mejia\",\r\n    code: \"SMEJIA\",\r\n    userID: \"235652\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"smejia@gmail.com\",\r\n    phone: \"12345678946\",\r\n  },\r\n  {\r\n    id: \"24\",\r\n    username: \"Laura Amado\",\r\n    code: \"LAMADO\",\r\n    userID: \"3201153\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"lamado@gmail.com\",\r\n    phone: \"1234567897\",\r\n  },\r\n  {\r\n    id: \"25\",\r\n    username: \"Jhonatan Fernandez\",\r\n    code: \"JFERNANDEZ\",\r\n    userID: \"0215451\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"jfernandez@gmail.com\",\r\n    phone: \"1234567898\",\r\n  },\r\n  {\r\n    id: \"26\",\r\n    username: \"Diego Morales\",\r\n    code: \"DMORALES\",\r\n    userID: \"5656461\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"dmorales@gmail.com\",\r\n    phone: \"1234567899\",\r\n  },\r\n  {\r\n    id: \"27\",\r\n    username: \"Carolina Gomez\",\r\n    code: \"CGOMEZ\",\r\n    userID: \"841216423\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"cgomez@gmail.com\",\r\n    phone: \"1234567800\",\r\n  },\r\n  {\r\n    id: \"28\",\r\n    username: \"Fabian Jaramillo\",\r\n    code: \"FJARAMILLO\",\r\n    userID: \"47456444\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"fjaramillo@gmail.com\",\r\n    phone: \"1234567801\",\r\n  },\r\n  {\r\n    id: \"29\",\r\n    username: \"Jesica Beltran\",\r\n    code: \"JBELTRAN\",\r\n    userID: \"22115151\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"jbletran@gmail.com\",\r\n    phone: \"1234567802\",\r\n  },\r\n  {\r\n    id: \"30\",\r\n    username: \"Sebastian Gonzales\",\r\n    code: \"SGONZALES\",\r\n    userID: \"84548774\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"sgonzales@gmail.com\",\r\n    phone: \"1234567803\",\r\n  },\r\n  {\r\n    id: \"31\",\r\n    username: \"Felipe Alvarez\",\r\n    code: \"FALVAREZ\",\r\n    userID: \"84545478\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"falvarez@gmail.com\",\r\n    phone: \"1234567810\",\r\n  },\r\n  {\r\n    id: \"32\",\r\n    username: \"freddy Baquero\",\r\n    code: \"FBAQUERO\",\r\n    userID: \"78785744\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"fbaquero@gmail.com\",\r\n    phone: \"1234567811\",\r\n  },\r\n  {\r\n    id: \"33\",\r\n    username: \"Tomas Rodriguez\",\r\n    code: \"TRODRIGUEZ\",\r\n    userID: \"845456\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"trodriguez@gmail.com\",\r\n    phone: \"1234567812\",\r\n  },\r\n  {\r\n    id: \"34\",\r\n    username: \"Daniel Zamora\",\r\n    code: \"DZAMORA\",\r\n    userID: \"966586\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"dzamora@gmail.com\",\r\n    phone: \"1234567816\",\r\n  },\r\n  {\r\n    id: \"35\",\r\n    username: \"Brandon Pineda\",\r\n    code: \"BPINEDA\",\r\n    userID: \"7414542\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"bpineda@gmail.com\",\r\n    phone: \"1234567817\",\r\n  },\r\n  {\r\n    id: \"36\",\r\n    username: \"Jeimmy Zambrano\",\r\n    code: \"JZAMBRANO\",\r\n    userID: \"4001154\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"jzambrano@gmail.com\",\r\n    phone: \"1234567820\",\r\n  },\r\n  {\r\n    id: \"37\",\r\n    username: \"Andres Lopez\",\r\n    code: \"ALOPEZ\",\r\n    userID: \"41251321\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"alopez@gmail.com\",\r\n    phone: \"1234567821\",\r\n  },\r\n  {\r\n    id: \"38\",\r\n    username: \"Carmen Pedraza\",\r\n    code: \"CPEDRAZA\",\r\n    userID: \"843254432\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"cpedraza@gmail.com\",\r\n    phone: \"1234567822\",\r\n  },\r\n  {\r\n    id: \"39\",\r\n    username: \"Camilo Torres\",\r\n    code: \"CTORRES\",\r\n    userID: \"8641651\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"ctorres@gmail.com\",\r\n    phone: \"1234567824\",\r\n  },\r\n  {\r\n    id: \"40\",\r\n    username: \"Alvaro Rosales\",\r\n    code: \"AROSALES\",\r\n    userID: \"325215\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"arosales@gmail.com\",\r\n    phone: \"1234567825\",\r\n  },\r\n  {\r\n    id: \"41\",\r\n    username: \"Roberto Vargas\",\r\n    code: \"RVARGAS\",\r\n    userID: \"141740\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"rvargas@gmail.com\",\r\n    phone: \"1234567830\",\r\n  },\r\n  {\r\n    id: \"42\",\r\n    username: \"Santiago Maldonado\",\r\n    code: \"SMALDONADO\",\r\n    userID: \"9556413\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"smaldonado@gmail.com\",\r\n    phone: \"1234567837\",\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "096f33be-6a57-4e25-8792-fdaeac2ddeec",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4fc7741c-159b-40b1-af38-d65e8208e6e0",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "1ac45db9-80a5-41b5-b0bb-71db0be7a06c",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id",
+      "responses": [
+        {
+          "uuid": "d9a30b7a-0703-4659-9374-3c9fb08e1017",
+          "body": "{{# switch (urlParam 'user_id') }}\r\n{{# case '11' }}\r\n{\r\n  \"id\": \"11\",\r\n  \"username\": \"David Leonardo Garzón\",\r\n  \"code\": \"LGARZON\",\r\n  \"userID\": \"1256545\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"dgarzon@sistemasenlinea.com.co\",\r\n  \"phone\": \"3123202874\"\r\n}\r\n{{/ case }}\r\n{{# case '12' }}\r\n{\r\n  \"id\": \"12\",\r\n  \"username\": \"Angie Pinilla\",\r\n  \"code\": \"APINILLA\",\r\n  \"userID\": \"789654\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"apinilla@sistemasenlinea.com.co\",\r\n  \"phone\": \"1212145789\"\r\n}\r\n{{/ case }}\r\n{{# case '13' }}\r\n{\r\n  \"id\": \"13\",\r\n  \"username\": \"Cristian Rojas\",\r\n  \"code\": \"CROJAS\",\r\n  \"userID\": \"258963\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"crojas@sistemasenlinea.com.co\",\r\n  \"phone\": \"1322146789\"\r\n}\r\n{{/ case }}\r\n{{# case '14' }}\r\n{\r\n  \"id\": \"14\",\r\n  \"username\": \"Johan Nova\",\r\n  \"code\": \"JNOVA\",\r\n  \"userID\": \"589647\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"jgarcia@sistemasenlinea.com.co\",\r\n  \"phone\": \"2322146351\"\r\n}\r\n{{/ case }}\r\n{{# case '15' }}\r\n{\r\n  \"id\": \"15\",\r\n  \"username\": \"Fernando Cañas\",\r\n  \"code\": \"FCANAS\",\r\n  \"userID\": \"365224\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"fcanas@sistemasenlinea.com.co\",\r\n  \"phone\": \"2322267530\"\r\n}\r\n{{/ case }}\r\n{{# case '16' }}\r\n{\r\n  \"id\": \"16\",\r\n  \"username\": \"Carlos Batativa\",\r\n  \"code\": \"CBATATIVA\",\r\n  \"userID\": \"2357421\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"cbabativa@sistemasenlinea.com.co\",\r\n  \"phone\": \"1234567890\"\r\n}\r\n{{/ case }}\r\n{{# case '17' }}\r\n{\r\n  \"id\": \"17\",\r\n  \"username\": \"Cesar Marin\",\r\n  \"code\": \"CMARIN\",\r\n  \"userID\": \"1000245\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"cmarin@sistemasenlinea.com.co\",\r\n  \"phone\": \"2322789456\"\r\n}\r\n{{/ case }}\r\n{{# case '18' }}\r\n{\r\n  \"id\": \"18\",\r\n  \"username\": \"Pedro Perez\",\r\n  \"code\": \"PEREZ\",\r\n  \"userID\": \"687440\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"pperez@gmail.com\",\r\n  \"phone\": \"1234567891\"\r\n}\r\n{{/ case }}\r\n{{# case '19' }}\r\n{\r\n  \"id\": \"19\",\r\n  \"username\": \"Sofia Henao\",\r\n  \"code\": \"SHENAO\",\r\n  \"userID\": \"352411\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"shenao@gmail.com\",\r\n  \"phone\": \"1234567892\"\r\n}\r\n{{/ case }}\r\n{{# case '20' }}\r\n{\r\n  \"id\": \"20\",\r\n  \"username\": \"Daniel Novoa\",\r\n  \"code\": \"DNOVOA\",\r\n  \"userID\": \"320145\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"dnovoa@gmail.com\",\r\n  \"phone\": \"1234567893\"\r\n}\r\n{{/ case }}\r\n{{# case '21' }}\r\n{\r\n  \"id\": \"21\",\r\n  \"username\": \"Jose Gomez\",\r\n  \"code\": \"JGOMEZ\",\r\n  \"userID\": \"4578899\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"jgomez@gmail.com\",\r\n  \"phone\": \"1234567894\"\r\n}\r\n{{/ case }}\r\n{{# case '22' }}\r\n{\r\n  \"id\": \"22\",\r\n  \"username\": \"Jeimmy Cruz\",\r\n  \"code\": \"JCRUZ\",\r\n  \"userID\": \"586745\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"jcruz@gmail.com\",\r\n  \"phone\": \"1234567895\"\r\n}\r\n{{/ case }}\r\n{{# case '23' }}\r\n{\r\n  \"id\": \"23\",\r\n  \"username\": \"Samuel Mejia\",\r\n  \"code\": \"SMEJIA\",\r\n  \"userID\": \"235652\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"smejia@gmail.com\",\r\n  \"phone\": \"12345678946\"\r\n}\r\n{{/ case }}\r\n{{# case '24' }}\r\n{\r\n  \"id\": \"24\",\r\n  \"username\": \"Laura Amado\",\r\n  \"code\": \"LAMADO\",\r\n  \"userID\": \"3201153\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"lamado@gmail.com\",\r\n  \"phone\": \"1234567897\"\r\n}\r\n{{/ case }}\r\n{{# case '25' }}\r\n{\r\n  \"id\": \"25\",\r\n  \"username\": \"Jhonatan Fernandez\",\r\n  \"code\": \"JFERNANDEZ\",\r\n  \"userID\": \"0215451\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"jfernandez@gmail.com\",\r\n  \"phone\": \"1234567898\"\r\n}\r\n{{/ case }}\r\n{{# case '26' }}\r\n{\r\n  \"id\": \"26\",\r\n  \"username\": \"Diego Morales\",\r\n  \"code\": \"DMORALES\",\r\n  \"userID\": \"5656461\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"dmorales@gmail.com\",\r\n  \"phone\": \"1234567899\"\r\n}\r\n{{/ case }}\r\n{{# case '27' }}\r\n{\r\n  \"id\": \"27\",\r\n  \"username\": \"Carolina Gomez\",\r\n  \"code\": \"CGOMEZ\",\r\n  \"userID\": \"841216423\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"cgomez@gmail.com\",\r\n  \"phone\": \"1234567800\"\r\n}\r\n{{/ case }}\r\n{{# case '28' }}\r\n{\r\n  \"id\": \"28\",\r\n  \"username\": \"Fabian Jaramillo\",\r\n  \"code\": \"FJARAMILLO\",\r\n  \"userID\": \"47456444\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"fjaramillo@gmail.com\",\r\n  \"phone\": \"1234567801\"\r\n}\r\n{{/ case }}\r\n{{# case '29' }}\r\n{\r\n  \"id\": \"29\",\r\n  \"username\": \"Jesica Beltran\",\r\n  \"code\": \"JBELTRAN\",\r\n  \"userID\": \"22115151\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"jbletran@gmail.com\",\r\n  \"phone\": \"1234567802\"\r\n}\r\n{{/ case }}\r\n{{# case '30' }}\r\n{\r\n  \"id\": \"30\",\r\n  \"username\": \"Sebastian Gonzales\",\r\n  \"code\": \"SGONZALES\",\r\n  \"userID\": \"84548774\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"sgonzales@gmail.com\",\r\n  \"phone\": \"1234567803\"\r\n}\r\n{{/ case }}\r\n{{# case '31' }}\r\n{\r\n  \"id\": \"31\",\r\n  \"username\": \"Felipe Alvarez\",\r\n  \"code\": \"FALVAREZ\",\r\n  \"userID\": \"84545478\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"falvarez@gmail.com\",\r\n  \"phone\": \"1234567810\"\r\n}\r\n{{/ case }}\r\n{{# case '32' }}\r\n{\r\n  \"id\": \"32\",\r\n  \"username\": \"freddy Baquero\",\r\n  \"code\": \"FBAQUERO\",\r\n  \"userID\": \"78785744\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"fbaquero@gmail.com\",\r\n  \"phone\": \"1234567811\"\r\n}\r\n{{/ case }}\r\n{{# case '33' }}\r\n{\r\n  \"id\": \"33\",\r\n  \"username\": \"Tomas Rodriguez\",\r\n  \"code\": \"TRODRIGUEZ\",\r\n  \"userID\": \"845456\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"trodriguez@gmail.com\",\r\n  \"phone\": \"1234567812\"\r\n}\r\n{{/ case }}\r\n{{# case '34' }}\r\n{\r\n  \"id\": \"34\",\r\n  \"username\": \"Daniel Zamora\",\r\n  \"code\": \"DZAMORA\",\r\n  \"userID\": \"966586\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"dzamora@gmail.com\",\r\n  \"phone\": \"1234567816\"\r\n}\r\n{{/ case }}\r\n{{# case '35' }}\r\n{\r\n  \"id\": \"35\",\r\n  \"username\": \"Brandon Pineda\",\r\n  \"code\": \"BPINEDA\",\r\n  \"userID\": \"7414542\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"bpineda@gmail.com\",\r\n  \"phone\": \"1234567817\"\r\n}\r\n{{/ case }}\r\n{{# case '36' }}\r\n{\r\n  \"id\": \"36\",\r\n  \"username\": \"Jeimmy Zambrano\",\r\n  \"code\": \"JZAMBRANO\",\r\n  \"userID\": \"4001154\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"jzambrano@gmail.com\",\r\n  \"phone\": \"1234567820\"\r\n}\r\n{{/ case }}\r\n{{# case '37' }}\r\n{\r\n  \"id\": \"37\",\r\n  \"username\": \"Andres Lopez\",\r\n  \"code\": \"ALOPEZ\",\r\n  \"userID\": \"41251321\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"alopez@gmail.com\",\r\n  \"phone\": \"1234567821\"\r\n}\r\n{{/ case }}\r\n{{# case '38' }}\r\n{\r\n  \"id\": \"38\",\r\n  \"username\": \"Carmen Pedraza\",\r\n  \"code\": \"CPEDRAZA\",\r\n  \"userID\": \"843254432\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": true,\r\n  \"email\": \"cpedraza@gmail.com\",\r\n  \"phone\": \"1234567822\"\r\n}\r\n{{/ case }}\r\n{{# case '39' }}\r\n{\r\n  \"id\": \"39\",\r\n  \"username\": \"Camilo Torres\",\r\n  \"code\": \"CTORRES\",\r\n  \"userID\": \"8641651\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": true,\r\n  \"email\": \"ctorres@gmail.com\",\r\n  \"phone\": \"1234567824\"\r\n}\r\n{{/ case }}\r\n{{# case '40' }}\r\n{\r\n  \"id\": \"40\",\r\n  \"username\": \"Alvaro Rosales\",\r\n  \"code\": \"AROSALES\",\r\n  \"userID\": \"325215\",\r\n  \"position\": \"Adviser\",\r\n  \"active\": false,\r\n  \"email\": \"arosales@gmail.com\",\r\n  \"phone\": \"1234567825\"\r\n}\r\n{{/ case }}\r\n{{# case '41' }}\r\n{\r\n  \"id\": \"41\",\r\n  \"username\": \"Roberto Vargas\",\r\n  \"code\": \"RVARGAS\",\r\n  \"userID\": \"141740\",\r\n  \"position\": \"Credit Analyst\",\r\n  \"active\": false,\r\n  \"email\": \"rvargas@gmail.com\",\r\n  \"phone\": \"1234567830\"\r\n}\r\n{{/ case }}\r\n{{# case '42' }}\r\n{\r\n    id: \"42\",\r\n    username: \"Santiago Maldonado\",\r\n    code: \"SMALDONADO\",\r\n    userID: \"9556413\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"smaldonado@gmail.com\",\r\n    phone: \"1234567837\",\r\n  }\r\n{{/ case }}\r\n  {{/ switch}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "a4b2a3c8-82f7-42fb-9fbd-5b7b7e857eff",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "52f1ae5b-83c3-4a79-9c48-3df1cac0de3c",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "b53ee43e-5981-4ea3-9e7a-e4aedaf01a53",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/projects",
+      "responses": [
+        {
+          "uuid": "f8666b59-d992-4f17-96fa-534dcfb6b041",
+          "body": "[\r\n  {\r\n    id: \"1211\",\r\n    value: \"Inube\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1412\",\r\n    value: \"Linpar\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1913\",\r\n    value: \"LinixV6x\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1714\",\r\n    value: \"Linpro\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1315\",\r\n    value: \"Linfac\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"1916\",\r\n    value: \"Lindoc\",\r\n    isActive: false,\r\n  },\r\n];",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "166ebfb9-ce00-4da3-9f8f-525bf11afaa2",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "2228f232-087c-46db-9a1c-03e8287ab368",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "a61bf8eb-5a0e-46a8-b5ee-3b5309074dcf",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/projects",
+      "responses": [
+        {
+          "uuid": "4cbd3577-23b3-4958-8400-d52788a29e87",
+          "body": "[\r\n  {\r\n    id: \"1211\",\r\n    value: \"Inube\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1412\",\r\n    value: \"Linpar\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1913\",\r\n    value: \"LinixV6x\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1714\",\r\n    value: \"Linpro\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1315\",\r\n    value: \"Linfac\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1916\",\r\n    value: \"Lindoc\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "c516b973-acd7-486d-9ed9-d23fca327d9f",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "98900418-5b54-4ee4-8185-638f5e7f9d1a",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "4cd8029b-4b65-432a-9c52-e1012dbe677d"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}

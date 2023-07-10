@@ -1,7 +1,7 @@
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { Stack, Text, TextField } from "@inube/design-system";
-import { positions } from "@mocks/apps/privileges/users.mock";
+import { positions } from "@mocks/apps/privileges/users/users.mock";
 import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
 import { generalInfoMessages } from "./config/messages.config";
 import {
