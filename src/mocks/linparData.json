@@ -49,6 +49,10 @@
         {
           "type": "route",
           "uuid": "fce761e5-e057-4b4d-9cac-76d3d3d970da"
+        },
+        {
+          "type": "route",
+          "uuid": "70716b26-121f-4515-86fd-ada55a4006d3"
         }
       ]
     },
@@ -64,6 +68,10 @@
         {
           "type": "route",
           "uuid": "2d5bf073-5ce8-4cc8-96a2-27b25a4cd584"
+        },
+        {
+          "type": "route",
+          "uuid": "79d321b3-633d-4053-85b2-57b1ddabb92e"
         }
       ]
     },
@@ -441,6 +449,160 @@
         },
         {
           "uuid": "65a791a3-d3db-4d2c-af27-770bfcd69897",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "70716b26-121f-4515-86fd-ada55a4006d3",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id/events",
+      "responses": [
+        {
+          "uuid": "4d8b9ff7-3aa9-4931-a70a-07476dace15c",
+          "body": "[\r\n  {\r\n    id: \"2001\",\r\n    value: \"Conferencia\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2002\",\r\n    value: \"Seminario\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2003\",\r\n    value: \"Taller\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2004\",\r\n    value: \"Exposición\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2005\",\r\n    value: \"Networking\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2006\",\r\n    value: \"Celebración\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2007\",\r\n    value: \"Concierto\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2008\",\r\n    value: \"Feria\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2009\",\r\n    value: \"Charla\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2010\",\r\n    value: \"Presentación\",\r\n    isActive: true,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "109b643f-9e85-46e2-8c51-0db8507a411f",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "f2f16e6f-9b18-488b-9d4d-ace34ad83d91",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "79d321b3-633d-4053-85b2-57b1ddabb92e",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/invitations/:invitation_id/events",
+      "responses": [
+        {
+          "uuid": "1f7bdeb9-5981-4dcd-bcb2-b3c407bcaebc",
+          "body": "[\r\n  {\r\n    id: \"2001\",\r\n    value: \"Conferencia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2002\",\r\n    value: \"Seminario\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2003\",\r\n    value: \"Taller\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2004\",\r\n    value: \"Exposición\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2005\",\r\n    value: \"Networking\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2006\",\r\n    value: \"Celebración\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2007\",\r\n    value: \"Concierto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2008\",\r\n    value: \"Feria\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2009\",\r\n    value: \"Charla\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2010\",\r\n    value: \"Presentación\",\r\n    isActive: false,\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "5230b9bb-4df8-46df-8c10-79189a591bc6",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "4586f716-b2db-4051-8eec-edbdf7c7e804",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
