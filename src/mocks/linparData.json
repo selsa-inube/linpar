@@ -1,5 +1,5 @@
 {
-  "uuid": "f4934873-fd46-43bc-8897-7da012b386c8",
+  "uuid": "fce82077-ca47-46af-a685-40e4cadfcdc2",
   "lastMigration": 27,
   "name": "LinparData",
   "endpointPrefix": "",
@@ -8,28 +8,28 @@
   "hostname": "",
   "folders": [
     {
-      "uuid": "bb09db1d-e3d1-4be6-915d-bbb0a94dccab",
+      "uuid": "74d32308-ddf3-4264-acd4-c03f26c12e21",
       "name": "v1",
       "collapsed": false,
       "children": [
         {
           "type": "folder",
-          "uuid": "ef34df09-91d5-403c-8e9c-27d80a50fe01"
+          "uuid": "ceaa634c-bfca-4157-9cfd-2024759a0f18"
         }
       ]
     },
     {
-      "uuid": "ef34df09-91d5-403c-8e9c-27d80a50fe01",
+      "uuid": "ceaa634c-bfca-4157-9cfd-2024759a0f18",
       "name": "privileges",
       "collapsed": false,
       "children": [
         {
           "type": "folder",
-          "uuid": "e67974a8-5a8b-4b4e-b867-73e569feb8af"
+          "uuid": "ce1a1f47-2c7f-4c39-a7ec-a5e7a5b21636"
         },
         {
           "type": "folder",
-          "uuid": "788a2fae-d13a-46d8-a7a8-92037785e2ea"
+          "uuid": "f8a4f340-c596-456e-8f79-7fe8a3566150"
         },
         {
           "type": "folder",
@@ -38,40 +38,40 @@
       ]
     },
     {
-      "uuid": "e67974a8-5a8b-4b4e-b867-73e569feb8af",
+      "uuid": "ce1a1f47-2c7f-4c39-a7ec-a5e7a5b21636",
       "name": "users",
       "collapsed": false,
       "children": [
         {
           "type": "route",
-          "uuid": "d2ad1b76-f1e2-4aef-a6c2-e31f54f74935"
+          "uuid": "e0743ac6-d6fc-4faf-b9dd-0bf3ffc6e04f"
         },
         {
           "type": "route",
-          "uuid": "fce761e5-e057-4b4d-9cac-76d3d3d970da"
+          "uuid": "89dea5a1-b9dd-4176-86b0-858881b2c11d"
         }
       ]
     },
     {
-      "uuid": "788a2fae-d13a-46d8-a7a8-92037785e2ea",
+      "uuid": "f8a4f340-c596-456e-8f79-7fe8a3566150",
       "name": "invitations",
       "collapsed": false,
       "children": [
         {
           "type": "route",
-          "uuid": "e1fdb43d-80ee-49e5-b928-ce0eb39d4742"
+          "uuid": "622caf0a-0389-4648-8f3a-777eafa1e348"
         },
         {
           "type": "route",
-          "uuid": "2d5bf073-5ce8-4cc8-96a2-27b25a4cd584"
+          "uuid": "40d89cf5-c9be-4a7b-878b-ffe5c585c6ad"
         },
         {
           "type": "route",
-          "uuid": "fe6ffe2a-45bf-4c5d-80fd-de7b921a5a56"
+          "uuid": "07876b0d-54ec-4740-b71b-a13f3a9fa6de"
         },
         {
           "type": "route",
-          "uuid": "a2850a9d-fdfe-45ea-8dda-6b9c1945d048"
+          "uuid": "7a9b060d-9721-4e7d-a32f-7d92ea14191a"
         }
       ]
     },
@@ -89,14 +89,14 @@
   ],
   "routes": [
     {
-      "uuid": "d2ad1b76-f1e2-4aef-a6c2-e31f54f74935",
+      "uuid": "e0743ac6-d6fc-4faf-b9dd-0bf3ffc6e04f",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/users/:user_id/branches",
       "responses": [
         {
-          "uuid": "1082448f-b2d5-4c1a-8ddf-c028edc8f034",
+          "uuid": "12eae82c-b52d-4f2b-9653-0bc5a0e6f275",
           "body": "[\r\n  {\r\n    id: \"1231\",\r\n    value: \"Bogotá\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"2543\",\r\n    value: \"Barrancabermeja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3654\",\r\n    value: \"Barranquilla\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4456\",\r\n    value: \"Armenia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4457\",\r\n    value: \"Buga\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4486\",\r\n    value: \"Cali\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7456\",\r\n    value: \"Cartagena\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1456\",\r\n    value: \"Cúcuta\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2456\",\r\n    value: \"Ibagué\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"3456\",\r\n    value: \"Medellín\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"5456\",\r\n    value: \"Pereira\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"6456\",\r\n    value: \"Popayán\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"7457\",\r\n    value: \"Pasto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8456\",\r\n    value: \"Riohacha\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4459\",\r\n    value: \"Tunja\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"8856\",\r\n    value: \"Valledupar\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -118,7 +118,7 @@
           "default": true
         },
         {
-          "uuid": "4aa61e06-6051-4a42-93d4-c2445fe86c40",
+          "uuid": "0554f7b1-6655-484c-a39b-0e8f2e7cb9da",
           "body": "[]",
           "latency": 0,
           "statusCode": 204,
@@ -140,7 +140,7 @@
           "default": false
         },
         {
-          "uuid": "ad3fc58f-5416-4b28-88be-9b5bdd9ae8e6",
+          "uuid": "b6ad9d0a-1f5b-4d19-b3b9-fe4dda13a753",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
           "latency": 0,
           "statusCode": 500,
@@ -166,14 +166,14 @@
       "responseMode": null
     },
     {
-      "uuid": "e1fdb43d-80ee-49e5-b928-ce0eb39d4742",
+      "uuid": "622caf0a-0389-4648-8f3a-777eafa1e348",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/invitations/:invitation_id/branches",
       "responses": [
         {
-          "uuid": "9f46a502-7de9-4ba9-9d92-1a5982d2ae6b",
+          "uuid": "906e20aa-9097-46e0-b189-1db1d7934099",
           "body": "[\r\n  {\r\n    id: \"1231\",\r\n    value: \"Bogotá\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2543\",\r\n    value: \"Barrancabermeja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3654\",\r\n    value: \"Barranquilla\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4456\",\r\n    value: \"Armenia\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4457\",\r\n    value: \"Buga\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4486\",\r\n    value: \"Cali\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7456\",\r\n    value: \"Cartagena\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"1456\",\r\n    value: \"Cúcuta\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"2456\",\r\n    value: \"Ibagué\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"3456\",\r\n    value: \"Medellín\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"5456\",\r\n    value: \"Pereira\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"6456\",\r\n    value: \"Popayán\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"7457\",\r\n    value: \"Pasto\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8456\",\r\n    value: \"Riohacha\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4459\",\r\n    value: \"Tunja\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"8856\",\r\n    value: \"Valledupar\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -195,7 +195,7 @@
           "default": true
         },
         {
-          "uuid": "3708a819-e14a-49e5-bf61-4cae80d90ba3",
+          "uuid": "25a16e34-8168-4b23-94ee-c1f44a0bb373",
           "body": "[]",
           "latency": 0,
           "statusCode": 204,
@@ -217,7 +217,7 @@
           "default": false
         },
         {
-          "uuid": "50364812-ae63-4e01-884c-26fa951b432d",
+          "uuid": "43650c20-27e7-4c04-b856-34c54a1403c1",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
           "latency": 0,
           "statusCode": 500,
@@ -320,14 +320,14 @@
       "responseMode": null
     },
     {
-      "uuid": "fce761e5-e057-4b4d-9cac-76d3d3d970da",
+      "uuid": "89dea5a1-b9dd-4176-86b0-858881b2c11d",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/users/:user_id/aid-budgets",
       "responses": [
         {
-          "uuid": "42a91773-9d44-41b2-860d-a657a470919e",
+          "uuid": "6ad2b4bc-6490-4e4e-b3ee-3e6505a01edc",
           "body": "[\r\n  {\r\n    id: \"4701\",\r\n    value: \"Gastos operativos\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4702\",\r\n    value: \"Marketing y publicidad\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4703\",\r\n    value: \"Investigación y desarrollo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4704\",\r\n    value: \"Inversiones de capital\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4705\",\r\n    value: \"Capacitación y desarrollo del personal\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4706\",\r\n    value: \"Investigación de mercado\",\r\n    isActive: true,\r\n  },\r\n  {\r\n    id: \"4707\",\r\n    value: \"Proyectos especiales\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -349,7 +349,7 @@
           "default": true
         },
         {
-          "uuid": "6623c313-1ab4-43bc-8539-8b60014b3912",
+          "uuid": "e227f814-6b34-44d3-ac52-99c1d73676b4",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -371,7 +371,7 @@
           "default": false
         },
         {
-          "uuid": "6ea68f09-5d8a-4c94-a890-8c3752e54af2",
+          "uuid": "56d41ef4-86a1-4ac2-af03-b7f32c0b8179",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
@@ -397,14 +397,14 @@
       "responseMode": null
     },
     {
-      "uuid": "2d5bf073-5ce8-4cc8-96a2-27b25a4cd584",
+      "uuid": "40d89cf5-c9be-4a7b-878b-ffe5c585c6ad",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/invitations/:invitation_id/aid-budgets",
       "responses": [
         {
-          "uuid": "5d322f1e-60b8-46ec-bad2-4bb3b47666c6",
+          "uuid": "824853f4-f9e9-4a23-be7c-9fcfb57838ce",
           "body": "[\r\n  {\r\n    id: \"4701\",\r\n    value: \"Gastos operativos\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4702\",\r\n    value: \"Marketing y publicidad\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4703\",\r\n    value: \"Investigación y desarrollo\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4704\",\r\n    value: \"Inversiones de capital\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4705\",\r\n    value: \"Capacitación y desarrollo del personal\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4706\",\r\n    value: \"Investigación de mercado\",\r\n    isActive: false,\r\n  },\r\n  {\r\n    id: \"4707\",\r\n    value: \"Proyectos especiales\",\r\n    isActive: false,\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -426,7 +426,7 @@
           "default": true
         },
         {
-          "uuid": "21180d7a-d3a3-4d88-bac8-fd32d173f135",
+          "uuid": "03d5450e-6e78-4bb8-84c8-879d82385270",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -448,7 +448,7 @@
           "default": false
         },
         {
-          "uuid": "65a791a3-d3db-4d2c-af27-770bfcd69897",
+          "uuid": "868d12a8-66a2-43d7-b4fd-7a2cba08c5a5",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
@@ -474,14 +474,14 @@
       "responseMode": null
     },
     {
-      "uuid": "fe6ffe2a-45bf-4c5d-80fd-de7b921a5a56",
+      "uuid": "07876b0d-54ec-4740-b71b-a13f3a9fa6de",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/invitations",
       "responses": [
         {
-          "uuid": "5dc29735-1542-4d69-a8dd-f70e3b744ba6",
+          "uuid": "6d604d67-80d7-4a00-a719-67de75c5c4c6",
           "body": "[\r\n  {\r\n    id: \"10\",\r\n    userID: \"45645\",\r\n    username: \"David Leonardo Garzón\",\r\n    email: \"lgarzon@gmail.com\",\r\n    invitationDate: \"11/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"11\",\r\n    userID: \"534693\",\r\n    username: \"Cristina Schmidt\",\r\n    email: \"cristina_schmidt@gmail.com\",\r\n    invitationDate: \"11/ENE/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {\r\n    id: \"12\",\r\n    userID: \"757712\",\r\n    username: \"Roberta Wallace\",\r\n    email: \"roberta_wallace@gmail.com\",\r\n    invitationDate: \"26/AGO/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"13\",\r\n    userID: \"440652\",\r\n    username: \"Gross Mendez\",\r\n    email: \"gross_mendez@gmail.com\",\r\n    invitationDate: \"17/MAY/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"14\",\r\n    userID: \"846779\",\r\n    username: \"Martinez French\",\r\n    email: \"martinez_french@gmail.com\",\r\n    invitationDate: \"07/OCT/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"15\",\r\n    userID: \"838645\",\r\n    username: \"Lowe Ellis\",\r\n    email: \"lowe_ellis@gmail.com\",\r\n    invitationDate: \"05/ENE/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"16\",\r\n    userID: \"835761\",\r\n    username: \"Barlow Ballard\",\r\n    email: \"barlow_ballard@gmail.com\",\r\n    invitationDate: \"03/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"17\",\r\n    userID: \"592492\",\r\n    username: \"Madeline Ayers\",\r\n    email: \"madeline_ayers@gmail.com\",\r\n    invitationDate: \"20/JUL/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"18\",\r\n    userID: \"683321\",\r\n    username: \"Bowen Greene\",\r\n    email: \"bowen_greene@gmail.com\",\r\n    invitationDate: \"26/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {\r\n    id: \"19\",\r\n    userID: \"695730\",\r\n    username: \"Deborah Elliott\",\r\n    email: \"deborah_elliott@gmail.com\",\r\n    invitationDate: \"03/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"20\",\r\n    userID: \"682422\",\r\n    username: \"Karina Fitzgerald\",\r\n    email: \"karina_fitzgerald@gmail.com\",\r\n    invitationDate: \"07/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {\r\n    id: \"21\",\r\n    userID: \"746049\",\r\n    username: \"Rachel Carpenter\",\r\n    email: \"rachel_carpenter@gmail.com\",\r\n    invitationDate: \"24/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"22\",\r\n    userID: \"816645\",\r\n    username: \"Judith Santana\",\r\n    email: \"judith_santana@gmail.com\",\r\n    invitationDate: \"10/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"23\",\r\n    userID: \"486616\",\r\n    username: \"Angelita Stein\",\r\n    email: \"angelita_stein@gmail.com\",\r\n    invitationDate: \"27/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"24\",\r\n    userID: \"774335\",\r\n    username: \"Pamela Gibbs\",\r\n    email: \"pamela_gibbs@gmail.com\",\r\n    invitationDate: \"01/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"25\",\r\n    userID: \"536431\",\r\n    username: \"Osborn Larsen\",\r\n    email: \"osborn_larsen@gmail.com\",\r\n    invitationDate: \"09/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"26\",\r\n    userID: \"479249\",\r\n    username: \"Tisha Stevens\",\r\n    email: \"tisha_stevens@gmail.com\",\r\n    invitationDate: \"20/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"27\",\r\n    userID: \"448172\",\r\n    username: \"Rosemarie Snow\",\r\n    email: \"rosemarie_snow@gmail.com\",\r\n    invitationDate: \"10/JUL/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"28\",\r\n    userID: \"898779\",\r\n    username: \"Terry Shaffer\",\r\n    email: \"terry_shaffer@gmail.com\",\r\n    invitationDate: \"07/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"29\",\r\n    userID: \"692860\",\r\n    username: \"Sofia Osborn\",\r\n    email: \"sofia_osborn@gmail.com\",\r\n    invitationDate: \"22/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {\r\n    id: \"30\",\r\n    userID: \"666124\",\r\n    username: \"Campos Christensen\",\r\n    email: \"campos_christensen@gmail.com\",\r\n    invitationDate: \"18/MAR/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {\r\n    id: \"31\",\r\n    userID: \"454377\",\r\n    username: \"Stacy Cooke\",\r\n    email: \"stacy_cooke@gmail.com\",\r\n    invitationDate: \"23/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {\r\n    id: \"32\",\r\n    userID: \"404949\",\r\n    username: \"Goff Mejia\",\r\n    email: \"goff_mejia@gmail.com\",\r\n    invitationDate: \"15/SEP/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"33\",\r\n    userID: \"615315\",\r\n    username: \"Mcintyre Wells\",\r\n    email: \"mcintyre_wells@gmail.com\",\r\n    invitationDate: \"12/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {\r\n    id: \"34\",\r\n    userID: \"842395\",\r\n    username: \"Alyce Powers\",\r\n    email: \"alyce_powers@gmail.com\",\r\n    invitationDate: \"24/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {\r\n    id: \"35\",\r\n    userID: \"801730\",\r\n    username: \"Kathleen Matthews\",\r\n    email: \"kathleen_matthews@gmail.com\",\r\n    invitationDate: \"30/OCT/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {\r\n    id: \"36\",\r\n    userID: \"700677\",\r\n    username: \"Susana Davidson\",\r\n    email: \"susana_davidson@gmail.com\",\r\n    invitationDate: \"16/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {\r\n    id: \"37\",\r\n    userID: \"421571\",\r\n    username: \"Carr Brady\",\r\n    email: \"carr_brady@gmail.com\",\r\n    invitationDate: \"06/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {\r\n    id: \"38\",\r\n    userID: \"576861\",\r\n    username: \"Whitney Copeland\",\r\n    email: \"whitney_copeland@gmail.com\",\r\n    invitationDate: \"15/NOV/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -503,7 +503,7 @@
           "default": true
         },
         {
-          "uuid": "248a5421-ba9b-4e5b-84e4-802ef11fcc0e",
+          "uuid": "6baf840a-9b36-42a3-a477-78c0e9cb9b10",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -525,7 +525,7 @@
           "default": false
         },
         {
-          "uuid": "fa08539f-0ce3-40a3-b9c2-5562a8a8cf44",
+          "uuid": "2c91dd16-be03-45f2-9062-0355af4c21b0",
           "body": "{\n  \"status\": 500,\n  \"message\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
@@ -551,19 +551,24 @@
       "responseMode": null
     },
     {
-      "uuid": "a2850a9d-fdfe-45ea-8dda-6b9c1945d048",
+      "uuid": "7a9b060d-9721-4e7d-a32f-7d92ea14191a",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "v1/privileges/invitations/:invitation_id",
       "responses": [
         {
-          "uuid": "c691ccba-92d6-4373-81ff-c7cab0bc87b4",
+          "uuid": "cc4fac3a-d28c-4f29-b706-fbc7c75b5445",
           "body": "[\r\n  {{# switch (urlParam 'invitation_id')}}\r\n  {{# case '10' }}\r\n    {\r\n      id: \"10\",\r\n      userID: \"45645\",\r\n      username: \"David Leonardo Garzón\",\r\n      email: \"lgarzon@gmail.com\",\r\n      invitationDate: \"11/JUN/2022\",\r\n      status: \"Sent\",\r\n      phone: \"3123456789\",\r\n    },\r\n  {{/ case }}\r\n  {{# case '11' }}\r\n  {\r\n    id: \"11\",\r\n    userID: \"534693\",\r\n    username: \"Cristina Schmidt\",\r\n    email: \"cristina_schmidt@gmail.com\",\r\n    invitationDate: \"11/ENE/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '12' }}\r\n  {\r\n    id: \"12\",\r\n    userID: \"757712\",\r\n    username: \"Roberta Wallace\",\r\n    email: \"roberta_wallace@gmail.com\",\r\n    invitationDate: \"26/AGO/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '13' }}\r\n  {\r\n    id: \"13\",\r\n    userID: \"440652\",\r\n    username: \"Gross Mendez\",\r\n    email: \"gross_mendez@gmail.com\",\r\n    invitationDate: \"17/MAY/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '14' }}\r\n  {\r\n    id: \"14\",\r\n    userID: \"846779\",\r\n    username: \"Martinez French\",\r\n    email: \"martinez_french@gmail.com\",\r\n    invitationDate: \"07/OCT/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '15' }}\r\n  {\r\n    id: \"15\",\r\n    userID: \"838645\",\r\n    username: \"Lowe Ellis\",\r\n    email: \"lowe_ellis@gmail.com\",\r\n    invitationDate: \"05/ENE/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '16' }}\r\n  {\r\n    id: \"16\",\r\n    userID: \"835761\",\r\n    username: \"Barlow Ballard\",\r\n    email: \"barlow_ballard@gmail.com\",\r\n    invitationDate: \"03/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '17' }}\r\n  {\r\n    id: \"17\",\r\n    userID: \"592492\",\r\n    username: \"Madeline Ayers\",\r\n    email: \"madeline_ayers@gmail.com\",\r\n    invitationDate: \"20/JUL/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '18' }}\r\n  {\r\n    id: \"18\",\r\n    userID: \"683321\",\r\n    username: \"Bowen Greene\",\r\n    email: \"bowen_greene@gmail.com\",\r\n    invitationDate: \"26/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '19' }}\r\n  {\r\n    id: \"19\",\r\n    userID: \"695730\",\r\n    username: \"Deborah Elliott\",\r\n    email: \"deborah_elliott@gmail.com\",\r\n    invitationDate: \"03/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '20' }}\r\n  {\r\n    id: \"20\",\r\n    userID: \"682422\",\r\n    username: \"Karina Fitzgerald\",\r\n    email: \"karina_fitzgerald@gmail.com\",\r\n    invitationDate: \"07/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3209876543\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '21' }}\r\n  {\r\n    id: \"21\",\r\n    userID: \"746049\",\r\n    username: \"Rachel Carpenter\",\r\n    email: \"rachel_carpenter@gmail.com\",\r\n    invitationDate: \"24/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '22' }}\r\n  {\r\n    id: \"22\",\r\n    userID: \"816645\",\r\n    username: \"Judith Santana\",\r\n    email: \"judith_santana@gmail.com\",\r\n    invitationDate: \"10/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '23' }}\r\n  {\r\n    id: \"23\",\r\n    userID: \"486616\",\r\n    username: \"Angelita Stein\",\r\n    email: \"angelita_stein@gmail.com\",\r\n    invitationDate: \"27/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '24' }}\r\n  {\r\n    id: \"24\",\r\n    userID: \"774335\",\r\n    username: \"Pamela Gibbs\",\r\n    email: \"pamela_gibbs@gmail.com\",\r\n    invitationDate: \"01/JUN/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '25' }}\r\n  {\r\n    id: \"25\",\r\n    userID: \"536431\",\r\n    username: \"Osborn Larsen\",\r\n    email: \"osborn_larsen@gmail.com\",\r\n    invitationDate: \"09/AGO/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '26' }}\r\n  {\r\n    id: \"26\",\r\n    userID: \"479249\",\r\n    username: \"Tisha Stevens\",\r\n    email: \"tisha_stevens@gmail.com\",\r\n    invitationDate: \"20/JUN/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '27' }}\r\n  {\r\n    id: \"27\",\r\n    userID: \"448172\",\r\n    username: \"Rosemarie Snow\",\r\n    email: \"rosemarie_snow@gmail.com\",\r\n    invitationDate: \"10/JUL/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '28' }}\r\n  {\r\n    id: \"28\",\r\n    userID: \"898779\",\r\n    username: \"Terry Shaffer\",\r\n    email: \"terry_shaffer@gmail.com\",\r\n    invitationDate: \"07/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '29' }}\r\n  {\r\n    id: \"29\",\r\n    userID: \"692860\",\r\n    username: \"Sofia Osborn\",\r\n    email: \"sofia_osborn@gmail.com\",\r\n    invitationDate: \"22/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3167890123\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '30' }}\r\n  {\r\n    id: \"30\",\r\n    userID: \"666124\",\r\n    username: \"Campos Christensen\",\r\n    email: \"campos_christensen@gmail.com\",\r\n    invitationDate: \"18/MAR/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '31' }}\r\n  {\r\n    id: \"31\",\r\n    userID: \"454377\",\r\n    username: \"Stacy Cooke\",\r\n    email: \"stacy_cooke@gmail.com\",\r\n    invitationDate: \"23/MAR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3134567890\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '32' }}\r\n  {\r\n    id: \"32\",\r\n    userID: \"404949\",\r\n    username: \"Goff Mejia\",\r\n    email: \"goff_mejia@gmail.com\",\r\n    invitationDate: \"15/SEP/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '33' }}\r\n  {\r\n    id: \"33\",\r\n    userID: \"615315\",\r\n    username: \"Mcintyre Wells\",\r\n    email: \"mcintyre_wells@gmail.com\",\r\n    invitationDate: \"12/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3176543210\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '34' }}\r\n  {\r\n    id: \"34\",\r\n    userID: \"842395\",\r\n    username: \"Alyce Powers\",\r\n    email: \"alyce_powers@gmail.com\",\r\n    invitationDate: \"24/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3187654321\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '35' }}\r\n  {\r\n    id: \"35\",\r\n    userID: \"801730\",\r\n    username: \"Kathleen Matthews\",\r\n    email: \"kathleen_matthews@gmail.com\",\r\n    invitationDate: \"30/OCT/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3123456789\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '36' }}\r\n  {\r\n    id: \"36\",\r\n    userID: \"700677\",\r\n    username: \"Susana Davidson\",\r\n    email: \"susana_davidson@gmail.com\",\r\n    invitationDate: \"16/ABR/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3198765432\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '37' }}\r\n  {\r\n    id: \"37\",\r\n    userID: \"421571\",\r\n    username: \"Carr Brady\",\r\n    email: \"carr_brady@gmail.com\",\r\n    invitationDate: \"06/FEB/2022\",\r\n    status: \"Pending\",\r\n    phone: \"3156789012\",\r\n  },\r\n  {{/ case }}\r\n  {{# case '38' }}\r\n  {\r\n    id: \"38\",\r\n    userID: \"576861\",\r\n    username: \"Whitney Copeland\",\r\n    email: \"whitney_copeland@gmail.com\",\r\n    invitationDate: \"15/NOV/2022\",\r\n    status: \"Sent\",\r\n    phone: \"3145678901\",\r\n  },\r\n  {{/ case }}\r\n  {{# default }}\r\n  {\r\n    id: \"{{urlParam 'invitation_id'}}\",\r\n    message:\"No se encontro id\"\r\n  }\r\n  {{/ default }}\r\n  {{/ switch}}\r\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
-          "headers": [],
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
@@ -575,7 +580,7 @@
           "default": true
         },
         {
-          "uuid": "69da4957-43a4-4b25-a092-adfe435a0143",
+          "uuid": "92bcf61b-cce8-4d0a-8710-ad2d11e0742c",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -597,7 +602,7 @@
           "default": false
         },
         {
-          "uuid": "7e6def09-f276-40b3-84c0-74f077b366da",
+          "uuid": "96e397a6-2e1d-4f46-9f20-c2375b72bc49",
           "body": "{\n  \"status\": 500,\n  \"message\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
@@ -626,7 +631,7 @@
   "rootChildren": [
     {
       "type": "folder",
-      "uuid": "bb09db1d-e3d1-4be6-915d-bbb0a94dccab"
+      "uuid": "74d32308-ddf3-4264-acd4-c03f26c12e21"
     }
   ],
   "proxyMode": false,
