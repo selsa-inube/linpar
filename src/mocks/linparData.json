@@ -4,7 +4,7 @@
   "name": "LinparData",
   "endpointPrefix": "",
   "latency": 0,
-  "port": 3000,
+  "port": 3001,
   "hostname": "",
   "folders": [
     {
@@ -45,6 +45,14 @@
         {
           "type": "route",
           "uuid": "fce761e5-e057-4b4d-9cac-76d3d3d970da"
+        },
+        {
+          "type": "route",
+          "uuid": "435e0984-5aaa-4859-8026-d68b37619148"
+        },
+        {
+          "type": "route",
+          "uuid": "1139f288-7c85-4608-9196-12139385b5b4"
         }
       ]
     },
@@ -96,7 +104,7 @@
         },
         {
           "uuid": "4aa61e06-6051-4a42-93d4-c2445fe86c40",
-          "body": "{}",
+          "body": "[]",
           "latency": 0,
           "statusCode": 204,
           "label": "",
@@ -163,7 +171,7 @@
         },
         {
           "uuid": "3708a819-e14a-49e5-bf61-4cae80d90ba3",
-          "body": "{}",
+          "body": "[]",
           "latency": 0,
           "statusCode": 204,
           "label": "",
@@ -329,6 +337,168 @@
         },
         {
           "uuid": "65a791a3-d3db-4d2c-af27-770bfcd69897",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "435e0984-5aaa-4859-8026-d68b37619148",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users",
+      "responses": [
+        {
+          "uuid": "b7b4b345-856f-47e8-a884-17c17831afa4",
+          "body": "[\r\n  {\r\n    id: \"11\",\r\n    username: \"David Leonardo Garzón\",\r\n    code: \"LGARZON\",\r\n    userID: \"1256545\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"dgarzon@sistemasenlinea.com.co\",\r\n    phone: \"3123202874\",\r\n  },\r\n  {\r\n    id: \"12\",\r\n    username: \"Angie Pinilla\",\r\n    code: \"APINILLA\",\r\n    userID: \"789654\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"apinilla@sistemasenlinea.com.co\",\r\n    phone: \"1212145789\",\r\n  },\r\n  {\r\n    id: \"13\",\r\n    username: \"Cristian Rojas\",\r\n    code: \"CROJAS\",\r\n    userID: \"258963\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"crojas@sistemasenlinea.com.co\",\r\n    phone: \"1322146789\",\r\n  },\r\n  {\r\n    id: \"14\",\r\n    username: \"Johan Nova\",\r\n    code: \"JNOVA\",\r\n    userID: \"589647\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"jgarcia@sistemasenlinea.com.co\",\r\n    phone: \"2322146351\",\r\n  },\r\n  {\r\n    id: \"15\",\r\n    username: \"Fernando Cañas\",\r\n    code: \"FCANAS\",\r\n    userID: \"365224\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"fcanas@sistemasenlinea.com.co\",\r\n    phone: \"2322267530\",\r\n  },\r\n  {\r\n    id: \"16\",\r\n    username: \"Carlos Batativa\",\r\n    code: \"CBATATIVA\",\r\n    userID: \"2357421\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"cbabativa@sistemasenlinea.com.co\",\r\n    phone: \"1234567890\",\r\n  },\r\n  {\r\n    id: \"17\",\r\n    username: \"Cesar Marin\",\r\n    code: \"CMARIN\",\r\n    userID: \"1000245\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"cmarin@sistemasenlinea.com.co\",\r\n    phone: \"2322789456\",\r\n  },\r\n  {\r\n    id: \"18\",\r\n    username: \"Pedro Perez\",\r\n    code: \"PEREZ\",\r\n    userID: \"687440\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"pperez@gmail.com\",\r\n    phone: \"1234567891\",\r\n  },\r\n  {\r\n    id: \"19\",\r\n    username: \"Sofia Henao\",\r\n    code: \"SHENAO\",\r\n    userID: \"352411\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"shenao@gmail.com\",\r\n    phone: \"1234567892\",\r\n  },\r\n  {\r\n    id: \"20\",\r\n    username: \"Daniel Novoa\",\r\n    code: \"DNOVOA\",\r\n    userID: \"320145\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"dnovoa@gmail.com\",\r\n    phone: \"1234567893\",\r\n  },\r\n  {\r\n    id: \"21\",\r\n    username: \"Jose Gomez\",\r\n    code: \"JGOMEZ\",\r\n    userID: \"4578899\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"jgomez@gmail.com\",\r\n    phone: \"1234567894\",\r\n  },\r\n  {\r\n    id: \"22\",\r\n    username: \"Jeimmy Cruz\",\r\n    code: \"JCRUZ\",\r\n    userID: \"586745\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"jcruz@gmail.com\",\r\n    phone: \"1234567895\",\r\n  },\r\n  {\r\n    id: \"23\",\r\n    username: \"Samuel Mejia\",\r\n    code: \"SMEJIA\",\r\n    userID: \"235652\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"smejia@gmail.com\",\r\n    phone: \"12345678946\",\r\n  },\r\n  {\r\n    id: \"24\",\r\n    username: \"Laura Amado\",\r\n    code: \"LAMADO\",\r\n    userID: \"3201153\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"lamado@gmail.com\",\r\n    phone: \"1234567897\",\r\n  },\r\n  {\r\n    id: \"25\",\r\n    username: \"Jhonatan Fernandez\",\r\n    code: \"JFERNANDEZ\",\r\n    userID: \"0215451\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"jfernandez@gmail.com\",\r\n    phone: \"1234567898\",\r\n  },\r\n  {\r\n    id: \"26\",\r\n    username: \"Diego Morales\",\r\n    code: \"DMORALES\",\r\n    userID: \"5656461\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"dmorales@gmail.com\",\r\n    phone: \"1234567899\",\r\n  },\r\n  {\r\n    id: \"27\",\r\n    username: \"Carolina Gomez\",\r\n    code: \"CGOMEZ\",\r\n    userID: \"841216423\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"cgomez@gmail.com\",\r\n    phone: \"1234567800\",\r\n  },\r\n  {\r\n    id: \"28\",\r\n    username: \"Fabian Jaramillo\",\r\n    code: \"FJARAMILLO\",\r\n    userID: \"47456444\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"fjaramillo@gmail.com\",\r\n    phone: \"1234567801\",\r\n  },\r\n  {\r\n    id: \"29\",\r\n    username: \"Jesica Beltran\",\r\n    code: \"JBELTRAN\",\r\n    userID: \"22115151\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"jbletran@gmail.com\",\r\n    phone: \"1234567802\",\r\n  },\r\n  {\r\n    id: \"30\",\r\n    username: \"Sebastian Gonzales\",\r\n    code: \"SGONZALES\",\r\n    userID: \"84548774\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"sgonzales@gmail.com\",\r\n    phone: \"1234567803\",\r\n  },\r\n  {\r\n    id: \"31\",\r\n    username: \"Felipe Alvarez\",\r\n    code: \"FALVAREZ\",\r\n    userID: \"84545478\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"falvarez@gmail.com\",\r\n    phone: \"1234567810\",\r\n  },\r\n  {\r\n    id: \"32\",\r\n    username: \"freddy Baquero\",\r\n    code: \"FBAQUERO\",\r\n    userID: \"78785744\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"fbaquero@gmail.com\",\r\n    phone: \"1234567811\",\r\n  },\r\n  {\r\n    id: \"33\",\r\n    username: \"Tomas Rodriguez\",\r\n    code: \"TRODRIGUEZ\",\r\n    userID: \"845456\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"trodriguez@gmail.com\",\r\n    phone: \"1234567812\",\r\n  },\r\n  {\r\n    id: \"34\",\r\n    username: \"Daniel Zamora\",\r\n    code: \"DZAMORA\",\r\n    userID: \"966586\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"dzamora@gmail.com\",\r\n    phone: \"1234567816\",\r\n  },\r\n  {\r\n    id: \"35\",\r\n    username: \"Brandon Pineda\",\r\n    code: \"BPINEDA\",\r\n    userID: \"7414542\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"bpineda@gmail.com\",\r\n    phone: \"1234567817\",\r\n  },\r\n  {\r\n    id: \"36\",\r\n    username: \"Jeimmy Zambrano\",\r\n    code: \"JZAMBRANO\",\r\n    userID: \"4001154\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"jzambrano@gmail.com\",\r\n    phone: \"1234567820\",\r\n  },\r\n  {\r\n    id: \"37\",\r\n    username: \"Andres Lopez\",\r\n    code: \"ALOPEZ\",\r\n    userID: \"41251321\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"alopez@gmail.com\",\r\n    phone: \"1234567821\",\r\n  },\r\n  {\r\n    id: \"38\",\r\n    username: \"Carmen Pedraza\",\r\n    code: \"CPEDRAZA\",\r\n    userID: \"843254432\",\r\n    position: \"Credit Analyst\",\r\n    active: true,\r\n    email: \"cpedraza@gmail.com\",\r\n    phone: \"1234567822\",\r\n  },\r\n  {\r\n    id: \"39\",\r\n    username: \"Camilo Torres\",\r\n    code: \"CTORRES\",\r\n    userID: \"8641651\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"ctorres@gmail.com\",\r\n    phone: \"1234567824\",\r\n  },\r\n  {\r\n    id: \"40\",\r\n    username: \"Alvaro Rosales\",\r\n    code: \"AROSALES\",\r\n    userID: \"325215\",\r\n    position: \"Adviser\",\r\n    active: false,\r\n    email: \"arosales@gmail.com\",\r\n    phone: \"1234567825\",\r\n  },\r\n  {\r\n    id: \"41\",\r\n    username: \"Roberto Vargas\",\r\n    code: \"RVARGAS\",\r\n    userID: \"141740\",\r\n    position: \"Credit Analyst\",\r\n    active: false,\r\n    email: \"rvargas@gmail.com\",\r\n    phone: \"1234567830\",\r\n  },\r\n  {\r\n    id: \"42\",\r\n    username: \"Santiago Maldonado\",\r\n    code: \"SMALDONADO\",\r\n    userID: \"9556413\",\r\n    position: \"Adviser\",\r\n    active: true,\r\n    email: \"smaldonado@gmail.com\",\r\n    phone: \"1234567837\",\r\n  },\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "20f6f03b-dbe9-4411-87f3-d21d604d6f57",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "c2261546-b61d-482f-b0f2-6f31f7c999cb",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "1139f288-7c85-4608-9196-12139385b5b4",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/privileges/users/:user_id",
+      "responses": [
+        {
+          "uuid": "dfba3214-f4e2-4da4-aec2-868c18c8c78a",
+          "body": "{\r\n  id: \"11\",\r\n  username: \"David Leonardo Garzón\",\r\n  code: \"LGARZON\",\r\n  userID: \"1256545\",\r\n  position: \"Credit Analyst\",\r\n  active: false,\r\n  email: \"dgarzon@sistemasenlinea.com.co\",\r\n  phone: \"3123202874\"\r\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "user_id",
+              "value": "11",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "30cf902b-ef96-4d0e-baf2-4b79aaf562d5",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "3accd678-a34d-4c31-bb9a-a2220bd2d3d2",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
