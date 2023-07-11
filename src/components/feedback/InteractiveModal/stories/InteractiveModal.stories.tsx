@@ -1,4 +1,3 @@
-import { IAction } from "@src/components/data/Table/types";
 import { action } from "@storybook/addon-actions";
 import { StoryFn } from "@storybook/react";
 import {
@@ -7,7 +6,7 @@ import {
   MdOutlineShortcut,
 } from "react-icons/md";
 import { InteractiveModal, InteractiveModalProps } from "..";
-import { ILabel } from "../types";
+import { IAction, ILabel } from "../types";
 
 const story = {
   component: InteractiveModal,

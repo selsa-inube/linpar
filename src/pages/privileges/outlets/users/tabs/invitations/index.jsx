@@ -1,5 +1,5 @@
 import { SectionMessage } from "@components/feedback/SectionMessage";
-import { Table } from "@inube/design-system";
+import { Table, useMediaQuery } from "@inube/design-system";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { useState } from "react";
 import { resendInvitationMessages } from "../../../users/config/resendInvitationUser.config";
@@ -25,12 +25,17 @@ function InvitationsTab(props) {
   const [message, setMessage] = useState(initialMessageState);
   const [invitations, setInvitations] = useState(invitationEntriesDataMock);
 
+  const smallScreen = useMediaQuery("(max-width: 850px)");
+
   const invitationsTableActions = [
     {
       id: "1",
       actionName: "Complete",
       content: (invitation) => (
-        <CompleteInvitationLink invitation={invitation} />
+        <CompleteInvitationLink
+          invitation={invitation}
+          showComplete={smallScreen}
+        />
       ),
       type: "secondary",
     },
@@ -41,6 +46,7 @@ function InvitationsTab(props) {
         <ResendInvitation
           invitation={invitation}
           handleResendInvitation={() => handleResendInvitation(invitation)}
+          showComplete={smallScreen}
         />
       ),
       type: "primary",
@@ -49,7 +55,10 @@ function InvitationsTab(props) {
       id: "3",
       actionName: "Delete",
       content: (invitation) => (
-        <DeleteInvitation handleDelete={() => deleteInvitation(invitation)} />
+        <DeleteInvitation
+          handleDelete={() => deleteInvitation(invitation)}
+          showComplete={smallScreen}
+        />
       ),
       type: "remove",
     },

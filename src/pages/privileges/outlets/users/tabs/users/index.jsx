@@ -1,5 +1,5 @@
 import { SectionMessage } from "@components/feedback/SectionMessage";
-import { Table } from "@inube/design-system";
+import { Table, useMediaQuery } from "@inube/design-system";
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import { useState } from "react";
 import { activateUserMessages } from "../../config/activateUser.config";
@@ -81,6 +81,8 @@ function UsersTab(props) {
     setMessage(initialMessageState);
   };
 
+  const smallScreen = useMediaQuery("(max-width: 850px)");
+
   const actions = [
     {
       id: "1",
@@ -89,6 +91,7 @@ function UsersTab(props) {
         <ActivateUser
           user={user}
           handleActivateUser={() => handleActivateUser(user)}
+          showComplete={smallScreen}
         />
       ),
       type: "secondary",
@@ -96,14 +99,18 @@ function UsersTab(props) {
     {
       id: "2",
       actionName: "Edit",
-      content: (entry) => <EditUser entry={entry} />,
+      content: (entry) => <EditUser entry={entry} showComplete={smallScreen} />,
       type: "primary",
     },
     {
       id: "3",
       actionName: "Delete",
       content: (user) => (
-        <DeleteUser user={user} handleDeleteUser={() => deleteUser(user)} />
+        <DeleteUser
+          user={user}
+          handleDeleteUser={() => deleteUser(user)}
+          showComplete={smallScreen}
+        />
       ),
       type: "remove",
     },

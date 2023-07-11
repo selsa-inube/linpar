@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ActivateUserUI } from "./interface";
 
 function ActivateUser(props) {
-  const { user, handleActivateUser } = props;
+  const { user, handleActivateUser, showComplete } = props;
   const [showActivateUserModal, setShowActivateUserModal] = useState(false);
 
   const handleToggleModal = () => {
@@ -17,6 +17,7 @@ function ActivateUser(props) {
       id={user.id}
       handleToggleModal={handleToggleModal}
       handleActivateUser={handleActivateUser}
+      showComplete={showComplete}
     />
   );
 }
