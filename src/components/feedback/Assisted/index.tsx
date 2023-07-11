@@ -30,6 +30,7 @@ function Assisted(props: AssistedProps) {
       currentStepInfo={currentStepInfo}
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
+      handleStepChange={handleStepChange}
       steps={steps}
     />
   );

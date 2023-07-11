@@ -18,6 +18,7 @@ interface IAssistedUIProps {
   currentStepInfo?: IStep;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
+  handleStepChange: (stepId: number) => void;
   steps: IStep[];
 }
 
@@ -29,6 +30,7 @@ function AssistedUI(props: IAssistedUIProps) {
     currentStepInfo,
     handleNextStep,
     handlePreviousStep,
+    handleStepChange,
     steps,
   } = props;
 
@@ -54,6 +56,7 @@ function AssistedUI(props: IAssistedUIProps) {
           isVerification={step.isVerification ?? false}
           marginToLeft={marginToLeft}
           marginToRight={marginToRight}
+          handleStepChange={handleStepChange}
         />
       );
     }

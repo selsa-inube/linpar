@@ -6,6 +6,7 @@ import {
   StyledLeftLine,
   StyledRightLine,
   StyledArrowDown,
+  StyledStepCircle,
 } from "./styles";
 
 interface StepIndicatorProps {
@@ -15,6 +16,7 @@ interface StepIndicatorProps {
   isVerification?: boolean;
   marginToLeft?: boolean;
   marginToRight?: boolean;
+  handleStepChange: (stepId: number) => void;
 }
 
 function StepIndicator(props: StepIndicatorProps) {
@@ -25,6 +27,7 @@ function StepIndicator(props: StepIndicatorProps) {
     isVerification,
     marginToLeft,
     marginToRight,
+    handleStepChange,
   } = props;
 
   const isActualStep = actualStep === stepNumber;
@@ -51,25 +54,38 @@ function StepIndicator(props: StepIndicatorProps) {
     return "disabled";
   };
 
+  function handleClickStep() {
+    if (stepNumber <= actualStep + 1) {
+      handleStepChange(stepNumber);
+    }
+  }
+
   return (
     <StyledStep marginToLeft={marginToLeft} marginToRight={marginToRight}>
       <Stack direction="column" alignItems="center">
         <StyledArrowDown isActualStep={isActualStep}>
           <MdKeyboardArrowDown size={24} />
         </StyledArrowDown>
-        <StyledStepNumber
-          isActualStep={isActualStep}
-          isPreviousStep={isPreviousStep || inVerification}
-        >
+        <StyledStepNumber>
           <StyledLeftLine
             isFirstStep={stepNumber === 1}
             isActualStep={isActualStep}
             isPreviousStep={isPreviousStep || inVerification}
           />
+          <StyledStepCircle
+            isActualStep={isActualStep}
+            isPreviousStep={isPreviousStep || inVerification}
+            onClick={handleClickStep}
+          >
+            {!isVerification ? (
+              <Text typo="titleSmall" appearance={getAppearance()}>
+                {stepNumber}
+              </Text>
+            ) : (
+              <MdCheckCircleOutline size={30} />
+            )}
+          </StyledStepCircle>
 
-          <Text typo="titleSmall" appearance={getAppearance()}>
-            {isVerification ? <MdCheckCircleOutline size={30} /> : stepNumber}
-          </Text>
           <StyledRightLine
             isLastStep={isVerification}
             isPreviousStep={isPreviousStep || inVerification}

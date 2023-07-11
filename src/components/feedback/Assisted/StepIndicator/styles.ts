@@ -4,19 +4,27 @@ import { colors } from "@styles/colors";
 interface IStyledStep {
   marginToRight?: boolean;
   marginToLeft?: boolean;
-  isFirstStep?: boolean;
-  isLastStep?: boolean;
-  isPreviousStep?: boolean;
+}
+
+interface IStyledArrowDown {
   isActualStep?: boolean;
 }
 
-interface IStyledArrowDown extends IStyledStep {}
+interface IStyledLeftLine {
+  isFirstStep?: boolean;
+  isActualStep?: boolean;
+  isPreviousStep?: boolean;
+}
 
-interface IStyledStepNumber extends IStyledStep {}
+interface IStyledRightLine {
+  isLastStep?: boolean;
+  isPreviousStep?: boolean;
+}
 
-interface IStyledLeftLine extends IStyledStep {}
-
-interface IStyledRightLine extends IStyledStep {}
+interface IStyledStepCircle {
+  isPreviousStep?: boolean;
+  isActualStep?: boolean;
+}
 
 const getIconColor = (props: IStyledArrowDown): string => {
   if (props.isActualStep) {
@@ -25,20 +33,28 @@ const getIconColor = (props: IStyledArrowDown): string => {
   return "transparent";
 };
 
-const getStepNumberBackgroundColor = (props: IStyledStepNumber): string => {
+const getStepNumberBackgroundColor = (props: IStyledStepCircle): string => {
   if (props.isPreviousStep) {
     return colors.sys.status.inProgress;
   }
   return "transparent";
 };
 
-const getStepNumberBorderColor = (props: IStyledStepNumber): string => {
+const getStepNumberBorderColor = (props: IStyledStepCircle): string => {
   if (props.isActualStep) {
     return colors.sys.text.primary;
   }
   if (props.isPreviousStep) {
     return "transparent";
   }
+  return colors.sys.text.disabled;
+};
+
+const getStepVerificationColor = (props: IStyledStepCircle): string => {
+  if (props.isActualStep || props.isPreviousStep) {
+    return colors.sys.text.light;
+  }
+
   return colors.sys.text.disabled;
 };
 
@@ -73,22 +89,27 @@ const StyledArrowDown = styled.div<IStyledArrowDown>`
   color: ${getIconColor};
 `;
 
-const StyledStepNumber = styled.div<IStyledStepNumber>`
+const StyledStepNumber = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+`;
 
-  & p {
-    background-color: ${getStepNumberBackgroundColor};
-    border-color: ${getStepNumberBorderColor};
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 50%;
-    min-width: 26px;
-    height: 26px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const StyledStepCircle = styled.button<IStyledStepCircle>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  min-width: 30px;
+  height: 30px;
+  cursor: pointer;
+  padding: 0;
+  background-color: ${getStepNumberBackgroundColor};
+  border-color: ${getStepNumberBorderColor};
+  & svg {
+    color: ${getStepVerificationColor};
   }
 `;
 
@@ -110,4 +131,5 @@ export {
   StyledLeftLine,
   StyledRightLine,
   StyledArrowDown,
+  StyledStepCircle,
 };
