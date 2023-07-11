@@ -4,10 +4,11 @@ import { colors } from "@styles/colors";
 interface IStyledStep {
   isPreviousStep?: boolean;
   isActualStep?: boolean;
-  isFirstStep?: boolean;
 }
 
-interface IStyledLine extends IStyledStep {}
+interface IStyledLine extends IStyledStep {
+  isFirstStep?: boolean;
+}
 
 function getBackgroundColor(props: IStyledStep) {
   if (props.isPreviousStep || props.isActualStep) {
