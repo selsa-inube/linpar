@@ -1,8 +1,8 @@
-import { DeleteUserUI } from "./interface";
 import { useState } from "react";
+import { DeleteUserUI } from "./interface";
 
 function DeleteUser(props) {
-  const { user, handleDeleteUser } = props;
+  const { user, handleDeleteUser, showComplete } = props;
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
@@ -20,6 +20,7 @@ function DeleteUser(props) {
       handleShowModal={handleShowModal}
       handleDeleteUser={handleDeleteUser}
       closeModal={closeModal}
+      showComplete={showComplete}
     />
   );
 }

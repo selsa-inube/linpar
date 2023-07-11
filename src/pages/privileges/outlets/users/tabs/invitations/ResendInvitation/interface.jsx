@@ -1,18 +1,36 @@
-import { StyledIconResend } from "./styles";
+import { DecisionModal } from "@components/feedback/DecisionModal";
+import { Button } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
-import { DecisionModal } from "@components/feedback/DecisionModal";
+import { StyledIconResend } from "./styles";
 
 function ResendInvitationUI(props) {
-  const { showResendInvModal, toggleModal, resendInvitationUser, invitation } =
-    props;
+  const {
+    showResendInvModal,
+    toggleModal,
+    resendInvitationUser,
+    invitation,
+    showComplete,
+  } = props;
   const { title, description, textAction, appearance } = resendInvitationModal;
 
   return (
     <>
-      <StyledIconResend>
-        <MdOutlineShortcut onClick={toggleModal} />
-      </StyledIconResend>
+      {showComplete ? (
+        <Button
+          iconBefore={<MdOutlineShortcut size={18} />}
+          handleClick={toggleModal}
+          variant="none"
+          appearance="secondary"
+          spacing="compact"
+        >
+          Reenviar
+        </Button>
+      ) : (
+        <StyledIconResend>
+          <MdOutlineShortcut onClick={toggleModal} />
+        </StyledIconResend>
+      )}
 
       {showResendInvModal && (
         <DecisionModal

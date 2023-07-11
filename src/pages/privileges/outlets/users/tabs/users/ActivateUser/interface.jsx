@@ -1,5 +1,5 @@
-import { Switch } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
+import { Switch } from "@inube/design-system";
 import { activateUserModal } from "../../../config/activateUser.config";
 
 function ActivateUserModal(props) {
@@ -36,6 +36,7 @@ function ActivateUserUI(props) {
     id,
     handleToggleModal,
     handleActivateUser,
+    showComplete,
   } = props;
 
   return (
@@ -44,6 +45,8 @@ function ActivateUserUI(props) {
         checked={active}
         handleChange={handleToggleModal}
         id={id.toString()}
+        label={showComplete ? "Activar" : ""}
+        padding="0px 0px 0px 16px"
       />
 
       {showActivateUserModal && (

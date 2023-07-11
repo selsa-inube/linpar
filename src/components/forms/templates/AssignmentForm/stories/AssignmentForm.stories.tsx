@@ -1,8 +1,8 @@
-import { branchesFormEditUser } from "@mocks/apps/privileges/branchesForm.mock";
+import { branchesFormEditUser } from "@mocks/apps/privileges/users/branchesForm.mock";
 import { action } from "@storybook/addon-actions";
+import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { AssignmentForm, AssignmentFormProps } from "..";
-import { StoryFn } from "@storybook/react";
 import { IEntry } from "../types";
 
 const story = {

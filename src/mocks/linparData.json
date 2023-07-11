@@ -44,7 +44,7 @@
     {
       "uuid": "40888c47-a193-4021-b337-4f045e7f6362",
       "name": "users",
-      "collapsed": true,
+      "collapsed": false,
       "children": [
         {
           "type": "route",
@@ -79,7 +79,7 @@
     {
       "uuid": "14886f05-3e7d-4493-b651-73dcd6db30fb",
       "name": "invitations",
-      "collapsed": true,
+      "collapsed": false,
       "children": [
         {
           "type": "route",
@@ -1019,7 +1019,7 @@
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
-          "default": false
+          "default": true
         },
         {
           "uuid": "166ebfb9-ce00-4da3-9f8f-525bf11afaa2",
@@ -1058,7 +1058,7 @@
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
-          "default": true
+          "default": false
         }
       ],
       "enabled": true,
