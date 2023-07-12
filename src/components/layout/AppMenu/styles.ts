@@ -19,7 +19,6 @@ const StyledCards = styled.ul`
   margin: 48px auto;
   display: grid;
   grid-template-columns: repeat(6, auto);
-  justify-content: center;
   gap: 24px;
   padding: 0;
 
