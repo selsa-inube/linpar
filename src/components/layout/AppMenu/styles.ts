@@ -10,7 +10,7 @@ const StyledAppMenu = styled.div`
 `;
 
 const StyledTitle = styled.div`
-  margin: 32px 0px;
+  margin: 32px 0;
 `;
 
 const StyledCards = styled.ul`
