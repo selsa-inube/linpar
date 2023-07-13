@@ -1,8 +1,8 @@
-import { ILabel } from "@src/components/feedback/InteractiveModal/types";
 import { StoryFn } from "@storybook/react";
 import { MdPersonOutline } from "react-icons/md";
 import { BrowserRouter } from "react-router-dom";
 import { SubjectCard, SubjectCardProps } from "..";
+import { ILabel } from "../types";
 
 const story = {
   component: [SubjectCard],
