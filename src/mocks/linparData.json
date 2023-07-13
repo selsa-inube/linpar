@@ -44,7 +44,7 @@
     {
       "uuid": "40888c47-a193-4021-b337-4f045e7f6362",
       "name": "users",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "route",
@@ -108,13 +108,17 @@
         {
           "type": "route",
           "uuid": "bbf1d437-84fe-4e9b-8951-846b659d366f"
+        },
+        {
+          "type": "route",
+          "uuid": "9b3a7760-a5c4-4ea3-b4ae-d4b9a3683e7a"
         }
       ]
     },
     {
       "uuid": "097c123a-1125-4f32-9144-7e79591b29c3",
       "name": "positions",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "route",
@@ -125,7 +129,7 @@
     {
       "uuid": "aa7b6909-14e1-48fb-9a85-4e6f714e404e",
       "name": "login",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "folder",
@@ -1426,6 +1430,83 @@
         {
           "uuid": "23e9a50e-8a66-4b84-89fe-72f301dda466",
           "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "9b3a7760-a5c4-4ea3-b4ae-d4b9a3683e7a",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/privileges/invitations",
+      "responses": [
+        {
+          "uuid": "5fedf3d0-d078-4981-99fa-4a42fd3c12a6",
+          "body": "{\n  \"invitationId\": \"{{faker 'datatype.uuid'}}\",\n  \"username\": \"{{body 'username'}}\",\n  \"userID\": \"{{body 'userID'}}\",\n  \"phone\": \"{{body 'phone'}}\",\n  \"email\": \"{{body 'email'}}\",\n  \"invitationDate\": \"{{now 'dd-MMMM-yyyy'}}\",\n  \"status\": \"Pending\",\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "7fc88282-6ff2-4532-8cf7-d56272a5aeaf",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "17c954fe-b78b-4468-984d-bff7d5ca761f",
+          "body": "{\n  \"status\": 500,\n  \"error\": \"Internal server error\",\n}",
           "latency": 0,
           "statusCode": 500,
           "label": "",
