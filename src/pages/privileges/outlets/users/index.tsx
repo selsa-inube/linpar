@@ -10,11 +10,11 @@ function Users() {
   const [searchText, setSearchText] = useState("");
   const [showMenu, setShowMenu] = useState(false);
 
-  const handleTabChange = (tabId) => {
+  const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
   };
 
-  const handleSearchText = (event) => {
+  const handleSearchText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
   };
 
