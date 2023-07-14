@@ -1,5 +1,5 @@
 import { PrivilegesOptionsUI } from "./interface";
-import { privilegeOptionsConfig } from "../options/config/privileges.config";
+import { privilegeOptionsConfig } from "./config/privileges.config";
 import { appsConfig } from "../../../home/config/apps.config";
 
 function PrivilegesOptions() {

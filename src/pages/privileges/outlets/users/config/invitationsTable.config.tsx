@@ -55,7 +55,7 @@ const deleteInvitationMessagesConfig = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: (value) =>
+    description: (value: string) =>
       `Hemos eliminado correctamente la invitación del usuario ${value}.`,
     appearance: "confirm",
     duration: 2000,
@@ -64,7 +64,7 @@ const deleteInvitationMessagesConfig = {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo ha salido mal!",
-    description: (value) =>
+    description: (value: string) =>
       `Hemos presentado problemas al eliminar la invitación del usuario ${value}.`,
     appearance: "remove",
     duration: 2000,
