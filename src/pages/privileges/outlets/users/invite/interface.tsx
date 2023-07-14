@@ -17,9 +17,9 @@ interface InviteUIProps {
   handleSubmit: () => void;
 }
 
-interface IMessageInvitationSentConfig {
-  success: IMessageConfig;
-  failed: IMessageConfig;
+enum EMessageType {
+  SUCCESS = "success",
+  FAILED = "failed",
 }
 
 function renderMessages(
@@ -31,10 +31,10 @@ function renderMessages(
     return null;
   }
 
-  let messageType: keyof IMessageInvitationSentConfig = "success";
+  let messageType: EMessageType = EMessageType.SUCCESS;
 
   if (formInvalid) {
-    messageType = "failed";
+    messageType = EMessageType.FAILED;
   }
 
   const { title, description, icon, appearance } =
