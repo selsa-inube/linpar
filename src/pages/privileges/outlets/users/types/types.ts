@@ -1,18 +1,10 @@
-interface IBranches {
+interface IAssignmentFormEntry {
   id: string;
   value: string;
   isActive: boolean;
 }
 
-interface IProjects extends IBranches {}
-
-interface IEvents extends IBranches {}
-
-interface IAidBudgetUnits extends IBranches {}
-
-interface IPayrolls extends IBranches {}
-
-interface IGeneralInformation {
+interface IGeneralInformationEntry {
   id: string;
   userID: string;
   username: string;
@@ -23,12 +15,12 @@ interface IGeneralInformation {
 }
 
 interface IFormsInvitation {
-  generalInformation: { entries?: IGeneralInformation };
-  branches: { entries: IBranches[] };
-  projects: { entries: IProjects[] };
-  events: { entries: IEvents[] };
-  aidBudgetUnits: { entries: IAidBudgetUnits[] };
-  payrolls: { entries: IPayrolls[] };
+  generalInformation: { entries: IGeneralInformationEntry };
+  branches: { entries: IAssignmentFormEntry[] };
+  projects: { entries: IAssignmentFormEntry[] };
+  events: { entries: IAssignmentFormEntry[] };
+  aidBudgetUnits: { entries: IAssignmentFormEntry[] };
+  payrolls: { entries: IAssignmentFormEntry[] };
 }
 
 export type { IFormsInvitation };

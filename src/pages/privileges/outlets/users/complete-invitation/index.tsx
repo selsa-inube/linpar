@@ -27,17 +27,21 @@ function CompleteInvitation() {
   });
 
   function getInvitationInformation() {
-    return invitationEntriesDataMock.find(
+    const invitation = invitationEntriesDataMock.find(
       (invitation) => invitation.id === invitation_id
     );
+
+    if (!invitation) {
+      throw new Error();
+    }
+
+    return invitation;
   }
 
-  const handleSubmit = (values: any) => {
-    const stepKey = Object.keys(stepsRegisterUserConfig).find(
-      (key) =>
-        stepsRegisterUserConfig[key as keyof typeof stepsRegisterUserConfig]
-          .id === currentStep
-    );
+  const handleSubmit = (values: IFormsInvitation) => {
+    const stepKey = Object.entries(stepsRegisterUserConfig).find(
+      ([, config]) => config.id === currentStep
+    )?.[0];
 
     if (stepKey) {
       setInvitationData((prevInvitationData) => ({

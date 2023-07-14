@@ -21,7 +21,7 @@ import { IFormsInvitation } from "../types/types";
 
 interface CompleteInvitationUIProps {
   invitationData: IFormsInvitation;
-  handleSubmit: (values: any) => void;
+  handleSubmit: (values: IFormsInvitation) => void;
   handleStepChange: (step: number) => void;
   currentStep: number;
 }
@@ -53,9 +53,9 @@ const CompleteInvitationUI = (props: CompleteInvitationUIProps) => {
               description={CompleteInvitationUserConfig[0].description}
               navigatePage="/privileges/users"
             />
-            {currentInformation && (
+            {currentInformation && invitationCardData && (
               <SubjectCard
-                subjectData={invitationCardData || {}}
+                subjectData={invitationCardData}
                 title="Informacion del usuario"
                 icon={<MdPersonOutline size={24} />}
                 labels={completeInvitationSubjectCardLabels}
