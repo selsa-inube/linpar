@@ -1,5 +1,5 @@
-import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
-import { IActionConfig } from "./types";
+import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+import { IActionConfig } from "../types";
 
 const resendInvitationModal = {
   title: "resend  invitation",
@@ -28,4 +28,4 @@ const resendInvitationMessages = {
   },
 };
 
-export { resendInvitationModal, resendInvitationMessages };
+export { resendInvitationMessages, resendInvitationModal };
