@@ -10,8 +10,8 @@ import {
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
-  privilegeOptionsConfig,
   privilegeConfig,
+  privilegeOptionsConfig,
 } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
@@ -23,7 +23,17 @@ import {
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
 
-export default function UsersUI(props) {
+interface UsersUIProps {
+  isSelected: string;
+  searchText: string;
+  handleTabChange: (id: string) => void;
+  handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  showMenu: boolean;
+  handleToggleMenuInvitation: () => void;
+  handleCloseMenuInvitation: () => void;
+}
+
+export default function UsersUI(props: UsersUIProps) {
   const {
     isSelected,
     searchText,
