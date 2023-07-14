@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { CompleteInvitationUI } from "./interface";
-import { IDataInvitation } from "./types";
+import { IFormsInvitation } from "../types/types";
 
 function CompleteInvitation() {
   const { invitation_id } = useParams<{ invitation_id: string }>();
@@ -17,7 +17,7 @@ function CompleteInvitation() {
     stepsRegisterUserConfig.generalInformation.id
   );
 
-  const [invitationData, setInvitationData] = useState<IDataInvitation>({
+  const [invitationData, setInvitationData] = useState<IFormsInvitation>({
     generalInformation: { entries: getInvitationInformation() },
     branches: { entries: branchesFormInvitation },
     projects: { entries: projectsFormInvitation },

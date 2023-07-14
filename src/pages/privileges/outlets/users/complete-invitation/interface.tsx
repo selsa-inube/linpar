@@ -17,10 +17,10 @@ import {
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
 import { MdPersonOutline } from "react-icons/md";
-import { IDataInvitation } from "./types";
+import { IFormsInvitation } from "../types/types";
 
 interface CompleteInvitationUIProps {
-  invitationData: IDataInvitation;
+  invitationData: IFormsInvitation;
   handleSubmit: (values: any) => void;
   handleStepChange: (step: number) => void;
   currentStep: number;
@@ -55,7 +55,7 @@ const CompleteInvitationUI = (props: CompleteInvitationUIProps) => {
             />
             {currentInformation && (
               <SubjectCard
-                subjectData={invitationCardData}
+                subjectData={invitationCardData || {}}
                 title="Informacion del usuario"
                 icon={<MdPersonOutline size={24} />}
                 labels={completeInvitationSubjectCardLabels}
