@@ -1,5 +1,6 @@
-import { Users } from "./index";
+import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
+import { Users } from "./index";
 
 const story = {
   components: [Users],
@@ -8,7 +9,7 @@ const story = {
     layout: "fullscreen",
   },
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
