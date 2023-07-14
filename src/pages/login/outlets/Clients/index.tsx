@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { clientsDataMock } from "@mocks/login/clients.mock";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { ClientsUI } from "./interface";
 import { IClientState } from "./types";
 
@@ -9,6 +9,39 @@ function Clients() {
     ref: null,
     value: true,
   });
+  const navigate = useNavigate();
+  const { user_id } = useParams();
+  const [clientsData, setClientsData] = useState([]);
+  const [userEntriesData, setUserEntriesData] = useState<{ clients: any[] }>({
+    clients: [],
+  });
+
+  useEffect(() => {
+    fetchClientsData();
+    fetchUserEntriesData();
+  }, []);
+
+  async function fetchClientsData() {
+    try {
+      const response = await fetch("http://localhost:3001/v1/login/clients");
+      const data = await response.json();
+      setClientsData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function fetchUserEntriesData() {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/v1/privileges/users/${user_id}`
+      );
+      const data = await response.json();
+      setUserEntriesData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   function clientReset() {
     return {
@@ -26,12 +59,7 @@ function Clients() {
   }
 
   function filterClients() {
-    return clientsDataMock.filter((client) => {
-      return (
-        client.name.toUpperCase().includes(search.toUpperCase()) ||
-        client.sigla.toUpperCase().includes(search.toUpperCase())
-      );
-    });
+    return clientsData.filter((client) => userClientIds.includes(client.id));
   }
 
   function handleClientChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -43,11 +71,14 @@ function Clients() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    navigate("/login/loading-app");
   }
+
+  const userClientIds = userEntriesData.clients || [];
 
   return (
     <ClientsUI
-      clients={clientsDataMock}
+      clients={filterClients()}
       search={search}
       client={client}
       handleSearchChange={handleSearchChange}
