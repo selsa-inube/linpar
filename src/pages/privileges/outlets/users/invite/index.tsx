@@ -7,7 +7,14 @@ import { validationMessages } from "@validations/validationMessages";
 
 const LOADING_TIMEOUT = 1500;
 
-const initialValues = {
+interface IFormValues {
+  name: string;
+  id: string;
+  phone: string;
+  email: string;
+}
+
+const initialValues: IFormValues = {
   name: "",
   id: "",
   phone: "",
@@ -36,7 +43,7 @@ function Invite() {
         setLoading(false);
         setFormInvalid(false);
         setShowMessage(true);
-        formik.resetForm(formik.initialValues);
+        formik.resetForm();
       }, LOADING_TIMEOUT);
     },
   });

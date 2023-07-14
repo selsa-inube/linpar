@@ -5,13 +5,40 @@ import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
+import { FormikValues } from "formik";
 
-function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
+interface InviteUIProps {
+  formik: FormikValues;
+  formInvalid: boolean;
+  loading: boolean;
+  showMessage: boolean;
+  handleCloseSectionMessage: () => void;
+  handleSubmit: () => void;
+}
+
+interface IMessageConfig {
+  id: number;
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  appearance: string;
+}
+
+interface IMessageInvitationSentConfig {
+  success: IMessageConfig;
+  failed: IMessageConfig;
+}
+
+function renderMessages(
+  showMessage: boolean,
+  formInvalid: boolean,
+  handleCloseSectionMessage: () => void
+) {
   if (!showMessage) {
     return null;
   }
 
-  let messageType = "success";
+  let messageType: keyof IMessageInvitationSentConfig = "success";
 
   if (formInvalid) {
     messageType = "failed";
@@ -32,13 +59,13 @@ function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
   );
 }
 
-function stateValue(formik, attribute) {
+function stateValue(formik: FormikValues, attribute: string) {
   if (!formik.touched[attribute]) return undefined;
   if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
   return "valid";
 }
 
-function InviteUI(props) {
+function InviteUI(props: InviteUIProps) {
   const {
     formik,
     formInvalid,
