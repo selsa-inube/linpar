@@ -17,8 +17,16 @@ import {
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
 import { MdPersonOutline } from "react-icons/md";
+import { IDataInvitation } from "./types";
 
-function CompleteInvitationUI(props) {
+interface CompleteInvitationUIProps {
+  invitationData: IDataInvitation;
+  handleSubmit: (values: any) => void;
+  handleStepChange: (step: number) => void;
+  currentStep: number;
+}
+
+const CompleteInvitationUI = (props: CompleteInvitationUIProps) => {
   const { invitationData, handleSubmit, handleStepChange, currentStep } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -111,6 +119,6 @@ function CompleteInvitationUI(props) {
       </Stack>
     </StyledContainer>
   );
-}
+};
 
 export { CompleteInvitationUI };

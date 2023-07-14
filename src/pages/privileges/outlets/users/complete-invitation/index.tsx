@@ -8,15 +8,16 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { CompleteInvitationUI } from "./interface";
+import { IDataInvitation } from "./types";
 
 function CompleteInvitation() {
-  const { invitation_id } = useParams();
+  const { invitation_id } = useParams<{ invitation_id: string }>();
 
-  const [currentStep, setCurrentStep] = useState(
+  const [currentStep, setCurrentStep] = useState<number>(
     stepsRegisterUserConfig.generalInformation.id
   );
 
-  const [invitationData, setInvitationData] = useState({
+  const [invitationData, setInvitationData] = useState<IDataInvitation>({
     generalInformation: { entries: getInvitationInformation() },
     branches: { entries: branchesFormInvitation },
     projects: { entries: projectsFormInvitation },
@@ -31,18 +32,22 @@ function CompleteInvitation() {
     );
   }
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values: any) => {
     const stepKey = Object.keys(stepsRegisterUserConfig).find(
-      (key) => stepsRegisterUserConfig[key].id === currentStep
+      (key) =>
+        stepsRegisterUserConfig[key as keyof typeof stepsRegisterUserConfig]
+          .id === currentStep
     );
 
-    setInvitationData((prevInvitationData) => ({
-      ...prevInvitationData,
-      [stepKey]: { entries: values },
-    }));
+    if (stepKey) {
+      setInvitationData((prevInvitationData) => ({
+        ...prevInvitationData,
+        [stepKey]: { entries: values },
+      }));
+    }
   };
 
-  const handleStepChange = (step) => {
+  const handleStepChange = (step: number) => {
     setCurrentStep(step);
   };
 
