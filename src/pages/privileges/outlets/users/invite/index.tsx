@@ -4,15 +4,9 @@ import * as Yup from "yup";
 import { InviteUI } from "./interface";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
+import { IFormValues } from "./types";
 
 const LOADING_TIMEOUT = 1500;
-
-interface IFormValues {
-  name: string;
-  id: string;
-  phone: string;
-  email: string;
-}
 
 const initialValues: IFormValues = {
   name: "",

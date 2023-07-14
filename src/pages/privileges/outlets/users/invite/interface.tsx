@@ -6,6 +6,7 @@ import { messageInvitationSentConfig } from "./config/messageInvitationSent.conf
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
 import { FormikValues } from "formik";
+import { IMessageConfig } from "./types";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -14,14 +15,6 @@ interface InviteUIProps {
   showMessage: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
-}
-
-interface IMessageConfig {
-  id: number;
-  icon: JSX.Element;
-  title: string;
-  description: string;
-  appearance: string;
 }
 
 interface IMessageInvitationSentConfig {
