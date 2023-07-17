@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { CompleteInvitationUI } from "./interface";
-import { IFormsInvitation } from "../types/types";
+import { IFormsInvitation, IAssignmentFormEntry } from "../types/forms.types";
 
 function CompleteInvitation() {
   const { invitation_id } = useParams<{ invitation_id: string }>();
@@ -38,7 +38,9 @@ function CompleteInvitation() {
     return invitation;
   }
 
-  const handleSubmit = (values: IFormsInvitation) => {
+  const handleSubmit = (
+    values: IFormsInvitation[] | IAssignmentFormEntry[]
+  ) => {
     const stepKey = Object.entries(stepsRegisterUserConfig).find(
       ([, config]) => config.id === currentStep
     )?.[0];
