@@ -1,9 +1,9 @@
+import { validationMessages } from "@validations/validationMessages";
+import { validationRules } from "@validations/validationRules";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import { GeneralInformationFormUI } from "./interface";
-import { validationRules } from "@validations/validationRules";
-import { validationMessages } from "@validations/validationMessages";
 
 const LOADING_TIMEOUT = 1000;
 
@@ -39,8 +39,9 @@ function GeneralInformationForm(props) {
 
     onSubmit: () => {
       setLoading(true);
-      handleSubmit(formik.values);
+
       setTimeout(() => {
+        handleSubmit(formik.values);
         setFormInvalid(false);
         setLoading(false);
         setShowMessage(true);
