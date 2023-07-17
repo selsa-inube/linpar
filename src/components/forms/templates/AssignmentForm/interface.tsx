@@ -1,5 +1,6 @@
 import { Fieldset } from "@components/inputs/Fieldset";
 import { Menu } from "@components/navigation/Menu";
+import { IOption } from "@components/navigation/Menu/types";
 import {
   Button,
   Stack,
@@ -15,7 +16,6 @@ import {
   StyledOptionsContainer,
 } from "./styles";
 import { IEntry } from "./types";
-import { IOption } from "@components/navigation/Menu/types";
 
 interface AssignmentFormUIProps {
   title: string;
@@ -28,6 +28,7 @@ interface AssignmentFormUIProps {
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
   menuOptions: IOption[];
+  isAssignAll: boolean;
 }
 
 function AssignmentFormUI(props: AssignmentFormUIProps) {
@@ -42,6 +43,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
     menuOptions,
+    isAssignAll,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 650px)");
@@ -86,10 +88,10 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
             ) : (
               <Stack gap="8px" justifyContent="flex-end">
                 <Button
-                  appearance="secondary"
                   spacing="compact"
                   handleClick={() => handleToggleAllEntries(false)}
                   type="button"
+                  isDisabled={!isAssignAll}
                 >
                   Desasignar todos
                 </Button>
@@ -97,6 +99,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                   spacing="compact"
                   handleClick={() => handleToggleAllEntries(true)}
                   type="button"
+                  isDisabled={isAssignAll}
                 >
                   Asignar todos
                 </Button>
