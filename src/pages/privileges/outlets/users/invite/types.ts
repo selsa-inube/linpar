@@ -1,11 +1,3 @@
-interface IMessageConfig {
-  id: number;
-  icon: JSX.Element;
-  title: string;
-  description: string;
-  appearance: string;
-}
-
 interface IInviteFormValues {
   name: string;
   id: string;
@@ -13,4 +5,4 @@ interface IInviteFormValues {
   email: string;
 }
 
-export type { IInviteFormValues, IMessageConfig };
+export type { IInviteFormValues };

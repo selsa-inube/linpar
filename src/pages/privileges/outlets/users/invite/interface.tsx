@@ -4,9 +4,9 @@ import { Breadcrumbs, Button, Stack, TextField } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
+import { EMessageType } from "@src/types/messages.types";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
 import { FormikValues } from "formik";
-import { IMessageConfig } from "./types";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -15,11 +15,6 @@ interface InviteUIProps {
   showMessage: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
-}
-
-enum EMessageType {
-  SUCCESS = "success",
-  FAILED = "failed",
 }
 
 function renderMessages(
