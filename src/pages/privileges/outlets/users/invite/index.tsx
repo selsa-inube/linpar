@@ -4,10 +4,11 @@ import * as Yup from "yup";
 import { InviteUI } from "./interface";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
+import { IInviteFormValues } from "./types";
 
 const LOADING_TIMEOUT = 1500;
 
-const initialValues = {
+const initialValues: IInviteFormValues = {
   name: "",
   id: "",
   phone: "",
@@ -36,7 +37,7 @@ function Invite() {
         setLoading(false);
         setFormInvalid(false);
         setShowMessage(true);
-        formik.resetForm(formik.initialValues);
+        formik.resetForm();
       }, LOADING_TIMEOUT);
     },
   });
