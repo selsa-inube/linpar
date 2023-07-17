@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface IStyledContainer {
@@ -23,4 +24,18 @@ const StyledMain = styled.main`
   overflow-y: auto;
 `;
 
-export { StyledAppPage, StyledContainer, StyledMain };
+const StyledContentImg = styled(Link)`
+  width: 100px;
+`;
+
+const StyledLogo = styled.img`
+  max-width: 100px;
+`;
+
+export {
+  StyledAppPage,
+  StyledContainer,
+  StyledContentImg,
+  StyledLogo,
+  StyledMain,
+};
