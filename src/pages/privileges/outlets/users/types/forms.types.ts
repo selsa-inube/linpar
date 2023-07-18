@@ -23,4 +23,8 @@ interface IFormsInvitation {
   payrolls: { entries: IAssignmentFormEntry[] };
 }
 
-export type { IFormsInvitation, IAssignmentFormEntry };
+export type {
+  IFormsInvitation,
+  IAssignmentFormEntry,
+  IGeneralInformationEntry,
+};

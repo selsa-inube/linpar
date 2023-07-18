@@ -17,11 +17,17 @@ import {
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
 import { MdPersonOutline } from "react-icons/md";
-import { IFormsInvitation, IAssignmentFormEntry } from "../types/forms.types";
+import {
+  IFormsInvitation,
+  IAssignmentFormEntry,
+  IGeneralInformationEntry,
+} from "../types/forms.types";
 
 interface CompleteInvitationUIProps {
   invitationData: IFormsInvitation;
-  handleSubmit: (values: IFormsInvitation[] | IAssignmentFormEntry[]) => void;
+  handleSubmit: (
+    values: IGeneralInformationEntry | IAssignmentFormEntry
+  ) => void;
   handleStepChange: (step: number) => void;
   currentStep: number;
 }
