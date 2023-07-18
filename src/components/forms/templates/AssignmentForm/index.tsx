@@ -13,6 +13,7 @@ function AssignmentForm(props: AssignmentFormProps) {
   const { handleChange, entries, title } = props;
   const [filter, setFilter] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const [isAssignAll, setIsAssignAll] = useState(false);
 
   const menuOptions: IOption[] = [
     {
@@ -32,7 +33,7 @@ function AssignmentForm(props: AssignmentFormProps) {
       ...entry,
       isActive: allocate,
     }));
-
+    setIsAssignAll(allocate);
     handleChange(newEntries);
   };
 
@@ -75,6 +76,7 @@ function AssignmentForm(props: AssignmentFormProps) {
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       menuOptions={menuOptions}
+      isAssignAll={isAssignAll}
     />
   );
 }
