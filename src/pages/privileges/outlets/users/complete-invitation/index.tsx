@@ -35,9 +35,16 @@ function CompleteInvitation() {
       (invitation) => invitation.id === invitation_id
     );
 
-    if (!invitation) {
-      throw new Error();
-    }
+    if (!invitation)
+      return {
+        id: "",
+        userID: "",
+        username: "",
+        email: "",
+        invitationDate: "",
+        status: "",
+        phone: "",
+      };
 
     return invitation;
   }

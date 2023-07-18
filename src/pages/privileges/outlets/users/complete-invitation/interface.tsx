@@ -32,7 +32,7 @@ interface CompleteInvitationUIProps {
   currentStep: number;
 }
 
-const CompleteInvitationUI = (props: CompleteInvitationUIProps) => {
+function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const { invitationData, handleSubmit, handleStepChange, currentStep } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -125,6 +125,6 @@ const CompleteInvitationUI = (props: CompleteInvitationUIProps) => {
       </Stack>
     </StyledContainer>
   );
-};
+}
 
 export { CompleteInvitationUI };
