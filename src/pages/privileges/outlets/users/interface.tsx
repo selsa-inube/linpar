@@ -100,7 +100,7 @@ export default function UsersUI(props: UsersUIProps) {
                 type="link"
                 path="/privileges/users/invite"
               >
-                Invite user
+                Invitar usuario
               </Button>
             )}
           </Stack>
