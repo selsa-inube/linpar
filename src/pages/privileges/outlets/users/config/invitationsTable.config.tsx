@@ -3,27 +3,27 @@ import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 const invitationsTableTitles = [
   {
     id: "userID",
-    titleName: "User Id",
+    titleName: "Identificación",
     priority: 1,
   },
   {
     id: "username",
-    titleName: "Username",
+    titleName: "Nombre de usuario",
     priority: 0,
   },
   {
     id: "email",
-    titleName: "Email",
+    titleName: "Correo",
     priority: 2,
   },
   {
     id: "invitationDate",
-    titleName: "Invitation Date",
+    titleName: "Fecha de invitación",
     priority: 3,
   },
   {
     id: "status",
-    titleName: "Status",
+    titleName: "Estado",
     priority: 4,
   },
 ];
