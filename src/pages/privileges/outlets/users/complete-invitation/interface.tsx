@@ -17,8 +17,22 @@ import {
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
 import { MdPersonOutline } from "react-icons/md";
+import {
+  IFormsInvitation,
+  IAssignmentFormEntry,
+  IGeneralInformationEntry,
+} from "../types/forms.types";
 
-function CompleteInvitationUI(props) {
+interface CompleteInvitationUIProps {
+  invitationData: IFormsInvitation;
+  handleSubmit: (
+    values: IGeneralInformationEntry | IAssignmentFormEntry
+  ) => void;
+  handleStepChange: (step: number) => void;
+  currentStep: number;
+}
+
+function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const { invitationData, handleSubmit, handleStepChange, currentStep } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -45,7 +59,7 @@ function CompleteInvitationUI(props) {
               description={CompleteInvitationUserConfig[0].description}
               navigatePage="/privileges/users"
             />
-            {currentInformation && (
+            {currentInformation && invitationCardData && (
               <SubjectCard
                 subjectData={invitationCardData}
                 title="Informacion del usuario"

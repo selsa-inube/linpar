@@ -1,5 +1,6 @@
 import { Invite } from "./index";
 import { BrowserRouter } from "react-router-dom";
+import { StoryFn } from "@storybook/react";
 
 const story = {
   components: [Invite],
@@ -8,7 +9,7 @@ const story = {
     layout: "fullscreen",
   },
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>

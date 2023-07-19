@@ -1,6 +1,14 @@
 import { AppMenu } from "@components/layout/AppMenu";
+import { IAppOption } from "@src/components/layout/AppMenu/types";
 
-function PrivilegesOptionsUI(props) {
+interface PrivilegesOptionsUIProps {
+  appName: string;
+  appDescription: string;
+  appOptions: IAppOption[];
+  appRoute: string;
+}
+
+function PrivilegesOptionsUI(props: PrivilegesOptionsUIProps) {
   const { appName, appDescription, appOptions, appRoute } = props;
 
   return (

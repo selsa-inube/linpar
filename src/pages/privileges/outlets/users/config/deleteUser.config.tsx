@@ -1,8 +1,9 @@
-import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
+import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+import { IActionConfig } from "../types/actions.types";
 const deleteUserModal = {
   delete: {
     title: "Eliminar Usuario",
-    description: ({ code }) =>
+    description: ({ code }: IActionConfig) =>
       `¿Está seguro de que desea eliminar al usuario ${code}?`,
     actionText: "Eliminar",
     appearance: "remove",
@@ -14,14 +15,15 @@ const deleteUserMessages = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: ({ code }) => `Hemos eliminado con éxito al usuario ${code}.`,
+    description: ({ code }: IActionConfig) =>
+      `Hemos eliminado con éxito al usuario ${code}.`,
     appearance: "confirm",
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
-    description: ({ code }) =>
+    description: ({ code }: IActionConfig) =>
       `Hemos presentado problemas eliminando al usuario ${code}.`,
     appearance: "remove",
   },

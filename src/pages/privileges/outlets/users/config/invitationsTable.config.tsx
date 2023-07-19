@@ -32,8 +32,8 @@ const invitationsTableBreakpoints = [
   { breakpoint: "(min-width: 1229px)", totalColumns: 5 },
   { breakpoint: "(max-width: 1228px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1150px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 1011px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 851px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 1021px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 970px)", totalColumns: 2 },
   { breakpoint: "(max-width: 849px)", totalColumns: 4 },
   { breakpoint: "(max-width: 715px)", totalColumns: 3 },
   { breakpoint: "(max-width: 602px)", totalColumns: 2 },
@@ -55,7 +55,7 @@ const deleteInvitationMessagesConfig = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: (value) =>
+    description: (value: string) =>
       `Hemos eliminado correctamente la invitación del usuario ${value}.`,
     appearance: "confirm",
     duration: 2000,
@@ -64,7 +64,7 @@ const deleteInvitationMessagesConfig = {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo ha salido mal!",
-    description: (value) =>
+    description: (value: string) =>
       `Hemos presentado problemas al eliminar la invitación del usuario ${value}.`,
     appearance: "remove",
     duration: 2000,

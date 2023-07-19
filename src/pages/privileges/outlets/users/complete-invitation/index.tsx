@@ -8,15 +8,20 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { CompleteInvitationUI } from "./interface";
+import {
+  IFormsInvitation,
+  IAssignmentFormEntry,
+  IGeneralInformationEntry,
+} from "../types/forms.types";
 
 function CompleteInvitation() {
-  const { invitation_id } = useParams();
+  const { invitation_id } = useParams<{ invitation_id: string }>();
 
-  const [currentStep, setCurrentStep] = useState(
+  const [currentStep, setCurrentStep] = useState<number>(
     stepsRegisterUserConfig.generalInformation.id
   );
 
-  const [invitationData, setInvitationData] = useState({
+  const [invitationData, setInvitationData] = useState<IFormsInvitation>({
     generalInformation: { entries: getInvitationInformation() },
     branches: { entries: branchesFormInvitation },
     projects: { entries: projectsFormInvitation },
@@ -26,23 +31,40 @@ function CompleteInvitation() {
   });
 
   function getInvitationInformation() {
-    return invitationEntriesDataMock.find(
+    const invitation = invitationEntriesDataMock.find(
       (invitation) => invitation.id === invitation_id
     );
+
+    if (!invitation)
+      return {
+        id: "",
+        userID: "",
+        username: "",
+        email: "",
+        invitationDate: "",
+        status: "",
+        phone: "",
+      };
+
+    return invitation;
   }
 
-  const handleSubmit = (values) => {
-    const stepKey = Object.keys(stepsRegisterUserConfig).find(
-      (key) => stepsRegisterUserConfig[key].id === currentStep
-    );
+  const handleSubmit = (
+    values: IGeneralInformationEntry | IAssignmentFormEntry
+  ) => {
+    const stepKey = Object.entries(stepsRegisterUserConfig).find(
+      ([, config]) => config.id === currentStep
+    )?.[0];
 
-    setInvitationData((prevInvitationData) => ({
-      ...prevInvitationData,
-      [stepKey]: { entries: values },
-    }));
+    if (stepKey) {
+      setInvitationData((prevInvitationData) => ({
+        ...prevInvitationData,
+        [stepKey]: { entries: values },
+      }));
+    }
   };
 
-  const handleStepChange = (step) => {
+  const handleStepChange = (step: number) => {
     setCurrentStep(step);
   };
 

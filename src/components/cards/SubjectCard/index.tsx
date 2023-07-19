@@ -1,8 +1,12 @@
-import { Stack, Text, useMediaQuery } from "@inube/design-system";
-import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
-import { ILabel } from "@src/components/feedback/InteractiveModal/types";
+import {
+  InteractiveModal,
+  Stack,
+  Text,
+  useMediaQuery,
+} from "@inube/design-system";
 import { useState } from "react";
 import { StyledIcon, StyledSubjectCard } from "./styles";
+import { ILabel } from "./types";
 
 interface SubjectCardProps {
   subjectData: Record<string, string | number>;
@@ -44,6 +48,7 @@ function SubjectCard(props: SubjectCardProps) {
           closeModal={handleToggleModal}
           infoData={subjectData}
           labels={labels}
+          portalId="portal"
         />
       )}
     </>

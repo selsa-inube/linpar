@@ -1,9 +1,24 @@
-import { Header } from "@components/Header";
-import { MdOutlineDoorFront } from "react-icons/md";
-import { StyledHome, StyledAppsList, StyledPageTitle } from "./styles";
-import { AppCard } from "@components/cards/AppCard";
 import { PageTitle } from "@components/PageTitle";
+import { AppCard } from "@components/cards/AppCard";
+import { Header } from "@inube/design-system";
+import {
+  StyledContentImg,
+  StyledLogo,
+} from "@src/components/layout/AppPage/styles";
+import { AppContext } from "@src/context";
+import { useContext } from "react";
+import { MdOutlineDoorFront } from "react-icons/md";
+import { navigationConfig } from "./config/apps.config";
+import { StyledAppsList, StyledHome, StyledPageTitle } from "./styles";
 import { IApps } from "./types";
+
+const renderLogo = (imgUrl: string) => {
+  return (
+    <StyledContentImg to="/">
+      <StyledLogo src={imgUrl} />
+    </StyledContentImg>
+  );
+};
 
 interface HomeUIProps {
   apps: IApps[];
@@ -11,10 +26,19 @@ interface HomeUIProps {
 
 function HomeUI(props: HomeUIProps) {
   const { apps } = props;
+  const { user } = useContext(AppContext);
 
   return (
     <StyledHome>
-      <Header />
+      <Header
+        portalId="portal"
+        navigation={navigationConfig}
+        logo={renderLogo(user.operator.logo)}
+        logoutPath="/"
+        userName={user.username}
+        businessUnit={user.company}
+        isBusinessUnit
+      />
       <StyledPageTitle>
         <PageTitle
           title="Bienvenido, Leonardo"
