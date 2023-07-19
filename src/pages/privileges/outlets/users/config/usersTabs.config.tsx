@@ -2,12 +2,12 @@ const privilegeUserTabsConfig = {
   privilegesUsers: {
     id: "privileges-users",
     isDisabled: false,
-    label: "Users",
+    label: "Usuarios",
   },
   privilegesInvitations: {
     id: "privileges-invitations",
     isDisabled: false,
-    label: "Invitations",
+    label: "Invitaciones",
   },
 };
 
