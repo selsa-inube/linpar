@@ -9,13 +9,14 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import { StyledModal } from "./styles";
+import { EApparence } from "../../../types/colors.types";
 
 interface DecisionModalProps {
   title: string;
   description: string;
-  appearance: "primary" | "secondary" | "remove";
+  appearance: EApparence;
   actionText: string;
-  loading: boolean;
+  loading?: boolean;
   closeModal: () => void;
   handleClick: () => void;
 }

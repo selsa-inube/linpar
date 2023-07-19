@@ -3,7 +3,7 @@ import { SectionMessageUI } from "./interface";
 import { useMediaQuery } from "@inube/design-system";
 
 interface SectionMessageProps {
-  icon: JSX.Element;
+  icon: JSX.Element | string;
   title: string;
   description: string;
   appearance: string;

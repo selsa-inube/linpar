@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { ResendInvitationUI } from "./interface";
+import { IInvitation } from "../types";
 
-function ResendInvitation(props) {
+interface ResendInvitationProps {
+  invitation: IInvitation[];
+  handleResendInvitation: (invitation?: IInvitation[]) => void;
+  showComplete: boolean;
+}
+
+function ResendInvitation(props: ResendInvitationProps) {
   const { invitation, handleResendInvitation, showComplete } = props;
   const [showResendInvModal, setShowResendInvModal] = useState(false);
 

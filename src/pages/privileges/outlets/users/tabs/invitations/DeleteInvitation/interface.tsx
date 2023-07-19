@@ -4,7 +4,14 @@ import { MdOutlineDelete } from "react-icons/md";
 import { deleteInvitationModalConfig } from "../../../config/invitationsTable.config";
 import { StyledIconDelete } from "./styles";
 
-function DeleteInvitationUI(props) {
+interface DeleteInvitationUIProps {
+  handleRemoveInvitation: () => void;
+  showModal: boolean;
+  toggleModal: () => void;
+  showComplete: boolean;
+}
+
+function DeleteInvitationUI(props: DeleteInvitationUIProps) {
   const { handleRemoveInvitation, showModal, toggleModal, showComplete } =
     props;
 

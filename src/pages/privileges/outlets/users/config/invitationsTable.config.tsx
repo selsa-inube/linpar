@@ -1,3 +1,4 @@
+import { EApparence } from "@src/types/colors.types";
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
 const invitationsTableTitles = [
@@ -47,7 +48,7 @@ const deleteInvitationModalConfig = {
   title: "Borrar invitación",
   description: "¿Seguro que quieres eliminar la invitación?",
   actionText: "Eliminar",
-  appearance: "remove",
+  appearance: EApparence.REMOVE,
 };
 
 const deleteInvitationMessagesConfig = {
