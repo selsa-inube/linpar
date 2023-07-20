@@ -1,3 +1,5 @@
+import { EMessageType } from "@src/types/messages.types";
+
 interface IAssignmentFormEntry {
   id: string;
   value: string;
@@ -5,13 +7,16 @@ interface IAssignmentFormEntry {
 }
 
 interface IGeneralInformationEntry {
-  id: string;
+  id?: string;
   userID: string;
   username: string;
   email: string;
-  invitationDate: string;
-  status: string;
+  invitationDate?: string;
+  status?: string;
   phone: string;
+  code?: string;
+  position?: string;
+  active?: boolean;
 }
 
 interface IFormsInvitation {
@@ -23,8 +28,14 @@ interface IFormsInvitation {
   payrolls: { entries: IAssignmentFormEntry[] };
 }
 
+interface IMessageState {
+  visible: boolean;
+  type: EMessageType;
+}
+
 export type {
   IFormsInvitation,
   IAssignmentFormEntry,
   IGeneralInformationEntry,
+  IMessageState,
 };

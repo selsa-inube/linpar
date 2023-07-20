@@ -1,22 +1,31 @@
 import { useState } from "react";
 import { EventsFormUI } from "./interface";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
 
-function EventsForm(props) {
+interface EventsFormProps {
+  currentEvents: IAssignmentFormEntry[];
+  handleSubmit: (events: IAssignmentFormEntry[]) => void;
+  withSubmitButtons: boolean;
+  onHasChanges?: (hasChanges: boolean) => void;
+}
+
+function EventsForm(props: EventsFormProps) {
   const { currentEvents, handleSubmit, withSubmitButtons, onHasChanges } =
     props;
-  const [events, setEvents] = useState(currentEvents);
+  const [events, setEvents] = useState<IAssignmentFormEntry[]>(currentEvents);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
     visible: false,
-    type: "",
+    type: "" as EMessageType,
   });
 
-  const hasChanges = (valueCompare) =>
+  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
     JSON.stringify(currentEvents) !== JSON.stringify(valueCompare);
 
-  const handleChangeEvents = (events) => {
+  const handleChangeEvents = (events: IAssignmentFormEntry[]) => {
     setEvents(events);
     if (onHasChanges) onHasChanges(hasChanges(events));
     if (!withSubmitButtons) handleSubmit(events);
@@ -30,20 +39,20 @@ function EventsForm(props) {
       setIsLoading(false);
       setMessage({
         visible: true,
-        type: "success",
+        type: EMessageType.SUCCESS,
       });
     }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
     setEvents(currentEvents);
-    onHasChanges(false);
+    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "",
+      type: "" as EMessageType,
     });
   };
 
@@ -53,7 +62,6 @@ function EventsForm(props) {
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      currentEvents={currentEvents}
       events={events}
       withSubmitButtons={withSubmitButtons}
       message={message}
@@ -63,4 +71,5 @@ function EventsForm(props) {
   );
 }
 
+export type { EventsFormProps };
 export { EventsForm };

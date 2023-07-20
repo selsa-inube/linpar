@@ -2,8 +2,27 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
 import { assignmentFormMessages } from "../../config/messages.config";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 
-const renderMessage = (message, onCloseSectionMessage) => {
+interface EventsFormUIProps {
+  events: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeEvents: (events: IAssignmentFormEntry[]) => void;
+  withSubmitButtons: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+}
+
+const renderMessage = (
+  message: IMessageState,
+  onCloseSectionMessage: EventsFormUIProps["onCloseSectionMessage"]
+) => {
   if (!message.visible) {
     return null;
   }
@@ -23,7 +42,7 @@ const renderMessage = (message, onCloseSectionMessage) => {
   );
 };
 
-function EventsFormUI(props) {
+function EventsFormUI(props: EventsFormUIProps) {
   const {
     events,
     isLoading,

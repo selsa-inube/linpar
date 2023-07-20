@@ -8,9 +8,14 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { EditUserUI } from "./interface";
+import {
+  IFormsInvitation,
+  IAssignmentFormEntry,
+  IGeneralInformationEntry,
+} from "../types/forms.types";
 
 function EditUser() {
-  const { user_id } = useParams();
+  const { user_id } = useParams<{ user_id: string }>();
 
   const [controlModal, setControlModal] = useState({
     show: false,
@@ -23,7 +28,7 @@ function EditUser() {
     editUserTabsConfig.generalInformation.id
   );
 
-  const [editData, setEditData] = useState({
+  const [editData, setEditData] = useState<IFormsInvitation>({
     generalInformation: { entries: getUserInformation() },
     branches: { entries: branchesFormEditUser },
     projects: { entries: projectsFormEditUser },
@@ -36,19 +41,28 @@ function EditUser() {
     return userEntriesDataMock.find((user) => user.id === user_id);
   }
 
-  const handleSubmit = (values) => {
-    const editKey = Object.keys(editUserTabsConfig).find(
-      (key) => editUserTabsConfig[key].id === selectedTab
-    );
+  const handleSubmit = (
+    values: IGeneralInformationEntry | IAssignmentFormEntry[]
+  ) => {
+    const editKey: keyof typeof editUserTabsConfig = Object.keys(
+      editUserTabsConfig
+    ).find((key) => {
+      const tabConfig =
+        editUserTabsConfig[key as keyof typeof editUserTabsConfig];
+      return tabConfig.id === selectedTab;
+    }) as keyof typeof editUserTabsConfig;
 
-    setEditData((prevEditData) => ({
-      ...prevEditData,
-      [editKey]: { entries: values },
-    }));
+    if (editKey) {
+      setEditData((prevEditData) => ({
+        ...prevEditData,
+        [editKey]: { entries: values },
+      }));
+    }
+
     setCurrentFormHasChanges(false);
   };
 
-  const handleTabChange = (tabId) => {
+  const handleTabChange = (tabId: string) => {
     setControlModal(
       currentFormHasChanges ? { show: true, continueTab: tabId } : controlModal
     );
@@ -62,7 +76,7 @@ function EditUser() {
     }));
   };
 
-  const handleDataChange = (hasChanges) => {
+  const handleDataChange = (hasChanges: boolean) => {
     setCurrentFormHasChanges(hasChanges);
   };
 

@@ -2,8 +2,27 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
 import { assignmentFormMessages } from "../../config/messages.config";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 
-const renderMessage = (message, onCloseSectionMessage) => {
+interface AidBudgetsFormUIProps {
+  aidBudgetUnits: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeAidBudgets: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  withSubmitButtons: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+}
+
+const renderMessage = (
+  message: IMessageState,
+  onCloseSectionMessage: AidBudgetsFormUIProps["onCloseSectionMessage"]
+) => {
   if (!message.visible) {
     return null;
   }
@@ -23,13 +42,13 @@ const renderMessage = (message, onCloseSectionMessage) => {
   );
 };
 
-function PayrollsFormUI(props) {
+function AidBudgetsFormUI(props: AidBudgetsFormUIProps) {
   const {
-    payrolls,
+    aidBudgetUnits,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangePayrolls,
+    handleChangeAidBudgets,
     withSubmitButtons,
     message,
     onCloseSectionMessage,
@@ -40,15 +59,15 @@ function PayrollsFormUI(props) {
     return (
       <>
         <FormButtons
-          disabledButtons={!hasChanges(payrolls)}
+          disabledButtons={!hasChanges(aidBudgetUnits)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           isLoading={isLoading}
         >
           <AssignmentForm
-            handleChange={handleChangePayrolls}
-            entries={payrolls}
-            title="Seleccione los conceptos de nómina que desea asignar"
+            handleChange={handleChangeAidBudgets}
+            entries={aidBudgetUnits}
+            title="Seleccione los presupuestos que desea asignar"
           />
         </FormButtons>
         {renderMessage(message, onCloseSectionMessage)}
@@ -58,11 +77,11 @@ function PayrollsFormUI(props) {
 
   return (
     <AssignmentForm
-      handleChange={handleChangePayrolls}
-      entries={payrolls}
-      title="Seleccione los conceptos de nómina que desea asignar"
+      handleChange={handleChangeAidBudgets}
+      entries={aidBudgetUnits}
+      title="Seleccione los presupuestos que desea asignar"
     />
   );
 }
 
-export { PayrollsFormUI };
+export { AidBudgetsFormUI };

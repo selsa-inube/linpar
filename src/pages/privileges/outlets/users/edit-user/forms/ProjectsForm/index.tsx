@@ -1,20 +1,30 @@
 import { useState } from "react";
 import { ProjectsFormUI } from "./interface";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { EMessageType } from "@src/types/messages.types";
 
-function ProjectsForm(props) {
+interface ProjectsFormProps {
+  currentProjects: IAssignmentFormEntry[];
+  handleSubmit: (newProjects: IAssignmentFormEntry[]) => void;
+  withSubmitButtons: boolean;
+  onHasChanges?: (hasChanges: boolean) => void;
+}
+
+function ProjectsForm(props: ProjectsFormProps) {
   const { currentProjects, handleSubmit, withSubmitButtons, onHasChanges } =
     props;
-  const [projects, setProjects] = useState(currentProjects);
+  const [projects, setProjects] =
+    useState<IAssignmentFormEntry[]>(currentProjects);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
     visible: false,
-    type: "",
+    type: "" as EMessageType,
   });
 
-  const hasChanges = (valueCompare) =>
+  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
     JSON.stringify(currentProjects) !== JSON.stringify(valueCompare);
 
-  const handleChangeProjects = (projects) => {
+  const handleChangeProjects = (projects: IAssignmentFormEntry[]) => {
     setProjects(projects);
     if (onHasChanges) onHasChanges(hasChanges(projects));
     if (!withSubmitButtons) handleSubmit(projects);
@@ -28,20 +38,20 @@ function ProjectsForm(props) {
       setIsLoading(false);
       setMessage({
         visible: true,
-        type: "success",
+        type: EMessageType.SUCCESS,
       });
     }, 1500);
   };
 
   const handleReset = () => {
     setProjects(currentProjects);
-    onHasChanges(false);
+    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "",
+      type: "" as EMessageType,
     });
   };
 
@@ -51,7 +61,7 @@ function ProjectsForm(props) {
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      currentProjects={currentProjects}
+      //currentProjects={currentProjects}
       projects={projects}
       withSubmitButtons={withSubmitButtons}
       message={message}
@@ -61,4 +71,5 @@ function ProjectsForm(props) {
   );
 }
 
+export type { ProjectsFormProps };
 export { ProjectsForm };

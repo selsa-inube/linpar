@@ -1,26 +1,37 @@
 import { useState } from "react";
 import { AidBudgetsFormUI } from "./interface";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
 
-function AidBudgetsForm(props) {
+interface AidBudgetsFormProps {
+  currentAidBudgetUnits: IAssignmentFormEntry[];
+  handleSubmit: (newAidBudgetUnits: IAssignmentFormEntry[]) => void;
+  withSubmitButtons: boolean;
+  onHasChanges?: (hasChanges: boolean) => void;
+}
+
+function AidBudgetsForm(props: AidBudgetsFormProps) {
   const {
     currentAidBudgetUnits,
     handleSubmit,
     withSubmitButtons,
     onHasChanges,
   } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const [aidBudgetUnits, setAidBudgetUnits] = useState<IAssignmentFormEntry[]>(
+    currentAidBudgetUnits
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
     visible: false,
-    type: "",
+    type: "" as EMessageType,
   });
 
-  const hasChanges = (valueCompare) =>
+  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
     JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
 
-  const handleChangeAidBudgets = (aidBudgetUnits) => {
+  const handleChangeAidBudgets = (aidBudgetUnits: IAssignmentFormEntry[]) => {
     setAidBudgetUnits(aidBudgetUnits);
     if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
     if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
@@ -34,20 +45,20 @@ function AidBudgetsForm(props) {
       setIsLoading(false);
       setMessage({
         visible: true,
-        type: "success",
+        type: EMessageType.SUCCESS,
       });
     }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
     setAidBudgetUnits(currentAidBudgetUnits);
-    onHasChanges(false);
+    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "",
+      type: "" as EMessageType,
     });
   };
 
@@ -66,4 +77,5 @@ function AidBudgetsForm(props) {
   );
 }
 
+export type { AidBudgetsFormProps };
 export { AidBudgetsForm };

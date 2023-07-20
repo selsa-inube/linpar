@@ -1,22 +1,32 @@
 import { useState } from "react";
 import { PayrollsFormUI } from "./interface";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
 
-function PayrollsForm(props) {
+interface PayrollsFormProps {
+  currentPayrolls: IAssignmentFormEntry[];
+  handleSubmit: (payrolls: IAssignmentFormEntry[]) => void;
+  withSubmitButtons: boolean;
+  onHasChanges?: (hasChanges: boolean) => void;
+}
+
+function PayrollsForm(props: PayrollsFormProps) {
   const { currentPayrolls, handleSubmit, withSubmitButtons, onHasChanges } =
     props;
-  const [payrolls, setPayrolls] = useState(currentPayrolls);
+  const [payrolls, setPayrolls] =
+    useState<IAssignmentFormEntry[]>(currentPayrolls);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
     visible: false,
-    type: "",
+    type: "" as EMessageType,
   });
 
-  const hasChanges = (valueCompare) =>
+  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
     JSON.stringify(currentPayrolls) !== JSON.stringify(valueCompare);
 
-  const handleChangePayrolls = (payrolls) => {
+  const handleChangePayrolls = (payrolls: IAssignmentFormEntry[]) => {
     setPayrolls(payrolls);
     if (onHasChanges) onHasChanges(hasChanges(payrolls));
     if (!withSubmitButtons) handleSubmit(payrolls);
@@ -30,20 +40,20 @@ function PayrollsForm(props) {
       setIsLoading(false);
       setMessage({
         visible: true,
-        type: "success",
+        type: EMessageType.SUCCESS,
       });
     }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
     setPayrolls(currentPayrolls);
-    onHasChanges(false);
+    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "",
+      type: "" as EMessageType,
     });
   };
 
@@ -53,7 +63,6 @@ function PayrollsForm(props) {
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      currentPayrolls={currentPayrolls}
       payrolls={payrolls}
       withSubmitButtons={withSubmitButtons}
       message={message}
@@ -63,4 +72,5 @@ function PayrollsForm(props) {
   );
 }
 
+export type { PayrollsFormProps };
 export { PayrollsForm };

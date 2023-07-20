@@ -2,8 +2,27 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
 import { assignmentFormMessages } from "../../config/messages.config";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 
-const renderMessage = (message, onCloseSectionMessage) => {
+interface BranchesFormUIProps {
+  branches: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeBranches: (branches: IAssignmentFormEntry[]) => void;
+  withSubmitButtons: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+}
+
+const renderMessage = (
+  message: IMessageState,
+  onCloseSectionMessage: BranchesFormUIProps["onCloseSectionMessage"]
+) => {
   if (!message.visible) {
     return null;
   }
@@ -23,7 +42,7 @@ const renderMessage = (message, onCloseSectionMessage) => {
   );
 };
 
-function BranchesFormUI(props) {
+function BranchesFormUI(props: BranchesFormUIProps) {
   const {
     branches,
     isLoading,
