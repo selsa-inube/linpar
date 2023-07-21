@@ -2,8 +2,7 @@ const usersBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
   { breakpoint: "(max-width: 1002px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 850px)", totalColumns: 4 },
-  { breakpoint: "(max-width: 680px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 837px)", totalColumns: 3 },
   { breakpoint: "(max-width: 550px)", totalColumns: 2 },
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
@@ -11,22 +10,22 @@ const usersBreakPointsConfig = [
 const usersTitlesConfig = [
   {
     id: "username",
-    titleName: "Username",
+    titleName: "Nombre de usuario",
     priority: 0,
   },
   {
     id: "code",
-    titleName: "Code",
+    titleName: "Código",
     priority: 2,
   },
   {
     id: "userID",
-    titleName: "User Id",
+    titleName: "Identificación",
     priority: 1,
   },
   {
     id: "position",
-    titleName: "Position",
+    titleName: "Cargo",
     priority: 3,
   },
 ];

@@ -68,7 +68,7 @@ export default function UsersUI(props: UsersUIProps) {
               <TextField
                 name="searchUser"
                 id="searchUser"
-                placeholder="Search..."
+                placeholder="Buscar..."
                 type="search"
                 minLength={1}
                 iconBefore={<MdSearch size={18} />}
@@ -100,7 +100,7 @@ export default function UsersUI(props: UsersUIProps) {
                 type="link"
                 path="/privileges/users/invite"
               >
-                Invite user
+                Invitar usuario
               </Button>
             )}
           </Stack>
