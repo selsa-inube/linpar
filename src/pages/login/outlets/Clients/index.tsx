@@ -1,84 +1,69 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
 import { ClientsUI } from "./interface";
-import { IClientState } from "./types";
+import { IClientState, IClient } from "./types";
+import { useNavigate, useParams } from "react-router-dom";
+
+const API_BASE_URL = "http://localhost:3001/v1/login/clients/";
 
 function Clients() {
   const [search, setSearch] = useState("");
+  const [clientsData, setClientsData] = useState([]);
   const [client, setClient] = useState<IClientState>({
     ref: null,
     value: true,
   });
+
   const navigate = useNavigate();
   const { user_id } = useParams();
-  const [clientsData, setClientsData] = useState([]);
-  const [userEntriesData, setUserEntriesData] = useState<{ clients: any[] }>({
-    clients: [],
-  });
+
+  const getUserClientsData = useCallback(async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}${user_id}`);
+      const clients = await response.json();
+      setClientsData(clients);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [user_id]);
 
   useEffect(() => {
-    fetchClientsData();
-    fetchUserEntriesData();
-  }, []);
+    getUserClientsData();
+  }, [getUserClientsData]);
 
-  async function fetchClientsData() {
-    try {
-      const response = await fetch("http://localhost:3001/v1/login/clients");
-      const data = await response.json();
-      setClientsData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function fetchUserEntriesData() {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/v1/privileges/users/${user_id}`
-      );
-      const data = await response.json();
-      setUserEntriesData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  function clientReset() {
-    return {
-      ref: null,
-      value: true,
-    };
-  }
-
-  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (client.ref) {
       client.ref.checked = false;
     }
-    setClient(clientReset());
+    setClient({ ref: null, value: true });
     setSearch(event.target.value);
-  }
+  };
 
-  function filterClients() {
-    return clientsData.filter((client) => userClientIds.includes(client.id));
-  }
+  const handleClientChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setClient({ ref: event.target, value: false });
+  };
 
-  function handleClientChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setClient({
-      ref: event.target,
-      value: false,
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (client.value) {
+      return;
+    }
+    navigate("/login/loading-app");
+  };
+
+  function filterClients(clients: IClient[], search: string) {
+    return clients.filter((client) => {
+      const clientName = client.name.toUpperCase();
+      const clientSigla = client.sigla.toUpperCase();
+      const searchTerm = search.toUpperCase();
+      return (
+        clientName.includes(searchTerm) || clientSigla.includes(searchTerm)
+      );
     });
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    navigate("/login/loading-app");
-  }
-
-  const userClientIds = userEntriesData.clients || [];
-
   return (
     <ClientsUI
-      clients={filterClients()}
+      clients={clientsData}
       search={search}
       client={client}
       handleSearchChange={handleSearchChange}

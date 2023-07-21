@@ -1,9 +1,8 @@
-import { RadioClient } from "@components/cards/RadioClient";
-import { Button, Text, TextField } from "@inube/design-system";
-import { IClientState } from "./types";
-
+import React from "react";
 import { MdSearch } from "react-icons/md";
-
+import { Button, Text, TextField } from "@inube/design-system";
+import { RadioClient } from "@components/cards/RadioClient";
+import { IClientState, IClient } from "./types";
 import {
   StyledClients,
   StyledClientsList,
@@ -12,31 +11,36 @@ import {
 } from "./styles";
 
 interface ClientsUIProps {
-  clients: Client[];
+  clients: IClient[];
   search: string;
   client: IClientState;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleClientChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  filterClients: () => Client[];
+  filterClients: (clients: IClient[], search: string) => IClient[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-interface Client {
-  id: number;
-  name: string;
-  logo: string;
+function NoResultsMessage({ search }: { search: string }) {
+  return (
+    <StyledNoResults>
+      <Text typo="bodyMedium">{`No se encontraron resultados para "${search}".`}</Text>
+      <Text typo="bodyMedium">{`Por favor, intenta modificando los parámetros de búsqueda.`}</Text>
+    </StyledNoResults>
+  );
 }
 
-function ClientsUI(props: ClientsUIProps) {
-  const {
-    clients,
-    search,
-    client,
-    handleSearchChange,
-    handleClientChange,
-    filterClients,
-    handleSubmit,
-  } = props;
+function ClientsUI({
+  clients,
+  search,
+  client,
+  handleSearchChange,
+  filterClients,
+  handleClientChange,
+  handleSubmit,
+}: ClientsUIProps) {
+  const filteredClients = filterClients(clients, search);
+  const showSearchField = clients.length > 10;
+  const showNoResults = filteredClients.length === 0;
 
   return (
     <StyledClients>
@@ -47,29 +51,22 @@ function ClientsUI(props: ClientsUIProps) {
         Selecciona la empresa a la que vas a representar
       </Text>
       <form onSubmit={handleSubmit}>
-        {clients.length > 10 && (
-          <>
-            <TextField
-              placeholder="Search..."
-              type="search"
-              name="searchClients"
-              id="searchClients"
-              value={search}
-              minLength={1}
-              isFullWidth={true}
-              handleChange={handleSearchChange}
-              iconBefore={<MdSearch size={22} />}
-            />
-          </>
+        {showSearchField && (
+          <TextField
+            placeholder="Search..."
+            type="search"
+            name="searchClients"
+            id="searchClients"
+            value={search}
+            minLength={1}
+            isFullWidth={true}
+            handleChange={handleSearchChange}
+            iconBefore={<MdSearch size={22} />}
+          />
         )}
-        {!filterClients().length && (
-          <StyledNoResults>
-            <Text typo="bodyMedium">{`No se encontraron resultados para "${search}".`}</Text>
-            <Text typo="bodyMedium">{`Por favor, intenta modificando los parámetros de búsqueda.`}</Text>
-          </StyledNoResults>
-        )}
+        {showNoResults && <NoResultsMessage search={search} />}
         <StyledClientsList scroll={clients.length > 5}>
-          {filterClients().map((client) => (
+          {filteredClients.map((client) => (
             <StyledClientsItem key={client.id}>
               <RadioClient
                 name="client"

@@ -1,25 +1,42 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { CheckingCredentialsUI } from "./interface";
+import { useEffect } from "react";
+
+const API_BASE_URL = "http://localhost:3001/v1/privileges/users";
+
+interface IUser {
+  id: string;
+  username: string;
+  code: string;
+  userID: string;
+  position: string;
+  active: boolean;
+  email: string;
+  phone: string;
+  clients: number[];
+}
 
 function CheckingCredentials() {
   const navigate = useNavigate();
   const { user_id } = useParams();
 
-  const fetchUser = async () => {
+  const getUser = async (): Promise<IUser | null> => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/v1/privileges/users/${user_id}`
-      );
-      const user = await response.json();
+      const response = await fetch(`${API_BASE_URL}/${user_id}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch user");
+      }
+      const user: IUser = await response.json();
       return user;
     } catch (error) {
       console.error(error);
+      return null;
     }
   };
 
   const checkCredentials = async () => {
     try {
-      const user = await fetchUser();
+      const user = await getUser();
 
       if (user) {
         if (!user.clients || user.clients.length === 0) {
@@ -37,7 +54,9 @@ function CheckingCredentials() {
     }
   };
 
-  setTimeout(checkCredentials, 2000);
+  useEffect(() => {
+    setTimeout(checkCredentials, 2000);
+  }, []);
 
   return <CheckingCredentialsUI />;
 }
