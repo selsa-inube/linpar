@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { DeleteUserUI } from "./interface";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 
-function DeleteUser(props) {
+interface DeleteUserProps {
+  user: IGeneralInformationEntry;
+  handleDeleteUser: () => void;
+  showComplete: boolean;
+}
+
+function DeleteUser(props: DeleteUserProps) {
   const { user, handleDeleteUser, showComplete } = props;
   const [showModal, setShowModal] = useState(false);
 

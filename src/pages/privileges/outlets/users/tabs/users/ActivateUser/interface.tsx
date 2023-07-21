@@ -1,14 +1,25 @@
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { Switch } from "@inube/design-system";
 import { activateUserModal } from "../../../config/activateUser.config";
+import { IActivateUserModal } from "./types";
+import { EMessageType } from "@src/types/messages.types";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 
-function ActivateUserModal(props) {
+interface ActivateUserUIProps {
+  active: IGeneralInformationEntry["active"];
+  showActivateUserModal: boolean;
+  user: IGeneralInformationEntry;
+  id: IGeneralInformationEntry["id"];
+  handleToggleModal: () => void;
+  handleActivateUser: () => void;
+  showComplete: boolean;
+}
+
+function ActivateUserModal(props: IActivateUserModal) {
   const { active, user, handleToggleModal, handleActivateUser } = props;
-  let messageType;
+  let messageType = EMessageType.DEACTIVATION;
   if (!active) {
-    messageType = "activation";
-  } else {
-    messageType = "deactivation";
+    messageType = EMessageType.ACTIVATION;
   }
 
   const { title, description, textAction, appearance } =
@@ -28,7 +39,7 @@ function ActivateUserModal(props) {
   );
 }
 
-function ActivateUserUI(props) {
+function ActivateUserUI(props: ActivateUserUIProps) {
   const {
     active,
     showActivateUserModal,
@@ -46,7 +57,7 @@ function ActivateUserUI(props) {
         handleChange={handleToggleModal}
         id={id.toString()}
         label={showComplete ? "Activar" : ""}
-        padding="0px 0px 0px 16px"
+        padding={`0px 0px 0px ${showComplete ? 16 : 0}px`}
       />
 
       {showActivateUserModal && (

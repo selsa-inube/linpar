@@ -1,4 +1,7 @@
-import { SectionMessage } from "@components/feedback/SectionMessage";
+import {
+  SectionMessage,
+  SectionMessageProps,
+} from "@components/feedback/SectionMessage";
 import { Table, useMediaQuery } from "@inube/design-system";
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import { useState } from "react";
@@ -11,39 +14,54 @@ import {
 import { ActivateUser } from "./ActivateUser";
 import { DeleteUser } from "./DeleteUser";
 import { EditUser } from "./EditUser";
+import {
+  IGeneralInformationEntry,
+  IInitialMessage,
+} from "../../types/forms.types";
+import { EApparence } from "@src/types/colors.types";
+import { EMessageType } from "@src/types/messages.types";
 
-const initialMessageState = {
+const initialMessageState: IInitialMessage = {
   show: false,
   title: "",
   description: "",
   icon: "",
-  appearance: "",
+  appearance: "" as EApparence,
 };
 
-function UsersTab(props) {
+interface UsersTabProps {
+  searchText: string;
+}
+
+function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
   const [users, setUsers] = useState(userEntriesDataMock);
-  const [message, setMessage] = useState(initialMessageState);
+  const [message, setMessage] = useState<IInitialMessage>(initialMessageState);
 
-  const deleteUser = (user) => {
-    let MessageType = "success";
+  const deleteUser = (user: IGeneralInformationEntry) => {
+    let MessageType = EMessageType.SUCCESS;
 
     try {
       setUsers((prevUsers) =>
         prevUsers.filter((oldUser) => user.id !== oldUser.id)
       );
     } catch (error) {
-      MessageType = "failed";
+      MessageType = EMessageType.FAILED;
     }
 
     const { icon, title, description, appearance } =
       deleteUserMessages[MessageType];
 
-    handleShowMessage(title, description(user), icon, appearance);
+    handleShowMessage({
+      title,
+      description: description(user),
+      icon,
+      appearance,
+    });
   };
 
-  const handleActivateUser = (user) => {
-    let messageType = "activate";
+  const handleActivateUser = (user: IGeneralInformationEntry) => {
+    let messageType = EMessageType.ACTIVATION;
 
     const newUsers = users.map((actUser) => {
       if (actUser.id === user.id) {
@@ -58,16 +76,22 @@ function UsersTab(props) {
     setUsers(newUsers);
 
     if (user.active) {
-      messageType = "deactivate";
+      messageType = EMessageType.DEACTIVATION;
     }
 
     const { title, description, icon, appearance } =
       activateUserMessages[messageType];
 
-    handleShowMessage(title, description(user), icon, appearance);
+    handleShowMessage({
+      title,
+      description: description(user),
+      icon,
+      appearance,
+    });
   };
 
-  const handleShowMessage = (title, description, icon, appearance) => {
+  const handleShowMessage = (props: IInitialMessage) => {
+    const { title, description, icon, appearance } = props;
     setMessage({
       show: true,
       title,
@@ -87,7 +111,7 @@ function UsersTab(props) {
     {
       id: "1",
       actionName: "Activate",
-      content: (user) => (
+      content: (user: IGeneralInformationEntry) => (
         <ActivateUser
           user={user}
           handleActivateUser={() => handleActivateUser(user)}
@@ -99,13 +123,15 @@ function UsersTab(props) {
     {
       id: "2",
       actionName: "Edit",
-      content: (entry) => <EditUser entry={entry} showComplete={smallScreen} />,
+      content: (entry: IGeneralInformationEntry) => (
+        <EditUser entry={entry} showComplete={smallScreen} />
+      ),
       type: "primary",
     },
     {
       id: "3",
       actionName: "Delete",
-      content: (user) => (
+      content: (user: IGeneralInformationEntry) => (
         <DeleteUser
           user={user}
           handleDeleteUser={() => deleteUser(user)}

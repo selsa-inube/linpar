@@ -3,9 +3,22 @@ import { Button } from "@inube/design-system";
 import { MdOutlineDelete } from "react-icons/md";
 import { deleteUserModal } from "../../../config/deleteUser.config";
 import { StyledIconDelete } from "./styles";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
+import { IDeleteUserModal } from "./types";
+import { EMessageType } from "@src/types/messages.types";
 
-function DeleteUserModal(user, closeModal, handleDeleteUser) {
-  let messageType = "delete";
+interface DeleteUserUIProps {
+  user: IGeneralInformationEntry;
+  showModal: boolean;
+  handleShowModal: () => void;
+  handleDeleteUser: () => void;
+  closeModal: () => void;
+  showComplete: boolean;
+}
+
+function DeleteUserModal(props: IDeleteUserModal) {
+  const { user, closeModal, handleDeleteUser } = props;
+  let messageType = EMessageType.DELETE;
   const { title, description, actionText, appearance } =
     deleteUserModal[messageType];
 
@@ -21,7 +34,7 @@ function DeleteUserModal(user, closeModal, handleDeleteUser) {
   );
 }
 
-function DeleteUserUI(props) {
+function DeleteUserUI(props: DeleteUserUIProps) {
   const {
     user,
     showModal,
@@ -48,7 +61,7 @@ function DeleteUserUI(props) {
         </StyledIconDelete>
       )}
 
-      {showModal && DeleteUserModal(user, closeModal, handleDeleteUser)}
+      {showModal && DeleteUserModal({ user, closeModal, handleDeleteUser })}
     </>
   );
 }

@@ -2,7 +2,7 @@ import { SectionMessage } from "@components/feedback/SectionMessage";
 import { Table, useMediaQuery } from "@inube/design-system";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { useState } from "react";
-import { resendInvitationMessages } from "../../../users/config/resendInvitationUser.config";
+import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
 import {
   deleteInvitationMessagesConfig,
   invitationsTableBreakpoints,
@@ -11,18 +11,28 @@ import {
 import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
+import { EMessageType } from "@src/types/messages.types";
+import {
+  IGeneralInformationEntry,
+  IInitialMessage,
+} from "../../types/forms.types";
+import { EApparence } from "@src/types/colors.types";
 
-const initialMessageState = {
+const initialMessageState: IInitialMessage = {
   show: false,
   title: "",
   description: "",
   icon: "",
-  appearance: "",
+  appearance: "" as EApparence,
 };
 
-function InvitationsTab(props) {
+interface InvitationsTabProps {
+  searchText: string;
+}
+
+function InvitationsTab(props: InvitationsTabProps) {
   const { searchText } = props;
-  const [message, setMessage] = useState(initialMessageState);
+  const [message, setMessage] = useState<IInitialMessage>(initialMessageState);
   const [invitations, setInvitations] = useState(invitationEntriesDataMock);
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
@@ -31,7 +41,7 @@ function InvitationsTab(props) {
     {
       id: "1",
       actionName: "Complete",
-      content: (invitation) => (
+      content: (invitation: IGeneralInformationEntry) => (
         <CompleteInvitationLink
           invitation={invitation}
           showComplete={smallScreen}
@@ -42,7 +52,7 @@ function InvitationsTab(props) {
     {
       id: "2",
       actionName: "Resend",
-      content: (invitation) => (
+      content: (invitation: IGeneralInformationEntry) => (
         <ResendInvitation
           invitation={invitation}
           handleResendInvitation={() => handleResendInvitation(invitation)}
@@ -54,7 +64,7 @@ function InvitationsTab(props) {
     {
       id: "3",
       actionName: "Delete",
-      content: (invitation) => (
+      content: (invitation: IGeneralInformationEntry) => (
         <DeleteInvitation
           handleDelete={() => deleteInvitation(invitation)}
           showComplete={smallScreen}
@@ -64,9 +74,9 @@ function InvitationsTab(props) {
     },
   ];
 
-  const deleteInvitation = (invitation) => {
+  const deleteInvitation = (invitation: IGeneralInformationEntry) => {
     // Create fetch request here...
-    let responseType = "success";
+    let responseType = EMessageType.SUCCESS;
 
     try {
       setInvitations((prevInvitations) =>
@@ -75,36 +85,42 @@ function InvitationsTab(props) {
         )
       );
     } catch (error) {
-      responseType = "failed";
+      responseType = EMessageType.FAILED;
     }
 
     const { icon, title, description, appearance } =
       deleteInvitationMessagesConfig[responseType];
 
-    handleShowMessage(
+    handleShowMessage({
       title,
-      description(invitation.username),
+      description: description(invitation.username),
       icon,
-      appearance
-    );
+      appearance,
+    });
   };
 
-  const handleResendInvitation = (invitation) => {
-    let messageType = "success";
+  const handleResendInvitation = (invitation: IGeneralInformationEntry) => {
+    let messageType = EMessageType.SUCCESS;
 
     try {
       handleCloseMessage();
     } catch (error) {
-      messageType = "failed";
+      messageType = EMessageType.FAILED;
     }
 
     const { title, description, icon, appearance } =
       resendInvitationMessages[messageType];
 
-    handleShowMessage(title, description(invitation), icon, appearance);
+    handleShowMessage({
+      title,
+      description: description(invitation),
+      icon,
+      appearance,
+    });
   };
 
-  const handleShowMessage = (title, description, icon, appearance) => {
+  const handleShowMessage = (props: IInitialMessage) => {
+    const { title, description, icon, appearance } = props;
     setMessage({
       show: true,
       title,

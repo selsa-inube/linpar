@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { SectionMessageUI } from "./interface";
 import { useMediaQuery } from "@inube/design-system";
+import { EApparence } from "@src/types/colors.types";
 
 interface SectionMessageProps {
   icon: JSX.Element | string;
   title: string;
   description: string;
-  appearance: string;
+  appearance: EApparence;
   duration: number;
   closeSectionMessage: () => void;
 }

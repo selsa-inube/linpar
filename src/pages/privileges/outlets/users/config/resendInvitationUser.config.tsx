@@ -1,12 +1,13 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
-import { IActionConfig } from "../types/actions.types";
+import { EApparence } from "@src/types/colors.types";
+import { IGeneralInformationEntry } from "../types/forms.types";
 
 const resendInvitationModal = {
   title: "resend  invitation",
-  description: ({ username }: IActionConfig) =>
+  description: ({ username }: IGeneralInformationEntry) =>
     `Are you sure you want to resend the  invitation ${username} ?`,
   textAction: "Resend",
-  appearance: "confirm",
+  appearance: EApparence.CONFIRM,
 };
 
 const resendInvitationMessages = {
@@ -14,17 +15,17 @@ const resendInvitationMessages = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "Successful  forwarding!",
-    description: ({ username }: IActionConfig) =>
+    description: ({ username }: IGeneralInformationEntry) =>
       `We have successfully  forward the invitation  to the user ${username}`,
-    appearance: "confirm",
+    appearance: EApparence.CONFIRM,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "Oops, something has gone wrong!",
-    description: ({ username }: IActionConfig) =>
+    description: ({ username }: IGeneralInformationEntry) =>
       `We have presented problems forwarding the invitation to the user ${username}`,
-    appearance: "remove",
+    appearance: EApparence.REMOVE,
   },
 };
 

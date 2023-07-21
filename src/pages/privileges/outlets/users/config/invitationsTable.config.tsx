@@ -58,7 +58,7 @@ const deleteInvitationMessagesConfig = {
     title: "¡Eliminación exitosa!",
     description: (value: string) =>
       `Hemos eliminado correctamente la invitación del usuario ${value}.`,
-    appearance: "confirm",
+    appearance: EApparence.CONFIRM,
     duration: 2000,
   },
   failed: {
@@ -67,7 +67,7 @@ const deleteInvitationMessagesConfig = {
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
       `Hemos presentado problemas al eliminar la invitación del usuario ${value}.`,
-    appearance: "remove",
+    appearance: EApparence.REMOVE,
     duration: 2000,
   },
 };

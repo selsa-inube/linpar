@@ -1,8 +1,13 @@
 import { Button } from "@inube/design-system";
 import { MdModeEdit } from "react-icons/md";
 import { StyledLink } from "./styles";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 
-function EditUser(props) {
+interface EditUserProps {
+  entry: IGeneralInformationEntry;
+  showComplete: boolean;
+}
+function EditUser(props: EditUserProps) {
   const { entry, showComplete } = props;
   return (
     <>

@@ -1,48 +1,48 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
-import { IActionConfig } from "../types/actions.types";
+import { EApparence } from "@src/types/colors.types";
+import { IGeneralInformationEntry } from "../types/forms.types";
 
 const activateUserModal = {
   activation: {
     title: "Activate user",
-    description: ({ code }: IActionConfig) =>
+    description: ({ code }: IGeneralInformationEntry) =>
       `Esta seguro de Activar el usuario ${code}? `,
     textAction: "Activate",
-    appearance: "confirm",
+    appearance: EApparence.CONFIRM,
   },
-
   deactivation: {
     title: "Deactivate user",
-    description: ({ code }: IActionConfig) =>
+    description: ({ code }: IGeneralInformationEntry) =>
       `Esta seguro de Desactivar el usuario ${code}? `,
     textAction: "Deactivate",
-    appearance: "remove",
+    appearance: EApparence.REMOVE,
   },
 };
 
 const activateUserMessages = {
-  activate: {
+  activation: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Activación exitosa!",
-    description: ({ username }: IActionConfig) =>
+    description: ({ username }: IGeneralInformationEntry) =>
       `El Usuario ${username} esta activado `,
-    appearance: "confirm",
+    appearance: EApparence.CONFIRM,
   },
-  deactivate: {
+  deactivation: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Desactivación exitosa!",
-    description: ({ username }: IActionConfig) =>
+    description: ({ username }: IGeneralInformationEntry) =>
       `El Usuario ${username} esta desactivado `,
-    appearance: "confirm",
+    appearance: EApparence.CONFIRM,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
-    description: ({ code }: IActionConfig) =>
+    description: ({ code }: IGeneralInformationEntry) =>
       `Hemos presentado problemas eliminando al usuario ${code}.`,
-    appearance: "remove",
+    appearance: EApparence.REMOVE,
   },
 };
 export { activateUserMessages, activateUserModal };
