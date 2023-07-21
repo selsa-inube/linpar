@@ -23,7 +23,6 @@ import {
   IAssignmentFormEntry,
   IGeneralInformationEntry,
 } from "../types/forms.types";
-import { EApparence } from "@src/types/colors.types";
 
 interface EditUserUIProps {
   selectedTab: string;
@@ -53,7 +52,7 @@ function continueModal(
       description={description}
       actionText={actionText}
       loading={false}
-      appearance={EApparence.PRIMARY}
+      appearance={appearance}
       closeModal={handleCloseModal}
       handleClick={handleContinueTab}
     />
