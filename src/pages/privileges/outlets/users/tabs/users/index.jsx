@@ -86,7 +86,7 @@ function UsersTab(props) {
   const actions = [
     {
       id: "1",
-      actionName: "Activate",
+      actionName: "Activar",
       content: (user) => (
         <ActivateUser
           user={user}
@@ -98,13 +98,13 @@ function UsersTab(props) {
     },
     {
       id: "2",
-      actionName: "Edit",
+      actionName: "Editar",
       content: (entry) => <EditUser entry={entry} showComplete={smallScreen} />,
       type: "primary",
     },
     {
       id: "3",
-      actionName: "Delete",
+      actionName: "Eliminar",
       content: (user) => (
         <DeleteUser
           user={user}

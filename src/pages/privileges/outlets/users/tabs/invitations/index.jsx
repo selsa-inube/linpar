@@ -30,7 +30,7 @@ function InvitationsTab(props) {
   const invitationsTableActions = [
     {
       id: "1",
-      actionName: "Complete",
+      actionName: "Completar",
       content: (invitation) => (
         <CompleteInvitationLink
           invitation={invitation}
@@ -41,7 +41,7 @@ function InvitationsTab(props) {
     },
     {
       id: "2",
-      actionName: "Resend",
+      actionName: "Reenviar",
       content: (invitation) => (
         <ResendInvitation
           invitation={invitation}
@@ -53,7 +53,7 @@ function InvitationsTab(props) {
     },
     {
       id: "3",
-      actionName: "Delete",
+      actionName: "Eliminar",
       content: (invitation) => (
         <DeleteInvitation
           handleDelete={() => deleteInvitation(invitation)}
