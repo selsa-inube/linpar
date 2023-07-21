@@ -3,7 +3,7 @@ import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { EditUserContinueModalConfig } from "./config/editUser.config";
+import { editUserContinueModalConfig } from "./config/editUser.config";
 import {
   editUserOptionsConfig,
   editUserSubjectCardLabels,
@@ -21,7 +21,7 @@ import { MdPersonOutline } from "react-icons/md";
 
 function continueModal(handleCloseModal, handleContinueTab) {
   const { title, description, actionText, appearance } =
-    EditUserContinueModalConfig;
+    editUserContinueModalConfig;
   return (
     <DecisionModal
       title={title}

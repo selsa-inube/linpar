@@ -34,6 +34,7 @@ function ProjectsFormUI(props) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -61,6 +62,7 @@ function ProjectsFormUI(props) {
       handleChange={handleChangeProjects}
       entries={projects}
       title="Seleccione los proyectos que desea asignar"
+      readOnly={readOnly}
     />
   );
 }

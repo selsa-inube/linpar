@@ -2,8 +2,13 @@ import { useState } from "react";
 import { ProjectsFormUI } from "./interface";
 
 function ProjectsForm(props) {
-  const { currentProjects, handleSubmit, withSubmitButtons, onHasChanges } =
-    props;
+  const {
+    currentProjects,
+    handleSubmit,
+    withSubmitButtons,
+    onHasChanges,
+    readOnly,
+  } = props;
   const [projects, setProjects] = useState(currentProjects);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -57,6 +62,7 @@ function ProjectsForm(props) {
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      readOnly={readOnly}
     />
   );
 }

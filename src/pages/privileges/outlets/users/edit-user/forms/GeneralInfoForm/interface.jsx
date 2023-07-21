@@ -34,7 +34,13 @@ function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
   );
 }
 
-function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
+function renderFormFields(
+  formik,
+  loading,
+  formInvalid,
+  handleChangeForm,
+  readOnly
+) {
   function stateValue(attribute) {
     if (!formik.touched[attribute]) return "pending";
     if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
@@ -50,12 +56,12 @@ function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
         id="username"
         value={formik.values.username}
         type="text"
-        isDisabled={true}
+        isDisabled
         size="compact"
-        isFullWidth={true}
+        isFullWidth
         maxLength={40}
         minLength={1}
-        readOnly={true}
+        readOnly
       />
 
       <TextField
@@ -65,10 +71,10 @@ function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
         id="userID"
         value={formik.values.userID}
         type="number"
-        isDisabled={true}
+        isDisabled
         size="compact"
-        isFullWidth={true}
-        readOnly={true}
+        isFullWidth
+        readOnly
       />
 
       <TextField
@@ -82,9 +88,10 @@ function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
         isInvalid={formik.errors.email && formInvalid}
         errorMessage={formik.errors.email}
         validMessage="El correo electrónico ingresado es válido"
-        isDisabled={loading}
+        isDisabled={readOnly || loading}
+        readOnly={readOnly}
         size="compact"
-        isFullWidth={true}
+        isFullWidth
         state={stateValue("email")}
         handleChange={handleChangeForm}
         handleBlur={formik.handleBlur}
@@ -101,9 +108,10 @@ function renderFormFields(formik, loading, formInvalid, handleChangeForm) {
         isInvalid={formik.errors.phone && formInvalid}
         errorMessage={formik.errors.phone}
         validMessage="El número de teléfono ingresado es válido"
-        isDisabled={loading}
+        isDisabled={readOnly || loading}
+        readOnly={readOnly}
         size="compact"
-        isFullWidth={true}
+        isFullWidth
         state={stateValue("phone")}
         handleChange={handleChangeForm}
         handleBlur={formik.handleBlur}
@@ -150,6 +158,7 @@ function GeneralInformationFormUI(props) {
     formInvalid,
     handleSubmitForm,
     handleChangeForm,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -169,7 +178,15 @@ function GeneralInformationFormUI(props) {
   }
 
   return (
-    <>{renderFormFields(formik, loading, formInvalid, handleChangeForm)}</>
+    <>
+      {renderFormFields(
+        formik,
+        loading,
+        formInvalid,
+        handleChangeForm,
+        readOnly
+      )}
+    </>
   );
 }
 

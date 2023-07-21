@@ -9,6 +9,7 @@ function AidBudgetsForm(props) {
     handleSubmit,
     withSubmitButtons,
     onHasChanges,
+    readOnly,
   } = props;
   const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,6 +63,7 @@ function AidBudgetsForm(props) {
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      readOnly={readOnly}
     />
   );
 }

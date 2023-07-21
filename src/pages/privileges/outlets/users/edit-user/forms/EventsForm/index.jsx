@@ -4,8 +4,13 @@ import { EventsFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 function EventsForm(props) {
-  const { currentEvents, handleSubmit, withSubmitButtons, onHasChanges } =
-    props;
+  const {
+    currentEvents,
+    handleSubmit,
+    withSubmitButtons,
+    onHasChanges,
+    readOnly,
+  } = props;
   const [events, setEvents] = useState(currentEvents);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -59,6 +64,7 @@ function EventsForm(props) {
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      readOnly={readOnly}
     />
   );
 }

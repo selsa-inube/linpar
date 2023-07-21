@@ -13,8 +13,13 @@ const validationSchema = Yup.object({
 });
 
 function GeneralInformationForm(props) {
-  const { withSubmitButtons, currentInformation, handleSubmit, onHasChanges } =
-    props;
+  const {
+    withSubmitButtons,
+    currentInformation,
+    handleSubmit,
+    onHasChanges,
+    readOnly,
+  } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -94,6 +99,7 @@ function GeneralInformationForm(props) {
       formInvalid={formInvalid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
+      readOnly={readOnly}
     />
   );
 }

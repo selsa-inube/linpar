@@ -2,8 +2,13 @@ import { useState } from "react";
 import { BranchesFormUI } from "./interface";
 
 function BranchesForm(props) {
-  const { currentBranches, handleSubmit, withSubmitButtons, onHasChanges } =
-    props;
+  const {
+    currentBranches,
+    handleSubmit,
+    withSubmitButtons,
+    onHasChanges,
+    readOnly,
+  } = props;
   const [branches, setBranches] = useState(currentBranches);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({
@@ -57,6 +62,7 @@ function BranchesForm(props) {
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      readOnly={readOnly}
     />
   );
 }

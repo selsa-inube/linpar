@@ -13,7 +13,7 @@ import { StyledModal } from "./styles";
 interface DecisionModalProps {
   title: string;
   description: string;
-  appearance: "primary" | "secondary" | "remove";
+  appearance: "primary" | "secondary" | "remove" | "confirm";
   actionText: string;
   loading: boolean;
   closeModal: () => void;

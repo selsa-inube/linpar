@@ -1,3 +1,5 @@
+import { MdThumbUpOffAlt, MdErrorOutline } from "react-icons/md";
+
 const stepsRegisterUserConfig = {
   generalInformation: {
     id: 1,
@@ -73,8 +75,36 @@ const completeInvitationSubjectCardLabels = [
   },
 ];
 
+const finishAssistedModalConfig = {
+  title: "Finalizar registro",
+  description: "¿Está seguro de que desea finalizar el proceso de registro?",
+  actionText: "Finalizar",
+  appearance: "confirm",
+};
+
+const finishAssistedMessagesConfig = {
+  success: {
+    id: 1,
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "Activación exitosa",
+    description: (value: string) =>
+      `Hemos activado con éxito el usuario ${value}.`,
+    appearance: "confirm",
+  },
+  failed: {
+    id: 2,
+    icon: <MdErrorOutline size={18} />,
+    title: "¡Uy, algo ha salido mal!",
+    description: (value: string) =>
+      `Hemos presentado problemas activando el usuario  ${value}.`,
+    appearance: "remove",
+  },
+};
+
 export {
   CompleteInvitationUserConfig,
-  stepsRegisterUserConfig,
   completeInvitationSubjectCardLabels,
+  finishAssistedModalConfig,
+  stepsRegisterUserConfig,
+  finishAssistedMessagesConfig,
 };

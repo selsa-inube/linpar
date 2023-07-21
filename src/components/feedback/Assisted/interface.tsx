@@ -1,17 +1,18 @@
-import { Button, Text, Stack, useMediaQuery } from "@inube/design-system";
+import { Button, Stack, Text, useMediaQuery } from "@inube/design-system";
 import { MdArrowBack, MdArrowForward, MdCheckCircle } from "react-icons/md";
-import { StepIndicator } from "./StepIndicator";
 import { StepBar } from "./StepBar";
+import { StepIndicator } from "./StepIndicator";
+import { VerificationStep } from "./VerificationStep";
 import {
+  StyledButton,
+  StyledDesktopContainer,
+  StyledMobile,
   StyledSteps,
+  StyledStepsContent,
   StyledStepsMobile,
   StyledStepsMobileId,
-  StyledButton,
-  StyledMobile,
-  StyledDesktopContainer,
-  StyledStepsContent,
 } from "./styles";
-import { IStep } from "./types";
+import { IStep, IVerificationData } from "./types";
 
 interface IAssistedUIProps {
   currentStep: number;
@@ -20,6 +21,7 @@ interface IAssistedUIProps {
   handlePreviousStep: () => void;
   handleStepChange: (stepId: number) => void;
   steps: IStep[];
+  verificationData: Record<string, IVerificationData>;
 }
 
 const MAX_STEPS_PER_VIEW = 7;
@@ -32,6 +34,7 @@ function AssistedUI(props: IAssistedUIProps) {
     handlePreviousStep,
     handleStepChange,
     steps,
+    verificationData,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 1100px)");
@@ -65,81 +68,87 @@ function AssistedUI(props: IAssistedUIProps) {
 
   if (smallScreen) {
     return (
-      <StyledMobile>
-        <StyledButton>
-          <Button
-            variant="none"
-            iconBefore={<MdArrowBack size={20} />}
-            handleClick={handlePreviousStep}
-            isDisabled={currentStep === steps[0].id}
-          />
-        </StyledButton>
-        <StyledStepsMobile>
-          <Stack gap="8px" alignItems="center" justifyContent="center">
-            <StyledStepsMobileId>
-              <Text typo="labelMedium" appearance="primary">
-                {currentStep === steps[steps.length - 1].id ? (
-                  <MdCheckCircle size={16} />
-                ) : (
-                  currentStep
-                )}
+      <>
+        <StyledMobile>
+          <StyledButton>
+            <Button
+              variant="none"
+              iconBefore={<MdArrowBack size={20} />}
+              handleClick={handlePreviousStep}
+              isDisabled={currentStep === steps[0].id}
+            />
+          </StyledButton>
+          <StyledStepsMobile>
+            <Stack gap="8px" alignItems="center" justifyContent="center">
+              <StyledStepsMobileId>
+                <Text typo="labelMedium" appearance="primary">
+                  {currentStep === steps[steps.length - 1].id ? (
+                    <MdCheckCircle size={16} />
+                  ) : (
+                    currentStep
+                  )}
+                </Text>
+              </StyledStepsMobileId>
+              <Text typo="labelMedium" appearance="dark">
+                {currentStepInfo?.stepName}
               </Text>
-            </StyledStepsMobileId>
-            <Text typo="labelMedium" appearance="dark">
-              {currentStepInfo?.stepName}
-            </Text>
-          </Stack>
-          <StyledSteps>{steps.map(renderStep)}</StyledSteps>
-        </StyledStepsMobile>
-        <StyledButton>
-          <Button
-            variant="none"
-            iconAfter={<MdArrowForward size={20} />}
-            handleClick={handleNextStep}
-            isDisabled={currentStep === steps.length}
-          />
-        </StyledButton>
-      </StyledMobile>
+            </Stack>
+            <StyledSteps>{steps.map(renderStep)}</StyledSteps>
+          </StyledStepsMobile>
+          <StyledButton>
+            <Button
+              variant="none"
+              iconAfter={<MdArrowForward size={20} />}
+              handleClick={handleNextStep}
+            />
+          </StyledButton>
+        </StyledMobile>
+        {currentStepInfo?.isVerification && (
+          <VerificationStep smallScreen verificationData={verificationData} />
+        )}
+      </>
     );
   }
 
   return (
-    <StyledDesktopContainer>
-      <Stack alignItems="center" justifyContent="center">
-        <Button
-          variant="none"
-          iconBefore={<MdArrowBack size={18} />}
-          handleClick={handlePreviousStep}
-          isDisabled={currentStep === steps[0].id}
-        >
-          <Text
-            typo="labelLarge"
-            appearance={currentStep === steps[0].id ? "disabled" : "primary"}
+    <>
+      <StyledDesktopContainer>
+        <Stack alignItems="center" justifyContent="center">
+          <Button
+            variant="none"
+            iconBefore={<MdArrowBack size={18} />}
+            handleClick={handlePreviousStep}
+            isDisabled={currentStep === steps[0].id}
           >
-            Prev
-          </Text>
-        </Button>
-        <StyledStepsContent>
-          <StyledSteps>{steps.map(renderStep)}</StyledSteps>
-        </StyledStepsContent>
-        <Button
-          variant="none"
-          iconAfter={<MdArrowForward size={18} />}
-          handleClick={handleNextStep}
-          isDisabled={currentStep === steps.length}
-        >
-          <Text
-            typo="labelLarge"
-            appearance={currentStep === steps.length ? "disabled" : "primary"}
+            <Text
+              typo="labelLarge"
+              appearance={currentStep === steps[0].id ? "disabled" : "primary"}
+            >
+              Prev
+            </Text>
+          </Button>
+          <StyledStepsContent>
+            <StyledSteps>{steps.map(renderStep)}</StyledSteps>
+          </StyledStepsContent>
+          <Button
+            variant="none"
+            iconAfter={<MdArrowForward size={18} />}
+            handleClick={handleNextStep}
+            isDisabled={currentStep === steps.length}
           >
-            Next
-          </Text>
-        </Button>
-      </Stack>
-      <Text typo="labelLarge" appearance="secondary" align="center">
-        {currentStepInfo?.stepDescription}
-      </Text>
-    </StyledDesktopContainer>
+            <Text typo="labelLarge" appearance="primary">
+              Next
+            </Text>
+          </Button>
+        </Stack>
+        <Text typo="labelLarge" appearance="secondary" align="center">
+          {currentStepInfo?.stepDescription}
+        </Text>
+      </StyledDesktopContainer>
+      {currentStepInfo?.isVerification && (
+        <VerificationStep verificationData={verificationData} />
+      )}
+    </>
   );
 }
 

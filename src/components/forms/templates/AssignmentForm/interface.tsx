@@ -29,6 +29,7 @@ interface AssignmentFormUIProps {
   handleCloseMenuInvitation: () => void;
   menuOptions: IOption[];
   isAssignAll: boolean;
+  readOnly?: boolean;
 }
 
 function AssignmentFormUI(props: AssignmentFormUIProps) {
@@ -44,6 +45,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
     handleCloseMenuInvitation,
     menuOptions,
     isAssignAll,
+    readOnly,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 650px)");
@@ -53,6 +55,25 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
       entry.value.toLowerCase().includes(filter.toLowerCase()) ||
       entry.id.includes(filter.toLowerCase())
   );
+
+  if (readOnly) {
+    return (
+      <StyledEntriesContainer readOnly={readOnly}>
+        {filteredRows.map((entry) => (
+          <Stack alignItems="center" key={entry.id}>
+            <Switch
+              id={entry.id}
+              label={`${entry.id} - ${entry.value}`}
+              checked={entry.isActive}
+              handleChange={() => handleToggleEntry(entry.id)}
+              size="large"
+              isDisabled
+            />
+          </Stack>
+        ))}
+      </StyledEntriesContainer>
+    );
+  }
 
   return (
     <StyledForm>

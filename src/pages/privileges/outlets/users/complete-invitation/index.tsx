@@ -4,15 +4,23 @@ import { eventsFormInvitation } from "@mocks/apps/privileges/invitations/eventsF
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { payrollsFormInvitation } from "@mocks/apps/privileges/invitations/payrollsForm.mock";
 import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
+import { IVerificationData } from "@src/components/feedback/Assisted/types";
+import { IMessage } from "@src/types/messages.types";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
-import { CompleteInvitationUI } from "./interface";
+import { useNavigate, useParams } from "react-router-dom";
+import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
+import { BranchesForm } from "../edit-user/forms/BranchesForm";
+import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import {
-  IFormsInvitation,
   IAssignmentFormEntry,
+  IFormsInvitation,
   IGeneralInformationEntry,
 } from "../types/forms.types";
+import {
+  finishAssistedMessagesConfig,
+  stepsRegisterUserConfig,
+} from "./config/completeInvitation.config";
+import { CompleteInvitationUI } from "./interface";
 
 function CompleteInvitation() {
   const { invitation_id } = useParams<{ invitation_id: string }>();
@@ -20,6 +28,8 @@ function CompleteInvitation() {
   const [currentStep, setCurrentStep] = useState<number>(
     stepsRegisterUserConfig.generalInformation.id
   );
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const [invitationData, setInvitationData] = useState<IFormsInvitation>({
     generalInformation: { entries: getInvitationInformation() },
@@ -68,12 +78,75 @@ function CompleteInvitation() {
     setCurrentStep(step);
   };
 
+  const handleCompleteInvitation = () => {
+    const { title, description, appearance, icon } =
+      finishAssistedMessagesConfig["success"];
+
+    const message: IMessage = {
+      title: title,
+      description: description(
+        invitationData.generalInformation.entries.username
+      ),
+      icon: icon,
+      appearance: appearance,
+    };
+
+    navigate("/privileges/users", {
+      state: {
+        message,
+        tab: "privileges-invitations",
+      },
+    });
+  };
+
+  const handleToggleModal = () => {
+    setShowModal((prevShowModal) => !prevShowModal);
+  };
+
+  const verificationData: Record<string, IVerificationData> = {
+    generalInformation: {
+      id: "generalInformation",
+      title: "General",
+      content: (
+        <GeneralInformationForm
+          currentInformation={invitationData.generalInformation.entries}
+          readOnly
+        />
+      ),
+      isFullWidth: true,
+    },
+    branches: {
+      id: "branches",
+      title: "Sucursales",
+      content: (
+        <BranchesForm
+          currentBranches={invitationData.branches.entries}
+          readOnly
+        />
+      ),
+    },
+    aidBudgets: {
+      id: "aidBudgets",
+      title: "Unidades de ayuda",
+      content: (
+        <AidBudgetsForm
+          currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
+          readOnly
+        />
+      ),
+    },
+  };
+
   return (
     <CompleteInvitationUI
       invitationData={invitationData}
       handleSubmit={handleSubmit}
       handleStepChange={handleStepChange}
       currentStep={currentStep}
+      handleToggleModal={handleToggleModal}
+      handleCompleteInvitation={handleCompleteInvitation}
+      showModal={showModal}
+      verificationData={verificationData}
     />
   );
 }

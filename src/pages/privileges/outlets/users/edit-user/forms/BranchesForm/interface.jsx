@@ -34,6 +34,7 @@ function BranchesFormUI(props) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -61,6 +62,7 @@ function BranchesFormUI(props) {
       handleChange={handleChangeBranches}
       entries={branches}
       title="Seleccione las sucursales que desea asignar"
+      readOnly={readOnly}
     />
   );
 }

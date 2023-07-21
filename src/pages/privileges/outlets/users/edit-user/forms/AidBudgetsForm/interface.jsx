@@ -34,6 +34,7 @@ function AidBudgetsFormUI(props) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -61,6 +62,7 @@ function AidBudgetsFormUI(props) {
       handleChange={handleChangeAidBudgets}
       entries={aidBudgetUnits}
       title="Seleccione los presupuestos que desea asignar"
+      readOnly={readOnly}
     />
   );
 }

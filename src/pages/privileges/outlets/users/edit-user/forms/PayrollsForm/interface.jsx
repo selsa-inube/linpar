@@ -34,6 +34,7 @@ function PayrollsFormUI(props) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -61,6 +62,7 @@ function PayrollsFormUI(props) {
       handleChange={handleChangePayrolls}
       entries={payrolls}
       title="Seleccione los conceptos de nómina que desea asignar"
+      readOnly={readOnly}
     />
   );
 }

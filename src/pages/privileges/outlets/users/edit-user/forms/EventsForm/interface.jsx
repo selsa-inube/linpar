@@ -34,6 +34,7 @@ function EventsFormUI(props) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -61,6 +62,7 @@ function EventsFormUI(props) {
       handleChange={handleChangeEvents}
       entries={events}
       title="Seleccione los eventos que desea asignar"
+      readOnly={readOnly}
     />
   );
 }
