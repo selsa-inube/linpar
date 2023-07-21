@@ -110,7 +110,7 @@ function UsersTab(props: UsersTabProps) {
   const actions = [
     {
       id: "1",
-      actionName: "Activate",
+      actionName: "Activar",
       content: (user: IGeneralInformationEntry) => (
         <ActivateUser
           user={user}
@@ -122,7 +122,7 @@ function UsersTab(props: UsersTabProps) {
     },
     {
       id: "2",
-      actionName: "Edit",
+      actionName: "Editar",
       content: (entry: IGeneralInformationEntry) => (
         <EditUser entry={entry} showComplete={smallScreen} />
       ),
@@ -130,7 +130,7 @@ function UsersTab(props: UsersTabProps) {
     },
     {
       id: "3",
-      actionName: "Delete",
+      actionName: "Eliminar",
       content: (user: IGeneralInformationEntry) => (
         <DeleteUser
           user={user}
