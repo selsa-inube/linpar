@@ -3,11 +3,18 @@ import { colors } from "@styles/colors";
 const StyledDesktopContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+`;
+
+const StyledDesktopAssisted = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 8px;
   border-radius: 8px;
   background-color: ${colors.ref.palette.neutral.n20};
-  justify-items: center;
-  width: 100%;
 `;
 
 const StyledMobile = styled.div`
@@ -37,7 +44,6 @@ const StyledSteps = styled.ul`
 const StyledStepsMobile = styled.div`
   display: flex;
   width: 90%;
-  max-width: 430px;
   align-items: start;
   flex-direction: column;
   gap: 8px;
@@ -61,6 +67,7 @@ const StyledStepsMobileId = styled.div`
 `;
 
 export {
+  StyledDesktopAssisted,
   StyledButton,
   StyledSteps,
   StyledStepsMobile,

@@ -10,6 +10,7 @@ import {
   StyledMobile,
   StyledDesktopContainer,
   StyledStepsContent,
+  StyledDesktopAssisted,
 } from "./styles";
 import { IStep } from "./types";
 
@@ -105,40 +106,42 @@ function AssistedUI(props: IAssistedUIProps) {
 
   return (
     <StyledDesktopContainer>
-      <Stack alignItems="center" justifyContent="center">
-        <Button
-          variant="none"
-          iconBefore={<MdArrowBack size={18} />}
-          handleClick={handlePreviousStep}
-          isDisabled={currentStep === steps[0].id}
-        >
-          <Text
-            typo="labelLarge"
-            appearance={currentStep === steps[0].id ? "disabled" : "primary"}
+      <StyledDesktopAssisted>
+        <Stack alignItems="center" justifyContent="center">
+          <Button
+            variant="none"
+            iconBefore={<MdArrowBack size={18} />}
+            handleClick={handlePreviousStep}
+            isDisabled={currentStep === steps[0].id}
           >
-            Prev
-          </Text>
-        </Button>
-        <StyledStepsContent>
-          <StyledSteps>{steps.map(renderStep)}</StyledSteps>
-        </StyledStepsContent>
-        <Button
-          variant="none"
-          iconAfter={<MdArrowForward size={18} />}
-          handleClick={handleNextStep}
-          isDisabled={currentStep === steps.length}
-        >
-          <Text
-            typo="labelLarge"
-            appearance={currentStep === steps.length ? "disabled" : "primary"}
+            <Text
+              typo="labelLarge"
+              appearance={currentStep === steps[0].id ? "disabled" : "primary"}
+            >
+              Prev
+            </Text>
+          </Button>
+          <StyledStepsContent>
+            <StyledSteps>{steps.map(renderStep)}</StyledSteps>
+          </StyledStepsContent>
+          <Button
+            variant="none"
+            iconAfter={<MdArrowForward size={18} />}
+            handleClick={handleNextStep}
+            isDisabled={currentStep === steps.length}
           >
-            Next
-          </Text>
-        </Button>
-      </Stack>
-      <Text typo="labelLarge" appearance="secondary" align="center">
-        {currentStepInfo?.stepDescription}
-      </Text>
+            <Text
+              typo="labelLarge"
+              appearance={currentStep === steps.length ? "disabled" : "primary"}
+            >
+              Next
+            </Text>
+          </Button>
+        </Stack>
+        <Text typo="labelLarge" appearance="secondary" align="center">
+          {currentStepInfo?.stepDescription}
+        </Text>
+      </StyledDesktopAssisted>
     </StyledDesktopContainer>
   );
 }
