@@ -4,6 +4,7 @@ const StyledDesktopContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  border-radius: 8px;
   background-color: ${colors.ref.palette.neutral.n20};
   justify-items: center;
   width: 100%;
@@ -12,6 +13,7 @@ const StyledDesktopContainer = styled.div`
 const StyledMobile = styled.div`
   display: flex;
   gap: 16px;
+  border-radius: 8px;
   align-items: center;
   justify-content: center;
   padding: 12px;
