@@ -4,27 +4,27 @@ import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 const invitationsTableTitles = [
   {
     id: "userID",
-    titleName: "User Id",
+    titleName: "Identificación",
     priority: 1,
   },
   {
     id: "username",
-    titleName: "Username",
+    titleName: "Nombre de usuario",
     priority: 0,
   },
   {
     id: "email",
-    titleName: "Email",
+    titleName: "Correo",
     priority: 2,
   },
   {
     id: "invitationDate",
-    titleName: "Invitation Date",
+    titleName: "Fecha de invitación",
     priority: 3,
   },
   {
     id: "status",
-    titleName: "Status",
+    titleName: "Estado",
     priority: 4,
   },
 ];
@@ -34,10 +34,10 @@ const invitationsTableBreakpoints = [
   { breakpoint: "(max-width: 1228px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1150px)", totalColumns: 3 },
   { breakpoint: "(max-width: 1021px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 970px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 1000px)", totalColumns: 2 },
   { breakpoint: "(max-width: 849px)", totalColumns: 4 },
-  { breakpoint: "(max-width: 715px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 602px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 760px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 650px)", totalColumns: 2 },
   { breakpoint: "(max-width: 579px)", totalColumns: 3 },
   { breakpoint: "(max-width: 506px)", totalColumns: 2 },
   { breakpoint: "(max-width: 316px)", totalColumns: 1 },

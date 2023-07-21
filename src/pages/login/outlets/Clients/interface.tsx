@@ -6,9 +6,9 @@ import { MdSearch } from "react-icons/md";
 
 import {
   StyledClients,
+  StyledClientsItem,
   StyledClientsList,
   StyledNoResults,
-  StyledClientsItem,
 } from "./styles";
 
 interface ClientsUIProps {
@@ -48,19 +48,17 @@ function ClientsUI(props: ClientsUIProps) {
       </Text>
       <form onSubmit={handleSubmit}>
         {clients.length > 10 && (
-          <>
-            <TextField
-              placeholder="Search..."
-              type="search"
-              name="searchClients"
-              id="searchClients"
-              value={search}
-              minLength={1}
-              isFullWidth={true}
-              handleChange={handleSearchChange}
-              iconBefore={<MdSearch size={22} />}
-            />
-          </>
+          <TextField
+            placeholder="Buscar..."
+            type="search"
+            name="searchClients"
+            id="searchClients"
+            value={search}
+            minLength={1}
+            isFullWidth={true}
+            handleChange={handleSearchChange}
+            iconBefore={<MdSearch size={22} />}
+          />
         )}
         {!filterClients().length && (
           <StyledNoResults>
