@@ -53,7 +53,7 @@ function ClientsUI({
       <form onSubmit={handleSubmit}>
         {showSearchField && (
           <TextField
-            placeholder="Search..."
+            placeholder="Buscar..."
             type="search"
             name="searchClients"
             id="searchClients"
