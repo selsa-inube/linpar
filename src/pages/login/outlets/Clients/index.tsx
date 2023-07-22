@@ -1,9 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { ClientsUI } from "./interface";
 import { IClientState, IClient } from "./types";
 import { useNavigate, useParams } from "react-router-dom";
 
-const API_BASE_URL = "http://localhost:3001/v1/login/clients/";
+const API_BASE_URL = import.meta.env.VITE_USER_CLIENTS_URI;
+
+async function getUserClientsData(user_id?: string) {
+  try {
+    const response = await fetch(`${API_BASE_URL}${user_id}`);
+    const clients = await response.json();
+    return clients;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
 
 function Clients() {
   const [search, setSearch] = useState("");
@@ -16,19 +27,13 @@ function Clients() {
   const navigate = useNavigate();
   const { user_id } = useParams();
 
-  const getUserClientsData = useCallback(async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}${user_id}`);
-      const clients = await response.json();
-      setClientsData(clients);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [user_id]);
-
   useEffect(() => {
-    getUserClientsData();
-  }, [getUserClientsData]);
+    async function getData() {
+      const clients = await getUserClientsData(user_id);
+      setClientsData(clients);
+    }
+    getData();
+  }, [user_id]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (client.ref) {
@@ -42,11 +47,7 @@ function Clients() {
     setClient({ ref: event.target, value: false });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (client.value) {
-      return;
-    }
+  const handleSubmit = () => {
     navigate("/login/loading-app");
   };
 

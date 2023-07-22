@@ -23,8 +23,12 @@ interface ClientsUIProps {
 function NoResultsMessage({ search }: { search: string }) {
   return (
     <StyledNoResults>
-      <Text typo="bodyMedium">{`No se encontraron resultados para "${search}".`}</Text>
-      <Text typo="bodyMedium">{`Por favor, intenta modificando los parámetros de búsqueda.`}</Text>
+      <Text typo="bodyMedium">
+        No se encontraron resultados para "{search}".
+      </Text>
+      <Text typo="bodyMedium">
+        Por favor, intenta modificando los parámetros de búsqueda.
+      </Text>
     </StyledNoResults>
   );
 }
@@ -39,8 +43,6 @@ function ClientsUI({
   handleSubmit,
 }: ClientsUIProps) {
   const filteredClients = filterClients(clients, search);
-  const showSearchField = clients.length > 10;
-  const showNoResults = filteredClients.length === 0;
 
   return (
     <StyledClients>
@@ -50,8 +52,8 @@ function ClientsUI({
       <Text typo="bodyMedium" align="center">
         Selecciona la empresa a la que vas a representar
       </Text>
-      <form onSubmit={handleSubmit}>
-        {showSearchField && (
+      <form>
+        {clients.length > 10 && (
           <TextField
             placeholder="Buscar..."
             type="search"
@@ -64,7 +66,7 @@ function ClientsUI({
             iconBefore={<MdSearch size={22} />}
           />
         )}
-        {showNoResults && <NoResultsMessage search={search} />}
+        {filteredClients.length === 0 && <NoResultsMessage search={search} />}
         <StyledClientsList scroll={clients.length > 5}>
           {filteredClients.map((client) => (
             <StyledClientsItem key={client.id}>
@@ -79,7 +81,11 @@ function ClientsUI({
             </StyledClientsItem>
           ))}
         </StyledClientsList>
-        <Button type="submit" isDisabled={client.value}>
+        <Button
+          type="button"
+          isDisabled={client.value}
+          handleClick={handleSubmit}
+        >
           Continuar
         </Button>
       </form>

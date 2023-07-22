@@ -1,42 +1,31 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { CheckingCredentialsUI } from "./interface";
 import { useEffect } from "react";
+import { IUser } from "../../types";
 
-const API_BASE_URL = "http://localhost:3001/v1/privileges/users";
+const API_BASE_URL = import.meta.env.VITE_USERS_URI;
 
-interface IUser {
-  id: string;
-  username: string;
-  code: string;
-  userID: string;
-  position: string;
-  active: boolean;
-  email: string;
-  phone: string;
-  clients: number[];
+async function getUser(user_id?: string): Promise<IUser | null> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/${user_id}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch user");
+    }
+    const user: IUser = await response.json();
+    return user;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
 function CheckingCredentials() {
   const navigate = useNavigate();
   const { user_id } = useParams();
 
-  const getUser = async (): Promise<IUser | null> => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${user_id}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch user");
-      }
-      const user: IUser = await response.json();
-      return user;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
-
   const checkCredentials = async () => {
     try {
-      const user = await getUser();
+      const user = await getUser(user_id);
 
       if (user) {
         if (!user.clients || user.clients.length === 0) {
