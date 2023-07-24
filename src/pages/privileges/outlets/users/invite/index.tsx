@@ -35,15 +35,17 @@ function Invite() {
     validateOnChange: false,
     onSubmit: () => {
       setLoading(true);
-      setLoading(false);
-      setFormInvalid(false);
-      setShowMessage(true);
-      formik.resetForm();
       setTimeout(() => {
-        navigate(`/privileges/users`, {
-          state: { tab: "privileges-invitations" },
-        });
-      }, 11000);
+        setLoading(false);
+        setFormInvalid(false);
+        setShowMessage(true);
+        formik.resetForm();
+        setTimeout(() => {
+          navigate(`/privileges/users`, {
+            state: { tab: "privileges-invitations" },
+          });
+        }, 11000);
+      }, LOADING_TIMEOUT);
     },
   });
 

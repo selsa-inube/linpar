@@ -17,7 +17,7 @@ function Users() {
     if (tab) {
       setIsSelected(tab);
     }
-  }, [isSelected]);
+  }, []);
 
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
