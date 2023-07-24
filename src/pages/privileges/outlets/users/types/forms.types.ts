@@ -7,20 +7,20 @@ interface IAssignmentFormEntry {
 }
 
 interface IGeneralInformationEntry {
-  id?: string;
+  id: string;
   userID: string;
   username: string;
   email: string;
+  phone: string;
   invitationDate?: string;
   status?: string;
-  phone: string;
   code?: string;
   position?: string;
   active?: boolean;
 }
 
 interface IFormsInvitation {
-  generalInformation: { entries: IGeneralInformationEntry };
+  generalInformation: { entries?: IGeneralInformationEntry };
   branches: { entries: IAssignmentFormEntry[] };
   projects: { entries: IAssignmentFormEntry[] };
   events: { entries: IAssignmentFormEntry[] };
@@ -30,7 +30,7 @@ interface IFormsInvitation {
 
 interface IMessageState {
   visible: boolean;
-  type: EMessageType;
+  type?: EMessageType;
 }
 
 export type {

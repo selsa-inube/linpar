@@ -4,10 +4,13 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import { GeneralInformationFormUI } from "./interface";
-import { IGeneralInformationEntry } from "../../../types/forms.types";
+import {
+  IGeneralInformationEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
 
-const LOADING_TIMEOUT = 1000;
+const LOADING_TIMEOUT = 1500;
 
 const validationSchema = Yup.object({
   email: validationRules.email.required(validationMessages.required),
@@ -15,7 +18,7 @@ const validationSchema = Yup.object({
 });
 
 interface GeneralInformationFormProps {
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   currentInformation: IGeneralInformationEntry;
   handleSubmit: (values: IGeneralInformationEntry) => void;
   onHasChanges?: (hasChanges: boolean) => void;
@@ -26,13 +29,13 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     props;
 
   const [loading, setLoading] = useState(false);
-  const [showMessage, setShowMessage] = useState({
+  const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
-    type: "" as EMessageType,
   });
   const [formInvalid, setFormInvalid] = useState(false);
 
   const initialValues: IGeneralInformationEntry = {
+    id: currentInformation.id,
     username: currentInformation.username,
     userID: currentInformation.userID,
     email: currentInformation.email,
@@ -102,7 +105,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const handleCloseSectionMessage = () => {
     setShowMessage({
       visible: false,
-      type: "" as EMessageType,
     });
   };
 

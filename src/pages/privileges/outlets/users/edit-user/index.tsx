@@ -44,13 +44,9 @@ function EditUser() {
   const handleSubmit = (
     values: IGeneralInformationEntry | IAssignmentFormEntry[]
   ) => {
-    const editKey: keyof typeof editUserTabsConfig = Object.keys(
-      editUserTabsConfig
-    ).find((key) => {
-      const tabConfig =
-        editUserTabsConfig[key as keyof typeof editUserTabsConfig];
-      return tabConfig.id === selectedTab;
-    }) as keyof typeof editUserTabsConfig;
+    const editKey = Object.entries(editUserTabsConfig).find(
+      ([, config]) => config.id === selectedTab
+    )?.[0];
 
     if (editKey) {
       setEditData((prevEditData) => ({

@@ -13,7 +13,7 @@ interface EventsFormUIProps {
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangeEvents: (events: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -23,7 +23,7 @@ const renderMessage = (
   message: IMessageState,
   onCloseSectionMessage: EventsFormUIProps["onCloseSectionMessage"]
 ) => {
-  if (!message.visible) {
+  if (!message.visible || !message.type) {
     return null;
   }
 

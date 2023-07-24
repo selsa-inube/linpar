@@ -13,7 +13,7 @@ interface BranchesFormUIProps {
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangeBranches: (branches: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -23,7 +23,7 @@ const renderMessage = (
   message: IMessageState,
   onCloseSectionMessage: BranchesFormUIProps["onCloseSectionMessage"]
 ) => {
-  if (!message.visible) {
+  if (!message.visible || !message.type) {
     return null;
   }
 

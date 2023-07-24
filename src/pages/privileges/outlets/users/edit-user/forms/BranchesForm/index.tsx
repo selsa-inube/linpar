@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { BranchesFormUI } from "./interface";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
+
+const LOADING_TIMEOUT = 1500;
 
 interface BranchesFormProps {
   currentBranches: IAssignmentFormEntry[];
   handleSubmit: (branches: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function BranchesForm(props: BranchesFormProps) {
   const { currentBranches, handleSubmit, withSubmitButtons, onHasChanges } =
     props;
-  const [branches, setBranches] =
-    useState<IAssignmentFormEntry[]>(currentBranches);
+  const [branches, setBranches] = useState(currentBranches);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({
+  const [message, setMessage] = useState<IMessageState>({
     visible: false,
-    type: "" as EMessageType,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]): boolean =>
@@ -40,7 +43,7 @@ function BranchesForm(props: BranchesFormProps) {
         visible: true,
         type: EMessageType.SUCCESS,
       });
-    }, 1500);
+    }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
@@ -51,7 +54,6 @@ function BranchesForm(props: BranchesFormProps) {
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "" as EMessageType,
     });
   };
 

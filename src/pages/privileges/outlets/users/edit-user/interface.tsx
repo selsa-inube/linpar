@@ -73,16 +73,31 @@ function EditUserUI(props: EditUserUIProps) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
+  const emptyUserData = {
+    id: "",
+    userID: "",
+    username: "",
+    email: "",
+    phone: "",
+  };
+
   const {
     generalInformation: { entries: currentInformation },
-  } = editData;
+  } = editData || { generalInformation: { entries: emptyUserData } };
 
-  const userCardData = currentInformation && {
-    username: currentInformation.username,
-    userID: currentInformation.userID,
-    code: currentInformation.code || "",
-    position: currentInformation.position || "",
-  };
+  const userCardData = currentInformation
+    ? {
+        username: currentInformation.username,
+        userID: currentInformation.userID,
+        code: currentInformation.code || "",
+        position: currentInformation.position || "",
+      }
+    : {
+        username: "",
+        userID: "",
+        code: "",
+        position: "",
+      };
 
   return (
     <StyledContainer smallScreen={smallScreen}>
@@ -114,7 +129,9 @@ function EditUserUI(props: EditUserUIProps) {
             />
             {selectedTab === editUserTabsConfig.generalInformation.id && (
               <GeneralInformationForm
-                currentInformation={editData.generalInformation.entries}
+                currentInformation={
+                  editData.generalInformation.entries || emptyUserData
+                }
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}

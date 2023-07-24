@@ -13,7 +13,7 @@ interface PayrollsFormUIProps {
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangePayrolls: (payrolls: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -23,7 +23,7 @@ const renderMessage = (
   message: IMessageState,
   onCloseSectionMessage: PayrollsFormUIProps["onCloseSectionMessage"]
 ) => {
-  if (!message.visible) {
+  if (!message.visible || !message.type) {
     return null;
   }
 

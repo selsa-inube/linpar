@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { EventsFormUI } from "./interface";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
@@ -8,18 +11,17 @@ const LOADING_TIMEOUT = 1500;
 interface EventsFormProps {
   currentEvents: IAssignmentFormEntry[];
   handleSubmit: (events: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function EventsForm(props: EventsFormProps) {
   const { currentEvents, handleSubmit, withSubmitButtons, onHasChanges } =
     props;
-  const [events, setEvents] = useState<IAssignmentFormEntry[]>(currentEvents);
+  const [events, setEvents] = useState(currentEvents);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({
+  const [message, setMessage] = useState<IMessageState>({
     visible: false,
-    type: "" as EMessageType,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
@@ -52,7 +54,6 @@ function EventsForm(props: EventsFormProps) {
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "" as EMessageType,
     });
   };
 

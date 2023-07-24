@@ -31,26 +31,13 @@ function CompleteInvitation() {
   });
 
   function getInvitationInformation() {
-    const invitation = invitationEntriesDataMock.find(
+    return invitationEntriesDataMock.find(
       (invitation) => invitation.id === invitation_id
     );
-
-    if (!invitation)
-      return {
-        id: "",
-        userID: "",
-        username: "",
-        email: "",
-        invitationDate: "",
-        status: "",
-        phone: "",
-      };
-
-    return invitation;
   }
 
   const handleSubmit = (
-    values: IGeneralInformationEntry | IAssignmentFormEntry
+    values: IGeneralInformationEntry | IAssignmentFormEntry[]
   ) => {
     const stepKey = Object.entries(stepsRegisterUserConfig).find(
       ([, config]) => config.id === currentStep

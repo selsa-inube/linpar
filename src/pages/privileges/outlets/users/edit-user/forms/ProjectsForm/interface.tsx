@@ -13,7 +13,7 @@ interface ProjectsFormUIProps {
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangeProjects: (projects: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -23,7 +23,7 @@ const renderMessage = (
   message: IMessageState,
   onCloseSectionMessage: ProjectsFormUIProps["onCloseSectionMessage"]
 ) => {
-  if (!message.visible) {
+  if (!message.visible || !message.type) {
     return null;
   }
   const { title, description, icon, appearance } =

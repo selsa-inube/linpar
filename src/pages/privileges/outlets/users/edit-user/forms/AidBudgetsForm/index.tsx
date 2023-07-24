@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { AidBudgetsFormUI } from "./interface";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
 
 interface AidBudgetsFormProps {
   currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (newAidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
@@ -19,13 +22,10 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
     withSubmitButtons,
     onHasChanges,
   } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState<IAssignmentFormEntry[]>(
-    currentAidBudgetUnits
-  );
+  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({
+  const [message, setMessage] = useState<IMessageState>({
     visible: false,
-    type: "" as EMessageType,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
@@ -58,7 +58,6 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "" as EMessageType,
     });
   };
 

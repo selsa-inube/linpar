@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { PayrollsFormUI } from "./interface";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
@@ -8,19 +11,17 @@ const LOADING_TIMEOUT = 1500;
 interface PayrollsFormProps {
   currentPayrolls: IAssignmentFormEntry[];
   handleSubmit: (payrolls: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function PayrollsForm(props: PayrollsFormProps) {
   const { currentPayrolls, handleSubmit, withSubmitButtons, onHasChanges } =
     props;
-  const [payrolls, setPayrolls] =
-    useState<IAssignmentFormEntry[]>(currentPayrolls);
+  const [payrolls, setPayrolls] = useState(currentPayrolls);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({
+  const [message, setMessage] = useState<IMessageState>({
     visible: false,
-    type: "" as EMessageType,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
@@ -53,7 +54,6 @@ function PayrollsForm(props: PayrollsFormProps) {
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "" as EMessageType,
     });
   };
 

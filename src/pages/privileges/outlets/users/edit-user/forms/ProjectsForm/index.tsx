@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { ProjectsFormUI } from "./interface";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
+
+const LOADING_TIMEOUT = 1500;
 
 interface ProjectsFormProps {
   currentProjects: IAssignmentFormEntry[];
-  handleSubmit: (newProjects: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  handleSubmit: (projects: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function ProjectsForm(props: ProjectsFormProps) {
   const { currentProjects, handleSubmit, withSubmitButtons, onHasChanges } =
     props;
-  const [projects, setProjects] =
-    useState<IAssignmentFormEntry[]>(currentProjects);
+  const [projects, setProjects] = useState(currentProjects);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({
+  const [message, setMessage] = useState<IMessageState>({
     visible: false,
-    type: "" as EMessageType,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
@@ -40,7 +43,7 @@ function ProjectsForm(props: ProjectsFormProps) {
         visible: true,
         type: EMessageType.SUCCESS,
       });
-    }, 1500);
+    }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
@@ -51,7 +54,6 @@ function ProjectsForm(props: ProjectsFormProps) {
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "" as EMessageType,
     });
   };
 
@@ -61,7 +63,6 @@ function ProjectsForm(props: ProjectsFormProps) {
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      //currentProjects={currentProjects}
       projects={projects}
       withSubmitButtons={withSubmitButtons}
       message={message}

@@ -13,7 +13,7 @@ interface AidBudgetsFormUIProps {
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangeAidBudgets: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -23,7 +23,7 @@ const renderMessage = (
   message: IMessageState,
   onCloseSectionMessage: AidBudgetsFormUIProps["onCloseSectionMessage"]
 ) => {
-  if (!message.visible) {
+  if (!message.visible || !message.type) {
     return null;
   }
 

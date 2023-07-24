@@ -14,11 +14,12 @@ import {
   IMessageState,
 } from "../../../types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
+import { FormikValues } from "formik";
 
 interface GeneralInformationFormUIProps {
-  formik: any;
+  formik: FormikValues;
   loading: boolean;
-  withSubmitButtons: boolean;
+  withSubmitButtons?: boolean;
   showMessage: IMessageState;
   handleCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
@@ -58,7 +59,7 @@ function renderMessages(
 }
 
 function renderFormFields(
-  formik: any,
+  formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (
