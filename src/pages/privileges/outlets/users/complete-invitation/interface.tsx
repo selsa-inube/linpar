@@ -78,11 +78,13 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         </Stack>
         {currentInformation ? (
           <>
-            <Assisted
-              steps={Object.values(stepsRegisterUserConfig)}
-              handleStepChange={handleStepChange}
-              currentStep={currentStep}
-            />
+            <Stack justifyContent="center">
+              <Assisted
+                steps={Object.values(stepsRegisterUserConfig)}
+                handleStepChange={handleStepChange}
+                currentStep={currentStep}
+              />
+            </Stack>
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
                 currentInformation={currentInformation}
