@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-
 import { EMessageType } from "@src/types/messages.types";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { finishAssistedMessagesConfig } from "./complete-invitation/config/completeInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
@@ -17,13 +16,11 @@ function Users() {
   const location = useLocation();
 
   useEffect(() => {
-    if (
-      location.state?.messageType &&
-      location.state?.username &&
-      location.state?.tab
-    ) {
+    if (location.state?.tab) {
       setIsSelected(location.state.tab);
-      handleShowMessage(location.state.messageType, location.state.username);
+      if (location.state?.messageType && location.state?.username) {
+        handleShowMessage(location.state.messageType, location.state.username);
+      }
     }
   }, []);
 

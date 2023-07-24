@@ -2,12 +2,30 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
 import { assignmentFormMessages } from "../../config/messages.config";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 
-const renderMessage = (message, onCloseSectionMessage) => {
-  if (!message.visible) {
+interface ProjectsFormUIProps {
+  projects: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeProjects: (projects: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+}
+
+const renderMessage = (
+  message: IMessageState,
+  onCloseSectionMessage: ProjectsFormUIProps["onCloseSectionMessage"]
+) => {
+  if (!message.visible || !message.type) {
     return null;
   }
-
   const { title, description, icon, appearance } =
     assignmentFormMessages[message.type];
 
@@ -23,13 +41,13 @@ const renderMessage = (message, onCloseSectionMessage) => {
   );
 };
 
-function BranchesFormUI(props) {
+function ProjectsFormUI(props: ProjectsFormUIProps) {
   const {
-    branches,
+    projects,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangeBranches,
+    handleChangeProjects,
     withSubmitButtons,
     message,
     onCloseSectionMessage,
@@ -41,15 +59,15 @@ function BranchesFormUI(props) {
     return (
       <>
         <FormButtons
-          disabledButtons={!hasChanges(branches)}
+          disabledButtons={!hasChanges(projects)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           isLoading={isLoading}
         >
           <AssignmentForm
-            handleChange={handleChangeBranches}
-            entries={branches}
-            title="Seleccione las sucursales que desea asignar"
+            handleChange={handleChangeProjects}
+            entries={projects}
+            title="Seleccione los proyectos que desea asignar"
           />
         </FormButtons>
         {renderMessage(message, onCloseSectionMessage)}
@@ -59,12 +77,12 @@ function BranchesFormUI(props) {
 
   return (
     <AssignmentForm
-      handleChange={handleChangeBranches}
-      entries={branches}
-      title="Seleccione las sucursales que desea asignar"
+      handleChange={handleChangeProjects}
+      entries={projects}
+      title="Seleccione los proyectos que desea asignar"
       readOnly={readOnly}
     />
   );
 }
 
-export { BranchesFormUI };
+export { ProjectsFormUI };

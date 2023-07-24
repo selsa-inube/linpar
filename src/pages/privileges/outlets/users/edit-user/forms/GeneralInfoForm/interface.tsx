@@ -2,7 +2,13 @@ import { SectionMessage } from "@components/feedback/SectionMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { Stack, Text, TextField } from "@inube/design-system";
 import { positions } from "@mocks/apps/privileges/users/users.mock";
+import { EMessageType } from "@src/types/messages.types";
+import { FormikValues } from "formik";
 import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
+import {
+  IGeneralInformationEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { generalInfoMessages } from "./config/messages.config";
 import {
   StyledErrorMessageContainer,
@@ -10,13 +16,32 @@ import {
   StyledSelect,
 } from "./styles";
 
-function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
-  if (!showMessage) {
+interface GeneralInformationFormUIProps {
+  formik: FormikValues;
+  loading: boolean;
+  withSubmitButtons?: boolean;
+  showMessage: IMessageState;
+  handleCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
+  formInvalid: boolean;
+  handleSubmitForm: () => void;
+  handleChangeForm: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  readOnly?: boolean;
+}
+
+function renderMessages(
+  showMessage: IMessageState,
+  formInvalid: boolean,
+  handleCloseSectionMessage: GeneralInformationFormUIProps["handleCloseSectionMessage"]
+) {
+  if (!showMessage.visible) {
     return null;
   }
-  let messageType = "success";
+  let messageType = EMessageType.SUCCESS;
   if (formInvalid) {
-    messageType = "failed";
+    messageType = EMessageType.FAILED;
   }
 
   const { title, description, icon, appearance } =
@@ -35,13 +60,15 @@ function renderMessages(showMessage, formInvalid, handleCloseSectionMessage) {
 }
 
 function renderFormFields(
-  formik,
-  loading,
-  formInvalid,
-  handleChangeForm,
-  readOnly
+  formik: FormikValues,
+  loading: boolean,
+  formInvalid: boolean,
+  handleChangeForm: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void,
+  readOnly?: boolean
 ) {
-  function stateValue(attribute) {
+  function stateValue(attribute: string) {
     if (!formik.touched[attribute]) return "pending";
     if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
     return "valid";
@@ -152,7 +179,7 @@ function renderFormFields(
   );
 }
 
-function GeneralInformationFormUI(props) {
+function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
     formik,
     loading,

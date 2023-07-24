@@ -49,7 +49,7 @@ function finishModal(
 interface CompleteInvitationUIProps {
   invitationData: IFormsInvitation;
   handleSubmit: (
-    values: IGeneralInformationEntry | IAssignmentFormEntry
+    values: IGeneralInformationEntry | IAssignmentFormEntry[]
   ) => void;
   handleStepChange: (step: number) => void;
   currentStep: number;
@@ -77,12 +77,19 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
     generalInformation: { entries: currentInformation },
   } = invitationData;
 
-  const invitationCardData = currentInformation && {
-    username: currentInformation.username,
-    userID: currentInformation.userID,
-    email: currentInformation.email,
-    invitationDate: currentInformation.invitationDate,
-  };
+  const invitationCardData = currentInformation
+    ? {
+        username: currentInformation.username,
+        userID: currentInformation.userID,
+        email: currentInformation.email,
+        invitationDate: currentInformation.invitationDate || "",
+      }
+    : {
+        username: "",
+        userID: "",
+        email: "",
+        invitationDate: "",
+      };
 
   return (
     <StyledContainer smallScreen={smallScreen}>

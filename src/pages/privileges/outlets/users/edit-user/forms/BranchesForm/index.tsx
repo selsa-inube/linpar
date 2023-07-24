@@ -1,7 +1,22 @@
+import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { BranchesFormUI } from "./interface";
 
-function BranchesForm(props) {
+const LOADING_TIMEOUT = 1500;
+
+interface BranchesFormProps {
+  currentBranches: IAssignmentFormEntry[];
+  handleSubmit: (branches: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  onHasChanges?: (hasChanges: boolean) => void;
+  readOnly?: boolean;
+}
+
+function BranchesForm(props: BranchesFormProps) {
   const {
     currentBranches,
     handleSubmit,
@@ -11,15 +26,14 @@ function BranchesForm(props) {
   } = props;
   const [branches, setBranches] = useState(currentBranches);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({
+  const [message, setMessage] = useState<IMessageState>({
     visible: false,
-    type: "",
   });
 
-  const hasChanges = (valueCompare) =>
+  const hasChanges = (valueCompare: IAssignmentFormEntry[]): boolean =>
     JSON.stringify(currentBranches) !== JSON.stringify(valueCompare);
 
-  const handleChangeBranches = (branches) => {
+  const handleChangeBranches = (branches: IAssignmentFormEntry[]) => {
     setBranches(branches);
     if (onHasChanges) onHasChanges(hasChanges(branches));
     if (!withSubmitButtons) handleSubmit(branches);
@@ -33,20 +47,19 @@ function BranchesForm(props) {
       setIsLoading(false);
       setMessage({
         visible: true,
-        type: "success",
+        type: EMessageType.SUCCESS,
       });
-    }, 1500);
+    }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
     setBranches(currentBranches);
-    onHasChanges(false);
+    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
-      type: "",
     });
   };
 
@@ -56,7 +69,6 @@ function BranchesForm(props) {
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      currentBranches={currentBranches}
       branches={branches}
       withSubmitButtons={withSubmitButtons}
       message={message}
@@ -68,3 +80,4 @@ function BranchesForm(props) {
 }
 
 export { BranchesForm };
+export type { BranchesFormProps };
