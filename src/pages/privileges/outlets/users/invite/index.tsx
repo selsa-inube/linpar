@@ -44,7 +44,7 @@ function Invite() {
           navigate(`/privileges/users`, {
             state: { tab: "privileges-invitations" },
           });
-        }, 11000);
+        }, 5000);
       }, LOADING_TIMEOUT);
     },
   });
