@@ -29,7 +29,7 @@ const StyledSelect = styled.select`
   border-color: ${colors.ref.palette.neutral.n40};
   padding-left: 16px;
   height: 42px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   :focus {
     border: 1px solid ${colors.ref.palette.blue.b400};
