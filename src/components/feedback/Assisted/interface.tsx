@@ -68,7 +68,7 @@ function AssistedUI(props: IAssistedUIProps) {
 
   if (smallScreen) {
     return (
-      <>
+      <Stack direction="column" alignItems="center" gap="24px">
         <StyledMobile>
           <StyledButton>
             <Button
@@ -106,12 +106,12 @@ function AssistedUI(props: IAssistedUIProps) {
         {currentStepInfo?.isVerification && (
           <VerificationStep smallScreen verificationData={verificationData} />
         )}
-      </>
+      </Stack>
     );
   }
 
   return (
-    <>
+    <Stack direction="column" justifyContent="center" gap="48px">
       <StyledDesktopContainer>
         <Stack alignItems="center" justifyContent="center">
           <Button
@@ -147,7 +147,7 @@ function AssistedUI(props: IAssistedUIProps) {
       {currentStepInfo?.isVerification && (
         <VerificationStep verificationData={verificationData} />
       )}
-    </>
+    </Stack>
   );
 }
 
