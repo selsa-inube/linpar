@@ -4,23 +4,38 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import { GeneralInformationFormUI } from "./interface";
+import {
+  IGeneralInformationEntry,
+  IMessageState,
+} from "../../../types/forms.types";
+import { EMessageType } from "@src/types/messages.types";
 
-const LOADING_TIMEOUT = 1000;
+const LOADING_TIMEOUT = 1500;
 
 const validationSchema = Yup.object({
   email: validationRules.email.required(validationMessages.required),
   phone: validationRules.phone.required(validationMessages.required),
 });
 
-function GeneralInformationForm(props) {
+interface GeneralInformationFormProps {
+  withSubmitButtons?: boolean;
+  currentInformation: IGeneralInformationEntry;
+  handleSubmit: (values: IGeneralInformationEntry) => void;
+  onHasChanges?: (hasChanges: boolean) => void;
+}
+
+function GeneralInformationForm(props: GeneralInformationFormProps) {
   const { withSubmitButtons, currentInformation, handleSubmit, onHasChanges } =
     props;
 
   const [loading, setLoading] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState<IMessageState>({
+    visible: false,
+  });
   const [formInvalid, setFormInvalid] = useState(false);
 
-  const initialValues = {
+  const initialValues: IGeneralInformationEntry = {
+    id: currentInformation.id,
     username: currentInformation.username,
     userID: currentInformation.userID,
     email: currentInformation.email,
@@ -44,7 +59,10 @@ function GeneralInformationForm(props) {
         handleSubmit(formik.values);
         setFormInvalid(false);
         setLoading(false);
-        setShowMessage(true);
+        setShowMessage({
+          visible: true,
+          type: EMessageType.SUCCESS,
+        });
       }, LOADING_TIMEOUT);
     },
   });
@@ -52,17 +70,22 @@ function GeneralInformationForm(props) {
   const handleSubmitForm = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length > 0) {
-        setShowMessage(true);
+        setShowMessage({
+          visible: true,
+          type: EMessageType.FAILED,
+        });
         setFormInvalid(true);
       }
       formik.handleSubmit();
     });
   };
 
-  const hasChanges = (valueCompare) =>
+  const hasChanges = (valueCompare: IGeneralInformationEntry) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-  const handleChangeForm = (event) => {
+  const handleChangeForm = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const formikValues = {
       ...formik.values,
       [event.target.name]: event.target.value,
@@ -80,7 +103,9 @@ function GeneralInformationForm(props) {
   };
 
   const handleCloseSectionMessage = () => {
-    setShowMessage(false);
+    setShowMessage({
+      visible: false,
+    });
   };
 
   return (
@@ -98,4 +123,5 @@ function GeneralInformationForm(props) {
   );
 }
 
+export type { GeneralInformationFormProps };
 export { GeneralInformationForm };

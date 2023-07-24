@@ -2,9 +2,28 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
 import { assignmentFormMessages } from "../../config/messages.config";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 
-const renderMessage = (message, onCloseSectionMessage) => {
-  if (!message.visible) {
+interface EventsFormUIProps {
+  events: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeEvents: (events: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+}
+
+const renderMessage = (
+  message: IMessageState,
+  onCloseSectionMessage: EventsFormUIProps["onCloseSectionMessage"]
+) => {
+  if (!message.visible || !message.type) {
     return null;
   }
 
@@ -23,13 +42,13 @@ const renderMessage = (message, onCloseSectionMessage) => {
   );
 };
 
-function AidBudgetsFormUI(props) {
+function EventsFormUI(props: EventsFormUIProps) {
   const {
-    aidBudgetUnits,
+    events,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangeAidBudgets,
+    handleChangeEvents,
     withSubmitButtons,
     message,
     onCloseSectionMessage,
@@ -40,15 +59,15 @@ function AidBudgetsFormUI(props) {
     return (
       <>
         <FormButtons
-          disabledButtons={!hasChanges(aidBudgetUnits)}
+          disabledButtons={!hasChanges(events)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           isLoading={isLoading}
         >
           <AssignmentForm
-            handleChange={handleChangeAidBudgets}
-            entries={aidBudgetUnits}
-            title="Seleccione los presupuestos que desea asignar"
+            handleChange={handleChangeEvents}
+            entries={events}
+            title="Seleccione los eventos que desea asignar"
           />
         </FormButtons>
         {renderMessage(message, onCloseSectionMessage)}
@@ -58,11 +77,11 @@ function AidBudgetsFormUI(props) {
 
   return (
     <AssignmentForm
-      handleChange={handleChangeAidBudgets}
-      entries={aidBudgetUnits}
-      title="Seleccione los presupuestos que desea asignar"
+      handleChange={handleChangeEvents}
+      entries={events}
+      title="Seleccione los eventos que desea asignar"
     />
   );
 }
 
-export { AidBudgetsFormUI };
+export { EventsFormUI };

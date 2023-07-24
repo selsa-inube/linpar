@@ -18,8 +18,32 @@ import { ProjectsForm } from "./forms/ProjectsForm";
 import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer } from "./styles";
 import { MdPersonOutline } from "react-icons/md";
+import {
+  IFormsInvitation,
+  IAssignmentFormEntry,
+  IGeneralInformationEntry,
+} from "../types/forms.types";
 
-function continueModal(handleCloseModal, handleContinueTab) {
+interface EditUserUIProps {
+  selectedTab: string;
+  handleTabChange: (tabId: string) => void;
+  editData: IFormsInvitation;
+  handleSubmit: (
+    values: IGeneralInformationEntry | IAssignmentFormEntry[]
+  ) => void;
+  controlModal: {
+    show: boolean;
+    continueTab: string;
+  };
+  handleCloseModal: () => void;
+  handleDataChange: (hasChanges: boolean) => void;
+  handleContinueTab: () => void;
+}
+
+function continueModal(
+  handleCloseModal: () => void,
+  handleContinueTab: () => void
+) {
   const { title, description, actionText, appearance } =
     EditUserContinueModalConfig;
   return (
@@ -35,7 +59,7 @@ function continueModal(handleCloseModal, handleContinueTab) {
   );
 }
 
-function EditUserUI(props) {
+function EditUserUI(props: EditUserUIProps) {
   const {
     selectedTab,
     handleTabChange,
@@ -56,8 +80,8 @@ function EditUserUI(props) {
   const userCardData = currentInformation && {
     username: currentInformation.username,
     userID: currentInformation.userID,
-    code: currentInformation.code,
-    position: currentInformation.position,
+    code: currentInformation.code || "",
+    position: currentInformation.position || "",
   };
 
   return (
@@ -71,7 +95,7 @@ function EditUserUI(props) {
               description={editUserOptionsConfig.editUserPage.description}
               navigatePage="/privileges/users"
             />
-            {currentInformation && (
+            {userCardData && (
               <SubjectCard
                 subjectData={userCardData}
                 title="Informacion del usuario"
@@ -90,7 +114,7 @@ function EditUserUI(props) {
             />
             {selectedTab === editUserTabsConfig.generalInformation.id && (
               <GeneralInformationForm
-                currentInformation={editData.generalInformation.entries}
+                currentInformation={currentInformation}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}

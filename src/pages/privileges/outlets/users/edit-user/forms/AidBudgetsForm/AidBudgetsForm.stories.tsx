@@ -1,13 +1,15 @@
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { AidBudgetsForm } from "./index";
+import { AidBudgetsForm, AidBudgetsFormProps } from "./index";
 import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { StoryFn } from "@storybook/react";
 
 const story = {
   components: [AidBudgetsForm],
   title: "forms/edit-user/AidBudgetsForm",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -15,9 +17,11 @@ const story = {
   ],
 };
 
-const Template = (args) => <AidBudgetsForm {...args} />;
+const Template: StoryFn<AidBudgetsFormProps> = (args) => (
+  <AidBudgetsForm {...args} />
+);
 
-const handleSubmit = (newAidBudgets) => {
+const handleSubmit = (newAidBudgets: IAssignmentFormEntry[]) => {
   action("Submit AidBudgets: ")(newAidBudgets);
 };
 
