@@ -5,6 +5,8 @@ const StyledDesktopContainer = styled.div`
   flex-direction: column;
   border-radius: 8px;
   gap: 8px;
+  width: 100%;
+  max-width: 1065px;
   justify-items: center;
   background-color: ${colors.ref.palette.neutral.n20};
 `;
@@ -22,7 +24,6 @@ const StyledMobile = styled.div`
 const StyledStepsContent = styled.div`
   display: flex;
   width: 100%;
-  max-width: 700px;
   justify-content: center;
 `;
 
