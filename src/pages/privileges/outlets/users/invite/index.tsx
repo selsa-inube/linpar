@@ -5,6 +5,7 @@ import { InviteUI } from "./interface";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { IInviteFormValues } from "./types";
+import { useNavigate } from "react-router-dom";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -26,6 +27,7 @@ function Invite() {
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues,
@@ -38,6 +40,11 @@ function Invite() {
         setFormInvalid(false);
         setShowMessage(true);
         formik.resetForm();
+        setTimeout(() => {
+          navigate(`/privileges/users`, {
+            state: { tab: "privileges-invitations" },
+          });
+        }, 5000);
       }, LOADING_TIMEOUT);
     },
   });

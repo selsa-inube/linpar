@@ -1,13 +1,15 @@
 import { projectsFormEditUser } from "@mocks/apps/privileges/users/projectsForm.mock";
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { ProjectsForm } from "./index";
+import { ProjectsForm, ProjectsFormProps } from "./index";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { StoryFn } from "@storybook/react";
 
 const story = {
   components: [ProjectsForm],
   title: "forms/edit-user/ProjectsForm",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -15,9 +17,11 @@ const story = {
   ],
 };
 
-const Template = (args) => <ProjectsForm {...args} />;
+const Template: StoryFn<ProjectsFormProps> = (args) => (
+  <ProjectsForm {...args} />
+);
 
-const handleSubmit = (newProjects) => {
+const handleSubmit = (newProjects: IAssignmentFormEntry[]) => {
   action("Submit projects: ")(newProjects);
 };
 

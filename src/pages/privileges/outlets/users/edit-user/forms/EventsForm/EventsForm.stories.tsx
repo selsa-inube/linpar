@@ -1,13 +1,15 @@
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { EventsForm } from "./index";
+import { EventsForm, EventsFormProps } from "./index";
 import { eventsFormEditUser } from "@mocks/apps/privileges/users/eventsForm.mock";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { StoryFn } from "@storybook/react";
 
 const story = {
   components: [EventsForm],
   title: "forms/edit-user/EventsForm",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -15,9 +17,9 @@ const story = {
   ],
 };
 
-const Template = (args) => <EventsForm {...args} />;
+const Template: StoryFn<EventsFormProps> = (args) => <EventsForm {...args} />;
 
-const handleSubmit = (newEvents) => {
+const handleSubmit = (newEvents: IAssignmentFormEntry[]) => {
   action("Submit Events: ")(newEvents);
 };
 

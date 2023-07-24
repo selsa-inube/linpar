@@ -2,9 +2,28 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
 import { assignmentFormMessages } from "../../config/messages.config";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 
-const renderMessage = (message, onCloseSectionMessage) => {
-  if (!message.visible) {
+interface PayrollsFormUIProps {
+  payrolls: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangePayrolls: (payrolls: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+}
+
+const renderMessage = (
+  message: IMessageState,
+  onCloseSectionMessage: PayrollsFormUIProps["onCloseSectionMessage"]
+) => {
+  if (!message.visible || !message.type) {
     return null;
   }
 
@@ -23,7 +42,7 @@ const renderMessage = (message, onCloseSectionMessage) => {
   );
 };
 
-function PayrollsFormUI(props) {
+function PayrollsFormUI(props: PayrollsFormUIProps) {
   const {
     payrolls,
     isLoading,

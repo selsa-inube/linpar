@@ -1,4 +1,3 @@
-import { EApparence } from "@src/types/colors.types";
 import { EMessageType } from "@src/types/messages.types";
 
 interface IAssignmentFormEntry {
@@ -12,16 +11,16 @@ interface IGeneralInformationEntry {
   userID: string;
   username: string;
   email: string;
-  invitationDate?: string;
-  status: string;
   phone: string;
+  invitationDate?: string;
+  status?: string;
   code?: string;
   position?: string;
   active?: boolean;
 }
 
 interface IFormsInvitation {
-  generalInformation: { entries: IGeneralInformationEntry };
+  generalInformation: { entries?: IGeneralInformationEntry };
   branches: { entries: IAssignmentFormEntry[] };
   projects: { entries: IAssignmentFormEntry[] };
   events: { entries: IAssignmentFormEntry[] };
@@ -29,23 +28,14 @@ interface IFormsInvitation {
   payrolls: { entries: IAssignmentFormEntry[] };
 }
 
-interface IInitialMessage {
-  show?: boolean;
-  title: string;
-  description: string;
-  icon: string | JSX.Element;
-  appearance: EApparence;
-}
-
 interface IMessageState {
   visible: boolean;
-  type: EMessageType;
+  type?: EMessageType;
 }
 
 export type {
   IFormsInvitation,
   IAssignmentFormEntry,
   IGeneralInformationEntry,
-  IInitialMessage,
   IMessageState,
 };

@@ -1,13 +1,15 @@
 import { branchesFormEditUser } from "@mocks/apps/privileges/users/branchesForm.mock";
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { BranchesForm } from "./index";
+import { BranchesForm, BranchesFormProps } from "./index";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { StoryFn } from "@storybook/react";
 
 const story = {
   components: [BranchesForm],
   title: "forms/edit-user/BranchesForm",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -15,9 +17,11 @@ const story = {
   ],
 };
 
-const Template = (args) => <BranchesForm {...args} />;
+const Template: StoryFn<BranchesFormProps> = (args) => (
+  <BranchesForm {...args} />
+);
 
-const handleSubmit = (newBranches) => {
+const handleSubmit = (newBranches: IAssignmentFormEntry[]) => {
   action("Submit branches: ")(newBranches);
 };
 
