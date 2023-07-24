@@ -1,23 +1,11 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
-import { assignmentFormMessages } from "../../config/messages.config";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "../../../types/forms.types";
-
-interface EventsFormUIProps {
-  events: IAssignmentFormEntry[];
-  isLoading: boolean;
-  handleSubmitForm: () => void;
-  handleReset: () => void;
-  handleChangeEvents: (events: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
-  message: IMessageState;
-  onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-}
+import { assignmentFormMessages } from "../../config/messages.config";
 
 const renderMessage = (
   message: IMessageState,
@@ -41,6 +29,19 @@ const renderMessage = (
     />
   );
 };
+
+interface EventsFormUIProps {
+  events: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeEvents: (events: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+  readOnly?: boolean;
+}
 
 function EventsFormUI(props: EventsFormUIProps) {
   const {

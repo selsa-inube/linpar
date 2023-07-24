@@ -7,18 +7,6 @@ import {
   IMessageState,
 } from "../../../types/forms.types";
 
-interface BranchesFormUIProps {
-  branches: IAssignmentFormEntry[];
-  isLoading: boolean;
-  handleSubmitForm: () => void;
-  handleReset: () => void;
-  handleChangeBranches: (branches: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
-  message: IMessageState;
-  onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-}
-
 const renderMessage = (
   message: IMessageState,
   onCloseSectionMessage: BranchesFormUIProps["onCloseSectionMessage"]
@@ -41,6 +29,19 @@ const renderMessage = (
     />
   );
 };
+
+interface BranchesFormUIProps {
+  branches: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeBranches: (branches: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+  readOnly?: boolean;
+}
 
 function BranchesFormUI(props: BranchesFormUIProps) {
   const {

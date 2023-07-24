@@ -10,7 +10,6 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import { StyledModal } from "./styles";
-import { EApparence } from "@src/types/colors.types";
 
 interface DecisionModalProps {
   title: string;

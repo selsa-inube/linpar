@@ -13,6 +13,7 @@ interface AidBudgetsFormProps {
   handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  readOnly?: boolean;
 }
 
 function AidBudgetsForm(props: AidBudgetsFormProps) {

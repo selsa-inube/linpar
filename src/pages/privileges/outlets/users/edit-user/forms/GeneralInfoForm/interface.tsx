@@ -16,21 +16,6 @@ import {
   StyledSelect,
 } from "./styles";
 
-interface GeneralInformationFormUIProps {
-  formik: FormikValues;
-  loading: boolean;
-  withSubmitButtons?: boolean;
-  showMessage: IMessageState;
-  handleCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
-  formInvalid: boolean;
-  handleSubmitForm: () => void;
-  handleChangeForm: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
-  readOnly?: boolean;
-}
-
 function renderMessages(
   showMessage: IMessageState,
   formInvalid: boolean,
@@ -177,6 +162,21 @@ function renderFormFields(
       </Stack>
     </StyledFormContainer>
   );
+}
+
+interface GeneralInformationFormUIProps {
+  formik: FormikValues;
+  loading: boolean;
+  withSubmitButtons?: boolean;
+  showMessage: IMessageState;
+  handleCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
+  formInvalid: boolean;
+  handleSubmitForm: () => void;
+  handleChangeForm: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  readOnly?: boolean;
 }
 
 function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {

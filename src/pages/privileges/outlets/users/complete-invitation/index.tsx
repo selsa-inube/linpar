@@ -66,13 +66,15 @@ function CompleteInvitation() {
   };
 
   const handleCompleteInvitation = () => {
-    navigate("/privileges/users", {
-      state: {
-        messageType: EMessageType.SUCCESS,
-        username: invitationData.generalInformation.entries.username,
-        tab: "privileges-invitations",
-      },
-    });
+    if (invitationData.generalInformation.entries) {
+      navigate("/privileges/users", {
+        state: {
+          messageType: EMessageType.SUCCESS,
+          username: invitationData.generalInformation.entries.username,
+          tab: "privileges-invitations",
+        },
+      });
+    }
   };
 
   const handleToggleModal = () => {
@@ -83,10 +85,11 @@ function CompleteInvitation() {
     generalInformation: {
       id: "generalInformation",
       title: "General",
-      content: (
+      content: invitationData.generalInformation.entries && (
         <GeneralInformationForm
           currentInformation={invitationData.generalInformation.entries}
           readOnly
+          handleSubmit={() => {}}
         />
       ),
       isFullWidth: true,
@@ -98,6 +101,7 @@ function CompleteInvitation() {
         <BranchesForm
           currentBranches={invitationData.branches.entries}
           readOnly
+          handleSubmit={() => {}}
         />
       ),
     },
@@ -108,6 +112,7 @@ function CompleteInvitation() {
         <ProjectsForm
           currentProjects={invitationData.projects.entries}
           readOnly
+          handleSubmit={() => {}}
         />
       ),
     },
@@ -115,7 +120,11 @@ function CompleteInvitation() {
       id: "events",
       title: "Eventos",
       content: (
-        <EventsForm currentEvents={invitationData.events.entries} readOnly />
+        <EventsForm
+          currentEvents={invitationData.events.entries}
+          readOnly
+          handleSubmit={() => {}}
+        />
       ),
     },
     aidBudgets: {
@@ -125,6 +134,7 @@ function CompleteInvitation() {
         <AidBudgetsForm
           currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
           readOnly
+          handleSubmit={() => {}}
         />
       ),
     },
@@ -135,6 +145,7 @@ function CompleteInvitation() {
         <PayrollsForm
           currentPayrolls={invitationData.payrolls.entries}
           readOnly
+          handleSubmit={() => {}}
         />
       ),
     },
