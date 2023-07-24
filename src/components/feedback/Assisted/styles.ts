@@ -3,17 +3,9 @@ import { colors } from "@styles/colors";
 const StyledDesktopContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  width: 100%;
-`;
-
-const StyledDesktopAssisted = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
   border-radius: 8px;
+  gap: 8px;
+  justify-items: center;
   background-color: ${colors.ref.palette.neutral.n20};
 `;
 
@@ -67,7 +59,6 @@ const StyledStepsMobileId = styled.div`
 `;
 
 export {
-  StyledDesktopAssisted,
   StyledButton,
   StyledSteps,
   StyledStepsMobile,
