@@ -35,7 +35,13 @@ function AppPage() {
         isBusinessUnit
       />
       <StyledContainer smallScreen={smallScreen}>
-        {!smallScreen && <Nav navigation={navigationConfig} logoutPath="/" />}
+        {!smallScreen && (
+          <Nav
+            navigation={navigationConfig}
+            logoutPath="/"
+            logoutTitle="Cerrar Sesión"
+          />
+        )}
 
         <StyledMain>
           <Outlet />

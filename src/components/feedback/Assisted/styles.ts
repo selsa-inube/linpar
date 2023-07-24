@@ -3,15 +3,19 @@ import { colors } from "@styles/colors";
 const StyledDesktopContainer = styled.div`
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
   gap: 8px;
-  background-color: ${colors.ref.palette.neutral.n20};
-  justify-items: center;
   width: 100%;
+  max-width: 1065px;
+  justify-items: center;
+  background-color: ${colors.ref.palette.neutral.n20};
 `;
 
 const StyledMobile = styled.div`
+  width: 100%;
   display: flex;
   gap: 16px;
+  border-radius: 8px;
   align-items: center;
   justify-content: center;
   padding: 12px;
@@ -20,7 +24,6 @@ const StyledMobile = styled.div`
 const StyledStepsContent = styled.div`
   display: flex;
   width: 100%;
-  max-width: 700px;
   justify-content: center;
 `;
 
@@ -35,7 +38,6 @@ const StyledSteps = styled.ul`
 const StyledStepsMobile = styled.div`
   display: flex;
   width: 90%;
-  max-width: 430px;
   align-items: start;
   flex-direction: column;
   gap: 8px;
