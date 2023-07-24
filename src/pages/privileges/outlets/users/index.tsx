@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 
-import { IMessage } from "@src/types/messages.types";
+import { EMessageType } from "@src/types/messages.types";
 import { useLocation } from "react-router-dom";
+import { finishAssistedMessagesConfig } from "./complete-invitation/config/completeInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import UsersUI from "./interface";
 import { IUsersMessage } from "./types/users.types";
 
 function Users() {
-  const [isSelected, setIsSelected] = useState(
-    privilegeUserTabsConfig.privilegesUsers.id
-  );
+  const [isSelected, setIsSelected] = useState<string>();
   const [searchText, setSearchText] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -18,9 +17,13 @@ function Users() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.state?.message && location.state?.tab) {
+    if (
+      location.state?.messageType &&
+      location.state?.username &&
+      location.state?.tab
+    ) {
       setIsSelected(location.state.tab);
-      handleShowMessage(location.state.message);
+      handleShowMessage(location.state.messageType, location.state.username);
     }
   }, []);
 
@@ -40,13 +43,16 @@ function Users() {
     setShowMenu(false);
   };
 
-  const handleShowMessage = (message: IMessage) => {
+  const handleShowMessage = (messageType: EMessageType, username: string) => {
+    const { title, description, appearance, icon } =
+      finishAssistedMessagesConfig[messageType];
+
     setMessage({
       visible: true,
-      title: message.title,
-      description: message.description,
-      icon: message.icon,
-      appearance: message.appearance,
+      title,
+      description: description(username),
+      icon,
+      appearance,
     });
   };
 
@@ -58,7 +64,7 @@ function Users() {
 
   return (
     <UsersUI
-      isSelected={isSelected}
+      isSelected={isSelected || privilegeUserTabsConfig.privilegesUsers.id}
       searchText={searchText}
       handleTabChange={handleTabChange}
       handleSearchText={handleSearchText}

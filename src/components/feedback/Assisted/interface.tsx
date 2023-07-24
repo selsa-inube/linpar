@@ -134,7 +134,6 @@ function AssistedUI(props: IAssistedUIProps) {
             variant="none"
             iconAfter={<MdArrowForward size={18} />}
             handleClick={handleNextStep}
-            isDisabled={currentStep === steps.length}
           >
             <Text typo="labelLarge" appearance="primary">
               Next

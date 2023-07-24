@@ -118,7 +118,11 @@ function renderFormFields(
       />
 
       <Stack direction="column" gap="8px">
-        <Text typo="labelMedium" padding="0px 0px 0px 16px">
+        <Text
+          typo="labelMedium"
+          appearance={readOnly ? "disabled" : "dark"}
+          padding="0px 0px 0px 16px"
+        >
           Cargo
         </Text>
         <StyledSelect
@@ -127,6 +131,7 @@ function renderFormFields(
           id="position"
           onChange={handleChangeForm}
           required
+          disabled={readOnly || loading}
         >
           {positions.map((position) => (
             <option key={position.value} value={position.value}>

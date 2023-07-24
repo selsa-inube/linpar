@@ -13,16 +13,20 @@ const StyledContainer = styled.div<IStyledContainer>`
   gap: 16px;
   border-radius: 8px;
   border: 1px solid var(--neutral-n-40, ${colors.ref.palette.neutral.n40});
-  min-width: ${(props) => (props.isFullWidth ? "100%" : "48.9%")};
+  min-width: ${(props) => (props.isFullWidth ? "100%" : "49%")};
   box-sizing: border-box;
   align-items: flex-start;
 `;
 
-const StyledHead = styled.div`
+const StyledHead = styled.button`
+  outline: none;
+  border: none;
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  cursor: pointer;
 `;
 
 const StyledContent = styled.div`
@@ -37,4 +41,4 @@ const StyledIcon = styled.div`
   height: 24px;
 `;
 
-export { StyledContainer, StyledHead, StyledContent, StyledIcon };
+export { StyledContainer, StyledContent, StyledHead, StyledIcon };

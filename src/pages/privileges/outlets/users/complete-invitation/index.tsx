@@ -5,7 +5,7 @@ import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/in
 import { payrollsFormInvitation } from "@mocks/apps/privileges/invitations/payrollsForm.mock";
 import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
 import { IVerificationData } from "@src/components/feedback/Assisted/types";
-import { IMessage } from "@src/types/messages.types";
+import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
@@ -16,10 +16,7 @@ import {
   IFormsInvitation,
   IGeneralInformationEntry,
 } from "../types/forms.types";
-import {
-  finishAssistedMessagesConfig,
-  stepsRegisterUserConfig,
-} from "./config/completeInvitation.config";
+import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { CompleteInvitationUI } from "./interface";
 
 function CompleteInvitation() {
@@ -79,21 +76,10 @@ function CompleteInvitation() {
   };
 
   const handleCompleteInvitation = () => {
-    const { title, description, appearance, icon } =
-      finishAssistedMessagesConfig["success"];
-
-    const message: IMessage = {
-      title: title,
-      description: description(
-        invitationData.generalInformation.entries.username
-      ),
-      icon: icon,
-      appearance: appearance,
-    };
-
     navigate("/privileges/users", {
       state: {
-        message,
+        messageType: EMessageType.SUCCESS,
+        username: invitationData.generalInformation.entries.username,
         tab: "privileges-invitations",
       },
     });

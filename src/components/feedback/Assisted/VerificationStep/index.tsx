@@ -18,8 +18,9 @@ function VerificationStep(props: VerificationStepProps) {
       <Stack
         direction={smallScreen ? "column" : "row"}
         wrap={smallScreen ? "nowrap" : "wrap"}
-        gap={smallScreen ? "16px" : "24px"}
+        gap={smallScreen ? "16px 0px" : "24px 0px"}
         alignItems="flex-start"
+        justifyContent="space-between"
       >
         {Object.entries(verificationData).map(
           ([key, item]: [string, IVerificationData]) => (

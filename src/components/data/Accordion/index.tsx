@@ -1,12 +1,7 @@
 import { Text } from "@inube/design-system";
 import { useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import {
-  StyledContainer,
-  StyledContent,
-  StyledHead,
-  StyledIcon,
-} from "./styles";
+import { StyledContainer, StyledContent, StyledHead } from "./styles";
 
 interface AccordionProps {
   title: string;
@@ -22,16 +17,16 @@ function Accordion(props: AccordionProps) {
 
   return (
     <StyledContainer isOpen={isOpen} isFullWidth={isFullWidth}>
-      <StyledHead>
-        <Text typo="titleMedium">{title}</Text>
+      <StyledHead onClick={handleToggleOpen}>
+        <Text typo="titleMedium" appearance="secondary">
+          {title}
+        </Text>
 
-        <StyledIcon>
-          {isOpen ? (
-            <MdKeyboardArrowUp size={24} onClick={handleToggleOpen} />
-          ) : (
-            <MdKeyboardArrowDown size={24} onClick={handleToggleOpen} />
-          )}
-        </StyledIcon>
+        {isOpen ? (
+          <MdKeyboardArrowUp size={24} />
+        ) : (
+          <MdKeyboardArrowDown size={24} />
+        )}
       </StyledHead>
       {isOpen && <StyledContent>{children}</StyledContent>}
     </StyledContainer>
