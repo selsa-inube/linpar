@@ -10,6 +10,7 @@ const StyledDesktopContainer = styled.div`
 `;
 
 const StyledMobile = styled.div`
+  width: 100%;
   display: flex;
   gap: 16px;
   border-radius: 8px;
