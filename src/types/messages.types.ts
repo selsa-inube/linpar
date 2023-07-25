@@ -16,12 +16,5 @@ interface IMessage {
   appearance: EAppearance;
 }
 
-interface IMessage {
-  title?: string;
-  description?: string;
-  icon?: JSX.Element;
-  appearance?: string;
-}
-
 export { EMessageType };
 export type { IMessage };

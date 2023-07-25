@@ -31,7 +31,7 @@ function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
           to={
             invitation.status === "Pending"
               ? `complete-invitation/${invitation.id}`
-              : "privileges/users"
+              : ""
           }
         >
           <MdOutlineAssignmentTurnedIn />

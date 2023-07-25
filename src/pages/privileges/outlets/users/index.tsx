@@ -42,14 +42,18 @@ function Users() {
 
   const handleShowMessage = (messageType: EMessageType, username: string) => {
     const { title, description, appearance, icon } =
-      finishAssistedMessagesConfig[messageType];
+      finishAssistedMessagesConfig[
+        messageType as keyof typeof finishAssistedMessagesConfig
+      ];
 
     setMessage({
       visible: true,
-      title,
-      description: description(username),
-      icon,
-      appearance,
+      data: {
+        title,
+        description: description(username),
+        icon,
+        appearance,
+      },
     });
   };
 

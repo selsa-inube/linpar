@@ -5,7 +5,7 @@ import {
   Text,
   useMediaQuery,
 } from "@inube/design-system";
-import { EApparence } from "@src/types/colors.types";
+import { EAppearance } from "@src/types/colors.types";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
