@@ -24,7 +24,8 @@
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
       "@validations/*": ["./src/validations/*"]
-    }
+    },
+    "types": ["vite/client"]
   },
 
   "include": ["src"],

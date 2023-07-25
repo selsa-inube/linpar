@@ -1,12 +1,8 @@
 import { IMessage } from "@src/types/messages.types";
 
-interface IUsersRouteState {
-  message?: IMessage;
-  tab?: string;
-}
-
-interface IUsersMessage extends IMessage {
+interface IUsersMessage {
   visible: boolean;
+  data?: IMessage;
 }
 
-export type { IUsersMessage, IUsersRouteState };
+export type { IUsersMessage };

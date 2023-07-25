@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { ActivateUserUI } from "./interface";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 
-function ActivateUser(props) {
+interface ActivateUserProps {
+  user: IGeneralInformationEntry;
+  handleActivateUser: () => void;
+  showComplete: boolean;
+}
+
+function ActivateUser(props: ActivateUserProps) {
   const { user, handleActivateUser, showComplete } = props;
   const [showActivateUserModal, setShowActivateUserModal] = useState(false);
 

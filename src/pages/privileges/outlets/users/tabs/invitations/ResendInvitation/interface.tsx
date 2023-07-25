@@ -3,8 +3,17 @@ import { Button } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
 import { StyledIconResend } from "./styles";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 
-function ResendInvitationUI(props) {
+interface ResendInvitationUIProps {
+  showResendInvModal: boolean;
+  toggleModal: () => void;
+  resendInvitationUser: () => void;
+  invitation: IGeneralInformationEntry;
+  showComplete: boolean;
+}
+
+function ResendInvitationUI(props: ResendInvitationUIProps) {
   const {
     showResendInvModal,
     toggleModal,

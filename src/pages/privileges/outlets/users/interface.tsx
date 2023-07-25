@@ -29,22 +29,16 @@ const renderMessage = (
   message: IUsersMessage,
   handleCloseMessage: () => void
 ) => {
-  if (
-    !message.visible ||
-    !message.title ||
-    !message.description ||
-    !message.icon ||
-    !message.appearance
-  ) {
+  if (!message.data) {
     return null;
   }
 
   return (
     <SectionMessage
-      title={message.title}
-      description={message.description}
-      icon={message.icon}
-      appearance={message.appearance}
+      title={message.data.title}
+      description={message.data.description}
+      icon={message.data.icon}
+      appearance={message.data.appearance}
       duration={10000}
       closeSectionMessage={handleCloseMessage}
     />

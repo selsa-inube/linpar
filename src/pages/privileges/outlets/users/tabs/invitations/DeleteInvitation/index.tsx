@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { DeleteInvitationUI } from "./interface";
 
-function DeleteInvitation(props) {
+interface DeleteInvitationProps {
+  handleDelete: () => void;
+  showComplete: boolean;
+}
+
+function DeleteInvitation(props: DeleteInvitationProps) {
   const { handleDelete, showComplete } = props;
   const [showModal, setShowModal] = useState(false);
 

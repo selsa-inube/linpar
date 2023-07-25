@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { ResendInvitationUI } from "./interface";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 
-function ResendInvitation(props) {
+interface ResendInvitationProps {
+  invitation: IGeneralInformationEntry;
+  handleResendInvitation: () => void;
+  showComplete: boolean;
+}
+
+function ResendInvitation(props: ResendInvitationProps) {
   const { invitation, handleResendInvitation, showComplete } = props;
   const [showResendInvModal, setShowResendInvModal] = useState(false);
 
@@ -24,3 +31,4 @@ function ResendInvitation(props) {
 }
 
 export { ResendInvitation };
+export type { ResendInvitationProps };

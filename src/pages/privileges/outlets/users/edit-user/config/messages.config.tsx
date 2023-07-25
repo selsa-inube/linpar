@@ -1,4 +1,5 @@
 import { MdOutlineSentimentNeutral, MdThumbUpOffAlt } from "react-icons/md";
+import { EAppearance } from "@src/types/colors.types";
 
 const assignmentFormMessages = {
   success: {
@@ -6,14 +7,14 @@ const assignmentFormMessages = {
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Privilegios actualizados!",
     description: "Hemos actualizado correctamente los privilegios",
-    appearance: "confirm",
+    appearance: EAppearance.CONFIRM,
   },
   failed: {
     id: 2,
     icon: <MdOutlineSentimentNeutral size={18} />,
     title: "¡Uy, algo ha salido mal!",
     description: "Hemos tenido problemas para actualizar los privilegios",
-    appearance: "remove",
+    appearance: EAppearance.REMOVE,
   },
 };
 

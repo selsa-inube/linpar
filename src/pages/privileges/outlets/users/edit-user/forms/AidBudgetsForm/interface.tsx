@@ -16,7 +16,7 @@ const renderMessage = (
   }
 
   const { title, description, icon, appearance } =
-    assignmentFormMessages[message.type];
+    assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
 
   return (
     <SectionMessage

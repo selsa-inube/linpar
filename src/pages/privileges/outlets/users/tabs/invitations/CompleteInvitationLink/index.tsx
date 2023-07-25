@@ -1,8 +1,14 @@
 import { Button } from "@inube/design-system";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { StyledLink } from "./styles";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 
-function CompleteInvitationLink(props) {
+interface CompleteInvitationLinkProps {
+  invitation: IGeneralInformationEntry;
+  showComplete: boolean;
+}
+
+function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
   const { invitation, showComplete } = props;
 
   return (
@@ -23,8 +29,9 @@ function CompleteInvitationLink(props) {
         <StyledLink
           status={invitation.status}
           to={
-            invitation.status === "Pending" &&
-            `complete-invitation/${invitation.id}`
+            invitation.status === "Pending"
+              ? `complete-invitation/${invitation.id}`
+              : ""
           }
         >
           <MdOutlineAssignmentTurnedIn />

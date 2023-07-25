@@ -1,4 +1,4 @@
-enum EApparence {
+enum EAppearance {
   PRIMARY = "primary",
   SECONDARY = "secondary",
   REMOVE = "remove",
@@ -7,4 +7,4 @@ enum EApparence {
   HELP = "help",
 }
 
-export { EApparence };
+export { EAppearance };

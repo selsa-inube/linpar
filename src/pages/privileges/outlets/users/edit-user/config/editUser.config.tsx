@@ -1,4 +1,4 @@
-import { EApparence } from "@src/types/colors.types";
+import { EAppearance } from "@src/types/colors.types";
 
 const editUserOptionsConfig = {
   editUserPage: {
@@ -14,7 +14,7 @@ const editUserContinueModalConfig = {
   description:
     "¿Seguro que desea salir? cualquier cambio no guardado se perderá",
   actionText: "Continuar",
-  appearance: EApparence.CONFIRM,
+  appearance: EAppearance.CONFIRM,
 };
 
 const editUserSubjectCardLabels = [
