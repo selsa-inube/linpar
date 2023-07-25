@@ -3,9 +3,9 @@ import { ClientsUI } from "./interface";
 import { IClientState, IClient } from "./types";
 import { useNavigate, useParams } from "react-router-dom";
 
-const API_BASE_URL = import.meta.env.VITE_USER_CLIENTS_URI;
+const API_BASE_URL = import.meta.env.VITE_CLIENTS_URI;
 
-async function getUserClientsData(user_id?: string) {
+async function getUserClientsData(user_id: string) {
   try {
     const response = await fetch(`${API_BASE_URL}${user_id}`);
     const clients = await response.json();
@@ -29,6 +29,9 @@ function Clients() {
 
   useEffect(() => {
     async function getData() {
+      if (!user_id) {
+        return;
+      }
       const clients = await getUserClientsData(user_id);
       setClientsData(clients);
     }

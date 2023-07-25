@@ -5,7 +5,7 @@ import { IUser } from "../../types";
 
 const API_BASE_URL = import.meta.env.VITE_USERS_URI;
 
-async function getUser(user_id?: string): Promise<IUser | null> {
+async function getUser(user_id: string): Promise<IUser | null> {
   try {
     const response = await fetch(`${API_BASE_URL}/${user_id}`);
     if (!response.ok) {
@@ -25,6 +25,10 @@ function CheckingCredentials() {
 
   const checkCredentials = async () => {
     try {
+      if (!user_id) {
+        return;
+      }
+
       const user = await getUser(user_id);
 
       if (user) {
