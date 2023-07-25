@@ -1,23 +1,11 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
-import { assignmentFormMessages } from "../../config/messages.config";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "../../../types/forms.types";
-
-interface PayrollsFormUIProps {
-  payrolls: IAssignmentFormEntry[];
-  isLoading: boolean;
-  handleSubmitForm: () => void;
-  handleReset: () => void;
-  handleChangePayrolls: (payrolls: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
-  message: IMessageState;
-  onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-}
+import { assignmentFormMessages } from "../../config/messages.config";
 
 const renderMessage = (
   message: IMessageState,
@@ -42,6 +30,19 @@ const renderMessage = (
   );
 };
 
+interface PayrollsFormUIProps {
+  payrolls: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangePayrolls: (payrolls: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+  readOnly?: boolean;
+}
+
 function PayrollsFormUI(props: PayrollsFormUIProps) {
   const {
     payrolls,
@@ -53,6 +54,7 @@ function PayrollsFormUI(props: PayrollsFormUIProps) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -80,6 +82,7 @@ function PayrollsFormUI(props: PayrollsFormUIProps) {
       handleChange={handleChangePayrolls}
       entries={payrolls}
       title="Seleccione los conceptos de nómina que desea asignar"
+      readOnly={readOnly}
     />
   );
 }

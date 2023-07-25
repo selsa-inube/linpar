@@ -3,6 +3,9 @@ import { SubjectCard } from "@components/cards/SubjectCard";
 import { Assisted } from "@components/feedback/Assisted";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
+import { IVerificationData } from "@src/components/feedback/Assisted/types";
+import { DecisionModal } from "@src/components/feedback/DecisionModal";
+import { MdPersonOutline } from "react-icons/md";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import { EventsForm } from "../edit-user/forms/EventsForm";
@@ -10,18 +13,38 @@ import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import {
+  IAssignmentFormEntry,
+  IFormsInvitation,
+  IGeneralInformationEntry,
+} from "../types/forms.types";
+import {
   CompleteInvitationUserConfig,
-  stepsRegisterUserConfig,
   completeInvitationSubjectCardLabels,
+  finishAssistedModalConfig,
+  stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 import { StyledContainer } from "./styles";
-import { MdPersonOutline } from "react-icons/md";
-import {
-  IFormsInvitation,
-  IAssignmentFormEntry,
-  IGeneralInformationEntry,
-} from "../types/forms.types";
+
+function finishModal(
+  handleCloseModal: () => void,
+  handleCompleteInvitation: () => void
+) {
+  const { title, description, actionText, appearance } =
+    finishAssistedModalConfig;
+
+  return (
+    <DecisionModal
+      title={title}
+      description={description}
+      actionText={actionText}
+      loading={false}
+      appearance={appearance}
+      closeModal={handleCloseModal}
+      handleClick={handleCompleteInvitation}
+    />
+  );
+}
 
 interface CompleteInvitationUIProps {
   invitationData: IFormsInvitation;
@@ -30,10 +53,23 @@ interface CompleteInvitationUIProps {
   ) => void;
   handleStepChange: (step: number) => void;
   currentStep: number;
+  handleCompleteInvitation: () => void;
+  handleToggleModal: () => void;
+  showModal: boolean;
+  verificationData: Record<string, IVerificationData>;
 }
 
 function CompleteInvitationUI(props: CompleteInvitationUIProps) {
-  const { invitationData, handleSubmit, handleStepChange, currentStep } = props;
+  const {
+    invitationData,
+    handleSubmit,
+    handleStepChange,
+    currentStep,
+    handleCompleteInvitation,
+    handleToggleModal,
+    showModal,
+    verificationData,
+  } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -69,7 +105,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
             {currentInformation && invitationCardData && (
               <SubjectCard
                 subjectData={invitationCardData}
-                title="Informacion del usuario"
+                title="Información del usuario"
                 icon={<MdPersonOutline size={24} />}
                 labels={completeInvitationSubjectCardLabels}
               />
@@ -78,13 +114,13 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         </Stack>
         {currentInformation ? (
           <>
-            <Stack justifyContent="center">
-              <Assisted
-                steps={Object.values(stepsRegisterUserConfig)}
-                handleStepChange={handleStepChange}
-                currentStep={currentStep}
-              />
-            </Stack>
+            <Assisted
+              steps={Object.values(stepsRegisterUserConfig)}
+              handleStepChange={handleStepChange}
+              handleFinishAssisted={handleToggleModal}
+              currentStep={currentStep}
+              verificationData={verificationData}
+            />
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
                 currentInformation={currentInformation}
@@ -132,6 +168,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
           />
         )}
       </Stack>
+      {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
     </StyledContainer>
   );
 }

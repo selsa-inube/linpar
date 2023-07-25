@@ -1,23 +1,28 @@
+import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
-import { PayrollsFormUI } from "./interface";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "../../../types/forms.types";
-import { EMessageType } from "@src/types/messages.types";
+import { PayrollsFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
-
 interface PayrollsFormProps {
   currentPayrolls: IAssignmentFormEntry[];
   handleSubmit: (payrolls: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  readOnly?: boolean;
 }
 
 function PayrollsForm(props: PayrollsFormProps) {
-  const { currentPayrolls, handleSubmit, withSubmitButtons, onHasChanges } =
-    props;
+  const {
+    currentPayrolls,
+    handleSubmit,
+    withSubmitButtons,
+    onHasChanges,
+    readOnly,
+  } = props;
   const [payrolls, setPayrolls] = useState(currentPayrolls);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -68,9 +73,10 @@ function PayrollsForm(props: PayrollsFormProps) {
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      readOnly={readOnly}
     />
   );
 }
 
-export type { PayrollsFormProps };
 export { PayrollsForm };
+export type { PayrollsFormProps };

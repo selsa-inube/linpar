@@ -1,10 +1,10 @@
+import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
-import { ProjectsFormUI } from "./interface";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "../../../types/forms.types";
-import { EMessageType } from "@src/types/messages.types";
+import { ProjectsFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -13,11 +13,17 @@ interface ProjectsFormProps {
   handleSubmit: (projects: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  readOnly?: boolean;
 }
 
 function ProjectsForm(props: ProjectsFormProps) {
-  const { currentProjects, handleSubmit, withSubmitButtons, onHasChanges } =
-    props;
+  const {
+    currentProjects,
+    handleSubmit,
+    withSubmitButtons,
+    onHasChanges,
+    readOnly,
+  } = props;
   const [projects, setProjects] = useState(currentProjects);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -68,9 +74,10 @@ function ProjectsForm(props: ProjectsFormProps) {
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      readOnly={readOnly}
     />
   );
 }
 
-export type { ProjectsFormProps };
 export { ProjectsForm };
+export type { ProjectsFormProps };

@@ -1,16 +1,17 @@
+import { IOption } from "@components/navigation/Menu/types";
 import { useState } from "react";
 import { AssignmentFormUI } from "./interface";
 import { IEntry } from "./types";
-import { IOption } from "@components/navigation/Menu/types";
 
 interface AssignmentFormProps {
   handleChange: (entries: IEntry[]) => void;
   entries: IEntry[];
   title: string;
+  readOnly?: boolean;
 }
 
 function AssignmentForm(props: AssignmentFormProps) {
-  const { handleChange, entries, title } = props;
+  const { handleChange, entries, title, readOnly } = props;
   const [filter, setFilter] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [isAssignAll, setIsAssignAll] = useState(false);
@@ -77,6 +78,7 @@ function AssignmentForm(props: AssignmentFormProps) {
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       menuOptions={menuOptions}
       isAssignAll={isAssignAll}
+      readOnly={readOnly}
     />
   );
 }

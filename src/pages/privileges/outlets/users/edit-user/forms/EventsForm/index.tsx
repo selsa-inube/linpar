@@ -1,23 +1,28 @@
+import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
-import { EventsFormUI } from "./interface";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "../../../types/forms.types";
-import { EMessageType } from "@src/types/messages.types";
+import { EventsFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
-
 interface EventsFormProps {
   currentEvents: IAssignmentFormEntry[];
   handleSubmit: (events: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  readOnly?: boolean;
 }
 
 function EventsForm(props: EventsFormProps) {
-  const { currentEvents, handleSubmit, withSubmitButtons, onHasChanges } =
-    props;
+  const {
+    currentEvents,
+    handleSubmit,
+    withSubmitButtons,
+    onHasChanges,
+    readOnly,
+  } = props;
   const [events, setEvents] = useState(currentEvents);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -68,9 +73,10 @@ function EventsForm(props: EventsFormProps) {
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      readOnly={readOnly}
     />
   );
 }
 
-export type { EventsFormProps };
 export { EventsForm };
+export type { EventsFormProps };

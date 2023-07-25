@@ -78,9 +78,9 @@ const renderForm = (
               size="compact"
               maxLength={40}
               minLength={1}
-              isFullWidth={true}
-              isDisabled={true}
-              readOnly={true}
+              isFullWidth
+              isDisabled
+              readOnly
             />
 
             <TextField
@@ -91,10 +91,10 @@ const renderForm = (
               value={formik.values.userID}
               type="number"
               size="compact"
-              isFullWidth={true}
+              isFullWidth
               handleChange={formik.handleChange}
-              isDisabled={true}
-              readOnly={true}
+              isDisabled
+              readOnly
             />
           </Stack>
         </Fieldset>
@@ -119,7 +119,7 @@ const renderForm = (
               state={stateValue("phone")}
               handleChange={formik.handleChange}
               handleBlur={formik.handleBlur}
-              isFullWidth={true}
+              isFullWidth
             />
 
             <TextField
@@ -138,7 +138,7 @@ const renderForm = (
               state={stateValue("email")}
               handleChange={formik.handleChange}
               handleBlur={formik.handleBlur}
-              isFullWidth={true}
+              isFullWidth
             />
           </Stack>
         </Fieldset>
@@ -152,7 +152,7 @@ const renderForm = (
               value={formik.values.username}
               type="text"
               size="compact"
-              isFullWidth={true}
+              isFullWidth
               maxLength={40}
               minLength={1}
               handleChange={formik.handleChange}
@@ -172,7 +172,7 @@ const renderForm = (
                 type="password"
                 size="compact"
                 placeholder="Contraseña"
-                isFullWidth={true}
+                isFullWidth
                 handleChange={formik.handleChange}
                 isInvalid={formik.errors.password && formInvalid}
                 errorMessage={formik.errors.password}
@@ -187,7 +187,7 @@ const renderForm = (
                 name="confirmPassword"
                 type="password"
                 size="compact"
-                isFullWidth={true}
+                isFullWidth
                 placeholder="Confirmar Contraseña"
                 handleChange={formik.handleChange}
                 isInvalid={formik.errors.confirmPassword && formInvalid}

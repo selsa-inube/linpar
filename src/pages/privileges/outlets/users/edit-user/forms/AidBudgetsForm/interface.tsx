@@ -1,23 +1,11 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
-import { assignmentFormMessages } from "../../config/messages.config";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "../../../types/forms.types";
-
-interface AidBudgetsFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
-  isLoading: boolean;
-  handleSubmitForm: () => void;
-  handleReset: () => void;
-  handleChangeAidBudgets: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
-  message: IMessageState;
-  onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-}
+import { assignmentFormMessages } from "../../config/messages.config";
 
 const renderMessage = (
   message: IMessageState,
@@ -42,6 +30,19 @@ const renderMessage = (
   );
 };
 
+interface AidBudgetsFormUIProps {
+  aidBudgetUnits: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeAidBudgets: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+  readOnly?: boolean;
+}
+
 function AidBudgetsFormUI(props: AidBudgetsFormUIProps) {
   const {
     aidBudgetUnits,
@@ -53,6 +54,7 @@ function AidBudgetsFormUI(props: AidBudgetsFormUIProps) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -80,6 +82,7 @@ function AidBudgetsFormUI(props: AidBudgetsFormUIProps) {
       handleChange={handleChangeAidBudgets}
       entries={aidBudgetUnits}
       title="Seleccione los presupuestos que desea asignar"
+      readOnly={readOnly}
     />
   );
 }
