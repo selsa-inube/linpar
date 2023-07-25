@@ -1,5 +1,5 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
-import { EApparence } from "@src/types/colors.types";
+import { EAppearance } from "@src/types/colors.types";
 import { IGeneralInformationEntry } from "../types/forms.types";
 
 const activateUserModal = {
@@ -8,14 +8,14 @@ const activateUserModal = {
     description: ({ code }: IGeneralInformationEntry) =>
       `Esta seguro de Activar el usuario ${code}? `,
     textAction: "Activate",
-    appearance: EApparence.CONFIRM,
+    appearance: EAppearance.CONFIRM,
   },
   deactivation: {
     title: "Deactivate user",
     description: ({ code }: IGeneralInformationEntry) =>
       `Esta seguro de Desactivar el usuario ${code}? `,
     textAction: "Deactivate",
-    appearance: EApparence.REMOVE,
+    appearance: EAppearance.REMOVE,
   },
 };
 
@@ -26,7 +26,7 @@ const activateUserMessages = {
     title: "¡Activación exitosa!",
     description: ({ username }: IGeneralInformationEntry) =>
       `El Usuario ${username} esta activado `,
-    appearance: EApparence.CONFIRM,
+    appearance: EAppearance.CONFIRM,
   },
   deactivation: {
     id: 2,
@@ -34,7 +34,7 @@ const activateUserMessages = {
     title: "¡Desactivación exitosa!",
     description: ({ username }: IGeneralInformationEntry) =>
       `El Usuario ${username} esta desactivado `,
-    appearance: EApparence.CONFIRM,
+    appearance: EAppearance.CONFIRM,
   },
   failed: {
     id: 2,
@@ -42,7 +42,7 @@ const activateUserMessages = {
     title: "¡Uy, algo salió mal!",
     description: ({ code }: IGeneralInformationEntry) =>
       `Hemos presentado problemas eliminando al usuario ${code}.`,
-    appearance: EApparence.REMOVE,
+    appearance: EAppearance.REMOVE,
   },
 };
 export { activateUserMessages, activateUserModal };

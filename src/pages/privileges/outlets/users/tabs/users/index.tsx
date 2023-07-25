@@ -14,19 +14,16 @@ import {
 import { ActivateUser } from "./ActivateUser";
 import { DeleteUser } from "./DeleteUser";
 import { EditUser } from "./EditUser";
-import {
-  IGeneralInformationEntry,
-  IInitialMessage,
-} from "../../types/forms.types";
-import { EApparence } from "@src/types/colors.types";
-import { EMessageType } from "@src/types/messages.types";
+import { IGeneralInformationEntry } from "../../types/forms.types";
+import { EAppearance } from "@src/types/colors.types";
+import { EMessageType, IMessage } from "@src/types/messages.types";
 
-const initialMessageState: IInitialMessage = {
+const initialMessageState: IMessage = {
   show: false,
   title: "",
   description: "",
-  icon: "",
-  appearance: "" as EApparence,
+  icon: <></>,
+  appearance: "" as EAppearance,
 };
 
 interface UsersTabProps {
@@ -36,7 +33,7 @@ interface UsersTabProps {
 function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
   const [users, setUsers] = useState(userEntriesDataMock);
-  const [message, setMessage] = useState<IInitialMessage>(initialMessageState);
+  const [message, setMessage] = useState(initialMessageState);
 
   const deleteUser = (user: IGeneralInformationEntry) => {
     let MessageType = EMessageType.SUCCESS;
@@ -90,8 +87,8 @@ function UsersTab(props: UsersTabProps) {
     });
   };
 
-  const handleShowMessage = (props: IInitialMessage) => {
-    const { title, description, icon, appearance } = props;
+  const handleShowMessage = (message: IMessage) => {
+    const { title, description, icon, appearance } = message;
     setMessage({
       show: true,
       title,

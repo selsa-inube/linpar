@@ -3,7 +3,7 @@ import { MdClear } from "react-icons/md";
 import { StyledIcon, StyledSectionMessage } from "./styles";
 
 interface SectionMessageUIProps {
-  icon: JSX.Element | string;
+  icon: JSX.Element;
   title: string;
   description: string;
   appearance: string;

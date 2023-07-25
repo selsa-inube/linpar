@@ -28,7 +28,11 @@ function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
       ) : (
         <StyledLink
           status={invitation.status}
-          to={`complete-invitation/${invitation.id}`}
+          to={
+            invitation.status === "Pending"
+              ? `complete-invitation/${invitation.id}`
+              : "privileges/users"
+          }
         >
           <MdOutlineAssignmentTurnedIn />
         </StyledLink>

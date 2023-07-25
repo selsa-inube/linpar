@@ -11,19 +11,16 @@ import {
 import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
-import { EMessageType } from "@src/types/messages.types";
-import {
-  IGeneralInformationEntry,
-  IInitialMessage,
-} from "../../types/forms.types";
-import { EApparence } from "@src/types/colors.types";
+import { EMessageType, IMessage } from "@src/types/messages.types";
+import { IGeneralInformationEntry } from "../../types/forms.types";
+import { EAppearance } from "@src/types/colors.types";
 
-const initialMessageState: IInitialMessage = {
+const initialMessageState: IMessage = {
   show: false,
   title: "",
   description: "",
-  icon: "",
-  appearance: "" as EApparence,
+  icon: <></>,
+  appearance: "" as EAppearance,
 };
 
 interface InvitationsTabProps {
@@ -32,7 +29,7 @@ interface InvitationsTabProps {
 
 function InvitationsTab(props: InvitationsTabProps) {
   const { searchText } = props;
-  const [message, setMessage] = useState<IInitialMessage>(initialMessageState);
+  const [message, setMessage] = useState(initialMessageState);
   const [invitations, setInvitations] = useState(invitationEntriesDataMock);
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
@@ -119,8 +116,8 @@ function InvitationsTab(props: InvitationsTabProps) {
     });
   };
 
-  const handleShowMessage = (props: IInitialMessage) => {
-    const { title, description, icon, appearance } = props;
+  const handleShowMessage = (message: IMessage) => {
+    const { title, description, icon, appearance } = message;
     setMessage({
       show: true,
       title,

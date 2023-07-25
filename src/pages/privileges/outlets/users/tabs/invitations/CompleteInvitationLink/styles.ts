@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { colors } from "../../../../../../../styles/colors";
 import { Link } from "react-router-dom";
 
-interface StyledLinkProps {
-  status: string;
+interface IStyledLink {
+  status?: string;
 }
 
 const StyledLink = styled(Link)`
-  color: ${(props: StyledLinkProps) =>
+  color: ${(props: IStyledLink) =>
     props.status === "Sent"
       ? colors.sys.actions.disabled.stroke
       : colors.sys.text.dark};

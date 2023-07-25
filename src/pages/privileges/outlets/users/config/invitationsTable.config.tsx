@@ -1,4 +1,4 @@
-import { EApparence } from "@src/types/colors.types";
+import { EAppearance } from "@src/types/colors.types";
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
 const invitationsTableTitles = [
@@ -48,7 +48,7 @@ const deleteInvitationModalConfig = {
   title: "Borrar invitación",
   description: "¿Seguro que quieres eliminar la invitación?",
   actionText: "Eliminar",
-  appearance: EApparence.REMOVE,
+  appearance: EAppearance.REMOVE,
 };
 
 const deleteInvitationMessagesConfig = {
@@ -58,7 +58,7 @@ const deleteInvitationMessagesConfig = {
     title: "¡Eliminación exitosa!",
     description: (value: string) =>
       `Hemos eliminado correctamente la invitación del usuario ${value}.`,
-    appearance: EApparence.CONFIRM,
+    appearance: EAppearance.CONFIRM,
     duration: 2000,
   },
   failed: {
@@ -67,7 +67,7 @@ const deleteInvitationMessagesConfig = {
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
       `Hemos presentado problemas al eliminar la invitación del usuario ${value}.`,
-    appearance: EApparence.REMOVE,
+    appearance: EAppearance.REMOVE,
     duration: 2000,
   },
 };

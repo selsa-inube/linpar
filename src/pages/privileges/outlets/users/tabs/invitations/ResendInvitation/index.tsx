@@ -4,7 +4,7 @@ import { IGeneralInformationEntry } from "../../../types/forms.types";
 
 interface ResendInvitationProps {
   invitation: IGeneralInformationEntry;
-  handleResendInvitation: (invitation?: IGeneralInformationEntry[]) => void;
+  handleResendInvitation: () => void;
   showComplete: boolean;
 }
 

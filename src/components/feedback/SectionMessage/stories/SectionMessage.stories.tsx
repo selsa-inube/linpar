@@ -2,6 +2,7 @@ import { SectionMessage, SectionMessageProps } from "..";
 import { MdWarning } from "react-icons/md";
 import { action } from "@storybook/addon-actions";
 import { StoryFn } from "@storybook/react";
+import { EAppearance } from "@src/types/colors.types";
 
 const argTypes = {
   appearance: {
@@ -60,7 +61,7 @@ WithFullText.args = {
   description:
     "We have presented problems when carrying out the user creation action. This can have many causes, the name does not meet the necessary requirements, the identification number does not contain the number of characters. so please try again.  (this text no longer appears because it exceeds the character limit of the component)",
   icon: <MdWarning />,
-  appearance: "remove",
+  appearance: EAppearance.REMOVE,
   closeSectionMessage: closeSectionMessage,
 };
 
