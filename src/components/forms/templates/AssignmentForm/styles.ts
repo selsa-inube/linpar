@@ -16,13 +16,17 @@ const StyledHeadContainer = styled.div<IStyledHeadContainer>`
   align-items: center;
 `;
 
-const StyledEntriesContainer = styled.div`
+interface IStyledEntriesContainer {
+  readOnly?: boolean;
+}
+
+const StyledEntriesContainer = styled.div<IStyledEntriesContainer>`
   display: flex;
   flex-direction: column;
   gap: 16px;
   max-height: 344px;
   overflow-y: auto;
-  margin-top: 32px;
+  margin-top: ${(props) => (props.readOnly ? "0" : "32px")};
 `;
 
 const StyledOptionsContainer = styled.div`

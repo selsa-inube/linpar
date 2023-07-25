@@ -7,18 +7,6 @@ import {
   IMessageState,
 } from "../../../types/forms.types";
 
-interface BranchesFormUIProps {
-  branches: IAssignmentFormEntry[];
-  isLoading: boolean;
-  handleSubmitForm: () => void;
-  handleReset: () => void;
-  handleChangeBranches: (branches: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
-  message: IMessageState;
-  onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-}
-
 const renderMessage = (
   message: IMessageState,
   onCloseSectionMessage: BranchesFormUIProps["onCloseSectionMessage"]
@@ -42,6 +30,19 @@ const renderMessage = (
   );
 };
 
+interface BranchesFormUIProps {
+  branches: IAssignmentFormEntry[];
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  handleChangeBranches: (branches: IAssignmentFormEntry[]) => void;
+  withSubmitButtons?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+  readOnly?: boolean;
+}
+
 function BranchesFormUI(props: BranchesFormUIProps) {
   const {
     branches,
@@ -53,6 +54,7 @@ function BranchesFormUI(props: BranchesFormUIProps) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -80,6 +82,7 @@ function BranchesFormUI(props: BranchesFormUIProps) {
       handleChange={handleChangeBranches}
       entries={branches}
       title="Seleccione las sucursales que desea asignar"
+      readOnly={readOnly}
     />
   );
 }

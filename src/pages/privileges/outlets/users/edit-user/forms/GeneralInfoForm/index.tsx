@@ -1,14 +1,14 @@
+import { EMessageType } from "@src/types/messages.types";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
-import { GeneralInformationFormUI } from "./interface";
 import {
   IGeneralInformationEntry,
   IMessageState,
 } from "../../../types/forms.types";
-import { EMessageType } from "@src/types/messages.types";
+import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -22,11 +22,17 @@ interface GeneralInformationFormProps {
   currentInformation: IGeneralInformationEntry;
   handleSubmit: (values: IGeneralInformationEntry) => void;
   onHasChanges?: (hasChanges: boolean) => void;
+  readOnly?: boolean;
 }
 
 function GeneralInformationForm(props: GeneralInformationFormProps) {
-  const { withSubmitButtons, currentInformation, handleSubmit, onHasChanges } =
-    props;
+  const {
+    withSubmitButtons,
+    currentInformation,
+    handleSubmit,
+    onHasChanges,
+    readOnly,
+  } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({
@@ -119,9 +125,10 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       formInvalid={formInvalid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
+      readOnly={readOnly}
     />
   );
 }
 
-export type { GeneralInformationFormProps };
 export { GeneralInformationForm };
+export type { GeneralInformationFormProps };

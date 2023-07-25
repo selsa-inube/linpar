@@ -5,4 +5,11 @@ interface IStep {
   stepDescription: string;
 }
 
-export type { IStep };
+interface IVerificationData {
+  id: string;
+  title: string;
+  content: React.ReactNode;
+  isFullWidth?: boolean;
+}
+
+export type { IStep, IVerificationData };

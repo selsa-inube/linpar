@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "@styles/colors";
+
 const StyledDesktopContainer = styled.div`
   display: flex;
   flex-direction: column;

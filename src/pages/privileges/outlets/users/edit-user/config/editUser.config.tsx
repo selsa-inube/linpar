@@ -9,7 +9,7 @@ const editUserOptionsConfig = {
   },
 };
 
-const EditUserContinueModalConfig = {
+const editUserContinueModalConfig = {
   title: "Continuar sin guardar",
   description:
     "¿Seguro que desea salir? cualquier cambio no guardado se perderá",
@@ -41,7 +41,7 @@ const editUserSubjectCardLabels = [
 ];
 
 export {
+  editUserContinueModalConfig,
   editUserOptionsConfig,
-  EditUserContinueModalConfig,
   editUserSubjectCardLabels,
 };

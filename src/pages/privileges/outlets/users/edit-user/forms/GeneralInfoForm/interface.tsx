@@ -2,33 +2,19 @@ import { SectionMessage } from "@components/feedback/SectionMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { Stack, Text, TextField } from "@inube/design-system";
 import { positions } from "@mocks/apps/privileges/users/users.mock";
+import { EMessageType } from "@src/types/messages.types";
+import { FormikValues } from "formik";
 import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
+import {
+  IGeneralInformationEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { generalInfoMessages } from "./config/messages.config";
 import {
   StyledErrorMessageContainer,
   StyledFormContainer,
   StyledSelect,
 } from "./styles";
-import {
-  IGeneralInformationEntry,
-  IMessageState,
-} from "../../../types/forms.types";
-import { EMessageType } from "@src/types/messages.types";
-import { FormikValues } from "formik";
-
-interface GeneralInformationFormUIProps {
-  formik: FormikValues;
-  loading: boolean;
-  withSubmitButtons?: boolean;
-  showMessage: IMessageState;
-  handleCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
-  formInvalid: boolean;
-  handleSubmitForm: () => void;
-  handleChangeForm: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
-}
 
 function renderMessages(
   showMessage: IMessageState,
@@ -64,7 +50,8 @@ function renderFormFields(
   formInvalid: boolean,
   handleChangeForm: (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void
+  ) => void,
+  readOnly?: boolean
 ) {
   function stateValue(attribute: string) {
     if (!formik.touched[attribute]) return "pending";
@@ -81,12 +68,12 @@ function renderFormFields(
         id="username"
         value={formik.values.username}
         type="text"
-        isDisabled={true}
+        isDisabled
         size="compact"
-        isFullWidth={true}
+        isFullWidth
         maxLength={40}
         minLength={1}
-        readOnly={true}
+        readOnly
       />
 
       <TextField
@@ -96,10 +83,10 @@ function renderFormFields(
         id="userID"
         value={formik.values.userID}
         type="number"
-        isDisabled={true}
+        isDisabled
         size="compact"
-        isFullWidth={true}
-        readOnly={true}
+        isFullWidth
+        readOnly
       />
 
       <TextField
@@ -113,9 +100,10 @@ function renderFormFields(
         isInvalid={formik.errors.email && formInvalid}
         errorMessage={formik.errors.email}
         validMessage="El correo electrónico ingresado es válido"
-        isDisabled={loading}
+        isDisabled={readOnly || loading}
+        readOnly={readOnly}
         size="compact"
-        isFullWidth={true}
+        isFullWidth
         state={stateValue("email")}
         handleChange={handleChangeForm}
         handleBlur={formik.handleBlur}
@@ -132,16 +120,21 @@ function renderFormFields(
         isInvalid={formik.errors.phone && formInvalid}
         errorMessage={formik.errors.phone}
         validMessage="El número de teléfono ingresado es válido"
-        isDisabled={loading}
+        isDisabled={readOnly || loading}
+        readOnly={readOnly}
         size="compact"
-        isFullWidth={true}
+        isFullWidth
         state={stateValue("phone")}
         handleChange={handleChangeForm}
         handleBlur={formik.handleBlur}
       />
 
       <Stack direction="column" gap="8px">
-        <Text typo="labelMedium" padding="0px 0px 0px 16px">
+        <Text
+          typo="labelMedium"
+          appearance={readOnly ? "disabled" : "dark"}
+          padding="0px 0px 0px 16px"
+        >
           Cargo
         </Text>
         <StyledSelect
@@ -150,6 +143,7 @@ function renderFormFields(
           id="position"
           onChange={handleChangeForm}
           required
+          disabled={readOnly || loading}
         >
           {positions.map((position) => (
             <option key={position.value} value={position.value}>
@@ -170,6 +164,21 @@ function renderFormFields(
   );
 }
 
+interface GeneralInformationFormUIProps {
+  formik: FormikValues;
+  loading: boolean;
+  withSubmitButtons?: boolean;
+  showMessage: IMessageState;
+  handleCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
+  formInvalid: boolean;
+  handleSubmitForm: () => void;
+  handleChangeForm: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  readOnly?: boolean;
+}
+
 function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
     formik,
@@ -181,6 +190,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     formInvalid,
     handleSubmitForm,
     handleChangeForm,
+    readOnly,
   } = props;
 
   if (withSubmitButtons) {
@@ -200,7 +210,15 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   }
 
   return (
-    <>{renderFormFields(formik, loading, formInvalid, handleChangeForm)}</>
+    <>
+      {renderFormFields(
+        formik,
+        loading,
+        formInvalid,
+        handleChangeForm,
+        readOnly
+      )}
+    </>
   );
 }
 

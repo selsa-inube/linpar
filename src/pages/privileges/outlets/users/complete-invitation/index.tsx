@@ -4,15 +4,23 @@ import { eventsFormInvitation } from "@mocks/apps/privileges/invitations/eventsF
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { payrollsFormInvitation } from "@mocks/apps/privileges/invitations/payrollsForm.mock";
 import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
+import { IVerificationData } from "@src/components/feedback/Assisted/types";
+import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
-import { CompleteInvitationUI } from "./interface";
+import { useNavigate, useParams } from "react-router-dom";
+import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
+import { BranchesForm } from "../edit-user/forms/BranchesForm";
+import { EventsForm } from "../edit-user/forms/EventsForm";
+import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
+import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
+import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import {
-  IFormsInvitation,
   IAssignmentFormEntry,
+  IFormsInvitation,
   IGeneralInformationEntry,
 } from "../types/forms.types";
+import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
+import { CompleteInvitationUI } from "./interface";
 
 function CompleteInvitation() {
   const { invitation_id } = useParams<{ invitation_id: string }>();
@@ -20,6 +28,8 @@ function CompleteInvitation() {
   const [currentStep, setCurrentStep] = useState<number>(
     stepsRegisterUserConfig.generalInformation.id
   );
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const [invitationData, setInvitationData] = useState<IFormsInvitation>({
     generalInformation: { entries: getInvitationInformation() },
@@ -55,12 +65,102 @@ function CompleteInvitation() {
     setCurrentStep(step);
   };
 
+  const handleCompleteInvitation = () => {
+    if (invitationData.generalInformation.entries) {
+      navigate("/privileges/users", {
+        state: {
+          messageType: EMessageType.SUCCESS,
+          username: invitationData.generalInformation.entries.username,
+          tab: "privileges-invitations",
+        },
+      });
+    }
+  };
+
+  const handleToggleModal = () => {
+    setShowModal((prevShowModal) => !prevShowModal);
+  };
+
+  const verificationData: Record<string, IVerificationData> = {
+    generalInformation: {
+      id: "generalInformation",
+      title: "General",
+      content: invitationData.generalInformation.entries && (
+        <GeneralInformationForm
+          currentInformation={invitationData.generalInformation.entries}
+          readOnly
+          handleSubmit={() => {}}
+        />
+      ),
+      isFullWidth: true,
+    },
+    branches: {
+      id: "branches",
+      title: "Sucursales",
+      content: (
+        <BranchesForm
+          currentBranches={invitationData.branches.entries}
+          readOnly
+          handleSubmit={() => {}}
+        />
+      ),
+    },
+    projects: {
+      id: "projects",
+      title: "Proyectos",
+      content: (
+        <ProjectsForm
+          currentProjects={invitationData.projects.entries}
+          readOnly
+          handleSubmit={() => {}}
+        />
+      ),
+    },
+    events: {
+      id: "events",
+      title: "Eventos",
+      content: (
+        <EventsForm
+          currentEvents={invitationData.events.entries}
+          readOnly
+          handleSubmit={() => {}}
+        />
+      ),
+    },
+    aidBudgets: {
+      id: "aidBudgets",
+      title: "Unidades de ayuda",
+      content: (
+        <AidBudgetsForm
+          currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
+          readOnly
+          handleSubmit={() => {}}
+        />
+      ),
+    },
+    payrolls: {
+      id: "payrolls",
+      title: "Nómina",
+      content: (
+        <PayrollsForm
+          currentPayrolls={invitationData.payrolls.entries}
+          readOnly
+          handleSubmit={() => {}}
+        />
+      ),
+    },
+  };
+
   return (
     <CompleteInvitationUI
       invitationData={invitationData}
       handleSubmit={handleSubmit}
       handleStepChange={handleStepChange}
       currentStep={currentStep}
+      handleToggleModal={handleToggleModal}
+      handleCompleteInvitation={handleCompleteInvitation}
+      showModal={showModal}
+      verificationData={verificationData}
     />
   );
 }

@@ -13,6 +13,7 @@ interface AidBudgetsFormProps {
   handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  readOnly?: boolean;
 }
 
 function AidBudgetsForm(props: AidBudgetsFormProps) {
@@ -21,6 +22,7 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
     handleSubmit,
     withSubmitButtons,
     onHasChanges,
+    readOnly,
   } = props;
   const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
   const [isLoading, setIsLoading] = useState(false);
@@ -72,6 +74,7 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      readOnly={readOnly}
     />
   );
 }

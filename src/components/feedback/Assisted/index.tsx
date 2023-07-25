@@ -1,18 +1,29 @@
 import { AssistedUI } from "./interface";
-import { IStep } from "./types";
+import { IStep, IVerificationData } from "./types";
 
 interface AssistedProps {
   steps: IStep[];
   currentStep: number;
   handleStepChange: (stepId: number) => void;
+  handleFinishAssisted: () => void;
+  verificationData: Record<string, IVerificationData>;
 }
 
 function Assisted(props: AssistedProps) {
-  const { steps, currentStep, handleStepChange } = props;
+  const {
+    steps,
+    currentStep,
+    handleStepChange,
+    handleFinishAssisted,
+    verificationData,
+  } = props;
 
   const handleNextStep = () => {
     const currentStepIndex = steps.findIndex((step) => step.id === currentStep);
-    if (currentStepIndex === steps.length - 1) return;
+    if (currentStepIndex === steps.length - 1) {
+      handleFinishAssisted();
+      return;
+    }
     handleStepChange(steps[currentStepIndex + 1].id);
   };
 
@@ -32,6 +43,7 @@ function Assisted(props: AssistedProps) {
       handlePreviousStep={handlePreviousStep}
       handleStepChange={handleStepChange}
       steps={steps}
+      verificationData={verificationData}
     />
   );
 }
