@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import UsersUI from "./interface";
@@ -9,6 +10,14 @@ function Users() {
   );
   const [searchText, setSearchText] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const tab = location.state?.tab;
+    if (tab) {
+      setIsSelected(tab);
+    }
+  }, []);
 
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);

@@ -1,13 +1,15 @@
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { PayrollsForm } from "./index";
+import { PayrollsForm, PayrollsFormProps } from "./index";
 import { payrollsFormEditUser } from "@mocks/apps/privileges/users/payrollsForm.mock";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { StoryFn } from "@storybook/react";
 
 const story = {
   components: [PayrollsForm],
   title: "forms/edit-user/PayrollsForm",
   decorators: [
-    (Story) => (
+    (Story: StoryFn) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -15,9 +17,11 @@ const story = {
   ],
 };
 
-const Template = (args) => <PayrollsForm {...args} />;
+const Template: StoryFn<PayrollsFormProps> = (args) => (
+  <PayrollsForm {...args} />
+);
 
-const handleSubmit = (newPayrolls) => {
+const handleSubmit = (newPayrolls: IAssignmentFormEntry[]) => {
   action("Submit Payrolls: ")(newPayrolls);
 };
 
