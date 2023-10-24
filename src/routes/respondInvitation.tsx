@@ -1,8 +1,8 @@
 import { themeClientsMock } from "@mocks/respondInvitation/themeClients.mock";
-import { RespondInvitation } from "@pages/respondInvitation";
-import { ConfirmationRegisterComplete } from "@pages/respondInvitation/cases/ConfirmationRegisterComplete";
-import { ErrorNotAvailable } from "@pages/respondInvitation/cases/ErrorNotAvailable";
-import { Route, Routes, useNavigate, useParams } from "react-router-dom";
+// import { RespondInvitation } from "@pages/respondInvitation";
+// import { ConfirmationRegisterComplete } from "@pages/respondInvitation/cases/ConfirmationRegisterComplete";
+// import { ErrorNotAvailable } from "@pages/respondInvitation/cases/ErrorNotAvailable";
+import { useNavigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 function getClientTheme(clientId?: string) {
@@ -33,14 +33,14 @@ function RespondInvitationRoutes() {
 
   return (
     <ThemeProvider theme={clientTheme}>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<RespondInvitation />} />
         <Route
           path="confirmation-register-complete/"
           element={<ConfirmationRegisterComplete />}
         />
         <Route path="/*" element={<ErrorNotAvailable />} />
-      </Routes>
+      </Routes> */}
     </ThemeProvider>
   );
 }
