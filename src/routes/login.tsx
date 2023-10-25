@@ -10,17 +10,17 @@ import { Login } from "@pages/login";
 function LoginRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Login />}>
-        <Route
+      {/* <Route path="/" element={<Login />}> */}
+      {/* <Route
           path="/:user_id/checking-credentials"
           element={<CheckingCredentials />}
-        />
-        <Route path="/:user_id/clients" element={<Clients />} />
-        <Route path="loading-app" element={<LoadingApp />} />
-      </Route>
-      <Route path="error/not-available" element={<ErrorNotAvailable />} />
-      <Route path="error/not-related-clients" element={<ErrorNotClient />} />
-      <Route path="/*" element={<ErrorPage />} />
+        /> */}
+      {/* <Route path="/:user_id/clients" element={<Clients />} /> */}
+      {/* <Route path="loading-app" element={<LoadingApp />} /> */}
+      {/* </Route> */}
+      {/* <Route path="error/not-available" element={<ErrorNotAvailable />} /> */}
+      {/* <Route path="error/not-related-clients" element={<ErrorNotClient />} /> */}
+      {/* <Route path="/*" element={<ErrorPage />} /> */}
     </Routes>
   );
 }
