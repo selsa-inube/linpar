@@ -17,7 +17,7 @@ function LoginUI() {
           <Text typo="headlineSmall" align="center">
             Bienvenido
           </Text>
-          <Text as="h1" typo="headlineLarge">
+          <Text as="h1" typo="headline" size="large">
             Portal de clientes
           </Text>
         </Stack>
