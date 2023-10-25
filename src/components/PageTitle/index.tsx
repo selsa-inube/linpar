@@ -33,13 +33,14 @@ function PageTitle(props: PageTitleProps) {
             </StyledArrowIcon>
           )}
 
-          <Text as="h1" typo={smallScreen ? "titleMedium" : "titleLarge"}>
+          <Text as="h1" typo="title" size={smallScreen ? "small" : "medium"}>
             {title}
           </Text>
         </Stack>
         <Text
-          appearance="secondary"
-          typo={smallScreen ? "bodySmall" : "bodyMedium"}
+          appearance="primary"
+          typo="body"
+          size={smallScreen ? "small" : "medium"}
         >
           {description}
         </Text>
