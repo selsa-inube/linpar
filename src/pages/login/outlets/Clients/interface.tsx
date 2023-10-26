@@ -23,10 +23,8 @@ interface ClientsUIProps {
 function NoResultsMessage({ search }: { search: string }) {
   return (
     <StyledNoResults>
-      <Text typo="bodyMedium">
-        No se encontraron resultados para "{search}".
-      </Text>
-      <Text typo="bodyMedium">
+      <Text size="medium">No se encontraron resultados para "{search}".</Text>
+      <Text size="medium">
         Por favor, intenta modificando los parámetros de búsqueda.
       </Text>
     </StyledNoResults>
@@ -46,10 +44,10 @@ function ClientsUI({
 
   return (
     <StyledClients>
-      <Text as="h2" align="center" typo="titleLarge">
+      <Text as="h2" textAlign="center" size="large">
         Clientes
       </Text>
-      <Text typo="bodyMedium" align="center">
+      <Text size="medium" textAlign="center">
         Selecciona la empresa a la que vas a representar
       </Text>
       <form>
@@ -80,11 +78,7 @@ function ClientsUI({
             </StyledClientsItem>
           ))}
         </StyledClientsList>
-        <Button
-          type="button"
-          isDisabled={client.value}
-          handleClick={handleSubmit}
-        >
+        <Button type="button" disabled={client.value} onClick={handleSubmit}>
           Continuar
         </Button>
       </form>
