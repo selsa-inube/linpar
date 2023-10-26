@@ -1,5 +1,6 @@
-import { Stack, Text, useMediaQuery } from "@inube/design-system";
-import { StyledPageTitle, StyledIcon, StyledArrowIcon } from "./styles";
+import { Stack, Text, useMediaQuery, Icon } from "@inube/design-system";
+import { useEffect } from "react";
+
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -16,36 +17,32 @@ function PageTitle(props: PageTitleProps) {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const navigate = useNavigate();
 
-  const handleBackPage = () => {
-    if (navigatePage) return navigate(navigatePage);
-    return navigate(-1);
-  };
-
   return (
-    <StyledPageTitle>
+    <Stack>
       <Stack gap="8px" direction="column">
         <Stack gap="8px" alignItems="center">
           {icon ? (
-            <StyledIcon> {icon} </StyledIcon>
+            <Icon appearance="dark" size="24px" icon={icon} />
           ) : (
-            <StyledArrowIcon onClick={handleBackPage}>
-              <MdArrowBack />
-            </StyledArrowIcon>
+            <Icon
+              icon={<MdArrowBack />}
+              appearance="dark"
+              size="24px"
+              onClick={() =>
+                navigatePage ? navigate(navigatePage) : navigate(-1)
+              }
+              cursorHover={true}
+            />
           )}
-
-          <Text as="h1" typo="title" size={smallScreen ? "medium" : "large"}>
+          <Text as="h1" type="title" size={smallScreen ? "medium" : "large"}>
             {title}
           </Text>
         </Stack>
-        <Text
-          appearance="primary"
-          typo="body"
-          size={smallScreen ? "small" : "medium"}
-        >
+        <Text appearance="primary" size={smallScreen ? "small" : "medium"}>
           {description}
         </Text>
       </Stack>
-    </StyledPageTitle>
+    </Stack>
   );
 }
 
