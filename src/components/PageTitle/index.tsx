@@ -37,7 +37,7 @@ function PageTitle(props: PageTitleProps) {
             {title}
           </Text>
         </Stack>
-        <Text appearance="primary" size={smallScreen ? "small" : "medium"}>
+        <Text appearance="gray" size={smallScreen ? "small" : "medium"}>
           {description}
         </Text>
       </Stack>
