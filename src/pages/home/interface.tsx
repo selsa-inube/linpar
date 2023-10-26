@@ -33,15 +33,13 @@ function HomeUI(props: HomeUIProps) {
       <Header
         portalId="portal"
         navigation={navigationConfig}
-        logo={renderLogo(user.operator.logo)}
-        logoutPath="/"
+        logoURL={renderLogo(user.operator.logo)}
         userName={user.username}
-        businessUnit={user.company}
-        isBusinessUnit
+        client={user.company}
       />
       <StyledPageTitle>
         <PageTitle
-          title="Bienvenido, Leonardo"
+          title={`Bienbenido ${user.username}`}
           description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
           icon={<MdOutlineDoorFront />}
         />
