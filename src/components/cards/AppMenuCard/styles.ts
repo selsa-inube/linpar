@@ -1,6 +1,10 @@
 import styled from "styled-components";
-import { colors } from "@styles/colors";
 import { Link } from "react-router-dom";
+import { inube } from "@inube/design-system";
+
+interface IStyledAppMenuCardProps {
+  theme?: typeof inube;
+}
 
 const StyledAppMenuCard = styled(Link)`
   box-sizing: border-box;
@@ -8,13 +12,17 @@ const StyledAppMenuCard = styled(Link)`
   width: 191px;
   height: 140px;
   text-decoration: none;
-  color: ${colors.ref.palette.neutral.n900};
+  color: ${({ theme }: IStyledAppMenuCardProps) =>
+    theme?.color?.stroke.dark.regular || inube.color.stroke.dark.regular};
   :hover {
     & svg {
-      color: ${colors.sys.actions.primary.filled};
+      color: ${({ theme }: IStyledAppMenuCardProps) =>
+        theme?.color?.stroke.primary.regular ||
+        inube.color.stroke.primary.regular};
     }
     & picture {
-      background-color: ${colors.sys.actions.secondary.filled};
+      background-color: ${({ theme }: IStyledAppMenuCardProps) =>
+        theme?.color?.surface.gray.regular || inube.color.surface.gray.regular};
     }
   }
 
