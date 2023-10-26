@@ -1,5 +1,5 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
-import clientNotFound from "@src/assets/images/Expired.png";
+import clientNotFound from "@assets/images/Expired.png";
 
 function ErrorNotClient() {
   return (
