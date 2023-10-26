@@ -44,7 +44,7 @@ function ClientsUI({
 
   return (
     <StyledClients>
-      <Text as="h2" textAlign="center" size="large">
+      <Text type="title" as="h2" textAlign="center">
         Clientes
       </Text>
       <Text size="medium" textAlign="center">
