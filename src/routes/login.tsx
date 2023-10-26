@@ -18,9 +18,9 @@ function LoginRoutes() {
       {/* <Route path="/:user_id/clients" element={<Clients />} /> */}
       {/* <Route path="loading-app" element={<LoadingApp />} /> */}
       {/* </Route> */}
-      {/* <Route path="error/not-available" element={<ErrorNotAvailable />} /> */}
-      {/* <Route path="error/not-related-clients" element={<ErrorNotClient />} /> */}
-      {/* <Route path="/*" element={<ErrorPage />} /> */}
+      <Route path="error/not-available" element={<ErrorNotAvailable />} />
+      <Route path="error/not-related-clients" element={<ErrorNotClient />} />
+      <Route path="/*" element={<ErrorPage />} />
     </Routes>
   );
 }
