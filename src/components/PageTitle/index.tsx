@@ -1,5 +1,4 @@
-import { Stack, Text, useMediaQuery } from "@inube/design-system";
-import { StyledPageTitle, StyledIcon, StyledArrowIcon } from "./styles";
+import { Stack, Text, useMediaQuery, Icon } from "@inube/design-system";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -22,30 +21,41 @@ function PageTitle(props: PageTitleProps) {
   };
 
   return (
-    <StyledPageTitle>
+    <>
       <Stack gap="8px" direction="column">
         <Stack gap="8px" alignItems="center">
           {icon ? (
-            <StyledIcon> {icon} </StyledIcon>
+            <Icon
+              appearance="primary"
+              cursorHover={true}
+              icon={icon}
+              spacing="wide"
+              size="24px"
+            />
           ) : (
-            <StyledArrowIcon onClick={handleBackPage}>
-              <MdArrowBack />
-            </StyledArrowIcon>
+            <Icon
+              appearance="primary"
+              cursorHover={true}
+              icon={<MdArrowBack />}
+              spacing="wide"
+              size="24px"
+              onClick={handleBackPage}
+            />
           )}
 
-          <Text as="h1" typo="title" size={smallScreen ? "medium" : "large"}>
+          <Text as="h1" type="title" size={smallScreen ? "medium" : "large"}>
             {title}
           </Text>
         </Stack>
         <Text
           appearance="primary"
-          typo="body"
+          type="body"
           size={smallScreen ? "small" : "medium"}
         >
           {description}
         </Text>
       </Stack>
-    </StyledPageTitle>
+    </>
   );
 }
 
