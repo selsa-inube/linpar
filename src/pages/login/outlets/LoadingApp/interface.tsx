@@ -1,5 +1,4 @@
-import { Stack, Text } from "@inube/design-system";
-import { Spinner } from "@inube/design-system";
+import { Stack, Text, Spinner } from "@inube/design-system";
 
 function LoadingAppUI() {
   return (
