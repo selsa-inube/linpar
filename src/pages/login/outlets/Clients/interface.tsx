@@ -1,6 +1,6 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { Button, Text, TextField } from "@inube/design-system";
+import { Button, Text, Textfield } from "@inube/design-system";
 import { RadioClient } from "@components/cards/RadioClient";
 import { IClientState, IClient } from "./types";
 import {
@@ -23,10 +23,8 @@ interface ClientsUIProps {
 function NoResultsMessage({ search }: { search: string }) {
   return (
     <StyledNoResults>
-      <Text typo="bodyMedium">
-        No se encontraron resultados para "{search}".
-      </Text>
-      <Text typo="bodyMedium">
+      <Text size="medium">No se encontraron resultados para "{search}".</Text>
+      <Text size="medium">
         Por favor, intenta modificando los parámetros de búsqueda.
       </Text>
     </StyledNoResults>
@@ -46,23 +44,22 @@ function ClientsUI({
 
   return (
     <StyledClients>
-      <Text as="h2" align="center" typo="titleLarge">
+      <Text type="title" as="h2" textAlign="center">
         Clientes
       </Text>
-      <Text typo="bodyMedium" align="center">
+      <Text size="medium" textAlign="center">
         Selecciona la empresa a la que vas a representar
       </Text>
       <form>
         {clients.length > 10 && (
-          <TextField
+          <Textfield
             placeholder="Buscar..."
             type="search"
             name="searchClients"
             id="searchClients"
             value={search}
-            minLength={1}
-            isFullWidth={true}
-            handleChange={handleSearchChange}
+            fullwidth={true}
+            onChange={handleSearchChange}
             iconBefore={<MdSearch size={22} />}
           />
         )}
@@ -81,11 +78,7 @@ function ClientsUI({
             </StyledClientsItem>
           ))}
         </StyledClientsList>
-        <Button
-          type="button"
-          isDisabled={client.value}
-          handleClick={handleSubmit}
-        >
+        <Button type="button" disabled={client.value} onClick={handleSubmit}>
           Continuar
         </Button>
       </form>

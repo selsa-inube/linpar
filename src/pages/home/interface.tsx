@@ -1,16 +1,19 @@
+import { useContext } from "react";
+import { MdOutlineDoorFront } from "react-icons/md";
+import { Header } from "@inube/design-system";
+
+import { AppContext } from "@src/context";
 import { PageTitle } from "@components/PageTitle";
 import { AppCard } from "@components/cards/AppCard";
-import { Header } from "@inube/design-system";
+
 import {
   StyledContentImg,
   StyledLogo,
-} from "@src/components/layout/AppPage/styles";
-import { AppContext } from "@src/context";
-import { useContext } from "react";
-import { MdOutlineDoorFront } from "react-icons/md";
+} from "@components/layout/AppPage/styles";
+
+import { IApps } from "./types";
 import { navigationConfig } from "./config/apps.config";
 import { StyledAppsList, StyledHome, StyledPageTitle } from "./styles";
-import { IApps } from "./types";
 
 const renderLogo = (imgUrl: string) => {
   return (
@@ -33,15 +36,13 @@ function HomeUI(props: HomeUIProps) {
       <Header
         portalId="portal"
         navigation={navigationConfig}
-        logo={renderLogo(user.operator.logo)}
-        logoutPath="/"
+        logoURL={renderLogo(user.operator.logo)}
         userName={user.username}
-        businessUnit={user.company}
-        isBusinessUnit
+        client={user.company}
       />
       <StyledPageTitle>
         <PageTitle
-          title="Bienvenido, Leonardo"
+          title={`Bienbenido ${user.username}`}
           description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
           icon={<MdOutlineDoorFront />}
         />
