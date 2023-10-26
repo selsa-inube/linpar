@@ -1,6 +1,6 @@
-import { LoginUI } from "./interface";
-import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { LoginUI } from "./interface";
 
 function Login() {
   const navigate = useNavigate();
