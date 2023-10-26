@@ -1,16 +1,19 @@
+import { useContext } from "react";
+import { MdOutlineDoorFront } from "react-icons/md";
+import { Header } from "@inube/design-system";
+
+import { AppContext } from "@src/context";
 import { PageTitle } from "@components/PageTitle";
 import { AppCard } from "@components/cards/AppCard";
-import { Header } from "@inube/design-system";
+
 import {
   StyledContentImg,
   StyledLogo,
-} from "@src/components/layout/AppPage/styles";
-import { AppContext } from "@src/context";
-import { useContext } from "react";
-import { MdOutlineDoorFront } from "react-icons/md";
+} from "@components/layout/AppPage/styles";
+
+import { IApps } from "./types";
 import { navigationConfig } from "./config/apps.config";
 import { StyledAppsList, StyledHome, StyledPageTitle } from "./styles";
-import { IApps } from "./types";
 
 const renderLogo = (imgUrl: string) => {
   return (

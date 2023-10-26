@@ -1,14 +1,13 @@
-import { Stack, Text } from "@inube/design-system";
-import { Spinner } from "@inube/design-system";
+import { Stack, Text, Spinner } from "@inube/design-system";
 
 function CheckingCredentialsUI() {
   return (
     <Stack gap="16px" direction="column">
       <Stack direction="column">
-        <Text typo="titleLarge" align="center">
+        <Text type="title" size="large" align="center">
           Validando credenciales
         </Text>
-        <Text typo="titleSmall" align="center">
+        <Text type="title" size="small" align="center">
           Espere un momento, por favor.
         </Text>
       </Stack>
