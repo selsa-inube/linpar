@@ -18,8 +18,8 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
       <Route path="login/*" element={<LoginRoutes />} />
-      {/* <Route path="privileges/*" element={<PrivilegesRoutes />} />
-      <Route
+      <Route path="privileges/*" element={<PrivilegesRoutes />} />
+      {/* <Route
         path="respond-invitation/:client_id/:invitation_id/*"
         element={<RespondInvitationRoutes />}
       /> */}
