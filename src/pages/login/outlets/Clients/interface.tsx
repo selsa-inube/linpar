@@ -1,6 +1,6 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { Button, Text, TextField } from "@inube/design-system";
+import { Button, Text, Textfield } from "@inube/design-system";
 import { RadioClient } from "@components/cards/RadioClient";
 import { IClientState, IClient } from "./types";
 import {
@@ -54,15 +54,14 @@ function ClientsUI({
       </Text>
       <form>
         {clients.length > 10 && (
-          <TextField
+          <Textfield
             placeholder="Buscar..."
             type="search"
             name="searchClients"
             id="searchClients"
             value={search}
-            minLength={1}
-            isFullWidth={true}
-            handleChange={handleSearchChange}
+            fullwidth={true}
+            onChange={handleSearchChange}
             iconBefore={<MdSearch size={22} />}
           />
         )}
