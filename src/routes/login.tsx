@@ -10,7 +10,7 @@ import { Login } from "@pages/login";
 function LoginRoutes() {
   return (
     <Routes>
-      {/* <Route path="/" element={<Login />}> */}
+      <Route path="/" element={<Login />} />
       {/* <Route
           path="/:user_id/checking-credentials"
           element={<CheckingCredentials />}
