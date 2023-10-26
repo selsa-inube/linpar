@@ -23,7 +23,7 @@ function PageTitle(props: PageTitleProps) {
   };
 
   return (
-    <Stack>
+    <>
       <Stack gap="8px" direction="column">
         <Stack gap="8px" alignItems="center">
           {icon ? (
@@ -41,7 +41,7 @@ function PageTitle(props: PageTitleProps) {
           {description}
         </Text>
       </Stack>
-    </Stack>
+    </>
   );
 }
 
