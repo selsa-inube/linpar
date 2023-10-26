@@ -15,11 +15,6 @@ function PageTitle(props: PageTitleProps) {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const navigate = useNavigate();
 
-  const handleBackPage = () => {
-    if (navigatePage) return navigate(navigatePage);
-    return navigate(-1);
-  };
-
   return (
     <>
       <Stack gap="8px" direction="column">
@@ -39,7 +34,7 @@ function PageTitle(props: PageTitleProps) {
               icon={<MdArrowBack />}
               spacing="wide"
               size="24px"
-              onClick={handleBackPage}
+              onClick={navigatePage ? navigate(navigatePage) : navigate(-1)}
             />
           )}
 
