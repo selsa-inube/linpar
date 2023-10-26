@@ -33,19 +33,4 @@ const StyledAppMenuCard = styled(Link)`
   }
 `;
 
-const StyledIcon = styled.picture`
-  background-color: transparent;
-  min-width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  & svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-export { StyledAppMenuCard, StyledIcon };
+export { StyledAppMenuCard };

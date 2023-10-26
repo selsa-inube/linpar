@@ -1,5 +1,5 @@
-import { Stack, Text } from "@inube/design-system";
-import { StyledAppMenuCard, StyledIcon } from "./styles";
+import { Stack, Text, Icon } from "@inube/design-system";
+import { StyledAppMenuCard } from "./styles";
 
 interface AppMenuCardProps {
   icon: JSX.Element;
@@ -14,12 +14,19 @@ function AppMenuCard(props: AppMenuCardProps) {
     <Stack direction="column">
       <StyledAppMenuCard to={url}>
         <Stack gap="4px" alignItems="center" direction="column">
-          <StyledIcon>{icon}</StyledIcon>
+          <Icon
+            appearance="dark"
+            cursorHover={true}
+            icon={icon}
+            spacing="wide"
+            size="24px"
+            shape="circle"
+          />
           <Stack gap="4px" direction="column">
-            <Text align="center" typo="titleMedium">
+            <Text align="center" size="medium">
               {label}
             </Text>
-            <Text align="center" typo="bodySmall" appearance="secondary">
+            <Text align="center" size="small" appearance="gray">
               {description}
             </Text>
           </Stack>
