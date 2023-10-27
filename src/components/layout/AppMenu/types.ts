@@ -6,4 +6,12 @@ interface IAppOption {
   url: string;
 }
 
-export type { IAppOption };
+interface IRoute {
+  path: string;
+  label: string;
+  id: string;
+  isActive?: boolean;
+  size?: "large" | "small";
+}
+
+export type { IAppOption, IRoute };
