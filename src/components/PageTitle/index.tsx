@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { Stack, Text, useMediaQuery, Icon } from "@inube/design-system";
 import { MdArrowBack } from "react-icons/md";
-import { Stack, Text, useMediaQuery } from "@inube/design-system";
-
-import { StyledArrowIcon, StyledIcon } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 interface PageTitleProps {
   title: string;
@@ -17,21 +15,27 @@ function PageTitle(props: PageTitleProps) {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const navigate = useNavigate();
 
-  const handleBackPage = () => {
-    if (navigatePage) return navigate(navigatePage);
-    return navigate(-1);
-  };
-
   return (
     <>
       <Stack gap="8px" direction="column">
         <Stack gap="8px" alignItems="center">
           {icon ? (
-            <StyledIcon> {icon} </StyledIcon>
+            <Icon
+              appearance="primary"
+              cursorHover={true}
+              icon={icon}
+              spacing="wide"
+              size="24px"
+            />
           ) : (
-            <StyledArrowIcon onClick={handleBackPage}>
-              <MdArrowBack />
-            </StyledArrowIcon>
+            <Icon
+              appearance="primary"
+              cursorHover={true}
+              icon={<MdArrowBack />}
+              spacing="wide"
+              size="24px"
+              onClick={navigatePage ? navigate(navigatePage) : navigate(-1)}
+            />
           )}
           <Text as="h1" type="title" size={smallScreen ? "medium" : "large"}>
             {title}
