@@ -1,5 +1,3 @@
-const sizes = ["large", "small"] as const;
-
 interface IAppOption {
   id: number;
   icon: JSX.Element;
@@ -13,7 +11,7 @@ interface IRoute {
   label: string;
   id: string;
   isActive?: boolean;
-  size?: typeof sizes;
+  size?: "large" | "small";
 }
 
 export type { IAppOption, IRoute };
