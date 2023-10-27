@@ -8,7 +8,7 @@ function PrivilegesOptions() {
       appName={appsConfig[0].label}
       appDescription={appsConfig[0].description}
       appOptions={privilegeOptionsConfig}
-      appRoute={appsConfig[0].url}
+      appRoute={appsConfig[0].crumbs}
     />
   );
 }

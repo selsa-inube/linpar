@@ -1,10 +1,11 @@
-import { Stack, Button, Text } from "@inube/design-system";
 import {
-  StyledErrorPage,
-  StyledCompanyLogo,
-  StyledGrid,
-  StyledErrorImage,
-} from "./styles";
+  Stack,
+  Button,
+  Text,
+  useMediaQueries,
+  Grid,
+} from "@inube/design-system";
+import { StyledCompanyLogo, StyledErrorImage } from "./styles";
 import { MdChevronLeft } from "react-icons/md";
 
 import selsaLogo from "@src/assets/images/selsa.png";
@@ -29,20 +30,36 @@ function ErrorPage(props: ErrorPageProps) {
     imageAlt = "Ha surgido un error. Revisa la descripción",
   } = props;
 
+  const mediaQueries = ["(max-width: 1000px)", "(max-width: 600px)"];
+  const matches = useMediaQueries(mediaQueries);
+
   return (
-    <StyledErrorPage>
+    <Stack
+      padding={matches["(max-width: 600px)"] ? "s400" : "s1000"}
+      gap={matches["(max-width: 1000px)"] ? "64px" : "120px"}
+      direction="column"
+    >
       <StyledCompanyLogo src={logo} alt={logoAlt} />
-      <StyledGrid>
+      <Grid
+        templateRows={matches["(max-width: 600px)"] ? "repeat(2, 1fr)" : "1fr"}
+        templateColumns={
+          matches["(max-width: 600px)"] ? "auto" : "repeat(2, 1fr)"
+        }
+        alignItems="center"
+        gap={matches["(max-width: 600px)"] ? "s800" : "120px"}
+      >
         <Stack gap="24px" direction="column">
           <Stack gap="16px" direction="column">
-            <Text typo="titleLarge">{heading}</Text>
-            <Text typo="titleMedium">{description}</Text>
+            <Text type="title">{heading}</Text>
+            <Text type="title" size="medium">
+              {description}
+            </Text>
           </Stack>
           <Button iconBefore={<MdChevronLeft size={18} />}>Exit</Button>
         </Stack>
         <StyledErrorImage src={image} alt={imageAlt} />
-      </StyledGrid>
-    </StyledErrorPage>
+      </Grid>
+    </Stack>
   );
 }
 
