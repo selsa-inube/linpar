@@ -1,6 +1,5 @@
 import { AppMenu } from "@components/layout/AppMenu";
 import { IAppOption, IRoute } from "@src/components/layout/AppMenu/types";
-import { IBreadcrumbsProps } from "@inube/design-system";
 
 interface PrivilegesOptionsUIProps {
   appName: string;

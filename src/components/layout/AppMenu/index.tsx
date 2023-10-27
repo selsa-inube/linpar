@@ -1,5 +1,5 @@
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
-import { Breadcrumbs, IBreadcrumbsProps } from "@inube/design-system";
+import { Breadcrumbs } from "@inube/design-system";
 import { PageTitle } from "../../PageTitle";
 import { StyledAppMenu, StyledCards, StyledTitle } from "./styles";
 import { IAppOption, IRoute } from "./types";

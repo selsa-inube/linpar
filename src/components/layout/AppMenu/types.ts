@@ -1,5 +1,4 @@
 const sizes = ["large", "small"] as const;
-type Sizes = typeof sizes[number];
 
 interface IAppOption {
   id: number;
@@ -14,7 +13,7 @@ interface IRoute {
   label: string;
   id: string;
   isActive?: boolean;
-  size?: Sizes;
+  size?: typeof sizes;
 }
 
 export type { IAppOption, IRoute };
