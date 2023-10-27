@@ -20,7 +20,7 @@ function PrivilegesRoutes() {
           element={<CompleteInvitation />}
         /> */}
       {/* </Route> */}
-      {/* <Route path="/*" element={<ErrorPage />} /> */}
+      <Route path="/*" element={<ErrorPage />} />
     </Routes>
   );
 }
