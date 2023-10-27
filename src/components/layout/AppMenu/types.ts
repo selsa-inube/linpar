@@ -6,4 +6,12 @@ interface IAppOption {
   url: string;
 }
 
-export type { IAppOption };
+interface IAppMenuProps {
+  id: string;
+  label: string;
+  path: string;
+  isActive?: boolean;
+  size?: "small" | "large";
+}
+
+export type { IAppOption, IAppMenuProps };

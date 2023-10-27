@@ -17,10 +17,8 @@ const StyledCards = styled.ul`
   max-width: 1400px;
   list-style: none;
   margin: 48px auto;
-  display: grid;
+
   grid-template-columns: repeat(6, auto);
-  gap: 24px;
-  padding: 0;
 
   @media screen and (max-width: 1580px) {
     grid-template-columns: repeat(5, auto);

@@ -1,14 +1,14 @@
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
-import { Breadcrumbs } from "@inube/design-system";
+import { Breadcrumbs, Grid } from "@inube/design-system";
 import { PageTitle } from "../../PageTitle";
 import { StyledAppMenu, StyledCards, StyledTitle } from "./styles";
-import { IAppOption } from "./types";
+import { IAppMenuProps, IAppOption } from "./types";
 
 interface AppMenuProps {
   appName: string;
   appDescription: string;
   appOptions: IAppOption[];
-  appRoute: string;
+  appRoute: IAppMenuProps[];
 }
 
 function AppMenu(props: AppMenuProps) {
@@ -16,7 +16,7 @@ function AppMenu(props: AppMenuProps) {
 
   return (
     <StyledAppMenu>
-      <Breadcrumbs route={appRoute} />
+      <Breadcrumbs crumbs={appRoute} />
       <StyledTitle>
         <PageTitle
           title={appName}
@@ -25,15 +25,17 @@ function AppMenu(props: AppMenuProps) {
         />
       </StyledTitle>
       <StyledCards>
-        {appOptions.map((item) => (
-          <AppMenuCard
-            key={item.id}
-            icon={item.icon}
-            label={item.label}
-            description={item.description}
-            url={item.url}
-          />
-        ))}
+        <Grid templateColumns="" gap="s300">
+          {appOptions.map((item) => (
+            <AppMenuCard
+              key={item.id}
+              icon={item.icon}
+              label={item.label}
+              description={item.description}
+              url={item.url}
+            />
+          ))}
+        </Grid>
       </StyledCards>
     </StyledAppMenu>
   );
