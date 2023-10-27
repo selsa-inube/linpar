@@ -6,12 +6,12 @@ interface IAppOption {
   url: string;
 }
 
-interface IAppMenuProps {
-  id: string;
-  label: string;
+interface IRoute {
   path: string;
+  label: string;
+  id: string;
   isActive?: boolean;
-  size?: "small" | "large";
+  size?: "large" | "small";
 }
 
-export type { IAppOption, IAppMenuProps };
+export type { IAppOption, IRoute };

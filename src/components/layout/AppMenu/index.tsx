@@ -2,18 +2,17 @@ import { AppMenuCard } from "@components/cards/AppMenuCard/index";
 import { Breadcrumbs, Grid } from "@inube/design-system";
 import { PageTitle } from "../../PageTitle";
 import { StyledAppMenu, StyledCards, StyledTitle } from "./styles";
-import { IAppMenuProps, IAppOption } from "./types";
+import { IAppOption, IRoute } from "./types";
 
 interface AppMenuProps {
   appName: string;
   appDescription: string;
   appOptions: IAppOption[];
-  appRoute: IAppMenuProps[];
+  appRoute: IRoute[];
 }
 
 function AppMenu(props: AppMenuProps) {
   const { appName, appDescription, appOptions, appRoute } = props;
-
   return (
     <StyledAppMenu>
       <Breadcrumbs crumbs={appRoute} />

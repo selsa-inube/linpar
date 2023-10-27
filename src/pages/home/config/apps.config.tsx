@@ -6,6 +6,20 @@ const appsConfig = [
     label: "Privilegios",
     description: "Modifica las propiedades y permisos de tu cuenta",
     icon: <MdVpnKey />,
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/home",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+    ],
     url: "/privileges",
   },
 ];
