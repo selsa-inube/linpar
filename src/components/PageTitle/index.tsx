@@ -37,16 +37,11 @@ function PageTitle(props: PageTitleProps) {
               onClick={navigatePage ? navigate(navigatePage) : navigate(-1)}
             />
           )}
-
           <Text as="h1" type="title" size={smallScreen ? "medium" : "large"}>
             {title}
           </Text>
         </Stack>
-        <Text
-          appearance="primary"
-          type="body"
-          size={smallScreen ? "small" : "medium"}
-        >
+        <Text appearance="gray" size={smallScreen ? "small" : "medium"}>
           {description}
         </Text>
       </Stack>
