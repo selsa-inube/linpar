@@ -23,10 +23,10 @@ function AppMenuCard(props: AppMenuCardProps) {
             shape="circle"
           />
           <Stack gap="4px" direction="column">
-            <Text align="center" size="medium">
+            <Text textAlign="center" size="medium">
               {label}
             </Text>
-            <Text align="center" size="small" appearance="gray">
+            <Text textAlign="center" size="small" appearance="gray">
               {description}
             </Text>
           </Stack>
