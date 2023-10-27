@@ -13,6 +13,7 @@ interface AppMenuProps {
 
 function AppMenu(props: AppMenuProps) {
   const { appName, appDescription, appOptions, appRoute } = props;
+
   return (
     <StyledAppMenu>
       <Breadcrumbs crumbs={appRoute} />
@@ -24,7 +25,11 @@ function AppMenu(props: AppMenuProps) {
         />
       </StyledTitle>
       <StyledCards>
-        <Grid templateColumns="" gap="s300">
+        <Grid
+          templetaColumn="repeat(auto, minmax(100px, 1fr));"
+          autoRows="row"
+          gap="s300"
+        >
           {appOptions.map((item) => (
             <AppMenuCard
               key={item.id}
