@@ -1,12 +1,19 @@
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
 
 interface StyledClientsListProps {
   scroll?: boolean;
 }
 
+interface IStyledClientsUI {
+  theme?: typeof inube;
+}
 const StyledClients = styled.div`
   & form {
-    margin: 48px auto 0px;
+    margin: ${({ theme }: IStyledClientsUI) =>
+      `${theme?.spacing?.s600 || inube.spacing.s600} auto ${
+        theme?.spacing?.s0 || inube.spacing.s0
+      }`};
     width: 500px;
     display: flex;
     flex-direction: column;
@@ -18,7 +25,8 @@ const StyledClients = styled.div`
   }
 
   & button {
-    margin-top: 24px;
+    margin-top: ${({ theme }: IStyledClientsUI) =>
+      `${theme?.spacing?.s300 || inube.spacing.s300}`};
   }
 `;
 
@@ -27,12 +35,16 @@ const StyledClientsList = styled.ul<StyledClientsListProps>`
   min-height: 300px;
   max-height: 430px;
   width: inherit;
-  padding: 0px 8px;
+  padding: ${({ theme }: IStyledClientsUI) =>
+    `${theme?.spacing?.s0 || inube.spacing.s0} ${
+      theme?.spacing?.s100 || inube.spacing.s100
+    }`};
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: ${({ theme }: IStyledClientsUI) =>
+    `${theme?.spacing?.s100 || inube.spacing.s100}`};
 
   overflow-y: ${({ scroll }) => (scroll ? "scroll" : "visible")};
 
@@ -42,7 +54,10 @@ const StyledClientsList = styled.ul<StyledClientsListProps>`
 `;
 
 const StyledNoResults = styled.div`
-  margin: 16px 0;
+  margin: ${({ theme }: IStyledClientsUI) =>
+    `${theme?.spacing?.s200 || inube.spacing.s200} ${
+      theme?.spacing?.s0 || inube.spacing.s0
+    }`};
 `;
 
 const StyledClientsItem = styled.li`
