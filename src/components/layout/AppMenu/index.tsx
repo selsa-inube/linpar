@@ -29,9 +29,9 @@ function AppMenu(props: AppMenuProps) {
 
       <Grid
         templateColumns={
-          screenMovil ? "1fr" : "repeat(auto-fill, minmax(max-content, 160px))"
+          screenMovil ? "1fr" : "repeat(auto-fill,minmax(auto, 200px))"
         }
-        autoRows="row"
+        autoRows="auto"
         gap="s300"
       >
         {appOptions.map((item) => (
