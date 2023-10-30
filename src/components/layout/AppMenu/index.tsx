@@ -14,8 +14,8 @@ interface AppMenuProps {
 function AppMenu(props: AppMenuProps) {
   const { appName, appDescription, appOptions, appRoute } = props;
 
-  const screenMovil = useMediaQuery("(max-width: 490px)");
-  console.log(screenMovil);
+  const screenMovil = useMediaQuery("(max-width: 360px)");
+
   return (
     <StyledAppMenu>
       <Breadcrumbs crumbs={appRoute} />
