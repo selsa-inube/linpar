@@ -21,7 +21,7 @@ function PageTitle(props: PageTitleProps) {
         <Stack gap="8px" alignItems="center">
           {icon ? (
             <Icon
-              appearance="primary"
+              appearance="dark"
               cursorHover={true}
               icon={icon}
               spacing="wide"
@@ -29,7 +29,7 @@ function PageTitle(props: PageTitleProps) {
             />
           ) : (
             <Icon
-              appearance="primary"
+              appearance="dark"
               cursorHover={true}
               icon={<MdArrowBack />}
               spacing="wide"
