@@ -1,7 +1,7 @@
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
-import { Breadcrumbs } from "@inube/design-system";
+import { Breadcrumbs, Grid, useMediaQuery } from "@inube/design-system";
 import { PageTitle } from "../../PageTitle";
-import { StyledAppMenu, StyledCards, StyledTitle } from "./styles";
+import { StyledAppMenu, StyledTitle } from "./styles";
 import { IAppOption, IRoute } from "./types";
 
 interface AppMenuProps {
@@ -13,6 +13,9 @@ interface AppMenuProps {
 
 function AppMenu(props: AppMenuProps) {
   const { appName, appDescription, appOptions, appRoute } = props;
+
+  const screenMovil = useMediaQuery("(max-width: 360px)");
+
   return (
     <StyledAppMenu>
       <Breadcrumbs crumbs={appRoute} />
@@ -23,7 +26,14 @@ function AppMenu(props: AppMenuProps) {
           navigatePage="/"
         />
       </StyledTitle>
-      <StyledCards>
+
+      <Grid
+        templateColumns={
+          screenMovil ? "1fr" : "repeat(auto-fill,minmax(auto, 159px))"
+        }
+        autoRows="auto"
+        gap="s300"
+      >
         {appOptions.map((item) => (
           <AppMenuCard
             key={item.id}
@@ -33,7 +43,7 @@ function AppMenu(props: AppMenuProps) {
             url={item.url}
           />
         ))}
-      </StyledCards>
+      </Grid>
     </StyledAppMenu>
   );
 }

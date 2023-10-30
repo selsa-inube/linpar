@@ -34,7 +34,9 @@ function PageTitle(props: PageTitleProps) {
               icon={<MdArrowBack />}
               spacing="wide"
               size="24px"
-              onClick={navigatePage ? navigate(navigatePage) : navigate(-1)}
+              onClick={() =>
+                navigatePage ? navigate(navigatePage) : navigate(-1)
+              }
             />
           )}
           <Text as="h1" type="title" size={smallScreen ? "medium" : "large"}>

@@ -31,7 +31,20 @@ Privileges.args = {
   appName: "Privilegios",
   appDescription: "Modifica las propiedades y permisos de tu cuenta",
   navigatePage: "/",
-  appRoute: "/privileges",
+  appRoute: [
+    {
+      path: "/home",
+      label: "Inicio",
+      id: "/home",
+      isActive: false,
+    },
+    {
+      path: "/home/users",
+      label: "Usuarios",
+      id: "/home/users",
+      isActive: false,
+    },
+  ],
   appOptions: [
     {
       id: 1,

@@ -22,7 +22,7 @@ function AppMenuCard(props: AppMenuCardProps) {
             size="24px"
             shape="circle"
           />
-          <Stack gap="4px" direction="column">
+          <Stack gap="4px" direction="column" width="100%">
             <Text textAlign="center" type="title" size="medium">
               {label}
             </Text>
