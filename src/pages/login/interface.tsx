@@ -14,10 +14,10 @@ function LoginUI() {
     <StyledLoginContainer>
       <StyledWelcomeContainer>
         <Stack direction="column">
-          <Text typo="headlineSmall" align="center">
+          <Text type="headline" size="small" textAlign="center">
             Bienvenido
           </Text>
-          <Text as="h1" typo="headline" size="large">
+          <Text as="h1" type="headline" size="large">
             Portal de clientes
           </Text>
         </Stack>
