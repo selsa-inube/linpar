@@ -8,7 +8,8 @@ interface IStyledAppMenuCardProps {
 
 const StyledAppMenuCard = styled(Link)`
   box-sizing: border-box;
-  padding: 16px;
+  padding: ${({ theme }: IStyledAppMenuCardProps) =>
+    theme?.spacing?.s200 || inube.spacing.s200};
   width: 191px;
   height: 140px;
   text-decoration: none;
@@ -28,9 +29,11 @@ const StyledAppMenuCard = styled(Link)`
 
   @media (max-width: 490px) {
     display: flex;
-    padding: 16px 8px;
     width: 100%;
     height: 72px;
+    padding: ${({ theme }: IStyledAppMenuCardProps) =>
+      `${theme?.spacing?.s200} ${theme?.spacing?.s100}` ||
+      `${inube.spacing.s200} ${inube.spacing.s100}`};
     & div:first-child {
       flex-direction: row;
       gap: 8px;
