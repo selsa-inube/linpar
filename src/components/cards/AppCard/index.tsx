@@ -1,6 +1,7 @@
-import { Stack, Text } from "@inube/design-system";
+import { Stack, Text, Icon } from "@inube/design-system";
 
-import { StyledAppCard, StyledIcon } from "./styles";
+import { StyledAppCard } from "./styles";
+import { useState } from "react";
 
 interface AppCardProps {
   label: string;
@@ -11,15 +12,29 @@ interface AppCardProps {
 
 function AppCard(props: AppCardProps) {
   const { label, description, icon, url } = props;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <StyledAppCard to={url}>
+    <StyledAppCard
+      to={url}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <Stack gap="16px" direction="column">
-        <Text typo="titleMedium">{label}</Text>
-        <Text typo="bodySmall">{description}</Text>
+        <Text type="title" size="medium">
+          {label}
+        </Text>
+        <Text size="small">{description}</Text>
       </Stack>
       <Stack alignItems="flex-end" direction="column">
-        <StyledIcon>{icon}</StyledIcon>
+        <Icon
+          appearance={isHovered ? "primary" : "dark"}
+          parentHover={isHovered ? true : false}
+          icon={icon}
+          spacing="wide"
+          size="24px"
+          shape="circle"
+        />
       </Stack>
     </StyledAppCard>
   );

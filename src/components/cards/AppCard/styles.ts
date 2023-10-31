@@ -3,6 +3,11 @@ import styled from "styled-components";
 import { colors } from "@styles/colors";
 
 import { Link } from "react-router-dom";
+import { inube } from "@inube/design-system";
+
+interface IStyledAppCardProps {
+  theme?: typeof inube;
+}
 
 const StyledAppCard = styled(Link)`
   box-sizing: border-box;
@@ -14,14 +19,22 @@ const StyledAppCard = styled(Link)`
   justify-content: space-between;
   border-radius: 4px;
   text-decoration: none;
-  color: ${colors.ref.palette.neutral.n900};
-  border: 1px solid ${colors.ref.palette.neutral.n30};
-  box-shadow: 3px 3px 5px 1px ${colors.ref.palette.neutral.n30};
+  color: ${({ theme }: IStyledAppCardProps) =>
+    theme?.color?.stroke?.dark?.regular || inube.color.stroke.dark.regular};
+  border: 1px solid
+    ${({ theme }: IStyledAppCardProps) =>
+      theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
+  box-shadow: 3px 3px 5px 1px
+    ${({ theme }: IStyledAppCardProps) =>
+      theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
   cursor: pointer;
 
   &:hover {
-    color: ${colors.sys.actions.primary.filled};
-    background-color: ${colors.sys.actions.secondary.filled};
+    color: ${({ theme }: IStyledAppCardProps) =>
+      theme?.color?.surface?.primary?.regular ||
+      inube.color.surface.primary.regular};
+    background-color: ${({ theme }: IStyledAppCardProps) =>
+      theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
     box-shadow: none;
   }
 
@@ -37,11 +50,4 @@ const StyledAppCard = styled(Link)`
   }
 `;
 
-const StyledIcon = styled.i`
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-export { StyledAppCard, StyledIcon };
+export { StyledAppCard };
