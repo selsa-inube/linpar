@@ -22,7 +22,7 @@ function RadioClient(props: RadioClientProps) {
         value={value}
         onChange={handleChange}
       />
-      <Text typo="bodyMedium">{label}</Text>
+      <Text size="medium">{label}</Text>
       <StyledImage src={logo} alt="Logo de empresa" />
     </StyledRadioClient>
   );
