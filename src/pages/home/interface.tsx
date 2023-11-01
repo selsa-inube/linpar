@@ -42,7 +42,7 @@ function HomeUI(props: HomeUIProps) {
       />
       <StyledPageTitle>
         <PageTitle
-          title={`Bienbenido ${user.username}`}
+          title={`Bienvenido ${user.username}`}
           description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
           icon={<MdOutlineDoorFront />}
         />
