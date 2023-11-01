@@ -1,44 +1,31 @@
-import { colors } from "@src/styles/colors";
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
 
-interface IStyledContainer {
-  isOpen: boolean;
-  isFullWidth?: boolean;
-}
-
-const StyledContainer = styled.div<IStyledContainer>`
-  display: flex;
-  padding: ${(props) => (props.isOpen ? "24px" : "16px")};
-  flex-direction: column;
-  gap: 16px;
-  border-radius: 8px;
-  border: 1px solid var(--neutral-n-40, ${colors.ref.palette.neutral.n40});
-  min-width: ${(props) => (props.isFullWidth ? "100%" : "49%")};
+const StyledContainer = styled.div`
+  width: 100%;
+  min-width: 312px;
   box-sizing: border-box;
-  align-items: flex-start;
+  border-radius: 8px;
+  padding: ${inube.spacing.s200};
+  border: 1px solid ${inube.color.stroke.divider.regular};
 `;
 
 const StyledHead = styled.button`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
   outline: none;
   border: none;
   background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
   cursor: pointer;
 `;
 
 const StyledContent = styled.div`
-  border-top: 1px solid var(--neutral-n-40, ${colors.ref.palette.neutral.n40});
-  padding-top: 16px;
   width: 100%;
+  margin-top: ${inube.spacing.s200};
+  padding-top: ${inube.spacing.s200};
+  border-top: 2px dashed ${inube.color.stroke.divider.regular};
 `;
 
-const StyledIcon = styled.div`
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-`;
-
-export { StyledContainer, StyledContent, StyledHead, StyledIcon };
+export { StyledContainer, StyledContent, StyledHead };

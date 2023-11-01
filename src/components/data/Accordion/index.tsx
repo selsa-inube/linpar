@@ -1,37 +1,41 @@
-import { Text } from "@inube/design-system";
 import { useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { Stack, Text, Icon } from "@inube/design-system";
 import { StyledContainer, StyledContent, StyledHead } from "./styles";
 
-interface AccordionProps {
+interface IAccordionProps {
   title: string;
   isFullWidth?: boolean;
   children: React.ReactNode;
 }
 
-function Accordion(props: AccordionProps) {
+function Accordion(props: IAccordionProps) {
   const { title, children, isFullWidth } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleToggleOpen = () => setIsOpen(!isOpen);
-
   return (
-    <StyledContainer isOpen={isOpen} isFullWidth={isFullWidth}>
-      <StyledHead onClick={handleToggleOpen}>
-        <Text typo="titleMedium" appearance="secondary">
-          {title}
-        </Text>
+    <Stack direction="column" alignItems="center" justifyContent="space-start">
+      <StyledContainer>
+        <StyledHead onClick={() => setIsOpen(!isOpen)}>
+          <Text type="title" size="medium">
+            {title}
+          </Text>
 
-        {isOpen ? (
-          <MdKeyboardArrowUp size={24} />
-        ) : (
-          <MdKeyboardArrowDown size={24} />
-        )}
-      </StyledHead>
-      {isOpen && <StyledContent>{children}</StyledContent>}
-    </StyledContainer>
+          {isOpen ? (
+            <Icon icon={<MdKeyboardArrowUp />} appearance="dark" size="24px" />
+          ) : (
+            <Icon
+              icon={<MdKeyboardArrowDown />}
+              appearance="dark"
+              size="24px"
+            />
+          )}
+        </StyledHead>
+        {isOpen && <StyledContent>{children}</StyledContent>}
+      </StyledContainer>
+    </Stack>
   );
 }
 
 export { Accordion };
-export type { AccordionProps };
+export type { IAccordionProps };
