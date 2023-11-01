@@ -5,7 +5,7 @@ import {
   Button,
   Stack,
   Switch,
-  TextField,
+  Textfield,
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
@@ -65,7 +65,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               id={entry.id}
               label={`${entry.id} - ${entry.value}`}
               checked={entry.isActive}
-              handleChange={() => handleToggleEntry(entry.id)}
+              onChange={() => handleToggleEntry(entry.id)}
               size="large"
               isDisabled
             />
@@ -80,7 +80,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
       <Fieldset title={title}>
         <Stack direction="column">
           <StyledHeadContainer smallScreen={smallScreen}>
-            <TextField
+            <Textfield
               type="search"
               iconBefore={<MdSearch size={22} />}
               placeholder="Buscar..."
@@ -134,8 +134,9 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                   id={entry.id}
                   label={`${entry.id} - ${entry.value}`}
                   checked={entry.isActive}
-                  handleChange={() => handleToggleEntry(entry.id)}
+                  onChange={() => handleToggleEntry(entry.id)}
                   size="large"
+                  rea
                 />
               </Stack>
             ))}
