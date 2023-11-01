@@ -200,7 +200,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
           disabledButtons={!hasChanges(formik.values)}
-          isLoading={loading}
+          loading={loading}
         >
           {renderFormFields(formik, loading, formInvalid, handleChangeForm)}
         </FormButtons>
