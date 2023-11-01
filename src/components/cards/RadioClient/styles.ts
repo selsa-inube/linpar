@@ -6,31 +6,18 @@ interface IStyledRadioClient {
 }
 
 const StyledRadioClient = styled.label`
-  box-sizing: border-box;
-  padding: ${inube.spacing.s200} ${inube.spacing.s300};
-  height: 72px;
-  min-height: 58px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr 130px;
-  gap: 16px;
-  align-items: center;
-  align-content: center;
-  box-shadow: 1px 2px 2px 1px
-    ${({ theme }: IStyledRadioClient) =>
-      theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
-  border: 1px solid
-    ${({ theme }: IStyledRadioClient) =>
-      theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
-  cursor: pointer;
-
-  @media screen and (max-width: 532px) {
-    height: auto;
-    padding: ${inube.spacing.s200} ${inube.spacing.s300};
-  }
-
-  @media screen and (max-width: 360px) {
-    grid-template-columns: auto 1fr;
+  & div {
+    box-sizing: border-box;
+    min-height: 58px;
+    box-shadow: 1px 2px 2px 1px
+      ${({ theme }: IStyledRadioClient) =>
+        theme?.color?.surface?.gray?.regular ||
+        inube.color.surface.gray.regular};
+    border: 1px solid
+      ${({ theme }: IStyledRadioClient) =>
+        theme?.color?.surface?.gray?.regular ||
+        inube.color.surface.gray.regular};
+    cursor: pointer;
   }
 `;
 
