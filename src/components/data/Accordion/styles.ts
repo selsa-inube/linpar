@@ -10,11 +10,11 @@ const StyledContainer = styled.div<IStyledComponents>`
   min-width: 312px;
   box-sizing: border-box;
   border-radius: 8px;
+  border: 1px solid ${inube.color.stroke.divider.regular};
   padding: ${({ screenMovil }) =>
     !screenMovil
       ? `${inube.spacing.s200} ${inube.spacing.s250}`
       : `${inube.spacing.s150} ${inube.spacing.s200}`};
-  border: 1px solid ${inube.color.stroke.divider.regular};
 `;
 
 const StyledHead = styled.button`
@@ -30,11 +30,11 @@ const StyledHead = styled.button`
 
 const StyledContent = styled.div<IStyledComponents>`
   width: 100%;
+  border-top: 2px dashed ${inube.color.stroke.divider.regular};
   margin-top: ${({ screenMovil }) =>
     !screenMovil ? inube.spacing.s200 : inube.spacing.s150};
   padding-top: ${({ screenMovil }) =>
     !screenMovil ? inube.spacing.s200 : inube.spacing.s150};
-  border-top: 2px dashed ${inube.color.stroke.divider.regular};
 `;
 
 export { StyledContainer, StyledContent, StyledHead };
