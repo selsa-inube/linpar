@@ -1,17 +1,14 @@
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
 
 const StyledAppMenu = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: 32px 64px;
+  padding: ${inube.spacing.s400} ${inube.spacing.s800};
 
   @media (max-width: 490px) {
-    padding: 16px;
+    padding: ${inube.spacing.s200};
   }
 `;
 
-const StyledTitle = styled.div`
-  margin: 32px 0;
-`;
-
-export { StyledAppMenu, StyledTitle };
+export { StyledAppMenu };
