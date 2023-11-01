@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import { Stack, Text, Icon } from "@inube/design-system";
+import { Stack, Text, Icon, useMediaQuery } from "@inube/design-system";
 import { StyledContainer, StyledContent, StyledHead } from "./styles";
 
 interface IAccordionProps {
   title: string;
-  isFullWidth?: boolean;
   children: React.ReactNode;
 }
 
 function Accordion(props: IAccordionProps) {
-  const { title, children, isFullWidth } = props;
+  const { title, children } = props;
   const [isOpen, setIsOpen] = useState(false);
+
+  const screenMovil = useMediaQuery("(max-width: 744px)");
 
   return (
     <Stack direction="column" alignItems="center" justifyContent="space-start">
-      <StyledContainer>
+      <StyledContainer screenMovil={screenMovil}>
         <StyledHead onClick={() => setIsOpen(!isOpen)}>
           <Text type="title" size="medium">
             {title}
@@ -31,7 +32,9 @@ function Accordion(props: IAccordionProps) {
             />
           )}
         </StyledHead>
-        {isOpen && <StyledContent>{children}</StyledContent>}
+        {isOpen && (
+          <StyledContent screenMovil={screenMovil}>{children}</StyledContent>
+        )}
       </StyledContainer>
     </Stack>
   );

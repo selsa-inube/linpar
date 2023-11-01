@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
-const StyledContainer = styled.div`
+interface IStyledComponents {
+  screenMovil: boolean;
+}
+
+const StyledContainer = styled.div<IStyledComponents>`
   width: 100%;
   min-width: 312px;
   box-sizing: border-box;
   border-radius: 8px;
-  padding: ${inube.spacing.s200};
+  padding: ${({ screenMovil }) =>
+    !screenMovil
+      ? `${inube.spacing.s200} ${inube.spacing.s250}`
+      : `${inube.spacing.s150} ${inube.spacing.s200}`};
   border: 1px solid ${inube.color.stroke.divider.regular};
 `;
 
@@ -21,10 +28,12 @@ const StyledHead = styled.button`
   cursor: pointer;
 `;
 
-const StyledContent = styled.div`
+const StyledContent = styled.div<IStyledComponents>`
   width: 100%;
-  margin-top: ${inube.spacing.s200};
-  padding-top: ${inube.spacing.s200};
+  margin-top: ${({ screenMovil }) =>
+    !screenMovil ? inube.spacing.s200 : inube.spacing.s150};
+  padding-top: ${({ screenMovil }) =>
+    !screenMovil ? inube.spacing.s200 : inube.spacing.s150};
   border-top: 2px dashed ${inube.color.stroke.divider.regular};
 `;
 
