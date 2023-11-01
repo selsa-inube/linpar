@@ -51,7 +51,7 @@ disabledButtons.args = {
 export const loadingSave = Template.bind({});
 loadingSave.args = {
   children: ChildrenTemplate,
-  isLoading: true,
+  loading: true,
   handleSubmit,
   handleReset,
 };

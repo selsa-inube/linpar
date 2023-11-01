@@ -64,7 +64,7 @@ function PayrollsFormUI(props: PayrollsFormUIProps) {
           disabledButtons={!hasChanges(payrolls)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
-          isLoading={isLoading}
+          loading={isLoading}
         >
           <AssignmentForm
             handleChange={handleChangePayrolls}

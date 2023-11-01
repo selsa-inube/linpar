@@ -64,7 +64,7 @@ function AidBudgetsFormUI(props: AidBudgetsFormUIProps) {
           disabledButtons={!hasChanges(aidBudgetUnits)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
-          isLoading={isLoading}
+          loading={isLoading}
         >
           <AssignmentForm
             handleChange={handleChangeAidBudgets}

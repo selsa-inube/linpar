@@ -64,7 +64,7 @@ function EventsFormUI(props: EventsFormUIProps) {
           disabledButtons={!hasChanges(events)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
-          isLoading={isLoading}
+          loading={isLoading}
         >
           <AssignmentForm
             handleChange={handleChangeEvents}

@@ -63,7 +63,7 @@ function ProjectsFormUI(props: ProjectsFormUIProps) {
           disabledButtons={!hasChanges(projects)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
-          isLoading={isLoading}
+          loading={isLoading}
         >
           <AssignmentForm
             handleChange={handleChangeProjects}
