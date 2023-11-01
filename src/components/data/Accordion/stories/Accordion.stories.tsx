@@ -2,7 +2,7 @@ import { branchesFormInvitation } from "@src/mocks/apps/privileges/invitations/b
 import { BranchesForm } from "@src/pages/privileges/outlets/users/edit-user/forms/BranchesForm";
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { Accordion, AccordionProps } from "..";
+import { Accordion, IAccordionProps } from "..";
 
 const story = {
   component: [Accordion],
@@ -16,7 +16,7 @@ const story = {
   ],
 };
 
-const Template: StoryFn<AccordionProps> = (args) => <Accordion {...args} />;
+const Template: StoryFn<IAccordionProps> = (args) => <Accordion {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
