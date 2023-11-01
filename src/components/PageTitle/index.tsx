@@ -24,16 +24,16 @@ function PageTitle(props: PageTitleProps) {
               appearance="dark"
               cursorHover={true}
               icon={icon}
-              spacing="wide"
-              size="24px"
+              spacing="none"
+              size="20px"
             />
           ) : (
             <Icon
               appearance="dark"
               cursorHover={true}
               icon={<MdArrowBack />}
-              spacing="wide"
-              size="24px"
+              spacing="none"
+              size="20px"
               onClick={() =>
                 navigatePage ? navigate(navigatePage) : navigate(-1)
               }
