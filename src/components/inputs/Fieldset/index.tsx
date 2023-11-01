@@ -5,18 +5,17 @@ interface FieldsetProps {
   title: string;
   children: JSX.Element;
   icon?: JSX.Element;
-  appearance?: string;
 }
 
 function Fieldset(props: FieldsetProps) {
-  const { title, children, icon, appearance } = props;
+  const { title, children, icon } = props;
 
   return (
     <StyledFieldset>
       <legend>
         <Stack gap="8px" padding="s050" alignItems="center">
-          <Icon icon={icon} appearance="dark" />
-          <Text type="title" size="small" appearance={appearance}>
+          <Icon icon={icon} appearance="gray" />
+          <Text type="title" size="small" appearance="gray">
             {title}
           </Text>
         </Stack>
