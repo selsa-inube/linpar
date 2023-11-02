@@ -231,7 +231,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
 
   if (smallScreen) {
     return (
-      <Stack direction="column" gap="32px" padding="16px">
+      <Stack direction="column" gap="32px" padding="s200">
         <Stack direction="column" gap="32px">
           {renderHead(clientData, smallScreen)}
         </Stack>
@@ -249,7 +249,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
   return (
     <StyledPageContainer>
       <StyledWelcomeContainer>{renderHead(clientData)}</StyledWelcomeContainer>
-      <Stack direction="column" gap="48px" padding="64px">
+      <Stack direction="column" gap="48px" padding="s800">
         {renderForm(formik, loading, formInvalid, handleSubmitForm)}
       </Stack>
     </StyledPageContainer>
