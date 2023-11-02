@@ -1,6 +1,5 @@
 import {
   Button,
-  Icon,
   Stack,
   Text,
   Textfield,
