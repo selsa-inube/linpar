@@ -1,5 +1,6 @@
 import {
   Button,
+  Icon,
   Stack,
   Text,
   Textfield,
@@ -56,6 +57,7 @@ const renderForm = (
     if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
     return "valid";
   };
+  console.log(formInvalid, "formInvalid");
 
   return (
     <Stack direction="column" gap={smallScreen ? "32px" : "48px"}>
@@ -75,31 +77,29 @@ const renderForm = (
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
             <Textfield
+              id="name"
+              name="name"
               label="Nombre"
               placeholder="Ingresa su nombre completo"
-              name="name"
-              id="name"
               value={formik.values.name}
               type="text"
               size="compact"
-              maxLength={40}
-              minLength={1}
-              isFullWidth
-              isDisabled
+              fullwidth
+              disabled
               readOnly
             />
 
             <Textfield
+              id="userID"
+              name="userID"
               label="Identificación"
               placeholder="Ingrese su número de identificación"
-              name="userID"
-              id="userID"
               value={formik.values.userID}
               type="number"
               size="compact"
-              isFullWidth
+              fullwidth
               handleChange={formik.handleChange}
-              isDisabled
+              disabled
               readOnly
             />
           </Stack>
@@ -110,64 +110,69 @@ const renderForm = (
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
             <Textfield
+              id="phone"
+              name="phone"
               label="Número de teléfono"
               placeholder="Ingrese su número telefónico"
-              name="phone"
-              id="phone"
               value={formik.values.phone}
               type="tel"
-              iconAfter={<MdOutlineModeEdit size={18} />}
-              isInvalid={formik.errors.phone && formInvalid}
-              errorMessage={formik.errors.phone}
+              iconAfter={<MdOutlineModeEdit />}
+              message={
+                stateValue("phone") === "invalid"
+                  ? formik.errors.phone
+                  : "El número de teléfono ingresado es válido"
+              }
               validMessage="El número de teléfono ingresado es válido"
-              isDisabled={loading}
+              disabled={loading}
               size="compact"
               state={stateValue("phone")}
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              isFullWidth
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullwidth
             />
 
             <Textfield
-              label="Correo"
-              placeholder="Ingrese su dirección de correo electrónico"
-              name="email"
               id="email"
+              label="Correo"
+              name="email"
+              placeholder="Ingrese su dirección de correo electrónico"
               value={formik.values.email}
               type="email"
               iconAfter={<MdOutlineModeEdit size={18} />}
-              isInvalid={formik.errors.email && formInvalid}
-              errorMessage={formik.errors.email}
-              validMessage="El correo electrónico ingresado es válido"
-              isDisabled={loading}
+              message={
+                stateValue("email") === "invalid"
+                  ? formik.errors.email
+                  : "El correo electrónico ingresado es válido"
+              }
+              disabled={loading}
               size="compact"
               state={stateValue("email")}
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              isFullWidth
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullwidth
             />
           </Stack>
         </Fieldset>
         <Fieldset title="Contraseña" icon={<MdOutlineShield size={24} />}>
           <Stack direction="column" gap="16px">
             <Textfield
+              id="username"
+              name="username"
               label="Nombre de Usuario"
               placeholder="Ingresa su nombre completo"
-              name="username"
-              id="username"
               value={formik.values.username}
               type="text"
               size="compact"
-              isFullWidth
-              maxLength={40}
-              minLength={1}
-              handleChange={formik.handleChange}
-              isInvalid={formik.errors.username && formInvalid}
-              errorMessage={formik.errors.username}
-              validMessage="El nombre usuario ingresado es válido"
-              isDisabled={loading}
+              fullwidth
+              onChange={formik.handleChange}
+              message={
+                stateValue("username") === "invalid"
+                  ? formik.errors.username
+                  : "El nombre usuario ingresado es válido"
+              }
+              disabled={loading}
               state={stateValue("username")}
-              handleBlur={formik.handleBlur}
+              onBlur={formik.handleBlur}
             />
 
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
@@ -178,14 +183,16 @@ const renderForm = (
                 type="password"
                 size="compact"
                 placeholder="Contraseña"
-                isFullWidth
-                handleChange={formik.handleChange}
-                isInvalid={formik.errors.password && formInvalid}
-                errorMessage={formik.errors.password}
-                validMessage="La contraseña ingresada es válida"
-                isDisabled={loading}
+                fullWidth
+                onChange={formik.handleChange}
+                message={
+                  stateValue("password") === "invalid"
+                    ? formik.errors.password
+                    : "La contraseña ingresada es válida"
+                }
+                disabled={loading}
                 state={stateValue("password")}
-                handleBlur={formik.handleBlur}
+                onBlur={formik.handleBlur}
               />
               <Textfield
                 id="confirmPassword"
@@ -193,15 +200,17 @@ const renderForm = (
                 name="confirmPassword"
                 type="password"
                 size="compact"
-                isFullWidth
+                fullWidth
                 placeholder="Confirmar Contraseña"
-                handleChange={formik.handleChange}
-                isInvalid={formik.errors.confirmPassword && formInvalid}
-                errorMessage={formik.errors.confirmPassword}
-                validMessage="Las contraseñas coinciden"
-                isDisabled={loading}
+                onChange={formik.handleChange}
+                message={
+                  stateValue("confirmPassword") === "invalid"
+                    ? formik.errors.confirmPassword
+                    : "Las contraseñas coinciden"
+                }
+                disabled={loading}
                 state={stateValue("confirmPassword")}
-                handleBlur={formik.handleBlur}
+                onBlur={formik.handleBlur}
               />
             </Stack>
           </Stack>
