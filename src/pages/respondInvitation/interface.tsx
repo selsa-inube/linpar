@@ -2,7 +2,7 @@ import {
   Button,
   Stack,
   Text,
-  TextField,
+  Textfield,
   useMediaQuery,
 } from "@inube/design-system";
 import { Fieldset } from "@src/components/inputs/Fieldset";
@@ -32,7 +32,7 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
           <Text typo="headlineLarge">Portal de Clientes</Text>
         </Stack>
 
-        <Text typo="bodyLarge" appearance="secondary">
+        <Text typo="bodyLarge" appearance="gray">
           Complete su invitación y pase a formar parte de la comunidad.
         </Text>
       </Stack>
@@ -58,7 +58,7 @@ const renderForm = (
       <Stack direction="column">
         <Text typo="headlineSmall">Informacion de Contacto</Text>
 
-        <Text type="titleMedium" appearance="secondary">
+        <Text type="titleMedium" appearance="gray">
           Complete your information to register in Linix
         </Text>
       </Stack>
@@ -68,7 +68,7 @@ const renderForm = (
           icon={<MdPersonOutline size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-            <TextField
+            <Textfield
               label="Nombre"
               placeholder="Ingresa su nombre completo"
               name="name"
@@ -83,7 +83,7 @@ const renderForm = (
               readOnly
             />
 
-            <TextField
+            <Textfield
               label="Identificación"
               placeholder="Ingrese su número de identificación"
               name="userID"
@@ -103,7 +103,7 @@ const renderForm = (
           icon={<MdOutlinePhone size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-            <TextField
+            <Textfield
               label="Número de teléfono"
               placeholder="Ingrese su número telefónico"
               name="phone"
@@ -122,7 +122,7 @@ const renderForm = (
               isFullWidth
             />
 
-            <TextField
+            <Textfield
               label="Correo"
               placeholder="Ingrese su dirección de correo electrónico"
               name="email"
@@ -144,7 +144,7 @@ const renderForm = (
         </Fieldset>
         <Fieldset title="Contraseña" icon={<MdOutlineShield size={24} />}>
           <Stack direction="column" gap="16px">
-            <TextField
+            <Textfield
               label="Nombre de Usuario"
               placeholder="Ingresa su nombre completo"
               name="username"
@@ -165,7 +165,7 @@ const renderForm = (
             />
 
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-              <TextField
+              <Textfield
                 id="password"
                 label="Contraseña"
                 name="password"
@@ -181,7 +181,7 @@ const renderForm = (
                 state={stateValue("password")}
                 handleBlur={formik.handleBlur}
               />
-              <TextField
+              <Textfield
                 id="confirmPassword"
                 label="Confirmar Contraseña"
                 name="confirmPassword"
@@ -204,9 +204,9 @@ const renderForm = (
           <Button
             iconBefore={<MdShortcut size={18} />}
             size="compact"
-            appearance="confirm"
-            isLoading={loading}
-            handleClick={handleSubmitForm}
+            appearance="success"
+            loading={loading}
+            onClick={handleSubmitForm}
           >
             Enviar
           </Button>
