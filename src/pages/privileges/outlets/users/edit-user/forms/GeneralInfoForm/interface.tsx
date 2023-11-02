@@ -1,6 +1,6 @@
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { Stack, Text, TextField } from "@inube/design-system";
+import { Stack, Text, Textfield } from "@inube/design-system";
 import { positions } from "@mocks/apps/privileges/users/users.mock";
 import { EMessageType } from "@src/types/messages.types";
 import { FormikValues } from "formik";
@@ -61,7 +61,7 @@ function renderFormFields(
 
   return (
     <StyledFormContainer>
-      <TextField
+      <Textfield
         label="Nombre"
         placeholder="Ingresa su nombre completo"
         name="username"
@@ -76,7 +76,7 @@ function renderFormFields(
         readOnly
       />
 
-      <TextField
+      <Textfield
         label="Identificación"
         placeholder="Ingrese su número de identificación"
         name="userID"
@@ -89,7 +89,7 @@ function renderFormFields(
         readOnly
       />
 
-      <TextField
+      <Textfield
         label="Correo"
         placeholder="Ingrese su dirección de correo electrónico"
         name="email"
@@ -109,7 +109,7 @@ function renderFormFields(
         handleBlur={formik.handleBlur}
       />
 
-      <TextField
+      <Textfield
         label="Número de teléfono"
         placeholder="Ingrese su número telefónico"
         name="phone"

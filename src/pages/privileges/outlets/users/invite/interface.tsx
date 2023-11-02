@@ -1,6 +1,6 @@
 import { PageTitle } from "@components/PageTitle";
 import { SectionMessage } from "@components/feedback/SectionMessage";
-import { Breadcrumbs, Button, Stack, TextField } from "@inube/design-system";
+import { Breadcrumbs, Button, Stack, Textfield } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
@@ -77,7 +77,7 @@ function InviteUI(props: InviteUIProps) {
         <form>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <StyledFormContainer>
-              <TextField
+              <Textfield
                 label="Nombre"
                 placeholder="Ingresa su nombre completo"
                 name="name"
@@ -96,7 +96,7 @@ function InviteUI(props: InviteUIProps) {
                 handleBlur={formik.handleBlur}
               />
 
-              <TextField
+              <Textfield
                 label="Identificación"
                 placeholder="Ingrese su número de identificación"
                 name="id"
@@ -115,7 +115,7 @@ function InviteUI(props: InviteUIProps) {
                 handleBlur={formik.handleBlur}
               />
 
-              <TextField
+              <Textfield
                 label="Número de teléfono"
                 placeholder="Ingrese su número telefónico"
                 name="phone"
@@ -134,7 +134,7 @@ function InviteUI(props: InviteUIProps) {
                 handleBlur={formik.handleBlur}
               />
 
-              <TextField
+              <Textfield
                 label="Correo"
                 placeholder="Ingrese su dirección de correo electrónico"
                 name="email"

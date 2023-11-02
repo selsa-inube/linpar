@@ -1,11 +1,13 @@
-import { PageTitle } from "@components/PageTitle";
+import { MdPersonOutline } from "react-icons/md";
+import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
+
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { Assisted } from "@components/feedback/Assisted";
+import { IVerificationData } from "@components/feedback/Assisted/types";
+import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
-import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
-import { IVerificationData } from "@src/components/feedback/Assisted/types";
-import { DecisionModal } from "@src/components/feedback/DecisionModal";
-import { MdPersonOutline } from "react-icons/md";
+import { PageTitle } from "@components/PageTitle";
+
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import { EventsForm } from "../edit-user/forms/EventsForm";
@@ -17,6 +19,7 @@ import {
   IFormsInvitation,
   IGeneralInformationEntry,
 } from "../types/forms.types";
+
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
