@@ -19,14 +19,14 @@ function FormButtons(props: FormButtonsProps) {
         <Button
           appearance="gray"
           disabled={disabledButtons}
-          handleClick={handleReset}
+          onClick={handleReset}
           type="reset"
         >
           Cancelar
         </Button>
         <Button
           appearance="success"
-          handleClick={handleSubmit}
+          onClick={handleSubmit}
           loading={loading}
           disabled={disabledButtons}
           type="button"
