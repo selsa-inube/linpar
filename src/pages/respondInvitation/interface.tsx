@@ -47,7 +47,7 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
 const renderForm = (
   formik: FormikValues,
   loading: boolean,
-  formInvalid: boolean,
+
   handleSubmitForm: () => void,
   smallScreen?: boolean
 ) => {
@@ -56,7 +56,6 @@ const renderForm = (
     if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
     return "valid";
   };
-  console.log(formInvalid, "formInvalid");
 
   return (
     <Stack direction="column" gap={smallScreen ? "32px" : "48px"}>
@@ -239,7 +238,7 @@ interface RespondInvitationUIProps {
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {
-  const { loading, formik, formInvalid, handleSubmitForm, clientData } = props;
+  const { loading, formik, handleSubmitForm, clientData } = props;
 
   const smallScreen = useMediaQuery("(max-width: 820px)");
 
@@ -252,7 +251,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
         {renderForm(
           formik,
           loading,
-          formInvalid,
+
           handleSubmitForm,
           smallScreen
         )}
@@ -264,7 +263,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     <StyledPageContainer>
       <StyledWelcomeContainer>{renderHead(clientData)}</StyledWelcomeContainer>
       <Stack direction="column" gap="48px" padding="s800">
-        {renderForm(formik, loading, formInvalid, handleSubmitForm)}
+        {renderForm(formik, loading, handleSubmitForm)}
       </Stack>
     </StyledPageContainer>
   );
