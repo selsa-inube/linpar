@@ -28,11 +28,15 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
       <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
       <Stack direction="column" gap={smallScreen ? "16px" : "36px"}>
         <Stack direction="column">
-          <Text typo="headlineSmall">Bienvenido</Text>
-          <Text typo="headlineLarge">Portal de Clientes</Text>
+          <Text type="headline" size="small">
+            Bienvenido
+          </Text>
+          <Text type="headline" size="large">
+            Portal de Clientes
+          </Text>
         </Stack>
 
-        <Text typo="bodyLarge" appearance="gray">
+        <Text appearance="gray">
           Complete su invitación y pase a formar parte de la comunidad.
         </Text>
       </Stack>
@@ -56,9 +60,11 @@ const renderForm = (
   return (
     <Stack direction="column" gap={smallScreen ? "32px" : "48px"}>
       <Stack direction="column">
-        <Text typo="headlineSmall">Informacion de Contacto</Text>
+        <Text type="headline" size="small">
+          Informacion de Contacto
+        </Text>
 
-        <Text type="titleMedium" appearance="gray">
+        <Text type="title" size="medium" appearance="gray">
           Complete your information to register in Linix
         </Text>
       </Stack>
