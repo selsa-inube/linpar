@@ -64,7 +64,7 @@ function BranchesFormUI(props: BranchesFormUIProps) {
           disabledButtons={!hasChanges(branches)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
-          isLoading={isLoading}
+          loading={isLoading}
         >
           <AssignmentForm
             handleChange={handleChangeBranches}

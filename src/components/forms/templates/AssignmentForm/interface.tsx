@@ -5,14 +5,15 @@ import {
   Button,
   Stack,
   Switch,
-  TextField,
+  Textfield,
+  Icon,
+  Grid,
   useMediaQuery,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
   StyledEntriesContainer,
   StyledForm,
-  StyledHeadContainer,
   StyledOptionsContainer,
 } from "./styles";
 import { IEntry } from "./types";
@@ -65,9 +66,9 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               id={entry.id}
               label={`${entry.id} - ${entry.value}`}
               checked={entry.isActive}
-              handleChange={() => handleToggleEntry(entry.id)}
+              onChange={() => handleToggleEntry(entry.id)}
               size="large"
-              isDisabled
+              disabled
             />
           </Stack>
         ))}
@@ -78,25 +79,31 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
   return (
     <StyledForm>
       <Fieldset title={title}>
-        <Stack direction="column">
-          <StyledHeadContainer smallScreen={smallScreen}>
-            <TextField
+        <Stack direction="column" gap="16px">
+          <Grid
+            templateColumns={smallScreen ? "auto 1fr" : "32% 1fr"}
+            gap="s200"
+            alignItems="center"
+          >
+            <Textfield
               type="search"
               iconBefore={<MdSearch size={22} />}
               placeholder="Buscar..."
               name="search"
               id="search"
-              minLength={1}
               size="compact"
-              handleChange={handleFilter}
+              onChange={handleFilter}
               value={filter}
-              isFullWidth
+              fullwidth
             />
             {smallScreen ? (
               <StyledOptionsContainer>
-                <MdOutlineMoreHoriz
-                  size={24}
-                  cursor="pointer"
+                <Icon
+                  icon={<MdOutlineMoreHoriz />}
+                  appearance="dark"
+                  spacing="none"
+                  size="24px"
+                  shape="circle"
                   onClick={handleToggleMenuInvitation}
                 />
                 {showMenu && (
@@ -110,23 +117,21 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               <Stack gap="8px" justifyContent="flex-end">
                 <Button
                   spacing="compact"
-                  handleClick={() => handleToggleAllEntries(false)}
-                  type="button"
-                  isDisabled={!isAssignAll}
+                  onClick={() => handleToggleAllEntries(false)}
+                  disabled={!isAssignAll}
                 >
                   Desasignar todos
                 </Button>
                 <Button
                   spacing="compact"
-                  handleClick={() => handleToggleAllEntries(true)}
-                  type="button"
-                  isDisabled={isAssignAll}
+                  onClick={() => handleToggleAllEntries(true)}
+                  disabled={isAssignAll}
                 >
                   Asignar todos
                 </Button>
               </Stack>
             )}
-          </StyledHeadContainer>
+          </Grid>
           <StyledEntriesContainer>
             {filteredRows.map((entry) => (
               <Stack alignItems="center" key={entry.id}>
@@ -134,7 +139,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                   id={entry.id}
                   label={`${entry.id} - ${entry.value}`}
                   checked={entry.isActive}
-                  handleChange={() => handleToggleEntry(entry.id)}
+                  onChange={() => handleToggleEntry(entry.id)}
                   size="large"
                 />
               </Stack>

@@ -1,40 +1,39 @@
 import { Button, Stack } from "@inube/design-system";
-import { StyledSubmitContainer } from "./styles";
 
 interface FormButtonsProps {
   children: React.ReactNode;
   handleSubmit: () => void;
   handleReset: () => void;
   disabledButtons?: boolean;
-  isLoading?: boolean;
+  loading?: boolean;
 }
 
 function FormButtons(props: FormButtonsProps) {
-  const { children, handleSubmit, handleReset, disabledButtons, isLoading } =
+  const { children, handleSubmit, handleReset, disabledButtons, loading } =
     props;
 
   return (
     <Stack direction="column">
       <Stack>{children}</Stack>
-      <StyledSubmitContainer>
+      <Stack justifyContent="flex-end" gap="16px" margin="s100 s0 s0 s0">
         <Button
-          appearance="secondary"
-          isDisabled={disabledButtons}
-          handleClick={handleReset}
+          appearance="gray"
+          disabled={disabledButtons}
+          onClick={handleReset}
           type="reset"
         >
           Cancelar
         </Button>
         <Button
-          appearance="confirm"
-          handleClick={handleSubmit}
-          isLoading={isLoading}
-          isDisabled={disabledButtons}
+          appearance="success"
+          onClick={handleSubmit}
+          loading={loading}
+          disabled={disabledButtons}
           type="button"
         >
           Guardar
         </Button>
-      </StyledSubmitContainer>
+      </Stack>
     </Stack>
   );
 }

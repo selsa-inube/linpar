@@ -1,37 +1,44 @@
-import { Text } from "@inube/design-system";
 import { useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { Stack, Text, Icon, useMediaQuery } from "@inube/design-system";
 import { StyledContainer, StyledContent, StyledHead } from "./styles";
 
-interface AccordionProps {
+interface IAccordionProps {
   title: string;
-  isFullWidth?: boolean;
   children: React.ReactNode;
 }
 
-function Accordion(props: AccordionProps) {
-  const { title, children, isFullWidth } = props;
+function Accordion(props: IAccordionProps) {
+  const { title, children } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleToggleOpen = () => setIsOpen(!isOpen);
+  const screenMovil = useMediaQuery("(max-width: 744px)");
 
   return (
-    <StyledContainer isOpen={isOpen} isFullWidth={isFullWidth}>
-      <StyledHead onClick={handleToggleOpen}>
-        <Text typo="titleMedium" appearance="secondary">
-          {title}
-        </Text>
+    <Stack direction="column" alignItems="center" justifyContent="space-start">
+      <StyledContainer screenMovil={screenMovil}>
+        <StyledHead onClick={() => setIsOpen(!isOpen)}>
+          <Text type="title" size="medium">
+            {title}
+          </Text>
 
-        {isOpen ? (
-          <MdKeyboardArrowUp size={24} />
-        ) : (
-          <MdKeyboardArrowDown size={24} />
+          {isOpen ? (
+            <Icon icon={<MdKeyboardArrowUp />} appearance="dark" size="24px" />
+          ) : (
+            <Icon
+              icon={<MdKeyboardArrowDown />}
+              appearance="dark"
+              size="24px"
+            />
+          )}
+        </StyledHead>
+        {isOpen && (
+          <StyledContent screenMovil={screenMovil}>{children}</StyledContent>
         )}
-      </StyledHead>
-      {isOpen && <StyledContent>{children}</StyledContent>}
-    </StyledContainer>
+      </StyledContainer>
+    </Stack>
   );
 }
 
 export { Accordion };
-export type { AccordionProps };
+export type { IAccordionProps };

@@ -14,7 +14,7 @@ function MenuOption(props: MenuOptionProps) {
     <StyledOption onClick={handleClick} type="button">
       <Stack gap="12px" alignItems="center">
         {icon}
-        <Text typo="bodySmall">{label}</Text>
+        <Text size="small">{label}</Text>
       </Stack>
     </StyledOption>
   );

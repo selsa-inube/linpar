@@ -1,7 +1,7 @@
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
-import { Breadcrumbs, Grid, useMediaQuery } from "@inube/design-system";
+import { Breadcrumbs, Grid, Stack, useMediaQuery } from "@inube/design-system";
 import { PageTitle } from "../../PageTitle";
-import { StyledAppMenu, StyledTitle } from "./styles";
+import { StyledAppMenu } from "./styles";
 import { IAppOption, IRoute } from "./types";
 
 interface AppMenuProps {
@@ -19,13 +19,13 @@ function AppMenu(props: AppMenuProps) {
   return (
     <StyledAppMenu>
       <Breadcrumbs crumbs={appRoute} />
-      <StyledTitle>
+      <Stack margin="s400 s0">
         <PageTitle
           title={appName}
           description={appDescription}
           navigatePage="/"
         />
-      </StyledTitle>
+      </Stack>
 
       <Grid
         templateColumns={
