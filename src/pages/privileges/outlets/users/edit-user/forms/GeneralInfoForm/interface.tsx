@@ -132,7 +132,7 @@ function renderFormFields(
         value={formik.values.phone}
         type="tel"
         iconAfter={<MdOutlineModeEdit size={18} />}
-        status={formik.errors.phone && formInvalid ? "invalid" : "pending"}
+        status={formik.errors.phone && formInvalid ? "invalid" : "valid"}
         message={
           formik.errors.phone && formInvalid
             ? formik.errors.phone
