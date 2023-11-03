@@ -1,5 +1,6 @@
 import {
   Button,
+  Grid,
   Stack,
   Text,
   Textfield,
@@ -14,12 +15,7 @@ import {
   MdPersonOutline,
   MdShortcut,
 } from "react-icons/md";
-import {
-  StyledForm,
-  StyledPageContainer,
-  StyledWelcomeContainer,
-  Styledlmage,
-} from "./styles";
+import { StyledForm, StyledWelcomeContainer, Styledlmage } from "./styles";
 import { IClient } from "./types";
 
 const renderHead = (clientData: IClient, smallScreen?: boolean) => {
@@ -260,12 +256,16 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
   }
 
   return (
-    <StyledPageContainer>
-      <StyledWelcomeContainer>{renderHead(clientData)}</StyledWelcomeContainer>
+    <Grid templateColumns="1fr 2fr">
+      <StyledWelcomeContainer>
+        <Stack direction="column" gap="36px" padding="s800">
+          {renderHead(clientData)}
+        </Stack>
+      </StyledWelcomeContainer>
       <Stack direction="column" gap="48px" padding="s800">
         {renderForm(formik, loading, handleSubmitForm)}
       </Stack>
-    </StyledPageContainer>
+    </Grid>
   );
 }
 
