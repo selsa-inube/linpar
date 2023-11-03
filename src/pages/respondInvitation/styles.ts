@@ -1,8 +1,8 @@
-import { colors } from "@styles/colors";
+import { inube } from "@inube/design-system";
 import styled from "styled-components";
 
 const StyledWelcomeContainer = styled.div`
-  background-color: ${colors.ref.palette.neutral.n30};
+  background-color: ${inube.color.surface.dark.clear};
 `;
 
 const Styledlmage = styled.img`
