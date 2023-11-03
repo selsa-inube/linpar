@@ -13,13 +13,13 @@ import { EMessageType } from "@src/types/messages.types";
 import { SectionMessage } from "@components/feedback/SectionMessage";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
-import { StyledFormContainer, StyledPageUsers } from "./styles";
 
 interface InviteUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   loading: boolean;
   showMessage: boolean;
+  screenMovil: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
 }
@@ -66,12 +66,13 @@ function InviteUI(props: InviteUIProps) {
     formInvalid,
     loading,
     showMessage,
+    screenMovil,
     handleCloseSectionMessage,
     handleSubmit,
   } = props;
 
   return (
-    <StyledPageUsers>
+    <Stack direction="column" padding="s400 s800">
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={usersInvitationsConfig} />
@@ -83,92 +84,95 @@ function InviteUI(props: InviteUIProps) {
         </Stack>
         <form>
           <Stack gap="32px" alignItems="flex-end" direction="column">
-            <Grid templateColumns="repeat(2, 1fr)" width="100%" gap="24px">
-              <StyledFormContainer>
-                <Textfield
-                  label="Nombre"
-                  placeholder="Ingresa su nombre completo"
-                  name="name"
-                  id="name"
-                  value={formik.values.name}
-                  type="text"
-                  required={true}
-                  message={
-                    stateValue(formik, "name") === "invalid"
-                      ? formik.errors.name
-                      : "El nombre es valido"
-                  }
-                  disabled={loading}
-                  size="compact"
-                  fullwidth={true}
-                  state={stateValue(formik, "name")}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
+            <Grid
+              templateColumns={screenMovil ? "1fr" : "repeat(2, 1fr)"}
+              width="100%"
+              gap="s300"
+              autoRows="auto"
+            >
+              <Textfield
+                label="Nombre"
+                placeholder="Ingresa su nombre completo"
+                name="name"
+                id="name"
+                value={formik.values.name}
+                type="text"
+                required={true}
+                message={
+                  stateValue(formik, "name") === "invalid"
+                    ? formik.errors.name
+                    : "El nombre es valido"
+                }
+                disabled={loading}
+                size="compact"
+                fullwidth={true}
+                state={stateValue(formik, "name")}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
 
-                <Textfield
-                  label="Identificación"
-                  placeholder="Ingrese su número de identificación"
-                  name="id"
-                  id="id"
-                  value={formik.values.id}
-                  type="number"
-                  required={true}
-                  message={
-                    stateValue(formik, "id") === "invalid"
-                      ? formik.errors.id
-                      : "El número de identificación es valido"
-                  }
-                  disabled={loading}
-                  size="compact"
-                  fullwidth={true}
-                  state={stateValue(formik, "id")}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
+              <Textfield
+                label="Identificación"
+                placeholder="Ingrese su número de identificación"
+                name="id"
+                id="id"
+                value={formik.values.id}
+                type="number"
+                required={true}
+                message={
+                  stateValue(formik, "id") === "invalid"
+                    ? formik.errors.id
+                    : "El número de identificación es valido"
+                }
+                disabled={loading}
+                size="compact"
+                fullwidth={true}
+                state={stateValue(formik, "id")}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
 
-                <Textfield
-                  label="Número de teléfono"
-                  placeholder="Ingrese su número telefónico"
-                  name="phone"
-                  id="phone"
-                  value={formik.values.phone}
-                  type="tel"
-                  required={true}
-                  message={
-                    stateValue(formik, "phone") === "invalid"
-                      ? formik.errors.phone
-                      : "El número de teléfono es valido"
-                  }
-                  disabled={loading}
-                  size="compact"
-                  fullwidth={true}
-                  state={stateValue(formik, "phone")}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
+              <Textfield
+                label="Número de teléfono"
+                placeholder="Ingrese su número telefónico"
+                name="phone"
+                id="phone"
+                value={formik.values.phone}
+                type="tel"
+                required={true}
+                message={
+                  stateValue(formik, "phone") === "invalid"
+                    ? formik.errors.phone
+                    : "El número de teléfono es valido"
+                }
+                disabled={loading}
+                size="compact"
+                fullwidth={true}
+                state={stateValue(formik, "phone")}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
 
-                <Textfield
-                  label="Correo"
-                  placeholder="Ingrese su dirección de correo electrónico"
-                  name="email"
-                  id="email"
-                  value={formik.values.email}
-                  type="email"
-                  required={true}
-                  messaghe={
-                    stateValue(formik, "email") === "valid"
-                      ? formik.errors.email
-                      : "El correo electrónico es valido"
-                  }
-                  disabled={loading}
-                  size="compact"
-                  fullwidth={true}
-                  state={stateValue(formik, "email")}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </StyledFormContainer>
+              <Textfield
+                label="Correo"
+                placeholder="Ingrese su dirección de correo electrónico"
+                name="email"
+                id="email"
+                value={formik.values.email}
+                type="email"
+                required={true}
+                messaghe={
+                  stateValue(formik, "email") === "valid"
+                    ? formik.errors.email
+                    : "El correo electrónico es valido"
+                }
+                disabled={loading}
+                size="compact"
+                fullwidth={true}
+                state={stateValue(formik, "email")}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
             </Grid>
             <Button
               type="button"
@@ -183,7 +187,7 @@ function InviteUI(props: InviteUIProps) {
         </form>
       </Stack>
       {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
-    </StyledPageUsers>
+    </Stack>
   );
 }
 
