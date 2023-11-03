@@ -92,10 +92,12 @@ function InviteUI(props: InviteUIProps) {
                   id="name"
                   value={formik.values.name}
                   type="text"
-                  // isInvalid={formik.errors.name && formInvalid}
                   required={true}
-                  // errorMessage={formik.errors.name}
-                  // validMessage="El nombre es valido"
+                  message={
+                    stateValue(formik, "name") === "invalid"
+                      ? formik.errors.name
+                      : "El nombre es valido"
+                  }
                   disabled={loading}
                   size="compact"
                   fullwidth={true}
@@ -111,10 +113,12 @@ function InviteUI(props: InviteUIProps) {
                   id="id"
                   value={formik.values.id}
                   type="number"
-                  // isInvalid={formik.errors.id && formInvalid}
                   required={true}
-                  // errorMessage={formik.errors.id}
-                  // validMessage="El número de identificación es valido"
+                  message={
+                    stateValue(formik, "id") === "invalid"
+                      ? formik.errors.id
+                      : "El número de identificación es valido"
+                  }
                   disabled={loading}
                   size="compact"
                   fullwidth={true}
@@ -130,10 +134,12 @@ function InviteUI(props: InviteUIProps) {
                   id="phone"
                   value={formik.values.phone}
                   type="tel"
-                  // isInvalid={formik.errors.phone && formInvalid}
                   required={true}
-                  // errorMessage={formik.errors.phone}
-                  // validMessage="El número de teléfono es valido"
+                  message={
+                    stateValue(formik, "phone") === "invalid"
+                      ? formik.errors.phone
+                      : "El número de teléfono es valido"
+                  }
                   disabled={loading}
                   size="compact"
                   fullwidth={true}
@@ -150,9 +156,11 @@ function InviteUI(props: InviteUIProps) {
                   value={formik.values.email}
                   type="email"
                   required={true}
-                  // isInvalid={formik.errors.email && formInvalid}
-                  // errorMessage={formik.errors.email}
-                  // validMessage="El correo electrónico es valido"
+                  messaghe={
+                    stateValue(formik, "email") === "valid"
+                      ? formik.errors.email
+                      : "El correo electrónico es valido"
+                  }
                   disabled={loading}
                   size="compact"
                   fullwidth={true}
