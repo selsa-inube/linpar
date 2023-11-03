@@ -34,15 +34,16 @@ function finishModal(
     finishAssistedModalConfig;
 
   return (
-    <DecisionModal
-      title={title}
-      description={description}
-      actionText={actionText}
-      loading={false}
-      appearance={appearance}
-      closeModal={handleCloseModal}
-      handleClick={handleCompleteInvitation}
-    />
+    // <DecisionModal
+    //   title={title}
+    //   description={description}
+    //   actionText={actionText}
+    //   loading={false}
+    //   appearance={appearance}
+    //   closeModal={handleCloseModal}
+    //   handleClick={handleCompleteInvitation}
+    // />
+    <></>
   );
 }
 
@@ -95,7 +96,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={CompleteInvitationUserConfig[0].route} />
+          {/* <Breadcrumbs route={CompleteInvitationUserConfig[0].route} /> */}
           <Stack justifyContent="space-between" alignItems="center" gap="50px">
             <PageTitle
               title={CompleteInvitationUserConfig[0].title}
@@ -103,24 +104,25 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               navigatePage="/privileges/users"
             />
             {currentInformation && invitationCardData && (
-              <SubjectCard
-                subjectData={invitationCardData}
-                title="Información del usuario"
-                icon={<MdPersonOutline size={24} />}
-                labels={completeInvitationSubjectCardLabels}
-              />
+              // <SubjectCard
+              //   subjectData={invitationCardData}
+              //   title="Información del usuario"
+              //   icon={<MdPersonOutline size={24} />}
+              //   labels={completeInvitationSubjectCardLabels}
+              // />
+              <></>
             )}
           </Stack>
         </Stack>
         {currentInformation ? (
           <>
-            <Assisted
+            {/* <Assisted
               steps={Object.values(stepsRegisterUserConfig)}
               handleStepChange={handleStepChange}
               handleFinishAssisted={handleToggleModal}
               currentStep={currentStep}
               verificationData={verificationData}
-            />
+            /> */}
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
                 currentInformation={currentInformation}
@@ -128,47 +130,53 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
-              <BranchesForm
-                currentBranches={invitationData.branches.entries}
-                handleSubmit={handleSubmit}
-              />
+              // <BranchesForm
+              //   currentBranches={invitationData.branches.entries}
+              //   handleSubmit={handleSubmit}
+              // />
+              <></>
             )}
             {currentStep === stepsRegisterUserConfig.projects.id && (
-              <ProjectsForm
-                currentProjects={invitationData.projects.entries}
-                handleSubmit={handleSubmit}
-              />
+              // <ProjectsForm
+              //   currentProjects={invitationData.projects.entries}
+              //   handleSubmit={handleSubmit}
+              // />
+              <></>
             )}
             {currentStep === stepsRegisterUserConfig.events.id && (
-              <EventsForm
-                currentEvents={invitationData.events.entries}
-                handleSubmit={handleSubmit}
-              />
+              // <EventsForm
+              //   currentEvents={invitationData.events.entries}
+              //   handleSubmit={handleSubmit}
+              // />
+              <></>
             )}
             {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
-                handleSubmit={handleSubmit}
-              />
+              // <AidBudgetsForm
+              //   currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
+              //   handleSubmit={handleSubmit}
+              // />
+              <></>
             )}
             {currentStep === stepsRegisterUserConfig.payrolls.id && (
-              <PayrollsForm
-                currentPayrolls={invitationData.payrolls.entries}
-                handleSubmit={handleSubmit}
-              />
+              // <PayrollsForm
+              //   currentPayrolls={invitationData.payrolls.entries}
+              //   handleSubmit={handleSubmit}
+              // />
+              <></>
             )}
           </>
         ) : (
-          <ItemNotFound
-            image={invitationNotFoundConfig.image}
-            title={invitationNotFoundConfig.title}
-            description={invitationNotFoundConfig.description}
-            buttonDescription={invitationNotFoundConfig.buttonDescription}
-            route={invitationNotFoundConfig.route}
-          />
+          // <ItemNotFound
+          //   image={invitationNotFoundConfig.image}
+          //   title={invitationNotFoundConfig.title}
+          //   description={invitationNotFoundConfig.description}
+          //   buttonDescription={invitationNotFoundConfig.buttonDescription}
+          //   route={invitationNotFoundConfig.route}
+          // />
+          <></>
         )}
       </Stack>
-      {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
+      {/* {showModal && finishModal(handleToggleModal, handleCompleteInvitation)} */}
     </StyledContainer>
   );
 }

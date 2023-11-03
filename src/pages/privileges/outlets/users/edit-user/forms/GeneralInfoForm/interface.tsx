@@ -1,7 +1,15 @@
-import { SectionMessage } from "@components/feedback/SectionMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { Stack, Text, Textfield } from "@inube/design-system";
-import { positions } from "@mocks/apps/privileges/users/users.mock";
+import {
+  Stack,
+  Text,
+  Textfield,
+  SectionMessage,
+  Icon,
+  Select,
+  Grid,
+  useMediaQueries,
+} from "@inube/design-system";
+import { options } from "@mocks/apps/privileges/users/users.mock";
 import { EMessageType } from "@src/types/messages.types";
 import { FormikValues } from "formik";
 import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
@@ -10,11 +18,6 @@ import {
   IMessageState,
 } from "../../../types/forms.types";
 import { generalInfoMessages } from "./config/messages.config";
-import {
-  StyledErrorMessageContainer,
-  StyledFormContainer,
-  StyledSelect,
-} from "./styles";
 
 function renderMessages(
   showMessage: IMessageState,
@@ -59,8 +62,19 @@ function renderFormFields(
     return "valid";
   }
 
+  const mediaQueries = ["(max-width: 1111px)"];
+  const matches = useMediaQueries(mediaQueries);
+
   return (
-    <StyledFormContainer>
+    <Grid
+      templateColumns={
+        matches["(max-width: 1111px)"] ? "repeat(1, 1fr)" : "repeat(2, 1fr)"
+      }
+      gap={"s300"}
+      margin={"s0 s0 s400 s0"}
+      width={"100%"}
+      autoRows="unset"
+    >
       <Textfield
         label="Nombre"
         placeholder="Ingresa su nombre completo"
@@ -95,9 +109,12 @@ function renderFormFields(
         value={formik.values.email}
         type="email"
         iconAfter={<MdOutlineModeEdit size={18} />}
-        // isInvalid={formik.errors.email && formInvalid}
-        // errorMessage={formik.errors.email}
-        // validMessage="El correo electrónico ingresado es válido"
+        status={formik.errors.email && formInvalid ? "invalid" : "valid"}
+        message={
+          formik.errors.email && formInvalid
+            ? formik.errors.email
+            : "El correo electrónico ingresado es válido"
+        }
         disabled={readOnly || loading}
         readOnly={readOnly}
         size="compact"
@@ -115,9 +132,12 @@ function renderFormFields(
         value={formik.values.phone}
         type="tel"
         iconAfter={<MdOutlineModeEdit size={18} />}
-        // isInvalid={formik.errors.phone && formInvalid}
-        // errorMessage={formik.errors.phone}
-        // validMessage="El número de teléfono ingresado es válido"
+        status={formik.errors.phone && formInvalid ? "invalid" : "pending"}
+        message={
+          formik.errors.phone && formInvalid
+            ? formik.errors.phone
+            : "El número de teléfono ingresado es válido"
+        }
         disabled={readOnly || loading}
         readOnly={readOnly}
         size="compact"
@@ -129,36 +149,42 @@ function renderFormFields(
 
       <Stack direction="column" gap="8px">
         <Text
-          typo="labelMedium"
+          type="label"
+          size="medium"
           appearance={readOnly ? "disabled" : "dark"}
           padding="0px 0px 0px 16px"
         >
           Cargo
         </Text>
-        <StyledSelect
-          value={formik.values.position}
+        <Select
           name="position"
           id="position"
-          onChange={handleChangeForm}
           required
+          placeholder="Seleccione una opción"
+          value={formik.values.position}
+          onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
+            formik.setFieldValue("position", value.target.outerText)
+          }
+          options={options}
+          fullwidth
           disabled={readOnly || loading}
-        >
-          {positions.map((position) => (
-            <option key={position.value} value={position.value}>
-              {position.label}
-            </option>
-          ))}
-        </StyledSelect>
+        />
         {formik.errors.position && formInvalid && (
-          <StyledErrorMessageContainer>
-            <MdOutlineError />
-            <Text typo="bodySmall" margin="8px 0px 0px 4px" appearance="error">
+          <Stack alignItems="center" margin="s0 s0 s0 s150">
+            <Icon
+              appearance={"error"}
+              icon={<MdOutlineError />}
+              spacing="wide"
+              size="14px"
+              shape="circle"
+            />
+            <Text size="small" margin="8px 0px 0px 4px" appearance="error">
               ({formik.errors.position})
             </Text>
-          </StyledErrorMessageContainer>
+          </Stack>
         )}
       </Stack>
-    </StyledFormContainer>
+    </Grid>
   );
 }
 
