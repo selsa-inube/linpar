@@ -49,10 +49,10 @@ const InteractiveModal = ({
             )}
             {hasLabels
               ? labels.map(
-                  (field, index) =>
+                  (field) =>
                     infoData[field.id] && (
                       <Textfield
-                        key={index}
+                        key={field.id}
                         label={field.titleName}
                         name={field.id}
                         id={field.id}
