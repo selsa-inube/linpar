@@ -74,14 +74,14 @@ function AssistedUI(props: IAssistedUIProps) {
             <Button
               variant="none"
               iconBefore={<MdArrowBack size={20} />}
-              handleClick={handlePreviousStep}
-              isDisabled={currentStep === steps[0].id}
+              onClick={handlePreviousStep}
+              disabled={currentStep === steps[0].id}
             />
           </StyledButton>
           <StyledStepsMobile>
             <Stack gap="8px" alignItems="center" justifyContent="center">
               <StyledStepsMobileId>
-                <Text typo="labelMedium" appearance="primary">
+                <Text size="medium" type="label" appearance="primary">
                   {currentStep === steps[steps.length - 1].id ? (
                     <MdCheckCircle size={16} />
                   ) : (
@@ -89,7 +89,7 @@ function AssistedUI(props: IAssistedUIProps) {
                   )}
                 </Text>
               </StyledStepsMobileId>
-              <Text typo="labelMedium" appearance="dark">
+              <Text type="label" size="medium" appearance="dark">
                 {currentStepInfo?.stepName}
               </Text>
             </Stack>
@@ -99,7 +99,7 @@ function AssistedUI(props: IAssistedUIProps) {
             <Button
               variant="none"
               iconAfter={<MdArrowForward size={20} />}
-              handleClick={handleNextStep}
+              onClick={handleNextStep}
             />
           </StyledButton>
         </StyledMobile>
@@ -117,12 +117,12 @@ function AssistedUI(props: IAssistedUIProps) {
           <Button
             variant="none"
             iconBefore={<MdArrowBack size={18} />}
-            handleClick={handlePreviousStep}
-            isDisabled={currentStep === steps[0].id}
+            onClick={handlePreviousStep}
+            disabled={currentStep === steps[0].id}
           >
             <Text
-              typo="labelLarge"
-              appearance={currentStep === steps[0].id ? "disabled" : "primary"}
+              type="label"
+              appearance={currentStep === steps[0].id ? "gray" : "primary"}
             >
               Prev
             </Text>
@@ -133,14 +133,14 @@ function AssistedUI(props: IAssistedUIProps) {
           <Button
             variant="none"
             iconAfter={<MdArrowForward size={18} />}
-            handleClick={handleNextStep}
+            onClick={handleNextStep}
           >
-            <Text typo="labelLarge" appearance="primary">
+            <Text type="label" appearance="primary">
               Next
             </Text>
           </Button>
         </Stack>
-        <Text typo="labelLarge" appearance="secondary" align="center">
+        <Text type="label" appearance="gray" textAlign="center">
           {currentStepInfo?.stepDescription}
         </Text>
       </StyledDesktopContainer>

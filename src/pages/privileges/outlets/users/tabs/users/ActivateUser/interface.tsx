@@ -54,10 +54,10 @@ function ActivateUserUI(props: ActivateUserUIProps) {
     <>
       <Switch
         checked={active}
-        handleChange={handleToggleModal}
+        onChange={handleToggleModal}
         id={id.toString()}
         label={showComplete ? "Activar" : ""}
-        padding={`0px 0px 0px ${showComplete ? 16 : 0}px`}
+        padding={`s0 s0 s0 ${showComplete ? "s200" : "s0"}`}
       />
 
       {showActivateUserModal && (

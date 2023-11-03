@@ -28,11 +28,13 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
       <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
       <Stack direction="column" gap={smallScreen ? "16px" : "36px"}>
         <Stack direction="column">
-          <Text typo="headlineSmall">Bienvenido</Text>
-          <Text typo="headlineLarge">Portal de Clientes</Text>
+          <Text type="headline" size="small">
+            Bienvenido
+          </Text>
+          <Text type="headline">Portal de Clientes</Text>
         </Stack>
 
-        <Text typo="bodyLarge" appearance="secondary">
+        <Text appearance="gray">
           Complete su invitación y pase a formar parte de la comunidad.
         </Text>
       </Stack>
@@ -56,9 +58,11 @@ const renderForm = (
   return (
     <Stack direction="column" gap={smallScreen ? "32px" : "48px"}>
       <Stack direction="column">
-        <Text typo="headlineSmall">Informacion de Contacto</Text>
+        <Text type="headline" size="small">
+          Informacion de Contacto
+        </Text>
 
-        <Text type="titleMedium" appearance="secondary">
+        <Text type="title" size="medium" appearance="gray">
           Complete your information to register in Linix
         </Text>
       </Stack>
@@ -76,10 +80,8 @@ const renderForm = (
               value={formik.values.name}
               type="text"
               size="compact"
-              maxLength={40}
-              minLength={1}
-              isFullWidth
-              isDisabled
+              fullwidth
+              disabled
               readOnly
             />
 
@@ -91,9 +93,9 @@ const renderForm = (
               value={formik.values.userID}
               type="number"
               size="compact"
-              isFullWidth
-              handleChange={formik.handleChange}
-              isDisabled
+              fullwidth
+              onChange={formik.handleChange}
+              disabled
               readOnly
             />
           </Stack>
@@ -111,15 +113,15 @@ const renderForm = (
               value={formik.values.phone}
               type="tel"
               iconAfter={<MdOutlineModeEdit size={18} />}
-              isInvalid={formik.errors.phone && formInvalid}
-              errorMessage={formik.errors.phone}
-              validMessage="El número de teléfono ingresado es válido"
-              isDisabled={loading}
+              // isInvalid={formik.errors.phone && formInvalid}
+              // errorMessage={formik.errors.phone}
+              // validMessage="El número de teléfono ingresado es válido"
+              disabled={loading}
               size="compact"
-              state={stateValue("phone")}
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              isFullWidth
+              // state={stateValue("phone")}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullwidth
             />
 
             <TextField
@@ -130,15 +132,15 @@ const renderForm = (
               value={formik.values.email}
               type="email"
               iconAfter={<MdOutlineModeEdit size={18} />}
-              isInvalid={formik.errors.email && formInvalid}
-              errorMessage={formik.errors.email}
-              validMessage="El correo electrónico ingresado es válido"
-              isDisabled={loading}
+              // isInvalid={formik.errors.email && formInvalid}
+              // errorMessage={formik.errors.email}
+              // validMessage="El correo electrónico ingresado es válido"
+              disabled={loading}
               size="compact"
-              state={stateValue("email")}
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              isFullWidth
+              // state={stateValue("email")}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullwidth
             />
           </Stack>
         </Fieldset>
@@ -152,16 +154,14 @@ const renderForm = (
               value={formik.values.username}
               type="text"
               size="compact"
-              isFullWidth
-              maxLength={40}
-              minLength={1}
-              handleChange={formik.handleChange}
-              isInvalid={formik.errors.username && formInvalid}
-              errorMessage={formik.errors.username}
-              validMessage="El nombre usuario ingresado es válido"
-              isDisabled={loading}
-              state={stateValue("username")}
-              handleBlur={formik.handleBlur}
+              fullwidth
+              onChange={formik.handleChange}
+              // isInvalid={formik.errors.username && formInvalid}
+              // errorMessage={formik.errors.username}
+              // validMessage="El nombre usuario ingresado es válido"
+              disabled={loading}
+              // state={stateValue("username")}
+              onBlur={formik.handleBlur}
             />
 
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
@@ -172,14 +172,14 @@ const renderForm = (
                 type="password"
                 size="compact"
                 placeholder="Contraseña"
-                isFullWidth
-                handleChange={formik.handleChange}
-                isInvalid={formik.errors.password && formInvalid}
-                errorMessage={formik.errors.password}
-                validMessage="La contraseña ingresada es válida"
-                isDisabled={loading}
-                state={stateValue("password")}
-                handleBlur={formik.handleBlur}
+                fullwidth
+                onChange={formik.handleChange}
+                // isInvalid={formik.errors.password && formInvalid}
+                // errorMessage={formik.errors.password}
+                // validMessage="La contraseña ingresada es válida"
+                disabled={loading}
+                // state={stateValue("password")}
+                onBlur={formik.handleBlur}
               />
               <TextField
                 id="confirmPassword"
@@ -187,15 +187,15 @@ const renderForm = (
                 name="confirmPassword"
                 type="password"
                 size="compact"
-                isFullWidth
+                fullwidth
                 placeholder="Confirmar Contraseña"
-                handleChange={formik.handleChange}
-                isInvalid={formik.errors.confirmPassword && formInvalid}
-                errorMessage={formik.errors.confirmPassword}
-                validMessage="Las contraseñas coinciden"
-                isDisabled={loading}
-                state={stateValue("confirmPassword")}
-                handleBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                // isInvalid={formik.errors.confirmPassword && formInvalid}
+                // errorMessage={formik.errors.confirmPassword}
+                // validMessage="Las contraseñas coinciden"
+                disabled={loading}
+                // state={stateValue("confirmPassword")}
+                onBlur={formik.handleBlur}
               />
             </Stack>
           </Stack>
@@ -204,9 +204,9 @@ const renderForm = (
           <Button
             iconBefore={<MdShortcut size={18} />}
             size="compact"
-            appearance="confirm"
-            isLoading={loading}
-            handleClick={handleSubmitForm}
+            appearance="success"
+            loading={loading}
+            onClick={handleSubmitForm}
           >
             Enviar
           </Button>

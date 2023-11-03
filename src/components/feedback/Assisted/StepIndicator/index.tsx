@@ -41,7 +41,7 @@ function StepIndicator(props: StepIndicatorProps) {
     if (isPreviousStep || inVerification) {
       return "light";
     }
-    return "disabled";
+    return "gray";
   };
 
   const getLabelAppearance = () => {
@@ -51,7 +51,7 @@ function StepIndicator(props: StepIndicatorProps) {
     if (isPreviousStep) {
       return "dark";
     }
-    return "disabled";
+    return "gray";
   };
 
   function handleClickStep() {
@@ -78,7 +78,7 @@ function StepIndicator(props: StepIndicatorProps) {
             onClick={handleClickStep}
           >
             {!isVerification ? (
-              <Text typo="titleSmall" appearance={getAppearance()}>
+              <Text type="title" size="small" appearance={getAppearance()}>
                 {stepNumber}
               </Text>
             ) : (
@@ -92,10 +92,11 @@ function StepIndicator(props: StepIndicatorProps) {
           />
         </StyledStepNumber>
         <Text
-          typo="labelMedium"
+          type="label"
+          size="medium"
           appearance={getLabelAppearance()}
           padding="8px"
-          align="center"
+          textAlign="center"
         >
           {stepName}
         </Text>

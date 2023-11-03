@@ -151,7 +151,7 @@ function renderFormFields(
         <Text
           type="label"
           size="medium"
-          appearance={readOnly ? "disabled" : "dark"}
+          appearance={readOnly ? "gray" : "dark"}
           padding="0px 0px 0px 16px"
         >
           Cargo

@@ -61,22 +61,19 @@ function DecisionModal(props: DecisionModalProps) {
             </Text>
             <MdClear size={24} cursor="pointer" onClick={closeModal} />
           </Stack>
-          <Text
-            appearance="secondary"
-            size={smallScreen ? "medium" : undefined}
-          >
+          <Text appearance="gray" size={smallScreen ? "medium" : undefined}>
             {description}
           </Text>
           <Stack justifyContent="flex-end" gap="8px">
             <Button
-              appearance="secondary"
+              appearance="gray"
               onClick={closeModal}
               spacing={smallScreen ? "compact" : undefined}
             >
               Cancel
             </Button>
             <Button
-              appearance={appearance}
+              appearance={"success"}
               loading={isLoading}
               onClick={handleConfirmationClick}
               spacing={smallScreen ? "compact" : undefined}
