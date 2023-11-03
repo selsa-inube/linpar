@@ -2,7 +2,7 @@ import {
   Button,
   Stack,
   Text,
-  TextField,
+  Textfield,
   useMediaQuery,
 } from "@inube/design-system";
 import { Fieldset } from "@src/components/inputs/Fieldset";
@@ -72,7 +72,7 @@ const renderForm = (
           icon={<MdPersonOutline size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-            <TextField
+            <Textfield
               label="Nombre"
               placeholder="Ingresa su nombre completo"
               name="name"
@@ -85,7 +85,7 @@ const renderForm = (
               readOnly
             />
 
-            <TextField
+            <Textfield
               label="Identificación"
               placeholder="Ingrese su número de identificación"
               name="userID"
@@ -105,7 +105,7 @@ const renderForm = (
           icon={<MdOutlinePhone size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-            <TextField
+            <Textfield
               label="Número de teléfono"
               placeholder="Ingrese su número telefónico"
               name="phone"
@@ -124,7 +124,7 @@ const renderForm = (
               fullwidth
             />
 
-            <TextField
+            <Textfield
               label="Correo"
               placeholder="Ingrese su dirección de correo electrónico"
               name="email"
@@ -146,7 +146,7 @@ const renderForm = (
         </Fieldset>
         <Fieldset title="Contraseña" icon={<MdOutlineShield size={24} />}>
           <Stack direction="column" gap="16px">
-            <TextField
+            <Textfield
               label="Nombre de Usuario"
               placeholder="Ingresa su nombre completo"
               name="username"
@@ -165,7 +165,7 @@ const renderForm = (
             />
 
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-              <TextField
+              <Textfield
                 id="password"
                 label="Contraseña"
                 name="password"
@@ -181,7 +181,7 @@ const renderForm = (
                 // state={stateValue("password")}
                 onBlur={formik.handleBlur}
               />
-              <TextField
+              <Textfield
                 id="confirmPassword"
                 label="Confirmar Contraseña"
                 name="confirmPassword"
