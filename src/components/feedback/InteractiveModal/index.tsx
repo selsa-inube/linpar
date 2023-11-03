@@ -65,14 +65,14 @@ const InteractiveModal = ({
                       />
                     )
                 )
-              : Object.keys(infoData).map((key, index) => (
+              : Object.keys(infoData).map((index) => (
                   <Textfield
                     key={index}
-                    label={key}
-                    name={key}
-                    id={key}
-                    placeholder={key}
-                    value={infoData[key]}
+                    label={index}
+                    name={index}
+                    id={index}
+                    placeholder={index}
+                    value={infoData[index]}
                     fullwidth={true}
                     type="text"
                     size="compact"

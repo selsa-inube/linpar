@@ -4,7 +4,7 @@ import { Button } from "@inube/design-system";
 import { useState } from "react";
 
 const story = {
-  title: "Components/Feedback/InteractiveModa",
+  title: "Components/Feedback/InteractiveModal",
   component: InteractiveModal,
 };
 
