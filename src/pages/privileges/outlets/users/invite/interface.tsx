@@ -1,12 +1,13 @@
 import { PageTitle } from "@components/PageTitle";
-import { SectionMessage } from "@components/feedback/SectionMessage";
-import { Breadcrumbs, Button, Stack, Textfield } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
+import { FormikValues } from "formik";
+import { Breadcrumbs, Button, Stack, Textfield } from "@inube/design-system";
+
+import { EMessageType } from "@src/types/messages.types";
+import { SectionMessage } from "@components/feedback/SectionMessage";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
-import { EMessageType } from "@src/types/messages.types";
 import { StyledFormContainer, StyledPageUsers } from "./styles";
-import { FormikValues } from "formik";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -155,10 +156,10 @@ function InviteUI(props: InviteUIProps) {
             </StyledFormContainer>
             <Button
               type="button"
-              appearance="confirm"
+              appearance="success"
               iconBefore={<MdOutlineShortcut size={18} />}
-              isLoading={loading}
-              handleClick={handleSubmit}
+              loading={loading}
+              onClick={handleSubmit}
             >
               Enviar
             </Button>
