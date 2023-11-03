@@ -1,7 +1,13 @@
 import { PageTitle } from "@components/PageTitle";
 import { MdOutlineShortcut } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Breadcrumbs, Button, Stack, Textfield } from "@inube/design-system";
+import {
+  Breadcrumbs,
+  Button,
+  Grid,
+  Stack,
+  Textfield,
+} from "@inube/design-system";
 
 import { EMessageType } from "@src/types/messages.types";
 import { SectionMessage } from "@components/feedback/SectionMessage";
@@ -68,92 +74,94 @@ function InviteUI(props: InviteUIProps) {
     <StyledPageUsers>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={usersInvitationsConfig[0].route} />
+          <Breadcrumbs crumbs={usersInvitationsConfig} />
           <PageTitle
-            title={usersInvitationsConfig[0].title}
+            title={usersInvitationsConfig[0].label}
             description={usersInvitationsConfig[0].description}
             navigatePage="/privileges/users"
           />
         </Stack>
         <form>
           <Stack gap="32px" alignItems="flex-end" direction="column">
-            <StyledFormContainer>
-              <Textfield
-                label="Nombre"
-                placeholder="Ingresa su nombre completo"
-                name="name"
-                id="name"
-                value={formik.values.name}
-                type="text"
-                // isInvalid={formik.errors.name && formInvalid}
-                required={true}
-                // errorMessage={formik.errors.name}
-                // validMessage="El nombre es valido"
-                disabled={loading}
-                size="compact"
-                fullwidth={true}
-                state={stateValue(formik, "name")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
+            <Grid templateColumns="repeat(2, 1fr)" width="100%" gap="24px">
+              <StyledFormContainer>
+                <Textfield
+                  label="Nombre"
+                  placeholder="Ingresa su nombre completo"
+                  name="name"
+                  id="name"
+                  value={formik.values.name}
+                  type="text"
+                  // isInvalid={formik.errors.name && formInvalid}
+                  required={true}
+                  // errorMessage={formik.errors.name}
+                  // validMessage="El nombre es valido"
+                  disabled={loading}
+                  size="compact"
+                  fullwidth={true}
+                  state={stateValue(formik, "name")}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
 
-              <Textfield
-                label="Identificación"
-                placeholder="Ingrese su número de identificación"
-                name="id"
-                id="id"
-                value={formik.values.id}
-                type="number"
-                // isInvalid={formik.errors.id && formInvalid}
-                required={true}
-                // errorMessage={formik.errors.id}
-                // validMessage="El número de identificación es valido"
-                disabled={loading}
-                size="compact"
-                fullwidth={true}
-                state={stateValue(formik, "id")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
+                <Textfield
+                  label="Identificación"
+                  placeholder="Ingrese su número de identificación"
+                  name="id"
+                  id="id"
+                  value={formik.values.id}
+                  type="number"
+                  // isInvalid={formik.errors.id && formInvalid}
+                  required={true}
+                  // errorMessage={formik.errors.id}
+                  // validMessage="El número de identificación es valido"
+                  disabled={loading}
+                  size="compact"
+                  fullwidth={true}
+                  state={stateValue(formik, "id")}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
 
-              <Textfield
-                label="Número de teléfono"
-                placeholder="Ingrese su número telefónico"
-                name="phone"
-                id="phone"
-                value={formik.values.phone}
-                type="tel"
-                // isInvalid={formik.errors.phone && formInvalid}
-                required={true}
-                // errorMessage={formik.errors.phone}
-                // validMessage="El número de teléfono es valido"
-                disabled={loading}
-                size="compact"
-                fullwidth={true}
-                state={stateValue(formik, "phone")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
+                <Textfield
+                  label="Número de teléfono"
+                  placeholder="Ingrese su número telefónico"
+                  name="phone"
+                  id="phone"
+                  value={formik.values.phone}
+                  type="tel"
+                  // isInvalid={formik.errors.phone && formInvalid}
+                  required={true}
+                  // errorMessage={formik.errors.phone}
+                  // validMessage="El número de teléfono es valido"
+                  disabled={loading}
+                  size="compact"
+                  fullwidth={true}
+                  state={stateValue(formik, "phone")}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
 
-              <Textfield
-                label="Correo"
-                placeholder="Ingrese su dirección de correo electrónico"
-                name="email"
-                id="email"
-                value={formik.values.email}
-                type="email"
-                required={true}
-                // isInvalid={formik.errors.email && formInvalid}
-                // errorMessage={formik.errors.email}
-                // validMessage="El correo electrónico es valido"
-                disabled={loading}
-                size="compact"
-                fullwidth={true}
-                state={stateValue(formik, "email")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-            </StyledFormContainer>
+                <Textfield
+                  label="Correo"
+                  placeholder="Ingrese su dirección de correo electrónico"
+                  name="email"
+                  id="email"
+                  value={formik.values.email}
+                  type="email"
+                  required={true}
+                  // isInvalid={formik.errors.email && formInvalid}
+                  // errorMessage={formik.errors.email}
+                  // validMessage="El correo electrónico es valido"
+                  disabled={loading}
+                  size="compact"
+                  fullwidth={true}
+                  state={stateValue(formik, "email")}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+              </StyledFormContainer>
+            </Grid>
             <Button
               type="button"
               appearance="success"

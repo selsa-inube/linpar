@@ -1,11 +1,13 @@
-import { useFormik } from "formik";
 import { useState } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
-import { InviteUI } from "./interface";
+import { useNavigate } from "react-router-dom";
+
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
+
+import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
-import { useNavigate } from "react-router-dom";
 
 const LOADING_TIMEOUT = 1500;
 
