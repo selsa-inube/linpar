@@ -1,21 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-interface IStyledContainer {
-  smallScreen: boolean;
-}
-
 const StyledAppPage = styled.div`
+  display: inherit;
   box-sizing: border-box;
-  height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr;
 `;
 
-const StyledContainer = styled.div<IStyledContainer>`
-  display: grid;
-  grid-template-columns: ${(props) =>
-    props.smallScreen ? "auto" : "auto 1fr"};
+const StyledContainer = styled.div`
+  display: inherit;
   overflow: hidden;
 `;
 

@@ -84,16 +84,16 @@ function InviteUI(props: InviteUIProps) {
                 id="name"
                 value={formik.values.name}
                 type="text"
-                isInvalid={formik.errors.name && formInvalid}
-                isRequired={true}
-                errorMessage={formik.errors.name}
-                validMessage="El nombre es valido"
-                isDisabled={loading}
+                // isInvalid={formik.errors.name && formInvalid}
+                required={true}
+                // errorMessage={formik.errors.name}
+                // validMessage="El nombre es valido"
+                disabled={loading}
                 size="compact"
-                isFullWidth={true}
+                fullwidth={true}
                 state={stateValue(formik, "name")}
-                handleChange={formik.handleChange}
-                handleBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
 
               <Textfield
@@ -103,16 +103,16 @@ function InviteUI(props: InviteUIProps) {
                 id="id"
                 value={formik.values.id}
                 type="number"
-                isInvalid={formik.errors.id && formInvalid}
-                isRequired={true}
-                errorMessage={formik.errors.id}
-                validMessage="El número de identificación es valido"
-                isDisabled={loading}
+                // isInvalid={formik.errors.id && formInvalid}
+                required={true}
+                // errorMessage={formik.errors.id}
+                // validMessage="El número de identificación es valido"
+                disabled={loading}
                 size="compact"
-                isFullWidth={true}
+                fullwidth={true}
                 state={stateValue(formik, "id")}
-                handleChange={formik.handleChange}
-                handleBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
 
               <Textfield
@@ -122,16 +122,16 @@ function InviteUI(props: InviteUIProps) {
                 id="phone"
                 value={formik.values.phone}
                 type="tel"
-                isInvalid={formik.errors.phone && formInvalid}
-                isRequired={true}
-                errorMessage={formik.errors.phone}
-                validMessage="El número de teléfono es valido"
-                isDisabled={loading}
+                // isInvalid={formik.errors.phone && formInvalid}
+                required={true}
+                // errorMessage={formik.errors.phone}
+                // validMessage="El número de teléfono es valido"
+                disabled={loading}
                 size="compact"
-                isFullWidth={true}
+                fullwidth={true}
                 state={stateValue(formik, "phone")}
-                handleChange={formik.handleChange}
-                handleBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
 
               <Textfield
@@ -141,16 +141,16 @@ function InviteUI(props: InviteUIProps) {
                 id="email"
                 value={formik.values.email}
                 type="email"
-                isRequired={true}
-                isInvalid={formik.errors.email && formInvalid}
-                errorMessage={formik.errors.email}
-                validMessage="El correo electrónico es valido"
-                isDisabled={loading}
+                required={true}
+                // isInvalid={formik.errors.email && formInvalid}
+                // errorMessage={formik.errors.email}
+                // validMessage="El correo electrónico es valido"
+                disabled={loading}
                 size="compact"
-                isFullWidth={true}
+                fullwidth={true}
                 state={stateValue(formik, "email")}
-                handleChange={formik.handleChange}
-                handleBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
             </StyledFormContainer>
             <Button

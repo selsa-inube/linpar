@@ -68,11 +68,9 @@ function renderFormFields(
         id="username"
         value={formik.values.username}
         type="text"
-        isDisabled
+        disabled
         size="compact"
-        isFullWidth
-        maxLength={40}
-        minLength={1}
+        fullwidth
         readOnly
       />
 
@@ -83,9 +81,9 @@ function renderFormFields(
         id="userID"
         value={formik.values.userID}
         type="number"
-        isDisabled
+        disabled
         size="compact"
-        isFullWidth
+        fullwidth
         readOnly
       />
 
@@ -97,16 +95,16 @@ function renderFormFields(
         value={formik.values.email}
         type="email"
         iconAfter={<MdOutlineModeEdit size={18} />}
-        isInvalid={formik.errors.email && formInvalid}
-        errorMessage={formik.errors.email}
-        validMessage="El correo electrónico ingresado es válido"
-        isDisabled={readOnly || loading}
+        // isInvalid={formik.errors.email && formInvalid}
+        // errorMessage={formik.errors.email}
+        // validMessage="El correo electrónico ingresado es válido"
+        disabled={readOnly || loading}
         readOnly={readOnly}
         size="compact"
-        isFullWidth
+        fullwidth
         state={stateValue("email")}
-        handleChange={handleChangeForm}
-        handleBlur={formik.handleBlur}
+        onChange={handleChangeForm}
+        onBlur={formik.handleBlur}
       />
 
       <Textfield
@@ -117,16 +115,16 @@ function renderFormFields(
         value={formik.values.phone}
         type="tel"
         iconAfter={<MdOutlineModeEdit size={18} />}
-        isInvalid={formik.errors.phone && formInvalid}
-        errorMessage={formik.errors.phone}
-        validMessage="El número de teléfono ingresado es válido"
-        isDisabled={readOnly || loading}
+        // isInvalid={formik.errors.phone && formInvalid}
+        // errorMessage={formik.errors.phone}
+        // validMessage="El número de teléfono ingresado es válido"
+        disabled={readOnly || loading}
         readOnly={readOnly}
         size="compact"
-        isFullWidth
+        fullwidth
         state={stateValue("phone")}
-        handleChange={handleChangeForm}
-        handleBlur={formik.handleBlur}
+        onChange={handleChangeForm}
+        onBlur={formik.handleBlur}
       />
 
       <Stack direction="column" gap="8px">

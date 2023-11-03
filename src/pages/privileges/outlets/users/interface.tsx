@@ -5,7 +5,7 @@ import {
   Button,
   Stack,
   Tabs,
-  TextField,
+  Textfield,
   useMediaQuery,
 } from "@inube/design-system";
 import { SectionMessage } from "@src/components/feedback/SectionMessage";
@@ -92,17 +92,16 @@ export default function UsersUI(props: UsersUIProps) {
             />
             <Stack justifyContent="space-between" alignItems="center">
               <StyledTextFieldContainer>
-                <TextField
+                <Textfield
                   name="searchUser"
                   id="searchUser"
                   placeholder="Buscar..."
                   type="search"
-                  minLength={1}
                   iconBefore={<MdSearch size={18} />}
                   size="compact"
-                  isFullWidth
+                  fullwidth
                   value={searchText}
-                  handleChange={handleSearchText}
+                  onChange={handleSearchText}
                 />
               </StyledTextFieldContainer>
 
