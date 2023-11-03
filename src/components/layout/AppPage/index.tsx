@@ -1,4 +1,4 @@
-import { Header, Nav, useMediaQuery } from "@inube/design-system";
+import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
 import { navigationConfig } from "@pages/home/config/apps.config";
 import { AppContext } from "@src/context";
 import { useContext } from "react";
@@ -25,28 +25,35 @@ function AppPage() {
   const smallScreen = useMediaQuery("(max-width: 849px)");
   return (
     <StyledAppPage>
-      <Header
-        portalId="portal"
-        navigation={navigationConfig}
-        logo={renderLogo(user.operator.logo)}
-        logoutPath="/"
-        userName={user.username}
-        businessUnit={user.company}
-        isBusinessUnit
-      />
-      <StyledContainer smallScreen={smallScreen}>
-        {!smallScreen && (
-          <Nav
-            navigation={navigationConfig}
-            logoutPath="/"
-            logoutTitle="Cerrar Sesión"
-          />
-        )}
+      <Grid templateRows="auto 1fr" height="100vh" justifyContent="unset">
+        <Header
+          portalId="portal"
+          navigation={navigationConfig}
+          logoURL={renderLogo(user.operator.logo)}
+          userName={user.username}
+          client={user.company}
+        />
+        <StyledContainer>
+          {" "}
+          <Grid
+            templateColumns={smallScreen ? "auto" : "auto 1fr"}
+            alignContent="unset"
+            style={{ overflow: "hidden" }}
+          >
+            {!smallScreen && (
+              <Nav
+                navigation={navigationConfig}
+                logoutPath="/"
+                logoutTitle="Cerrar Sesión"
+              />
+            )}
 
-        <StyledMain>
-          <Outlet />
-        </StyledMain>
-      </StyledContainer>
+            <StyledMain>
+              <Outlet />
+            </StyledMain>
+          </Grid>
+        </StyledContainer>
+      </Grid>
     </StyledAppPage>
   );
 }
