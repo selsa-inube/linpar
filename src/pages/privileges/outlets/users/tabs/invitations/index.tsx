@@ -1,5 +1,4 @@
-import { SectionMessage } from "@components/feedback/SectionMessage";
-import { Table, useMediaQuery } from "@inube/design-system";
+import { Table, useMediaQuery, SectionMessage } from "@inube/design-system";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { useState } from "react";
 import { resendInvitationMessages } from "../../config/resendInvitationUser.config";

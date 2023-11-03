@@ -1,6 +1,6 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
-import { SectionMessage } from "@src/components/feedback/SectionMessage";
+import { SectionMessage } from "@inube/design-system";
 import { assignmentFormMessages } from "../../config/messages.config";
 import {
   IAssignmentFormEntry,

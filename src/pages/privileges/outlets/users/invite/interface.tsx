@@ -1,6 +1,11 @@
 import { PageTitle } from "@components/PageTitle";
-import { SectionMessage } from "@components/feedback/SectionMessage";
-import { Breadcrumbs, Button, Stack, Textfield } from "@inube/design-system";
+import {
+  Breadcrumbs,
+  Button,
+  Stack,
+  Textfield,
+  SectionMessage,
+} from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
