@@ -56,29 +56,29 @@ function DecisionModal(props: DecisionModalProps) {
       <StyledModal smallScreen={smallScreen}>
         <Stack direction="column" gap={smallScreen ? "16px" : "24px"}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text typo={smallScreen ? "titleSmall" : "titleLarge"}>
+            <Text type="title" size={smallScreen ? "small" : "large"}>
               {title}
             </Text>
             <MdClear size={24} cursor="pointer" onClick={closeModal} />
           </Stack>
           <Text
             appearance="secondary"
-            typo={smallScreen ? "bodyMedium" : undefined}
+            size={smallScreen ? "medium" : undefined}
           >
             {description}
           </Text>
           <Stack justifyContent="flex-end" gap="8px">
             <Button
               appearance="secondary"
-              handleClick={closeModal}
+              onClick={closeModal}
               spacing={smallScreen ? "compact" : undefined}
             >
               Cancel
             </Button>
             <Button
               appearance={appearance}
-              isLoading={isLoading}
-              handleClick={handleConfirmationClick}
+              loading={isLoading}
+              onClick={handleConfirmationClick}
               spacing={smallScreen ? "compact" : undefined}
             >
               {actionText}
