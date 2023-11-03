@@ -1,5 +1,5 @@
-import { inube } from "@inube/design-system";
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
 
 const StyledWelcomeContainer = styled.div`
   background-color: ${inube.color.surface.dark.clear};
@@ -14,7 +14,7 @@ const Styledlmage = styled.img`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: ${inube.spacing.s400};
 `;
 
 export { StyledForm, StyledWelcomeContainer, Styledlmage };
