@@ -1,10 +1,13 @@
 enum EAppearance {
   PRIMARY = "primary",
-  SECONDARY = "secondary",
-  REMOVE = "remove",
-  CONFIRM = "confirm",
+  ERROR = "error",
   WARNING = "warning",
+  SUCCESS = "success",
+  INFORMATION = "information",
   HELP = "help",
+  LIGHT = "light",
+  GRAY = "gray",
+  DARK = "dark",
 }
 
 export { EAppearance };

@@ -40,7 +40,7 @@ const editUserContinueModalConfig = {
   description:
     "¿Seguro que desea salir? cualquier cambio no guardado se perderá",
   actionText: "Continuar",
-  appearance: EAppearance.CONFIRM,
+  appearance: EAppearance.SUCCESS,
 };
 
 const editUserSubjectCardLabels = [
