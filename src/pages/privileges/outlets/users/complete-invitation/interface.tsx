@@ -97,11 +97,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
       };
 
   return (
-    <Stack
-      smallScreen={smallScreen}
-      direction="column"
-      padding={smallScreen ? "s200" : "s400 s800"}
-    >
+    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={CompleteInvitationUserConfig[0].crumbs} />
