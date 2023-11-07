@@ -33,10 +33,10 @@ function SubjectCard(props: SubjectCardProps) {
         isActive={showModal}
       >
         <Stack direction="column">
-          <Text typo="labelMedium" align="end">
+          <Text type="label" size="medium" textAlign="end">
             {Object.values(subjectData)[0]}
           </Text>
-          <Text typo="bodySmall" align="end">
+          <Text size="small" textAlign="end">
             {Object.values(subjectData)[1]}
           </Text>
         </Stack>

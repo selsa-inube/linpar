@@ -17,7 +17,7 @@ function EditUser(props: EditUserProps) {
           type="link"
           path={`edit/${entry.id}`}
           variant="none"
-          appearance="secondary"
+          appearance="gray"
           spacing="compact"
         >
           Editar

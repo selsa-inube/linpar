@@ -8,7 +8,7 @@ const deleteUserModal = {
     description: ({ code }: IGeneralInformationEntry) =>
       `¿Está seguro de que desea eliminar al usuario ${code}?`,
     actionText: "Eliminar",
-    appearance: EAppearance.REMOVE,
+    appearance: EAppearance.ERROR,
   },
 };
 
@@ -19,7 +19,7 @@ const deleteUserMessages = {
     title: "¡Eliminación exitosa!",
     description: ({ code }: IGeneralInformationEntry) =>
       `Hemos eliminado con éxito al usuario ${code}.`,
-    appearance: EAppearance.CONFIRM,
+    appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
@@ -27,7 +27,7 @@ const deleteUserMessages = {
     title: "¡Uy, algo salió mal!",
     description: ({ code }: IGeneralInformationEntry) =>
       `Hemos presentado problemas eliminando al usuario ${code}.`,
-    appearance: EAppearance.REMOVE,
+    appearance: EAppearance.ERROR,
   },
 };
 

@@ -34,11 +34,9 @@ function AppPage() {
           client={user.company}
         />
         <StyledContainer>
-          {" "}
           <Grid
             templateColumns={smallScreen ? "auto" : "auto 1fr"}
             alignContent="unset"
-            style={{ overflow: "hidden" }}
           >
             {!smallScreen && (
               <Nav

@@ -88,7 +88,7 @@ function EditUserUI(props: EditUserUIProps) {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={editUserOptionsConfig.editUserPage.url} />
+          <Breadcrumbs crumbs={editUserOptionsConfig.editUserPage.crumbs} />
           <Stack justifyContent="space-between" alignItems="center" gap="49px">
             <PageTitle
               title={editUserOptionsConfig.editUserPage.label}
@@ -110,7 +110,7 @@ function EditUserUI(props: EditUserUIProps) {
             <Tabs
               tabs={Object.values(editUserTabsConfig)}
               selectedTab={selectedTab}
-              handleSelectedTab={handleTabChange}
+              onChange={handleTabChange}
             />
             {selectedTab === editUserTabsConfig.generalInformation.id && (
               <GeneralInformationForm

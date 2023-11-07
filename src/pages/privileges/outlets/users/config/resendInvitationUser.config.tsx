@@ -7,7 +7,7 @@ const resendInvitationModal = {
   description: ({ username }: IGeneralInformationEntry) =>
     `Are you sure you want to resend the  invitation ${username} ?`,
   textAction: "Resend",
-  appearance: EAppearance.CONFIRM,
+  appearance: EAppearance.SUCCESS,
 };
 
 const resendInvitationMessages = {
@@ -17,7 +17,7 @@ const resendInvitationMessages = {
     title: "Successful  forwarding!",
     description: ({ username }: IGeneralInformationEntry) =>
       `We have successfully  forward the invitation  to the user ${username}`,
-    appearance: EAppearance.CONFIRM,
+    appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
@@ -25,7 +25,7 @@ const resendInvitationMessages = {
     title: "Oops, something has gone wrong!",
     description: ({ username }: IGeneralInformationEntry) =>
       `We have presented problems forwarding the invitation to the user ${username}`,
-    appearance: EAppearance.REMOVE,
+    appearance: EAppearance.ERROR,
   },
 };
 
