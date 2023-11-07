@@ -34,12 +34,12 @@ function RespondInvitationRoutes() {
   return (
     <ThemeProvider theme={clientTheme}>
       <Routes>
-        {/* <Route path="/" element={<RespondInvitation />} /> */}
-        {/* <Route
+        <Route path="/" element={<RespondInvitation />} />
+        <Route
           path="confirmation-register-complete/"
           element={<ConfirmationRegisterComplete />}
-        /> */}
-        {/* <Route path="/*" element={<ErrorNotAvailable />} /> */}
+        />
+        <Route path="/*" element={<ErrorNotAvailable />} />
       </Routes>
     </ThemeProvider>
   );

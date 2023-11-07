@@ -68,7 +68,7 @@ function renderFormFields(
   return (
     <Grid
       templateColumns={
-        matches["(max-width: 1111px)"] ? "repeat(1, 1fr)" : "repeat(2, 1fr)"
+        matches["(max-width: 1111px)"] ? "1fr" : "repeat(2, 1fr)"
       }
       gap={"s300"}
       margin={"s0 s0 s400 s0"}
@@ -151,7 +151,7 @@ function renderFormFields(
         <Text
           type="label"
           size="medium"
-          appearance={readOnly ? "disabled" : "dark"}
+          appearance={readOnly ? "gray" : "dark"}
           padding="0px 0px 0px 16px"
         >
           Cargo

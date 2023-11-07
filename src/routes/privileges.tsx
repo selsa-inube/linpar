@@ -10,16 +10,16 @@ import { CompleteInvitation } from "@pages/privileges/outlets/users/complete-inv
 function PrivilegesRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Privileges />} />
-      <Route path="options" element={<PrivilegesOptions />} />
-      {/* <Route path="users" element={<Users />} /> */}
-      {/* <Route path="users/invite" element={<Invite />} /> */}
-      {/* <Route path="users/edit/:user_id" element={<EditUser />} /> */}
-      {/* <Route
+      <Route path="/" element={<Privileges />}>
+        <Route path="options" element={<PrivilegesOptions />} />
+        <Route path="users" element={<Users />} />
+        <Route path="users/invite" element={<Invite />} />
+        <Route path="users/edit/:user_id" element={<EditUser />} />
+        <Route
           path="users/complete-invitation/:invitation_id"
           element={<CompleteInvitation />}
-        /> */}
-      {/* </Route> */}
+        />
+      </Route>
       <Route path="/*" element={<ErrorPage />} />
     </Routes>
   );

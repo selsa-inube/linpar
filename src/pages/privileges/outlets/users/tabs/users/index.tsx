@@ -111,7 +111,7 @@ function UsersTab(props: UsersTabProps) {
           showComplete={smallScreen}
         />
       ),
-      type: "secondary",
+      type: "gray",
     },
     {
       id: "2",
@@ -131,7 +131,7 @@ function UsersTab(props: UsersTabProps) {
           showComplete={smallScreen}
         />
       ),
-      type: "remove",
+      type: "error",
     },
   ];
 
