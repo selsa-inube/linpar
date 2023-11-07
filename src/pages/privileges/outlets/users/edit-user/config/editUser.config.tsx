@@ -6,6 +6,32 @@ const editUserOptionsConfig = {
     label: "Editar Usuario",
     description: "Editar las propiedades y privilegios del usuario",
     url: "/privileges/users/user edition",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/home",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/users",
+        label: "Usuarios",
+        id: "/users",
+        isActive: false,
+      },
+      {
+        path: "/userEdition",
+        label: "user edition",
+        id: "/userEdition",
+        isActive: true,
+      },
+    ],
   },
 };
 
@@ -14,7 +40,7 @@ const editUserContinueModalConfig = {
   description:
     "¿Seguro que desea salir? cualquier cambio no guardado se perderá",
   actionText: "Continuar",
-  appearance: EAppearance.CONFIRM,
+  appearance: EAppearance.SUCCESS,
 };
 
 const editUserSubjectCardLabels = [

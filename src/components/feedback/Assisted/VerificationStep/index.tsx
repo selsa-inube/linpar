@@ -13,7 +13,9 @@ function VerificationStep(props: VerificationStepProps) {
   return (
     <Stack direction="column" gap={smallScreen ? "16px" : "32px"}>
       <Stack>
-        <Text typo="titleMedium">Verification</Text>
+        <Text type="title" size="medium">
+          Verification
+        </Text>
       </Stack>
       <Stack
         direction={smallScreen ? "column" : "row"}
@@ -27,7 +29,7 @@ function VerificationStep(props: VerificationStepProps) {
             <Accordion
               key={item.id}
               title={item.title}
-              isFullWidth={smallScreen || item.isFullWidth}
+              // isFullWidth={smallScreen || item.isFullWidth}
             >
               {item.content}
             </Accordion>

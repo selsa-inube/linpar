@@ -23,9 +23,9 @@ function DeleteInvitationUI(props: DeleteInvitationUIProps) {
       {showComplete ? (
         <Button
           iconBefore={<MdOutlineDelete size={18} />}
-          handleClick={toggleModal}
+          onClick={toggleModal}
           variant="none"
-          appearance="remove"
+          appearance="error"
           spacing="compact"
         >
           Eliminar
