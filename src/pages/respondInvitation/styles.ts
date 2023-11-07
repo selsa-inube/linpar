@@ -1,5 +1,9 @@
-import { colors } from "@styles/colors";
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
+
+interface IStyledRespondInvitation {
+  theme?: typeof inube;
+}
 
 const StyledPageContainer = styled.div`
   display: grid;
@@ -8,11 +12,12 @@ const StyledPageContainer = styled.div`
 `;
 
 const StyledWelcomeContainer = styled.div`
-  background-color: ${colors.ref.palette.neutral.n30};
-  padding: 64px;
+  background-color: ${({ theme }: IStyledRespondInvitation) =>
+    theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
+  padding: ${inube.spacing.s800};
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: ${inube.spacing.s450};
 `;
 
 const Styledlmage = styled.img`
@@ -24,7 +29,7 @@ const Styledlmage = styled.img`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: ${inube.spacing.s400};
 `;
 
 export { StyledForm, StyledPageContainer, StyledWelcomeContainer, Styledlmage };

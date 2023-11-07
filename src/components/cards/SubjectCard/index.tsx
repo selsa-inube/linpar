@@ -43,13 +43,14 @@ function SubjectCard(props: SubjectCardProps) {
         <StyledIcon isActive={showModal}>{icon}</StyledIcon>
       </StyledSubjectCard>
       {showModal && (
-        <InteractiveModal
-          title={title}
-          closeModal={handleToggleModal}
-          infoData={subjectData}
-          labels={labels}
-          portalId="portal"
-        />
+        // <InteractiveModal
+        //   title={title}
+        //   closeModal={handleToggleModal}
+        //   infoData={subjectData}
+        //   labels={labels}
+        //   portalId="portal"
+        // />
+        <></>
       )}
     </>
   );
