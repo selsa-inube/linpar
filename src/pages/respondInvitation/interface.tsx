@@ -1,12 +1,3 @@
-import {
-  Button,
-  Grid,
-  Stack,
-  Text,
-  Textfield,
-  useMediaQuery,
-} from "@inube/design-system";
-import { Fieldset } from "@src/components/inputs/Fieldset";
 import { FormikValues } from "formik";
 import {
   MdOutlineModeEdit,
@@ -15,7 +6,18 @@ import {
   MdPersonOutline,
   MdShortcut,
 } from "react-icons/md";
-import { StyledForm, StyledWelcomeContainer, Styledlmage } from "./styles";
+
+import {
+  Button,
+  Grid,
+  Stack,
+  Text,
+  Textfield,
+  useMediaQuery,
+} from "@inube/design-system";
+
+import { Fieldset } from "@src/components/inputs/Fieldset";
+import { StyledForm, Styledlmage, StyledWelcomeContainer } from "./styles";
 import { IClient } from "./types";
 
 const renderHead = (clientData: IClient, smallScreen?: boolean) => {
@@ -31,7 +33,6 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
             Portal de Clientes
           </Text>
         </Stack>
-
         <Text appearance="gray">
           Complete su invitación y pase a formar parte de la comunidad.
         </Text>
@@ -43,7 +44,6 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
 const renderForm = (
   formik: FormikValues,
   loading: boolean,
-
   handleSubmitForm: () => void,
   smallScreen?: boolean
 ) => {
@@ -82,7 +82,6 @@ const renderForm = (
               disabled
               readOnly
             />
-
             <Textfield
               id="userID"
               name="userID"
@@ -124,7 +123,6 @@ const renderForm = (
               onBlur={formik.handleBlur}
               fullwidth
             />
-
             <Textfield
               id="email"
               label="Correo"
@@ -168,7 +166,6 @@ const renderForm = (
               state={stateValue("username")}
               onBlur={formik.handleBlur}
             />
-
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
               <Textfield
                 id="password"
@@ -237,31 +234,23 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
   const { loading, formik, handleSubmitForm, clientData } = props;
 
   const smallScreen = useMediaQuery("(max-width: 820px)");
+  console.log(smallScreen, "smallScreen1");
 
   if (smallScreen) {
     return (
       <Stack direction="column" gap="32px" padding="s200">
-        <Stack direction="column" gap="32px">
-          {renderHead(clientData, smallScreen)}
-        </Stack>
-        {renderForm(
-          formik,
-          loading,
-
-          handleSubmitForm,
-          smallScreen
-        )}
+        {!smallScreen && renderHead(clientData, smallScreen)}
+        {renderForm(formik, loading, handleSubmitForm, smallScreen)}
       </Stack>
     );
   }
+  console.log(smallScreen, "smallScreen2");
 
   return (
     <Grid templateColumns="1fr 2fr">
-      <StyledWelcomeContainer>
-        <Stack direction="column" gap="36px" padding="s800">
-          {renderHead(clientData)}
-        </Stack>
-      </StyledWelcomeContainer>
+      <Stack direction="column" gap="36px" padding="s800">
+        {renderHead(clientData)}
+      </Stack>
       <Stack direction="column" gap="48px" padding="s800">
         {renderForm(formik, loading, handleSubmitForm)}
       </Stack>
