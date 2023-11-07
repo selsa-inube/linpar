@@ -23,7 +23,6 @@ export const Default = (args: InteractiveModalProps) => {
   return (
     <>
       <Button onClick={() => setShowModal(true)}>Show Modal</Button>
-      <div id="portals"></div>
       {showModal && (
         <InteractiveModal {...args} closeModal={() => setShowModal(false)} />
       )}
@@ -32,7 +31,7 @@ export const Default = (args: InteractiveModalProps) => {
 };
 
 Default.args = {
-  portalId: "portals",
+  portalId: "portal",
   title: "User Information",
   infoData: data,
   infoTitle: "Información",
