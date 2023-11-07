@@ -50,6 +50,32 @@ const CompleteInvitationUserConfig = [
     description:
       "Complete la información para finalizar el proceso de registro.",
     route: "/privileges/users/Complete user registration",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/home",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/users",
+        label: "Usuarios",
+        id: "/users",
+        isActive: false,
+      },
+      {
+        path: "/completeUserRegistration",
+        label: "Complete user registration",
+        id: "/completeUserRegistration",
+        isActive: true,
+      },
+    ],
   },
 ];
 
