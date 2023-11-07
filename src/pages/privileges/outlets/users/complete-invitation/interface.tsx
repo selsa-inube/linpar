@@ -1,15 +1,17 @@
-import { PageTitle } from "@components/PageTitle";
-import { SubjectCard } from "@components/cards/SubjectCard";
-import { ItemNotFound } from "@components/layout/ItemNotFound";
+import { MdPersonOutline } from "react-icons/md";
 import {
+  Assisted,
   Breadcrumbs,
   Stack,
   useMediaQuery,
-  Assisted,
 } from "@inube/design-system";
-import { IVerificationData } from "@src/components/feedback/Assisted/types";
-import { DecisionModal } from "@src/components/feedback/DecisionModal";
-import { MdPersonOutline } from "react-icons/md";
+
+import { SubjectCard } from "@components/cards/SubjectCard";
+import { IVerificationData } from "@components/feedback/Assisted/types";
+import { DecisionModal } from "@components/feedback/DecisionModal";
+import { ItemNotFound } from "@components/layout/ItemNotFound";
+import { PageTitle } from "@components/PageTitle";
+
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import { EventsForm } from "../edit-user/forms/EventsForm";
@@ -21,6 +23,7 @@ import {
   IFormsInvitation,
   IGeneralInformationEntry,
 } from "../types/forms.types";
+
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
@@ -28,7 +31,6 @@ import {
   stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
-import { StyledContainer } from "./styles";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -95,7 +97,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
       };
 
   return (
-    <StyledContainer smallScreen={smallScreen}>
+    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={CompleteInvitationUserConfig[0].crumbs} />
@@ -171,7 +173,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         )}
       </Stack>
       {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
-    </StyledContainer>
+    </Stack>
   );
 }
 
