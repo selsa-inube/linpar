@@ -121,7 +121,12 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               steps={Object.values(stepsRegisterUserConfig)}
               currentStepId={currentStep}
               handlePrev={handleStepChange}
-              handleNext={handleToggleModal}
+              handleNext={
+                currentStep ===
+                Object.values(stepsRegisterUserConfig).length - 1
+                  ? handleToggleModal
+                  : handleStepChange
+              }
             />
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
