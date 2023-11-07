@@ -1,8 +1,4 @@
-import {
-  SectionMessage,
-  SectionMessageProps,
-} from "@components/feedback/SectionMessage";
-import { Table, useMediaQuery } from "@inube/design-system";
+import { Table, useMediaQuery, SectionMessage } from "@inube/design-system";
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import { useState } from "react";
 import { activateUserMessages } from "../../config/activateUser.config";
