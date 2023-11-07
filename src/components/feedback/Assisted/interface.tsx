@@ -122,7 +122,8 @@ function AssistedUI(props: IAssistedUIProps) {
           >
             <Text
               type="label"
-              appearance={currentStep === steps[0].id ? "gray" : "primary"}
+              appearance={"primary"}
+              disabled={currentStep === steps[0].id}
             >
               Prev
             </Text>
