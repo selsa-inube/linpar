@@ -11,7 +11,7 @@ import {
 } from "@inube/design-system";
 
 import { EMessageType } from "@src/types/messages.types";
-//import { SectionMessage } from "@components/feedback/SectionMessage";
+
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 
