@@ -4,7 +4,6 @@ import {
   Breadcrumbs,
   Stack,
   useMediaQuery,
-  inube,
 } from "@inube/design-system";
 
 import { SubjectCard } from "@components/cards/SubjectCard";
