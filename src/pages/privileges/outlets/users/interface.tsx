@@ -7,8 +7,8 @@ import {
   Tabs,
   Textfield,
   useMediaQuery,
+  SectionMessage,
 } from "@inube/design-system";
-import { SectionMessage } from "@src/components/feedback/SectionMessage";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   privilegeConfig,

@@ -1,8 +1,12 @@
 import { MdPersonOutline } from "react-icons/md";
-import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
+import {
+  Assisted,
+  Breadcrumbs,
+  Stack,
+  useMediaQuery,
+} from "@inube/design-system";
 
 import { SubjectCard } from "@components/cards/SubjectCard";
-import { Assisted } from "@components/feedback/Assisted";
 import { IVerificationData } from "@components/feedback/Assisted/types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
@@ -71,7 +75,6 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
     handleCompleteInvitation,
     handleToggleModal,
     showModal,
-    verificationData,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -98,7 +101,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={CompleteInvitationUserConfig[0].route} />
+          <Breadcrumbs crumbs={CompleteInvitationUserConfig[0].crumbs} />
           <Stack justifyContent="space-between" alignItems="center" gap="50px">
             <PageTitle
               title={CompleteInvitationUserConfig[0].title}
@@ -119,10 +122,9 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
           <>
             <Assisted
               steps={Object.values(stepsRegisterUserConfig)}
-              handleStepChange={handleStepChange}
-              handleFinishAssisted={handleToggleModal}
-              currentStep={currentStep}
-              verificationData={verificationData}
+              currentStepId={currentStep}
+              handlePrev={handleStepChange}
+              handleNext={handleToggleModal}
             />
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
