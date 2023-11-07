@@ -234,7 +234,6 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
   const { loading, formik, handleSubmitForm, clientData } = props;
 
   const smallScreen = useMediaQuery("(max-width: 820px)");
-  console.log(smallScreen, "smallScreen1");
 
   if (smallScreen) {
     return (
@@ -244,7 +243,6 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
       </Stack>
     );
   }
-  console.log(smallScreen, "smallScreen2");
 
   return (
     <Grid templateColumns="1fr 2fr">
