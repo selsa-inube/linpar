@@ -4,6 +4,7 @@ import {
   Text,
   Textfield,
   useMediaQuery,
+  Grid,
 } from "@inube/design-system";
 import { Fieldset } from "@src/components/inputs/Fieldset";
 import { FormikValues } from "formik";
@@ -15,10 +16,9 @@ import {
   MdShortcut,
 } from "react-icons/md";
 import {
-  StyledForm,
-  StyledPageContainer,
   StyledWelcomeContainer,
   Styledlmage,
+  StyledPageContainer,
 } from "./styles";
 import { IClient } from "./types";
 
@@ -66,7 +66,7 @@ const renderForm = (
           Complete your information to register in Linix
         </Text>
       </Stack>
-      <StyledForm>
+      <Stack direction="column" gap="32px">
         <Fieldset
           title="Información Personal"
           icon={<MdPersonOutline size={24} />}
@@ -211,7 +211,7 @@ const renderForm = (
             Enviar
           </Button>
         </Stack>
-      </StyledForm>
+      </Stack>
     </Stack>
   );
 };
@@ -248,10 +248,16 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
 
   return (
     <StyledPageContainer>
-      <StyledWelcomeContainer>{renderHead(clientData)}</StyledWelcomeContainer>
-      <Stack direction="column" gap="48px" padding="64px">
-        {renderForm(formik, loading, formInvalid, handleSubmitForm)}
-      </Stack>
+      <Grid templateColumns="1fr 2fr">
+        <StyledWelcomeContainer>
+          <Stack padding="s800" direction="column" gap="36px">
+            {renderHead(clientData)}
+          </Stack>
+        </StyledWelcomeContainer>
+        <Stack direction="column" gap="48px" padding="s800">
+          {renderForm(formik, loading, formInvalid, handleSubmitForm)}
+        </Stack>
+      </Grid>
     </StyledPageContainer>
   );
 }

@@ -8,6 +8,7 @@ import {
   SectionMessage,
   Stack,
   Textfield,
+  useMediaQueries,
 } from "@inube/design-system";
 
 import { EMessageType } from "@src/types/messages.types";
@@ -72,6 +73,9 @@ function InviteUI(props: InviteUIProps) {
     handleSubmit,
   } = props;
 
+  const mediaQueries = ["(max-width: 1111px)", "(max-width: 565px)"];
+  const matches = useMediaQueries(mediaQueries);
+
   return (
     <Stack direction="column" padding="s400 s800">
       <Stack gap="48px" direction="column">
@@ -86,10 +90,13 @@ function InviteUI(props: InviteUIProps) {
         <form>
           <Stack gap="32px" alignItems="flex-end" direction="column">
             <Grid
-              templateColumns={screenMovil ? "1fr" : "repeat(2, 1fr)"}
-              width="100%"
-              gap="s300"
-              autoRows="auto"
+              templateColumns={
+                matches["(max-width: 1111px)"] ? "1fr" : "repeat(2, 1fr)"
+              }
+              gap={"s300"}
+              margin={"s0 s0 s400 s0"}
+              width={"100%"}
+              autoRows="unset"
             >
               <Textfield
                 label="Nombre"
@@ -162,7 +169,7 @@ function InviteUI(props: InviteUIProps) {
                 value={formik.values.email}
                 type="email"
                 required={true}
-                messaghe={
+                message={
                   stateValue(formik, "email") === "valid"
                     ? formik.errors.email
                     : "El correo electrónico es valido"
