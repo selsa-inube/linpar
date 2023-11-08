@@ -1,6 +1,11 @@
 import { PageTitle } from "@components/PageTitle";
-import { SectionMessage } from "@components/feedback/SectionMessage";
-import { Breadcrumbs, Button, Stack, Textfield } from "@inube/design-system";
+import {
+  Breadcrumbs,
+  Button,
+  Stack,
+  Textfield,
+  SectionMessage,
+} from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
@@ -67,7 +72,7 @@ function InviteUI(props: InviteUIProps) {
     <StyledPageUsers>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={usersInvitationsConfig[0].route} />
+          <Breadcrumbs crumbs={usersInvitationsConfig[0].crumbs} />
           <PageTitle
             title={usersInvitationsConfig[0].title}
             description={usersInvitationsConfig[0].description}
@@ -155,10 +160,10 @@ function InviteUI(props: InviteUIProps) {
             </StyledFormContainer>
             <Button
               type="button"
-              appearance="confirm"
+              appearance="success"
               iconBefore={<MdOutlineShortcut size={18} />}
-              isLoading={loading}
-              handleClick={handleSubmit}
+              loading={loading}
+              onClick={handleSubmit}
             >
               Enviar
             </Button>

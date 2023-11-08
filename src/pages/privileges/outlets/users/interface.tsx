@@ -7,8 +7,8 @@ import {
   Tabs,
   Textfield,
   useMediaQuery,
+  SectionMessage,
 } from "@inube/design-system";
-import { SectionMessage } from "@src/components/feedback/SectionMessage";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   privilegeConfig,
@@ -77,7 +77,7 @@ export default function UsersUI(props: UsersUIProps) {
       <StyledContainer smallScreen={smallScreen}>
         <Stack gap="48px" direction="column">
           <Stack gap="32px" direction="column">
-            <Breadcrumbs route={privilegeOptionsConfig[0].url} />
+            <Breadcrumbs crumbs={privilegeOptionsConfig[0].crumbs} />
             <PageTitle
               title={privilegeConfig.label}
               description={privilegeConfig.description}
@@ -88,7 +88,7 @@ export default function UsersUI(props: UsersUIProps) {
             <Tabs
               tabs={Object.values(privilegeUserTabsConfig)}
               selectedTab={isSelected}
-              handleSelectedTab={handleTabChange}
+              onChange={handleTabChange}
             />
             <Stack justifyContent="space-between" alignItems="center">
               <StyledTextFieldContainer>

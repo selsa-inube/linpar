@@ -48,9 +48,9 @@ function DeleteUserUI(props: DeleteUserUIProps) {
       {showComplete ? (
         <Button
           iconBefore={<MdOutlineDelete size={18} />}
-          handleClick={handleShowModal}
+          onClick={handleShowModal}
           variant="none"
-          appearance="remove"
+          appearance="error"
           spacing="compact"
         >
           Eliminar

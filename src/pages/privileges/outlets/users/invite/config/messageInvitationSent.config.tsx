@@ -7,14 +7,14 @@ const messageInvitationSentConfig = {
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Envío exitoso!",
     description: "Hemos enviado con éxito la invitación al usuario",
-    appearance: EAppearance.CONFIRM,
+    appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
     description: "Algunos de los campos tienen errores intente nuevamente",
-    appearance: EAppearance.REMOVE,
+    appearance: EAppearance.ERROR,
   },
 };
 

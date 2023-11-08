@@ -50,6 +50,32 @@ const CompleteInvitationUserConfig = [
     description:
       "Complete la información para finalizar el proceso de registro.",
     route: "/privileges/users/Complete user registration",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/home",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/users",
+        label: "Usuarios",
+        id: "/users",
+        isActive: false,
+      },
+      {
+        path: "/completeUserRegistration",
+        label: "Complete user registration",
+        id: "/completeUserRegistration",
+        isActive: true,
+      },
+    ],
   },
 ];
 
@@ -80,7 +106,7 @@ const finishAssistedModalConfig = {
   title: "Finalizar registro",
   description: "¿Está seguro de que desea finalizar el proceso de registro?",
   actionText: "Finalizar",
-  appearance: EAppearance.CONFIRM,
+  appearance: EAppearance.SUCCESS,
 };
 
 const finishAssistedMessagesConfig = {
@@ -90,7 +116,7 @@ const finishAssistedMessagesConfig = {
     title: "Activación exitosa",
     description: (value: string) =>
       `Hemos activado con éxito el usuario ${value}.`,
-    appearance: EAppearance.CONFIRM,
+    appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
@@ -98,7 +124,7 @@ const finishAssistedMessagesConfig = {
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
       `Hemos presentado problemas activando el usuario  ${value}.`,
-    appearance: EAppearance.REMOVE,
+    appearance: EAppearance.ERROR,
   },
 };
 

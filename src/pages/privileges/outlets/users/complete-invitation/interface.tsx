@@ -1,11 +1,17 @@
-import { PageTitle } from "@components/PageTitle";
-import { SubjectCard } from "@components/cards/SubjectCard";
-import { Assisted } from "@components/feedback/Assisted";
-import { ItemNotFound } from "@components/layout/ItemNotFound";
-import { Breadcrumbs, Stack, useMediaQuery } from "@inube/design-system";
-import { IVerificationData } from "@src/components/feedback/Assisted/types";
-import { DecisionModal } from "@src/components/feedback/DecisionModal";
 import { MdPersonOutline } from "react-icons/md";
+import {
+  Assisted,
+  Breadcrumbs,
+  Stack,
+  useMediaQuery,
+} from "@inube/design-system";
+
+import { SubjectCard } from "@components/cards/SubjectCard";
+import { IVerificationData } from "@components/feedback/Assisted/types";
+import { DecisionModal } from "@components/feedback/DecisionModal";
+import { ItemNotFound } from "@components/layout/ItemNotFound";
+import { PageTitle } from "@components/PageTitle";
+
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import { EventsForm } from "../edit-user/forms/EventsForm";
@@ -17,6 +23,7 @@ import {
   IFormsInvitation,
   IGeneralInformationEntry,
 } from "../types/forms.types";
+
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
@@ -24,7 +31,6 @@ import {
   stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
-import { StyledContainer } from "./styles";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -68,7 +74,6 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
     handleCompleteInvitation,
     handleToggleModal,
     showModal,
-    verificationData,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -92,10 +97,10 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
       };
 
   return (
-    <StyledContainer smallScreen={smallScreen}>
+    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={CompleteInvitationUserConfig[0].route} />
+          <Breadcrumbs crumbs={CompleteInvitationUserConfig[0].crumbs} />
           <Stack justifyContent="space-between" alignItems="center" gap="50px">
             <PageTitle
               title={CompleteInvitationUserConfig[0].title}
@@ -116,10 +121,9 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
           <>
             <Assisted
               steps={Object.values(stepsRegisterUserConfig)}
-              handleStepChange={handleStepChange}
-              handleFinishAssisted={handleToggleModal}
-              currentStep={currentStep}
-              verificationData={verificationData}
+              currentStepId={currentStep}
+              handlePrev={handleStepChange}
+              handleNext={handleToggleModal}
             />
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
@@ -169,7 +173,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         )}
       </Stack>
       {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
-    </StyledContainer>
+    </Stack>
   );
 }
 

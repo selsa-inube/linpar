@@ -44,13 +44,14 @@ function SubjectCard(props: SubjectCardProps) {
         />
       </StyledSubjectCard>
       {showModal && (
-        <InteractiveModal
-          title={title}
-          closeModal={handleToggleModal}
-          infoData={subjectData}
-          labels={labels}
-          portalId="portal"
-        />
+        // <InteractiveModal
+        //   title={title}
+        //   closeModal={handleToggleModal}
+        //   infoData={subjectData}
+        //   labels={labels}
+        //   portalId="portal"
+        // />
+        <></>
       )}
     </>
   );

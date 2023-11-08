@@ -330,4 +330,12 @@ const positions = [
   { value: "Credit Analyst", label: "Credit Analyst" },
 ];
 
-export { positions, userEntriesDataMock };
+const options = [
+  { id: "Diseñador", label: "Diseñador" },
+  { id: "Desarrollador", label: "Desarrollador Web" },
+  { id: "Product Manager", label: "Product Manager" },
+  { id: "Adviser", label: "Adviser" },
+  { id: "Credit Analyst", label: "Credit Analyst" },
+];
+
+export { positions, userEntriesDataMock, options };
