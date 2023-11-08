@@ -1,46 +1,38 @@
 import { colors } from "@styles/colors";
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
 
 interface IStyledSubjectCard {
   isActive: boolean;
   smallScreen: boolean;
+  theme?: typeof inube;
 }
 
 const StyledSubjectCard = styled.div<IStyledSubjectCard>`
   box-sizing: border-box;
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
-  border-radius: 8px;
-  border: 1px solid ${colors.ref.palette.neutral.n30};
+  gap: ${inube.spacing.s100};
+  border-radius: ${inube.spacing.s100};
+  border: 1px solid
+    ${({ theme }: IStyledSubjectCard) =>
+      theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
   cursor: pointer;
-  padding: ${(props) => (props.smallScreen ? "16px" : "8px 16px")};
+  padding: ${({ smallScreen }: IStyledSubjectCard) =>
+    smallScreen
+      ? inube.spacing.s300
+      : `${inube.spacing.s100} ${inube.spacing.s200}`};
   width: ${(props) => (props.smallScreen ? "56px" : "260px")};
-  background-color: ${(props) =>
-    props.isActive
-      ? colors.ref.palette.neutral.n30
-      : colors.ref.palette.neutral.n0};
-  box-shadow: ${(props) =>
-    props.isActive ? "none" : "0px 1px 2px " + colors.ref.palette.neutral.n30};
+  background-color: ${({ theme, isActive }: IStyledSubjectCard) =>
+    isActive
+      ? theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular
+      : theme?.color?.surface?.light?.clear || inube.color.surface.light.clear};
+  box-shadow: ${({ isActive }: IStyledSubjectCard) =>
+    isActive ? "none" : "0px 1px 2px " + inube.color.surface.gray.regular};
 
   & div:first-child {
     display: ${(props) => (props.smallScreen ? "none" : "block")};
   }
 `;
 
-interface IStyledIcon {
-  isActive: boolean;
-}
-
-const StyledIcon = styled.i<IStyledIcon>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 1000ms ease;
-  color: ${(props) =>
-    props.isActive
-      ? colors.ref.palette.blue.b400
-      : colors.ref.palette.neutral.n900};
-`;
-
-export { StyledIcon, StyledSubjectCard };
+export { StyledSubjectCard };

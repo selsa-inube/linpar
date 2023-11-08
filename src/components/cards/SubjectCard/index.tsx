@@ -1,12 +1,8 @@
-import {
-  InteractiveModal,
-  Stack,
-  Text,
-  useMediaQuery,
-} from "@inube/design-system";
+import { Stack, Text, Icon, useMediaQuery } from "@inube/design-system";
 import { useState } from "react";
-import { StyledIcon, StyledSubjectCard } from "./styles";
+import { StyledSubjectCard } from "./styles";
 import { ILabel } from "./types";
+import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
 
 interface SubjectCardProps {
   subjectData: Record<string, string | number>;
@@ -40,17 +36,21 @@ function SubjectCard(props: SubjectCardProps) {
             {Object.values(subjectData)[1]}
           </Text>
         </Stack>
-        <StyledIcon isActive={showModal}>{icon}</StyledIcon>
+        <Icon
+          appearance={showModal ? "primary" : "dark"}
+          icon={icon}
+          size="24px"
+          shape="circle"
+        />
       </StyledSubjectCard>
       {showModal && (
-        // <InteractiveModal
-        //   title={title}
-        //   closeModal={handleToggleModal}
-        //   infoData={subjectData}
-        //   labels={labels}
-        //   portalId="portal"
-        // />
-        <></>
+        <InteractiveModal
+          title={title}
+          closeModal={handleToggleModal}
+          infoData={subjectData}
+          labels={labels}
+          portalId="portal"
+        />
       )}
     </>
   );
