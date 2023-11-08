@@ -12,7 +12,7 @@ interface InteractiveModalProps {
   portalId: string;
   title: string;
   closeModal: () => void;
-  infoData: { [key: string]: string };
+  infoData: { [key: string]: string } | Record<string, string | number>;
   actions?: Action[];
   labels?: Field[];
   infoTitle?: string;
