@@ -1,11 +1,14 @@
-import { useFormik } from "formik";
 import { useState } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
-import { InviteUI } from "./interface";
+import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "@inube/design-system";
+
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
+
+import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
-import { useNavigate } from "react-router-dom";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -28,6 +31,8 @@ function Invite() {
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
   const navigate = useNavigate();
+
+  const screenMovil = useMediaQuery("(max-width: 744px)");
 
   const formik = useFormik({
     initialValues,
@@ -71,6 +76,7 @@ function Invite() {
       showMessage={showMessage}
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleSubmit={handleSubmit}
+      screenMovil={screenMovil}
     />
   );
 }
