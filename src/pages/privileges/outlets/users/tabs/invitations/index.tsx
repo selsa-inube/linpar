@@ -43,7 +43,7 @@ function InvitationsTab(props: InvitationsTabProps) {
           showComplete={smallScreen}
         />
       ),
-      type: "secondary",
+      type: "gray",
     },
     {
       id: "2",
@@ -66,7 +66,7 @@ function InvitationsTab(props: InvitationsTabProps) {
           showComplete={smallScreen}
         />
       ),
-      type: "remove",
+      type: "error",
     },
   ];
 

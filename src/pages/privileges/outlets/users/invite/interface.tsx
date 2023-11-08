@@ -72,7 +72,7 @@ function InviteUI(props: InviteUIProps) {
     <StyledPageUsers>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs route={usersInvitationsConfig[0].route} />
+          <Breadcrumbs crumbs={usersInvitationsConfig[0].crumbs} />
           <PageTitle
             title={usersInvitationsConfig[0].title}
             description={usersInvitationsConfig[0].description}
@@ -160,10 +160,10 @@ function InviteUI(props: InviteUIProps) {
             </StyledFormContainer>
             <Button
               type="button"
-              appearance="confirm"
+              appearance="success"
               iconBefore={<MdOutlineShortcut size={18} />}
-              isLoading={loading}
-              handleClick={handleSubmit}
+              loading={loading}
+              onClick={handleSubmit}
             >
               Enviar
             </Button>

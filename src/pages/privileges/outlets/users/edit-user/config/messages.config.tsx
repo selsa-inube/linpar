@@ -7,14 +7,14 @@ const assignmentFormMessages = {
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Privilegios actualizados!",
     description: "Hemos actualizado correctamente los privilegios",
-    appearance: EAppearance.CONFIRM,
+    appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
     icon: <MdOutlineSentimentNeutral size={18} />,
     title: "¡Uy, algo ha salido mal!",
     description: "Hemos tenido problemas para actualizar los privilegios",
-    appearance: EAppearance.REMOVE,
+    appearance: EAppearance.ERROR,
   },
 };
 

@@ -29,10 +29,9 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
           <Text type="headline" size="small">
             Bienvenido
           </Text>
-          <Text type="headline" size="large">
-            Portal de Clientes
-          </Text>
+          <Text type="headline">Portal de Clientes</Text>
         </Stack>
+
         <Text appearance="gray">
           Complete su invitación y pase a formar parte de la comunidad.
         </Text>

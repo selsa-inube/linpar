@@ -106,7 +106,7 @@ const finishAssistedModalConfig = {
   title: "Finalizar registro",
   description: "¿Está seguro de que desea finalizar el proceso de registro?",
   actionText: "Finalizar",
-  appearance: EAppearance.CONFIRM,
+  appearance: EAppearance.SUCCESS,
 };
 
 const finishAssistedMessagesConfig = {
@@ -116,7 +116,7 @@ const finishAssistedMessagesConfig = {
     title: "Activación exitosa",
     description: (value: string) =>
       `Hemos activado con éxito el usuario ${value}.`,
-    appearance: EAppearance.CONFIRM,
+    appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
@@ -124,7 +124,7 @@ const finishAssistedMessagesConfig = {
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
       `Hemos presentado problemas activando el usuario  ${value}.`,
-    appearance: EAppearance.REMOVE,
+    appearance: EAppearance.ERROR,
   },
 };
 
