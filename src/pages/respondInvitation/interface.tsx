@@ -17,7 +17,11 @@ import {
 } from "@inube/design-system";
 
 import { Fieldset } from "@src/components/inputs/Fieldset";
-import { Styledlmage } from "./styles";
+import {
+  Styledlmage,
+  StyledContainerHeader,
+  StyledContainerForm,
+} from "./styles";
 import { IClient } from "./types";
 
 const renderHead = (clientData: IClient, smallScreen?: boolean) => {
@@ -31,7 +35,6 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
           </Text>
           <Text type="headline">Portal de Clientes</Text>
         </Stack>
-
         <Text appearance="gray">
           Complete su invitación y pase a formar parte de la comunidad.
         </Text>
@@ -236,20 +239,26 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
 
   if (smallScreen) {
     return (
-      <Stack direction="column" gap="32px" padding="s200">
-        {renderForm(formik, loading, handleSubmitForm, smallScreen)}
-      </Stack>
+      <StyledContainerForm>
+        <Stack direction="column" gap="32px" padding="s200">
+          {renderForm(formik, loading, handleSubmitForm, smallScreen)}
+        </Stack>
+      </StyledContainerForm>
     );
   }
 
   return (
     <Grid templateColumns="1fr 2fr">
-      <Stack direction="column" gap="36px" padding="s800">
-        {renderHead(clientData)}
-      </Stack>
-      <Stack direction="column" gap="48px" padding="s800">
-        {renderForm(formik, loading, handleSubmitForm)}
-      </Stack>
+      <StyledContainerHeader>
+        <Stack direction="column" gap="36px" padding="s800">
+          {renderHead(clientData)}
+        </Stack>
+      </StyledContainerHeader>
+      <StyledContainerForm>
+        <Stack direction="column" gap="48px" padding="s800">
+          {renderForm(formik, loading, handleSubmitForm)}
+        </Stack>
+      </StyledContainerForm>
     </Grid>
   );
 }
