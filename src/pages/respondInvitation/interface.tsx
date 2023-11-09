@@ -117,7 +117,6 @@ const renderForm = (
                   ? formik.errors.phone
                   : "El número de teléfono ingresado es válido"
               }
-              validMessage="El número de teléfono ingresado es válido"
               disabled={loading}
               size="compact"
               status={stateValue("phone")}
