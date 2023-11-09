@@ -241,6 +241,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     return (
       <StyledContainerForm>
         <Stack direction="column" gap="32px" padding="s200">
+          <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
           {renderForm(formik, loading, handleSubmitForm, smallScreen)}
         </Stack>
       </StyledContainerForm>
