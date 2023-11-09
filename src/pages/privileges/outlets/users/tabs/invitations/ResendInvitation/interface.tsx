@@ -28,9 +28,9 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
       {showComplete ? (
         <Button
           iconBefore={<MdOutlineShortcut size={18} />}
-          handleClick={toggleModal}
+          onClick={toggleModal}
           variant="none"
-          appearance="secondary"
+          appearance="gray"
           spacing="compact"
         >
           Reenviar
