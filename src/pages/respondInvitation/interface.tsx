@@ -176,7 +176,7 @@ const renderForm = (
                 type="password"
                 size="compact"
                 placeholder="Contraseña"
-                fullWidth
+                fullwidth
                 onChange={formik.handleChange}
                 message={
                   stateValue("password") === "invalid"
@@ -193,7 +193,7 @@ const renderForm = (
                 name="confirmPassword"
                 type="password"
                 size="compact"
-                fullWidth
+                fullwidth
                 placeholder="Confirmar Contraseña"
                 onChange={formik.handleChange}
                 message={
