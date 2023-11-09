@@ -120,7 +120,7 @@ const renderForm = (
               validMessage="El número de teléfono ingresado es válido"
               disabled={loading}
               size="compact"
-              state={stateValue("phone")}
+              status={stateValue("phone")}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               fullwidth
@@ -140,7 +140,7 @@ const renderForm = (
               }
               disabled={loading}
               size="compact"
-              state={stateValue("email")}
+              status={stateValue("email")}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               fullwidth
@@ -165,7 +165,7 @@ const renderForm = (
                   : "El nombre usuario ingresado es válido"
               }
               disabled={loading}
-              state={stateValue("username")}
+              status={stateValue("username")}
               onBlur={formik.handleBlur}
             />
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
@@ -184,7 +184,7 @@ const renderForm = (
                     : "La contraseña ingresada es válida"
                 }
                 disabled={loading}
-                state={stateValue("password")}
+                status={stateValue("password")}
                 onBlur={formik.handleBlur}
               />
               <Textfield
@@ -202,7 +202,7 @@ const renderForm = (
                     : "Las contraseñas coinciden"
                 }
                 disabled={loading}
-                state={stateValue("confirmPassword")}
+                status={stateValue("confirmPassword")}
                 onBlur={formik.handleBlur}
               />
             </Stack>
