@@ -93,7 +93,7 @@ const renderForm = (
               type="number"
               size="compact"
               fullwidth
-              handleChange={formik.handleChange}
+              onChange={formik.handleChange}
               disabled
               readOnly
             />
