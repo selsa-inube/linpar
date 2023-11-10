@@ -1,12 +1,3 @@
-import {
-  Button,
-  Stack,
-  Text,
-  Textfield,
-  useMediaQuery,
-  Grid,
-} from "@inube/design-system";
-import { Fieldset } from "@src/components/inputs/Fieldset";
 import { FormikValues } from "formik";
 import {
   MdOutlineModeEdit,
@@ -15,10 +6,21 @@ import {
   MdPersonOutline,
   MdShortcut,
 } from "react-icons/md";
+
 import {
-  StyledWelcomeContainer,
+  Button,
+  Grid,
+  Stack,
+  Text,
+  Textfield,
+  useMediaQuery,
+} from "@inube/design-system";
+
+import { Fieldset } from "@src/components/inputs/Fieldset";
+import {
   Styledlmage,
-  StyledPageContainer,
+  StyledContainerHeader,
+  StyledContainerForm,
 } from "./styles";
 import { IClient } from "./types";
 
@@ -33,7 +35,6 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
           </Text>
           <Text type="headline">Portal de Clientes</Text>
         </Stack>
-
         <Text appearance="gray">
           Complete su invitación y pase a formar parte de la comunidad.
         </Text>
@@ -45,7 +46,6 @@ const renderHead = (clientData: IClient, smallScreen?: boolean) => {
 const renderForm = (
   formik: FormikValues,
   loading: boolean,
-  formInvalid: boolean,
   handleSubmitForm: () => void,
   smallScreen?: boolean
 ) => {
@@ -73,10 +73,10 @@ const renderForm = (
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
             <Textfield
+              id="name"
+              name="name"
               label="Nombre"
               placeholder="Ingresa su nombre completo"
-              name="name"
-              id="name"
               value={formik.values.name}
               type="text"
               size="compact"
@@ -84,12 +84,11 @@ const renderForm = (
               disabled
               readOnly
             />
-
             <Textfield
+              id="userID"
+              name="userID"
               label="Identificación"
               placeholder="Ingrese su número de identificación"
-              name="userID"
-              id="userID"
               value={formik.values.userID}
               type="number"
               size="compact"
@@ -106,38 +105,41 @@ const renderForm = (
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
             <Textfield
+              id="phone"
+              name="phone"
               label="Número de teléfono"
               placeholder="Ingrese su número telefónico"
-              name="phone"
-              id="phone"
               value={formik.values.phone}
               type="tel"
-              iconAfter={<MdOutlineModeEdit size={18} />}
-              // isInvalid={formik.errors.phone && formInvalid}
-              // errorMessage={formik.errors.phone}
-              // validMessage="El número de teléfono ingresado es válido"
+              iconAfter={<MdOutlineModeEdit />}
+              message={
+                stateValue("phone") === "invalid"
+                  ? formik.errors.phone
+                  : "El número de teléfono ingresado es válido"
+              }
               disabled={loading}
               size="compact"
-              // state={stateValue("phone")}
+              status={stateValue("phone")}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               fullwidth
             />
-
             <Textfield
-              label="Correo"
-              placeholder="Ingrese su dirección de correo electrónico"
-              name="email"
               id="email"
+              label="Correo"
+              name="email"
+              placeholder="Ingrese su dirección de correo electrónico"
               value={formik.values.email}
               type="email"
               iconAfter={<MdOutlineModeEdit size={18} />}
-              // isInvalid={formik.errors.email && formInvalid}
-              // errorMessage={formik.errors.email}
-              // validMessage="El correo electrónico ingresado es válido"
+              message={
+                stateValue("email") === "invalid"
+                  ? formik.errors.email
+                  : "El correo electrónico ingresado es válido"
+              }
               disabled={loading}
               size="compact"
-              // state={stateValue("email")}
+              status={stateValue("email")}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               fullwidth
@@ -147,23 +149,24 @@ const renderForm = (
         <Fieldset title="Contraseña" icon={<MdOutlineShield size={24} />}>
           <Stack direction="column" gap="16px">
             <Textfield
+              id="username"
+              name="username"
               label="Nombre de Usuario"
               placeholder="Ingresa su nombre completo"
-              name="username"
-              id="username"
               value={formik.values.username}
               type="text"
               size="compact"
               fullwidth
               onChange={formik.handleChange}
-              // isInvalid={formik.errors.username && formInvalid}
-              // errorMessage={formik.errors.username}
-              // validMessage="El nombre usuario ingresado es válido"
+              message={
+                stateValue("username") === "invalid"
+                  ? formik.errors.username
+                  : "El nombre usuario ingresado es válido"
+              }
               disabled={loading}
-              // state={stateValue("username")}
+              status={stateValue("username")}
               onBlur={formik.handleBlur}
             />
-
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
               <Textfield
                 id="password"
@@ -174,11 +177,13 @@ const renderForm = (
                 placeholder="Contraseña"
                 fullwidth
                 onChange={formik.handleChange}
-                // isInvalid={formik.errors.password && formInvalid}
-                // errorMessage={formik.errors.password}
-                // validMessage="La contraseña ingresada es válida"
+                message={
+                  stateValue("password") === "invalid"
+                    ? formik.errors.password
+                    : "La contraseña ingresada es válida"
+                }
                 disabled={loading}
-                // state={stateValue("password")}
+                status={stateValue("password")}
                 onBlur={formik.handleBlur}
               />
               <Textfield
@@ -190,11 +195,13 @@ const renderForm = (
                 fullwidth
                 placeholder="Confirmar Contraseña"
                 onChange={formik.handleChange}
-                // isInvalid={formik.errors.confirmPassword && formInvalid}
-                // errorMessage={formik.errors.confirmPassword}
-                // validMessage="Las contraseñas coinciden"
+                message={
+                  stateValue("confirmPassword") === "invalid"
+                    ? formik.errors.confirmPassword
+                    : "Las contraseñas coinciden"
+                }
                 disabled={loading}
-                // state={stateValue("confirmPassword")}
+                status={stateValue("confirmPassword")}
                 onBlur={formik.handleBlur}
               />
             </Stack>
@@ -225,40 +232,34 @@ interface RespondInvitationUIProps {
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {
-  const { loading, formik, formInvalid, handleSubmitForm, clientData } = props;
+  const { loading, formik, handleSubmitForm, clientData } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 820px)");
+  const smallScreen = useMediaQuery("(max-width: 744px)");
 
   if (smallScreen) {
     return (
-      <Stack direction="column" gap="32px" padding="16px">
-        <Stack direction="column" gap="32px">
-          {renderHead(clientData, smallScreen)}
+      <StyledContainerForm>
+        <Stack direction="column" gap="32px" padding="s200">
+          <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
+          {renderForm(formik, loading, handleSubmitForm, smallScreen)}
         </Stack>
-        {renderForm(
-          formik,
-          loading,
-          formInvalid,
-          handleSubmitForm,
-          smallScreen
-        )}
-      </Stack>
+      </StyledContainerForm>
     );
   }
 
   return (
-    <StyledPageContainer>
-      <Grid templateColumns="1fr 2fr">
-        <StyledWelcomeContainer>
-          <Stack padding="s800" direction="column" gap="36px">
-            {renderHead(clientData)}
-          </Stack>
-        </StyledWelcomeContainer>
-        <Stack direction="column" gap="48px" padding="s800">
-          {renderForm(formik, loading, formInvalid, handleSubmitForm)}
+    <Grid templateColumns="1fr 2fr">
+      <StyledContainerHeader>
+        <Stack direction="column" gap="36px" padding="s800">
+          {renderHead(clientData)}
         </Stack>
-      </Grid>
-    </StyledPageContainer>
+      </StyledContainerHeader>
+      <StyledContainerForm>
+        <Stack direction="column" gap="48px" padding="s800">
+          {renderForm(formik, loading, handleSubmitForm)}
+        </Stack>
+      </StyledContainerForm>
+    </Grid>
   );
 }
 
