@@ -3,19 +3,15 @@ import { inube } from "@inube/design-system";
 
 interface IStyledContainer {
   smallScreen?: boolean;
-  themed?: typeof inube;
 }
 
 const StyledContainer = styled.div<IStyledContainer>`
-  padding: ${({ smallScreen, themed }) =>
+  padding: ${({ smallScreen, theme }) =>
     smallScreen
-      ? themed?.spacing?.s200 || inube.spacing.s200
-      : `${themed?.spacing?.s400} ${themed?.spacing?.s800}` ||
-        `${inube.spacing.s400} ${inube.spacing.s800}`};
-
-  div > div:last-of-type > div:nth-of-type(2) {
-    gap: ${({ themed }) => themed?.spacing?.s100 || inube.spacing.s100};
-  }
+      ? `${theme?.spacing?.s100 || inube.spacing.s100}`
+      : `${theme?.spacing?.s400 || inube.spacing.s800} ${
+          theme?.spacing?.s800 || inube.spacing.s800
+        }`};
 `;
 
 const StyledTextFieldContainer = styled.div`
