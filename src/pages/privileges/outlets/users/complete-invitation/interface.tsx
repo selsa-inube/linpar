@@ -124,8 +124,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               currentStepId={currentStep}
               handlePrev={handleStepChange}
               handleNext={
-                currentStep ===
-                Object.values(stepsRegisterUserConfig).length - 1
+                currentStep === Object.values(stepsRegisterUserConfig).length
                   ? handleToggleModal
                   : handleStepChange
               }

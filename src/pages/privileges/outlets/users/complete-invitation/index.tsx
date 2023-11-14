@@ -62,7 +62,7 @@ function CompleteInvitation() {
   };
 
   const handleStepChange = (step: number) => {
-    setCurrentStep(step);
+    setCurrentStep(step - 1);
   };
 
   const handleCompleteInvitation = () => {
