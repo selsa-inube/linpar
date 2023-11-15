@@ -61,7 +61,11 @@ function CompleteInvitation() {
     }
   };
 
-  const handleStepChange = (step: number) => {
+  const handleNextStep = (step: number) => {
+    setCurrentStep(step + 1);
+  };
+
+  const handlePrevStep = (step: number) => {
     setCurrentStep(step - 1);
   };
 
@@ -155,7 +159,8 @@ function CompleteInvitation() {
     <CompleteInvitationUI
       invitationData={invitationData}
       handleSubmit={handleSubmit}
-      handleStepChange={handleStepChange}
+      handlePrevStep={handlePrevStep}
+      handleNextStep={handleNextStep}
       currentStep={currentStep}
       handleToggleModal={handleToggleModal}
       handleCompleteInvitation={handleCompleteInvitation}
