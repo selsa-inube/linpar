@@ -1,14 +1,17 @@
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { MdClear } from "react-icons/md";
+
 import {
   Blanket,
   Button,
+  Icon,
   Stack,
   Text,
   useMediaQuery,
 } from "@inube/design-system";
+
 import { EAppearance } from "@src/types/colors.types";
-import { useState } from "react";
-import { createPortal } from "react-dom";
-import { MdClear } from "react-icons/md";
 import { StyledModal } from "./styles";
 
 interface DecisionModalProps {
@@ -54,12 +57,21 @@ function DecisionModal(props: DecisionModalProps) {
   return createPortal(
     <Blanket>
       <StyledModal smallScreen={smallScreen}>
-        <Stack direction="column" gap={smallScreen ? "16px" : "24px"}>
+        <Stack
+          direction="column"
+          gap={smallScreen ? "16px" : "24px"}
+          padding={smallScreen ? "s300" : "s400"}
+        >
           <Stack alignItems="center" justifyContent="space-between">
             <Text type="title" size={smallScreen ? "small" : "large"}>
               {title}
             </Text>
-            <MdClear size={24} cursor="pointer" onClick={closeModal} />
+            <Icon
+              icon={<MdClear />}
+              appearance="dark"
+              size="24px"
+              onClick={closeModal}
+            />
           </Stack>
           <Text appearance="gray" size={smallScreen ? "medium" : undefined}>
             {description}
