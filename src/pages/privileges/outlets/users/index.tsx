@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { finishAssistedMessagesConfig } from "./complete-invitation/config/completeInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
-import UsersUI from "./interface";
+import { UsersUI } from "./interface";
 import { IUsersMessage } from "./types/users.types";
 
 function Users() {
