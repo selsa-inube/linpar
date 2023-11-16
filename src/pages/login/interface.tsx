@@ -3,7 +3,6 @@ import { Grid, Stack, Text, useMediaQuery } from "@inube/design-system";
 import selsaLogo from "../../assets/images/selsa.png";
 
 import {
-  // StyledLoginContainer,
   StyledWelcomeContainer,
   StyledOutletContainer,
   StyledImage,
@@ -11,7 +10,6 @@ import {
 
 function LoginUI() {
   const screenMobile = useMediaQuery("(max-width: 768px)");
-  //console.log(screenMobile);
   return (
     <Grid
       templateColumns={screenMobile ? "1fr" : "repeat(2, 1fr)"}
