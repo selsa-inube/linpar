@@ -46,6 +46,8 @@ const InteractiveModal = ({
                 icon={<MdClear />}
                 spacing="wide"
                 size="24px"
+                cursorHover
+                onClick={closeModal}
               />
             </Stack>
             {hasActions && (
