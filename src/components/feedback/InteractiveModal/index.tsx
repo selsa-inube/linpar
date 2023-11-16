@@ -6,6 +6,7 @@ import {
   Blanket,
   useMediaQuery,
   Textfield,
+  Icon,
 } from "@inube/design-system";
 import { StyledModal } from "./styles";
 import { InteractiveModalProps } from "./types";
@@ -40,7 +41,12 @@ const InteractiveModal = ({
               <Text type="headline" size="small" appearance="dark">
                 {title}
               </Text>
-              <MdClear size={24} cursor="pointer" onClick={closeModal} />
+              <Icon
+                appearance={"dark"}
+                icon={<MdClear />}
+                spacing="wide"
+                size="24px"
+              />
             </Stack>
             {hasActions && (
               <Text type="title" size="medium" appearance="dark">
