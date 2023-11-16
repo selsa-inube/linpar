@@ -1,51 +1,14 @@
 import styled from "styled-components";
 
-import { colors } from "@styles/colors";
-
-const StyledLoginContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-
-  @media screen and (max-width: 1000px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(150px, 20vh) 1fr;
-  }
-`;
+import { inube } from "@inube/design-system";
 
 const StyledWelcomeContainer = styled.div`
-  background-color: ${colors.ref.palette.neutral.n30};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 32px;
-
-  @media screen and (max-width: 1000px) {
-    gap: 16px;
-  }
+  background-color: ${inube.color.surface.dark.clear};
 `;
 
 const StyledOutletContainer = styled(StyledWelcomeContainer)`
-  background-color: white;
+  background-color: ${inube.color.surface.light.clear};
   padding: 32px 16px;
-`;
-
-const StyledHead2 = styled.h2`
-  font-family: "Roboto", sans-serif;
-  font-size: 32px;
-  font-weight: normal;
-  line-height: 40px;
-  margin: 0;
-`;
-
-const StyledHead3 = styled.h3`
-  font-family: "Roboto", sans-serif;
-  font-size: 28px;
-  font-weight: normal;
-  line-height: 36px;
-  margin: 0;
 `;
 
 const StyledImage = styled.img`
@@ -60,11 +23,4 @@ const StyledImage = styled.img`
   }
 `;
 
-export {
-  StyledLoginContainer,
-  StyledWelcomeContainer,
-  StyledOutletContainer,
-  StyledHead2,
-  StyledHead3,
-  StyledImage,
-};
+export { StyledWelcomeContainer, StyledOutletContainer, StyledImage };
