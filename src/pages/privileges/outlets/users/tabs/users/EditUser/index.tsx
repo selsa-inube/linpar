@@ -1,7 +1,8 @@
-import { Button } from "@inube/design-system";
 import { MdModeEdit } from "react-icons/md";
-import { StyledLink } from "./styles";
+import { Button, Icon } from "@inube/design-system";
+
 import { IGeneralInformationEntry } from "../../../types/forms.types";
+import { StyledLink } from "./styles";
 
 interface EditUserProps {
   entry: IGeneralInformationEntry;
@@ -24,7 +25,7 @@ function EditUser(props: EditUserProps) {
         </Button>
       ) : (
         <StyledLink to={`edit/${entry.id}`}>
-          <MdModeEdit />
+          <Icon appearance="gray" size="20px" icon={<MdModeEdit />} />
         </StyledLink>
       )}
     </>
