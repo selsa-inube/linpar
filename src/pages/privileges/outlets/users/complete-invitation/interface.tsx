@@ -7,7 +7,6 @@ import {
 } from "@inube/design-system";
 
 import { SubjectCard } from "@components/cards/SubjectCard";
-import { IVerificationData } from "@components/feedback/Assisted/types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
@@ -31,6 +30,13 @@ import {
   stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
+
+interface IVerificationData {
+  id: string;
+  title: string;
+  content: React.ReactNode;
+  fullwidth?: boolean;
+}
 
 function finishModal(
   handleCloseModal: () => void,
