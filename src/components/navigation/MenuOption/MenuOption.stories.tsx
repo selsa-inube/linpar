@@ -2,7 +2,7 @@ import { menuInvitationLinks } from "@pages/privileges/outlets/users/config/menu
 import { action } from "@storybook/addon-actions";
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { MenuOption, MenuOptionProps } from "..";
+import { MenuOption, MenuOptionProps } from ".";
 
 const story = {
   component: [MenuOption],
