@@ -1,7 +1,5 @@
-import { colors } from "@src/styles/colors";
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
-import { InteractiveModalProps } from "./types";
 
 interface IStyledRespondInvitation {
   smallScreen: boolean;
@@ -9,7 +7,8 @@ interface IStyledRespondInvitation {
 }
 
 const StyledModal = styled.div`
-  background-color: ${colors.ref.palette.neutral.n10};
+  background-color: ${({ theme }: IStyledRespondInvitation) =>
+    theme?.color?.stroke?.light?.regular || inube.color.stroke.light.regular};
   min-width: ${({ smallScreen }: IStyledRespondInvitation) =>
     smallScreen ? "100%" : "450px"};
   min-height: ${({ smallScreen }: IStyledRespondInvitation) =>
