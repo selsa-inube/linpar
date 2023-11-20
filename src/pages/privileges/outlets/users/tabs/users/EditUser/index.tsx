@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { Button, Icon } from "@inube/design-system";
 
 import { IGeneralInformationEntry } from "../../../types/forms.types";
-import { StyledLink } from "./styles";
 
 interface EditUserProps {
   entry: IGeneralInformationEntry;
@@ -14,7 +14,7 @@ function EditUser(props: EditUserProps) {
     <>
       {showComplete ? (
         <Button
-          iconBefore={<MdModeEdit size={18} />}
+          iconBefore={<MdModeEdit />}
           type="link"
           path={`edit/${entry.id}`}
           variant="none"
@@ -24,9 +24,9 @@ function EditUser(props: EditUserProps) {
           Editar
         </Button>
       ) : (
-        <StyledLink to={`edit/${entry.id}`}>
+        <Link to={`edit/${entry.id}`}>
           <Icon appearance="gray" size="20px" icon={<MdModeEdit />} />
-        </StyledLink>
+        </Link>
       )}
     </>
   );
