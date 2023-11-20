@@ -1,8 +1,7 @@
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { Button } from "@inube/design-system";
+import { Button, Icon } from "@inube/design-system";
 import { MdOutlineDelete } from "react-icons/md";
 import { deleteInvitationModalConfig } from "../../../config/invitationsTable.config";
-import { StyledIconDelete } from "./styles";
 
 interface DeleteInvitationUIProps {
   handleRemoveInvitation: () => void;
@@ -22,7 +21,7 @@ function DeleteInvitationUI(props: DeleteInvitationUIProps) {
     <>
       {showComplete ? (
         <Button
-          iconBefore={<MdOutlineDelete size={18} />}
+          iconBefore={<MdOutlineDelete />}
           onClick={toggleModal}
           variant="none"
           appearance="error"
@@ -31,9 +30,12 @@ function DeleteInvitationUI(props: DeleteInvitationUIProps) {
           Eliminar
         </Button>
       ) : (
-        <StyledIconDelete>
-          <MdOutlineDelete onClick={toggleModal} />
-        </StyledIconDelete>
+        <Icon
+          icon={<MdOutlineDelete />}
+          onClick={toggleModal}
+          appearance="primary"
+          cursorHover
+        />
       )}
 
       {showModal && (
