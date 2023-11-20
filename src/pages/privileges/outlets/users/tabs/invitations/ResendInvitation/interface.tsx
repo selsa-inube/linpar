@@ -1,8 +1,7 @@
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { Button } from "@inube/design-system";
+import { Button, Icon } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
-import { StyledIconResend } from "./styles";
 import { IGeneralInformationEntry } from "../../../types/forms.types";
 
 interface ResendInvitationUIProps {
@@ -36,9 +35,13 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
           Reenviar
         </Button>
       ) : (
-        <StyledIconResend>
-          <MdOutlineShortcut onClick={toggleModal} />
-        </StyledIconResend>
+        <Icon
+          appearance={"dark"}
+          icon={<MdOutlineShortcut />}
+          disabled={invitation.status === "Sent"}
+          cursorHover
+          onClick={toggleModal}
+        />
       )}
 
       {showResendInvModal && (
