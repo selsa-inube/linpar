@@ -1,37 +1,40 @@
-import { PageTitle } from "@components/PageTitle";
-import { Menu } from "@components/navigation/Menu";
+import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   Breadcrumbs,
   Button,
+  Icon,
+  SectionMessage,
   Stack,
   Tabs,
   Textfield,
   useMediaQuery,
-  SectionMessage,
 } from "@inube/design-system";
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+
+import { Menu } from "@components/navigation/Menu";
+import { PageTitle } from "@components/PageTitle";
+
 import {
   privilegeConfig,
   privilegeOptionsConfig,
 } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
+
+import { IUsersMessage } from "./types/users.types";
+import { InvitationsTab } from "./tabs/invitations";
+import { UsersTab } from "./tabs/users";
+
 import {
   StyledContainer,
   StyledOptionsContainer,
   StyledTextFieldContainer,
 } from "./styles";
-import { InvitationsTab } from "./tabs/invitations";
-import { UsersTab } from "./tabs/users";
-import { IUsersMessage } from "./types/users.types";
 
 const renderMessage = (
   message: IUsersMessage,
   handleCloseMessage: () => void
 ) => {
-  if (!message.data) {
-    return null;
-  }
+  if (!message.data) return null;
 
   return (
     <SectionMessage
@@ -57,7 +60,7 @@ interface UsersUIProps {
   handleCloseMessage: () => void;
 }
 
-export default function UsersUI(props: UsersUIProps) {
+export function UsersUI(props: UsersUIProps) {
   const {
     isSelected,
     searchText,
@@ -97,7 +100,7 @@ export default function UsersUI(props: UsersUIProps) {
                   id="searchUser"
                   placeholder="Buscar..."
                   type="search"
-                  iconBefore={<MdSearch size={18} />}
+                  iconBefore={<MdSearch />}
                   size="compact"
                   fullwidth
                   value={searchText}
@@ -107,10 +110,12 @@ export default function UsersUI(props: UsersUIProps) {
 
               {smallScreen ? (
                 <StyledOptionsContainer>
-                  <MdOutlineMoreHoriz
-                    size={24}
-                    cursor="pointer"
+                  <Icon
+                    icon={<MdOutlineMoreHoriz />}
+                    size="24px"
                     onClick={handleToggleMenuInvitation}
+                    cursorHover={true}
+                    appearance="dark"
                   />
                   {showMenu && (
                     <Menu
@@ -121,7 +126,7 @@ export default function UsersUI(props: UsersUIProps) {
                 </StyledOptionsContainer>
               ) : (
                 <Button
-                  iconBefore={<MdPersonAddAlt size={18} />}
+                  iconBefore={<MdPersonAddAlt />}
                   spacing="compact"
                   type="link"
                   path="/privileges/users/invite"
