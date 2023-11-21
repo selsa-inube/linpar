@@ -1,8 +1,8 @@
-import { StoryFn } from "@storybook/react";
-import { MdPersonOutline } from "react-icons/md";
 import { BrowserRouter } from "react-router-dom";
-import { SubjectCard, SubjectCardProps } from ".";
+import { MdPersonOutline } from "react-icons/md";
+import { StoryFn } from "@storybook/react";
 import { ILabel } from "./types";
+import { SubjectCard, SubjectCardProps } from ".";
 
 const story = {
   component: [SubjectCard],
