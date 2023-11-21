@@ -8,7 +8,6 @@ const StyledWelcomeContainer = styled.div`
 
 const StyledOutletContainer = styled(StyledWelcomeContainer)`
   background-color: ${inube.color.surface.light.clear};
-  padding: 32px 16px;
 `;
 
 const StyledImage = styled.img`

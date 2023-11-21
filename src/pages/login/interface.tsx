@@ -35,7 +35,14 @@ function LoginUI() {
         </Stack>
       </StyledWelcomeContainer>
       <StyledOutletContainer>
-        <Outlet />
+        <Stack
+          alignItems="center"
+          justifyContent="center"
+          height="100%"
+          padding="s400 s200"
+        >
+          <Outlet />
+        </Stack>
       </StyledOutletContainer>
     </Grid>
   );
