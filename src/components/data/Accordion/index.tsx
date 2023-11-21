@@ -15,22 +15,28 @@ function Accordion(props: IAccordionProps) {
   const screenMovil = useMediaQuery("(max-width: 744px)");
 
   return (
-    <Stack direction="column" alignItems="center" justifyContent="space-start">
+    <Stack width="100%" justifyContent="space-between" alignItems="center">
       <StyledContainer screenMovil={screenMovil}>
         <StyledHead onClick={() => setIsOpen(!isOpen)}>
-          <Text type="title" size="medium">
-            {title}
-          </Text>
+          <Stack alignItems="center" justifyContent="center">
+            <Text type="title" size="medium">
+              {title}
+            </Text>
 
-          {isOpen ? (
-            <Icon icon={<MdKeyboardArrowUp />} appearance="dark" size="24px" />
-          ) : (
-            <Icon
-              icon={<MdKeyboardArrowDown />}
-              appearance="dark"
-              size="24px"
-            />
-          )}
+            {isOpen ? (
+              <Icon
+                icon={<MdKeyboardArrowUp />}
+                appearance="dark"
+                size="24px"
+              />
+            ) : (
+              <Icon
+                icon={<MdKeyboardArrowDown />}
+                appearance="dark"
+                size="24px"
+              />
+            )}
+          </Stack>
         </StyledHead>
         {isOpen && (
           <StyledContent screenMovil={screenMovil}>{children}</StyledContent>

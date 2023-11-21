@@ -18,10 +18,10 @@ const StyledContainer = styled.div<IStyledComponents>`
 `;
 
 const StyledHead = styled.button`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
+  //display: flex;
+  //width: 100%;
+  //justify-content: space-between;
+  //align-items: center;
   outline: none;
   border: none;
   background-color: transparent;
