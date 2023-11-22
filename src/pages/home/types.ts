@@ -6,7 +6,7 @@ interface IApps {
   url: string;
 }
 
-const mediaQuerySettings: Record<string, string> = {
+const mediaQuerySettings = {
   "(max-width: 590px)": "repeat(1, 100%)",
   "(max-width: 660px)": "repeat(1, 100%)",
   "(max-width: 930px)": "repeat(2, 250px)",
@@ -14,7 +14,7 @@ const mediaQuerySettings: Record<string, string> = {
   "(max-width: 1480px)": "repeat(4, 250px)",
 };
 
-const appListpaddingSettings: Record<string, string> = {
+const appListpaddingSettings = {
   "(max-width: 590px)": "s0 s200",
   "(max-width: 660px)": "s0 s400",
 };

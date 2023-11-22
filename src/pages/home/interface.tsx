@@ -20,8 +20,8 @@ import { navigationConfig } from "./config/apps.config";
 import { StyledAppsList, StyledHome } from "./styles";
 
 const getTemplateColumns = (
-  mediaQueries: any[],
-  matches: { [x: string]: unknown },
+  mediaQueries: string[],
+  matches: { [x: string]: boolean },
   templateColumnsSettings: { [x: string]: string }
 ): string => {
   const matchingQuery = mediaQueries.find(
@@ -33,8 +33,8 @@ const getTemplateColumns = (
 };
 
 const getPadding = (
-  mediaQueries: any[],
-  matches: { [x: string]: unknown },
+  mediaQueries: string[],
+  matches: { [x: string]: boolean },
   appListpaddingSettings: { [x: string]: string }
 ): string => {
   const matchingQuery = mediaQueries.find(
@@ -44,7 +44,7 @@ const getPadding = (
 };
 
 const getPageTitlePadding = (
-  matches: { [x: string]: unknown },
+  matches: { [x: string]: boolean },
   pageTitlePaddingSettings: { [x: string]: string }
 ) => {
   const matchingQuery = Object.keys(pageTitlePaddingSettings).find(
@@ -69,9 +69,7 @@ function HomeUI(props: HomeUIProps) {
   const { apps } = props;
   const { user } = useContext(AppContext);
 
-  const mediaQueries = Object.keys(
-    mediaQuerySettings
-  ) as (keyof typeof mediaQuerySettings)[];
+  const mediaQueries = Object.keys(mediaQuerySettings);
 
   const matches = useMediaQueries(mediaQueries);
 
