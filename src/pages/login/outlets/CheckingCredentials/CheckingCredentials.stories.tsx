@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import { CheckingCredentials } from "./index";
 
 const story = {
@@ -6,6 +7,13 @@ const story = {
   parameters: {
     layout: "fullscreen",
   },
+  decorators: [
+    (Story: React.ElementType) => (
+      <BrowserRouter>
+        <Story />
+      </BrowserRouter>
+    ),
+  ],
 };
 
 const Default = () => <CheckingCredentials />;
