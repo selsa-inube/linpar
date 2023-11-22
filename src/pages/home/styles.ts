@@ -8,13 +8,9 @@ const StyledHome = styled.div`
   #PageTitle {
     max-width: 1400px;
   }
+  li {
+    list-style: none;
+  }
 `;
 
-const StyledAppsList = styled.ul`
-  box-sizing: border-box;
-  max-width: 1400px;
-  list-style: none;
-  margin: 0 auto;
-`;
-
-export { StyledHome, StyledAppsList };
+export { StyledHome };

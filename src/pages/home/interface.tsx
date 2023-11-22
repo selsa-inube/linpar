@@ -17,7 +17,7 @@ import {
 
 import { IApps } from "./types";
 import { navigationConfig } from "./config/apps.config";
-import { StyledAppsList, StyledHome } from "./styles";
+import { StyledHome } from "./styles";
 
 const getTemplateColumns = (
   mediaQueries: string[],
@@ -29,7 +29,7 @@ const getTemplateColumns = (
   );
   return matchingQuery
     ? templateColumnsSettings[matchingQuery]
-    : "repeat(5, 250px)";
+    : "repeat(auto-fit, 250px)";
 };
 
 const getPadding = (
@@ -93,31 +93,32 @@ function HomeUI(props: HomeUIProps) {
           icon={<MdOutlineDoorFront />}
         />
       </Stack>
-      <StyledAppsList>
-        <Grid
-          templateColumns={getTemplateColumns(
-            mediaQueries,
-            matches,
-            mediaQuerySettings
-          )}
-          justifyContent="center"
-          gap="s300"
-          padding={getPadding(mediaQueries, matches, appListpaddingSettings)}
-          margin="s0 auto"
-        >
-          {apps.map((app) => (
-            <li key={app.url}>
-              <AppCard
-                key={app.id}
-                label={app.label}
-                description={app.description}
-                icon={app.icon}
-                url={app.url}
-              />
-            </li>
-          ))}
-        </Grid>
-      </StyledAppsList>
+
+      <Grid
+        templateColumns={getTemplateColumns(
+          mediaQueries,
+          matches,
+          mediaQuerySettings
+        )}
+        justifyContent="center"
+        alignItems="center"
+        alignContent="start"
+        gap="s300"
+        padding={getPadding(mediaQueries, matches, appListpaddingSettings)}
+        margin="s0 auto"
+      >
+        {apps.map((app) => (
+          <li key={app.url}>
+            <AppCard
+              key={app.id}
+              label={app.label}
+              description={app.description}
+              icon={app.icon}
+              url={app.url}
+            />
+          </li>
+        ))}
+      </Grid>
     </StyledHome>
   );
 }
