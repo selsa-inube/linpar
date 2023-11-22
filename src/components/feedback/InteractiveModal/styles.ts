@@ -15,11 +15,11 @@ const StyledModal = styled.div`
     smallScreen ? "100vh" : "auto"};
   height: auto;
   border-radius: ${({ smallScreen }: IStyledRespondInvitation) =>
-    smallScreen ? "0" : "8px"};
+    smallScreen ? inube.spacing.s0 : inube.spacing.s100};
 
   & > div {
     padding: ${({ smallScreen }: IStyledRespondInvitation) =>
-      smallScreen ? "24px" : "32px"};
+      smallScreen ? inube.spacing.s300 : inube.spacing.s400};
   }
 `;
 
