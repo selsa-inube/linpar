@@ -13,7 +13,7 @@ function LoginUI() {
     "(max-width: 768px)": screenMobile,
     "(min-width: 769px) and (max-width: 992px)": screenTablet,
     "(min-width: 993px) and (max-width: 2200px)": screenDesktop,
-  } = useMediaQueries([
+  }: { [key: string]: boolean } = useMediaQueries([
     "(max-width: 768px)",
     "(min-width: 769px) and (max-width: 992px)",
     "(min-width: 993px) and (max-width: 2200px)",
