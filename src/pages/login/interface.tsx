@@ -1,5 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { Grid, Stack, Text, useMediaQuery } from "@inube/design-system";
+import {
+  Grid,
+  Stack,
+  Text,
+  useMediaQuery,
+  useMediaQueries,
+} from "@inube/design-system";
 import selsaLogo from "../../assets/images/selsa.png";
 
 import {
@@ -9,7 +15,18 @@ import {
 } from "./styles";
 
 function LoginUI() {
-  const screenMobile = useMediaQuery("(max-width: 768px)");
+  //const screenMobile = useMediaQuery("(max-width: 768px)");
+  const {
+    "(max-width: 768px)": screenMobile,
+    "(max-width: 992px)": tablet,
+    "(max-width: 1200px)": desktop,
+  } = useMediaQueries([
+    "(max-width: 1200px)",
+    "(max-width: 992px)",
+    "(max-width: 768px)",
+  ]);
+
+  //console.log(screen)
   return (
     <Grid
       templateColumns={screenMobile ? "1fr" : "repeat(2, 1fr)"}
@@ -31,7 +48,11 @@ function LoginUI() {
               Portal de clientes
             </Text>
           </Stack>
-          <StyledImage src={selsaLogo} alt="Sistemas Enlinea" />
+          <StyledImage
+            src={selsaLogo}
+            alt="Sistemas Enlinea"
+            maxWidth={desktop ? "240px" : tablet ? "200px" : "160px"}
+          />
         </Stack>
       </StyledWelcomeContainer>
       <StyledOutletContainer>
