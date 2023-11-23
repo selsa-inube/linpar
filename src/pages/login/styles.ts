@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
 interface IStyledImage {
-  maxWidth: string;
+  width?: string;
 }
 
 const StyledWelcomeContainer = styled.div`
@@ -15,7 +15,8 @@ const StyledOutletContainer = styled(StyledWelcomeContainer)`
 `;
 
 const StyledImage = styled.img<IStyledImage>`
-  max-width: ${({ maxWidth }) => maxWidth};
+  width: ${({ width }) => width};
+  max-width: 1200px;
 `;
 
 export { StyledWelcomeContainer, StyledOutletContainer, StyledImage };

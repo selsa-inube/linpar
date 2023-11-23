@@ -1,11 +1,5 @@
 import { Outlet } from "react-router-dom";
-import {
-  Grid,
-  Stack,
-  Text,
-  useMediaQuery,
-  useMediaQueries,
-} from "@inube/design-system";
+import { Grid, Stack, Text, useMediaQueries } from "@inube/design-system";
 import selsaLogo from "../../assets/images/selsa.png";
 
 import {
@@ -15,18 +9,16 @@ import {
 } from "./styles";
 
 function LoginUI() {
-  //const screenMobile = useMediaQuery("(max-width: 768px)");
   const {
     "(max-width: 768px)": screenMobile,
-    "(max-width: 992px)": tablet,
-    "(max-width: 1200px)": desktop,
+    "(min-width: 769px) and (max-width: 992px)": screenTablet,
+    "(min-width: 993px) and (max-width: 2200px)": screenDesktop,
   } = useMediaQueries([
-    "(max-width: 1200px)",
-    "(max-width: 992px)",
     "(max-width: 768px)",
+    "(min-width: 769px) and (max-width: 992px)",
+    "(min-width: 993px) and (max-width: 2200px)",
   ]);
 
-  //console.log(screen)
   return (
     <Grid
       templateColumns={screenMobile ? "1fr" : "repeat(2, 1fr)"}
@@ -51,7 +43,7 @@ function LoginUI() {
           <StyledImage
             src={selsaLogo}
             alt="Sistemas Enlinea"
-            maxWidth={desktop ? "240px" : tablet ? "200px" : "160px"}
+            width={screenDesktop ? "240px" : screenTablet ? "200px" : "160px"}
           />
         </Stack>
       </StyledWelcomeContainer>
@@ -59,7 +51,7 @@ function LoginUI() {
         <Stack
           alignItems="center"
           justifyContent="center"
-          height="100%"
+          height="-webkit-fill-available"
           padding="s400 s200"
         >
           <Outlet />
