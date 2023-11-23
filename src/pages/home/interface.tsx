@@ -1,6 +1,12 @@
 import { useContext } from "react";
 import { MdOutlineDoorFront } from "react-icons/md";
-import { Header, Grid, Stack, useMediaQueries } from "@inube/design-system";
+import {
+  Header,
+  Grid,
+  Stack,
+  useMediaQueries,
+  useMediaQuery,
+} from "@inube/design-system";
 
 import { AppContext } from "@src/context";
 import { PageTitle } from "@components/PageTitle";
@@ -100,7 +106,9 @@ function HomeUI(props: HomeUIProps) {
           matches,
           mediaQuerySettings
         )}
-        justifyContent="center"
+        justifyContent={
+          useMediaQuery("(max-width: 1480px)") ? "center" : "start"
+        }
         alignItems="center"
         alignContent="start"
         gap="s300"
