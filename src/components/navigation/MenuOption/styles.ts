@@ -1,14 +1,24 @@
 import { colors } from "@styles/colors";
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
+
+interface IStyledOptionProps {
+  theme?: typeof inube;
+}
 
 const StyledOption = styled.button`
-  color: ${colors.sys.text.secondary};
-  padding: 6px 13px;
+  color: ${({ theme }: IStyledOptionProps) =>
+    theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
+  padding: ${({ theme }: IStyledOptionProps) =>
+    `${theme?.spacing?.s075} ${theme?.spacing?.s150}` ||
+    `${inube.spacing.s075} ${inube.spacing.s150}`};
   border: none;
-  background-color: ${colors.ref.palette.neutral.n0};
+  background-color: ${({ theme }: IStyledOptionProps) =>
+    theme?.color?.stroke?.light?.clear || inube.color.stroke.light.clear};
   cursor: pointer;
   &:hover {
-    background-color: ${colors.ref.palette.neutral.n30};
+    background-color: ${({ theme }: IStyledOptionProps) =>
+      theme?.color?.stroke?.gray?.regular || inube.color.stroke.gray.regular};
   }
 `;
 
