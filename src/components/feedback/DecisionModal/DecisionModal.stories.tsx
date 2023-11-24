@@ -1,5 +1,5 @@
 import { StoryFn } from "@storybook/react";
-import { DecisionModal, DecisionModalProps } from "..";
+import { DecisionModal, DecisionModalProps } from ".";
 import { action } from "@storybook/addon-actions";
 
 const story = {

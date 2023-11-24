@@ -1,8 +1,8 @@
 import { menuInvitationLinks } from "@pages/privileges/outlets/users/config/menuInvitation.config";
 import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { Menu, MenuProps } from "..";
-import { IOption } from "../types";
+import { Menu, MenuProps } from ".";
+import { IOption } from "./types";
 import { StoryFn } from "@storybook/react";
 
 const story = {
