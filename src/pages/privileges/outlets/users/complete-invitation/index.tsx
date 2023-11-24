@@ -4,7 +4,7 @@ import { eventsFormInvitation } from "@mocks/apps/privileges/invitations/eventsF
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { payrollsFormInvitation } from "@mocks/apps/privileges/invitations/payrollsForm.mock";
 import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
-import { IVerificationData } from "@src/components/feedback/Assisted/types";
+import { IVerificationData } from "@pages/privileges/outlets/users/complete-invitation/interface";
 import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -85,7 +85,7 @@ function CompleteInvitation() {
     setShowModal((prevShowModal) => !prevShowModal);
   };
 
-  const verificationData: Record<string, IVerificationData> = {
+  const verificationData: { [key: string]: IVerificationData } = {
     generalInformation: {
       id: "generalInformation",
       title: "General",
@@ -96,7 +96,7 @@ function CompleteInvitation() {
           handleSubmit={() => {}}
         />
       ),
-      isFullWidth: true,
+      fullwidth: true,
     },
     branches: {
       id: "branches",

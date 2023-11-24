@@ -31,7 +31,7 @@ import {
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 
-interface IVerificationData {
+export interface IVerificationData {
   id: string;
   title: string;
   content: React.ReactNode;
