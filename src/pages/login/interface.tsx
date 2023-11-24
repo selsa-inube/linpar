@@ -51,7 +51,7 @@ function LoginUI() {
         <Stack
           alignItems="center"
           justifyContent="center"
-          height="-webkit-fill-available"
+          height={screenMobile ? "70vh" : "-webkit-fill-available"}
           padding="s400 s200"
         >
           <Outlet />
