@@ -72,7 +72,7 @@ function stateValue(
   return "valid";
 }
 
-function renderFormFields(
+function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
@@ -229,7 +229,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
-          {renderFormFields(formik, loading, formInvalid, handleChangeForm)}
+          {RenderFormFields(formik, loading, formInvalid, handleChangeForm)}
         </FormButtons>
         {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
       </>
@@ -238,7 +238,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
 
   return (
     <>
-      {renderFormFields(
+      {RenderFormFields(
         formik,
         loading,
         formInvalid,
