@@ -25,28 +25,16 @@ import { IApps } from "./types";
 import { navigationConfig } from "./config/apps.config";
 import { StyledHome } from "./styles";
 
-const getTemplateColumns = (
+const getSettingsAccordingMediaQuery = (
   mediaQueries: string[],
   matches: { [x: string]: boolean },
-  templateColumnsSettings: { [x: string]: string }
+  mediaQuerieParameters: { [x: string]: string },
+  defaultValue: string
 ): string => {
   const matchingQuery = mediaQueries.find(
     (mediaQuerie) => matches[mediaQuerie]
   );
-  return matchingQuery
-    ? templateColumnsSettings[matchingQuery]
-    : "repeat(auto-fit, 250px)";
-};
-
-const getPadding = (
-  mediaQueries: string[],
-  matches: { [x: string]: boolean },
-  appListpaddingSettings: { [x: string]: string }
-): string => {
-  const matchingQuery = mediaQueries.find(
-    (mediaQuerie) => matches[mediaQuerie]
-  );
-  return matchingQuery ? appListpaddingSettings[matchingQuery] : "s0 s800";
+  return matchingQuery ? mediaQuerieParameters[matchingQuery] : defaultValue;
 };
 
 const getPageTitlePadding = (
@@ -101,18 +89,22 @@ function HomeUI(props: HomeUIProps) {
       </Stack>
 
       <Grid
-        templateColumns={getTemplateColumns(
+        templateColumns={getSettingsAccordingMediaQuery(
           mediaQueries,
           matches,
-          mediaQuerySettings
+          mediaQuerySettings,
+          "repeat(6, 16%)"
         )}
-        justifyContent={
-          useMediaQuery("(max-width: 1480px)") ? "center" : "start"
-        }
-        alignItems="center"
+        justifyContent={"center"}
+        alignItems="start"
         alignContent="start"
         gap="s300"
-        padding={getPadding(mediaQueries, matches, appListpaddingSettings)}
+        padding={getSettingsAccordingMediaQuery(
+          mediaQueries,
+          matches,
+          appListpaddingSettings,
+          "s0 s800"
+        )}
         margin="s0 auto"
       >
         {apps.map((app) => (

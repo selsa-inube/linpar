@@ -8,9 +8,11 @@ interface IApps {
 
 const mediaQuerySettings = {
   "(max-width: 660px)": "100%",
-  "(max-width: 930px)": "repeat(2, 250px)",
-  "(max-width: 1210px)": "repeat(3, 250px)",
-  "(max-width: 1480px)": "repeat(4, 250px)",
+  "(max-width: 806px)": "repeat(2, 40%)",
+  "(max-width: 930px)": "repeat(2, 42%)",
+  "(max-width: 1210px)": "repeat(3, 28%)",
+  "(max-width: 1480px)": "repeat(4, 21%)",
+  "(min-width: 1481px)": "repeat(5, 18%)",
 };
 
 const appListpaddingSettings = {
