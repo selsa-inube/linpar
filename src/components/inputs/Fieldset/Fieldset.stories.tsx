@@ -1,5 +1,5 @@
 import { StoryFn } from "@storybook/react";
-import { Fieldset, FieldsetProps } from "..";
+import { Fieldset, FieldsetProps } from ".";
 
 const story = {
   component: Fieldset,
