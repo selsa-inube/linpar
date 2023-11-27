@@ -1,3 +1,5 @@
+import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
+import { FormikValues } from "formik";
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
   Stack,
@@ -7,17 +9,31 @@ import {
   Icon,
   Select,
   Grid,
-  useMediaQueries,
+  useMediaQuery,
 } from "@inube/design-system";
+
 import { options } from "@mocks/apps/privileges/users/users.mock";
 import { EMessageType } from "@src/types/messages.types";
-import { FormikValues } from "formik";
-import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
+import { generalInfoMessages } from "./config/messages.config";
 import {
   IGeneralInformationEntry,
   IMessageState,
 } from "../../../types/forms.types";
-import { generalInfoMessages } from "./config/messages.config";
+
+interface GeneralInformationFormUIProps {
+  formik: FormikValues;
+  loading: boolean;
+  withSubmitButtons?: boolean;
+  showMessage: IMessageState;
+  handleCloseSectionMessage: () => void;
+  hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
+  formInvalid: boolean;
+  handleSubmitForm: () => void;
+  handleChangeForm: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  readOnly?: boolean;
+}
 
 function renderMessages(
   showMessage: IMessageState,
@@ -47,7 +63,16 @@ function renderMessages(
   );
 }
 
-function renderFormFields(
+function stateValue(
+  formik: GeneralInformationFormUIProps["formik"],
+  attribute: string
+) {
+  if (!formik.touched[attribute]) return "pending";
+  if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
+  return "valid";
+}
+
+function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
@@ -56,15 +81,8 @@ function renderFormFields(
   ) => void,
   readOnly?: boolean
 ) {
-  function stateValue(attribute: string) {
-    if (!formik.touched[attribute]) return "pending";
-    if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
-    return "valid";
-  }
-
-  const mediaQueries = ["(max-width: 1111px)"];
-  const matches = useMediaQueries(mediaQueries);
-
+  const mediaQueries = "(max-width: 1111px)";
+  const matches = useMediaQuery(mediaQueries);
   return (
     <Grid
       templateColumns={
@@ -109,9 +127,9 @@ function renderFormFields(
         value={formik.values.email}
         type="email"
         iconAfter={<MdOutlineModeEdit size={18} />}
-        status={formik.errors.email && formInvalid ? "invalid" : "valid"}
+        status={stateValue(formik, "email")}
         message={
-          formik.errors.email && formInvalid
+          stateValue(formik, "email") === "invalid"
             ? formik.errors.email
             : "El correo electrónico ingresado es válido"
         }
@@ -119,7 +137,7 @@ function renderFormFields(
         readOnly={readOnly}
         size="compact"
         fullwidth
-        state={stateValue("email")}
+        state={stateValue(formik, "email")}
         onChange={handleChangeForm}
         onBlur={formik.handleBlur}
       />
@@ -132,9 +150,9 @@ function renderFormFields(
         value={formik.values.phone}
         type="tel"
         iconAfter={<MdOutlineModeEdit size={18} />}
-        status={formik.errors.phone && formInvalid ? "invalid" : "valid"}
+        status={stateValue(formik, "phone")}
         message={
-          formik.errors.phone && formInvalid
+          stateValue(formik, "phone") === "invalid"
             ? formik.errors.phone
             : "El número de teléfono ingresado es válido"
         }
@@ -142,7 +160,7 @@ function renderFormFields(
         readOnly={readOnly}
         size="compact"
         fullwidth
-        state={stateValue("phone")}
+        state={stateValue(formik, "phone")}
         onChange={handleChangeForm}
         onBlur={formik.handleBlur}
       />
@@ -188,21 +206,6 @@ function renderFormFields(
   );
 }
 
-interface GeneralInformationFormUIProps {
-  formik: FormikValues;
-  loading: boolean;
-  withSubmitButtons?: boolean;
-  showMessage: IMessageState;
-  handleCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
-  formInvalid: boolean;
-  handleSubmitForm: () => void;
-  handleChangeForm: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
-  readOnly?: boolean;
-}
-
 function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
     formik,
@@ -226,7 +229,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
-          {renderFormFields(formik, loading, formInvalid, handleChangeForm)}
+          {RenderFormFields(formik, loading, formInvalid, handleChangeForm)}
         </FormButtons>
         {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
       </>
@@ -235,7 +238,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
 
   return (
     <>
-      {renderFormFields(
+      {RenderFormFields(
         formik,
         loading,
         formInvalid,
