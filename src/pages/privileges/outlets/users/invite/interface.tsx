@@ -68,7 +68,6 @@ function InviteUI(props: InviteUIProps) {
     formInvalid,
     loading,
     showMessage,
-    screenMovil,
     handleCloseSectionMessage,
     handleSubmit,
   } = props;
