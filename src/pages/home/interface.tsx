@@ -1,12 +1,6 @@
 import { useContext } from "react";
 import { MdOutlineDoorFront } from "react-icons/md";
-import {
-  Header,
-  Grid,
-  Stack,
-  useMediaQueries,
-  useMediaQuery,
-} from "@inube/design-system";
+import { Header, Grid, Stack, useMediaQueries } from "@inube/design-system";
 
 import { AppContext } from "@src/context";
 import { PageTitle } from "@components/PageTitle";
