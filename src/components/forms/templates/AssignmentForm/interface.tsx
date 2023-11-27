@@ -9,6 +9,7 @@ import {
   Icon,
   Grid,
   useMediaQuery,
+  inube,
 } from "@inube/design-system";
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
@@ -59,20 +60,28 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
 
   if (readOnly) {
     return (
-      <StyledEntriesContainer readOnly={readOnly}>
-        {filteredRows.map((entry) => (
-          <Stack alignItems="center" key={entry.id}>
-            <Switch
-              id={entry.id}
-              label={`${entry.id} - ${entry.value}`}
-              checked={entry.isActive}
-              onChange={() => handleToggleEntry(entry.id)}
-              size="large"
-              disabled
-            />
+      <>
+        <StyledEntriesContainer>
+          <Stack
+            direction="column"
+            gap={inube.spacing.s200}
+            margin={readOnly ? "s0" : "s0 s400"}
+          >
+            {filteredRows.map((entry) => (
+              <Stack alignItems="center" key={entry.id}>
+                <Switch
+                  id={entry.id}
+                  label={`${entry.id} - ${entry.value}`}
+                  checked={entry.isActive}
+                  onChange={() => handleToggleEntry(entry.id)}
+                  size="large"
+                  disabled
+                />
+              </Stack>
+            ))}
           </Stack>
-        ))}
-      </StyledEntriesContainer>
+        </StyledEntriesContainer>
+      </>
     );
   }
 
@@ -133,17 +142,23 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
             )}
           </Grid>
           <StyledEntriesContainer>
-            {filteredRows.map((entry) => (
-              <Stack alignItems="center" key={entry.id}>
-                <Switch
-                  id={entry.id}
-                  label={`${entry.id} - ${entry.value}`}
-                  checked={entry.isActive}
-                  onChange={() => handleToggleEntry(entry.id)}
-                  size="large"
-                />
-              </Stack>
-            ))}
+            <Stack
+              direction="column"
+              gap={inube.spacing.s200}
+              margin={readOnly ? "s0" : "s0 s400"}
+            >
+              {filteredRows.map((entry) => (
+                <Stack alignItems="center" key={entry.id}>
+                  <Switch
+                    id={entry.id}
+                    label={`${entry.id} - ${entry.value}`}
+                    checked={entry.isActive}
+                    onChange={() => handleToggleEntry(entry.id)}
+                    size="large"
+                  />
+                </Stack>
+              ))}
+            </Stack>
           </StyledEntriesContainer>
         </Stack>
       </Fieldset>
