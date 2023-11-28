@@ -5,11 +5,7 @@ import { Header, Grid, Stack, useMediaQueries } from "@inube/design-system";
 import { AppContext } from "@src/context";
 import { PageTitle } from "@components/PageTitle";
 import { AppCard } from "@components/cards/AppCard";
-import {
-  mediaQuerySettings,
-  appListpaddingSettings,
-  pageTitlePaddingSettings,
-} from "./types";
+import { mediaQuerySettings, pageTitlePaddingSettings } from "./types";
 import {
   StyledContentImg,
   StyledLogo,
@@ -18,18 +14,6 @@ import {
 import { IApps } from "./types";
 import { navigationConfig } from "./config/apps.config";
 import { StyledHome } from "./styles";
-
-const getSettingsAccordingMediaQuery = (
-  mediaQueries: string[],
-  matches: { [x: string]: boolean },
-  mediaQuerieParameters: { [x: string]: string },
-  defaultValue: string
-): string => {
-  const matchingQuery = mediaQueries.find(
-    (mediaQuerie) => matches[mediaQuerie]
-  );
-  return matchingQuery ? mediaQuerieParameters[matchingQuery] : defaultValue;
-};
 
 const getPageTitlePadding = (
   matches: { [x: string]: boolean },
@@ -71,8 +55,8 @@ function HomeUI(props: HomeUIProps) {
         client={user.company}
       />
       <Stack
-        id="PageTitle"
-        gap="4px"
+        gap="20px"
+        direction="column"
         padding={getPageTitlePadding(matches, pageTitlePaddingSettings)}
       >
         <PageTitle
@@ -80,39 +64,28 @@ function HomeUI(props: HomeUIProps) {
           description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
           icon={<MdOutlineDoorFront />}
         />
+        <Grid
+          templateColumns="repeat( auto-fit, minmax(250px, 1fr) )"
+          justifyContent="center"
+          alignItems="start"
+          alignContent="start"
+          gap="s300"
+          padding="s0"
+          margin="s0 auto"
+        >
+          {apps.map((app) => (
+            <li key={app.url}>
+              <AppCard
+                key={app.id}
+                label={app.label}
+                description={app.description}
+                icon={app.icon}
+                url={app.url}
+              />
+            </li>
+          ))}
+        </Grid>
       </Stack>
-
-      <Grid
-        templateColumns={getSettingsAccordingMediaQuery(
-          mediaQueries,
-          matches,
-          mediaQuerySettings,
-          "repeat(6, 16%)"
-        )}
-        justifyContent={"center"}
-        alignItems="start"
-        alignContent="start"
-        gap="s300"
-        padding={getSettingsAccordingMediaQuery(
-          mediaQueries,
-          matches,
-          appListpaddingSettings,
-          "s0 s800"
-        )}
-        margin="s0 auto"
-      >
-        {apps.map((app) => (
-          <li key={app.url}>
-            <AppCard
-              key={app.id}
-              label={app.label}
-              description={app.description}
-              icon={app.icon}
-              url={app.url}
-            />
-          </li>
-        ))}
-      </Grid>
     </StyledHome>
   );
 }
