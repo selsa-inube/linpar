@@ -10,17 +10,15 @@ interface IStyledClientsUI {
 }
 const StyledClients = styled.div`
   & form {
-    margin: ${({ theme }: IStyledClientsUI) =>
-      `${theme?.spacing?.s600 || inube.spacing.s600} auto ${
-        theme?.spacing?.s0 || inube.spacing.s0
-      }`};
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    @media screen and (max-width: 532px) {
-      width: auto;
+    & > div {
+      margin: ${({ theme }: IStyledClientsUI) =>
+        `${theme?.spacing?.s600 || inube.spacing.s600} auto ${
+          theme?.spacing?.s0 || inube.spacing.s0
+        }`};
+      width: 500px;
+      @media screen and (max-width: 532px) {
+        width: auto;
+      }
     }
   }
 
@@ -31,25 +29,15 @@ const StyledClients = styled.div`
 `;
 
 const StyledClientsList = styled.ul<StyledClientsListProps>`
-  list-style: none;
-  min-height: 300px;
-  max-height: 430px;
-  width: inherit;
-  padding: ${({ theme }: IStyledClientsUI) =>
-    `${theme?.spacing?.s0 || inube.spacing.s0} ${
-      theme?.spacing?.s100 || inube.spacing.s100
-    }`};
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: ${({ theme }: IStyledClientsUI) =>
-    `${theme?.spacing?.s100 || inube.spacing.s100}`};
-
-  overflow-y: ${({ scroll }) => (scroll ? "scroll" : "visible")};
-
-  @media screen and (max-height: 1000px) {
-    min-height: 200px;
+  & > div {
+    list-style: none;
+    min-height: 300px;
+    max-height: 430px;
+    width: inherit;
+    overflow-y: ${({ scroll }) => (scroll ? "scroll" : "visible")};
+    @media screen and (max-height: 1000px) {
+      min-height: 200px;
+    }
   }
 `;
 
