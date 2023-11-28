@@ -1,7 +1,7 @@
-import { Button, Icon } from "@inube/design-system";
-import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
-import { IGeneralInformationEntry } from "../../../types/forms.types";
 import { Link } from "react-router-dom";
+import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
+import { Button, Icon } from "@inube/design-system";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 
 interface CompleteInvitationLinkProps {
   invitation: IGeneralInformationEntry;
@@ -15,7 +15,7 @@ function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
     <>
       {showComplete ? (
         <Button
-          iconBefore={<MdOutlineAssignmentTurnedIn size={18} />}
+          iconBefore={<MdOutlineAssignmentTurnedIn />}
           type="link"
           disabled={invitation.status === "Sent"}
           path={`complete-invitation/${invitation.id}`}
