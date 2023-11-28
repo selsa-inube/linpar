@@ -88,7 +88,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
   return (
     <StyledForm>
       <Fieldset title={title}>
-        <Stack direction="column" gap="16px">
+        <Stack direction="column" gap={inube.spacing.s400}>
           <Grid
             templateColumns={smallScreen ? "auto 1fr" : "32% 1fr"}
             gap="s200"
