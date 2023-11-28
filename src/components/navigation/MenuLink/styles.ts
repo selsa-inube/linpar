@@ -1,17 +1,24 @@
-import { colors } from "@styles/colors";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
+
+interface IStyledMenuProps {
+  theme?: typeof inube;
+}
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${colors.sys.text.secondary};
+  color: ${({ theme }: IStyledMenuProps) =>
+    theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
   display: inline-block;
-  padding: 6px 13px;
+  padding: ${inube.spacing.s075} ${inube.spacing.s150};
   border: none;
-  background-color: ${colors.ref.palette.neutral.n0};
+  background-color: ${({ theme }: IStyledMenuProps) =>
+    theme?.color?.stroke?.light?.clear || inube.color.stroke.light.clear};
   cursor: pointer;
   &:hover {
-    background-color: ${colors.ref.palette.neutral.n30};
+    background-color: ${({ theme }: IStyledMenuProps) =>
+      theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
   }
 `;
 
