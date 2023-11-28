@@ -41,7 +41,7 @@ function HomeUI(props: HomeUIProps) {
   const { apps } = props;
   const { user } = useContext(AppContext);
 
-  const mediaQueries = Object.keys(mediaQuerySettings);
+  const mediaQueries = mediaQuerySettings;
 
   const matches = useMediaQueries(mediaQueries);
 

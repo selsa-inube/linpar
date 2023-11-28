@@ -6,14 +6,14 @@ interface IApps {
   url: string;
 }
 
-const mediaQuerySettings = {
-  "(max-width: 660px)": "100%",
-  "(max-width: 806px)": "repeat(2, 40%)",
-  "(max-width: 930px)": "repeat(2, 42%)",
-  "(max-width: 1210px)": "repeat(3, 28%)",
-  "(max-width: 1480px)": "repeat(4, 21%)",
-  "(min-width: 1481px)": "repeat(5, 18%)",
-};
+const mediaQuerySettings = [
+  "(max-width: 660px)",
+  "(max-width: 806px)",
+  "(max-width: 930px)",
+  "(max-width: 1210px)",
+  "(max-width: 1480px)",
+  "(min-width: 1481px)",
+];
 
 const appListpaddingSettings = {
   "(max-width: 590px)": "s0 s200",
