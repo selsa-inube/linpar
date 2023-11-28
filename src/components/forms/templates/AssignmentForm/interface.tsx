@@ -142,11 +142,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
             )}
           </Grid>
           <StyledEntriesContainer>
-            <Stack
-              direction="column"
-              gap={inube.spacing.s200}
-              margin={readOnly ? "s0" : "s0 s400"}
-            >
+            <Stack direction="column" gap={inube.spacing.s200} margin={"s0"}>
               {filteredRows.map((entry) => (
                 <Stack alignItems="center" key={entry.id}>
                   <Switch
