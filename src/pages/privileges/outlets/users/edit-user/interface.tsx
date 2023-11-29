@@ -1,7 +1,12 @@
 import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
-import { Breadcrumbs, Stack, Tabs, useMediaQuery } from "@inube/design-system";
+import {
+  Breadcrumbs,
+  Stack,
+  Tabs,
+  useMediaQueries,
+} from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { editUserContinueModalConfig } from "./config/editUser.config";
 import {
@@ -71,7 +76,8 @@ function EditUserUI(props: EditUserUIProps) {
     handleContinueTab,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
+    useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   const {
     generalInformation: { entries: currentInformation },
@@ -110,6 +116,7 @@ function EditUserUI(props: EditUserUIProps) {
             <Tabs
               tabs={Object.values(editUserTabsConfig)}
               selectedTab={selectedTab}
+              type={typeTabs ? "select" : "tabs"}
               onChange={handleTabChange}
             />
             {selectedTab === editUserTabsConfig.generalInformation.id && (
