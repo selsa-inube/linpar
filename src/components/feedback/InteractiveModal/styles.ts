@@ -1,7 +1,5 @@
-import { colors } from "@src/styles/colors";
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
-import { InteractiveModalProps } from "./types";
 
 interface IStyledRespondInvitation {
   smallScreen: boolean;
@@ -9,18 +7,19 @@ interface IStyledRespondInvitation {
 }
 
 const StyledModal = styled.div`
-  background-color: ${colors.ref.palette.neutral.n10};
+  background-color: ${({ theme }: IStyledRespondInvitation) =>
+    theme?.color?.stroke?.light?.regular || inube.color.stroke.light.regular};
   min-width: ${({ smallScreen }: IStyledRespondInvitation) =>
     smallScreen ? "100%" : "450px"};
   min-height: ${({ smallScreen }: IStyledRespondInvitation) =>
     smallScreen ? "100vh" : "auto"};
   height: auto;
   border-radius: ${({ smallScreen }: IStyledRespondInvitation) =>
-    smallScreen ? "0" : "8px"};
+    smallScreen ? inube.spacing.s0 : inube.spacing.s100};
 
   & > div {
     padding: ${({ smallScreen }: IStyledRespondInvitation) =>
-      smallScreen ? "24px" : "32px"};
+      smallScreen ? inube.spacing.s300 : inube.spacing.s400};
   }
 `;
 

@@ -1,6 +1,6 @@
-import { Button } from "@inube/design-system";
+import { Link } from "react-router-dom";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
-import { StyledLink } from "./styles";
+import { Button, Icon } from "@inube/design-system";
 import { IGeneralInformationEntry } from "../../../types/forms.types";
 
 interface CompleteInvitationLinkProps {
@@ -15,7 +15,7 @@ function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
     <>
       {showComplete ? (
         <Button
-          iconBefore={<MdOutlineAssignmentTurnedIn size={18} />}
+          iconBefore={<MdOutlineAssignmentTurnedIn />}
           type="link"
           disabled={invitation.status === "Sent"}
           path={`complete-invitation/${invitation.id}`}
@@ -26,16 +26,19 @@ function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
           Completar
         </Button>
       ) : (
-        <StyledLink
-          status={invitation.status}
+        <Link
           to={
             invitation.status === "Pending"
               ? `complete-invitation/${invitation.id}`
               : ""
           }
         >
-          <MdOutlineAssignmentTurnedIn />
-        </StyledLink>
+          <Icon
+            appearance={"dark"}
+            icon={<MdOutlineAssignmentTurnedIn />}
+            disabled={invitation.status === "Sent"}
+          />
+        </Link>
       )}
     </>
   );

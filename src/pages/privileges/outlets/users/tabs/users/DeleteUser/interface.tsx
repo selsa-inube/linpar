@@ -1,11 +1,10 @@
-import { DecisionModal } from "@components/feedback/DecisionModal";
-import { Button } from "@inube/design-system";
 import { MdOutlineDelete } from "react-icons/md";
+import { Button, Icon } from "@inube/design-system";
+import { DecisionModal } from "@components/feedback/DecisionModal";
+import { EMessageType } from "@src/types/messages.types";
 import { deleteUserModal } from "../../../config/deleteUser.config";
-import { StyledIconDelete } from "./styles";
 import { IGeneralInformationEntry } from "../../../types/forms.types";
 import { IDeleteUserModal } from "./types";
-import { EMessageType } from "@src/types/messages.types";
 
 interface DeleteUserUIProps {
   user: IGeneralInformationEntry;
@@ -47,7 +46,7 @@ function DeleteUserUI(props: DeleteUserUIProps) {
     <>
       {showComplete ? (
         <Button
-          iconBefore={<MdOutlineDelete size={18} />}
+          iconBefore={<MdOutlineDelete />}
           onClick={handleShowModal}
           variant="none"
           appearance="error"
@@ -56,9 +55,12 @@ function DeleteUserUI(props: DeleteUserUIProps) {
           Eliminar
         </Button>
       ) : (
-        <StyledIconDelete>
-          <MdOutlineDelete onClick={handleShowModal} />
-        </StyledIconDelete>
+        <Icon
+          icon={<MdOutlineDelete />}
+          onClick={handleShowModal}
+          appearance="primary"
+          cursorHover
+        />
       )}
 
       {showModal && DeleteUserModal({ user, closeModal, handleDeleteUser })}

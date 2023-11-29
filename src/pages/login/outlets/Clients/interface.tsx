@@ -1,6 +1,6 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { Button, Text, Textfield } from "@inube/design-system";
+import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioClient } from "@components/cards/RadioClient";
 import { IClientState, IClient } from "./types";
 import {
@@ -51,36 +51,45 @@ function ClientsUI({
         Selecciona la empresa a la que vas a representar
       </Text>
       <form>
-        {clients.length > 10 && (
-          <Textfield
-            placeholder="Buscar..."
-            type="search"
-            name="searchClients"
-            id="searchClients"
-            value={search}
-            fullwidth={true}
-            onChange={handleSearchChange}
-            iconBefore={<MdSearch size={22} />}
-          />
-        )}
-        {filteredClients.length === 0 && <NoResultsMessage search={search} />}
-        <StyledClientsList scroll={clients.length > 5}>
-          {filteredClients.map((client) => (
-            <StyledClientsItem key={client.id}>
-              <RadioClient
-                name="client"
-                label={client.name}
-                id={client.id}
-                value={client.name}
-                logo={client.logo}
-                handleChange={handleClientChange}
-              />
-            </StyledClientsItem>
-          ))}
-        </StyledClientsList>
-        <Button type="button" disabled={client.value} onClick={handleSubmit}>
-          Continuar
-        </Button>
+        <Stack direction="column" alignItems="center">
+          {clients.length > 10 && (
+            <Textfield
+              placeholder="Buscar..."
+              type="search"
+              name="searchClients"
+              id="searchClients"
+              value={search}
+              fullwidth={true}
+              onChange={handleSearchChange}
+              iconBefore={<MdSearch size={22} />}
+            />
+          )}
+          {filteredClients.length === 0 && <NoResultsMessage search={search} />}
+          <StyledClientsList scroll={clients.length > 5}>
+            <Stack
+              direction="column"
+              padding="s0 s100"
+              alignItems="center"
+              gap={inube.spacing.s100}
+            >
+              {filteredClients.map((client) => (
+                <StyledClientsItem key={client.id}>
+                  <RadioClient
+                    name="client"
+                    label={client.name}
+                    id={client.id}
+                    value={client.name}
+                    logo={client.logo}
+                    handleChange={handleClientChange}
+                  />
+                </StyledClientsItem>
+              ))}
+            </Stack>
+          </StyledClientsList>
+          <Button type="button" disabled={client.value} onClick={handleSubmit}>
+            Continuar
+          </Button>
+        </Stack>
       </form>
     </StyledClients>
   );

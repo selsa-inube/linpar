@@ -1,8 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
-import { GeneralInformationForm, GeneralInformationFormProps } from "../index";
+import { GeneralInformationForm, GeneralInformationFormProps } from "./index";
 import { action } from "@storybook/addon-actions";
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
-import { IGeneralInformationEntry } from "../../../../types/forms.types";
+import { IGeneralInformationEntry } from "../../../types/forms.types";
 import { StoryFn } from "@storybook/react";
 
 const story = {
