@@ -13,6 +13,7 @@ const StyledContainer = styled.div`
 
 const StyledMain = styled.main`
   box-sizing: border-box;
+  height: 100vh;
   overflow-y: auto;
 `;
 
