@@ -31,7 +31,7 @@ import {
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 
-interface IVerificationData {
+export interface IVerificationData {
   id: string;
   title: string;
   content: React.ReactNode;
@@ -63,7 +63,8 @@ interface CompleteInvitationUIProps {
   handleSubmit: (
     values: IGeneralInformationEntry | IAssignmentFormEntry[]
   ) => void;
-  handleStepChange: (step: number) => void;
+  handleNextStep: (step: number) => void;
+  handlePrevStep: (step: number) => void;
   currentStep: number;
   handleCompleteInvitation: () => void;
   handleToggleModal: () => void;
@@ -75,7 +76,8 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const {
     invitationData,
     handleSubmit,
-    handleStepChange,
+    handleNextStep,
+    handlePrevStep,
     currentStep,
     handleCompleteInvitation,
     handleToggleModal,
@@ -128,12 +130,11 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
             <Assisted
               steps={Object.values(stepsRegisterUserConfig)}
               currentStepId={currentStep}
-              handlePrev={handleStepChange}
+              handlePrev={handlePrevStep}
               handleNext={
-                currentStep ===
-                Object.values(stepsRegisterUserConfig).length - 1
+                currentStep === Object.values(stepsRegisterUserConfig).length
                   ? handleToggleModal
-                  : handleStepChange
+                  : handleNextStep
               }
             />
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
