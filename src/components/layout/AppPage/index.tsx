@@ -9,6 +9,7 @@ import {
   StyledContentImg,
   StyledLogo,
   StyledMain,
+  StyledContainerNav,
 } from "./styles";
 
 const renderLogo = (imgUrl: string) => {
@@ -39,11 +40,13 @@ function AppPage() {
             alignContent="unset"
           >
             {!smallScreen && (
-              <Nav
-                navigation={navigationConfig}
-                logoutPath="/"
-                logoutTitle="Cerrar Sesión"
-              />
+              <StyledContainerNav>
+                <Nav
+                  navigation={navigationConfig}
+                  logoutPath="/"
+                  logoutTitle="Cerrar Sesión"
+                />
+              </StyledContainerNav>
             )}
 
             <StyledMain>

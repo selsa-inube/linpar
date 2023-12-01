@@ -25,10 +25,15 @@ const StyledLogo = styled.img`
   max-width: 100px;
 `;
 
+const StyledContainerNav = styled.div`
+  max-height: 94%;
+`;
+
 export {
   StyledAppPage,
   StyledContainer,
   StyledContentImg,
   StyledLogo,
   StyledMain,
+  StyledContainerNav,
 };
