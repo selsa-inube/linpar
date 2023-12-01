@@ -3,6 +3,7 @@ import { inube } from "@inube/design-system";
 
 const StyledForm = styled.form`
   width: 100%;
+  height: 100vh;
 `;
 
 const StyledEntriesContainer = styled.div`
