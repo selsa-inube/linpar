@@ -26,7 +26,7 @@ const StyledLogo = styled.img`
 `;
 
 const StyledContainerNav = styled.div`
-  max-height: 94%;
+  max-height: calc(100vh - 50px);
 `;
 
 export {
