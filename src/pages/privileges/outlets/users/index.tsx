@@ -22,7 +22,7 @@ function Users() {
         handleShowMessage(location.state.messageType, location.state.username);
       }
     }
-  }, []);
+  }, [location]);
 
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
