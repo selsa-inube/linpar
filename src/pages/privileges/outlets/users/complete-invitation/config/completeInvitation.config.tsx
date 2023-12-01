@@ -4,41 +4,41 @@ import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 const stepsRegisterUserConfig = {
   generalInformation: {
     id: 1,
-    stepName: "Información general",
-    stepDescription:
+    label: "Información general",
+    description:
       "Ver la información general del usuario y si es necesario editarla",
   },
   branches: {
     id: 2,
-    stepName: "Sucursales",
-    stepDescription: "Asigna las sucursales que el usuario administrará",
+    label: "Sucursales",
+    description: "Asigna las sucursales que el usuario administrará",
   },
   projects: {
     id: 3,
-    stepName: "Proyectos",
-    stepDescription: "Agrega los proyectos que el usuario administrará.",
+    label: "Proyectos",
+    description: "Agrega los proyectos que el usuario administrará.",
   },
   events: {
     id: 4,
-    stepName: "Eventos",
-    stepDescription: "Agrega los Eventos que el usuario administrará.",
+    label: "Eventos",
+    description: "Agrega los Eventos que el usuario administrará.",
   },
   aidBudgetUnits: {
     id: 5,
-    stepName: "Unidades de ayuda",
-    stepDescription:
+    label: "Unidades de ayuda",
+    description:
       "Configura las unidades presupuestarias de ayuda que el usuario administrará.",
   },
   payrolls: {
     id: 6,
-    stepName: "Nómina",
-    stepDescription:
+    label: "Nómina",
+    description:
       "Configura la nómina del usuario, incluyendo detalles como el salario base, deducciones y beneficios.",
   },
   verification: {
     id: 7,
-    stepName: "Verificación",
-    stepDescription: "Proceso final de verificacion",
+    label: "Verificación",
+    description: "Proceso final de verificacion",
     isVerification: true,
   },
 };
