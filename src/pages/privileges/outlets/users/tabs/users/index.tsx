@@ -1,4 +1,9 @@
-import { Table, useMediaQuery, SectionMessage } from "@inube/design-system";
+import {
+  Table,
+  useMediaQuery,
+  SectionMessage,
+  Stack,
+} from "@inube/design-system";
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import { useState } from "react";
 import { activateUserMessages } from "../../config/activateUser.config";
@@ -147,14 +152,16 @@ function UsersTab(props: UsersTabProps) {
         modalTitle="Usuario"
       />
       {message.show && (
-        <SectionMessage
-          title={message.title}
-          description={message.description}
-          icon={message.icon}
-          appearance={message.appearance}
-          duration={1500}
-          closeSectionMessage={onCloseMessage}
-        />
+        <Stack justifyContent="flex-end" width="100%">
+          <SectionMessage
+            title={message.title}
+            description={message.description}
+            icon={message.icon}
+            appearance={message.appearance}
+            duration={1500}
+            closeSectionMessage={onCloseMessage}
+          />
+        </Stack>
       )}
     </>
   );

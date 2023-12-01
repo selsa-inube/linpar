@@ -45,14 +45,16 @@ function renderMessages(
     messageInvitationSentConfig[messageType];
 
   return (
-    <SectionMessage
-      title={title}
-      description={description}
-      icon={icon}
-      appearance={appearance}
-      duration={4000}
-      closeSectionMessage={handleCloseSectionMessage}
-    />
+    <Stack justifyContent="flex-end" width="100%" margin="s800 s0">
+      <SectionMessage
+        title={title}
+        description={description}
+        icon={icon}
+        appearance={appearance}
+        duration={4000}
+        closeSectionMessage={handleCloseSectionMessage}
+      />
+    </Stack>
   );
 }
 
