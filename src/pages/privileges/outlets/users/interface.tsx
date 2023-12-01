@@ -100,7 +100,6 @@ export function UsersUI(props: UsersUIProps) {
                 type="search"
                 iconBefore={<MdSearch />}
                 size="compact"
-                fullwidth
                 value={searchText}
                 onChange={handleSearchText}
               />
