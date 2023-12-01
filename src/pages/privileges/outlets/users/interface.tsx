@@ -24,12 +24,6 @@ import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
 
-import {
-  StyledContainer,
-  StyledOptionsContainer,
-  StyledTextFieldContainer,
-} from "./styles";
-
 const renderMessage = (
   message: IUsersMessage,
   handleCloseMessage: () => void
@@ -77,7 +71,11 @@ export function UsersUI(props: UsersUIProps) {
 
   return (
     <>
-      <StyledContainer smallScreen={smallScreen}>
+      <Stack
+        direction="column"
+        width="-webkit-fill-available"
+        padding={smallScreen ? "s100" : "s800"}
+      >
         <Stack gap="48px" direction="column">
           <Stack gap="32px" direction="column">
             <Breadcrumbs crumbs={privilegeOptionsConfig[0].crumbs} />
@@ -95,22 +93,19 @@ export function UsersUI(props: UsersUIProps) {
               type={smallScreen ? "select" : "tabs"}
             />
             <Stack justifyContent="space-between" alignItems="center">
-              <StyledTextFieldContainer>
-                <Textfield
-                  name="searchUser"
-                  id="searchUser"
-                  placeholder="Buscar..."
-                  type="search"
-                  iconBefore={<MdSearch />}
-                  size="compact"
-                  fullwidth
-                  value={searchText}
-                  onChange={handleSearchText}
-                />
-              </StyledTextFieldContainer>
+              <Textfield
+                name="searchUser"
+                id="searchUser"
+                placeholder="Buscar..."
+                type="search"
+                iconBefore={<MdSearch />}
+                size="compact"
+                value={searchText}
+                onChange={handleSearchText}
+              />
 
               {smallScreen ? (
-                <StyledOptionsContainer>
+                <>
                   <Icon
                     icon={<MdOutlineMoreHoriz />}
                     size="24px"
@@ -124,7 +119,7 @@ export function UsersUI(props: UsersUIProps) {
                       handleClose={handleCloseMenuInvitation}
                     />
                   )}
-                </StyledOptionsContainer>
+                </>
               ) : (
                 <Button
                   iconBefore={<MdPersonAddAlt />}
@@ -145,7 +140,7 @@ export function UsersUI(props: UsersUIProps) {
             )}
           </Stack>
         </Stack>
-      </StyledContainer>
+      </Stack>
       {renderMessage(message, handleCloseMessage)}
     </>
   );
