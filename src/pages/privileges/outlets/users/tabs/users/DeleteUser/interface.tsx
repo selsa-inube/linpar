@@ -5,6 +5,7 @@ import { EMessageType } from "@src/types/messages.types";
 import { deleteUserModal } from "../../../config/deleteUser.config";
 import { IGeneralInformationEntry } from "../../../types/forms.types";
 import { IDeleteUserModal } from "./types";
+import { useState } from "react";
 
 interface DeleteUserUIProps {
   user: IGeneralInformationEntry;
@@ -42,6 +43,8 @@ function DeleteUserUI(props: DeleteUserUIProps) {
     closeModal,
     showComplete,
   } = props;
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <>
       {showComplete ? (
@@ -55,12 +58,18 @@ function DeleteUserUI(props: DeleteUserUIProps) {
           Eliminar
         </Button>
       ) : (
-        <Icon
-          icon={<MdOutlineDelete />}
-          onClick={handleShowModal}
-          appearance="primary"
-          cursorHover
-        />
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Icon
+            icon={<MdOutlineDelete />}
+            onClick={handleShowModal}
+            appearance={isHovered ? "primary" : "dark"}
+            parentHover={isHovered ? true : false}
+            cursorHover
+          />
+        </div>
       )}
 
       {showModal && DeleteUserModal({ user, closeModal, handleDeleteUser })}
