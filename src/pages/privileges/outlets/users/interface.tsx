@@ -31,14 +31,16 @@ const renderMessage = (
   if (!message.data) return null;
 
   return (
-    <SectionMessage
-      title={message.data.title}
-      description={message.data.description}
-      icon={message.data.icon}
-      appearance={message.data.appearance}
-      duration={10000}
-      closeSectionMessage={handleCloseMessage}
-    />
+    <Stack justifyContent="flex-end" width="98%" margin="s800 s0">
+      <SectionMessage
+        title={message.data.title}
+        description={message.data.description}
+        icon={message.data.icon}
+        appearance={message.data.appearance}
+        duration={10000}
+        closeSectionMessage={handleCloseMessage}
+      />
+    </Stack>
   );
 };
 
@@ -140,8 +142,8 @@ export function UsersUI(props: UsersUIProps) {
             )}
           </Stack>
         </Stack>
+        {renderMessage(message, handleCloseMessage)}
       </Stack>
-      {renderMessage(message, handleCloseMessage)}
     </>
   );
 }
