@@ -10,7 +10,7 @@ const appsConfig = [
       {
         path: "/",
         label: "Inicio",
-        id: "/home",
+        id: "/",
         isActive: false,
       },
       {
