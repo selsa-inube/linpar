@@ -79,7 +79,7 @@ export function UsersUI(props: UsersUIProps) {
         padding={smallScreen ? "s100" : "s800"}
       >
         <Stack gap="48px" direction="column">
-          <Stack gap="32px" direction="column">
+          <Stack gap="24px" direction="column">
             <Breadcrumbs crumbs={privilegeOptionsConfig[0].crumbs} />
             <PageTitle
               title={privilegeConfig.label}
