@@ -24,6 +24,8 @@ import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
 
+import { StyledSearchContainer } from "./styles";
+
 const renderMessage = (
   message: IUsersMessage,
   handleCloseMessage: () => void
@@ -95,16 +97,18 @@ export function UsersUI(props: UsersUIProps) {
               type={smallScreen ? "select" : "tabs"}
             />
             <Stack justifyContent="space-between" alignItems="center">
-              <Textfield
-                name="searchUser"
-                id="searchUser"
-                placeholder="Buscar..."
-                type="search"
-                iconBefore={<MdSearch />}
-                size="compact"
-                value={searchText}
-                onChange={handleSearchText}
-              />
+              <StyledSearchContainer>
+                <Textfield
+                  name="searchUser"
+                  id="searchUser"
+                  placeholder="Buscar..."
+                  type="search"
+                  iconBefore={<MdSearch />}
+                  size="compact"
+                  value={searchText}
+                  onChange={handleSearchText}
+                />
+              </StyledSearchContainer>
 
               {smallScreen ? (
                 <>
