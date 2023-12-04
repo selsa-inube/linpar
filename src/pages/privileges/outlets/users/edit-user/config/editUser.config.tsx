@@ -3,7 +3,7 @@ import { EAppearance } from "@src/types/colors.types";
 const editUserOptionsConfig = {
   editUserPage: {
     id: 1,
-    label: "Editar Usuario",
+    label: "Editar usuario",
     description: "Editar las propiedades y privilegios del usuario",
     url: "/privileges/users/user edition",
     crumbs: [
