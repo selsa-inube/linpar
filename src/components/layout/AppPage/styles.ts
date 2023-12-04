@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
 
 const StyledAppPage = styled.div`
   display: inherit;
@@ -27,6 +28,8 @@ const StyledLogo = styled.img`
 
 const StyledContainerNav = styled.div`
   max-height: calc(100vh - 50px);
+  background-color: ${({ theme }) =>
+    theme?.color?.surface?.nav?.regular || inube.color.surface.nav.regular};
 `;
 
 export {
