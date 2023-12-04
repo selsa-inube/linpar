@@ -1,6 +1,6 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
-import { SectionMessage } from "@inube/design-system";
+import { SectionMessage, Stack } from "@inube/design-system";
 import {
   IAssignmentFormEntry,
   IMessageState,
@@ -18,14 +18,16 @@ const renderMessage = (
     assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
 
   return (
-    <SectionMessage
-      title={title}
-      description={description}
-      icon={icon}
-      appearance={appearance}
-      duration={10000}
-      closeSectionMessage={onCloseSectionMessage}
-    />
+    <Stack justifyContent="flex-end" width="100%">
+      <SectionMessage
+        title={title}
+        description={description}
+        icon={icon}
+        appearance={appearance}
+        duration={10000}
+        closeSectionMessage={onCloseSectionMessage}
+      />
+    </Stack>
   );
 };
 

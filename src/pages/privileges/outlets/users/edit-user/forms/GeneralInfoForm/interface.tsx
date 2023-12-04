@@ -52,14 +52,16 @@ function renderMessages(
     generalInfoMessages[messageType];
 
   return (
-    <SectionMessage
-      title={title}
-      description={description}
-      icon={icon}
-      appearance={appearance}
-      duration={10000}
-      closeSectionMessage={handleCloseSectionMessage}
-    />
+    <Stack justifyContent="flex-end" width="100%">
+      <SectionMessage
+        title={title}
+        description={description}
+        icon={icon}
+        appearance={appearance}
+        duration={10000}
+        closeSectionMessage={handleCloseSectionMessage}
+      />
+    </Stack>
   );
 }
 
