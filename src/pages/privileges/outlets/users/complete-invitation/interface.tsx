@@ -31,6 +31,8 @@ import {
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 
+import { StyledAssistedContainer } from "./styles";
+
 export interface IVerificationData {
   id: string;
   title: string;
@@ -127,16 +129,19 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         </Stack>
         {currentInformation ? (
           <>
-            <Assisted
-              steps={Object.values(stepsRegisterUserConfig)}
-              currentStepId={currentStep}
-              handlePrev={handlePrevStep}
-              handleNext={
-                currentStep === Object.values(stepsRegisterUserConfig).length
-                  ? handleToggleModal
-                  : handleNextStep
-              }
-            />
+            <StyledAssistedContainer>
+              <Assisted
+                steps={Object.values(stepsRegisterUserConfig)}
+                currentStepId={currentStep}
+                handlePrev={handlePrevStep}
+                handleNext={
+                  currentStep === Object.values(stepsRegisterUserConfig).length
+                    ? handleToggleModal
+                    : handleNextStep
+                }
+              />
+            </StyledAssistedContainer>
+
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
                 currentInformation={currentInformation}
