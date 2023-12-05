@@ -115,7 +115,7 @@ function InviteUI(props: InviteUIProps) {
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                state={stateValue(formik, "name")}
+                status={stateValue(formik, "name")}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
@@ -136,7 +136,7 @@ function InviteUI(props: InviteUIProps) {
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                state={stateValue(formik, "id")}
+                status={stateValue(formik, "id")}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
@@ -157,7 +157,7 @@ function InviteUI(props: InviteUIProps) {
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                state={stateValue(formik, "phone")}
+                status={stateValue(formik, "phone")}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
@@ -178,7 +178,7 @@ function InviteUI(props: InviteUIProps) {
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                state={stateValue(formik, "email")}
+                status={stateValue(formik, "email")}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
