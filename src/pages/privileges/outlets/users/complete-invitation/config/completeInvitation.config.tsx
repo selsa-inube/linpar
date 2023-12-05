@@ -71,7 +71,7 @@ const CompleteInvitationUserConfig = [
       },
       {
         path: "/completeUserRegistration",
-        label: "Complete user registration",
+        label: "Completar registro de usuario",
         id: "/completeUserRegistration",
         isActive: true,
       },
