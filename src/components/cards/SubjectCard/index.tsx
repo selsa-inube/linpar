@@ -3,7 +3,6 @@ import { useState } from "react";
 import { StyledSubjectCard } from "./styles";
 import { ILabel } from "./types";
 import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
-import { inube } from "@inube/design-system";
 
 interface SubjectCardProps {
   subjectData: Record<string, string | number>;
