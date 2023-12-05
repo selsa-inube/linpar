@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { Button, Icon } from "@inube/design-system";
 import { IGeneralInformationEntry } from "../../../types/forms.types";
+import { useState } from "react";
 
 interface CompleteInvitationLinkProps {
   invitation: IGeneralInformationEntry;
@@ -10,6 +11,7 @@ interface CompleteInvitationLinkProps {
 
 function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
   const { invitation, showComplete } = props;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <>
@@ -32,9 +34,13 @@ function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
               ? `complete-invitation/${invitation.id}`
               : ""
           }
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <Icon
-            appearance={"dark"}
+            appearance={isHovered ? "primary" : "dark"}
+            parentHover={isHovered ? true : false}
+            cursorHover
             icon={<MdOutlineAssignmentTurnedIn />}
             disabled={invitation.status === "Sent"}
           />
