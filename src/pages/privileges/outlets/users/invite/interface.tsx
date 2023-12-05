@@ -81,7 +81,7 @@ function InviteUI(props: InviteUIProps) {
     <Stack direction="column" padding="s400 s800">
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
-          <Breadcrumbs crumbs={usersInvitationsConfig} />
+          <Breadcrumbs crumbs={usersInvitationsConfig[0].crumbs} />
           <PageTitle
             title={usersInvitationsConfig[0].label}
             description={usersInvitationsConfig[0].description}
