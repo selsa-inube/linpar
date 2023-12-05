@@ -27,7 +27,7 @@ const editUserOptionsConfig = {
       },
       {
         path: "/userEdition",
-        label: "user edition",
+        label: "Edicion de usuario",
         id: "/userEdition",
         isActive: true,
       },

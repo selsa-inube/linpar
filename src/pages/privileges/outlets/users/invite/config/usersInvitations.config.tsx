@@ -26,7 +26,7 @@ const usersInvitationsConfig = [
       },
       {
         path: "/invite",
-        label: "invite",
+        label: "Invitacion",
         id: "/invite",
         isActive: true,
       },
