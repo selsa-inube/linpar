@@ -26,9 +26,9 @@ const privilegeOptionsConfig = [
         isActive: false,
       },
       {
-        path: "/users",
+        path: "/privileges/users",
         label: "Usuarios",
-        id: "/users",
+        id: "/privileges/users",
         isActive: true,
       },
     ],
