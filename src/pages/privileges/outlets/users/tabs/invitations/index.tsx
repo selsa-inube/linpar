@@ -153,7 +153,7 @@ function InvitationsTab(props: InvitationsTabProps) {
             description={message.description}
             icon={message.icon}
             appearance={message.appearance}
-            duration={2000}
+            duration={4000}
             closeSectionMessage={handleCloseMessage}
           />
         </Stack>
