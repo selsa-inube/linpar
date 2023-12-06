@@ -158,7 +158,7 @@ function UsersTab(props: UsersTabProps) {
             description={message.description}
             icon={message.icon}
             appearance={message.appearance}
-            duration={1500}
+            duration={4000}
             closeSectionMessage={onCloseMessage}
           />
         </Stack>

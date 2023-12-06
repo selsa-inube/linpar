@@ -37,7 +37,7 @@ const renderMessage = (
         description={message.data.description}
         icon={message.data.icon}
         appearance={message.data.appearance}
-        duration={10000}
+        duration={4000}
         closeSectionMessage={handleCloseMessage}
       />
     </Stack>
