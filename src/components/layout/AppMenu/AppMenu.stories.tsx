@@ -33,15 +33,15 @@ Privileges.args = {
   navigatePage: "/",
   appRoute: [
     {
-      path: "/home",
+      path: "/",
       label: "Inicio",
-      id: "/home",
+      id: "/",
       isActive: false,
     },
     {
-      path: "/home/users",
+      path: "/users",
       label: "Usuarios",
-      id: "/home/users",
+      id: "/users",
       isActive: false,
     },
   ],
