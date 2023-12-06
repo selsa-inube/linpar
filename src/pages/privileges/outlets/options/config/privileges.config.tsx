@@ -21,14 +21,14 @@ const privilegeOptionsConfig = [
       },
       {
         path: "/privileges",
-        label: "privileges",
+        label: "Privilegios",
         id: "/privileges",
         isActive: false,
       },
       {
-        path: "/users",
-        label: "users",
-        id: "/users",
+        path: "/privileges/users",
+        label: "Usuarios",
+        id: "/privileges/users",
         isActive: true,
       },
     ],

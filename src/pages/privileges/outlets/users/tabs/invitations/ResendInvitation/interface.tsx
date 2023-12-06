@@ -3,6 +3,7 @@ import { Button, Icon } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
 import { IGeneralInformationEntry } from "../../../types/forms.types";
+import { useState } from "react";
 
 interface ResendInvitationUIProps {
   showResendInvModal: boolean;
@@ -21,6 +22,7 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
     showComplete,
   } = props;
   const { title, description, textAction, appearance } = resendInvitationModal;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <>
@@ -35,13 +37,19 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
           Reenviar
         </Button>
       ) : (
-        <Icon
-          appearance={"dark"}
-          icon={<MdOutlineShortcut />}
-          disabled={invitation.status === "Sent"}
-          cursorHover
-          onClick={toggleModal}
-        />
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Icon
+            appearance={isHovered ? "primary" : "dark"}
+            parentHover={isHovered ? true : false}
+            icon={<MdOutlineShortcut />}
+            disabled={invitation.status === "Sent"}
+            cursorHover
+            onClick={toggleModal}
+          />
+        </div>
       )}
 
       {showResendInvModal && (

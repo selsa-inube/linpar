@@ -58,7 +58,7 @@ function renderMessages(
         description={description}
         icon={icon}
         appearance={appearance}
-        duration={10000}
+        duration={4000}
         closeSectionMessage={handleCloseSectionMessage}
       />
     </Stack>
@@ -168,17 +168,11 @@ function RenderFormFields(
       />
 
       <Stack direction="column" gap="8px">
-        <Text
-          type="label"
-          size="medium"
-          appearance={readOnly ? "gray" : "dark"}
-          padding="0px 0px 0px 16px"
-        >
-          Cargo
-        </Text>
         <Select
           name="position"
           id="position"
+          label="Cargo"
+          size="compact"
           required
           placeholder="Seleccione una opción"
           value={formik.values.position}

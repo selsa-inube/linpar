@@ -37,7 +37,7 @@ const renderMessage = (
         description={message.data.description}
         icon={message.data.icon}
         appearance={message.data.appearance}
-        duration={10000}
+        duration={4000}
         closeSectionMessage={handleCloseMessage}
       />
     </Stack>
@@ -79,7 +79,7 @@ export function UsersUI(props: UsersUIProps) {
         padding={smallScreen ? "s100" : "s800"}
       >
         <Stack gap="48px" direction="column">
-          <Stack gap="32px" direction="column">
+          <Stack gap="24px" direction="column">
             <Breadcrumbs crumbs={privilegeOptionsConfig[0].crumbs} />
             <PageTitle
               title={privilegeConfig.label}
