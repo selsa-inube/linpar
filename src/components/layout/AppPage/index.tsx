@@ -37,6 +37,7 @@ function AppPage() {
         <StyledContainer>
           <Grid
             templateColumns={smallScreen ? "auto" : "auto 1fr"}
+            justifyContent={smallScreen ? "unset" : "start"}
             alignContent="unset"
           >
             {!smallScreen && (
