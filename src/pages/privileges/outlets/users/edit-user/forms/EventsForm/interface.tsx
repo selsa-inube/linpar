@@ -25,7 +25,7 @@ const renderMessage = (
         description={description}
         icon={icon}
         appearance={appearance}
-        duration={10000}
+        duration={4000}
         closeSectionMessage={onCloseSectionMessage}
       />
     </Stack>
