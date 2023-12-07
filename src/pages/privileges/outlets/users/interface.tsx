@@ -22,6 +22,7 @@ import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 
 import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
+import { StyeledConatiner } from "./styles";
 import { UsersTab } from "./tabs/users";
 
 const renderMessage = (
@@ -87,7 +88,7 @@ export function UsersUI(props: UsersUIProps) {
               navigatePage="/privileges"
             />
           </Stack>
-          <Stack gap="32px" direction="column">
+          <StyeledConatiner>
             <Tabs
               tabs={Object.values(privilegeUserTabsConfig)}
               selectedTab={isSelected}
@@ -140,7 +141,7 @@ export function UsersUI(props: UsersUIProps) {
               privilegeUserTabsConfig.privilegesInvitations.id && (
               <InvitationsTab searchText={searchText} />
             )}
-          </Stack>
+          </StyeledConatiner>
         </Stack>
         {renderMessage(message, handleCloseMessage)}
       </Stack>
