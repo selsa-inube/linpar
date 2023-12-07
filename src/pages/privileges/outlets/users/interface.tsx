@@ -92,7 +92,6 @@ export function UsersUI(props: UsersUIProps) {
               tabs={Object.values(privilegeUserTabsConfig)}
               selectedTab={isSelected}
               onChange={handleTabChange}
-              type={smallScreen ? "select" : "tabs"}
             />
             <Stack justifyContent="space-between" alignItems="center">
               <Textfield
