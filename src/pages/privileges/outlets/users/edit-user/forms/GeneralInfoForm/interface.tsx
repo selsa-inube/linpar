@@ -19,6 +19,7 @@ import {
   IGeneralInformationEntry,
   IMessageState,
 } from "../../../types/forms.types";
+import { StyledMessageContainer } from "./styles";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -52,16 +53,18 @@ function renderMessages(
     generalInfoMessages[messageType];
 
   return (
-    <Stack justifyContent="flex-end" width="100%">
-      <SectionMessage
-        title={title}
-        description={description}
-        icon={icon}
-        appearance={appearance}
-        duration={10000}
-        closeSectionMessage={handleCloseSectionMessage}
-      />
-    </Stack>
+    <StyledMessageContainer>
+      <Stack justifyContent="flex-end" width="100%">
+        <SectionMessage
+          title={title}
+          description={description}
+          icon={icon}
+          appearance={appearance}
+          duration={4000}
+          closeSectionMessage={handleCloseSectionMessage}
+        />
+      </Stack>
+    </StyledMessageContainer>
   );
 }
 
@@ -168,17 +171,11 @@ function RenderFormFields(
       />
 
       <Stack direction="column" gap="8px">
-        <Text
-          type="label"
-          size="medium"
-          appearance={readOnly ? "gray" : "dark"}
-          padding="0px 0px 0px 16px"
-        >
-          Cargo
-        </Text>
         <Select
           name="position"
           id="position"
+          label="Cargo"
+          size="compact"
           required
           placeholder="Seleccione una opción"
           value={formik.values.position}
