@@ -86,13 +86,12 @@ function RenderFormFields(
   ) => void,
   readOnly?: boolean
 ) {
-  const mediaQueries = "(max-width: 1111px)";
-  const matches = useMediaQuery(mediaQueries);
+  const mediaQuerie = "(max-width: 744px)";
+  const matches = useMediaQuery(mediaQuerie);
+
   return (
     <Grid
-      templateColumns={
-        matches["(max-width: 1111px)"] ? "1fr" : "repeat(2, 1fr)"
-      }
+      templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
       gap={"s300"}
       margin={"s0 s0 s400 s0"}
       width={"100%"}

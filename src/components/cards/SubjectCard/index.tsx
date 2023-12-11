@@ -3,7 +3,6 @@ import { useState } from "react";
 import { StyledSubjectCard } from "./styles";
 import { ILabel } from "./types";
 import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
-import { inube } from "@inube/design-system";
 
 interface SubjectCardProps {
   subjectData: Record<string, string | number>;
@@ -30,25 +29,34 @@ function SubjectCard(props: SubjectCardProps) {
         isActive={showModal}
       >
         <Stack
-          justifyContent="flex-end"
-          gap={inube.spacing.s100}
-          padding={smallScreen ? "s300" : "s100 s200"}
-          width={smallScreen ? "56px" : "260px"}
+          justifyContent={smallScreen ? "center" : "flex-end"}
+          gap={smallScreen ? "0px" : "8px"}
+          padding={smallScreen ? "s0" : "s100 s200"}
         >
-          <Stack direction="column">
-            <Text type="label" size="medium" textAlign="end">
-              {Object.values(subjectData)[0]}
-            </Text>
-            <Text size="small" textAlign="end">
-              {Object.values(subjectData)[1]}
-            </Text>
+          {!smallScreen && (
+            <Stack direction="column">
+              <Text type="label" size="medium" textAlign="end">
+                {Object.values(subjectData)[0]}
+              </Text>
+              <Text size="small" textAlign="end">
+                {Object.values(subjectData)[1]}
+              </Text>
+            </Stack>
+          )}
+          <Stack
+            width={smallScreen ? "56px" : "260"}
+            height={smallScreen ? "56px" : "auto"}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Icon
+              appearance={showModal ? "primary" : "dark"}
+              icon={icon}
+              size="24px"
+              shape="circle"
+              spacings="none"
+            />
           </Stack>
-          <Icon
-            appearance={showModal ? "primary" : "dark"}
-            icon={icon}
-            size="24px"
-            shape="circle"
-          />
         </Stack>
       </StyledSubjectCard>
       {showModal && (
