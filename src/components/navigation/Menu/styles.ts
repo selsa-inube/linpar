@@ -6,7 +6,9 @@ interface IStyledMenuProps {
 }
 
 const StyledMenu = styled.div`
-  position: relative;
+  position: absolute;
+  right: 2%;
+  top: 55%;
 `;
 
 const StyledMenuContainer = styled.div`
