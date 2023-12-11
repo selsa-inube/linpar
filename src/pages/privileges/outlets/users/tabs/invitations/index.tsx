@@ -18,6 +18,7 @@ import { ResendInvitation } from "./ResendInvitation";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { IGeneralInformationEntry } from "../../types/forms.types";
 import { EAppearance } from "@src/types/colors.types";
+import { StyledMessageContainer } from "./styles";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -147,16 +148,18 @@ function InvitationsTab(props: InvitationsTabProps) {
         modalTitle="Invitación"
       />
       {message.show && (
-        <Stack justifyContent="flex-end" width="100%">
-          <SectionMessage
-            title={message.title}
-            description={message.description}
-            icon={message.icon}
-            appearance={message.appearance}
-            duration={4000}
-            closeSectionMessage={handleCloseMessage}
-          />
-        </Stack>
+        <StyledMessageContainer>
+          <Stack justifyContent="flex-end" width="100%">
+            <SectionMessage
+              title={message.title}
+              description={message.description}
+              icon={message.icon}
+              appearance={message.appearance}
+              duration={4000}
+              closeSectionMessage={handleCloseMessage}
+            />
+          </Stack>
+        </StyledMessageContainer>
       )}
     </>
   );
