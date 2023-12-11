@@ -22,8 +22,8 @@ import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 
 import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
-import { StyeledConatiner } from "./styles";
 import { UsersTab } from "./tabs/users";
+import { StyledMessageContainer, StyeledConatiner } from "./styles";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -32,16 +32,18 @@ const renderMessage = (
   if (!message.data) return null;
 
   return (
-    <Stack justifyContent="flex-end" width="98%" margin="s800 s0">
-      <SectionMessage
-        title={message.data.title}
-        description={message.data.description}
-        icon={message.data.icon}
-        appearance={message.data.appearance}
-        duration={4000}
-        closeSectionMessage={handleCloseMessage}
-      />
-    </Stack>
+    <StyledMessageContainer>
+      <Stack justifyContent="flex-end" width="98%">
+        <SectionMessage
+          title={message.data.title}
+          description={message.data.description}
+          icon={message.data.icon}
+          appearance={message.data.appearance}
+          duration={4000}
+          closeSectionMessage={handleCloseMessage}
+        />
+      </Stack>
+    </StyledMessageContainer>
   );
 };
 
@@ -89,7 +91,7 @@ export function UsersUI(props: UsersUIProps) {
             />
           </Stack>
           <StyeledConatiner>
-            <Stack direction="column" gap="32px">
+            <Stack gap="32px" direction="column">
               <Tabs
                 tabs={Object.values(privilegeUserTabsConfig)}
                 selectedTab={isSelected}
