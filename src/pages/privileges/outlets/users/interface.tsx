@@ -23,7 +23,7 @@ import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
-import { StyledMessageContainer, StyeledConatiner } from "./styles";
+import { StyledMessageContainer, StyledContainer } from "./styles";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -90,7 +90,7 @@ export function UsersUI(props: UsersUIProps) {
               navigatePage="/privileges"
             />
           </Stack>
-          <StyeledConatiner>
+          <StyledContainer>
             <Stack gap="32px" direction="column">
               <Tabs
                 tabs={Object.values(privilegeUserTabsConfig)}
@@ -145,7 +145,7 @@ export function UsersUI(props: UsersUIProps) {
                 <InvitationsTab searchText={searchText} />
               )}
             </Stack>
-          </StyeledConatiner>
+          </StyledContainer>
         </Stack>
         {renderMessage(message, handleCloseMessage)}
       </Stack>
