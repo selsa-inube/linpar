@@ -24,7 +24,6 @@ import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { StyeledConatiner } from "./styles";
 import { UsersTab } from "./tabs/users";
-import { StyledMessageContainer } from "./styles";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -33,18 +32,16 @@ const renderMessage = (
   if (!message.data) return null;
 
   return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="98%">
-        <SectionMessage
-          title={message.data.title}
-          description={message.data.description}
-          icon={message.data.icon}
-          appearance={message.data.appearance}
-          duration={4000}
-          closeSectionMessage={handleCloseMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
+    <Stack justifyContent="flex-end" width="98%" margin="s800 s0">
+      <SectionMessage
+        title={message.data.title}
+        description={message.data.description}
+        icon={message.data.icon}
+        appearance={message.data.appearance}
+        duration={4000}
+        closeSectionMessage={handleCloseMessage}
+      />
+    </Stack>
   );
 };
 
@@ -92,58 +89,60 @@ export function UsersUI(props: UsersUIProps) {
             />
           </Stack>
           <StyeledConatiner>
-            <Tabs
-              tabs={Object.values(privilegeUserTabsConfig)}
-              selectedTab={isSelected}
-              onChange={handleTabChange}
-              type={smallScreen ? "select" : "tabs"}
-            />
-            <Stack justifyContent="space-between" alignItems="center">
-              <Textfield
-                name="searchUser"
-                id="searchUser"
-                placeholder="Buscar..."
-                type="search"
-                iconBefore={<MdSearch />}
-                size="compact"
-                value={searchText}
-                onChange={handleSearchText}
+            <Stack direction="column" gap="32px">
+              <Tabs
+                tabs={Object.values(privilegeUserTabsConfig)}
+                selectedTab={isSelected}
+                onChange={handleTabChange}
+                type={smallScreen ? "select" : "tabs"}
               />
+              <Stack justifyContent="space-between" alignItems="center">
+                <Textfield
+                  name="searchUser"
+                  id="searchUser"
+                  placeholder="Buscar..."
+                  type="search"
+                  iconBefore={<MdSearch />}
+                  size="compact"
+                  value={searchText}
+                  onChange={handleSearchText}
+                />
 
-              {smallScreen ? (
-                <>
-                  <Icon
-                    icon={<MdOutlineMoreHoriz />}
-                    size="24px"
-                    onClick={handleToggleMenuInvitation}
-                    cursorHover={true}
-                    appearance="dark"
-                  />
-                  {showMenu && (
-                    <Menu
-                      options={menuInvitationLinks}
-                      handleClose={handleCloseMenuInvitation}
+                {smallScreen ? (
+                  <>
+                    <Icon
+                      icon={<MdOutlineMoreHoriz />}
+                      size="24px"
+                      onClick={handleToggleMenuInvitation}
+                      cursorHover={true}
+                      appearance="dark"
                     />
-                  )}
-                </>
-              ) : (
-                <Button
-                  iconBefore={<MdPersonAddAlt />}
-                  spacing="compact"
-                  type="link"
-                  path="/privileges/users/invite"
-                >
-                  Invitar usuario
-                </Button>
+                    {showMenu && (
+                      <Menu
+                        options={menuInvitationLinks}
+                        handleClose={handleCloseMenuInvitation}
+                      />
+                    )}
+                  </>
+                ) : (
+                  <Button
+                    iconBefore={<MdPersonAddAlt />}
+                    spacing="compact"
+                    type="link"
+                    path="/privileges/users/invite"
+                  >
+                    Invitar usuario
+                  </Button>
+                )}
+              </Stack>
+              {isSelected === privilegeUserTabsConfig.privilegesUsers.id && (
+                <UsersTab searchText={searchText} />
+              )}
+              {isSelected ===
+                privilegeUserTabsConfig.privilegesInvitations.id && (
+                <InvitationsTab searchText={searchText} />
               )}
             </Stack>
-            {isSelected === privilegeUserTabsConfig.privilegesUsers.id && (
-              <UsersTab searchText={searchText} />
-            )}
-            {isSelected ===
-              privilegeUserTabsConfig.privilegesInvitations.id && (
-              <InvitationsTab searchText={searchText} />
-            )}
           </StyeledConatiner>
         </Stack>
         {renderMessage(message, handleCloseMessage)}
