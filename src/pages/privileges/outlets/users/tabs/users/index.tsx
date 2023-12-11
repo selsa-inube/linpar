@@ -18,6 +18,7 @@ import { EditUser } from "./EditUser";
 import { IGeneralInformationEntry } from "../../types/forms.types";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
+import { StyledMessageContainer } from "./styles";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -152,16 +153,18 @@ function UsersTab(props: UsersTabProps) {
         modalTitle="Usuario"
       />
       {message.show && (
-        <Stack justifyContent="flex-end" width="100%">
-          <SectionMessage
-            title={message.title}
-            description={message.description}
-            icon={message.icon}
-            appearance={message.appearance}
-            duration={1500}
-            closeSectionMessage={onCloseMessage}
-          />
-        </Stack>
+        <StyledMessageContainer>
+          <Stack justifyContent="flex-end" width="100%">
+            <SectionMessage
+              title={message.title}
+              description={message.description}
+              icon={message.icon}
+              appearance={message.appearance}
+              duration={4000}
+              closeSectionMessage={onCloseMessage}
+            />
+          </Stack>
+        </StyledMessageContainer>
       )}
     </>
   );

@@ -15,6 +15,7 @@ import { EMessageType } from "@src/types/messages.types";
 
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
+import { StyledMessageContainer } from "./styles";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -45,16 +46,18 @@ function renderMessages(
     messageInvitationSentConfig[messageType];
 
   return (
-    <Stack justifyContent="flex-end" width="100%" margin="s800 s0">
-      <SectionMessage
-        title={title}
-        description={description}
-        icon={icon}
-        appearance={appearance}
-        duration={4000}
-        closeSectionMessage={handleCloseSectionMessage}
-      />
-    </Stack>
+    <StyledMessageContainer>
+      <Stack justifyContent="flex-end" width="100%">
+        <SectionMessage
+          title={title}
+          description={description}
+          icon={icon}
+          appearance={appearance}
+          duration={4000}
+          closeSectionMessage={handleCloseSectionMessage}
+        />
+      </Stack>
+    </StyledMessageContainer>
   );
 }
 

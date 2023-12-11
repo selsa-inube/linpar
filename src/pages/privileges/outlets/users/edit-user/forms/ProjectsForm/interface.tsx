@@ -6,6 +6,7 @@ import {
   IMessageState,
 } from "../../../types/forms.types";
 import { assignmentFormMessages } from "../../config/messages.config";
+import { StyledMessageContainer } from "./styles";
 
 const renderMessage = (
   message: IMessageState,
@@ -18,16 +19,18 @@ const renderMessage = (
     assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
 
   return (
-    <Stack justifyContent="flex-end" width="100%">
-      <SectionMessage
-        title={title}
-        description={description}
-        icon={icon}
-        appearance={appearance}
-        duration={10000}
-        closeSectionMessage={onCloseSectionMessage}
-      />
-    </Stack>
+    <StyledMessageContainer>
+      <Stack justifyContent="flex-end" width="100%">
+        <SectionMessage
+          title={title}
+          description={description}
+          icon={icon}
+          appearance={appearance}
+          duration={4000}
+          closeSectionMessage={onCloseSectionMessage}
+        />
+      </Stack>
+    </StyledMessageContainer>
   );
 };
 
