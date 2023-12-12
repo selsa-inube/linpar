@@ -8,7 +8,7 @@ function LoadingApp() {
     setTimeout(() => {
       navigate("/");
     }, 2000);
-  }, []);
+  }, [navigate]);
 
   return <LoadingAppUI />;
 }

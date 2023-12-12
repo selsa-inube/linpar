@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
@@ -28,6 +30,18 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      loginWithRedirect();
+    }
+  }, [isAuthenticated, loginWithRedirect]);
+
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <AppContextProvider>
       <GlobalStyles />
