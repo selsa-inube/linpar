@@ -23,7 +23,7 @@ import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
-import { StyledMessageContainer } from "./styles";
+import { StyledMessageContainer, StyledContainer } from "./styles";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -90,59 +90,62 @@ export function UsersUI(props: UsersUIProps) {
               navigatePage="/privileges"
             />
           </Stack>
-          <Stack gap="32px" direction="column">
-            <Tabs
-              tabs={Object.values(privilegeUserTabsConfig)}
-              selectedTab={isSelected}
-              onChange={handleTabChange}
-            />
-            <Stack justifyContent="space-between" alignItems="center">
-              <Textfield
-                name="searchUser"
-                id="searchUser"
-                placeholder="Buscar..."
-                type="search"
-                iconBefore={<MdSearch />}
-                size="compact"
-                value={searchText}
-                onChange={handleSearchText}
+          <StyledContainer>
+            <Stack gap="32px" direction="column">
+              <Tabs
+                tabs={Object.values(privilegeUserTabsConfig)}
+                selectedTab={isSelected}
+                onChange={handleTabChange}
+                type={smallScreen ? "select" : "tabs"}
               />
+              <Stack justifyContent="space-between" alignItems="center">
+                <Textfield
+                  name="searchUser"
+                  id="searchUser"
+                  placeholder="Buscar..."
+                  type="search"
+                  iconBefore={<MdSearch />}
+                  size="compact"
+                  value={searchText}
+                  onChange={handleSearchText}
+                />
 
-              {smallScreen ? (
-                <>
-                  <Icon
-                    icon={<MdOutlineMoreHoriz />}
-                    size="24px"
-                    onClick={handleToggleMenuInvitation}
-                    cursorHover={true}
-                    appearance="dark"
-                  />
-                  {showMenu && (
-                    <Menu
-                      options={menuInvitationLinks}
-                      handleClose={handleCloseMenuInvitation}
+                {smallScreen ? (
+                  <>
+                    <Icon
+                      icon={<MdOutlineMoreHoriz />}
+                      size="24px"
+                      onClick={handleToggleMenuInvitation}
+                      cursorHover={true}
+                      appearance="dark"
                     />
-                  )}
-                </>
-              ) : (
-                <Button
-                  iconBefore={<MdPersonAddAlt />}
-                  spacing="compact"
-                  type="link"
-                  path="/privileges/users/invite"
-                >
-                  Invitar usuario
-                </Button>
+                    {showMenu && (
+                      <Menu
+                        options={menuInvitationLinks}
+                        handleClose={handleCloseMenuInvitation}
+                      />
+                    )}
+                  </>
+                ) : (
+                  <Button
+                    iconBefore={<MdPersonAddAlt />}
+                    spacing="compact"
+                    type="link"
+                    path="/privileges/users/invite"
+                  >
+                    Invitar usuario
+                  </Button>
+                )}
+              </Stack>
+              {isSelected === privilegeUserTabsConfig.privilegesUsers.id && (
+                <UsersTab searchText={searchText} />
+              )}
+              {isSelected ===
+                privilegeUserTabsConfig.privilegesInvitations.id && (
+                <InvitationsTab searchText={searchText} />
               )}
             </Stack>
-            {isSelected === privilegeUserTabsConfig.privilegesUsers.id && (
-              <UsersTab searchText={searchText} />
-            )}
-            {isSelected ===
-              privilegeUserTabsConfig.privilegesInvitations.id && (
-              <InvitationsTab searchText={searchText} />
-            )}
-          </Stack>
+          </StyledContainer>
         </Stack>
         {renderMessage(message, handleCloseMessage)}
       </Stack>

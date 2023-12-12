@@ -30,18 +30,17 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isLoading && !isAuthenticated) {
       loginWithRedirect();
     }
-  }, [isAuthenticated, loginWithRedirect]);
+  }, [isLoading, isAuthenticated]);
 
-  if (isLoading) {
+  if (!isAuthenticated) {
     return null;
   }
-
   return (
     <AppContextProvider>
       <GlobalStyles />
