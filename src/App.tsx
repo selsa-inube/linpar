@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   Route,
   RouterProvider,
@@ -12,8 +14,6 @@ import AppContextProvider from "./context";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,7 +36,7 @@ function App() {
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect();
     }
-  }, [isLoading, isAuthenticated]);
+  }, [isLoading, isAuthenticated, loginWithRedirect]);
 
   if (!isAuthenticated) {
     return null;
