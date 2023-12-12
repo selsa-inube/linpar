@@ -12,6 +12,8 @@ import AppContextProvider from "./context";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +30,17 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      loginWithRedirect();
+    }
+  }, [isLoading, isAuthenticated]);
+
+  if (!isAuthenticated) {
+    return null;
+  }
   return (
     <AppContextProvider>
       <GlobalStyles />
