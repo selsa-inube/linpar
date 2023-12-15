@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
 interface IStyledContainer {
-  smallScreen: boolean;
+  smallScreen?: boolean;
+  typeTabs?: boolean;
 }
 
 const StyledContainer = styled.div<IStyledContainer>`
@@ -12,4 +13,8 @@ const StyledContainer = styled.div<IStyledContainer>`
       : `${inube.spacing.s400} ${inube.spacing.s800}`};
 `;
 
-export { StyledContainer };
+const StyledTabsContainer = styled.div<IStyledContainer>`
+  position: ${(props) => (props.typeTabs ? "relative" : "unset")};
+`;
+
+export { StyledContainer, StyledTabsContainer };
