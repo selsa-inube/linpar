@@ -1,6 +1,12 @@
 import { useContext } from "react";
 import { MdOutlineDoorFront } from "react-icons/md";
-import { Header, Grid, Stack, useMediaQueries } from "@inube/design-system";
+import {
+  Header,
+  Grid,
+  Stack,
+  Nav,
+  useMediaQueries,
+} from "@inube/design-system";
 
 import { AppContext } from "@src/context";
 import { PageTitle } from "@components/PageTitle";
@@ -12,7 +18,7 @@ import {
 } from "@components/layout/AppPage/styles";
 
 import { IApps } from "./types";
-import { navigationConfig } from "./config/apps.config";
+import { navigationConfig, logoutConfig } from "./config/apps.config";
 import { StyledHome } from "./styles";
 
 const getPageTitlePadding = (
@@ -45,6 +51,8 @@ function HomeUI(props: HomeUIProps) {
 
   const matches = useMediaQueries(mediaQueries);
 
+  const [laptop] = Object.values(useMediaQueries(["(min-width: 945px)"]));
+
   return (
     <StyledHome>
       <Header
@@ -54,37 +62,46 @@ function HomeUI(props: HomeUIProps) {
         userName={user.username}
         client={user.company}
       />
-      <Stack
-        gap="20px"
-        direction="column"
-        padding={getPageTitlePadding(matches, pageTitlePaddingSettings)}
-      >
-        <PageTitle
-          title={`Bienvenido ${user.username}`}
-          description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
-          icon={<MdOutlineDoorFront />}
-        />
-        <Grid
-          templateColumns="repeat( auto-fit, minmax(250px, 1fr) )"
-          justifyContent="center"
-          alignItems="start"
-          alignContent="start"
-          gap="s300"
-          padding="s0"
-          margin="s0 auto"
+      <Stack height="calc(100vh - 56px)">
+        {laptop && (
+          <Nav
+            navigation={navigationConfig}
+            logoutPath={logoutConfig.logoutPath}
+            logoutTitle={logoutConfig.logoutTitle}
+          />
+        )}
+        <Stack
+          gap="20px"
+          direction="column"
+          padding={getPageTitlePadding(matches, pageTitlePaddingSettings)}
         >
-          {apps.map((app) => (
-            <li key={app.url}>
-              <AppCard
-                key={app.id}
-                label={app.label}
-                description={app.description}
-                icon={app.icon}
-                url={app.url}
-              />
-            </li>
-          ))}
-        </Grid>
+          <PageTitle
+            title={`Bienvenido ${user.username}`}
+            description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
+            icon={<MdOutlineDoorFront />}
+          />
+          <Grid
+            templateColumns="repeat( auto-fit, minmax(250px, 1fr) )"
+            justifyContent="center"
+            alignItems="start"
+            alignContent="start"
+            gap="s300"
+            padding="s0"
+            margin="s0 auto"
+          >
+            {apps.map((app) => (
+              <li key={app.url}>
+                <AppCard
+                  key={app.id}
+                  label={app.label}
+                  description={app.description}
+                  icon={app.icon}
+                  url={app.url}
+                />
+              </li>
+            ))}
+          </Grid>
+        </Stack>
       </Stack>
     </StyledHome>
   );

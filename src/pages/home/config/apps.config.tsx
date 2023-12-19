@@ -25,10 +25,9 @@ const appsConfig = [
 ];
 
 const navigationConfig = {
-  title: "Menú",
+  title: "MENU",
   sections: {
     administrate: {
-      name: "Administrar",
       links: {
         privileges: {
           id: "privileges",
@@ -41,4 +40,9 @@ const navigationConfig = {
   },
 };
 
-export { appsConfig, navigationConfig };
+const logoutConfig = {
+  logoutPath: "/logout",
+  logoutTitle: "Cerrar sesión",
+};
+
+export { appsConfig, navigationConfig, logoutConfig };
