@@ -19,7 +19,7 @@ import {
   IGeneralInformationEntry,
   IMessageState,
 } from "../../../types/forms.types";
-import { StyledMessageContainer } from "./styles";
+import { StyledMessageContainer, StyledSelectContainer } from "./styles";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -170,21 +170,24 @@ function RenderFormFields(
       />
 
       <Stack direction="column" gap="8px">
-        <Select
-          name="position"
-          id="position"
-          label="Cargo"
-          size="compact"
-          required
-          placeholder="Seleccione una opción"
-          value={formik.values.position}
-          onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-            formik.setFieldValue("position", value.target.outerText)
-          }
-          options={options}
-          fullwidth
-          disabled={readOnly || loading}
-        />
+        <StyledSelectContainer>
+          <Select
+            name="position"
+            id="position"
+            label="Cargo"
+            size="compact"
+            required
+            placeholder="Seleccione una opción"
+            value={formik.values.position}
+            onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
+              formik.setFieldValue("position", value.target.outerText)
+            }
+            options={options}
+            fullwidth
+            disabled={readOnly || loading}
+          />
+        </StyledSelectContainer>
+
         {formik.errors.position && formInvalid && (
           <Stack alignItems="center" margin="s0 s0 s0 s150">
             <Icon
