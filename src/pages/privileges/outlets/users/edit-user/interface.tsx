@@ -112,67 +112,64 @@ function EditUserUI(props: EditUserUIProps) {
           </Stack>
         </Stack>
         {currentInformation ? (
-          (console.log("typeTabs ", typeTabs),
-          (
-            <Stack gap="32px" direction="column">
-              <StyledTabsContainer typeTabs={typeTabs}>
-                <Tabs
-                  tabs={Object.values(editUserTabsConfig)}
-                  selectedTab={selectedTab}
-                  type={typeTabs ? "select" : "tabs"}
-                  onChange={handleTabChange}
-                />
-              </StyledTabsContainer>
-              {selectedTab === editUserTabsConfig.generalInformation.id && (
-                <GeneralInformationForm
-                  currentInformation={currentInformation}
-                  handleSubmit={handleSubmit}
-                  withSubmitButtons
-                  onHasChanges={handleDataChange}
-                />
-              )}
-              {selectedTab === editUserTabsConfig.branches.id && (
-                <BranchesForm
-                  currentBranches={editData.branches.entries}
-                  handleSubmit={handleSubmit}
-                  withSubmitButtons
-                  onHasChanges={handleDataChange}
-                />
-              )}
-              {selectedTab === editUserTabsConfig.events.id && (
-                <EventsForm
-                  currentEvents={editData.events.entries}
-                  handleSubmit={handleSubmit}
-                  withSubmitButtons
-                  onHasChanges={handleDataChange}
-                />
-              )}
-              {selectedTab === editUserTabsConfig.projects.id && (
-                <ProjectsForm
-                  currentProjects={editData.projects.entries}
-                  handleSubmit={handleSubmit}
-                  withSubmitButtons
-                  onHasChanges={handleDataChange}
-                />
-              )}
-              {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
-                <AidBudgetsForm
-                  currentAidBudgetUnits={editData.aidBudgetUnits.entries}
-                  handleSubmit={handleSubmit}
-                  withSubmitButtons
-                  onHasChanges={handleDataChange}
-                />
-              )}
-              {selectedTab === editUserTabsConfig.payrolls.id && (
-                <PayrollsForm
-                  currentPayrolls={editData.payrolls.entries}
-                  handleSubmit={handleSubmit}
-                  withSubmitButtons
-                  onHasChanges={handleDataChange}
-                />
-              )}
-            </Stack>
-          ))
+          <Stack gap="32px" direction="column">
+            <StyledTabsContainer typeTabs={typeTabs}>
+              <Tabs
+                tabs={Object.values(editUserTabsConfig)}
+                selectedTab={selectedTab}
+                type={typeTabs ? "select" : "tabs"}
+                onChange={handleTabChange}
+              />
+            </StyledTabsContainer>
+            {selectedTab === editUserTabsConfig.generalInformation.id && (
+              <GeneralInformationForm
+                currentInformation={currentInformation}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+                onHasChanges={handleDataChange}
+              />
+            )}
+            {selectedTab === editUserTabsConfig.branches.id && (
+              <BranchesForm
+                currentBranches={editData.branches.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+                onHasChanges={handleDataChange}
+              />
+            )}
+            {selectedTab === editUserTabsConfig.events.id && (
+              <EventsForm
+                currentEvents={editData.events.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+                onHasChanges={handleDataChange}
+              />
+            )}
+            {selectedTab === editUserTabsConfig.projects.id && (
+              <ProjectsForm
+                currentProjects={editData.projects.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+                onHasChanges={handleDataChange}
+              />
+            )}
+            {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
+              <AidBudgetsForm
+                currentAidBudgetUnits={editData.aidBudgetUnits.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+                onHasChanges={handleDataChange}
+              />
+            )}
+            {selectedTab === editUserTabsConfig.payrolls.id && (
+              <PayrollsForm
+                currentPayrolls={editData.payrolls.entries}
+                handleSubmit={handleSubmit}
+                withSubmitButtons
+                onHasChanges={handleDataChange}
+              />
+            )}
+          </Stack>
         ) : (
           <ItemNotFound
             image={userNotFoundConfig.image}

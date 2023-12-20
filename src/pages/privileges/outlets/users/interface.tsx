@@ -129,7 +129,7 @@ export function UsersUI(props: UsersUIProps) {
                 ) : (
                   <Button
                     iconBefore={<MdPersonAddAlt />}
-                    spacing="compact"
+                    spacing="wide"
                     type="link"
                     path="/privileges/users/invite"
                   >
