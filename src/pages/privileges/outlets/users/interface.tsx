@@ -79,7 +79,7 @@ export function UsersUI(props: UsersUIProps) {
       <Stack
         direction="column"
         width="-webkit-fill-available"
-        padding={smallScreen ? "s100" : "s400"}
+        padding={smallScreen ? "s300" : "s400 s800"}
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">

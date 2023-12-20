@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
 
 const StyledAppPage = styled.div`
   display: inherit;
