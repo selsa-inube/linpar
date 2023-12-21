@@ -19,8 +19,19 @@ const StyledModal = styled.div`
 
   & > div {
     padding: ${({ smallScreen }: IStyledRespondInvitation) =>
-      smallScreen ? inube.spacing.s300 : inube.spacing.s400};
+      smallScreen ? inube.spacing.s200 : inube.spacing.s300};
+    // & > div > div:last-child > div > label {
+    //   margin: 0 0 ${inube.spacing.s250} 0;
+    // }
   }
 `;
 
-export { StyledModal };
+const StyledDivider = styled.div`
+  border-radius: ${inube.spacing.s0};
+  border: 1px dashed
+    ${({ theme }: IStyledRespondInvitation) =>
+      theme?.color?.stroke?.divider?.regular ||
+      inube.color.stroke.divider.regular};
+`;
+
+export { StyledModal, StyledDivider };

@@ -8,8 +8,11 @@ import {
   Textfield,
   Icon,
 } from "@inube/design-system";
-import { StyledModal } from "./styles";
+import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
+import { SubjectCard } from "@src/components/cards/SubjectCard";
+import { Key, SetStateAction, useState } from "react";
+import { SubjectSearchCard } from "@src/components/cards/SubjectSearchCard";
 
 const InteractiveModal = ({
   portalId,
@@ -20,11 +23,29 @@ const InteractiveModal = ({
   labels = [],
   infoTitle,
   actionsTitle,
+  type = "fields",
+  searchData,
+  divider,
 }: InteractiveModalProps) => {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const hasActions = actions.length > 0;
   const hasLabels = labels.length > 0;
   const node = document.getElementById(portalId);
+  const [filterText, setFilterText] = useState("");
+
+  const handleFilterChange = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setFilterText(e.target.value);
+  };
+
+  const filteredSearchData = filterText
+    ? searchData.filter(
+        (data: { username: string; userID: string }) =>
+          data.username.toLowerCase().includes(filterText.toLowerCase()) ||
+          data.userID.toLowerCase().includes(filterText.toLowerCase())
+      )
+    : searchData;
 
   if (!node) {
     throw new Error(
@@ -36,7 +57,7 @@ const InteractiveModal = ({
     <Blanket>
       <StyledModal smallScreen={smallScreen}>
         <Stack direction="column" gap="24px">
-          <Stack direction="column" gap="16px">
+          <Stack direction="column" gap="20px">
             <Stack alignItems="center" justifyContent="space-between">
               <Text type="headline" size="small" appearance="dark">
                 {title}
@@ -50,13 +71,15 @@ const InteractiveModal = ({
                 onClick={closeModal}
               />
             </Stack>
-            {hasActions && (
-              <Text type="title" size="medium" appearance="dark">
+            {infoTitle && (
+              <Text type="body" size="medium" appearance="gray">
                 {infoTitle}
               </Text>
             )}
-            {hasLabels
-              ? labels.map(
+            {divider && <StyledDivider smallScreen={smallScreen} />}
+            {type === "fields" ? (
+              hasLabels ? (
+                labels.map(
                   (field) =>
                     infoData[field.id] && (
                       <Textfield
@@ -69,11 +92,11 @@ const InteractiveModal = ({
                         fullwidth={true}
                         type="text"
                         size="compact"
-                        readOnly={true}
                       />
                     )
                 )
-              : Object.keys(infoData).map((index) => (
+              ) : (
+                Object.keys(infoData).map((index) => (
                   <Textfield
                     key={index}
                     label={index}
@@ -84,9 +107,40 @@ const InteractiveModal = ({
                     fullwidth={true}
                     type="text"
                     size="compact"
-                    readOnly={true}
                   />
-                ))}
+                ))
+              )
+            ) : (
+              <>
+                <Textfield
+                  key="searchField"
+                  label={"Digita el nombre o numero de identificación."}
+                  name="searchField"
+                  id="searchField"
+                  placeholder={"Digita el nombre o numero de identificación."}
+                  value={filterText}
+                  onChange={handleFilterChange}
+                  fullwidth={true}
+                  type="text"
+                  size="compact"
+                />
+                {filterText &&
+                  filteredSearchData &&
+                  filteredSearchData.map(
+                    (data: {
+                      id: Key | null | undefined;
+                      username: string;
+                    }) => (
+                      <SubjectSearchCard
+                        key={data.id}
+                        subjectData={data}
+                        title={data.username}
+                        onClick={undefined}
+                      />
+                    )
+                  )}
+              </>
+            )}
           </Stack>
           {hasActions && (
             <Stack direction="column" gap="16px">

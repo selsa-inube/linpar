@@ -16,6 +16,7 @@ import { EMessageType } from "@src/types/messages.types";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledMessageContainer } from "./styles";
+import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -25,6 +26,7 @@ interface InviteUIProps {
   screenMovil: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
+  usersInfo: any;
 }
 
 function renderMessages(
@@ -75,10 +77,15 @@ function InviteUI(props: InviteUIProps) {
     showMessage,
     handleCloseSectionMessage,
     handleSubmit,
+    usersInfo,
   } = props;
 
   const mediaQueries = ["(max-width: 1111px)", "(max-width: 565px)"];
   const matches = useMediaQueries(mediaQueries);
+
+  const userCardData = {
+    ["Digita el nombre o numero de identificación."]: "",
+  };
 
   return (
     <Stack direction="column" padding="s400 s800">
@@ -102,27 +109,13 @@ function InviteUI(props: InviteUIProps) {
               width={"100%"}
               autoRows="unset"
             >
-              <Textfield
-                label="Nombre"
-                placeholder="Ingresa su nombre completo"
-                name="name"
-                id="name"
-                value={formik.values.name}
-                type="text"
-                required={true}
-                message={
-                  stateValue(formik, "name") === "invalid"
-                    ? formik.errors.name
-                    : "El nombre es valido"
-                }
-                disabled={loading}
-                size="compact"
-                fullwidth={true}
-                status={stateValue(formik, "name")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+              <SearchUserCard
+                userData={usersInfo}
+                infoData={userCardData}
+                title={"Búsqueda"}
+                infoTitle={"Busca el usuario para enviar la invitación."}
+                icon={undefined}
               />
-
               <Textfield
                 label="Identificación"
                 placeholder="Ingrese su número de identificación"
@@ -140,8 +133,9 @@ function InviteUI(props: InviteUIProps) {
                 size="compact"
                 fullwidth={true}
                 status={stateValue(formik, "id")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                readOnly
               />
 
               <Textfield
@@ -161,8 +155,9 @@ function InviteUI(props: InviteUIProps) {
                 size="compact"
                 fullwidth={true}
                 status={stateValue(formik, "phone")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                readOnly
               />
 
               <Textfield

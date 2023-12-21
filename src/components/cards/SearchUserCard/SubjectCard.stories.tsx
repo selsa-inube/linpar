@@ -2,11 +2,11 @@ import { BrowserRouter } from "react-router-dom";
 import { MdPersonOutline } from "react-icons/md";
 import { StoryFn } from "@storybook/react";
 import { ILabel } from "./types";
-import { SubjectCard, SubjectCardProps } from ".";
+import { SearchUserCard, SubjectCardProps } from ".";
 
 const story = {
-  component: [SubjectCard],
-  title: "components/cards/SubjectCard",
+  component: [SearchUserCard],
+  title: "components/cards/SearchUserCard",
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
@@ -59,6 +59,7 @@ export const Default = Template.bind({});
 Default.args = {
   subjectData: data,
   title: "User Information",
+  icon: <MdPersonOutline size={24} />,
 };
 
 export const WithLabels = Template.bind({});

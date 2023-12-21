@@ -1,3 +1,5 @@
+type ModalTypes = "fields" | "search";
+
 interface Field {
   id: string;
   titleName: string;
@@ -17,6 +19,12 @@ interface InteractiveModalProps {
   labels?: Field[];
   infoTitle?: string;
   actionsTitle?: string;
+  searchData?:
+    | { [key: string]: string }
+    | Record<string, string | number>
+    | any;
+  type?: ModalTypes;
+  divider?: boolean;
 }
 
-export type { Field, Action, InteractiveModalProps };
+export type { Field, Action, InteractiveModalProps, ModalTypes };

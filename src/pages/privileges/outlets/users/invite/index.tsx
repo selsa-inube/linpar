@@ -9,6 +9,7 @@ import { validationMessages } from "@validations/validationMessages";
 
 import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
+import { userEntriesDataMock } from "@src/mocks/apps/privileges/users/users.mock";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -77,6 +78,7 @@ function Invite() {
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleSubmit={handleSubmit}
       screenMovil={screenMovil}
+      usersInfo={userEntriesDataMock}
     />
   );
 }
