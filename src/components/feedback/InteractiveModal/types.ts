@@ -23,8 +23,13 @@ interface InteractiveModalProps {
     | { [key: string]: string }
     | Record<string, string | number>
     | any;
+  id?: string;
+  label?: string;
+  name?: string;
+  placeholder?: string;
   type?: ModalTypes;
   divider?: boolean;
+  onClick?: any;
 }
 
 export type { Field, Action, InteractiveModalProps, ModalTypes };

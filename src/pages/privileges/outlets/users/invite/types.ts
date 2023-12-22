@@ -1,6 +1,6 @@
 interface IInviteFormValues {
   name: string;
-  id: string;
+  userID: string;
   phone: string;
   email: string;
 }

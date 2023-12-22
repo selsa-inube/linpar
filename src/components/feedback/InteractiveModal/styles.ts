@@ -4,6 +4,7 @@ import { inube } from "@inube/design-system";
 interface IStyledRespondInvitation {
   smallScreen: boolean;
   theme?: typeof inube;
+  type?: string;
 }
 
 const StyledModal = styled.div`
@@ -20,9 +21,13 @@ const StyledModal = styled.div`
   & > div {
     padding: ${({ smallScreen }: IStyledRespondInvitation) =>
       smallScreen ? inube.spacing.s200 : inube.spacing.s300};
-    // & > div > div:last-child > div > label {
-    //   margin: 0 0 ${inube.spacing.s250} 0;
-    // }
+    ${({ type }) =>
+      type !== "fields" &&
+      `
+      & > div > div > div > label  {
+        margin: 0 0 ${inube.spacing.s250} 0;
+      }
+    `}
   }
 `;
 

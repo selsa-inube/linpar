@@ -1,10 +1,12 @@
 import { BrowserRouter } from "react-router-dom";
+import { MdPersonOutline } from "react-icons/md";
 import { StoryFn } from "@storybook/react";
-import { SearchUserCard, SearchUserCardProps } from ".";
+
+import { SubjectSearchCard, SubjectSearchCardProps } from ".";
 
 const story = {
-  component: [SearchUserCard],
-  title: "components/cards/SearchUserCard",
+  component: [SubjectSearchCard],
+  title: "components/cards/SubjectSearchCard",
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
@@ -23,14 +25,13 @@ const data = {
   id: 10,
 };
 
-const Template: StoryFn<SearchUserCardProps> = (args) => (
-  <SearchUserCard {...args} />
+const Template: StoryFn<SubjectSearchCardProps> = (args) => (
+  <SubjectSearchCard {...args} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  userData: data,
-  title: "User Information",
+  subjectSearchData: data,
 };
 
 export default story;

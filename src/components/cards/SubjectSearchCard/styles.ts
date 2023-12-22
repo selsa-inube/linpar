@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
-interface IStyledSubjectCard {
+interface IStyledSubjectSearchCard {
   isActive: boolean;
   smallScreen: boolean;
 }
 
-const StyledSubjectSearchCard = styled.div<IStyledSubjectCard>`
+const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
   width: 100%;
   height: ${({ smallScreen }) => (smallScreen ? "56px" : "auto")};
   box-sizing: border-box;

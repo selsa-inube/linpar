@@ -1,23 +1,20 @@
-import { Stack, Text, Icon, useMediaQuery } from "@inube/design-system";
+import { Stack, Text, useMediaQuery } from "@inube/design-system";
 import { useState } from "react";
 import { StyledSubjectSearchCard } from "./styles";
-import { ILabel } from "./types";
 
-interface SubjectCardProps {
-  subjectData: Record<string, string | number> | any;
-  title: string;
-  labels?: ILabel[];
+interface SubjectSearchCardProps {
+  subjectSearchData: Record<string, string | number> | any;
   onClick: any;
 }
 
-function SubjectSearchCard(props: SubjectCardProps) {
-  const { subjectData, onClick } = props;
+function SubjectSearchCard(props: SubjectSearchCardProps) {
+  const { subjectSearchData, onClick } = props;
   const [isActive, setIsActive] = useState(false);
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
   const handleToggleModal = () => {
     setIsActive(!isActive);
-    onClick;
+    onClick(subjectSearchData);
   };
 
   return (
@@ -35,10 +32,10 @@ function SubjectSearchCard(props: SubjectCardProps) {
           {!smallScreen && (
             <Stack direction="column">
               <Text type="label" size="medium" textAlign="start">
-                {Object.values(subjectData)[3]}
+                {Object.values(subjectSearchData)[3]}
               </Text>
               <Text size="medium" textAlign="start">
-                {Object.values(subjectData)[1]}
+                {Object.values(subjectSearchData)[1]}
               </Text>
             </Stack>
           )}
@@ -55,4 +52,4 @@ function SubjectSearchCard(props: SubjectCardProps) {
 }
 
 export { SubjectSearchCard };
-export type { SubjectCardProps };
+export type { SubjectSearchCardProps };

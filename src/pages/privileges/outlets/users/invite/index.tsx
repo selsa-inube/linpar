@@ -10,19 +10,20 @@ import { validationMessages } from "@validations/validationMessages";
 import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
 import { userEntriesDataMock } from "@src/mocks/apps/privileges/users/users.mock";
+import { userSearchCardData } from "@src/mocks/apps/privileges/users/usersSearchField.mock";
 
 const LOADING_TIMEOUT = 1500;
 
 const initialValues: IInviteFormValues = {
   name: "",
-  id: "",
+  userID: "",
   phone: "",
   email: "",
 };
 
 const validationSchema = Yup.object({
-  name: validationRules.username.required(validationMessages.required),
-  id: validationRules.identification,
+  // name: validationRules.username.required(validationMessages.required),
+  userID: validationRules.identification,
   phone: validationRules.phone.required(validationMessages.required),
   email: validationRules.email.required(validationMessages.required),
 });
@@ -78,6 +79,7 @@ function Invite() {
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleSubmit={handleSubmit}
       screenMovil={screenMovil}
+      searchFieldData={userSearchCardData}
       usersInfo={userEntriesDataMock}
     />
   );

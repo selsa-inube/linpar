@@ -10,7 +10,6 @@ import {
 } from "@inube/design-system";
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
-import { SubjectCard } from "@src/components/cards/SubjectCard";
 import { Key, SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@src/components/cards/SubjectSearchCard";
 
@@ -24,8 +23,13 @@ const InteractiveModal = ({
   infoTitle,
   actionsTitle,
   type = "fields",
+  id,
+  label,
+  name,
+  placeholder,
   searchData,
   divider,
+  onClick,
 }: InteractiveModalProps) => {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const hasActions = actions.length > 0;
@@ -55,7 +59,7 @@ const InteractiveModal = ({
 
   return createPortal(
     <Blanket>
-      <StyledModal smallScreen={smallScreen}>
+      <StyledModal smallScreen={smallScreen} type={type}>
         <Stack direction="column" gap="24px">
           <Stack direction="column" gap="20px">
             <Stack alignItems="center" justifyContent="space-between">
@@ -114,10 +118,10 @@ const InteractiveModal = ({
               <>
                 <Textfield
                   key="searchField"
-                  label={"Digita el nombre o numero de identificación."}
-                  name="searchField"
-                  id="searchField"
-                  placeholder={"Digita el nombre o numero de identificación."}
+                  id={id}
+                  label={label}
+                  name={name}
+                  placeholder={placeholder}
                   value={filterText}
                   onChange={handleFilterChange}
                   fullwidth={true}
@@ -133,9 +137,8 @@ const InteractiveModal = ({
                     }) => (
                       <SubjectSearchCard
                         key={data.id}
-                        subjectData={data}
-                        title={data.username}
-                        onClick={undefined}
+                        subjectSearchData={data}
+                        onClick={() => onClick(data)}
                       />
                     )
                   )}
