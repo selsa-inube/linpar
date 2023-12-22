@@ -16,6 +16,8 @@ import { EMessageType } from "@src/types/messages.types";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledMessageContainer } from "./styles";
+import { SearchUserCard } from "@src/components/cards/SearchUserCard";
+import { useState } from "react";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -25,6 +27,9 @@ interface InviteUIProps {
   screenMovil: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
+  usersInfo: Record<string, string | number | any>;
+  searchFieldData: Record<string, string | number>;
+  onReset: (resetFunction: () => void) => void;
 }
 
 function renderMessages(
@@ -75,10 +80,24 @@ function InviteUI(props: InviteUIProps) {
     showMessage,
     handleCloseSectionMessage,
     handleSubmit,
+    usersInfo,
+    searchFieldData,
+    onReset,
   } = props;
 
   const mediaQueries = ["(max-width: 1111px)", "(max-width: 565px)"];
   const matches = useMediaQueries(mediaQueries);
+  const [isUserSelected, setIsUserSelected] = useState(false);
+
+  const checkIfAnyFieldIsEmpty = () => {
+    return !formik.values.userID || !formik.values.phone;
+  };
+
+  const handleUserSelect = (userData: Record<string, string | number>) => {
+    formik.setFieldValue("userID", userData.userID);
+    formik.setFieldValue("phone", userData.phone);
+    setIsUserSelected(true);
+  };
 
   return (
     <Stack direction="column" padding="s400 s800">
@@ -102,46 +121,35 @@ function InviteUI(props: InviteUIProps) {
               width={"100%"}
               autoRows="unset"
             >
-              <Textfield
+              <SearchUserCard
                 label="Nombre"
-                placeholder="Ingresa su nombre completo"
-                name="name"
-                id="name"
-                value={formik.values.name}
-                type="text"
-                required={true}
-                message={
-                  stateValue(formik, "name") === "invalid"
-                    ? formik.errors.name
-                    : "El nombre es valido"
+                name="searchUser"
+                id="searchUser"
+                placeholder="Buscar usuario"
+                userData={usersInfo}
+                searchFieldData={searchFieldData}
+                title={"Búsqueda"}
+                infoTitle={"Busca el usuario para enviar la invitación."}
+                idModal="searchField"
+                nameModal="searchField"
+                labelModal={"Digita el nombre o numero de identificación."}
+                placeholderModal={
+                  "Digita el nombre o numero de identificación."
                 }
-                disabled={loading}
-                size="compact"
-                fullwidth={true}
-                status={stateValue(formik, "name")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                onUserSelect={handleUserSelect}
+                onReset={onReset}
               />
-
               <Textfield
                 label="Identificación"
                 placeholder="Ingrese su número de identificación"
-                name="id"
-                id="id"
-                value={formik.values.id}
+                name="userID"
+                id="userID"
+                value={formik.values.userID}
                 type="number"
-                required={true}
-                message={
-                  stateValue(formik, "id") === "invalid"
-                    ? formik.errors.id
-                    : "El número de identificación es valido"
-                }
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                status={stateValue(formik, "id")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                readOnly
               />
 
               <Textfield
@@ -151,18 +159,10 @@ function InviteUI(props: InviteUIProps) {
                 id="phone"
                 value={formik.values.phone}
                 type="tel"
-                required={true}
-                message={
-                  stateValue(formik, "phone") === "invalid"
-                    ? formik.errors.phone
-                    : "El número de teléfono es valido"
-                }
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                status={stateValue(formik, "phone")}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                readOnly
               />
 
               <Textfield
@@ -172,11 +172,10 @@ function InviteUI(props: InviteUIProps) {
                 id="email"
                 value={formik.values.email}
                 type="email"
-                required={true}
                 message={
                   stateValue(formik, "email") === "valid"
-                    ? formik.errors.email
-                    : "El correo electrónico es valido"
+                    ? "El correo electrónico es valido"
+                    : formik.errors.email
                 }
                 disabled={loading}
                 size="compact"
@@ -184,6 +183,7 @@ function InviteUI(props: InviteUIProps) {
                 status={stateValue(formik, "email")}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                readOnly={isUserSelected && checkIfAnyFieldIsEmpty()}
               />
             </Grid>
             <Button

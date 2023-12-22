@@ -59,7 +59,6 @@ export const Default = Template.bind({});
 Default.args = {
   subjectData: data,
   title: "User Information",
-  icon: <MdPersonOutline size={24} />,
 };
 
 export const WithLabels = Template.bind({});

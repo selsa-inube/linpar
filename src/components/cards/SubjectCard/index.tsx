@@ -5,10 +5,10 @@ import { ILabel } from "./types";
 import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
 
 interface SubjectCardProps {
-  subjectData: Record<string, string | number>;
+  subjectData: Record<string, string | number> | any;
   title: string;
   labels?: ILabel[];
-  icon: JSX.Element;
+  icon?: JSX.Element;
 }
 
 function SubjectCard(props: SubjectCardProps) {
