@@ -1,5 +1,5 @@
 import { Textfield, useMediaQuery } from "@inube/design-system";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyledSearchUserCard } from "./styles";
 import { ILabel } from "./types";
 import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
@@ -16,10 +16,11 @@ interface SearchUserCardProps {
   placeholderModal: string;
   userData: Record<string, string | number>;
   searchFieldData: Record<string, string | number>;
-  title: string | any;
+  title: string;
   infoTitle: string;
-  labels?: ILabel[] | any;
+  labels?: ILabel[];
   onUserSelect: (data: Record<string, string | number>) => void;
+  onReset: (field: () => void) => void;
 }
 
 function SearchUserCard(props: SearchUserCardProps) {
@@ -38,16 +39,27 @@ function SearchUserCard(props: SearchUserCardProps) {
     infoTitle,
     labels,
     onUserSelect,
+    onReset,
   } = props;
   const [showModal, setShowModal] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState(""); // State for the selected username
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
+  useEffect(() => {
+    if (onReset) {
+      onReset(resetSelectedUser);
+    }
+  }, [onReset]);
+
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
 
-  const handleUserSelect = (data: any) => {
+  const resetSelectedUser = () => {
+    setSelectedUsername("");
+  };
+
+  const handleUserSelect = (data: Record<string, string>) => {
     if (data && data.username) {
       setSelectedUsername(data.username);
     }

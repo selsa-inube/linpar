@@ -27,8 +27,9 @@ interface InviteUIProps {
   screenMovil: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
-  usersInfo: any;
-  searchFieldData: any;
+  usersInfo: Record<string, string | number | any>;
+  searchFieldData: Record<string, string | number>;
+  onReset: (resetFunction: () => void) => void;
 }
 
 function renderMessages(
@@ -81,6 +82,7 @@ function InviteUI(props: InviteUIProps) {
     handleSubmit,
     usersInfo,
     searchFieldData,
+    onReset,
   } = props;
 
   const mediaQueries = ["(max-width: 1111px)", "(max-width: 565px)"];
@@ -91,7 +93,7 @@ function InviteUI(props: InviteUIProps) {
     return !formik.values.userID || !formik.values.phone;
   };
 
-  const handleUserSelect = (userData: any) => {
+  const handleUserSelect = (userData: Record<string, string | number>) => {
     formik.setFieldValue("userID", userData.userID);
     formik.setFieldValue("phone", userData.phone);
     setIsUserSelected(true);
@@ -135,6 +137,7 @@ function InviteUI(props: InviteUIProps) {
                   "Digita el nombre o numero de identificación."
                 }
                 onUserSelect={handleUserSelect}
+                onReset={onReset}
               />
               <Textfield
                 label="Identificación"

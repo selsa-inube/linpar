@@ -5,4 +5,15 @@ interface IInviteFormValues {
   email: string;
 }
 
-export type { IInviteFormValues };
+interface IUserEntry {
+  id: string;
+  username: string;
+  code: string;
+  userID: string;
+  position: string;
+  active: boolean;
+  email: string;
+  phone: string;
+}
+
+export type { IInviteFormValues, IUserEntry };

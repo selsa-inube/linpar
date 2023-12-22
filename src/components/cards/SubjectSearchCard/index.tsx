@@ -3,8 +3,8 @@ import { useState } from "react";
 import { StyledSubjectSearchCard } from "./styles";
 
 interface SubjectSearchCardProps {
-  subjectSearchData: Record<string, string | number> | any;
-  onClick: any;
+  subjectSearchData: Record<string, string | number>;
+  onClick: (data: Record<string, string | number>) => void;
 }
 
 function SubjectSearchCard(props: SubjectSearchCardProps) {

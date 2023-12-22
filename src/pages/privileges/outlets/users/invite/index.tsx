@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,6 @@ const initialValues: IInviteFormValues = {
 };
 
 const validationSchema = Yup.object({
-  // name: validationRules.username.required(validationMessages.required),
   userID: validationRules.identification,
   phone: validationRules.phone.required(validationMessages.required),
   email: validationRules.email.required(validationMessages.required),
@@ -32,10 +31,13 @@ function Invite() {
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
+  const resetSearchUserRef = useRef(() => {});
   const navigate = useNavigate();
 
   const screenMovil = useMediaQuery("(max-width: 744px)");
-
+  const handleResetSearchUser = (resetFunction: () => void) => {
+    resetSearchUserRef.current = resetFunction;
+  };
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -47,6 +49,7 @@ function Invite() {
         setFormInvalid(false);
         setShowMessage(true);
         formik.resetForm();
+        resetSearchUserRef.current();
         setTimeout(() => {
           navigate(`/privileges/users`, {
             state: { tab: "privileges-invitations" },
@@ -81,6 +84,7 @@ function Invite() {
       screenMovil={screenMovil}
       searchFieldData={userSearchCardData}
       usersInfo={userEntriesDataMock}
+      onReset={handleResetSearchUser}
     />
   );
 }
