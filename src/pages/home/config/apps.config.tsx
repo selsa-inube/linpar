@@ -1,4 +1,4 @@
-import { MdVpnKey } from "react-icons/md";
+import { MdPerson, MdVpnKey } from "react-icons/md";
 
 const appsConfig = [
   {
@@ -22,6 +22,28 @@ const appsConfig = [
     ],
     url: "/privileges",
   },
+  {
+    id: 2,
+    label: "Personas",
+    description:
+      "Opciones de configuración relacionadas con el portal de clientes.",
+    icon: <MdPerson />,
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/people",
+        label: "Personas",
+        id: "/people",
+        isActive: false,
+      },
+    ],
+    url: "/people",
+  },
 ];
 
 const navigationConfig = {
@@ -34,6 +56,12 @@ const navigationConfig = {
           label: "Privilegios",
           icon: <MdVpnKey />,
           path: "/privileges",
+        },
+        people: {
+          id: "people",
+          label: "Personas",
+          icon: <MdPerson />,
+          path: "/people",
         },
       },
     },
