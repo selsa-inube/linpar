@@ -14,13 +14,31 @@ const story = {
   ],
 };
 
-const data = {
-  username: "David Leonardo Garzón",
-  userID: "45645",
-  mail: "lgarzon@gmail.com",
-  invitationDate: "11/JUN/2022",
-  status: "Sent",
-  id: 10,
+const data: any = [
+  {
+    id: "11",
+    username: "David Leonardo Garzón",
+    code: "LGARZON",
+    userID: "1256545",
+    position: "Credit Analyst",
+    active: false,
+    email: "dgarzon@sistemasenlinea.com.co",
+    phone: "3123202874",
+  },
+  {
+    id: "12",
+    username: "Angie Pinilla",
+    code: "APINILLA",
+    userID: "789654",
+    position: "Adviser",
+    active: true,
+    email: "apinilla@sistemasenlinea.com.co",
+    phone: "1212145789",
+  },
+];
+
+const searchData = {
+  ["Digita el nombre o numero de identificación."]: "",
 };
 
 const Template: StoryFn<SearchUserCardProps> = (args) => (
@@ -30,7 +48,18 @@ const Template: StoryFn<SearchUserCardProps> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   userData: data,
-  title: "User Information",
+  searchFieldData: searchData,
+  label: "Nombre",
+  name: "searchUser",
+  id: "searchUser",
+  placeholder: "Buscar usuario",
+  title: "Búsqueda",
+  infoTitle: "Busca el usuario para enviar la invitación.",
+  idModal: "searchField",
+  nameModal: "searchField",
+  labelModal: "Digita el nombre o numero de identificación.",
+  placeholderModal: "Digita el nombre o numero de identificación.",
+  onUserSelect: () => {},
 };
 
 export default story;

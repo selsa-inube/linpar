@@ -1,5 +1,4 @@
 import {
-  MdOutlineEdit,
   MdOutlineFormatColorText,
   MdOutlineFormatPaint,
   MdOutlineModeEditOutline,
