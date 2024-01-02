@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
+
+interface StyledPaletteUI {
+  theme?: typeof inube;
+  hasBackground: boolean;
+}
 
 const StyledMessageContainer = styled.div`
   position: fixed;
@@ -9,13 +15,15 @@ const StyledMessageContainer = styled.div`
 
 const StyledContainer = styled.div`
   position: relative;
-  // > div:nth-child(-n + 2) {
-  //   grid-template-columns: 1fr;
-  // }
-
-  // & div {
-  //   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  // }
 `;
 
-export { StyledMessageContainer, StyledContainer };
+const StyledGridContainer = styled.div<StyledPaletteUI>`
+  background-color: ${({ theme, hasBackground }) =>
+    hasBackground
+      ? theme?.color?.surface?.dark?.clear || inube.color.surface.dark.clear
+      : "unset"};
+  border-radius: ${inube.spacing.s100};
+  padding: ${inube.spacing.s150};
+`;
+
+export { StyledMessageContainer, StyledContainer, StyledGridContainer };
