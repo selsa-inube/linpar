@@ -12,10 +12,6 @@ import { PageTitle } from "@components/PageTitle";
 
 import { StyledMessageContainer, StyledContainer } from "./styles";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/config/usersTabs.config";
-import { menuInvitationLinks } from "@src/pages/privileges/outlets/users/config/menuInvitation.config";
-import { InvitationsTab } from "@src/pages/privileges/outlets/users/tabs/invitations";
-import { UsersTab } from "@src/pages/privileges/outlets/users/tabs/users";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { TokenColorCard } from "@src/components/cards/TokenColorCard";
 
@@ -41,6 +37,35 @@ const renderMessage = (
   );
 };
 
+function renderCategoryGrid(
+  categories: any[],
+  templateColumns: string,
+  handleCardClick: any
+) {
+  return categories.map(([category, tokens]: any) => (
+    <Stack key={category} gap="32px" direction="column">
+      <Text size="medium" textAlign="start" appearance="dark">
+        {category}
+      </Text>
+      <Grid
+        templateColumns={templateColumns}
+        gap="s150"
+        autoColumns="unset"
+        autoRows="unset"
+      >
+        {Object.entries(tokens).map(([tokenName, tokenValue]) => (
+          <TokenColorCard
+            key={tokenName}
+            tokenName={tokenName}
+            tokenDescription={"Color token"}
+            onClick={handleCardClick}
+          />
+        ))}
+      </Grid>
+    </Stack>
+  ));
+}
+
 interface UsersUIProps {
   isSelected: string;
   searchText: string;
@@ -54,71 +79,60 @@ interface UsersUIProps {
 }
 
 export function PaletteUI(props: UsersUIProps) {
-  const {
-    isSelected,
-    searchText,
-    handleTabChange,
-    handleSearchText,
-    showMenu,
-    handleToggleMenuInvitation,
-    handleCloseMenuInvitation,
-    message,
-    handleCloseMessage,
-  } = props;
+  const { message, handleCloseMessage } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-
+  const paletteEntries = Object.entries(inube.color.palette);
+  const firstTwoCategories = paletteEntries.slice(0, 2);
+  const remainingCategories = paletteEntries.slice(2);
   function handleCardClick(tokenName: string): void {
     throw new Error("Function not implemented.");
   }
 
   return (
-    <>
-      <Stack
-        direction="column"
-        width="-webkit-fill-available"
-        padding={smallScreen ? "s300" : "s400 s800"}
-      >
-        <Stack gap="48px" direction="column">
-          <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[0].crumbs} />
-            <PageTitle
-              title={peopleOptionsConfig[0].label}
-              description={peopleOptionsConfig[0].description}
-              navigatePage="/people"
-            />
-          </Stack>
-          <StyledContainer>
-            <Stack gap="32px" direction="column">
-              {Object.entries(inube.color.palette).map(([category, tokens]) => (
-                <Stack key={category} gap="32px" direction="column">
-                  <Text size="medium" textAlign="start" appearance="dark">
-                    {category}
-                  </Text>
-                  <StyledContainer>
-                    <Grid
-                      templateColumns="1fr 1fr 1fr"
-                      gap="s150"
-                      autoColumns="unset"
-                      autoRows="unset"
-                    >
-                      {Object.entries(tokens).map(([tokenName, tokenValue]) => (
-                        <TokenColorCard
-                          key={tokenName}
-                          tokenName={tokenName}
-                          tokenDescription={"Color token"}
-                          onClick={handleCardClick}
-                        />
-                      ))}
-                    </Grid>
-                  </StyledContainer>
-                </Stack>
-              ))}
-            </Stack>
-          </StyledContainer>
+    <Stack
+      direction="column"
+      width="-webkit-fill-available"
+      padding={smallScreen ? "s300" : "s400 s800"}
+    >
+      <Stack gap="48px" direction="column">
+        <Stack gap="24px" direction="column">
+          <Breadcrumbs crumbs={peopleOptionsConfig[0].crumbs} />
+          <PageTitle
+            title={peopleOptionsConfig[0].label}
+            description={peopleOptionsConfig[0].description}
+            navigatePage="/people"
+          />
         </Stack>
-        {renderMessage(message, handleCloseMessage)}
+        <StyledContainer>
+          <Grid
+            templateColumns="1fr"
+            gap="s150"
+            autoColumns="unset"
+            autoRows="unset"
+          >
+            {renderCategoryGrid(
+              firstTwoCategories,
+              "repeat(3, 1fr)",
+              handleCardClick
+            )}
+          </Grid>
+
+          <Grid
+            templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+            gap="s150"
+            autoColumns="unset"
+            autoRows="unset"
+          >
+            {renderCategoryGrid(
+              remainingCategories,
+              "repeat(auto-fit, minmax(250px, 1fr))",
+              handleCardClick
+            )}
+          </Grid>
+        </StyledContainer>
       </Stack>
-    </>
+      {renderMessage(message, handleCloseMessage)}
+    </Stack>
   );
 }

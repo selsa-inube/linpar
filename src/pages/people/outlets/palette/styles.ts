@@ -9,6 +9,13 @@ const StyledMessageContainer = styled.div`
 
 const StyledContainer = styled.div`
   position: relative;
+  // > div:nth-child(-n + 2) {
+  //   grid-template-columns: 1fr;
+  // }
+
+  // & div {
+  //   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  // }
 `;
 
 export { StyledMessageContainer, StyledContainer };
