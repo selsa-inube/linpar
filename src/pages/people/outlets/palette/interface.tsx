@@ -10,25 +10,21 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 
-import {
-  StyledMessageContainer,
-  StyledContainer,
-  StyledGridContainer,
-} from "./styles";
+import { StyledMessageContainer, StyledGridContainer } from "./styles";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { TokenColorCard } from "@src/components/cards/TokenColorCard";
+import { FormButtons } from "@src/components/forms/submit/FormButtons";
+import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
 
-interface UsersUIProps {
-  isSelected: string;
-  searchText: string;
-  handleTabChange: (id: string) => void;
-  handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  showMenu: boolean;
-  handleToggleMenuInvitation: () => void;
-  handleCloseMenuInvitation: () => void;
+interface PaletteUIProps {
+  isLoading: boolean;
+  handleSubmitForm: () => void;
+  handleReset: () => void;
+  // hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
   message: IUsersMessage;
   handleCloseMessage: () => void;
+  onCloseSectionMessage: () => void;
 }
 
 interface renderCategoryGridProps {
@@ -36,7 +32,6 @@ interface renderCategoryGridProps {
   templateColumns: string;
   templateRows?: string;
   autoFlow?: string;
-  handleCardClick: any;
   hasBackground?: boolean;
 }
 
@@ -68,19 +63,23 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     templateColumns,
     templateRows = "auto",
     autoFlow = "row",
-    handleCardClick,
     hasBackground = false,
   } = props;
   return categories.map(([category, tokens]: any) => (
-    <Stack key={category} gap="32px" direction="column">
-      <Text size="medium" textAlign="start" appearance="dark">
+    <Stack key={category} gap="16px" direction="column">
+      <Text
+        size="medium"
+        padding="0px 0px 0px 0px"
+        textAlign="start"
+        appearance="dark"
+      >
         {category}
       </Text>
       <StyledGridContainer hasBackground={hasBackground}>
         <Grid
           templateColumns={templateColumns}
           templateRows={templateRows}
-          gap="s150"
+          gap="s050"
           autoColumns="unset"
           autoRows="unset"
           autoFlow={autoFlow}
@@ -90,7 +89,9 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
               key={tokenName}
               tokenName={tokenName}
               tokenDescription={"Color token"}
-              onClick={handleCardClick}
+              onClick={(tokenName, color) => {
+                console.log(`Color for ${tokenName} is ${color}`);
+              }}
             />
           ))}
         </Grid>
@@ -99,16 +100,21 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
   ));
 }
 
-export function PaletteUI(props: UsersUIProps) {
-  const { message, handleCloseMessage } = props;
+export function PaletteUI(props: PaletteUIProps) {
+  const {
+    message,
+    handleCloseMessage,
+    isLoading,
+    handleSubmitForm,
+    handleReset,
+    // hasChanges,
+    onCloseSectionMessage,
+  } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const paletteEntries = Object.entries(inube.color.palette);
-  const firstTwoCategories = paletteEntries.slice(0, 2);
+  const firstTwoCategories = paletteEntries.slice(0, 1);
   const remainingCategories = paletteEntries.slice(2);
-  function handleCardClick(tokenName: string): void {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <Stack
@@ -125,36 +131,40 @@ export function PaletteUI(props: UsersUIProps) {
             navigatePage="/people"
           />
         </Stack>
-        <StyledContainer>
-          <Grid
-            templateColumns="1fr"
-            gap="s150"
-            autoColumns="unset"
-            autoRows="unset"
-          >
-            <RenderCategoryGrid
-              categories={firstTwoCategories}
-              templateColumns="repeat(3, 1fr)"
-              templateRows="repeat(7, 1fr)"
-              autoFlow="column"
-              handleCardClick={handleCardClick}
-              hasBackground
-            />
-          </Grid>
-
-          <Grid
-            templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-            gap="s150"
-            autoColumns="unset"
-            autoRows="unset"
-          >
-            <RenderCategoryGrid
-              categories={remainingCategories}
+        <FormButtons
+          // disabledButtons={!hasChanges(null)}
+          handleSubmit={handleSubmitForm}
+          handleReset={handleReset}
+          loading={isLoading}
+        >
+          <Stack direction="column" width="100%" gap="24px">
+            <Grid
+              templateColumns="1fr"
+              gap="s150"
+              autoColumns="unset"
+              autoRows="unset"
+            >
+              <RenderCategoryGrid
+                categories={firstTwoCategories}
+                templateColumns="repeat(3, 1fr)"
+                templateRows="repeat(7, 1fr)"
+                autoFlow="column"
+                hasBackground
+              />
+            </Grid>
+            <Grid
               templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-              handleCardClick={handleCardClick}
-            />
-          </Grid>
-        </StyledContainer>
+              gap="s150"
+              autoColumns="unset"
+              autoRows="unset"
+            >
+              <RenderCategoryGrid
+                categories={remainingCategories}
+                templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+              />
+            </Grid>
+          </Stack>
+        </FormButtons>
       </Stack>
       {renderMessage(message, handleCloseMessage)}
     </Stack>

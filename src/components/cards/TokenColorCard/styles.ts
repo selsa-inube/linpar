@@ -1,34 +1,39 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
-interface IStyledSubjectSearchCard {
+interface IStyledColorTokenCard {
   tokenName: string;
+  color: string;
   isActive: boolean;
   smallScreen: boolean;
 }
 
-function determineTokenGroup(tokenName: string) {
+export function getTokenColor(tokenName: string, theme: typeof inube) {
   for (const category in inube.color.palette) {
     if (Object.hasOwnProperty.call(inube.color.palette[category], tokenName)) {
-      return category;
+      return (
+        theme?.color?.palette[category!]?.[tokenName] ||
+        inube.color.palette[category!]?.[tokenName]
+      );
     }
   }
 }
 
-const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
+const HiddenColorPicker = styled.input.attrs({ type: "color" })`
+  display: flow;
+  height: 0px;
+  opacity: 0;
+`;
+
+const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   width: 100%;
   height: ${({ smallScreen }) => (smallScreen ? "56px" : "auto")};
   box-sizing: border-box;
   border-radius: ${inube.spacing.s100};
   cursor: pointer;
-  background-color: ${({ tokenName, theme }) => {
-    const category = determineTokenGroup(tokenName);
-    return (
-      theme?.color?.palette[category!]?.[tokenName] ||
-      inube.color.palette[category!]?.[tokenName] ||
-      "defaultColor"
-    );
+  background-color: ${({ color, tokenName, theme }) => {
+    return color ? color : getTokenColor(tokenName, theme);
   }};
 `;
 
-export { StyledSubjectSearchCard };
+export { StyledColorTokenCard, HiddenColorPicker };

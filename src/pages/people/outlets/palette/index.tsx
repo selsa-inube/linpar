@@ -8,6 +8,7 @@ import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/con
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 function Palette() {
+  const [isLoading, setIsLoading] = useState(false);
   const [isSelected, setIsSelected] = useState<string>();
   const [searchText, setSearchText] = useState("");
   const [showMenu, setShowMenu] = useState(false);
@@ -24,22 +25,6 @@ function Palette() {
       }
     }
   }, [location]);
-
-  const handleTabChange = (tabId: string) => {
-    setIsSelected(tabId);
-  };
-
-  const handleSearchText = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.target.value);
-  };
-
-  const handleToggleMenuInvitation = () => {
-    setShowMenu((prevShowMenu) => !prevShowMenu);
-  };
-
-  const handleCloseMenuInvitation = () => {
-    setShowMenu(false);
-  };
 
   const handleShowMessage = (messageType: EMessageType, username: string) => {
     const { title, description, appearance, icon } =
@@ -66,14 +51,12 @@ function Palette() {
 
   return (
     <PaletteUI
-      isSelected={isSelected || privilegeUserTabsConfig.privilegesUsers.id}
-      searchText={searchText}
-      handleTabChange={handleTabChange}
-      handleSearchText={handleSearchText}
-      showMenu={showMenu}
-      handleToggleMenuInvitation={handleToggleMenuInvitation}
-      handleCloseMenuInvitation={handleCloseMenuInvitation}
+      handleSubmitForm={() => {}}
+      handleReset={() => {}}
+      isLoading={isLoading}
       message={message}
+      onCloseSectionMessage={() => {}}
+      // hasChanges={hasChanges}
       handleCloseMessage={handleCloseMessage}
     />
   );
