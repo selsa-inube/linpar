@@ -1,6 +1,10 @@
 import { EAppearance } from "@src/types/colors.types";
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
+type CategoryTranslations = {
+  [key: string]: string;
+};
+
 const paletteMessagesConfig = {
   success: {
     id: 1,
@@ -18,4 +22,15 @@ const paletteMessagesConfig = {
   },
 };
 
-export { paletteMessagesConfig };
+const categoryTranslations: CategoryTranslations = {
+  neutral: "Neutral",
+  neutralAlpha: "Neutral Alfa",
+  red: "Rojo",
+  yellow: "Amarillo",
+  green: "Verde",
+  blue: "Azul",
+  teal: "Verde Azulado",
+  purple: "Púrpura",
+};
+
+export { paletteMessagesConfig, categoryTranslations };

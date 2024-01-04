@@ -3,20 +3,10 @@ import { inube } from "@inube/design-system";
 
 interface IStyledColorTokenCard {
   tokenName: string;
+  tokenColor: string;
   color: string;
   isActive: boolean;
   smallScreen: boolean;
-}
-
-export function getTokenColor(tokenName: string, theme: typeof inube) {
-  for (const category in inube.color.palette) {
-    if (Object.hasOwnProperty.call(inube.color.palette[category], tokenName)) {
-      return (
-        theme?.color?.palette[category!]?.[tokenName] ||
-        inube.color.palette[category!]?.[tokenName]
-      );
-    }
-  }
 }
 
 const HiddenColorPicker = styled.input.attrs({ type: "color" })`
@@ -31,8 +21,8 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   box-sizing: border-box;
   border-radius: ${inube.spacing.s100};
   cursor: pointer;
-  background-color: ${({ color, tokenName, theme }) => {
-    return color ? color : getTokenColor(tokenName, theme);
+  background-color: ${({ color, tokenColor }) => {
+    return color ? color : tokenColor;
   }};
 `;
 

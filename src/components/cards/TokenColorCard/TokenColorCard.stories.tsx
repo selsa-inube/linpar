@@ -22,6 +22,7 @@ const Template: StoryFn<TokenColorCardProps> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   tokenName: "N900",
+  tokenColor: "#091E42",
   tokenDescription: "Color token",
 };
 

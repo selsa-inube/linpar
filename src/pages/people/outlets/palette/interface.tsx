@@ -15,18 +15,22 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { TokenColorCard } from "@src/components/cards/TokenColorCard";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
-import { useState } from "react";
+import { categoryTranslations } from "./config/palette.config";
 
 interface PaletteUIProps {
+  colorTokens: typeof inube;
+  setColorTokens: typeof inube;
   isLoading: boolean;
   handleSubmitForm: () => void;
   hasChanges: (valueToCompare: typeof inube) => boolean;
   message: IUsersMessage;
   handleCloseMessage: () => void;
+  onMessageClosed: () => void;
+  handleReset: () => void;
 }
 
 interface renderCategoryGridProps {
-  categories: any[];
+  categories: typeof inube;
   templateColumns: string;
   templateRows?: string;
   autoFlow?: string;
@@ -36,9 +40,15 @@ interface renderCategoryGridProps {
 
 const renderMessage = (
   message: IUsersMessage,
-  handleCloseMessage: () => void
+  handleCloseMessage: () => void,
+  onMessageClosed: () => void
 ) => {
   if (!message.data) return null;
+
+  const closeMessageAndExecuteCallback = () => {
+    handleCloseMessage();
+    onMessageClosed();
+  };
 
   return (
     <StyledMessageContainer>
@@ -49,7 +59,7 @@ const renderMessage = (
           icon={message.data.icon}
           appearance={message.data.appearance}
           duration={4000}
-          closeSectionMessage={handleCloseMessage}
+          closeSectionMessage={closeMessageAndExecuteCallback}
         />
       </Stack>
     </StyledMessageContainer>
@@ -65,15 +75,16 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     hasBackground = false,
     handleColorTokenClick,
   } = props;
-  return categories.map(([category, tokens]) => (
+  return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column">
       <Text
+        type="title"
         size="medium"
         padding="0px 0px 0px 0px"
         textAlign="start"
         appearance="dark"
       >
-        {category}
+        {categoryTranslations[category] || category}
       </Text>
       <StyledGridContainer hasBackground={hasBackground}>
         <Grid
@@ -88,6 +99,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
             <TokenColorCard
               key={tokenName}
               tokenName={tokenName}
+              tokenColor={String(tokenValue)}
               tokenDescription={"Token de color"}
               onClick={(tokenName, newColor) =>
                 handleColorTokenClick(tokenName, newColor)
@@ -104,17 +116,17 @@ export function PaletteUI(props: PaletteUIProps) {
   const {
     message,
     handleCloseMessage,
+    onMessageClosed,
     isLoading,
     handleSubmitForm,
     hasChanges,
+    colorTokens,
+    setColorTokens,
+    handleReset,
   } = props;
 
-  const [colorTokens, setColorTokens] = useState(
-    JSON.parse(JSON.stringify(inube.color.palette))
-  );
-
   const handleColorTokenClick = (tokenName: string, newColor: string) => {
-    setColorTokens((prevTokens: any) => {
+    setColorTokens((prevTokens: typeof inube) => {
       const updatedTokens = { ...prevTokens };
       for (const category in updatedTokens) {
         if (updatedTokens[category][tokenName] !== undefined) {
@@ -149,7 +161,7 @@ export function PaletteUI(props: PaletteUIProps) {
         <FormButtons
           disabledButtons={!hasChanges(colorTokens)}
           handleSubmit={handleSubmitForm}
-          handleReset={() => {}}
+          handleReset={handleReset}
           loading={isLoading}
         >
           <Stack direction="column" width="100%" gap="24px">
@@ -183,7 +195,7 @@ export function PaletteUI(props: PaletteUIProps) {
           </Stack>
         </FormButtons>
       </Stack>
-      {renderMessage(message, handleCloseMessage)}
+      {renderMessage(message, handleCloseMessage, onMessageClosed)}
     </Stack>
   );
 }

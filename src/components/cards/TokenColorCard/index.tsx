@@ -2,27 +2,23 @@ import { Stack, Text, useMediaQuery } from "@inube/design-system";
 import { useRef, useState } from "react";
 import tinycolor from "tinycolor2";
 
-import {
-  StyledColorTokenCard,
-  HiddenColorPicker,
-  getTokenColor,
-} from "./styles";
+import { StyledColorTokenCard, HiddenColorPicker } from "./styles";
 
 interface TokenColorCardProps {
   tokenName: string;
+  tokenColor: string;
   tokenDescription: string;
   onClick: (tokenName: string, color: string) => void;
 }
 
 function TokenColorCard(props: TokenColorCardProps) {
-  const { tokenName, tokenDescription, onClick } = props;
+  const { tokenName, tokenColor, tokenDescription, onClick } = props;
   const [isActive, setIsActive] = useState(false);
   const [userColor, setUserColor] = useState("");
   const smallScreen = useMediaQuery("(max-width: 970px)");
   const colorPickerRef = useRef<HTMLInputElement>(null);
 
-  const backgroundColor = getTokenColor(tokenName, null);
-  const isDark = tinycolor(backgroundColor).isDark();
+  const isDark = tinycolor(tokenColor).isDark();
   const textAppearance = isDark ? "light" : "dark";
 
   const handleToggleModal = () => {
@@ -42,6 +38,7 @@ function TokenColorCard(props: TokenColorCardProps) {
     <>
       <StyledColorTokenCard
         tokenName={tokenName}
+        tokenColor={tokenColor}
         color={userColor}
         onClick={handleToggleModal}
         smallScreen={smallScreen}
@@ -76,7 +73,7 @@ function TokenColorCard(props: TokenColorCardProps) {
           </Stack>
           <HiddenColorPicker
             ref={colorPickerRef}
-            value={getTokenColor(tokenName, null)}
+            value={tokenColor}
             onChange={handleColorChange}
           />
         </Stack>
