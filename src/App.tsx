@@ -14,6 +14,7 @@ import AppContextProvider from "./context";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
+import { PeopleRoutes } from "./routes/people";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
       <Route path="login/*" element={<LoginRoutes />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
+      <Route path="people/*" element={<PeopleRoutes />} />
       <Route
         path="respond-invitation/:client_id/:invitation_id/*"
         element={<RespondInvitationRoutes />}

@@ -1,11 +1,5 @@
 import { useContext } from "react";
-import {
-  Header,
-  Grid,
-  Stack,
-  Nav,
-  useMediaQueries,
-} from "@inube/design-system";
+import { Header, Stack, Nav, useMediaQueries } from "@inube/design-system";
 
 import { AppContext } from "@src/context";
 import {

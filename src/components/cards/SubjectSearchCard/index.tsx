@@ -1,10 +1,22 @@
 import { Stack, Text, useMediaQuery } from "@inube/design-system";
-import { useState } from "react";
+import { Key, useState } from "react";
 import { StyledSubjectSearchCard } from "./styles";
 
 interface SubjectSearchCardProps {
-  subjectSearchData: Record<string, string | number>;
-  onClick: (data: Record<string, string | number>) => void;
+  subjectSearchData:
+    | Record<string, string | number>
+    | {
+        id: Key | null | undefined;
+        username: string;
+      };
+  onClick: (
+    data:
+      | Record<string, string | number>
+      | {
+          id: Key | null | undefined;
+          username: string;
+        }
+  ) => void;
 }
 
 function SubjectSearchCard(props: SubjectSearchCardProps) {
@@ -24,27 +36,15 @@ function SubjectSearchCard(props: SubjectSearchCardProps) {
         smallScreen={smallScreen}
         isActive={isActive}
       >
-        <Stack
-          justifyContent={"start"}
-          gap={smallScreen ? "0px" : "8px"}
-          padding={smallScreen ? "s0" : "s100 s200"}
-        >
-          {!smallScreen && (
-            <Stack direction="column">
-              <Text type="label" size="medium" textAlign="start">
-                {Object.values(subjectSearchData)[3]}
-              </Text>
-              <Text size="medium" textAlign="start">
-                {Object.values(subjectSearchData)[1]}
-              </Text>
-            </Stack>
-          )}
-          <Stack
-            width={smallScreen ? "56px" : "260"}
-            height={smallScreen ? "56px" : "auto"}
-            justifyContent="center"
-            alignItems="center"
-          ></Stack>
+        <Stack justifyContent={"start"} gap={"8px"} padding={"s100 s200"}>
+          <Stack direction="column">
+            <Text type="label" size="medium" textAlign="start">
+              {Object.values(subjectSearchData)[3]}
+            </Text>
+            <Text size="medium" textAlign="start">
+              {Object.values(subjectSearchData)[1]}
+            </Text>
+          </Stack>
         </Stack>
       </StyledSubjectSearchCard>
     </>
