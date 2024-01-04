@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { inube } from "@inube/design-system";
 import { PaletteUI } from "./interface";
 
@@ -11,6 +11,28 @@ function Palette() {
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
+
+  const [colorTokens, setColorTokens] = useState(() => {
+    const savedTokens = sessionStorage.getItem("colorTokens");
+    return savedTokens
+      ? JSON.parse(savedTokens)
+      : JSON.parse(JSON.stringify(inube.color.palette));
+  });
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.clear();
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem("colorTokens", JSON.stringify(colorTokens));
+  }, [colorTokens]);
+
   const navigate = useNavigate();
 
   const hasChanges = (valueToCompare: typeof inube) => {
@@ -23,6 +45,10 @@ function Palette() {
     setMessage({
       visible: false,
     });
+  };
+
+  const onMessageClosed = () => {
+    navigate(-1);
   };
 
   const handleSubmitForm = () => {
@@ -43,7 +69,6 @@ function Palette() {
             visible: true,
             data: paletteMessagesConfig.success,
           });
-          setTimeout(() => navigate(-1), 4000);
         }
       })
       .catch(() => {
@@ -59,11 +84,15 @@ function Palette() {
 
   return (
     <PaletteUI
+      colorTokens={colorTokens}
+      setColorTokens={setColorTokens}
       handleSubmitForm={handleSubmitForm}
       isLoading={isLoading}
       message={message}
       hasChanges={hasChanges}
+      handleReset={onMessageClosed}
       handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
     />
   );
 }

@@ -1,4 +1,5 @@
 import {
+  MdBorderColor,
   MdOutlineFormatColorText,
   MdOutlineFormatPaint,
   MdOutlineModeEditOutline,
@@ -89,7 +90,7 @@ const peopleOptionsConfig = [
   },
   {
     id: 4,
-    icon: <MdOutlineModeEditOutline />,
+    icon: <MdBorderColor />,
     label: "Líneas",
     description: "Personaliza los colores de tus componentes",
     url: "/people/lines",
