@@ -1,5 +1,7 @@
 import { Stack, Text, useMediaQuery } from "@inube/design-system";
 import { useRef, useState } from "react";
+import tinycolor from "tinycolor2";
+
 import {
   StyledColorTokenCard,
   HiddenColorPicker,
@@ -18,6 +20,10 @@ function TokenColorCard(props: TokenColorCardProps) {
   const [userColor, setUserColor] = useState("");
   const smallScreen = useMediaQuery("(max-width: 970px)");
   const colorPickerRef = useRef<HTMLInputElement>(null);
+
+  const backgroundColor = getTokenColor(tokenName, null);
+  const isDark = tinycolor(backgroundColor).isDark();
+  const textAppearance = isDark ? "light" : "dark";
 
   const handleToggleModal = () => {
     setIsActive(!isActive);
@@ -52,7 +58,7 @@ function TokenColorCard(props: TokenColorCardProps) {
               type="label"
               size="medium"
               textAlign="start"
-              appearance="light"
+              appearance={textAppearance}
             >
               {tokenName}
             </Text>
@@ -60,11 +66,11 @@ function TokenColorCard(props: TokenColorCardProps) {
               type="label"
               size="medium"
               textAlign="start"
-              appearance="light"
+              appearance={textAppearance}
             >
               |
             </Text>
-            <Text size="medium" textAlign="start" appearance="light">
+            <Text size="medium" textAlign="start" appearance={textAppearance}>
               {tokenDescription}
             </Text>
           </Stack>

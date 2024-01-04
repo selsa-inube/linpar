@@ -15,16 +15,14 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { TokenColorCard } from "@src/components/cards/TokenColorCard";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
-import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
+import { useState } from "react";
 
 interface PaletteUIProps {
   isLoading: boolean;
   handleSubmitForm: () => void;
-  handleReset: () => void;
-  // hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+  hasChanges: (valueToCompare: typeof inube) => boolean;
   message: IUsersMessage;
   handleCloseMessage: () => void;
-  onCloseSectionMessage: () => void;
 }
 
 interface renderCategoryGridProps {
@@ -33,6 +31,7 @@ interface renderCategoryGridProps {
   templateRows?: string;
   autoFlow?: string;
   hasBackground?: boolean;
+  handleColorTokenClick: (tokenName: string, newColor: string) => void;
 }
 
 const renderMessage = (
@@ -64,8 +63,9 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     templateRows = "auto",
     autoFlow = "row",
     hasBackground = false,
+    handleColorTokenClick,
   } = props;
-  return categories.map(([category, tokens]: any) => (
+  return categories.map(([category, tokens]) => (
     <Stack key={category} gap="16px" direction="column">
       <Text
         size="medium"
@@ -89,9 +89,9 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
               key={tokenName}
               tokenName={tokenName}
               tokenDescription={"Color token"}
-              onClick={(tokenName, color) => {
-                console.log(`Color for ${tokenName} is ${color}`);
-              }}
+              onClick={(tokenName, newColor) =>
+                handleColorTokenClick(tokenName, newColor)
+              }
             />
           ))}
         </Grid>
@@ -106,13 +106,28 @@ export function PaletteUI(props: PaletteUIProps) {
     handleCloseMessage,
     isLoading,
     handleSubmitForm,
-    handleReset,
-    // hasChanges,
-    onCloseSectionMessage,
+    hasChanges,
   } = props;
 
+  const [colorTokens, setColorTokens] = useState(
+    JSON.parse(JSON.stringify(inube.color.palette))
+  );
+
+  const handleColorTokenClick = (tokenName: string, newColor: string) => {
+    setColorTokens((prevTokens: any) => {
+      const updatedTokens = { ...prevTokens };
+      for (const category in updatedTokens) {
+        if (updatedTokens[category][tokenName] !== undefined) {
+          updatedTokens[category][tokenName] = newColor;
+          break;
+        }
+      }
+      return updatedTokens;
+    });
+  };
+
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  const paletteEntries = Object.entries(inube.color.palette);
+  const paletteEntries = Object.entries(colorTokens);
   const firstTwoCategories = paletteEntries.slice(0, 1);
   const remainingCategories = paletteEntries.slice(2);
 
@@ -132,9 +147,9 @@ export function PaletteUI(props: PaletteUIProps) {
           />
         </Stack>
         <FormButtons
-          // disabledButtons={!hasChanges(null)}
+          disabledButtons={!hasChanges(colorTokens)}
           handleSubmit={handleSubmitForm}
-          handleReset={handleReset}
+          handleReset={() => {}}
           loading={isLoading}
         >
           <Stack direction="column" width="100%" gap="24px">
@@ -150,6 +165,7 @@ export function PaletteUI(props: PaletteUIProps) {
                 templateRows="repeat(7, 1fr)"
                 autoFlow="column"
                 hasBackground
+                handleColorTokenClick={handleColorTokenClick}
               />
             </Grid>
             <Grid
@@ -161,6 +177,7 @@ export function PaletteUI(props: PaletteUIProps) {
               <RenderCategoryGrid
                 categories={remainingCategories}
                 templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+                handleColorTokenClick={handleColorTokenClick}
               />
             </Grid>
           </Stack>

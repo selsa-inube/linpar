@@ -1,63 +1,69 @@
-import { EMessageType } from "@src/types/messages.types";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-
+import { useState } from "react";
+import { inube } from "@inube/design-system";
 import { PaletteUI } from "./interface";
-import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/users/complete-invitation/config/completeInvitation.config";
-import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/config/usersTabs.config";
+
+import { paletteMessagesConfig } from "./config/palette.config";
+import { useNavigate } from "react-router-dom";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 function Palette() {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSelected, setIsSelected] = useState<string>();
-  const [searchText, setSearchText] = useState("");
-  const [showMenu, setShowMenu] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
-  const location = useLocation();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (location.state?.tab) {
-      setIsSelected(location.state.tab);
-      if (location.state?.messageType && location.state?.username) {
-        handleShowMessage(location.state.messageType, location.state.username);
-      }
-    }
-  }, [location]);
-
-  const handleShowMessage = (messageType: EMessageType, username: string) => {
-    const { title, description, appearance, icon } =
-      finishAssistedMessagesConfig[
-        messageType as keyof typeof finishAssistedMessagesConfig
-      ];
-
-    setMessage({
-      visible: true,
-      data: {
-        title,
-        description: description(username),
-        icon,
-        appearance,
-      },
-    });
+  const hasChanges = (valueToCompare: typeof inube) => {
+    return (
+      JSON.stringify(inube.color.palette) !== JSON.stringify(valueToCompare)
+    );
   };
 
-  const handleCloseMessage = () => {
+  const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
     });
   };
 
+  const handleSubmitForm = () => {
+    setIsLoading(true);
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = true;
+        if (isSuccess) {
+          resolve("success");
+        } else {
+          reject("failed");
+        }
+      }, 2000);
+    })
+      .then((result) => {
+        if (result === "success") {
+          setMessage({
+            visible: true,
+            data: paletteMessagesConfig.success,
+          });
+          setTimeout(() => navigate(-1), 4000);
+        }
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: paletteMessagesConfig.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <PaletteUI
-      handleSubmitForm={() => {}}
-      handleReset={() => {}}
+      handleSubmitForm={handleSubmitForm}
       isLoading={isLoading}
       message={message}
-      onCloseSectionMessage={() => {}}
-      // hasChanges={hasChanges}
-      handleCloseMessage={handleCloseMessage}
+      hasChanges={hasChanges}
+      handleCloseMessage={handleCloseSectionMessage}
     />
   );
 }
