@@ -88,7 +88,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
             <TokenColorCard
               key={tokenName}
               tokenName={tokenName}
-              tokenDescription={"Color token"}
+              tokenDescription={"Token de color"}
               onClick={(tokenName, newColor) =>
                 handleColorTokenClick(tokenName, newColor)
               }
