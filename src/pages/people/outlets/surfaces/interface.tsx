@@ -1,25 +1,22 @@
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   Breadcrumbs,
-  Button,
-  Icon,
   SectionMessage,
   Stack,
   Tabs,
-  Textfield,
-  useMediaQuery,
+  useMediaQueries,
+  inube,
 } from "@inube/design-system";
 
-import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
 
-import { StyledMessageContainer, StyledContainer } from "./styles";
+import {
+  StyledMessageContainer,
+  StyledContainer,
+  StyledTabsContainer,
+} from "./styles";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/config/usersTabs.config";
-import { menuInvitationLinks } from "@src/pages/privileges/outlets/users/config/menuInvitation.config";
-import { InvitationsTab } from "@src/pages/privileges/outlets/users/tabs/invitations";
-import { UsersTab } from "@src/pages/privileges/outlets/users/tabs/users";
 import { peopleOptionsConfig } from "../options/config/people.config";
+import { colorTabsConfig } from "./config/colorTabs.config";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -45,6 +42,7 @@ const renderMessage = (
 
 interface UsersUIProps {
   isSelected: string;
+  selectedTab: string;
   searchText: string;
   handleTabChange: (id: string) => void;
   handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -57,18 +55,15 @@ interface UsersUIProps {
 
 export function SurfacesUI(props: UsersUIProps) {
   const {
-    isSelected,
-    searchText,
     handleTabChange,
-    handleSearchText,
-    showMenu,
-    handleToggleMenuInvitation,
-    handleCloseMenuInvitation,
+    selectedTab,
+
     message,
     handleCloseMessage,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
+    useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   return (
     <>
@@ -76,6 +71,7 @@ export function SurfacesUI(props: UsersUIProps) {
         direction="column"
         width="-webkit-fill-available"
         padding={smallScreen ? "s300" : "s400 s800"}
+        gap={inube.spacing.s600}
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
@@ -86,12 +82,22 @@ export function SurfacesUI(props: UsersUIProps) {
               navigatePage="/people"
             />
           </Stack>
-          <StyledContainer>
-            <Stack gap="32px" direction="column"></Stack>
-          </StyledContainer>
         </Stack>
-        {renderMessage(message, handleCloseMessage)}
+
+        <StyledContainer>
+          <Stack gap={inube.spacing.s400} direction="column">
+            <StyledTabsContainer typeTabs={typeTabs}>
+              <Tabs
+                tabs={Object.values(colorTabsConfig)}
+                selectedTab={selectedTab}
+                type={typeTabs ? "select" : "tabs"}
+                onChange={handleTabChange}
+              />
+            </StyledTabsContainer>
+          </Stack>
+        </StyledContainer>
       </Stack>
+      {renderMessage(message, handleCloseMessage)}
     </>
   );
 }
