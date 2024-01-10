@@ -15,7 +15,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.3",
     "@inube/auth": "^1.0.7",
-    "@inube/design-system": "^5.13.0",
+    "@inube/design-system": "^5.14.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
