@@ -1,24 +1,30 @@
 import { Stack, Text, useMediaQuery } from "@inube/design-system";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import tinycolor from "tinycolor2";
+import {
+  StyledColorTokenCard,
+  HiddenColorPicker,
+  getTokenColor,
+} from "./styles";
+import { ThemeContext } from "styled-components";
 
-import { StyledColorTokenCard, HiddenColorPicker } from "./styles";
-
-interface TokenColorCardProps {
+interface ITokenColorCardProps {
+  onColorChange: (tokenName: string, newColor: string) => void;
   tokenName: string;
-  tokenColor: string;
-  tokenDescription: string;
-  onClick: (tokenName: string, color: string) => void;
+  tokenDescription?: string;
+  size?: string;
 }
 
-function TokenColorCard(props: TokenColorCardProps) {
-  const { tokenName, tokenColor, tokenDescription, onClick } = props;
+function TokenColorCard(props: ITokenColorCardProps) {
+  const { tokenName, tokenDescription, onColorChange } = props;
+  const theme = useContext(ThemeContext);
+
   const [isActive, setIsActive] = useState(false);
-  const [userColor, setUserColor] = useState("");
+
   const smallScreen = useMediaQuery("(max-width: 970px)");
   const colorPickerRef = useRef<HTMLInputElement>(null);
 
-  const isDark = tinycolor(tokenColor).isDark();
+  const isDark = tinycolor(getTokenColor(tokenName, theme)).isDark();
   const textAppearance = isDark ? "light" : "dark";
 
   const handleToggleModal = () => {
@@ -28,54 +34,62 @@ function TokenColorCard(props: TokenColorCardProps) {
     }
   };
 
-  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleColorChangeLocal = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const newColor = event.target.value;
-    setUserColor(newColor);
-    onClick(tokenName, newColor);
+    onColorChange(tokenName, newColor);
   };
 
   return (
     <>
       <StyledColorTokenCard
+        key={tokenName}
         tokenName={tokenName}
-        tokenColor={tokenColor}
-        color={userColor}
         onClick={handleToggleModal}
         smallScreen={smallScreen}
         isActive={isActive}
       >
         <Stack
-          justifyContent={"start"}
-          gap={"12px"}
-          padding={"s100 s150"}
-          alignContent={"stretch"}
+          justifyContent="start"
+          gap="12px"
+          padding="s100 s150"
+          alignContent="stretch"
         >
           <Stack alignItems="center" gap="12px">
             <Text
               type="label"
-              size="medium"
-              textAlign="start"
+              size={smallScreen ? "small" : "medium"}
+              textAlign={tokenDescription ? "start" : "center"}
               appearance={textAppearance}
             >
               {tokenName}
             </Text>
-            <Text
-              type="label"
-              size="medium"
-              textAlign="start"
-              appearance={textAppearance}
-            >
-              |
-            </Text>
-            <Text size="medium" textAlign="start" appearance={textAppearance}>
-              {tokenDescription}
-            </Text>
+            {tokenDescription && (
+              <>
+                <Text
+                  type="label"
+                  size={smallScreen ? "small" : "medium"}
+                  textAlign="start"
+                  appearance={textAppearance}
+                >
+                  |
+                </Text>
+                <Text
+                  size={smallScreen ? "small" : "medium"}
+                  textAlign="start"
+                  appearance={textAppearance}
+                >
+                  {tokenDescription}
+                </Text>
+              </>
+            )}
+            <HiddenColorPicker
+              ref={colorPickerRef}
+              value={getTokenColor(tokenName, theme)}
+              onChange={handleColorChangeLocal}
+            />
           </Stack>
-          <HiddenColorPicker
-            ref={colorPickerRef}
-            value={tokenColor}
-            onChange={handleColorChange}
-          />
         </Stack>
       </StyledColorTokenCard>
     </>
@@ -83,4 +97,4 @@ function TokenColorCard(props: TokenColorCardProps) {
 }
 
 export { TokenColorCard };
-export type { TokenColorCardProps };
+export type { ITokenColorCardProps };

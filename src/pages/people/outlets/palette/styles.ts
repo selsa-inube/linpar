@@ -25,6 +25,9 @@ const StyledGridContainer = styled.div<StyledPaletteUI>`
   border-radius: ${inube.spacing.s100};
   padding: ${({ hasBackground }) =>
     hasBackground ? inube.spacing.s150 : inube.spacing.s0};
+  & div {
+    place-content: unset;
+  }
 `;
 
 export { StyledMessageContainer, StyledContainer, StyledGridContainer };

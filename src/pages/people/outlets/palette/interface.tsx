@@ -9,7 +9,6 @@ import {
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
-
 import { StyledMessageContainer, StyledGridContainer } from "./styles";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
@@ -35,7 +34,7 @@ interface renderCategoryGridProps {
   templateRows?: string;
   autoFlow?: string;
   hasBackground?: boolean;
-  handleColorTokenClick: (tokenName: string, newColor: string) => void;
+  handleColorChange: (tokenName: string, newColor: string) => void;
 }
 
 const renderMessage = (
@@ -73,7 +72,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     templateRows = "auto",
     autoFlow = "row",
     hasBackground = false,
-    handleColorTokenClick,
+    handleColorChange,
   } = props;
   return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column">
@@ -95,14 +94,13 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
           autoRows="unset"
           autoFlow={autoFlow}
         >
-          {Object.entries(tokens).map(([tokenName, tokenValue]) => (
+          {Object.entries(tokens).map(([tokenName]) => (
             <TokenColorCard
               key={tokenName}
               tokenName={tokenName}
-              tokenColor={String(tokenValue)}
               tokenDescription={"Token de color"}
-              onClick={(tokenName, newColor) =>
-                handleColorTokenClick(tokenName, newColor)
+              onColorChange={(tokenName, newColor) =>
+                handleColorChange(tokenName, newColor)
               }
             />
           ))}
@@ -124,19 +122,6 @@ export function PaletteUI(props: PaletteUIProps) {
     setColorTokens,
     handleReset,
   } = props;
-
-  const handleColorTokenClick = (tokenName: string, newColor: string) => {
-    setColorTokens((prevTokens: typeof inube) => {
-      const updatedTokens = { ...prevTokens };
-      for (const category in updatedTokens) {
-        if (updatedTokens[category][tokenName] !== undefined) {
-          updatedTokens[category][tokenName] = newColor;
-          break;
-        }
-      }
-      return updatedTokens;
-    });
-  };
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const paletteEntries = Object.entries(colorTokens);
@@ -173,11 +158,11 @@ export function PaletteUI(props: PaletteUIProps) {
             >
               <RenderCategoryGrid
                 categories={firstTwoCategories}
-                templateColumns="repeat(3, 1fr)"
+                templateColumns={smallScreen ? "auto" : "repeat(3, 1fr)"}
                 templateRows="repeat(7, 1fr)"
-                autoFlow="column"
+                autoFlow={smallScreen ? "row" : "column"}
                 hasBackground
-                handleColorTokenClick={handleColorTokenClick}
+                handleColorChange={setColorTokens}
               />
             </Grid>
             <Grid
@@ -189,7 +174,7 @@ export function PaletteUI(props: PaletteUIProps) {
               <RenderCategoryGrid
                 categories={remainingCategories}
                 templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-                handleColorTokenClick={handleColorTokenClick}
+                handleColorChange={setColorTokens}
               />
             </Grid>
           </Stack>

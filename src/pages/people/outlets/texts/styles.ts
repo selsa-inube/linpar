@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+interface IStyledContainer {
+  smallScreen?: boolean;
+  typeTabs?: boolean;
+}
+
 const StyledMessageContainer = styled.div`
   position: fixed;
   bottom: 18px;
@@ -11,4 +16,8 @@ const StyledContainer = styled.div`
   position: relative;
 `;
 
-export { StyledMessageContainer, StyledContainer };
+const StyledTabsContainer = styled.div<IStyledContainer>`
+  position: ${(props) => (props.typeTabs ? "relative" : "unset")};
+`;
+
+export { StyledMessageContainer, StyledContainer, StyledTabsContainer };

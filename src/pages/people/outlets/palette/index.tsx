@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
 import { inube } from "@inube/design-system";
 import { PaletteUI } from "./interface";
-
 import { paletteMessagesConfig } from "./config/palette.config";
 import { useNavigate } from "react-router-dom";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 function Palette() {
   const [isLoading, setIsLoading] = useState(false);
+  const [colorTokens, setColorTokens] = useState({ ...inube.color.palette });
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const [colorTokens, setColorTokens] = useState(() => {
-    const savedTokens = sessionStorage.getItem("colorTokens");
-    return savedTokens
-      ? JSON.parse(savedTokens)
-      : JSON.parse(JSON.stringify(inube.color.palette));
-  });
+  const handleColorChange = (tokenName: string, newColor: string) => {
+    setColorTokens((prevTokens: typeof inube) => {
+      const newTokens = { ...prevTokens };
+      for (const category in newTokens) {
+        if (newTokens[category][tokenName]) {
+          newTokens[category][tokenName] = newColor;
+          break;
+        }
+      }
+      return newTokens;
+    });
+  };
 
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -29,15 +35,11 @@ function Palette() {
     };
   }, []);
 
-  useEffect(() => {
-    sessionStorage.setItem("colorTokens", JSON.stringify(colorTokens));
-  }, [colorTokens]);
-
   const navigate = useNavigate();
 
   const hasChanges = (valueToCompare: typeof inube) => {
     return (
-      JSON.stringify(inube.color.palette) !== JSON.stringify(valueToCompare)
+      JSON.stringify(inube.color.palette) === JSON.stringify(valueToCompare)
     );
   };
 
@@ -85,7 +87,7 @@ function Palette() {
   return (
     <PaletteUI
       colorTokens={colorTokens}
-      setColorTokens={setColorTokens}
+      setColorTokens={handleColorChange}
       handleSubmitForm={handleSubmitForm}
       isLoading={isLoading}
       message={message}
