@@ -125,7 +125,7 @@ export function PaletteUI(props: PaletteUIProps) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const paletteEntries = Object.entries(colorTokens);
-  const firstTwoCategories = paletteEntries.slice(0, 1);
+  const firstTwoCategories = paletteEntries.slice(0, 2);
   const remainingCategories = paletteEntries.slice(2);
 
   return (
