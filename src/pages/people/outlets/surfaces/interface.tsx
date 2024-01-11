@@ -86,7 +86,6 @@ export function SurfacesUI(props: UsersUIProps) {
               navigatePage="/people"
             />
           </Stack>
-
           <StyledContainer>
             <Stack gap="32px" direction="column"></Stack>
           </StyledContainer>
