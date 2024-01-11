@@ -6,9 +6,11 @@ import { SurfacesUI } from "./interface";
 import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/users/complete-invitation/config/completeInvitation.config";
 import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/config/usersTabs.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { colorTabsConfig } from "./config/colorTabs.config";
 
 function Surfaces() {
   const [isSelected, setIsSelected] = useState<string>();
+  const [selectedTab, setSelectedTab] = useState(colorTabsConfig.primary.id);
   const [searchText, setSearchText] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -26,7 +28,7 @@ function Surfaces() {
   }, [location]);
 
   const handleTabChange = (tabId: string) => {
-    setIsSelected(tabId);
+    setSelectedTab(tabId);
   };
 
   const handleSearchText = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +69,7 @@ function Surfaces() {
   return (
     <SurfacesUI
       isSelected={isSelected || privilegeUserTabsConfig.privilegesUsers.id}
+      selectedTab={selectedTab}
       searchText={searchText}
       handleTabChange={handleTabChange}
       handleSearchText={handleSearchText}
