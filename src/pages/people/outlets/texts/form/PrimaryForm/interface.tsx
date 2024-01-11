@@ -40,7 +40,7 @@ interface PrimaryFormUIProps {
   palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangePrimaryTokens: (tokenName: string, newColor: string) => void;
+  handleChangePrimaryTokens: any;
   withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -85,7 +85,7 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
               category={key}
               textWithColorToken={config.example}
               onChange={(newTokenName) =>
-                handleChangePrimaryTokens(key, newTokenName)
+                handleChangePrimaryTokens("primary", key, newTokenName)
               }
             />
           ))}

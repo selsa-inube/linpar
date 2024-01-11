@@ -58,6 +58,7 @@ interface UsersUIProps {
   selectedTab: string;
   isSelected: string;
   searchText: string;
+  handleChangeColor: any;
   handleTabChange: (id: string) => void;
   handleContinueTab: () => void;
   handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -73,6 +74,7 @@ export function TextsUI(props: UsersUIProps) {
     textConfig,
     // palette,
     selectedTab,
+    handleChangeColor,
     handleTabChange,
     message,
     handleCloseMessage,
@@ -118,6 +120,7 @@ export function TextsUI(props: UsersUIProps) {
                   <PrimaryForm
                     textConfig={textConfig.primary}
                     palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (textConfig: any): void {
                       throw new Error("Function not implemented.");
                     }}
@@ -126,6 +129,7 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.error.id && (
                   <ErrorForm
                     textConfig={textConfig.error}
+                    palette={palette}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {

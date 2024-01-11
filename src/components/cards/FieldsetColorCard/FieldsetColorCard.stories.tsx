@@ -30,7 +30,6 @@ const FieldsetColorCardWrapper = ({
   category: string;
   initialPalette: typeof inube.color.palette;
 }) => {
-  const [palette, setPalette] = useState(initialPalette);
   const [textConfig, setTextConfig] = useState(inube.color.text);
   const handleTokenChange = (updatedTokenName: string) => {
     const updatedTextConfig = { ...textConfig };
@@ -46,9 +45,8 @@ const FieldsetColorCardWrapper = ({
   return React.cloneElement(children as React.ReactElement<any>, {
     appearance,
     category,
-    palette,
+    initialPalette,
     onChange: handleTokenChange,
-    textConfig,
   });
 };
 

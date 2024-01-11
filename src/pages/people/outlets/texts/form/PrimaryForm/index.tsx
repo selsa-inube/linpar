@@ -9,12 +9,13 @@ const LOADING_TIMEOUT = 1500;
 interface PrimaryFormProps {
   textConfig: any;
   palette: typeof inube;
+  onChange: (event: any) => void;
   handleSubmit: (textConfig: any) => void;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function PrimaryForm(props: PrimaryFormProps) {
-  const { textConfig, palette, handleSubmit, onHasChanges } = props;
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
   const [primaryText, setPrimaryText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedTokenName, setSelectedTokenName] = useState("");
@@ -31,15 +32,6 @@ function PrimaryForm(props: PrimaryFormProps) {
 
   const hasChanges = (valueCompare: any) =>
     JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
-
-  const handleChangePrimaryTokens = (key: string, tokenName: string) => {
-    setTokenNames((prevNames: any) => ({ ...prevNames, [key]: tokenName }));
-  };
-  // const handleChangePrimaryTokens = (textConfig: any) => {
-  //   setPrimaryText(textConfig);
-  //   if (onHasChanges) onHasChanges(hasChanges(textConfig));
-  //   handleSubmit(textConfig);
-  // };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
@@ -69,7 +61,7 @@ function PrimaryForm(props: PrimaryFormProps) {
     <PrimaryFormUI
       selectedTokenName={selectedTokenName}
       tokenNames={tokenNames}
-      handleChangePrimaryTokens={handleChangePrimaryTokens}
+      handleChangePrimaryTokens={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
