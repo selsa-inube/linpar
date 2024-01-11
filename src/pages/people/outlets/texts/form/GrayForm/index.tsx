@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GrayFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -10,41 +10,35 @@ import {
 const LOADING_TIMEOUT = 1500;
 
 interface GrayFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
+  handleSubmit: (grayText: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function GrayForm(props: GrayFormProps) {
-  const {
-    currentAidBudgetUnits,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
+  const [grayText, setGrayText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
 
-  const handleChangeGray = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+  const handleChangeGray = (grayText: IAssignmentFormEntry[]) => {
+    setGrayText(grayText);
+    if (onHasChanges) onHasChanges(hasChanges(grayText));
+    handleSubmit(grayText);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(grayText);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -54,7 +48,7 @@ function GrayForm(props: GrayFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setGrayText(textConfig);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -66,16 +60,15 @@ function GrayForm(props: GrayFormProps) {
 
   return (
     <GrayFormUI
-      handleChangeGray={handleChangeGray}
+      handleChangeGray={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
-      withSubmitButtons={withSubmitButtons}
+      palette={palette}
+      textConfig={textConfig}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
     />
   );
 }

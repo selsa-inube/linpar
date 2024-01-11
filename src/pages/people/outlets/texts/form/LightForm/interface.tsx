@@ -8,7 +8,6 @@ import {
   IMessageState,
 } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
-import { textFormsConfig } from "../../config/text.config";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 
 const renderMessage = (
@@ -39,55 +38,56 @@ const renderMessage = (
 };
 
 interface LightFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
+  textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeLight: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  handleChangeLight: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-  readOnly?: boolean;
 }
 
 function LightFormUI(props: LightFormUIProps) {
   const {
-    aidBudgetUnits,
+    textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
+    palette,
     handleChangeLight,
-    withSubmitButtons,
     message,
     onCloseSectionMessage,
     hasChanges,
-    readOnly,
   } = props;
-  const lightConfig = Object.entries(textFormsConfig.light.status);
+
+  const colorCards = Object.entries(textConfig.status);
 
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
-        {textFormsConfig.warning.description}
+        {textConfig.description}
       </Text>
       <FormButtons
-        disabledButtons={false}
+        disabledButtons={!hasChanges(textConfig)}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          {lightConfig.map(([key, config]) => (
+          {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onClick={function (tokenName: string, color: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              appearance={"light"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeLight("light", key, newTokenName)
+              }
             />
           ))}
         </Stack>

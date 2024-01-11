@@ -1,11 +1,9 @@
 import {
   Breadcrumbs,
-  Button,
-  Icon,
+  inube,
   SectionMessage,
   Stack,
   Tabs,
-  Textfield,
   useMediaQueries,
 } from "@inube/design-system";
 
@@ -18,10 +16,6 @@ import {
   StyledTabsContainer,
 } from "./styles";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/config/usersTabs.config";
-import { menuInvitationLinks } from "@src/pages/privileges/outlets/users/config/menuInvitation.config";
-import { InvitationsTab } from "@src/pages/privileges/outlets/users/tabs/invitations";
-import { UsersTab } from "@src/pages/privileges/outlets/users/tabs/users";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { PrimaryForm } from "./form/PrimaryForm";
@@ -34,7 +28,7 @@ import { HelpForm } from "./form/HelpForm";
 import { DarkForm } from "./form/DarkForm";
 import { GrayForm } from "./form/GrayForm";
 import { LightForm } from "./form/LightForm";
-import { textFormsConfig } from "./config/text.config";
+import { useState } from "react";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -60,9 +54,11 @@ const renderMessage = (
 
 interface UsersUIProps {
   textConfig: any;
+  palette: typeof inube;
   selectedTab: string;
   isSelected: string;
   searchText: string;
+  handleChangeColor: any;
   handleTabChange: (id: string) => void;
   handleContinueTab: () => void;
   handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -76,7 +72,9 @@ interface UsersUIProps {
 export function TextsUI(props: UsersUIProps) {
   const {
     textConfig,
+    // palette,
     selectedTab,
+    handleChangeColor,
     handleTabChange,
     message,
     handleCloseMessage,
@@ -84,6 +82,14 @@ export function TextsUI(props: UsersUIProps) {
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
+  const [palette, setPalette] = useState(inube.color.palette);
+
+  // Function to update the palette
+  const handlePaletteChange = (tokenName: string | number, newColor: any) => {
+    const updatedPalette = { ...palette };
+    updatedPalette[tokenName] = newColor; // Update the color for the token
+    setPalette(updatedPalette); // Update the state
+  };
 
   return (
     <>
@@ -113,6 +119,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.primary.id && (
                   <PrimaryForm
                     textConfig={textConfig.primary}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (textConfig: any): void {
                       throw new Error("Function not implemented.");
                     }}
@@ -121,6 +129,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.error.id && (
                   <ErrorForm
                     textConfig={textConfig.error}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -130,7 +140,9 @@ export function TextsUI(props: UsersUIProps) {
                 )}
                 {selectedTab === colorTabsConfig.warning.id && (
                   <WarningForm
-                    currentAidBudgetUnits={[]}
+                    textConfig={textConfig.warning}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -140,7 +152,9 @@ export function TextsUI(props: UsersUIProps) {
                 )}
                 {selectedTab === colorTabsConfig.success.id && (
                   <SuccessForm
-                    currentAidBudgetUnits={[]}
+                    textConfig={textConfig.success}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -150,7 +164,9 @@ export function TextsUI(props: UsersUIProps) {
                 )}
                 {selectedTab === colorTabsConfig.information.id && (
                   <InformationForm
-                    currentAidBudgetUnits={[]}
+                    textConfig={textConfig.info}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -160,7 +176,9 @@ export function TextsUI(props: UsersUIProps) {
                 )}
                 {selectedTab === colorTabsConfig.help.id && (
                   <HelpForm
-                    currentAidBudgetUnits={[]}
+                    textConfig={textConfig.help}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -170,7 +188,9 @@ export function TextsUI(props: UsersUIProps) {
                 )}
                 {selectedTab === colorTabsConfig.dark.id && (
                   <DarkForm
-                    currentAidBudgetUnits={[]}
+                    textConfig={textConfig.dark}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -180,7 +200,9 @@ export function TextsUI(props: UsersUIProps) {
                 )}
                 {selectedTab === colorTabsConfig.gray.id && (
                   <GrayForm
-                    currentAidBudgetUnits={[]}
+                    textConfig={textConfig.gray}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -190,7 +212,9 @@ export function TextsUI(props: UsersUIProps) {
                 )}
                 {selectedTab === colorTabsConfig.light.id && (
                   <LightForm
-                    currentAidBudgetUnits={[]}
+                    textConfig={textConfig.light}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {

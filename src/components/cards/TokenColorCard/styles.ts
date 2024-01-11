@@ -7,6 +7,11 @@ interface IStyledColorTokenCard {
   smallScreen: boolean;
 }
 
+interface StyledPaletteUI {
+  theme?: typeof inube;
+  hasBackground: boolean;
+}
+
 function getTokenColor(tokenName: string, theme: typeof inube) {
   const palette = theme?.color?.palette || inube.color.palette;
   for (const category in palette) {
@@ -35,4 +40,27 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
     getTokenColor(tokenName, theme)};
 `;
 
-export { StyledColorTokenCard, HiddenColorPicker, getTokenColor };
+const StyledGridContainer = styled.div<StyledPaletteUI>`
+  background-color: ${({ theme, hasBackground }) =>
+    hasBackground
+      ? theme?.color?.surface?.dark?.clear || inube.color.surface.dark.clear
+      : "unset"};
+  border-radius: ${inube.spacing.s100};
+  padding: ${({ hasBackground }) =>
+    hasBackground ? inube.spacing.s150 : inube.spacing.s0};
+  & div {
+    place-content: unset;
+  }
+`;
+
+const StyledGridColorsContainer = styled.div`
+  overflow: auto;
+`;
+
+export {
+  StyledColorTokenCard,
+  HiddenColorPicker,
+  StyledGridContainer,
+  StyledGridColorsContainer,
+  getTokenColor,
+};
