@@ -10,41 +10,33 @@ import {
 const LOADING_TIMEOUT = 1500;
 
 interface HelpFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  textConfig: any;
+  handleSubmit: (helpText: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function HelpForm(props: HelpFormProps) {
-  const {
-    currentAidBudgetUnits,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const { textConfig, handleSubmit, onHasChanges } = props;
+  const [helpText, setHelpText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(helpText) !== JSON.stringify(valueCompare);
 
-  const handleChangeHelp = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+  const handleChangeHelp = (helpText: IAssignmentFormEntry[]) => {
+    setHelpText(helpText);
+    if (onHasChanges) onHasChanges(hasChanges(helpText));
+    handleSubmit(helpText);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(helpText);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -54,7 +46,7 @@ function HelpForm(props: HelpFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setHelpText(helpText);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -69,13 +61,11 @@ function HelpForm(props: HelpFormProps) {
       handleChangeHelp={handleChangeHelp}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
+      textConfig={textConfig}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
-      withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
     />
   );
 }

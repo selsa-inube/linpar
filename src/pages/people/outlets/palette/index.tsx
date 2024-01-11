@@ -12,7 +12,10 @@ function Palette() {
     visible: false,
   });
 
-  const handleColorChange = (tokenName: string, newColor: string) => {
+  const handleColorChange = (
+    tokenName: string,
+    newColor: string | undefined
+  ) => {
     setColorTokens((prevTokens: typeof inube) => {
       const newTokens = { ...prevTokens };
       for (const category in newTokens) {

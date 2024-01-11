@@ -34,23 +34,28 @@ const renderMessage = (
 
 interface PrimaryFormUIProps {
   textConfig: any;
+  tokenNames: any;
+  selectedTokenName: string;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangePrimaryTokens: (textConfig: any) => void;
+  handleChangePrimaryTokens: (tokenName: string, newColor: string) => void;
   withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: any) => boolean;
-  readOnly?: boolean;
 }
 
 function PrimaryFormUI(props: PrimaryFormUIProps) {
   const {
     textConfig,
+    tokenNames,
+    selectedTokenName,
     isLoading,
     handleSubmitForm,
     handleReset,
+    palette,
     handleChangePrimaryTokens,
     message,
     onCloseSectionMessage,
@@ -58,7 +63,6 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
   } = props;
 
   const colorCards = Object.entries(textConfig.status);
-
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
@@ -74,11 +78,15 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={() => {}}
+              appearance={"primary"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangePrimaryTokens(key, newTokenName)
+              }
             />
           ))}
         </Stack>

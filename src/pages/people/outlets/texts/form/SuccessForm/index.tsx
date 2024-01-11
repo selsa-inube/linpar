@@ -9,42 +9,42 @@ import {
 
 const LOADING_TIMEOUT = 1500;
 
-interface AidBudgetsFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+interface SuccessTokensFormProps {
+  textConfig: any;
+  handleSubmit: (successTokens: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
 
-function SuccessForm(props: AidBudgetsFormProps) {
+function SuccessForm(props: SuccessTokensFormProps) {
   const {
-    currentAidBudgetUnits,
+    textConfig,
     handleSubmit,
     withSubmitButtons,
     onHasChanges,
     readOnly,
   } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const [successTokens, setSuccessTokens] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
 
-  const handleChangeAidBudgets = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+  const handleChangeSuccessTokens = (successTokens: IAssignmentFormEntry[]) => {
+    setSuccessTokens(successTokens);
+    if (onHasChanges) onHasChanges(hasChanges(successTokens));
+    if (!withSubmitButtons) handleSubmit(successTokens);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(successTokens);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -54,7 +54,7 @@ function SuccessForm(props: AidBudgetsFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setSuccessTokens(textConfig);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -66,11 +66,11 @@ function SuccessForm(props: AidBudgetsFormProps) {
 
   return (
     <SuccessFormUI
-      handleChangeAidBudgets={handleChangeAidBudgets}
+      handleChangeSuccessTokens={handleChangeSuccessTokens}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
+      textConfig={textConfig}
       withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
@@ -80,5 +80,5 @@ function SuccessForm(props: AidBudgetsFormProps) {
   );
 }
 
-export type { AidBudgetsFormProps };
+export type { SuccessTokensFormProps };
 export { SuccessForm };

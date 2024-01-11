@@ -39,37 +39,34 @@ const renderMessage = (
 };
 
 interface DarkFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
+  textConfig: any;
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangeDark: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-  readOnly?: boolean;
 }
 
 function DarkFormUI(props: DarkFormUIProps) {
   const {
-    aidBudgetUnits,
+    textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
     handleChangeDark,
-    withSubmitButtons,
     message,
     onCloseSectionMessage,
     hasChanges,
-    readOnly,
   } = props;
-  const darkConfig = Object.entries(textFormsConfig.dark.status);
+
+  const colorCards = Object.entries(textConfig.status);
 
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
-        {textFormsConfig.warning.description}
+        {textConfig.description}
       </Text>
       <FormButtons
         disabledButtons={false}
@@ -78,14 +75,14 @@ function DarkFormUI(props: DarkFormUIProps) {
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          {darkConfig.map(([key, config]) => (
+          {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
               title={config.title}
               description={config.description}
               tokenName={config.tokenName}
               tokenDescription={config.example}
-              onClick={function (tokenName: string, color: string): void {
+              onChange={function (tokenName: string, color: string): void {
                 throw new Error("Function not implemented.");
               }}
             />

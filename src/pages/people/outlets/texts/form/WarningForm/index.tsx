@@ -9,42 +9,42 @@ import {
 
 const LOADING_TIMEOUT = 1500;
 
-interface AidBudgetsFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+interface WarningTokensFormProps {
+  textConfig: any;
+  handleSubmit: (warningText: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
 
-function WarningForm(props: AidBudgetsFormProps) {
+function WarningForm(props: WarningTokensFormProps) {
   const {
-    currentAidBudgetUnits,
+    textConfig,
     handleSubmit,
     withSubmitButtons,
     onHasChanges,
     readOnly,
   } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const [warningText, setWarningText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
 
-  const handleChangeAidBudgets = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+  const handleChangeWarningTokens = (warningText: IAssignmentFormEntry[]) => {
+    setWarningText(warningText);
+    if (onHasChanges) onHasChanges(hasChanges(warningText));
+    if (!withSubmitButtons) handleSubmit(warningText);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(warningText);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -54,7 +54,7 @@ function WarningForm(props: AidBudgetsFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setWarningText(textConfig);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -66,12 +66,11 @@ function WarningForm(props: AidBudgetsFormProps) {
 
   return (
     <WarningFormUI
-      handleChangeAidBudgets={handleChangeAidBudgets}
+      handleChangeWarningTokens={handleChangeWarningTokens}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
-      withSubmitButtons={withSubmitButtons}
+      textConfig={textConfig}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
@@ -80,5 +79,5 @@ function WarningForm(props: AidBudgetsFormProps) {
   );
 }
 
-export type { AidBudgetsFormProps };
+export type { WarningTokensFormProps };
 export { WarningForm };

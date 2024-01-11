@@ -1,19 +1,15 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
 
 import { StyledMessageContainer } from "./styles";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
+import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
 import { textFormsConfig } from "../../config/text.config";
 
 const renderMessage = (
   message: IMessageState,
-  onCloseSectionMessage: AidBudgetsFormUIProps["onCloseSectionMessage"]
+  onCloseSectionMessage: WarningTokensFormUIProps["onCloseSectionMessage"]
 ) => {
   if (!message.visible || !message.type) {
     return null;
@@ -38,54 +34,52 @@ const renderMessage = (
   );
 };
 
-interface AidBudgetsFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
+interface WarningTokensFormUIProps {
+  textConfig: any;
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeAidBudgets: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  handleChangeWarningTokens: (textConfig: any) => void;
   message: IMessageState;
   onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+  hasChanges: (valueCompare: any) => boolean;
   readOnly?: boolean;
 }
 
-function WarningFormUI(props: AidBudgetsFormUIProps) {
+function WarningFormUI(props: WarningTokensFormUIProps) {
   const {
-    aidBudgetUnits,
+    textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangeAidBudgets,
-    withSubmitButtons,
+    handleChangeWarningTokens,
     message,
     onCloseSectionMessage,
     hasChanges,
-    readOnly,
   } = props;
-  const warningConfig = Object.entries(textFormsConfig.warning.status);
+
+  const colorCards = Object.entries(textConfig.status);
 
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
-        {textFormsConfig.warning.description}
+        {textConfig.description}
       </Text>
       <FormButtons
-        disabledButtons={false}
+        disabledButtons={!hasChanges(textConfig)}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          {warningConfig.map(([key, primary]) => (
+          {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
-              title={primary.title}
-              description={primary.description}
-              tokenName={primary.tokenName}
-              tokenDescription={primary.example}
-              onClick={function (tokenName: string, color: string): void {
+              title={config.title}
+              description={config.description}
+              tokenName={config.tokenName}
+              tokenDescription={config.example}
+              onChange={function (tokenName: string, color: string): void {
                 throw new Error("Function not implemented.");
               }}
             />

@@ -38,7 +38,7 @@ const renderMessage = (
 };
 
 interface InformationFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
+  textConfig: any;
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
@@ -52,39 +52,38 @@ interface InformationFormUIProps {
 
 function InformationFormUI(props: InformationFormUIProps) {
   const {
-    aidBudgetUnits,
+    textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
     handleChangeInformation,
-    withSubmitButtons,
     message,
     onCloseSectionMessage,
     hasChanges,
-    readOnly,
   } = props;
-  const informationConfig = Object.entries(textFormsConfig.info.status);
+
+  const colorCards = Object.entries(textConfig.status);
 
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
-        {textFormsConfig.warning.description}
+        {textConfig.description}
       </Text>
       <FormButtons
-        disabledButtons={false}
+        disabledButtons={!hasChanges(textConfig)}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          {informationConfig.map(([key, config]) => (
+          {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
               title={config.title}
               description={config.description}
               tokenName={config.tokenName}
               tokenDescription={config.example}
-              onClick={function (tokenName: string, color: string): void {
+              onChange={function (tokenName: string, color: string): void {
                 throw new Error("Function not implemented.");
               }}
             />

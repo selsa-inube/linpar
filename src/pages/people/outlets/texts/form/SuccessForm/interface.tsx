@@ -12,7 +12,7 @@ import { textFormsConfig } from "../../config/text.config";
 
 const renderMessage = (
   message: IMessageState,
-  onCloseSectionMessage: AidBudgetsFormUIProps["onCloseSectionMessage"]
+  onCloseSectionMessage: SuccessTokensFormUIProps["onCloseSectionMessage"]
 ) => {
   if (!message.visible || !message.type) {
     return null;
@@ -37,12 +37,12 @@ const renderMessage = (
   );
 };
 
-interface AidBudgetsFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
+interface SuccessTokensFormUIProps {
+  textConfig: any;
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeAidBudgets: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  handleChangeSuccessTokens: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -50,40 +50,42 @@ interface AidBudgetsFormUIProps {
   readOnly?: boolean;
 }
 
-function SuccessFormUI(props: AidBudgetsFormUIProps) {
+function SuccessFormUI(props: SuccessTokensFormUIProps) {
   const {
-    aidBudgetUnits,
+    textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangeAidBudgets,
+    handleChangeSuccessTokens,
     withSubmitButtons,
     message,
     onCloseSectionMessage,
     hasChanges,
     readOnly,
   } = props;
-  const successConfig = Object.entries(textFormsConfig.success.status);
+
+  const colorCards = Object.entries(textConfig.status);
+
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
         {textFormsConfig.warning.description}
       </Text>
       <FormButtons
-        // disabledButtons={!hasChanges(textPrimaryConfig)}
+        disabledButtons={!hasChanges(textConfig)}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          {successConfig.map(([key, config]) => (
+          {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
               title={config.title}
               description={config.description}
               tokenName={config.tokenName}
               tokenDescription={config.example}
-              onClick={function (tokenName: string, color: string): void {
+              onChange={function (tokenName: string, color: string): void {
                 throw new Error("Function not implemented.");
               }}
             />

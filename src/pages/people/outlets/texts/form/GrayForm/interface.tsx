@@ -39,47 +39,43 @@ const renderMessage = (
 };
 
 interface GrayFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
+  textConfig: any;
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangeGray: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-  readOnly?: boolean;
 }
 
 function GrayFormUI(props: GrayFormUIProps) {
   const {
-    aidBudgetUnits,
+    textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
     handleChangeGray,
-    withSubmitButtons,
     message,
     onCloseSectionMessage,
     hasChanges,
-    readOnly,
   } = props;
 
-  const grayConfig = Object.entries(textFormsConfig.gray.status);
+  const colorCards = Object.entries(textConfig.status);
 
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
-        {textFormsConfig.warning.description}
+        {textConfig.description}
       </Text>
       <FormButtons
-        disabledButtons={false}
+        disabledButtons={!hasChanges(textConfig)}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          {grayConfig.map(([key, config]) => (
+          {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
               title={config.title}
