@@ -20,6 +20,7 @@ import { menuInvitationLinks } from "@src/pages/privileges/outlets/users/config/
 import { InvitationsTab } from "@src/pages/privileges/outlets/users/tabs/invitations";
 import { UsersTab } from "@src/pages/privileges/outlets/users/tabs/users";
 import { peopleOptionsConfig } from "../options/config/people.config";
+import { SendInformationMessage } from "../../../../components/sectionMessages/sendingInformation";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -85,7 +86,9 @@ export function SurfacesUI(props: UsersUIProps) {
               description={peopleOptionsConfig[2].description}
               navigatePage="/people"
             />
+            <SendInformationMessage />
           </Stack>
+
           <StyledContainer>
             <Stack gap="32px" direction="column"></Stack>
           </StyledContainer>

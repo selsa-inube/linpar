@@ -8,7 +8,7 @@ import {
   CountdownBar,
   Icon,
 } from "@inube/design-system";
-import { Appearance } from "./props";
+import { Appearance } from "./types";
 
 export interface ISectionMessageProps {
   children?: React.ReactNode;
