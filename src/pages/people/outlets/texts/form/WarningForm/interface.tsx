@@ -6,6 +6,7 @@ import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
 import { textFormsConfig } from "../../config/text.config";
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
 const renderMessage = (
   message: IMessageState,
@@ -37,9 +38,14 @@ const renderMessage = (
 interface WarningTokensFormUIProps {
   textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeWarningTokens: (textConfig: any) => void;
+  handleChangeWarningTokens: (
+    appearance: Appearance,
+    category: string,
+    tokenName: string
+  ) => void;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: any) => boolean;
@@ -50,6 +56,7 @@ function WarningFormUI(props: WarningTokensFormUIProps) {
   const {
     textConfig,
     isLoading,
+    palette,
     handleSubmitForm,
     handleReset,
     handleChangeWarningTokens,
@@ -75,13 +82,15 @@ function WarningFormUI(props: WarningTokensFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={function (tokenName: string, color: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              appearance={"warning"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeWarningTokens("warning", key, newTokenName)
+              }
             />
           ))}
         </Stack>

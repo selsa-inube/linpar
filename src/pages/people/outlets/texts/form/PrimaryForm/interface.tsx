@@ -41,7 +41,6 @@ interface PrimaryFormUIProps {
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangePrimaryTokens: any;
-  withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: any) => boolean;
@@ -50,8 +49,6 @@ interface PrimaryFormUIProps {
 function PrimaryFormUI(props: PrimaryFormUIProps) {
   const {
     textConfig,
-    tokenNames,
-    selectedTokenName,
     isLoading,
     handleSubmitForm,
     handleReset,

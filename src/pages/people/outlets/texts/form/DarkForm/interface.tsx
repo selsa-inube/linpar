@@ -8,7 +8,6 @@ import {
   IMessageState,
 } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
-import { textFormsConfig } from "../../config/text.config";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 
 const renderMessage = (
@@ -41,9 +40,10 @@ const renderMessage = (
 interface DarkFormUIProps {
   textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeDark: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  handleChangeDark: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -55,6 +55,7 @@ function DarkFormUI(props: DarkFormUIProps) {
     isLoading,
     handleSubmitForm,
     handleReset,
+    palette,
     handleChangeDark,
     message,
     onCloseSectionMessage,
@@ -78,13 +79,15 @@ function DarkFormUI(props: DarkFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={function (tokenName: string, color: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              appearance={"dark"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeDark("dark", key, newTokenName)
+              }
             />
           ))}
         </Stack>

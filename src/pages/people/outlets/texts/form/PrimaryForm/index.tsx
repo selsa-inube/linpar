@@ -67,7 +67,6 @@ function PrimaryForm(props: PrimaryFormProps) {
       isLoading={isLoading}
       textConfig={textConfig}
       palette={palette}
-      withSubmitButtons
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}

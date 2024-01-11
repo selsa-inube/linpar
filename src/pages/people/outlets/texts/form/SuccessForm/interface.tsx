@@ -40,14 +40,13 @@ const renderMessage = (
 interface SuccessTokensFormUIProps {
   textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeSuccessTokens: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  handleChangeSuccessTokens: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-  readOnly?: boolean;
+  hasChanges: (valueCompare: any) => boolean;
 }
 
 function SuccessFormUI(props: SuccessTokensFormUIProps) {
@@ -57,11 +56,10 @@ function SuccessFormUI(props: SuccessTokensFormUIProps) {
     handleSubmitForm,
     handleReset,
     handleChangeSuccessTokens,
-    withSubmitButtons,
+    palette,
     message,
     onCloseSectionMessage,
     hasChanges,
-    readOnly,
   } = props;
 
   const colorCards = Object.entries(textConfig.status);
@@ -81,13 +79,15 @@ function SuccessFormUI(props: SuccessTokensFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={function (tokenName: string, color: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              appearance={"success"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeSuccessTokens("success", key, newTokenName)
+              }
             />
           ))}
         </Stack>

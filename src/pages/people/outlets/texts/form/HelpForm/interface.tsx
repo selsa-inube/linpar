@@ -41,9 +41,10 @@ const renderMessage = (
 interface HelpFormUIProps {
   textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeHelp: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  handleChangeHelp: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -55,6 +56,7 @@ function HelpFormUI(props: HelpFormUIProps) {
     isLoading,
     handleSubmitForm,
     handleReset,
+    palette,
     handleChangeHelp,
     message,
     onCloseSectionMessage,
@@ -78,13 +80,15 @@ function HelpFormUI(props: HelpFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={function (tokenName: string, color: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              appearance={"help"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeHelp("help", key, newTokenName)
+              }
             />
           ))}
         </Stack>

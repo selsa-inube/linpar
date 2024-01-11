@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DarkFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -11,12 +11,14 @@ const LOADING_TIMEOUT = 1500;
 
 interface DarkFormProps {
   textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
   handleSubmit: (darkText: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function DarkForm(props: DarkFormProps) {
-  const { textConfig, handleSubmit, onHasChanges } = props;
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
   const [darkText, setDarkText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -58,10 +60,11 @@ function DarkForm(props: DarkFormProps) {
 
   return (
     <DarkFormUI
-      handleChangeDark={handleChangeDark}
+      handleChangeDark={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
+      palette={palette}
       textConfig={textConfig}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}

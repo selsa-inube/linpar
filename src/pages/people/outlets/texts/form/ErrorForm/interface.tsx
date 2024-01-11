@@ -10,6 +10,7 @@ import {
 import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
 import { textFormsConfig } from "../../config/text.config";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
 const renderMessage = (
   message: IMessageState,
@@ -44,7 +45,11 @@ interface ErrorTokensFormUIProps {
   palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeErrorTokens: (tokenName: string, newColor: string) => void;
+  handleChangeErrorTokens: (
+    appearance: Appearance,
+    category: string,
+    tokenName: string
+  ) => void;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -83,11 +88,11 @@ function ErrorFormUI(props: ErrorTokensFormUIProps) {
               palette={palette}
               title={config.title}
               description={config.description}
-              appearance={"primary"}
+              appearance={"error"}
               category={key}
               textWithColorToken={config.example}
               onChange={(newTokenName) =>
-                handleChangeErrorTokens(key, newTokenName)
+                handleChangeErrorTokens("error", key, newTokenName)
               }
             />
           ))}

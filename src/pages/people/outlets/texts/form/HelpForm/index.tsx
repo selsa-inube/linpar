@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HelpFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -11,12 +11,14 @@ const LOADING_TIMEOUT = 1500;
 
 interface HelpFormProps {
   textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
   handleSubmit: (helpText: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function HelpForm(props: HelpFormProps) {
-  const { textConfig, handleSubmit, onHasChanges } = props;
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
   const [helpText, setHelpText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -58,10 +60,11 @@ function HelpForm(props: HelpFormProps) {
 
   return (
     <HelpFormUI
-      handleChangeHelp={handleChangeHelp}
+      handleChangeHelp={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       textConfig={textConfig}
+      palette={palette}
       isLoading={isLoading}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { WarningFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -11,20 +11,14 @@ const LOADING_TIMEOUT = 1500;
 
 interface WarningTokensFormProps {
   textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
   handleSubmit: (warningText: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function WarningForm(props: WarningTokensFormProps) {
-  const {
-    textConfig,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
   const [warningText, setWarningText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -37,7 +31,7 @@ function WarningForm(props: WarningTokensFormProps) {
   const handleChangeWarningTokens = (warningText: IAssignmentFormEntry[]) => {
     setWarningText(warningText);
     if (onHasChanges) onHasChanges(hasChanges(warningText));
-    if (!withSubmitButtons) handleSubmit(warningText);
+    handleSubmit(warningText);
   };
 
   const handleSubmitForm = () => {
@@ -66,15 +60,15 @@ function WarningForm(props: WarningTokensFormProps) {
 
   return (
     <WarningFormUI
-      handleChangeWarningTokens={handleChangeWarningTokens}
       handleSubmitForm={handleSubmitForm}
+      handleChangeWarningTokens={onChange}
       handleReset={handleReset}
       isLoading={isLoading}
       textConfig={textConfig}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
+      palette={undefined}
     />
   );
 }

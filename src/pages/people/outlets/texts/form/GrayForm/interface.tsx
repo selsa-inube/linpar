@@ -41,9 +41,10 @@ const renderMessage = (
 interface GrayFormUIProps {
   textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeGray: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  handleChangeGray: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -53,6 +54,7 @@ function GrayFormUI(props: GrayFormUIProps) {
   const {
     textConfig,
     isLoading,
+    palette,
     handleSubmitForm,
     handleReset,
     handleChangeGray,
@@ -78,11 +80,15 @@ function GrayFormUI(props: GrayFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={() => {}}
+              appearance={"gray"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeGray("gray", key, newTokenName)
+              }
             />
           ))}
         </Stack>

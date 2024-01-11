@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { InformationFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -11,20 +11,14 @@ const LOADING_TIMEOUT = 1500;
 
 interface InformationFormProps {
   textConfig: any;
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  palette: typeof inube;
+  onChange: (event: any) => void;
+  handleSubmit: any;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function InformationForm(props: InformationFormProps) {
-  const {
-    textConfig,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
+  const { textConfig, handleSubmit, palette, onHasChanges, onChange } = props;
   const [infoText, setInfoText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -37,7 +31,7 @@ function InformationForm(props: InformationFormProps) {
   const handleChangeInformation = (aidBudgetUnits: IAssignmentFormEntry[]) => {
     setInfoText(aidBudgetUnits);
     if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+    handleSubmit(aidBudgetUnits);
   };
 
   const handleSubmitForm = () => {
@@ -66,15 +60,15 @@ function InformationForm(props: InformationFormProps) {
 
   return (
     <InformationFormUI
-      handleChangeInformation={handleChangeInformation}
+      handleChangeInformation={onChange}
       handleSubmitForm={handleSubmitForm}
+      palette={palette}
       handleReset={handleReset}
       isLoading={isLoading}
       textConfig={textConfig}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
     />
   );
 }

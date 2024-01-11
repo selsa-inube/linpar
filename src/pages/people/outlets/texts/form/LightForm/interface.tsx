@@ -40,9 +40,10 @@ const renderMessage = (
 interface LightFormUIProps {
   textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeLight: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  handleChangeLight: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
@@ -54,6 +55,7 @@ function LightFormUI(props: LightFormUIProps) {
     isLoading,
     handleSubmitForm,
     handleReset,
+    palette,
     handleChangeLight,
     message,
     onCloseSectionMessage,
@@ -77,13 +79,15 @@ function LightFormUI(props: LightFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={function (tokenName: string, color: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              appearance={"light"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeLight("light", key, newTokenName)
+              }
             />
           ))}
         </Stack>

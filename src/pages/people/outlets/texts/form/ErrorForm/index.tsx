@@ -12,13 +12,13 @@ const LOADING_TIMEOUT = 1500;
 interface ErrorTokensFormProps {
   textConfig: any;
   palette: typeof inube;
+  onChange: (event: any) => void;
   handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function ErrorForm(props: ErrorTokensFormProps) {
-  const { textConfig, palette, handleSubmit, onHasChanges, readOnly } = props;
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
   const [errorText, setErrorText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -28,9 +28,6 @@ function ErrorForm(props: ErrorTokensFormProps) {
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
     JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
 
-  const handleChangeErrorTokens = (key: string, tokenName: string) => {
-    setErrorText((prevNames: any) => ({ ...prevNames, [key]: tokenName }));
-  };
   const handleSubmitForm = () => {
     setIsLoading(true);
 
@@ -58,7 +55,7 @@ function ErrorForm(props: ErrorTokensFormProps) {
   return (
     <ErrorFormUI
       textConfig={textConfig}
-      handleChangeErrorTokens={handleChangeErrorTokens}
+      handleChangeErrorTokens={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}

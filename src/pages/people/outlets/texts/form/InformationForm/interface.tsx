@@ -40,20 +40,20 @@ const renderMessage = (
 interface InformationFormUIProps {
   textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeInformation: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  handleChangeInformation: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-  readOnly?: boolean;
 }
 
 function InformationFormUI(props: InformationFormUIProps) {
   const {
     textConfig,
     isLoading,
+    palette,
     handleSubmitForm,
     handleReset,
     handleChangeInformation,
@@ -79,13 +79,15 @@ function InformationFormUI(props: InformationFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={function (tokenName: string, color: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              appearance={"information"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeInformation("information", key, newTokenName)
+              }
             />
           ))}
         </Stack>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LightFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -11,12 +11,14 @@ const LOADING_TIMEOUT = 1500;
 
 interface LightFormProps {
   textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
   handleSubmit: (lightText: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function LightForm(props: LightFormProps) {
-  const { textConfig, handleSubmit, onHasChanges } = props;
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
   const [lightText, setLightText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -58,9 +60,10 @@ function LightForm(props: LightFormProps) {
 
   return (
     <LightFormUI
-      handleChangeLight={handleChangeLight}
+      handleChangeLight={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
+      palette={palette}
       isLoading={isLoading}
       textConfig={textConfig}
       message={message}

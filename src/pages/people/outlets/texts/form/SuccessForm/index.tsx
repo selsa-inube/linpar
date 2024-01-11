@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SuccessFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -12,19 +12,13 @@ const LOADING_TIMEOUT = 1500;
 interface SuccessTokensFormProps {
   textConfig: any;
   handleSubmit: (successTokens: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  palette: typeof inube;
+  onChange: (event: any) => void;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function SuccessForm(props: SuccessTokensFormProps) {
-  const {
-    textConfig,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
+  const { textConfig, handleSubmit, palette, onChange, onHasChanges } = props;
   const [successTokens, setSuccessTokens] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -37,7 +31,7 @@ function SuccessForm(props: SuccessTokensFormProps) {
   const handleChangeSuccessTokens = (successTokens: IAssignmentFormEntry[]) => {
     setSuccessTokens(successTokens);
     if (onHasChanges) onHasChanges(hasChanges(successTokens));
-    if (!withSubmitButtons) handleSubmit(successTokens);
+    handleSubmit(successTokens);
   };
 
   const handleSubmitForm = () => {
@@ -66,16 +60,15 @@ function SuccessForm(props: SuccessTokensFormProps) {
 
   return (
     <SuccessFormUI
-      handleChangeSuccessTokens={handleChangeSuccessTokens}
+      handleChangeSuccessTokens={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
+      palette={palette}
       isLoading={isLoading}
       textConfig={textConfig}
-      withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
     />
   );
 }

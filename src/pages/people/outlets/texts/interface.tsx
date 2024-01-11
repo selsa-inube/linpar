@@ -130,6 +130,7 @@ export function TextsUI(props: UsersUIProps) {
                   <ErrorForm
                     textConfig={textConfig.error}
                     palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -140,6 +141,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.warning.id && (
                   <WarningForm
                     textConfig={textConfig.warning}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -150,6 +153,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.success.id && (
                   <SuccessForm
                     textConfig={textConfig.success}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -160,6 +165,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.information.id && (
                   <InformationForm
                     textConfig={textConfig.info}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -170,6 +177,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.help.id && (
                   <HelpForm
                     textConfig={textConfig.help}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -180,6 +189,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.dark.id && (
                   <DarkForm
                     textConfig={textConfig.dark}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -190,6 +201,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.gray.id && (
                   <GrayForm
                     textConfig={textConfig.gray}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {
@@ -200,6 +213,8 @@ export function TextsUI(props: UsersUIProps) {
                 {selectedTab === colorTabsConfig.light.id && (
                   <LightForm
                     textConfig={textConfig.light}
+                    palette={palette}
+                    onChange={handleChangeColor}
                     handleSubmit={function (
                       aidBudgetUnits: IAssignmentFormEntry[]
                     ): void {

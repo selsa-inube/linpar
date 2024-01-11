@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GrayFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -11,12 +11,14 @@ const LOADING_TIMEOUT = 1500;
 
 interface GrayFormProps {
   textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
   handleSubmit: (grayText: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function GrayForm(props: GrayFormProps) {
-  const { textConfig, handleSubmit, onHasChanges } = props;
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
   const [grayText, setGrayText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -58,10 +60,11 @@ function GrayForm(props: GrayFormProps) {
 
   return (
     <GrayFormUI
-      handleChangeGray={handleChangeGray}
+      handleChangeGray={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
+      palette={palette}
       textConfig={textConfig}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
