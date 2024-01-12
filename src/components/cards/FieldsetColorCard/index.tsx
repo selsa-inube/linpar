@@ -16,16 +16,18 @@ interface FieldsetColorCardProps {
   description: string;
   appearance: Appearance;
   category: string;
-  textWithColorToken: string;
-  palette: typeof inube;
+  textWithColorToken?: string;
+  typeToken?: string;
+  optionsMenu: typeof inube;
   onChange: (tokenName: string) => void;
 }
 
 const getTokenReferenceFromAppearanceAndCategory = (
   appearance: Appearance,
+  typeToken: string,
   category: string
-) => {
-  const tokenReference = inube.color.text[appearance]?.[category];
+): string | null => {
+  const tokenReference = inube.color[typeToken]?.[appearance]?.[category];
   if (!tokenReference) return null;
   const castedPalette = inube.color.palette as Record<
     string,
@@ -48,12 +50,14 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     appearance,
     category,
     textWithColorToken,
-    palette,
+    typeToken = "text",
+    optionsMenu,
     onChange,
   } = props;
 
   const tokenName = getTokenReferenceFromAppearanceAndCategory(
     appearance,
+    typeToken,
     category
   );
 
@@ -75,22 +79,24 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
               <TokenColorCard
                 tokenName={tokenName!}
                 type="tokenPicker"
-                palette={palette}
+                palette={optionsMenu}
                 onColorChange={handleColorChange}
               />
             </StyledTokenColorCardContainer>
-            <StyledTextWithTokenContainer isDark={isDark}>
-              <Stack padding="s100">
-                <Text
-                  size="medium"
-                  appearance={appearance}
-                  parentHover={category === "hover"}
-                  disabled={category === "disabled"}
-                >
-                  {textWithColorToken}
-                </Text>
-              </Stack>
-            </StyledTextWithTokenContainer>
+            {textWithColorToken && (
+              <StyledTextWithTokenContainer isDark={isDark}>
+                <Stack padding="s100">
+                  <Text
+                    size="medium"
+                    appearance={appearance}
+                    parentHover={category === "hover"}
+                    disabled={category === "disabled"}
+                  >
+                    {textWithColorToken}
+                  </Text>
+                </Stack>
+              </StyledTextWithTokenContainer>
+            )}
           </Stack>
         </Stack>
         <StyledPopupContainer id="palette"></StyledPopupContainer>

@@ -13,7 +13,7 @@ function Fieldset(props: FieldsetProps) {
   return (
     <StyledFieldset>
       <legend>
-        <Stack gap="8px" padding="s050" alignItems="center">
+        <Stack padding="s050" alignItems="center">
           <Icon icon={icon} appearance="gray" />
           <Text type="title" size="small" appearance="gray">
             {title}

@@ -79,7 +79,7 @@ function LightFormUI(props: LightFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
-              palette={palette}
+              optionsMenu={palette}
               title={config.title}
               description={config.description}
               appearance={"light"}
