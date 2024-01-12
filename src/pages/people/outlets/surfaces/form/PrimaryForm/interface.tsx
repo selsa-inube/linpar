@@ -72,7 +72,12 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          <Grid templateColumns="repeat(3, 1fr)" gap="s350">
+          <Grid
+            templateColumns="repeat(3, 1fr)"
+            gap="s350"
+            autoColumns="unset"
+            autoRows="unset"
+          >
             {colorCards.map(([key, config]: any) => (
               <FieldsetColorCard
                 key={key}

@@ -87,8 +87,8 @@ export function SurfacesUI(props: UsersUIProps) {
         </Stack>
 
         <StyledContainer>
-          <Stack gap={inube.spacing.s400} direction="column">
-            <StyledTabsContainer typeTabs={typeTabs}>
+          <StyledTabsContainer typeTabs={typeTabs}>
+            <Stack direction="column" gap={inube.spacing.s400}>
               <Tabs
                 tabs={Object.values(colorTabsConfig)}
                 selectedTab={selectedTab}
@@ -103,8 +103,8 @@ export function SurfacesUI(props: UsersUIProps) {
                   }}
                 />
               )}
-            </StyledTabsContainer>
-          </Stack>
+            </Stack>
+          </StyledTabsContainer>
         </StyledContainer>
       </Stack>
       {renderMessage(message, handleCloseMessage)}
