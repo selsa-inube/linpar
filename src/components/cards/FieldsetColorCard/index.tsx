@@ -1,9 +1,15 @@
 import { Stack, Text, inube } from "@inube/design-system";
 
-import { StyledTokenColorCardContainer, StyledPopupContainer } from "./styles";
+import {
+  StyledTokenColorCardContainer,
+  StyledPopupContainer,
+  StyledTextWithTokenContainer,
+  getTokenColor,
+} from "./styles";
 import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
+import tinycolor from "tinycolor2";
 
 interface FieldsetColorCardProps {
   title: string;
@@ -55,6 +61,8 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     onChange(updatedTokenName);
   };
 
+  const isDark = tinycolor(getTokenColor(tokenName!)).isDark();
+
   return (
     <Fieldset title={title}>
       <>
@@ -63,7 +71,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             {description}
           </Text>
           <Stack gap={inube.spacing.s200} alignItems="center">
-            <StyledTokenColorCardContainer>
+            <StyledTokenColorCardContainer isDark={isDark}>
               <TokenColorCard
                 tokenName={tokenName!}
                 type="tokenPicker"
@@ -71,14 +79,18 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
                 onColorChange={handleColorChange}
               />
             </StyledTokenColorCardContainer>
-            <Text
-              size="medium"
-              appearance={appearance}
-              parentHover={category === "hover"}
-              disabled={category === "disabled"}
-            >
-              {textWithColorToken}
-            </Text>
+            <StyledTextWithTokenContainer isDark={isDark}>
+              <Stack padding="s100">
+                <Text
+                  size="medium"
+                  appearance={appearance}
+                  parentHover={category === "hover"}
+                  disabled={category === "disabled"}
+                >
+                  {textWithColorToken}
+                </Text>
+              </Stack>
+            </StyledTextWithTokenContainer>
           </Stack>
         </Stack>
         <StyledPopupContainer id="palette"></StyledPopupContainer>
