@@ -7,6 +7,7 @@ import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/user
 import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/config/usersTabs.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { colorTabsConfig } from "./config/colorTabs.config";
+import { textFormsConfig } from "./config/text.config";
 
 function Surfaces() {
   const [isSelected, setIsSelected] = useState<string>();
@@ -68,6 +69,7 @@ function Surfaces() {
 
   return (
     <SurfacesUI
+      textConfig={textFormsConfig}
       isSelected={isSelected || privilegeUserTabsConfig.privilegesUsers.id}
       selectedTab={selectedTab}
       searchText={searchText}

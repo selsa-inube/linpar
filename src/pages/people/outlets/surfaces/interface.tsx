@@ -17,6 +17,7 @@ import {
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
+import { PrimaryForm } from "./form/PrimaryForm";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -42,6 +43,7 @@ const renderMessage = (
 
 interface UsersUIProps {
   isSelected: string;
+  textConfig: any;
   selectedTab: string;
   searchText: string;
   handleTabChange: (id: string) => void;
@@ -57,7 +59,7 @@ export function SurfacesUI(props: UsersUIProps) {
   const {
     handleTabChange,
     selectedTab,
-
+    textConfig,
     message,
     handleCloseMessage,
   } = props;
@@ -93,6 +95,14 @@ export function SurfacesUI(props: UsersUIProps) {
                 type={typeTabs ? "select" : "tabs"}
                 onChange={handleTabChange}
               />
+              {selectedTab === colorTabsConfig.primary.id && (
+                <PrimaryForm
+                  textConfig={textConfig.primary}
+                  handleSubmit={function (textConfig: any): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              )}
             </StyledTabsContainer>
           </Stack>
         </StyledContainer>
