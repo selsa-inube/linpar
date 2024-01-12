@@ -7,6 +7,8 @@ import {
   IMessageState,
 } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { textFormsConfig } from "../../config/text.config";
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { inube } from "@inube/design-system";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -16,11 +18,19 @@ interface PrimaryFormProps {
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
+  palette: typeof inube;
+  onChange: (
+    appearance: Appearance,
+    category: string,
+    updatedTokenName: string
+  ) => void;
 }
 
 function PrimaryForm(props: PrimaryFormProps) {
   const {
     textConfig,
+    palette,
+    onChange,
     handleSubmit,
     withSubmitButtons,
     onHasChanges,
@@ -67,7 +77,8 @@ function PrimaryForm(props: PrimaryFormProps) {
 
   return (
     <PrimaryFormUI
-      handleChangePrimaryTokens={handleChangePrimaryTokens}
+      palette={palette}
+      handleChangePrimaryTokens={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}

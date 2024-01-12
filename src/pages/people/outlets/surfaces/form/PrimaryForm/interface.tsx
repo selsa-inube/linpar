@@ -4,6 +4,7 @@ import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
 const renderMessage = (
   message: IMessageState,
@@ -34,10 +35,15 @@ const renderMessage = (
 
 interface PrimaryFormUIProps {
   textConfig: any;
+  palette: typeof inube;
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangePrimaryTokens: (textConfig: any) => void;
+  handleChangePrimaryTokens: (
+    appearance: Appearance,
+    category: string,
+    updatedTokenName: string
+  ) => void;
   withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -53,6 +59,7 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
     handleReset,
     handleChangePrimaryTokens,
     message,
+    palette,
     onCloseSectionMessage,
     hasChanges,
   } = props;
@@ -81,11 +88,15 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
             {colorCards.map(([key, config]: any) => (
               <FieldsetColorCard
                 key={key}
+                palette={palette}
                 title={config.title}
                 description={config.description}
-                tokenName={config.tokenName}
-                tokenDescription={config.example}
-                onChange={() => {}}
+                appearance={"primary"}
+                category={key}
+                textWithColorToken={config.example}
+                onChange={(newTokenName) =>
+                  handleChangePrimaryTokens("primary", key, newTokenName)
+                }
               />
             ))}
           </Grid>

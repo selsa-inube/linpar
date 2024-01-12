@@ -39,7 +39,7 @@ const textFormsConfig = {
         title: "Clear",
         description:
           "La superficie tomará este color cuando se quiera hacer un contraste de colores.",
-        tokenName: "B300",
+        tokenName: "B50",
       },
       disabled: {
         title: "Disabled",

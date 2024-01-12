@@ -18,6 +18,7 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { PrimaryForm } from "./form/PrimaryForm";
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -42,6 +43,12 @@ const renderMessage = (
 };
 
 interface UsersUIProps {
+  palette: typeof inube;
+  handleChangeColor: (
+    appearance: Appearance,
+    category: string,
+    updatedTokenName: string
+  ) => void;
   isSelected: string;
   textConfig: any;
   selectedTab: string;
@@ -60,6 +67,8 @@ export function SurfacesUI(props: UsersUIProps) {
     handleTabChange,
     selectedTab,
     textConfig,
+    palette,
+    handleChangeColor,
     message,
     handleCloseMessage,
   } = props;
@@ -97,6 +106,8 @@ export function SurfacesUI(props: UsersUIProps) {
               />
               {selectedTab === colorTabsConfig.primary.id && (
                 <PrimaryForm
+                  palette={palette}
+                  onChange={handleChangeColor}
                   textConfig={textConfig.primary}
                   handleSubmit={function (textConfig: any): void {
                     throw new Error("Function not implemented.");

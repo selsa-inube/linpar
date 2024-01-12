@@ -8,6 +8,9 @@ import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/con
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { textFormsConfig } from "./config/text.config";
+import { inube } from "@inube/design-system";
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 
 function Surfaces() {
   const [isSelected, setIsSelected] = useState<string>();
@@ -18,6 +21,8 @@ function Surfaces() {
     visible: false,
   });
   const location = useLocation();
+  const [palette, setPalette] = useState(inube.color.palette);
+  const [surfaceConfig, setSurfaceConfig] = useState(inube.color.surface);
 
   useEffect(() => {
     if (location.state?.tab) {
@@ -42,6 +47,22 @@ function Surfaces() {
 
   const handleCloseMenuInvitation = () => {
     setShowMenu(false);
+  };
+
+  const handleSurfaceConfigUpdate = (
+    appearance: Appearance,
+    category: string,
+    updatedTokenName: string
+  ) => {
+    const updatedSurfaceConfig = { ...surfaceConfig };
+    if (
+      updatedSurfaceConfig[appearance] &&
+      updatedSurfaceConfig[appearance][category]
+    ) {
+      updatedSurfaceConfig[appearance][category] =
+        getTokenColor(updatedTokenName);
+    }
+    setSurfaceConfig(updatedSurfaceConfig);
   };
 
   const handleShowMessage = (messageType: EMessageType, username: string) => {
@@ -69,6 +90,8 @@ function Surfaces() {
 
   return (
     <SurfacesUI
+      palette={palette}
+      handleChangeColor={handleSurfaceConfigUpdate}
       textConfig={textFormsConfig}
       isSelected={isSelected || privilegeUserTabsConfig.privilegesUsers.id}
       selectedTab={selectedTab}

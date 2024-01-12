@@ -19,7 +19,7 @@ const getTokenReferenceFromAppearanceAndCategory = (
   appearance: Appearance,
   category: string
 ) => {
-  const tokenReference = inube.color.text[appearance]?.[category];
+  const tokenReference = inube.color.surface[appearance]?.[category];
   if (!tokenReference) return null;
   const castedPalette = inube.color.palette as Record<
     string,
