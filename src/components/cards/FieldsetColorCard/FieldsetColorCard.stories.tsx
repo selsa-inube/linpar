@@ -67,9 +67,10 @@ Default.args = {
     "El texto tendrá este color cuando no tenga cambios por comportamiento o interacción con el usuario.",
   textWithColorToken:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor mauris a nisl auctor posuere. In eu metus dapibus, tristique felis sit amet, convallis ligula.",
+  typeToken: "text",
   appearance: "primary",
-  category: "regular",
-  palette: inube.color.palette,
+  category: "hover",
+  optionsMenu: inube.color.palette,
 };
 
 export default story;

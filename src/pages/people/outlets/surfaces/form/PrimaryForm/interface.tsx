@@ -88,7 +88,8 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
             {colorCards.map(([key, config]: any) => (
               <FieldsetColorCard
                 key={key}
-                palette={palette}
+                optionsMenu={palette}
+                typeToken={"surface"}
                 title={config.title}
                 description={config.description}
                 appearance={"primary"}
