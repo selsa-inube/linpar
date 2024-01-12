@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HelpFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -10,41 +10,35 @@ import {
 const LOADING_TIMEOUT = 1500;
 
 interface HelpFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
+  handleSubmit: (helpText: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function HelpForm(props: HelpFormProps) {
-  const {
-    currentAidBudgetUnits,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
+  const [helpText, setHelpText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(helpText) !== JSON.stringify(valueCompare);
 
-  const handleChangeHelp = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+  const handleChangeHelp = (helpText: IAssignmentFormEntry[]) => {
+    setHelpText(helpText);
+    if (onHasChanges) onHasChanges(hasChanges(helpText));
+    handleSubmit(helpText);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(helpText);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -54,7 +48,7 @@ function HelpForm(props: HelpFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setHelpText(helpText);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -66,16 +60,15 @@ function HelpForm(props: HelpFormProps) {
 
   return (
     <HelpFormUI
-      handleChangeHelp={handleChangeHelp}
+      handleChangeHelp={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
+      textConfig={textConfig}
+      palette={palette}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
-      withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
     />
   );
 }

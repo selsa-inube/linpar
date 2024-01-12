@@ -100,7 +100,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
               tokenName={tokenName}
               tokenDescription={"Token de color"}
               onColorChange={(tokenName, newColor) =>
-                handleColorChange(tokenName, newColor)
+                handleColorChange(tokenName, newColor!)
               }
             />
           ))}

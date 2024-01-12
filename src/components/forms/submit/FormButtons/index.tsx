@@ -1,4 +1,4 @@
-import { Button, Stack } from "@inube/design-system";
+import { Button, Stack, inube } from "@inube/design-system";
 
 interface FormButtonsProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ function FormButtons(props: FormButtonsProps) {
     props;
 
   return (
-    <Stack direction="column">
+    <Stack direction="column" gap={inube.spacing.s300}>
       <Stack>{children}</Stack>
       <Stack justifyContent="flex-end" gap="16px" margin="s100 s0 s0 s0">
         <Button
@@ -25,7 +25,7 @@ function FormButtons(props: FormButtonsProps) {
           Cancelar
         </Button>
         <Button
-          appearance="success"
+          appearance="primary"
           onClick={handleSubmit}
           loading={loading}
           disabled={disabledButtons}

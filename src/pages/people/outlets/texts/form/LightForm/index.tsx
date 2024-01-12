@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LightFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -10,41 +10,35 @@ import {
 const LOADING_TIMEOUT = 1500;
 
 interface LightFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
+  handleSubmit: (lightText: IAssignmentFormEntry[]) => void;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function LightForm(props: LightFormProps) {
-  const {
-    currentAidBudgetUnits,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
+  const [lightText, setLightText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
 
-  const handleChangeLight = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+  const handleChangeLight = (lightText: IAssignmentFormEntry[]) => {
+    setLightText(lightText);
+    if (onHasChanges) onHasChanges(hasChanges(lightText));
+    handleSubmit(lightText);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(lightText);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -54,7 +48,7 @@ function LightForm(props: LightFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setLightText(textConfig);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -66,16 +60,15 @@ function LightForm(props: LightFormProps) {
 
   return (
     <LightFormUI
-      handleChangeLight={handleChangeLight}
+      handleChangeLight={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
+      palette={palette}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
-      withSubmitButtons={withSubmitButtons}
+      textConfig={textConfig}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
     />
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ErrorFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -9,22 +9,16 @@ import {
 
 const LOADING_TIMEOUT = 1500;
 
-interface AidBudgetsFormProps {
+interface ErrorTokensFormProps {
   textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
   handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
-function ErrorForm(props: AidBudgetsFormProps) {
-  const {
-    textConfig,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
+function ErrorForm(props: ErrorTokensFormProps) {
+  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
   const [errorText, setErrorText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
@@ -33,12 +27,6 @@ function ErrorForm(props: AidBudgetsFormProps) {
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
     JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
-
-  const handleChangeAidBudgets = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setErrorText(errorText);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
-  };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
@@ -67,18 +55,17 @@ function ErrorForm(props: AidBudgetsFormProps) {
   return (
     <ErrorFormUI
       textConfig={textConfig}
-      handleChangeAidBudgets={handleChangeAidBudgets}
+      handleChangeErrorTokens={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      withSubmitButtons={withSubmitButtons}
+      palette={palette}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
     />
   );
 }
 
-export type { AidBudgetsFormProps };
+export type { ErrorTokensFormProps };
 export { ErrorForm };

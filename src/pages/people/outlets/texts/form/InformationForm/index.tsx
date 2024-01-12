@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { InformationFormUI } from "./interface";
-
+import { inube } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IAssignmentFormEntry,
@@ -10,41 +10,35 @@ import {
 const LOADING_TIMEOUT = 1500;
 
 interface InformationFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  textConfig: any;
+  palette: typeof inube;
+  onChange: (event: any) => void;
+  handleSubmit: any;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function InformationForm(props: InformationFormProps) {
-  const {
-    currentAidBudgetUnits,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const { textConfig, handleSubmit, palette, onHasChanges, onChange } = props;
+  const [infoText, setInfoText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
 
   const handleChangeInformation = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
+    setInfoText(aidBudgetUnits);
     if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+    handleSubmit(aidBudgetUnits);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(infoText);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -54,7 +48,7 @@ function InformationForm(props: InformationFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setInfoText(textConfig);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -66,16 +60,15 @@ function InformationForm(props: InformationFormProps) {
 
   return (
     <InformationFormUI
-      handleChangeInformation={handleChangeInformation}
+      handleChangeInformation={onChange}
       handleSubmitForm={handleSubmitForm}
+      palette={palette}
       handleReset={handleReset}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
-      withSubmitButtons={withSubmitButtons}
+      textConfig={textConfig}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
     />
   );
 }

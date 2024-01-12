@@ -39,37 +39,36 @@ const renderMessage = (
 };
 
 interface HelpFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
+  textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeHelp: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  handleChangeHelp: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-  readOnly?: boolean;
 }
 
 function HelpFormUI(props: HelpFormUIProps) {
   const {
-    aidBudgetUnits,
+    textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
+    palette,
     handleChangeHelp,
-    withSubmitButtons,
     message,
     onCloseSectionMessage,
     hasChanges,
-    readOnly,
   } = props;
-  const helpConfig = Object.entries(textFormsConfig.help.status);
+
+  const colorCards = Object.entries(textConfig.status);
 
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
-        {textFormsConfig.warning.description}
+        {textConfig.description}
       </Text>
       <FormButtons
         disabledButtons={false}
@@ -78,16 +77,18 @@ function HelpFormUI(props: HelpFormUIProps) {
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          {helpConfig.map(([key, config]) => (
+          {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onClick={function (tokenName: string, color: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              appearance={"help"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeHelp("help", key, newTokenName)
+              }
             />
           ))}
         </Stack>

@@ -10,10 +10,11 @@ import {
 import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
 import { textFormsConfig } from "../../config/text.config";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
 const renderMessage = (
   message: IMessageState,
-  onCloseSectionMessage: AidBudgetsFormUIProps["onCloseSectionMessage"]
+  onCloseSectionMessage: ErrorTokensFormUIProps["onCloseSectionMessage"]
 ) => {
   if (!message.visible || !message.type) {
     return null;
@@ -38,31 +39,33 @@ const renderMessage = (
   );
 };
 
-interface AidBudgetsFormUIProps {
+interface ErrorTokensFormUIProps {
   textConfig: any;
   isLoading: boolean;
+  palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeAidBudgets: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
+  handleChangeErrorTokens: (
+    appearance: Appearance,
+    category: string,
+    tokenName: string
+  ) => void;
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-  readOnly?: boolean;
 }
 
-function ErrorFormUI(props: AidBudgetsFormUIProps) {
+function ErrorFormUI(props: ErrorTokensFormUIProps) {
   const {
     textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangeAidBudgets,
-    withSubmitButtons,
+    handleChangeErrorTokens,
+    palette,
     message,
     onCloseSectionMessage,
     hasChanges,
-    readOnly,
   } = props;
 
   const colorCards = Object.entries(textConfig.status);
@@ -73,7 +76,7 @@ function ErrorFormUI(props: AidBudgetsFormUIProps) {
         {textConfig.description}
       </Text>
       <FormButtons
-        disabledButtons={false}
+        disabledButtons={!hasChanges(textConfig)}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
@@ -82,11 +85,15 @@ function ErrorFormUI(props: AidBudgetsFormUIProps) {
           {colorCards.map(([key, config]: any) => (
             <FieldsetColorCard
               key={key}
+              palette={palette}
               title={config.title}
               description={config.description}
-              tokenName={config.tokenName}
-              tokenDescription={config.example}
-              onChange={() => {}}
+              appearance={"error"}
+              category={key}
+              textWithColorToken={config.example}
+              onChange={(newTokenName) =>
+                handleChangeErrorTokens("error", key, newTokenName)
+              }
             />
           ))}
         </Stack>
