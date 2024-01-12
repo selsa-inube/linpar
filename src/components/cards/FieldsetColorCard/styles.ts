@@ -2,11 +2,8 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
 interface IStyledFieldsetColorCard {
-  tokenName: string;
-  tokenColor: string;
-  color: string;
-  isActive: boolean;
-  smallScreen: boolean;
+  isDark: boolean;
+  theme: typeof inube;
 }
 
 function getTokenColor(tokenName: string, theme?: typeof inube) {
@@ -18,13 +15,21 @@ function getTokenColor(tokenName: string, theme?: typeof inube) {
   }
 }
 
-const StyledTokenColorCardContainer = styled.div`
+const StyledTokenColorCardContainer = styled.div<IStyledFieldsetColorCard>`
   width: 100%;
   max-width: ${inube.spacing.s1000};
+
   & > div {
     width: 100%;
     height: 24px;
     max-width: 80px;
+
+    border: 1px solid
+      ${({ theme, isDark }) =>
+        !isDark
+          ? theme?.color?.stroke?.divider?.regular ||
+            inube.color.stroke.divider.regular
+          : "unset"};
     & > div {
       justify-content: center;
       padding: 4px;
@@ -41,4 +46,18 @@ const StyledPopupContainer = styled.div`
   }
 `;
 
-export { StyledTokenColorCardContainer, StyledPopupContainer, getTokenColor };
+const StyledTextWithTokenContainer = styled.div<IStyledFieldsetColorCard>`
+  & > div {
+    border-radius: ${inube.spacing.s100};
+    background-color: ${({ theme, isDark }) =>
+      !isDark
+        ? theme?.color?.text?.dark?.regular || inube.color.text.dark.regular
+        : "unset"};
+  }
+`;
+export {
+  StyledTokenColorCardContainer,
+  StyledPopupContainer,
+  StyledTextWithTokenContainer,
+  getTokenColor,
+};
