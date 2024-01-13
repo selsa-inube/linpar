@@ -1,55 +1,75 @@
 import { useState } from "react";
 import { SuccessFormUI } from "./interface";
 import { inube } from "@inube/design-system";
-import { EMessageType } from "@src/types/messages.types";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
-
-const LOADING_TIMEOUT = 1500;
+import { useNavigate } from "react-router-dom";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { textMessagesConfig } from "../../config/text.config";
 
 interface SuccessTokensFormProps {
   textConfig: any;
-  handleSubmit: (successTokens: IAssignmentFormEntry[]) => void;
+  originalTextConfig: typeof inube;
+  textTokens: typeof inube;
   palette: typeof inube;
   onChange: (event: any) => void;
-  onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function SuccessForm(props: SuccessTokensFormProps) {
-  const { textConfig, handleSubmit, palette, onChange, onHasChanges } = props;
-  const [successTokens, setSuccessTokens] = useState(textConfig);
+  const {
+    textTokens,
+    originalTextConfig,
+    textConfig,
+
+    palette,
+    onChange,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
+  const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
+  const navigate = useNavigate();
 
-  const handleChangeSuccessTokens = (successTokens: IAssignmentFormEntry[]) => {
-    setSuccessTokens(successTokens);
-    if (onHasChanges) onHasChanges(hasChanges(successTokens));
-    handleSubmit(successTokens);
+  const hasChanges = (): boolean => {
+    return (
+      JSON.stringify(originalTextConfig.text) !==
+      JSON.stringify(textTokens.text)
+    );
+  };
+
+  const onMessageClosed = () => {
+    navigate(-1);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-
-    setTimeout(() => {
-      handleSubmit(successTokens);
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = true;
+        if (isSuccess) {
+          originalTextConfig.text = textTokens.text;
+          resolve("success");
+        } else {
+          reject("failed");
+        }
+      }, 2000);
+    })
+      .then((result) => {
+        if (result === "success") {
+          setMessage({
+            visible: true,
+            data: textMessagesConfig.success,
+          });
+        }
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: textMessagesConfig.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    }, LOADING_TIMEOUT);
-  };
-
-  const handleReset = () => {
-    setSuccessTokens(textConfig);
-    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
@@ -62,13 +82,14 @@ function SuccessForm(props: SuccessTokensFormProps) {
     <SuccessFormUI
       handleChangeSuccessTokens={onChange}
       handleSubmitForm={handleSubmitForm}
-      handleReset={handleReset}
+      handleReset={onMessageClosed}
       palette={palette}
       isLoading={isLoading}
       textConfig={textConfig}
       message={message}
-      onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
     />
   );
 }

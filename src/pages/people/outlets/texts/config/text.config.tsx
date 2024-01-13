@@ -291,4 +291,21 @@ const textFormsConfig = {
   },
 };
 
-export { paletteMessagesConfig, textFormsConfig };
+const textMessagesConfig = {
+  success: {
+    id: 1,
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "Actualizacion para los tokens de texto ha sido exitosa",
+    description: `Los tokens de texto han sido actualizados con exito`,
+    appearance: EAppearance.SUCCESS,
+  },
+  failed: {
+    id: 2,
+    icon: <MdErrorOutline size={18} />,
+    title: "¡Uy, algo ha salido mal!",
+    description: `Hemos presentado problemas actualizando los tokens de texto.`,
+    appearance: EAppearance.ERROR,
+  },
+};
+
+export { paletteMessagesConfig, textFormsConfig, textMessagesConfig };

@@ -1,4 +1,5 @@
 import { Stack, Text, inube } from "@inube/design-system";
+import { ThemeContext } from "styled-components";
 
 import {
   StyledTokenColorCardContainer,
@@ -10,7 +11,7 @@ import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
-import { ThemeProvider } from "styled-components";
+import { useContext } from "react";
 
 interface FieldsetColorCardProps {
   title: string;
@@ -20,17 +21,15 @@ interface FieldsetColorCardProps {
   textWithColorToken?: string;
   typeToken?: string;
   optionsMenu: typeof inube;
-  theme: typeof inube;
   onChange: (tokenName: string) => void;
 }
 
 const getTokenReferenceFromAppearanceAndCategory = (
   appearance: Appearance,
   typeToken: string,
-  category: string,
-  theme?: typeof inube
+  category: string
 ): string | null => {
-  const tokens = theme || inube.color;
+  const tokens = useContext(ThemeContext).color || inube.color;
   const tokenReference = tokens[typeToken]?.[appearance]?.[category];
   if (!tokenReference) return null;
   const castedPalette = inube.color.palette as Record<
@@ -56,15 +55,13 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     textWithColorToken,
     typeToken = "text",
     optionsMenu,
-    theme,
     onChange,
   } = props;
 
   const tokenName = getTokenReferenceFromAppearanceAndCategory(
     appearance,
     typeToken,
-    category,
-    theme
+    category
   );
 
   const handleColorChange = (updatedTokenName: string) => {
@@ -74,12 +71,6 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
   const requireBackground =
     (tokenName === "N10" || tokenName === "N0") &&
     tinycolor(getTokenColor(tokenName!)).isLight();
-  console.log("theme: ", theme, inube);
-
-  const updatedTheme = {
-    ...inube.color,
-    color: { ...theme },
-  };
 
   return (
     <Fieldset title={title}>
@@ -104,16 +95,14 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
                 requireBackground={requireBackground}
               >
                 <Stack padding="s100">
-                  <ThemeProvider theme={updatedTheme}>
-                    <Text
-                      size="medium"
-                      appearance={appearance}
-                      parentHover={category === "hover"}
-                      disabled={category === "disabled"}
-                    >
-                      {textWithColorToken}
-                    </Text>
-                  </ThemeProvider>
+                  <Text
+                    size="medium"
+                    appearance={appearance}
+                    parentHover={category === "hover"}
+                    disabled={category === "disabled"}
+                  >
+                    {textWithColorToken}
+                  </Text>
                 </Stack>
               </StyledTextWithTokenContainer>
             )}

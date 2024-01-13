@@ -1,37 +1,28 @@
 import { useState } from "react";
 import { PrimaryFormUI } from "./interface";
 import { inube } from "@inube/design-system";
-import { EMessageType } from "@src/types/messages.types";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-
-const LOADING_TIMEOUT = 1500;
+import { useNavigate } from "react-router-dom";
+import { textMessagesConfig } from "../../config/text.config";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 interface PrimaryFormProps {
   textConfig: any;
   palette: typeof inube;
   onChange: (event: any) => void;
-  handleSubmit: (textConfig: any) => void;
-  onHasChanges?: (hasChanges: boolean) => void;
-  originalTextConfig: any;
-  textTokens: any;
+  originalTextConfig: typeof inube;
+  textTokens: typeof inube;
 }
 
 function PrimaryForm(props: PrimaryFormProps) {
-  const {
-    textTokens,
-    originalTextConfig,
-    textConfig,
-    palette,
-    handleSubmit,
-    onChange,
-    onHasChanges,
-  } = props;
-  const [primaryText, setPrimaryText] = useState(textConfig);
+  const { textTokens, originalTextConfig, textConfig, palette, onChange } =
+    props;
   const [isLoading, setIsLoading] = useState(false);
 
-  const [message, setMessage] = useState<IMessageState>({
+  const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
+
+  const navigate = useNavigate();
 
   const hasChanges = (): boolean => {
     return (
@@ -40,22 +31,40 @@ function PrimaryForm(props: PrimaryFormProps) {
     );
   };
 
-  const handleSubmitForm = () => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      handleSubmit(primaryText);
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
-      });
-    }, LOADING_TIMEOUT);
+  const onMessageClosed = () => {
+    navigate(-1);
   };
 
-  const handleReset = () => {
-    setPrimaryText(textConfig);
-    if (onHasChanges) onHasChanges(false);
+  const handleSubmitForm = () => {
+    setIsLoading(true);
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = true;
+        if (isSuccess) {
+          originalTextConfig.text = textTokens.text;
+          resolve("success");
+        } else {
+          reject("failed");
+        }
+      }, 2000);
+    })
+      .then((result) => {
+        if (result === "success") {
+          setMessage({
+            visible: true,
+            data: textMessagesConfig.success,
+          });
+        }
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: textMessagesConfig.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleCloseSectionMessage = () => {
@@ -68,14 +77,14 @@ function PrimaryForm(props: PrimaryFormProps) {
     <PrimaryFormUI
       handleChangePrimaryTokens={onChange}
       handleSubmitForm={handleSubmitForm}
-      handleReset={handleReset}
+      handleReset={onMessageClosed}
       isLoading={isLoading}
       textConfig={textConfig}
       palette={palette}
       message={message}
-      textTokens={textTokens}
-      onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
     />
   );
 }

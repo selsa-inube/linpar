@@ -29,6 +29,7 @@ import { DarkForm } from "./form/DarkForm";
 import { GrayForm } from "./form/GrayForm";
 import { LightForm } from "./form/LightForm";
 import { useState } from "react";
+import { ThemeProvider } from "styled-components";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -83,6 +84,11 @@ export function TextsUI(props: TextUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
+  const updatedTheme = {
+    ...inube.color,
+    color: { ...textTokens },
+  };
+
   return (
     <>
       <Stack
@@ -108,114 +114,89 @@ export function TextsUI(props: TextUIProps) {
                   type={typeTabs ? "select" : "tabs"}
                   onChange={handleTabChange}
                 />
-                {selectedTab === colorTabsConfig.primary.id && (
-                  <PrimaryForm
-                    textConfig={textConfig.primary}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    originalTextConfig={originalTextConfig}
-                    textTokens={textTokens}
-                    handleSubmit={function (textConfig: any): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
-                {selectedTab === colorTabsConfig.error.id && (
-                  <ErrorForm
-                    textConfig={textConfig.error}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    handleSubmit={function (
-                      aidBudgetUnits: IAssignmentFormEntry[]
-                    ): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
-                {selectedTab === colorTabsConfig.warning.id && (
-                  <WarningForm
-                    textConfig={textConfig.warning}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    handleSubmit={function (
-                      aidBudgetUnits: IAssignmentFormEntry[]
-                    ): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
-                {selectedTab === colorTabsConfig.success.id && (
-                  <SuccessForm
-                    textConfig={textConfig.success}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    handleSubmit={function (
-                      aidBudgetUnits: IAssignmentFormEntry[]
-                    ): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
-                {selectedTab === colorTabsConfig.information.id && (
-                  <InformationForm
-                    textConfig={textConfig.info}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    handleSubmit={function (
-                      aidBudgetUnits: IAssignmentFormEntry[]
-                    ): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
-                {selectedTab === colorTabsConfig.help.id && (
-                  <HelpForm
-                    textConfig={textConfig.help}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    handleSubmit={function (
-                      aidBudgetUnits: IAssignmentFormEntry[]
-                    ): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
-                {selectedTab === colorTabsConfig.dark.id && (
-                  <DarkForm
-                    textConfig={textConfig.dark}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    handleSubmit={function (
-                      aidBudgetUnits: IAssignmentFormEntry[]
-                    ): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
-                {selectedTab === colorTabsConfig.gray.id && (
-                  <GrayForm
-                    textConfig={textConfig.gray}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    handleSubmit={function (
-                      aidBudgetUnits: IAssignmentFormEntry[]
-                    ): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
-                {selectedTab === colorTabsConfig.light.id && (
-                  <LightForm
-                    textConfig={textConfig.light}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    handleSubmit={function (
-                      aidBudgetUnits: IAssignmentFormEntry[]
-                    ): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                )}
+                <ThemeProvider theme={updatedTheme}>
+                  {selectedTab === colorTabsConfig.primary.id && (
+                    <PrimaryForm
+                      textConfig={textConfig.primary}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                  {selectedTab === colorTabsConfig.error.id && (
+                    <ErrorForm
+                      textConfig={textConfig.error}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                  {selectedTab === colorTabsConfig.warning.id && (
+                    <WarningForm
+                      textConfig={textConfig.warning}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                  {selectedTab === colorTabsConfig.success.id && (
+                    <SuccessForm
+                      textConfig={textConfig.success}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                  {selectedTab === colorTabsConfig.information.id && (
+                    <InformationForm
+                      textConfig={textConfig.info}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                  {selectedTab === colorTabsConfig.help.id && (
+                    <HelpForm
+                      textConfig={textConfig.help}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                  {selectedTab === colorTabsConfig.dark.id && (
+                    <DarkForm
+                      textConfig={textConfig.dark}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                  {selectedTab === colorTabsConfig.gray.id && (
+                    <GrayForm
+                      textConfig={textConfig.gray}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                  {selectedTab === colorTabsConfig.light.id && (
+                    <LightForm
+                      textConfig={textConfig.light}
+                      palette={palette}
+                      onChange={handleChangeColor}
+                      originalTextConfig={originalTextConfig}
+                      textTokens={textTokens}
+                    />
+                  )}
+                </ThemeProvider>
               </Stack>
             </StyledTabsContainer>
           </StyledContainer>
