@@ -12,26 +12,33 @@ interface PrimaryFormProps {
   onChange: (event: any) => void;
   handleSubmit: (textConfig: any) => void;
   onHasChanges?: (hasChanges: boolean) => void;
+  originalTextConfig: any;
+  textTokens: any;
 }
 
 function PrimaryForm(props: PrimaryFormProps) {
-  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
+  const {
+    textTokens,
+    originalTextConfig,
+    textConfig,
+    palette,
+    handleSubmit,
+    onChange,
+    onHasChanges,
+  } = props;
   const [primaryText, setPrimaryText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedTokenName, setSelectedTokenName] = useState("");
+
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [tokenNames, setTokenNames] = useState(() => {
-    const initialNames: any = {};
-    Object.entries(textConfig.status).forEach(([key, config]: any) => {
-      initialNames[key] = config.tokenName;
-    });
-    return initialNames;
-  });
 
-  const hasChanges = (valueCompare: any) =>
-    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
+  const hasChanges = (): boolean => {
+    return (
+      JSON.stringify(originalTextConfig.text) !==
+      JSON.stringify(textTokens.text)
+    );
+  };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
@@ -59,8 +66,6 @@ function PrimaryForm(props: PrimaryFormProps) {
 
   return (
     <PrimaryFormUI
-      selectedTokenName={selectedTokenName}
-      tokenNames={tokenNames}
       handleChangePrimaryTokens={onChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
@@ -68,6 +73,7 @@ function PrimaryForm(props: PrimaryFormProps) {
       textConfig={textConfig}
       palette={palette}
       message={message}
+      textTokens={textTokens}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
     />

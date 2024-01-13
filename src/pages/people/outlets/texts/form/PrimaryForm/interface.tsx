@@ -4,6 +4,7 @@ import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
+import { ThemeProvider } from "styled-components";
 
 const renderMessage = (
   message: IMessageState,
@@ -34,16 +35,15 @@ const renderMessage = (
 
 interface PrimaryFormUIProps {
   textConfig: any;
-  tokenNames: any;
-  selectedTokenName: string;
   isLoading: boolean;
   palette: typeof inube;
+  textTokens: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangePrimaryTokens: any;
   message: IMessageState;
   onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: any) => boolean;
+  hasChanges: any;
 }
 
 function PrimaryFormUI(props: PrimaryFormUIProps) {
@@ -57,16 +57,18 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
     message,
     onCloseSectionMessage,
     hasChanges,
+    textTokens,
   } = props;
 
   const colorCards = Object.entries(textConfig.status);
+
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
         {textConfig.description}
       </Text>
       <FormButtons
-        disabledButtons={!hasChanges(textConfig)}
+        disabledButtons={!hasChanges()}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
@@ -80,6 +82,7 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
               description={config.description}
               appearance={"primary"}
               category={key}
+              theme={textTokens}
               textWithColorToken={config.example}
               onChange={(newTokenName) =>
                 handleChangePrimaryTokens("primary", key, newTokenName)

@@ -52,16 +52,14 @@ const renderMessage = (
   );
 };
 
-interface UsersUIProps {
+interface TextUIProps {
+  originalTextConfig: any;
+  textTokens: any;
   textConfig: any;
   palette: typeof inube;
   selectedTab: string;
-  isSelected: string;
-  searchText: string;
   handleChangeColor: any;
   handleTabChange: (id: string) => void;
-  handleContinueTab: () => void;
-  handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
@@ -69,11 +67,13 @@ interface UsersUIProps {
   handleCloseMessage: () => void;
 }
 
-export function TextsUI(props: UsersUIProps) {
+export function TextsUI(props: TextUIProps) {
   const {
     textConfig,
-    // palette,
+    palette,
     selectedTab,
+    textTokens,
+    originalTextConfig,
     handleChangeColor,
     handleTabChange,
     message,
@@ -82,14 +82,6 @@ export function TextsUI(props: UsersUIProps) {
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
-  const [palette, setPalette] = useState(inube.color.palette);
-
-  // Function to update the palette
-  const handlePaletteChange = (tokenName: string | number, newColor: any) => {
-    const updatedPalette = { ...palette };
-    updatedPalette[tokenName] = newColor; // Update the color for the token
-    setPalette(updatedPalette); // Update the state
-  };
 
   return (
     <>
@@ -121,6 +113,8 @@ export function TextsUI(props: UsersUIProps) {
                     textConfig={textConfig.primary}
                     palette={palette}
                     onChange={handleChangeColor}
+                    originalTextConfig={originalTextConfig}
+                    textTokens={textTokens}
                     handleSubmit={function (textConfig: any): void {
                       throw new Error("Function not implemented.");
                     }}

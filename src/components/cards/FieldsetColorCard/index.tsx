@@ -10,6 +10,7 @@ import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
+import { ThemeProvider } from "styled-components";
 
 interface FieldsetColorCardProps {
   title: string;
@@ -19,15 +20,18 @@ interface FieldsetColorCardProps {
   textWithColorToken?: string;
   typeToken?: string;
   optionsMenu: typeof inube;
+  theme: typeof inube;
   onChange: (tokenName: string) => void;
 }
 
 const getTokenReferenceFromAppearanceAndCategory = (
   appearance: Appearance,
   typeToken: string,
-  category: string
+  category: string,
+  theme?: typeof inube
 ): string | null => {
-  const tokenReference = inube.color[typeToken]?.[appearance]?.[category];
+  const tokens = theme || inube.color;
+  const tokenReference = tokens[typeToken]?.[appearance]?.[category];
   if (!tokenReference) return null;
   const castedPalette = inube.color.palette as Record<
     string,
@@ -52,20 +56,30 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     textWithColorToken,
     typeToken = "text",
     optionsMenu,
+    theme,
     onChange,
   } = props;
 
   const tokenName = getTokenReferenceFromAppearanceAndCategory(
     appearance,
     typeToken,
-    category
+    category,
+    theme
   );
 
   const handleColorChange = (updatedTokenName: string) => {
     onChange(updatedTokenName);
   };
 
-  const isDark = tinycolor(getTokenColor(tokenName!)).isDark();
+  const requireBackground =
+    (tokenName === "N10" || tokenName === "N0") &&
+    tinycolor(getTokenColor(tokenName!)).isLight();
+  console.log("theme: ", theme, inube);
+
+  const updatedTheme = {
+    ...inube.color,
+    color: { ...theme },
+  };
 
   return (
     <Fieldset title={title}>
@@ -75,7 +89,9 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             {description}
           </Text>
           <Stack gap={inube.spacing.s200} alignItems="center">
-            <StyledTokenColorCardContainer isDark={isDark}>
+            <StyledTokenColorCardContainer
+              requireBackground={requireBackground}
+            >
               <TokenColorCard
                 tokenName={tokenName!}
                 type="tokenPicker"
@@ -84,16 +100,20 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
               />
             </StyledTokenColorCardContainer>
             {textWithColorToken && (
-              <StyledTextWithTokenContainer isDark={isDark}>
+              <StyledTextWithTokenContainer
+                requireBackground={requireBackground}
+              >
                 <Stack padding="s100">
-                  <Text
-                    size="medium"
-                    appearance={appearance}
-                    parentHover={category === "hover"}
-                    disabled={category === "disabled"}
-                  >
-                    {textWithColorToken}
-                  </Text>
+                  <ThemeProvider theme={updatedTheme}>
+                    <Text
+                      size="medium"
+                      appearance={appearance}
+                      parentHover={category === "hover"}
+                      disabled={category === "disabled"}
+                    >
+                      {textWithColorToken}
+                    </Text>
+                  </ThemeProvider>
                 </Stack>
               </StyledTextWithTokenContainer>
             )}
