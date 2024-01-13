@@ -1,55 +1,69 @@
 import { useState } from "react";
 import { DarkFormUI } from "./interface";
 import { inube } from "@inube/design-system";
-import { EMessageType } from "@src/types/messages.types";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
-
-const LOADING_TIMEOUT = 1500;
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { textMessagesConfig } from "../../config/text.config";
+import { useNavigate } from "react-router-dom";
 
 interface DarkFormProps {
   textConfig: any;
+  originalTextConfig: typeof inube;
+  textTokens: typeof inube;
   palette: typeof inube;
   onChange: (event: any) => void;
-  handleSubmit: (darkText: IAssignmentFormEntry[]) => void;
-  onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function DarkForm(props: DarkFormProps) {
-  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
-  const [darkText, setDarkText] = useState(textConfig);
+  const { textTokens, originalTextConfig, textConfig, palette, onChange } =
+    props;
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
+  const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
+  const navigate = useNavigate();
 
-  const handleChangeDark = (darkText: IAssignmentFormEntry[]) => {
-    setDarkText(darkText);
-    if (onHasChanges) onHasChanges(hasChanges(darkText));
-    handleSubmit(darkText);
+  const hasChanges = (): boolean => {
+    return (
+      JSON.stringify(originalTextConfig.text) !==
+      JSON.stringify(textTokens.text)
+    );
+  };
+
+  const onMessageClosed = () => {
+    navigate(-1);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-
-    setTimeout(() => {
-      handleSubmit(darkText);
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = true;
+        if (isSuccess) {
+          originalTextConfig.text = textTokens.text;
+          resolve("success");
+        } else {
+          reject("failed");
+        }
+      }, 2000);
+    })
+      .then((result) => {
+        if (result === "success") {
+          setMessage({
+            visible: true,
+            data: textMessagesConfig.success,
+          });
+        }
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: textMessagesConfig.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    }, LOADING_TIMEOUT);
-  };
-
-  const handleReset = () => {
-    setDarkText(textConfig);
-    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
@@ -62,13 +76,14 @@ function DarkForm(props: DarkFormProps) {
     <DarkFormUI
       handleChangeDark={onChange}
       handleSubmitForm={handleSubmitForm}
-      handleReset={handleReset}
+      handleReset={onMessageClosed}
       isLoading={isLoading}
       palette={palette}
       textConfig={textConfig}
       message={message}
-      onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
     />
   );
 }

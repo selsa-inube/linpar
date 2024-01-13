@@ -1,55 +1,69 @@
 import { useState } from "react";
 import { InformationFormUI } from "./interface";
 import { inube } from "@inube/design-system";
-import { EMessageType } from "@src/types/messages.types";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
-
-const LOADING_TIMEOUT = 1500;
+import { useNavigate } from "react-router-dom";
+import { textMessagesConfig } from "../../config/text.config";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 interface InformationFormProps {
   textConfig: any;
+  originalTextConfig: typeof inube;
+  textTokens: typeof inube;
   palette: typeof inube;
   onChange: (event: any) => void;
-  handleSubmit: any;
-  onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function InformationForm(props: InformationFormProps) {
-  const { textConfig, handleSubmit, palette, onHasChanges, onChange } = props;
-  const [infoText, setInfoText] = useState(textConfig);
+  const { textTokens, originalTextConfig, textConfig, palette, onChange } =
+    props;
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
+  const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
+  const navigate = useNavigate();
 
-  const handleChangeInformation = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setInfoText(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    handleSubmit(aidBudgetUnits);
+  const hasChanges = (): boolean => {
+    return (
+      JSON.stringify(originalTextConfig.text) !==
+      JSON.stringify(textTokens.text)
+    );
+  };
+
+  const onMessageClosed = () => {
+    navigate(-1);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-
-    setTimeout(() => {
-      handleSubmit(infoText);
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = true;
+        if (isSuccess) {
+          originalTextConfig.text = textTokens.text;
+          resolve("success");
+        } else {
+          reject("failed");
+        }
+      }, 2000);
+    })
+      .then((result) => {
+        if (result === "success") {
+          setMessage({
+            visible: true,
+            data: textMessagesConfig.success,
+          });
+        }
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: textMessagesConfig.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    }, LOADING_TIMEOUT);
-  };
-
-  const handleReset = () => {
-    setInfoText(textConfig);
-    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
@@ -63,12 +77,13 @@ function InformationForm(props: InformationFormProps) {
       handleChangeInformation={onChange}
       handleSubmitForm={handleSubmitForm}
       palette={palette}
-      handleReset={handleReset}
+      handleReset={onMessageClosed}
       isLoading={isLoading}
       textConfig={textConfig}
       message={message}
-      onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
     />
   );
 }

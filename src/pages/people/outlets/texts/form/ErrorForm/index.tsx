@@ -6,44 +6,71 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@src/pages/privileges/outlets/users/types/forms.types";
+import { useNavigate } from "react-router-dom";
+import { textMessagesConfig } from "../../config/text.config";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 const LOADING_TIMEOUT = 1500;
 
 interface ErrorTokensFormProps {
+  originalTextConfig: typeof inube;
+  textTokens: typeof inube;
   textConfig: any;
   palette: typeof inube;
   onChange: (event: any) => void;
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
-  onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function ErrorForm(props: ErrorTokensFormProps) {
-  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
-  const [errorText, setErrorText] = useState(textConfig);
+  const { textTokens, originalTextConfig, textConfig, palette, onChange } =
+    props;
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
+  const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
+  const navigate = useNavigate();
+
+  const hasChanges = (): boolean => {
+    return (
+      JSON.stringify(originalTextConfig.text) !==
+      JSON.stringify(textTokens.text)
+    );
+  };
+
+  const onMessageClosed = () => {
+    navigate(-1);
+  };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-
-    setTimeout(() => {
-      handleSubmit(errorText);
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = true;
+        if (isSuccess) {
+          originalTextConfig.text = textTokens.text;
+          resolve("success");
+        } else {
+          reject("failed");
+        }
+      }, 2000);
+    })
+      .then((result) => {
+        if (result === "success") {
+          setMessage({
+            visible: true,
+            data: textMessagesConfig.success,
+          });
+        }
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: textMessagesConfig.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    }, LOADING_TIMEOUT);
-  };
-
-  const handleReset = () => {
-    setErrorText(errorText);
-    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
@@ -57,12 +84,14 @@ function ErrorForm(props: ErrorTokensFormProps) {
       textConfig={textConfig}
       handleChangeErrorTokens={onChange}
       handleSubmitForm={handleSubmitForm}
-      handleReset={handleReset}
+      handleReset={onMessageClosed}
       isLoading={isLoading}
       palette={palette}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
     />
   );
 }

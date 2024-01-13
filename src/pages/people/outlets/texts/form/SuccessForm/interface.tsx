@@ -2,35 +2,33 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
 
 import { StyledMessageContainer } from "./styles";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
-import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
+import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { textFormsConfig } from "../../config/text.config";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 const renderMessage = (
-  message: IMessageState,
-  onCloseSectionMessage: SuccessTokensFormUIProps["onCloseSectionMessage"]
+  message: IUsersMessage,
+  handleCloseMessage: () => void,
+  onMessageClosed: () => void
 ) => {
-  if (!message.visible || !message.type) {
-    return null;
-  }
+  if (!message.data) return null;
 
-  const { title, description, icon, appearance } =
-    assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
+  const closeMessageAndExecuteCallback = () => {
+    handleCloseMessage();
+    onMessageClosed();
+  };
 
   return (
     <StyledMessageContainer>
       <Stack justifyContent="flex-end" width="100%">
         <SectionMessage
-          title={title}
-          description={description}
-          icon={icon}
-          appearance={appearance}
+          title={message.data.title}
+          description={message.data.description}
+          icon={message.data.icon}
+          appearance={message.data.appearance}
           duration={4000}
-          closeSectionMessage={onCloseSectionMessage}
+          closeSectionMessage={closeMessageAndExecuteCallback}
         />
       </Stack>
     </StyledMessageContainer>
@@ -45,8 +43,9 @@ interface SuccessTokensFormUIProps {
   handleReset: () => void;
   handleChangeSuccessTokens: any;
   message: IMessageState;
-  onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: any) => boolean;
+  hasChanges: () => boolean;
+  handleCloseMessage: () => void;
+  onMessageClosed: () => void;
 }
 
 function SuccessFormUI(props: SuccessTokensFormUIProps) {
@@ -58,7 +57,8 @@ function SuccessFormUI(props: SuccessTokensFormUIProps) {
     handleChangeSuccessTokens,
     palette,
     message,
-    onCloseSectionMessage,
+    handleCloseMessage,
+    onMessageClosed,
     hasChanges,
   } = props;
 
@@ -70,7 +70,7 @@ function SuccessFormUI(props: SuccessTokensFormUIProps) {
         {textFormsConfig.warning.description}
       </Text>
       <FormButtons
-        disabledButtons={!hasChanges(textConfig)}
+        disabledButtons={!hasChanges()}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
@@ -92,7 +92,7 @@ function SuccessFormUI(props: SuccessTokensFormUIProps) {
           ))}
         </Stack>
       </FormButtons>
-      {renderMessage(message, onCloseSectionMessage)}
+      {renderMessage(message, handleCloseMessage, onMessageClosed)}
     </>
   );
 }
