@@ -18,7 +18,7 @@ const paletteMessagesConfig = {
   },
 };
 
-const textFormsConfig = {
+const surfaceFormsConfig = {
   primary: {
     description:
       " Las superficies de tipo primario se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
@@ -50,5 +50,21 @@ const textFormsConfig = {
     },
   },
 };
+const surfaceMessagesConfig = {
+  success: {
+    id: 1,
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "Actualizacion para los tokens de texto ha sido exitosa",
+    description: `Los tokens de texto han sido actualizados con exito`,
+    appearance: EAppearance.SUCCESS,
+  },
+  failed: {
+    id: 2,
+    icon: <MdErrorOutline size={18} />,
+    title: "¡Uy, algo ha salido mal!",
+    description: `Hemos presentado problemas actualizando los tokens de texto.`,
+    appearance: EAppearance.ERROR,
+  },
+};
 
-export { paletteMessagesConfig, textFormsConfig };
+export { paletteMessagesConfig, surfaceFormsConfig, surfaceMessagesConfig };

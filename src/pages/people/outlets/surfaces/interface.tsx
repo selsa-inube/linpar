@@ -18,7 +18,9 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { PrimaryForm } from "./form/PrimaryForm";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { useState } from "react";
+import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
+import { ThemeProvider } from "styled-components";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -43,18 +45,13 @@ const renderMessage = (
 };
 
 interface UsersUIProps {
+  originalTextConfig: any;
+  textTokens: any;
+  surfaceConfig: any;
   palette: typeof inube;
-  handleChangeColor: (
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
-  ) => void;
-  isSelected: string;
-  textConfig: any;
   selectedTab: string;
-  searchText: string;
+  handleChangeColor: any;
   handleTabChange: (id: string) => void;
-  handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
@@ -64,11 +61,13 @@ interface UsersUIProps {
 
 export function SurfacesUI(props: UsersUIProps) {
   const {
-    handleTabChange,
-    selectedTab,
-    textConfig,
+    surfaceConfig,
     palette,
+    selectedTab,
+    textTokens,
+    originalTextConfig,
     handleChangeColor,
+    handleTabChange,
     message,
     handleCloseMessage,
   } = props;
@@ -76,6 +75,10 @@ export function SurfacesUI(props: UsersUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
+  const updatedTheme = {
+    ...inube.color,
+    color: { ...textTokens },
+  };
   return (
     <>
       <Stack
@@ -86,10 +89,10 @@ export function SurfacesUI(props: UsersUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[2].crumbs} />
+            <Breadcrumbs crumbs={peopleOptionsConfig[1].crumbs} />
             <PageTitle
-              title={peopleOptionsConfig[2].label}
-              description={peopleOptionsConfig[2].description}
+              title={peopleOptionsConfig[1].label}
+              description={peopleOptionsConfig[1].description}
               navigatePage="/people"
             />
           </Stack>
@@ -104,16 +107,17 @@ export function SurfacesUI(props: UsersUIProps) {
                 type={typeTabs ? "select" : "tabs"}
                 onChange={handleTabChange}
               />
-              {selectedTab === colorTabsConfig.primary.id && (
-                <PrimaryForm
-                  palette={palette}
-                  onChange={handleChangeColor}
-                  textConfig={textConfig.primary}
-                  handleSubmit={function (textConfig: any): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                />
-              )}
+              <ThemeProvider theme={updatedTheme}>
+                {selectedTab === colorTabsConfig.primary.id && (
+                  <PrimaryForm
+                    surfaceConfig={surfaceConfig.primary}
+                    palette={palette}
+                    onChange={handleChangeColor}
+                    originalTextConfig={originalTextConfig}
+                    textTokens={textTokens}
+                  />
+                )}
+              </ThemeProvider>
             </Stack>
           </StyledTabsContainer>
         </StyledContainer>

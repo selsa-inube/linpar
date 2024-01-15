@@ -2,31 +2,34 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { SectionMessage, Stack, Text, inube, Grid } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 const renderMessage = (
-  message: IMessageState,
-  onCloseSectionMessage: PrimaryFormUIProps["onCloseSectionMessage"]
+  message: IUsersMessage,
+  handleCloseMessage: () => void,
+  onMessageClosed: () => void
 ) => {
-  if (!message.visible || !message.type) {
-    return null;
-  }
+  if (!message.data) return null;
 
-  const { title, description, icon, appearance } =
-    assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
+  const closeMessageAndExecuteCallback = () => {
+    handleCloseMessage();
+    onMessageClosed();
+  };
+
+  //const { title, description, icon, appearance } =
+  //assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
 
   return (
     <StyledMessageContainer>
       <Stack justifyContent="flex-end" width="100%">
         <SectionMessage
-          title={title}
-          description={description}
-          icon={icon}
-          appearance={appearance}
+          title={message.data.title}
+          description={message.data.description}
+          icon={message.data.icon}
+          appearance={message.data.appearance}
           duration={4000}
-          closeSectionMessage={onCloseSectionMessage}
+          closeSectionMessage={closeMessageAndExecuteCallback}
         />
       </Stack>
     </StyledMessageContainer>
@@ -34,46 +37,42 @@ const renderMessage = (
 };
 
 interface PrimaryFormUIProps {
-  textConfig: any;
+  surfaceConfig: any;
   palette: typeof inube;
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangePrimaryTokens: (
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
-  ) => void;
-  withSubmitButtons?: boolean;
+  handleChangePrimaryTokens: any;
   message: IMessageState;
-  onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: any) => boolean;
-  readOnly?: boolean;
+  hasChanges: () => boolean;
+  handleCloseMessage: () => void;
+  onMessageClosed: () => void;
 }
 
 function PrimaryFormUI(props: PrimaryFormUIProps) {
   const {
-    textConfig,
+    surfaceConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
+    palette,
     handleChangePrimaryTokens,
     message,
-    palette,
-    onCloseSectionMessage,
+    handleCloseMessage,
+    onMessageClosed,
     hasChanges,
   } = props;
 
-  const colorCards = Object.entries(textConfig.status);
+  const colorCards = Object.entries(surfaceConfig.status);
 
   return (
     <>
       <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
-        {textConfig.description}
+        {surfaceConfig.description}
       </Text>
 
       <FormButtons
-        disabledButtons={!hasChanges(textConfig)}
+        disabledButtons={!hasChanges()}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
@@ -89,10 +88,10 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
               <FieldsetColorCard
                 key={key}
                 optionsMenu={palette}
-                typeToken={"surface"}
                 title={config.title}
                 description={config.description}
                 appearance={"primary"}
+                typeToken="surface"
                 category={key}
                 textWithColorToken={config.example}
                 onChange={(newTokenName) =>
@@ -103,7 +102,7 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
           </Grid>
         </Stack>
       </FormButtons>
-      {renderMessage(message, onCloseSectionMessage)}
+      {renderMessage(message, handleCloseMessage, onMessageClosed)}
     </>
   );
 }

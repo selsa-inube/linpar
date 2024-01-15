@@ -1,72 +1,71 @@
 import { useState } from "react";
 import { PrimaryFormUI } from "./interface";
-
-import { EMessageType } from "@src/types/messages.types";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
-import { textFormsConfig } from "../../config/text.config";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { useNavigate } from "react-router-dom";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
+import { surfaceMessagesConfig } from "../../config/surface.config";
 
 const LOADING_TIMEOUT = 1500;
 
 interface PrimaryFormProps {
-  textConfig: any;
-  handleSubmit: (textConfig: any) => void;
-  withSubmitButtons?: boolean;
-  onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
+  surfaceConfig: any;
   palette: typeof inube;
-  onChange: (
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
-  ) => void;
+  onChange: (event: any) => void;
+  originalTextConfig: typeof inube;
+  textTokens: typeof inube;
 }
 
 function PrimaryForm(props: PrimaryFormProps) {
-  const {
-    textConfig,
-    palette,
-    onChange,
-    handleSubmit,
-    withSubmitButtons,
-    onHasChanges,
-    readOnly,
-  } = props;
-  const [primaryText, setPrimaryText] = useState(textConfig);
+  const { textTokens, originalTextConfig, surfaceConfig, palette, onChange } =
+    props;
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
+
+  const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
+  const navigate = useNavigate();
 
-  const hasChanges = (valueCompare: any) =>
-    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
+  const hasChanges = (): boolean => {
+    return (
+      JSON.stringify(originalTextConfig.surface) !==
+      JSON.stringify(textTokens.surface)
+    );
+  };
 
-  const handleChangePrimaryTokens = (textConfig: any) => {
-    setPrimaryText(textConfig);
-    if (onHasChanges) onHasChanges(hasChanges(textConfig));
-    if (!withSubmitButtons) handleSubmit(textConfig);
+  const onMessageClosed = () => {
+    navigate(-1);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-
-    setTimeout(() => {
-      handleSubmit(primaryText);
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = true;
+        if (isSuccess) {
+          originalTextConfig.surface = textTokens.surface;
+          resolve("success");
+        } else {
+          reject("failed");
+        }
+      }, 2000);
+    })
+      .then((result) => {
+        if (result === "success") {
+          setMessage({
+            visible: true,
+            data: surfaceMessagesConfig.success,
+          });
+        }
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: surfaceMessagesConfig.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    }, LOADING_TIMEOUT);
-  };
-
-  const handleReset = () => {
-    setPrimaryText(textConfig);
-    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
@@ -74,20 +73,18 @@ function PrimaryForm(props: PrimaryFormProps) {
       visible: false,
     });
   };
-
   return (
     <PrimaryFormUI
-      palette={palette}
       handleChangePrimaryTokens={onChange}
       handleSubmitForm={handleSubmitForm}
-      handleReset={handleReset}
+      handleReset={onMessageClosed}
       isLoading={isLoading}
-      textConfig={textConfig}
-      withSubmitButtons
+      surfaceConfig={surfaceConfig}
+      palette={palette}
       message={message}
-      onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      readOnly={readOnly}
+      handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
     />
   );
 }
