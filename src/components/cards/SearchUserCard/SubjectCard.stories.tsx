@@ -38,7 +38,7 @@ const data: any = [
 ];
 
 const searchData = {
-  ["Digita el nombre o numero de identificación."]: "",
+  "Digita el nombre o numero de identificación.": "",
 };
 
 const Template: StoryFn<SearchUserCardProps> = (args) => (

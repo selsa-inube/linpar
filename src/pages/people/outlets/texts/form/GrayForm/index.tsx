@@ -5,8 +5,6 @@ import { textMessagesConfig } from "../../config/text.config";
 import { useNavigate } from "react-router-dom";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
-const LOADING_TIMEOUT = 1500;
-
 interface GrayFormProps {
   textConfig: any;
   palette: typeof inube;
@@ -18,7 +16,6 @@ interface GrayFormProps {
 function GrayForm(props: GrayFormProps) {
   const { textTokens, originalTextConfig, textConfig, palette, onChange } =
     props;
-  const [grayText, setGrayText] = useState(textConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,

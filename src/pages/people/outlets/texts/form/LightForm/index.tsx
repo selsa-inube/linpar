@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { LightFormUI } from "./interface";
 import { inube } from "@inube/design-system";
-import { EMessageType } from "@src/types/messages.types";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { textMessagesConfig } from "../../config/text.config";
 import { useNavigate } from "react-router-dom";
-
-const LOADING_TIMEOUT = 1500;
 
 interface LightFormProps {
   textConfig: any;

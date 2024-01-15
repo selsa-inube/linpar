@@ -7,7 +7,6 @@ import {
   useMediaQueries,
 } from "@inube/design-system";
 
-import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
 
 import {
@@ -19,7 +18,6 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { PrimaryForm } from "./form/PrimaryForm";
-import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { ErrorForm } from "./form/ErrorForm";
 import { WarningForm } from "./form/WarningForm";
 import { SuccessForm } from "./form/SuccessForm";
@@ -28,7 +26,6 @@ import { HelpForm } from "./form/HelpForm";
 import { DarkForm } from "./form/DarkForm";
 import { GrayForm } from "./form/GrayForm";
 import { LightForm } from "./form/LightForm";
-import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 const renderMessage = (

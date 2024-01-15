@@ -1,5 +1,4 @@
 import { BrowserRouter } from "react-router-dom";
-import { MdPersonOutline } from "react-icons/md";
 import { StoryFn } from "@storybook/react";
 
 import { SubjectSearchCard, SubjectSearchCardProps } from ".";

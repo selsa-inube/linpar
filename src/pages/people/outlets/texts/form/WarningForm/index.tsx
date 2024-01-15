@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { textMessagesConfig } from "../../config/text.config";
 
-const LOADING_TIMEOUT = 1500;
-
 interface WarningTokensFormProps {
   textConfig: any;
   palette: typeof inube;

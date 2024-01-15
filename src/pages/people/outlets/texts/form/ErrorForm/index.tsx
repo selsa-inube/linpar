@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { ErrorFormUI } from "./interface";
 import { inube } from "@inube/design-system";
-import { EMessageType } from "@src/types/messages.types";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
 import { useNavigate } from "react-router-dom";
 import { textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-
-const LOADING_TIMEOUT = 1500;
 
 interface ErrorTokensFormProps {
   originalTextConfig: typeof inube;
