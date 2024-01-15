@@ -89,10 +89,10 @@ export function SurfacesUI(props: UsersUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[1].crumbs} />
+            <Breadcrumbs crumbs={peopleOptionsConfig[2].crumbs} />
             <PageTitle
-              title={peopleOptionsConfig[1].label}
-              description={peopleOptionsConfig[1].description}
+              title={peopleOptionsConfig[2].label}
+              description={peopleOptionsConfig[2].description}
               navigatePage="/people"
             />
           </Stack>
