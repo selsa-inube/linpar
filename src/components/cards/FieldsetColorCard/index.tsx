@@ -1,4 +1,5 @@
 import { Stack, Text, inube } from "@inube/design-system";
+import { ThemeContext } from "styled-components";
 
 import {
   StyledTokenColorCardContainer,
@@ -10,6 +11,7 @@ import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
+import { useContext } from "react";
 
 interface FieldsetColorCardProps {
   title: string;
@@ -27,7 +29,8 @@ const getTokenReferenceFromAppearanceAndCategory = (
   typeToken: string,
   category: string
 ): string | null => {
-  const tokenReference = inube.color[typeToken]?.[appearance]?.[category];
+  const tokens = useContext(ThemeContext).color || inube.color;
+  const tokenReference = tokens[typeToken]?.[appearance]?.[category];
   if (!tokenReference) return null;
   const castedPalette = inube.color.palette as Record<
     string,
@@ -65,7 +68,9 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     onChange(updatedTokenName);
   };
 
-  const isDark = tinycolor(getTokenColor(tokenName!)).isDark();
+  const requireBackground =
+    (tokenName === "N10" || tokenName === "N0") &&
+    tinycolor(getTokenColor(tokenName!)).isLight();
 
   return (
     <Fieldset title={title}>
@@ -75,7 +80,9 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             {description}
           </Text>
           <Stack gap={inube.spacing.s200} alignItems="center">
-            <StyledTokenColorCardContainer isDark={isDark}>
+            <StyledTokenColorCardContainer
+              requireBackground={requireBackground}
+            >
               <TokenColorCard
                 tokenName={tokenName!}
                 type="tokenPicker"
@@ -84,7 +91,9 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
               />
             </StyledTokenColorCardContainer>
             {textWithColorToken && (
-              <StyledTextWithTokenContainer isDark={isDark}>
+              <StyledTextWithTokenContainer
+                requireBackground={requireBackground}
+              >
                 <Stack padding="s100">
                   <Text
                     size="medium"

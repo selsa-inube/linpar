@@ -7,32 +7,32 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
-import { textFormsConfig } from "../../config/text.config";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
 const renderMessage = (
-  message: IMessageState,
-  onCloseSectionMessage: ErrorTokensFormUIProps["onCloseSectionMessage"]
+  message: IUsersMessage,
+  handleCloseMessage: () => void,
+  onMessageClosed: () => void
 ) => {
-  if (!message.visible || !message.type) {
-    return null;
-  }
+  if (!message.data) return null;
 
-  const { title, description, icon, appearance } =
-    assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
+  const closeMessageAndExecuteCallback = () => {
+    handleCloseMessage();
+    onMessageClosed();
+  };
 
   return (
     <StyledMessageContainer>
       <Stack justifyContent="flex-end" width="100%">
         <SectionMessage
-          title={title}
-          description={description}
-          icon={icon}
-          appearance={appearance}
+          title={message.data.title}
+          description={message.data.description}
+          icon={message.data.icon}
+          appearance={message.data.appearance}
           duration={4000}
-          closeSectionMessage={onCloseSectionMessage}
+          closeSectionMessage={closeMessageAndExecuteCallback}
         />
       </Stack>
     </StyledMessageContainer>
@@ -52,7 +52,9 @@ interface ErrorTokensFormUIProps {
   ) => void;
   message: IMessageState;
   onCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
+  hasChanges: () => boolean;
+  handleCloseMessage: () => void;
+  onMessageClosed: () => void;
 }
 
 function ErrorFormUI(props: ErrorTokensFormUIProps) {
@@ -64,7 +66,8 @@ function ErrorFormUI(props: ErrorTokensFormUIProps) {
     handleChangeErrorTokens,
     palette,
     message,
-    onCloseSectionMessage,
+    handleCloseMessage,
+    onMessageClosed,
     hasChanges,
   } = props;
 
@@ -76,7 +79,7 @@ function ErrorFormUI(props: ErrorTokensFormUIProps) {
         {textConfig.description}
       </Text>
       <FormButtons
-        disabledButtons={!hasChanges(textConfig)}
+        disabledButtons={!hasChanges()}
         handleSubmit={handleSubmitForm}
         handleReset={handleReset}
         loading={isLoading}
@@ -98,7 +101,7 @@ function ErrorFormUI(props: ErrorTokensFormUIProps) {
           ))}
         </Stack>
       </FormButtons>
-      {renderMessage(message, onCloseSectionMessage)}
+      {renderMessage(message, handleCloseMessage, onMessageClosed)}
     </>
   );
 }

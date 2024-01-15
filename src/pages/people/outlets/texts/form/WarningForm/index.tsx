@@ -1,55 +1,77 @@
 import { useState } from "react";
 import { WarningFormUI } from "./interface";
 import { inube } from "@inube/design-system";
-import { EMessageType } from "@src/types/messages.types";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
+import { useNavigate } from "react-router-dom";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { textMessagesConfig } from "../../config/text.config";
 
 const LOADING_TIMEOUT = 1500;
 
 interface WarningTokensFormProps {
   textConfig: any;
   palette: typeof inube;
+  originalTextConfig: typeof inube;
+  textTokens: typeof inube;
   onChange: (event: any) => void;
-  handleSubmit: (warningText: IAssignmentFormEntry[]) => void;
-  onHasChanges?: (hasChanges: boolean) => void;
 }
 
 function WarningForm(props: WarningTokensFormProps) {
-  const { textConfig, palette, handleSubmit, onChange, onHasChanges } = props;
-  const [warningText, setWarningText] = useState(textConfig);
+  const {
+    textTokens,
+    originalTextConfig,
+    textConfig,
+    palette,
+
+    onChange,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
+  const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(textConfig) !== JSON.stringify(valueCompare);
+  const navigate = useNavigate();
 
-  const handleChangeWarningTokens = (warningText: IAssignmentFormEntry[]) => {
-    setWarningText(warningText);
-    if (onHasChanges) onHasChanges(hasChanges(warningText));
-    handleSubmit(warningText);
+  const hasChanges = (): boolean => {
+    return (
+      JSON.stringify(originalTextConfig.text) !==
+      JSON.stringify(textTokens.text)
+    );
+  };
+
+  const onMessageClosed = () => {
+    navigate(-1);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-
-    setTimeout(() => {
-      handleSubmit(warningText);
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = true;
+        if (isSuccess) {
+          originalTextConfig.text = textTokens.text;
+          resolve("success");
+        } else {
+          reject("failed");
+        }
+      }, 2000);
+    })
+      .then((result) => {
+        if (result === "success") {
+          setMessage({
+            visible: true,
+            data: textMessagesConfig.success,
+          });
+        }
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: textMessagesConfig.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    }, LOADING_TIMEOUT);
-  };
-
-  const handleReset = () => {
-    setWarningText(textConfig);
-    if (onHasChanges) onHasChanges(false);
   };
 
   const handleCloseSectionMessage = () => {
@@ -62,13 +84,14 @@ function WarningForm(props: WarningTokensFormProps) {
     <WarningFormUI
       handleSubmitForm={handleSubmitForm}
       handleChangeWarningTokens={onChange}
-      handleReset={handleReset}
+      handleReset={onMessageClosed}
       isLoading={isLoading}
       textConfig={textConfig}
+      palette={palette}
       message={message}
-      onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      palette={undefined}
+      handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
     />
   );
 }
