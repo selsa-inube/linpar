@@ -74,7 +74,7 @@ function Surfaces() {
     category: string,
     updatedTokenName: string
   ) => {
-    const updatedTextConfig = { ...textConfig.text };
+    const updatedTextConfig = { ...textConfig.surface };
 
     if (
       updatedTextConfig[appearance] &&
@@ -84,7 +84,7 @@ function Surfaces() {
     }
     const updatedInubeColor = {
       ...inube.color,
-      text: { ...updatedTextConfig },
+      surface: { ...updatedTextConfig },
     };
 
     setTextConfig(updatedInubeColor);

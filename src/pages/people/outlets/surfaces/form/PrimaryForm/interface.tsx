@@ -17,9 +17,6 @@ const renderMessage = (
     onMessageClosed();
   };
 
-  //const { title, description, icon, appearance } =
-  //assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
-
   return (
     <StyledMessageContainer>
       <Stack justifyContent="flex-end" width="100%">
