@@ -4,6 +4,7 @@ import { MenuLink } from "../MenuLink";
 import { MenuOption } from "../MenuOption";
 import { StyledMenu, StyledMenuContainer } from "./styles";
 import { IOption } from "./types";
+import { useCallback } from "react";
 
 interface MenuProps {
   options: IOption[];
@@ -41,22 +42,25 @@ function Menu(props: MenuProps) {
 
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
+  const handleWindowClick = useCallback(
+    (event: MouseEvent) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node)
+      ) {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
   useEffect(() => {
     window.addEventListener("mousedown", handleWindowClick);
 
     return () => {
       window.removeEventListener("mousedown", handleWindowClick);
     };
-  }, []);
-
-  const handleWindowClick = (event: MouseEvent) => {
-    if (
-      mobileMenuRef.current &&
-      !mobileMenuRef.current.contains(event.target as Node)
-    ) {
-      handleClose();
-    }
-  };
+  }, [handleWindowClick]);
 
   return (
     <StyledMenu ref={mobileMenuRef}>

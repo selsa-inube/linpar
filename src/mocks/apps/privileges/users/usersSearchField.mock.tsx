@@ -1,5 +1,5 @@
 const userSearchCardData = {
-  ["Digita el nombre o numero de identificación."]: "",
+  "Digita el nombre o numero de identificación.": "",
 };
 
 export { userSearchCardData };

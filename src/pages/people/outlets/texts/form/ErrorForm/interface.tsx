@@ -1,12 +1,8 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
 
 import { StyledMessageContainer } from "./styles";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "@src/pages/privileges/outlets/users/types/forms.types";
+import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";

@@ -4,8 +4,6 @@ import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { assignmentFormMessages } from "@src/pages/privileges/outlets/users/edit-user/config/messages.config";
-import { textFormsConfig } from "../../config/text.config";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 

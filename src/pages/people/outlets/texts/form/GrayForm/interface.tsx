@@ -1,5 +1,4 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
 
 import { StyledMessageContainer } from "./styles";

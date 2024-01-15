@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { CheckingCredentialsUI } from "./interface";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { IUser } from "../../types";
 
 const API_BASE_URL = import.meta.env.VITE_USERS_URI;
@@ -23,7 +23,7 @@ function CheckingCredentials() {
   const navigate = useNavigate();
   const { user_id } = useParams();
 
-  const checkCredentials = async () => {
+  const checkCredentials = useCallback(async () => {
     try {
       if (!user_id) {
         return;
@@ -45,11 +45,12 @@ function CheckingCredentials() {
     } catch (error) {
       navigate("/login/error/not-available");
     }
-  };
+  }, [user_id, navigate]);
 
   useEffect(() => {
-    setTimeout(checkCredentials, 2000);
-  }, []);
+    const timer = setTimeout(checkCredentials, 2000);
+    return () => clearTimeout(timer);
+  }, [checkCredentials]);
 
   return <CheckingCredentialsUI />;
 }
