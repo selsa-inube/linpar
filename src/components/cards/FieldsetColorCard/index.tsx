@@ -27,9 +27,9 @@ interface FieldsetColorCardProps {
 const getTokenReferenceFromAppearanceAndCategory = (
   appearance: Appearance,
   typeToken: string,
-  category: string
+  category: string,
+  tokens: typeof inube
 ): string | null => {
-  const tokens = useContext(ThemeContext).color || inube.color;
   const tokenReference = tokens[typeToken]?.[appearance]?.[category];
   if (!tokenReference) return null;
   const castedPalette = inube.color.palette as Record<
@@ -58,10 +58,13 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     onChange,
   } = props;
 
+  const tokens = useContext(ThemeContext).color || inube.color;
+
   const tokenName = getTokenReferenceFromAppearanceAndCategory(
     appearance,
     typeToken,
-    category
+    category,
+    tokens
   );
 
   const handleColorChange = (updatedTokenName: string) => {

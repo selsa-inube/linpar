@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/react";
 import { ThemeProvider } from "styled-components";
 import { TokenColorCard, ITokenColorCardProps } from ".";
-import { presente, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 import React, { useState } from "react";
 
 const story = {
@@ -21,13 +21,6 @@ const story = {
   },
 };
 
-const Template: StoryFn<ITokenColorCardProps> = (args) => (
-  <TokenColorCard {...args} />
-);
-
-const theme = {
-  ...presente,
-};
 const DynamicThemeWrapper = ({ children }: any) => {
   const [theme, setTheme] = useState({ ...inube.color.palette });
   const [selectedTokenName, setSelectedTokenName] = useState("N900");

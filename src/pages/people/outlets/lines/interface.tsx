@@ -1,28 +1,14 @@
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   Breadcrumbs,
-  Button,
-  Icon,
   SectionMessage,
   Stack,
-  Tabs,
-  Textfield,
   useMediaQuery,
 } from "@inube/design-system";
 
-import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
 
 import { StyledMessageContainer, StyledContainer } from "./styles";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import {
-  privilegeConfig,
-  privilegeOptionsConfig,
-} from "@src/pages/privileges/outlets/options/config/privileges.config";
-import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/config/usersTabs.config";
-import { menuInvitationLinks } from "@src/pages/privileges/outlets/users/config/menuInvitation.config";
-import { InvitationsTab } from "@src/pages/privileges/outlets/users/tabs/invitations";
-import { UsersTab } from "@src/pages/privileges/outlets/users/tabs/users";
 import { peopleOptionsConfig } from "../options/config/people.config";
 
 const renderMessage = (
@@ -60,17 +46,7 @@ interface UsersUIProps {
 }
 
 export function LinesUI(props: UsersUIProps) {
-  const {
-    isSelected,
-    searchText,
-    handleTabChange,
-    handleSearchText,
-    showMenu,
-    handleToggleMenuInvitation,
-    handleCloseMenuInvitation,
-    message,
-    handleCloseMessage,
-  } = props;
+  const { message, handleCloseMessage } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 

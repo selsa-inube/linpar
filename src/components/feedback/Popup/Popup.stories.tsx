@@ -8,15 +8,6 @@ const story = {
   component: Popup,
 };
 
-const data = {
-  id: 10,
-  userID: "45645",
-  username: "David Leonardo Garzón",
-  mail: "lgarzon@gmail.com",
-  invitationDate: "11/JUN/2022",
-  status: "Sent",
-};
-
 export const Default = (args: PopupProps) => {
   const [showModal, setShowModal] = useState(false);
 

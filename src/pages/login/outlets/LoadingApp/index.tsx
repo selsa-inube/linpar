@@ -4,11 +4,14 @@ import { useEffect } from "react";
 
 function LoadingApp() {
   const navigate = useNavigate();
+
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       navigate("/");
     }, 2000);
-  }, []);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return <LoadingAppUI />;
 }

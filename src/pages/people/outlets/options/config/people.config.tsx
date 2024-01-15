@@ -2,7 +2,6 @@ import {
   MdBorderColor,
   MdOutlineFormatColorText,
   MdOutlineFormatPaint,
-  MdOutlineModeEditOutline,
   MdPalette,
 } from "react-icons/md";
 

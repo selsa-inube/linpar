@@ -10,14 +10,11 @@ import {
   Text,
   useMediaQuery,
 } from "@inube/design-system";
-
-import { EAppearance } from "@src/types/colors.types";
 import { StyledModal } from "./styles";
 
 interface DecisionModalProps {
   title: string;
   description: string;
-  appearance: EAppearance;
   actionText: string;
   loading?: boolean;
   closeModal: () => void;
@@ -28,7 +25,6 @@ function DecisionModal(props: DecisionModalProps) {
   const {
     title,
     description,
-    appearance,
     actionText,
     loading = true,
     closeModal,
