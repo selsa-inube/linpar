@@ -14,7 +14,7 @@ import { surfaceFormsConfig } from "./config/surface.config";
 function Surfaces() {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedTab, setSelectedTab] = useState(colorTabsConfig.primary.id);
-  const [textConfig, setTextConfig] = useState(
+  const [surfaceConfig, setSurfaceConfig] = useState(
     JSON.parse(JSON.stringify(inube.color))
   );
   const [originalTextConfig] = useState(inube.color);
@@ -74,7 +74,7 @@ function Surfaces() {
     category: string,
     updatedTokenName: string
   ) => {
-    const updatedTextConfig = { ...textConfig.surface };
+    const updatedTextConfig = { ...surfaceConfig.surface };
 
     if (
       updatedTextConfig[appearance] &&
@@ -87,13 +87,13 @@ function Surfaces() {
       surface: { ...updatedTextConfig },
     };
 
-    setTextConfig(updatedInubeColor);
+    setSurfaceConfig(updatedInubeColor);
   };
 
   return (
     <SurfacesUI
       originalTextConfig={originalTextConfig}
-      textTokens={textConfig}
+      surfaceTokens={surfaceConfig}
       surfaceConfig={surfaceFormsConfig}
       palette={inube.color.palette}
       selectedTab={selectedTab}

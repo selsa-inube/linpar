@@ -18,8 +18,6 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { PrimaryForm } from "./form/PrimaryForm";
-import { useState } from "react";
-import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { ThemeProvider } from "styled-components";
 
 const renderMessage = (
@@ -46,7 +44,7 @@ const renderMessage = (
 
 interface UsersUIProps {
   originalTextConfig: any;
-  textTokens: any;
+  surfaceTokens: any;
   surfaceConfig: any;
   palette: typeof inube;
   selectedTab: string;
@@ -64,7 +62,7 @@ export function SurfacesUI(props: UsersUIProps) {
     surfaceConfig,
     palette,
     selectedTab,
-    textTokens,
+    surfaceTokens,
     originalTextConfig,
     handleChangeColor,
     handleTabChange,
@@ -77,7 +75,7 @@ export function SurfacesUI(props: UsersUIProps) {
 
   const updatedTheme = {
     ...inube.color,
-    color: { ...textTokens },
+    color: { ...surfaceTokens },
   };
   return (
     <>
@@ -114,7 +112,7 @@ export function SurfacesUI(props: UsersUIProps) {
                     palette={palette}
                     onChange={handleChangeColor}
                     originalTextConfig={originalTextConfig}
-                    textTokens={textTokens}
+                    surfaceTokens={surfaceTokens}
                   />
                 )}
               </ThemeProvider>

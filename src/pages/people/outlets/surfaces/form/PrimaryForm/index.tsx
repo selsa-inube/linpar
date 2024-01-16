@@ -4,20 +4,28 @@ import { useNavigate } from "react-router-dom";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
 import { surfaceMessagesConfig } from "../../config/surface.config";
-
-const LOADING_TIMEOUT = 1500;
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
 interface PrimaryFormProps {
   surfaceConfig: any;
   palette: typeof inube;
-  onChange: (event: any) => void;
+  onChange: (
+    appearance: Appearance,
+    category: string,
+    updatedTokenName: string
+  ) => void;
   originalTextConfig: typeof inube;
-  textTokens: typeof inube;
+  surfaceTokens: typeof inube;
 }
 
 function PrimaryForm(props: PrimaryFormProps) {
-  const { textTokens, originalTextConfig, surfaceConfig, palette, onChange } =
-    props;
+  const {
+    surfaceTokens,
+    originalTextConfig,
+    surfaceConfig,
+    palette,
+    onChange,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
 
   const [message, setMessage] = useState<IUsersMessage>({
@@ -28,7 +36,7 @@ function PrimaryForm(props: PrimaryFormProps) {
   const hasChanges = (): boolean => {
     return (
       JSON.stringify(originalTextConfig.surface) !==
-      JSON.stringify(textTokens.surface)
+      JSON.stringify(surfaceTokens.surface)
     );
   };
 
@@ -42,7 +50,7 @@ function PrimaryForm(props: PrimaryFormProps) {
       setTimeout(() => {
         const isSuccess = true;
         if (isSuccess) {
-          originalTextConfig.surface = textTokens.surface;
+          originalTextConfig.surface = surfaceTokens.surface;
           resolve("success");
         } else {
           reject("failed");
