@@ -7,15 +7,11 @@ import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/user
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { textFormsConfig } from "./config/text.config";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 
 function Texts() {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedTab, setSelectedTab] = useState(colorTabsConfig.primary.id);
-  const [textConfig, setTextConfig] = useState(
-    JSON.parse(JSON.stringify(inube.color))
-  );
+  const [textConfig] = useState(JSON.parse(JSON.stringify(inube.color)));
   const [originalTextConfig] = useState(inube.color);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
@@ -29,10 +25,6 @@ function Texts() {
       }
     }
   }, [location]);
-
-  // const handleTabChange = (tabId: string) => {
-  //   setIsSelected(tabId);
-  // };
 
   const handleToggleMenuInvitation = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
@@ -69,27 +61,6 @@ function Texts() {
     setSelectedTab(tabId);
   };
 
-  const handleTextConfigUpdate = (
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
-  ) => {
-    const updatedTextConfig = { ...textConfig.text };
-
-    if (
-      updatedTextConfig[appearance] &&
-      updatedTextConfig[appearance][category]
-    ) {
-      updatedTextConfig[appearance][category] = getTokenColor(updatedTokenName);
-    }
-    const updatedInubeColor = {
-      ...inube.color,
-      text: { ...updatedTextConfig },
-    };
-
-    setTextConfig(updatedInubeColor);
-  };
-
   return (
     <TextsUI
       originalTextConfig={originalTextConfig}
@@ -97,7 +68,6 @@ function Texts() {
       textConfig={textFormsConfig}
       palette={inube.color.palette}
       selectedTab={selectedTab}
-      handleChangeColor={handleTextConfigUpdate}
       handleTabChange={handleTabChange}
       showMenu={showMenu}
       handleToggleMenuInvitation={handleToggleMenuInvitation}

@@ -1,23 +1,6 @@
 import { EAppearance } from "@src/types/colors.types";
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
-const paletteMessagesConfig = {
-  success: {
-    id: 1,
-    icon: <MdThumbUpOffAlt size={18} />,
-    title: "Actualizacion de paleta exitosa",
-    description: `La paleta de colores ha sido actualizada con exito`,
-    appearance: EAppearance.SUCCESS,
-  },
-  failed: {
-    id: 2,
-    icon: <MdErrorOutline size={18} />,
-    title: "¡Uy, algo ha salido mal!",
-    description: `Hemos presentado problemas actualizando la paleta de colores.`,
-    appearance: EAppearance.ERROR,
-  },
-};
-
 const textFormsConfig = {
   primary: {
     description:
@@ -27,7 +10,6 @@ const textFormsConfig = {
         title: "Regular",
         description:
           "El texto tendrá este color cuando no tenga cambios por comportamiento o interacción con el usuario.",
-        tokenName: "B400",
         example:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor mauris a nisl auctor posuere. In eu metus dapibus, tristique felis sit amet, convallis ligula.",
       },
@@ -35,7 +17,6 @@ const textFormsConfig = {
         title: "Hover",
         description:
           "El texto tomará este color cuando el cursor esté ubicado sobre el texto.",
-        tokenName: "B300",
         example:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor mauris a nisl auctor posuere. In eu metus dapibus, tristique felis sit amet, convallis ligula.",
       },
@@ -43,7 +24,6 @@ const textFormsConfig = {
         title: "Disabled",
         description:
           "El texto tomará este color cuando el texto se encuentre deshabilitado.",
-        tokenName: "N70",
         example:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor mauris a nisl auctor posuere. In eu metus dapibus, tristique felis sit amet, convallis ligula.",
       },
@@ -139,7 +119,7 @@ const textFormsConfig = {
       },
     },
   },
-  info: {
+  information: {
     description:
       " Los textos de tipo informacion se utilizan en textos cortos, textos de botones y enlaces. Tiene como propósito resaltar un texto aprovechando el color principal de la marca (empresa)",
     status: {
@@ -308,4 +288,4 @@ const textMessagesConfig = {
   },
 };
 
-export { paletteMessagesConfig, textFormsConfig, textMessagesConfig };
+export { textFormsConfig, textMessagesConfig };

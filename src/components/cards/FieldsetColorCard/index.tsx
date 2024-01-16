@@ -58,7 +58,8 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     onChange,
   } = props;
 
-  const tokens = useContext(ThemeContext).color || inube.color;
+  const themeContext = useContext(ThemeContext);
+  const tokens = themeContext?.color || inube.color;
 
   const tokenName = getTokenReferenceFromAppearanceAndCategory(
     appearance,
