@@ -72,7 +72,8 @@ export function TextsUI(props: TextUIProps) {
   //   color: { ...textTokens },
   // };
 
-  const colorTabs = Object.entries(colorTabsConfig);
+  const colorTabs = Object.keys(colorTabsConfig);
+
   return (
     <>
       <Stack
@@ -100,10 +101,10 @@ export function TextsUI(props: TextUIProps) {
                 />
                 {colorTabs.map(
                   (formType) =>
-                    selectedTab === formType[0] && (
+                    selectedTab === formType && (
                       <RenderContentForm
-                        key={formType[0]}
-                        formType={formType[0]}
+                        key={formType}
+                        formType={formType}
                         textConfig={textConfig}
                         palette={inube.color.palette}
                         textTokens={inube.color.text}
