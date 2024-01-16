@@ -44,7 +44,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
       <Text
         type="title"
         size="medium"
-        padding="0px 0px 0px 0px"
+        padding="0px"
         textAlign="start"
         appearance="dark"
       >

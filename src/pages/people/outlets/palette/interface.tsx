@@ -79,7 +79,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
       <Text
         type="title"
         size="medium"
-        padding="0px 0px 0px 0px"
+        padding="0px"
         textAlign="start"
         appearance="dark"
       >
@@ -123,7 +123,8 @@ export function PaletteUI(props: PaletteUIProps) {
     handleReset,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const smallScreen = useMediaQuery("(max-width: 640px)");
+  const midScreen = useMediaQuery("(max-width: 1170px)");
   const paletteEntries = Object.entries(colorTokens);
   const firstTwoCategories = paletteEntries.slice(0, 2);
   const remainingCategories = paletteEntries.slice(2);
@@ -158,8 +159,10 @@ export function PaletteUI(props: PaletteUIProps) {
             >
               <RenderCategoryGrid
                 categories={firstTwoCategories}
-                templateColumns={smallScreen ? "auto" : "repeat(3, 1fr)"}
-                templateRows="repeat(7, 1fr)"
+                templateColumns={
+                  smallScreen ? "auto" : `repeat(${midScreen ? 2 : 3}, 1fr)`
+                }
+                templateRows={midScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)"}
                 autoFlow={smallScreen ? "row" : "column"}
                 hasBackground
                 handleColorChange={setColorTokens}
