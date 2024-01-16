@@ -1,12 +1,15 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { PrimaryForm } from "./index";
+
 import { useState } from "react";
 import { inube } from "@inube/design-system";
 import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { surfaceFormsConfig } from "../../config/surface.config";
+
 import { ThemeProvider } from "styled-components";
+import { PrimaryForm } from "..";
+import { surfaceFormsConfig } from "../../../config/surface.config";
+import { StyledPrimaryFormContainer } from "./styles";
 
 const story = {
   components: [PrimaryForm],
@@ -48,16 +51,18 @@ const Default = () => {
 
     setSurfaceConfig(updatedInubeColor);
   };
-  console.log(surfaceConfig, originalTextConfig, surfaceFormsConfig);
+
   return (
     <ThemeProvider theme={inube}>
-      <PrimaryForm
-        surfaceConfig={surfaceFormsConfig.primary}
-        palette={inube.color.palette}
-        onChange={handleTextConfigUpdate}
-        originalTextConfig={originalTextConfig}
-        surfaceTokens={surfaceConfig}
-      />
+      <StyledPrimaryFormContainer>
+        <PrimaryForm
+          surfaceConfig={surfaceFormsConfig.primary}
+          palette={inube.color.palette}
+          onChange={handleTextConfigUpdate}
+          originalTextConfig={originalTextConfig}
+          surfaceTokens={surfaceConfig}
+        />
+      </StyledPrimaryFormContainer>
     </ThemeProvider>
   );
 };
