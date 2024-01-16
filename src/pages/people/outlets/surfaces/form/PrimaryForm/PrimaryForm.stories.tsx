@@ -6,6 +6,7 @@ import { inube } from "@inube/design-system";
 import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { surfaceFormsConfig } from "../../config/surface.config";
+import { ThemeProvider } from "styled-components";
 
 const story = {
   components: [PrimaryForm],
@@ -49,13 +50,15 @@ const Default = () => {
   };
   console.log(surfaceConfig, originalTextConfig, surfaceFormsConfig);
   return (
-    <PrimaryForm
-      surfaceConfig={surfaceFormsConfig.primary}
-      palette={inube.color.palette}
-      onChange={handleTextConfigUpdate}
-      originalTextConfig={originalTextConfig}
-      surfaceTokens={surfaceConfig}
-    />
+    <ThemeProvider theme={inube}>
+      <PrimaryForm
+        surfaceConfig={surfaceFormsConfig.primary}
+        palette={inube.color.palette}
+        onChange={handleTextConfigUpdate}
+        originalTextConfig={originalTextConfig}
+        surfaceTokens={surfaceConfig}
+      />
+    </ThemeProvider>
   );
 };
 
