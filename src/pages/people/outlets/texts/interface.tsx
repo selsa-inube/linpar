@@ -17,7 +17,7 @@ import {
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
-import { RenderContentForm } from "./form/RenderContentForm";
+import { RenderTextContentForm } from "./form/RenderTextContentForm";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -96,7 +96,7 @@ export function TextsUI(props: TextUIProps) {
                 {colorTabs.map(
                   (formType) =>
                     selectedTab === formType && (
-                      <RenderContentForm
+                      <RenderTextContentForm
                         key={formType}
                         formType={formType}
                         textConfig={textConfig}

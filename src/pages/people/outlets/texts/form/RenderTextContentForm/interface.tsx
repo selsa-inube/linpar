@@ -34,7 +34,7 @@ const renderMessage = (
   );
 };
 
-interface RenderContentFormUIProps {
+interface RenderTextContentFormUIProps {
   textTokens: typeof inube;
   formType: string;
   textConfig: any;
@@ -48,7 +48,7 @@ interface RenderContentFormUIProps {
   handleCloseMessage: () => void;
 }
 
-function RenderContentFormUI(props: RenderContentFormUIProps) {
+function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
   const {
     formType,
     textTokens,
@@ -100,4 +100,4 @@ function RenderContentFormUI(props: RenderContentFormUIProps) {
   );
 }
 
-export { RenderContentFormUI };
+export { RenderTextContentFormUI };

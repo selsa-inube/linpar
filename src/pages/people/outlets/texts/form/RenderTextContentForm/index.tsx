@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RenderContentFormUI } from "./interface";
+import { RenderTextContentFormUI } from "./interface";
 import { inube } from "@inube/design-system";
 
 import { textMessagesConfig } from "../../config/text.config";
@@ -7,13 +7,13 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
-interface RenderContentFormProps {
+interface RenderTextContentFormProps {
   textTokens: typeof inube;
   formType: string;
   textConfig: any;
 }
 
-function RenderContentForm(props: RenderContentFormProps) {
+function RenderTextContentForm(props: RenderTextContentFormProps) {
   const { formType, textTokens, textConfig } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [updateTokens, setUpdateTokens] = useState(textTokens);
@@ -96,7 +96,7 @@ function RenderContentForm(props: RenderContentFormProps) {
   };
 
   return (
-    <RenderContentFormUI
+    <RenderTextContentFormUI
       textTokens={updateTokens}
       handleChangePrimaryTokens={handleTextConfigUpdate}
       handleSubmitForm={handleSubmitForm}
@@ -114,4 +114,4 @@ function RenderContentForm(props: RenderContentFormProps) {
   );
 }
 
-export { RenderContentForm };
+export { RenderTextContentForm };
