@@ -33,22 +33,10 @@ function PeopleRoutes() {
     <Routes>
       <Route path="/" element={<People />}>
         <Route path="options" element={<PeopleOptions />} />
-        <Route
-          path="palette"
-          element={<Palette token={token} setToken={handleTokenChange} />}
-        />
-        <Route
-          path="texts"
-          element={<Texts token={token} setToken={handleTokenChange} />}
-        />
-        <Route
-          path="surfaces"
-          element={<Surfaces token={token} setToken={handleTokenChange} />}
-        />
-        <Route
-          path="lines"
-          element={<Lines token={token} setToken={handleTokenChange} />}
-        />
+        <Route path="palette" element={<Palette />} />
+        <Route path="texts" element={<Texts />} />
+        <Route path="surfaces" element={<Surfaces />} />
+        <Route path="lines" element={<Lines />} />
       </Route>
       <Route path="/*" element={<ErrorPage />} />
     </Routes>
