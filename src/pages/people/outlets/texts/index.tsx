@@ -10,6 +10,11 @@ import { textFormsConfig } from "./config/text.config";
 
 interface TextProps {
   tokens: typeof inube;
+  handleTokenChange: (
+    domain: string,
+    block: string,
+    tokenUpdate: typeof inube
+  ) => void;
 }
 
 function Texts(props: TextProps) {
