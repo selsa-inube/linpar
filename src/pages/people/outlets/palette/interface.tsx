@@ -3,7 +3,7 @@ import {
   Grid,
   SectionMessage,
   Stack,
-  useMediaQuery,
+  useMediaQueries,
   inube,
   Text,
 } from "@inube/design-system";
@@ -117,8 +117,10 @@ export function PaletteUI(props: PaletteUIProps) {
     handleReset,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 640px)");
-  const midScreen = useMediaQuery("(max-width: 1170px)");
+  const {
+    "(max-width: 640px)": smallScreen,
+    "(max-width: 1170px)": midScreen,
+  } = useMediaQueries(["(max-width: 640px)", "(max-width: 1170px)"]);
   const paletteEntries = Object.entries(colorTokens);
   const firstTwoCategories = paletteEntries.slice(0, 2);
   const remainingCategories = paletteEntries.slice(2);
