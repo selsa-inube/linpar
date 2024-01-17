@@ -4,6 +4,7 @@ import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { ThemeProvider } from "styled-components";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -50,6 +51,7 @@ interface RenderContentFormUIProps {
 function RenderContentFormUI(props: RenderContentFormUIProps) {
   const {
     formType,
+    textTokens,
     textConfig,
     isLoading,
     handleSubmitForm,
@@ -62,11 +64,11 @@ function RenderContentFormUI(props: RenderContentFormUIProps) {
   } = props;
 
   const colorCards = Object.entries(textConfig[formType].status);
-
+  console.log("textTokens: ", textTokens);
   return (
     <>
       <Text size="medium" padding="s0" appearance="gray">
-        {textConfig.description}
+        {textConfig[formType].description}
       </Text>
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -74,22 +76,24 @@ function RenderContentFormUI(props: RenderContentFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <Stack direction="column" gap={inube.spacing.s350}>
-          {colorCards.map(([key, config]: any) => (
-            <FieldsetColorCard
-              key={key}
-              optionsMenu={palette}
-              title={config.title}
-              description={config.description}
-              appearance={formType}
-              category={key}
-              textWithColorToken={config.example}
-              onChange={(newTokenName) =>
-                handleChangePrimaryTokens(formType, key, newTokenName)
-              }
-            />
-          ))}
-        </Stack>
+        <ThemeProvider theme={textTokens}>
+          <Stack direction="column" gap={inube.spacing.s350}>
+            {colorCards.map(([key, config]: any) => (
+              <FieldsetColorCard
+                key={key}
+                optionsMenu={palette}
+                title={config.title}
+                description={config.description}
+                appearance={formType}
+                category={key}
+                textWithColorToken={config.example}
+                onChange={(newTokenName) =>
+                  handleChangePrimaryTokens(formType, key, newTokenName)
+                }
+              />
+            ))}
+          </Stack>
+        </ThemeProvider>
       </FormButtons>
       {renderMessage(message, handleCloseMessage, handleReset)}
     </>

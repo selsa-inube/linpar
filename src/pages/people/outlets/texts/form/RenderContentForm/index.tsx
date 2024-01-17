@@ -11,23 +11,21 @@ interface RenderContentFormProps {
   textTokens: typeof inube;
   formType: string;
   textConfig: any;
-  palette: typeof inube;
 }
 
 function RenderContentForm(props: RenderContentFormProps) {
-  const { formType, textTokens, textConfig, palette } = props;
+  const { formType, textTokens, textConfig } = props;
   const [isLoading, setIsLoading] = useState(false);
-  const [updatetextTokens, setUpdateTextTokens] = useState(textTokens);
+  const [updateTokens, setUpdateTokens] = useState(textTokens);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
   const hasChanges = (): boolean => {
-    return false;
-    // return (
-    //   JSON.stringify(initialStateTextTokens.text) !==
-    //   JSON.stringify(textTokens.text)
-    // );
+    return (
+      JSON.stringify(updateTokens.color.text) !==
+      JSON.stringify(textTokens.color.text)
+    );
   };
 
   const handleTextConfigUpdate = (
@@ -35,8 +33,7 @@ function RenderContentForm(props: RenderContentFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    console.log("updatedTokenName: ", updatedTokenName);
-    const updatedTextConfig = { ...textConfig.text };
+    const updatedTextConfig = { ...textTokens.color.text };
 
     if (
       updatedTextConfig[appearance] &&
@@ -44,12 +41,20 @@ function RenderContentForm(props: RenderContentFormProps) {
     ) {
       updatedTextConfig[appearance][category] = getTokenColor(updatedTokenName);
     }
-    const updatedInubeColor = {
-      ...inube.color,
-      text: { ...updatedTextConfig },
-    };
 
-    setUpdateTextTokens(updatedInubeColor);
+    const updatedTheme = {
+      ...textTokens,
+      color: {
+        ...textTokens.color,
+        text: updatedTextConfig,
+      },
+    };
+    // console.log(
+    //   "textTokens: ",
+    //   textTokens,'   Theme: ',
+    //   updatedTheme
+    // );
+    setUpdateTokens(updatedTheme);
   };
 
   const handleSubmitForm = () => {
@@ -58,7 +63,7 @@ function RenderContentForm(props: RenderContentFormProps) {
       setTimeout(() => {
         const isSuccess = true;
         if (isSuccess) {
-          setUpdateTextTokens(updatetextTokens.text);
+          // setUpdateTextTokens(updateTextTokens.text);
           resolve("success");
         } else {
           reject("failed");
@@ -92,15 +97,15 @@ function RenderContentForm(props: RenderContentFormProps) {
 
   return (
     <RenderContentFormUI
-      textTokens={textTokens}
+      textTokens={updateTokens}
       handleChangePrimaryTokens={handleTextConfigUpdate}
       handleSubmitForm={handleSubmitForm}
       handleReset={() => {
-        setUpdateTextTokens(textTokens);
+        setUpdateTokens(textTokens);
       }}
       isLoading={isLoading}
       textConfig={textConfig}
-      palette={palette}
+      palette={updateTokens.color.palette}
       message={message}
       hasChanges={hasChanges}
       handleCloseMessage={handleCloseSectionMessage}

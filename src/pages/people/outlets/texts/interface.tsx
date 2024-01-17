@@ -42,10 +42,8 @@ const renderMessage = (
 };
 
 interface TextUIProps {
-  originalTextConfig: any;
-  textTokens: any;
+  tokens: typeof inube;
   textConfig: any;
-  palette: typeof inube;
   selectedTab: string;
   handleTabChange: (id: string) => void;
   showMenu: boolean;
@@ -57,6 +55,7 @@ interface TextUIProps {
 
 export function TextsUI(props: TextUIProps) {
   const {
+    tokens,
     textConfig,
     selectedTab,
     handleTabChange,
@@ -66,11 +65,6 @@ export function TextsUI(props: TextUIProps) {
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
-
-  // const updatedTheme = {
-  //   ...inube.color,
-  //   color: { ...textTokens },
-  // };
 
   const colorTabs = Object.keys(colorTabsConfig);
 
@@ -106,8 +100,7 @@ export function TextsUI(props: TextUIProps) {
                         key={formType}
                         formType={formType}
                         textConfig={textConfig}
-                        palette={inube.color.palette}
-                        textTokens={inube.color.text}
+                        textTokens={tokens}
                       />
                     )
                 )}

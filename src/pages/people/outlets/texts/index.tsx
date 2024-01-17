@@ -8,11 +8,14 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { textFormsConfig } from "./config/text.config";
 
-function Texts() {
+interface TextProps {
+  tokens: typeof inube;
+}
+
+function Texts(props: TextProps) {
+  const { tokens } = props;
   const [showMenu, setShowMenu] = useState(false);
   const [selectedTab, setSelectedTab] = useState(colorTabsConfig.primary.id);
-  const [textConfig] = useState(JSON.parse(JSON.stringify(inube.color)));
-  const [originalTextConfig] = useState(inube.color);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -63,10 +66,8 @@ function Texts() {
 
   return (
     <TextsUI
-      originalTextConfig={originalTextConfig}
-      textTokens={textConfig}
+      tokens={tokens}
       textConfig={textFormsConfig}
-      palette={inube.color.palette}
       selectedTab={selectedTab}
       handleTabChange={handleTabChange}
       showMenu={showMenu}
