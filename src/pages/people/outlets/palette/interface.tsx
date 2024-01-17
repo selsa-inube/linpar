@@ -3,7 +3,7 @@ import {
   Grid,
   SectionMessage,
   Stack,
-  useMediaQuery,
+  useMediaQueries,
   inube,
   Text,
 } from "@inube/design-system";
@@ -76,13 +76,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
   } = props;
   return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column">
-      <Text
-        type="title"
-        size="medium"
-        padding="0px 0px 0px 0px"
-        textAlign="start"
-        appearance="dark"
-      >
+      <Text type="title" size="medium" textAlign="start" appearance="dark">
         {categoryTranslations[category] || category}
       </Text>
       <StyledGridContainer hasBackground={hasBackground}>
@@ -123,7 +117,10 @@ export function PaletteUI(props: PaletteUIProps) {
     handleReset,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const {
+    "(max-width: 640px)": smallScreen,
+    "(max-width: 1170px)": midScreen,
+  } = useMediaQueries(["(max-width: 640px)", "(max-width: 1170px)"]);
   const paletteEntries = Object.entries(colorTokens);
   const firstTwoCategories = paletteEntries.slice(0, 2);
   const remainingCategories = paletteEntries.slice(2);
@@ -158,8 +155,10 @@ export function PaletteUI(props: PaletteUIProps) {
             >
               <RenderCategoryGrid
                 categories={firstTwoCategories}
-                templateColumns={smallScreen ? "auto" : "repeat(3, 1fr)"}
-                templateRows="repeat(7, 1fr)"
+                templateColumns={
+                  smallScreen ? "auto" : `repeat(${midScreen ? 2 : 3}, 1fr)`
+                }
+                templateRows={midScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)"}
                 autoFlow={smallScreen ? "row" : "column"}
                 hasBackground
                 handleColorChange={setColorTokens}
