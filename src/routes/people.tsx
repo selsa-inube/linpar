@@ -26,32 +26,28 @@ function PeopleRoutes() {
   };
 
   return (
-    <>
-      {console.log(presente)}
-      {console.log(inube)}
-      <Routes>
-        <Route path="/" element={<People />}>
-          <Route path="options" element={<PeopleOptions />} />
-          <Route
-            path="palette"
-            element={<Palette token={token} setToken={handleTokenChange} />}
-          />
-          <Route
-            path="texts"
-            element={<Texts token={token} setToken={handleTokenChange} />}
-          />
-          <Route
-            path="surfaces"
-            element={<Surfaces token={token} setToken={handleTokenChange} />}
-          />
-          <Route
-            path="lines"
-            element={<Lines token={token} setToken={handleTokenChange} />}
-          />
-        </Route>
-        <Route path="/*" element={<ErrorPage />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<People />}>
+        <Route path="options" element={<PeopleOptions />} />
+        <Route
+          path="palette"
+          element={<Palette token={token} setToken={handleTokenChange} />}
+        />
+        <Route
+          path="texts"
+          element={<Texts token={token} setToken={handleTokenChange} />}
+        />
+        <Route
+          path="surfaces"
+          element={<Surfaces token={token} setToken={handleTokenChange} />}
+        />
+        <Route
+          path="lines"
+          element={<Lines token={token} setToken={handleTokenChange} />}
+        />
+      </Route>
+      <Route path="/*" element={<ErrorPage />} />
+    </Routes>
   );
 }
 
