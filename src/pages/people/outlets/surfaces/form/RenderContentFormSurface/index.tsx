@@ -34,7 +34,6 @@ function RenderContentForm(props: RenderContentFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    console.log("updatedTokenName: ", updatedTokenName);
     const updatedSurfaceConfig = { ...surfaceConfig.text };
 
     if (

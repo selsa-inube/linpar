@@ -17,7 +17,7 @@ import {
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
-import { RenderContentForm } from "./form/RenderContentForm";
+import { RenderContentForm } from "./form/RenderContentFormSurface";
 
 const renderMessage = (
   message: IUsersMessage,
