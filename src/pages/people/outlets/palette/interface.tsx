@@ -76,13 +76,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
   } = props;
   return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column">
-      <Text
-        type="title"
-        size="medium"
-        padding="0px"
-        textAlign="start"
-        appearance="dark"
-      >
+      <Text type="title" size="medium" textAlign="start" appearance="dark">
         {categoryTranslations[category] || category}
       </Text>
       <StyledGridContainer hasBackground={hasBackground}>
