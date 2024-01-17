@@ -1,47 +1,55 @@
 import { useState } from "react";
-import { PrimaryFormUI } from "./interface";
-import { useNavigate } from "react-router-dom";
+import { RenderContentFormUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
 import { surfaceMessagesConfig } from "../../config/surface.config";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
-interface PrimaryFormProps {
+interface RenderContentFormProps {
+  surfaceTokens: typeof inube;
+  formType: string;
   surfaceConfig: any;
   palette: typeof inube;
-  onChange: (
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
-  ) => void;
-  originalTextConfig: typeof inube;
-  surfaceTokens: typeof inube;
 }
 
-function PrimaryForm(props: PrimaryFormProps) {
-  const {
-    surfaceTokens,
-    originalTextConfig,
-    surfaceConfig,
-    palette,
-    onChange,
-  } = props;
+function RenderContentForm(props: RenderContentFormProps) {
+  const { formType, surfaceTokens, surfaceConfig, palette } = props;
   const [isLoading, setIsLoading] = useState(false);
 
+  const [updateSurfaceTokens, setUpdateSurfaceTokens] = useState(surfaceTokens);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
-  const navigate = useNavigate();
 
   const hasChanges = (): boolean => {
-    return (
-      JSON.stringify(originalTextConfig.surface) !==
-      JSON.stringify(surfaceTokens.surface)
-    );
+    return false;
+    // return (
+    //   JSON.stringify(initialStateTextTokens.text) !==
+    //   JSON.stringify(textTokens.text)
+    // );
   };
 
-  const onMessageClosed = () => {
-    navigate(-1);
+  const handleTextConfigUpdate = (
+    appearance: Appearance,
+    category: string,
+    updatedTokenName: string
+  ) => {
+    console.log("updatedTokenName: ", updatedTokenName);
+    const updatedSurfaceConfig = { ...surfaceConfig.text };
+
+    if (
+      updatedSurfaceConfig[appearance] &&
+      updatedSurfaceConfig[appearance][category]
+    ) {
+      updatedSurfaceConfig[appearance][category] =
+        getTokenColor(updatedTokenName);
+    }
+    const updatedInubeColor = {
+      ...inube.color,
+      text: { ...updatedSurfaceConfig },
+    };
+
+    setUpdateSurfaceTokens(updatedInubeColor);
   };
 
   const handleSubmitForm = () => {
@@ -50,7 +58,7 @@ function PrimaryForm(props: PrimaryFormProps) {
       setTimeout(() => {
         const isSuccess = true;
         if (isSuccess) {
-          originalTextConfig.surface = surfaceTokens.surface;
+          setUpdateSurfaceTokens(updateSurfaceTokens.text);
           resolve("success");
         } else {
           reject("failed");
@@ -82,20 +90,25 @@ function PrimaryForm(props: PrimaryFormProps) {
     });
   };
   return (
-    <PrimaryFormUI
-      handleChangePrimaryTokens={onChange}
+    <RenderContentFormUI
+      handleChangePrimaryTokens={handleTextConfigUpdate}
       handleSubmitForm={handleSubmitForm}
-      handleReset={onMessageClosed}
+      handleReset={() => {
+        setUpdateSurfaceTokens(surfaceTokens);
+      }}
       isLoading={isLoading}
       surfaceConfig={surfaceConfig}
       palette={palette}
       message={message}
       hasChanges={hasChanges}
       handleCloseMessage={handleCloseSectionMessage}
-      onMessageClosed={onMessageClosed}
+      formType={formType}
+      surfaceTokens={undefined}
     />
   );
 }
 
-export type { PrimaryFormProps };
-export { PrimaryForm };
+export { RenderContentForm };
+function getTokenColor(updatedTokenName: string): any {
+  throw new Error("Function not implemented.");
+}

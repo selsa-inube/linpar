@@ -17,8 +17,7 @@ import {
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
-import { PrimaryForm } from "./form/PrimaryForm";
-import { ThemeProvider } from "styled-components";
+import { RenderContentForm } from "./form/RenderContentForm";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -43,12 +42,12 @@ const renderMessage = (
 };
 
 interface UsersUIProps {
-  originalTextConfig: any;
+  originalSurfaceConfig: any;
   surfaceTokens: any;
   surfaceConfig: any;
   palette: typeof inube;
   selectedTab: string;
-  handleChangeColor: any;
+
   handleTabChange: (id: string) => void;
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
@@ -60,11 +59,7 @@ interface UsersUIProps {
 export function SurfacesUI(props: UsersUIProps) {
   const {
     surfaceConfig,
-    palette,
     selectedTab,
-    surfaceTokens,
-    originalTextConfig,
-    handleChangeColor,
     handleTabChange,
     message,
     handleCloseMessage,
@@ -72,11 +67,7 @@ export function SurfacesUI(props: UsersUIProps) {
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
-
-  const updatedTheme = {
-    ...inube.color,
-    color: { ...surfaceTokens },
-  };
+  const colorTabs = Object.keys(colorTabsConfig);
   return (
     <>
       <Stack
@@ -105,17 +96,18 @@ export function SurfacesUI(props: UsersUIProps) {
                 type={typeTabs ? "select" : "tabs"}
                 onChange={handleTabChange}
               />
-              <ThemeProvider theme={updatedTheme}>
-                {selectedTab === colorTabsConfig.primary.id && (
-                  <PrimaryForm
-                    surfaceConfig={surfaceConfig.primary}
-                    palette={palette}
-                    onChange={handleChangeColor}
-                    originalTextConfig={originalTextConfig}
-                    surfaceTokens={surfaceTokens}
-                  />
-                )}
-              </ThemeProvider>
+              {colorTabs.map(
+                (formType) =>
+                  selectedTab === formType && (
+                    <RenderContentForm
+                      key={formType}
+                      formType={formType}
+                      surfaceConfig={surfaceConfig}
+                      palette={inube.color.palette}
+                      surfaceTokens={inube.color.text}
+                    />
+                  )
+              )}
             </Stack>
           </StyledTabsContainer>
         </StyledContainer>

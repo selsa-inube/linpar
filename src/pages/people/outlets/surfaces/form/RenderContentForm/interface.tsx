@@ -1,5 +1,12 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { SectionMessage, Stack, Text, inube, Grid } from "@inube/design-system";
+import {
+  SectionMessage,
+  Stack,
+  Text,
+  inube,
+  Grid,
+  useMediaQuery,
+} from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
@@ -33,7 +40,9 @@ const renderMessage = (
   );
 };
 
-interface PrimaryFormUIProps {
+interface RenderContentFormUIProps {
+  surfaceTokens: typeof inube;
+  formType: string;
   surfaceConfig: any;
   palette: typeof inube;
   isLoading: boolean;
@@ -43,11 +52,11 @@ interface PrimaryFormUIProps {
   message: IMessageState;
   hasChanges: () => boolean;
   handleCloseMessage: () => void;
-  onMessageClosed: () => void;
 }
 
-function PrimaryFormUI(props: PrimaryFormUIProps) {
+function RenderContentFormUI(props: RenderContentFormUIProps) {
   const {
+    formType,
     surfaceConfig,
     isLoading,
     handleSubmitForm,
@@ -56,15 +65,30 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
     handleChangePrimaryTokens,
     message,
     handleCloseMessage,
-    onMessageClosed,
     hasChanges,
   } = props;
 
-  const colorCards = Object.entries(surfaceConfig.status);
+  const colorCards = Object.entries(surfaceConfig[formType].status);
+
+  const isSmallScreen = useMediaQuery(
+    "(max-width: 744px) and (min-width: 580px)"
+  );
+  const isMediumScreen = useMediaQuery(
+    "(min-width: 745px) and (max-width: 1000px)"
+  );
+  const isLargeScreen = useMediaQuery("(min-width: 1001px)");
+
+  const templateColumns = isSmallScreen
+    ? "repeat(2, 1fr)"
+    : isMediumScreen
+    ? "repeat(3, 1fr)"
+    : isLargeScreen
+    ? "repeat(3, 1fr)"
+    : "auto";
 
   return (
     <>
-      <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
+      <Text size="medium" padding="0px" appearance="gray">
         {surfaceConfig.description}
       </Text>
 
@@ -76,7 +100,7 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
       >
         <Stack direction="column" gap={inube.spacing.s350}>
           <Grid
-            templateColumns="repeat(3, 1fr)"
+            templateColumns={templateColumns}
             gap="s350"
             autoColumns="unset"
             autoRows="unset"
@@ -87,21 +111,21 @@ function PrimaryFormUI(props: PrimaryFormUIProps) {
                 optionsMenu={palette}
                 title={config.title}
                 description={config.description}
-                appearance={"primary"}
+                appearance={formType}
                 typeToken="surface"
                 category={key}
                 textWithColorToken={config.example}
                 onChange={(newTokenName) =>
-                  handleChangePrimaryTokens("primary", key, newTokenName)
+                  handleChangePrimaryTokens(formType, key, newTokenName)
                 }
               />
             ))}
           </Grid>
         </Stack>
       </FormButtons>
-      {renderMessage(message, handleCloseMessage, onMessageClosed)}
+      {renderMessage(message, handleCloseMessage, handleReset)}
     </>
   );
 }
 
-export { PrimaryFormUI };
+export { RenderContentFormUI };

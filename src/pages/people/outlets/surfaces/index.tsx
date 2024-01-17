@@ -7,17 +7,13 @@ import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/user
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { colorTabsConfig } from "./config/colorTabs.config";
 
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 import { surfaceFormsConfig } from "./config/surface.config";
 
 function Surfaces() {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedTab, setSelectedTab] = useState(colorTabsConfig.primary.id);
-  const [surfaceConfig, setSurfaceConfig] = useState(
-    JSON.parse(JSON.stringify(inube.color))
-  );
-  const [originalTextConfig] = useState(inube.color);
+  const [surfaceConfig] = useState(JSON.parse(JSON.stringify(inube.color)));
+  const [originalSurfaceConfig] = useState(inube.color);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -69,35 +65,13 @@ function Surfaces() {
     setSelectedTab(tabId);
   };
 
-  const handleTextConfigUpdate = (
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
-  ) => {
-    const updatedTextConfig = { ...surfaceConfig.surface };
-
-    if (
-      updatedTextConfig[appearance] &&
-      updatedTextConfig[appearance][category]
-    ) {
-      updatedTextConfig[appearance][category] = getTokenColor(updatedTokenName);
-    }
-    const updatedInubeColor = {
-      ...inube.color,
-      surface: { ...updatedTextConfig },
-    };
-
-    setSurfaceConfig(updatedInubeColor);
-  };
-
   return (
     <SurfacesUI
-      originalTextConfig={originalTextConfig}
+      originalSurfaceConfig={originalSurfaceConfig}
       surfaceTokens={surfaceConfig}
       surfaceConfig={surfaceFormsConfig}
       palette={inube.color.palette}
       selectedTab={selectedTab}
-      handleChangeColor={handleTextConfigUpdate}
       handleTabChange={handleTabChange}
       showMenu={showMenu}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
