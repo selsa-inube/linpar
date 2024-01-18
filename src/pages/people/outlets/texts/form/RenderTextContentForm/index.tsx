@@ -17,7 +17,9 @@ interface RenderTextContentFormProps {
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
   const { formType, handleSubmit, tokens, textConfig } = props;
-  const [textTokens, setTextTokens] = useState({ ...tokens });
+  const [textTokens, setTextTokens] = useState(
+    JSON.parse(JSON.stringify({ ...tokens }))
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
@@ -38,9 +40,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    const updatedTextConfig = { ...textTokens.color.text };
-
-    updatedTextConfig[appearance][category] = getTokenColor(
+    textTokens.color.text[appearance][category] = getTokenColor(
       updatedTokenName,
       textTokens
     );
@@ -49,7 +49,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       ...textTokens,
       color: {
         ...textTokens.color,
-        text: updatedTextConfig,
+        text: textTokens.color.text,
       },
     };
     setTextTokens(updatedTheme);
@@ -73,7 +73,11 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
             visible: true,
             data: textMessagesConfig.success,
           });
-          handleSubmit({ block: "asd", domain: "sd", tokenUpdate: "" });
+          handleSubmit({
+            domain: "color",
+            block: "text",
+            tokenUpdate: textTokens.color.text,
+          });
         }
       })
       .catch(() => {
@@ -87,14 +91,21 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       });
   };
 
-  const handleReset = () => {
-    setTextTokens(tokens);
-  };
-
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
     });
+  };
+
+  const handleReset = () => {
+    const originalTheme = {
+      ...textTokens,
+      color: {
+        ...textTokens.color,
+        text: JSON.parse(JSON.stringify({ ...tokens.color.text })),
+      },
+    };
+    setTextTokens(originalTheme);
   };
 
   return (
