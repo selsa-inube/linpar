@@ -15,7 +15,6 @@ const surfaceFormsConfig = {
         title: "Hover",
         description:
           "La superficie tomará este color cuando el cursor esté ubicado sobre el elemento.",
-        tokenName: "B300",
       },
       clear: {
         title: "Clear",
@@ -31,7 +30,7 @@ const surfaceFormsConfig = {
   },
   error: {
     description:
-      " Los textos de tipo error se utilizan en textos cortos, textos de botones y enlaces. Tiene como propósito resaltar un texto aprovechando el color principal de la marca (empresa)",
+      "Las superficies de tipo error se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
     status: {
       regular: {
         title: "Regular",
@@ -57,7 +56,163 @@ const surfaceFormsConfig = {
   },
   warning: {
     description:
-      "Los textos de tipo advertencia se utilizan en textos cortos, textos de botones y enlaces. Tiene como propósito resaltar un texto aprovechando el color principal de la marca (empresa)",
+      "Las superficies de tipo Advertencia se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La superficie tomará este color para resaltar acciones principales o el color de marca.",
+      },
+      hover: {
+        title: "Hover",
+        description:
+          "La superficie tomará este color cuando el cursor esté ubicado sobre el elemento.",
+      },
+      clear: {
+        title: "Clear",
+        description:
+          "La superficie tomará este color cuando se quiera hacer un contraste de colores.",
+      },
+      disabled: {
+        title: "Disabled",
+        description:
+          "El texto tomará este color cuando el texto se encuentre deshabilitado.",
+      },
+    },
+  },
+  success: {
+    description:
+      "Las superficies de tipo Exito se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La superficie tomará este color para resaltar acciones principales o el color de marca.",
+      },
+      hover: {
+        title: "Hover",
+        description:
+          "La superficie tomará este color cuando el cursor esté ubicado sobre el elemento.",
+      },
+      clear: {
+        title: "Clear",
+        description:
+          "La superficie tomará este color cuando se quiera hacer un contraste de colores.",
+      },
+      disabled: {
+        title: "Disabled",
+        description:
+          "El texto tomará este color cuando el texto se encuentre deshabilitado.",
+      },
+    },
+  },
+  information: {
+    description:
+      "Las superficies de tipo Informacion se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La superficie tomará este color para resaltar acciones principales o el color de marca.",
+      },
+      hover: {
+        title: "Hover",
+        description:
+          "La superficie tomará este color cuando el cursor esté ubicado sobre el elemento.",
+      },
+      clear: {
+        title: "Clear",
+        description:
+          "La superficie tomará este color cuando se quiera hacer un contraste de colores.",
+      },
+      disabled: {
+        title: "Disabled",
+        description:
+          "El texto tomará este color cuando el texto se encuentre deshabilitado.",
+      },
+    },
+  },
+  help: {
+    description:
+      "Las superficies de tipo Ayuda se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La superficie tomará este color para resaltar acciones principales o el color de marca.",
+      },
+      hover: {
+        title: "Hover",
+        description:
+          "La superficie tomará este color cuando el cursor esté ubicado sobre el elemento.",
+      },
+      clear: {
+        title: "Clear",
+        description:
+          "La superficie tomará este color cuando se quiera hacer un contraste de colores.",
+      },
+      disabled: {
+        title: "Disabled",
+        description:
+          "El texto tomará este color cuando el texto se encuentre deshabilitado.",
+      },
+    },
+  },
+  dark: {
+    description:
+      "Las superficies de tipo oscuro se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La superficie tomará este color para resaltar acciones principales o el color de marca.",
+      },
+      hover: {
+        title: "Hover",
+        description:
+          "La superficie tomará este color cuando el cursor esté ubicado sobre el elemento.",
+      },
+      clear: {
+        title: "Clear",
+        description:
+          "La superficie tomará este color cuando se quiera hacer un contraste de colores.",
+      },
+      disabled: {
+        title: "Disabled",
+        description:
+          "El texto tomará este color cuando el texto se encuentre deshabilitado.",
+      },
+    },
+  },
+  gray: {
+    description:
+      "Las superficies de tipo gris se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La superficie tomará este color para resaltar acciones principales o el color de marca.",
+      },
+      hover: {
+        title: "Hover",
+        description:
+          "La superficie tomará este color cuando el cursor esté ubicado sobre el elemento.",
+      },
+      clear: {
+        title: "Clear",
+        description:
+          "La superficie tomará este color cuando se quiera hacer un contraste de colores.",
+      },
+      disabled: {
+        title: "Disabled",
+        description:
+          "El texto tomará este color cuando el texto se encuentre deshabilitado.",
+      },
+    },
+  },
+  light: {
+    description:
+      "Las superficies de tipo claro se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
     status: {
       regular: {
         title: "Regular",

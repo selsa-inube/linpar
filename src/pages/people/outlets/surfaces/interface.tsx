@@ -17,7 +17,8 @@ import {
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
-import { RenderContentForm } from "./form/RenderContentFormSurface";
+import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
+import { IHandleSubmitProps } from "@src/routes/people";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -41,13 +42,11 @@ const renderMessage = (
   );
 };
 
-interface UsersUIProps {
-  originalSurfaceConfig: any;
-  surfaceTokens: any;
+interface SurfaceUIProps {
+  tokens: typeof inube;
   surfaceConfig: any;
-  palette: typeof inube;
   selectedTab: string;
-
+  handleSubmit: (props: IHandleSubmitProps) => void;
   handleTabChange: (id: string) => void;
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
@@ -56,8 +55,10 @@ interface UsersUIProps {
   handleCloseMessage: () => void;
 }
 
-export function SurfacesUI(props: UsersUIProps) {
+export function SurfacesUI(props: SurfaceUIProps) {
   const {
+    tokens,
+    handleSubmit,
     surfaceConfig,
     selectedTab,
     handleTabChange,
@@ -97,14 +98,14 @@ export function SurfacesUI(props: UsersUIProps) {
                 onChange={handleTabChange}
               />
               {colorTabs.map(
-                (formType) =>
-                  selectedTab === formType && (
-                    <RenderContentForm
+                (formType: any) =>
+                  selectedTab === formType! && (
+                    <RenderSurfaceContentForm
                       key={formType}
                       formType={formType}
                       surfaceConfig={surfaceConfig}
-                      palette={inube.color.palette}
-                      surfaceTokens={inube.color.text}
+                      tokens={tokens}
+                      handleSubmit={handleSubmit}
                     />
                   )
               )}

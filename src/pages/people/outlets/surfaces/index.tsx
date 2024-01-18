@@ -1,19 +1,17 @@
 import { EMessageType } from "@src/types/messages.types";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { inube } from "@inube/design-system";
 import { SurfacesUI } from "./interface";
 import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/users/complete-invitation/config/completeInvitation.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { colorTabsConfig } from "./config/colorTabs.config";
-
+import type { IPeopleColorProps } from "src/routes/people";
 import { surfaceFormsConfig } from "./config/surface.config";
 
-function Surfaces() {
+function Surfaces(props: IPeopleColorProps) {
+  const { token, handleSubmit } = props;
   const [showMenu, setShowMenu] = useState(false);
   const [selectedTab, setSelectedTab] = useState(colorTabsConfig.primary.id);
-  const [surfaceConfig] = useState(JSON.parse(JSON.stringify(inube.color)));
-  const [originalSurfaceConfig] = useState(inube.color);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -26,10 +24,6 @@ function Surfaces() {
       }
     }
   }, [location]);
-
-  //const handleTabChange = (tabId: string) => {
-  //  setSelectedTab(tabId);
-  //};
 
   const handleToggleMenuInvitation = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
@@ -67,10 +61,9 @@ function Surfaces() {
 
   return (
     <SurfacesUI
-      originalSurfaceConfig={originalSurfaceConfig}
-      surfaceTokens={surfaceConfig}
+      tokens={token}
+      handleSubmit={handleSubmit}
       surfaceConfig={surfaceFormsConfig}
-      palette={inube.color.palette}
       selectedTab={selectedTab}
       handleTabChange={handleTabChange}
       showMenu={showMenu}
