@@ -1,4 +1,3 @@
-import { Themed } from "@inube/design-system";
 import { inube } from "@inube/design-system";
 import styled from "styled-components";
 import { ISectionMessageProps } from ".";
