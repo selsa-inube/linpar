@@ -5,8 +5,8 @@ import { inube } from "@inube/design-system";
 import { textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 import { IHandleSubmitProps } from "@src/routes/people";
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 
 interface RenderTextContentFormProps {
   tokens: typeof inube;
@@ -37,7 +37,9 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    textTokens.color.text[appearance][category] = getTokenColor(
+    let updatedTextTokens = { ...textTokens.color.text };
+
+    updatedTextTokens[appearance][category] = getTokenColor(
       updatedTokenName,
       textTokens
     );
@@ -46,7 +48,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       ...textTokens,
       color: {
         ...textTokens.color,
-        text: textTokens.color.text,
+        text: updatedTextTokens,
       },
     };
     setTextTokens(updatedTheme);
