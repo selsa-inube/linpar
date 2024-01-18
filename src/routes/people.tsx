@@ -9,14 +9,21 @@ import { Lines } from "@src/pages/people/outlets/lines";
 import { useState } from "react";
 import { inube, presente } from "@inube/design-system";
 
+interface IHandleSubmitProps {
+  domain: string;
+  block: string;
+  tokenUpdate: typeof inube;
+}
+interface IPeopleColorProps {
+  token: typeof inube;
+  handleSubmit: (props: IHandleSubmitProps) => void;
+}
+
 function PeopleRoutes() {
   const [token, setToken] = useState({ ...presente });
 
-  const handleSubmit = (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => {
+  const handleSubmit = (props: IHandleSubmitProps) => {
+    const { domain, block, tokenUpdate } = props;
     const updatedTokenColor = {
       ...token.color,
       [block]: { ...tokenUpdate },
@@ -24,7 +31,7 @@ function PeopleRoutes() {
 
     const updatedToken = {
       ...token,
-      [domain]: { updatedTokenColor },
+      [domain]: { ...updatedTokenColor },
     };
     setToken(updatedToken);
   };
@@ -35,7 +42,7 @@ function PeopleRoutes() {
         <Route path="options" element={<PeopleOptions />} />
         <Route
           path="palette"
-          element={<Palette token={token} handleSubmit={handleSubmit} />}
+          element={<Palette token={{ ...token }} handleSubmit={handleSubmit} />}
         />
         <Route path="texts" element={<Texts />} />
         <Route path="surfaces" element={<Surfaces />} />
@@ -47,3 +54,5 @@ function PeopleRoutes() {
 }
 
 export { PeopleRoutes };
+
+export type { IHandleSubmitProps, IPeopleColorProps };

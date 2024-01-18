@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { inube } from "@inube/design-system";
 import { PaletteUI } from "./interface";
 import { paletteMessagesConfig } from "./config/palette.config";
-import { useNavigate } from "react-router-dom";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import type { IPeopleColorProps } from "src/routes/people";
 
-function Palette(props) {
+function Palette(props: IPeopleColorProps) {
+  const { token, handleSubmit } = props;
   const [isLoading, setIsLoading] = useState(false);
-  const [colorTokens, setColorTokens] = useState({
-    ...props.token.color.palette,
-  });
+  const [colorTokens, setColorTokens] = useState(
+    JSON.parse(JSON.stringify({ ...token.color.palette }))
+  );
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -40,12 +41,8 @@ function Palette(props) {
     };
   }, []);
 
-  const navigate = useNavigate();
-
-  const hasChanges = (valueToCompare: typeof inube) => {
-    return (
-      JSON.stringify(inube.color.palette) === JSON.stringify(valueToCompare)
-    );
+  const hasChanges = () => {
+    return JSON.stringify(token.color.palette) !== JSON.stringify(colorTokens);
   };
 
   const handleCloseSectionMessage = () => {
@@ -55,7 +52,7 @@ function Palette(props) {
   };
 
   const onMessageClosed = () => {
-    navigate(-1);
+    setColorTokens(JSON.parse(JSON.stringify({ ...token.color.palette })));
   };
 
   const handleSubmitForm = () => {
@@ -76,6 +73,11 @@ function Palette(props) {
             visible: true,
             data: paletteMessagesConfig.success,
           });
+          handleSubmit({
+            domain: "color",
+            block: "palette",
+            tokenUpdate: colorTokens,
+          });
         }
       })
       .catch(() => {
@@ -90,22 +92,18 @@ function Palette(props) {
   };
 
   return (
-    <>
-      {console.log(props.token)}
-      {console.log(inube)}
-      <PaletteUI
-        colorTokens={colorTokens}
-        setColorTokens={handleColorChange}
-        handleSubmitForm={handleSubmitForm}
-        isLoading={isLoading}
-        message={message}
-        hasChanges={hasChanges}
-        handleReset={onMessageClosed}
-        handleCloseMessage={handleCloseSectionMessage}
-        onMessageClosed={onMessageClosed}
-        originalTokens={props.token}
-      />
-    </>
+    <PaletteUI
+      colorTokens={colorTokens}
+      setColorTokens={handleColorChange}
+      handleSubmitForm={handleSubmitForm}
+      isLoading={isLoading}
+      message={message}
+      hasChanges={hasChanges}
+      handleReset={onMessageClosed}
+      handleCloseMessage={handleCloseSectionMessage}
+      onMessageClosed={onMessageClosed}
+      originalTokens={{ ...token }}
+    />
   );
 }
 

@@ -22,7 +22,7 @@ interface PaletteUIProps {
   setColorTokens: typeof inube;
   isLoading: boolean;
   handleSubmitForm: () => void;
-  hasChanges: (valueToCompare: typeof inube) => boolean;
+  hasChanges: () => boolean;
   message: IUsersMessage;
   handleCloseMessage: () => void;
   onMessageClosed: () => void;
@@ -153,7 +153,7 @@ export function PaletteUI(props: PaletteUIProps) {
           />
         </Stack>
         <FormButtons
-          disabledButtons={!hasChanges(colorTokens)}
+          disabledButtons={!hasChanges()}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           loading={isLoading}
