@@ -1,5 +1,4 @@
-import { SendInformationMessage } from "./index";
-import { appsConfig } from "@pages/home/config/apps.config";
+import { ISendInformationMessageProps, SendInformationMessage } from "./index";
 import { BrowserRouter } from "react-router-dom";
 import { StoryFn } from "@storybook/react";
 
@@ -15,13 +14,12 @@ const story = {
   ],
 };
 
-const Default: StoryFn = (args) => <SendInformationMessage {...args} />;
+const Default = (args: ISendInformationMessageProps) => (
+  <SendInformationMessage {...args} />
+);
 
 Default.args = {
-  icon: appsConfig[0].icon,
-  label: "users",
-  description: "invite, edit, activate and delete Linix users",
-  url: "/",
+  appearance: "primary",
 };
 
 export default story;

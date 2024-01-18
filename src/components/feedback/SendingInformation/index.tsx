@@ -109,7 +109,12 @@ const handleAgree = () => {
   return;
 };
 
-const SendInformationMessage = (appearance: Appearance) => {
+interface ISendInformationMessageProps {
+  appearance: Appearance;
+}
+
+const SendInformationMessage = (props: ISendInformationMessageProps) => {
+  const { appearance = "primary" } = props;
   let [cancelDisable, setCancelDisable] = useState(true);
 
   return (
@@ -127,10 +132,14 @@ const SendInformationMessage = (appearance: Appearance) => {
               isMessageResponsive={false}
             >
               <Stack width="100%" gap={inube.spacing.s050}>
-                <Button disabled={cancelDisable} onClick={handleCancel()}>
+                <Button
+                  disabled={cancelDisable}
+                  onClick={handleCancel()}
+                  appearance={appearance}
+                >
                   {sectionMessageConfig.cancelButton}
                 </Button>
-                <Button onClick={handleAgree()}>
+                <Button onClick={handleAgree()} appearance={appearance}>
                   {sectionMessageConfig.agreeButton}
                 </Button>
               </Stack>
@@ -143,3 +152,4 @@ const SendInformationMessage = (appearance: Appearance) => {
 };
 
 export { SendInformationMessage };
+export type { ISendInformationMessageProps };
