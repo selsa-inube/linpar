@@ -5,9 +5,11 @@ import { paletteMessagesConfig } from "./config/palette.config";
 import { useNavigate } from "react-router-dom";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 
-function Palette() {
+function Palette(props) {
   const [isLoading, setIsLoading] = useState(false);
-  const [colorTokens, setColorTokens] = useState({ ...inube.color.palette });
+  const [colorTokens, setColorTokens] = useState({
+    ...props.token.color.palette,
+  });
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -88,17 +90,22 @@ function Palette() {
   };
 
   return (
-    <PaletteUI
-      colorTokens={colorTokens}
-      setColorTokens={handleColorChange}
-      handleSubmitForm={handleSubmitForm}
-      isLoading={isLoading}
-      message={message}
-      hasChanges={hasChanges}
-      handleReset={onMessageClosed}
-      handleCloseMessage={handleCloseSectionMessage}
-      onMessageClosed={onMessageClosed}
-    />
+    <>
+      {console.log(props.token)}
+      {console.log(inube)}
+      <PaletteUI
+        colorTokens={colorTokens}
+        setColorTokens={handleColorChange}
+        handleSubmitForm={handleSubmitForm}
+        isLoading={isLoading}
+        message={message}
+        hasChanges={hasChanges}
+        handleReset={onMessageClosed}
+        handleCloseMessage={handleCloseSectionMessage}
+        onMessageClosed={onMessageClosed}
+        originalTokens={props.token}
+      />
+    </>
   );
 }
 

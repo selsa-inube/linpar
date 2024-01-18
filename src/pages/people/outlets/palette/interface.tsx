@@ -15,6 +15,7 @@ import { peopleOptionsConfig } from "../options/config/people.config";
 import { TokenColorCard } from "@src/components/cards/TokenColorCard";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
 import { categoryTranslations } from "./config/palette.config";
+import { ThemeProvider } from "styled-components";
 
 interface PaletteUIProps {
   colorTokens: typeof inube;
@@ -26,6 +27,7 @@ interface PaletteUIProps {
   handleCloseMessage: () => void;
   onMessageClosed: () => void;
   handleReset: () => void;
+  originalTokens: typeof inube;
 }
 
 interface renderCategoryGridProps {
@@ -115,6 +117,7 @@ export function PaletteUI(props: PaletteUIProps) {
     colorTokens,
     setColorTokens,
     handleReset,
+    originalTokens,
   } = props;
 
   const {
@@ -125,6 +128,15 @@ export function PaletteUI(props: PaletteUIProps) {
   const firstTwoCategories = paletteEntries.slice(0, 2);
   const remainingCategories = paletteEntries.slice(2);
 
+  const updatedThemeColor = {
+    ...originalTokens.color,
+    palette: { ...colorTokens },
+  };
+
+  const updatedTheme = {
+    ...originalTokens,
+    color: { ...updatedThemeColor },
+  };
   return (
     <Stack
       direction="column"
@@ -146,37 +158,41 @@ export function PaletteUI(props: PaletteUIProps) {
           handleReset={handleReset}
           loading={isLoading}
         >
-          <Stack direction="column" width="100%" gap="24px">
-            <Grid
-              templateColumns="1fr"
-              gap="s150"
-              autoColumns="unset"
-              autoRows="unset"
-            >
-              <RenderCategoryGrid
-                categories={firstTwoCategories}
-                templateColumns={
-                  smallScreen ? "auto" : `repeat(${midScreen ? 2 : 3}, 1fr)`
-                }
-                templateRows={midScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)"}
-                autoFlow={smallScreen ? "row" : "column"}
-                hasBackground
-                handleColorChange={setColorTokens}
-              />
-            </Grid>
-            <Grid
-              templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-              gap="s150"
-              autoColumns="unset"
-              autoRows="unset"
-            >
-              <RenderCategoryGrid
-                categories={remainingCategories}
+          <ThemeProvider theme={updatedTheme}>
+            <Stack direction="column" width="100%" gap="24px">
+              <Grid
+                templateColumns="1fr"
+                gap="s150"
+                autoColumns="unset"
+                autoRows="unset"
+              >
+                <RenderCategoryGrid
+                  categories={firstTwoCategories}
+                  templateColumns={
+                    smallScreen ? "auto" : `repeat(${midScreen ? 2 : 3}, 1fr)`
+                  }
+                  templateRows={
+                    midScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)"
+                  }
+                  autoFlow={smallScreen ? "row" : "column"}
+                  hasBackground
+                  handleColorChange={setColorTokens}
+                />
+              </Grid>
+              <Grid
                 templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-                handleColorChange={setColorTokens}
-              />
-            </Grid>
-          </Stack>
+                gap="s150"
+                autoColumns="unset"
+                autoRows="unset"
+              >
+                <RenderCategoryGrid
+                  categories={remainingCategories}
+                  templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+                  handleColorChange={setColorTokens}
+                />
+              </Grid>
+            </Stack>
+          </ThemeProvider>
         </FormButtons>
       </Stack>
       {renderMessage(message, handleCloseMessage, onMessageClosed)}
