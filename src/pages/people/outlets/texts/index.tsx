@@ -7,18 +7,10 @@ import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/user
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { textFormsConfig } from "./config/text.config";
+import type { IPeopleColorProps } from "src/routes/people";
 
-interface TextProps {
-  tokens: typeof inube;
-  handleTokenSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
-}
-
-function Texts(props: TextProps) {
-  const { tokens, handleTokenSubmit } = props;
+function Texts(props: IPeopleColorProps) {
+  const { token, handleSubmit } = props;
   const [showMenu, setShowMenu] = useState(false);
   const [selectedTab, setSelectedTab] = useState(colorTabsConfig.primary.id);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -71,8 +63,8 @@ function Texts(props: TextProps) {
 
   return (
     <TextsUI
-      tokens={tokens}
-      handleTokenSubmit={handleTokenSubmit}
+      tokens={token}
+      handleSubmit={handleSubmit}
       textConfig={textFormsConfig}
       selectedTab={selectedTab}
       handleTabChange={handleTabChange}

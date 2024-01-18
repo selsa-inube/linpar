@@ -9,14 +9,22 @@ import { Lines } from "@src/pages/people/outlets/lines";
 import { useState } from "react";
 import { inube, presente } from "@inube/design-system";
 
+interface IHandleSubmitProps {
+  domain: string;
+  block: string;
+  tokenUpdate: typeof inube;
+}
+
+interface IPeopleColorProps {
+  token: typeof inube;
+  handleSubmit: (props: IHandleSubmitProps) => void;
+}
+
 function PeopleRoutes() {
   const [token, setToken] = useState({ ...presente });
 
-  const handleTokenSubmit = (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => {
+  const handleSubmit = (props: IHandleSubmitProps) => {
+    const { domain, block, tokenUpdate } = props;
     const updatedTokenColor = {
       ...token.color,
       [block]: { ...tokenUpdate },
@@ -24,7 +32,7 @@ function PeopleRoutes() {
 
     const updatedToken = {
       ...token,
-      [domain]: { updatedTokenColor },
+      [domain]: { ...updatedTokenColor },
     };
     setToken(updatedToken);
   };
@@ -33,12 +41,13 @@ function PeopleRoutes() {
     <Routes>
       <Route path="/" element={<People />}>
         <Route path="options" element={<PeopleOptions />} />
-        <Route path="palette" element={<Palette />} />
+        <Route
+          path="palette"
+          element={<Palette token={{ ...token }} handleSubmit={handleSubmit} />}
+        />
         <Route
           path="texts"
-          element={
-            <Texts tokens={token} handleTokenSubmit={handleTokenSubmit} />
-          }
+          element={<Texts token={token} handleSubmit={handleSubmit} />}
         />
         <Route path="surfaces" element={<Surfaces />} />
         <Route path="lines" element={<Lines />} />
@@ -49,3 +58,5 @@ function PeopleRoutes() {
 }
 
 export { PeopleRoutes };
+
+export type { IHandleSubmitProps, IPeopleColorProps };

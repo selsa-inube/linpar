@@ -18,6 +18,7 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { RenderTextContentForm } from "./form/RenderTextContentForm";
+import { IHandleSubmitProps } from "@src/routes/people";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -45,11 +46,7 @@ interface TextUIProps {
   tokens: typeof inube;
   textConfig: any;
   selectedTab: string;
-  handleTokenSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   handleTabChange: (id: string) => void;
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
@@ -61,7 +58,7 @@ interface TextUIProps {
 export function TextsUI(props: TextUIProps) {
   const {
     tokens,
-    handleTokenSubmit,
+    handleSubmit,
     textConfig,
     selectedTab,
     handleTabChange,
@@ -107,7 +104,7 @@ export function TextsUI(props: TextUIProps) {
                         formType={formType}
                         textConfig={textConfig}
                         tokens={tokens}
-                        handleTokenSubmit={handleTokenSubmit}
+                        handleSubmit={handleSubmit}
                       />
                     )
                 )}

@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { inube } from "@inube/design-system";
 import { PaletteUI } from "./interface";
 import { paletteMessagesConfig } from "./config/palette.config";
-import { useNavigate } from "react-router-dom";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import type { IPeopleColorProps } from "src/routes/people";
 
-function Palette() {
+function Palette(props: IPeopleColorProps) {
+  const { token, handleSubmit } = props;
   const [isLoading, setIsLoading] = useState(false);
-  const [colorTokens, setColorTokens] = useState({ ...inube.color.palette });
+  const [colorTokens, setColorTokens] = useState(
+    JSON.parse(JSON.stringify({ ...token.color.palette }))
+  );
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -38,12 +41,8 @@ function Palette() {
     };
   }, []);
 
-  const navigate = useNavigate();
-
-  const hasChanges = (valueToCompare: typeof inube) => {
-    return (
-      JSON.stringify(inube.color.palette) === JSON.stringify(valueToCompare)
-    );
+  const hasChanges = () => {
+    return JSON.stringify(token.color.palette) !== JSON.stringify(colorTokens);
   };
 
   const handleCloseSectionMessage = () => {
@@ -53,7 +52,7 @@ function Palette() {
   };
 
   const onMessageClosed = () => {
-    navigate(-1);
+    setColorTokens(JSON.parse(JSON.stringify({ ...token.color.palette })));
   };
 
   const handleSubmitForm = () => {
@@ -73,6 +72,11 @@ function Palette() {
           setMessage({
             visible: true,
             data: paletteMessagesConfig.success,
+          });
+          handleSubmit({
+            domain: "color",
+            block: "palette",
+            tokenUpdate: colorTokens,
           });
         }
       })
@@ -98,6 +102,7 @@ function Palette() {
       handleReset={onMessageClosed}
       handleCloseMessage={handleCloseSectionMessage}
       onMessageClosed={onMessageClosed}
+      originalTokens={{ ...token }}
     />
   );
 }

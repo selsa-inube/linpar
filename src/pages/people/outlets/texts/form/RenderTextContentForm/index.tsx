@@ -6,20 +6,17 @@ import { textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
+import { IHandleSubmitProps } from "@src/routes/people";
 
 interface RenderTextContentFormProps {
   tokens: typeof inube;
   formType: string;
   textConfig: any;
-  handleTokenSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
 }
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
-  const { formType, handleTokenSubmit, tokens, textConfig } = props;
+  const { formType, handleSubmit, tokens, textConfig } = props;
   const [textTokens, setTextTokens] = useState({ ...tokens });
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -76,7 +73,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
             visible: true,
             data: textMessagesConfig.success,
           });
-          handleTokenSubmit("", "", "");
+          handleSubmit({ block: "asd", domain: "sd", tokenUpdate: "" });
         }
       })
       .catch(() => {
