@@ -6,15 +6,6 @@ interface IStyledFieldsetColorCard {
   theme: typeof inube;
 }
 
-function getTokenColor(tokenName: string, theme?: typeof inube) {
-  const palette = theme?.color?.palette || inube.color.palette;
-  for (const category in palette) {
-    if (Object.hasOwnProperty.call(palette[category], tokenName)) {
-      return palette[category!]?.[tokenName];
-    }
-  }
-}
-
 const StyledTokenColorCardContainer = styled.div<IStyledFieldsetColorCard>`
   width: 100%;
   max-width: ${inube.spacing.s1000};
@@ -58,5 +49,4 @@ export {
   StyledTokenColorCardContainer,
   StyledPopupContainer,
   StyledTextWithTokenContainer,
-  getTokenColor,
 };
