@@ -1,11 +1,10 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
-
 import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { ThemeProvider } from "styled-components";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -35,44 +34,40 @@ const renderMessage = (
   );
 };
 
-interface ErrorTokensFormUIProps {
+interface RenderTextContentFormUIProps {
+  textTokens: typeof inube;
+  formType: string;
   textConfig: any;
   isLoading: boolean;
   palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeErrorTokens: (
-    appearance: Appearance,
-    category: string,
-    tokenName: string
-  ) => void;
+  handleChangeTokens: any;
   message: IMessageState;
-  onCloseSectionMessage: () => void;
   hasChanges: () => boolean;
   handleCloseMessage: () => void;
-  onMessageClosed: () => void;
 }
 
-function ErrorFormUI(props: ErrorTokensFormUIProps) {
+function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
   const {
+    formType,
+    textTokens,
     textConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangeErrorTokens,
     palette,
+    handleChangeTokens,
     message,
     handleCloseMessage,
-    onMessageClosed,
     hasChanges,
   } = props;
 
-  const colorCards = Object.entries(textConfig.status);
-
+  const colorCards = Object.entries(textConfig[formType].status);
   return (
     <>
-      <Text size="medium" padding="0px 0px 0px 0px" appearance="gray">
-        {textConfig.description}
+      <Text size="medium" padding="s0" appearance="gray">
+        {textConfig[formType].description}
       </Text>
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -80,26 +75,28 @@ function ErrorFormUI(props: ErrorTokensFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <Stack direction="column" gap={inube.spacing.s350}>
-          {colorCards.map(([key, config]: any) => (
-            <FieldsetColorCard
-              key={key}
-              optionsMenu={palette}
-              title={config.title}
-              description={config.description}
-              appearance={"error"}
-              category={key}
-              textWithColorToken={config.example}
-              onChange={(newTokenName) =>
-                handleChangeErrorTokens("error", key, newTokenName)
-              }
-            />
-          ))}
-        </Stack>
+        <ThemeProvider theme={textTokens}>
+          <Stack direction="column" gap={inube.spacing.s350}>
+            {colorCards.map(([key, config]: any) => (
+              <FieldsetColorCard
+                key={key}
+                optionsMenu={palette}
+                title={config.title}
+                description={config.description}
+                appearance={formType}
+                category={key}
+                textWithColorToken={config.example}
+                onChange={(newTokenName) =>
+                  handleChangeTokens(formType, key, newTokenName)
+                }
+              />
+            ))}
+          </Stack>
+        </ThemeProvider>
       </FormButtons>
-      {renderMessage(message, handleCloseMessage, onMessageClosed)}
+      {renderMessage(message, handleCloseMessage, handleReset)}
     </>
   );
 }
 
-export { ErrorFormUI };
+export { RenderTextContentFormUI };

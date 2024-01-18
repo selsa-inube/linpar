@@ -14,6 +14,7 @@ interface IHandleSubmitProps {
   block: string;
   tokenUpdate: typeof inube;
 }
+
 interface IPeopleColorProps {
   token: typeof inube;
   handleSubmit: (props: IHandleSubmitProps) => void;
@@ -44,7 +45,10 @@ function PeopleRoutes() {
           path="palette"
           element={<Palette token={{ ...token }} handleSubmit={handleSubmit} />}
         />
-        <Route path="texts" element={<Texts />} />
+        <Route
+          path="texts"
+          element={<Texts token={token} handleSubmit={handleSubmit} />}
+        />
         <Route path="surfaces" element={<Surfaces />} />
         <Route path="lines" element={<Lines />} />
       </Route>
