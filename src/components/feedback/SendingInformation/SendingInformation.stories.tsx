@@ -18,10 +18,7 @@ const story = {
 const Default: StoryFn = (args) => <SendInformationMessage {...args} />;
 
 Default.args = {
-  icon: appsConfig[0].icon,
-  label: "users",
-  description: "invite, edit, activate and delete Linix users",
-  url: "/",
+  appearance: "primary",
 };
 
 export default story;
