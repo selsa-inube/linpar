@@ -31,7 +31,7 @@ const getTokenReferenceFromAppearanceAndCategory = (
   tokens: typeof inube
 ): string | null => {
   const tokenReference = tokens[typeToken]?.[appearance]?.[category];
-  console.log("tokenReference: ", tokenReference, tokens);
+  // console.log("tokenReference: ", tokenReference, tokens[typeToken]);
   if (!tokenReference) return null;
   const castedPalette = tokens.palette as Record<
     string,

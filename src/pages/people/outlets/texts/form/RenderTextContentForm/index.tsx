@@ -1,60 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RenderTextContentFormUI } from "./interface";
 import { inube } from "@inube/design-system";
 
 import { textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
 interface RenderTextContentFormProps {
   textTokens: typeof inube;
   formType: string;
   textConfig: any;
+  handleTokenChange: (
+    domain: string,
+    appearance: Appearance,
+    category: string,
+    updatedTokenName: string
+  ) => void;
 }
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
-  const { formType, textTokens, textConfig } = props;
+  const { formType, handleTokenChange, textTokens, textConfig } = props;
   const [isLoading, setIsLoading] = useState(false);
-  const [updateTokens, setUpdateTokens] = useState(textTokens);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const hasChanges = (): boolean => {
-    return (
-      JSON.stringify(updateTokens.color.text) !==
-      JSON.stringify(textTokens.color.text)
-    );
-  };
+  const [previousTextTokens, setPreviousTextTokens] = useState(textTokens);
 
-  const handleTextConfigUpdate = (
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
-  ) => {
-    const updatedTextConfig = { ...textTokens.color.text };
+  useEffect(() => {
+    setPreviousTextTokens(JSON.stringify(textTokens.color.text));
+  }, [textTokens.color.text]);
 
-    if (
-      updatedTextConfig[appearance] &&
-      updatedTextConfig[appearance][category]
-    ) {
-      updatedTextConfig[appearance][category] = getTokenColor(updatedTokenName);
-    }
-
-    const updatedTheme = {
-      ...textTokens,
-      color: {
-        ...textTokens.color,
-        text: updatedTextConfig,
-      },
-    };
-    // console.log(
-    //   "textTokens: ",
-    //   textTokens,'   Theme: ',
-    //   updatedTheme
-    // );
-    setUpdateTokens(updatedTheme);
+  const hasChanges = () => {
+    return JSON.stringify(textTokens.color.text) !== previousTextTokens;
   };
 
   const handleSubmitForm = () => {
@@ -63,7 +41,6 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       setTimeout(() => {
         const isSuccess = true;
         if (isSuccess) {
-          // setUpdateTextTokens(updateTextTokens.text);
           resolve("success");
         } else {
           reject("failed");
@@ -97,15 +74,13 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
 
   return (
     <RenderTextContentFormUI
-      textTokens={updateTokens}
-      handleChangePrimaryTokens={handleTextConfigUpdate}
+      textTokens={textTokens}
+      handleChangeTokens={handleTokenChange}
       handleSubmitForm={handleSubmitForm}
-      handleReset={() => {
-        setUpdateTokens(textTokens);
-      }}
+      handleReset={() => {}}
       isLoading={isLoading}
       textConfig={textConfig}
-      palette={updateTokens.color.palette}
+      palette={textTokens.color.palette}
       message={message}
       hasChanges={hasChanges}
       handleCloseMessage={handleCloseSectionMessage}

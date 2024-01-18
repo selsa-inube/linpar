@@ -42,7 +42,7 @@ interface RenderTextContentFormUIProps {
   palette: typeof inube;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangePrimaryTokens: any;
+  handleChangeTokens: any;
   message: IMessageState;
   hasChanges: () => boolean;
   handleCloseMessage: () => void;
@@ -57,14 +57,13 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
     handleSubmitForm,
     handleReset,
     palette,
-    handleChangePrimaryTokens,
+    handleChangeTokens,
     message,
     handleCloseMessage,
     hasChanges,
   } = props;
 
   const colorCards = Object.entries(textConfig[formType].status);
-  console.log("textTokens: ", textTokens);
   return (
     <>
       <Text size="medium" padding="s0" appearance="gray">
@@ -88,7 +87,7 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
                 category={key}
                 textWithColorToken={config.example}
                 onChange={(newTokenName) =>
-                  handleChangePrimaryTokens(formType, key, newTokenName)
+                  handleChangeTokens("text", formType, key, newTokenName)
                 }
               />
             ))}
