@@ -2,14 +2,23 @@ import {
   Breadcrumbs,
   SectionMessage,
   Stack,
+  Tabs,
   useMediaQuery,
+  inube,
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
 
-import { StyledMessageContainer, StyledContainer } from "./styles";
+import {
+  StyledMessageContainer,
+  StyledContainer,
+  StyledTabsContainer,
+} from "./styles";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
+import { IHandleSubmitProps } from "@src/routes/people";
+import { colorTabsConfig } from "./config/colorTabs.config";
+import { RenderLinesContentForm } from "./RenderLinesContentForm";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -33,11 +42,12 @@ const renderMessage = (
   );
 };
 
-interface UsersUIProps {
-  isSelected: string;
-  searchText: string;
+interface LinesUIProps {
+  tokens: typeof inube;
+  linesConfig: any;
+  selectedTab: string;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   handleTabChange: (id: string) => void;
-  handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
@@ -45,10 +55,21 @@ interface UsersUIProps {
   handleCloseMessage: () => void;
 }
 
-export function LinesUI(props: UsersUIProps) {
-  const { message, handleCloseMessage } = props;
+export function LinesUI(props: LinesUIProps) {
+  const {
+    tokens,
+    handleSubmit,
+    linesConfig,
+    selectedTab,
+    handleTabChange,
+    message,
+    handleCloseMessage,
+  } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
+    useMediaQuery(["(max-width: 580px)", "(max-width: 1073px)"]);
+
+  const colorTabs = Object.keys(colorTabsConfig);
 
   return (
     <>
@@ -67,7 +88,28 @@ export function LinesUI(props: UsersUIProps) {
             />
           </Stack>
           <StyledContainer>
-            <Stack gap="32px" direction="column"></Stack>
+            <StyledTabsContainer typeTabs={typeTabs}>
+              <Stack direction="column" gap="32px">
+                <Tabs
+                  tabs={Object.values(colorTabsConfig)}
+                  selectedTab={selectedTab}
+                  type={typeTabs ? "select" : "tabs"}
+                  onChange={handleTabChange}
+                />
+                {colorTabs.map(
+                  (formType) =>
+                    selectedTab === formType && (
+                      <RenderLinesContentForm
+                        key={formType}
+                        formType={formType}
+                        linesConfig={linesConfig}
+                        tokens={tokens}
+                        handleSubmit={handleSubmit}
+                      />
+                    )
+                )}
+              </Stack>
+            </StyledTabsContainer>
           </StyledContainer>
         </Stack>
         {renderMessage(message, handleCloseMessage)}

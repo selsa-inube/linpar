@@ -4,13 +4,15 @@ import { useLocation } from "react-router-dom";
 
 import { LinesUI } from "./interface";
 import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/users/complete-invitation/config/completeInvitation.config";
-import { privilegeUserTabsConfig } from "@src/pages/privileges/outlets/users/config/usersTabs.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import type { IPeopleColorProps } from "src/routes/people";
+import { linesFormsConfig } from "./config/lines.config";
+import { colorTabsConfig } from "./config/colorTabs.config";
 
-function Lines() {
-  const [isSelected, setIsSelected] = useState<string>();
-  const [searchText, setSearchText] = useState("");
+function Lines(props: IPeopleColorProps) {
+  const { token, handleSubmit } = props;
   const [showMenu, setShowMenu] = useState(false);
+  const [selectedTab, setSelectedTab] = useState(colorTabsConfig.primary.id);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -18,20 +20,11 @@ function Lines() {
 
   useEffect(() => {
     if (location.state?.tab) {
-      setIsSelected(location.state.tab);
       if (location.state?.messageType && location.state?.username) {
         handleShowMessage(location.state.messageType, location.state.username);
       }
     }
   }, [location]);
-
-  const handleTabChange = (tabId: string) => {
-    setIsSelected(tabId);
-  };
-
-  const handleSearchText = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.target.value);
-  };
 
   const handleToggleMenuInvitation = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
@@ -64,12 +57,17 @@ function Lines() {
     });
   };
 
+  const handleTabChange = (tabId: string) => {
+    setSelectedTab(tabId);
+  };
+
   return (
     <LinesUI
-      isSelected={isSelected || privilegeUserTabsConfig.privilegesUsers.id}
-      searchText={searchText}
+      tokens={token}
+      handleSubmit={handleSubmit}
+      linesConfig={linesFormsConfig}
+      selectedTab={selectedTab}
       handleTabChange={handleTabChange}
-      handleSearchText={handleSearchText}
       showMenu={showMenu}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       handleCloseMenuInvitation={handleCloseMenuInvitation}
