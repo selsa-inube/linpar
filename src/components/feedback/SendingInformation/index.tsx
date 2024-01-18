@@ -152,3 +152,4 @@ const SendInformationMessage = (props: ISendInformationMessageProps) => {
 };
 
 export { SendInformationMessage };
+export type { ISendInformationMessageProps };

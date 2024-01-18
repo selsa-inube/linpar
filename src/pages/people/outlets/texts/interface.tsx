@@ -17,16 +17,8 @@ import {
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
-import { PrimaryForm } from "./form/PrimaryForm";
-import { ErrorForm } from "./form/ErrorForm";
-import { WarningForm } from "./form/WarningForm";
-import { SuccessForm } from "./form/SuccessForm";
-import { InformationForm } from "./form/InformationForm";
-import { HelpForm } from "./form/HelpForm";
-import { DarkForm } from "./form/DarkForm";
-import { GrayForm } from "./form/GrayForm";
-import { LightForm } from "./form/LightForm";
-import { ThemeProvider } from "styled-components";
+import { RenderTextContentForm } from "./form/RenderTextContentForm";
+import { IHandleSubmitProps } from "@src/routes/people";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -51,12 +43,10 @@ const renderMessage = (
 };
 
 interface TextUIProps {
-  originalTextConfig: any;
-  textTokens: any;
+  tokens: typeof inube;
   textConfig: any;
-  palette: typeof inube;
   selectedTab: string;
-  handleChangeColor: any;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   handleTabChange: (id: string) => void;
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
@@ -67,12 +57,10 @@ interface TextUIProps {
 
 export function TextsUI(props: TextUIProps) {
   const {
+    tokens,
+    handleSubmit,
     textConfig,
-    palette,
     selectedTab,
-    textTokens,
-    originalTextConfig,
-    handleChangeColor,
     handleTabChange,
     message,
     handleCloseMessage,
@@ -81,10 +69,7 @@ export function TextsUI(props: TextUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
-  const updatedTheme = {
-    ...inube.color,
-    color: { ...textTokens },
-  };
+  const colorTabs = Object.keys(colorTabsConfig);
 
   return (
     <>
@@ -111,89 +96,18 @@ export function TextsUI(props: TextUIProps) {
                   type={typeTabs ? "select" : "tabs"}
                   onChange={handleTabChange}
                 />
-                <ThemeProvider theme={updatedTheme}>
-                  {selectedTab === colorTabsConfig.primary.id && (
-                    <PrimaryForm
-                      textConfig={textConfig.primary}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                  {selectedTab === colorTabsConfig.error.id && (
-                    <ErrorForm
-                      textConfig={textConfig.error}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                  {selectedTab === colorTabsConfig.warning.id && (
-                    <WarningForm
-                      textConfig={textConfig.warning}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                  {selectedTab === colorTabsConfig.success.id && (
-                    <SuccessForm
-                      textConfig={textConfig.success}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                  {selectedTab === colorTabsConfig.information.id && (
-                    <InformationForm
-                      textConfig={textConfig.info}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                  {selectedTab === colorTabsConfig.help.id && (
-                    <HelpForm
-                      textConfig={textConfig.help}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                  {selectedTab === colorTabsConfig.dark.id && (
-                    <DarkForm
-                      textConfig={textConfig.dark}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                  {selectedTab === colorTabsConfig.gray.id && (
-                    <GrayForm
-                      textConfig={textConfig.gray}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                  {selectedTab === colorTabsConfig.light.id && (
-                    <LightForm
-                      textConfig={textConfig.light}
-                      palette={palette}
-                      onChange={handleChangeColor}
-                      originalTextConfig={originalTextConfig}
-                      textTokens={textTokens}
-                    />
-                  )}
-                </ThemeProvider>
+                {colorTabs.map(
+                  (formType) =>
+                    selectedTab === formType && (
+                      <RenderTextContentForm
+                        key={formType}
+                        formType={formType}
+                        textConfig={textConfig}
+                        tokens={tokens}
+                        handleSubmit={handleSubmit}
+                      />
+                    )
+                )}
               </Stack>
             </StyledTabsContainer>
           </StyledContainer>
