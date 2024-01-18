@@ -1,7 +1,6 @@
 import { EMessageType } from "@src/types/messages.types";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { inube } from "@inube/design-system";
 import { TextsUI } from "./interface";
 import { finishAssistedMessagesConfig } from "@src/pages/privileges/outlets/users/complete-invitation/config/completeInvitation.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
