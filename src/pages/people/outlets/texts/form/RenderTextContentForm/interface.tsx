@@ -87,7 +87,7 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
                 category={key}
                 textWithColorToken={config.example}
                 onChange={(newTokenName) =>
-                  handleChangeTokens("text", formType, key, newTokenName)
+                  handleChangeTokens(formType, key, newTokenName)
                 }
               />
             ))}

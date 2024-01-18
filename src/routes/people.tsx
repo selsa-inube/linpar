@@ -7,32 +7,26 @@ import { Texts } from "@src/pages/people/outlets/texts";
 import { Surfaces } from "@src/pages/people/outlets/surfaces";
 import { Lines } from "@src/pages/people/outlets/lines";
 import { useState } from "react";
-import { presente } from "@inube/design-system";
-import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { inube, presente } from "@inube/design-system";
 
 function PeopleRoutes() {
   const [token, setToken] = useState({ ...presente });
 
-  const handleTokenChange = (
+  const handleTokenSubmit = (
     domain: string,
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
+    block: string,
+    tokenUpdate: typeof inube
   ) => {
-    token.color[domain][appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
-    const updatedTheme = {
-      ...token,
-      color: {
-        ...token.color,
-        [domain]: token.color[domain],
-      },
+    const updatedTokenColor = {
+      ...token.color,
+      [block]: { ...tokenUpdate },
     };
-    setToken(updatedTheme);
+
+    const updatedToken = {
+      ...token,
+      [domain]: { updatedTokenColor },
+    };
+    setToken(updatedToken);
   };
 
   return (
@@ -43,7 +37,7 @@ function PeopleRoutes() {
         <Route
           path="texts"
           element={
-            <Texts tokens={token} handleTokenChange={handleTokenChange} />
+            <Texts tokens={token} handleTokenSubmit={handleTokenSubmit} />
           }
         />
         <Route path="surfaces" element={<Surfaces />} />

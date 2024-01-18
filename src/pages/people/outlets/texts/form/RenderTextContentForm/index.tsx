@@ -5,34 +5,57 @@ import { inube } from "@inube/design-system";
 import { textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
 
 interface RenderTextContentFormProps {
-  textTokens: typeof inube;
+  tokens: typeof inube;
   formType: string;
   textConfig: any;
-  handleTokenChange: (
+  handleTokenSubmit: (
     domain: string,
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
+    block: string,
+    tokenUpdate: typeof inube
   ) => void;
 }
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
-  const { formType, handleTokenChange, textTokens, textConfig } = props;
+  const { formType, handleTokenSubmit, tokens, textConfig } = props;
+  const [textTokens, setTextTokens] = useState({ ...tokens });
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const [previousTextTokens, setPreviousTextTokens] = useState(textTokens);
+  const [previousTextTokens, setPreviousTextTokens] = useState(tokens);
 
   useEffect(() => {
-    setPreviousTextTokens(JSON.stringify(textTokens.color.text));
-  }, [textTokens.color.text]);
+    setPreviousTextTokens(JSON.stringify(tokens.color.text));
+  }, [tokens.color.text]);
 
   const hasChanges = () => {
     return JSON.stringify(textTokens.color.text) !== previousTextTokens;
+  };
+
+  const handleTokenChange = (
+    appearance: Appearance,
+    category: string,
+    updatedTokenName: string
+  ) => {
+    const updatedTextConfig = { ...textTokens.color.text };
+
+    updatedTextConfig[appearance][category] = getTokenColor(
+      updatedTokenName,
+      textTokens
+    );
+
+    const updatedTheme = {
+      ...textTokens,
+      color: {
+        ...textTokens.color,
+        text: updatedTextConfig,
+      },
+    };
+    setTextTokens(updatedTheme);
   };
 
   const handleSubmitForm = () => {
@@ -53,6 +76,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
             visible: true,
             data: textMessagesConfig.success,
           });
+          handleTokenSubmit("", "", "");
         }
       })
       .catch(() => {
@@ -66,6 +90,10 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       });
   };
 
+  const handleReset = () => {
+    setTextTokens(tokens);
+  };
+
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
@@ -77,7 +105,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       textTokens={textTokens}
       handleChangeTokens={handleTokenChange}
       handleSubmitForm={handleSubmitForm}
-      handleReset={() => {}}
+      handleReset={handleReset}
       isLoading={isLoading}
       textConfig={textConfig}
       palette={textTokens.color.palette}

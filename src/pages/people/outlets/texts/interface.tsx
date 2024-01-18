@@ -18,7 +18,6 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { colorTabsConfig } from "./config/colorTabs.config";
 import { RenderTextContentForm } from "./form/RenderTextContentForm";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -46,11 +45,10 @@ interface TextUIProps {
   tokens: typeof inube;
   textConfig: any;
   selectedTab: string;
-  handleTokenChange: (
+  handleTokenSubmit: (
     domain: string,
-    appearance: Appearance,
-    category: string,
-    updatedTokenName: string
+    block: string,
+    tokenUpdate: typeof inube
   ) => void;
   handleTabChange: (id: string) => void;
   showMenu: boolean;
@@ -63,7 +61,7 @@ interface TextUIProps {
 export function TextsUI(props: TextUIProps) {
   const {
     tokens,
-    handleTokenChange,
+    handleTokenSubmit,
     textConfig,
     selectedTab,
     handleTabChange,
@@ -108,8 +106,8 @@ export function TextsUI(props: TextUIProps) {
                         key={formType}
                         formType={formType}
                         textConfig={textConfig}
-                        textTokens={tokens}
-                        handleTokenChange={handleTokenChange}
+                        tokens={tokens}
+                        handleTokenSubmit={handleTokenSubmit}
                       />
                     )
                 )}
