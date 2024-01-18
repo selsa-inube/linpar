@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RenderTextContentFormUI } from "./interface";
 import { inube } from "@inube/design-system";
 
@@ -25,14 +25,11 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
     visible: false,
   });
 
-  const [previousTextTokens, setPreviousTextTokens] = useState(tokens);
-
-  useEffect(() => {
-    setPreviousTextTokens(JSON.stringify(tokens.color.text));
-  }, [tokens.color.text]);
-
   const hasChanges = () => {
-    return JSON.stringify(textTokens.color.text) !== previousTextTokens;
+    return (
+      JSON.stringify(tokens.color.text) !==
+      JSON.stringify(textTokens.color.text)
+    );
   };
 
   const handleTokenChange = (
