@@ -16,6 +16,12 @@ import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { PeopleRoutes } from "./routes/people";
 
+function LogOut() {
+  const { logout } = useAuth0();
+  logout();
+  return <Home />;
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -23,6 +29,7 @@ const router = createBrowserRouter(
       <Route path="login/*" element={<LoginRoutes />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="people/*" element={<PeopleRoutes />} />
+      <Route path="logout" element={<LogOut />} />
       <Route
         path="respond-invitation/:client_id/:invitation_id/*"
         element={<RespondInvitationRoutes />}
