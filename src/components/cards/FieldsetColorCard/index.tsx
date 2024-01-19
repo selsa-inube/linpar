@@ -5,13 +5,13 @@ import {
   StyledTokenColorCardContainer,
   StyledPopupContainer,
   StyledTextWithTokenContainer,
-  getTokenColor,
 } from "./styles";
 import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
 import { useContext } from "react";
+import { getTokenColor } from "../TokenColorCard/styles";
 
 interface FieldsetColorCardProps {
   title: string;
@@ -31,11 +31,13 @@ const getTokenReferenceFromAppearanceAndCategory = (
   tokens: typeof inube
 ): string | null => {
   const tokenReference = tokens[typeToken]?.[appearance]?.[category];
+
   if (!tokenReference) return null;
-  const castedPalette = inube.color.palette as Record<
+  const castedPalette = tokens.palette as Record<
     string,
     Record<string, string>
   >;
+
   for (const [, colorValues] of Object.entries(castedPalette)) {
     for (const [colorKey, colorValue] of Object.entries(colorValues)) {
       if (colorValue === tokenReference) {
@@ -58,7 +60,8 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     onChange,
   } = props;
 
-  const tokens = useContext(ThemeContext).color || inube.color;
+  const themeContext = useContext(ThemeContext);
+  const tokens = themeContext?.color || inube.color;
 
   const tokenName = getTokenReferenceFromAppearanceAndCategory(
     appearance,
