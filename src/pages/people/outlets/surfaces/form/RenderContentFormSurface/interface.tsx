@@ -6,8 +6,6 @@ import {
   inube,
   Grid,
   useMediaQueries,
-  Button,
-  Nav,
 } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
@@ -16,7 +14,7 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
-import { mockNav, surfaceFormsConfig } from "../../config/surface.config";
+import { surfaceFormsConfig } from "../../config/surface.config";
 
 const renderMessage = (
   message: IUsersMessage,
