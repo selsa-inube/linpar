@@ -1,6 +1,5 @@
 import {
   Breadcrumbs,
-  SectionMessage,
   Stack,
   Tabs,
   useMediaQueries,
@@ -8,67 +7,28 @@ import {
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
-
-import {
-  StyledMessageContainer,
-  StyledContainer,
-  StyledTabsContainer,
-} from "./styles";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
-import { colorTabsConfig } from "./config/colorTabs.config";
+import { surfaceTabsConfig } from "./config/surfaceTabs.config";
 import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
 import { IHandleSubmitProps } from "@src/routes/people";
-
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void
-) => {
-  if (!message.data) return null;
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="98%">
-        <SectionMessage
-          title={message.data.title}
-          description={message.data.description}
-          icon={message.data.icon}
-          appearance={message.data.appearance}
-          duration={4000}
-          closeSectionMessage={handleCloseMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
+import { surfaceFormsConfig } from "./config/surface.config";
 
 interface SurfaceUIProps {
-  tokens: typeof inube;
-  surfaceConfig: any;
+  token: typeof inube;
+  surfaceConfig: typeof surfaceFormsConfig;
   selectedTab: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
   handleTabChange: (id: string) => void;
-  showMenu: boolean;
-  handleToggleMenuInvitation: () => void;
-  handleCloseMenuInvitation: () => void;
-  message: IUsersMessage;
-  handleCloseMessage: () => void;
 }
 
 export function SurfacesUI(props: SurfaceUIProps) {
-  const {
-    tokens,
-    handleSubmit,
-    surfaceConfig,
-    selectedTab,
-    handleTabChange,
-    message,
-    handleCloseMessage,
-  } = props;
+  const { token, handleSubmit, surfaceConfig, selectedTab, handleTabChange } =
+    props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
-  const colorTabs = Object.keys(colorTabsConfig);
+  const colorTabs = Object.keys(surfaceTabsConfig);
   return (
     <>
       <Stack
@@ -92,7 +52,7 @@ export function SurfacesUI(props: SurfaceUIProps) {
           <StyledTabsContainer typeTabs={typeTabs}>
             <Stack direction="column" gap={inube.spacing.s400}>
               <Tabs
-                tabs={Object.values(colorTabsConfig)}
+                tabs={Object.values(surfaceTabsConfig)}
                 selectedTab={selectedTab}
                 type={typeTabs ? "select" : "tabs"}
                 onChange={handleTabChange}
@@ -104,7 +64,7 @@ export function SurfacesUI(props: SurfaceUIProps) {
                       key={formType}
                       formType={formType}
                       surfaceConfig={surfaceConfig}
-                      tokens={tokens}
+                      token={token}
                       handleSubmit={handleSubmit}
                     />
                   )
@@ -113,7 +73,6 @@ export function SurfacesUI(props: SurfaceUIProps) {
           </StyledTabsContainer>
         </StyledContainer>
       </Stack>
-      {renderMessage(message, handleCloseMessage)}
     </>
   );
 }

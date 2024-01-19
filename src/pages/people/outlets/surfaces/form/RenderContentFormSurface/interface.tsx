@@ -6,6 +6,8 @@ import {
   inube,
   Grid,
   useMediaQueries,
+  Button,
+  Nav,
 } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
@@ -14,6 +16,7 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
+import { mockNav, surfaceFormsConfig } from "../../config/surface.config";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -44,14 +47,18 @@ const renderMessage = (
 };
 
 interface RenderSurfaceContentFormUIProps {
-  surfaceTokens: typeof inube;
-  formType: Appearance;
-  surfaceConfig: any;
+  updatedTheme: typeof inube;
+  formType: string;
+  surfaceConfig: typeof surfaceFormsConfig;
   isLoading: boolean;
-  palette: typeof inube;
+
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeTokens: any;
+  handleTokenChange: (
+    appearance: Appearance | string,
+    category: string,
+    updatedTokenName: string
+  ) => void;
   message: IMessageState;
   hasChanges: () => boolean;
   handleCloseMessage: () => void;
@@ -61,18 +68,19 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
   const {
     formType,
     surfaceConfig,
-    surfaceTokens,
+    updatedTheme,
     isLoading,
     handleSubmitForm,
     handleReset,
-    palette,
-    handleChangeTokens,
+    handleTokenChange,
     message,
     handleCloseMessage,
     hasChanges,
   } = props;
 
-  const colorCards = Object.entries(surfaceConfig[formType].status);
+  const surfaceCards = Object.entries(
+    surfaceConfig[formType as keyof typeof surfaceConfig].status
+  );
 
   const {
     "(max-width: 744px)": isSmallScreen,
@@ -91,7 +99,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
   return (
     <>
       <Text size="medium" padding="0px" appearance="gray">
-        {surfaceConfig[formType].description}
+        {surfaceConfig[formType as keyof typeof surfaceConfig].description}
       </Text>
 
       <FormButtons
@@ -100,27 +108,30 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={surfaceTokens}>
+        <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            <SendInformationMessage appearance={formType!} />
+            {formType === "navLink" && <>Aqui esta el nav link</>}
+            {formType !== "navLink" && (
+              <SendInformationMessage appearance={formType as Appearance} />
+            )}
+
             <Grid
               templateColumns={templateColumns}
               gap="s350"
               autoColumns="unset"
               autoRows="unset"
             >
-              {colorCards.map(([key, config]: any) => (
+              {surfaceCards.map(([key, config]: any) => (
                 <FieldsetColorCard
                   key={key}
-                  optionsMenu={palette}
+                  optionsMenu={updatedTheme.color.palette}
                   title={config.title}
                   description={config.description}
                   appearance={formType}
                   category={key}
                   typeToken="surface"
-                  textWithColorToken={config.example}
                   onChange={(newTokenName) =>
-                    handleChangeTokens(formType, key, newTokenName)
+                    handleTokenChange(formType, key, newTokenName)
                   }
                 />
               ))}

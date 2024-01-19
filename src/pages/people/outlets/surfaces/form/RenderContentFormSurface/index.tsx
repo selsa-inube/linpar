@@ -8,16 +8,16 @@ import { IHandleSubmitProps } from "@src/routes/people";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 
 interface RenderSurfaceContentFormProps {
-  tokens: typeof inube;
   formType: Appearance;
-  surfaceConfig: any;
   handleSubmit: (props: IHandleSubmitProps) => void;
+  surfaceConfig: any;
+  token: typeof inube;
 }
 
 function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
-  const { formType, handleSubmit, tokens, surfaceConfig } = props;
-  const [surfaceTokens, setSurfaceTokens] = useState(
-    JSON.parse(JSON.stringify({ ...tokens }))
+  const { formType, handleSubmit, surfaceConfig, token } = props;
+  const [surfaceToken, setSurfaceToken] = useState(
+    JSON.parse(JSON.stringify({ ...token.color.surface }))
   );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -25,31 +25,21 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   });
 
   const hasChanges = (): boolean => {
-    return (
-      JSON.stringify(tokens.color.surface) !==
-      JSON.stringify(surfaceTokens.color.surface)
-    );
+    return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
   };
 
   const handleTokenChange = (
-    appearance: Appearance,
+    appearance: Appearance | string,
     category: string,
     updatedTokenName: string
   ) => {
-    let updatedSurfaceTokens = { ...surfaceTokens.color.surface };
+    let updatedSurfaceTokens = { ...surfaceToken };
     updatedSurfaceTokens[appearance][category] = getTokenColor(
       updatedTokenName,
-      surfaceTokens
+      token
     );
 
-    const updatedTheme = {
-      ...surfaceTokens,
-      color: {
-        ...surfaceTokens.color,
-        surface: updatedSurfaceTokens,
-      },
-    };
-    setSurfaceTokens(updatedTheme);
+    setSurfaceToken(updatedSurfaceTokens);
   };
 
   const handleSubmitForm = () => {
@@ -73,7 +63,7 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
           handleSubmit({
             domain: "color",
             block: "surface",
-            tokenUpdate: surfaceTokens.color.surface,
+            tokenUpdate: surfaceToken,
           });
         }
       })
@@ -95,25 +85,24 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   };
 
   const handleReset = () => {
-    const originalTheme = {
-      ...surfaceTokens,
-      color: {
-        ...surfaceTokens.color,
-        surface: JSON.parse(JSON.stringify({ ...tokens.color.surface })),
-      },
-    };
-    setSurfaceTokens(originalTheme);
+    setSurfaceToken(JSON.parse(JSON.stringify({ ...token.color.surface })));
+  };
+  const updatedTheme = {
+    ...token,
+    color: {
+      ...token.color,
+      surface: surfaceToken,
+    },
   };
 
   return (
     <RenderSurfaceContentFormUI
-      surfaceTokens={surfaceTokens}
-      handleChangeTokens={handleTokenChange}
+      updatedTheme={updatedTheme}
+      handleTokenChange={handleTokenChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
       surfaceConfig={surfaceConfig}
-      palette={surfaceTokens.color.palette}
       message={message}
       hasChanges={hasChanges}
       handleCloseMessage={handleCloseSectionMessage}
@@ -123,3 +112,4 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
 }
 
 export { RenderSurfaceContentForm };
+export type { RenderSurfaceContentFormProps };

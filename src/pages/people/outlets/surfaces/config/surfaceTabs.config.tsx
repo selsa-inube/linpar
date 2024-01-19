@@ -1,4 +1,4 @@
-const colorTabsConfig = {
+const surfaceTabsConfig = {
   primary: {
     id: "primary",
     isDisabled: false,
@@ -34,8 +34,8 @@ const colorTabsConfig = {
     isDisabled: false,
     label: "Nav",
   },
-  link: {
-    id: "link",
+  navLink: {
+    id: "navLink",
     isDisabled: false,
     label: "Nav Link",
   },
@@ -61,4 +61,4 @@ const colorTabsConfig = {
   },
 };
 
-export { colorTabsConfig };
+export { surfaceTabsConfig };
