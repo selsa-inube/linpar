@@ -15,8 +15,7 @@ const StyledSectionMessage = styled.div`
       inube.color.surface[appearance!].clear
     );
   }};
-  width: ${(props: IStyledSectionMessageProps) =>
-    props.isMessageResponsive ? "auto" : "100%"};
+  width: 100%;
   height: auto;
   border-radius: 4px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
