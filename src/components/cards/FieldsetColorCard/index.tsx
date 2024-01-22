@@ -74,9 +74,16 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     onChange(updatedTokenName);
   };
 
+  const tokenColor = getTokenColor(tokenName!);
+  const color = tinycolor(tokenColor);
+  const isTransparent = color.getAlpha() === 0;
+
   const requireBackground =
-    (tokenName === "N10" || tokenName === "N0") &&
-    tinycolor(getTokenColor(tokenName!)).isLight();
+    (tokenName === "N10" ||
+      tokenName === "N0" ||
+      tokenName === "N10A" ||
+      tokenName === "N0A") &&
+    (isTransparent || color.isLight());
 
   return (
     <Fieldset title={title}>

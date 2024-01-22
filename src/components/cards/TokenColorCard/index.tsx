@@ -85,7 +85,10 @@ function TokenColorCard(props: ITokenColorCardProps) {
   const smallScreen = useMediaQuery("(max-width: 970px)");
   const colorPickerRef = useRef<HTMLInputElement>(null);
 
-  const isDark = tinycolor(getTokenColor(tokenName, theme)).isDark();
+  const tokenColor = getTokenColor(tokenName, theme);
+  const color = tinycolor(tokenColor);
+  const isTransparent = color.getAlpha() === 0;
+  const isDark = !isTransparent && color.isDark();
   const textAppearance = isDark ? "light" : "dark";
 
   const handleToggleModal = () => {
