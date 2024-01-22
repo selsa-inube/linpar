@@ -158,6 +158,38 @@ const linesFormsConfig = {
       },
     },
   },
+  divisor: {
+    description:
+      "Las líneas de tipo Spinner son usadas en los estados de carga, para indicarle al usuario que hay un tiempo de espera. Este cambio modificara solo el color de la senda, la línea que realiza la rotación está determinado por los tokens de color definidos en Primario, Error, Advertencia, Éxito, Información y Ayuda.",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La línea tomará este color para resaltar acciones principales o el color de marca.",
+      },
+      transparent: {
+        title: "Transparent",
+        description:
+          "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
+      },
+    },
+  },
+  spinner: {
+    description:
+      "Las líneas de tipo Spinner son usadas en los estados de carga, para indicarle al usuario que hay un tiempo de espera. Este cambio modificara solo el color de la senda, la línea que realiza la rotación está determinado por los tokens de color definidos en Primario, Error, Advertencia, Éxito, Información y Ayuda.",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La línea tomará este color para resaltar acciones principales o el color de marca.",
+      },
+      transparent: {
+        title: "Transparent",
+        description:
+          "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
+      },
+    },
+  },
   dark: {
     description:
       " Los textos de tipo oscuro se utilizan en textos cortos, textos de botones y enlaces. Tiene como propósito resaltar un texto aprovechando el color principal de la marca (empresa)",

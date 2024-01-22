@@ -6,18 +6,19 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { IHandleSubmitProps } from "@src/routes/people";
 import { linesMessagesConfig } from "../config/lines.config";
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 
 interface RenderLinesContentFormProps {
-  tokens: typeof inube;
   formType: string;
-  linesConfig: any;
   handleSubmit: (props: IHandleSubmitProps) => void;
+  linesConfig: any;
+  token: typeof inube;
 }
 
 function RenderLinesContentForm(props: RenderLinesContentFormProps) {
-  const { formType, handleSubmit, tokens, linesConfig } = props;
-  const [linesTokens, setLinesTokens] = useState(
-    JSON.parse(JSON.stringify({ ...tokens }))
+  const { formType, handleSubmit, linesConfig, token } = props;
+  const [linesToken, setLinesToken] = useState(
+    JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -25,10 +26,7 @@ function RenderLinesContentForm(props: RenderLinesContentFormProps) {
   });
 
   const hasChanges = () => {
-    return (
-      JSON.stringify(tokens.color.stroke) !==
-      JSON.stringify(linesTokens.color.stroke)
-    );
+    return JSON.stringify(token.color.stroke) !== JSON.stringify(linesToken);
   };
 
   const handleTokenChange = (
@@ -36,20 +34,14 @@ function RenderLinesContentForm(props: RenderLinesContentFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    let linesTokensUpdate = { ...linesTokens.color.stroke };
+    let lineStokenUpdate = { ...linesToken };
 
-    linesTokensUpdate[appearance][category] =
-      tokens.color.palette.neutral[updatedTokenName];
+    lineStokenUpdate[appearance][category] = getTokenColor(
+      updatedTokenName,
+      token
+    );
 
-    const updatedTheme = {
-      ...linesTokens,
-      color: {
-        ...linesTokens.color,
-        stroke: linesTokensUpdate,
-      },
-    };
-    console.log("updatedTheme: ", updatedTheme);
-    setLinesTokens(updatedTheme);
+    setLinesToken(lineStokenUpdate);
   };
 
   const handleSubmitForm = () => {
@@ -73,7 +65,7 @@ function RenderLinesContentForm(props: RenderLinesContentFormProps) {
           handleSubmit({
             domain: "color",
             block: "stroke",
-            tokenUpdate: linesTokens.color.stroke,
+            tokenUpdate: linesToken,
           });
         }
       })
@@ -95,25 +87,27 @@ function RenderLinesContentForm(props: RenderLinesContentFormProps) {
   };
 
   const handleReset = () => {
-    const originalTheme = {
-      ...linesTokens,
-      color: {
-        ...linesTokens.color,
-        stroke: JSON.parse(JSON.stringify({ ...tokens.color.stroke })),
-      },
-    };
-    setLinesTokens(originalTheme);
+    setLinesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
   };
+
+  const updatedTheme = {
+    ...token,
+    color: {
+      ...token.color,
+      stroke: linesToken,
+    },
+  };
+
+  console.log("updatedTheme: ", updatedTheme);
 
   return (
     <RenderLinesContentFormUI
-      linesTokens={linesTokens}
-      handleChangeTokens={handleTokenChange}
+      updatedTheme={updatedTheme}
+      handleTokenChange={handleTokenChange}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
       linesConfig={linesConfig}
-      palette={linesTokens.color.palette}
       message={message}
       hasChanges={hasChanges}
       handleCloseMessage={handleCloseSectionMessage}

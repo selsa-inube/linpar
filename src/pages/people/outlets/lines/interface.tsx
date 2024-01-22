@@ -1,6 +1,5 @@
 import {
   Breadcrumbs,
-  SectionMessage,
   Stack,
   Tabs,
   useMediaQuery,
@@ -9,67 +8,28 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 
-import {
-  StyledMessageContainer,
-  StyledContainer,
-  StyledTabsContainer,
-} from "./styles";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { IHandleSubmitProps } from "@src/routes/people";
-import { colorTabsConfig } from "./config/colorTabs.config";
+import { linesTabsConfig } from "./config/linesTabs.config";
 import { RenderLinesContentForm } from "./RenderLinesContentForm";
 
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void
-) => {
-  if (!message.data) return null;
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="98%">
-        <SectionMessage
-          title={message.data.title}
-          description={message.data.description}
-          icon={message.data.icon}
-          appearance={message.data.appearance}
-          duration={4000}
-          closeSectionMessage={handleCloseMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
-
 interface LinesUIProps {
-  tokens: typeof inube;
+  token: typeof inube;
   linesConfig: any;
   selectedTab: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
   handleTabChange: (id: string) => void;
-  showMenu: boolean;
-  handleToggleMenuInvitation: () => void;
-  handleCloseMenuInvitation: () => void;
-  message: IUsersMessage;
-  handleCloseMessage: () => void;
 }
 
 export function LinesUI(props: LinesUIProps) {
-  const {
-    tokens,
-    handleSubmit,
-    linesConfig,
-    selectedTab,
-    handleTabChange,
-    message,
-    handleCloseMessage,
-  } = props;
+  const { token, handleSubmit, handleTabChange, linesConfig, selectedTab } =
+    props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQuery(["(max-width: 580px)", "(max-width: 1073px)"]);
 
-  const colorTabs = Object.keys(colorTabsConfig);
+  const colorTabs = Object.keys(linesTabsConfig);
 
   return (
     <>
@@ -91,7 +51,7 @@ export function LinesUI(props: LinesUIProps) {
             <StyledTabsContainer typeTabs={typeTabs}>
               <Stack direction="column" gap="32px">
                 <Tabs
-                  tabs={Object.values(colorTabsConfig)}
+                  tabs={Object.values(linesTabsConfig)}
                   selectedTab={selectedTab}
                   type={typeTabs ? "select" : "tabs"}
                   onChange={handleTabChange}
@@ -102,9 +62,9 @@ export function LinesUI(props: LinesUIProps) {
                       <RenderLinesContentForm
                         key={formType}
                         formType={formType}
-                        linesConfig={linesConfig}
-                        tokens={tokens}
                         handleSubmit={handleSubmit}
+                        linesConfig={linesConfig}
+                        token={token}
                       />
                     )
                 )}
@@ -112,7 +72,6 @@ export function LinesUI(props: LinesUIProps) {
             </StyledTabsContainer>
           </StyledContainer>
         </Stack>
-        {renderMessage(message, handleCloseMessage)}
       </Stack>
     </>
   );

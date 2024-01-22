@@ -42,35 +42,34 @@ const renderMessage = (
 };
 
 interface RenderLinesContentFormUIProps {
-  linesTokens: typeof inube;
   formType: string;
-  linesConfig: any;
-  isLoading: boolean;
-  palette: typeof inube;
-  handleSubmitForm: () => void;
-  handleReset: () => void;
-  handleChangeTokens: any;
-  message: IMessageState;
   hasChanges: () => boolean;
   handleCloseMessage: () => void;
+  handleReset: () => void;
+  handleSubmitForm: () => void;
+  handleTokenChange: any;
+  linesConfig: any;
+  isLoading: boolean;
+  updatedTheme: typeof inube;
+  message: IMessageState;
 }
 
 function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
   const {
     formType,
-    linesTokens,
+    updatedTheme,
     linesConfig,
     isLoading,
     handleSubmitForm,
     handleReset,
-    palette,
-    handleChangeTokens,
+    handleTokenChange,
     message,
     handleCloseMessage,
     hasChanges,
   } = props;
 
-  const colorCards = Object.entries(linesConfig[formType].status);
+  const linesCards = Object.entries(linesConfig[formType].status);
+
   const isSmallScreen = useMediaQuery(
     "(max-width: 744px) and (min-width: 580px)"
   );
@@ -98,17 +97,17 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
         loading={isLoading}
       >
         <Stack direction="column" gap={inube.spacing.s350}>
-          <ThemeProvider theme={linesTokens}>
+          <ThemeProvider theme={updatedTheme}>
             <Grid
               templateColumns={templateColumns}
               gap="s350"
               autoColumns="unset"
               autoRows="unset"
             >
-              {colorCards.map(([key, config]: any) => (
+              {linesCards.map(([key, config]: any) => (
                 <FieldsetColorCard
                   key={key}
-                  optionsMenu={palette}
+                  optionsMenu={updatedTheme.color.palette}
                   title={config.title}
                   description={config.description}
                   appearance={formType}
@@ -116,7 +115,7 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
                   category={key}
                   textWithColorToken={config.example}
                   onChange={(newTokenName) =>
-                    handleChangeTokens(formType, key, newTokenName)
+                    handleTokenChange(formType, key, newTokenName)
                   }
                 />
               ))}

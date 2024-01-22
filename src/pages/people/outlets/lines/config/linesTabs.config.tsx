@@ -1,4 +1,4 @@
-const colorTabsConfig = {
+const linesTabsConfig = {
   primary: {
     id: "primary",
     isDisabled: false,
@@ -61,4 +61,4 @@ const colorTabsConfig = {
   },
 };
 
-export { colorTabsConfig };
+export { linesTabsConfig };
