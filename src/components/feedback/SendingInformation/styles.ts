@@ -16,6 +16,7 @@ const StyledSectionMessage = styled.div`
     );
   }};
   width: 100%;
+  min-width: max-content;
   height: auto;
   border-radius: 4px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),

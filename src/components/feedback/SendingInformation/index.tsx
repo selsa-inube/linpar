@@ -23,7 +23,6 @@ export interface ISectionMessageProps {
   appearance: Appearance;
   duration: number;
   closeSectionMessage: () => void;
-  isMessageResponsive: boolean;
 }
 
 const SectionMessageCustomized = (props: ISectionMessageProps) => {
@@ -47,7 +46,11 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
       appearance={appearance}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      isMessageResponsive={isMessageResponsive}
+      icon={icon}
+      title={title}
+      description={description}
+      duration={duration}
+      closeSectionMessage={closeSectionMessage}
     >
       <Stack justifyContent="space-between" padding="s200">
         <Stack
@@ -97,7 +100,6 @@ const handleCancel = () => {
   let newSectionMessageState = { ...sectionMessageState };
   newSectionMessageState.sendInfoApproval = false;
   newSectionMessageState.render = false;
-  // Code to modified user conditions in DB
   return;
 };
 
@@ -105,7 +107,6 @@ const handleAgree = () => {
   let newSectionMessageState = { ...sectionMessageState };
   newSectionMessageState.sendInfoApproval = true;
   newSectionMessageState.render = false;
-  // Code to modified user conditions in DB
   return;
 };
 
@@ -129,7 +130,6 @@ const SendInformationMessage = (props: ISendInformationMessageProps) => {
               closeSectionMessage={() => setCancelDisable(false)}
               icon={<IoMdInformationCircleOutline />}
               appearance={appearance}
-              isMessageResponsive={false}
             >
               <Stack width="100%" gap={inube.spacing.s050}>
                 <Button
