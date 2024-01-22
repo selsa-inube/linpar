@@ -7,6 +7,7 @@ import {
   StyledGridContainer,
   StyledGridColorsContainer,
   getTokenColor,
+  StyledDivText,
 } from "./styles";
 import { ThemeContext } from "styled-components";
 import { Popup } from "@src/components/feedback/Popup";
@@ -123,14 +124,16 @@ function TokenColorCard(props: ITokenColorCardProps) {
           alignContent="stretch"
         >
           <Stack alignItems="center" gap="12px">
-            <Text
-              type="label"
-              size={smallScreen ? "small" : "medium"}
-              textAlign={tokenDescription ? "start" : "center"}
-              appearance={textAppearance}
-            >
-              {tokenName}
-            </Text>
+            <StyledDivText>
+              <Text
+                type="label"
+                size={smallScreen ? "small" : "medium"}
+                textAlign={"center"}
+                appearance={textAppearance}
+              >
+                {tokenName}
+              </Text>
+            </StyledDivText>
             {tokenDescription && (
               <>
                 <Text
