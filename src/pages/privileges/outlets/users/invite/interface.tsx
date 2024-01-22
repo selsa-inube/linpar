@@ -188,7 +188,7 @@ function InviteUI(props: InviteUIProps) {
             </Grid>
             <Button
               type="button"
-              appearance="success"
+              appearance="primary"
               iconBefore={<MdOutlineShortcut size={18} />}
               loading={loading}
               onClick={handleSubmit}
