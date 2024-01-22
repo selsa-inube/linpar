@@ -118,7 +118,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
               autoColumns="unset"
               autoRows="unset"
             >
-              {surfaceCards.map(([key, config]: any) => (
+              {surfaceCards.map(([key, config]) => (
                 <FieldsetColorCard
                   key={key}
                   optionsMenu={updatedTheme.color.palette}
