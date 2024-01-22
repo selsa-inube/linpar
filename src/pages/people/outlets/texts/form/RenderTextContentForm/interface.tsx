@@ -5,6 +5,8 @@ import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.t
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
+import { Appearance } from "@src/components/feedback/SendingInformation/types";
+import { textFormsConfig } from "../../config/text.config";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -22,12 +24,12 @@ const renderMessage = (
     <StyledMessageContainer>
       <Stack justifyContent="flex-end" width="100%">
         <SectionMessage
-          title={message.data.title}
-          description={message.data.description}
-          icon={message.data.icon}
           appearance={message.data.appearance}
-          duration={4000}
           closeSectionMessage={closeMessageAndExecuteCallback}
+          description={message.data.description}
+          duration={4000}
+          icon={message.data.icon}
+          title={message.data.title}
         />
       </Stack>
     </StyledMessageContainer>
@@ -35,39 +37,43 @@ const renderMessage = (
 };
 
 interface RenderTextContentFormUIProps {
-  textTokens: typeof inube;
-  formType: string;
-  textConfig: any;
-  isLoading: boolean;
-  palette: typeof inube;
-  handleSubmitForm: () => void;
-  handleReset: () => void;
-  handleChangeTokens: any;
-  message: IMessageState;
-  hasChanges: () => boolean;
+  formType: Appearance | string;
   handleCloseMessage: () => void;
+  handleReset: () => void;
+  handleSubmitForm: () => void;
+  handleTokenChange: (
+    appearance: Appearance | string,
+    category: string,
+    updatedTokenName: string
+  ) => void;
+  hasChanges: () => boolean;
+  isLoading: boolean;
+  message: IMessageState;
+  textConfig: typeof textFormsConfig;
+  updatedTheme: typeof inube;
 }
 
 function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
   const {
     formType,
-    textTokens,
-    textConfig,
-    isLoading,
-    handleSubmitForm,
-    handleReset,
-    palette,
-    handleChangeTokens,
-    message,
     handleCloseMessage,
+    handleReset,
+    handleSubmitForm,
+    handleTokenChange,
     hasChanges,
+    isLoading,
+    message,
+    textConfig,
+    updatedTheme,
   } = props;
 
-  const colorCards = Object.entries(textConfig[formType].status);
+  const textCards = Object.entries(
+    textConfig[formType as keyof typeof textConfig].status
+  );
   return (
     <>
       <Text size="medium" padding="s0" appearance="gray">
-        {textConfig[formType].description}
+        {textConfig[formType as keyof typeof textConfig].description}
       </Text>
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -75,19 +81,20 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={textTokens}>
+        <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {colorCards.map(([key, config]: any) => (
+            {textCards.map(([key, config]) => (
               <FieldsetColorCard
                 key={key}
-                optionsMenu={palette}
+                optionsMenu={updatedTheme.color.palette}
                 title={config.title}
                 description={config.description}
                 appearance={formType}
                 category={key}
+                typeToken="text"
                 textWithColorToken={config.example}
                 onChange={(newTokenName) =>
-                  handleChangeTokens(formType, key, newTokenName)
+                  handleTokenChange(formType, key, newTokenName)
                 }
               />
             ))}
