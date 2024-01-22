@@ -1,6 +1,8 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Lines } from "./index";
+import { IPeopleColorProps } from "@src/routes/people";
+import { presente } from "@inube/design-system";
 
 const story = {
   components: [Lines],
@@ -17,7 +19,11 @@ const story = {
   ],
 };
 
-const Default = () => <Lines />;
+const Default = (args: IPeopleColorProps) => <Lines {...args} />;
+Default.args = {
+  token: presente,
+  handleSubmit: () => {},
+};
 
 export default story;
 
