@@ -12,24 +12,63 @@ import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { IHandleSubmitProps } from "@src/routes/people";
 import { linesTabsConfig } from "./config/linesTabs.config";
-import { RenderLinesContentForm } from "./RenderLinesContentForm";
 
-interface LinesUIProps {
-  token: typeof inube;
-  linesConfig: any;
-  selectedTab: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
+import { linesFormsConfig } from "./config/lines.config";
+import { RenderLinesContentForm } from "./form/RenderLinesContentForm";
+import { RenderLinesWithSpinnerForm } from "./form/RenderLinesWithSpinnerForm";
+import { RenderLinesWithLinkForm } from "./form/RenderLinesWithLinkForm";
+
+interface ILinesUIProps {
   handleTabChange: (id: string) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
+  selectedTab: string;
+  linesConfig: typeof linesFormsConfig;
+  token: typeof inube;
 }
 
-export function LinesUI(props: LinesUIProps) {
+type FormType = "spinner" | "link" | "default";
+
+interface IRenderForm {
+  formType: string;
+  selectedTab: string;
+  handleSubmit: (props: IHandleSubmitProps) => void;
+  linesConfig: typeof linesFormsConfig;
+  token: typeof inube;
+}
+
+function renderForm(props: IRenderForm) {
+  const { formType, selectedTab, handleSubmit, linesConfig, token } = props;
+  if (selectedTab !== formType) return null;
+
+  const formTypeToComponentMap = {
+    spinner: RenderLinesWithSpinnerForm,
+    link: RenderLinesWithLinkForm,
+    default: RenderLinesContentForm,
+  };
+
+  const Component =
+    formTypeToComponentMap[formType as FormType] ||
+    formTypeToComponentMap["default"];
+
+  return (
+    <Component
+      key={formType}
+      formType={formType}
+      handleSubmit={handleSubmit}
+      linesConfig={linesConfig}
+      token={token}
+    />
+  );
+}
+
+export function LinesUI(props: ILinesUIProps) {
   const { token, handleSubmit, handleTabChange, linesConfig, selectedTab } =
     props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQuery(["(max-width: 580px)", "(max-width: 1073px)"]);
 
-  const colorTabs = Object.keys(linesTabsConfig);
+  const lineTabs = Object.keys(linesTabsConfig);
 
   return (
     <>
@@ -56,18 +95,15 @@ export function LinesUI(props: LinesUIProps) {
                   type={typeTabs ? "select" : "tabs"}
                   onChange={handleTabChange}
                 />
-                {colorTabs.map(
-                  (formType) =>
-                    selectedTab === formType && (
-                      <RenderLinesContentForm
-                        key={formType}
-                        formType={formType}
-                        handleSubmit={handleSubmit}
-                        linesConfig={linesConfig}
-                        token={token}
-                      />
-                    )
-                )}
+                {lineTabs.map((formType) => {
+                  return renderForm({
+                    formType,
+                    selectedTab,
+                    handleSubmit,
+                    linesConfig,
+                    token,
+                  });
+                })}
               </Stack>
             </StyledTabsContainer>
           </StyledContainer>

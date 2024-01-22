@@ -1,5 +1,6 @@
 import { EAppearance } from "@src/types/colors.types";
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const linesFormsConfig = {
   primary: {
@@ -42,11 +43,6 @@ const linesFormsConfig = {
         description:
           "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
       },
-      focus: {
-        title: "Focus",
-        description:
-          "La línea tomará este color para comunicar el usuario está enfocado en un elemento.",
-      },
       disabled: {
         title: "Disabled",
         description:
@@ -67,11 +63,6 @@ const linesFormsConfig = {
         title: "Hover",
         description:
           "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
-      },
-      focus: {
-        title: "Focus",
-        description:
-          "La línea tomará este color para comunicar el usuario está enfocado en un elemento.",
       },
       disabled: {
         title: "Disabled",
@@ -94,11 +85,6 @@ const linesFormsConfig = {
         description:
           "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
       },
-      focus: {
-        title: "Focus",
-        description:
-          "La línea tomará este color para comunicar el usuario está enfocado en un elemento.",
-      },
       disabled: {
         title: "Disabled",
         description:
@@ -119,11 +105,6 @@ const linesFormsConfig = {
         title: "Hover",
         description:
           "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
-      },
-      focus: {
-        title: "Focus",
-        description:
-          "La línea tomará este color para comunicar el usuario está enfocado en un elemento.",
       },
       disabled: {
         title: "Disabled",
@@ -146,11 +127,6 @@ const linesFormsConfig = {
         description:
           "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
       },
-      focus: {
-        title: "Focus",
-        description:
-          "La línea tomará este color para comunicar el usuario está enfocado en un elemento.",
-      },
       disabled: {
         title: "Disabled",
         description:
@@ -158,7 +134,7 @@ const linesFormsConfig = {
       },
     },
   },
-  divisor: {
+  divider: {
     description:
       "Las líneas de tipo Spinner son usadas en los estados de carga, para indicarle al usuario que hay un tiempo de espera. Este cambio modificara solo el color de la senda, la línea que realiza la rotación está determinado por los tokens de color definidos en Primario, Error, Advertencia, Éxito, Información y Ayuda.",
     status: {
@@ -166,11 +142,6 @@ const linesFormsConfig = {
         title: "Regular",
         description:
           "La línea tomará este color para resaltar acciones principales o el color de marca.",
-      },
-      transparent: {
-        title: "Transparent",
-        description:
-          "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
       },
     },
   },
@@ -204,11 +175,6 @@ const linesFormsConfig = {
         description:
           "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
       },
-      focus: {
-        title: "Focus",
-        description:
-          "La línea tomará este color para comunicar el usuario está enfocado en un elemento.",
-      },
       disabled: {
         title: "Disabled",
         description:
@@ -229,11 +195,6 @@ const linesFormsConfig = {
         title: "Hover",
         description:
           "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
-      },
-      focus: {
-        title: "Focus",
-        description:
-          "La línea tomará este color para comunicar el usuario está enfocado en un elemento.",
       },
       disabled: {
         title: "Disabled",
@@ -256,15 +217,40 @@ const linesFormsConfig = {
         description:
           "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
       },
-      focus: {
-        title: "Focus",
+      disabled: {
+        title: "Disabled",
         description:
-          "La línea tomará este color para comunicar el usuario está enfocado en un elemento.",
+          "La línea tomará este color cuando se encuentre deshabilitada.",
+      },
+    },
+  },
+  link: {
+    description:
+      " Los textos de tipo claro se utilizan en textos cortos, textos de botones y enlaces. Tiene como propósito resaltar un texto aprovechando el color principal de la marca (empresa)",
+    status: {
+      regular: {
+        title: "Regular",
+        description:
+          "La línea tomará este color para resaltar acciones principales o el color de marca.",
+        example:
+          "Que conozco y acepto que, una vez cumplida la capacitación, obtendré una certificación efectuada en el desarrollo del módulo cursado, de acuerdo a las modalidades previstas y requisitos, para conocer más sobre la ",
+        link: <Link to="#">Politica de tratamiento de datos</Link>,
+      },
+      hover: {
+        title: "Hover",
+        description:
+          "La línea tomará este color cuando el cursor esté ubicado sobre el elemento.",
+        example:
+          "Que conozco y acepto que, una vez cumplida la capacitación, obtendré una certificación efectuada en el desarrollo del módulo cursado, de acuerdo a las modalidades previstas y requisitos, para conocer más sobre la ",
+        link: <Link to="#">Politica de tratamiento de datos</Link>,
       },
       disabled: {
         title: "Disabled",
         description:
           "La línea tomará este color cuando se encuentre deshabilitada.",
+        example:
+          "Que conozco y acepto que, una vez cumplida la capacitación, obtendré una certificación efectuada en el desarrollo del módulo cursado, de acuerdo a las modalidades previstas y requisitos, para conocer más sobre la ",
+        link: <Link to="#">Politica de tratamiento de datos</Link>,
       },
     },
   },

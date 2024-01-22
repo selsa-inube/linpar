@@ -1,17 +1,21 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
+  Grid,
+  inube,
   SectionMessage,
   Stack,
-  Grid,
   Text,
-  inube,
-  useMediaQuery,
+  useMediaQueries,
 } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
+import { Appearance } from "@src/components/feedback/SendingInformation/types";
+
+import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
+import { linesFormsConfig } from "../../config/lines.config";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -29,12 +33,12 @@ const renderMessage = (
     <StyledMessageContainer>
       <Stack justifyContent="flex-end" width="100%">
         <SectionMessage
-          title={message.data.title}
-          description={message.data.description}
-          icon={message.data.icon}
           appearance={message.data.appearance}
-          duration={4000}
           closeSectionMessage={closeMessageAndExecuteCallback}
+          description={message.data.description}
+          duration={4000}
+          icon={message.data.icon}
+          title={message.data.title}
         />
       </Stack>
     </StyledMessageContainer>
@@ -42,53 +46,57 @@ const renderMessage = (
 };
 
 interface RenderLinesContentFormUIProps {
-  formType: string;
-  hasChanges: () => boolean;
-  handleCloseMessage: () => void;
+  formType: Appearance | string;
   handleReset: () => void;
+  handleCloseMessage: () => void;
   handleSubmitForm: () => void;
-  handleTokenChange: any;
-  linesConfig: any;
+  handleTokenChange: (
+    appearance: Appearance | string,
+    category: string,
+    updatedTokenName: string
+  ) => void;
+  hasChanges: () => boolean;
   isLoading: boolean;
-  updatedTheme: typeof inube;
+  linesConfig: typeof linesFormsConfig;
   message: IMessageState;
+  updatedTheme: typeof inube;
 }
 
 function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
   const {
     formType,
-    updatedTheme,
-    linesConfig,
-    isLoading,
-    handleSubmitForm,
     handleReset,
-    handleTokenChange,
-    message,
     handleCloseMessage,
+    handleSubmitForm,
+    handleTokenChange,
     hasChanges,
+    isLoading,
+    linesConfig,
+    message,
+    updatedTheme,
   } = props;
 
-  const linesCards = Object.entries(linesConfig[formType].status);
+  const linesCards = Object.entries(
+    linesConfig[formType as keyof typeof linesConfig].status
+  );
 
-  const isSmallScreen = useMediaQuery(
-    "(max-width: 744px) and (min-width: 580px)"
-  );
-  const isMediumScreen = useMediaQuery(
-    "(min-width: 745px) and (max-width: 1000px)"
-  );
-  const isLargeScreen = useMediaQuery("(min-width: 1001px)");
+  const {
+    "(max-width: 744px)": isSmallScreen,
+    "(min-width: 745px) and (max-width: 1000px)": isMediumScreen,
+  } = useMediaQueries([
+    "(max-width: 744px)",
+    "(min-width: 745px) and (max-width: 1000px)",
+  ]);
+
   const templateColumns = isSmallScreen
-    ? "repeat(2, 1fr)"
+    ? "repeat(1, 1fr)"
     : isMediumScreen
-    ? "repeat(3, 1fr)"
-    : isLargeScreen
-    ? "repeat(3, 1fr)"
-    : "auto";
-  console.log("formType: ", formType);
+    ? "repeat(2, 1fr)"
+    : "repeat(3, 1fr)";
   return (
     <>
       <Text size="medium" appearance="gray">
-        {linesConfig[formType].description}
+        {linesConfig[formType as keyof typeof linesConfig].description}
       </Text>
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -96,32 +104,32 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <Stack direction="column" gap={inube.spacing.s350}>
-          <ThemeProvider theme={updatedTheme}>
+        <ThemeProvider theme={updatedTheme}>
+          <Stack direction="column" gap={inube.spacing.s350}>
+            <SendInformationMessage appearance={formType as Appearance} />
             <Grid
               templateColumns={templateColumns}
               gap="s350"
               autoColumns="unset"
               autoRows="unset"
             >
-              {linesCards.map(([key, config]: any) => (
+              {linesCards.map(([key, config]) => (
                 <FieldsetColorCard
-                  key={key}
-                  optionsMenu={updatedTheme.color.palette}
-                  title={config.title}
-                  description={config.description}
                   appearance={formType}
-                  typeToken="stroke"
                   category={key}
-                  textWithColorToken={config.example}
+                  description={config.description}
+                  key={key}
                   onChange={(newTokenName) =>
                     handleTokenChange(formType, key, newTokenName)
                   }
+                  optionsMenu={updatedTheme.color.palette}
+                  title={config.title}
+                  typeToken="stroke"
                 />
               ))}
             </Grid>
-          </ThemeProvider>
-        </Stack>
+          </Stack>
+        </ThemeProvider>
       </FormButtons>
       {renderMessage(message, handleCloseMessage, handleReset)}
     </>

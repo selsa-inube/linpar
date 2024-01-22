@@ -1,27 +1,31 @@
 import { useState } from "react";
-import { RenderLinesContentFormUI } from "./interface";
+import { RenderLinesWithLinkFormUI } from "./interface";
 import { inube } from "@inube/design-system";
 
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { IHandleSubmitProps } from "@src/routes/people";
-import { linesMessagesConfig } from "../config/lines.config";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 
-interface RenderLinesContentFormProps {
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import {
+  linesFormsConfig,
+  linesMessagesConfig,
+} from "../../config/lines.config";
+import { IPeopleMessage } from "../../../types/people.types";
+
+interface RenderLinesWithLinkFormProps {
   formType: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
-  linesConfig: any;
+  linesConfig: typeof linesFormsConfig;
   token: typeof inube;
 }
 
-function RenderLinesContentForm(props: RenderLinesContentFormProps) {
+function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
   const { formType, handleSubmit, linesConfig, token } = props;
   const [linesToken, setLinesToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<IUsersMessage>({
+  const [message, setMessage] = useState<IPeopleMessage>({
     visible: false,
   });
 
@@ -34,14 +38,14 @@ function RenderLinesContentForm(props: RenderLinesContentFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    let lineStokenUpdate = { ...linesToken };
+    let lineStokeUpdate = { ...linesToken };
 
-    lineStokenUpdate[appearance][category] = getTokenColor(
+    lineStokeUpdate[appearance][category] = getTokenColor(
       updatedTokenName,
       token
     );
 
-    setLinesToken(lineStokenUpdate);
+    setLinesToken(lineStokeUpdate);
   };
 
   const handleSubmitForm = () => {
@@ -98,22 +102,21 @@ function RenderLinesContentForm(props: RenderLinesContentFormProps) {
     },
   };
 
-  console.log("updatedTheme: ", updatedTheme);
-
   return (
-    <RenderLinesContentFormUI
-      updatedTheme={updatedTheme}
-      handleTokenChange={handleTokenChange}
-      handleSubmitForm={handleSubmitForm}
+    <RenderLinesWithLinkFormUI
+      formType={formType}
       handleReset={handleReset}
+      handleCloseMessage={handleCloseSectionMessage}
+      handleSubmitForm={handleSubmitForm}
+      handleTokenChange={handleTokenChange}
+      hasChanges={hasChanges}
       isLoading={isLoading}
       linesConfig={linesConfig}
       message={message}
-      hasChanges={hasChanges}
-      handleCloseMessage={handleCloseSectionMessage}
-      formType={formType}
+      updatedTheme={updatedTheme}
     />
   );
 }
 
-export { RenderLinesContentForm };
+export { RenderLinesWithLinkForm };
+export type { RenderLinesWithLinkFormProps };

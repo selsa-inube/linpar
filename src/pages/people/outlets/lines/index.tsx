@@ -15,11 +15,11 @@ function Lines(props: IPeopleColorProps) {
 
   return (
     <LinesUI
-      token={token}
-      handleSubmit={handleSubmit}
-      linesConfig={linesFormsConfig}
-      selectedTab={selectedTab}
       handleTabChange={handleTabChange}
+      handleSubmit={handleSubmit}
+      selectedTab={selectedTab}
+      linesConfig={linesFormsConfig}
+      token={token}
     />
   );
 }
