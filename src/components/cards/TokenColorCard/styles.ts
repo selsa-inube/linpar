@@ -59,7 +59,6 @@ const StyledGridColorsContainer = styled.div`
 
 const StyledDivText = styled.div`
   width: 51px;
-  justify-content: center;
 `;
 
 export {
