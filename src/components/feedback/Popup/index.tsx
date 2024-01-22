@@ -1,20 +1,12 @@
-import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import { Stack, Text, Icon } from "@inube/design-system";
 import { StyledPopup } from "./styles";
 import { PopupProps } from "./types";
 
 const Popup = (props: PopupProps) => {
-  const { portalId, title, closeModal, children } = props;
-  const node = document.getElementById(portalId);
+  const { title, closeModal, children } = props;
 
-  if (!node) {
-    throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
-    );
-  }
-
-  return createPortal(
+  return (
     <StyledPopup>
       <Stack
         width="350px"
@@ -38,8 +30,7 @@ const Popup = (props: PopupProps) => {
         </Stack>
         {children}
       </Stack>
-    </StyledPopup>,
-    node
+    </StyledPopup>
   );
 };
 

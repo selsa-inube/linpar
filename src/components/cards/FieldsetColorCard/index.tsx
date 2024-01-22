@@ -121,7 +121,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             )}
           </Stack>
         </Stack>
-        <StyledPopupContainer id="palette"></StyledPopupContainer>
+        <StyledPopupContainer></StyledPopupContainer>
       </>
     </Fieldset>
   );
