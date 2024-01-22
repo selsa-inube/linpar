@@ -36,7 +36,7 @@ const Default = (args: RenderSurfaceContentFormProps) => {
 Default.args = {
   formType: "primary",
   handleSubmit: () => {},
-  token: presente,
+  token: "presente",
   surfaceConfig: surfaceFormsConfig,
 };
 Default.argTypes = {
@@ -45,7 +45,7 @@ Default.argTypes = {
     control: { type: "select" },
     description: "the theme that it be use to render",
     table: {
-      defaultValue: { summary: inube },
+      defaultValue: { summary: "inube" },
     },
   },
   formType: {

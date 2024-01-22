@@ -2,10 +2,11 @@ import { useState } from "react";
 import { RenderSurfaceContentFormUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
-import { surfaceMessagesConfig } from "../../config/surface.config";
-import { getTokenColor } from "@src/components/cards/FieldsetColorCard/styles";
+
 import { IHandleSubmitProps } from "@src/routes/people";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { surfaceMessagesConfig } from "../../config/surface.config";
 
 interface RenderSurfaceContentFormProps {
   formType: Appearance;
@@ -97,16 +98,16 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
 
   return (
     <RenderSurfaceContentFormUI
-      updatedTheme={updatedTheme}
-      handleTokenChange={handleTokenChange}
-      handleSubmitForm={handleSubmitForm}
-      handleReset={handleReset}
-      isLoading={isLoading}
-      surfaceConfig={surfaceConfig}
-      message={message}
-      hasChanges={hasChanges}
-      handleCloseMessage={handleCloseSectionMessage}
       formType={formType}
+      handleCloseMessage={handleCloseSectionMessage}
+      handleReset={handleReset}
+      handleSubmitForm={handleSubmitForm}
+      handleTokenChange={handleTokenChange}
+      hasChanges={hasChanges}
+      isLoading={isLoading}
+      message={message}
+      surfaceConfig={surfaceConfig}
+      updatedTheme={updatedTheme}
     />
   );
 }

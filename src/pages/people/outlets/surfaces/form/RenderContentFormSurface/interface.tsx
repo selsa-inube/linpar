@@ -32,12 +32,12 @@ const renderMessage = (
     <StyledMessageContainer>
       <Stack justifyContent="flex-end" width="100%">
         <SectionMessage
-          title={message.data.title}
-          description={message.data.description}
-          icon={message.data.icon}
           appearance={message.data.appearance}
-          duration={4000}
           closeSectionMessage={closeMessageAndExecuteCallback}
+          description={message.data.description}
+          duration={4000}
+          icon={message.data.icon}
+          title={message.data.title}
         />
       </Stack>
     </StyledMessageContainer>
@@ -45,35 +45,34 @@ const renderMessage = (
 };
 
 interface RenderSurfaceContentFormUIProps {
-  updatedTheme: typeof inube;
-  formType: string;
-  surfaceConfig: typeof surfaceFormsConfig;
-  isLoading: boolean;
-
-  handleSubmitForm: () => void;
+  formType: Appearance | string;
+  handleCloseMessage: () => void;
   handleReset: () => void;
+  handleSubmitForm: () => void;
   handleTokenChange: (
     appearance: Appearance | string,
     category: string,
     updatedTokenName: string
   ) => void;
-  message: IMessageState;
   hasChanges: () => boolean;
-  handleCloseMessage: () => void;
+  isLoading: boolean;
+  message: IMessageState;
+  surfaceConfig: typeof surfaceFormsConfig;
+  updatedTheme: typeof inube;
 }
 
 function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
   const {
     formType,
+    handleCloseMessage,
+    handleReset,
+    handleSubmitForm,
+    handleTokenChange,
+    hasChanges,
+    isLoading,
+    message,
     surfaceConfig,
     updatedTheme,
-    isLoading,
-    handleSubmitForm,
-    handleReset,
-    handleTokenChange,
-    message,
-    handleCloseMessage,
-    hasChanges,
   } = props;
 
   const surfaceCards = Object.entries(

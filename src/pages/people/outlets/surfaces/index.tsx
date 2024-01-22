@@ -15,11 +15,11 @@ function Surfaces(props: IPeopleColorProps) {
 
   return (
     <SurfacesUI
-      token={token}
-      handleSubmit={handleSubmit}
-      surfaceConfig={surfaceFormsConfig}
-      selectedTab={selectedTab}
       handleTabChange={handleTabChange}
+      handleSubmit={handleSubmit}
+      selectedTab={selectedTab}
+      surfaceConfig={surfaceFormsConfig}
+      token={token}
     />
   );
 }

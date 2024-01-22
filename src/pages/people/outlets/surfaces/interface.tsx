@@ -15,11 +15,11 @@ import { IHandleSubmitProps } from "@src/routes/people";
 import { surfaceFormsConfig } from "./config/surface.config";
 
 interface SurfaceUIProps {
-  token: typeof inube;
-  surfaceConfig: typeof surfaceFormsConfig;
-  selectedTab: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   handleTabChange: (id: string) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
+  selectedTab: string;
+  surfaceConfig: typeof surfaceFormsConfig;
+  token: typeof inube;
 }
 
 export function SurfacesUI(props: SurfaceUIProps) {
@@ -52,20 +52,20 @@ export function SurfacesUI(props: SurfaceUIProps) {
           <StyledTabsContainer typeTabs={typeTabs}>
             <Stack direction="column" gap={inube.spacing.s400}>
               <Tabs
-                tabs={Object.values(surfaceTabsConfig)}
-                selectedTab={selectedTab}
-                type={typeTabs ? "select" : "tabs"}
                 onChange={handleTabChange}
+                selectedTab={selectedTab}
+                tabs={Object.values(surfaceTabsConfig)}
+                type={typeTabs ? "select" : "tabs"}
               />
               {colorTabs.map(
                 (formType: any) =>
                   selectedTab === formType! && (
                     <RenderSurfaceContentForm
-                      key={formType}
                       formType={formType}
+                      handleSubmit={handleSubmit}
+                      key={formType}
                       surfaceConfig={surfaceConfig}
                       token={token}
-                      handleSubmit={handleSubmit}
                     />
                   )
               )}
