@@ -49,7 +49,10 @@ function PeopleRoutes() {
           path="texts"
           element={<Texts token={token} handleSubmit={handleSubmit} />}
         />
-        <Route path="surfaces" element={<Surfaces />} />
+        <Route
+          path="surfaces"
+          element={<Surfaces token={token} handleSubmit={handleSubmit} />}
+        />
         <Route path="lines" element={<Lines />} />
       </Route>
       <Route path="/*" element={<ErrorPage />} />
