@@ -8,6 +8,11 @@ import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { textFormsConfig } from "../../config/text.config";
 
+interface ITextCardConfig {
+  title: string;
+  description: string;
+  example: string;
+}
 const renderMessage = (
   message: IUsersMessage,
   handleCloseMessage: () => void,
@@ -83,7 +88,7 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {textCards.map(([key, config]) => (
+            {textCards.map(([key, config]: [string, ITextCardConfig]) => (
               <FieldsetColorCard
                 key={key}
                 optionsMenu={updatedTheme.color.palette}
