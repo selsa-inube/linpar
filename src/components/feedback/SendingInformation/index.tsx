@@ -78,7 +78,7 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
             </Stack>
           </Stack>
         </Stack>
-        <Stack alignItems={isMessageResponsive ? "center" : undefined}>
+        <Stack>
           <Icon
             size="16px"
             onClick={closeSectionMessage}

@@ -23,6 +23,35 @@ Default.args = {
   buttonType: "outlined",
 };
 
+Default.argTypes = {
+  appearance: {
+    options: [
+      "primary",
+      "error",
+      "warning",
+      "success",
+      "information",
+      "help",
+      "light",
+      "gray",
+      "dark",
+    ],
+    control: { type: "select" },
+    description: "The apperance of the Section Message.",
+    table: {
+      defaultValue: { summary: "primary" },
+    },
+  },
+  buttonType: {
+    options: ["outlined", "filled", "none"],
+    control: { type: "select" },
+    description: "The type of button of the Section Message.",
+    table: {
+      defaultValue: { summary: "buttonType" },
+    },
+  },
+};
+
 export default story;
 
 export { Default };
