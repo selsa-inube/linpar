@@ -6,6 +6,7 @@ import {
   inube,
   Grid,
   useMediaQueries,
+  NavLink,
 } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
@@ -111,7 +112,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {formType === "navLink" && <>Aqui esta el nav link</>}
+            {formType === "navLink" && <NavLink></NavLink>}
             {formType !== "navLink" && (
               <SendInformationMessage appearance={formType as Appearance} />
             )}

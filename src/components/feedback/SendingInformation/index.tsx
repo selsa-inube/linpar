@@ -60,17 +60,17 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
         padding={isMessageResponsive ? "s150 s200" : "s200"}
       >
         <Stack
-          gap="s200"
+          gap={inube.spacing.s200}
           alignItems={isMessageResponsive ? "center" : undefined}
         >
-          <Stack alignItems="center" gap="s200">
+          <Stack alignItems="center" gap={inube.spacing.s200}>
             <Icon
               size="24px"
               spacing="wide"
               appearance={appearance}
               icon={icon}
             />
-            <Stack direction="column" gap="s100">
+            <Stack direction="column" gap={inube.spacing.s100}>
               <Text size="large">{title}</Text>
               {!isMessageResponsive && (
                 <Text size="small" appearance="gray">
@@ -85,7 +85,7 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
           <Icon
             size="16px"
             onClick={closeSectionMessage}
-            appearance={appearance}
+            appearance={"dark"}
             icon={<MdClear />}
           />
         </Stack>
@@ -145,7 +145,7 @@ const SendInformationMessage = (props: ISendInformationMessageProps) => {
                   onClick={handleCancel()}
                   appearance={appearance}
                   variant={buttonType}
-                  spacing={"compact"}
+                  spacing="compact"
                 >
                   {sectionMessageConfig.cancelButton}
                 </Button>
@@ -153,7 +153,7 @@ const SendInformationMessage = (props: ISendInformationMessageProps) => {
                   onClick={handleAgree()}
                   appearance={appearance}
                   variant={buttonType}
-                  spacing={"compact"}
+                  spacing="compact"
                 >
                   {sectionMessageConfig.agreeButton}
                 </Button>
