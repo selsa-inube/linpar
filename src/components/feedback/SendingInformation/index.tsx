@@ -35,7 +35,7 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
     appearance = "primary",
     duration,
     closeSectionMessage,
-    buttonType = "outlined",
+    buttonType = "filled",
   } = props;
 
   const [isPaused, setIsPaused] = useState(false);
@@ -119,7 +119,7 @@ interface ISendInformationMessageProps {
 }
 
 const SendInformationMessage = (props: ISendInformationMessageProps) => {
-  const { appearance = "primary", buttonType = "outlined" } = props;
+  const { appearance = "primary", buttonType = "filled" } = props;
   let [cancelDisable, setCancelDisable] = useState(true);
 
   return (
