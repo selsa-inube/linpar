@@ -13,7 +13,7 @@ import { sectionMessageState } from "./config/sectionMessage.state";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { MdClear } from "react-icons/md";
 import { StyledSectionMessage } from "./styles";
-import { Appearance } from "./types";
+import { Appearance, ButtonType } from "./types";
 
 export interface ISectionMessageProps {
   children?: React.ReactNode;
@@ -23,6 +23,7 @@ export interface ISectionMessageProps {
   appearance: Appearance;
   duration: number;
   closeSectionMessage: () => void;
+  buttonType: ButtonType;
 }
 
 const SectionMessageCustomized = (props: ISectionMessageProps) => {
@@ -34,6 +35,7 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
     appearance = "primary",
     duration,
     closeSectionMessage,
+    buttonType = "outlined",
   } = props;
 
   const [isPaused, setIsPaused] = useState(false);
@@ -51,6 +53,7 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
       description={description}
       duration={duration}
       closeSectionMessage={closeSectionMessage}
+      buttonType={buttonType}
     >
       <Stack justifyContent="space-between" padding="s200">
         <Stack
@@ -112,10 +115,11 @@ const handleAgree = () => {
 
 interface ISendInformationMessageProps {
   appearance: Appearance;
+  buttonType: ButtonType;
 }
 
 const SendInformationMessage = (props: ISendInformationMessageProps) => {
-  const { appearance = "primary" } = props;
+  const { appearance = "primary", buttonType = "outlined" } = props;
   let [cancelDisable, setCancelDisable] = useState(true);
 
   return (
@@ -130,16 +134,22 @@ const SendInformationMessage = (props: ISendInformationMessageProps) => {
               closeSectionMessage={() => setCancelDisable(false)}
               icon={<IoMdInformationCircleOutline />}
               appearance={appearance}
+              buttonType={buttonType}
             >
               <Stack width="100%" gap={inube.spacing.s050}>
                 <Button
                   disabled={cancelDisable}
                   onClick={handleCancel()}
                   appearance={appearance}
+                  variant={buttonType}
                 >
                   {sectionMessageConfig.cancelButton}
                 </Button>
-                <Button onClick={handleAgree()} appearance={appearance}>
+                <Button
+                  onClick={handleAgree()}
+                  appearance={appearance}
+                  variant={buttonType}
+                >
                   {sectionMessageConfig.agreeButton}
                 </Button>
               </Stack>

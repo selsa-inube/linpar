@@ -20,6 +20,7 @@ const Default = (args: ISendInformationMessageProps) => (
 
 Default.args = {
   appearance: "primary",
+  buttonType: "outlined",
 };
 
 export default story;
