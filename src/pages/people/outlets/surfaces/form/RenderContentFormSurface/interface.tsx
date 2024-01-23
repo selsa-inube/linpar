@@ -16,6 +16,10 @@ import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "../../config/surface.config";
 
+interface SurfaceCardConfig {
+  title: string;
+  description: string;
+}
 const renderMessage = (
   message: IUsersMessage,
   handleCloseMessage: () => void,
@@ -118,20 +122,22 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
               autoColumns="unset"
               autoRows="unset"
             >
-              {surfaceCards.map(([key, config]) => (
-                <FieldsetColorCard
-                  key={key}
-                  optionsMenu={updatedTheme.color.palette}
-                  title={config.title}
-                  description={config.description}
-                  appearance={formType}
-                  category={key}
-                  typeToken="surface"
-                  onChange={(newTokenName) =>
-                    handleTokenChange(formType, key, newTokenName)
-                  }
-                />
-              ))}
+              {surfaceCards.map(
+                ([key, config]: [string, SurfaceCardConfig]) => (
+                  <FieldsetColorCard
+                    key={key}
+                    optionsMenu={updatedTheme.color.palette}
+                    title={config.title}
+                    description={config.description}
+                    appearance={formType}
+                    category={key}
+                    typeToken="surface"
+                    onChange={(newTokenName) =>
+                      handleTokenChange(formType, key, newTokenName)
+                    }
+                  />
+                )
+              )}
             </Grid>
           </Stack>
         </ThemeProvider>
