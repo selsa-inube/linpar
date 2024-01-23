@@ -27,7 +27,7 @@ const StyledAppMenuCard = styled(Link)`
     }
   }
 
-  @media (max-width: 490px) {
+  @media (max-width: 580px) {
     display: flex;
     width: 100%;
     height: 72px;
