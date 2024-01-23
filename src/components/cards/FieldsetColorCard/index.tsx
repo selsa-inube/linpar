@@ -18,7 +18,7 @@ interface FieldsetColorCardProps {
   description: string;
   appearance: Appearance;
   category: string;
-  textWithColorToken?: string;
+  children?: React.ReactNode;
   typeToken?: string;
   optionsMenu: typeof inube;
   onChange: (tokenName: string) => void;
@@ -54,7 +54,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     description,
     appearance,
     category,
-    textWithColorToken,
+    children,
     typeToken = "text",
     optionsMenu,
     onChange,
@@ -74,9 +74,16 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     onChange(updatedTokenName);
   };
 
+  const tokenColor = getTokenColor(tokenName!);
+  const color = tinycolor(tokenColor);
+  const isTransparent = color.getAlpha() === 0;
+
   const requireBackground =
-    (tokenName === "N10" || tokenName === "N0") &&
-    tinycolor(getTokenColor(tokenName!)).isLight();
+    (tokenName === "N10" ||
+      tokenName === "N0" ||
+      tokenName === "N10A" ||
+      tokenName === "N0A") &&
+    (isTransparent || color.isLight());
 
   return (
     <Fieldset title={title}>
@@ -96,20 +103,11 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
                 onColorChange={handleColorChange}
               />
             </StyledTokenColorCardContainer>
-            {textWithColorToken && (
+            {children && (
               <StyledTextWithTokenContainer
                 requireBackground={requireBackground}
               >
-                <Stack padding="s100">
-                  <Text
-                    size="medium"
-                    appearance={appearance}
-                    parentHover={category === "hover"}
-                    disabled={category === "disabled"}
-                  >
-                    {textWithColorToken}
-                  </Text>
-                </Stack>
+                <Stack padding="s100">{children}</Stack>
               </StyledTextWithTokenContainer>
             )}
           </Stack>
