@@ -1,54 +1,74 @@
 import {
   Breadcrumbs,
-  SectionMessage,
   Stack,
+  Tabs,
   useMediaQuery,
+  inube,
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
 
-import { StyledMessageContainer, StyledContainer } from "./styles";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
+import { IHandleSubmitProps } from "@src/routes/people";
+import { linesTabsConfig } from "./config/linesTabs.config";
 
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void
-) => {
-  if (!message.data) return null;
+import { linesFormsConfig } from "./config/lines.config";
+import { RenderLinesContentForm } from "./form/RenderLinesContentForm";
+import { RenderLinesWithSpinnerForm } from "./form/RenderLinesWithSpinnerForm";
+import { RenderLinesWithLinkForm } from "./form/RenderLinesWithLinkForm";
 
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="98%">
-        <SectionMessage
-          title={message.data.title}
-          description={message.data.description}
-          icon={message.data.icon}
-          appearance={message.data.appearance}
-          duration={4000}
-          closeSectionMessage={handleCloseMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
-
-interface UsersUIProps {
-  isSelected: string;
-  searchText: string;
+interface ILinesUIProps {
   handleTabChange: (id: string) => void;
-  handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  showMenu: boolean;
-  handleToggleMenuInvitation: () => void;
-  handleCloseMenuInvitation: () => void;
-  message: IUsersMessage;
-  handleCloseMessage: () => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
+  selectedTab: string;
+  linesConfig: typeof linesFormsConfig;
+  token: typeof inube;
 }
 
-export function LinesUI(props: UsersUIProps) {
-  const { message, handleCloseMessage } = props;
+type FormType = "spinner" | "link" | "default";
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+interface IRenderForm {
+  formType: string;
+  selectedTab: string;
+  handleSubmit: (props: IHandleSubmitProps) => void;
+  linesConfig: typeof linesFormsConfig;
+  token: typeof inube;
+}
+
+function renderForm(props: IRenderForm) {
+  const { formType, selectedTab, handleSubmit, linesConfig, token } = props;
+  if (selectedTab !== formType) return null;
+
+  const formTypeToComponentMap = {
+    spinner: RenderLinesWithSpinnerForm,
+    link: RenderLinesWithLinkForm,
+    default: RenderLinesContentForm,
+  };
+
+  const Component =
+    formTypeToComponentMap[formType as FormType] ||
+    formTypeToComponentMap["default"];
+
+  return (
+    <Component
+      key={formType}
+      formType={formType}
+      handleSubmit={handleSubmit}
+      linesConfig={linesConfig}
+      token={token}
+    />
+  );
+}
+
+export function LinesUI(props: ILinesUIProps) {
+  const { token, handleSubmit, handleTabChange, linesConfig, selectedTab } =
+    props;
+
+  const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
+    useMediaQuery(["(max-width: 580px)", "(max-width: 1073px)"]);
+
+  const lineTabs = Object.keys(linesTabsConfig);
 
   return (
     <>
@@ -67,10 +87,27 @@ export function LinesUI(props: UsersUIProps) {
             />
           </Stack>
           <StyledContainer>
-            <Stack gap="32px" direction="column"></Stack>
+            <StyledTabsContainer typeTabs={typeTabs}>
+              <Stack direction="column" gap="32px">
+                <Tabs
+                  tabs={Object.values(linesTabsConfig)}
+                  selectedTab={selectedTab}
+                  type={typeTabs ? "select" : "tabs"}
+                  onChange={handleTabChange}
+                />
+                {lineTabs.map((formType) => {
+                  return renderForm({
+                    formType,
+                    selectedTab,
+                    handleSubmit,
+                    linesConfig,
+                    token,
+                  });
+                })}
+              </Stack>
+            </StyledTabsContainer>
           </StyledContainer>
         </Stack>
-        {renderMessage(message, handleCloseMessage)}
       </Stack>
     </>
   );

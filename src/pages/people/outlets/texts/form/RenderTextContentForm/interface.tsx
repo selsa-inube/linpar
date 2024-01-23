@@ -85,11 +85,19 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
                 description={config.description}
                 appearance={formType}
                 category={key}
-                textWithColorToken={config.example}
                 onChange={(newTokenName) =>
                   handleChangeTokens(formType, key, newTokenName)
                 }
-              />
+              >
+                <Text
+                  size="medium"
+                  appearance={formType}
+                  parentHover={key === "hover"}
+                  disabled={key === "disabled"}
+                >
+                  {config.example}
+                </Text>
+              </FieldsetColorCard>
             ))}
           </Stack>
         </ThemeProvider>

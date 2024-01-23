@@ -57,10 +57,15 @@ const StyledGridColorsContainer = styled.div`
   overflow: auto;
 `;
 
+const StyledDivText = styled.div`
+  width: 51px;
+`;
+
 export {
   StyledColorTokenCard,
   HiddenColorPicker,
   StyledGridContainer,
   StyledGridColorsContainer,
   getTokenColor,
+  StyledDivText,
 };
