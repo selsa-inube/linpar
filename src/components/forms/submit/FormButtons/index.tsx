@@ -1,4 +1,5 @@
 import { Button, Stack, inube } from "@inube/design-system";
+import { ThemeProvider } from "styled-components";
 
 interface FormButtonsProps {
   children: React.ReactNode;
@@ -14,25 +15,27 @@ function FormButtons(props: FormButtonsProps) {
 
   return (
     <Stack direction="column" gap={inube.spacing.s300}>
-      <Stack>{children}</Stack>
+      <Stack direction="column">{children}</Stack>
       <Stack justifyContent="flex-end" gap="16px" margin="s100 s0 s0 s0">
-        <Button
-          appearance="gray"
-          disabled={disabledButtons}
-          onClick={handleReset}
-          type="reset"
-        >
-          Cancelar
-        </Button>
-        <Button
-          appearance="primary"
-          onClick={handleSubmit}
-          loading={loading}
-          disabled={disabledButtons}
-          type="button"
-        >
-          Guardar
-        </Button>
+        <ThemeProvider theme={inube}>
+          <Button
+            appearance="gray"
+            disabled={disabledButtons}
+            onClick={handleReset}
+            type="reset"
+          >
+            Cancelar
+          </Button>
+          <Button
+            appearance="primary"
+            onClick={handleSubmit}
+            loading={loading}
+            disabled={disabledButtons}
+            type="button"
+          >
+            Guardar
+          </Button>
+        </ThemeProvider>
       </Stack>
     </Stack>
   );
