@@ -16,7 +16,7 @@ import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "../../config/surface.config";
 
-interface SurfaceCardConfig {
+interface ISurfaceCardConfig {
   title: string;
   description: string;
 }
@@ -123,7 +123,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
               autoRows="unset"
             >
               {surfaceCards.map(
-                ([key, config]: [string, SurfaceCardConfig]) => (
+                ([key, config]: [string, ISurfaceCardConfig]) => (
                   <FieldsetColorCard
                     key={key}
                     optionsMenu={updatedTheme.color.palette}
