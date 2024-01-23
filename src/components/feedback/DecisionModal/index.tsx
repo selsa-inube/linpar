@@ -81,7 +81,7 @@ function DecisionModal(props: DecisionModalProps) {
               Cancel
             </Button>
             <Button
-              appearance={"success"}
+              appearance={"primary"}
               loading={isLoading}
               onClick={handleConfirmationClick}
               spacing={smallScreen ? "compact" : undefined}

@@ -6,12 +6,15 @@ import { inube } from "@inube/design-system";
 import { IHandleSubmitProps } from "@src/routes/people";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
-import { surfaceMessagesConfig } from "../../config/surface.config";
+import {
+  surfaceFormsConfig,
+  surfaceMessagesConfig,
+} from "../../config/surface.config";
 
 interface RenderSurfaceContentFormProps {
   formType: Appearance;
   handleSubmit: (props: IHandleSubmitProps) => void;
-  surfaceConfig: any;
+  surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;
 }
 
