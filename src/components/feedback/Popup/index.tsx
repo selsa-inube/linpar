@@ -9,9 +9,9 @@ const Popup = (props: PopupProps) => {
   return (
     <StyledPopup>
       <Stack
-        width="350px"
+        width="320px"
         height="500px"
-        padding="s300"
+        padding="s300 s100 s300 s300"
         direction="column"
         gap="20px"
       >

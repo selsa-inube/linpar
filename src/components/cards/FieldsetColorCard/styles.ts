@@ -27,15 +27,6 @@ const StyledTokenColorCardContainer = styled.div<IStyledFieldsetColorCard>`
   }
 `;
 
-const StyledPopupContainer = styled.div`
-  & > div > div {
-    height: 100%;
-    width: 100%;
-    max-width: 350px;
-    max-height: 400px;
-  }
-`;
-
 const StyledTextWithTokenContainer = styled.div<IStyledFieldsetColorCard>`
   & > div {
     border-radius: ${inube.spacing.s100};
@@ -45,8 +36,4 @@ const StyledTextWithTokenContainer = styled.div<IStyledFieldsetColorCard>`
         : "unset"};
   }
 `;
-export {
-  StyledTokenColorCardContainer,
-  StyledPopupContainer,
-  StyledTextWithTokenContainer,
-};
+export { StyledTokenColorCardContainer, StyledTextWithTokenContainer };

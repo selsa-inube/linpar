@@ -3,7 +3,6 @@ import { ThemeContext } from "styled-components";
 
 import {
   StyledTokenColorCardContainer,
-  StyledPopupContainer,
   StyledTextWithTokenContainer,
 } from "./styles";
 import { Fieldset } from "@src/components/inputs/Fieldset";
@@ -101,6 +100,8 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
                 type="tokenPicker"
                 palette={optionsMenu}
                 onColorChange={handleColorChange}
+                width="302px"
+                tokenInGrid={false}
               />
             </StyledTokenColorCardContainer>
             {children && (
@@ -112,7 +113,6 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             )}
           </Stack>
         </Stack>
-        <StyledPopupContainer></StyledPopupContainer>
       </>
     </Fieldset>
   );
