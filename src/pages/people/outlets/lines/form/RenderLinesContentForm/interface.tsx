@@ -60,6 +60,8 @@ interface RenderLinesContentFormUIProps {
   linesConfig: typeof linesFormsConfig;
   message: IMessageState;
   updatedTheme: typeof inube;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
 }
 
 function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
@@ -74,6 +76,8 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
     linesConfig,
     message,
     updatedTheme,
+    toggleActive,
+    setToggleActive,
   } = props;
 
   const linesCards = Object.entries(
@@ -125,6 +129,8 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
                   optionsMenu={updatedTheme.color.palette}
                   title={config.title}
                   typeToken="stroke"
+                  toggleActive={toggleActive}
+                  setToggleActive={setToggleActive}
                 />
               ))}
             </Grid>

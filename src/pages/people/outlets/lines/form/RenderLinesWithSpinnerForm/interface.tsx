@@ -60,6 +60,8 @@ interface RenderLinesWithSpinnerFormUIProps {
   linesConfig: typeof linesFormsConfig;
   message: IMessageState;
   updatedTheme: typeof inube;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
 }
 
 function RenderLinesWithSpinnerFormUI(
@@ -76,6 +78,8 @@ function RenderLinesWithSpinnerFormUI(
     linesConfig,
     message,
     updatedTheme,
+    toggleActive,
+    setToggleActive,
   } = props;
 
   const linesCards = Object.entries(
@@ -127,6 +131,8 @@ function RenderLinesWithSpinnerFormUI(
                     optionsMenu={updatedTheme.color.palette}
                     title={config.title}
                     typeToken="stroke"
+                    toggleActive={toggleActive}
+                    setToggleActive={setToggleActive}
                   />
                 </Stack>
               ))}
