@@ -21,6 +21,8 @@ interface FieldsetColorCardProps {
   typeToken?: string;
   optionsMenu: typeof inube;
   onChange: (tokenName: string) => void;
+  toggleActive?: boolean;
+  setToggleActive?: (props: boolean) => void;
 }
 
 const getTokenReferenceFromAppearanceAndCategory = (
@@ -57,6 +59,8 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     typeToken = "text",
     optionsMenu,
     onChange,
+    toggleActive,
+    setToggleActive,
   } = props;
 
   const themeContext = useContext(ThemeContext);
@@ -101,7 +105,8 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
                 palette={optionsMenu}
                 onColorChange={handleColorChange}
                 width="302px"
-                tokenInGrid={false}
+                toggleActive={toggleActive}
+                setToggleActive={setToggleActive}
               />
             </StyledTokenColorCardContainer>
             {children && (

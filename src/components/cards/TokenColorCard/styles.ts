@@ -29,12 +29,8 @@ const HiddenColorPicker = styled.input.attrs({ type: "color" })`
 `;
 
 const StyledHoverPopup = styled.div`
-  display: none;
   position: absolute;
   height: calc(auto+24px);
-  &:hover {
-    display: grid;
-  }
 `;
 
 const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
@@ -48,9 +44,6 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   cursor: pointer;
   background-color: ${({ tokenName, theme }) =>
     getTokenColor(tokenName, theme)};
-  &:hover ${StyledHoverPopup} {
-    display: grid;
-  }
 `;
 
 const StyledGridContainer = styled.div<StyledPaletteUI>`

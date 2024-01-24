@@ -1,5 +1,5 @@
 import { Stack, Text, useMediaQuery, Grid, inube } from "@inube/design-system";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState, useEffect } from "react";
 import tinycolor from "tinycolor2";
 import {
   StyledColorTokenCard,
@@ -21,7 +21,8 @@ interface ITokenColorCardProps {
   palette?: typeof inube;
   onColorChange: (tokenName: string, newColor?: string) => void;
   width: string;
-  tokenInGrid: boolean;
+  toggleActive?: boolean;
+  setToggleActive?: (props: boolean) => void;
 }
 
 interface renderCategoryGridProps {
@@ -66,7 +67,6 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                 tokenDescription={"Token de color"}
                 onColorChange={() => onChange(tokenName)}
                 width="302px"
-                tokenInGrid={true}
               />
             </div>
           ))}
@@ -84,7 +84,8 @@ function TokenColorCard(props: ITokenColorCardProps) {
     palette,
     onColorChange,
     width = "335px",
-    tokenInGrid = false,
+    toggleActive = false,
+    setToggleActive = (props: boolean) => {},
   } = props;
   const theme = useContext(ThemeContext);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -99,16 +100,22 @@ function TokenColorCard(props: ITokenColorCardProps) {
   let textAppearance = isDark ? "light" : "dark";
   textAppearance = isTransparent ? "dark" : textAppearance;
 
+  let hasChanges = toggleActive === isActive;
+
+  useEffect(() => {
+    setIsActive(false);
+
+    setIsPopupOpen(false);
+  }, [hasChanges]);
+
   const handleToggleModal = () => {
     setIsActive(!isActive);
+    setIsPopupOpen(!isPopupOpen);
     if (colorPickerRef.current) {
       colorPickerRef.current.click();
     }
-  };
-
-  const handleMouseOver = () => {
-    if (!tokenInGrid) {
-      setIsPopupOpen(true);
+    if (!isActive) {
+      setToggleActive(!toggleActive);
     }
   };
 
@@ -128,8 +135,6 @@ function TokenColorCard(props: ITokenColorCardProps) {
       key={tokenName}
       tokenName={tokenName}
       onClick={handleToggleModal}
-      onMouseOver={handleMouseOver}
-      onMouseLeave={() => setIsPopupOpen(false)}
       smallScreen={smallScreen}
       isActive={isActive}
       width={width}
