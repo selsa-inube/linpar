@@ -5,7 +5,7 @@ import { FieldsetColorCard, FieldsetColorCardProps } from ".";
 import { useState } from "react";
 import React from "react";
 import { Appearance } from "./types";
-import { getTokenColor } from "./styles";
+import { getTokenColor } from "../TokenColorCard/styles";
 
 const story = {
   component: [FieldsetColorCard],

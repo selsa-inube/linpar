@@ -64,5 +64,7 @@ Default.args = {
   tokenDescription: "Color token",
   type: "tokenPicker",
   palette: inube.color.palette,
+  toggleActive: false,
+  setToggleActive: (props: boolean) => {},
 };
 export default story;
