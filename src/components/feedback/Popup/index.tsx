@@ -11,7 +11,7 @@ const Popup = (props: PopupProps) => {
   const width = mobile ? "280px" : "302px";
   const padding = mobile ? "s200 s200 s200 s200" : "s300 s300 s300 s300";
   return (
-    <StyledPopup>
+    <StyledPopup mobile={mobile}>
       <Stack
         width={width}
         height="500px"

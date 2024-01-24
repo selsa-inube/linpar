@@ -85,12 +85,9 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
   );
 
   const {
-    "(max-width: 744px)": isSmallScreen,
-    "(min-width: 745px) and (max-width: 1000px)": isMediumScreen,
-  } = useMediaQueries([
-    "(max-width: 744px)",
-    "(min-width: 745px) and (max-width: 1000px)",
-  ]);
+    "(max-width: 580px)": isSmallScreen,
+    "(max-width: 1000px)": isMediumScreen,
+  } = useMediaQueries(["(max-width: 580px)", "(max-width: 1000px)"]);
 
   const templateColumns = isSmallScreen
     ? "repeat(1, 1fr)"
