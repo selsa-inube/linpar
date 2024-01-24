@@ -6,8 +6,10 @@ import {
   inube,
   Grid,
   useMediaQueries,
+  NavLink,
+  Icon,
 } from "@inube/design-system";
-import { StyledMessageContainer } from "./styles";
+import { StyledMessageContainer, StyledNavLinkContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
@@ -15,6 +17,7 @@ import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "../../config/surface.config";
+import { MdOutlineHouse } from "react-icons/md";
 
 interface ISurfaceCardConfig {
   title: string;
@@ -111,7 +114,24 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {formType === "navLink" && <>Aqui esta el nav link</>}
+            <StyledNavLinkContainer>
+              {formType === "navLink" && (
+                <NavLink
+                  icon={
+                    <Icon
+                      size="24px"
+                      appearance={"dark"}
+                      icon={<MdOutlineHouse />}
+                    />
+                  }
+                  label={
+                    <Text size="medium" appearance="dark">
+                      {"Text"}
+                    </Text>
+                  }
+                />
+              )}
+            </StyledNavLinkContainer>
             {formType !== "navLink" && (
               <SendInformationMessage appearance={formType as Appearance} />
             )}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
 
 const StyledMessageContainer = styled.div`
   position: fixed;
@@ -7,4 +8,16 @@ const StyledMessageContainer = styled.div`
   z-index: 2;
 `;
 
-export { StyledMessageContainer };
+const StyledNavLinkContainer = styled.div`
+  width: auto;
+  margin: 0px ${inube.spacing.s200};
+  width: calc(216px + 2 * ${inube.spacing.s200});
+  & div {
+    gap: ${inube.spacing.s300};
+  }
+  & figure {
+    height: 29px;
+  }
+`;
+
+export { StyledMessageContainer, StyledNavLinkContainer };
