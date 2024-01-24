@@ -44,7 +44,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     onChange,
   } = props;
 
-  const { "(max-width: 350px)": mobile } = useMediaQuery("(max-width: 350px)");
+  const mobile = useMediaQuery("(max-width: 361px)");
 
   const width = mobile ? "280px" : "302px";
 

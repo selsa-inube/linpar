@@ -31,6 +31,7 @@ const FieldsetColorCardWrapper = ({
   initialPalette: typeof inube.color.palette;
 }) => {
   const [textConfig, setTextConfig] = useState(inube.color.text);
+  const [toggleActive, setToggleActive] = useState(false);
   const handleTokenChange = (updatedTokenName: string) => {
     const updatedTextConfig = { ...textConfig };
     if (
@@ -47,6 +48,8 @@ const FieldsetColorCardWrapper = ({
     category,
     initialPalette,
     onChange: handleTokenChange,
+    toggleActive: toggleActive,
+    setToggleActive: setToggleActive,
   });
 };
 
@@ -65,8 +68,6 @@ Default.args = {
   title: "Regular",
   description:
     "El texto tendrá este color cuando no tenga cambios por comportamiento o interacción con el usuario.",
-  textWithColorToken:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor mauris a nisl auctor posuere. In eu metus dapibus, tristique felis sit amet, convallis ligula.",
   typeToken: "text",
   appearance: "primary",
   category: "hover",

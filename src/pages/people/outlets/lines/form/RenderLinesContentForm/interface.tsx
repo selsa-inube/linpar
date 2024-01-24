@@ -110,7 +110,10 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            <SendInformationMessage appearance={formType as Appearance} />
+            <SendInformationMessage
+              appearance={formType as Appearance}
+              buttonType="outlined"
+            />
             <Grid
               templateColumns={templateColumns}
               gap="s350"
