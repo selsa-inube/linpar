@@ -98,8 +98,6 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
               onColorChange={(tokenName, newColor) =>
                 handleColorChange(tokenName, newColor!)
               }
-              width="auto"
-              tokenInGrid={true}
             />
           ))}
         </Grid>
