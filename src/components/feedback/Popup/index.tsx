@@ -1,17 +1,21 @@
 import { MdClear } from "react-icons/md";
-import { Stack, Text, Icon } from "@inube/design-system";
+import { Stack, Text, Icon, useMediaQuery } from "@inube/design-system";
 import { StyledPopup } from "./styles";
 import { PopupProps } from "./types";
 
 const Popup = (props: PopupProps) => {
   const { title, closeModal, children } = props;
 
+  const { "(max-width: 350px)": mobile } = useMediaQuery("(max-width: 350px)");
+
+  const width = mobile ? "280px" : "320px";
+  const padding = mobile ? "s200 s0 s200 s200" : "s300 s100 s300 s300";
   return (
     <StyledPopup>
       <Stack
-        width="320px"
+        width={width}
         height="500px"
-        padding="s300 s100 s300 s300"
+        padding={padding}
         direction="column"
         gap="20px"
       >

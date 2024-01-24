@@ -44,8 +44,12 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     onChange,
   } = props;
 
+  const { "(max-width: 350px)": mobile } = useMediaQuery("(max-width: 350px)");
+
+  const width = mobile ? "280px" : "302px";
+
   return categories.map(([category, tokens]: string) => (
-    <Stack key={category} gap="16px" direction="column" width="302px">
+    <Stack key={category} gap="16px" direction="column" width={width}>
       <Text type="title" size="medium" textAlign="start" appearance="dark">
         {categoryTranslations[category] || category}
       </Text>
@@ -66,7 +70,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                 type="tokenPicker"
                 tokenDescription={"Token de color"}
                 onColorChange={() => onChange(tokenName)}
-                width="302px"
+                width={width}
               />
             </div>
           ))}

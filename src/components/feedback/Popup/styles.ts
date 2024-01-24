@@ -17,7 +17,7 @@ const StyledPopup = styled.div<IStyledPopup>`
       0px 4px 8px 3px rgba(0, 0, 0, 0.15);
     z-index: 2;
     left: -12px;
-    top: 12px;
+    top: 18px;
   }
 `;
 
