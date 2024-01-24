@@ -1,18 +1,20 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
-import { StyledMessageContainer } from "./styles";
+import {
+  inube,
+  SectionMessage,
+  Stack,
+  Text,
+  Label,
+} from "@inube/design-system";
+import { StyledMessageContainer, StyledLinkContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { textFormsConfig } from "../../config/text.config";
 
-interface ITextCardConfig {
-  title: string;
-  description: string;
-  example: string;
-}
+import { linesFormsConfig } from "../../config/lines.config";
+
 const renderMessage = (
   message: IUsersMessage,
   handleCloseMessage: () => void,
@@ -41,10 +43,10 @@ const renderMessage = (
   );
 };
 
-interface RenderTextContentFormUIProps {
+interface RenderLinesWithLinkFormUIProps {
   formType: Appearance | string;
-  handleCloseMessage: () => void;
   handleReset: () => void;
+  handleCloseMessage: () => void;
   handleSubmitForm: () => void;
   handleTokenChange: (
     appearance: Appearance | string,
@@ -53,32 +55,33 @@ interface RenderTextContentFormUIProps {
   ) => void;
   hasChanges: () => boolean;
   isLoading: boolean;
+  linesConfig: typeof linesFormsConfig;
   message: IMessageState;
-  textConfig: typeof textFormsConfig;
   updatedTheme: typeof inube;
 }
 
-function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
+function RenderLinesWithLinkFormUI(props: RenderLinesWithLinkFormUIProps) {
   const {
     formType,
-    handleCloseMessage,
     handleReset,
+    handleCloseMessage,
     handleSubmitForm,
     handleTokenChange,
     hasChanges,
     isLoading,
+    linesConfig,
     message,
-    textConfig,
     updatedTheme,
   } = props;
 
-  const textCards = Object.entries(
-    textConfig[formType as keyof typeof textConfig].status
+  const linesCards = Object.entries(
+    linesConfig[formType as keyof typeof linesConfig].status
   );
+
   return (
     <>
-      <Text size="medium" padding="s0" appearance="gray">
-        {textConfig[formType as keyof typeof textConfig].description}
+      <Text size="medium" appearance="gray">
+        {linesConfig[formType as keyof typeof linesConfig].description}
       </Text>
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -88,26 +91,31 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {textCards.map(([key, config]: [string, ITextCardConfig]) => (
+            {linesCards.map(([key, config]: any) => (
               <FieldsetColorCard
-                key={key}
-                optionsMenu={updatedTheme.color.palette}
-                title={config.title}
-                description={config.description}
                 appearance={formType}
                 category={key}
-                typeToken="text"
+                description={config.description}
+                key={key}
                 onChange={(newTokenName) =>
                   handleTokenChange(formType, key, newTokenName)
                 }
+                optionsMenu={updatedTheme.color.palette}
+                title={config.title}
+                typeToken="stroke"
               >
-                <Text
-                  size="medium"
-                  appearance={formType}
-                  parentHover={key === "hover"}
-                  disabled={key === "disabled"}
-                >
+                <Text size="medium" appearance="dark">
                   {config.example}
+                  <StyledLinkContainer appearance={formType} category={key}>
+                    <Label
+                      size="medium"
+                      appearance={formType}
+                      parentHover={key === "hover"}
+                      disabled={key === "disabled"}
+                    >
+                      {config.link}
+                    </Label>
+                  </StyledLinkContainer>
                 </Text>
               </FieldsetColorCard>
             ))}
@@ -119,4 +127,4 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
   );
 }
 
-export { RenderTextContentFormUI };
+export { RenderLinesWithLinkFormUI };

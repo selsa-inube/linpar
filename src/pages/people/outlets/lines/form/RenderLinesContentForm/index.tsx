@@ -1,45 +1,51 @@
 import { useState } from "react";
-import { RenderTextContentFormUI } from "./interface";
+import { RenderLinesContentFormUI } from "./interface";
 import { inube } from "@inube/design-system";
-import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { IHandleSubmitProps } from "@src/routes/people";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 
-interface RenderTextContentFormProps {
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import {
+  linesFormsConfig,
+  linesMessagesConfig,
+} from "../../config/lines.config";
+import { IPeopleMessage } from "../../../types/people.types";
+
+interface RenderLinesContentFormProps {
   formType: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
-  textConfig: typeof textFormsConfig;
+  linesConfig: typeof linesFormsConfig;
   token: typeof inube;
 }
 
-function RenderTextContentForm(props: RenderTextContentFormProps) {
-  const { formType, handleSubmit, token, textConfig } = props;
-  const [textToken, setTextToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.text }))
+function RenderLinesContentForm(props: RenderLinesContentFormProps) {
+  const { formType, handleSubmit, linesConfig, token } = props;
+  const [linesToken, setLinesToken] = useState(
+    JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<IUsersMessage>({
+  const [message, setMessage] = useState<IPeopleMessage>({
     visible: false,
   });
 
-  const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.text) !== JSON.stringify(textToken);
+  const hasChanges = () => {
+    return JSON.stringify(token.color.stroke) !== JSON.stringify(linesToken);
   };
 
   const handleTokenChange = (
-    appearance: Appearance | string,
+    appearance: Appearance,
     category: string,
     updatedTokenName: string
   ) => {
-    let updatedTextTokens = { ...textToken };
-    updatedTextTokens[appearance][category] = getTokenColor(
+    let lineStokeUpdate = { ...linesToken };
+
+    lineStokeUpdate[appearance][category] = getTokenColor(
       updatedTokenName,
       token
     );
 
-    setTextToken(updatedTextTokens);
+    setLinesToken(lineStokeUpdate);
   };
 
   const handleSubmitForm = () => {
@@ -58,19 +64,19 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
         if (result === "success") {
           setMessage({
             visible: true,
-            data: textMessagesConfig.success,
+            data: linesMessagesConfig.success,
           });
           handleSubmit({
             domain: "color",
-            block: "text",
-            tokenUpdate: textToken,
+            block: "stroke",
+            tokenUpdate: linesToken,
           });
         }
       })
       .catch(() => {
         setMessage({
           visible: true,
-          data: textMessagesConfig.failed,
+          data: linesMessagesConfig.failed,
         });
       })
       .finally(() => {
@@ -85,30 +91,32 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   };
 
   const handleReset = () => {
-    setTextToken(JSON.parse(JSON.stringify({ ...token.color.text })));
+    setLinesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
   };
+
   const updatedTheme = {
     ...token,
     color: {
       ...token.color,
-      text: textToken,
+      stroke: linesToken,
     },
   };
+
   return (
-    <RenderTextContentFormUI
+    <RenderLinesContentFormUI
       formType={formType}
-      handleCloseMessage={handleCloseSectionMessage}
       handleReset={handleReset}
+      handleCloseMessage={handleCloseSectionMessage}
       handleSubmitForm={handleSubmitForm}
       handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
+      linesConfig={linesConfig}
       message={message}
-      textConfig={textConfig}
       updatedTheme={updatedTheme}
     />
   );
 }
 
-export { RenderTextContentForm };
-export type { RenderTextContentFormProps };
+export { RenderLinesContentForm };
+export type { RenderLinesContentFormProps };

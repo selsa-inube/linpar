@@ -1,4 +1,4 @@
-const colorTabsConfig = {
+const linesTabsConfig = {
   primary: {
     id: "primary",
     isDisabled: false,
@@ -29,6 +29,16 @@ const colorTabsConfig = {
     isDisabled: false,
     label: "Ayuda",
   },
+  divider: {
+    id: "divider",
+    isDisabled: false,
+    label: "Divisor",
+  },
+  spinner: {
+    id: "spinner",
+    isDisabled: false,
+    label: "Spinner",
+  },
   dark: {
     id: "dark",
     isDisabled: false,
@@ -44,6 +54,11 @@ const colorTabsConfig = {
     isDisabled: false,
     label: "Claro",
   },
+  link: {
+    id: "link",
+    isDisabled: false,
+    label: "Link",
+  },
 };
 
-export { colorTabsConfig };
+export { linesTabsConfig };
