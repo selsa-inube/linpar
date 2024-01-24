@@ -1,5 +1,5 @@
 const sectionMessageConfig = {
-  title: "Envio de información",
+  title: "Envío de información",
   content:
     "¿Deseas recibir información a tu correo electrónico y por medio de llamadas?",
   agreeButton: "Acepto",

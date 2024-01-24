@@ -13,7 +13,7 @@ import { sectionMessageState } from "./config/sectionMessage.state";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { MdClear } from "react-icons/md";
 import { StyledSectionMessage } from "./styles";
-import { Appearance } from "./types";
+import { Appearance, ButtonType } from "./types";
 
 export interface ISectionMessageProps {
   children?: React.ReactNode;
@@ -23,7 +23,7 @@ export interface ISectionMessageProps {
   appearance: Appearance;
   duration: number;
   closeSectionMessage: () => void;
-  isMessageResponsive: boolean;
+  buttonType: ButtonType;
 }
 
 const SectionMessageCustomized = (props: ISectionMessageProps) => {
@@ -35,6 +35,7 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
     appearance = "primary",
     duration,
     closeSectionMessage,
+    buttonType = "filled",
   } = props;
 
   const [isPaused, setIsPaused] = useState(false);
@@ -47,21 +48,29 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
       appearance={appearance}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      isMessageResponsive={isMessageResponsive}
+      icon={icon}
+      title={title}
+      description={description}
+      duration={duration}
+      closeSectionMessage={closeSectionMessage}
+      buttonType={buttonType}
     >
-      <Stack justifyContent="space-between" padding="s200">
+      <Stack
+        justifyContent="space-between"
+        padding={isMessageResponsive ? "s150 s200" : "s200"}
+      >
         <Stack
-          gap="16px"
+          gap={inube.spacing.s200}
           alignItems={isMessageResponsive ? "center" : undefined}
         >
-          <Stack alignItems="center" gap="16px">
+          <Stack alignItems="center" gap={inube.spacing.s200}>
             <Icon
               size="24px"
               spacing="wide"
               appearance={appearance}
               icon={icon}
             />
-            <Stack direction="column" gap="6px">
+            <Stack direction="column" gap={inube.spacing.s100}>
               <Text size="large">{title}</Text>
               {!isMessageResponsive && (
                 <Text size="small" appearance="gray">
@@ -72,11 +81,11 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
             </Stack>
           </Stack>
         </Stack>
-        <Stack alignItems={isMessageResponsive ? "center" : undefined}>
+        <Stack>
           <Icon
             size="16px"
             onClick={closeSectionMessage}
-            appearance={appearance}
+            appearance={"dark"}
             icon={<MdClear />}
           />
         </Stack>
@@ -97,7 +106,6 @@ const handleCancel = () => {
   let newSectionMessageState = { ...sectionMessageState };
   newSectionMessageState.sendInfoApproval = false;
   newSectionMessageState.render = false;
-  // Code to modified user conditions in DB
   return;
 };
 
@@ -105,16 +113,16 @@ const handleAgree = () => {
   let newSectionMessageState = { ...sectionMessageState };
   newSectionMessageState.sendInfoApproval = true;
   newSectionMessageState.render = false;
-  // Code to modified user conditions in DB
   return;
 };
 
 interface ISendInformationMessageProps {
   appearance: Appearance;
+  buttonType: ButtonType;
 }
 
 const SendInformationMessage = (props: ISendInformationMessageProps) => {
-  const { appearance = "primary" } = props;
+  const { appearance = "primary", buttonType = "filled" } = props;
   let [cancelDisable, setCancelDisable] = useState(true);
 
   return (
@@ -129,17 +137,24 @@ const SendInformationMessage = (props: ISendInformationMessageProps) => {
               closeSectionMessage={() => setCancelDisable(false)}
               icon={<IoMdInformationCircleOutline />}
               appearance={appearance}
-              isMessageResponsive={false}
+              buttonType={buttonType}
             >
-              <Stack width="100%" gap={inube.spacing.s050}>
+              <Stack width="100%" gap={inube.spacing.s075}>
                 <Button
                   disabled={cancelDisable}
                   onClick={handleCancel()}
                   appearance={appearance}
+                  variant={buttonType}
+                  spacing="compact"
                 >
                   {sectionMessageConfig.cancelButton}
                 </Button>
-                <Button onClick={handleAgree()} appearance={appearance}>
+                <Button
+                  onClick={handleAgree()}
+                  appearance={appearance}
+                  variant={buttonType}
+                  spacing="compact"
+                >
                   {sectionMessageConfig.agreeButton}
                 </Button>
               </Stack>
