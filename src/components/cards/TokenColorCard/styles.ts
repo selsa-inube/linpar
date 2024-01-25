@@ -5,6 +5,7 @@ interface IStyledColorTokenCard {
   tokenName: string;
   isActive: boolean;
   smallScreen: boolean;
+  width: string;
 }
 
 interface StyledPaletteUI {
@@ -27,11 +28,16 @@ const HiddenColorPicker = styled.input.attrs({ type: "color" })`
   opacity: 0;
 `;
 
+const StyledHoverPopup = styled.div`
+  position: absolute;
+  height: calc(auto+24px);
+`;
+
 const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   display: ${({ smallScreen }) => (smallScreen ? "flex" : "inherit")};
   align-items: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
   justify-content: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
-  width: auto;
+  width: ${({ width }) => (width ? width : "auto")};
   height: ${({ smallScreen }) => (smallScreen ? "36px" : "auto")};
   box-sizing: border-box;
   border-radius: ${inube.spacing.s100};
@@ -68,4 +74,5 @@ export {
   StyledGridColorsContainer,
   getTokenColor,
   StyledDivText,
+  StyledHoverPopup,
 };

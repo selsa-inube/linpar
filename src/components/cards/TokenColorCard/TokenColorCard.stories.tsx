@@ -24,6 +24,7 @@ const story = {
 const DynamicThemeWrapper = ({ children }: any) => {
   const [theme, setTheme] = useState({ ...inube.color.palette });
   const [selectedTokenName, setSelectedTokenName] = useState("N900");
+  const [toggleActive, setToggleActive] = useState(false);
 
   const handleColorChange = (tokenName: string, newColor: string) => {
     if (newColor) {
@@ -48,6 +49,8 @@ const DynamicThemeWrapper = ({ children }: any) => {
       {React.cloneElement(children, {
         onColorChange: handleColorChange,
         tokenName: selectedTokenName,
+        toggleActive: toggleActive,
+        setToggleActive: setToggleActive,
       })}
     </ThemeProvider>
   );
@@ -64,5 +67,7 @@ Default.args = {
   tokenDescription: "Color token",
   type: "tokenPicker",
   palette: inube.color.palette,
+  toggleActive: false,
+  setToggleActive: (props: boolean) => {},
 };
 export default story;

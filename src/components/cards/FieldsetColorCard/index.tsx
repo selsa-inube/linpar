@@ -3,7 +3,6 @@ import { ThemeContext } from "styled-components";
 
 import {
   StyledTokenColorCardContainer,
-  StyledPopupContainer,
   StyledTextWithTokenContainer,
 } from "./styles";
 import { Fieldset } from "@src/components/inputs/Fieldset";
@@ -22,6 +21,8 @@ interface FieldsetColorCardProps {
   typeToken?: string;
   optionsMenu: typeof inube;
   onChange: (tokenName: string) => void;
+  toggleActive?: boolean;
+  setToggleActive?: (props: boolean) => void;
 }
 
 const getTokenReferenceFromAppearanceAndCategory = (
@@ -58,6 +59,8 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     typeToken = "text",
     optionsMenu,
     onChange,
+    toggleActive,
+    setToggleActive,
   } = props;
 
   const themeContext = useContext(ThemeContext);
@@ -101,6 +104,9 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
                 type="tokenPicker"
                 palette={optionsMenu}
                 onColorChange={handleColorChange}
+                width="302px"
+                toggleActive={toggleActive}
+                setToggleActive={setToggleActive}
               />
             </StyledTokenColorCardContainer>
             {children && (
@@ -112,7 +118,6 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             )}
           </Stack>
         </Stack>
-        <StyledPopupContainer id="palette"></StyledPopupContainer>
       </>
     </Fieldset>
   );
