@@ -24,6 +24,8 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
     visible: false,
   });
 
+  const [toggleActive, setToggleActive] = useState(false);
+
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.text) !== JSON.stringify(textToken);
   };
@@ -106,6 +108,8 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       message={message}
       textConfig={textConfig}
       updatedTheme={updatedTheme}
+      toggleActive={toggleActive}
+      setToggleActive={setToggleActive}
     />
   );
 }
