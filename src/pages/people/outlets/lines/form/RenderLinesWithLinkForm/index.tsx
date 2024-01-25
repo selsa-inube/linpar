@@ -29,6 +29,8 @@ function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
     visible: false,
   });
 
+  const [toggleActive, setToggleActive] = useState(false);
+
   const hasChanges = () => {
     return JSON.stringify(token.color.stroke) !== JSON.stringify(linesToken);
   };
@@ -114,6 +116,8 @@ function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
       linesConfig={linesConfig}
       message={message}
       updatedTheme={updatedTheme}
+      toggleActive={toggleActive}
+      setToggleActive={setToggleActive}
     />
   );
 }

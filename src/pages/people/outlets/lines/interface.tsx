@@ -2,7 +2,7 @@ import {
   Breadcrumbs,
   Stack,
   Tabs,
-  useMediaQuery,
+  useMediaQueries,
   inube,
 } from "@inube/design-system";
 
@@ -66,7 +66,7 @@ export function LinesUI(props: ILinesUIProps) {
     props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
-    useMediaQuery(["(max-width: 580px)", "(max-width: 1073px)"]);
+    useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   const lineTabs = Object.keys(linesTabsConfig);
 

@@ -1,5 +1,5 @@
 import { Stack, Text, useMediaQuery, Grid, inube } from "@inube/design-system";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState, useEffect } from "react";
 import tinycolor from "tinycolor2";
 import {
   StyledColorTokenCard,
@@ -8,6 +8,7 @@ import {
   StyledGridColorsContainer,
   getTokenColor,
   StyledDivText,
+  StyledHoverPopup,
 } from "./styles";
 import { ThemeContext } from "styled-components";
 import { Popup } from "@src/components/feedback/Popup";
@@ -19,6 +20,9 @@ interface ITokenColorCardProps {
   type?: "colorPicker" | "tokenPicker";
   palette?: typeof inube;
   onColorChange: (tokenName: string, newColor?: string) => void;
+  width: string;
+  toggleActive?: boolean;
+  setToggleActive?: (props: boolean) => void;
 }
 
 interface renderCategoryGridProps {
@@ -40,8 +44,12 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     onChange,
   } = props;
 
+  const mobile = useMediaQuery("(max-width: 361px)");
+
+  const width = mobile ? "280px" : "302px";
+
   return categories.map(([category, tokens]: string) => (
-    <Stack key={category} gap="16px" direction="column">
+    <Stack key={category} gap="16px" direction="column" width={width}>
       <Text type="title" size="medium" textAlign="start" appearance="dark">
         {categoryTranslations[category] || category}
       </Text>
@@ -62,6 +70,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                 type="tokenPicker"
                 tokenDescription={"Token de color"}
                 onColorChange={() => onChange(tokenName)}
+                width={width}
               />
             </div>
           ))}
@@ -78,6 +87,9 @@ function TokenColorCard(props: ITokenColorCardProps) {
     type = "colorPicker",
     palette,
     onColorChange,
+    width = "335px",
+    toggleActive = false,
+    setToggleActive = (props: boolean) => {},
   } = props;
   const theme = useContext(ThemeContext);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -92,11 +104,22 @@ function TokenColorCard(props: ITokenColorCardProps) {
   let textAppearance = isDark ? "light" : "dark";
   textAppearance = isTransparent ? "dark" : textAppearance;
 
+  let hasChanges = toggleActive === isActive;
+
+  useEffect(() => {
+    setIsActive(false);
+
+    setIsPopupOpen(false);
+  }, [hasChanges]);
+
   const handleToggleModal = () => {
     setIsActive(!isActive);
-    setIsPopupOpen(!isActive);
+    setIsPopupOpen(!isPopupOpen);
     if (colorPickerRef.current) {
       colorPickerRef.current.click();
+    }
+    if (!isActive) {
+      setToggleActive(!toggleActive);
     }
   };
 
@@ -112,60 +135,60 @@ function TokenColorCard(props: ITokenColorCardProps) {
   };
 
   return (
-    <>
-      <StyledColorTokenCard
-        key={tokenName}
-        tokenName={tokenName}
-        onClick={handleToggleModal}
-        smallScreen={smallScreen}
-        isActive={isActive}
+    <StyledColorTokenCard
+      key={tokenName}
+      tokenName={tokenName}
+      onClick={handleToggleModal}
+      smallScreen={smallScreen}
+      isActive={isActive}
+      width={width}
+    >
+      <Stack
+        justifyContent="start"
+        gap="12px"
+        padding="s100 s150"
+        alignContent="stretch"
       >
-        <Stack
-          justifyContent="start"
-          gap="12px"
-          padding="s100 s150"
-          alignContent="stretch"
-        >
-          <Stack alignItems="center" gap="12px">
-            <StyledDivText>
+        <Stack alignItems="center" gap="12px">
+          <StyledDivText>
+            <Text
+              type="label"
+              size={smallScreen ? "small" : "medium"}
+              textAlign={"center"}
+              appearance={textAppearance}
+            >
+              {tokenName}
+            </Text>
+          </StyledDivText>
+          {tokenDescription && (
+            <>
               <Text
                 type="label"
                 size={smallScreen ? "small" : "medium"}
-                textAlign={"center"}
+                textAlign="start"
                 appearance={textAppearance}
               >
-                {tokenName}
+                |
               </Text>
-            </StyledDivText>
-            {tokenDescription && (
-              <>
-                <Text
-                  type="label"
-                  size={smallScreen ? "small" : "medium"}
-                  textAlign="start"
-                  appearance={textAppearance}
-                >
-                  |
-                </Text>
-                <Text
-                  size={smallScreen ? "small" : "medium"}
-                  textAlign="start"
-                  appearance={textAppearance}
-                >
-                  {tokenDescription}
-                </Text>
-              </>
-            )}
-            {type === "colorPicker" && (
-              <HiddenColorPicker
-                ref={colorPickerRef}
-                value={getTokenColor(tokenName, theme)}
-                onChange={handleColorChangeLocal}
-              />
-            )}
-            {isPopupOpen && type === "tokenPicker" && (
+              <Text
+                size={smallScreen ? "small" : "medium"}
+                textAlign="start"
+                appearance={textAppearance}
+              >
+                {tokenDescription}
+              </Text>
+            </>
+          )}
+          {type === "colorPicker" && (
+            <HiddenColorPicker
+              ref={colorPickerRef}
+              value={getTokenColor(tokenName, theme)}
+              onChange={handleColorChangeLocal}
+            />
+          )}
+          {isPopupOpen && type === "tokenPicker" && (
+            <StyledHoverPopup>
               <Popup
-                portalId="palette"
                 closeModal={() => setIsPopupOpen(false)}
                 title={"Paleta de colores"}
               >
@@ -184,11 +207,11 @@ function TokenColorCard(props: ITokenColorCardProps) {
                   </Grid>
                 </StyledGridColorsContainer>
               </Popup>
-            )}
-          </Stack>
+            </StyledHoverPopup>
+          )}
         </Stack>
-      </StyledColorTokenCard>
-    </>
+      </Stack>
+    </StyledColorTokenCard>
   );
 }
 

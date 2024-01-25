@@ -58,6 +58,8 @@ interface RenderLinesWithLinkFormUIProps {
   linesConfig: typeof linesFormsConfig;
   message: IMessageState;
   updatedTheme: typeof inube;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
 }
 
 function RenderLinesWithLinkFormUI(props: RenderLinesWithLinkFormUIProps) {
@@ -72,6 +74,8 @@ function RenderLinesWithLinkFormUI(props: RenderLinesWithLinkFormUIProps) {
     linesConfig,
     message,
     updatedTheme,
+    toggleActive,
+    setToggleActive,
   } = props;
 
   const linesCards = Object.entries(
@@ -103,6 +107,8 @@ function RenderLinesWithLinkFormUI(props: RenderLinesWithLinkFormUIProps) {
                 optionsMenu={updatedTheme.color.palette}
                 title={config.title}
                 typeToken="stroke"
+                toggleActive={toggleActive}
+                setToggleActive={setToggleActive}
               >
                 <Text size="medium" appearance="dark">
                   {config.example}

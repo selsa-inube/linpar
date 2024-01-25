@@ -60,6 +60,8 @@ interface RenderLinesContentFormUIProps {
   linesConfig: typeof linesFormsConfig;
   message: IMessageState;
   updatedTheme: typeof inube;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
 }
 
 function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
@@ -74,6 +76,8 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
     linesConfig,
     message,
     updatedTheme,
+    toggleActive,
+    setToggleActive,
   } = props;
 
   const linesCards = Object.entries(
@@ -81,12 +85,9 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
   );
 
   const {
-    "(max-width: 744px)": isSmallScreen,
-    "(min-width: 745px) and (max-width: 1000px)": isMediumScreen,
-  } = useMediaQueries([
-    "(max-width: 744px)",
-    "(min-width: 745px) and (max-width: 1000px)",
-  ]);
+    "(max-width: 580px)": isSmallScreen,
+    "(max-width: 1000px)": isMediumScreen,
+  } = useMediaQueries(["(max-width: 580px)", "(max-width: 1000px)"]);
 
   const templateColumns = isSmallScreen
     ? "repeat(1, 1fr)"
@@ -106,7 +107,10 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            <SendInformationMessage appearance={formType as Appearance} />
+            <SendInformationMessage
+              appearance={formType as Appearance}
+              buttonType="outlined"
+            />
             <Grid
               templateColumns={templateColumns}
               gap="s350"
@@ -125,6 +129,8 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
                   optionsMenu={updatedTheme.color.palette}
                   title={config.title}
                   typeToken="stroke"
+                  toggleActive={toggleActive}
+                  setToggleActive={setToggleActive}
                 />
               ))}
             </Grid>
