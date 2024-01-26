@@ -28,6 +28,7 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
     visible: false,
   });
   const [toggleActive, setToggleActive] = useState(false);
+  const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
@@ -114,6 +115,8 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
       updatedTheme={updatedTheme}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
+      navLinkIsSelected={navLinkIsSelected}
+      setNavLinkIsSelected={setNavLinkIsSelected}
     />
   );
 }

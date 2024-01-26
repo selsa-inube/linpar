@@ -68,6 +68,8 @@ interface RenderSurfaceContentFormUIProps {
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
+  navLinkIsSelected: boolean;
+  setNavLinkIsSelected: (props: boolean) => void;
 }
 
 function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
@@ -84,6 +86,8 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
     updatedTheme,
     toggleActive,
     setToggleActive,
+    navLinkIsSelected,
+    setNavLinkIsSelected,
   } = props;
 
   const surfaceCards = Object.entries(
@@ -118,8 +122,8 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            <StyledNavLinkContainer>
-              {formType === "navLink" && (
+            {formType === "navLink" && (
+              <StyledNavLinkContainer>
                 <NavLink
                   icon={
                     <Icon
@@ -133,9 +137,12 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
                       {"Text"}
                     </Text>
                   }
+                  onClick={() => setNavLinkIsSelected(!navLinkIsSelected)}
+                  selected={navLinkIsSelected}
                 />
-              )}
-            </StyledNavLinkContainer>
+              </StyledNavLinkContainer>
+            )}
+
             {formType !== "navLink" && (
               <SendInformationMessage
                 appearance={formType as Appearance}
