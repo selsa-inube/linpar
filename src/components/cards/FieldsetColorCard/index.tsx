@@ -1,6 +1,5 @@
 import { Stack, Text, inube } from "@inube/design-system";
 import { ThemeContext } from "styled-components";
-
 import {
   StyledTokenColorCardContainer,
   StyledTextWithTokenContainer,
@@ -90,35 +89,29 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
 
   return (
     <Fieldset title={title}>
-      <>
-        <Stack direction="column" gap={inube.spacing.s200}>
-          <Text size="medium" appearance="gray">
-            {description}
-          </Text>
-          <Stack gap={inube.spacing.s200} alignItems="center">
-            <StyledTokenColorCardContainer
-              requireBackground={requireBackground}
-            >
-              <TokenColorCard
-                tokenName={tokenName!}
-                type="tokenPicker"
-                palette={optionsMenu}
-                onColorChange={handleColorChange}
-                width="302px"
-                toggleActive={toggleActive}
-                setToggleActive={setToggleActive}
-              />
-            </StyledTokenColorCardContainer>
-            {children && (
-              <StyledTextWithTokenContainer
-                requireBackground={requireBackground}
-              >
-                <Stack padding="s100">{children}</Stack>
-              </StyledTextWithTokenContainer>
-            )}
-          </Stack>
+      <Stack direction="column" gap={inube.spacing.s200}>
+        <Text size="medium" appearance="gray">
+          {description}
+        </Text>
+        <Stack gap={inube.spacing.s200} alignItems="center">
+          <StyledTokenColorCardContainer requireBackground={requireBackground}>
+            <TokenColorCard
+              tokenName={tokenName!}
+              type="tokenPicker"
+              palette={optionsMenu}
+              onColorChange={handleColorChange}
+              width="302px"
+              toggleActive={toggleActive}
+              setToggleActive={setToggleActive}
+            />
+          </StyledTokenColorCardContainer>
+          {children && (
+            <StyledTextWithTokenContainer requireBackground={requireBackground}>
+              <Stack padding="s100">{children}</Stack>
+            </StyledTextWithTokenContainer>
+          )}
         </Stack>
-      </>
+      </Stack>
     </Fieldset>
   );
 }

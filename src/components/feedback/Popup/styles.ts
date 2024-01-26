@@ -19,6 +19,9 @@ const StyledPopup = styled.div<IStyledPopup>`
     z-index: 2;
     left: ${({ mobile }: IStyledPopup) => (mobile ? "-40px" : "-12px")};
     top: 18px;
+    div > div {
+      overflow-x: hidden;
+    }
   }
 `;
 
