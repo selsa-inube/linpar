@@ -66,6 +66,8 @@ interface RenderSurfaceContentFormUIProps {
   message: IMessageState;
   surfaceConfig: typeof surfaceFormsConfig;
   updatedTheme: typeof inube;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
 }
 
 function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
@@ -80,6 +82,8 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
     message,
     surfaceConfig,
     updatedTheme,
+    toggleActive,
+    setToggleActive,
   } = props;
 
   const surfaceCards = Object.entries(
@@ -133,7 +137,10 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
               )}
             </StyledNavLinkContainer>
             {formType !== "navLink" && (
-              <SendInformationMessage appearance={formType as Appearance} />
+              <SendInformationMessage
+                appearance={formType as Appearance}
+                buttonType="filled"
+              />
             )}
 
             <Grid
@@ -155,6 +162,8 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
                     onChange={(newTokenName) =>
                       handleTokenChange(formType, key, newTokenName)
                     }
+                    toggleActive={toggleActive}
+                    setToggleActive={setToggleActive}
                   />
                 )
               )}
