@@ -1,22 +1,18 @@
 import { useState } from "react";
-import { RenderContentFormPaletteUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
-
 import { IHandleSubmitProps } from "@src/routes/people";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 import { paletteMessagesConfig } from "../../config/palette.config";
+import { RenderContentFormPaletteUI } from "./interface";
 
 interface RenderContentFormPaletteProps {
-  formType: Appearance;
-  categories: string[];
+  formType: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
   token: typeof inube;
 }
 
 function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
-  const { formType, categories, handleSubmit, token } = props;
+  const { formType, handleSubmit, token } = props;
   const [paletteToken, setPaletteToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.palette }))
   );
@@ -29,18 +25,20 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
     return JSON.stringify(token.color.palette) !== JSON.stringify(paletteToken);
   };
 
-  const handleTokenChange = (
-    appearance: Appearance | string,
-    category: string,
-    updatedTokenName: string
+  const handleColorChange = (
+    tokenName: string,
+    newColor: string | undefined
   ) => {
-    let updatedPaletteTokens = { ...paletteToken };
-    updatedPaletteTokens[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
-    setPaletteToken(updatedPaletteTokens);
+    setPaletteToken((prevTokens: typeof inube) => {
+      const newTokens = { ...prevTokens };
+      for (const category in newTokens) {
+        if (newTokens[category][tokenName]) {
+          newTokens[category][tokenName] = newColor;
+          break;
+        }
+      }
+      return newTokens;
+    });
   };
 
   const handleSubmitForm = () => {
@@ -98,16 +96,17 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
 
   return (
     <RenderContentFormPaletteUI
+      categories={paletteToken}
       formType={formType}
-      categories={categories}
       handleCloseMessage={handleCloseSectionMessage}
+      handleColorChange={handleColorChange}
       handleReset={handleReset}
       handleSubmitForm={handleSubmitForm}
-      handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
       message={message}
-      updatedTheme={updatedTheme} setColorTokens={undefined}    />
+      updatedTheme={updatedTheme}
+    />
   );
 }
 

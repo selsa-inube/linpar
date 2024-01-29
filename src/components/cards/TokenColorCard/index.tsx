@@ -1,4 +1,11 @@
-import { Stack, Text, useMediaQuery, Grid, inube } from "@inube/design-system";
+import {
+  Stack,
+  Text,
+  useMediaQuery,
+  Grid,
+  inube,
+  Icon,
+} from "@inube/design-system";
 import { useContext, useRef, useState, useEffect } from "react";
 import tinycolor from "tinycolor2";
 import {
@@ -13,6 +20,7 @@ import {
 import { ThemeContext } from "styled-components";
 import { Popup } from "@src/components/feedback/Popup";
 import { categoryTranslations } from "@src/pages/people/outlets/palette/config/palette.config";
+import { MdOutlineEdit } from "react-icons/md";
 
 interface ITokenColorCardProps {
   tokenName: string;
@@ -44,7 +52,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     onChange,
   } = props;
 
-  const mobile = useMediaQuery("(max-width: 361px)");
+  const mobile = useMediaQuery("(max-width: 745px)");
 
   const width = mobile ? "280px" : "302px";
 
@@ -136,6 +144,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
 
   return (
     <StyledColorTokenCard
+      type={type}
       key={tokenName}
       tokenName={tokenName}
       onClick={handleToggleModal}
@@ -143,12 +152,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
       isActive={isActive}
       width={width}
     >
-      <Stack
-        justifyContent="start"
-        gap="12px"
-        padding="s100 s150"
-        alignContent="stretch"
-      >
+      <Stack gap="12px" padding="s100 s150" alignContent="stretch">
         <Stack alignItems="center" gap="12px">
           <StyledDivText>
             <Text
@@ -177,6 +181,13 @@ function TokenColorCard(props: ITokenColorCardProps) {
               >
                 {tokenDescription}
               </Text>
+              <Icon
+                appearance={textAppearance}
+                cursorHover={true}
+                icon={<MdOutlineEdit />}
+                spacing="none"
+                texAlign="center"
+              />
             </>
           )}
           {type === "colorPicker" && (

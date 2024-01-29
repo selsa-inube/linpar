@@ -1,24 +1,20 @@
 import { useState } from "react";
+import { RenderContentFormNeutralPaletteUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
-
 import { IHandleSubmitProps } from "@src/routes/people";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 import { paletteMessagesConfig } from "../../config/palette.config";
-import { RenderContentFormPaletteNeutralUI } from "./interface";
 
-interface RenderContentFormPaletteNeutralProps {
-  formType: Appearance;
-  categories: string[];
+interface RenderContentFormNeutralPaletteProps {
+  formType: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
   token: typeof inube;
 }
 
-function RenderContentFormPaletteNeutral(
-  props: RenderContentFormPaletteNeutralProps
+function RenderContentFormNeutralPalette(
+  props: RenderContentFormNeutralPaletteProps
 ) {
-  const { formType, categories, handleSubmit, token } = props;
+  const { formType, handleSubmit, token } = props;
   const [paletteToken, setPaletteToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.palette }))
   );
@@ -29,20 +25,6 @@ function RenderContentFormPaletteNeutral(
 
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.palette) !== JSON.stringify(paletteToken);
-  };
-
-  const handleTokenChange = (
-    appearance: Appearance | string,
-    category: string,
-    updatedTokenName: string
-  ) => {
-    let updatedPaletteTokens = { ...paletteToken };
-    updatedPaletteTokens[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
-    setPaletteToken(updatedPaletteTokens);
   };
 
   const handleSubmitForm = () => {
@@ -87,6 +69,22 @@ function RenderContentFormPaletteNeutral(
     });
   };
 
+  const handleColorChange = (
+    tokenName: string,
+    newColor: string | undefined
+  ) => {
+    setPaletteToken((prevTokens: typeof inube) => {
+      const newTokens = { ...prevTokens };
+      for (const category in newTokens) {
+        if (newTokens[category][tokenName]) {
+          newTokens[category][tokenName] = newColor;
+          break;
+        }
+      }
+      return newTokens;
+    });
+  };
+
   const handleReset = () => {
     setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
   };
@@ -99,21 +97,20 @@ function RenderContentFormPaletteNeutral(
   };
 
   return (
-    <RenderContentFormPaletteNeutralUI
+    <RenderContentFormNeutralPaletteUI
       formType={formType}
-      categories={categories}
+      handleColorChange={handleColorChange}
+      categories={paletteToken}
       handleCloseMessage={handleCloseSectionMessage}
       handleReset={handleReset}
       handleSubmitForm={handleSubmitForm}
-      handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
       message={message}
       updatedTheme={updatedTheme}
-      setColorTokens={undefined}
     />
   );
 }
 
-export { RenderContentFormPaletteNeutral };
-export type { RenderContentFormPaletteNeutralProps };
+export { RenderContentFormNeutralPalette };
+export type { RenderContentFormNeutralPaletteProps };

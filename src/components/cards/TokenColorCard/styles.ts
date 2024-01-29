@@ -4,6 +4,7 @@ import { inube } from "@inube/design-system";
 interface IStyledColorTokenCard {
   tokenName: string;
   isActive: boolean;
+  type: "colorPicker" | "tokenPicker";
   smallScreen: boolean;
   width: string;
 }
@@ -36,7 +37,12 @@ const StyledHoverPopup = styled.div`
 const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   display: ${({ smallScreen }) => (smallScreen ? "flex" : "inherit")};
   align-items: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
-  justify-content: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
+  justify-content: ${({ smallScreen, type }) =>
+    type === "colorPicker"
+      ? "space-between"
+      : smallScreen
+      ? "center"
+      : "unset"};
   width: ${({ width }) => (width ? width : "auto")};
   height: ${({ smallScreen }) => (smallScreen ? "36px" : "auto")};
   box-sizing: border-box;

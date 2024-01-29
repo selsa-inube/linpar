@@ -9,13 +9,13 @@ const paletteTabsConfig = {
     isDisabled: false,
     label: "Neutral alfa",
   },
-  reds: {
-    id: "reds",
+  red: {
+    id: "red",
     isDisabled: false,
     label: "Rojos",
   },
-  yellows: {
-    id: "yellows",
+  yellow: {
+    id: "yellow",
     isDisabled: false,
     label: "Amarillos",
   },
@@ -24,18 +24,18 @@ const paletteTabsConfig = {
     isDisabled: false,
     label: "Verdes",
   },
-  blues: {
-    id: "blues",
+  blue: {
+    id: "blue",
     isDisabled: false,
     label: "Azules",
   },
-  tealGreen: {
-    id: "tealGreen",
+  teal: {
+    id: "teal",
     isDisabled: false,
     label: "Verde azulados",
   },
-  purples: {
-    id: "purples",
+  purple: {
+    id: "purple",
     isDisabled: false,
     label: "Morados",
   },

@@ -2,6 +2,7 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
   SectionMessage,
   Stack,
+  Text,
   inube,
   Grid,
   useMediaQueries,
@@ -11,13 +12,10 @@ import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.t
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { RenderCategoryGrid } from "../RenderCategoryGrid";
-import { StyledMessageContainer } from "../RenderCategoryGrid/styles";
+import { TokenColorCard } from "@src/components/cards/TokenColorCard";
+import { paletteConfig } from "../../config/palette.config";
+import { StyledMessageContainer } from "./styles";
 
-interface IPaletteCardConfig {
-  title: string;
-  description: string;
-}
 const renderMessage = (
   message: IUsersMessage,
   handleCloseMessage: () => void,
@@ -46,38 +44,32 @@ const renderMessage = (
   );
 };
 
-interface RenderContentFormPaletteNeutralUIProps {
+interface RenderContentFormNeutralPaletteUIProps {
+  categories: typeof inube;
   formType: Appearance | string;
-  categories: string[];
   handleCloseMessage: () => void;
+  handleColorChange: (tokenName: string, newColor: string) => void;
   handleReset: () => void;
   handleSubmitForm: () => void;
-  handleTokenChange: (
-    appearance: Appearance | string,
-    category: string,
-    updatedTokenName: string
-  ) => void;
   hasChanges: () => boolean;
   isLoading: boolean;
   message: IMessageState;
   updatedTheme: typeof inube;
-  setColorTokens: typeof inube;
 }
 
-function RenderContentFormPaletteNeutralUI(
-  props: RenderContentFormPaletteNeutralUIProps
+function RenderContentFormNeutralPaletteUI(
+  props: RenderContentFormNeutralPaletteUIProps
 ) {
   const {
-    formType,
     categories,
+    formType,
     handleCloseMessage,
+    handleColorChange,
     handleReset,
     handleSubmitForm,
-    handleTokenChange,
     hasChanges,
     isLoading,
     message,
-    setColorTokens,
     updatedTheme,
   } = props;
 
@@ -95,15 +87,11 @@ function RenderContentFormPaletteNeutralUI(
     ? "repeat(2, 1fr)"
     : "repeat(3, 1fr)";
 
-  const {
-    "(max-width: 640px)": smallScreen,
-    "(max-width: 1170px)": midScreen,
-  } = useMediaQueries(["(max-width: 640px)", "(max-width: 1170px)"]);
   return (
     <>
-      {/* <Text size="medium" padding="0px" appearance="gray">
+      <Text size="medium" padding="0px" appearance="gray">
         {paletteConfig[formType as keyof typeof paletteConfig].description}
-      </Text> */}
+      </Text>
 
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -112,25 +100,37 @@ function RenderContentFormPaletteNeutralUI(
         loading={isLoading}
       >
         <ThemeProvider theme={updatedTheme}>
-          <Stack direction="column" gap={inube.spacing.s350}>
+          <Grid
+            templateColumns="1fr"
+            gap="s150"
+            autoColumns="unset"
+            autoRows="unset"
+          >
             <Grid
-              templateColumns="1fr"
+              templateColumns={templateColumns}
+              templateRows={
+                isMediumScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)"
+              }
               gap="s150"
               autoColumns="unset"
               autoRows="unset"
+              autoFlow={isSmallScreen ? "row" : "column"}
             >
-              <RenderCategoryGrid
-                categories={categories}
-                templateColumns={
-                  smallScreen ? "auto" : `repeat(${midScreen ? 2 : 3}, 1fr)`
-                }
-                templateRows={midScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)"}
-                autoFlow={smallScreen ? "row" : "column"}
-                hasBackground
-                handleColorChange={setColorTokens}
-              />
+              {Object.entries(categories[formType]).map(([tokenName]) => (
+                <Stack key={tokenName} gap="16px" direction="column">
+                  <TokenColorCard
+                    key={tokenName}
+                    tokenName={tokenName}
+                    tokenDescription={"Token de color"}
+                    onColorChange={(tokenName, newColor) =>
+                      handleColorChange(tokenName, newColor!)
+                    }
+                    width="auto"
+                  />
+                </Stack>
+              ))}
             </Grid>
-          </Stack>
+          </Grid>
         </ThemeProvider>
       </FormButtons>
       {renderMessage(message, handleCloseMessage, handleReset)}
@@ -138,4 +138,4 @@ function RenderContentFormPaletteNeutralUI(
   );
 }
 
-export { RenderContentFormPaletteNeutralUI };
+export { RenderContentFormNeutralPaletteUI };
