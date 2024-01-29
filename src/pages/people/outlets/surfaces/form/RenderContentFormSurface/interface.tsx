@@ -125,18 +125,8 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
             {formType === "navLink" && (
               <StyledNavLinkContainer>
                 <NavLink
-                  icon={
-                    <Icon
-                      size="24px"
-                      appearance={"dark"}
-                      icon={<MdOutlineHouse />}
-                    />
-                  }
-                  label={
-                    <Text size="medium" appearance="dark">
-                      {"Text"}
-                    </Text>
-                  }
+                  icon={<Icon appearance={"dark"} icon={<MdOutlineHouse />} />}
+                  label="Text"
                   onClick={() => setNavLinkIsSelected(!navLinkIsSelected)}
                   selected={navLinkIsSelected}
                 />
