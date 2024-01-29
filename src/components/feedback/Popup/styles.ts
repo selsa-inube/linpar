@@ -4,6 +4,7 @@ import { inube } from "@inube/design-system";
 interface IStyledPopup {
   theme?: typeof inube;
   mobile?: boolean;
+  tablet?: boolean;
 }
 
 const StyledPopup = styled.div<IStyledPopup>`
@@ -21,6 +22,18 @@ const StyledPopup = styled.div<IStyledPopup>`
     top: 18px;
     div > div {
       overflow-x: hidden;
+      padding-right: ${({ tablet }: IStyledPopup) => (tablet ? "4px" : "8px")};
+    }
+    div::-webkit-scrollbar {
+      width: 8px;
+    }
+    div::-webkit-scrollbar-track-piece {
+      background-color: #ebecf0;
+    }
+    div::-webkit-scrollbar-thumb {
+      height: 154px;
+      width: 8px;
+      background-color: ${inube.color.palette.neutral.N50};
     }
   }
 `;
