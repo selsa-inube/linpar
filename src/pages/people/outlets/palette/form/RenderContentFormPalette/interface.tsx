@@ -1,10 +1,5 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import {
-  SectionMessage,
-  Stack,
-  inube,
-  useMediaQueries,
-} from "@inube/design-system";
+import { SectionMessage, Stack, inube } from "@inube/design-system";
 
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
