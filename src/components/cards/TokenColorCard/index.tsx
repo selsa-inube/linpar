@@ -102,6 +102,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
   const theme = useContext(ThemeContext);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 970px)");
   const colorPickerRef = useRef<HTMLInputElement>(null);
@@ -141,6 +142,13 @@ function TokenColorCard(props: ITokenColorCardProps) {
   const handleColorChangeCategory = (tokenName: string) => {
     onColorChange(tokenName);
   };
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   return (
     <StyledColorTokenCard
@@ -148,12 +156,20 @@ function TokenColorCard(props: ITokenColorCardProps) {
       key={tokenName}
       tokenName={tokenName}
       onClick={handleToggleModal}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       smallScreen={smallScreen}
       isActive={isActive}
       width={width}
     >
-      <Stack gap="12px" padding="s100 s150" alignContent="stretch">
-        <Stack alignItems="center" gap="12px">
+      <Stack
+        gap="12px"
+        padding="s100 s150"
+        alignContent="stretch"
+        justify="center"
+        width="100%"
+      >
+        <Stack alignItems="center" gap="12px" width="100%">
           <StyledDivText>
             <Text
               type="label"
@@ -181,13 +197,6 @@ function TokenColorCard(props: ITokenColorCardProps) {
               >
                 {tokenDescription}
               </Text>
-              <Icon
-                appearance={textAppearance}
-                cursorHover={true}
-                icon={<MdOutlineEdit />}
-                spacing="none"
-                texAlign="center"
-              />
             </>
           )}
           {type === "colorPicker" && (
@@ -221,6 +230,14 @@ function TokenColorCard(props: ITokenColorCardProps) {
             </StyledHoverPopup>
           )}
         </Stack>
+        {isHovered && (
+          <Icon
+            appearance={textAppearance}
+            icon={<MdOutlineEdit />}
+            spacing="none"
+            texAlign="center"
+          />
+        )}
       </Stack>
     </StyledColorTokenCard>
   );
