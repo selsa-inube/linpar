@@ -21,7 +21,10 @@ interface IStyledNavLinkProps {
 const StyledNav = styled.div`
   > div > div {
     background: ${({ theme }: IStyledNavLinkProps) =>
-      theme?.color?.palette?.teal?.t400 || presente.color.palette.teal.t400};
+      theme?.color?.surface?.nav?.regular ||
+      presente.color.surface.nav.regular};
+    height: 500px;
+    border-radius: 8px;
   }
 `;
 export { StyledMessageContainer, StyledBackdropNav, StyledNav };
