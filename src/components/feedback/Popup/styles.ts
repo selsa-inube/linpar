@@ -25,7 +25,7 @@ const StyledPopup = styled.div<IStyledPopup>`
       padding-right: ${({ tablet }: IStyledPopup) => (tablet ? "4px" : "8px")};
     }
     div::-webkit-scrollbar {
-      width: 8px;
+      width: ${({ tablet }: IStyledPopup) => (tablet ? "4px" : "8px")};
     }
     div::-webkit-scrollbar-track-piece {
       background-color: #ebecf0;

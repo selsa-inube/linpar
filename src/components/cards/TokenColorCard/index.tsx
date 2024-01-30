@@ -46,7 +46,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
 
   const mobile = useMediaQuery("(max-width: 745px)");
 
-  const width = mobile ? "280px" : "326px";
+  const width = mobile ? "268px" : "326px";
 
   return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column" width={width}>

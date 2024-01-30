@@ -6,11 +6,11 @@ import { PopupProps } from "./types";
 const Popup = (props: PopupProps) => {
   const { title, closeModal, children } = props;
 
-  const { "(max-width: 361px)": mobile, "(max-width: 755px)": tablet } =
-    useMediaQueries(["(max-width: 361px)", "(max-width: 755px)"]);
+  const { "(max-width: 361px)": mobile, "(max-width: 745px)": tablet } =
+    useMediaQueries(["(max-width: 361px)", "(max-width: 745px)"]);
 
-  const width = tablet ? "276px" : "318px";
-  const padding = tablet ? "s200 s050 s200 s200" : "s300 s100 s300 s300";
+  const width = tablet ? "264px" : "318px";
+  const padding = tablet ? "s200 s050 s200 s150" : "s300 s100 s300 s300";
   return (
     <StyledPopup mobile={mobile} tablet={tablet}>
       <Stack
