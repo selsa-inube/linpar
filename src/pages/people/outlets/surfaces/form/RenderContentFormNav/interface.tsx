@@ -8,7 +8,7 @@ import {
   Grid,
   useMediaQueries,
 } from "@inube/design-system";
-import { StyledMessageContainer } from "./styles";
+import { StyledMessageContainer, StyledNav } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
@@ -65,6 +65,8 @@ interface RenderContentFormSurfaceNavUIProps {
   showNav: boolean;
   surfaceConfig: typeof surfaceFormsConfig;
   updatedTheme: typeof inube;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
 }
 
 function RenderContentFormSurfaceNavUI(
@@ -78,6 +80,8 @@ function RenderContentFormSurfaceNavUI(
     handleTokenChange,
     hasChanges,
     isLoading,
+    toggleActive,
+    setToggleActive,
     message,
     surfaceConfig,
     updatedTheme,
@@ -106,7 +110,10 @@ function RenderContentFormSurfaceNavUI(
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack gap={inube.spacing.s350} direction={flexDirection}>
-            <Nav navigation={mockNav} logoutTitle="Logout" />
+            <StyledNav>
+              <Nav navigation={mockNav} logoutTitle="Logout" />
+            </StyledNav>
+
             <Grid>
               {surfaceCards.map(
                 ([key, config]: [string, ISurfaceCardConfig]) => (
@@ -121,6 +128,8 @@ function RenderContentFormSurfaceNavUI(
                     onChange={(newTokenName) =>
                       handleTokenChange(formType, key, newTokenName)
                     }
+                    toggleActive={toggleActive}
+                    setToggleActive={setToggleActive}
                   />
                 )
               )}

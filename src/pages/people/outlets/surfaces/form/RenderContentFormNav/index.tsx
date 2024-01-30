@@ -28,6 +28,8 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
     visible: false,
   });
 
+  const [toggleActive, setToggleActive] = useState(false);
+
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
   };
@@ -115,6 +117,8 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
       hasChanges={hasChanges}
       isLoading={isLoading}
       message={message}
+      toggleActive={toggleActive}
+      setToggleActive={setToggleActive}
       showNav={showNav}
       surfaceConfig={surfaceConfig}
       updatedTheme={updatedTheme}
