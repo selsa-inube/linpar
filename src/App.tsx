@@ -5,7 +5,6 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  useNavigate,
 } from "react-router-dom";
 
 import { ErrorPage } from "@components/layout/ErrorPage";
