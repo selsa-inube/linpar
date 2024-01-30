@@ -9,7 +9,7 @@ const Popup = (props: PopupProps) => {
   const { "(max-width: 361px)": mobile, "(max-width: 755px)": tablet } =
     useMediaQueries(["(max-width: 361px)", "(max-width: 755px)"]);
 
-  const width = tablet ? "284px" : "302px";
+  const width = tablet ? "276px" : "318px";
   const padding = tablet ? "s200 s050 s200 s200" : "s300 s100 s300 s300";
   return (
     <StyledPopup mobile={mobile} tablet={tablet}>

@@ -46,7 +46,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
 
   const mobile = useMediaQuery("(max-width: 745px)");
 
-  const width = mobile ? "280px" : "302px";
+  const width = mobile ? "280px" : "326px";
 
   return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column" width={width}>
@@ -87,7 +87,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
     type = "colorPicker",
     palette,
     onColorChange,
-    width = "335px",
+    width = "310px",
     toggleActive = false,
     setToggleActive = (props: boolean) => {},
   } = props;
