@@ -8,6 +8,13 @@ interface IAppContext {
       logo: string;
     };
   };
+  handelAssignClient: (clientName: string) => void;
+  clients: {
+    id: number;
+    name: string;
+    sigla: string;
+    logo: string;
+  }[];
 }
 
 export type { IAppContext };

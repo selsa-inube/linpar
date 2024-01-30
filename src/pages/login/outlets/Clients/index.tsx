@@ -1,42 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { ClientsUI } from "./interface";
 import { IClientState, IClient } from "./types";
-import { useNavigate, useParams } from "react-router-dom";
-
-const API_BASE_URL = import.meta.env.VITE_CLIENTS_URI;
-
-async function getUserClientsData(user_id: string) {
-  try {
-    const response = await fetch(`${API_BASE_URL}${user_id}`);
-    const clients = await response.json();
-    return clients;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "@src/context";
 
 function Clients() {
   const [search, setSearch] = useState("");
-  const [clientsData, setClientsData] = useState([]);
   const [client, setClient] = useState<IClientState>({
     ref: null,
     value: true,
   });
 
   const navigate = useNavigate();
-  const { user_id } = useParams();
-
-  useEffect(() => {
-    async function getData() {
-      if (!user_id) {
-        return;
-      }
-      const clients = await getUserClientsData(user_id);
-      setClientsData(clients);
-    }
-    getData();
-  }, [user_id]);
+  const { clients, handelAssignClient } = useContext(AppContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (client.ref) {
@@ -48,6 +24,7 @@ function Clients() {
 
   const handleClientChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClient({ ref: event.target, value: false });
+    handelAssignClient(event.target.value);
   };
 
   const handleSubmit = () => {
@@ -67,7 +44,7 @@ function Clients() {
 
   return (
     <ClientsUI
-      clients={clientsData}
+      clients={clients}
       search={search}
       client={client}
       handleSearchChange={handleSearchChange}
