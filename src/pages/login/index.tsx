@@ -7,7 +7,11 @@ function Login() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/login" || location.pathname === "/login/") {
+    if (
+      location.pathname === "/login" ||
+      location.pathname === "/login/" ||
+      location.pathname === "/"
+    ) {
       navigate("/login/11/checking-credentials/");
     }
   }, [location, navigate]);
