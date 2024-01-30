@@ -3,9 +3,9 @@ import { CheckingCredentialsUI } from "./interface";
 import { useCallback, useContext, useEffect } from "react";
 import { AppContext } from "@src/context";
 
-function CheckingCredentials() {
+function CheckingCredentials({ clients }) {
   const navigate = useNavigate();
-  const { user, clients } = useContext(AppContext);
+  const { user } = useContext(AppContext);
 
   const checkCredentials = useCallback(async () => {
     try {

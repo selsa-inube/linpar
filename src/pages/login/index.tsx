@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { LoginUI } from "./interface";
+import { AppContext } from "@src/context";
 
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user } = useContext(AppContext);
 
   useEffect(() => {
     if (
@@ -12,9 +14,9 @@ function Login() {
       location.pathname === "/login/" ||
       location.pathname === "/"
     ) {
-      navigate("/login/11/checking-credentials/");
+      navigate(`/login/${user.id}/checking-credentials/`);
     }
-  }, [location, navigate]);
+  }, [location, navigate, user]);
 
   return <LoginUI />;
 }

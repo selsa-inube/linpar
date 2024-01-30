@@ -6,16 +6,25 @@ import { ErrorPage } from "@components/layout/ErrorPage";
 import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "@pages/login/errors/ErrorNotClient";
 import { Login } from "@pages/login";
+import { clientsDataMock } from "@mocks/login/clients.mock";
+import { IClient } from "@src/context/types";
 
+export interface IClients {
+  clients: IClient[];
+}
 function LoginRoutes() {
+  const clients = clientsDataMock;
   return (
     <Routes>
       <Route path="/" element={<Login />}>
         <Route
           path="/:user_id/checking-credentials"
-          element={<CheckingCredentials />}
+          element={<CheckingCredentials clients={clients} />}
         />
-        <Route path="/:user_id/clients" element={<Clients />} />
+        <Route
+          path="/:user_id/clients"
+          element={<Clients clients={clients} />}
+        />
         <Route path="loading-app" element={<LoadingApp />} />
       </Route>
       <Route path="error/not-available" element={<ErrorNotAvailable />} />

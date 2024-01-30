@@ -1,30 +1,34 @@
 import React, { useState, useContext } from "react";
 import { ClientsUI } from "./interface";
-import { IClientState, IClient } from "./types";
+import { IClientState } from "./types";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "@src/context";
+import { IClient } from "@src/context/types";
+import { IClients } from "@src/routes/login";
 
-function Clients() {
+function Clients({ clients }: IClients) {
   const [search, setSearch] = useState("");
-  const [client, setClient] = useState<IClientState>({
+  const [clientLocal, setClientLocal] = useState<IClientState>({
     ref: null,
     value: true,
   });
 
   const navigate = useNavigate();
-  const { clients, handelAssignClient } = useContext(AppContext);
+  const { setClient } = useContext(AppContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (client.ref) {
-      client.ref.checked = false;
+    if (clientLocal.ref) {
+      clientLocal.ref.checked = false;
     }
-    setClient({ ref: null, value: true });
+    setClientLocal({ ref: null, value: true });
     setSearch(event.target.value);
   };
 
   const handleClientChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setClient({ ref: event.target, value: false });
-    handelAssignClient(event.target.value);
+    setClientLocal({ ref: event.target, value: false });
+    setClient(
+      clients.filter((client0) => client0.name === event.target.value)[0]
+    );
   };
 
   const handleSubmit = () => {
@@ -46,7 +50,7 @@ function Clients() {
     <ClientsUI
       clients={clients}
       search={search}
-      client={client}
+      client={clientLocal}
       handleSearchChange={handleSearchChange}
       handleClientChange={handleClientChange}
       filterClients={filterClients}
