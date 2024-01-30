@@ -6,8 +6,9 @@ import {
   inube,
   Grid,
   useMediaQueries,
+  NavLink,
 } from "@inube/design-system";
-import { StyledMessageContainer } from "./styles";
+import { StyledMessageContainer, StyledNavLinkContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
@@ -15,6 +16,7 @@ import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "../../config/surface.config";
+import { MdOutlineHouse } from "react-icons/md";
 
 interface ISurfaceCardConfig {
   title: string;
@@ -63,6 +65,10 @@ interface RenderSurfaceContentFormUIProps {
   message: IMessageState;
   surfaceConfig: typeof surfaceFormsConfig;
   updatedTheme: typeof inube;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
+  navLinkIsSelected: boolean;
+  setNavLinkIsSelected: (props: boolean) => void;
 }
 
 function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
@@ -77,6 +83,10 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
     message,
     surfaceConfig,
     updatedTheme,
+    toggleActive,
+    setToggleActive,
+    navLinkIsSelected,
+    setNavLinkIsSelected,
   } = props;
 
   const surfaceCards = Object.entries(
@@ -111,9 +121,22 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {formType === "navLink" && <>Aqui esta el nav link</>}
+            {formType === "navLink" && (
+              <StyledNavLinkContainer>
+                <NavLink
+                  icon={<MdOutlineHouse />}
+                  label="Text"
+                  onClick={() => setNavLinkIsSelected(!navLinkIsSelected)}
+                  selected={navLinkIsSelected}
+                />
+              </StyledNavLinkContainer>
+            )}
+
             {formType !== "navLink" && (
-              <SendInformationMessage appearance={formType as Appearance} />
+              <SendInformationMessage
+                appearance={formType as Appearance}
+                buttonType="filled"
+              />
             )}
 
             <Grid
@@ -135,6 +158,8 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
                     onChange={(newTokenName) =>
                       handleTokenChange(formType, key, newTokenName)
                     }
+                    toggleActive={toggleActive}
+                    setToggleActive={setToggleActive}
                   />
                 )
               )}
