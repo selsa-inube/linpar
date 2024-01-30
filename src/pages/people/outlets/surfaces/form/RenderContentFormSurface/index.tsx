@@ -3,7 +3,6 @@ import { RenderSurfaceContentFormUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
 
-import { IHandleSubmitProps } from "@src/routes/people";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 import {
@@ -13,7 +12,11 @@ import {
 
 interface RenderSurfaceContentFormProps {
   formType: Appearance;
-  handleSubmit: (props: IHandleSubmitProps) => void;
+  handleSubmit: (
+    domain: string,
+    block: string,
+    tokenUpdate: typeof inube
+  ) => void;
   surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;
 }
@@ -64,11 +67,7 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
             visible: true,
             data: surfaceMessagesConfig.success,
           });
-          handleSubmit({
-            domain: "color",
-            block: "surface",
-            tokenUpdate: surfaceToken,
-          });
+          handleSubmit("color", "surface", surfaceToken);
         }
       })
       .catch(() => {

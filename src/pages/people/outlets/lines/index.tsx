@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LinesUI } from "./interface";
-
-import type { IPeopleColorProps } from "src/routes/people";
 import { linesFormsConfig } from "./config/lines.config";
 import { linesTabsConfig } from "./config/linesTabs.config";
+import { TokenContext } from "@src/context/TokenContext";
 
-function Lines(props: IPeopleColorProps) {
-  const { token, handleSubmit } = props;
+function Lines() {
+  const { token, handleToken } = useContext(TokenContext);
   const [selectedTab, setSelectedTab] = useState(linesTabsConfig.primary.id);
 
   const handleTabChange = (tabId: string) => {
@@ -16,7 +15,7 @@ function Lines(props: IPeopleColorProps) {
   return (
     <LinesUI
       handleTabChange={handleTabChange}
-      handleSubmit={handleSubmit}
+      handleSubmit={handleToken}
       selectedTab={selectedTab}
       linesConfig={linesFormsConfig}
       token={token}

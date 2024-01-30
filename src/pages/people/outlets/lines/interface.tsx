@@ -10,7 +10,6 @@ import { PageTitle } from "@components/PageTitle";
 
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { linesTabsConfig } from "./config/linesTabs.config";
 
 import { linesFormsConfig } from "./config/lines.config";
@@ -20,7 +19,11 @@ import { RenderLinesWithLinkForm } from "./form/RenderLinesWithLinkForm";
 
 interface ILinesUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (props: IHandleSubmitProps) => void;
+  handleSubmit: (
+    domain: string,
+    block: string,
+    tokenUpdate: typeof inube
+  ) => void;
   selectedTab: string;
   linesConfig: typeof linesFormsConfig;
   token: typeof inube;
@@ -31,7 +34,11 @@ type FormType = "spinner" | "link" | "default";
 interface IRenderForm {
   formType: string;
   selectedTab: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
+  handleSubmit: (
+    domain: string,
+    block: string,
+    tokenUpdate: typeof inube
+  ) => void;
   linesConfig: typeof linesFormsConfig;
   token: typeof inube;
 }

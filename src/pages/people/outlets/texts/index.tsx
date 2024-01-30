@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { TextsUI } from "./interface";
 import { textsTabsConfig } from "./config/textsTabs.config";
-import type { IPeopleColorProps } from "src/routes/people";
 import { textFormsConfig } from "./config/text.config";
+import { TokenContext } from "@src/context/TokenContext";
 
-function Texts(props: IPeopleColorProps) {
-  const { token, handleSubmit } = props;
+function Texts() {
+  const { token, handleToken } = useContext(TokenContext);
 
   const [selectedTab, setSelectedTab] = useState(textsTabsConfig.primary.id);
 
@@ -16,7 +16,7 @@ function Texts(props: IPeopleColorProps) {
   return (
     <TextsUI
       handleTabChange={handleTabChange}
-      handleSubmit={handleSubmit}
+      handleSubmit={handleToken}
       selectedTab={selectedTab}
       textConfig={textFormsConfig}
       token={token}

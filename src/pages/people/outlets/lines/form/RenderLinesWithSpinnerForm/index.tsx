@@ -3,7 +3,6 @@ import { RenderLinesWithSpinnerFormUI } from "./interface";
 import { inube } from "@inube/design-system";
 
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { IHandleSubmitProps } from "@src/routes/people";
 
 import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 import {
@@ -14,7 +13,11 @@ import { IPeopleMessage } from "../../../types/people.types";
 
 interface RenderLinesWithSpinnerFormProps {
   formType: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
+  handleSubmit: (
+    domain: string,
+    block: string,
+    tokenUpdate: typeof inube
+  ) => void;
   linesConfig: typeof linesFormsConfig;
   token: typeof inube;
 }
@@ -68,11 +71,7 @@ function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
             visible: true,
             data: linesMessagesConfig.success,
           });
-          handleSubmit({
-            domain: "color",
-            block: "stroke",
-            tokenUpdate: linesToken,
-          });
+          handleSubmit("color", "stroke", linesToken);
         }
       })
       .catch(() => {

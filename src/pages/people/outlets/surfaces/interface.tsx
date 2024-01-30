@@ -11,13 +11,16 @@ import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { surfaceTabsConfig } from "./config/surfaceTabs.config";
 import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { surfaceFormsConfig } from "./config/surface.config";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (props: IHandleSubmitProps) => void;
+  handleSubmit: (
+    domain: string,
+    block: string,
+    tokenUpdate: typeof inube
+  ) => void;
   selectedTab: string;
   surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;

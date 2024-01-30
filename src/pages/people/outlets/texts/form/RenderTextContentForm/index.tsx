@@ -4,12 +4,15 @@ import { inube } from "@inube/design-system";
 import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 
 interface RenderTextContentFormProps {
   formType: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
+  handleSubmit: (
+    domain: string,
+    block: string,
+    tokenUpdate: typeof inube
+  ) => void;
   textConfig: typeof textFormsConfig;
   token: typeof inube;
 }
@@ -62,11 +65,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
             visible: true,
             data: textMessagesConfig.success,
           });
-          handleSubmit({
-            domain: "color",
-            block: "text",
-            tokenUpdate: textToken,
-          });
+          handleSubmit("color", "text", textToken);
         }
       })
       .catch(() => {

@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { inube } from "@inube/design-system";
 import { PaletteUI } from "./interface";
 import { paletteMessagesConfig } from "./config/palette.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import type { IPeopleColorProps } from "src/routes/people";
+import { TokenContext } from "@src/context/TokenContext";
 
-function Palette(props: IPeopleColorProps) {
-  const { token, handleSubmit } = props;
+function Palette() {
+  const { token, handleToken } = useContext(TokenContext);
   const [isLoading, setIsLoading] = useState(false);
   const [colorTokens, setColorTokens] = useState(
     JSON.parse(JSON.stringify({ ...token.color.palette }))
@@ -73,11 +73,7 @@ function Palette(props: IPeopleColorProps) {
             visible: true,
             data: paletteMessagesConfig.success,
           });
-          handleSubmit({
-            domain: "color",
-            block: "palette",
-            tokenUpdate: colorTokens,
-          });
+          handleToken("color", "palette", colorTokens);
         }
       })
       .catch(() => {
