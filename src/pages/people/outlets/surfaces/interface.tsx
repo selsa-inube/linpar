@@ -14,6 +14,7 @@ import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
 import { IHandleSubmitProps } from "@src/routes/people";
 import { surfaceFormsConfig } from "./config/surface.config";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
+import { RenderContentFormSurfaceNav } from "./form/RenderContentFormNav";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
@@ -60,7 +61,16 @@ export function SurfacesUI(props: SurfaceUIProps) {
               />
               {colorTabs.map(
                 (formType) =>
-                  selectedTab === formType && (
+                  selectedTab === formType &&
+                  (formType === "nav" ? (
+                    <RenderContentFormSurfaceNav
+                      formType={formType as Appearance}
+                      handleSubmit={handleSubmit}
+                      key={formType}
+                      surfaceConfig={surfaceConfig}
+                      token={token}
+                    />
+                  ) : (
                     <RenderSurfaceContentForm
                       formType={formType as Appearance}
                       handleSubmit={handleSubmit}
@@ -68,7 +78,7 @@ export function SurfacesUI(props: SurfaceUIProps) {
                       surfaceConfig={surfaceConfig}
                       token={token}
                     />
-                  )
+                  ))
               )}
             </Stack>
           </StyledTabsContainer>

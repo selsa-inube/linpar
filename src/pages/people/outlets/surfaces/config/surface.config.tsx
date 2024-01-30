@@ -161,12 +161,12 @@ const surfaceFormsConfig = {
 
   nav: {
     description:
-      "Las superficies del nav link determinarán el color de fondo en los diferentes cambios de comportamiento del componente",
+      "Las superficies del Nav determinarán el color de fondo del menú de navegación lateral.",
     status: {
       regular: {
         title: "Regular",
         description:
-          "La superficie tomará este color para resaltar acciones principales o el color de marca.",
+          "La superficie tomará este color para darle contraste a los links de navegación.",
       },
     },
   },
@@ -291,37 +291,31 @@ const mockNav = {
           id: "privileges",
           label: "Link name",
           icon: <MdHouse />,
-          path: "/privileges",
         },
         accounting: {
           id: "accounting",
           label: "Link name",
           icon: <MdHouse />,
-          path: "/accounting",
         },
         contacts: {
           id: "contacts",
           label: "Link name",
           icon: <MdHouse />,
-          path: "/contacts",
         },
         documents: {
           id: "documents",
           label: "Link name",
           icon: <MdHouse />,
-          path: "/documents",
         },
         marketing: {
           id: "marketing",
           label: "Link name",
           icon: <MdHouse />,
-          path: "/marketing",
         },
         savings: {
           id: "savings",
           label: "Link name",
           icon: <MdHouse />,
-          path: "/savings",
         },
       },
     },
