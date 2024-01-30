@@ -7,7 +7,6 @@ import {
   Grid,
   useMediaQueries,
   NavLink,
-  Icon,
 } from "@inube/design-system";
 import { StyledMessageContainer, StyledNavLinkContainer } from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
