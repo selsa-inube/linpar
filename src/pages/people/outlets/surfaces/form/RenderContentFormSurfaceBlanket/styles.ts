@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { inube } from "@inube/design-system";
+
+interface IStyledModal {
+  theme?: typeof inube;
+}
 
 const StyledMessageContainer = styled.div`
   position: fixed;
@@ -14,4 +19,15 @@ const StyledBackdropBlanket = styled.div`
   background-color: transparent;
 `;
 
-export { StyledMessageContainer, StyledBackdropBlanket };
+const StyledModal = styled.div<IStyledModal>`
+  background-color: ${inube.color.surface.light.clear};
+  min-width: 312px;
+  max-width: 400px;
+  max-height: 132px;
+  height: auto;
+  border-radius: ${({ theme }) => theme?.spacing?.s100 || inube.spacing.s100};
+  margin: ${({ theme }) => theme?.spacing?.s200 || inube.spacing.s200};
+  z-index: 1;
+`;
+
+export { StyledMessageContainer, StyledBackdropBlanket, StyledModal };

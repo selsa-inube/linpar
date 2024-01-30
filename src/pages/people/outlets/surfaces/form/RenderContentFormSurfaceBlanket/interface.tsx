@@ -9,7 +9,11 @@ import {
   Grid,
   useMediaQueries,
 } from "@inube/design-system";
-import { StyledBackdropBlanket, StyledMessageContainer } from "./styles";
+import {
+  StyledBackdropBlanket,
+  StyledMessageContainer,
+  StyledModal,
+} from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
@@ -65,6 +69,8 @@ interface RenderContentFormSurfaceBlanketUIProps {
   message: IMessageState;
   showBlanket: boolean;
   surfaceConfig: typeof surfaceFormsConfig;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
   updatedTheme: typeof inube;
 }
 
@@ -83,6 +89,8 @@ function RenderContentFormSurfaceBlanketUI(
     message,
     showBlanket,
     surfaceConfig,
+    toggleActive,
+    setToggleActive,
     updatedTheme,
   } = props;
 
@@ -119,7 +127,7 @@ function RenderContentFormSurfaceBlanketUI(
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
             <Button
-              appereance="dark"
+              appearance="dark"
               variant="outlined"
               onClick={handleShowBlanket}
             >
@@ -127,6 +135,28 @@ function RenderContentFormSurfaceBlanketUI(
             </Button>
             {showBlanket && (
               <Blanket>
+                <StyledModal>
+                  <Stack
+                    direction="column"
+                    gap={inube.spacing.s300}
+                    padding="s300"
+                  >
+                    <Stack>
+                      <Text type="title" size="medium" appearance={"dark"}>
+                        Ventana modal
+                      </Text>
+                    </Stack>
+                    <Stack justifyContent="flex-end" gap="8px">
+                      <Button
+                        appearance={"dark"}
+                        variant="outlined"
+                        onClick={handleShowBlanket}
+                      >
+                        Ocultar modal
+                      </Button>
+                    </Stack>
+                  </Stack>
+                </StyledModal>
                 <StyledBackdropBlanket onClick={() => handleShowBlanket()} />
               </Blanket>
             )}
@@ -149,6 +179,8 @@ function RenderContentFormSurfaceBlanketUI(
                     onChange={(newTokenName) =>
                       handleTokenChange(formType, key, newTokenName)
                     }
+                    toggleActive={toggleActive}
+                    setToggleActive={setToggleActive}
                   />
                 )
               )}

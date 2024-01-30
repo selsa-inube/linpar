@@ -27,6 +27,7 @@ function RenderContentFormSurfaceBlanket(
   );
   const [isLoading, setIsLoading] = useState(false);
   const [showBlanket, setShowBlanket] = useState(false);
+  const [toggleActive, setToggleActive] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -120,6 +121,8 @@ function RenderContentFormSurfaceBlanket(
       message={message}
       showBlanket={showBlanket}
       surfaceConfig={surfaceConfig}
+      toggleActive={toggleActive}
+      setToggleActive={setToggleActive}
       updatedTheme={updatedTheme}
     />
   );
