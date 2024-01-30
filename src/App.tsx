@@ -6,6 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
 import { GlobalStyles } from "@styles/global";
