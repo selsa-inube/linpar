@@ -20,6 +20,7 @@ const renderLogo = (imgUrl: string) => {
 
 function HomeUI() {
   const { user } = useContext(AppContext);
+
   const [laptop] = Object.values(useMediaQueries(["(min-width: 945px)"]));
 
   return (
