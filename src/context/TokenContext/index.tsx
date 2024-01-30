@@ -9,7 +9,7 @@ export interface IHandleSubmitProps {
 
 interface ITokenState {
   token: typeof inube;
-  handleToken: (
+  handleSubmit: (
     domain: string,
     block: string,
     tokenUpdate: typeof inube
@@ -18,7 +18,7 @@ interface ITokenState {
 
 const defaultTokenValue: ITokenState = {
   token: presente,
-  handleToken: () => {},
+  handleSubmit: () => {},
 };
 
 const TokenContext = createContext<ITokenState>(defaultTokenValue);
@@ -31,7 +31,7 @@ const TokenProvider = (props: ITokenProviderProps) => {
   const { children } = props;
   const [token, setToken] = useState(presente);
 
-  const handleToken = useCallback(
+  const handleSubmit = useCallback(
     (domain: string, block: string, tokenUpdate: typeof inube) => {
       const updatedTokenColor = {
         ...token.color,
@@ -49,7 +49,7 @@ const TokenProvider = (props: ITokenProviderProps) => {
   );
 
   return (
-    <TokenContext.Provider value={{ token, handleToken }}>
+    <TokenContext.Provider value={{ token, handleSubmit }}>
       {children}
     </TokenContext.Provider>
   );

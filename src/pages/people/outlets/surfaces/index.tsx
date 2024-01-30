@@ -5,7 +5,7 @@ import { surfaceFormsConfig } from "./config/surface.config";
 import { TokenContext } from "@src/context/TokenContext";
 
 function Surfaces() {
-  const { token, handleToken } = useContext(TokenContext);
+  const { token, handleSubmit } = useContext(TokenContext);
 
   const [selectedTab, setSelectedTab] = useState(surfaceTabsConfig.primary.id);
 
@@ -16,7 +16,7 @@ function Surfaces() {
   return (
     <SurfacesUI
       handleTabChange={handleTabChange}
-      handleSubmit={handleToken}
+      handleSubmit={handleSubmit}
       selectedTab={selectedTab}
       surfaceConfig={surfaceFormsConfig}
       token={token}

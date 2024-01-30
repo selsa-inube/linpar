@@ -6,7 +6,7 @@ import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.t
 import { TokenContext } from "@src/context/TokenContext";
 
 function Palette() {
-  const { token, handleToken } = useContext(TokenContext);
+  const { token, handleSubmit } = useContext(TokenContext);
   const [isLoading, setIsLoading] = useState(false);
   const [colorTokens, setColorTokens] = useState(
     JSON.parse(JSON.stringify({ ...token.color.palette }))
@@ -73,7 +73,7 @@ function Palette() {
             visible: true,
             data: paletteMessagesConfig.success,
           });
-          handleToken("color", "palette", colorTokens);
+          handleSubmit("color", "palette", colorTokens);
         }
       })
       .catch(() => {
