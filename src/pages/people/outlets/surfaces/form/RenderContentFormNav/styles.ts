@@ -19,12 +19,21 @@ interface IStyledNavLinkProps {
 }
 
 const StyledNav = styled.div`
+  > div {
+    border: none;
+    width: 100%;
+  }
+
   > div > div {
     background: ${({ theme }: IStyledNavLinkProps) =>
       theme?.color?.surface?.nav?.regular ||
       presente.color.surface.nav.regular};
     height: 500px;
     border-radius: 8px;
+    border: 1px solid
+      ${({ theme }) =>
+        theme?.color?.stroke?.divider?.regular ||
+        inube.color.stroke.divider.regular};
   }
 `;
 export { StyledMessageContainer, StyledBackdropNav, StyledNav };
