@@ -10,7 +10,7 @@ import {
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
 import { GlobalStyles } from "@styles/global";
-import AppContextProvider from "./context/AppContext";
+import AppContextProvider from "@src/context/AppContext";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";

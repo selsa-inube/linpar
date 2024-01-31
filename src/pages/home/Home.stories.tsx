@@ -1,7 +1,7 @@
 import { Home } from "./index";
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import AppContextProvider from "../../context/AppContext/index";
+import AppContextProvider from "@src/context/AppContext/index";
 
 const story = {
   title: "layouts/Home",
