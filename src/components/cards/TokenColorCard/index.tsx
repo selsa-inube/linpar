@@ -44,8 +44,13 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     onChange,
   } = props;
 
+  const tablet = useMediaQuery("(max-width: 850px)");
+  const width = tablet
+    ? `calc(100% - ${inube.spacing.s050})`
+    : `calc(100% - ${inube.spacing.s100})`;
+
   return categories.map(([category, tokens]: string) => (
-    <Stack key={category} gap="16px" direction="column">
+    <Stack key={category} gap="16px" direction="column" width="100%">
       <Text type="title" size="medium" textAlign="start" appearance="dark">
         {categoryTranslations[category] || category}
       </Text>
@@ -66,7 +71,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                 type="tokenPicker"
                 tokenDescription={"Token de color"}
                 onColorChange={() => onChange(tokenName)}
-                width="350px"
+                width={width}
               />
             </div>
           ))}

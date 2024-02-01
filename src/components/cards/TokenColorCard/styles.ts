@@ -42,6 +42,7 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   box-sizing: border-box;
   border-radius: ${inube.spacing.s100};
   cursor: pointer;
+  min-width: max-content;
   background-color: ${({ tokenName, theme }) =>
     getTokenColor(tokenName, theme)};
 `;
@@ -54,6 +55,7 @@ const StyledGridContainer = styled.div<StyledPaletteUI>`
   border-radius: ${inube.spacing.s100};
   padding: ${({ hasBackground }) =>
     hasBackground ? inube.spacing.s150 : inube.spacing.s0};
+  width: 100%;
   & div {
     place-content: unset;
   }
@@ -61,6 +63,7 @@ const StyledGridContainer = styled.div<StyledPaletteUI>`
 
 const StyledGridColorsContainer = styled.div`
   overflow: auto;
+  width: 100%;
 `;
 
 const StyledDivText = styled.div`

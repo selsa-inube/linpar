@@ -18,12 +18,10 @@ const StyledPopup = styled.div<IStyledPopup>`
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
       0px 4px 8px 3px rgba(0, 0, 0, 0.15);
     z-index: 2;
-    // left: ${({ mobile }: IStyledPopup) => (mobile ? "-40px" : "-12px")};
     left: -20px;
     top: 18px;
     div > div {
       overflow-x: hidden;
-      padding-right: ${({ tablet }: IStyledPopup) => (tablet ? "4px" : "8px")};
     }
     div::-webkit-scrollbar {
       width: ${({ tablet }: IStyledPopup) => (tablet ? "4px" : "8px")};
