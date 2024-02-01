@@ -25,7 +25,8 @@ function getTokenColor(tokenName: string, theme?: typeof inube) {
 
 const HiddenColorPicker = styled.input.attrs({ type: "color" })`
   display: flow;
-  height: 0px;
+  width: 0;
+  height: 0;
   opacity: 0;
 `;
 
