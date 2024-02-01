@@ -16,6 +16,7 @@ import {
   getTokenColor,
   StyledDivText,
   StyledHoverPopup,
+  StyledHoverIcon,
 } from "./styles";
 import { ThemeContext } from "styled-components";
 import { Popup } from "@src/components/feedback/Popup";
@@ -55,10 +56,11 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
   const mobile = useMediaQuery("(max-width: 745px)");
 
   const width = mobile ? "280px" : "302px";
+  const fontSize = mobile ? "small" : "medium";
 
   return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column" width={width}>
-      <Text type="title" size="medium" textAlign="start" appearance="dark">
+      <Text type="title" size={fontSize} textAlign="start" appearance="dark">
         {categoryTranslations[category] || category}
       </Text>
       <StyledGridContainer hasBackground={hasBackground}>
@@ -142,13 +144,6 @@ function TokenColorCard(props: ITokenColorCardProps) {
   const handleColorChangeCategory = (tokenName: string) => {
     onColorChange(tokenName);
   };
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
 
   return (
     <StyledColorTokenCard
@@ -156,8 +151,8 @@ function TokenColorCard(props: ITokenColorCardProps) {
       key={tokenName}
       tokenName={tokenName}
       onClick={handleToggleModal}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       smallScreen={smallScreen}
       isActive={isActive}
       width={width}
@@ -167,9 +162,13 @@ function TokenColorCard(props: ITokenColorCardProps) {
         padding="s100 s150"
         alignContent="stretch"
         justify="center"
-        width="100%"
+        width={type === "colorPicker" ? "100%" : "auto"}
       >
-        <Stack alignItems="center" gap="12px" width="100%">
+        <Stack
+          alignItems="center"
+          gap="12px"
+          width={type === "colorPicker" ? "100%" : "auto"}
+        >
           <StyledDivText>
             <Text
               type="label"
@@ -230,13 +229,10 @@ function TokenColorCard(props: ITokenColorCardProps) {
             </StyledHoverPopup>
           )}
         </Stack>
-        {isHovered && (
-          <Icon
-            appearance={textAppearance}
-            icon={<MdOutlineEdit />}
-            spacing="none"
-            texAlign="center"
-          />
+        {type === "colorPicker" && (
+          <StyledHoverIcon>
+            <Icon appearance={textAppearance} icon={<MdOutlineEdit />} />
+          </StyledHoverIcon>
         )}
       </Stack>
     </StyledColorTokenCard>

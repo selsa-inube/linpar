@@ -33,16 +33,18 @@ const StyledHoverPopup = styled.div`
   position: absolute;
   height: calc(auto+24px);
 `;
+const StyledHoverIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: none;
+`;
 
 const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   display: ${({ smallScreen }) => (smallScreen ? "flex" : "inherit")};
   align-items: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
-  justify-content: ${({ smallScreen, type }) =>
-    type === "colorPicker"
-      ? "space-between"
-      : smallScreen
-      ? "center"
-      : "unset"};
+  justify-content: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
   width: ${({ width }) => (width ? width : "auto")};
   height: ${({ smallScreen }) => (smallScreen ? "36px" : "auto")};
   box-sizing: border-box;
@@ -50,6 +52,16 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   cursor: pointer;
   background-color: ${({ tokenName, theme }) =>
     getTokenColor(tokenName, theme)};
+  position: relative;
+
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme?.color?.hover || inube.color.hover};
+
+    & ${StyledHoverIcon} {
+      display: block;
+    }
+  }
 `;
 
 const StyledGridContainer = styled.div<StyledPaletteUI>`
@@ -81,4 +93,5 @@ export {
   getTokenColor,
   StyledDivText,
   StyledHoverPopup,
+  StyledHoverIcon,
 };
