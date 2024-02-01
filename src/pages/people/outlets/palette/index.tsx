@@ -73,7 +73,11 @@ function Palette() {
             visible: true,
             data: paletteMessagesConfig.success,
           });
-          handleSubmit("color", "palette", colorTokens);
+          handleSubmit({
+            domain: "color",
+            block: "palette",
+            tokenUpdate: colorTokens,
+          });
         }
       })
       .catch(() => {

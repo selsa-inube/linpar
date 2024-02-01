@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Lines } from "./index";
-import { IPeopleColorProps } from "@src/routes/people";
+import { TokenContext } from "@src/context/TokenContext";
 import { presente } from "@inube/design-system";
 
 const story = {
@@ -13,17 +13,17 @@ const story = {
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
-        <Story />
+        <TokenContext.Provider
+          value={{ token: presente, handleSubmit: () => {} }}
+        >
+          <Story />
+        </TokenContext.Provider>
       </BrowserRouter>
     ),
   ],
 };
 
-const Default = (args: IPeopleColorProps) => <Lines {...args} />;
-Default.args = {
-  token: presente,
-  handleSubmit: () => {},
-};
+const Default = () => <Lines />;
 
 export default story;
 

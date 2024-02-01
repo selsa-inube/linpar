@@ -12,14 +12,11 @@ import { peopleOptionsConfig } from "../options/config/people.config";
 import { textsTabsConfig } from "./config/textsTabs.config";
 import { RenderTextContentForm } from "./form/RenderTextContentForm";
 import { textFormsConfig } from "./config/text.config";
+import { IHandleSubmitProps } from "@src/context/TokenContext/types";
 
 interface TextUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   textConfig: typeof textFormsConfig;
   token: typeof inube;

@@ -9,14 +9,11 @@ import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
 } from "../../config/surface.config";
+import { IHandleSubmitProps } from "@src/context/TokenContext/types";
 
 interface RenderSurfaceContentFormProps {
   formType: Appearance;
-  handleSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;
 }
@@ -69,7 +66,11 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
             visible: true,
             data: surfaceMessagesConfig.success,
           });
-          handleSubmit("color", "surface", surfaceToken);
+          handleSubmit({
+            domain: "color",
+            block: "surface",
+            tokenUpdate: surfaceToken,
+          });
         }
       })
       .catch(() => {

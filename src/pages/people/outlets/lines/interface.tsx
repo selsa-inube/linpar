@@ -16,14 +16,11 @@ import { linesFormsConfig } from "./config/lines.config";
 import { RenderLinesContentForm } from "./form/RenderLinesContentForm";
 import { RenderLinesWithSpinnerForm } from "./form/RenderLinesWithSpinnerForm";
 import { RenderLinesWithLinkForm } from "./form/RenderLinesWithLinkForm";
+import { IHandleSubmitProps } from "@src/context/TokenContext/types";
 
 interface ILinesUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   linesConfig: typeof linesFormsConfig;
   token: typeof inube;
@@ -34,11 +31,7 @@ type FormType = "spinner" | "link" | "default";
 interface IRenderForm {
   formType: string;
   selectedTab: string;
-  handleSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   linesConfig: typeof linesFormsConfig;
   token: typeof inube;
 }

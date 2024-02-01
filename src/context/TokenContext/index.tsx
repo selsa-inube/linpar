@@ -1,27 +1,14 @@
-import React, { createContext, useState, useCallback } from "react";
-import { inube, presente } from "@inube/design-system";
+import React, { createContext, useState, useCallback, useEffect } from "react";
+import { inube } from "@inube/design-system";
+import { IHandleSubmitProps, ITokenContextProps } from "./types";
+import { fetchTokenData } from "@src/mocks/themeService/themeService.mock";
 
-export interface IHandleSubmitProps {
-  domain: string;
-  block: string;
-  tokenUpdate: typeof inube;
-}
-
-interface ITokenState {
-  token: typeof inube;
-  handleSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
-}
-
-const defaultTokenValue: ITokenState = {
-  token: presente,
+const defaultTokenValue: ITokenContextProps = {
+  token: {},
   handleSubmit: () => {},
 };
 
-const TokenContext = createContext<ITokenState>(defaultTokenValue);
+const TokenContext = createContext<ITokenContextProps>(defaultTokenValue);
 
 interface ITokenProviderProps {
   children: React.ReactNode;
@@ -29,10 +16,17 @@ interface ITokenProviderProps {
 
 const TokenProvider = (props: ITokenProviderProps) => {
   const { children } = props;
-  const [token, setToken] = useState(presente);
+  const [token, setToken] = useState<typeof inube>({});
+
+  useEffect(() => {
+    fetchTokenData().then((token: typeof inube) => {
+      setToken({ ...token });
+    });
+  }, []);
 
   const handleSubmit = useCallback(
-    (domain: string, block: string, tokenUpdate: typeof inube) => {
+    (props: IHandleSubmitProps) => {
+      const { domain, block, tokenUpdate } = props;
       const updatedTokenColor = {
         ...token.color,
         [block]: { ...tokenUpdate },

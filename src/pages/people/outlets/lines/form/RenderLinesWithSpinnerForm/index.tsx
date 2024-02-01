@@ -10,14 +10,11 @@ import {
   linesMessagesConfig,
 } from "../../config/lines.config";
 import { IPeopleMessage } from "../../../types/people.types";
+import { IHandleSubmitProps } from "@src/context/TokenContext/types";
 
 interface RenderLinesWithSpinnerFormProps {
   formType: string;
-  handleSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   linesConfig: typeof linesFormsConfig;
   token: typeof inube;
 }
@@ -71,7 +68,11 @@ function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
             visible: true,
             data: linesMessagesConfig.success,
           });
-          handleSubmit("color", "stroke", linesToken);
+          handleSubmit({
+            domain: "color",
+            block: "stroke",
+            tokenUpdate: linesToken,
+          });
         }
       })
       .catch(() => {

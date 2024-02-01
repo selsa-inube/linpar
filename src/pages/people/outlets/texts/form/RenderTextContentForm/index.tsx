@@ -5,14 +5,11 @@ import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
 import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { IHandleSubmitProps } from "@src/context/TokenContext/types";
 
 interface RenderTextContentFormProps {
   formType: string;
-  handleSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   textConfig: typeof textFormsConfig;
   token: typeof inube;
 }
@@ -65,7 +62,11 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
             visible: true,
             data: textMessagesConfig.success,
           });
-          handleSubmit("color", "text", textToken);
+          handleSubmit({
+            domain: "color",
+            block: "text",
+            tokenUpdate: textToken,
+          });
         }
       })
       .catch(() => {

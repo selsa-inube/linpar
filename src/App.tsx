@@ -15,6 +15,7 @@ import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { PeopleRoutes } from "./routes/people";
+import { TokenProvider } from "./context/TokenContext";
 
 function LogOut() {
   const { logout } = useAuth0();
@@ -52,8 +53,10 @@ function App() {
   }
   return (
     <AppContextProvider>
-      <GlobalStyles />
-      <RouterProvider router={router} />
+      <TokenProvider>
+        <GlobalStyles />
+        <RouterProvider router={router} />
+      </TokenProvider>
     </AppContextProvider>
   );
 }

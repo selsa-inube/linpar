@@ -13,14 +13,11 @@ import { surfaceTabsConfig } from "./config/surfaceTabs.config";
 import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
 import { surfaceFormsConfig } from "./config/surface.config";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
+import { IHandleSubmitProps } from "@src/context/TokenContext/types";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (
-    domain: string,
-    block: string,
-    tokenUpdate: typeof inube
-  ) => void;
+  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;
