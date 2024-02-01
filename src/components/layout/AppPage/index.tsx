@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
 import { navigationConfig } from "@pages/home/config/apps.config";
-import { AppContext } from "@src/context";
+
 import {
   StyledAppPage,
   StyledContainer,
@@ -12,6 +12,7 @@ import {
   StyledMain,
   StyledContainerNav,
 } from "./styles";
+import { AppContext } from "@src/context/AppContext";
 
 const renderLogo = (imgUrl: string) => {
   return (
