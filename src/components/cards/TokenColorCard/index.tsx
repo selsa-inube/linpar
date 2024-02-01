@@ -20,6 +20,7 @@ interface ITokenColorCardProps {
   type?: "colorPicker" | "tokenPicker";
   palette?: typeof inube;
   onColorChange: (tokenName: string, newColor?: string) => void;
+  width: string;
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
 }
@@ -43,8 +44,6 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     onChange,
   } = props;
 
-  const mobile = useMediaQuery("(max-width: 745px)");
-
   return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column">
       <Text type="title" size="medium" textAlign="start" appearance="dark">
@@ -67,6 +66,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                 type="tokenPicker"
                 tokenDescription={"Token de color"}
                 onColorChange={() => onChange(tokenName)}
+                width="350px"
               />
             </div>
           ))}
@@ -83,6 +83,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
     type = "colorPicker",
     palette,
     onColorChange,
+    width = "335px",
     toggleActive = false,
     setToggleActive = (props: boolean) => {},
   } = props;
@@ -136,6 +137,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
       onClick={handleToggleModal}
       smallScreen={smallScreen}
       isActive={isActive}
+      width={width}
     >
       <Stack
         justifyContent="start"

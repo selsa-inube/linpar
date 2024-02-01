@@ -88,36 +88,31 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     (isTransparent || color.isLight());
 
   return (
-    <>
-      <Fieldset title={title} id={category}>
-        <Stack direction="column" gap={inube.spacing.s200}>
-          <Text size="medium" appearance="gray">
-            {description}
-          </Text>
-          <Stack gap={inube.spacing.s200} alignItems="center">
-            <StyledTokenColorCardContainer
-              requireBackground={requireBackground}
-            >
-              <TokenColorCard
-                tokenName={tokenName!}
-                type="tokenPicker"
-                palette={optionsMenu}
-                onColorChange={handleColorChange}
-                toggleActive={toggleActive}
-                setToggleActive={setToggleActive}
-              />
-            </StyledTokenColorCardContainer>
-            {children && (
-              <StyledTextWithTokenContainer
-                requireBackground={requireBackground}
-              >
-                <Stack padding="s100">{children}</Stack>
-              </StyledTextWithTokenContainer>
-            )}
-          </Stack>
+    <Fieldset title={title} id={category}>
+      <Stack direction="column" gap={inube.spacing.s200}>
+        <Text size="medium" appearance="gray">
+          {description}
+        </Text>
+        <Stack gap={inube.spacing.s200} alignItems="center">
+          <StyledTokenColorCardContainer requireBackground={requireBackground}>
+            <TokenColorCard
+              tokenName={tokenName!}
+              type="tokenPicker"
+              palette={optionsMenu}
+              onColorChange={handleColorChange}
+              toggleActive={toggleActive}
+              setToggleActive={setToggleActive}
+              width="320px"
+            />
+          </StyledTokenColorCardContainer>
+          {children && (
+            <StyledTextWithTokenContainer requireBackground={requireBackground}>
+              <Stack padding="s100">{children}</Stack>
+            </StyledTextWithTokenContainer>
+          )}
         </Stack>
-      </Fieldset>
-    </>
+      </Stack>
+    </Fieldset>
   );
 }
 
