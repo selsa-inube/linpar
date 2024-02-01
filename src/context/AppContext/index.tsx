@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import linparLogo from "../../assets/images/linpar.png";
+import linparLogo from "@assets/images/linpar.png";
 import { IAppContext } from "./types";
 
 const store: IAppContext = {
