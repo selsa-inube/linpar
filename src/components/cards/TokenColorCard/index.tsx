@@ -104,8 +104,6 @@ function TokenColorCard(props: ITokenColorCardProps) {
   const theme = useContext(ThemeContext);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
   const smallScreen = useMediaQuery("(max-width: 970px)");
   const colorPickerRef = useRef<HTMLInputElement>(null);
 
@@ -151,8 +149,6 @@ function TokenColorCard(props: ITokenColorCardProps) {
       key={tokenName}
       tokenName={tokenName}
       onClick={handleToggleModal}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       smallScreen={smallScreen}
       isActive={isActive}
       width={width}
@@ -238,6 +234,5 @@ function TokenColorCard(props: ITokenColorCardProps) {
     </StyledColorTokenCard>
   );
 }
-
 export { TokenColorCard };
 export type { ITokenColorCardProps };
