@@ -27,6 +27,8 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
+  const [toggleActive, setToggleActive] = useState(false);
+  const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
@@ -111,6 +113,10 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
       message={message}
       surfaceConfig={surfaceConfig}
       updatedTheme={updatedTheme}
+      toggleActive={toggleActive}
+      setToggleActive={setToggleActive}
+      navLinkIsSelected={navLinkIsSelected}
+      setNavLinkIsSelected={setNavLinkIsSelected}
     />
   );
 }
