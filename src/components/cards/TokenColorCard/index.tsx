@@ -23,6 +23,7 @@ interface ITokenColorCardProps {
   width: string;
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
+  category?: string;
 }
 
 interface renderCategoryGridProps {
@@ -91,6 +92,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
     width = "335px",
     toggleActive = false,
     setToggleActive = (props: boolean) => {},
+    category = "regular",
   } = props;
   const theme = useContext(ThemeContext);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -192,18 +194,18 @@ function TokenColorCard(props: ITokenColorCardProps) {
               <Popup
                 closeModal={() => setIsPopupOpen(false)}
                 title={"Paleta de colores"}
-                category="regular"
+                category={category}
               >
                 <StyledGridColorsContainer>
                   <Grid
-                    templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+                    templateColumns="repeat(auto-fit, minmax(244px, 1fr))"
                     gap="s150"
                     autoColumns="unset"
                     autoRows="unset"
                   >
                     <RenderCategoryGrid
                       categories={Object.entries(palette)}
-                      templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+                      templateColumns="repeat(auto-fit, minmax(232px, 1fr))"
                       onChange={handleColorChangeCategory}
                     />
                   </Grid>

@@ -103,6 +103,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
               toggleActive={toggleActive}
               setToggleActive={setToggleActive}
               width="100%"
+              category={category}
             />
           </StyledTokenColorCardContainer>
           {children && (
