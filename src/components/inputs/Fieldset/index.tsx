@@ -5,13 +5,14 @@ interface FieldsetProps {
   title: string;
   children: JSX.Element;
   icon?: JSX.Element;
+  id?: string;
 }
 
 function Fieldset(props: FieldsetProps) {
-  const { title, children, icon } = props;
+  const { title, children, icon, id } = props;
 
   return (
-    <StyledFieldset>
+    <StyledFieldset id={id}>
       <legend>
         <Stack padding="s050" alignItems="center">
           <Icon icon={icon} appearance="gray" />

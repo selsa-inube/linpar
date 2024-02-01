@@ -5,7 +5,6 @@ interface IStyledColorTokenCard {
   tokenName: string;
   isActive: boolean;
   smallScreen: boolean;
-  width: string;
 }
 
 interface StyledPaletteUI {
@@ -37,7 +36,7 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   display: ${({ smallScreen }) => (smallScreen ? "flex" : "inherit")};
   align-items: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
   justify-content: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
-  width: ${({ width }) => (width ? "calc(width-8px)" : "auto")};
+  width: "auto";
   height: ${({ smallScreen }) => (smallScreen ? "36px" : "auto")};
   box-sizing: border-box;
   border-radius: ${inube.spacing.s100};
