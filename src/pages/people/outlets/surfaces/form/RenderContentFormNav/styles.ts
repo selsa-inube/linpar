@@ -16,12 +16,13 @@ const StyledBackdropNav = styled.div`
 `;
 interface IStyledNavLinkProps {
   theme?: typeof inube;
+  smallScreen: boolean;
 }
 
 const StyledNav = styled.div`
   > div {
     border: none;
-    width: 100%;
+    width: ${({ smallScreen }) => (smallScreen ? "100%" : "248px")};
   }
 
   > div > div {

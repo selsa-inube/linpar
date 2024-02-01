@@ -110,7 +110,7 @@ function RenderContentFormSurfaceNavUI(
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack gap={inube.spacing.s350} direction={flexDirection}>
-            <StyledNav>
+            <StyledNav smallScreen={isSmallScreen}>
               <Nav navigation={mockNav} logoutTitle="Logout" />
             </StyledNav>
 
