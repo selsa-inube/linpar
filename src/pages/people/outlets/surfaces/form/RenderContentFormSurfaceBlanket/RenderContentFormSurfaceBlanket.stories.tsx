@@ -27,7 +27,7 @@ const themeMap = {
 };
 
 const surfaceFormsConfig = {
-  dark: {
+  blanket: {
     description:
       "Las superficies de tipo primario se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
     status: {
@@ -72,7 +72,7 @@ Default.argTypes = {
     control: { type: "select" },
     description: "the form that it'll be render",
     table: {
-      defaultValue: { summary: "dark" },
+      defaultValue: { summary: "blanket" },
     },
   },
 };

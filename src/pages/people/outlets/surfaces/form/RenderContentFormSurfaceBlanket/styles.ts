@@ -24,6 +24,7 @@ const StyledModal = styled.div<IStyledModal>`
   min-width: 312px;
   max-width: 400px;
   max-height: 132px;
+  width: auto;
   height: auto;
   border-radius: ${({ theme }) => theme?.spacing?.s100 || inube.spacing.s100};
   margin: ${({ theme }) => theme?.spacing?.s200 || inube.spacing.s200};

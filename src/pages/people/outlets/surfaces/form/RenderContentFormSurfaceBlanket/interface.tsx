@@ -129,6 +129,7 @@ function RenderContentFormSurfaceBlanketUI(
             <Button
               appearance="dark"
               variant="outlined"
+              spacing={isSmallScreen ? "compact" : "wide"}
               onClick={handleShowBlanket}
             >
               Mostrar Blanket
@@ -142,7 +143,11 @@ function RenderContentFormSurfaceBlanketUI(
                     padding="s300"
                   >
                     <Stack>
-                      <Text type="title" size="medium" appearance={"dark"}>
+                      <Text
+                        type="title"
+                        size={isSmallScreen ? "small" : "medium"}
+                        appearance={"dark"}
+                      >
                         Ventana modal
                       </Text>
                     </Stack>
@@ -150,6 +155,7 @@ function RenderContentFormSurfaceBlanketUI(
                       <Button
                         appearance={"dark"}
                         variant="outlined"
+                        spacing={isSmallScreen ? "compact" : "wide"}
                         onClick={handleShowBlanket}
                       >
                         Ocultar modal
