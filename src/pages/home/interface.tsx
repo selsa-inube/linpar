@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Header, Stack, Nav, useMediaQueries } from "@inube/design-system";
-
-import { AppContext } from "@src/context";
+import { AppContext } from "@src/context/AppContext";
 import {
   StyledContentImg,
   StyledLogo,
