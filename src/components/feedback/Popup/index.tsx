@@ -4,24 +4,22 @@ import { StyledPopup } from "./styles";
 import { PopupProps } from "./types";
 
 const Popup = (props: PopupProps) => {
-  const { title, closeModal, children, category } = props;
+  const { title, closeModal, children, fieldsetRef } = props;
 
   const tablet = useMediaQuery("(max-width: 850px)");
 
   let width: number | string =
-    document.getElementById(category)?.getBoundingClientRect()?.right -
-      document.getElementById(category)?.lastChild?.getBoundingClientRect()
-        ?.left || 319;
+    fieldsetRef.current?.getBoundingClientRect()?.right -
+      fieldsetRef.current?.lastChild?.getBoundingClientRect()?.left || 319;
   width = Math.max(width, tablet ? 276 : 268);
   width = Math.min(width, 340);
 
   let position: number | string =
-    (document.getElementById(category)?.getBoundingClientRect()?.left +
-      document.getElementById(category)?.getBoundingClientRect()?.right) /
+    (fieldsetRef.current?.getBoundingClientRect()?.left +
+      fieldsetRef.current?.getBoundingClientRect()?.right) /
       2 -
       width / 2 -
-      document.getElementById(category)?.lastChild?.getBoundingClientRect()
-        ?.left || 0;
+      fieldsetRef.current?.lastChild?.getBoundingClientRect()?.left || 0;
   position = Math.min(position, 0);
   width -= tablet
     ? Number(inube.spacing.s200.split("px")[0])

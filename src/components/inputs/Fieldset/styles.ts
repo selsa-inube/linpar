@@ -6,6 +6,7 @@ const StyledFieldset = styled.fieldset`
   border-style: solid;
   border-color: ${inube.color.stroke.divider.regular};
   padding: 14px 24px 24px 24px;
+  ref: ${(props): any => props.ref};
 `;
 
 export { StyledFieldset };

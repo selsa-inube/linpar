@@ -8,7 +8,7 @@ import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { getTokenColor } from "../TokenColorCard/styles";
 
 interface FieldsetColorCardProps {
@@ -63,6 +63,15 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
   } = props;
 
   const themeContext = useContext(ThemeContext);
+
+  const fieldsetRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+
+  useEffect(() => {
+    if (fieldsetRef && fieldsetRef.current) {
+      fieldsetRef.current.focus();
+    }
+  }, []);
+
   const tokens = themeContext?.color || inube.color;
 
   const tokenName = getTokenReferenceFromAppearanceAndCategory(
@@ -88,7 +97,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     (isTransparent || color.isLight());
 
   return (
-    <Fieldset title={title} id={category}>
+    <Fieldset title={title} fieldsetRef={fieldsetRef}>
       <Stack direction="column" gap={inube.spacing.s200}>
         <Text size="medium" appearance="gray">
           {description}
@@ -103,7 +112,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
               toggleActive={toggleActive}
               setToggleActive={setToggleActive}
               width="100%"
-              category={category}
+              fieldsetRef={fieldsetRef}
             />
           </StyledTokenColorCardContainer>
           {children && (
