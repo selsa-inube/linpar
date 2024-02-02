@@ -118,7 +118,7 @@ const handleAgree = () => {
 
 interface ISendInformationMessageProps {
   appearance: Appearance;
-  buttonType: ButtonType;
+  buttonType?: ButtonType;
 }
 
 const SendInformationMessage = (props: ISendInformationMessageProps) => {
