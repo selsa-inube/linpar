@@ -3,6 +3,7 @@ import { inube } from "@inube/design-system";
 
 interface IStyledModal {
   theme?: typeof inube;
+  isSmallScreen: boolean;
 }
 
 const StyledMessageContainer = styled.div`
@@ -21,11 +22,9 @@ const StyledBackdropBlanket = styled.div`
 
 const StyledModal = styled.div<IStyledModal>`
   background-color: ${inube.color.surface.light.clear};
-  min-width: 312px;
-  max-width: 400px;
-  max-height: 132px;
-  width: auto;
   height: auto;
+  max-height: 132px;
+  width: ${({ isSmallScreen }) => (isSmallScreen ? "312px" : "400px")};
   border-radius: ${({ theme }) => theme?.spacing?.s100 || inube.spacing.s100};
   margin: ${({ theme }) => theme?.spacing?.s200 || inube.spacing.s200};
   z-index: 1;

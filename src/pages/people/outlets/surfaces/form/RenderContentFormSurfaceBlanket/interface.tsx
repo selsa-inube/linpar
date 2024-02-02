@@ -136,7 +136,7 @@ function RenderContentFormSurfaceBlanketUI(
             </Button>
             {showBlanket && (
               <Blanket>
-                <StyledModal>
+                <StyledModal isSmallScreen={isSmallScreen}>
                   <Stack
                     direction="column"
                     gap={inube.spacing.s300}
