@@ -47,7 +47,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
 
   const tablet = useMediaQuery("(max-width: 850px)");
   const width = tablet
-    ? `calc(100% - ${inube.spacing.s050})`
+    ? `calc(100% - ${inube.spacing.s075})`
     : `calc(100% - ${inube.spacing.s100})`;
 
   return categories.map(([category, tokens]: string) => (

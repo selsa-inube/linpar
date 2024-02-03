@@ -10,24 +10,37 @@ const Popup = (props: PopupProps) => {
 
   let width: number | string =
     fieldsetRef.current?.getBoundingClientRect()?.right -
-      fieldsetRef.current?.lastChild?.getBoundingClientRect()?.left || 319;
-  width = Math.max(width, tablet ? 276 : 268);
-  width = Math.min(width, 340);
+    fieldsetRef.current?.lastChild?.getBoundingClientRect()?.left -
+    1.5;
+  width = width -= tablet
+    ? 2 * Number(inube.spacing.s200.split("px")[0])
+    : 2 * Number(inube.spacing.s300.split("px")[0]);
+
+  width = Math.min(width, 271);
+  width = Math.max(width, 244);
+
+  const width2 =
+    width +
+    (tablet
+      ? 2 * Number(inube.spacing.s200.split("px")[0])
+      : 2 * Number(inube.spacing.s300.split("px")[0]));
+
+  width += tablet
+    ? (Number(inube.spacing.s200.split("px")[0]) - 4) / 2 + 4
+    : (Number(inube.spacing.s300.split("px")[0]) - 8) / 2 + 8;
+
+  width = width + "px";
 
   let position: number | string =
     (fieldsetRef.current?.getBoundingClientRect()?.left +
       fieldsetRef.current?.getBoundingClientRect()?.right) /
       2 -
-      width / 2 -
-      fieldsetRef.current?.lastChild?.getBoundingClientRect()?.left || 0;
-  position = Math.min(position, 0);
-  width -= tablet
-    ? Number(inube.spacing.s200.split("px")[0])
-    : Number(inube.spacing.s300.split("px")[0]);
-  width = width + "px";
+    width2 / 2 -
+    fieldsetRef.current?.lastChild?.getBoundingClientRect()?.left -
+    1.5;
   position = position + "px";
 
-  const padding = tablet ? "s200 s050 s200 s150" : "s300 s100 s300 s300";
+  const padding = tablet ? "s200 s075 s200 s200" : "s300 s100 s300 s300";
 
   return (
     <StyledPopup tablet={tablet} position={position}>
