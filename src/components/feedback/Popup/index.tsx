@@ -12,26 +12,22 @@ const Popup = (props: PopupProps) => {
   const spacingOffset = Number(spacingValue.split("px")[0]);
   const scrollWidth = tablet ? 4 : 8;
   let width: number | string;
-  let position: number | string;
-  let width2: number;
 
   const fieldsetRect = fieldset?.getBoundingClientRect() || {
     left: 26,
     right: 338,
   };
-  const lastChildRect = fieldset?.lastChild?.getBoundingClientRect() || {
+
+  const lastChildRect = fieldset?.lastElementChild?.getBoundingClientRect() || {
     left: 34,
   };
 
   width = fieldsetRect.right - lastChildRect.left - 1.5 - 2 * spacingOffset;
   width = Math.min(width, 271);
   width = Math.max(width, 244);
-  width2 = width + 2 * spacingOffset;
   width += (spacingOffset - scrollWidth) / 2 + scrollWidth;
   width = width + "px";
-  const midPoint = (fieldsetRect.left + fieldsetRect.right) / 2;
-  position = midPoint - width2 / 2 - lastChildRect.left - 1.5;
-  position = position + "px";
+  let position: string = -13.5 + "px";
 
   const padding = tablet ? "s200 s075 s200 s200" : "s300 s100 s300 s300";
 
