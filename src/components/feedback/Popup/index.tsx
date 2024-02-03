@@ -7,37 +7,30 @@ const Popup = (props: PopupProps) => {
   const { title, closeModal, children, fieldsetRef } = props;
 
   const tablet = useMediaQuery("(max-width: 850px)");
+  const fieldset = fieldsetRef?.current;
+  const spacingValue = tablet ? inube.spacing.s200 : inube.spacing.s300;
+  const spacingOffset = Number(spacingValue.split("px")[0]);
+  const scrollWidth = tablet ? 4 : 8;
+  let width: number | string;
+  let position: number | string;
+  let width2: number;
 
-  let width: number | string =
-    fieldsetRef.current?.getBoundingClientRect()?.right -
-    fieldsetRef.current?.lastChild?.getBoundingClientRect()?.left -
-    1.5;
-  width = width -= tablet
-    ? 2 * Number(inube.spacing.s200.split("px")[0])
-    : 2 * Number(inube.spacing.s300.split("px")[0]);
+  const fieldsetRect = fieldset?.getBoundingClientRect() || {
+    left: 26,
+    right: 338,
+  };
+  const lastChildRect = fieldset?.lastChild?.getBoundingClientRect() || {
+    left: 34,
+  };
 
+  width = fieldsetRect.right - lastChildRect.left - 1.5 - 2 * spacingOffset;
   width = Math.min(width, 271);
   width = Math.max(width, 244);
-
-  const width2 =
-    width +
-    (tablet
-      ? 2 * Number(inube.spacing.s200.split("px")[0])
-      : 2 * Number(inube.spacing.s300.split("px")[0]));
-
-  width += tablet
-    ? (Number(inube.spacing.s200.split("px")[0]) - 4) / 2 + 4
-    : (Number(inube.spacing.s300.split("px")[0]) - 8) / 2 + 8;
-
+  width2 = width + 2 * spacingOffset;
+  width += (spacingOffset - scrollWidth) / 2 + scrollWidth;
   width = width + "px";
-
-  let position: number | string =
-    (fieldsetRef.current?.getBoundingClientRect()?.left +
-      fieldsetRef.current?.getBoundingClientRect()?.right) /
-      2 -
-    width2 / 2 -
-    fieldsetRef.current?.lastChild?.getBoundingClientRect()?.left -
-    1.5;
+  const midPoint = (fieldsetRect.left + fieldsetRect.right) / 2;
+  position = midPoint - width2 / 2 - lastChildRect.left - 1.5;
   position = position + "px";
 
   const padding = tablet ? "s200 s075 s200 s200" : "s300 s100 s300 s300";

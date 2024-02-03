@@ -23,7 +23,7 @@ interface ITokenColorCardProps {
   width: string;
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
-  fieldsetRef?: any;
+  fieldsetRef?: React.MutableRefObject<HTMLFieldSetElement>;
 }
 
 interface renderCategoryGridProps {
@@ -92,7 +92,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
     width = "335px",
     toggleActive = false,
     setToggleActive = (props: boolean) => {},
-    fieldsetRef = null,
+    fieldsetRef = undefined,
   } = props;
   const theme = useContext(ThemeContext);
   const [isPopupOpen, setIsPopupOpen] = useState(false);

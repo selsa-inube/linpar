@@ -64,7 +64,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
 
   const themeContext = useContext(ThemeContext);
 
-  const fieldsetRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const fieldsetRef = useRef() as React.MutableRefObject<HTMLFieldSetElement>;
 
   useEffect(() => {
     if (fieldsetRef && fieldsetRef.current) {

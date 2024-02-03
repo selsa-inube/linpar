@@ -1,11 +1,12 @@
 import { Stack, Text, Icon } from "@inube/design-system";
 import { StyledFieldset } from "./styles";
+import React from "react";
 
-interface FieldsetProps {
+export interface FieldsetProps {
   title: string;
   children: JSX.Element;
   icon?: JSX.Element;
-  fieldsetRef?: any;
+  fieldsetRef?: React.MutableRefObject<HTMLFieldSetElement>;
 }
 
 function Fieldset(props: FieldsetProps) {
@@ -27,4 +28,3 @@ function Fieldset(props: FieldsetProps) {
 }
 
 export { Fieldset };
-export type { FieldsetProps };
