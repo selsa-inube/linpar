@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import linparLogo from "../assets/images/linpar.png";
+import linparLogo from "@assets/images/linpar.png";
 import { IAppContext, AppContextProviderProps } from "./types";
 import { useAuth0 } from "@auth0/auth0-react";
 
