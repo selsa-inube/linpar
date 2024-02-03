@@ -10,12 +10,11 @@ import {
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
 import { GlobalStyles } from "@styles/global";
-import AppContextProvider from "@src/context/AppContext";
+import AppContextProvider, { AppContext } from "@src/context/AppContext";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { PeopleRoutes } from "./routes/people";
-import { AppContext } from "./context";
 import { Login } from "./pages/login";
 
 function LogOut() {

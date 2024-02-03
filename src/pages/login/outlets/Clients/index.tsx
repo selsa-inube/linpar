@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { ClientsUI } from "./interface";
 import { IClientState } from "./types";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "@src/context";
-import { IClient } from "@src/context/types";
+import { AppContext } from "@src/context/AppContext";
+import { IClient } from "@src/context/AppContext/types";
 import { IClients } from "@src/routes/login";
 
 function Clients({ clients }: IClients) {

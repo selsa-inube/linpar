@@ -7,7 +7,7 @@ import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
 import { ErrorNotClient } from "@pages/login/errors/ErrorNotClient";
 import { Login } from "@pages/login";
 import { clientsDataMock } from "@mocks/login/clients.mock";
-import { IClient } from "@src/context/types";
+import { IClient } from "@src/context/AppContext/types";
 
 export interface IClients {
   clients: IClient[];
