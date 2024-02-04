@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RenderSurfaceContentFormUI } from "./interface";
+import { RenderContentFormSurfaceBlanketUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
 
@@ -11,24 +11,26 @@ import {
   surfaceMessagesConfig,
 } from "../../config/surface.config";
 
-interface RenderSurfaceContentFormProps {
+interface RenderContentFormSurfaceBlanketProps {
   formType: Appearance;
   handleSubmit: (props: IHandleSubmitProps) => void;
   surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;
 }
 
-function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
+function RenderContentFormSurfaceBlanket(
+  props: RenderContentFormSurfaceBlanketProps
+) {
   const { formType, handleSubmit, surfaceConfig, token } = props;
   const [surfaceToken, setSurfaceToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.surface }))
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [showBlanket, setShowBlanket] = useState(false);
+  const [toggleActive, setToggleActive] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
-  const [toggleActive, setToggleActive] = useState(false);
-  const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
@@ -93,6 +95,11 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const handleReset = () => {
     setSurfaceToken(JSON.parse(JSON.stringify({ ...token.color.surface })));
   };
+
+  const handleShowBlanket = () => {
+    setShowBlanket(!showBlanket);
+  };
+
   const updatedTheme = {
     ...token,
     color: {
@@ -102,24 +109,24 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   };
 
   return (
-    <RenderSurfaceContentFormUI
+    <RenderContentFormSurfaceBlanketUI
       formType={formType}
       handleCloseMessage={handleCloseSectionMessage}
       handleReset={handleReset}
       handleSubmitForm={handleSubmitForm}
+      handleShowBlanket={handleShowBlanket}
       handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
       message={message}
+      showBlanket={showBlanket}
       surfaceConfig={surfaceConfig}
-      updatedTheme={updatedTheme}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
-      navLinkIsSelected={navLinkIsSelected}
-      setNavLinkIsSelected={setNavLinkIsSelected}
+      updatedTheme={updatedTheme}
     />
   );
 }
 
-export { RenderSurfaceContentForm };
-export type { RenderSurfaceContentFormProps };
+export { RenderContentFormSurfaceBlanket };
+export type { RenderContentFormSurfaceBlanketProps };

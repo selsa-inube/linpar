@@ -1,22 +1,25 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
+  Button,
+  Blanket,
   SectionMessage,
   Stack,
   Text,
   inube,
   Grid,
   useMediaQueries,
-  NavLink,
 } from "@inube/design-system";
-import { StyledMessageContainer, StyledNavLinkContainer } from "./styles";
+import {
+  StyledBackdropBlanket,
+  StyledMessageContainer,
+  StyledModal,
+} from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "../../config/surface.config";
-import { MdOutlineHouse } from "react-icons/md";
 
 interface ISurfaceCardConfig {
   title: string;
@@ -50,11 +53,12 @@ const renderMessage = (
   );
 };
 
-interface RenderSurfaceContentFormUIProps {
+interface RenderContentFormSurfaceBlanketUIProps {
   formType: Appearance | string;
   handleCloseMessage: () => void;
   handleReset: () => void;
   handleSubmitForm: () => void;
+  handleShowBlanket: () => void;
   handleTokenChange: (
     appearance: Appearance | string,
     category: string,
@@ -63,30 +67,31 @@ interface RenderSurfaceContentFormUIProps {
   hasChanges: () => boolean;
   isLoading: boolean;
   message: IMessageState;
+  showBlanket: boolean;
   surfaceConfig: typeof surfaceFormsConfig;
-  updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
-  navLinkIsSelected: boolean;
-  setNavLinkIsSelected: (props: boolean) => void;
+  updatedTheme: typeof inube;
 }
 
-function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
+function RenderContentFormSurfaceBlanketUI(
+  props: RenderContentFormSurfaceBlanketUIProps
+) {
   const {
     formType,
     handleCloseMessage,
     handleReset,
     handleSubmitForm,
+    handleShowBlanket,
     handleTokenChange,
     hasChanges,
     isLoading,
     message,
+    showBlanket,
     surfaceConfig,
-    updatedTheme,
     toggleActive,
     setToggleActive,
-    navLinkIsSelected,
-    setNavLinkIsSelected,
+    updatedTheme,
   } = props;
 
   const surfaceCards = Object.entries(
@@ -121,24 +126,46 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {formType === "navLink" && (
-              <StyledNavLinkContainer>
-                <NavLink
-                  icon={<MdOutlineHouse />}
-                  label="Text"
-                  onClick={() => setNavLinkIsSelected(!navLinkIsSelected)}
-                  selected={navLinkIsSelected}
-                />
-              </StyledNavLinkContainer>
+            <Button
+              appearance="dark"
+              variant="outlined"
+              spacing={isSmallScreen ? "compact" : "wide"}
+              onClick={handleShowBlanket}
+            >
+              Mostrar Blanket
+            </Button>
+            {showBlanket && (
+              <Blanket>
+                <StyledModal isSmallScreen={isSmallScreen}>
+                  <Stack
+                    direction="column"
+                    gap={inube.spacing.s300}
+                    padding="s300"
+                  >
+                    <Stack>
+                      <Text
+                        type="title"
+                        size={isSmallScreen ? "small" : "medium"}
+                        appearance={"dark"}
+                      >
+                        Ventana modal
+                      </Text>
+                    </Stack>
+                    <Stack justifyContent="flex-end" gap="8px">
+                      <Button
+                        appearance={"dark"}
+                        variant="outlined"
+                        spacing={isSmallScreen ? "compact" : "wide"}
+                        onClick={handleShowBlanket}
+                      >
+                        Ocultar modal
+                      </Button>
+                    </Stack>
+                  </Stack>
+                </StyledModal>
+                <StyledBackdropBlanket onClick={() => handleShowBlanket()} />
+              </Blanket>
             )}
-
-            {formType !== "navLink" && (
-              <SendInformationMessage
-                appearance={formType as Appearance}
-                buttonType="filled"
-              />
-            )}
-
             <Grid
               templateColumns={templateColumns}
               gap="s350"
@@ -172,4 +199,4 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
   );
 }
 
-export { RenderSurfaceContentFormUI };
+export { RenderContentFormSurfaceBlanketUI };
