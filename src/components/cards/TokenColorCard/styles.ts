@@ -55,13 +55,8 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
     getTokenColor(tokenName, theme)};
   position: relative;
 
-  &:hover {
-    background-color: ${({ theme }) =>
-      theme?.color?.hover || inube.color.hover};
-
-    & ${StyledHoverIcon} {
-      display: block;
-    }
+  &:hover ${StyledHoverIcon} {
+    display: block;
   }
 `;
 
