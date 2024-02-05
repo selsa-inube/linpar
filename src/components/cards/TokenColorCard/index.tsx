@@ -1,4 +1,11 @@
-import { Stack, Text, useMediaQuery, Grid, inube } from "@inube/design-system";
+import {
+  Stack,
+  Text,
+  useMediaQuery,
+  Grid,
+  inube,
+  Icon,
+} from "@inube/design-system";
 import { useContext, useRef, useState, useEffect } from "react";
 import tinycolor from "tinycolor2";
 import {
@@ -9,10 +16,12 @@ import {
   getTokenColor,
   StyledDivText,
   StyledHoverPopup,
+  StyledHoverIcon,
 } from "./styles";
 import { ThemeContext } from "styled-components";
 import { Popup } from "@src/components/feedback/Popup";
 import { categoryTranslations } from "@src/pages/people/outlets/palette/config/palette.config";
+import { MdOutlineEdit } from "react-icons/md";
 
 interface ITokenColorCardProps {
   tokenName: string;
@@ -23,6 +32,7 @@ interface ITokenColorCardProps {
   width: string;
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
+  fieldsetRef?: React.MutableRefObject<HTMLFieldSetElement>;
 }
 
 interface renderCategoryGridProps {
@@ -44,13 +54,16 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
     onChange,
   } = props;
 
-  const mobile = useMediaQuery("(max-width: 361px)");
-
-  const width = mobile ? "280px" : "302px";
+  const tablet = useMediaQuery("(max-width: 850px)");
+  const width = tablet
+    ? `calc(100% - ${inube.spacing.s075})`
+    : `calc(100% - ${inube.spacing.s100})`;
+  const mobile = useMediaQuery("(max-width: 745px)");
+  const fontSize = mobile ? "small" : "medium";
 
   return categories.map(([category, tokens]: string) => (
     <Stack key={category} gap="16px" direction="column" width={width}>
-      <Text type="title" size="medium" textAlign="start" appearance="dark">
+      <Text type="title" size={fontSize} textAlign="start" appearance="dark">
         {categoryTranslations[category] || category}
       </Text>
       <StyledGridContainer hasBackground={hasBackground}>
@@ -90,11 +103,11 @@ function TokenColorCard(props: ITokenColorCardProps) {
     width = "335px",
     toggleActive = false,
     setToggleActive = (props: boolean) => {},
+    fieldsetRef = undefined,
   } = props;
   const theme = useContext(ThemeContext);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
-
   const smallScreen = useMediaQuery("(max-width: 970px)");
   const colorPickerRef = useRef<HTMLInputElement>(null);
 
@@ -136,6 +149,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
 
   return (
     <StyledColorTokenCard
+      type={type}
       key={tokenName}
       tokenName={tokenName}
       onClick={handleToggleModal}
@@ -144,12 +158,17 @@ function TokenColorCard(props: ITokenColorCardProps) {
       width={width}
     >
       <Stack
-        justifyContent="start"
         gap="12px"
         padding="s100 s150"
         alignContent="stretch"
+        justify="center"
+        width={type === "colorPicker" ? "100%" : "auto"}
       >
-        <Stack alignItems="center" gap="12px">
+        <Stack
+          alignItems="center"
+          gap="12px"
+          width={type === "colorPicker" ? "100%" : "auto"}
+        >
           <StyledDivText>
             <Text
               type="label"
@@ -191,17 +210,18 @@ function TokenColorCard(props: ITokenColorCardProps) {
               <Popup
                 closeModal={() => setIsPopupOpen(false)}
                 title={"Paleta de colores"}
+                fieldsetRef={fieldsetRef}
               >
                 <StyledGridColorsContainer>
                   <Grid
-                    templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+                    templateColumns="repeat(auto-fit, minmax(244px, 1fr))"
                     gap="s150"
                     autoColumns="unset"
                     autoRows="unset"
                   >
                     <RenderCategoryGrid
                       categories={Object.entries(palette)}
-                      templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+                      templateColumns="repeat(auto-fit, minmax(232px, 1fr))"
                       onChange={handleColorChangeCategory}
                     />
                   </Grid>
@@ -210,10 +230,14 @@ function TokenColorCard(props: ITokenColorCardProps) {
             </StyledHoverPopup>
           )}
         </Stack>
+        {type === "colorPicker" && (
+          <StyledHoverIcon>
+            <Icon appearance={textAppearance} icon={<MdOutlineEdit />} />
+          </StyledHoverIcon>
+        )}
       </Stack>
     </StyledColorTokenCard>
   );
 }
-
 export { TokenColorCard };
 export type { ITokenColorCardProps };
