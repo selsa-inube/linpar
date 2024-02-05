@@ -1,11 +1,11 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
+import { Appearance } from "@components/feedback/SendingInformation/types";
 import { textFormsConfig } from "../../config/text.config";
 
 interface ITextCardConfig {

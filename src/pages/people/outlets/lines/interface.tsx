@@ -3,7 +3,6 @@ import {
   Stack,
   Tabs,
   useMediaQueries,
-  inube,
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
@@ -16,14 +15,11 @@ import { linesFormsConfig } from "./config/lines.config";
 import { RenderLinesContentForm } from "./form/RenderLinesContentForm";
 import { RenderLinesWithSpinnerForm } from "./form/RenderLinesWithSpinnerForm";
 import { RenderLinesWithLinkForm } from "./form/RenderLinesWithLinkForm";
-import { IHandleSubmitProps } from "@src/context/TokenContext/types";
 
 interface ILinesUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   linesConfig: typeof linesFormsConfig;
-  token: typeof inube;
 }
 
 type FormType = "spinner" | "link" | "default";
@@ -31,13 +27,11 @@ type FormType = "spinner" | "link" | "default";
 interface IRenderForm {
   formType: string;
   selectedTab: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   linesConfig: typeof linesFormsConfig;
-  token: typeof inube;
 }
 
 function renderForm(props: IRenderForm) {
-  const { formType, selectedTab, handleSubmit, linesConfig, token } = props;
+  const { formType, selectedTab, linesConfig } = props;
   if (selectedTab !== formType) return null;
 
   const formTypeToComponentMap = {
@@ -51,19 +45,12 @@ function renderForm(props: IRenderForm) {
     formTypeToComponentMap["default"];
 
   return (
-    <Component
-      key={formType}
-      formType={formType}
-      handleSubmit={handleSubmit}
-      linesConfig={linesConfig}
-      token={token}
-    />
+    <Component key={formType} formType={formType} linesConfig={linesConfig} />
   );
 }
 
 export function LinesUI(props: ILinesUIProps) {
-  const { token, handleSubmit, handleTabChange, linesConfig, selectedTab } =
-    props;
+  const { handleTabChange, linesConfig, selectedTab } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
@@ -99,9 +86,7 @@ export function LinesUI(props: ILinesUIProps) {
                   return renderForm({
                     formType,
                     selectedTab,
-                    handleSubmit,
                     linesConfig,
-                    token,
                   });
                 })}
               </Stack>

@@ -11,4 +11,22 @@ interface ITokenContextProps {
   handleSubmit: (props: IHandleSubmitProps) => void;
 }
 
-export type { IHandleSubmitProps, ITokenContextProps };
+interface SetTokenAction {
+  type: actionTypes.SET_TOKEN;
+  payload: typeof inube;
+}
+
+interface UpdateTokenAction {
+  type: actionTypes.UPDATE_TOKEN;
+  payload: IHandleSubmitProps;
+}
+
+enum actionTypes {
+  SET_TOKEN = "SET_TOKEN",
+  UPDATE_TOKEN = "UPDATE_TOKEN",
+}
+
+type TokenActions = SetTokenAction | UpdateTokenAction;
+
+export type { IHandleSubmitProps, ITokenContextProps, TokenActions };
+export { actionTypes };

@@ -1,26 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RenderLinesWithSpinnerFormUI } from "./interface";
-import { inube } from "@inube/design-system";
 
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { Appearance } from "@components/cards/FieldsetColorCard/types";
 
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import {
   linesFormsConfig,
   linesMessagesConfig,
 } from "../../config/lines.config";
 import { IPeopleMessage } from "../../../types/people.types";
-import { IHandleSubmitProps } from "@src/context/TokenContext/types";
+import { TokenContext } from "@context/TokenContext";
 
 interface RenderLinesWithSpinnerFormProps {
   formType: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   linesConfig: typeof linesFormsConfig;
-  token: typeof inube;
 }
 
 function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
-  const { formType, handleSubmit, linesConfig, token } = props;
+  const { formType, linesConfig } = props;
+  const { token, handleSubmit } = useContext(TokenContext);
   const [linesToken, setLinesToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );

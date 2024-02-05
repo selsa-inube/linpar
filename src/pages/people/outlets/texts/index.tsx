@@ -1,12 +1,9 @@
-import { useContext, useState } from "react";
 import { TextsUI } from "./interface";
 import { textsTabsConfig } from "./config/textsTabs.config";
 import { textFormsConfig } from "./config/text.config";
-import { TokenContext } from "@src/context/TokenContext";
+import { useState } from "react";
 
 function Texts() {
-  const { token, handleSubmit } = useContext(TokenContext);
-
   const [selectedTab, setSelectedTab] = useState(textsTabsConfig.primary.id);
 
   const handleTabChange = (tabId: string) => {
@@ -16,10 +13,8 @@ function Texts() {
   return (
     <TextsUI
       handleTabChange={handleTabChange}
-      handleSubmit={handleSubmit}
       selectedTab={selectedTab}
       textConfig={textFormsConfig}
-      token={token}
     />
   );
 }

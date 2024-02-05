@@ -12,21 +12,17 @@ import { peopleOptionsConfig } from "../options/config/people.config";
 import { surfaceTabsConfig } from "./config/surfaceTabs.config";
 import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
 import { surfaceFormsConfig } from "./config/surface.config";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { IHandleSubmitProps } from "@src/context/TokenContext/types";
+import { Appearance } from "@components/feedback/SendingInformation/types";
 import { RenderContentFormSurfaceBlanket } from "./form/RenderContentFormSurfaceBlanket";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   surfaceConfig: typeof surfaceFormsConfig;
-  token: typeof inube;
 }
 
 export function SurfacesUI(props: SurfaceUIProps) {
-  const { token, handleSubmit, surfaceConfig, selectedTab, handleTabChange } =
-    props;
+  const { surfaceConfig, selectedTab, handleTabChange } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
@@ -65,18 +61,14 @@ export function SurfacesUI(props: SurfaceUIProps) {
                   (formType === "blanket" ? (
                     <RenderContentFormSurfaceBlanket
                       formType={formType as Appearance}
-                      handleSubmit={handleSubmit}
                       key={formType}
                       surfaceConfig={surfaceConfig}
-                      token={token}
                     />
                   ) : (
                     <RenderSurfaceContentForm
                       formType={formType as Appearance}
-                      handleSubmit={handleSubmit}
                       key={formType}
                       surfaceConfig={surfaceConfig}
-                      token={token}
                     />
                   ))
               )}
