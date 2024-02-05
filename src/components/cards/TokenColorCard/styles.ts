@@ -4,6 +4,7 @@ import { inube } from "@inube/design-system";
 interface IStyledColorTokenCard {
   tokenName: string;
   isActive: boolean;
+  type: "colorPicker" | "tokenPicker";
   smallScreen: boolean;
   width: string;
 }
@@ -24,13 +25,21 @@ function getTokenColor(tokenName: string, theme?: typeof inube) {
 
 const HiddenColorPicker = styled.input.attrs({ type: "color" })`
   display: flow;
-  height: 0px;
+  width: 0;
+  height: 0;
   opacity: 0;
 `;
 
 const StyledHoverPopup = styled.div`
   position: absolute;
   height: calc(auto+24px);
+`;
+const StyledHoverIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: none;
 `;
 
 const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
@@ -45,6 +54,11 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   min-width: max-content;
   background-color: ${({ tokenName, theme }) =>
     getTokenColor(tokenName, theme)};
+  position: relative;
+
+  &:hover ${StyledHoverIcon} {
+    display: block;
+  }
 `;
 
 const StyledGridContainer = styled.div<StyledPaletteUI>`
@@ -78,4 +92,5 @@ export {
   getTokenColor,
   StyledDivText,
   StyledHoverPopup,
+  StyledHoverIcon,
 };

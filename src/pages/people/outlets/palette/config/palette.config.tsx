@@ -21,6 +21,17 @@ const paletteMessagesConfig = {
     appearance: EAppearance.ERROR,
   },
 };
+const paletteConfig = {
+  neutral: {
+    description:
+      "Se recomienda que los colores Neutrales estén en una escala a grises, ya que se usan para realizar contraste respecto a otro colores.",
+  },
+
+  neutralAlpha: {
+    description:
+      "Se recomienda que los colores Neutrales Alpha tenga un aumento progresivo en la cantidad de transparencia.",
+  },
+};
 
 const categoryTranslations: CategoryTranslations = {
   neutral: "Neutral",
@@ -33,4 +44,4 @@ const categoryTranslations: CategoryTranslations = {
   purple: "Púrpura",
 };
 
-export { paletteMessagesConfig, categoryTranslations };
+export { paletteMessagesConfig, categoryTranslations, paletteConfig };
