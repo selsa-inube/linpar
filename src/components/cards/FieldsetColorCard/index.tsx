@@ -1,6 +1,5 @@
 import { Stack, Text, inube } from "@inube/design-system";
 import { ThemeContext } from "styled-components";
-
 import {
   StyledTokenColorCardContainer,
   StyledTextWithTokenContainer,
@@ -9,7 +8,7 @@ import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { getTokenColor } from "../TokenColorCard/styles";
 
 interface FieldsetColorCardProps {
@@ -64,6 +63,15 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
   } = props;
 
   const themeContext = useContext(ThemeContext);
+
+  const fieldsetRef = useRef() as React.MutableRefObject<HTMLFieldSetElement>;
+
+  useEffect(() => {
+    if (fieldsetRef && fieldsetRef.current) {
+      fieldsetRef.current.focus();
+    }
+  }, []);
+
   const tokens = themeContext?.color || inube.color;
 
   const tokenName = getTokenReferenceFromAppearanceAndCategory(
@@ -89,36 +97,31 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     (isTransparent || color.isLight());
 
   return (
-    <Fieldset title={title}>
-      <>
-        <Stack direction="column" gap={inube.spacing.s200}>
-          <Text size="medium" appearance="gray">
-            {description}
-          </Text>
-          <Stack gap={inube.spacing.s200} alignItems="center">
-            <StyledTokenColorCardContainer
-              requireBackground={requireBackground}
-            >
-              <TokenColorCard
-                tokenName={tokenName!}
-                type="tokenPicker"
-                palette={optionsMenu}
-                onColorChange={handleColorChange}
-                width="302px"
-                toggleActive={toggleActive}
-                setToggleActive={setToggleActive}
-              />
-            </StyledTokenColorCardContainer>
-            {children && (
-              <StyledTextWithTokenContainer
-                requireBackground={requireBackground}
-              >
-                <Stack padding="s100">{children}</Stack>
-              </StyledTextWithTokenContainer>
-            )}
-          </Stack>
+    <Fieldset title={title} fieldsetRef={fieldsetRef}>
+      <Stack direction="column" gap={inube.spacing.s200}>
+        <Text size="medium" appearance="gray">
+          {description}
+        </Text>
+        <Stack gap={inube.spacing.s200} alignItems="center">
+          <StyledTokenColorCardContainer requireBackground={requireBackground}>
+            <TokenColorCard
+              tokenName={tokenName!}
+              type="tokenPicker"
+              palette={optionsMenu}
+              onColorChange={handleColorChange}
+              toggleActive={toggleActive}
+              setToggleActive={setToggleActive}
+              width="100%"
+              fieldsetRef={fieldsetRef}
+            />
+          </StyledTokenColorCardContainer>
+          {children && (
+            <StyledTextWithTokenContainer requireBackground={requireBackground}>
+              <Stack padding="s100">{children}</Stack>
+            </StyledTextWithTokenContainer>
+          )}
         </Stack>
-      </>
+      </Stack>
     </Fieldset>
   );
 }

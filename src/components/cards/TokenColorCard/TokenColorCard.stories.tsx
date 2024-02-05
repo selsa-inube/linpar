@@ -39,7 +39,6 @@ const DynamicThemeWrapper = ({ children }: any) => {
         return newPalette;
       });
     } else {
-      console.log("Token Name Change Detected:", tokenName);
       setSelectedTokenName(tokenName);
     }
   };
