@@ -11,18 +11,18 @@ import { PageTitle } from "@components/PageTitle";
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { IHandleSubmitProps } from "@src/routes/people";
-import { linesTabsConfig } from "./config/linesTabs.config";
+import { strokesTabsConfig } from "./config/strokesTabs.config";
 
-import { linesFormsConfig } from "./config/lines.config";
-import { RenderLinesContentForm } from "./form/RenderLinesContentForm";
-import { RenderLinesWithSpinnerForm } from "./form/RenderLinesWithSpinnerForm";
-import { RenderLinesWithLinkForm } from "./form/RenderLinesWithLinkForm";
+import { RenderStrokesContentForm } from "./form/RenderStrokesContentForm";
+import { RenderStrokesWithSpinnerForm } from "./form/RenderStrokesWithSpinnerForm";
+import { RenderStrokesWithLinkForm } from "./form/RenderStrokesWithLinkForm";
+import { strokesFormsConfig } from "./config/Strokes.config";
 
-interface ILinesUIProps {
+interface IStrokesUIProps {
   handleTabChange: (id: string) => void;
   handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
   token: typeof inube;
 }
 
@@ -32,18 +32,18 @@ interface IRenderForm {
   formType: string;
   selectedTab: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
   token: typeof inube;
 }
 
 function renderForm(props: IRenderForm) {
-  const { formType, selectedTab, handleSubmit, linesConfig, token } = props;
+  const { formType, selectedTab, handleSubmit, strokesConfig, token } = props;
   if (selectedTab !== formType) return null;
 
   const formTypeToComponentMap = {
-    spinner: RenderLinesWithSpinnerForm,
-    link: RenderLinesWithLinkForm,
-    default: RenderLinesContentForm,
+    spinner: RenderStrokesWithSpinnerForm,
+    link: RenderStrokesWithLinkForm,
+    default: RenderStrokesContentForm,
   };
 
   const Component =
@@ -55,20 +55,20 @@ function renderForm(props: IRenderForm) {
       key={formType}
       formType={formType}
       handleSubmit={handleSubmit}
-      linesConfig={linesConfig}
+      strokesConfig={strokesConfig}
       token={token}
     />
   );
 }
 
-export function LinesUI(props: ILinesUIProps) {
-  const { token, handleSubmit, handleTabChange, linesConfig, selectedTab } =
+export function StrokesUI(props: IStrokesUIProps) {
+  const { token, handleSubmit, handleTabChange, strokesConfig, selectedTab } =
     props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
-  const lineTabs = Object.keys(linesTabsConfig);
+  const lineTabs = Object.keys(strokesTabsConfig);
 
   return (
     <>
@@ -90,7 +90,7 @@ export function LinesUI(props: ILinesUIProps) {
             <StyledTabsContainer typeTabs={typeTabs}>
               <Stack direction="column" gap="32px">
                 <Tabs
-                  tabs={Object.values(linesTabsConfig)}
+                  tabs={Object.values(strokesTabsConfig)}
                   selectedTab={selectedTab}
                   type={typeTabs ? "select" : "tabs"}
                   onChange={handleTabChange}
@@ -100,7 +100,7 @@ export function LinesUI(props: ILinesUIProps) {
                     formType,
                     selectedTab,
                     handleSubmit,
-                    linesConfig,
+                    strokesConfig,
                     token,
                   });
                 })}

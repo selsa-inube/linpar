@@ -1,12 +1,12 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { Lines } from "./index";
+import { Strokes } from "./index";
 import { IPeopleColorProps } from "@src/routes/people";
 import { presente } from "@inube/design-system";
 
 const story = {
-  components: [Lines],
-  title: "layouts/people/outlets/lines",
+  components: [Strokes],
+  title: "layouts/people/outlets/strokes",
   parameters: {
     layout: "fullscreen",
   },
@@ -19,7 +19,7 @@ const story = {
   ],
 };
 
-const Default = (args: IPeopleColorProps) => <Lines {...args} />;
+const Default = (args: IPeopleColorProps) => <Strokes {...args} />;
 Default.args = {
   token: presente,
   handleSubmit: () => {},
