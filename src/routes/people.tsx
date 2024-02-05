@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import { ErrorPage } from "@components/layout/ErrorPage";
-import { PeopleOptions } from "@src/pages/people/outlets/options";
-import { People } from "@src/pages/people";
-import { Palette } from "@src/pages/people/outlets/palette";
-import { Texts } from "@src/pages/people/outlets/texts";
-import { Surfaces } from "@src/pages/people/outlets/surfaces";
-import { Lines } from "@src/pages/people/outlets/lines";
+import { PeopleOptions } from "@pages/people/outlets/options";
+import { People } from "@pages/people";
+import { Palette } from "@pages/people/outlets/palette";
+import { Texts } from "@pages/people/outlets/texts";
+import { Surfaces } from "@pages/people/outlets/surfaces";
+import { Lines } from "@pages/people/outlets/lines";
 import { useState } from "react";
 import { inube, presente } from "@inube/design-system";
 

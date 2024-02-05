@@ -1,47 +1,44 @@
 import { useState } from "react";
-import { RenderTextContentFormUI } from "./interface";
-import { inube } from "@inube/design-system";
-import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { inube } from "@inube/design-system";
 import { IHandleSubmitProps } from "@src/routes/people";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { paletteMessagesConfig } from "../../config/palette.config";
+import { RenderContentFormPaletteUI } from "./interface";
 
-interface RenderTextContentFormProps {
+interface RenderContentFormPaletteProps {
   formType: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
-  textConfig: typeof textFormsConfig;
   token: typeof inube;
 }
 
-function RenderTextContentForm(props: RenderTextContentFormProps) {
-  const { formType, handleSubmit, token, textConfig } = props;
-  const [textToken, setTextToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.text }))
+function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
+  const { formType, handleSubmit, token } = props;
+  const [paletteToken, setPaletteToken] = useState(
+    JSON.parse(JSON.stringify({ ...token.color.palette }))
   );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const [toggleActive, setToggleActive] = useState(false);
-
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.text) !== JSON.stringify(textToken);
+    return JSON.stringify(token.color.palette) !== JSON.stringify(paletteToken);
   };
 
-  const handleTokenChange = (
-    appearance: Appearance | string,
-    category: string,
-    updatedTokenName: string
+  const handleColorChange = (
+    tokenName: string,
+    newColor: string | undefined
   ) => {
-    let updatedTextTokens = { ...textToken };
-    updatedTextTokens[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
-    setTextToken(updatedTextTokens);
+    setPaletteToken((prevTokens: typeof inube) => {
+      const newTokens = { ...prevTokens };
+      for (const category in newTokens) {
+        if (newTokens[category][tokenName]) {
+          newTokens[category][tokenName] = newColor;
+          break;
+        }
+      }
+      return newTokens;
+    });
   };
 
   const handleSubmitForm = () => {
@@ -60,19 +57,19 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
         if (result === "success") {
           setMessage({
             visible: true,
-            data: textMessagesConfig.success,
+            data: paletteMessagesConfig.success,
           });
           handleSubmit({
             domain: "color",
-            block: "text",
-            tokenUpdate: textToken,
+            block: "palette",
+            tokenUpdate: paletteToken,
           });
         }
       })
       .catch(() => {
         setMessage({
           visible: true,
-          data: textMessagesConfig.failed,
+          data: paletteMessagesConfig.failed,
         });
       })
       .finally(() => {
@@ -87,32 +84,31 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   };
 
   const handleReset = () => {
-    setTextToken(JSON.parse(JSON.stringify({ ...token.color.text })));
+    setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
   };
   const updatedTheme = {
     ...token,
     color: {
       ...token.color,
-      text: textToken,
+      palette: paletteToken,
     },
   };
+
   return (
-    <RenderTextContentFormUI
+    <RenderContentFormPaletteUI
+      categories={paletteToken}
       formType={formType}
       handleCloseMessage={handleCloseSectionMessage}
+      handleColorChange={handleColorChange}
       handleReset={handleReset}
       handleSubmitForm={handleSubmitForm}
-      handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
       message={message}
-      textConfig={textConfig}
       updatedTheme={updatedTheme}
-      toggleActive={toggleActive}
-      setToggleActive={setToggleActive}
     />
   );
 }
 
-export { RenderTextContentForm };
-export type { RenderTextContentFormProps };
+export { RenderContentFormPalette };
+export type { RenderContentFormPaletteProps };

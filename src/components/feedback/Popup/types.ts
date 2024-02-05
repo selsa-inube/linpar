@@ -1,8 +1,9 @@
+import React from "react";
 interface PopupProps {
-  portalId: string;
   title: string;
   closeModal: () => void;
   children: React.ReactNode;
+  fieldsetRef?: React.MutableRefObject<HTMLFieldSetElement>;
 }
 
 export type { PopupProps };

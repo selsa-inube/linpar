@@ -4,7 +4,9 @@ import { inube } from "@inube/design-system";
 interface IStyledColorTokenCard {
   tokenName: string;
   isActive: boolean;
+  type: "colorPicker" | "tokenPicker";
   smallScreen: boolean;
+  width: string;
 }
 
 interface StyledPaletteUI {
@@ -23,21 +25,40 @@ function getTokenColor(tokenName: string, theme?: typeof inube) {
 
 const HiddenColorPicker = styled.input.attrs({ type: "color" })`
   display: flow;
-  height: 0px;
+  width: 0;
+  height: 0;
   opacity: 0;
+`;
+
+const StyledHoverPopup = styled.div`
+  position: absolute;
+  height: calc(auto+24px);
+`;
+const StyledHoverIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: none;
 `;
 
 const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   display: ${({ smallScreen }) => (smallScreen ? "flex" : "inherit")};
   align-items: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
   justify-content: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
-  width: auto;
+  width: ${({ width }) => (width ? width : "auto")};
   height: ${({ smallScreen }) => (smallScreen ? "36px" : "auto")};
   box-sizing: border-box;
   border-radius: ${inube.spacing.s100};
   cursor: pointer;
+  min-width: max-content;
   background-color: ${({ tokenName, theme }) =>
     getTokenColor(tokenName, theme)};
+  position: relative;
+
+  &:hover ${StyledHoverIcon} {
+    display: block;
+  }
 `;
 
 const StyledGridContainer = styled.div<StyledPaletteUI>`
@@ -48,6 +69,7 @@ const StyledGridContainer = styled.div<StyledPaletteUI>`
   border-radius: ${inube.spacing.s100};
   padding: ${({ hasBackground }) =>
     hasBackground ? inube.spacing.s150 : inube.spacing.s0};
+  width: 100%;
   & div {
     place-content: unset;
   }
@@ -55,6 +77,7 @@ const StyledGridContainer = styled.div<StyledPaletteUI>`
 
 const StyledGridColorsContainer = styled.div`
   overflow: auto;
+  width: 100%;
 `;
 
 const StyledDivText = styled.div`
@@ -68,4 +91,6 @@ export {
   StyledGridColorsContainer,
   getTokenColor,
   StyledDivText,
+  StyledHoverPopup,
+  StyledHoverIcon,
 };

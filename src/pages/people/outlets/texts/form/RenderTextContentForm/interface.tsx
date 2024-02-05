@@ -56,6 +56,8 @@ interface RenderTextContentFormUIProps {
   message: IMessageState;
   textConfig: typeof textFormsConfig;
   updatedTheme: typeof inube;
+  toggleActive: boolean;
+  setToggleActive: (props: boolean) => void;
 }
 
 function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
@@ -70,6 +72,8 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
     message,
     textConfig,
     updatedTheme,
+    toggleActive,
+    setToggleActive,
   } = props;
 
   const textCards = Object.entries(
@@ -100,6 +104,8 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
                 onChange={(newTokenName) =>
                   handleTokenChange(formType, key, newTokenName)
                 }
+                toggleActive={toggleActive}
+                setToggleActive={setToggleActive}
               >
                 <Text
                   size="medium"

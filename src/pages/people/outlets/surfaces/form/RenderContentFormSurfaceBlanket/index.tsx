@@ -1,33 +1,39 @@
 import { useState } from "react";
-import { RenderTextContentFormUI } from "./interface";
-import { inube } from "@inube/design-system";
-import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
+import { RenderContentFormSurfaceBlanketUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { IHandleSubmitProps } from "@src/routes/people";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { inube } from "@inube/design-system";
 
-interface RenderTextContentFormProps {
-  formType: string;
+import { IHandleSubmitProps } from "@src/routes/people";
+import { Appearance } from "@src/components/feedback/SendingInformation/types";
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import {
+  surfaceFormsConfig,
+  surfaceMessagesConfig,
+} from "../../config/surface.config";
+
+interface RenderContentFormSurfaceBlanketProps {
+  formType: Appearance;
   handleSubmit: (props: IHandleSubmitProps) => void;
-  textConfig: typeof textFormsConfig;
+  surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;
 }
 
-function RenderTextContentForm(props: RenderTextContentFormProps) {
-  const { formType, handleSubmit, token, textConfig } = props;
-  const [textToken, setTextToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.text }))
+function RenderContentFormSurfaceBlanket(
+  props: RenderContentFormSurfaceBlanketProps
+) {
+  const { formType, handleSubmit, surfaceConfig, token } = props;
+  const [surfaceToken, setSurfaceToken] = useState(
+    JSON.parse(JSON.stringify({ ...token.color.surface }))
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [showBlanket, setShowBlanket] = useState(false);
+  const [toggleActive, setToggleActive] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
-  const [toggleActive, setToggleActive] = useState(false);
-
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.text) !== JSON.stringify(textToken);
+    return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
   };
 
   const handleTokenChange = (
@@ -35,13 +41,13 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    let updatedTextTokens = { ...textToken };
-    updatedTextTokens[appearance][category] = getTokenColor(
+    let updatedSurfaceTokens = { ...surfaceToken };
+    updatedSurfaceTokens[appearance][category] = getTokenColor(
       updatedTokenName,
       token
     );
 
-    setTextToken(updatedTextTokens);
+    setSurfaceToken(updatedSurfaceTokens);
   };
 
   const handleSubmitForm = () => {
@@ -60,19 +66,19 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
         if (result === "success") {
           setMessage({
             visible: true,
-            data: textMessagesConfig.success,
+            data: surfaceMessagesConfig.success,
           });
           handleSubmit({
             domain: "color",
-            block: "text",
-            tokenUpdate: textToken,
+            block: "surface",
+            tokenUpdate: surfaceToken,
           });
         }
       })
       .catch(() => {
         setMessage({
           visible: true,
-          data: textMessagesConfig.failed,
+          data: surfaceMessagesConfig.failed,
         });
       })
       .finally(() => {
@@ -87,32 +93,40 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   };
 
   const handleReset = () => {
-    setTextToken(JSON.parse(JSON.stringify({ ...token.color.text })));
+    setSurfaceToken(JSON.parse(JSON.stringify({ ...token.color.surface })));
   };
+
+  const handleShowBlanket = () => {
+    setShowBlanket(!showBlanket);
+  };
+
   const updatedTheme = {
     ...token,
     color: {
       ...token.color,
-      text: textToken,
+      surface: surfaceToken,
     },
   };
+
   return (
-    <RenderTextContentFormUI
+    <RenderContentFormSurfaceBlanketUI
       formType={formType}
       handleCloseMessage={handleCloseSectionMessage}
       handleReset={handleReset}
       handleSubmitForm={handleSubmitForm}
+      handleShowBlanket={handleShowBlanket}
       handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
       message={message}
-      textConfig={textConfig}
-      updatedTheme={updatedTheme}
+      showBlanket={showBlanket}
+      surfaceConfig={surfaceConfig}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
+      updatedTheme={updatedTheme}
     />
   );
 }
 
-export { RenderTextContentForm };
-export type { RenderTextContentFormProps };
+export { RenderContentFormSurfaceBlanket };
+export type { RenderContentFormSurfaceBlanketProps };

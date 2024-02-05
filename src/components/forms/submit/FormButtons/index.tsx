@@ -16,7 +16,7 @@ function FormButtons(props: FormButtonsProps) {
   return (
     <Stack direction="column" gap={inube.spacing.s300}>
       <Stack direction="column">{children}</Stack>
-      <Stack justifyContent="flex-end" gap="16px" margin="s100 s0 s0 s0">
+      <Stack justifyContent="flex-end" gap={inube.spacing.s100}>
         <ThemeProvider theme={inube}>
           <Button
             appearance="gray"

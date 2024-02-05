@@ -1,25 +1,42 @@
-import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
-import { Stack, Text, Icon } from "@inube/design-system";
+import { Stack, Text, Icon, useMediaQuery, inube } from "@inube/design-system";
 import { StyledPopup } from "./styles";
 import { PopupProps } from "./types";
 
 const Popup = (props: PopupProps) => {
-  const { portalId, title, closeModal, children } = props;
-  const node = document.getElementById(portalId);
+  const { title, closeModal, children, fieldsetRef } = props;
 
-  if (!node) {
-    throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
-    );
-  }
+  const tablet = useMediaQuery("(max-width: 850px)");
+  const fieldset = fieldsetRef?.current;
+  const spacingValue = tablet ? inube.spacing.s200 : inube.spacing.s300;
+  const spacingOffset = Number(spacingValue.split("px")[0]);
+  const scrollWidth = tablet ? 4 : 8;
+  let width: number | string;
 
-  return createPortal(
-    <StyledPopup>
+  const fieldsetRect = fieldset?.getBoundingClientRect() || {
+    left: 26,
+    right: 338,
+  };
+
+  const lastChildRect = fieldset?.lastElementChild?.getBoundingClientRect() || {
+    left: 34,
+  };
+
+  width = fieldsetRect.right - lastChildRect.left - 1.5 - 2 * spacingOffset;
+  width = Math.min(width, 271);
+  width = Math.max(width, 244);
+  width += (spacingOffset - scrollWidth) / 2 + scrollWidth;
+  width = width + "px";
+  let position: string = -13.5 + "px";
+
+  const padding = tablet ? "s200 s075 s200 s200" : "s300 s100 s300 s300";
+
+  return (
+    <StyledPopup tablet={tablet} position={position}>
       <Stack
-        width="350px"
+        width={width}
         height="500px"
-        padding="s300"
+        padding={padding}
         direction="column"
         gap="20px"
       >
@@ -38,8 +55,7 @@ const Popup = (props: PopupProps) => {
         </Stack>
         {children}
       </Stack>
-    </StyledPopup>,
-    node
+    </StyledPopup>
   );
 };
 
