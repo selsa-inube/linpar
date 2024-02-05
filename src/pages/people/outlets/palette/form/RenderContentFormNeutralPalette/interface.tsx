@@ -4,7 +4,6 @@ import {
   Stack,
   Text,
   inube,
-  Grid,
   useMediaQueries,
 } from "@inube/design-system";
 
@@ -12,9 +11,9 @@ import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.t
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { TokenColorCard } from "@src/components/cards/TokenColorCard";
 import { paletteConfig } from "../../config/palette.config";
 import { StyledMessageContainer } from "./styles";
+import { RenderCategoryGrid } from "@src/components/layout/RenderCategoryGrid";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -48,7 +47,7 @@ interface RenderContentFormNeutralPaletteUIProps {
   categories: typeof inube;
   formType: Appearance | string;
   handleCloseMessage: () => void;
-  handleColorChange: (tokenName: string, newColor: string) => void;
+  handleColorChange: (tokenName: string, newColor?: string) => void;
   handleReset: () => void;
   handleSubmitForm: () => void;
   hasChanges: () => boolean;
@@ -100,37 +99,17 @@ function RenderContentFormNeutralPaletteUI(
         loading={isLoading}
       >
         <ThemeProvider theme={updatedTheme}>
-          <Grid
-            templateColumns="1fr"
+          <RenderCategoryGrid
+            templateColumns={templateColumns}
+            templateRows={isMediumScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)"}
             gap="s150"
             autoColumns="unset"
             autoRows="unset"
-          >
-            <Grid
-              templateColumns={templateColumns}
-              templateRows={
-                isMediumScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)"
-              }
-              gap="s150"
-              autoColumns="unset"
-              autoRows="unset"
-              autoFlow={isSmallScreen ? "row" : "column"}
-            >
-              {Object.entries(categories[formType]).map(([tokenName]) => (
-                <Stack key={tokenName} gap="16px" direction="column">
-                  <TokenColorCard
-                    key={tokenName}
-                    tokenName={tokenName}
-                    tokenDescription={"Token de color"}
-                    onColorChange={(tokenName, newColor) =>
-                      handleColorChange(tokenName, newColor!)
-                    }
-                    width="auto"
-                  />
-                </Stack>
-              ))}
-            </Grid>
-          </Grid>
+            autoFlow={isSmallScreen ? "row" : "column"}
+            categories={categories[formType]}
+            type="tokenPicker"
+            onChange={handleColorChange}
+          />
         </ThemeProvider>
       </FormButtons>
       {renderMessage(message, handleCloseMessage, handleReset)}

@@ -5,8 +5,8 @@ import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.t
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { TokenColorCard } from "@src/components/cards/TokenColorCard";
 import { StyledMessageContainer } from "./styles";
+import { RenderCategoryGrid } from "@src/components/layout/RenderCategoryGrid";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -40,7 +40,7 @@ interface RenderContentFormPaletteUIProps {
   categories: typeof inube;
   formType: Appearance | string;
   handleCloseMessage: () => void;
-  handleColorChange: (tokenName: string, newColor: string) => void;
+  handleColorChange: (tokenName: string, newColor?: string) => void;
   handleReset: () => void;
   handleSubmitForm: () => void;
   hasChanges: () => boolean;
@@ -72,21 +72,17 @@ function RenderContentFormPaletteUI(props: RenderContentFormPaletteUIProps) {
         loading={isLoading}
       >
         <ThemeProvider theme={updatedTheme}>
-          <Stack direction="column" gap={inube.spacing.s150}>
-            {Object.entries(categories[formType]).map(([tokenName]) => (
-              <Stack key={tokenName} gap="16px" direction="column">
-                <TokenColorCard
-                  key={tokenName}
-                  onColorChange={(tokenName, newColor) =>
-                    handleColorChange(tokenName, newColor!)
-                  }
-                  tokenDescription={"Token de color"}
-                  tokenName={tokenName}
-                  width="auto"
-                />
-              </Stack>
-            ))}
-          </Stack>
+          <RenderCategoryGrid
+            templateColumns={"1fr"}
+            templateRows="repeat(7, 1fr)"
+            gap="s150"
+            autoColumns="unset"
+            autoRows="unset"
+            autoFlow="column"
+            categories={categories[formType]}
+            type="tokenPicker"
+            onChange={handleColorChange}
+          />
         </ThemeProvider>
       </FormButtons>
       {renderMessage(message, handleCloseMessage, handleReset)}
