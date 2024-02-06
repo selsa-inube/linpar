@@ -1,25 +1,23 @@
 import { useContext, useState } from "react";
-import { RenderLinesWithLinkFormUI } from "./interface";
-
-import { Appearance } from "@components/cards/FieldsetColorCard/types";
-
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
+import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { IPeopleMessage } from "@src/pages/people/outlets/types/people.types";
+import { RenderStrokesContentFormUI } from "./interface";
 import {
-  linesFormsConfig,
-  linesMessagesConfig,
-} from "../../config/lines.config";
-import { IPeopleMessage } from "../../../types/people.types";
-import { TokenContext } from "@context/TokenContext";
+  strokesMessagesConfig,
+  strokesFormsConfig,
+} from "../../config/Strokes.config";
+import { TokenContext } from "@src/context/TokenContext";
 
-interface RenderLinesWithLinkFormProps {
+interface RenderStrokesContentFormProps {
   formType: string;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
 }
 
-function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
-  const { formType, linesConfig } = props;
+function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
+  const { formType, strokesConfig } = props;
   const { token, handleSubmit } = useContext(TokenContext);
-  const [linesToken, setLinesToken] = useState(
+  const [strokesToken, setStrokesToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +28,7 @@ function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
   const [toggleActive, setToggleActive] = useState(false);
 
   const hasChanges = () => {
-    return JSON.stringify(token.color.stroke) !== JSON.stringify(linesToken);
+    return JSON.stringify(token.color.stroke) !== JSON.stringify(strokesToken);
   };
 
   const handleTokenChange = (
@@ -38,14 +36,14 @@ function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    let lineStokeUpdate = { ...linesToken };
+    let strokesUpdate = { ...strokesToken };
 
-    lineStokeUpdate[appearance][category] = getTokenColor(
+    strokesUpdate[appearance][category] = getTokenColor(
       updatedTokenName,
       token
     );
 
-    setLinesToken(lineStokeUpdate);
+    setStrokesToken(strokesUpdate);
   };
 
   const handleSubmitForm = () => {
@@ -64,19 +62,19 @@ function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
         if (result === "success") {
           setMessage({
             visible: true,
-            data: linesMessagesConfig.success,
+            data: strokesMessagesConfig.success,
           });
           handleSubmit({
             domain: "color",
             block: "stroke",
-            tokenUpdate: linesToken,
+            tokenUpdate: strokesToken,
           });
         }
       })
       .catch(() => {
         setMessage({
           visible: true,
-          data: linesMessagesConfig.failed,
+          data: strokesMessagesConfig.failed,
         });
       })
       .finally(() => {
@@ -91,19 +89,19 @@ function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
   };
 
   const handleReset = () => {
-    setLinesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
+    setStrokesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
   };
 
   const updatedTheme = {
     ...token,
     color: {
       ...token.color,
-      stroke: linesToken,
+      stroke: strokesToken,
     },
   };
 
   return (
-    <RenderLinesWithLinkFormUI
+    <RenderStrokesContentFormUI
       formType={formType}
       handleReset={handleReset}
       handleCloseMessage={handleCloseSectionMessage}
@@ -111,7 +109,7 @@ function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
       handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
-      linesConfig={linesConfig}
+      strokesConfig={strokesConfig}
       message={message}
       updatedTheme={updatedTheme}
       toggleActive={toggleActive}
@@ -120,5 +118,5 @@ function RenderLinesWithLinkForm(props: RenderLinesWithLinkFormProps) {
   );
 }
 
-export { RenderLinesWithLinkForm };
-export type { RenderLinesWithLinkFormProps };
+export { RenderStrokesContentForm };
+export type { RenderStrokesContentFormProps };

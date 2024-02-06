@@ -5,7 +5,7 @@ import { People } from "@pages/people";
 import { Palette } from "@pages/people/outlets/palette";
 import { Texts } from "@pages/people/outlets/texts";
 import { Surfaces } from "@pages/people/outlets/surfaces";
-import { Lines } from "@pages/people/outlets/lines";
+import { Strokes } from "@pages/people/outlets/strokes";
 import { TokenProvider } from "@src/context/TokenContext";
 
 function PeopleRoutes() {
@@ -17,7 +17,7 @@ function PeopleRoutes() {
           <Route path="palette" element={<Palette />} />
           <Route path="texts" element={<Texts />} />
           <Route path="surfaces" element={<Surfaces />} />
-          <Route path="lines" element={<Lines />} />
+          <Route path="lines" element={<Strokes />} />
         </Route>
         <Route path="/*" element={<ErrorPage />} />
       </Routes>

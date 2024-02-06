@@ -9,17 +9,17 @@ import { PageTitle } from "@components/PageTitle";
 
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
-import { linesTabsConfig } from "./config/linesTabs.config";
+import { strokesTabsConfig } from "./config/strokesTabs.config";
 
-import { linesFormsConfig } from "./config/lines.config";
-import { RenderLinesContentForm } from "./form/RenderLinesContentForm";
-import { RenderLinesWithSpinnerForm } from "./form/RenderLinesWithSpinnerForm";
-import { RenderLinesWithLinkForm } from "./form/RenderLinesWithLinkForm";
+import { RenderStrokesContentForm } from "./form/RenderStrokesContentForm";
+import { RenderStrokesWithSpinnerForm } from "./form/RenderStrokesWithSpinnerForm";
+import { RenderStrokesWithLinkForm } from "./form/RenderStrokesWithLinkForm";
+import { strokesFormsConfig } from "./config/Strokes.config";
 
-interface ILinesUIProps {
+interface IStrokesUIProps {
   handleTabChange: (id: string) => void;
   selectedTab: string;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
 }
 
 type FormType = "spinner" | "link" | "default";
@@ -27,17 +27,17 @@ type FormType = "spinner" | "link" | "default";
 interface IRenderForm {
   formType: string;
   selectedTab: string;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
 }
 
 function renderForm(props: IRenderForm) {
-  const { formType, selectedTab, linesConfig } = props;
+  const { formType, selectedTab, strokesConfig } = props;
   if (selectedTab !== formType) return null;
 
   const formTypeToComponentMap = {
-    spinner: RenderLinesWithSpinnerForm,
-    link: RenderLinesWithLinkForm,
-    default: RenderLinesContentForm,
+    spinner: RenderStrokesWithSpinnerForm,
+    link: RenderStrokesWithLinkForm,
+    default: RenderStrokesContentForm,
   };
 
   const Component =
@@ -45,17 +45,21 @@ function renderForm(props: IRenderForm) {
     formTypeToComponentMap["default"];
 
   return (
-    <Component key={formType} formType={formType} linesConfig={linesConfig} />
+    <Component
+      key={formType}
+      formType={formType}
+      strokesConfig={strokesConfig}
+    />
   );
 }
 
-export function LinesUI(props: ILinesUIProps) {
-  const { handleTabChange, linesConfig, selectedTab } = props;
+export function StrokesUI(props: IStrokesUIProps) {
+  const { handleTabChange, strokesConfig, selectedTab } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
-  const lineTabs = Object.keys(linesTabsConfig);
+  const strokeTabs = Object.keys(strokesTabsConfig);
 
   return (
     <>
@@ -77,16 +81,16 @@ export function LinesUI(props: ILinesUIProps) {
             <StyledTabsContainer typeTabs={typeTabs}>
               <Stack direction="column" gap="32px">
                 <Tabs
-                  tabs={Object.values(linesTabsConfig)}
+                  tabs={Object.values(strokesTabsConfig)}
                   selectedTab={selectedTab}
                   type={typeTabs ? "select" : "tabs"}
                   onChange={handleTabChange}
                 />
-                {lineTabs.map((formType) => {
+                {strokeTabs.map((formType) => {
                   return renderForm({
                     formType,
                     selectedTab,
-                    linesConfig,
+                    strokesConfig,
                   });
                 })}
               </Stack>

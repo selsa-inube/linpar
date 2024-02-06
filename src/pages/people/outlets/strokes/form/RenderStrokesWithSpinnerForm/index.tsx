@@ -1,25 +1,28 @@
 import { useContext, useState } from "react";
-import { RenderLinesWithSpinnerFormUI } from "./interface";
+import { RenderStrokesWithSpinnerFormUI } from "./interface";
 
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
 
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
-import {
-  linesFormsConfig,
-  linesMessagesConfig,
-} from "../../config/lines.config";
-import { IPeopleMessage } from "../../../types/people.types";
-import { TokenContext } from "@context/TokenContext";
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 
-interface RenderLinesWithSpinnerFormProps {
+import { IPeopleMessage } from "../../../types/people.types";
+import {
+  strokesMessagesConfig,
+  strokesFormsConfig,
+} from "../../config/Strokes.config";
+import { TokenContext } from "@src/context/TokenContext";
+
+interface RenderStrokesWithSpinnerFormProps {
   formType: string;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
 }
 
-function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
-  const { formType, linesConfig } = props;
+function RenderStrokesWithSpinnerForm(
+  props: RenderStrokesWithSpinnerFormProps
+) {
+  const { formType, strokesConfig } = props;
   const { token, handleSubmit } = useContext(TokenContext);
-  const [linesToken, setLinesToken] = useState(
+  const [strokesToken, setStrokesToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +33,7 @@ function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
   const [toggleActive, setToggleActive] = useState(false);
 
   const hasChanges = () => {
-    return JSON.stringify(token.color.stroke) !== JSON.stringify(linesToken);
+    return JSON.stringify(token.color.stroke) !== JSON.stringify(strokesToken);
   };
 
   const handleTokenChange = (
@@ -38,14 +41,14 @@ function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
     category: string,
     updatedTokenName: string
   ) => {
-    let lineStokeUpdate = { ...linesToken };
+    let strokesUpdate = { ...strokesToken };
 
-    lineStokeUpdate[appearance][category] = getTokenColor(
+    strokesUpdate[appearance][category] = getTokenColor(
       updatedTokenName,
       token
     );
 
-    setLinesToken(lineStokeUpdate);
+    setStrokesToken(strokesUpdate);
   };
 
   const handleSubmitForm = () => {
@@ -64,19 +67,19 @@ function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
         if (result === "success") {
           setMessage({
             visible: true,
-            data: linesMessagesConfig.success,
+            data: strokesMessagesConfig.success,
           });
           handleSubmit({
             domain: "color",
             block: "stroke",
-            tokenUpdate: linesToken,
+            tokenUpdate: strokesToken,
           });
         }
       })
       .catch(() => {
         setMessage({
           visible: true,
-          data: linesMessagesConfig.failed,
+          data: strokesMessagesConfig.failed,
         });
       })
       .finally(() => {
@@ -91,19 +94,19 @@ function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
   };
 
   const handleReset = () => {
-    setLinesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
+    setStrokesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
   };
 
   const updatedTheme = {
     ...token,
     color: {
       ...token.color,
-      stroke: linesToken,
+      stroke: strokesToken,
     },
   };
 
   return (
-    <RenderLinesWithSpinnerFormUI
+    <RenderStrokesWithSpinnerFormUI
       formType={formType}
       handleReset={handleReset}
       handleCloseMessage={handleCloseSectionMessage}
@@ -111,7 +114,7 @@ function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
       handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
-      linesConfig={linesConfig}
+      strokesConfig={strokesConfig}
       message={message}
       updatedTheme={updatedTheme}
       toggleActive={toggleActive}
@@ -120,5 +123,5 @@ function RenderLinesWithSpinnerForm(props: RenderLinesWithSpinnerFormProps) {
   );
 }
 
-export { RenderLinesWithSpinnerForm };
-export type { RenderLinesWithSpinnerFormProps };
+export { RenderStrokesWithSpinnerForm };
+export type { RenderStrokesWithSpinnerFormProps };

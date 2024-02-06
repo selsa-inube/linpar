@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   Route,
@@ -10,11 +10,12 @@ import {
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
 import { GlobalStyles } from "@styles/global";
-import AppContextProvider from "@src/context/AppContext";
+import AppContextProvider, { AppContext } from "@src/context/AppContext";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { PeopleRoutes } from "./routes/people";
+import { Login } from "./pages/login";
 
 function LogOut() {
   const { logout } = useAuth0();
@@ -22,10 +23,15 @@ function LogOut() {
   return <Home />;
 }
 
+function FirstPage() {
+  const { user } = useContext(AppContext);
+  return user.company.length === 0 ? <Login /> : <Home />;
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
+      <Route path="/" element={<FirstPage />} errorElement={<ErrorPage />} />
       <Route path="login/*" element={<LoginRoutes />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="people/*" element={<PeopleRoutes />} />
