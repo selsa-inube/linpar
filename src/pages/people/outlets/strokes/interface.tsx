@@ -68,7 +68,7 @@ export function StrokesUI(props: IStrokesUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
-  const lineTabs = Object.keys(strokesTabsConfig);
+  const strokeTabs = Object.keys(strokesTabsConfig);
 
   return (
     <>
@@ -95,7 +95,7 @@ export function StrokesUI(props: IStrokesUIProps) {
                   type={typeTabs ? "select" : "tabs"}
                   onChange={handleTabChange}
                 />
-                {lineTabs.map((formType) => {
+                {strokeTabs.map((formType) => {
                   return renderForm({
                     formType,
                     selectedTab,

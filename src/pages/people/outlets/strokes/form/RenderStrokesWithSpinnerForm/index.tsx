@@ -43,14 +43,14 @@ function RenderStrokesWithSpinnerForm(
     category: string,
     updatedTokenName: string
   ) => {
-    let lineStokeUpdate = { ...strokesToken };
+    let strokesUpdate = { ...strokesToken };
 
-    lineStokeUpdate[appearance][category] = getTokenColor(
+    strokesUpdate[appearance][category] = getTokenColor(
       updatedTokenName,
       token
     );
 
-    setStrokesToken(lineStokeUpdate);
+    setStrokesToken(strokesUpdate);
   };
 
   const handleSubmitForm = () => {
