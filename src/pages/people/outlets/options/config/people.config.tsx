@@ -92,7 +92,7 @@ const peopleOptionsConfig = [
     icon: <MdBorderColor />,
     label: "Líneas",
     description: "Personaliza los colores de tus componentes",
-    url: "/people/lines",
+    url: "/people/strokes",
     crumbs: [
       {
         path: "/",
@@ -107,9 +107,9 @@ const peopleOptionsConfig = [
         isActive: false,
       },
       {
-        path: "/people/lines",
+        path: "/people/strokes",
         label: "Líneas",
-        id: "/people/lines",
+        id: "/people/strokes",
         isActive: true,
       },
     ],
