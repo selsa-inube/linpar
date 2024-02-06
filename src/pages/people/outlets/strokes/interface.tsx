@@ -3,14 +3,12 @@ import {
   Stack,
   Tabs,
   useMediaQueries,
-  inube,
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
 
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { strokesTabsConfig } from "./config/strokesTabs.config";
 
 import { RenderStrokesContentForm } from "./form/RenderStrokesContentForm";
@@ -20,10 +18,8 @@ import { strokesFormsConfig } from "./config/Strokes.config";
 
 interface IStrokesUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   strokesConfig: typeof strokesFormsConfig;
-  token: typeof inube;
 }
 
 type FormType = "spinner" | "link" | "default";
@@ -31,13 +27,11 @@ type FormType = "spinner" | "link" | "default";
 interface IRenderForm {
   formType: string;
   selectedTab: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   strokesConfig: typeof strokesFormsConfig;
-  token: typeof inube;
 }
 
 function renderForm(props: IRenderForm) {
-  const { formType, selectedTab, handleSubmit, strokesConfig, token } = props;
+  const { formType, selectedTab, strokesConfig } = props;
   if (selectedTab !== formType) return null;
 
   const formTypeToComponentMap = {
@@ -54,16 +48,13 @@ function renderForm(props: IRenderForm) {
     <Component
       key={formType}
       formType={formType}
-      handleSubmit={handleSubmit}
       strokesConfig={strokesConfig}
-      token={token}
     />
   );
 }
 
 export function StrokesUI(props: IStrokesUIProps) {
-  const { token, handleSubmit, handleTabChange, strokesConfig, selectedTab } =
-    props;
+  const { handleTabChange, strokesConfig, selectedTab } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
@@ -99,9 +90,7 @@ export function StrokesUI(props: IStrokesUIProps) {
                   return renderForm({
                     formType,
                     selectedTab,
-                    handleSubmit,
                     strokesConfig,
-                    token,
                   });
                 })}
               </Stack>

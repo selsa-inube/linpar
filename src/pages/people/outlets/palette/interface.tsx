@@ -10,28 +10,23 @@ import { PageTitle } from "@components/PageTitle";
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { paletteTabsConfig } from "./config/paletteTabs.config";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { RenderContentFormPalette } from "./form/RenderContentFormPalette";
 import { RenderContentFormNeutralPalette } from "./form/RenderContentFormNeutralPalette";
 
 interface PaletteUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   paletteConfig: typeof paletteTabsConfig;
-  token: typeof inube;
 }
 type FormType = "neutral" | "neutralAlpha" | "default";
 
 interface IRenderForm {
   formType: string;
   selectedTab: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
-  token: typeof inube;
 }
 
 function renderForm(props: IRenderForm) {
-  const { formType, selectedTab, handleSubmit, token } = props;
+  const { formType, selectedTab } = props;
   if (selectedTab !== formType) return null;
 
   const formTypeToComponentMap = {
@@ -44,18 +39,11 @@ function renderForm(props: IRenderForm) {
     formTypeToComponentMap[formType as FormType] ||
     formTypeToComponentMap["default"];
 
-  return (
-    <Component
-      formType={formType}
-      key={formType}
-      handleSubmit={handleSubmit}
-      token={token}
-    />
-  );
+  return <Component formType={formType} key={formType} />;
 }
 
 export function PaletteUI(props: PaletteUIProps) {
-  const { token, handleSubmit, selectedTab, handleTabChange } = props;
+  const { selectedTab, handleTabChange } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
@@ -92,8 +80,6 @@ export function PaletteUI(props: PaletteUIProps) {
                 return renderForm({
                   formType,
                   selectedTab,
-                  handleSubmit,
-                  token,
                 });
               })}
             </Stack>

@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { paletteMessagesConfig } from "../../config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
+import { TokenContext } from "@src/context/TokenContext";
 
 interface RenderContentFormPaletteProps {
   formType: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
-  token: typeof inube;
 }
 
 function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
-  const { formType, handleSubmit, token } = props;
+  const { formType } = props;
+  const { token, handleSubmit } = useContext(TokenContext);
   const [paletteToken, setPaletteToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.palette }))
   );

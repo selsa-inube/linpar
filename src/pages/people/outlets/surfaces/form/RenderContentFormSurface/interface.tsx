@@ -9,12 +9,12 @@ import {
   NavLink,
 } from "@inube/design-system";
 import { StyledMessageContainer, StyledNavLinkContainer } from "./styles";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
+import { Appearance } from "@components/feedback/SendingInformation/types";
+import { SendInformationMessage } from "@components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "../../config/surface.config";
 import { MdOutlineHouse } from "react-icons/md";
 

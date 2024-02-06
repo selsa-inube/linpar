@@ -1,6 +1,5 @@
 import {
   Breadcrumbs,
-  inube,
   Stack,
   Tabs,
   useMediaQueries,
@@ -11,21 +10,16 @@ import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { textsTabsConfig } from "./config/textsTabs.config";
 import { RenderTextContentForm } from "./form/RenderTextContentForm";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { textFormsConfig } from "./config/text.config";
 
 interface TextUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   textConfig: typeof textFormsConfig;
-  token: typeof inube;
 }
 
 export function TextsUI(props: TextUIProps) {
-  const { token, handleSubmit, textConfig, selectedTab, handleTabChange } =
-    props;
-
+  const { textConfig, selectedTab, handleTabChange } = props;
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
@@ -61,10 +55,8 @@ export function TextsUI(props: TextUIProps) {
                     selectedTab === formType! && (
                       <RenderTextContentForm
                         formType={formType}
-                        handleSubmit={handleSubmit}
                         key={formType}
                         textConfig={textConfig}
-                        token={token}
                       />
                     )
                 )}
