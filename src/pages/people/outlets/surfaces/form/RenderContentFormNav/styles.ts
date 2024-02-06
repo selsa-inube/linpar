@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inube, presente } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 
 const StyledMessageContainer = styled.div`
   position: fixed;
