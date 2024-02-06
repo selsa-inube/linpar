@@ -2,7 +2,7 @@ import { EAppearance } from "@src/types/colors.types";
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const linesFormsConfig = {
+const strokesFormsConfig = {
   primary: {
     description:
       "Las líneas de tipo primario se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
@@ -256,7 +256,7 @@ const linesFormsConfig = {
   },
 };
 
-const linesMessagesConfig = {
+const strokesMessagesConfig = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
@@ -273,4 +273,4 @@ const linesMessagesConfig = {
   },
 };
 
-export { linesFormsConfig, linesMessagesConfig };
+export { strokesFormsConfig, strokesMessagesConfig };

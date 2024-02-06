@@ -5,7 +5,7 @@ import { People } from "@pages/people";
 import { Palette } from "@pages/people/outlets/palette";
 import { Texts } from "@pages/people/outlets/texts";
 import { Surfaces } from "@pages/people/outlets/surfaces";
-import { Lines } from "@pages/people/outlets/lines";
+import { Strokes } from "@pages/people/outlets/strokes";
 import { useState } from "react";
 import { inube, presente } from "@inube/design-system";
 
@@ -54,8 +54,8 @@ function PeopleRoutes() {
           element={<Surfaces token={token} handleSubmit={handleSubmit} />}
         />
         <Route
-          path="lines"
-          element={<Lines token={token} handleSubmit={handleSubmit} />}
+          path="strokes"
+          element={<Strokes token={token} handleSubmit={handleSubmit} />}
         />
       </Route>
       <Route path="/*" element={<ErrorPage />} />
