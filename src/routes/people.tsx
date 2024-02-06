@@ -17,7 +17,7 @@ function PeopleRoutes() {
           <Route path="palette" element={<Palette />} />
           <Route path="texts" element={<Texts />} />
           <Route path="surfaces" element={<Surfaces />} />
-          <Route path="lines" element={<Strokes />} />
+          <Route path="strokes" element={<Strokes />} />
         </Route>
         <Route path="/*" element={<ErrorPage />} />
       </Routes>

@@ -25,15 +25,11 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
       return { ...action.payload };
     case actionTypes.UPDATE_TOKEN:
       const { domain, block, tokenUpdate } = action.payload;
-
       return {
         ...state,
         [domain]: {
           ...state[domain],
-          color: {
-            ...state[domain]?.color,
-            [block]: { ...tokenUpdate },
-          },
+          [block]: { ...tokenUpdate },
         },
       };
     default:

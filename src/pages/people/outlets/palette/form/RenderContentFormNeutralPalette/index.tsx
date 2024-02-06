@@ -87,6 +87,7 @@ function RenderContentFormNeutralPalette(
   const handleReset = () => {
     setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
   };
+
   const updatedTheme = {
     ...token,
     color: {
