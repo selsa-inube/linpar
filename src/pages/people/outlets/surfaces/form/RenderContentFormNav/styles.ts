@@ -19,16 +19,13 @@ interface IStyledNavLinkProps {
   smallScreen: boolean;
 }
 
-const StyledNav = styled.div`
+const StyledNav = styled.div<IStyledNavLinkProps>`
   > div {
     border: none;
     width: ${({ smallScreen }) => (smallScreen ? "100%" : "248px")};
   }
 
   > div > div {
-    background: ${({ theme }: IStyledNavLinkProps) =>
-      theme?.color?.surface?.nav?.regular ||
-      presente.color.surface.nav.regular};
     height: 500px;
     border-radius: 8px;
     border: 1px solid
