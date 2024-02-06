@@ -35,4 +35,13 @@ const StyledNav = styled.div<IStyledNavLinkProps>`
         inube.color.stroke.divider.regular};
   }
 `;
-export { StyledMessageContainer, StyledBackdropNav, StyledNav };
+const StyledContainerNav = styled.div`
+  max-width: 520px;
+  width: 100%;
+`;
+export {
+  StyledMessageContainer,
+  StyledBackdropNav,
+  StyledNav,
+  StyledContainerNav,
+};

@@ -8,7 +8,11 @@ import {
   Grid,
   useMediaQueries,
 } from "@inube/design-system";
-import { StyledMessageContainer, StyledNav } from "./styles";
+import {
+  StyledContainerNav,
+  StyledMessageContainer,
+  StyledNav,
+} from "./styles";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
@@ -117,20 +121,22 @@ function RenderContentFormSurfaceNavUI(
             <Grid>
               {surfaceCards.map(
                 ([key, config]: [string, ISurfaceCardConfig]) => (
-                  <FieldsetColorCard
-                    key={key}
-                    optionsMenu={updatedTheme.color.palette}
-                    title={config.title}
-                    description={config.description}
-                    appearance={formType}
-                    category={key}
-                    typeToken="surface"
-                    onChange={(newTokenName) =>
-                      handleTokenChange(formType, key, newTokenName)
-                    }
-                    toggleActive={toggleActive}
-                    setToggleActive={setToggleActive}
-                  />
+                  <StyledContainerNav>
+                    <FieldsetColorCard
+                      key={key}
+                      optionsMenu={updatedTheme.color.palette}
+                      title={config.title}
+                      description={config.description}
+                      appearance={formType}
+                      category={key}
+                      typeToken="surface"
+                      onChange={(newTokenName) =>
+                        handleTokenChange(formType, key, newTokenName)
+                      }
+                      toggleActive={toggleActive}
+                      setToggleActive={setToggleActive}
+                    />
+                  </StyledContainerNav>
                 )
               )}
             </Grid>

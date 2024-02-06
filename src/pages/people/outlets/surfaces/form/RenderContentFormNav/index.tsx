@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { RenderContentFormSurfaceNavUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
 } from "../../config/surface.config";
 import { TokenContext } from "@src/context/TokenContext";
+import { SurfaceAppearance } from "../../types";
 
 interface RenderContentFormSurfaceNavProps {
   formType: string;
@@ -33,7 +33,7 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   };
 
   const handleTokenChange = (
-    appearance: Appearance | string,
+    appearance: SurfaceAppearance,
     category: string,
     updatedTokenName: string
   ) => {

@@ -5,6 +5,8 @@ import {
   RenderContentFormSurfaceNav,
   RenderContentFormSurfaceNavProps,
 } from ".";
+import { surfaceFormsConfig } from "../../config/surface.config";
+import { TokenContext } from "@src/context/TokenContext";
 
 const story = {
   components: [RenderContentFormSurfaceNav],
@@ -15,66 +17,27 @@ const story = {
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
-        <Story />
+        <TokenContext.Provider
+          value={{ token: presente, handleSubmit: () => {} }}
+        >
+          <Story />
+        </TokenContext.Provider>
       </BrowserRouter>
     ),
   ],
 };
 
-const themeMap = {
-  presente: presente,
-  inube: inube,
-};
-
-const surfaceFormsConfig = {
-  nav: {
-    description:
-      "Las superficies del Nav determinarán el color de fondo del menú de navegación lateral.",
-    status: {
-      regular: {
-        title: "Regular",
-        description:
-          "La superficie tomará este color para darle contraste a los links de navegación.",
-      },
-    },
-  },
-};
-
-const formType = Object.keys(surfaceFormsConfig);
-
 const Default = (args: RenderContentFormSurfaceNavProps) => {
-  const selectedTheme = themeMap[args.token as keyof typeof themeMap];
-
   return (
-    <Stack padding="s300" direction="column" gap={selectedTheme.spacing.s400}>
-      <RenderContentFormSurfaceNav {...args} token={selectedTheme} />
+    <Stack padding="s300" direction="column" gap={inube.spacing.s400}>
+      <RenderContentFormSurfaceNav {...args} />
     </Stack>
   );
 };
 
 Default.args = {
-  formType: formType,
-  handleSubmit: () => {},
-  token: "presente",
-  surfaceConfig: surfaceFormsConfig,
-};
-Default.argTypes = {
-  token: {
-    options: ["presente", "inube"],
-    control: { type: "select" },
-    description: "the theme that it be use to render",
-    table: {
-      defaultValue: { summary: "inube" },
-    },
-  },
-  formType: {
-    options: formType,
-    control: { type: "select" },
-    description: "the form that it'll be render",
-    table: {
-      defaultValue: { summary: "nav" },
-    },
-  },
+  formType: "nav",
+  surfaceConfig: { nav: surfaceFormsConfig.nav },
 };
 export default story;
 
