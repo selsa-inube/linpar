@@ -1,27 +1,28 @@
 import { useState } from "react";
-import { LinesUI } from "./interface";
+import { StrokesUI } from "./interface";
 
 import type { IPeopleColorProps } from "src/routes/people";
-import { linesFormsConfig } from "./config/lines.config";
-import { linesTabsConfig } from "./config/linesTabs.config";
 
-function Lines(props: IPeopleColorProps) {
+import { strokesTabsConfig } from "./config/strokesTabs.config";
+import { strokesFormsConfig } from "./config/Strokes.config";
+
+function Strokes(props: IPeopleColorProps) {
   const { token, handleSubmit } = props;
-  const [selectedTab, setSelectedTab] = useState(linesTabsConfig.primary.id);
+  const [selectedTab, setSelectedTab] = useState(strokesTabsConfig.primary.id);
 
   const handleTabChange = (tabId: string) => {
     setSelectedTab(tabId);
   };
 
   return (
-    <LinesUI
+    <StrokesUI
       handleTabChange={handleTabChange}
       handleSubmit={handleSubmit}
       selectedTab={selectedTab}
-      linesConfig={linesFormsConfig}
+      strokesConfig={strokesFormsConfig}
       token={token}
     />
   );
 }
 
-export { Lines };
+export { Strokes };

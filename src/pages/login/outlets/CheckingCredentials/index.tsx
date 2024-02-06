@@ -1,43 +1,25 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CheckingCredentialsUI } from "./interface";
-import { useCallback, useEffect } from "react";
-import { IUser } from "../../types";
+import { useCallback, useContext, useEffect } from "react";
+import { AppContext } from "@src/context/AppContext";
 
-const API_BASE_URL = import.meta.env.VITE_USERS_URI;
-
-async function getUser(user_id: string): Promise<IUser | null> {
-  try {
-    const response = await fetch(`${API_BASE_URL}/${user_id}`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch user");
-    }
-    const user: IUser = await response.json();
-    return user;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
-function CheckingCredentials() {
+function CheckingCredentials({ clients }) {
   const navigate = useNavigate();
-  const { user_id } = useParams();
+  const { user } = useContext(AppContext);
 
   const checkCredentials = useCallback(async () => {
     try {
-      if (!user_id) {
+      if (!user) {
         return;
       }
 
-      const user = await getUser(user_id);
-
       if (user) {
-        if (!user.clients || user.clients.length === 0) {
+        if (!clients || clients.length === 0) {
           navigate("/login/error/not-related-clients");
-        } else if (user.clients.length === 1) {
+        } else if (clients.length === 1) {
           navigate("/login/loading-app");
         } else {
-          navigate(`/login/${user_id}/clients`);
+          navigate(`/login/${user.id}/clients`);
         }
       } else {
         navigate("/login/error/not-available");
@@ -45,7 +27,7 @@ function CheckingCredentials() {
     } catch (error) {
       navigate("/login/error/not-available");
     }
-  }, [user_id, navigate]);
+  }, [user, navigate, clients]);
 
   useEffect(() => {
     const timer = setTimeout(checkCredentials, 2000);
