@@ -1,8 +1,8 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Strokes } from "./index";
-import { IPeopleColorProps } from "@src/routes/people";
 import { presente } from "@inube/design-system";
+import { TokenContext } from "@src/context/TokenContext";
 
 const story = {
   components: [Strokes],
@@ -13,17 +13,18 @@ const story = {
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
-        <Story />
+        <TokenContext.Provider
+          value={{ token: presente, handleSubmit: () => {} }}
+        >
+          <Story />
+        </TokenContext.Provider>
       </BrowserRouter>
     ),
   ],
 };
 
-const Default = (args: IPeopleColorProps) => <Strokes {...args} />;
-Default.args = {
-  token: presente,
-  handleSubmit: () => {},
-};
+const Default = () => <Strokes />;
+Default.args = {};
 
 export default story;
 

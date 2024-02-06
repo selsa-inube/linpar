@@ -1,24 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RenderStrokesWithLinkFormUI } from "./interface";
-import { inube } from "@inube/design-system";
 import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 import { IPeopleMessage } from "@src/pages/people/outlets/types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
 } from "../../config/Strokes.config";
+import { TokenContext } from "@src/context/TokenContext";
 
 interface RenderStrokesWithLinkFormProps {
   formType: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   strokesConfig: typeof strokesFormsConfig;
-  token: typeof inube;
 }
 
 function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
-  const { formType, handleSubmit, strokesConfig, token } = props;
+  const { formType, strokesConfig } = props;
+  const { token, handleSubmit } = useContext(TokenContext);
   const [strokesToken, setStrokesToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );

@@ -1,21 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RenderTextContentFormUI } from "./interface";
-import { inube } from "@inube/design-system";
 import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { IHandleSubmitProps } from "@src/routes/people";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
+import { Appearance } from "@components/cards/FieldsetColorCard/types";
+import { getTokenColor } from "@components/cards/TokenColorCard/styles";
+import { TokenContext } from "@context/TokenContext";
 
 interface RenderTextContentFormProps {
   formType: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   textConfig: typeof textFormsConfig;
-  token: typeof inube;
 }
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
-  const { formType, handleSubmit, token, textConfig } = props;
+  const { formType, textConfig } = props;
+  const { token, handleSubmit } = useContext(TokenContext);
   const [textToken, setTextToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.text }))
   );

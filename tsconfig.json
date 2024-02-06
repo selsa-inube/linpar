@@ -21,6 +21,7 @@
       "@src/*": ["./src/*"],
       "@mocks/*": ["./src/mocks/*"],
       "@components/*": ["./src/components/*"],
+      "@context/*": ["./src/context/*"],
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
       "@validations/*": ["./src/validations/*"]

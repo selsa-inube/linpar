@@ -11,30 +11,25 @@ import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { surfaceTabsConfig } from "./config/surfaceTabs.config";
 import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { surfaceFormsConfig } from "./config/surface.config";
 import { RenderContentFormSurfaceBlanket } from "./form/RenderContentFormSurfaceBlanket";
 import { RenderContentFormSurfaceNav } from "./form/RenderContentFormNav";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   selectedTab: string;
   surfaceConfig: typeof surfaceFormsConfig;
-  token: typeof inube;
 }
 type FormType = "blanket" | "nav" | "default";
 
 interface IRenderForm {
   formType: string;
   selectedTab: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   surfaceConfig: typeof surfaceFormsConfig;
-  token: typeof inube;
 }
 
 function renderForm(props: IRenderForm) {
-  const { formType, selectedTab, handleSubmit, surfaceConfig, token } = props;
+  const { formType, selectedTab, surfaceConfig } = props;
   if (selectedTab !== formType) return null;
 
   const formTypeToComponentMap = {
@@ -51,16 +46,13 @@ function renderForm(props: IRenderForm) {
     <Component
       key={formType}
       formType={formType}
-      handleSubmit={handleSubmit}
       surfaceConfig={surfaceConfig}
-      token={token}
     />
   );
 }
 
 export function SurfacesUI(props: SurfaceUIProps) {
-  const { token, handleSubmit, surfaceConfig, selectedTab, handleTabChange } =
-    props;
+  const { surfaceConfig, selectedTab, handleTabChange } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
@@ -97,9 +89,7 @@ export function SurfacesUI(props: SurfaceUIProps) {
                 return renderForm({
                   formType,
                   selectedTab,
-                  handleSubmit,
                   surfaceConfig,
-                  token,
                 });
               })}
             </Stack>

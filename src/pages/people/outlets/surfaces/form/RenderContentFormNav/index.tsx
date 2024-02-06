@@ -1,24 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RenderContentFormSurfaceNavUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { inube } from "@inube/design-system";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
 } from "../../config/surface.config";
+import { TokenContext } from "@src/context/TokenContext";
 
 interface RenderContentFormSurfaceNavProps {
   formType: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
   surfaceConfig: typeof surfaceFormsConfig;
-  token: typeof inube;
 }
 
 function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
-  const { formType, handleSubmit, surfaceConfig, token } = props;
+  const { formType, surfaceConfig } = props;
+  const { token, handleSubmit } = useContext(TokenContext);
   const [surfaceToken, setSurfaceToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.surface }))
   );
