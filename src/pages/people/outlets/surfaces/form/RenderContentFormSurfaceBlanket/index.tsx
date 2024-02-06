@@ -12,7 +12,7 @@ import {
 } from "../../config/surface.config";
 
 interface RenderContentFormSurfaceBlanketProps {
-  formType: Appearance;
+  formType: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
   surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;

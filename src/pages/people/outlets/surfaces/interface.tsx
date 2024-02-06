@@ -13,8 +13,8 @@ import { surfaceTabsConfig } from "./config/surfaceTabs.config";
 import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
 import { IHandleSubmitProps } from "@src/routes/people";
 import { surfaceFormsConfig } from "./config/surface.config";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { RenderContentFormSurfaceBlanket } from "./form/RenderContentFormSurfaceBlanket";
+import { RenderContentFormSurfaceNav } from "./form/RenderContentFormNav";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
@@ -22,6 +22,40 @@ interface SurfaceUIProps {
   selectedTab: string;
   surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;
+}
+type FormType = "blanket" | "nav" | "default";
+
+interface IRenderForm {
+  formType: string;
+  selectedTab: string;
+  handleSubmit: (props: IHandleSubmitProps) => void;
+  surfaceConfig: typeof surfaceFormsConfig;
+  token: typeof inube;
+}
+
+function renderForm(props: IRenderForm) {
+  const { formType, selectedTab, handleSubmit, surfaceConfig, token } = props;
+  if (selectedTab !== formType) return null;
+
+  const formTypeToComponentMap = {
+    blanket: RenderContentFormSurfaceBlanket,
+    nav: RenderContentFormSurfaceNav,
+    default: RenderSurfaceContentForm,
+  };
+
+  const Component =
+    formTypeToComponentMap[formType as FormType] ||
+    formTypeToComponentMap["default"];
+
+  return (
+    <Component
+      key={formType}
+      formType={formType}
+      handleSubmit={handleSubmit}
+      surfaceConfig={surfaceConfig}
+      token={token}
+    />
+  );
 }
 
 export function SurfacesUI(props: SurfaceUIProps) {
@@ -59,27 +93,15 @@ export function SurfacesUI(props: SurfaceUIProps) {
                 tabs={Object.values(surfaceTabsConfig)}
                 type={typeTabs ? "select" : "tabs"}
               />
-              {colorTabs.map(
-                (formType) =>
-                  selectedTab === formType &&
-                  (formType === "blanket" ? (
-                    <RenderContentFormSurfaceBlanket
-                      formType={formType as Appearance}
-                      handleSubmit={handleSubmit}
-                      key={formType}
-                      surfaceConfig={surfaceConfig}
-                      token={token}
-                    />
-                  ) : (
-                    <RenderSurfaceContentForm
-                      formType={formType as Appearance}
-                      handleSubmit={handleSubmit}
-                      key={formType}
-                      surfaceConfig={surfaceConfig}
-                      token={token}
-                    />
-                  ))
-              )}
+              {colorTabs.map((formType) => {
+                return renderForm({
+                  formType,
+                  selectedTab,
+                  handleSubmit,
+                  surfaceConfig,
+                  token,
+                });
+              })}
             </Stack>
           </StyledTabsContainer>
         </StyledContainer>

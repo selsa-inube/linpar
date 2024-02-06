@@ -11,7 +11,7 @@ import {
 } from "../../config/surface.config";
 
 interface RenderContentFormSurfaceNavProps {
-  formType: Appearance;
+  formType: string;
   handleSubmit: (props: IHandleSubmitProps) => void;
   surfaceConfig: typeof surfaceFormsConfig;
   token: typeof inube;

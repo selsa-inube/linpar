@@ -21,13 +21,14 @@ interface IStyledNavLinkProps {
 
 const StyledNav = styled.div<IStyledNavLinkProps>`
   > div {
+    border-radius: 8px;
     border: none;
     width: ${({ smallScreen }) => (smallScreen ? "100%" : "248px")};
   }
 
   > div > div {
+    border-radius: inherit;
     height: 500px;
-    border-radius: 8px;
     border: 1px solid
       ${({ theme }) =>
         theme?.color?.stroke?.divider?.regular ||
