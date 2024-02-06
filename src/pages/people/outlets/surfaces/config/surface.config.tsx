@@ -1,5 +1,9 @@
 import { EAppearance } from "@src/types/colors.types";
-import { MdErrorOutline, MdHouse, MdThumbUpOffAlt } from "react-icons/md";
+import {
+  MdErrorOutline,
+  MdOutlineHouse,
+  MdThumbUpOffAlt,
+} from "react-icons/md";
 
 const surfaceFormsConfig = {
   primary: {
@@ -290,32 +294,32 @@ const mockNav = {
         privileges: {
           id: "privileges",
           label: "Link name",
-          icon: <MdHouse />,
+          icon: <MdOutlineHouse />,
         },
         accounting: {
           id: "accounting",
           label: "Link name",
-          icon: <MdHouse />,
+          icon: <MdOutlineHouse />,
         },
         contacts: {
           id: "contacts",
           label: "Link name",
-          icon: <MdHouse />,
+          icon: <MdOutlineHouse />,
         },
         documents: {
           id: "documents",
           label: "Link name",
-          icon: <MdHouse />,
+          icon: <MdOutlineHouse />,
         },
         marketing: {
           id: "marketing",
           label: "Link name",
-          icon: <MdHouse />,
+          icon: <MdOutlineHouse />,
         },
         savings: {
           id: "savings",
           label: "Link name",
-          icon: <MdHouse />,
+          icon: <MdOutlineHouse />,
         },
       },
     },
