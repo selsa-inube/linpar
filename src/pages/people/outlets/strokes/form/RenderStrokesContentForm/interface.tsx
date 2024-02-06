@@ -8,14 +8,13 @@ import {
   useMediaQueries,
 } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
-
 import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
-import { linesFormsConfig } from "../../config/lines.config";
+import { strokesFormsConfig } from "../../config/Strokes.config";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -45,7 +44,7 @@ const renderMessage = (
   );
 };
 
-interface RenderLinesContentFormUIProps {
+interface RenderStrokesContentFormUIProps {
   formType: Appearance | string;
   handleReset: () => void;
   handleCloseMessage: () => void;
@@ -57,14 +56,14 @@ interface RenderLinesContentFormUIProps {
   ) => void;
   hasChanges: () => boolean;
   isLoading: boolean;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
   message: IMessageState;
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
 }
 
-function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
+function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
   const {
     formType,
     handleReset,
@@ -73,15 +72,15 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
     handleTokenChange,
     hasChanges,
     isLoading,
-    linesConfig,
+    strokesConfig,
     message,
     updatedTheme,
     toggleActive,
     setToggleActive,
   } = props;
 
-  const linesCards = Object.entries(
-    linesConfig[formType as keyof typeof linesConfig].status
+  const strokesCards = Object.entries(
+    strokesConfig[formType as keyof typeof strokesConfig].status
   );
 
   const {
@@ -97,7 +96,7 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
   return (
     <>
       <Text size="medium" appearance="gray">
-        {linesConfig[formType as keyof typeof linesConfig].description}
+        {strokesConfig[formType as keyof typeof strokesConfig].description}
       </Text>
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -117,7 +116,7 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
               autoColumns="unset"
               autoRows="unset"
             >
-              {linesCards.map(([key, config]) => (
+              {strokesCards.map(([key, config]) => (
                 <FieldsetColorCard
                   appearance={formType}
                   category={key}
@@ -142,4 +141,4 @@ function RenderLinesContentFormUI(props: RenderLinesContentFormUIProps) {
   );
 }
 
-export { RenderLinesContentFormUI };
+export { RenderStrokesContentFormUI };

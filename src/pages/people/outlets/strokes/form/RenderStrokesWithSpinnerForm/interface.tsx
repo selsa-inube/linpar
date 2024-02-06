@@ -9,13 +9,12 @@ import {
   useMediaQueries,
 } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
-
-import { linesFormsConfig } from "../../config/lines.config";
+import { strokesFormsConfig } from "../../config/Strokes.config";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -45,7 +44,7 @@ const renderMessage = (
   );
 };
 
-interface RenderLinesWithSpinnerFormUIProps {
+interface RenderStrokesWithSpinnerFormUIProps {
   formType: Appearance | string;
   handleReset: () => void;
   handleCloseMessage: () => void;
@@ -57,15 +56,15 @@ interface RenderLinesWithSpinnerFormUIProps {
   ) => void;
   hasChanges: () => boolean;
   isLoading: boolean;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
   message: IMessageState;
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
 }
 
-function RenderLinesWithSpinnerFormUI(
-  props: RenderLinesWithSpinnerFormUIProps
+function RenderStrokesWithSpinnerFormUI(
+  props: RenderStrokesWithSpinnerFormUIProps
 ) {
   const {
     formType,
@@ -75,15 +74,15 @@ function RenderLinesWithSpinnerFormUI(
     handleTokenChange,
     hasChanges,
     isLoading,
-    linesConfig,
+    strokesConfig,
     message,
     updatedTheme,
     toggleActive,
     setToggleActive,
   } = props;
 
-  const linesCards = Object.entries(
-    linesConfig[formType as keyof typeof linesConfig].status
+  const strokesCards = Object.entries(
+    strokesConfig[formType as keyof typeof strokesConfig].status
   );
 
   const {
@@ -102,7 +101,7 @@ function RenderLinesWithSpinnerFormUI(
   return (
     <>
       <Text size="medium" appearance="gray">
-        {linesConfig[formType as keyof typeof linesConfig].description}
+        {strokesConfig[formType as keyof typeof strokesConfig].description}
       </Text>
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -118,7 +117,7 @@ function RenderLinesWithSpinnerFormUI(
               autoColumns="unset"
               autoRows="unset"
             >
-              {linesCards.map(([key, config]) => (
+              {strokesCards.map(([key, config]) => (
                 <Stack key={key} direction="column" alignItems="center">
                   <Spinner transparent={key === "transparent"} />
                   <FieldsetColorCard
@@ -145,4 +144,4 @@ function RenderLinesWithSpinnerFormUI(
   );
 }
 
-export { RenderLinesWithSpinnerFormUI };
+export { RenderStrokesWithSpinnerFormUI };

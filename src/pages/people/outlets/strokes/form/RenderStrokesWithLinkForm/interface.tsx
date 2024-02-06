@@ -7,13 +7,12 @@ import {
   Label,
 } from "@inube/design-system";
 import { StyledMessageContainer, StyledLinkContainer } from "./styles";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
-
-import { linesFormsConfig } from "../../config/lines.config";
+import { strokesFormsConfig } from "../../config/Strokes.config";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -43,7 +42,7 @@ const renderMessage = (
   );
 };
 
-interface RenderLinesWithLinkFormUIProps {
+interface RenderStrokesWithLinkFormUIProps {
   formType: Appearance | string;
   handleReset: () => void;
   handleCloseMessage: () => void;
@@ -55,14 +54,14 @@ interface RenderLinesWithLinkFormUIProps {
   ) => void;
   hasChanges: () => boolean;
   isLoading: boolean;
-  linesConfig: typeof linesFormsConfig;
+  strokesConfig: typeof strokesFormsConfig;
   message: IMessageState;
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
 }
 
-function RenderLinesWithLinkFormUI(props: RenderLinesWithLinkFormUIProps) {
+function RenderStrokesWithLinkFormUI(props: RenderStrokesWithLinkFormUIProps) {
   const {
     formType,
     handleReset,
@@ -71,21 +70,21 @@ function RenderLinesWithLinkFormUI(props: RenderLinesWithLinkFormUIProps) {
     handleTokenChange,
     hasChanges,
     isLoading,
-    linesConfig,
+    strokesConfig,
     message,
     updatedTheme,
     toggleActive,
     setToggleActive,
   } = props;
 
-  const linesCards = Object.entries(
-    linesConfig[formType as keyof typeof linesConfig].status
+  const strokesCards = Object.entries(
+    strokesConfig[formType as keyof typeof strokesConfig].status
   );
 
   return (
     <>
       <Text size="medium" appearance="gray">
-        {linesConfig[formType as keyof typeof linesConfig].description}
+        {strokesConfig[formType as keyof typeof strokesConfig].description}
       </Text>
       <FormButtons
         disabledButtons={!hasChanges()}
@@ -95,7 +94,7 @@ function RenderLinesWithLinkFormUI(props: RenderLinesWithLinkFormUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {linesCards.map(([key, config]: any) => (
+            {strokesCards.map(([key, config]: any) => (
               <FieldsetColorCard
                 appearance={formType}
                 category={key}
@@ -133,4 +132,4 @@ function RenderLinesWithLinkFormUI(props: RenderLinesWithLinkFormUIProps) {
   );
 }
 
-export { RenderLinesWithLinkFormUI };
+export { RenderStrokesWithLinkFormUI };

@@ -1,53 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { ClientsUI } from "./interface";
-import { IClientState, IClient } from "./types";
-import { useNavigate, useParams } from "react-router-dom";
+import { IClientState } from "./types";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "@src/context/AppContext";
+import { IClient } from "@src/context/AppContext/types";
+import { IClients } from "@src/routes/login";
 
-const API_BASE_URL = import.meta.env.VITE_CLIENTS_URI;
-
-async function getUserClientsData(user_id: string) {
-  try {
-    const response = await fetch(`${API_BASE_URL}${user_id}`);
-    const clients = await response.json();
-    return clients;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
-function Clients() {
+function Clients({ clients }: IClients) {
   const [search, setSearch] = useState("");
-  const [clientsData, setClientsData] = useState([]);
-  const [client, setClient] = useState<IClientState>({
+  const [clientLocal, setClientLocal] = useState<IClientState>({
     ref: null,
     value: true,
   });
 
   const navigate = useNavigate();
-  const { user_id } = useParams();
-
-  useEffect(() => {
-    async function getData() {
-      if (!user_id) {
-        return;
-      }
-      const clients = await getUserClientsData(user_id);
-      setClientsData(clients);
-    }
-    getData();
-  }, [user_id]);
+  const { setClient } = useContext(AppContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (client.ref) {
-      client.ref.checked = false;
+    if (clientLocal.ref) {
+      clientLocal.ref.checked = false;
     }
-    setClient({ ref: null, value: true });
+    setClientLocal({ ref: null, value: true });
     setSearch(event.target.value);
   };
 
   const handleClientChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setClient({ ref: event.target, value: false });
+    setClientLocal({ ref: event.target, value: false });
+    setClient(
+      clients.filter((client0) => client0.name === event.target.value)[0]
+    );
   };
 
   const handleSubmit = () => {
@@ -67,9 +48,9 @@ function Clients() {
 
   return (
     <ClientsUI
-      clients={clientsData}
+      clients={clients}
       search={search}
-      client={client}
+      client={clientLocal}
       handleSearchChange={handleSearchChange}
       handleClientChange={handleClientChange}
       filterClients={filterClients}

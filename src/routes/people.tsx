@@ -5,64 +5,24 @@ import { People } from "@pages/people";
 import { Palette } from "@pages/people/outlets/palette";
 import { Texts } from "@pages/people/outlets/texts";
 import { Surfaces } from "@pages/people/outlets/surfaces";
-import { Lines } from "@pages/people/outlets/lines";
-import { useState } from "react";
-import { inube, presente } from "@inube/design-system";
-
-interface IHandleSubmitProps {
-  domain: string;
-  block: string;
-  tokenUpdate: typeof inube;
-}
-
-interface IPeopleColorProps {
-  token: typeof inube;
-  handleSubmit: (props: IHandleSubmitProps) => void;
-}
+import { Strokes } from "@pages/people/outlets/strokes";
+import { TokenProvider } from "@src/context/TokenContext";
 
 function PeopleRoutes() {
-  const [token, setToken] = useState({ ...presente });
-
-  const handleSubmit = (props: IHandleSubmitProps) => {
-    const { domain, block, tokenUpdate } = props;
-    const updatedTokenColor = {
-      ...token.color,
-      [block]: { ...tokenUpdate },
-    };
-
-    const updatedToken = {
-      ...token,
-      [domain]: { ...updatedTokenColor },
-    };
-    setToken(updatedToken);
-  };
-
   return (
-    <Routes>
-      <Route path="/" element={<People />}>
-        <Route path="options" element={<PeopleOptions />} />
-        <Route
-          path="palette"
-          element={<Palette token={{ ...token }} handleSubmit={handleSubmit} />}
-        />
-        <Route
-          path="texts"
-          element={<Texts token={token} handleSubmit={handleSubmit} />}
-        />
-        <Route
-          path="surfaces"
-          element={<Surfaces token={token} handleSubmit={handleSubmit} />}
-        />
-        <Route
-          path="lines"
-          element={<Lines token={token} handleSubmit={handleSubmit} />}
-        />
-      </Route>
-      <Route path="/*" element={<ErrorPage />} />
-    </Routes>
+    <TokenProvider>
+      <Routes>
+        <Route path="/" element={<People />}>
+          <Route path="options" element={<PeopleOptions />} />
+          <Route path="palette" element={<Palette />} />
+          <Route path="texts" element={<Texts />} />
+          <Route path="surfaces" element={<Surfaces />} />
+          <Route path="strokes" element={<Strokes />} />
+        </Route>
+        <Route path="/*" element={<ErrorPage />} />
+      </Routes>
+    </TokenProvider>
   );
 }
 
 export { PeopleRoutes };
-
-export type { IHandleSubmitProps, IPeopleColorProps };

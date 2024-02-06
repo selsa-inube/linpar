@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RenderContentFormNeutralPaletteUI } from "./interface";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
-import { IHandleSubmitProps } from "@src/routes/people";
 import { paletteMessagesConfig } from "../../config/palette.config";
+import { TokenContext } from "@src/context/TokenContext";
 
 interface RenderContentFormNeutralPaletteProps {
   formType: string;
-  handleSubmit: (props: IHandleSubmitProps) => void;
-  token: typeof inube;
 }
 
 function RenderContentFormNeutralPalette(
   props: RenderContentFormNeutralPaletteProps
 ) {
-  const { formType, handleSubmit, token } = props;
+  const { formType } = props;
+  const { token, handleSubmit } = useContext(TokenContext);
   const [paletteToken, setPaletteToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.palette }))
   );
@@ -88,6 +87,7 @@ function RenderContentFormNeutralPalette(
   const handleReset = () => {
     setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
   };
+
   const updatedTheme = {
     ...token,
     color: {

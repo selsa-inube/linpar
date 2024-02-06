@@ -1,4 +1,4 @@
-const linesTabsConfig = {
+const strokesTabsConfig = {
   primary: {
     id: "primary",
     isDisabled: false,
@@ -61,4 +61,4 @@ const linesTabsConfig = {
   },
 };
 
-export { linesTabsConfig };
+export { strokesTabsConfig };
