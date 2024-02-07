@@ -135,36 +135,37 @@ function RenderContentFormSurfaceBlanketUI(
               Mostrar Blanket
             </Button>
             {showBlanket && (
-              <Blanket>
-                <StyledModal isSmallScreen={isSmallScreen}>
-                  <Stack
-                    direction="column"
-                    gap={inube.spacing.s300}
-                    padding="s300"
-                  >
-                    <Stack>
-                      <Text
-                        type="title"
-                        size={isSmallScreen ? "small" : "medium"}
-                        appearance={"dark"}
-                      >
-                        Ventana modal
-                      </Text>
+              <StyledBackdropBlanket onClick={() => handleShowBlanket()}>
+                <Blanket>
+                  <StyledModal isSmallScreen={isSmallScreen}>
+                    <Stack
+                      direction="column"
+                      gap={inube.spacing.s300}
+                      padding="s300"
+                    >
+                      <Stack>
+                        <Text
+                          type="title"
+                          size={isSmallScreen ? "small" : "medium"}
+                          appearance={"dark"}
+                        >
+                          Ventana modal
+                        </Text>
+                      </Stack>
+                      <Stack justifyContent="flex-end" gap="8px">
+                        <Button
+                          appearance={"dark"}
+                          variant="outlined"
+                          spacing={isSmallScreen ? "compact" : "wide"}
+                          onClick={handleShowBlanket}
+                        >
+                          Ocultar modal
+                        </Button>
+                      </Stack>
                     </Stack>
-                    <Stack justifyContent="flex-end" gap="8px">
-                      <Button
-                        appearance={"dark"}
-                        variant="outlined"
-                        spacing={isSmallScreen ? "compact" : "wide"}
-                        onClick={handleShowBlanket}
-                      >
-                        Ocultar modal
-                      </Button>
-                    </Stack>
-                  </Stack>
-                </StyledModal>
-                <StyledBackdropBlanket onClick={() => handleShowBlanket()} />
-              </Blanket>
+                  </StyledModal>
+                </Blanket>
+              </StyledBackdropBlanket>
             )}
             <Grid
               templateColumns={templateColumns}
