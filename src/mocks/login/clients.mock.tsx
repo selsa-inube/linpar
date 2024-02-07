@@ -33,19 +33,19 @@ const clientsDataMock = [
     id: 518481,
     name: "Cooservunal Fuerza cooperativa y social",
     sigla: "Cooservunal",
-    logo: "/src/assets/clients-mocks/cooservunal.png",
+    logo: "/cooservunal.png",
   },
   {
     id: 848123,
     name: "Corbanca Corporación fondo de empleados bancarios y del sector financiero",
     sigla: "Corbanca",
-    logo: "/src/assets/clients-mocks/corbanca.png",
+    logo: "/corbanca.png",
   },
   {
     id: 454813,
     name: "Fondecom Unidos para soluciones de fondo",
     sigla: "Fondecom",
-    logo: "/src/assets/clients-mocks/fondecom.png",
+    logo: "/fondecom.png",
   },
 
   // {
