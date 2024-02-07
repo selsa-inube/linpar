@@ -1,5 +1,11 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { SectionMessage, Stack, inube } from "@inube/design-system";
+import {
+  SectionMessage,
+  Stack,
+  inube,
+  Text,
+  useMediaQueries,
+} from "@inube/design-system";
 
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
@@ -7,6 +13,7 @@ import { ThemeProvider } from "styled-components";
 import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { StyledMessageContainer } from "./styles";
 import { RenderCategoryGrid } from "@src/components/layout/RenderCategoryGrid";
+import { paletteConfig } from "../../config/palette.config";
 
 const renderMessage = (
   message: IUsersMessage,
@@ -63,8 +70,31 @@ function RenderContentFormPaletteUI(props: RenderContentFormPaletteUIProps) {
     updatedTheme,
   } = props;
 
+  const {
+    "(max-width: 744px)": isSmallScreen,
+    "(min-width: 745px) and (max-width: 1000px)": isMediumScreen,
+  } = useMediaQueries([
+    "(max-width: 744px)",
+    "(min-width: 745px) and (max-width: 1000px)",
+  ]);
+
+  const templateColumns = isSmallScreen
+    ? "repeat(1, 1fr)"
+    : isMediumScreen
+    ? "repeat(2, 1fr)"
+    : "repeat(3, 1fr)";
+
+  const templateRows = isMediumScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)";
+  const autoFlow = isSmallScreen ? "row" : "column";
+
   return (
     <>
+      {(formType === "neutral" || formType === "neutralAlpha") && (
+        <Text size="medium" padding="0px" appearance="gray">
+          {paletteConfig[formType as keyof typeof paletteConfig].description}
+        </Text>
+      )}
+
       <FormButtons
         disabledButtons={!hasChanges()}
         handleSubmit={handleSubmitForm}
@@ -73,12 +103,20 @@ function RenderContentFormPaletteUI(props: RenderContentFormPaletteUIProps) {
       >
         <ThemeProvider theme={updatedTheme}>
           <RenderCategoryGrid
-            templateColumns={"1fr"}
-            templateRows="repeat(7, 1fr)"
+            templateColumns={
+              formType === "neutral" || formType === "neutralAlpha"
+                ? templateColumns
+                : "1fr"
+            }
+            templateRows={
+              formType === "neutral" || formType === "neutralAlpha"
+                ? templateRows
+                : "repeat(7, 1fr)"
+            }
             gap="s150"
             autoColumns="unset"
             autoRows="unset"
-            autoFlow="column"
+            autoFlow={formType === "neutral" ? autoFlow : "column"}
             categories={categories[formType]}
             type="tokenPicker"
             onChange={handleColorChange}

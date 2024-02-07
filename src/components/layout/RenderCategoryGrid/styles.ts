@@ -84,6 +84,10 @@ const StyledDivText = styled.div`
   width: 51px;
 `;
 
+const StyledTokenColorCardContainer = styled.div`
+  display: block;
+`;
+
 export {
   StyledColorTokenCard,
   HiddenColorPicker,
@@ -93,4 +97,5 @@ export {
   StyledDivText,
   StyledHoverPopup,
   StyledHoverIcon,
+  StyledTokenColorCardContainer,
 };

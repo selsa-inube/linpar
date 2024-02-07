@@ -1,16 +1,13 @@
-import { StoryFn } from "@storybook/react";
-import { ThemeProvider } from "styled-components";
-import { RenderCategoryGrid, renderCategoryGridProps } from ".";
-import { inube } from "@inube/design-system";
 import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { inube } from "@inube/design-system";
 
-const story = {
-  component: [RenderCategoryGrid],
-  title: "layouts/RenderCategoryGrid",
-  decorators: [(Story: StoryFn) => <Story />],
-};
+interface DynamicThemeWrapperProps {
+  children: JSX.Element;
+}
 
-const DynamicThemeWrapper = ({ children }: any) => {
+const DynamicThemeWrapper = (props: DynamicThemeWrapperProps) => {
+  const { children } = props;
   const [theme, setTheme] = useState({ ...inube.color.palette });
   const [selectedTokenName, setSelectedTokenName] = useState("N900");
   const [toggleActive, setToggleActive] = useState(false);
@@ -44,18 +41,4 @@ const DynamicThemeWrapper = ({ children }: any) => {
   );
 };
 
-export const Default = (args: renderCategoryGridProps) => (
-  <DynamicThemeWrapper>
-    <RenderCategoryGrid {...args} />
-  </DynamicThemeWrapper>
-);
-
-Default.args = {
-  categories: inube.color.palette.neutral,
-  type: "colorPicker",
-  templateRows: "repeat(10, 1fr)",
-  templateColumns: "repeat(3, 1fr)",
-  toggleActive: false,
-  setToggleActive: (props: boolean) => {},
-};
-export default story;
+export { DynamicThemeWrapper };

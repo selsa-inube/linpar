@@ -1,5 +1,5 @@
 import { Stack, Text, useMediaQuery, Grid, inube } from "@inube/design-system";
-import { StyledGridContainer } from "./styles";
+import { StyledGridContainer, StyledTokenColorCardContainer } from "./styles";
 import { categoryTranslations } from "@src/pages/people/outlets/palette/config/palette.config";
 import { TokenColorCard } from "@src/components/cards/TokenColorCard";
 
@@ -62,7 +62,10 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
             autoFlow={autoFlow}
           >
             {Object.entries(tokens).map(([tokenName]) => (
-              <div key={tokenName} onClick={() => onChange(tokenName)}>
+              <StyledTokenColorCardContainer
+                key={tokenName}
+                onClick={() => onChange(tokenName)}
+              >
                 <TokenColorCard
                   tokenName={tokenName}
                   type="tokenPicker"
@@ -71,7 +74,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                   palette={categories}
                   width={width}
                 />
-              </div>
+              </StyledTokenColorCardContainer>
             ))}
           </Grid>
         </StyledGridContainer>
