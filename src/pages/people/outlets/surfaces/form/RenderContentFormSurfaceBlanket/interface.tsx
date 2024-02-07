@@ -135,7 +135,12 @@ function RenderContentFormSurfaceBlanketUI(
               Mostrar Blanket
             </Button>
             {showBlanket && (
-              <StyledBackdropBlanket onClick={() => handleShowBlanket()}>
+              <StyledBackdropBlanket
+                onClick={() => {
+                  handleShowBlanket();
+                  setToggleActive(!toggleActive);
+                }}
+              >
                 <Blanket>
                   <StyledModal isSmallScreen={isSmallScreen}>
                     <Stack
