@@ -11,4 +11,10 @@ const StyledAppMenu = styled.div`
   }
 `;
 
-export { StyledAppMenu };
+const StyledDomainContainer = styled.div`
+  & > p {
+    margin-bottom: ${inube.spacing.s300};
+  }
+`;
+
+export { StyledAppMenu, StyledDomainContainer };
