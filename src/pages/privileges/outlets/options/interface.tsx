@@ -1,5 +1,6 @@
 import { AppMenu } from "@components/layout/AppMenu";
 import { IAppOption, IRoute } from "@components/layout/AppMenu/types";
+import { AppMenuGrid } from "@src/components/layout/AppMenuGrid";
 
 interface PrivilegesOptionsUIProps {
   appName: string;
@@ -17,7 +18,9 @@ function PrivilegesOptionsUI(props: PrivilegesOptionsUIProps) {
       appDescription={appDescription}
       appOptions={appOptions}
       appRoute={appRoute}
-    />
+    >
+      <AppMenuGrid appOptions={appOptions} />
+    </AppMenu>
   );
 }
 
