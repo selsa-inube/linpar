@@ -96,6 +96,7 @@ function RenderContentFormSurfaceBlanket(
 
   const handleShowBlanket = () => {
     setShowBlanket(!showBlanket);
+    setToggleActive(!toggleActive);
   };
 
   const updatedTheme = {

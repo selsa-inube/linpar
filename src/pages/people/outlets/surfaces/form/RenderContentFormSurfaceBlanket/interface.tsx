@@ -138,7 +138,6 @@ function RenderContentFormSurfaceBlanketUI(
               <StyledBackdropBlanket
                 onClick={() => {
                   handleShowBlanket();
-                  setToggleActive(!toggleActive);
                 }}
               >
                 <Blanket>
