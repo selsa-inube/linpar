@@ -10,6 +10,7 @@ import {
 } from "react-icons/md";
 import { BrowserRouter } from "react-router-dom";
 import { AppMenu, AppMenuProps } from "./index";
+import { AppMenuGrid } from "@components/layout/AppMenuGrid";
 
 const story = {
   components: [AppMenu],
@@ -26,7 +27,11 @@ const story = {
   ],
 };
 
-const Privileges = (args: AppMenuProps) => <AppMenu {...args} />;
+const Privileges = (args: AppMenuProps) => (
+  <AppMenu {...args}>
+    <AppMenuGrid appOptions={Privileges.args.appOptions} />
+  </AppMenu>
+);
 Privileges.args = {
   appName: "Privilegios",
   appDescription: "Modifica las propiedades y permisos de tu cuenta",
@@ -52,6 +57,7 @@ Privileges.args = {
       label: "Usuarios",
       description: "invitar, editar, activar y eliminar usuarios de Linix",
       url: "privileges/users",
+      domain: "privileges",
     },
     {
       id: 2,
@@ -59,6 +65,7 @@ Privileges.args = {
       label: "Roles",
       description: "Crear, editar, activar y eliminar roles de Linix",
       url: "privileges/roles",
+      domain: "privileges",
     },
     {
       id: 3,
@@ -66,6 +73,7 @@ Privileges.args = {
       label: "Administración contenido",
       description: "Administrar el contenido de Linix",
       url: "privileges/ContentAdministration",
+      domain: "privileges",
     },
     {
       id: 4,
@@ -73,6 +81,7 @@ Privileges.args = {
       label: "Seguridad",
       description: "Administrar la configuración de seguridad de Linix",
       url: "privileges/Security",
+      domain: "privileges",
     },
     {
       id: 5,
@@ -80,6 +89,7 @@ Privileges.args = {
       label: "Dispositivos",
       description: "dispositivos vinculados",
       url: "privileges/devices",
+      domain: "privileges",
     },
     {
       id: 6,
@@ -87,6 +97,7 @@ Privileges.args = {
       label: "Administración versiones",
       description: "Administrar versiones de Linix",
       url: "privileges/users",
+      domain: "privileges",
     },
     {
       id: 7,
@@ -94,6 +105,7 @@ Privileges.args = {
       label: "Gestion productos",
       description: "Gestionar productos Linix",
       url: "privileges/users",
+      domain: "privileges",
     },
   ],
 };

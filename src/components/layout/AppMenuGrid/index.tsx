@@ -1,6 +1,5 @@
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
 import { Grid, useMediaQuery } from "@inube/design-system";
-
 import { AppMenuCardProps } from "@components/cards/AppMenuCard";
 
 interface AppMenuGridProps {
@@ -28,6 +27,7 @@ function AppMenuGrid(props: AppMenuGridProps) {
           label={item.label}
           description={item.description}
           url={item.url}
+          domain={item.domain}
         />
       ))}
     </Grid>

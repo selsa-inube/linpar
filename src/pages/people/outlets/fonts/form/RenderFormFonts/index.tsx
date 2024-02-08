@@ -69,7 +69,6 @@ function RenderFormFonts() {
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleReset={handleReset}
       handleSubmitForm={handleSubmitForm}
-      handleTokenChange={() => {}}
       hasChanges={hasChanges}
       isLoading={isLoading}
       message={message}
