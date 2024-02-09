@@ -6,10 +6,14 @@ import {
   Text,
   Select,
 } from "@inube/design-system";
-import { StyledMessageContainer, StyledFontsInfoContainer } from "./styles";
+import {
+  StyledMessageContainer,
+  StyledFontsInfoContainer,
+  StyledFontsFieldsetContainer,
+} from "./styles";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { fontOptions } from "@pages/people/outlets/fonts/config/fonts.config";
+import { fontOptions } from "@pages/people/outlets/typography/fonts/config/fonts.config";
 import { Fieldset } from "@src/components/inputs/Fieldset";
 const renderMessage = (
   message: IUsersMessage,
@@ -93,23 +97,27 @@ function RenderFontContentFormUI(props: RenderFontContentFormUIProps) {
               required={true}
               options={fontOptions}
               value="Roboto"
+              fullwidth={true}
             />
           </Stack>
           <Stack
             alignItems="flex-start"
             direction="column"
             gap={inube.spacing.s200}
+            width="100%"
           >
             <StyledFontsInfoContainer>
               <Text type="title" size="medium">
                 Vista previa
               </Text>
             </StyledFontsInfoContainer>
-            <Fieldset title={"Regular"}>
-              <Text type="display" size="small">
-                "The quick brown fox jumps over the lazy dog"
-              </Text>
-            </Fieldset>
+            <StyledFontsFieldsetContainer>
+              <Fieldset title={"Regular"}>
+                <Text type="display" size="small">
+                  "The quick brown fox jumps over the lazy dog"
+                </Text>
+              </Fieldset>
+            </StyledFontsFieldsetContainer>
           </Stack>
         </Stack>
       </FormButtons>

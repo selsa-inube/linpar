@@ -8,4 +8,11 @@ const StyledMessageContainer = styled.div`
 `;
 
 const StyledFontsInfoContainer = styled.div``;
-export { StyledMessageContainer, StyledFontsInfoContainer };
+const StyledFontsFieldsetContainer = styled.div`
+  width: 100%;
+`;
+export {
+  StyledMessageContainer,
+  StyledFontsInfoContainer,
+  StyledFontsFieldsetContainer,
+};

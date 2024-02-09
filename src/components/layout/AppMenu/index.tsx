@@ -1,5 +1,5 @@
 import { Breadcrumbs, Stack } from "@inube/design-system";
-import { PageTitle } from "../../PageTitle";
+import { PageTitle } from "@components/PageTitle";
 import { StyledAppMenu } from "./styles";
 import { IRoute } from "./types";
 

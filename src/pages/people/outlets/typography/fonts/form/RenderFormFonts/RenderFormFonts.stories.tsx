@@ -5,7 +5,7 @@ import { RenderFormFonts } from ".";
 
 const story = {
   components: [RenderFormFonts],
-  title: "layouts/people/outlets/fonts/form/RenderFormFonts",
+  title: "layouts/people/outlets/typography/fonts/form/RenderFormFonts",
   parameters: {
     layout: "fullscreen",
   },

@@ -1,6 +1,6 @@
 import { Breadcrumbs, Stack, useMediaQuery, inube } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
-import { peopleOptionsConfig } from "../options/config/people.config";
+import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { RenderFormFonts } from "./form/RenderFormFonts";
 
 export function FontsUI() {

@@ -1,4 +1,4 @@
-import { fontMessagesConfig } from "../../config/fonts.config";
+import { fontMessagesConfig } from "@pages/people/outlets/typography/fonts/config/fonts.config";
 import { RenderFontContentFormUI } from "./interface";
 import { useContext, useState } from "react";
 import { TokenContext } from "@context/TokenContext";

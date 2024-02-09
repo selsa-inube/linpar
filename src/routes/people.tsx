@@ -7,7 +7,7 @@ import { Texts } from "@pages/people/outlets/texts";
 import { Surfaces } from "@pages/people/outlets/surfaces";
 import { Strokes } from "@pages/people/outlets/strokes";
 import { TokenProvider } from "@src/context/TokenContext";
-import { Fonts } from "@pages/people/outlets/fonts";
+import { Fonts } from "@pages/people/outlets/typography/fonts";
 
 function PeopleRoutes() {
   return (
