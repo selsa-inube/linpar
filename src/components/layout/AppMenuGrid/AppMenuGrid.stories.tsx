@@ -9,12 +9,11 @@ import {
   MdPerson,
 } from "react-icons/md";
 import { BrowserRouter } from "react-router-dom";
-import { AppMenu, AppMenuProps } from "./index";
-import { AppMenuGrid } from "@components/layout/AppMenuGrid";
+import { AppMenuGrid, AppMenuGridProps } from "./index";
 
 const story = {
-  components: [AppMenu],
-  title: "layouts/AppMenu",
+  components: [AppMenuGrid],
+  title: "layouts/AppMenuGrid",
   parameters: {
     layout: "fullscreen",
   },
@@ -27,29 +26,8 @@ const story = {
   ],
 };
 
-const Privileges = (args: AppMenuProps) => (
-  <AppMenu {...args}>
-    <AppMenuGrid appOptions={Privileges.args.appOptions} />
-  </AppMenu>
-);
+const Privileges = (args: AppMenuGridProps) => <AppMenuGrid {...args} />;
 Privileges.args = {
-  appName: "Privilegios",
-  appDescription: "Modifica las propiedades y permisos de tu cuenta",
-  navigatePage: "/",
-  appRoute: [
-    {
-      path: "/",
-      label: "Inicio",
-      id: "/",
-      isActive: false,
-    },
-    {
-      path: "/users",
-      label: "Usuarios",
-      id: "/users",
-      isActive: false,
-    },
-  ],
   appOptions: [
     {
       id: 1,
