@@ -18,6 +18,7 @@ const StyledBackdropBlanket = styled.div`
   width: 100%;
   height: 100%;
   background-color: transparent;
+  z-index: 3;
 `;
 
 const StyledModal = styled.div<IStyledModal>`
