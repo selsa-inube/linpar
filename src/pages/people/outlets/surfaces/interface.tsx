@@ -10,21 +10,24 @@ import { PageTitle } from "@components/PageTitle";
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { surfaceTabsConfig } from "./config/surfaceTabs.config";
-import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
+import {
+  RenderSurfaceContentForm,
+  RenderSurfaceContentFormProps,
+} from "./form/RenderContentFormSurface";
 import { surfaceFormsConfig } from "./config/surface.config";
 import { RenderContentFormSurfaceBlanket } from "./form/RenderContentFormSurfaceBlanket";
 import { RenderContentFormSurfaceNav } from "./form/RenderContentFormNav";
+import { SurfaceAppearance } from "./types";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
-  selectedTab: string;
+  selectedTab: SurfaceAppearance;
   surfaceConfig: typeof surfaceFormsConfig;
 }
-type FormType = "blanket" | "nav" | "default";
 
 interface IRenderForm {
-  formType: string;
-  selectedTab: string;
+  formType: SurfaceAppearance;
+  selectedTab: SurfaceAppearance;
   surfaceConfig: typeof surfaceFormsConfig;
 }
 
@@ -32,19 +35,20 @@ function renderForm(props: IRenderForm) {
   const { formType, selectedTab, surfaceConfig } = props;
   if (selectedTab !== formType) return null;
 
-  const formTypeToComponentMap = {
+  const formTypeToComponentMap: {
+    [key: string]: React.ComponentType<RenderSurfaceContentFormProps>;
+  } = {
     blanket: RenderContentFormSurfaceBlanket,
     nav: RenderContentFormSurfaceNav,
-    default: RenderSurfaceContentForm,
   };
 
   const Component =
-    formTypeToComponentMap[formType as FormType] ||
-    formTypeToComponentMap["default"];
+    formTypeToComponentMap[formType as keyof typeof formTypeToComponentMap] ||
+    RenderSurfaceContentForm;
 
   return (
     <Component
-      key={formType}
+      key={String(formType)}
       formType={formType}
       surfaceConfig={surfaceConfig}
     />

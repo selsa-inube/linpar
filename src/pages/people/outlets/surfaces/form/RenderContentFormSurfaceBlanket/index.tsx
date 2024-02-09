@@ -10,7 +10,7 @@ import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "../../types";
 
 interface RenderContentFormSurfaceBlanketProps {
-  formType: string;
+  formType: SurfaceAppearance;
   surfaceConfig: typeof surfaceFormsConfig;
 }
 

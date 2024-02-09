@@ -17,6 +17,7 @@ import { Appearance } from "@components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "../../config/surface.config";
 import { MdOutlineHouse } from "react-icons/md";
+import { SurfaceAppearance } from "../../types";
 
 interface ISurfaceCardConfig {
   title: string;
@@ -51,12 +52,12 @@ const renderMessage = (
 };
 
 interface RenderSurfaceContentFormUIProps {
-  formType: Appearance | string;
+  formType: SurfaceAppearance;
   handleCloseMessage: () => void;
   handleReset: () => void;
   handleSubmitForm: () => void;
   handleTokenChange: (
-    appearance: Appearance | string,
+    appearance: SurfaceAppearance,
     category: string,
     updatedTokenName: string
   ) => void;

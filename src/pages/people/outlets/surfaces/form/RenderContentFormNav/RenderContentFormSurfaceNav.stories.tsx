@@ -30,13 +30,12 @@ const story = {
 const Default = (args: RenderContentFormSurfaceNavProps) => {
   return (
     <Stack padding="s300" direction="column" gap={inube.spacing.s400}>
-      <RenderContentFormSurfaceNav {...args} />
+      <RenderContentFormSurfaceNav {...args} formType="nav" />
     </Stack>
   );
 };
 
 Default.args = {
-  formType: "nav",
   surfaceConfig: { nav: surfaceFormsConfig.nav },
 };
 export default story;

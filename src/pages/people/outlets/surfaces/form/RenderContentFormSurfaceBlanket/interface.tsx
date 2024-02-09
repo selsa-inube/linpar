@@ -18,8 +18,8 @@ import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.t
 import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
 import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
 import { surfaceFormsConfig } from "../../config/surface.config";
+import { SurfaceAppearance } from "../../types";
 
 interface ISurfaceCardConfig {
   title: string;
@@ -54,13 +54,13 @@ const renderMessage = (
 };
 
 interface RenderContentFormSurfaceBlanketUIProps {
-  formType: Appearance | string;
+  formType: SurfaceAppearance;
   handleCloseMessage: () => void;
   handleReset: () => void;
   handleSubmitForm: () => void;
   handleShowBlanket: () => void;
   handleTokenChange: (
-    appearance: Appearance | string,
+    appearance: SurfaceAppearance,
     category: string,
     updatedTokenName: string
   ) => void;
