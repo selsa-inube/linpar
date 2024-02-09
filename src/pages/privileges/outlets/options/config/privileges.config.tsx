@@ -12,6 +12,7 @@ const privilegeOptionsConfig = [
     label: "Usuarios",
     description: "invitar, editar, activar y eliminar usuarios de Linix",
     url: "/privileges/users",
+    domain: "privileges",
     crumbs: [
       {
         path: "/",
