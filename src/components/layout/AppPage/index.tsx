@@ -1,4 +1,3 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
@@ -24,7 +23,6 @@ const renderLogo = (imgUrl: string) => {
 
 function AppPage() {
   const { user } = useContext(AppContext);
-  const { logout } = useAuth0();
 
   const smallScreen = useMediaQuery("(max-width: 849px)");
   return (
@@ -43,7 +41,7 @@ function AppPage() {
             alignContent="unset"
           >
             {!smallScreen && (
-              <StyledContainerNav onClick={() => logout()}>
+              <StyledContainerNav>
                 <Nav
                   navigation={navigationConfig}
                   logoutPath="/"
