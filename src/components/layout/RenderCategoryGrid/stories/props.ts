@@ -8,7 +8,7 @@ const parameters = {
     },
   },
   controls: {
-    exclude: ["templateRows", "templateColumns"],
+    exclude: ["templateRows", "templateColumns", "categories"],
   },
 };
 const categoryOptions = {

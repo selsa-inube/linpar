@@ -22,7 +22,13 @@ const adjustArgsForConditions = (args: renderCategoryGridProps) => {
 };
 
 export const Default = (originalArgs: renderCategoryGridProps) => {
-  const args = adjustArgsForConditions(originalArgs);
+  const adjustedArgs = {
+    ...originalArgs,
+    categories:
+      originalArgs.type === "colorPicker" ? "Palette" : "Neutral-Palette",
+  };
+
+  const args = adjustArgsForConditions(adjustedArgs);
   return (
     <DynamicThemeWrapper>
       <RenderCategoryGrid
@@ -37,7 +43,6 @@ export const Default = (originalArgs: renderCategoryGridProps) => {
 };
 
 Default.args = {
-  categories: "Neutral Palette",
   type: "colorPicker",
   templateRows: "repeat(10, 1fr)",
   templateColumns: "repeat(3, 1fr)",
