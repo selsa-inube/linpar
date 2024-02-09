@@ -22,6 +22,7 @@ Default.args = {
   label: "users",
   description: "invite, edit, activate and delete Linix users",
   url: "/",
+  domain: "color",
 };
 
 export default story;

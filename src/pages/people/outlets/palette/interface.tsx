@@ -11,35 +11,11 @@ import { StyledContainer, StyledTabsContainer } from "./styles";
 import { peopleOptionsConfig } from "../options/config/people.config";
 import { paletteTabsConfig } from "./config/paletteTabs.config";
 import { RenderContentFormPalette } from "./form/RenderContentFormPalette";
-import { RenderContentFormNeutralPalette } from "./form/RenderContentFormNeutralPalette";
 
 interface PaletteUIProps {
   handleTabChange: (id: string) => void;
   selectedTab: string;
   paletteConfig: typeof paletteTabsConfig;
-}
-type FormType = "neutral" | "neutralAlpha" | "default";
-
-interface IRenderForm {
-  formType: string;
-  selectedTab: string;
-}
-
-function renderForm(props: IRenderForm) {
-  const { formType, selectedTab } = props;
-  if (selectedTab !== formType) return null;
-
-  const formTypeToComponentMap = {
-    neutral: RenderContentFormNeutralPalette,
-    neutralAlpha: RenderContentFormNeutralPalette,
-    default: RenderContentFormPalette,
-  };
-
-  const Component =
-    formTypeToComponentMap[formType as FormType] ||
-    formTypeToComponentMap["default"];
-
-  return <Component formType={formType} key={formType} />;
 }
 
 export function PaletteUI(props: PaletteUIProps) {
@@ -77,10 +53,14 @@ export function PaletteUI(props: PaletteUIProps) {
                 type={typeTabs ? "select" : "tabs"}
               />
               {colorTabs.map((formType) => {
-                return renderForm({
-                  formType,
-                  selectedTab,
-                });
+                return (
+                  selectedTab === formType && (
+                    <RenderContentFormPalette
+                      key={formType}
+                      formType={formType}
+                    />
+                  )
+                );
               })}
             </Stack>
           </StyledTabsContainer>

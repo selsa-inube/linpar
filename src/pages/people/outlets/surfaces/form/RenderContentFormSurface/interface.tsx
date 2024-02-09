@@ -5,7 +5,7 @@ import {
   Text,
   inube,
   Grid,
-  useMediaQueries,
+  useMediaQuery,
   NavLink,
 } from "@inube/design-system";
 import { StyledMessageContainer, StyledNavLinkContainer } from "./styles";
@@ -94,19 +94,8 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
     surfaceConfig[formType as keyof typeof surfaceConfig].status
   );
 
-  const {
-    "(max-width: 744px)": isSmallScreen,
-    "(min-width: 745px) and (max-width: 1000px)": isMediumScreen,
-  } = useMediaQueries([
-    "(max-width: 744px)",
-    "(min-width: 745px) and (max-width: 1000px)",
-  ]);
-
-  const templateColumns = isSmallScreen
-    ? "repeat(1, 1fr)"
-    : isMediumScreen
-    ? "repeat(2, 1fr)"
-    : "repeat(3, 1fr)";
+  const isSmallScreen = useMediaQuery("(max-width: 744px)");
+  const templateColumns = isSmallScreen ? "repeat(1, 1fr)" : "repeat(2, 1fr)";
 
   return (
     <>

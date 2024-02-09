@@ -1,11 +1,13 @@
-import { Stack, Text, Icon } from "@inube/design-system";
+import { Stack, Text, Icon, inube } from "@inube/design-system";
 import { StyledAppMenuCard } from "./styles";
 
 interface AppMenuCardProps {
+  id: number;
   icon: JSX.Element;
   label: string;
   description: string;
   url: string;
+  domain: keyof typeof inube;
 }
 
 function AppMenuCard(props: AppMenuCardProps) {

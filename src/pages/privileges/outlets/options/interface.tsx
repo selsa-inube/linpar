@@ -1,10 +1,12 @@
 import { AppMenu } from "@components/layout/AppMenu";
-import { IAppOption, IRoute } from "@components/layout/AppMenu/types";
+import { IRoute } from "@components/layout/AppMenu/types";
+import { AppMenuGrid } from "@src/components/layout/AppMenuGrid";
+import { AppMenuCardProps } from "@src/components/cards/AppMenuCard";
 
 interface PrivilegesOptionsUIProps {
   appName: string;
   appDescription: string;
-  appOptions: IAppOption[];
+  appOptions: AppMenuCardProps[];
   appRoute: IRoute[];
 }
 
@@ -15,9 +17,10 @@ function PrivilegesOptionsUI(props: PrivilegesOptionsUIProps) {
     <AppMenu
       appName={appName}
       appDescription={appDescription}
-      appOptions={appOptions}
       appRoute={appRoute}
-    />
+    >
+      <AppMenuGrid appOptions={appOptions} />
+    </AppMenu>
   );
 }
 

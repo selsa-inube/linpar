@@ -11,7 +11,6 @@ import tinycolor from "tinycolor2";
 import {
   StyledColorTokenCard,
   HiddenColorPicker,
-  StyledGridContainer,
   StyledGridColorsContainer,
   getTokenColor,
   StyledDivText,
@@ -20,8 +19,8 @@ import {
 } from "./styles";
 import { ThemeContext } from "styled-components";
 import { Popup } from "@src/components/feedback/Popup";
-import { categoryTranslations } from "@src/pages/people/outlets/palette/config/palette.config";
 import { MdOutlineEdit } from "react-icons/md";
+import { RenderCategoryGrid } from "@src/components/layout/RenderCategoryGrid";
 
 interface ITokenColorCardProps {
   tokenName: string;
@@ -33,64 +32,6 @@ interface ITokenColorCardProps {
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
   fieldsetRef?: React.MutableRefObject<HTMLFieldSetElement>;
-}
-
-interface renderCategoryGridProps {
-  categories: typeof inube;
-  templateColumns: string;
-  templateRows?: string;
-  autoFlow?: string;
-  hasBackground?: boolean;
-  onChange: any;
-}
-
-function RenderCategoryGrid(props: renderCategoryGridProps) {
-  const {
-    categories,
-    templateColumns,
-    templateRows = "auto",
-    autoFlow = "row",
-    hasBackground = false,
-    onChange,
-  } = props;
-
-  const tablet = useMediaQuery("(max-width: 850px)");
-  const width = tablet
-    ? `calc(100% - ${inube.spacing.s075})`
-    : `calc(100% - ${inube.spacing.s100})`;
-  const mobile = useMediaQuery("(max-width: 745px)");
-  const fontSize = mobile ? "small" : "medium";
-
-  return categories.map(([category, tokens]: string) => (
-    <Stack key={category} gap="16px" direction="column" width={width}>
-      <Text type="title" size={fontSize} textAlign="start" appearance="dark">
-        {categoryTranslations[category] || category}
-      </Text>
-      <StyledGridContainer hasBackground={hasBackground}>
-        <Grid
-          templateColumns={templateColumns}
-          templateRows={templateRows}
-          gap="s050"
-          autoColumns="unset"
-          autoRows="unset"
-          autoFlow={autoFlow}
-        >
-          {Object.entries(tokens).map(([tokenName]) => (
-            <div key={tokenName} onClick={() => onChange(tokenName)}>
-              <TokenColorCard
-                tokenName={tokenName}
-                palette={categories}
-                type="tokenPicker"
-                tokenDescription={"Token de color"}
-                onColorChange={() => onChange(tokenName)}
-                width={width}
-              />
-            </div>
-          ))}
-        </Grid>
-      </StyledGridContainer>
-    </Stack>
-  ));
 }
 
 function TokenColorCard(props: ITokenColorCardProps) {
@@ -223,6 +164,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
                       categories={Object.entries(palette)}
                       templateColumns="repeat(auto-fit, minmax(232px, 1fr))"
                       onChange={handleColorChangeCategory}
+                      hasTitle
                     />
                   </Grid>
                 </StyledGridColorsContainer>
