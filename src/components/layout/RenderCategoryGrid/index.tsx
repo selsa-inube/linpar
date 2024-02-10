@@ -72,7 +72,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                   tokenDescription={"Token de color"}
                   onColorChange={() => onChange(tokenName)}
                   palette={categories}
-                  width={width}
+                  width={"100%"}
                 />
               </StyledTokenColorCardContainer>
             ))}
