@@ -7,10 +7,11 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { StyledContainer, StyledTabsContainer } from "./styles";
-import { peopleOptionsConfig } from "../options/config/people.config";
+
 import { textsTabsConfig } from "./config/textsTabs.config";
 import { RenderTextContentForm } from "./form/RenderTextContentForm";
 import { textFormsConfig } from "./config/text.config";
+import { peopleOptionsConfig } from "../../options/config/people.config";
 
 interface TextUIProps {
   handleTabChange: (id: string) => void;

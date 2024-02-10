@@ -8,9 +8,9 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { StyledContainer, StyledTabsContainer } from "./styles";
-import { peopleOptionsConfig } from "../options/config/people.config";
 import { paletteTabsConfig } from "./config/paletteTabs.config";
 import { RenderContentFormPalette } from "./form/RenderContentFormPalette";
+import { peopleOptionsConfig } from "../../options/config/people.config";
 
 interface PaletteUIProps {
   handleTabChange: (id: string) => void;

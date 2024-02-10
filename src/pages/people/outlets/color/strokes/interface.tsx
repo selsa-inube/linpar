@@ -8,13 +8,14 @@ import {
 import { PageTitle } from "@components/PageTitle";
 
 import { StyledContainer, StyledTabsContainer } from "./styles";
-import { peopleOptionsConfig } from "../options/config/people.config";
+
 import { strokesTabsConfig } from "./config/strokesTabs.config";
 
 import { RenderStrokesContentForm } from "./form/RenderStrokesContentForm";
 import { RenderStrokesWithSpinnerForm } from "./form/RenderStrokesWithSpinnerForm";
 import { RenderStrokesWithLinkForm } from "./form/RenderStrokesWithLinkForm";
 import { strokesFormsConfig } from "./config/Strokes.config";
+import { peopleOptionsConfig } from "../../options/config/people.config";
 
 interface IStrokesUIProps {
   handleTabChange: (id: string) => void;

@@ -8,12 +8,13 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { StyledContainer, StyledTabsContainer } from "./styles";
-import { peopleOptionsConfig } from "../options/config/people.config";
+
 import { surfaceTabsConfig } from "./config/surfaceTabs.config";
 import { RenderSurfaceContentForm } from "./form/RenderContentFormSurface";
 import { surfaceFormsConfig } from "./config/surface.config";
 import { Appearance } from "@components/feedback/SendingInformation/types";
 import { RenderContentFormSurfaceBlanket } from "./form/RenderContentFormSurfaceBlanket";
+import { peopleOptionsConfig } from "../../options/config/people.config";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
