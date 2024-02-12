@@ -16,6 +16,7 @@ import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
+import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 
 function LogOut() {
   const { logout } = useAuth0();
@@ -50,6 +51,7 @@ function App() {
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect();
+      intializedTokenData();
     }
   }, [isLoading, isAuthenticated, loginWithRedirect]);
 

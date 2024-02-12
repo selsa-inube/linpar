@@ -6,7 +6,10 @@ import {
   TokenActions,
   actionTypes,
 } from "./types";
-import { fetchTokenData } from "@src/mocks/themeService/themeService.mock";
+import {
+  getTokens,
+  updateIdTokens,
+} from "@src/mocks/themeService/themeService.mock";
 
 const defaultTokenValue: ITokenContextProps = {
   token: {},
@@ -41,13 +44,24 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [token, dispatch] = useReducer(tokenReducer, {});
 
   useEffect(() => {
-    fetchTokenData().then((tokenData: typeof inube) => {
-      dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData });
+    getTokens("presente").then((tokenData: typeof inube) => {
+      console.log(tokenData.tokens);
+      dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
     });
   }, []);
 
   const handleSubmit = (props: IHandleSubmitProps) => {
-    dispatch({ type: actionTypes.UPDATE_TOKEN, payload: props });
+    const { domain, block, tokenUpdate } = props;
+    const newTokens = {
+      ...token,
+      [domain]: {
+        ...token[domain],
+        [block]: { ...tokenUpdate },
+      },
+    };
+    updateIdTokens("presente", newTokens).then((tokenData: typeof inube) => {
+      dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
+    });
   };
 
   return (
