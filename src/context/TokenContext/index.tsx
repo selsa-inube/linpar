@@ -45,21 +45,17 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
 
   useEffect(() => {
     getTokens("presente").then((tokenData: typeof inube) => {
-      console.log(tokenData.tokens);
       dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
     });
   }, []);
 
   const handleSubmit = (props: IHandleSubmitProps) => {
     const { domain, block, tokenUpdate } = props;
-    const newTokens = {
-      ...token,
-      [domain]: {
-        ...token[domain],
-        [block]: { ...tokenUpdate },
-      },
-    };
+    let newTokens = { ...token };
+    Object.assign(newTokens[domain][block], tokenUpdate);
+
     updateIdTokens("presente", newTokens).then((tokenData: typeof inube) => {
+      console.log(tokenData.tokens);
       dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
     });
   };
