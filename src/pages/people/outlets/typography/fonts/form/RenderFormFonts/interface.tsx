@@ -1,47 +1,14 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
+import { Stack, inube, Text, Select } from "@inube/design-system";
 import {
-  Stack,
-  SectionMessage,
-  inube,
-  Text,
-  Select,
-} from "@inube/design-system";
-import {
-  StyledMessageContainer,
   StyledFontsInfoContainer,
   StyledFontsFieldsetContainer,
 } from "./styles";
-import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { fontOptions } from "@pages/people/outlets/typography/fonts/config/fonts.config";
-import { Fieldset } from "@src/components/inputs/Fieldset";
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void,
-  onMessageClosed: () => void
-) => {
-  if (!message.data) return null;
+import { Fieldset } from "@components/inputs/Fieldset";
+import { RenderMessage } from "@components/layout/RenderMessage";
 
-  const closeMessageAndExecuteCallback = () => {
-    handleCloseMessage();
-    onMessageClosed();
-  };
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          appearance={message.data.appearance}
-          closeSectionMessage={closeMessageAndExecuteCallback}
-          description={message.data.description}
-          duration={4000}
-          icon={message.data.icon}
-          title={message.data.title}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
 interface RenderFontContentFormUIProps {
   handleCloseSectionMessage: () => void;
   handleReset: () => void;
@@ -121,7 +88,13 @@ function RenderFontContentFormUI(props: RenderFontContentFormUIProps) {
           </Stack>
         </Stack>
       </FormButtons>
-      {renderMessage(message, handleCloseSectionMessage, handleReset)}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseSectionMessage}
+          onMessageClosed={handleReset}
+        />
+      )}
     </>
   );
 }

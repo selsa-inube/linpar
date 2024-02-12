@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "../../config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
-import { TokenContext } from "@src/context/TokenContext";
+import { TokenContext } from "@context/TokenContext";
 
 interface RenderContentFormPaletteProps {
   formType: string;

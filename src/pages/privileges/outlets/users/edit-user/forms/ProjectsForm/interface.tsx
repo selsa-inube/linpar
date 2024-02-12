@@ -1,38 +1,10 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
-import { SectionMessage, Stack } from "@inube/design-system";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "../../../types/forms.types";
-import { assignmentFormMessages } from "../../config/messages.config";
-import { StyledMessageContainer } from "./styles";
-
-const renderMessage = (
-  message: IMessageState,
-  onCloseSectionMessage: ProjectsFormUIProps["onCloseSectionMessage"]
-) => {
-  if (!message.visible || !message.type) {
-    return null;
-  }
-  const { title, description, icon, appearance } =
-    assignmentFormMessages[message.type as keyof typeof assignmentFormMessages];
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          title={title}
-          description={description}
-          icon={icon}
-          appearance={appearance}
-          duration={4000}
-          closeSectionMessage={onCloseSectionMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
+import { RenderMessage } from "@components/layout/RenderMessage";
 
 interface ProjectsFormUIProps {
   projects: IAssignmentFormEntry[];
@@ -76,7 +48,13 @@ function ProjectsFormUI(props: ProjectsFormUIProps) {
             title="Seleccione los proyectos que desea asignar"
           />
         </FormButtons>
-        {renderMessage(message, onCloseSectionMessage)}
+        {message.visible && (
+          <RenderMessage
+            message={message}
+            handleCloseMessage={onCloseSectionMessage}
+            onMessageClosed={handleReset}
+          />
+        )}
       </>
     );
   }

@@ -6,13 +6,6 @@ interface IStyledModal {
   isSmallScreen: boolean;
 }
 
-const StyledMessageContainer = styled.div`
-  position: fixed;
-  bottom: 18px;
-  right: 75px;
-  z-index: 2;
-`;
-
 const StyledBackdropBlanket = styled.div`
   position: fixed;
   width: 100%;
@@ -31,4 +24,4 @@ const StyledModal = styled.div<IStyledModal>`
   z-index: 1;
 `;
 
-export { StyledMessageContainer, StyledBackdropBlanket, StyledModal };
+export { StyledBackdropBlanket, StyledModal };
