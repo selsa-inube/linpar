@@ -3,7 +3,6 @@ import {
   Breadcrumbs,
   Button,
   Icon,
-  SectionMessage,
   Stack,
   Tabs,
   Textfield,
@@ -23,29 +22,8 @@ import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
-import { StyledMessageContainer, StyledContainer } from "./styles";
-
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void
-) => {
-  if (!message.data) return null;
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="98%">
-        <SectionMessage
-          title={message.data.title}
-          description={message.data.description}
-          icon={message.data.icon}
-          appearance={message.data.appearance}
-          duration={4000}
-          closeSectionMessage={handleCloseMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
+import { StyledContainer } from "./styles";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface UsersUIProps {
   isSelected: string;
@@ -147,7 +125,13 @@ export function UsersUI(props: UsersUIProps) {
             </Stack>
           </StyledContainer>
         </Stack>
-        {renderMessage(message, handleCloseMessage)}
+        {message.visible && (
+          <RenderMessage
+            message={message}
+            handleCloseMessage={handleCloseMessage}
+            onMessageClosed={() => {}}
+          />
+        )}
       </Stack>
     </>
   );
