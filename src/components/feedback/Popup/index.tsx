@@ -23,7 +23,7 @@ const Popup = (props: PopupProps) => {
   };
 
   width = fieldsetRect.right - lastChildRect.left - 1.5 - 2 * spacingOffset;
-  width = Math.min(width, 271);
+  width = Math.min(width, 453);
   width = Math.max(width, 244);
   width += (spacingOffset - scrollWidth) / 2 + scrollWidth;
   width = width + "px";
