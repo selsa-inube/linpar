@@ -15,7 +15,7 @@ import { Appearance } from "@components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "../../config/surface.config";
 import { MdOutlineHouse } from "react-icons/md";
-import { RenderMessage } from "@components/layout/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface ISurfaceCardConfig {
   title: string;

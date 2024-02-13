@@ -4,7 +4,7 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "../../../types/forms.types";
-import { RenderMessage } from "@components/layout/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface ProjectsFormUIProps {
   projects: IAssignmentFormEntry[];

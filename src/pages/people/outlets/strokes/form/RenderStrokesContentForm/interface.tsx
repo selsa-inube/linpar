@@ -3,10 +3,10 @@ import { Grid, inube, Stack, Text, useMediaQuery } from "@inube/design-system";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { SendInformationMessage } from "@src/components/feedback/SendingInformation";
+import { Appearance } from "@components/feedback/SendingInformation/types";
+import { SendInformationMessage } from "@components/feedback/SendingInformation";
 import { strokesFormsConfig } from "../../config/Strokes.config";
-import { RenderMessage } from "@components/layout/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface RenderStrokesContentFormUIProps {
   formType: Appearance | string;

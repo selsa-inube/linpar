@@ -7,7 +7,7 @@ import {
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { fontOptions } from "@pages/people/outlets/typography/fonts/config/fonts.config";
 import { Fieldset } from "@components/inputs/Fieldset";
-import { RenderMessage } from "@components/layout/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface RenderFontContentFormUIProps {
   handleCloseSectionMessage: () => void;

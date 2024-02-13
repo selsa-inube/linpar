@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { Appearance } from "@components/feedback/SendingInformation/types";
 import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
 import { paletteConfig } from "../../config/palette.config";
-import { RenderMessage } from "@components/layout/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface RenderContentFormPaletteUIProps {
   categories: typeof inube;

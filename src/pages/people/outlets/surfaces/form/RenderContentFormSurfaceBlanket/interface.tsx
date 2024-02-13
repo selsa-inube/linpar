@@ -14,7 +14,7 @@ import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@components/feedback/SendingInformation/types";
 import { surfaceFormsConfig } from "../../config/surface.config";
-import { RenderMessage } from "@components/layout/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface ISurfaceCardConfig {
   title: string;

@@ -5,7 +5,7 @@ import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@components/feedback/SendingInformation/types";
 import { textFormsConfig } from "../../config/text.config";
-import { RenderMessage } from "@components/layout/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface ITextCardConfig {
   title: string;

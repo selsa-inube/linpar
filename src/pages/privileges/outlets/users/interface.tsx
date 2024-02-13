@@ -23,7 +23,7 @@ import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
 import { StyledContainer } from "./styles";
-import { RenderMessage } from "@components/layout/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface UsersUIProps {
   isSelected: string;
