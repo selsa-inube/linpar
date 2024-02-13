@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import { CheckingCredentials } from "./index";
+import { CheckingCredentials } from ".";
 
 const story = {
   components: [CheckingCredentials],
@@ -16,7 +16,7 @@ const story = {
   ],
 };
 
-const Default = () => <CheckingCredentials />;
+const Default = () => <CheckingCredentials clients={[]} />;
 
 export { Default };
 export default story;
