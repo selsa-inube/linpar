@@ -2,56 +2,24 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
   Button,
   Blanket,
-  SectionMessage,
   Stack,
   Text,
   inube,
   Grid,
   useMediaQueries,
 } from "@inube/design-system";
-import {
-  StyledBackdropBlanket,
-  StyledMessageContainer,
-  StyledModal,
-} from "./styles";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { StyledBackdropBlanket, StyledModal } from "./styles";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
+import { Appearance } from "@components/feedback/SendingInformation/types";
 import { surfaceFormsConfig } from "../../config/surface.config";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface ISurfaceCardConfig {
   title: string;
   description: string;
 }
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void,
-  onMessageClosed: () => void
-) => {
-  if (!message.data) return null;
-
-  const closeMessageAndExecuteCallback = () => {
-    handleCloseMessage();
-    onMessageClosed();
-  };
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          appearance={message.data.appearance}
-          closeSectionMessage={closeMessageAndExecuteCallback}
-          description={message.data.description}
-          duration={4000}
-          icon={message.data.icon}
-          title={message.data.title}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
 
 interface RenderContentFormSurfaceBlanketUIProps {
   formType: Appearance | string;
@@ -199,7 +167,13 @@ function RenderContentFormSurfaceBlanketUI(
           </Stack>
         </ThemeProvider>
       </FormButtons>
-      {renderMessage(message, handleCloseMessage, handleReset)}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseMessage}
+          onMessageClosed={handleReset}
+        />
+      )}
     </>
   );
 }

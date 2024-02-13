@@ -1,45 +1,17 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { SectionMessage, Stack, Text, inube } from "@inube/design-system";
-import { StyledMessageContainer } from "./styles";
+import { Stack, Text, inube } from "@inube/design-system";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@components/feedback/SendingInformation/types";
 import { textFormsConfig } from "../../config/text.config";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface ITextCardConfig {
   title: string;
   description: string;
   example: string;
 }
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void,
-  onMessageClosed: () => void
-) => {
-  if (!message.data) return null;
-
-  const closeMessageAndExecuteCallback = () => {
-    handleCloseMessage();
-    onMessageClosed();
-  };
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          appearance={message.data.appearance}
-          closeSectionMessage={closeMessageAndExecuteCallback}
-          description={message.data.description}
-          duration={4000}
-          icon={message.data.icon}
-          title={message.data.title}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
 
 interface RenderTextContentFormUIProps {
   formType: Appearance | string;
@@ -120,7 +92,13 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
           </Stack>
         </ThemeProvider>
       </FormButtons>
-      {renderMessage(message, handleCloseMessage, handleReset)}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseMessage}
+          onMessageClosed={handleReset}
+        />
+      )}
     </>
   );
 }

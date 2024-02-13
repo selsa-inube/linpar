@@ -3,14 +3,14 @@ import { RenderStrokesWithSpinnerFormUI } from "./interface";
 
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
 
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 
 import { IPeopleMessage } from "../../../types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
 } from "../../config/Strokes.config";
-import { TokenContext } from "@src/context/TokenContext";
+import { TokenContext } from "@context/TokenContext";
 
 interface RenderStrokesWithSpinnerFormProps {
   formType: string;

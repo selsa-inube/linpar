@@ -1,47 +1,12 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import {
-  SectionMessage,
-  Stack,
-  inube,
-  Text,
-  useMediaQueries,
-} from "@inube/design-system";
+import { inube, Text, useMediaQueries } from "@inube/design-system";
 
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
-import { StyledMessageContainer } from "./styles";
-import { RenderCategoryGrid } from "@src/components/layout/RenderCategoryGrid";
+import { Appearance } from "@components/feedback/SendingInformation/types";
+import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
 import { paletteConfig } from "../../config/palette.config";
-
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void,
-  onMessageClosed: () => void
-) => {
-  if (!message.data) return null;
-
-  const closeMessageAndExecuteCallback = () => {
-    handleCloseMessage();
-    onMessageClosed();
-  };
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          appearance={message.data.appearance}
-          closeSectionMessage={closeMessageAndExecuteCallback}
-          description={message.data.description}
-          duration={4000}
-          icon={message.data.icon}
-          title={message.data.title}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface RenderContentFormPaletteUIProps {
   categories: typeof inube;
@@ -86,6 +51,14 @@ function RenderContentFormPaletteUI(props: RenderContentFormPaletteUIProps) {
 
   const templateRows = isMediumScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)";
   const autoFlow = isSmallScreen ? "row" : "column";
+  console.log(
+    "message: ",
+    message,
+    " handleCloseMessage: ",
+    handleCloseMessage,
+    " handleReset: ",
+    handleReset
+  );
 
   return (
     <>
@@ -123,7 +96,13 @@ function RenderContentFormPaletteUI(props: RenderContentFormPaletteUIProps) {
           />
         </ThemeProvider>
       </FormButtons>
-      {renderMessage(message, handleCloseMessage, handleReset)}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseMessage}
+          onMessageClosed={handleReset}
+        />
+      )}
     </>
   );
 }

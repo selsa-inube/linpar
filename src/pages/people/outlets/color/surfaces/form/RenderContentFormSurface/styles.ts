@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
-const StyledMessageContainer = styled.div`
-  position: fixed;
-  bottom: 18px;
-  right: 75px;
-  z-index: 2;
-`;
-
 const StyledNavLinkContainer = styled.div`
   width: auto;
   margin: 0px ${inube.spacing.s200};
@@ -25,4 +18,4 @@ const StyledNavLinkContainer = styled.div`
   }
 `;
 
-export { StyledMessageContainer, StyledNavLinkContainer };
+export { StyledNavLinkContainer };
