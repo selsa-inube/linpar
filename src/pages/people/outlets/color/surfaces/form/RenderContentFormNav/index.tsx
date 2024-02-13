@@ -1,31 +1,32 @@
 import { useContext, useState } from "react";
-import { RenderSurfaceContentFormUI } from "./interface";
-import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
+import { RenderContentFormSurfaceNavUI } from "./interface";
+import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
 } from "../../config/surface.config";
-import { TokenContext } from "@context/TokenContext";
+import { TokenContext } from "@src/context/TokenContext";
 import { SurfaceAppearance } from "../../types";
 
-interface RenderSurfaceContentFormProps {
+interface RenderContentFormSurfaceNavProps {
   formType: SurfaceAppearance;
   surfaceConfig: typeof surfaceFormsConfig;
 }
 
-function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
+function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   const { formType, surfaceConfig } = props;
   const { token, handleSubmit } = useContext(TokenContext);
   const [surfaceToken, setSurfaceToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.surface }))
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [showNav, setShowNav] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
+
   const [toggleActive, setToggleActive] = useState(false);
-  const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
@@ -90,6 +91,11 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const handleReset = () => {
     setSurfaceToken(JSON.parse(JSON.stringify({ ...token.color.surface })));
   };
+
+  const handleShowNav = () => {
+    setShowNav(!showNav);
+  };
+
   const updatedTheme = {
     ...token,
     color: {
@@ -99,24 +105,24 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   };
 
   return (
-    <RenderSurfaceContentFormUI
+    <RenderContentFormSurfaceNavUI
       formType={formType}
       handleCloseMessage={handleCloseSectionMessage}
       handleReset={handleReset}
       handleSubmitForm={handleSubmitForm}
+      handleShowNav={handleShowNav}
       handleTokenChange={handleTokenChange}
       hasChanges={hasChanges}
       isLoading={isLoading}
       message={message}
-      surfaceConfig={surfaceConfig}
-      updatedTheme={updatedTheme}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
-      navLinkIsSelected={navLinkIsSelected}
-      setNavLinkIsSelected={setNavLinkIsSelected}
+      showNav={showNav}
+      surfaceConfig={surfaceConfig}
+      updatedTheme={updatedTheme}
     />
   );
 }
 
-export { RenderSurfaceContentForm };
-export type { RenderSurfaceContentFormProps };
+export { RenderContentFormSurfaceNav };
+export type { RenderContentFormSurfaceNavProps };

@@ -1,17 +1,16 @@
 import { useContext, useState } from "react";
 import { RenderContentFormSurfaceBlanketUI } from "./interface";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-
-import { Appearance } from "@components/feedback/SendingInformation/types";
 import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
 } from "../../config/surface.config";
 import { TokenContext } from "@context/TokenContext";
+import { SurfaceAppearance } from "../../types";
 
 interface RenderContentFormSurfaceBlanketProps {
-  formType: Appearance;
+  formType: SurfaceAppearance;
   surfaceConfig: typeof surfaceFormsConfig;
 }
 
@@ -35,7 +34,7 @@ function RenderContentFormSurfaceBlanket(
   };
 
   const handleTokenChange = (
-    appearance: Appearance | string,
+    appearance: SurfaceAppearance,
     category: string,
     updatedTokenName: string
   ) => {

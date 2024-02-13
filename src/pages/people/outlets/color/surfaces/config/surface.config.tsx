@@ -1,5 +1,9 @@
 import { EAppearance } from "@src/types/colors.types";
-import { MdErrorOutline, MdHouse, MdThumbUpOffAlt } from "react-icons/md";
+import {
+  MdErrorOutline,
+  MdOutlineHouse,
+  MdThumbUpOffAlt,
+} from "react-icons/md";
 
 const surfaceFormsConfig = {
   primary: {
@@ -161,12 +165,12 @@ const surfaceFormsConfig = {
 
   nav: {
     description:
-      "Las superficies del nav link determinarán el color de fondo en los diferentes cambios de comportamiento del componente",
+      "Las superficies del Nav determinarán el color de fondo del menú de navegación lateral.",
     status: {
       regular: {
         title: "Regular",
         description:
-          "La superficie tomará este color para resaltar acciones principales o el color de marca.",
+          "La superficie tomará este color para darle contraste a los links de navegación.",
       },
     },
   },
@@ -290,38 +294,32 @@ const mockNav = {
         privileges: {
           id: "privileges",
           label: "Link name",
-          icon: <MdHouse />,
-          path: "/privileges",
+          icon: <MdOutlineHouse />,
         },
         accounting: {
           id: "accounting",
           label: "Link name",
-          icon: <MdHouse />,
-          path: "/accounting",
+          icon: <MdOutlineHouse />,
         },
         contacts: {
           id: "contacts",
           label: "Link name",
-          icon: <MdHouse />,
-          path: "/contacts",
+          icon: <MdOutlineHouse />,
         },
         documents: {
           id: "documents",
           label: "Link name",
-          icon: <MdHouse />,
-          path: "/documents",
+          icon: <MdOutlineHouse />,
         },
         marketing: {
           id: "marketing",
           label: "Link name",
-          icon: <MdHouse />,
-          path: "/marketing",
+          icon: <MdOutlineHouse />,
         },
         savings: {
           id: "savings",
           label: "Link name",
-          icon: <MdHouse />,
-          path: "/savings",
+          icon: <MdOutlineHouse />,
         },
       },
     },

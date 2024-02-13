@@ -12,8 +12,8 @@ import { StyledBackdropBlanket, StyledModal } from "./styles";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@components/feedback/SendingInformation/types";
 import { surfaceFormsConfig } from "../../config/surface.config";
+import { SurfaceAppearance } from "../../types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface ISurfaceCardConfig {
@@ -22,13 +22,13 @@ interface ISurfaceCardConfig {
 }
 
 interface RenderContentFormSurfaceBlanketUIProps {
-  formType: Appearance | string;
+  formType: SurfaceAppearance;
   handleCloseMessage: () => void;
   handleReset: () => void;
   handleSubmitForm: () => void;
   handleShowBlanket: () => void;
   handleTokenChange: (
-    appearance: Appearance | string,
+    appearance: SurfaceAppearance,
     category: string,
     updatedTokenName: string
   ) => void;
