@@ -9,6 +9,7 @@ import {
 import {
   getTokens,
   updateIdTokens,
+  tokenCalculator,
 } from "@src/mocks/themeService/themeService.mock";
 
 const defaultTokenValue: ITokenContextProps = {
@@ -26,15 +27,6 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
   switch (action.type) {
     case actionTypes.SET_TOKEN:
       return { ...action.payload };
-    case actionTypes.UPDATE_TOKEN:
-      const { domain, block, tokenUpdate } = action.payload;
-      return {
-        ...state,
-        [domain]: {
-          ...state[domain],
-          [block]: { ...tokenUpdate },
-        },
-      };
     default:
       return state;
   }
@@ -45,7 +37,10 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
 
   useEffect(() => {
     getTokens("presente").then((tokenData: typeof inube) => {
-      dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
+      dispatch({
+        type: actionTypes.SET_TOKEN,
+        payload: tokenCalculator({ ...tokenData.tokens }),
+      });
     });
   }, []);
 
@@ -55,7 +50,6 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
     Object.assign(newTokens[domain][block], tokenUpdate);
 
     updateIdTokens("presente", newTokens).then((tokenData: typeof inube) => {
-      console.log(tokenData.tokens);
       dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
     });
   };
