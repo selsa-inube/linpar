@@ -26,8 +26,6 @@ const Default = () => {
   );
 };
 
-Default.args = {};
-
 export default story;
 
 export { Default };

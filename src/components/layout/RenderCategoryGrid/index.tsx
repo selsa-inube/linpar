@@ -1,7 +1,7 @@
 import { Stack, Text, useMediaQuery, Grid, inube } from "@inube/design-system";
 import { StyledGridContainer, StyledTokenColorCardContainer } from "./styles";
-import { categoryTranslations } from "@src/pages/people/outlets/palette/config/palette.config";
 import { TokenColorCard } from "@src/components/cards/TokenColorCard";
+import { categoryTranslations } from "@src/pages/people/outlets/color/palette/config/palette.config";
 
 interface renderCategoryGridProps {
   autoFlow?: string;
@@ -56,7 +56,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
           <Grid
             templateColumns={templateColumns}
             templateRows={templateRows}
-            gap={gap}
+            gap={"s050"}
             autoColumns={autoColumns}
             autoRows={autoRows}
             autoFlow={autoFlow}
@@ -72,7 +72,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                   tokenDescription={"Token de color"}
                   onColorChange={() => onChange(tokenName)}
                   palette={categories}
-                  width={width}
+                  width={"100%"}
                 />
               </StyledTokenColorCardContainer>
             ))}
