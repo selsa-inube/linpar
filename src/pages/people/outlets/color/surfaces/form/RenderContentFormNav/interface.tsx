@@ -1,56 +1,24 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
   Nav,
-  SectionMessage,
   Stack,
   Text,
   inube,
   Grid,
   useMediaQueries,
 } from "@inube/design-system";
-import {
-  StyledContainerNav,
-  StyledMessageContainer,
-  StyledNav,
-} from "./styles";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { FieldsetColorCard } from "@src/components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { StyledContainerNav, StyledNav } from "./styles";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
 import { mockNav, surfaceFormsConfig } from "../../config/surface.config";
 import { SurfaceAppearance } from "../../types";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface ISurfaceCardConfig {
   title: string;
   description: string;
 }
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void,
-  onMessageClosed: () => void
-) => {
-  if (!message.data) return null;
-
-  const closeMessageAndExecuteCallback = () => {
-    handleCloseMessage();
-    onMessageClosed();
-  };
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          appearance={message.data.appearance}
-          closeSectionMessage={closeMessageAndExecuteCallback}
-          description={message.data.description}
-          duration={4000}
-          icon={message.data.icon}
-          title={message.data.title}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
 
 interface RenderContentFormSurfaceNavUIProps {
   formType: SurfaceAppearance;
@@ -143,7 +111,13 @@ function RenderContentFormSurfaceNavUI(
           </Stack>
         </ThemeProvider>
       </FormButtons>
-      {renderMessage(message, handleCloseMessage, handleReset)}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseMessage}
+          onMessageClosed={handleReset}
+        />
+      )}
     </>
   );
 }

@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
-const StyledMessageContainer = styled.div`
-  position: fixed;
-  bottom: 18px;
-  right: 75px;
-  z-index: 2;
-`;
+interface IStyledNavLinkProps {
+  theme?: typeof inube;
+  smallScreen: boolean;
+}
 
 const StyledBackdropNav = styled.div`
   position: fixed;
@@ -14,10 +12,6 @@ const StyledBackdropNav = styled.div`
   height: 100%;
   background-color: transparent;
 `;
-interface IStyledNavLinkProps {
-  theme?: typeof inube;
-  smallScreen: boolean;
-}
 
 const StyledNav = styled.div<IStyledNavLinkProps>`
   > div {
@@ -35,13 +29,10 @@ const StyledNav = styled.div<IStyledNavLinkProps>`
         inube.color.stroke.divider.regular};
   }
 `;
+
 const StyledContainerNav = styled.div`
   max-width: 520px;
   width: 100%;
 `;
-export {
-  StyledMessageContainer,
-  StyledBackdropNav,
-  StyledNav,
-  StyledContainerNav,
-};
+
+export { StyledBackdropNav, StyledNav, StyledContainerNav };
