@@ -56,7 +56,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
           <Grid
             templateColumns={templateColumns}
             templateRows={templateRows}
-            gap={gap}
+            gap={"s050"}
             autoColumns={autoColumns}
             autoRows={autoRows}
             autoFlow={autoFlow}
@@ -72,7 +72,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
                   tokenDescription={"Token de color"}
                   onColorChange={() => onChange(tokenName)}
                   palette={categories}
-                  width={width}
+                  width={"100%"}
                 />
               </StyledTokenColorCardContainer>
             ))}
