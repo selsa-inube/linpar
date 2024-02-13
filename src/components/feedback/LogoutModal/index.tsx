@@ -18,7 +18,7 @@ interface ILogoutModalProps {
 
 function LogoutModal(props: ILogoutModalProps) {
   const { logoutPath, handleShowBlanket } = props;
-  const isSmallScreen = useMediaQuery("(max-width: 744px)");
+  const isSmallScreen = useMediaQuery("(max-width: 743px)");
 
   return (
     <StyledBackdropBlanket>
