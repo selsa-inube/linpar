@@ -1,12 +1,17 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { presente, inube, Stack } from "@inube/design-system";
-import { RenderStrokesContentForm, RenderStrokesContentFormProps } from ".";
+
+import {
+  RenderStrokesWithSpinnerForm,
+  RenderStrokesWithSpinnerFormProps,
+} from ".";
 import { strokesFormsConfig } from "../../config/Strokes.config";
 
 const story = {
-  components: [RenderStrokesContentForm],
-  title: "layouts/people/outlets/strokes/form/RenderStrokesContentForm",
+  components: [RenderStrokesWithSpinnerForm],
+  title:
+    "layouts/people/outlets/color/strokes/form/RenderStrokesWithSpinnerForm",
   parameters: {
     layout: "fullscreen",
   },
@@ -23,12 +28,12 @@ const themeMap = {
   presente: presente,
   inube: inube,
 };
-const Default = (args: RenderStrokesContentFormProps) => {
+const Default = (args: RenderStrokesWithSpinnerFormProps) => {
   const selectedTheme = themeMap[args.token as keyof typeof themeMap];
 
   return (
     <Stack padding="s300" direction="column" gap={selectedTheme.spacing.s400}>
-      <RenderStrokesContentForm {...args} token={selectedTheme} />
+      <RenderStrokesWithSpinnerForm {...args} token={selectedTheme} />
     </Stack>
   );
 };

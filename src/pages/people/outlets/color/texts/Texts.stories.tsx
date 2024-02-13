@@ -1,12 +1,12 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { Strokes } from "./index";
-import { presente } from "@inube/design-system";
+import { Texts } from ".";
 import { TokenContext } from "@src/context/TokenContext";
+import { presente } from "@inube/design-system";
 
 const story = {
-  components: [Strokes],
-  title: "layouts/people/outlets/strokes",
+  components: [Texts],
+  title: "layouts/people/outlets/color/texts",
   parameters: {
     layout: "fullscreen",
   },
@@ -23,9 +23,7 @@ const story = {
   ],
 };
 
-const Default = () => <Strokes />;
-Default.args = {};
+const Default = () => <Texts />;
 
 export default story;
-
 export { Default };

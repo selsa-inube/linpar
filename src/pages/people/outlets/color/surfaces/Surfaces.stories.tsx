@@ -1,12 +1,12 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { Palette } from "./index";
+import { Surfaces } from "./index";
 import { TokenContext } from "@src/context/TokenContext";
 import { presente } from "@inube/design-system";
 
 const story = {
-  components: [Palette],
-  title: "layouts/people/outlets/palette",
+  components: [Surfaces],
+  title: "layouts/people/outlets/color/surfaces",
   parameters: {
     layout: "fullscreen",
   },
@@ -23,7 +23,7 @@ const story = {
   ],
 };
 
-const Default = () => <Palette />;
+const Default = () => <Surfaces />;
 
 export default story;
 

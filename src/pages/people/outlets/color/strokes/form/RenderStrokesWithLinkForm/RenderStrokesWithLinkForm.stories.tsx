@@ -1,12 +1,13 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { presente, Stack, inube } from "@inube/design-system";
-import { RenderContentFormPalette, RenderContentFormPaletteProps } from ".";
-import { categoryTranslations } from "../../config/palette.config";
+import { presente, inube, Stack } from "@inube/design-system";
+
+import { RenderStrokesWithLinkForm, RenderStrokesWithLinkFormProps } from ".";
+import { strokesFormsConfig } from "../../config/Strokes.config";
 
 const story = {
-  components: [RenderContentFormPalette],
-  title: "layouts/people/outlets/palette/form/RenderContentFormPalette",
+  components: [RenderStrokesWithLinkForm],
+  title: "layouts/people/outlets/color/strokes/form/RenderStrokesWithLinkForm",
   parameters: {
     layout: "fullscreen",
   },
@@ -23,22 +24,23 @@ const themeMap = {
   presente: presente,
   inube: inube,
 };
-const Default = (args: RenderContentFormPaletteProps) => {
+const Default = (args: RenderStrokesWithLinkFormProps) => {
   const selectedTheme = themeMap[args.token as keyof typeof themeMap];
 
   return (
     <Stack padding="s300" direction="column" gap={selectedTheme.spacing.s400}>
-      <RenderContentFormPalette {...args} token={selectedTheme} />
+      <RenderStrokesWithLinkForm {...args} token={selectedTheme} />
     </Stack>
   );
 };
 
 Default.args = {
-  formType: "red",
-
+  formType: "primary",
   handleSubmit: () => {},
   token: "presente",
+  strokesConfig: strokesFormsConfig,
 };
+
 Default.argTypes = {
   token: {
     options: ["presente", "inube"],
@@ -49,16 +51,15 @@ Default.argTypes = {
     },
   },
   formType: {
-    options: Object.keys(categoryTranslations).filter(
-      (option) => option !== "neutral" && option !== "neutralAlpha"
-    ),
-    description: "the form that it'll be render",
+    options: Object.keys(strokesFormsConfig),
     control: { type: "select" },
+    description: "the form that it'll be render",
     table: {
-      defaultValue: { summary: "red" },
+      defaultValue: { summary: "primary" },
     },
   },
 };
+
 export default story;
 
 export { Default };

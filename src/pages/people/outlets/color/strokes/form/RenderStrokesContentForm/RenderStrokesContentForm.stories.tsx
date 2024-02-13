@@ -1,12 +1,12 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { presente, Stack, inube } from "@inube/design-system";
-import { RenderTextContentForm, RenderTextContentFormProps } from ".";
-import { textFormsConfig } from "../../config/text.config";
+import { presente, inube, Stack } from "@inube/design-system";
+import { RenderStrokesContentForm, RenderStrokesContentFormProps } from ".";
+import { strokesFormsConfig } from "../../config/Strokes.config";
 
 const story = {
-  components: [RenderTextContentForm],
-  title: "layouts/people/outlets/texts/form/RenderTextContentForm",
+  components: [RenderStrokesContentForm],
+  title: "layouts/people/outlets/color/strokes/form/RenderStrokesContentForm",
   parameters: {
     layout: "fullscreen",
   },
@@ -23,12 +23,12 @@ const themeMap = {
   presente: presente,
   inube: inube,
 };
-const Default = (args: RenderTextContentFormProps) => {
+const Default = (args: RenderStrokesContentFormProps) => {
   const selectedTheme = themeMap[args.token as keyof typeof themeMap];
 
   return (
     <Stack padding="s300" direction="column" gap={selectedTheme.spacing.s400}>
-      <RenderTextContentForm {...args} token={selectedTheme} />
+      <RenderStrokesContentForm {...args} token={selectedTheme} />
     </Stack>
   );
 };
@@ -37,7 +37,7 @@ Default.args = {
   formType: "primary",
   handleSubmit: () => {},
   token: "presente",
-  textConfig: textFormsConfig,
+  strokesConfig: strokesFormsConfig,
 };
 Default.argTypes = {
   token: {
@@ -49,7 +49,7 @@ Default.argTypes = {
     },
   },
   formType: {
-    options: Object.keys(textFormsConfig),
+    options: Object.keys(strokesFormsConfig),
     control: { type: "select" },
     description: "the form that it'll be render",
     table: {
@@ -57,6 +57,7 @@ Default.argTypes = {
     },
   },
 };
+
 export default story;
 
 export { Default };

@@ -1,12 +1,12 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { presente, Stack, inube } from "@inube/design-system";
-import { RenderSurfaceContentForm, RenderSurfaceContentFormProps } from ".";
-import { surfaceFormsConfig } from "../../config/surface.config";
+import { RenderContentFormPalette, RenderContentFormPaletteProps } from ".";
+import { categoryTranslations } from "../../config/palette.config";
 
 const story = {
-  components: [RenderSurfaceContentForm],
-  title: "layouts/people/outlets/surfaces/form/RenderContentFormSurface",
+  components: [RenderContentFormPalette],
+  title: "layouts/people/outlets/color/palette/form/RenderContentFormPalette",
   parameters: {
     layout: "fullscreen",
   },
@@ -23,21 +23,21 @@ const themeMap = {
   presente: presente,
   inube: inube,
 };
-const Default = (args: RenderSurfaceContentFormProps) => {
+const Default = (args: RenderContentFormPaletteProps) => {
   const selectedTheme = themeMap[args.token as keyof typeof themeMap];
 
   return (
     <Stack padding="s300" direction="column" gap={selectedTheme.spacing.s400}>
-      <RenderSurfaceContentForm {...args} token={selectedTheme} />
+      <RenderContentFormPalette {...args} token={selectedTheme} />
     </Stack>
   );
 };
 
 Default.args = {
-  formType: "primary",
+  formType: "red",
+
   handleSubmit: () => {},
   token: "presente",
-  surfaceConfig: surfaceFormsConfig,
 };
 Default.argTypes = {
   token: {
@@ -49,11 +49,13 @@ Default.argTypes = {
     },
   },
   formType: {
-    options: Object.keys(surfaceFormsConfig),
-    control: { type: "select" },
+    options: Object.keys(categoryTranslations).filter(
+      (option) => option !== "neutral" && option !== "neutralAlpha"
+    ),
     description: "the form that it'll be render",
+    control: { type: "select" },
     table: {
-      defaultValue: { summary: "primary" },
+      defaultValue: { summary: "red" },
     },
   },
 };
