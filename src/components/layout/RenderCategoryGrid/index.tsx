@@ -56,7 +56,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
           <Grid
             templateColumns={templateColumns}
             templateRows={templateRows}
-            gap={gap}
+            gap={"s050"}
             autoColumns={autoColumns}
             autoRows={autoRows}
             autoFlow={autoFlow}
