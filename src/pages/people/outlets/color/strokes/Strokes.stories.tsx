@@ -6,7 +6,7 @@ import { TokenContext } from "@src/context/TokenContext";
 
 const story = {
   components: [Strokes],
-  title: "layouts/people/outlets/strokes",
+  title: "layouts/people/outlets/color/strokes",
   parameters: {
     layout: "fullscreen",
   },

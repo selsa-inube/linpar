@@ -6,7 +6,7 @@ import { categoryTranslations } from "../../config/palette.config";
 
 const story = {
   components: [RenderContentFormPalette],
-  title: "layouts/people/outlets/palette/form/RenderContentFormPalette",
+  title: "layouts/people/outlets/color/palette/form/RenderContentFormPalette",
   parameters: {
     layout: "fullscreen",
   },

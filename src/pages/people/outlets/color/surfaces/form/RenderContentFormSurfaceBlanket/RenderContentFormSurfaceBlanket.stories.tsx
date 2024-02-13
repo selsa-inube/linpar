@@ -8,7 +8,8 @@ import {
 
 const story = {
   components: [RenderContentFormSurfaceBlanket],
-  title: "layouts/people/outlets/surfaces/form/RenderContentFormSurfaceBlanket",
+  title:
+    "layouts/people/outlets/color/surfaces/form/RenderContentFormSurfaceBlanket",
   parameters: {
     layout: "fullscreen",
   },

@@ -10,7 +10,8 @@ import { strokesFormsConfig } from "../../config/Strokes.config";
 
 const story = {
   components: [RenderStrokesWithSpinnerForm],
-  title: "layouts/people/outlets/strokes/form/RenderStrokesWithSpinnerForm",
+  title:
+    "layouts/people/outlets/color/strokes/form/RenderStrokesWithSpinnerForm",
   parameters: {
     layout: "fullscreen",
   },

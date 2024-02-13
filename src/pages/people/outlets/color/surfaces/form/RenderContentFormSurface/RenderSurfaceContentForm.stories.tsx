@@ -6,7 +6,7 @@ import { surfaceFormsConfig } from "../../config/surface.config";
 
 const story = {
   components: [RenderSurfaceContentForm],
-  title: "layouts/people/outlets/surfaces/form/RenderContentFormSurface",
+  title: "layouts/people/outlets/color/surfaces/form/RenderContentFormSurface",
   parameters: {
     layout: "fullscreen",
   },

@@ -6,7 +6,7 @@ import { textFormsConfig } from "../../config/text.config";
 
 const story = {
   components: [RenderTextContentForm],
-  title: "layouts/people/outlets/texts/form/RenderTextContentForm",
+  title: "layouts/people/outlets/color/texts/form/RenderTextContentForm",
   parameters: {
     layout: "fullscreen",
   },

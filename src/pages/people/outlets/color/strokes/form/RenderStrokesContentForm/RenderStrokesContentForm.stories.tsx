@@ -6,7 +6,7 @@ import { strokesFormsConfig } from "../../config/Strokes.config";
 
 const story = {
   components: [RenderStrokesContentForm],
-  title: "layouts/people/outlets/strokes/form/RenderStrokesContentForm",
+  title: "layouts/people/outlets/color/strokes/form/RenderStrokesContentForm",
   parameters: {
     layout: "fullscreen",
   },

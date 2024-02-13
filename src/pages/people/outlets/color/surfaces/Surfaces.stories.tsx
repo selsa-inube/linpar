@@ -6,7 +6,7 @@ import { presente } from "@inube/design-system";
 
 const story = {
   components: [Surfaces],
-  title: "layouts/people/outlets/surfaces",
+  title: "layouts/people/outlets/color/surfaces",
   parameters: {
     layout: "fullscreen",
   },
