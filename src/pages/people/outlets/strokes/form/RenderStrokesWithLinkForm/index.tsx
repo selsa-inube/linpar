@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { RenderStrokesWithLinkFormUI } from "./interface";
-import { Appearance } from "@src/components/cards/FieldsetColorCard/types";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
-import { IPeopleMessage } from "@src/pages/people/outlets/types/people.types";
+import { Appearance } from "@components/cards/FieldsetColorCard/types";
+import { getTokenColor } from "@components/cards/TokenColorCard/styles";
+import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
 } from "../../config/Strokes.config";
-import { TokenContext } from "@src/context/TokenContext";
+import { TokenContext } from "@context/TokenContext";
 
 interface RenderStrokesWithLinkFormProps {
   formType: string;

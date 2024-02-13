@@ -2,47 +2,17 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
   Grid,
   inube,
-  SectionMessage,
   Stack,
   Spinner,
   Text,
   useMediaQueries,
 } from "@inube/design-system";
-import { StyledMessageContainer } from "./styles";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
-import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@src/components/feedback/SendingInformation/types";
+import { Appearance } from "@components/feedback/SendingInformation/types";
 import { strokesFormsConfig } from "../../config/Strokes.config";
-
-const renderMessage = (
-  message: IUsersMessage,
-  handleCloseMessage: () => void,
-  onMessageClosed: () => void
-) => {
-  if (!message.data) return null;
-
-  const closeMessageAndExecuteCallback = () => {
-    handleCloseMessage();
-    onMessageClosed();
-  };
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          appearance={message.data.appearance}
-          closeSectionMessage={closeMessageAndExecuteCallback}
-          description={message.data.description}
-          duration={4000}
-          icon={message.data.icon}
-          title={message.data.title}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-};
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface RenderStrokesWithSpinnerFormUIProps {
   formType: Appearance | string;
@@ -139,7 +109,13 @@ function RenderStrokesWithSpinnerFormUI(
           </Stack>
         </ThemeProvider>
       </FormButtons>
-      {renderMessage(message, handleCloseMessage, handleReset)}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseMessage}
+          onMessageClosed={handleReset}
+        />
+      )}
     </>
   );
 }

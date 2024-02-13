@@ -7,13 +7,6 @@ interface IStyledLinkFormProps {
   theme: typeof inube;
 }
 
-const StyledMessageContainer = styled.div`
-  position: fixed;
-  bottom: 18px;
-  right: 75px;
-  z-index: 2;
-`;
-
 const StyledLinkContainer = styled.div`
   > label > a {
     color: ${({ appearance, category, theme }: IStyledLinkFormProps) =>
@@ -22,4 +15,4 @@ const StyledLinkContainer = styled.div`
   }
 `;
 
-export { StyledMessageContainer, StyledLinkContainer };
+export { StyledLinkContainer };
