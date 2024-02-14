@@ -28,12 +28,12 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
   useEffect(() => {
-    if (!loading && surfaceToken.color && surfaceToken.color.stroke) {
+    if (!loading && tokenWithRef.color && tokenWithRef.color.stroke) {
       setSurfaceToken(
-        JSON.parse(JSON.stringify({ ...surfaceToken.color.surface }))
+        JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
       );
     }
-  }, [loading, surfaceToken]);
+  }, [loading, tokenWithRef]);
 
   if (
     Object.keys(surfaceToken).length === 0 &&
