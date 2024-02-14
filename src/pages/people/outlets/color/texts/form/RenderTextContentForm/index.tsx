@@ -1,32 +1,41 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RenderTextContentFormUI } from "./interface";
-import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
+import {
+  textFormsConfig,
+  textMessagesConfig,
+} from "@pages/people/outlets/color/texts/config/text.config";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-import { Appearance } from "@components/cards/FieldsetColorCard/types";
+import { TextAppearance } from "@pages/people/outlets/color/texts/types";
+import { inube } from "@inube/design-system";
 import { TokenContext } from "@context/TokenContext";
 import { tokenCalculator } from "@utilities/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderTextContentFormProps {
-  formType: string;
+  formType: TextAppearance;
   textConfig: typeof textFormsConfig;
 }
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
   const { formType, textConfig } = props;
   const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
-  const [textToken, setTextToken] = useState(
-    JSON.parse(JSON.stringify({ ...tokenWithRef.color.text }))
-  );
+  const [textToken, setTextToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
   const [toggleActive, setToggleActive] = useState(false);
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading && tokenWithRef.color && tokenWithRef.color.stroke) {
+      setTextToken(JSON.parse(JSON.stringify({ ...tokenWithRef.color.text })));
+    }
+  }, [loading, tokenWithRef]);
+
+  if (Object.keys(textToken).length === 0 && textToken.constructor === Object) {
     return <LoadingAppUI />;
   }
+
   const hasChanges = (): boolean => {
     return (
       JSON.stringify(tokenWithRef.color.text) !== JSON.stringify(textToken)
@@ -34,7 +43,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   };
 
   const handleTokenChange = (
-    appearance: Appearance | string,
+    appearance: TextAppearance,
     category: string,
     updatedTokenName: string
   ) => {

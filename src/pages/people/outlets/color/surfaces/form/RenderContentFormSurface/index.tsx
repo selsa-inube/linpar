@@ -1,12 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RenderSurfaceContentFormUI } from "./interface";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
-} from "../../config/surface.config";
+} from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { TokenContext } from "@context/TokenContext";
-import { SurfaceAppearance } from "../../types";
+import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
+import { inube } from "@inube/design-system";
 import { tokenCalculator } from "@utilities/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
@@ -18,9 +19,7 @@ interface RenderSurfaceContentFormProps {
 function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const { formType, surfaceConfig } = props;
   const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
-  const [surfaceToken, setSurfaceToken] = useState(
-    JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
-  );
+  const [surfaceToken, setSurfaceToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
@@ -28,9 +27,21 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const [toggleActive, setToggleActive] = useState(false);
   const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading && surfaceToken.color && surfaceToken.color.stroke) {
+      setSurfaceToken(
+        JSON.parse(JSON.stringify({ ...surfaceToken.color.surface }))
+      );
+    }
+  }, [loading, surfaceToken]);
+
+  if (
+    Object.keys(surfaceToken).length === 0 &&
+    surfaceToken.constructor === Object
+  ) {
     return <LoadingAppUI />;
   }
+
   const hasChanges = (): boolean => {
     return (
       JSON.stringify(tokenWithRef.color.surface) !==

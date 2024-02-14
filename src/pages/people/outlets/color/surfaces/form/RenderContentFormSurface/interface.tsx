@@ -13,10 +13,10 @@ import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
 import { Appearance } from "@components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@components/feedback/SendingInformation";
-import { surfaceFormsConfig } from "../../config/surface.config";
+import { surfaceFormsConfig } from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { MdOutlineHouse } from "react-icons/md";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-import { SurfaceAppearance } from "../../types";
+import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 
 interface ISurfaceCardConfig {
   title: string;

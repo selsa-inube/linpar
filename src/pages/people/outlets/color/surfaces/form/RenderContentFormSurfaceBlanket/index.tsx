@@ -1,14 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RenderContentFormSurfaceBlanketUI } from "./interface";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
-} from "../../config/surface.config";
+} from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { TokenContext } from "@context/TokenContext";
-import { SurfaceAppearance } from "../../types";
 import { tokenCalculator } from "@utilities/tokenCalculator";
+import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
+import { inube } from "@inube/design-system";
 
 interface RenderContentFormSurfaceBlanketProps {
   formType: SurfaceAppearance;
@@ -20,9 +21,7 @@ function RenderContentFormSurfaceBlanket(
 ) {
   const { formType, surfaceConfig } = props;
   const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
-  const [surfaceToken, setSurfaceToken] = useState(
-    JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
-  );
+  const [surfaceToken, setSurfaceToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [showBlanket, setShowBlanket] = useState(false);
   const [toggleActive, setToggleActive] = useState(false);
@@ -30,7 +29,18 @@ function RenderContentFormSurfaceBlanket(
     visible: false,
   });
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading && tokenWithRef.color && tokenWithRef.color.stroke) {
+      setSurfaceToken(
+        JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
+      );
+    }
+  }, [loading, tokenWithRef]);
+
+  if (
+    Object.keys(surfaceToken).length === 0 &&
+    surfaceToken.constructor === Object
+  ) {
     return <LoadingAppUI />;
   }
 

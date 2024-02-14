@@ -10,17 +10,17 @@ import {
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@components/feedback/SendingInformation/types";
-import { strokesFormsConfig } from "../../config/Strokes.config";
+import { strokesFormsConfig } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
 
 interface RenderStrokesWithSpinnerFormUIProps {
-  formType: Appearance | string;
+  formType: StrokeAppearance;
   handleReset: () => void;
   handleCloseMessage: () => void;
   handleSubmitForm: () => void;
   handleTokenChange: (
-    appearance: Appearance | string,
+    appearance: StrokeAppearance,
     category: string,
     updatedTokenName: string
   ) => void;
