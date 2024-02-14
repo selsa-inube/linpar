@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import { RenderStrokesContentFormUI } from "./interface";
 import {
@@ -8,6 +7,7 @@ import {
   strokesFormsConfig,
 } from "../../config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
+import { tokenCalculator } from "@mocks/themeService/themeService.mock";
 
 interface RenderStrokesContentFormProps {
   formType: string;
@@ -16,9 +16,9 @@ interface RenderStrokesContentFormProps {
 
 function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
   const { formType, strokesConfig } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
   const [strokesToken, setStrokesToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.stroke }))
+    JSON.parse(JSON.stringify({ ...tokenWithRef.color.stroke }))
   );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IPeopleMessage>({
@@ -28,7 +28,9 @@ function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
   const [toggleActive, setToggleActive] = useState(false);
 
   const hasChanges = () => {
-    return JSON.stringify(token.color.stroke) !== JSON.stringify(strokesToken);
+    return (
+      JSON.stringify(tokenWithRef.color.stroke) !== JSON.stringify(strokesToken)
+    );
   };
 
   const handleTokenChange = (
@@ -37,12 +39,7 @@ function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
     updatedTokenName: string
   ) => {
     let strokesUpdate = { ...strokesToken };
-
-    strokesUpdate[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
+    strokesUpdate[appearance][category] = updatedTokenName;
     setStrokesToken(strokesUpdate);
   };
 
@@ -89,16 +86,19 @@ function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
   };
 
   const handleReset = () => {
-    setStrokesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
+    setStrokesToken(
+      JSON.parse(JSON.stringify({ ...tokenWithRef.color.stroke }))
+    );
   };
 
-  const updatedTheme = {
-    ...token,
+  const updatedTokens = {
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       stroke: strokesToken,
     },
   };
+  const updatedTheme = tokenCalculator(updatedTokens);
 
   return (
     <RenderStrokesContentFormUI
@@ -114,6 +114,7 @@ function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
       updatedTheme={updatedTheme}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
+      strokesToken={strokesToken}
     />
   );
 }

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
+import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
 
 interface IStyledColorTokenCard {
   tokenName: string;
@@ -12,15 +13,6 @@ interface IStyledColorTokenCard {
 interface StyledPaletteUI {
   theme?: typeof inube;
   hasBackground: boolean;
-}
-
-function getTokenColor(tokenName: string, theme?: typeof inube) {
-  const palette = theme?.color?.palette || inube.color.palette;
-  for (const category in palette) {
-    if (Object.hasOwnProperty.call(palette[category], tokenName)) {
-      return palette[category!]?.[tokenName];
-    }
-  }
 }
 
 const HiddenColorPicker = styled.input.attrs({ type: "color" })`

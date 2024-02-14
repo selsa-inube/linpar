@@ -25,6 +25,7 @@ interface RenderStrokesContentFormUIProps {
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
+  strokesToken: typeof inube;
 }
 
 function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
@@ -41,6 +42,7 @@ function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
     updatedTheme,
     toggleActive,
     setToggleActive,
+    strokesToken,
   } = props;
 
   const strokesCards = Object.entries(
@@ -73,20 +75,24 @@ function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
               autoRows="unset"
             >
               {strokesCards.map(([key, config]) => (
-                <FieldsetColorCard
-                  appearance={formType}
-                  category={key}
-                  description={config.description}
-                  key={key}
-                  onChange={(newTokenName) =>
-                    handleTokenChange(formType, key, newTokenName)
-                  }
-                  optionsMenu={updatedTheme.color.palette}
-                  title={config.title}
-                  typeToken="stroke"
-                  toggleActive={toggleActive}
-                  setToggleActive={setToggleActive}
-                />
+                <>
+                  {console.log(strokesToken[formType][key])}
+                  <FieldsetColorCard
+                    appearance={formType}
+                    category={key}
+                    description={config.description}
+                    key={key}
+                    onChange={(newTokenName) =>
+                      handleTokenChange(formType, key, newTokenName)
+                    }
+                    optionsMenu={updatedTheme.color.palette}
+                    title={config.title}
+                    typeToken="stroke"
+                    toggleActive={toggleActive}
+                    setToggleActive={setToggleActive}
+                    tokenName={strokesToken[formType][key]}
+                  />
+                </>
               ))}
             </Grid>
           </Stack>

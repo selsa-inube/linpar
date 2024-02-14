@@ -13,7 +13,7 @@ interface RenderTextContentFormProps {
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
   const { formType, textConfig } = props;
-  const { token, tokenWithRef, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
   const [textToken, setTextToken] = useState(
     JSON.parse(JSON.stringify({ ...tokenWithRef.color.text }))
   );
@@ -86,9 +86,9 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
     setTextToken(JSON.parse(JSON.stringify({ ...tokenWithRef.color.text })));
   };
   const updatedTokens = {
-    ...token,
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       text: textToken,
     },
   };
