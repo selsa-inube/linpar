@@ -11,23 +11,25 @@ import { StyledContainer, StyledTabsContainer } from "./styles";
 
 import { strokesTabsConfig } from "./config/strokesTabs.config";
 
-import { RenderStrokesContentForm } from "./form/RenderStrokesContentForm";
+import {
+  RenderStrokesContentForm,
+  RenderStrokesContentFormProps,
+} from "./form/RenderStrokesContentForm";
 import { RenderStrokesWithSpinnerForm } from "./form/RenderStrokesWithSpinnerForm";
 import { RenderStrokesWithLinkForm } from "./form/RenderStrokesWithLinkForm";
 import { strokesFormsConfig } from "./config/Strokes.config";
 import { peopleOptionsConfig } from "../../options/config/people.config";
+import { StrokeAppearance } from "./types";
 
 interface IStrokesUIProps {
   handleTabChange: (id: string) => void;
-  selectedTab: string;
+  selectedTab: StrokeAppearance;
   strokesConfig: typeof strokesFormsConfig;
 }
 
-type FormType = "spinner" | "link" | "default";
-
 interface IRenderForm {
-  formType: string;
-  selectedTab: string;
+  formType: StrokeAppearance;
+  selectedTab: StrokeAppearance;
   strokesConfig: typeof strokesFormsConfig;
 }
 
@@ -35,19 +37,20 @@ function renderForm(props: IRenderForm) {
   const { formType, selectedTab, strokesConfig } = props;
   if (selectedTab !== formType) return null;
 
-  const formTypeToComponentMap = {
+  const formTypeToComponentMap: {
+    [key: string]: React.ComponentType<RenderStrokesContentFormProps>;
+  } = {
     spinner: RenderStrokesWithSpinnerForm,
     link: RenderStrokesWithLinkForm,
-    default: RenderStrokesContentForm,
   };
 
   const Component =
-    formTypeToComponentMap[formType as FormType] ||
-    formTypeToComponentMap["default"];
+    formTypeToComponentMap[formType as keyof typeof formTypeToComponentMap] ||
+    RenderStrokesContentForm;
 
   return (
     <Component
-      key={formType}
+      key={String(formType)}
       formType={formType}
       strokesConfig={strokesConfig}
     />

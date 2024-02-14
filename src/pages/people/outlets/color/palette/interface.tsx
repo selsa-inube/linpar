@@ -11,10 +11,11 @@ import { StyledContainer, StyledTabsContainer } from "./styles";
 import { paletteTabsConfig } from "./config/paletteTabs.config";
 import { RenderContentFormPalette } from "./form/RenderContentFormPalette";
 import { peopleOptionsConfig } from "../../options/config/people.config";
+import { PaletteAppearance } from "./types";
 
 interface PaletteUIProps {
   handleTabChange: (id: string) => void;
-  selectedTab: string;
+  selectedTab: PaletteAppearance;
   paletteConfig: typeof paletteTabsConfig;
 }
 

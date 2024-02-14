@@ -2,8 +2,8 @@ import { AppMenu } from "@components/layout/AppMenu";
 import { IRoute } from "@components/layout/AppMenu/types";
 import { Stack, inube, Text } from "@inube/design-system";
 import { StyledDomainContainer } from "./styles";
-import { AppMenuGrid } from "@src/components/layout/AppMenuGrid";
-import { AppMenuCardProps } from "@src/components/cards/AppMenuCard";
+import { AppMenuGrid } from "@components/layout/AppMenuGrid";
+import { AppMenuCardProps } from "@components/cards/AppMenuCard";
 
 interface PeopleOptionsUIProps {
   appName: string;

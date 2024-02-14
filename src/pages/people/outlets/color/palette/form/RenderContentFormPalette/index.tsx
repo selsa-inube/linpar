@@ -1,29 +1,38 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "../../config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
 import { TokenContext } from "@context/TokenContext";
 import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { PaletteAppearance } from "../../types";
 
 interface RenderContentFormPaletteProps {
-  formType: string;
+  formType: PaletteAppearance;
 }
 
 function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   const { formType } = props;
   const { token, handleSubmit, loading } = useContext(TokenContext);
-  if (loading) {
-    return <LoadingAppUI />;
-  }
-  const [paletteToken, setPaletteToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.palette }))
-  );
+  const [paletteToken, setPaletteToken] = useState({});
   const [isLoadingFormButtons, setIsLoadingLoadingFormButtons] =
     useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
+
+  useEffect(() => {
+    if (!loading && token.color && token.color.palette) {
+      setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
+    }
+  }, [loading, token]);
+
+  if (
+    Object.keys(paletteToken).length === 0 &&
+    paletteToken.constructor === Object
+  ) {
+    return <LoadingAppUI />;
+  }
 
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.palette) !== JSON.stringify(paletteToken);

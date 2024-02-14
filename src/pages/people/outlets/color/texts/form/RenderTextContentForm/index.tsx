@@ -1,26 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RenderTextContentFormUI } from "./interface";
 import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-import { Appearance } from "@components/cards/FieldsetColorCard/types";
 import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import { TokenContext } from "@context/TokenContext";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
+import { TextAppearance } from "../../types";
+import { inube } from "@inube/design-system";
 
 interface RenderTextContentFormProps {
-  formType: string;
+  formType: TextAppearance;
   textConfig: typeof textFormsConfig;
 }
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
   const { formType, textConfig } = props;
   const { token, handleSubmit, loading } = useContext(TokenContext);
-  if (loading) {
-    return <LoadingAppUI/>;
-  }
-  const [textToken, setTextToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.text }))
-  );
+  const [textToken, setTextToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
@@ -28,12 +24,22 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
 
   const [toggleActive, setToggleActive] = useState(false);
 
+  useEffect(() => {
+    if (!loading && token.color && token.color.stroke) {
+      setTextToken(JSON.parse(JSON.stringify({ ...token.color.text })));
+    }
+  }, [loading, token]);
+
+  if (Object.keys(textToken).length === 0 && textToken.constructor === Object) {
+    return <LoadingAppUI />;
+  }
+
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.text) !== JSON.stringify(textToken);
   };
 
   const handleTokenChange = (
-    appearance: Appearance | string,
+    appearance: TextAppearance,
     category: string,
     updatedTokenName: string
   ) => {

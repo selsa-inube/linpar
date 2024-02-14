@@ -1,14 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RenderContentFormSurfaceNavUI } from "./interface";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
+import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
 } from "../../config/surface.config";
-import { TokenContext } from "@src/context/TokenContext";
+import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "../../types";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
+import { inube } from "@inube/design-system";
 
 interface RenderContentFormSurfaceNavProps {
   formType: SurfaceAppearance;
@@ -18,12 +19,7 @@ interface RenderContentFormSurfaceNavProps {
 function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   const { formType, surfaceConfig } = props;
   const { token, handleSubmit, loading } = useContext(TokenContext);
-  if (loading) {
-    return <LoadingAppUI/>;
-  }
-  const [surfaceToken, setSurfaceToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.surface }))
-  );
+  const [surfaceToken, setSurfaceToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -31,6 +27,19 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   });
 
   const [toggleActive, setToggleActive] = useState(false);
+
+  useEffect(() => {
+    if (!loading && token.color && token.color.stroke) {
+      setSurfaceToken(JSON.parse(JSON.stringify({ ...token.color.surface })));
+    }
+  }, [loading, token]);
+
+  if (
+    Object.keys(surfaceToken).length === 0 &&
+    surfaceToken.constructor === Object
+  ) {
+    return <LoadingAppUI />;
+  }
 
   const hasChanges = (): boolean => {
     return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);

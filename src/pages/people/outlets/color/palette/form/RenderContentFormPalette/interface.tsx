@@ -3,14 +3,14 @@ import { inube, Text, useMediaQueries } from "@inube/design-system";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@components/feedback/SendingInformation/types";
 import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
 import { paletteConfig } from "../../config/palette.config";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { PaletteAppearance } from "../../types";
 
 interface RenderContentFormPaletteUIProps {
   categories: typeof inube;
-  formType: Appearance | string;
+  formType: PaletteAppearance;
   handleCloseMessage: () => void;
   handleColorChange: (tokenName: string, newColor?: string) => void;
   handleReset: () => void;

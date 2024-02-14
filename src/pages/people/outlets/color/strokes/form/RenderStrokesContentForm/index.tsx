@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { Appearance } from "@components/cards/FieldsetColorCard/types";
+import { useContext, useEffect, useState } from "react";
 import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import { RenderStrokesContentFormUI } from "./interface";
@@ -8,22 +7,19 @@ import {
   strokesFormsConfig,
 } from "../../config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
+import { StrokeAppearance } from "../../types";
+import { inube } from "@inube/design-system";
 
 interface RenderStrokesContentFormProps {
-  formType: string;
+  formType: StrokeAppearance;
   strokesConfig: typeof strokesFormsConfig;
 }
 
 function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
   const { formType, strokesConfig } = props;
   const { token, handleSubmit, loading } = useContext(TokenContext);
-  if (loading) {
-    return <LoadingAppUI/>;
-  }
-  const [strokesToken, setStrokesToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.stroke }))
-  );
+  const [strokesToken, setStrokesToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IPeopleMessage>({
     visible: false,
@@ -31,12 +27,25 @@ function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
 
   const [toggleActive, setToggleActive] = useState(false);
 
+  useEffect(() => {
+    if (!loading && token.color && token.color.stroke) {
+      setStrokesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
+    }
+  }, [loading, token]);
+
+  if (
+    Object.keys(strokesToken).length === 0 &&
+    strokesToken.constructor === Object
+  ) {
+    return <LoadingAppUI />;
+  }
+
   const hasChanges = () => {
     return JSON.stringify(token.color.stroke) !== JSON.stringify(strokesToken);
   };
 
   const handleTokenChange = (
-    appearance: Appearance,
+    appearance: StrokeAppearance,
     category: string,
     updatedTokenName: string
   ) => {

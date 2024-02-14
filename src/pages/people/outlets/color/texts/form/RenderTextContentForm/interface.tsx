@@ -3,9 +3,9 @@ import { Stack, Text, inube } from "@inube/design-system";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@components/feedback/SendingInformation/types";
 import { textFormsConfig } from "../../config/text.config";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { TextAppearance } from "../../types";
 
 interface ITextCardConfig {
   title: string;
@@ -14,12 +14,12 @@ interface ITextCardConfig {
 }
 
 interface RenderTextContentFormUIProps {
-  formType: Appearance | string;
+  formType: TextAppearance;
   handleCloseMessage: () => void;
   handleReset: () => void;
   handleSubmitForm: () => void;
   handleTokenChange: (
-    appearance: Appearance | string,
+    appearance: TextAppearance,
     category: string,
     updatedTokenName: string
   ) => void;
