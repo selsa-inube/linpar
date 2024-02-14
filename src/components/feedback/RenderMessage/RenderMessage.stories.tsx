@@ -5,7 +5,7 @@ import { EAppearance } from "@src/types/colors.types";
 
 const story = {
   component: [RenderMessage],
-  title: "feedback/RenderMessage",
+  title: "components/feedback/RenderMessage",
   decorators: [(Story: StoryFn) => <Story />],
 };
 
