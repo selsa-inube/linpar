@@ -12,12 +12,13 @@ function getTokenColor(tokenName: string, palette?: typeof inube) {
 
 function tokenCalculator(tokenWithReference: typeof inube) {
   let tokens = JSON.parse(JSON.stringify({ ...tokenWithReference }));
-  Object.entries(tokenWithReference.color).forEach(([domain, value]) => {
+
+  Object.entries(tokenWithReference.color).forEach(([domain, domainValue]) => {
     if (domain !== "palette") {
-      Object.entries(value).forEach(([block, value2]) => {
-        Object.entries(value2).forEach(([modifier, value3]) => {
+      Object.entries(domainValue).forEach(([block, blockValue]) => {
+        Object.entries(blockValue).forEach(([modifier, modifierValue]) => {
           tokens.color[domain][block][modifier] = getTokenColor(
-            value3.split(".")[1],
+            modifierValue,
             tokenWithReference.color.palette
           );
         });

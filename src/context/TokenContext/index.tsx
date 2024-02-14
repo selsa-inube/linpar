@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect, useState } from "react";
 import { inube } from "@inube/design-system";
 import {
   IHandleSubmitProps,
@@ -14,6 +14,7 @@ import {
 
 const defaultTokenValue: ITokenContextProps = {
   token: {},
+  tokenWithRef: {},
   handleSubmit: () => {},
 };
 
@@ -33,29 +34,31 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
 };
 
 const TokenProvider = ({ children }: ITokenProviderProps) => {
-  const [token, dispatch] = useReducer(tokenReducer, {});
+  const [tokenWithRef, dispatch] = useReducer(tokenReducer, {});
+  const [token, setToken] = useState({ ...inube });
 
   useEffect(() => {
     getTokens("presente").then((tokenData: typeof inube) => {
       dispatch({
         type: actionTypes.SET_TOKEN,
-        payload: tokenCalculator({ ...tokenData.tokens }),
+        payload: { ...tokenData.tokens },
       });
+      setToken(tokenCalculator({ ...tokenData.tokens }));
     });
   }, []);
 
   const handleSubmit = (props: IHandleSubmitProps) => {
     const { domain, block, tokenUpdate } = props;
-    let newTokens = { ...token };
+    let newTokens = { ...tokenWithRef };
     Object.assign(newTokens[domain][block], tokenUpdate);
-
     updateIdTokens("presente", newTokens).then((tokenData: typeof inube) => {
       dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
     });
+    setToken(tokenCalculator({ ...newTokens }));
   };
 
   return (
-    <TokenContext.Provider value={{ token, handleSubmit }}>
+    <TokenContext.Provider value={{ token, tokenWithRef, handleSubmit }}>
       {children}
     </TokenContext.Provider>
   );

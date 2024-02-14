@@ -5,6 +5,7 @@ import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
 import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import { TokenContext } from "@context/TokenContext";
+import { tokenCalculator } from "@mocks/themeService/themeService.mock";
 
 interface RenderTextContentFormProps {
   formType: string;
@@ -13,9 +14,9 @@ interface RenderTextContentFormProps {
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
   const { formType, textConfig } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { token, tokenWithRef, handleSubmit } = useContext(TokenContext);
   const [textToken, setTextToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.text }))
+    JSON.parse(JSON.stringify({ ...tokenWithRef.color.text }))
   );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -34,11 +35,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
     updatedTokenName: string
   ) => {
     let updatedTextTokens = { ...textToken };
-    updatedTextTokens[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
+    updatedTextTokens[appearance][category] = updatedTokenName;
     setTextToken(updatedTextTokens);
   };
 
@@ -87,13 +84,15 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   const handleReset = () => {
     setTextToken(JSON.parse(JSON.stringify({ ...token.color.text })));
   };
-  const updatedTheme = {
+  const updatedTokens = {
     ...token,
     color: {
       ...token.color,
       text: textToken,
     },
   };
+  const updatedTheme = tokenCalculator(updatedTokens);
+
   return (
     <RenderTextContentFormUI
       formType={formType}
@@ -108,6 +107,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       updatedTheme={updatedTheme}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
+      textToken={textToken}
     />
   );
 }

@@ -8,7 +8,7 @@ import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import { getTokenColor } from "../TokenColorCard/styles";
 
 interface FieldsetColorCardProps {
@@ -22,6 +22,7 @@ interface FieldsetColorCardProps {
   onChange: (tokenName: string) => void;
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
+  tokenName: string;
 }
 
 const getTokenReferenceFromAppearanceAndCategory = (
@@ -60,11 +61,16 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     onChange,
     toggleActive,
     setToggleActive,
+    tokenName,
   } = props;
 
   const themeContext = useContext(ThemeContext);
-
+  const [tokenNameState, setTokenNameState] = useState(tokenName);
   const fieldsetRef = useRef() as React.MutableRefObject<HTMLFieldSetElement>;
+
+  useEffect(() => {
+    setTokenNameState(tokenName);
+  }, [tokenName]);
 
   useEffect(() => {
     if (fieldsetRef && fieldsetRef.current) {
@@ -73,13 +79,6 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
   }, []);
 
   const tokens = themeContext?.color || inube.color;
-
-  const tokenName = getTokenReferenceFromAppearanceAndCategory(
-    appearance,
-    typeToken,
-    category,
-    tokens
-  );
 
   const handleColorChange = (updatedTokenName: string) => {
     onChange(updatedTokenName);

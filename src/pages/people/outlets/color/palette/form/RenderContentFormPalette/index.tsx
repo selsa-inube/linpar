@@ -11,9 +11,9 @@ interface RenderContentFormPaletteProps {
 
 function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   const { formType } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
   const [paletteToken, setPaletteToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.palette }))
+    JSON.parse(JSON.stringify({ ...tokenWithRef.color.palette }))
   );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -21,7 +21,10 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   });
 
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.palette) !== JSON.stringify(paletteToken);
+    return (
+      JSON.stringify(tokenWithRef.color.palette) !==
+      JSON.stringify(paletteToken)
+    );
   };
 
   const handleColorChange = (
@@ -83,12 +86,14 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   };
 
   const handleReset = () => {
-    setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
+    setPaletteToken(
+      JSON.parse(JSON.stringify({ ...tokenWithRef.color.palette }))
+    );
   };
   const updatedTheme = {
-    ...token,
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       palette: paletteToken,
     },
   };
