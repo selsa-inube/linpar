@@ -17,7 +17,6 @@ import {
   getTokens,
   updateIdTokens,
 } from "@src/mocks/themeService/themeService.mock";
-import { tokenCalculator } from "@src/utilities/tokenCalculator";
 import { AppContext } from "@src/context/AppContext";
 
 const defaultTokenValue: ITokenContextProps = {
@@ -55,7 +54,6 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
           payload: { ...tokenData.tokens },
         });
         setLoading(false);
-        setToken(tokenCalculator({ ...tokenData.tokens }));
       })
       .catch((error) => {
         console.error("Failed to fetch token data:", error);
@@ -70,7 +68,6 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
     updateIdTokens(clientName, newTokens).then((tokenData: typeof inube) => {
       dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
     });
-    setToken(tokenCalculator({ ...newTokens }));
   };
 
   return (
