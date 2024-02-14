@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { RenderSurfaceContentFormUI } from "./interface";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
 } from "../../config/surface.config";
 import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "../../types";
+import { tokenCalculator } from "@mocks/themeService/themeService.mock";
 
 interface RenderSurfaceContentFormProps {
   formType: SurfaceAppearance;
@@ -16,9 +16,9 @@ interface RenderSurfaceContentFormProps {
 
 function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const { formType, surfaceConfig } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
   const [surfaceToken, setSurfaceToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.surface }))
+    JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
   );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
@@ -28,7 +28,10 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
+    return (
+      JSON.stringify(tokenWithRef.color.surface) !==
+      JSON.stringify(surfaceToken)
+    );
   };
 
   const handleTokenChange = (
@@ -37,11 +40,7 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
     updatedTokenName: string
   ) => {
     let updatedSurfaceTokens = { ...surfaceToken };
-    updatedSurfaceTokens[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
+    updatedSurfaceTokens[appearance][category] = updatedTokenName;
     setSurfaceToken(updatedSurfaceTokens);
   };
 
@@ -88,16 +87,20 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   };
 
   const handleReset = () => {
-    setSurfaceToken(JSON.parse(JSON.stringify({ ...token.color.surface })));
+    setSurfaceToken(
+      JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
+    );
   };
-  const updatedTheme = {
-    ...token,
+
+  const updatedTokens = {
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       surface: surfaceToken,
     },
   };
 
+  const updatedTheme = tokenCalculator(updatedTokens);
   return (
     <RenderSurfaceContentFormUI
       formType={formType}
@@ -114,6 +117,7 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
       setToggleActive={setToggleActive}
       navLinkIsSelected={navLinkIsSelected}
       setNavLinkIsSelected={setNavLinkIsSelected}
+      surfaceToken={surfaceToken}
     />
   );
 }
