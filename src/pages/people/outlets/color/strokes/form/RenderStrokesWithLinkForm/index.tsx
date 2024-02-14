@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { RenderStrokesWithLinkFormUI } from "./interface";
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
 } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
+import { tokenCalculator } from "@utilities/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
 import { inube } from "@inube/design-system";
@@ -18,20 +18,21 @@ interface RenderStrokesWithLinkFormProps {
 
 function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
   const { formType, strokesConfig } = props;
-  const { token, handleSubmit, loading } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [strokesToken, setStrokesToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IPeopleMessage>({
     visible: false,
   });
-
   const [toggleActive, setToggleActive] = useState(false);
 
   useEffect(() => {
-    if (!loading && token.color && token.color.stroke) {
-      setStrokesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
+    if (!loading && tokenWithRef.color && tokenWithRef.color.stroke) {
+      setStrokesToken(
+        JSON.parse(JSON.stringify({ ...tokenWithRef.color.stroke }))
+      );
     }
-  }, [loading, token]);
+  }, [loading, tokenWithRef]);
 
   if (
     Object.keys(strokesToken).length === 0 &&
@@ -41,21 +42,17 @@ function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
   }
 
   const hasChanges = () => {
-    return JSON.stringify(token.color.stroke) !== JSON.stringify(strokesToken);
+    return (
+      JSON.stringify(tokenWithRef.color.stroke) !== JSON.stringify(strokesToken)
+    );
   };
-
   const handleTokenChange = (
     appearance: StrokeAppearance,
     category: string,
     updatedTokenName: string
   ) => {
     let strokesUpdate = { ...strokesToken };
-
-    strokesUpdate[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
+    strokesUpdate[appearance][category] = updatedTokenName;
     setStrokesToken(strokesUpdate);
   };
 
@@ -102,16 +99,19 @@ function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
   };
 
   const handleReset = () => {
-    setStrokesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
+    setStrokesToken(
+      JSON.parse(JSON.stringify({ ...tokenWithRef.color.stroke }))
+    );
   };
 
-  const updatedTheme = {
-    ...token,
+  const updatedTokens = {
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       stroke: strokesToken,
     },
   };
+  const updatedTheme = tokenCalculator(updatedTokens);
 
   return (
     <RenderStrokesWithLinkFormUI
@@ -127,6 +127,7 @@ function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
       updatedTheme={updatedTheme}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
+      strokesToken={strokesToken}
     />
   );
 }

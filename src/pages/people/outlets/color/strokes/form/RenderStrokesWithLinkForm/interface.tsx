@@ -25,6 +25,7 @@ interface RenderStrokesWithLinkFormUIProps {
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
+  strokesToken: typeof inube;
 }
 
 function RenderStrokesWithLinkFormUI(props: RenderStrokesWithLinkFormUIProps) {
@@ -41,6 +42,7 @@ function RenderStrokesWithLinkFormUI(props: RenderStrokesWithLinkFormUIProps) {
     updatedTheme,
     toggleActive,
     setToggleActive,
+    strokesToken,
   } = props;
 
   const strokesCards = Object.entries(
@@ -74,6 +76,7 @@ function RenderStrokesWithLinkFormUI(props: RenderStrokesWithLinkFormUIProps) {
                 typeToken="stroke"
                 toggleActive={toggleActive}
                 setToggleActive={setToggleActive}
+                tokenName={strokesToken[formType][key]}
               >
                 <Text size="medium" appearance="dark">
                   {config.example}

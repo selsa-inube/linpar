@@ -1,4 +1,4 @@
-import userNotFound from "@src/assets/images/ItemNotFound.png";
+import userNotFound from "@assets/images/ItemNotFound.png";
 import { BrowserRouter } from "react-router-dom";
 import { ItemNotFound, ItemNotFoundProps } from "./index";
 import { StoryFn } from "@storybook/react";

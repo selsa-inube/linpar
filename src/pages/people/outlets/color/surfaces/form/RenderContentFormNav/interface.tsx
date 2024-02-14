@@ -42,6 +42,7 @@ interface RenderContentFormSurfaceNavUIProps {
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
+  surfaceToken: typeof inube;
 }
 
 function RenderContentFormSurfaceNavUI(
@@ -60,6 +61,7 @@ function RenderContentFormSurfaceNavUI(
     message,
     surfaceConfig,
     updatedTheme,
+    surfaceToken,
   } = props;
 
   const surfaceCards = Object.entries(
@@ -106,6 +108,7 @@ function RenderContentFormSurfaceNavUI(
                       }
                       toggleActive={toggleActive}
                       setToggleActive={setToggleActive}
+                      tokenName={surfaceToken[formType][key]}
                     />
                   </StyledContainerNav>
                 )

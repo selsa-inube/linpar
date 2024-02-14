@@ -16,7 +16,7 @@ import { EMessageType } from "@src/types/messages.types";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledMessageContainer } from "./styles";
-import { SearchUserCard } from "@src/components/cards/SearchUserCard";
+import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { useState } from "react";
 
 interface InviteUIProps {

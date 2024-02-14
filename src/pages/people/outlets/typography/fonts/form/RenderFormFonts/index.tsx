@@ -7,10 +7,8 @@ import { inube } from "@inube/design-system";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 function RenderFormFonts() {
-  const { token, handleSubmit, loading } = useContext(TokenContext);
-
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [isLoading, setIsLoading] = useState(false);
-
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -18,7 +16,6 @@ function RenderFormFonts() {
   if (loading) {
     return <LoadingAppUI />;
   }
-
   const hasChanges = (): boolean => {
     return true;
   };
@@ -44,7 +41,7 @@ function RenderFormFonts() {
           handleSubmit({
             domain: "typography",
             block: "fonts",
-            tokenUpdate: token,
+            tokenUpdate: tokenWithRef,
           });
         }
       })

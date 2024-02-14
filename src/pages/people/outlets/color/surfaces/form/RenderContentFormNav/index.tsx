@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { RenderContentFormSurfaceNavUI } from "./interface";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
@@ -10,6 +9,7 @@ import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { inube } from "@inube/design-system";
+import { tokenCalculator } from "@utilities/tokenCalculator";
 
 interface RenderContentFormSurfaceNavProps {
   formType: SurfaceAppearance;
@@ -18,21 +18,23 @@ interface RenderContentFormSurfaceNavProps {
 
 function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   const { formType, surfaceConfig } = props;
-  const { token, handleSubmit, loading } = useContext(TokenContext);
+
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [surfaceToken, setSurfaceToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
-
   const [toggleActive, setToggleActive] = useState(false);
 
   useEffect(() => {
-    if (!loading && token.color && token.color.stroke) {
-      setSurfaceToken(JSON.parse(JSON.stringify({ ...token.color.surface })));
+    if (!loading && tokenWithRef.color && tokenWithRef.color.stroke) {
+      setSurfaceToken(
+        JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
+      );
     }
-  }, [loading, token]);
+  }, [loading, tokenWithRef]);
 
   if (
     Object.keys(surfaceToken).length === 0 &&
@@ -42,7 +44,10 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   }
 
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.surface) !== JSON.stringify(surfaceToken);
+    return (
+      JSON.stringify(tokenWithRef.color.surface) !==
+      JSON.stringify(surfaceToken)
+    );
   };
 
   const handleTokenChange = (
@@ -51,11 +56,7 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
     updatedTokenName: string
   ) => {
     let updatedSurfaceTokens = { ...surfaceToken };
-    updatedSurfaceTokens[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
+    updatedSurfaceTokens[appearance][category] = updatedTokenName;
     setSurfaceToken(updatedSurfaceTokens);
   };
 
@@ -102,21 +103,24 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   };
 
   const handleReset = () => {
-    setSurfaceToken(JSON.parse(JSON.stringify({ ...token.color.surface })));
+    setSurfaceToken(
+      JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
+    );
   };
 
   const handleShowNav = () => {
     setShowNav(!showNav);
   };
 
-  const updatedTheme = {
-    ...token,
+  const updatedTokens = {
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       surface: surfaceToken,
     },
   };
 
+  const updatedTheme = tokenCalculator(updatedTokens);
   return (
     <RenderContentFormSurfaceNavUI
       formType={formType}
@@ -133,6 +137,7 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
       showNav={showNav}
       surfaceConfig={surfaceConfig}
       updatedTheme={updatedTheme}
+      surfaceToken={surfaceToken}
     />
   );
 }

@@ -4,6 +4,7 @@ import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "@pages/people/outlets/color/palette/config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
 import { TokenContext } from "@context/TokenContext";
+import { tokenCalculator } from "@utilities/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { PaletteAppearance } from "@pages/people/outlets/color/palette/types";
 
@@ -13,7 +14,9 @@ interface RenderContentFormPaletteProps {
 
 function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   const { formType } = props;
-  const { token, handleSubmit, loading } = useContext(TokenContext);
+
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
+
   const [paletteToken, setPaletteToken] = useState({});
   const [isLoadingFormButtons, setIsLoadingLoadingFormButtons] =
     useState(false);
@@ -22,10 +25,12 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   });
 
   useEffect(() => {
-    if (!loading && token.color && token.color.palette) {
-      setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
+    if (!loading && tokenWithRef.color && tokenWithRef.color.palette) {
+      setPaletteToken(
+        JSON.parse(JSON.stringify({ ...tokenWithRef.color.palette }))
+      );
     }
-  }, [loading, token]);
+  }, [loading, tokenWithRef]);
 
   if (
     Object.keys(paletteToken).length === 0 &&
@@ -35,7 +40,10 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   }
 
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.palette) !== JSON.stringify(paletteToken);
+    return (
+      JSON.stringify(tokenWithRef.color.palette) !==
+      JSON.stringify(paletteToken)
+    );
   };
 
   const handleColorChange = (
@@ -97,15 +105,19 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   };
 
   const handleReset = () => {
-    setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
+    setPaletteToken(
+      JSON.parse(JSON.stringify({ ...tokenWithRef.color.palette }))
+    );
   };
-  const updatedTheme = {
-    ...token,
+
+  const updatedTokens = {
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       palette: paletteToken,
     },
   };
+  const updatedTheme = tokenCalculator(updatedTokens);
 
   return (
     <RenderContentFormPaletteUI

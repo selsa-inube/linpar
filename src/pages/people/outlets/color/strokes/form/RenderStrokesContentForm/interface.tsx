@@ -26,6 +26,7 @@ interface RenderStrokesContentFormUIProps {
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
+  strokesToken: typeof inube;
 }
 
 function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
@@ -42,6 +43,7 @@ function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
     updatedTheme,
     toggleActive,
     setToggleActive,
+    strokesToken,
   } = props;
 
   const strokesCards = Object.entries(
@@ -87,6 +89,7 @@ function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
                   typeToken="stroke"
                   toggleActive={toggleActive}
                   setToggleActive={setToggleActive}
+                  tokenName={strokesToken[formType][key]}
                 />
               ))}
             </Grid>

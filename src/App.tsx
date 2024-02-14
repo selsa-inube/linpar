@@ -10,12 +10,13 @@ import {
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
 import { GlobalStyles } from "@styles/global";
-import AppContextProvider, { AppContext } from "@src/context/AppContext";
+import AppContextProvider, { AppContext } from "@context/AppContext";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
+import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 
 function LogOut() {
   const { logout } = useAuth0();
@@ -50,6 +51,7 @@ function App() {
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect();
+      intializedTokenData();
     }
   }, [isLoading, isAuthenticated, loginWithRedirect]);
 

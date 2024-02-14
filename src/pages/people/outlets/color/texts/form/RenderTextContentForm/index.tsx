@@ -5,11 +5,11 @@ import {
   textMessagesConfig,
 } from "@pages/people/outlets/color/texts/config/text.config";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
-import { TokenContext } from "@context/TokenContext";
-import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { TextAppearance } from "@pages/people/outlets/color/texts/types";
 import { inube } from "@inube/design-system";
+import { TokenContext } from "@context/TokenContext";
+import { tokenCalculator } from "@utilities/tokenCalculator";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderTextContentFormProps {
   formType: TextAppearance;
@@ -18,27 +18,28 @@ interface RenderTextContentFormProps {
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
   const { formType, textConfig } = props;
-  const { token, handleSubmit, loading } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [textToken, setTextToken] = useState<typeof inube>({});
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
-
   const [toggleActive, setToggleActive] = useState(false);
 
   useEffect(() => {
-    if (!loading && token.color && token.color.stroke) {
-      setTextToken(JSON.parse(JSON.stringify({ ...token.color.text })));
+    if (!loading && tokenWithRef.color && tokenWithRef.color.stroke) {
+      setTextToken(JSON.parse(JSON.stringify({ ...tokenWithRef.color.text })));
     }
-  }, [loading, token]);
+  }, [loading, tokenWithRef]);
 
   if (Object.keys(textToken).length === 0 && textToken.constructor === Object) {
     return <LoadingAppUI />;
   }
 
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.text) !== JSON.stringify(textToken);
+    return (
+      JSON.stringify(tokenWithRef.color.text) !== JSON.stringify(textToken)
+    );
   };
 
   const handleTokenChange = (
@@ -47,11 +48,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
     updatedTokenName: string
   ) => {
     let updatedTextTokens = { ...textToken };
-    updatedTextTokens[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
+    updatedTextTokens[appearance][category] = updatedTokenName;
     setTextToken(updatedTextTokens);
   };
 
@@ -98,15 +95,17 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   };
 
   const handleReset = () => {
-    setTextToken(JSON.parse(JSON.stringify({ ...token.color.text })));
+    setTextToken(JSON.parse(JSON.stringify({ ...tokenWithRef.color.text })));
   };
-  const updatedTheme = {
-    ...token,
+  const updatedTokens = {
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       text: textToken,
     },
   };
+  const updatedTheme = tokenCalculator(updatedTokens);
+
   return (
     <RenderTextContentFormUI
       formType={formType}
@@ -121,6 +120,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
       updatedTheme={updatedTheme}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
+      textToken={textToken}
     />
   );
 }

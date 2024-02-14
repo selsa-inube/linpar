@@ -6,7 +6,7 @@ import {
   RenderContentFormSurfaceNavProps,
 } from ".";
 import { surfaceFormsConfig } from "../../config/surface.config";
-import { TokenContext } from "@src/context/TokenContext";
+import { TokenContext } from "@context/TokenContext";
 
 const story = {
   components: [RenderContentFormSurfaceNav],

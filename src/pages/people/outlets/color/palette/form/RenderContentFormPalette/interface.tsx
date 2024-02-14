@@ -51,14 +51,6 @@ function RenderContentFormPaletteUI(props: RenderContentFormPaletteUIProps) {
 
   const templateRows = isMediumScreen ? "repeat(10, 1fr)" : "repeat(7, 1fr)";
   const autoFlow = isSmallScreen ? "row" : "column";
-  console.log(
-    "message: ",
-    message,
-    " handleCloseMessage: ",
-    handleCloseMessage,
-    " handleReset: ",
-    handleReset
-  );
 
   return (
     <>

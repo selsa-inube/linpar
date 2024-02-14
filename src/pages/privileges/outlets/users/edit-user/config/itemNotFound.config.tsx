@@ -1,4 +1,4 @@
-import userNotFound from "@src/assets/images/ItemNotFound.png";
+import userNotFound from "@assets/images/ItemNotFound.png";
 
 const userNotFoundConfig = {
   image: userNotFound,

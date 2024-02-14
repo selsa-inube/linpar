@@ -1,4 +1,4 @@
-import Completed from "@src/assets/images/Completed.png";
+import Completed from "@assets/images/Completed.png";
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { clientsDataMock } from "@mocks/login/clients.mock";
 import { useParams } from "react-router-dom";

@@ -31,6 +31,7 @@ interface RenderStrokesWithSpinnerFormUIProps {
   updatedTheme: typeof inube;
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
+  strokesToken: typeof inube;
 }
 
 function RenderStrokesWithSpinnerFormUI(
@@ -49,6 +50,7 @@ function RenderStrokesWithSpinnerFormUI(
     updatedTheme,
     toggleActive,
     setToggleActive,
+    strokesToken,
   } = props;
 
   const strokesCards = Object.entries(
@@ -102,6 +104,7 @@ function RenderStrokesWithSpinnerFormUI(
                     typeToken="stroke"
                     toggleActive={toggleActive}
                     setToggleActive={setToggleActive}
+                    tokenName={strokesToken[formType][key]}
                   />
                 </Stack>
               ))}

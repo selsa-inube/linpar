@@ -1,7 +1,7 @@
 import { AppMenu } from "@components/layout/AppMenu";
 import { IRoute } from "@components/layout/AppMenu/types";
-import { AppMenuGrid } from "@src/components/layout/AppMenuGrid";
-import { AppMenuCardProps } from "@src/components/cards/AppMenuCard";
+import { AppMenuGrid } from "@components/layout/AppMenuGrid";
+import { AppMenuCardProps } from "@components/cards/AppMenuCard";
 
 interface PrivilegesOptionsUIProps {
   appName: string;
