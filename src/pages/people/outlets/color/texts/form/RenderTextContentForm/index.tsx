@@ -25,7 +25,9 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   const [toggleActive, setToggleActive] = useState(false);
 
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.text) !== JSON.stringify(textToken);
+    return (
+      JSON.stringify(tokenWithRef.color.text) !== JSON.stringify(textToken)
+    );
   };
 
   const handleTokenChange = (
@@ -81,7 +83,7 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   };
 
   const handleReset = () => {
-    setTextToken(JSON.parse(JSON.stringify({ ...token.color.text })));
+    setTextToken(JSON.parse(JSON.stringify({ ...tokenWithRef.color.text })));
   };
   const updatedTokens = {
     ...token,
