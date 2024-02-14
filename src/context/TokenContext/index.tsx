@@ -21,7 +21,6 @@ import { tokenCalculator } from "@src/utilities/tokenCalculator";
 import { AppContext } from "@src/context/AppContext";
 
 const defaultTokenValue: ITokenContextProps = {
-  token: {},
   tokenWithRef: {},
   handleSubmit: () => {},
   loading: true,
@@ -44,7 +43,6 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
 
 const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [tokenWithRef, dispatch] = useReducer(tokenReducer, {});
-  const [token, setToken] = useState({ ...inube });
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AppContext);
   const clientName = user.company.toLowerCase();
@@ -76,9 +74,7 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
   };
 
   return (
-    <TokenContext.Provider
-      value={{ token, tokenWithRef, handleSubmit, loading }}
-    >
+    <TokenContext.Provider value={{ tokenWithRef, handleSubmit, loading }}>
       {children}
     </TokenContext.Provider>
   );
