@@ -1,19 +1,19 @@
+import { BrowserRouter } from "react-router-dom";
 import { LoadingApp } from "./index";
 
-interface Story {
-  components: React.ComponentType[];
-  title: string;
-  parameters: {
-    layout: string;
-  };
-}
-
-const story: Story = {
+const story = {
   components: [LoadingApp],
   title: "layouts/login/outlets/loading-app",
   parameters: {
     layout: "fullscreen",
   },
+  decorators: [
+    (Story: React.ElementType) => (
+      <BrowserRouter>
+        <Story />
+      </BrowserRouter>
+    ),
+  ],
 };
 
 const Default = () => <LoadingApp />;
