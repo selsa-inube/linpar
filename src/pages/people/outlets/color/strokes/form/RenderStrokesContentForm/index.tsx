@@ -10,6 +10,8 @@ import {
 import { TokenContext } from "@context/TokenContext";
 
 interface RenderStrokesContentFormProps {
+  children: ReactNode;
+  href: string | undefined;
   formType: string;
   strokesConfig: typeof strokesFormsConfig;
 }

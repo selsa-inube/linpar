@@ -10,7 +10,8 @@ import { TokenContext } from "@src/context/TokenContext";
 
 const story = {
   components: [RenderContentFormSurfaceNav],
-  title: "layouts/people/outlets/surfaces/form/RenderContentFormSurfaceNav",
+  title:
+    "layouts/people/outlets/color/surfaces/form/RenderContentFormSurfaceNav",
   parameters: {
     layout: "fullscreen",
   },
