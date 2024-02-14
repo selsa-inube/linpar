@@ -11,7 +11,7 @@ import {
   StyledMain,
   StyledContainerNav,
 } from "./styles";
-import { AppContext } from "@src/context/AppContext";
+import { AppContext } from "@context/AppContext";
 
 const renderLogo = (imgUrl: string) => {
   return (

@@ -7,8 +7,8 @@ import {
 } from "../../config/surface.config";
 import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "../../types";
-import { tokenCalculator } from "@src/utilities/tokenCalculator";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { tokenCalculator } from "@utilities/tokenCalculator";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderContentFormSurfaceBlanketProps {
   formType: SurfaceAppearance;

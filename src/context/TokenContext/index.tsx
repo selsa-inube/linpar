@@ -16,8 +16,8 @@ import {
 import {
   getTokens,
   updateIdTokens,
-} from "@src/mocks/themeService/themeService.mock";
-import { AppContext } from "@src/context/AppContext";
+} from "@mocks/themeService/themeService.mock";
+import { AppContext } from "@context/AppContext";
 
 const defaultTokenValue: ITokenContextProps = {
   tokenWithRef: {},

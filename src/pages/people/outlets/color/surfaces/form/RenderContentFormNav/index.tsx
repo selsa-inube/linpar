@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import { RenderContentFormSurfaceNavUI } from "./interface";
-import { IUsersMessage } from "@src/pages/privileges/outlets/users/types/users.types";
+import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
 } from "../../config/surface.config";
-import { TokenContext } from "@src/context/TokenContext";
+import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "../../types";
-import { tokenCalculator } from "@src/utilities/tokenCalculator";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { tokenCalculator } from "@utilities/tokenCalculator";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderContentFormSurfaceNavProps {
   formType: SurfaceAppearance;

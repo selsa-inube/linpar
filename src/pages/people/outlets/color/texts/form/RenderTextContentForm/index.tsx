@@ -4,8 +4,8 @@ import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
 import { TokenContext } from "@context/TokenContext";
-import { tokenCalculator } from "@src/utilities/tokenCalculator";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { tokenCalculator } from "@utilities/tokenCalculator";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderTextContentFormProps {
   formType: string;

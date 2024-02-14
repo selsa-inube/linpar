@@ -2,7 +2,7 @@ import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Strokes } from "./index";
 import { presente } from "@inube/design-system";
-import { TokenContext } from "@src/context/TokenContext";
+import { TokenContext } from "@context/TokenContext";
 
 const story = {
   components: [Strokes],

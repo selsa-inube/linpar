@@ -2,7 +2,7 @@ import { Textfield, useMediaQuery } from "@inube/design-system";
 import { useEffect, useState } from "react";
 import { StyledSearchUserCard } from "./styles";
 import { ILabel } from "./types";
-import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
+import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { MdSearch } from "react-icons/md";
 
 interface SearchUserCardProps {

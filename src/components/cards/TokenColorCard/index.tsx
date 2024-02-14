@@ -17,10 +17,10 @@ import {
   StyledHoverIcon,
 } from "./styles";
 import { ThemeContext } from "styled-components";
-import { Popup } from "@src/components/feedback/Popup";
+import { Popup } from "@components/feedback/Popup";
 import { MdOutlineEdit } from "react-icons/md";
-import { RenderCategoryGrid } from "@src/components/layout/RenderCategoryGrid";
-import { getTokenColor } from "@src/utilities/getTokenColor";
+import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
+import { getTokenColor } from "@utilities/getTokenColor";
 
 interface ITokenColorCardProps {
   tokenName: string;

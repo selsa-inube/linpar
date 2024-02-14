@@ -3,12 +3,12 @@ import {
   StyledTokenColorCardContainer,
   StyledTextWithTokenContainer,
 } from "./styles";
-import { Fieldset } from "@src/components/inputs/Fieldset";
+import { Fieldset } from "@components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
 import { useRef, useEffect } from "react";
-import { getTokenColor } from "@src/utilities/getTokenColor";
+import { getTokenColor } from "@utilities/getTokenColor";
 
 interface FieldsetColorCardProps {
   title: string;

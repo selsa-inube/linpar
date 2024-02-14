@@ -1,5 +1,5 @@
-import Expired from "@src/assets/images/Expired.png";
-import { ErrorPage } from "@src/components/layout/ErrorPage";
+import Expired from "@assets/images/Expired.png";
+import { ErrorPage } from "@components/layout/ErrorPage";
 import { IClient } from "../../types";
 
 interface ErrorInvitationExpiredProps {

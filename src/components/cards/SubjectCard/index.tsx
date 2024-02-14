@@ -2,7 +2,7 @@ import { Stack, Text, Icon, useMediaQuery } from "@inube/design-system";
 import { useState } from "react";
 import { StyledSubjectCard } from "./styles";
 import { ILabel } from "./types";
-import { InteractiveModal } from "@src/components/feedback/InteractiveModal";
+import { InteractiveModal } from "@components/feedback/InteractiveModal";
 
 interface SubjectCardProps {
   subjectData: Record<string, string | number> | any;

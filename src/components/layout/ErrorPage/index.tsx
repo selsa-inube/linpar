@@ -8,8 +8,8 @@ import {
 import { StyledCompanyLogo, StyledErrorImage } from "./styles";
 import { MdChevronLeft } from "react-icons/md";
 
-import selsaLogo from "@src/assets/images/selsa.png";
-import errorImage from "@src/assets/images/timeout.png";
+import selsaLogo from "@assets/images/selsa.png";
+import errorImage from "@assets/images/timeout.png";
 
 interface ErrorPageProps {
   logo?: string;

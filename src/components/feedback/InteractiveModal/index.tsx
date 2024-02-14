@@ -11,7 +11,7 @@ import {
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
 import { Key, SetStateAction, useState } from "react";
-import { SubjectSearchCard } from "@src/components/cards/SubjectSearchCard";
+import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 
 const InteractiveModal = ({
   portalId,

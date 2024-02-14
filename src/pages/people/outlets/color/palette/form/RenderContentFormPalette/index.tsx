@@ -4,8 +4,8 @@ import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "../../config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
 import { TokenContext } from "@context/TokenContext";
-import { tokenCalculator } from "@src/utilities/tokenCalculator";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { tokenCalculator } from "@utilities/tokenCalculator";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderContentFormPaletteProps {
   formType: string;

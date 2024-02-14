@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { LoginUI } from "./interface";
-import { AppContext } from "@src/context/AppContext";
+import { AppContext } from "@context/AppContext";
 
 function Login() {
   const navigate = useNavigate();

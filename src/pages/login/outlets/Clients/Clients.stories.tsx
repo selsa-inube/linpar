@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Clients } from ".";
-import { clientsDataMock } from "@src/mocks/login/clients.mock";
+import { clientsDataMock } from "@mocks/login/clients.mock";
 
 const story = {
   components: [Clients],
