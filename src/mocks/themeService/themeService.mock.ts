@@ -13,50 +13,59 @@ function getTokenColor(tokenName: string, palette?: typeof inube) {
 function tokenCalculator(tokenWithReference: typeof inube) {
   let tokens = JSON.parse(JSON.stringify({ ...tokenWithReference }));
 
-  Object.entries(tokenWithReference.color).forEach(([domain, domainValue]) => {
-    if (domain !== "palette") {
-      Object.entries(domainValue).forEach(([block, blockValue]) => {
-        Object.entries(blockValue).forEach(([modifier, modifierValue]) => {
-          tokens.color[domain][block][modifier] = getTokenColor(
-            modifierValue,
-            tokenWithReference.color.palette
-          );
-        });
-      });
+  Object.entries(tokenWithReference.color).forEach(
+    ([domain, domainValue]: [string, typeof inube]) => {
+      if (domain !== "palette") {
+        Object.entries(domainValue).forEach(
+          ([block, blockValue]: [string, typeof inube]) => {
+            Object.entries(blockValue).forEach(
+              ([modifier, modifierValue]: [string, typeof inube]) => {
+                tokens.color[domain][block][modifier] = getTokenColor(
+                  modifierValue,
+                  tokenWithReference.color.palette
+                );
+              }
+            );
+          }
+        );
+      }
     }
-  });
+  );
   return tokens;
 }
 
 async function intializedTokenData() {
   localforage.clear();
-  // let id = Math.random().toString(36).substring(2, 9);
-  let id = "presente";
-  let presenteTokens = {
-    id,
-    createdAt: Date.now(),
-    tokens: { ...tokensWithReference[id] },
-  };
-  let tokens = [presenteTokens];
+  let tokens: typeof inube[] = [];
+  Object.entries(tokensWithReference).forEach(([clientName, clientTokens]) => {
+    let id = Math.random().toString(36).substring(2, 9);
+    tokens.push({
+      id,
+      clientName,
+      createdAt: Date.now(),
+      tokens: { ...clientTokens },
+    });
+  });
   await localforage.setItem("tokens", tokens);
 }
-async function getTokens(id: String) {
+async function getTokens(clientName: String) {
   let tokens: typeof inube = await localforage.getItem("tokens");
   let idTokens: typeof inube = tokens.find(
-    (idTokens: typeof inube) => idTokens.id === id
+    (idTokens: typeof inube) => idTokens.clientName === clientName
   );
 
   return idTokens;
 }
 
-async function updateIdTokens(id: String, updates: typeof inube) {
+async function updateIdTokens(clientName: String, updates: typeof inube) {
   let tokens: typeof inube = await localforage.getItem("tokens");
   let idTokens: typeof inube = tokens.find(
-    (idTokens: typeof inube) => idTokens.id === id
+    (idTokens: typeof inube) => idTokens.clientName === clientName
   );
   if (!idTokens) throw new Error("No tokens found");
   Object.assign(idTokens, {
-    id: id,
+    id: idTokens.id,
+    clientName: clientName,
     createdAt: idTokens.createdAt,
     tokens: updates,
   });

@@ -1,4 +1,10 @@
-import React, { createContext, useReducer, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useReducer,
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 import { inube } from "@inube/design-system";
 import {
   IHandleSubmitProps,
@@ -11,6 +17,7 @@ import {
   updateIdTokens,
   tokenCalculator,
 } from "@src/mocks/themeService/themeService.mock";
+import { AppContext } from "@src/context/AppContext";
 
 const defaultTokenValue: ITokenContextProps = {
   token: {},
@@ -36,22 +43,24 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
 const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [tokenWithRef, dispatch] = useReducer(tokenReducer, {});
   const [token, setToken] = useState({ ...inube });
+  const { user } = useContext(AppContext);
+  const clientName = user.company.toLowerCase();
 
   useEffect(() => {
-    getTokens("presente").then((tokenData: typeof inube) => {
+    getTokens(clientName).then((tokenData: typeof inube) => {
       dispatch({
         type: actionTypes.SET_TOKEN,
         payload: { ...tokenData.tokens },
       });
       setToken(tokenCalculator({ ...tokenData.tokens }));
     });
-  }, []);
+  }, [clientName]);
 
   const handleSubmit = (props: IHandleSubmitProps) => {
     const { domain, block, tokenUpdate } = props;
     let newTokens = { ...tokenWithRef };
     Object.assign(newTokens[domain][block], tokenUpdate);
-    updateIdTokens("presente", newTokens).then((tokenData: typeof inube) => {
+    updateIdTokens(clientName, newTokens).then((tokenData: typeof inube) => {
       dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
     });
     setToken(tokenCalculator({ ...newTokens }));
