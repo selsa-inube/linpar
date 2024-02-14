@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect, useState } from "react";
 import { inube } from "@inube/design-system";
 import {
   IHandleSubmitProps,
@@ -11,6 +11,7 @@ import { fetchTokenData } from "@src/mocks/themeService/themeService.mock";
 const defaultTokenValue: ITokenContextProps = {
   token: {},
   handleSubmit: () => {},
+  loading: true,
 };
 
 const TokenContext = createContext<ITokenContextProps>(defaultTokenValue);
@@ -39,11 +40,18 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
 
 const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [token, dispatch] = useReducer(tokenReducer, {});
-
+  const [loading, setLoading] = useState(true); 
+  
   useEffect(() => {
-    fetchTokenData().then((tokenData: typeof inube) => {
-      dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData });
-    });
+    fetchTokenData()
+      .then((tokenData: typeof inube) => {
+        dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData });
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch token data:", error);
+        setLoading(false);
+      });
   }, []);
 
   const handleSubmit = (props: IHandleSubmitProps) => {
@@ -51,7 +59,7 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
   };
 
   return (
-    <TokenContext.Provider value={{ token, handleSubmit }}>
+    <TokenContext.Provider value={{ token, handleSubmit, loading }}>
       {children}
     </TokenContext.Provider>
   );

@@ -8,6 +8,7 @@ import {
 } from "../../config/surface.config";
 import { TokenContext } from "@src/context/TokenContext";
 import { SurfaceAppearance } from "../../types";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 interface RenderContentFormSurfaceNavProps {
   formType: SurfaceAppearance;
@@ -16,7 +17,10 @@ interface RenderContentFormSurfaceNavProps {
 
 function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   const { formType, surfaceConfig } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { token, handleSubmit, loading } = useContext(TokenContext);
+  if (loading) {
+    return <LoadingAppUI/>;
+  }
   const [surfaceToken, setSurfaceToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.surface }))
   );

@@ -5,7 +5,7 @@ const fetchTokenData = () => {
     const mockApiResponse = {
       presente,
     };
-    setTimeout(() => resolve(mockApiResponse.presente), 5);
+    setTimeout(() => resolve(mockApiResponse.presente), 1000);
   });
 };
 
