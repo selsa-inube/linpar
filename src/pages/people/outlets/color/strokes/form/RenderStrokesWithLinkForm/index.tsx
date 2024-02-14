@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { RenderStrokesWithLinkFormUI } from "./interface";
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
 } from "../../config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
+import { tokenCalculator } from "@mocks/themeService/themeService.mock";
 
 interface RenderStrokesWithLinkFormProps {
   formType: string;
@@ -16,9 +16,9 @@ interface RenderStrokesWithLinkFormProps {
 
 function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
   const { formType, strokesConfig } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
   const [strokesToken, setStrokesToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.stroke }))
+    JSON.parse(JSON.stringify({ ...tokenWithRef.color.stroke }))
   );
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IPeopleMessage>({
@@ -28,21 +28,17 @@ function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
   const [toggleActive, setToggleActive] = useState(false);
 
   const hasChanges = () => {
-    return JSON.stringify(token.color.stroke) !== JSON.stringify(strokesToken);
+    return (
+      JSON.stringify(tokenWithRef.color.stroke) !== JSON.stringify(strokesToken)
+    );
   };
-
   const handleTokenChange = (
     appearance: Appearance,
     category: string,
     updatedTokenName: string
   ) => {
     let strokesUpdate = { ...strokesToken };
-
-    strokesUpdate[appearance][category] = getTokenColor(
-      updatedTokenName,
-      token
-    );
-
+    strokesUpdate[appearance][category] = updatedTokenName;
     setStrokesToken(strokesUpdate);
   };
 
@@ -89,16 +85,19 @@ function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
   };
 
   const handleReset = () => {
-    setStrokesToken(JSON.parse(JSON.stringify({ ...token.color.stroke })));
+    setStrokesToken(
+      JSON.parse(JSON.stringify({ ...tokenWithRef.color.stroke }))
+    );
   };
 
-  const updatedTheme = {
-    ...token,
+  const updatedTokens = {
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       stroke: strokesToken,
     },
   };
+  const updatedTheme = tokenCalculator(updatedTokens);
 
   return (
     <RenderStrokesWithLinkFormUI
@@ -114,6 +113,7 @@ function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
       updatedTheme={updatedTheme}
       toggleActive={toggleActive}
       setToggleActive={setToggleActive}
+      strokesToken={strokesToken}
     />
   );
 }
