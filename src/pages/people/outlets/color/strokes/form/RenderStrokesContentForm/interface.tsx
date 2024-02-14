@@ -75,24 +75,21 @@ function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
               autoRows="unset"
             >
               {strokesCards.map(([key, config]) => (
-                <>
-                  {console.log(strokesToken[formType][key])}
-                  <FieldsetColorCard
-                    appearance={formType}
-                    category={key}
-                    description={config.description}
-                    key={key}
-                    onChange={(newTokenName) =>
-                      handleTokenChange(formType, key, newTokenName)
-                    }
-                    optionsMenu={updatedTheme.color.palette}
-                    title={config.title}
-                    typeToken="stroke"
-                    toggleActive={toggleActive}
-                    setToggleActive={setToggleActive}
-                    tokenName={strokesToken[formType][key]}
-                  />
-                </>
+                <FieldsetColorCard
+                  appearance={formType}
+                  category={key}
+                  description={config.description}
+                  key={key}
+                  onChange={(newTokenName) =>
+                    handleTokenChange(formType, key, newTokenName)
+                  }
+                  optionsMenu={updatedTheme.color.palette}
+                  title={config.title}
+                  typeToken="stroke"
+                  toggleActive={toggleActive}
+                  setToggleActive={setToggleActive}
+                  tokenName={strokesToken[formType][key]}
+                />
               ))}
             </Grid>
           </Stack>
