@@ -8,6 +8,7 @@ import {
 import { TokenContext } from "@src/context/TokenContext";
 import { SurfaceAppearance } from "../../types";
 import { tokenCalculator } from "@src/utilities/tokenCalculator";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 interface RenderContentFormSurfaceNavProps {
   formType: SurfaceAppearance;
@@ -16,7 +17,8 @@ interface RenderContentFormSurfaceNavProps {
 
 function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   const { formType, surfaceConfig } = props;
-  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
+
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [surfaceToken, setSurfaceToken] = useState(
     JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
   );
@@ -25,8 +27,11 @@ function RenderContentFormSurfaceNav(props: RenderContentFormSurfaceNavProps) {
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
-
   const [toggleActive, setToggleActive] = useState(false);
+
+  if (loading) {
+    return <LoadingAppUI />;
+  }
 
   const hasChanges = (): boolean => {
     return (

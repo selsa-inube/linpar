@@ -8,6 +8,7 @@ import {
 } from "../../config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
 import { tokenCalculator } from "@src/utilities/tokenCalculator";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 interface RenderStrokesContentFormProps {
   formType: string;
@@ -16,7 +17,7 @@ interface RenderStrokesContentFormProps {
 
 function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
   const { formType, strokesConfig } = props;
-  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [strokesToken, setStrokesToken] = useState(
     JSON.parse(JSON.stringify({ ...tokenWithRef.color.stroke }))
   );
@@ -24,8 +25,11 @@ function RenderStrokesContentForm(props: RenderStrokesContentFormProps) {
   const [message, setMessage] = useState<IPeopleMessage>({
     visible: false,
   });
-
   const [toggleActive, setToggleActive] = useState(false);
+
+  if (loading) {
+    return <LoadingAppUI />;
+  }
 
   const hasChanges = () => {
     return (

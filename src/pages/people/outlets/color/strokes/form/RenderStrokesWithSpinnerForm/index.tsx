@@ -8,6 +8,7 @@ import {
 } from "../../config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
 import { tokenCalculator } from "@src/utilities/tokenCalculator";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 interface RenderStrokesWithSpinnerFormProps {
   formType: string;
   strokesConfig: typeof strokesFormsConfig;
@@ -17,7 +18,7 @@ function RenderStrokesWithSpinnerForm(
   props: RenderStrokesWithSpinnerFormProps
 ) {
   const { formType, strokesConfig } = props;
-  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [strokesToken, setStrokesToken] = useState(
     JSON.parse(JSON.stringify({ ...tokenWithRef.color.stroke }))
   );
@@ -28,6 +29,9 @@ function RenderStrokesWithSpinnerForm(
 
   const [toggleActive, setToggleActive] = useState(false);
 
+  if (loading) {
+    return <LoadingAppUI />;
+  }
   const hasChanges = () => {
     return (
       JSON.stringify(tokenWithRef.color.stroke) !== JSON.stringify(strokesToken)

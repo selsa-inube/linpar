@@ -8,6 +8,7 @@ import {
 import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "../../types";
 import { tokenCalculator } from "@src/utilities/tokenCalculator";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 interface RenderSurfaceContentFormProps {
   formType: SurfaceAppearance;
@@ -16,7 +17,7 @@ interface RenderSurfaceContentFormProps {
 
 function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const { formType, surfaceConfig } = props;
-  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [surfaceToken, setSurfaceToken] = useState(
     JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
   );
@@ -27,6 +28,9 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const [toggleActive, setToggleActive] = useState(false);
   const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
+  if (loading) {
+    return <LoadingAppUI />;
+  }
   const hasChanges = (): boolean => {
     return (
       JSON.stringify(tokenWithRef.color.surface) !==

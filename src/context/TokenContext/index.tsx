@@ -5,6 +5,7 @@ import React, {
   useState,
   useContext,
 } from "react";
+
 import { inube } from "@inube/design-system";
 import {
   IHandleSubmitProps,
@@ -23,6 +24,7 @@ const defaultTokenValue: ITokenContextProps = {
   token: {},
   tokenWithRef: {},
   handleSubmit: () => {},
+  loading: true,
 };
 
 const TokenContext = createContext<ITokenContextProps>(defaultTokenValue);
@@ -43,17 +45,24 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
 const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [tokenWithRef, dispatch] = useReducer(tokenReducer, {});
   const [token, setToken] = useState({ ...inube });
+  const [loading, setLoading] = useState(true);
   const { user } = useContext(AppContext);
   const clientName = user.company.toLowerCase();
 
   useEffect(() => {
-    getTokens(clientName).then((tokenData: typeof inube) => {
-      dispatch({
-        type: actionTypes.SET_TOKEN,
-        payload: { ...tokenData.tokens },
+    getTokens(clientName)
+      .then((tokenData: typeof inube) => {
+        dispatch({
+          type: actionTypes.SET_TOKEN,
+          payload: { ...tokenData.tokens },
+        });
+        setLoading(false);
+        setToken(tokenCalculator({ ...tokenData.tokens }));
+      })
+      .catch((error) => {
+        console.error("Failed to fetch token data:", error);
+        setLoading(false);
       });
-      setToken(tokenCalculator({ ...tokenData.tokens }));
-    });
   }, [clientName]);
 
   const handleSubmit = (props: IHandleSubmitProps) => {
@@ -67,7 +76,9 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
   };
 
   return (
-    <TokenContext.Provider value={{ token, tokenWithRef, handleSubmit }}>
+    <TokenContext.Provider
+      value={{ token, tokenWithRef, handleSubmit, loading }}
+    >
       {children}
     </TokenContext.Provider>
   );

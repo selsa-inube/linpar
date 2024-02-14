@@ -5,6 +5,7 @@ import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
 import { TokenContext } from "@context/TokenContext";
 import { tokenCalculator } from "@src/utilities/tokenCalculator";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 interface RenderTextContentFormProps {
   formType: string;
@@ -13,7 +14,7 @@ interface RenderTextContentFormProps {
 
 function RenderTextContentForm(props: RenderTextContentFormProps) {
   const { formType, textConfig } = props;
-  const { tokenWithRef, handleSubmit } = useContext(TokenContext);
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [textToken, setTextToken] = useState(
     JSON.parse(JSON.stringify({ ...tokenWithRef.color.text }))
   );
@@ -21,9 +22,11 @@ function RenderTextContentForm(props: RenderTextContentFormProps) {
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
-
   const [toggleActive, setToggleActive] = useState(false);
 
+  if (loading) {
+    return <LoadingAppUI />;
+  }
   const hasChanges = (): boolean => {
     return (
       JSON.stringify(tokenWithRef.color.text) !== JSON.stringify(textToken)
