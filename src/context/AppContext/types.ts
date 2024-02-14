@@ -12,7 +12,7 @@ interface IAppContext {
 }
 
 interface IClient {
-  id: number;
+  id: string;
   name: string;
   sigla: string;
   logo: string;

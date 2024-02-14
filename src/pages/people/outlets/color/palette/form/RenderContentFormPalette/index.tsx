@@ -4,7 +4,8 @@ import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "../../config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
 import { TokenContext } from "@context/TokenContext";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { tokenCalculator } from "@utilities/tokenCalculator";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderContentFormPaletteProps {
   formType: string;
@@ -12,12 +13,11 @@ interface RenderContentFormPaletteProps {
 
 function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   const { formType } = props;
-  const { token, handleSubmit, loading } = useContext(TokenContext);
-  if (loading) {
-    return <LoadingAppUI />;
-  }
+
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
+
   const [paletteToken, setPaletteToken] = useState(
-    JSON.parse(JSON.stringify({ ...token.color.palette }))
+    JSON.parse(JSON.stringify({ ...tokenWithRef.color.palette }))
   );
   const [isLoadingFormButtons, setIsLoadingLoadingFormButtons] =
     useState(false);
@@ -25,8 +25,15 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
     visible: false,
   });
 
+  if (loading) {
+    return <LoadingAppUI />;
+  }
+
   const hasChanges = (): boolean => {
-    return JSON.stringify(token.color.palette) !== JSON.stringify(paletteToken);
+    return (
+      JSON.stringify(tokenWithRef.color.palette) !==
+      JSON.stringify(paletteToken)
+    );
   };
 
   const handleColorChange = (
@@ -88,15 +95,19 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   };
 
   const handleReset = () => {
-    setPaletteToken(JSON.parse(JSON.stringify({ ...token.color.palette })));
+    setPaletteToken(
+      JSON.parse(JSON.stringify({ ...tokenWithRef.color.palette }))
+    );
   };
-  const updatedTheme = {
-    ...token,
+
+  const updatedTokens = {
+    ...tokenWithRef,
     color: {
-      ...token.color,
+      ...tokenWithRef.color,
       palette: paletteToken,
     },
   };
+  const updatedTheme = tokenCalculator(updatedTokens);
 
   return (
     <RenderContentFormPaletteUI

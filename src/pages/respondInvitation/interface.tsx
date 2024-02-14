@@ -16,7 +16,7 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 
-import { Fieldset } from "@src/components/inputs/Fieldset";
+import { Fieldset } from "@components/inputs/Fieldset";
 import {
   Styledlmage,
   StyledContainerHeader,

@@ -42,6 +42,7 @@ interface RenderSurfaceContentFormUIProps {
   setToggleActive: (props: boolean) => void;
   navLinkIsSelected: boolean;
   setNavLinkIsSelected: (props: boolean) => void;
+  surfaceToken: typeof inube;
 }
 
 function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
@@ -60,6 +61,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
     setToggleActive,
     navLinkIsSelected,
     setNavLinkIsSelected,
+    surfaceToken,
   } = props;
 
   const surfaceCards = Object.entries(
@@ -122,6 +124,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
                     }
                     toggleActive={toggleActive}
                     setToggleActive={setToggleActive}
+                    tokenName={surfaceToken[formType][key]}
                   />
                 )
               )}

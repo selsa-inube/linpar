@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Texts } from ".";
-import { TokenContext } from "@src/context/TokenContext";
+import { TokenContext } from "@context/TokenContext";
 import { presente } from "@inube/design-system";
 
 const story = {

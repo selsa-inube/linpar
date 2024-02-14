@@ -1,15 +1,14 @@
 import { Stack, Text, inube } from "@inube/design-system";
-import { ThemeContext } from "styled-components";
 import {
   StyledTokenColorCardContainer,
   StyledTextWithTokenContainer,
 } from "./styles";
-import { Fieldset } from "@src/components/inputs/Fieldset";
+import { Fieldset } from "@components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
-import { useContext, useRef, useEffect } from "react";
-import { getTokenColor } from "../TokenColorCard/styles";
+import { useRef, useEffect } from "react";
+import { getTokenColor } from "@utilities/getTokenColor";
 
 interface FieldsetColorCardProps {
   title: string;
@@ -22,47 +21,20 @@ interface FieldsetColorCardProps {
   onChange: (tokenName: string) => void;
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
+  tokenName: string;
 }
-
-const getTokenReferenceFromAppearanceAndCategory = (
-  appearance: Appearance,
-  typeToken: string,
-  category: string,
-  tokens: typeof inube
-): string | null => {
-  const tokenReference = tokens[typeToken]?.[appearance]?.[category];
-
-  if (!tokenReference) return null;
-  const castedPalette = tokens.palette as Record<
-    string,
-    Record<string, string>
-  >;
-
-  for (const [, colorValues] of Object.entries(castedPalette)) {
-    for (const [colorKey, colorValue] of Object.entries(colorValues)) {
-      if (colorValue === tokenReference) {
-        return colorKey;
-      }
-    }
-  }
-  return null;
-};
 
 function FieldsetColorCard(props: FieldsetColorCardProps) {
   const {
     title,
     description,
-    appearance,
-    category,
     children,
-    typeToken = "text",
     optionsMenu,
     onChange,
     toggleActive,
     setToggleActive,
+    tokenName,
   } = props;
-
-  const themeContext = useContext(ThemeContext);
 
   const fieldsetRef = useRef() as React.MutableRefObject<HTMLFieldSetElement>;
 
@@ -71,15 +43,6 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
       fieldsetRef.current.focus();
     }
   }, []);
-
-  const tokens = themeContext?.color || inube.color;
-
-  const tokenName = getTokenReferenceFromAppearanceAndCategory(
-    appearance,
-    typeToken,
-    category,
-    tokens
-  );
 
   const handleColorChange = (updatedTokenName: string) => {
     onChange(updatedTokenName);

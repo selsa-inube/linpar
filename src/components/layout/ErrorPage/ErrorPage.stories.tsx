@@ -1,6 +1,6 @@
 import { ErrorPage, ErrorPageProps } from "./index";
-import selsaLogo from "@src/assets/images/selsa.png";
-import errorImage from "@src/assets/images/timeout.png";
+import selsaLogo from "@assets/images/selsa.png";
+import errorImage from "@assets/images/timeout.png";
 
 const story = {
   components: [ErrorPage],

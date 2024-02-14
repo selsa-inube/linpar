@@ -24,7 +24,8 @@
       "@context/*": ["./src/context/*"],
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
-      "@validations/*": ["./src/validations/*"]
+      "@validations/*": ["./src/validations/*"],
+      "@utilities/*": ["./src/utilities/*"]
     },
     "types": ["vite/client"]
   },

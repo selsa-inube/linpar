@@ -4,19 +4,18 @@ import { useContext, useState } from "react";
 import { TokenContext } from "@context/TokenContext";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 function RenderFormFonts() {
-  const { token, handleSubmit, loading } = useContext(TokenContext);
-  if (loading) {
-    return <LoadingAppUI/>;
-  }
+  const { tokenWithRef, handleSubmit, loading } = useContext(TokenContext);
   const [isLoading, setIsLoading] = useState(false);
-
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
 
+  if (loading) {
+    return <LoadingAppUI />;
+  }
   const hasChanges = (): boolean => {
     return true;
   };
@@ -42,7 +41,7 @@ function RenderFormFonts() {
           handleSubmit({
             domain: "typography",
             block: "fonts",
-            tokenUpdate: token,
+            tokenUpdate: tokenWithRef,
           });
         }
       })

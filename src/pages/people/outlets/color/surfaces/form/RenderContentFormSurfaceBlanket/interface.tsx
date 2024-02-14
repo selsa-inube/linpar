@@ -40,6 +40,7 @@ interface RenderContentFormSurfaceBlanketUIProps {
   toggleActive: boolean;
   setToggleActive: (props: boolean) => void;
   updatedTheme: typeof inube;
+  surfaceToken: typeof inube;
 }
 
 function RenderContentFormSurfaceBlanketUI(
@@ -60,6 +61,7 @@ function RenderContentFormSurfaceBlanketUI(
     toggleActive,
     setToggleActive,
     updatedTheme,
+    surfaceToken,
   } = props;
 
   const surfaceCards = Object.entries(
@@ -160,6 +162,7 @@ function RenderContentFormSurfaceBlanketUI(
                     }
                     toggleActive={toggleActive}
                     setToggleActive={setToggleActive}
+                    tokenName={surfaceToken[formType][key]}
                   />
                 )
               )}
