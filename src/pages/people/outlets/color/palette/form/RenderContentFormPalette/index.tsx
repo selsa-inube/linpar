@@ -4,6 +4,7 @@ import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "../../config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
 import { TokenContext } from "@context/TokenContext";
+import { tokenCalculator } from "@mocks/themeService/themeService.mock";
 
 interface RenderContentFormPaletteProps {
   formType: string;
@@ -90,13 +91,15 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
       JSON.parse(JSON.stringify({ ...tokenWithRef.color.palette }))
     );
   };
-  const updatedTheme = {
+
+  const updatedTokens = {
     ...tokenWithRef,
     color: {
       ...tokenWithRef.color,
       palette: paletteToken,
     },
   };
+  const updatedTheme = tokenCalculator(updatedTokens);
 
   return (
     <RenderContentFormPaletteUI
