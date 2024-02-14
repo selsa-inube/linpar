@@ -6,7 +6,7 @@ import { Button, Stack } from "@inube/design-system";
 import { ILogoutModalProps, LogoutModal } from ".";
 
 const story = {
-  title: "feedback/logout",
+  title: "components/feedback/logout",
   parameters: {
     layout: "fullscreen",
   },
