@@ -3,7 +3,6 @@ import { RenderTextContentFormUI } from "./interface";
 import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
-import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import { TokenContext } from "@context/TokenContext";
 import { tokenCalculator } from "@mocks/themeService/themeService.mock";
 

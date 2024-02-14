@@ -1,5 +1,4 @@
 import { Stack, Text, inube } from "@inube/design-system";
-import { ThemeContext } from "styled-components";
 import {
   StyledTokenColorCardContainer,
   StyledTextWithTokenContainer,
@@ -8,7 +7,7 @@ import { Fieldset } from "@src/components/inputs/Fieldset";
 import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
-import { useContext, useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { getTokenColor } from "../TokenColorCard/styles";
 
 interface FieldsetColorCardProps {
@@ -25,38 +24,11 @@ interface FieldsetColorCardProps {
   tokenName: string;
 }
 
-const getTokenReferenceFromAppearanceAndCategory = (
-  appearance: Appearance,
-  typeToken: string,
-  category: string,
-  tokens: typeof inube
-): string | null => {
-  const tokenReference = tokens[typeToken]?.[appearance]?.[category];
-
-  if (!tokenReference) return null;
-  const castedPalette = tokens.palette as Record<
-    string,
-    Record<string, string>
-  >;
-
-  for (const [, colorValues] of Object.entries(castedPalette)) {
-    for (const [colorKey, colorValue] of Object.entries(colorValues)) {
-      if (colorValue === tokenReference) {
-        return colorKey;
-      }
-    }
-  }
-  return null;
-};
-
 function FieldsetColorCard(props: FieldsetColorCardProps) {
   const {
     title,
     description,
-    appearance,
-    category,
     children,
-    typeToken = "text",
     optionsMenu,
     onChange,
     toggleActive,
@@ -64,21 +36,13 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
     tokenName,
   } = props;
 
-  const themeContext = useContext(ThemeContext);
-  const [tokenNameState, setTokenNameState] = useState(tokenName);
   const fieldsetRef = useRef() as React.MutableRefObject<HTMLFieldSetElement>;
-
-  useEffect(() => {
-    setTokenNameState(tokenName);
-  }, [tokenName]);
 
   useEffect(() => {
     if (fieldsetRef && fieldsetRef.current) {
       fieldsetRef.current.focus();
     }
   }, []);
-
-  const tokens = themeContext?.color || inube.color;
 
   const handleColorChange = (updatedTokenName: string) => {
     onChange(updatedTokenName);
