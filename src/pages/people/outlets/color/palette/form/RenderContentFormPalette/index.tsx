@@ -4,6 +4,7 @@ import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "../../config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
 import { TokenContext } from "@context/TokenContext";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 interface RenderContentFormPaletteProps {
   formType: string;
@@ -11,11 +12,15 @@ interface RenderContentFormPaletteProps {
 
 function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   const { formType } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { token, handleSubmit, loading } = useContext(TokenContext);
+  if (loading) {
+    return <LoadingAppUI />;
+  }
   const [paletteToken, setPaletteToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.palette }))
   );
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingFormButtons, setIsLoadingLoadingFormButtons] =
+    useState(false);
   const [message, setMessage] = useState<IUsersMessage>({
     visible: false,
   });
@@ -41,7 +46,7 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
   };
 
   const handleSubmitForm = () => {
-    setIsLoading(true);
+    setIsLoadingLoadingFormButtons(true);
     new Promise((resolve, reject) => {
       setTimeout(() => {
         const isSuccess = true;
@@ -72,7 +77,7 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
         });
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsLoadingLoadingFormButtons(false);
       });
   };
 
@@ -102,7 +107,7 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
       handleReset={handleReset}
       handleSubmitForm={handleSubmitForm}
       hasChanges={hasChanges}
-      isLoading={isLoading}
+      isLoading={isLoadingFormButtons}
       message={message}
       updatedTheme={updatedTheme}
     />

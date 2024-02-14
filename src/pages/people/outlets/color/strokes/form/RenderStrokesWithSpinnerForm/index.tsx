@@ -5,12 +5,13 @@ import { Appearance } from "@components/cards/FieldsetColorCard/types";
 
 import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 
-import { IPeopleMessage } from "../../../types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
 } from "../../config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
+import { IPeopleMessage } from "@src/pages/people/outlets/types/people.types";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 interface RenderStrokesWithSpinnerFormProps {
   formType: string;
@@ -21,7 +22,10 @@ function RenderStrokesWithSpinnerForm(
   props: RenderStrokesWithSpinnerFormProps
 ) {
   const { formType, strokesConfig } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { token, handleSubmit, loading } = useContext(TokenContext);
+  if (loading) {
+    return <LoadingAppUI/>;
+  }
   const [strokesToken, setStrokesToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );

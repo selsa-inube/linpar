@@ -4,9 +4,13 @@ import { useContext, useState } from "react";
 import { TokenContext } from "@context/TokenContext";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 function RenderFormFonts() {
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { token, handleSubmit, loading } = useContext(TokenContext);
+  if (loading) {
+    return <LoadingAppUI/>;
+  }
   const [isLoading, setIsLoading] = useState(false);
 
   const [message, setMessage] = useState<IUsersMessage>({

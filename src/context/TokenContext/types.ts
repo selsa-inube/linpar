@@ -9,6 +9,7 @@ interface IHandleSubmitProps {
 interface ITokenContextProps {
   token: typeof inube;
   handleSubmit: (props: IHandleSubmitProps) => void;
+  loading: boolean;
 }
 
 interface SetTokenAction {

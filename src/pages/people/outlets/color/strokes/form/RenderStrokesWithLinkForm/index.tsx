@@ -8,6 +8,7 @@ import {
   strokesFormsConfig,
 } from "../../config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
+import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
 
 interface RenderStrokesWithLinkFormProps {
   formType: string;
@@ -16,7 +17,10 @@ interface RenderStrokesWithLinkFormProps {
 
 function RenderStrokesWithLinkForm(props: RenderStrokesWithLinkFormProps) {
   const { formType, strokesConfig } = props;
-  const { token, handleSubmit } = useContext(TokenContext);
+  const { token, handleSubmit, loading } = useContext(TokenContext);
+  if (loading) {
+    return <LoadingAppUI/>;
+  }
   const [strokesToken, setStrokesToken] = useState(
     JSON.parse(JSON.stringify({ ...token.color.stroke }))
   );
