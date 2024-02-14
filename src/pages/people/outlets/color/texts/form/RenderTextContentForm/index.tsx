@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { RenderTextContentFormUI } from "./interface";
-import { textFormsConfig, textMessagesConfig } from "../../config/text.config";
+import {
+  textFormsConfig,
+  textMessagesConfig,
+} from "@pages/people/outlets/color/texts/config/text.config";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import { TokenContext } from "@context/TokenContext";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
-import { TextAppearance } from "../../types";
+import { TextAppearance } from "@pages/people/outlets/color/texts/types";
 import { inube } from "@inube/design-system";
 
 interface RenderTextContentFormProps {

@@ -10,9 +10,9 @@ import {
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { strokesFormsConfig } from "../../config/Strokes.config";
+import { strokesFormsConfig } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-import { StrokeAppearance } from "../../types";
+import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
 
 interface RenderStrokesWithSpinnerFormUIProps {
   formType: StrokeAppearance;

@@ -5,9 +5,9 @@ import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import {
   surfaceFormsConfig,
   surfaceMessagesConfig,
-} from "../../config/surface.config";
+} from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { TokenContext } from "@context/TokenContext";
-import { SurfaceAppearance } from "../../types";
+import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { inube } from "@inube/design-system";
 

@@ -5,10 +5,10 @@ import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
-} from "../../config/Strokes.config";
+} from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
-import { StrokeAppearance } from "../../types";
+import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
 import { inube } from "@inube/design-system";
 
 interface RenderStrokesWithLinkFormProps {

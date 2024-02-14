@@ -11,7 +11,7 @@ import { StyledContainer, StyledTabsContainer } from "./styles";
 import { textsTabsConfig } from "./config/textsTabs.config";
 import { RenderTextContentForm } from "./form/RenderTextContentForm";
 import { textFormsConfig } from "./config/text.config";
-import { peopleOptionsConfig } from "../../options/config/people.config";
+import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { TextAppearance } from "./types";
 
 interface TextUIProps {

@@ -10,7 +10,7 @@ import { PageTitle } from "@components/PageTitle";
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { paletteTabsConfig } from "./config/paletteTabs.config";
 import { RenderContentFormPalette } from "./form/RenderContentFormPalette";
-import { peopleOptionsConfig } from "../../options/config/people.config";
+import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { PaletteAppearance } from "./types";
 
 interface PaletteUIProps {

@@ -4,11 +4,8 @@ import {
   Tabs,
   useMediaQueries,
 } from "@inube/design-system";
-
 import { PageTitle } from "@components/PageTitle";
-
 import { StyledContainer, StyledTabsContainer } from "./styles";
-
 import { strokesTabsConfig } from "./config/strokesTabs.config";
 
 import {
@@ -18,7 +15,7 @@ import {
 import { RenderStrokesWithSpinnerForm } from "./form/RenderStrokesWithSpinnerForm";
 import { RenderStrokesWithLinkForm } from "./form/RenderStrokesWithLinkForm";
 import { strokesFormsConfig } from "./config/Strokes.config";
-import { peopleOptionsConfig } from "../../options/config/people.config";
+import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { StrokeAppearance } from "./types";
 
 interface IStrokesUIProps {

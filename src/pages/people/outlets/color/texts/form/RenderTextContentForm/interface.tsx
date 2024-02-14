@@ -3,9 +3,9 @@ import { Stack, Text, inube } from "@inube/design-system";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { textFormsConfig } from "../../config/text.config";
+import { textFormsConfig } from "@pages/people/outlets/color/texts/config/text.config";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-import { TextAppearance } from "../../types";
+import { TextAppearance } from "@pages/people/outlets/color/texts/types";
 
 interface ITextCardConfig {
   title: string;

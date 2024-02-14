@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { inube } from "@inube/design-system";
-import { paletteMessagesConfig } from "../../config/palette.config";
+import { paletteMessagesConfig } from "@pages/people/outlets/color/palette/config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
 import { TokenContext } from "@context/TokenContext";
-import { LoadingAppUI } from "@src/pages/login/outlets/LoadingApp/interface";
-import { PaletteAppearance } from "../../types";
+import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
+import { PaletteAppearance } from "@pages/people/outlets/color/palette/types";
 
 interface RenderContentFormPaletteProps {
   formType: PaletteAppearance;

@@ -5,12 +5,12 @@ import { getTokenColor } from "@components/cards/TokenColorCard/styles";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
-} from "../../config/Strokes.config";
+} from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
 import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
-import { StrokeAppearance } from "../../types";
-import { TextAppearance } from "../../../texts/types";
+import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
+
 import { inube } from "@inube/design-system";
 
 interface RenderStrokesWithSpinnerFormProps {
@@ -49,7 +49,7 @@ function RenderStrokesWithSpinnerForm(
   };
 
   const handleTokenChange = (
-    appearance: TextAppearance,
+    appearance: StrokeAppearance,
     category: string,
     updatedTokenName: string
   ) => {

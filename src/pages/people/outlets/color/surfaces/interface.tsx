@@ -16,7 +16,7 @@ import {
 } from "./form/RenderContentFormSurface";
 import { surfaceFormsConfig } from "./config/surface.config";
 import { RenderContentFormSurfaceBlanket } from "./form/RenderContentFormSurfaceBlanket";
-import { peopleOptionsConfig } from "../../options/config/people.config";
+import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { RenderContentFormSurfaceNav } from "./form/RenderContentFormNav";
 import { SurfaceAppearance } from "./types";
 
