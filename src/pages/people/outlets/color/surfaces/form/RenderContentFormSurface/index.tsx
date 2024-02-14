@@ -7,7 +7,7 @@ import {
 } from "../../config/surface.config";
 import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "../../types";
-import { tokenCalculator } from "@mocks/themeService/themeService.mock";
+import { tokenCalculator } from "@src/utilities/tokenCalculator";
 
 interface RenderSurfaceContentFormProps {
   formType: SurfaceAppearance;

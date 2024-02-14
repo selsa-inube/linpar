@@ -12,7 +12,6 @@ import {
   StyledColorTokenCard,
   HiddenColorPicker,
   StyledGridColorsContainer,
-  getTokenColor,
   StyledDivText,
   StyledHoverPopup,
   StyledHoverIcon,
@@ -21,6 +20,7 @@ import { ThemeContext } from "styled-components";
 import { Popup } from "@src/components/feedback/Popup";
 import { MdOutlineEdit } from "react-icons/md";
 import { RenderCategoryGrid } from "@src/components/layout/RenderCategoryGrid";
+import { getTokenColor } from "@src/utilities/getTokenColor";
 
 interface ITokenColorCardProps {
   tokenName: string;

@@ -8,7 +8,7 @@ import { TokenColorCard } from "../TokenColorCard";
 import { Appearance } from "./types";
 import tinycolor from "tinycolor2";
 import { useRef, useEffect } from "react";
-import { getTokenColor } from "../TokenColorCard/styles";
+import { getTokenColor } from "@src/utilities/getTokenColor";
 
 interface FieldsetColorCardProps {
   title: string;

@@ -15,8 +15,8 @@ import {
 import {
   getTokens,
   updateIdTokens,
-  tokenCalculator,
 } from "@src/mocks/themeService/themeService.mock";
+import { tokenCalculator } from "@src/utilities/tokenCalculator";
 import { AppContext } from "@src/context/AppContext";
 
 const defaultTokenValue: ITokenContextProps = {

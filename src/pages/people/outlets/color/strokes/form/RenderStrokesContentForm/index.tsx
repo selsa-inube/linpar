@@ -7,7 +7,7 @@ import {
   strokesFormsConfig,
 } from "../../config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
-import { tokenCalculator } from "@mocks/themeService/themeService.mock";
+import { tokenCalculator } from "@src/utilities/tokenCalculator";
 
 interface RenderStrokesContentFormProps {
   formType: string;

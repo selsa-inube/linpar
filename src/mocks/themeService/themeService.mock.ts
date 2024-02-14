@@ -2,38 +2,6 @@ import { inube } from "@inube/design-system";
 import localforage from "localforage";
 import { tokensWithReference } from "@mocks/design/tokensWithReference";
 
-function getTokenColor(tokenName: string, palette?: typeof inube) {
-  for (const category in palette) {
-    if (Object.hasOwnProperty.call(palette[category], tokenName)) {
-      return palette[category!]?.[tokenName];
-    }
-  }
-}
-
-function tokenCalculator(tokenWithReference: typeof inube) {
-  let tokens = JSON.parse(JSON.stringify({ ...tokenWithReference }));
-
-  Object.entries(tokenWithReference.color).forEach(
-    ([domain, domainValue]: [string, typeof inube]) => {
-      if (domain !== "palette") {
-        Object.entries(domainValue).forEach(
-          ([block, blockValue]: [string, typeof inube]) => {
-            Object.entries(blockValue).forEach(
-              ([modifier, modifierValue]: [string, typeof inube]) => {
-                tokens.color[domain][block][modifier] = getTokenColor(
-                  modifierValue,
-                  tokenWithReference.color.palette
-                );
-              }
-            );
-          }
-        );
-      }
-    }
-  );
-  return tokens;
-}
-
 async function intializedTokenData() {
   localforage.clear();
   let tokens: typeof inube[] = [];
@@ -73,4 +41,4 @@ async function updateIdTokens(clientName: String, updates: typeof inube) {
   return idTokens;
 }
 
-export { getTokens, intializedTokenData, updateIdTokens, tokenCalculator };
+export { getTokens, intializedTokenData, updateIdTokens };

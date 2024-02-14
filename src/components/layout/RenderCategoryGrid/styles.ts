@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
-import { getTokenColor } from "@src/components/cards/TokenColorCard/styles";
+import { getTokenColor } from "@src/utilities/getTokenColor";
 
 interface IStyledColorTokenCard {
   tokenName: string;
@@ -85,7 +85,6 @@ export {
   HiddenColorPicker,
   StyledGridContainer,
   StyledGridColorsContainer,
-  getTokenColor,
   StyledDivText,
   StyledHoverPopup,
   StyledHoverIcon,
