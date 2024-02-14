@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { RenderStrokesWithSpinnerFormUI } from "./interface";
 import { Appearance } from "@components/cards/FieldsetColorCard/types";
-import { IPeopleMessage } from "../../../types/people.types";
+import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
