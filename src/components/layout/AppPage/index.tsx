@@ -12,6 +12,7 @@ import {
   StyledContainerNav,
 } from "./styles";
 import { AppContext } from "@context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const renderLogo = (imgUrl: string) => {
   return (
@@ -23,6 +24,10 @@ const renderLogo = (imgUrl: string) => {
 
 function AppPage() {
   const { user } = useContext(AppContext);
+  const navigate = useNavigate();
+  if (user.company.length === 0) {
+    navigate(`/login/${user.id}/checking-credentials/`);
+  }
 
   const smallScreen = useMediaQuery("(max-width: 849px)");
   return (
