@@ -1,12 +1,14 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { presente, inube, Stack } from "@inube/design-system";
+import { inube, Stack } from "@inube/design-system";
 
 import {
   RenderStrokesWithSpinnerForm,
   RenderStrokesWithSpinnerFormProps,
 } from ".";
 import { strokesFormsConfig } from "../../config/Strokes.config";
+import { TokenContext } from "@src/context/TokenContext";
+import { presente } from "@src/mocks/design/tokensWithReference/presente";
 
 const story = {
   components: [RenderStrokesWithSpinnerForm],
@@ -18,49 +20,30 @@ const story = {
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
-        <Story />
+        <TokenContext.Provider
+          value={{
+            tokenWithRef: presente,
+            loading: false,
+            handleSubmit: () => {},
+          }}
+        >
+          <Story />
+        </TokenContext.Provider>
       </BrowserRouter>
     ),
   ],
 };
 
-const themeMap = {
-  presente: presente,
-  inube: inube,
-};
 const Default = (args: RenderStrokesWithSpinnerFormProps) => {
-  const selectedTheme = themeMap[args.token as keyof typeof themeMap];
-
   return (
-    <Stack padding="s300" direction="column" gap={selectedTheme.spacing.s400}>
-      <RenderStrokesWithSpinnerForm {...args} token={selectedTheme} />
+    <Stack padding="s300" direction="column" gap={inube.spacing.s400}>
+      <RenderStrokesWithSpinnerForm {...args} formType="spinner" />
     </Stack>
   );
 };
 
 Default.args = {
-  formType: "primary",
-  handleSubmit: () => {},
-  token: "presente",
-  strokesConfig: strokesFormsConfig,
-};
-Default.argTypes = {
-  token: {
-    options: ["presente", "inube"],
-    control: { type: "select" },
-    description: "the theme that it be use to render",
-    table: {
-      defaultValue: { summary: "inube" },
-    },
-  },
-  formType: {
-    options: Object.keys(strokesFormsConfig),
-    control: { type: "select" },
-    description: "the form that it'll be render",
-    table: {
-      defaultValue: { summary: "primary" },
-    },
-  },
+  strokesConfig: { spinner: strokesFormsConfig.spinner },
 };
 
 export default story;
