@@ -13,18 +13,12 @@ export const AppContext = createContext<IAppContext>({
 export default function AppContextProvider(props: AppContextProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
-  const [clientInfo, setClientInfo] = useState({
-    id: "",
-    name: "",
-    logo: "",
-  });
   const [clientSigla, setClientSigla] = useState(
     Cookie.get("clientSigla") || ""
   );
 
   function handleClientChange(client: IClient) {
-    const { id, name, logo, sigla } = client;
-    setClientInfo({ id, name, logo });
+    const { sigla } = client;
     setClientSigla(sigla);
   }
 
