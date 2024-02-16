@@ -16,7 +16,7 @@ import {
   StyledHoverPopup,
   StyledHoverIcon,
 } from "./styles";
-import { ThemeContext } from "styled-components";
+import { ThemeContext, ThemeProvider } from "styled-components";
 import { Popup } from "@components/feedback/Popup";
 import { MdOutlineEdit } from "react-icons/md";
 import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
@@ -105,78 +105,80 @@ function TokenColorCard(props: ITokenColorCardProps) {
         justify="center"
         width={type === "colorPicker" ? "100%" : "auto"}
       >
-        <Stack
-          alignItems="center"
-          gap="12px"
-          width={type === "colorPicker" ? "100%" : "auto"}
-        >
-          <StyledDivText>
-            <Text
-              type="label"
-              size={smallScreen ? "small" : "medium"}
-              textAlign={"center"}
-              appearance={textAppearance}
-            >
-              {tokenName}
-            </Text>
-          </StyledDivText>
-          {tokenDescription && (
-            <>
+        <ThemeProvider theme={inube}>
+          <Stack
+            alignItems="center"
+            gap="12px"
+            width={type === "colorPicker" ? "100%" : "auto"}
+          >
+            <StyledDivText>
               <Text
                 type="label"
                 size={smallScreen ? "small" : "medium"}
-                textAlign="start"
+                textAlign={"center"}
                 appearance={textAppearance}
               >
-                |
+                {tokenName}
               </Text>
-              <Text
-                size={smallScreen ? "small" : "medium"}
-                textAlign="start"
-                appearance={textAppearance}
-              >
-                {tokenDescription}
-              </Text>
-            </>
-          )}
+            </StyledDivText>
+            {tokenDescription && (
+              <>
+                <Text
+                  type="label"
+                  size={smallScreen ? "small" : "medium"}
+                  textAlign="start"
+                  appearance={textAppearance}
+                >
+                  |
+                </Text>
+                <Text
+                  size={smallScreen ? "small" : "medium"}
+                  textAlign="start"
+                  appearance={textAppearance}
+                >
+                  {tokenDescription}
+                </Text>
+              </>
+            )}
+            {type === "colorPicker" && (
+              <HiddenColorPicker
+                ref={colorPickerRef}
+                value={getTokenColor(tokenName, theme)}
+                onChange={handleColorChangeLocal}
+              />
+            )}
+            {isPopupOpen && type === "tokenPicker" && (
+              <StyledHoverPopup>
+                <Popup
+                  closeModal={() => setIsPopupOpen(false)}
+                  title={"Paleta de colores"}
+                  fieldsetRef={fieldsetRef}
+                >
+                  <StyledGridColorsContainer>
+                    <Grid
+                      templateColumns="repeat(auto-fit, minmax(244px, 1fr))"
+                      gap="s150"
+                      autoColumns="unset"
+                      autoRows="unset"
+                    >
+                      <RenderCategoryGrid
+                        categories={Object.entries(palette)}
+                        templateColumns="repeat(auto-fit, minmax(232px, 1fr))"
+                        onChange={handleColorChangeCategory}
+                        hasTitle
+                      />
+                    </Grid>
+                  </StyledGridColorsContainer>
+                </Popup>
+              </StyledHoverPopup>
+            )}
+          </Stack>
           {type === "colorPicker" && (
-            <HiddenColorPicker
-              ref={colorPickerRef}
-              value={getTokenColor(tokenName, theme)}
-              onChange={handleColorChangeLocal}
-            />
+            <StyledHoverIcon>
+              <Icon appearance={textAppearance} icon={<MdOutlineEdit />} />
+            </StyledHoverIcon>
           )}
-          {isPopupOpen && type === "tokenPicker" && (
-            <StyledHoverPopup>
-              <Popup
-                closeModal={() => setIsPopupOpen(false)}
-                title={"Paleta de colores"}
-                fieldsetRef={fieldsetRef}
-              >
-                <StyledGridColorsContainer>
-                  <Grid
-                    templateColumns="repeat(auto-fit, minmax(244px, 1fr))"
-                    gap="s150"
-                    autoColumns="unset"
-                    autoRows="unset"
-                  >
-                    <RenderCategoryGrid
-                      categories={Object.entries(palette)}
-                      templateColumns="repeat(auto-fit, minmax(232px, 1fr))"
-                      onChange={handleColorChangeCategory}
-                      hasTitle
-                    />
-                  </Grid>
-                </StyledGridColorsContainer>
-              </Popup>
-            </StyledHoverPopup>
-          )}
-        </Stack>
-        {type === "colorPicker" && (
-          <StyledHoverIcon>
-            <Icon appearance={textAppearance} icon={<MdOutlineEdit />} />
-          </StyledHoverIcon>
-        )}
+        </ThemeProvider>
       </Stack>
     </StyledColorTokenCard>
   );
