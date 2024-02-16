@@ -1,8 +1,8 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { presente, Stack, inube } from "@inube/design-system";
-import { RenderTextContentForm, RenderTextContentFormProps } from ".";
-import { textFormsConfig } from "../../config/text.config";
+import { RenderTextContentForm, RenderTextContentFormProps } from "..";
+import { textFormsConfig } from "../../../config/text.config";
 
 const story = {
   components: [RenderTextContentForm],
