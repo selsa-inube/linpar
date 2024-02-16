@@ -8,7 +8,7 @@ interface IAppContext {
       logo: string;
     };
   };
-  setClient: (client: IClient) => void;
+  handleClientChange: (client: IClient) => void;
 }
 
 interface IClient {

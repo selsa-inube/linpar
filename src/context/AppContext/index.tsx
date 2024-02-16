@@ -1,24 +1,38 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import linparLogo from "@assets/images/linpar.png";
 import { IAppContext, AppContextProviderProps } from "./types";
 import { useAuth0 } from "@auth0/auth0-react";
+import Cookie from "js-cookie";
+import { IClient } from "./types";
 
 export const AppContext = createContext<IAppContext>({
   user: { username: "", id: "", company: "", operator: { name: "", logo: "" } },
-  setClient: () => {},
+  handleClientChange: () => {},
 });
 
 export default function AppContextProvider(props: AppContextProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
-  const [client, setClient] = useState({
+  const [clientInfo, setClientInfo] = useState({
     id: "",
     name: "",
-    sigla: "",
     logo: "",
   });
+  const [clientSigla, setClientSigla] = useState(
+    Cookie.get("clientSigla") || ""
+  );
 
-  const company = client.sigla;
+  function handleClientChange(client: IClient) {
+    const { id, name, logo, sigla } = client;
+    setClientInfo({ id, name, logo });
+    setClientSigla(sigla);
+  }
+
+  useEffect(() => {
+    Cookie.set("clientSigla", clientSigla);
+  }, [clientSigla]);
+
+  const company = clientSigla;
 
   const userContext: IAppContext = {
     user: {
@@ -30,7 +44,7 @@ export default function AppContextProvider(props: AppContextProviderProps) {
         logo: linparLogo,
       },
     },
-    setClient,
+    handleClientChange,
   };
   return (
     <AppContext.Provider value={userContext}>{children}</AppContext.Provider>
