@@ -1,8 +1,11 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { presente, Stack, inube } from "@inube/design-system";
+import { Stack, inube } from "@inube/design-system";
 import { RenderTextContentForm, RenderTextContentFormProps } from "..";
 import { textFormsConfig } from "../../../config/text.config";
+import { props } from "./props";
+import { TokenContext } from "@src/context/TokenContext";
+import { presente } from "@src/mocks/design/tokensWithReference/presente";
 
 const story = {
   components: [RenderTextContentForm],
@@ -10,52 +13,35 @@ const story = {
   parameters: {
     layout: "fullscreen",
   },
+  argTypes: props,
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
-        <Story />
+        <TokenContext.Provider
+          value={{
+            tokenWithRef: presente,
+            loading: false,
+            handleSubmit: () => {},
+          }}
+        >
+          <Story />
+        </TokenContext.Provider>
       </BrowserRouter>
     ),
   ],
 };
 
-const themeMap = {
-  presente: presente,
-  inube: inube,
-};
 const Default = (args: RenderTextContentFormProps) => {
-  const selectedTheme = themeMap[args.token as keyof typeof themeMap];
-
   return (
-    <Stack padding="s300" direction="column" gap={selectedTheme.spacing.s400}>
-      <RenderTextContentForm {...args} token={selectedTheme} />
+    <Stack padding="s300" direction="column" gap={inube.spacing.s400}>
+      <RenderTextContentForm {...args} />
     </Stack>
   );
 };
 
 Default.args = {
+  textConfig: { ...textFormsConfig },
   formType: "primary",
-  handleSubmit: () => {},
-  token: "presente",
-  textConfig: textFormsConfig,
-};
-Default.argTypes = {
-  token: {
-    options: ["presente", "inube"],
-    control: { type: "select" },
-    description: "the theme that it be use to render",
-    table: {
-      defaultValue: { summary: "inube" },
-    },
-  },
-  formType: {
-    options: Object.keys(textFormsConfig),
-    control: { type: "select" },
-    description: "the form that it'll be render",
-    table: {
-      defaultValue: { summary: "primary" },
-    },
-  },
 };
 export default story;
 
