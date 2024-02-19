@@ -105,12 +105,12 @@ function TokenColorCard(props: ITokenColorCardProps) {
         justify="center"
         width={type === "colorPicker" ? "100%" : "auto"}
       >
-        <ThemeProvider theme={inube}>
-          <Stack
-            alignItems="center"
-            gap="12px"
-            width={type === "colorPicker" ? "100%" : "auto"}
-          >
+        <Stack
+          alignItems="center"
+          gap="12px"
+          width={type === "colorPicker" ? "100%" : "auto"}
+        >
+          <ThemeProvider theme={inube}>
             <StyledDivText>
               <Text
                 type="label"
@@ -140,45 +140,47 @@ function TokenColorCard(props: ITokenColorCardProps) {
                 </Text>
               </>
             )}
-            {type === "colorPicker" && (
-              <HiddenColorPicker
-                ref={colorPickerRef}
-                value={getTokenColor(tokenName, theme)}
-                onChange={handleColorChangeLocal}
-              />
-            )}
-            {isPopupOpen && type === "tokenPicker" && (
-              <StyledHoverPopup>
-                <Popup
-                  closeModal={() => setIsPopupOpen(false)}
-                  title={"Paleta de colores"}
-                  fieldsetRef={fieldsetRef}
-                >
-                  <StyledGridColorsContainer>
-                    <Grid
-                      templateColumns="repeat(auto-fit, minmax(244px, 1fr))"
-                      gap="s150"
-                      autoColumns="unset"
-                      autoRows="unset"
-                    >
-                      <RenderCategoryGrid
-                        categories={Object.entries(palette)}
-                        templateColumns="repeat(auto-fit, minmax(232px, 1fr))"
-                        onChange={handleColorChangeCategory}
-                        hasTitle
-                      />
-                    </Grid>
-                  </StyledGridColorsContainer>
-                </Popup>
-              </StyledHoverPopup>
-            )}
-          </Stack>
+          </ThemeProvider>
           {type === "colorPicker" && (
+            <HiddenColorPicker
+              ref={colorPickerRef}
+              value={getTokenColor(tokenName, theme)}
+              onChange={handleColorChangeLocal}
+            />
+          )}
+          {isPopupOpen && type === "tokenPicker" && (
+            <StyledHoverPopup>
+              <Popup
+                closeModal={() => setIsPopupOpen(false)}
+                title={"Paleta de colores"}
+                fieldsetRef={fieldsetRef}
+              >
+                <StyledGridColorsContainer>
+                  <Grid
+                    templateColumns="repeat(auto-fit, minmax(244px, 1fr))"
+                    gap="s150"
+                    autoColumns="unset"
+                    autoRows="unset"
+                  >
+                    <RenderCategoryGrid
+                      categories={Object.entries(palette)}
+                      templateColumns="repeat(auto-fit, minmax(232px, 1fr))"
+                      onChange={handleColorChangeCategory}
+                      hasTitle
+                    />
+                  </Grid>
+                </StyledGridColorsContainer>
+              </Popup>
+            </StyledHoverPopup>
+          )}
+        </Stack>
+        {type === "colorPicker" && (
+          <ThemeProvider theme={inube}>
             <StyledHoverIcon>
               <Icon appearance={textAppearance} icon={<MdOutlineEdit />} />
             </StyledHoverIcon>
-          )}
-        </ThemeProvider>
+          </ThemeProvider>
+        )}
       </Stack>
     </StyledColorTokenCard>
   );
