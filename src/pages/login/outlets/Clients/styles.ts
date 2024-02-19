@@ -28,7 +28,7 @@ const StyledClients = styled.div`
   }
 `;
 
-const StyledClientsList = styled.ul<StyledClientsListProps>`
+const StyledClientsList = styled.div<StyledClientsListProps>`
   & > div {
     list-style: none;
     min-height: 300px;

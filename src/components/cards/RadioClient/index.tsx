@@ -3,7 +3,7 @@ import { StyledRadioClient, StyledRadio, StyledImage } from "./styles";
 
 interface RadioClientProps {
   name: string;
-  id: number;
+  id: string;
   value: string;
   label: string;
   logo: string;
@@ -13,13 +13,13 @@ interface RadioClientProps {
 function RadioClient(props: RadioClientProps) {
   const { name, id, value, label, logo, handleChange } = props;
 
-  const mediaQueries = ["(max-width: 532px)", "(max-width: 360px)"];
+  const mediaQueries = ["(max-width: 532px)", "(max-width: 460px)"];
   const matches = useMediaQueries(mediaQueries);
   return (
     <StyledRadioClient>
       <Grid
         templateColumns={
-          matches["(max-width: 360px)"] ? "auto 1fr" : "auto 1fr 130px"
+          matches["(max-width: 460px)"] ? "auto 1fr" : "auto 1fr 130px"
         }
         padding={matches["(max-width: 532px)"] ? "s100 s200" : "s200 s300"}
         height={matches["(max-width: 532px)"] ? "auto" : "72px"}
@@ -31,7 +31,7 @@ function RadioClient(props: RadioClientProps) {
         <StyledRadio
           type="radio"
           name={name}
-          id={id.toString()}
+          id={id}
           value={value}
           onChange={handleChange}
         />
