@@ -16,7 +16,6 @@ const StyledClients = styled.div`
           theme?.spacing?.s0 || inube.spacing.s0
         }`};
       width: 500px;
-      padding: 0px;
       @media screen and (max-width: 532px) {
         width: auto;
       }
