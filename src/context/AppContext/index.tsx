@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import linparLogo from "@assets/images/linpar.png";
 import { IAppContext, AppContextProviderProps } from "./types";
 import { useAuth0 } from "@auth0/auth0-react";
-import Cookie from "js-cookie";
 import { IClient } from "./types";
 
 export const AppContext = createContext<IAppContext>({
@@ -14,7 +13,7 @@ export default function AppContextProvider(props: AppContextProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
   const [clientSigla, setClientSigla] = useState(
-    Cookie.get("clientSigla") || ""
+    localStorage.getItem("clientSigla") || ""
   );
 
   function handleClientChange(client: IClient) {
@@ -23,7 +22,7 @@ export default function AppContextProvider(props: AppContextProviderProps) {
   }
 
   useEffect(() => {
-    Cookie.set("clientSigla", clientSigla);
+    localStorage.setItem("clientSigla", clientSigla);
   }, [clientSigla]);
 
   const company = clientSigla;
