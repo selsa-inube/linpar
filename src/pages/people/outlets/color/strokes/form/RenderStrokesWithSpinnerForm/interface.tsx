@@ -5,7 +5,7 @@ import {
   Stack,
   Spinner,
   Text,
-  useMediaQueries,
+  useMediaQuery,
 } from "@inube/design-system";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
@@ -57,19 +57,9 @@ function RenderStrokesWithSpinnerFormUI(
     strokesConfig[formType as keyof typeof strokesConfig].status
   );
 
-  const {
-    "(max-width: 744px)": isSmallScreen,
-    "(min-width: 745px) and (max-width: 1000px)": isMediumScreen,
-  } = useMediaQueries([
-    "(max-width: 744px)",
-    "(min-width: 745px) and (max-width: 1000px)",
-  ]);
+  const isSmallScreen = useMediaQuery("(max-width: 743px)");
 
-  const templateColumns = isSmallScreen
-    ? "repeat(1, 1fr)"
-    : isMediumScreen
-    ? "repeat(2, 1fr)"
-    : "repeat(3, 1fr)";
+  const templateColumns = isSmallScreen ? "repeat(1, 1fr)" : "repeat(2, 1fr)";
   return (
     <>
       <Text size="medium" appearance="gray">
