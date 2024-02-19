@@ -13,14 +13,15 @@ import { sectionMessageState } from "./config/sectionMessage.state";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { MdClear } from "react-icons/md";
 import { StyledSectionMessage } from "./styles";
-import { Appearance, ButtonType } from "./types";
+import { ButtonType } from "./types";
+import { TextAppearance } from "@pages/people/outlets/color/texts/types";
 
 export interface ISectionMessageProps {
   children?: React.ReactNode;
   icon: JSX.Element;
   title: string;
   description: string;
-  appearance: Appearance;
+  appearance: TextAppearance;
   duration: number;
   closeSectionMessage: () => void;
   buttonType: ButtonType;
@@ -39,7 +40,7 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
   } = props;
 
   const [isPaused, setIsPaused] = useState(false);
-  const isMessageResponsive = useMediaQuery("(max-width: 565px)");
+  const isMessageResponsive = useMediaQuery("(max-width: 680px)");
 
   const newDescription = description.substring(0, 240);
 
@@ -117,7 +118,7 @@ const handleAgree = () => {
 };
 
 interface ISendInformationMessageProps {
-  appearance: Appearance;
+  appearance: TextAppearance;
   buttonType?: ButtonType;
 }
 

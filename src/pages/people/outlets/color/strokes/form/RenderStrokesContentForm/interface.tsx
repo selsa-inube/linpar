@@ -50,7 +50,7 @@ function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
     strokesConfig[formType as keyof typeof strokesConfig].status
   );
 
-  const isSmallScreen = useMediaQuery("(max-width: 744px)");
+  const isSmallScreen = useMediaQuery("(max-width: 743px)");
   const templateColumns = isSmallScreen ? "repeat(1, 1fr)" : "repeat(2, 1fr)";
   return (
     <>
