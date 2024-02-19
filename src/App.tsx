@@ -19,6 +19,7 @@ import { Login } from "./pages/login";
 import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 
 function LogOut() {
+  localStorage.clear();
   const { logout } = useAuth0();
   logout();
   return <Home />;

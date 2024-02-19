@@ -14,7 +14,7 @@ function Clients({ clients }: IClients) {
   });
 
   const navigate = useNavigate();
-  const { setClient } = useContext(AppContext);
+  const { handleClientChange } = useContext(AppContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (clientLocal.ref) {
@@ -24,9 +24,9 @@ function Clients({ clients }: IClients) {
     setSearch(event.target.value);
   };
 
-  const handleClientChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClientLocal({ ref: event.target, value: false });
-    setClient(
+    handleClientChange(
       clients.filter((client0) => client0.name === event.target.value)[0]
     );
   };
@@ -52,7 +52,7 @@ function Clients({ clients }: IClients) {
       search={search}
       client={clientLocal}
       handleSearchChange={handleSearchChange}
-      handleClientChange={handleClientChange}
+      handleClientChange={handleCChange}
       filterClients={filterClients}
       handleSubmit={handleSubmit}
     />
