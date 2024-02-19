@@ -68,7 +68,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
     surfaceConfig[formType as keyof typeof surfaceConfig].status
   );
 
-  const isSmallScreen = useMediaQuery("(max-width: 744px)");
+  const isSmallScreen = useMediaQuery("(max-width: 743px)");
   const templateColumns = isSmallScreen ? "repeat(1, 1fr)" : "repeat(2, 1fr)";
 
   return (

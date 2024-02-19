@@ -68,8 +68,8 @@ function RenderContentFormSurfaceNavUI(
     surfaceConfig[formType as keyof typeof surfaceConfig].status
   );
 
-  const { "(max-width: 744px)": isSmallScreen } = useMediaQueries([
-    "(max-width: 744px)",
+  const { "(max-width: 743px)": isSmallScreen } = useMediaQueries([
+    "(max-width: 743px)",
   ]);
 
   const flexDirection = isSmallScreen ? "column" : "row";
