@@ -2,7 +2,7 @@ import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Texts } from ".";
 import { TokenContext } from "@context/TokenContext";
-import { presente } from "@inube/design-system";
+import { presente } from "@src/mocks/design/tokensWithReference/presente";
 
 const story = {
   components: [Texts],
@@ -14,7 +14,11 @@ const story = {
     (Story: StoryFn) => (
       <BrowserRouter>
         <TokenContext.Provider
-          value={{ token: presente, handleSubmit: () => {} }}
+          value={{
+            tokenWithRef: presente,
+            loading: false,
+            handleSubmit: () => {},
+          }}
         >
           <Story />
         </TokenContext.Provider>
