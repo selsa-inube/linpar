@@ -9,7 +9,7 @@ import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { inube } from "@inube/design-system";
-import { tokenCalculator } from "@utilities/tokenCalculator";
+import { tokenCalculator } from "@src/utils/tokenCalculator";
 
 interface RenderContentFormSurfaceNavProps {
   formType: SurfaceAppearance;

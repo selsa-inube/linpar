@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
-import { getTokenColor } from "@utilities/getTokenColor";
+import { getTokenColor } from "@src/utils/getTokenColor";
 
 interface IStyledColorTokenCard {
   tokenName: string;

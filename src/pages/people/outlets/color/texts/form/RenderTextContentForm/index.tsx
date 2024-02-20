@@ -8,7 +8,7 @@ import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types
 import { TextAppearance } from "@pages/people/outlets/color/texts/types";
 import { inube } from "@inube/design-system";
 import { TokenContext } from "@context/TokenContext";
-import { tokenCalculator } from "@utilities/tokenCalculator";
+import { tokenCalculator } from "@src/utils/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderTextContentFormProps {

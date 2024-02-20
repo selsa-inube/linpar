@@ -6,7 +6,7 @@ import {
   strokesFormsConfig,
 } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
-import { tokenCalculator } from "@utilities/tokenCalculator";
+import { tokenCalculator } from "@src/utils/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
 import { inube } from "@inube/design-system";

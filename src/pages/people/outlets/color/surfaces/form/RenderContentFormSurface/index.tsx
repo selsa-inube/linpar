@@ -8,7 +8,7 @@ import {
 import { TokenContext } from "@context/TokenContext";
 import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { inube } from "@inube/design-system";
-import { tokenCalculator } from "@utilities/tokenCalculator";
+import { tokenCalculator } from "@src/utils/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 
 interface RenderSurfaceContentFormProps {

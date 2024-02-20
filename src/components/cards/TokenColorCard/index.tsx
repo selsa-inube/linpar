@@ -20,7 +20,7 @@ import { ThemeContext, ThemeProvider } from "styled-components";
 import { Popup } from "@components/feedback/Popup";
 import { MdOutlineEdit } from "react-icons/md";
 import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
-import { getTokenColor } from "@utilities/getTokenColor";
+import { getTokenColor } from "@src/utils/getTokenColor";
 
 interface ITokenColorCardProps {
   tokenName: string;

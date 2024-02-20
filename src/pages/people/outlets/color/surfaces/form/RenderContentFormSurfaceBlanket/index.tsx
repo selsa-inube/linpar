@@ -6,7 +6,7 @@ import {
   surfaceMessagesConfig,
 } from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { TokenContext } from "@context/TokenContext";
-import { tokenCalculator } from "@utilities/tokenCalculator";
+import { tokenCalculator } from "@src/utils/tokenCalculator";
 import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { inube } from "@inube/design-system";
