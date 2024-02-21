@@ -147,6 +147,7 @@ const SendInformationMessage = (props: ISendInformationMessageProps) => {
                   appearance={appearance}
                   variant={buttonType}
                   spacing="compact"
+                  cursorHover
                 >
                   {sectionMessageConfig.cancelButton}
                 </Button>
@@ -155,6 +156,7 @@ const SendInformationMessage = (props: ISendInformationMessageProps) => {
                   appearance={appearance}
                   variant={buttonType}
                   spacing="compact"
+                  cursorHover
                 >
                   {sectionMessageConfig.agreeButton}
                 </Button>
