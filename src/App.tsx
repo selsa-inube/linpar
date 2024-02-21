@@ -18,7 +18,6 @@ import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
 import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 import { intializedDocumentsData } from "@mocks/privileges/documentsService.mock";
-import localforage from "localforage";
 
 function LogOut() {
   localStorage.clear();
@@ -50,8 +49,6 @@ const router = createBrowserRouter(
 
 function App() {
   const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
-
-  localforage.getItem("documents").then((data) => console.log(data, "data DB"));
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
