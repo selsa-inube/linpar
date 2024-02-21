@@ -11,12 +11,13 @@ import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
 import { GlobalStyles } from "@styles/global";
 import AppContextProvider, { AppContext } from "@context/AppContext";
+import { RespondInvitationRoutes } from "./routes/respondInvitation";
+import { intializedTokenData } from "@mocks/themeService/themeService.mock";
+import { intializedDocumentsData } from "@mocks/privileges/documents.service";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
-import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
-import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 
 function LogOut() {
   localStorage.clear();
@@ -53,6 +54,7 @@ function App() {
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect();
       intializedTokenData();
+      intializedDocumentsData();
     }
   }, [isLoading, isAuthenticated, loginWithRedirect]);
 
