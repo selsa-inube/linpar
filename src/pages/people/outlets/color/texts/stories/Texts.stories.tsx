@@ -1,21 +1,26 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { Strokes } from "./index";
+import { Texts } from "..";
 import { TokenContext } from "@context/TokenContext";
-import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { tokensWithReference } from "@src/mocks/design/tokensWithReference";
+import { props } from "./props";
 
 const story = {
-  components: [Strokes],
-  title: "layouts/people/outlets/color/strokes",
+  components: Texts,
+  title: "layouts/people/outlets/color/texts",
   parameters: {
     layout: "fullscreen",
   },
+  argTypes: props,
   decorators: [
-    (Story: StoryFn) => (
+    (
+      Story: StoryFn,
+      context: { args: { formType: keyof typeof tokensWithReference } }
+    ) => (
       <BrowserRouter>
         <TokenContext.Provider
           value={{
-            tokenWithRef: presente,
+            tokenWithRef: tokensWithReference[context.args.formType],
             loading: false,
             handleSubmit: () => {},
           }}
@@ -26,10 +31,11 @@ const story = {
     ),
   ],
 };
+const Default = () => <Texts />;
 
-const Default = () => <Strokes />;
-Default.args = {};
+Default.args = {
+  formType: "presente",
+};
 
 export default story;
-
 export { Default };
