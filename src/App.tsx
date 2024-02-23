@@ -11,7 +11,7 @@ import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
 import AppContextProvider, { AppContext } from "@context/AppContext";
 import { GlobalStyles } from "@styles/global";
-import { initializeDataDB } from "@utils/initializeDataDB";
+import { initializeDataDB } from "@mocks/utils/initializeDataDB";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
