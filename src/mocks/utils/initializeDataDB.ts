@@ -2,7 +2,7 @@ import localforage from "localforage";
 import { intializedData } from "@mocks/utils/dataMuck.service";
 import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 import { DocumentsServiceMock } from "@mocks/privileges/documents/DocumentsServiceMock.mock";
-import { clientServerMock } from "../privileges/client-server/client-serverServiceMock.mock";
+import { clientServerMock } from "@mocks/privileges/client-server/client-serverServiceMock.mock";
 
 export function initializeDataDB() {
   localforage.clear();
