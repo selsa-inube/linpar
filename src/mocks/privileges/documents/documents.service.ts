@@ -22,10 +22,9 @@ export async function getData(option: string) {
   try {
     const optionsData = await localforage.getItem(option);
 
-    if (Array.isArray(optionsData)) {
-      if (!optionsData || optionsData.length === 0) throw new Error("No found");
-      return optionsData;
-    }
+    if (!optionsData) throw new Error("No found");
+
+    return optionsData;
   } catch (error) {
     return error;
   }
@@ -40,9 +39,6 @@ export async function getSpecificData(
     const optionsData = await getData(option);
 
     if (Array.isArray(optionsData)) {
-      if (!optionsData || optionsData.length === 0)
-        throw new Error("missing or empty information");
-
       const foundData = optionsData.find((data) => data[key] === identifier);
       if (!foundData) throw new Error(`No find identifier ${identifier}`);
       return foundData;
