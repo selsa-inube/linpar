@@ -1,9 +1,4 @@
-import { MdPerson } from "react-icons/md";
-
-const privilegeConfig = {
-  label: "Usuarios",
-  description: "invitar, editar, activar y eliminar usuarios de Linix",
-};
+import { MdInventory2, MdPerson } from "react-icons/md";
 
 const privilegeOptionsConfig = [
   {
@@ -34,6 +29,34 @@ const privilegeOptionsConfig = [
       },
     ],
   },
+  {
+    id: 2,
+    icon: <MdInventory2 />,
+    label: "Casos de uso",
+    description: "Completa la información para agregar el caso de uso",
+    url: "/privileges/useCases",
+    domain: "privileges",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/privileges/useCases",
+        label: "Casos de uso",
+        id: "/privileges/useCases",
+        isActive: true,
+      },
+    ],
+  },
 ];
 
-export { privilegeOptionsConfig, privilegeConfig };
+export { privilegeOptionsConfig };

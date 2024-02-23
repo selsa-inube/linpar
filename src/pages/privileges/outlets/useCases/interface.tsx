@@ -4,48 +4,25 @@ import {
   Button,
   Icon,
   Stack,
-  Tabs,
   Textfield,
   useMediaQuery,
 } from "@inube/design-system";
 
-import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
-import { menuInvitationLinks } from "./config/menuInvitation.config";
-import { privilegeUserTabsConfig } from "./config/usersTabs.config";
-import { IUsersMessage } from "./types/users.types";
-import { InvitationsTab } from "./tabs/invitations";
-import { UsersTab } from "./tabs/users";
 import { StyledContainer } from "./styles";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { useLocation } from "react-router-dom";
 
-interface UsersUIProps {
-  isSelected: string;
+interface UseCasesUIProps {
   searchText: string;
-  handleTabChange: (id: string) => void;
   handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
-  message: IUsersMessage;
-  handleCloseMessage: () => void;
 }
 
-export function UsersUI(props: UsersUIProps) {
-  const {
-    isSelected,
-    searchText,
-    handleTabChange,
-    handleSearchText,
-    showMenu,
-    handleToggleMenuInvitation,
-    handleCloseMenuInvitation,
-    message,
-    handleCloseMessage,
-  } = props;
-
+export function UseCasesUI(props: UseCasesUIProps) {
+  const { searchText, handleSearchText, handleToggleMenuInvitation } = props;
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const location = useLocation();
   const label = privilegeOptionsConfig.find(
@@ -70,12 +47,6 @@ export function UsersUI(props: UsersUIProps) {
           </Stack>
           <StyledContainer>
             <Stack gap="32px" direction="column">
-              <Tabs
-                tabs={Object.values(privilegeUserTabsConfig)}
-                selectedTab={isSelected}
-                onChange={handleTabChange}
-                type={smallScreen ? "select" : "tabs"}
-              />
               <Stack justifyContent="space-between" alignItems="center">
                 <Textfield
                   name="searchUser"
@@ -97,41 +68,20 @@ export function UsersUI(props: UsersUIProps) {
                       cursorHover={true}
                       appearance="dark"
                     />
-                    {showMenu && (
-                      <Menu
-                        options={menuInvitationLinks}
-                        handleClose={handleCloseMenuInvitation}
-                      />
-                    )}
                   </>
                 ) : (
                   <Button
                     iconBefore={<MdPersonAddAlt />}
                     spacing="wide"
                     type="link"
-                    path="/privileges/users/invite"
                   >
-                    Invitar usuario
+                    Agregar caso de uso
                   </Button>
                 )}
               </Stack>
-              {isSelected === privilegeUserTabsConfig.privilegesUsers.id && (
-                <UsersTab searchText={searchText} />
-              )}
-              {isSelected ===
-                privilegeUserTabsConfig.privilegesInvitations.id && (
-                <InvitationsTab searchText={searchText} />
-              )}
             </Stack>
           </StyledContainer>
         </Stack>
-        {message.visible && (
-          <RenderMessage
-            message={message}
-            handleCloseMessage={handleCloseMessage}
-            onMessageClosed={() => {}}
-          />
-        )}
       </Stack>
     </>
   );
