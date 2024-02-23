@@ -4,6 +4,7 @@ import { Palette } from "..";
 import { TokenContext } from "@context/TokenContext";
 import { tokensWithReference } from "@src/mocks/design/tokensWithReference";
 import { props } from "./props";
+import { action } from "@storybook/addon-actions";
 
 const story = {
   components: Palette,
@@ -22,7 +23,7 @@ const story = {
           value={{
             tokenWithRef: tokensWithReference[context.args.formType],
             loading: false,
-            handleSubmit: () => {},
+            handleSubmit: action("handleSubmit"),
           }}
         >
           <Story />
