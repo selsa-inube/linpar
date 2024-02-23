@@ -2,10 +2,7 @@ import localforage from "localforage";
 
 function buildData<T>(data: T[]) {
   const dataMock = data.map((optionData) => {
-    const newObj = Object.assign({}, optionData, {
-      id: crypto.randomUUID(),
-    });
-
+    const newObj = Object.assign({ id: crypto.randomUUID() }, optionData);
     return newObj;
   });
 
@@ -17,7 +14,7 @@ export async function intializedData<T>(option: string, data: T[]) {
     const dataMock = buildData(data);
     await localforage.setItem(option, dataMock);
   } catch (error) {
-    console.error(error);
+    return error;
   }
 }
 
@@ -34,6 +31,6 @@ export async function getDocuments(option: string, code: number) {
       return foundData;
     }
   } catch (error) {
-    console.error(error);
+    return error;
   }
 }
