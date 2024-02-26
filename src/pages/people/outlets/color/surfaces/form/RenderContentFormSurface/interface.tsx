@@ -97,7 +97,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
 
             {formType !== "navLink" && (
               <SendInformationMessage
-                appearance={formType as SurfaceAppearance}
+                appearance={formType}
                 buttonType="filled"
               />
             )}

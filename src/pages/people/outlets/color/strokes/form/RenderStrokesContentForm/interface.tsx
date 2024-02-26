@@ -65,7 +65,7 @@ function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
             <SendInformationMessage
-              appearance={formType as StrokeAppearance}
+              appearance={formType}
               buttonType="outlined"
             />
             <Grid
