@@ -9,14 +9,14 @@ import {
 
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { Home } from "@pages/home";
-import { GlobalStyles } from "@styles/global";
 import AppContextProvider, { AppContext } from "@context/AppContext";
+import { GlobalStyles } from "@styles/global";
+import { initializeDataDB } from "@mocks/utils/initializeDataDB";
+import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
-import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
-import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 
 function LogOut() {
   localStorage.clear();
@@ -52,7 +52,7 @@ function App() {
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect();
-      intializedTokenData();
+      initializeDataDB();
     }
   }, [isLoading, isAuthenticated, loginWithRedirect]);
 
