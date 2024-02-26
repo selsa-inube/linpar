@@ -1,18 +1,15 @@
 //import { BoxAttribute } from "@components/cards/BoxAttribute";
-import { StoryFn } from "@storybook/react";
-//import { BrowserRouter } from "react-router-dom";
 import { Accordion, IAccordionProps } from ".";
 
 const story = {
-  component: [Accordion],
-  title: "design/data/Accordion",
+  title: "data/Accordion",
+  component: Accordion,
 };
 
-const Template: StoryFn<IAccordionProps> = (args) => <Accordion {...args} />;
-
-export const Default = Template.bind({});
+export const Default = (args: IAccordionProps) => <Accordion {...args} />;
 Default.args = {
-  title: "Accordion",
+  title: "Title",
+  children: "Content",
 };
 
 export default story;
