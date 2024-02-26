@@ -7,7 +7,7 @@ import { props } from "./props";
 import { action } from "@storybook/addon-actions";
 
 const story = {
-  components: Surfaces,
+  components: [Surfaces],
   title: "layouts/people/outlets/color/surfaces",
   parameters: {
     layout: "fullscreen",
@@ -16,12 +16,12 @@ const story = {
   decorators: [
     (
       Story: StoryFn,
-      context: { args: { formType: keyof typeof tokensWithReference } }
+      context: { args: { clientName: keyof typeof tokensWithReference } }
     ) => (
       <BrowserRouter>
         <TokenContext.Provider
           value={{
-            tokenWithRef: tokensWithReference[context.args.formType],
+            tokenWithRef: tokensWithReference[context.args.clientName],
             loading: false,
             handleSubmit: action("handleSubmit"),
           }}
@@ -35,7 +35,7 @@ const story = {
 
 const Default = () => <Surfaces />;
 Default.args = {
-  formType: "presente",
+  clientName: "presente",
 };
 
 export default story;

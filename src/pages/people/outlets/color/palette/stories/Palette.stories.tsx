@@ -7,7 +7,7 @@ import { props } from "./props";
 import { action } from "@storybook/addon-actions";
 
 const story = {
-  components: Palette,
+  components: [Palette],
   title: "layouts/people/outlets/color/palette",
   parameters: {
     layout: "fullscreen",
@@ -16,12 +16,12 @@ const story = {
   decorators: [
     (
       Story: StoryFn,
-      context: { args: { formType: keyof typeof tokensWithReference } }
+      context: { args: { clientName: keyof typeof tokensWithReference } }
     ) => (
       <BrowserRouter>
         <TokenContext.Provider
           value={{
-            tokenWithRef: tokensWithReference[context.args.formType],
+            tokenWithRef: tokensWithReference[context.args.clientName],
             loading: false,
             handleSubmit: action("handleSubmit"),
           }}
@@ -36,7 +36,7 @@ const story = {
 const Default = () => <Palette />;
 
 Default.args = {
-  formType: "presente",
+  clientName: "presente",
 };
 
 export default story;

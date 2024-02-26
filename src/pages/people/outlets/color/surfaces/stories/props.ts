@@ -1,7 +1,7 @@
 import { tokensWithReference } from "@src/mocks/design/tokensWithReference";
 
 const props = {
-  formType: {
+  clientName: {
     options: Object.keys(tokensWithReference),
     control: { type: "select" },
     description: "Select the form type to render",
