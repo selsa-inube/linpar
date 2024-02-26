@@ -14,15 +14,13 @@ import { StyledContainer } from "./styles";
 import { useLocation } from "react-router-dom";
 
 interface UseCasesUIProps {
-  searchText: string;
-  handleSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchUseCase: string;
+  handleSearchUseCase: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
-  handleToggleMenuInvitation: () => void;
-  handleCloseMenuInvitation: () => void;
 }
 
 export function UseCasesUI(props: UseCasesUIProps) {
-  const { searchText, handleSearchText, handleToggleMenuInvitation } = props;
+  const { searchUseCase, handleSearchUseCase } = props;
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const location = useLocation();
   const label = privilegeOptionsConfig.find(
@@ -55,8 +53,8 @@ export function UseCasesUI(props: UseCasesUIProps) {
                   type="search"
                   iconBefore={<MdSearch />}
                   size="compact"
-                  value={searchText}
-                  onChange={handleSearchText}
+                  value={searchUseCase}
+                  onChange={handleSearchUseCase}
                 />
 
                 {smallScreen ? (
@@ -64,7 +62,6 @@ export function UseCasesUI(props: UseCasesUIProps) {
                     <Icon
                       icon={<MdOutlineMoreHoriz />}
                       size="24px"
-                      onClick={handleToggleMenuInvitation}
                       cursorHover={true}
                       appearance="dark"
                     />
@@ -74,6 +71,7 @@ export function UseCasesUI(props: UseCasesUIProps) {
                     iconBefore={<MdPersonAddAlt />}
                     spacing="wide"
                     type="link"
+                    path="/privileges/useCases"
                   >
                     Agregar caso de uso
                   </Button>
