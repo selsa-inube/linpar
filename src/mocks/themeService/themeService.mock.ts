@@ -3,7 +3,6 @@ import localforage from "localforage";
 import { tokensWithReference } from "@mocks/design/tokensWithReference";
 
 async function intializedTokenData() {
-  localforage.clear();
   let tokens: typeof inube[] = [];
   Object.entries(tokensWithReference).forEach(([clientName, clientTokens]) => {
     let id = Math.random().toString(36).substring(2, 9);
