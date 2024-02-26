@@ -17,6 +17,7 @@ import { RenderStrokesWithLinkForm } from "./form/RenderStrokesWithLinkForm";
 import { strokesFormsConfig } from "./config/Strokes.config";
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { StrokeAppearance } from "./types";
+import { useLocation } from "react-router-dom";
 
 interface IStrokesUIProps {
   handleTabChange: (id: string) => void;
@@ -61,6 +62,10 @@ export function StrokesUI(props: IStrokesUIProps) {
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   const strokeTabs = Object.keys(strokesTabsConfig);
+  const location = useLocation();
+  const label = peopleOptionsConfig.find(
+    (item) => item.url === location.pathname
+  );
 
   return (
     <>
@@ -71,10 +76,10 @@ export function StrokesUI(props: IStrokesUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[3].crumbs} />
+            <Breadcrumbs crumbs={label!.crumbs} />
             <PageTitle
-              title={peopleOptionsConfig[3].label}
-              description={peopleOptionsConfig[3].description}
+              title={label!.label}
+              description={label!.description}
               navigatePage="/people"
             />
           </Stack>

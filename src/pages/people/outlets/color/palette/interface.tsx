@@ -12,6 +12,7 @@ import { paletteTabsConfig } from "./config/paletteTabs.config";
 import { RenderContentFormPalette } from "./form/RenderContentFormPalette";
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { PaletteAppearance } from "./types";
+import { useLocation } from "react-router-dom";
 
 interface PaletteUIProps {
   handleTabChange: (id: string) => void;
@@ -25,6 +26,11 @@ export function PaletteUI(props: PaletteUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
   const colorTabs = Object.keys(paletteTabsConfig);
+  const location = useLocation();
+  const label = peopleOptionsConfig.find(
+    (item) => item.url === location.pathname
+  );
+
   return (
     <>
       <Stack
@@ -35,10 +41,10 @@ export function PaletteUI(props: PaletteUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[0].crumbs} />
+            <Breadcrumbs crumbs={label!.crumbs} />
             <PageTitle
-              title={peopleOptionsConfig[0].label}
-              description={peopleOptionsConfig[0].description}
+              title={label!.label}
+              description={label!.description}
               navigatePage="/people"
             />
           </Stack>

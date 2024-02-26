@@ -19,6 +19,7 @@ import { RenderContentFormSurfaceBlanket } from "./form/RenderContentFormSurface
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { RenderContentFormSurfaceNav } from "./form/RenderContentFormNav";
 import { SurfaceAppearance } from "./types";
+import { useLocation } from "react-router-dom";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;
@@ -62,6 +63,11 @@ export function SurfacesUI(props: SurfaceUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
   const colorTabs = Object.keys(surfaceTabsConfig);
+  const location = useLocation();
+  const label = peopleOptionsConfig.find(
+    (item) => item.url === location.pathname
+  );
+
   return (
     <>
       <Stack
@@ -72,10 +78,10 @@ export function SurfacesUI(props: SurfaceUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[2].crumbs} />
+            <Breadcrumbs crumbs={label!.crumbs} />
             <PageTitle
-              title={peopleOptionsConfig[2].label}
-              description={peopleOptionsConfig[2].description}
+              title={label!.label}
+              description={label!.description}
               navigatePage="/people"
             />
           </Stack>

@@ -13,7 +13,7 @@ import { RenderTextContentForm } from "./form/RenderTextContentForm";
 import { textFormsConfig } from "./config/text.config";
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { TextAppearance } from "./types";
-
+import { useLocation } from "react-router-dom";
 interface TextUIProps {
   handleTabChange: (id: string) => void;
   selectedTab: TextAppearance;
@@ -26,6 +26,10 @@ export function TextsUI(props: TextUIProps) {
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   const colorTabs = Object.keys(textsTabsConfig);
+  const location = useLocation();
+  const label = peopleOptionsConfig.find(
+    (item) => item.url === location.pathname
+  );
 
   return (
     <>
@@ -36,10 +40,10 @@ export function TextsUI(props: TextUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[1].crumbs} />
+            <Breadcrumbs crumbs={label!.crumbs} />
             <PageTitle
-              title={peopleOptionsConfig[1].label}
-              description={peopleOptionsConfig[1].description}
+              title={label!.label}
+              description={label!.description}
               navigatePage="/people"
             />
           </Stack>
