@@ -1,8 +1,10 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { Palette } from "./index";
+import { Palette } from "..";
 import { TokenContext } from "@context/TokenContext";
-import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { tokensWithReference } from "@src/mocks/design/tokensWithReference";
+import { props } from "./props";
+import { action } from "@storybook/addon-actions";
 
 const story = {
   components: [Palette],
@@ -10,14 +12,18 @@ const story = {
   parameters: {
     layout: "fullscreen",
   },
+  argTypes: props,
   decorators: [
-    (Story: StoryFn) => (
+    (
+      Story: StoryFn,
+      context: { args: { clientName: keyof typeof tokensWithReference } }
+    ) => (
       <BrowserRouter>
         <TokenContext.Provider
           value={{
-            tokenWithRef: presente,
+            tokenWithRef: tokensWithReference[context.args.clientName],
             loading: false,
-            handleSubmit: () => {},
+            handleSubmit: action("handleSubmit"),
           }}
         >
           <Story />
@@ -28,6 +34,10 @@ const story = {
 };
 
 const Default = () => <Palette />;
+
+Default.args = {
+  clientName: "presente",
+};
 
 export default story;
 
