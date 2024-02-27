@@ -8,7 +8,7 @@ import { Divider } from "@components/layout/Divider";
 export interface IAccordionProps {
   title: string;
   defaultOpen?: boolean;
-  children: React.ReactNode;
+  children: JSX.Element | JSX.Element[];
 }
 
 export const Accordion = (props: IAccordionProps) => {

@@ -7,10 +7,14 @@ import {
   IControllerAccordionProps,
 } from "./ControllerAccordion";
 import { Accordion } from "..";
+import { parameters, props } from "./props";
 
 const story = {
   title: "data/Accordion",
   component: Accordion,
+  parameters,
+  argTypes: props,
+
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
