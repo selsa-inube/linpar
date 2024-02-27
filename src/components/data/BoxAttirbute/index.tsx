@@ -1,7 +1,7 @@
 import { Text } from "@inube/design-system";
 import { StyledBoxAttribute } from "./styles";
 
-interface IBoxAttributeProps {
+export interface IBoxAttributeProps {
   attribute: string;
   value: string | number;
 }
