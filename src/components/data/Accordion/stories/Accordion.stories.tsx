@@ -1,4 +1,3 @@
-//import { BoxAttribute } from "@components/cards/BoxAttribute";
 import { BrowserRouter } from "react-router-dom";
 import { StoryFn } from "@storybook/react";
 
@@ -6,8 +5,8 @@ import {
   ControllerAccordion,
   IControllerAccordionProps,
 } from "./ControllerAccordion";
-import { Accordion } from "..";
 import { parameters, props } from "./props";
+import { Accordion, IAccordionProps } from "..";
 
 const story = {
   title: "data/Accordion",
@@ -67,10 +66,15 @@ const mockDataSummaryPage = [
   },
 ];
 
-export const Default = (args: IControllerAccordionProps) => (
+export const Default = (args: IAccordionProps) => <Accordion {...args} />;
+Default.args = {
+  title: "Casos de uso",
+};
+
+export const ExampleSummaryPage = (args: IControllerAccordionProps) => (
   <ControllerAccordion {...args} />
 );
-Default.args = {
+ExampleSummaryPage.args = {
   steps: mockDataSummaryPage,
 };
 
