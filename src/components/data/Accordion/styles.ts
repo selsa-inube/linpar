@@ -11,13 +11,14 @@ export const StyledContainer = styled.div<IStyledContainer>`
   flex-direction: column;
   gap: "16px";
   border-radius: 8px;
+  width: auto;
+  min-height: 160px;
+  box-sizing: border-box;
+  align-items: flex-start;
   border: 1px solid
     ${({ theme }) =>
       theme.color?.stroke?.divider?.regular ||
       inube.color.stroke.divider.regular};
-  width: auto;
-  box-sizing: border-box;
-  align-items: flex-start;
 `;
 
 export const StyledHead = styled.button`

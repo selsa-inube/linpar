@@ -26,21 +26,13 @@ export const Accordion = (props: IAccordionProps) => {
           {title}
         </Text>
 
-        {isOpen ? (
-          <Icon
-            icon={<MdKeyboardArrowUp size={24} />}
-            appearance="dark"
-            spacing="compact"
-            cursorHover={true}
-          />
-        ) : (
-          <Icon
-            icon={<MdKeyboardArrowDown size={24} />}
-            appearance="dark"
-            spacing="compact"
-            cursorHover={true}
-          />
-        )}
+        <Icon
+          icon={isOpen ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
+          appearance="dark"
+          spacing="compact"
+          cursorHover={true}
+          size="24px"
+        />
       </StyledHead>
 
       {isOpen && (
