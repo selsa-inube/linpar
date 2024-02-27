@@ -40,9 +40,9 @@ export const ControllerAccordion = (props: IControllerAccordionProps) => {
                 spacing="compact"
                 iconBefore={<MdArrowBack />}
                 type="link"
-                path="/"
+                path={step.attributesButton.path}
               >
-                Regresar a este paso
+                {step.attributesButton.text}
               </Button>
             </Stack>
           </Accordion>

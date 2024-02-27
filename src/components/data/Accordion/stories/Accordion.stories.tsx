@@ -43,6 +43,10 @@ const mockDataSummaryPage = [
         value: "20/Nov/2001",
       },
     ],
+    attributesButton: {
+      text: "Regresar a este paso",
+      path: "/",
+    },
   },
   {
     section: "Cliente servidor",
@@ -52,6 +56,10 @@ const mockDataSummaryPage = [
         value: "Colombia",
       },
     ],
+    attributesButton: {
+      text: "Regresar a este paso",
+      path: "/",
+    },
   },
 ];
 
