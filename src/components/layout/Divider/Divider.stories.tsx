@@ -1,7 +1,5 @@
 import { Divider, IDividerProps } from ".";
 
-//import { props } from "./props";
-
 const story = {
   title: "layouts/Divider",
   component: [Divider],

@@ -10,7 +10,7 @@ import { Accordion } from "..";
 
 const story = {
   title: "data/Accordion",
-  component: [Accordion],
+  component: Accordion,
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
