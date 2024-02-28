@@ -13,7 +13,6 @@ import { PageTitle } from "@components/PageTitle";
 
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
-import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
@@ -170,8 +169,8 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               />
             )}
             {currentStep === stepsRegisterUserConfig.payrolls.id && (
-              <PayrollsForm
-                currentPayrolls={invitationData.payrolls.entries}
+              <AidBudgetsForm
+                currentAidBudgetUnits={invitationData.payrolls.entries}
                 handleSubmit={handleSubmit}
               />
             )}

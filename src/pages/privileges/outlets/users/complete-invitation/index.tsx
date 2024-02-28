@@ -10,7 +10,6 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
-import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
@@ -143,8 +142,8 @@ function CompleteInvitation() {
       id: "payrolls",
       title: "Nómina",
       content: (
-        <PayrollsForm
-          currentPayrolls={invitationData.payrolls.entries}
+        <AidBudgetsForm
+          currentAidBudgetUnits={invitationData.payrolls.entries}
           readOnly
           handleSubmit={() => {}}
         />
