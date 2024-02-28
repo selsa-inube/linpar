@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { UseCasesUI } from "./interface";
+import { LinixUseCaseUI } from "./interface";
 
-function UseCases() {
-  const [searchUseCase, setSearchText] = useState("");
+function LinixUseCase() {
+  const [searchUseCase, setSearchUseCase] = useState("");
   const [showMenu] = useState(false);
 
   const handleSearchUseCase = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.target.value);
+    setSearchUseCase(event.target.value);
   };
   return (
-    <UseCasesUI
+    <LinixUseCaseUI
       searchUseCase={searchUseCase}
       handleSearchUseCase={handleSearchUseCase}
       showMenu={showMenu}
@@ -17,4 +17,4 @@ function UseCases() {
   );
 }
 
-export { UseCases };
+export { LinixUseCase };

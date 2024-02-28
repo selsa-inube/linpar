@@ -1,4 +1,5 @@
-import { MdInventory2, MdPerson } from "react-icons/md";
+import { MdPerson } from "react-icons/md";
+import { TfiMenuAlt } from "react-icons/tfi";
 
 const privilegeOptionsConfig = [
   {
@@ -31,10 +32,10 @@ const privilegeOptionsConfig = [
   },
   {
     id: 2,
-    icon: <MdInventory2 />,
-    label: "Casos de uso",
-    description: "Completa la información para agregar el caso de uso",
-    url: "/privileges/useCases",
+    icon: <TfiMenuAlt />,
+    label: "Casos de uso Linix",
+    description: "Completa la información para agregar el caso de uso Linix",
+    url: "/privileges/linixUseCase",
     domain: "privileges",
     crumbs: [
       {
@@ -50,9 +51,9 @@ const privilegeOptionsConfig = [
         isActive: false,
       },
       {
-        path: "/privileges/useCases",
-        label: "Casos de uso",
-        id: "/privileges/useCases",
+        path: "/privileges/linixUseCase",
+        label: "Casos de uso Linix",
+        id: "/privileges/linixUseCase",
         isActive: true,
       },
     ],
