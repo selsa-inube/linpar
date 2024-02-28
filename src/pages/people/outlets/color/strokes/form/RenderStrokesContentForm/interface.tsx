@@ -3,7 +3,6 @@ import { Grid, inube, Stack, Text, useMediaQuery } from "@inube/design-system";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@components/feedback/SendingInformation";
 import { strokesFormsConfig } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { RenderMessage } from "@components/feedback/RenderMessage";
@@ -66,7 +65,7 @@ function RenderStrokesContentFormUI(props: RenderStrokesContentFormUIProps) {
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
             <SendInformationMessage
-              appearance={formType as Appearance}
+              appearance={formType}
               buttonType="outlined"
             />
             <Grid

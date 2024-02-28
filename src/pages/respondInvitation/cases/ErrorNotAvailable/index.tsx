@@ -1,5 +1,5 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
-import { IClient } from "../../types";
+import { IClient } from "@context/AppContext/types";
 
 interface ErrorNotAvailableProps {
   clientData?: IClient;
