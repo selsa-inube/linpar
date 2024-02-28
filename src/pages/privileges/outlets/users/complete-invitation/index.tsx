@@ -9,7 +9,6 @@ import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
-import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 import {
@@ -100,8 +99,8 @@ function CompleteInvitation() {
       id: "branches",
       title: "Sucursales",
       content: (
-        <BranchesForm
-          currentBranches={invitationData.branches.entries}
+        <AidBudgetsForm
+          currentAidBudgetUnits={invitationData.branches.entries}
           readOnly
           handleSubmit={() => {}}
         />

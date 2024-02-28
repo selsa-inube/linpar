@@ -12,7 +12,6 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
-import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 import {
@@ -147,8 +146,8 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
-              <BranchesForm
-                currentBranches={invitationData.branches.entries}
+              <AidBudgetsForm
+                currentAidBudgetUnits={invitationData.branches.entries}
                 handleSubmit={handleSubmit}
               />
             )}
