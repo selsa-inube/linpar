@@ -61,12 +61,16 @@ export function UsersUI(props: UsersUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={label!.crumbs} />
-            <PageTitle
-              title={label!.label}
-              description={label!.description}
-              navigatePage="/privileges"
-            />
+            {label && (
+              <>
+                <Breadcrumbs crumbs={label.crumbs} />
+                <PageTitle
+                  title={label.label}
+                  description={label.description}
+                  navigatePage="/privileges"
+                />
+              </>
+            )}
           </Stack>
           <StyledContainer>
             <Stack gap="32px" direction="column">
