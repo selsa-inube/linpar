@@ -2,15 +2,19 @@ import { Table } from "@inube/design-system";
 
 import { StyledContainerActions } from "./styles";
 import { usersBreakPointsConfig } from "../config/usersTable.config";
-import { MdDelete, MdModeEdit, MdToggleOff } from "react-icons/md";
+import {
+  MdDelete,
+  MdModeEdit,
+  MdOutlineAssignmentTurnedIn,
+} from "react-icons/md";
 
 const actionsMuck = [
   {
     id: "Details",
-    actionName: "Dertalles",
+    actionName: "Detalles",
     content: () => (
       <StyledContainerActions>
-        <MdToggleOff />
+        <MdOutlineAssignmentTurnedIn />
       </StyledContainerActions>
     ),
     type: "secondary",
