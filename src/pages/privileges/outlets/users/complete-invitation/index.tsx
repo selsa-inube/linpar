@@ -12,7 +12,6 @@ import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
-import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
@@ -112,8 +111,8 @@ function CompleteInvitation() {
       id: "projects",
       title: "Proyectos",
       content: (
-        <ProjectsForm
-          currentProjects={invitationData.projects.entries}
+        <AidBudgetsForm
+          currentAidBudgetUnits={invitationData.projects.entries}
           readOnly
           handleSubmit={() => {}}
         />

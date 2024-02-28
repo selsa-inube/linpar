@@ -15,7 +15,6 @@ import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
-import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
@@ -154,8 +153,8 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               />
             )}
             {currentStep === stepsRegisterUserConfig.projects.id && (
-              <ProjectsForm
-                currentProjects={invitationData.projects.entries}
+              <AidBudgetsForm
+                currentAidBudgetUnits={invitationData.projects.entries}
                 handleSubmit={handleSubmit}
               />
             )}

@@ -18,7 +18,6 @@ import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { GeneralInformationForm } from "./forms/GeneralInfoForm";
 import { AidBudgetsForm } from "./forms/AidBudgetsForm";
 import { PayrollsForm } from "./forms/PayrollsForm";
-import { ProjectsForm } from "./forms/ProjectsForm";
 import { BranchesForm } from "./forms/BranchesForm";
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { MdPersonOutline } from "react-icons/md";
@@ -145,8 +144,8 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.projects.id && (
-              <ProjectsForm
-                currentProjects={editData.projects.entries}
+              <AidBudgetsForm
+                currentAidBudgetUnits={editData.projects.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
