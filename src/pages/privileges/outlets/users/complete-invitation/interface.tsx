@@ -13,7 +13,6 @@ import { PageTitle } from "@components/PageTitle";
 
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
-import { EventsForm } from "../edit-user/forms/EventsForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
@@ -161,8 +160,8 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               />
             )}
             {currentStep === stepsRegisterUserConfig.events.id && (
-              <EventsForm
-                currentEvents={invitationData.events.entries}
+              <AidBudgetsForm
+                currentAidBudgetUnits={invitationData.events.entries}
                 handleSubmit={handleSubmit}
               />
             )}

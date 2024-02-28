@@ -10,7 +10,6 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
 import { BranchesForm } from "../edit-user/forms/BranchesForm";
-import { EventsForm } from "../edit-user/forms/EventsForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
 import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
@@ -124,8 +123,8 @@ function CompleteInvitation() {
       id: "events",
       title: "Eventos",
       content: (
-        <EventsForm
-          currentEvents={invitationData.events.entries}
+        <AidBudgetsForm
+          currentAidBudgetUnits={invitationData.events.entries}
           readOnly
           handleSubmit={() => {}}
         />

@@ -17,7 +17,6 @@ import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { GeneralInformationForm } from "./forms/GeneralInfoForm";
 import { AidBudgetsForm } from "./forms/AidBudgetsForm";
-import { EventsForm } from "./forms/EventsForm";
 import { PayrollsForm } from "./forms/PayrollsForm";
 import { ProjectsForm } from "./forms/ProjectsForm";
 import { BranchesForm } from "./forms/BranchesForm";
@@ -138,8 +137,8 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.events.id && (
-              <EventsForm
-                currentEvents={editData.events.entries}
+              <AidBudgetsForm
+                currentAidBudgetUnits={editData.events.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
