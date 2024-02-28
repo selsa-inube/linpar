@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
-
 import {
   Blanket,
   Button,
@@ -10,6 +9,9 @@ import {
   Text,
   useMediaQuery,
 } from "@inube/design-system";
+
+import { TextAppearance } from "@pages/people/outlets/color/texts/types";
+
 import { StyledModal } from "./styles";
 
 interface DecisionModalProps {
@@ -19,6 +21,7 @@ interface DecisionModalProps {
   loading?: boolean;
   closeModal: () => void;
   handleClick: () => void;
+  appearance?: TextAppearance;
 }
 
 function DecisionModal(props: DecisionModalProps) {
@@ -29,6 +32,7 @@ function DecisionModal(props: DecisionModalProps) {
     loading = true,
     closeModal,
     handleClick,
+    appearance = "primary",
   } = props;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -81,7 +85,7 @@ function DecisionModal(props: DecisionModalProps) {
               Cancel
             </Button>
             <Button
-              appearance={"primary"}
+              appearance={appearance}
               loading={isLoading}
               onClick={handleConfirmationClick}
               spacing={smallScreen ? "compact" : undefined}
