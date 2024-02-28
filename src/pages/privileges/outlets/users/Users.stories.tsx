@@ -1,11 +1,11 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { TokenContext } from "@context/TokenContext";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
 import { Users } from ".";
 
-const story = {
-  components: [Users],
+const story: Meta<typeof Users> = {
+  component: Users,
   title: "layouts/privileges/outlets/users",
   parameters: {
     layout: "fullscreen",

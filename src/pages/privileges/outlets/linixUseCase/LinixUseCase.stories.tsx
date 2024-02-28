@@ -1,11 +1,11 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { TokenContext } from "@context/TokenContext";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
 import { LinixUseCase } from ".";
 
-const story = {
-  components: [LinixUseCase],
+const story: Meta<typeof LinixUseCase> = {
+  component: LinixUseCase,
   title: "layouts/privileges/outlets/linixUseCase",
   parameters: {
     layout: "fullscreen",
