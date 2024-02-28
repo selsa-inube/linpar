@@ -78,12 +78,16 @@ export function SurfacesUI(props: SurfaceUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={label!.crumbs} />
-            <PageTitle
-              title={label!.label}
-              description={label!.description}
-              navigatePage="/people"
-            />
+            {label && (
+              <>
+                <Breadcrumbs crumbs={label.crumbs} />
+                <PageTitle
+                  title={label.label}
+                  description={label.description}
+                  navigatePage="/people"
+                />
+              </>
+            )}
           </Stack>
         </Stack>
 
