@@ -36,7 +36,7 @@ const mockDataSummaryPage = [
       },
       {
         attribute: "Descripción",
-        value: "Aregentina",
+        value: "Argentina",
       },
       {
         attribute: "Opción cliente servidor",
