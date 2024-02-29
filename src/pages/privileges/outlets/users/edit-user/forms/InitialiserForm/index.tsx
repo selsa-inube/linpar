@@ -8,30 +8,29 @@ import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
 
-interface AidBudgetsFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
+interface IInitialiserForm {
+  dataOptionsForms: IAssignmentFormEntry[];
   handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
-
-function AidBudgetsForm(props: AidBudgetsFormProps) {
+function InitialiserForm(props: IInitialiserForm) {
   const {
-    currentAidBudgetUnits,
+    dataOptionsForms,
     handleSubmit,
     withSubmitButtons,
     onHasChanges,
     readOnly,
   } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const [aidBudgetUnits, setAidBudgetUnits] = useState(dataOptionsForms);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(dataOptionsForms) !== JSON.stringify(valueCompare);
 
   const handleChangeAidBudgets = (aidBudgetUnits: IAssignmentFormEntry[]) => {
     setAidBudgetUnits(aidBudgetUnits);
@@ -53,7 +52,7 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setAidBudgetUnits(dataOptionsForms);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -79,5 +78,5 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
   );
 }
 
-export type { AidBudgetsFormProps };
-export { AidBudgetsForm };
+export type { IInitialiserForm };
+export { InitialiserForm };

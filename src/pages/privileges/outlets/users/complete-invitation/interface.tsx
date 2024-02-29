@@ -11,7 +11,7 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 
-import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
+import { InitialiserForm } from "../edit-user/forms/InitialiserForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import {
   IAssignmentFormEntry,
@@ -145,32 +145,32 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={invitationData.branches.entries}
+              <InitialiserForm
+                dataOptionsForms={invitationData.branches.entries}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.projects.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={invitationData.projects.entries}
+              <InitialiserForm
+                dataOptionsForms={invitationData.projects.entries}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.events.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={invitationData.events.entries}
+              <InitialiserForm
+                dataOptionsForms={invitationData.events.entries}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
+              <InitialiserForm
+                dataOptionsForms={invitationData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.payrolls.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={invitationData.payrolls.entries}
+              <InitialiserForm
+                dataOptionsForms={invitationData.payrolls.entries}
                 handleSubmit={handleSubmit}
               />
             )}

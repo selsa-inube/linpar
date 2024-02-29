@@ -8,7 +8,7 @@ import { IVerificationData } from "@pages/privileges/outlets/users/complete-invi
 import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
+import { InitialiserForm } from "../edit-user/forms/InitialiserForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import {
   IAssignmentFormEntry,
@@ -98,8 +98,8 @@ function CompleteInvitation() {
       id: "branches",
       title: "Sucursales",
       content: (
-        <AidBudgetsForm
-          currentAidBudgetUnits={invitationData.branches.entries}
+        <InitialiserForm
+          dataOptionsForms={invitationData.branches.entries}
           readOnly
           handleSubmit={() => {}}
         />
@@ -109,8 +109,8 @@ function CompleteInvitation() {
       id: "projects",
       title: "Proyectos",
       content: (
-        <AidBudgetsForm
-          currentAidBudgetUnits={invitationData.projects.entries}
+        <InitialiserForm
+          dataOptionsForms={invitationData.projects.entries}
           readOnly
           handleSubmit={() => {}}
         />
@@ -120,8 +120,8 @@ function CompleteInvitation() {
       id: "events",
       title: "Eventos",
       content: (
-        <AidBudgetsForm
-          currentAidBudgetUnits={invitationData.events.entries}
+        <InitialiserForm
+          dataOptionsForms={invitationData.events.entries}
           readOnly
           handleSubmit={() => {}}
         />
@@ -131,8 +131,8 @@ function CompleteInvitation() {
       id: "aidBudgets",
       title: "Unidades de ayuda",
       content: (
-        <AidBudgetsForm
-          currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
+        <InitialiserForm
+          dataOptionsForms={invitationData.aidBudgetUnits.entries}
           readOnly
           handleSubmit={() => {}}
         />
@@ -142,8 +142,8 @@ function CompleteInvitation() {
       id: "payrolls",
       title: "Nómina",
       content: (
-        <AidBudgetsForm
-          currentAidBudgetUnits={invitationData.payrolls.entries}
+        <InitialiserForm
+          dataOptionsForms={invitationData.payrolls.entries}
           readOnly
           handleSubmit={() => {}}
         />

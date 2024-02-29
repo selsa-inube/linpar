@@ -16,7 +16,7 @@ import {
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { GeneralInformationForm } from "./forms/GeneralInfoForm";
-import { AidBudgetsForm } from "./forms/AidBudgetsForm";
+import { InitialiserForm } from "./forms/InitialiserForm";
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { MdPersonOutline } from "react-icons/md";
 import {
@@ -126,40 +126,40 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.branches.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={editData.branches.entries}
+              <InitialiserForm
+                dataOptionsForms={editData.branches.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.events.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={editData.events.entries}
+              <InitialiserForm
+                dataOptionsForms={editData.events.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.projects.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={editData.projects.entries}
+              <InitialiserForm
+                dataOptionsForms={editData.projects.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={editData.aidBudgetUnits.entries}
+              <InitialiserForm
+                dataOptionsForms={editData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.payrolls.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={editData.payrolls.entries}
+              <InitialiserForm
+                dataOptionsForms={editData.payrolls.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
