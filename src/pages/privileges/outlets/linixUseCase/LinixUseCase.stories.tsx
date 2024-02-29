@@ -2,11 +2,11 @@ import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { TokenContext } from "@context/TokenContext";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
-import { Users } from ".";
+import { LinixUseCase } from ".";
 
-const story: Meta<typeof Users> = {
-  component: Users,
-  title: "layouts/privileges/outlets/users",
+const story: Meta<typeof LinixUseCase> = {
+  component: LinixUseCase,
+  title: "layouts/privileges/outlets/linixUseCase",
   parameters: {
     layout: "fullscreen",
   },
@@ -27,7 +27,7 @@ const story: Meta<typeof Users> = {
   ],
 };
 
-const Default = () => <Users />;
+const Default = () => <LinixUseCase />;
 
 export default story;
 
