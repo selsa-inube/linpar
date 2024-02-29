@@ -1,14 +1,15 @@
 import { BrowserRouter } from "react-router-dom";
-import { StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 
 import {
   ControllerAccordion,
   IControllerAccordionProps,
 } from "./ControllerAccordion";
+
 import { parameters, props } from "./props";
 import { Accordion, IAccordionProps } from "..";
 
-const story = {
+const meta: Meta<IAccordionProps> = {
   title: "data/Accordion",
   component: Accordion,
   parameters,
@@ -30,7 +31,7 @@ const mockDataSummaryPage = [
     section: "Información general",
     attributes: [
       {
-        attribute: "Nombre del casi de uso",
+        attribute: "Nombre del caso de uso",
         value: "Créditos aprobados",
       },
       {
@@ -78,4 +79,4 @@ ExampleSummaryPage.args = {
   steps: mockDataSummaryPage,
 };
 
-export default story;
+export default meta;

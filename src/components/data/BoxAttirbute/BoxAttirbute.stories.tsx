@@ -1,8 +1,9 @@
+import { Meta } from "@storybook/react";
 import { BoxAttribute, IBoxAttributeProps } from ".";
 
-const story = {
+const meta: Meta<IBoxAttributeProps> = {
   title: "data/BoxAttribute",
-  component: [BoxAttribute],
+  component: BoxAttribute,
 };
 
 export const Default = (args: IBoxAttributeProps) => <BoxAttribute {...args} />;
@@ -11,4 +12,4 @@ Default.args = {
   value: "Créditos aprobados",
 };
 
-export default story;
+export default meta;
