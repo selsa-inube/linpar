@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   Breadcrumbs,
@@ -6,14 +7,19 @@ import {
   Stack,
   Textfield,
   useMediaQuery,
+  Table,
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
-import { privilegeOptionsConfig } from "../options/config/privileges.config";
-import { useLocation } from "react-router-dom";
 import { Menu } from "@components/navigation/Menu";
+import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
+
+import { useCasesBreakPointsConfig } from "./config/useCasesTable.config";
+import { titlesOptions } from "./config/useCasesTable.config";
+import { actionsConfig } from "./config/useCasesTable.config";
+import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
-import { UsersCaseLinixTabs } from "./table";
+import { StyledContainer } from "./styles";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -56,7 +62,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             </>
           )}
         </Stack>
-
         <Stack gap="32px" direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Textfield
@@ -71,7 +76,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             />
 
             {smallScreen ? (
-              <>
+              <StyledContainer>
                 <Icon
                   icon={<MdOutlineMoreHoriz />}
                   size="24px"
@@ -85,7 +90,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
                     handleClose={handleCloseMenuInvitation}
                   />
                 )}
-              </>
+              </StyledContainer>
             ) : (
               <Button
                 iconBefore={<MdPersonAddAlt />}
@@ -97,7 +102,14 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               </Button>
             )}
           </Stack>
-          <UsersCaseLinixTabs />
+          <Table
+            id="tableLinixUseCases"
+            titles={titlesOptions}
+            actions={actionsConfig}
+            entries={linixUseCases}
+            breakpoints={useCasesBreakPointsConfig}
+            modalTitle="Caso de uso"
+          />
         </Stack>
       </Stack>
     </Stack>

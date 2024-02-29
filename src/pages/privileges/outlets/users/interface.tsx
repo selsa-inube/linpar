@@ -72,62 +72,60 @@ export function UsersUI(props: UsersUIProps) {
               </>
             )}
           </Stack>
-          <StyledContainer>
-            <Stack gap="32px" direction="column">
-              <Tabs
-                tabs={Object.values(privilegeUserTabsConfig)}
-                selectedTab={isSelected}
-                onChange={handleTabChange}
-                type={smallScreen ? "select" : "tabs"}
+          <Stack gap="32px" direction="column">
+            <Tabs
+              tabs={Object.values(privilegeUserTabsConfig)}
+              selectedTab={isSelected}
+              onChange={handleTabChange}
+              type={smallScreen ? "select" : "tabs"}
+            />
+            <Stack justifyContent="space-between" alignItems="center">
+              <Textfield
+                name="searchUser"
+                id="searchUser"
+                placeholder="Buscar..."
+                type="search"
+                iconBefore={<MdSearch />}
+                size="compact"
+                value={searchText}
+                onChange={handleSearchText}
               />
-              <Stack justifyContent="space-between" alignItems="center">
-                <Textfield
-                  name="searchUser"
-                  id="searchUser"
-                  placeholder="Buscar..."
-                  type="search"
-                  iconBefore={<MdSearch />}
-                  size="compact"
-                  value={searchText}
-                  onChange={handleSearchText}
-                />
 
-                {smallScreen ? (
-                  <>
-                    <Icon
-                      icon={<MdOutlineMoreHoriz />}
-                      size="24px"
-                      onClick={handleToggleMenuInvitation}
-                      cursorHover={true}
-                      appearance="dark"
+              {smallScreen ? (
+                <StyledContainer>
+                  <Icon
+                    icon={<MdOutlineMoreHoriz />}
+                    size="24px"
+                    onClick={handleToggleMenuInvitation}
+                    cursorHover={true}
+                    appearance="dark"
+                  />
+                  {showMenu && (
+                    <Menu
+                      options={menuInvitationLinks}
+                      handleClose={handleCloseMenuInvitation}
                     />
-                    {showMenu && (
-                      <Menu
-                        options={menuInvitationLinks}
-                        handleClose={handleCloseMenuInvitation}
-                      />
-                    )}
-                  </>
-                ) : (
-                  <Button
-                    iconBefore={<MdPersonAddAlt />}
-                    spacing="wide"
-                    type="link"
-                    path="/privileges/users/invite"
-                  >
-                    Invitar usuario
-                  </Button>
-                )}
-              </Stack>
-              {isSelected === privilegeUserTabsConfig.privilegesUsers.id && (
-                <UsersTab searchText={searchText} />
-              )}
-              {isSelected ===
-                privilegeUserTabsConfig.privilegesInvitations.id && (
-                <InvitationsTab searchText={searchText} />
+                  )}
+                </StyledContainer>
+              ) : (
+                <Button
+                  iconBefore={<MdPersonAddAlt />}
+                  spacing="wide"
+                  type="link"
+                  path="/privileges/users/invite"
+                >
+                  Invitar usuario
+                </Button>
               )}
             </Stack>
-          </StyledContainer>
+            {isSelected === privilegeUserTabsConfig.privilegesUsers.id && (
+              <UsersTab searchText={searchText} />
+            )}
+            {isSelected ===
+              privilegeUserTabsConfig.privilegesInvitations.id && (
+              <InvitationsTab searchText={searchText} />
+            )}
+          </Stack>
         </Stack>
         {message.visible && (
           <RenderMessage
