@@ -8,7 +8,7 @@ const meta: Meta<IBoxAttributeProps> = {
 
 export const Default = (args: IBoxAttributeProps) => <BoxAttribute {...args} />;
 Default.args = {
-  attribute: "Nombre del casi de uso",
+  attribute: "Nombre del caso de uso",
   value: "Créditos aprobados",
 };
 
