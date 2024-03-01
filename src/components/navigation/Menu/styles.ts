@@ -7,8 +7,8 @@ interface IStyledMenuProps {
 
 const StyledMenu = styled.div`
   position: absolute;
-  right: 2%;
-  top: 6rem;
+  right: ${inube.spacing.s0};
+  top: ${inube.spacing.s250};
 `;
 
 const StyledMenuContainer = styled.div`

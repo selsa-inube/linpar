@@ -18,10 +18,12 @@ import { PrivilegesRoutes } from "./routes/privileges";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
 
+const redirect_uri = window.location.origin;
+
 function LogOut() {
   localStorage.clear();
   const { logout } = useAuth0();
-  logout();
+  logout({ logoutParams: { returnTo: redirect_uri } });
   return <Home />;
 }
 
