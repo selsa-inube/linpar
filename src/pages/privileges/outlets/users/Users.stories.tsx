@@ -1,9 +1,11 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { Users } from "./index";
+import { TokenContext } from "@context/TokenContext";
+import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { Users } from ".";
 
-const story = {
-  components: [Users],
+const story: Meta<typeof Users> = {
+  component: Users,
   title: "layouts/privileges/outlets/users",
   parameters: {
     layout: "fullscreen",
@@ -11,7 +13,15 @@ const story = {
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
-        <Story />
+        <TokenContext.Provider
+          value={{
+            tokenWithRef: presente,
+            handleSubmit: () => {},
+            loading: false,
+          }}
+        >
+          <Story />
+        </TokenContext.Provider>
       </BrowserRouter>
     ),
   ],

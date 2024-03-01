@@ -22,7 +22,7 @@ import {
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
-import { IClient } from "./types";
+import { IClient } from "@context/AppContext/types";
 
 const renderHead = (clientData: IClient, smallScreen?: boolean) => {
   return (

@@ -11,7 +11,6 @@ import { StyledNavLinkContainer } from "./styles";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
-import { Appearance } from "@components/feedback/SendingInformation/types";
 import { SendInformationMessage } from "@components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { MdOutlineHouse } from "react-icons/md";
@@ -98,7 +97,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
 
             {formType !== "navLink" && (
               <SendInformationMessage
-                appearance={formType as Appearance}
+                appearance={formType}
                 buttonType="filled"
               />
             )}

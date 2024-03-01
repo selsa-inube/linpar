@@ -1,14 +1,13 @@
-interface IAppContext {
-  user: {
-    username: string;
-    id: string;
-    company: string;
-    operator: {
-      name: string;
-      logo: string;
-    };
-  };
-  handleClientChange: (client: IClient) => void;
+interface IOperator {
+  name: string;
+  logo: string;
+}
+
+interface IUser {
+  username: string;
+  id: string;
+  company: string;
+  operator: IOperator;
 }
 
 interface IClient {
@@ -16,6 +15,11 @@ interface IClient {
   name: string;
   sigla: string;
   logo: string;
+}
+
+interface IAppContext {
+  user: IUser;
+  handleClientChange: (client: IClient) => void;
 }
 
 interface AppContextProviderProps {

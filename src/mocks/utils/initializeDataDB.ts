@@ -3,6 +3,8 @@ import { intializedData } from "@mocks/utils/dataMuck.service";
 import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 import { DocumentsServiceMock } from "@mocks/privileges/documents/DocumentsServiceMock.mock";
 import { clientServerMock } from "@mocks/privileges/client-server/client-serverServiceMock.mock";
+import { buttonOptionsMock } from "@mocks/privileges/button/buttonOptionsMock.mock";
+import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
 
 export function initializeDataDB() {
   localforage.clear();
@@ -17,4 +19,10 @@ export function initializeDataDB() {
     "clients-server",
     clientServerMock
   );
+
+  intializedData<typeof buttonOptionsMock[number]>(
+    "button-options",
+    buttonOptionsMock
+  );
+  intializedData<typeof webOptionsMock[number]>("web-options", webOptionsMock);
 }

@@ -1,12 +1,12 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { Palette } from "./index";
 import { TokenContext } from "@context/TokenContext";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { LinixUseCase } from ".";
 
-const story = {
-  components: [Palette],
-  title: "layouts/people/outlets/color/palette",
+const story: Meta<typeof LinixUseCase> = {
+  component: LinixUseCase,
+  title: "layouts/privileges/outlets/linixUseCase",
   parameters: {
     layout: "fullscreen",
   },
@@ -16,8 +16,8 @@ const story = {
         <TokenContext.Provider
           value={{
             tokenWithRef: presente,
-            loading: false,
             handleSubmit: () => {},
+            loading: false,
           }}
         >
           <Story />
@@ -27,7 +27,7 @@ const story = {
   ],
 };
 
-const Default = () => <Palette />;
+const Default = () => <LinixUseCase />;
 
 export default story;
 

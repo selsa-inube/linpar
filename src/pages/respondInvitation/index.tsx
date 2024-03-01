@@ -36,9 +36,7 @@ function RespondInvitation() {
 
   const getClientData = () => {
     if (!client_id) return;
-    return clientsDataMock.find(
-      (clientMock) => clientMock.id === parseInt(client_id)
-    );
+    return clientsDataMock.find((clientMock) => clientMock.id === client_id);
   };
 
   const clientData = getClientData();
