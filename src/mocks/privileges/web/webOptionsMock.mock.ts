@@ -1,4 +1,4 @@
-export const optionsWebMock = [
+export const webOptionsMock = [
   { K_opcion: 33, Nombre_opcion: "Obtener productos y servicios de Convenios" },
   {
     K_opcion: 8,
