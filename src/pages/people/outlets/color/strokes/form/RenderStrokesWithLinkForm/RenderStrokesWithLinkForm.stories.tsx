@@ -1,13 +1,14 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Stack, inube } from "@inube/design-system";
 import { TokenContext } from "@src/context/TokenContext";
-import { strokesFormsConfig } from "../../config/Strokes.config";
+import { strokesFormsConfig } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { RenderStrokesWithLinkForm, RenderStrokesWithLinkFormProps } from ".";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { action } from "@storybook/addon-actions";
 
-const story = {
-  components: [RenderStrokesWithLinkForm],
+const story: Meta<typeof RenderStrokesWithLinkForm> = {
+  component: RenderStrokesWithLinkForm,
   title: "layouts/people/outlets/color/strokes/form/RenderStrokesWithLinkForm",
   parameters: {
     layout: "fullscreen",
@@ -19,7 +20,7 @@ const story = {
           value={{
             tokenWithRef: presente,
             loading: false,
-            handleSubmit: () => {},
+            handleSubmit: action("handleSubmit"),
           }}
         >
           <Story />
