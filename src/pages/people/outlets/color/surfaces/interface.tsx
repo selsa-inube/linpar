@@ -19,7 +19,6 @@ import { RenderContentFormSurfaceBlanket } from "./form/RenderContentFormSurface
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { RenderContentFormSurfaceNav } from "./form/RenderContentFormNav";
 import { SurfaceAppearance } from "./types";
-import { useLocation } from "react-router-dom";
 
 interface SurfaceUIProps {
   handleTabChange: (id: string) => void;

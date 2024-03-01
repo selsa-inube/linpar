@@ -13,7 +13,6 @@ import { RenderTextContentForm } from "./form/RenderTextContentForm";
 import { textFormsConfig } from "./config/text.config";
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { TextAppearance } from "./types";
-import { useLocation } from "react-router-dom";
 interface TextUIProps {
   handleTabChange: (id: string) => void;
   selectedTab: TextAppearance;
