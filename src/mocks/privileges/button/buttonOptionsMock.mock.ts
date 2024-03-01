@@ -1,4 +1,4 @@
-export const optionsButtonMock = [
+export const buttonOptionsMock = [
   {
     OPCION_CLIENTE_SERVIDOR: "GGRADPRIVILEG_0",
     CODIGO_BOTON: "TOOLBAR_SG.DOCUMENTOS_DEASIGNA_PRIV",
