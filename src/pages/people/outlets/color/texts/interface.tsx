@@ -26,9 +26,9 @@ export function TextsUI(props: TextUIProps) {
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   const colorTabs = Object.keys(textsTabsConfig);
-  const location = useLocation();
-  const label = peopleOptionsConfig.find(
-    (item) => item.url === location.pathname
+  const optionLabel = "Textos";
+  const selectedOption = peopleOptionsConfig.find(
+    (item) => item.label === optionLabel
   );
 
   return (
@@ -40,12 +40,12 @@ export function TextsUI(props: TextUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            {label && (
+            {selectedOption && (
               <>
-                <Breadcrumbs crumbs={label.crumbs} />
+                <Breadcrumbs crumbs={selectedOption.crumbs} />
                 <PageTitle
-                  title={label.label}
-                  description={label.description}
+                  title={selectedOption.label}
+                  description={selectedOption.description}
                   navigatePage="/people"
                 />
               </>
