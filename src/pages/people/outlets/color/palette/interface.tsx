@@ -12,7 +12,6 @@ import { paletteTabsConfig } from "./config/paletteTabs.config";
 import { RenderContentFormPalette } from "./form/RenderContentFormPalette";
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { PaletteAppearance } from "./types";
-import { useLocation } from "react-router-dom";
 
 interface PaletteUIProps {
   handleTabChange: (id: string) => void;
