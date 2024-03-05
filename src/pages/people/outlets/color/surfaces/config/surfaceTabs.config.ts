@@ -1,12 +1,14 @@
 import { SurfaceAppearance } from "../types";
 
-interface ISurfaceTabsConfig {
-  [key: string]: {
-    id: SurfaceAppearance;
-    isDisabled: boolean;
-    label: string;
-  };
-}
+type SurfaceConfigItem = {
+  id: SurfaceAppearance;
+  isDisabled: boolean;
+  label: string;
+};
+
+type ISurfaceTabsConfig = {
+  [key in SurfaceAppearance]: SurfaceConfigItem;
+};
 const surfaceTabsConfig: ISurfaceTabsConfig = {
   primary: {
     id: "primary",
