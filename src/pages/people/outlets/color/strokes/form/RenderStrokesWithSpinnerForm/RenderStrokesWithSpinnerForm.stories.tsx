@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { inube, Stack } from "@inube/design-system";
 
@@ -6,12 +6,13 @@ import {
   RenderStrokesWithSpinnerForm,
   RenderStrokesWithSpinnerFormProps,
 } from ".";
-import { strokesFormsConfig } from "../../config/Strokes.config";
+import { strokesFormsConfig } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { TokenContext } from "@src/context/TokenContext";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { action } from "@storybook/addon-actions";
 
-const story = {
-  components: [RenderStrokesWithSpinnerForm],
+const story: Meta<typeof RenderStrokesWithSpinnerForm> = {
+  component: RenderStrokesWithSpinnerForm,
   title:
     "layouts/people/outlets/color/strokes/form/RenderStrokesWithSpinnerForm",
   parameters: {
@@ -24,7 +25,7 @@ const story = {
           value={{
             tokenWithRef: presente,
             loading: false,
-            handleSubmit: () => {},
+            handleSubmit: action("handleSubmit"),
           }}
         >
           <Story />
