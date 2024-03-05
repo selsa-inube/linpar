@@ -1,16 +1,17 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Stack, inube } from "@inube/design-system";
 import {
   RenderContentFormSurfaceBlanket,
   RenderContentFormSurfaceBlanketProps,
 } from ".";
-import { surfaceFormsConfig } from "../../config/surface.config";
+import { surfaceFormsConfig } from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { TokenContext } from "@context/TokenContext";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { action } from "@storybook/addon-actions";
 
-const story = {
-  components: [RenderContentFormSurfaceBlanket],
+const story: Meta<typeof RenderContentFormSurfaceBlanket> = {
+  component: RenderContentFormSurfaceBlanket,
   title:
     "layouts/people/outlets/color/surfaces/form/RenderContentFormSurfaceBlanket",
   parameters: {
@@ -23,7 +24,7 @@ const story = {
           value={{
             tokenWithRef: presente,
             loading: false,
-            handleSubmit: () => {},
+            handleSubmit: action("handleSubmit"),
           }}
         >
           <Story />

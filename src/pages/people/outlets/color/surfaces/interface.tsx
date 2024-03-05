@@ -62,6 +62,11 @@ export function SurfacesUI(props: SurfaceUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
   const colorTabs = Object.keys(surfaceTabsConfig);
+  const optionLabel = "Superficies";
+  const selectedOption = peopleOptionsConfig.find(
+    (item) => item.label === optionLabel
+  );
+
   return (
     <>
       <Stack
@@ -72,12 +77,16 @@ export function SurfacesUI(props: SurfaceUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[2].crumbs} />
-            <PageTitle
-              title={peopleOptionsConfig[2].label}
-              description={peopleOptionsConfig[2].description}
-              navigatePage="/people"
-            />
+            {selectedOption && (
+              <>
+                <Breadcrumbs crumbs={selectedOption.crumbs} />
+                <PageTitle
+                  title={selectedOption.label}
+                  description={selectedOption.description}
+                  navigatePage="/people"
+                />
+              </>
+            )}
           </Stack>
         </Stack>
 

@@ -1,9 +1,5 @@
 import { MdPerson } from "react-icons/md";
-
-const privilegeConfig = {
-  label: "Usuarios",
-  description: "invitar, editar, activar y eliminar usuarios de Linix",
-};
+import { TfiMenuAlt } from "react-icons/tfi";
 
 const privilegeOptionsConfig = [
   {
@@ -34,6 +30,34 @@ const privilegeOptionsConfig = [
       },
     ],
   },
+  {
+    id: 2,
+    icon: <TfiMenuAlt />,
+    label: "Casos de uso Linix",
+    description: "Completa la información para agregar el caso de uso Linix",
+    url: "/privileges/linixUseCase",
+    domain: "privileges",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/privileges/linixUseCase",
+        label: "Casos de uso Linix",
+        id: "/privileges/linixUseCase",
+        isActive: true,
+      },
+    ],
+  },
 ];
 
-export { privilegeOptionsConfig, privilegeConfig };
+export { privilegeOptionsConfig };

@@ -25,6 +25,11 @@ export function PaletteUI(props: PaletteUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
   const colorTabs = Object.keys(paletteTabsConfig);
+  const optionLabel = "Paleta";
+  const selectedOption = peopleOptionsConfig.find(
+    (item) => item.label === optionLabel
+  );
+
   return (
     <>
       <Stack
@@ -35,12 +40,16 @@ export function PaletteUI(props: PaletteUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[0].crumbs} />
-            <PageTitle
-              title={peopleOptionsConfig[0].label}
-              description={peopleOptionsConfig[0].description}
-              navigatePage="/people"
-            />
+            {selectedOption && (
+              <>
+                <Breadcrumbs crumbs={selectedOption.crumbs} />
+                <PageTitle
+                  title={selectedOption.label}
+                  description={selectedOption.description}
+                  navigatePage="/people"
+                />
+              </>
+            )}
           </Stack>
         </Stack>
 
