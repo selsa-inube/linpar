@@ -15,15 +15,15 @@ interface IInitialiserForm {
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
-function InitialiserForm(props: IInitialiserForm) {
+export function InitializerForm(props: IInitialiserForm) {
   const {
     dataOptionsForms,
     handleSubmit,
-    withSubmitButtons,
+    withSubmitButtons = false,
     onHasChanges,
-    readOnly,
+    readOnly = false,
   } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(dataOptionsForms);
+  const [formDataOptions, setFormDataOptions] = useState(dataOptionsForms);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
@@ -33,7 +33,7 @@ function InitialiserForm(props: IInitialiserForm) {
     JSON.stringify(dataOptionsForms) !== JSON.stringify(valueCompare);
 
   const handleChangeAidBudgets = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
+    setFormDataOptions(aidBudgetUnits);
     if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
     if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
   };
@@ -42,7 +42,7 @@ function InitialiserForm(props: IInitialiserForm) {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(formDataOptions);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -52,7 +52,7 @@ function InitialiserForm(props: IInitialiserForm) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(dataOptionsForms);
+    setFormDataOptions(dataOptionsForms);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -68,7 +68,7 @@ function InitialiserForm(props: IInitialiserForm) {
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
+      aidBudgetUnits={formDataOptions}
       withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
@@ -79,4 +79,3 @@ function InitialiserForm(props: IInitialiserForm) {
 }
 
 export type { IInitialiserForm };
-export { InitialiserForm };

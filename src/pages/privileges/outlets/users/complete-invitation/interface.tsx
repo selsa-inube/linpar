@@ -11,7 +11,7 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 
-import { InitialiserForm } from "../edit-user/forms/InitialiserForm";
+import { InitializerForm } from "../edit-user/forms/InitialiserForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import {
   IAssignmentFormEntry,
@@ -145,31 +145,31 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={invitationData.branches.entries}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.projects.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={invitationData.projects.entries}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.events.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={invitationData.events.entries}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={invitationData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.payrolls.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={invitationData.payrolls.entries}
                 handleSubmit={handleSubmit}
               />

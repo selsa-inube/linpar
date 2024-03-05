@@ -16,7 +16,7 @@ import {
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { GeneralInformationForm } from "./forms/GeneralInfoForm";
-import { InitialiserForm } from "./forms/InitialiserForm";
+import { InitializerForm } from "./forms/InitialiserForm";
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import { MdPersonOutline } from "react-icons/md";
 import {
@@ -126,7 +126,7 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.branches.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={editData.branches.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
@@ -134,7 +134,7 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.events.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={editData.events.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
@@ -142,7 +142,7 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.projects.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={editData.projects.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
@@ -150,7 +150,7 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={editData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
@@ -158,7 +158,7 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.payrolls.id && (
-              <InitialiserForm
+              <InitializerForm
                 dataOptionsForms={editData.payrolls.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons

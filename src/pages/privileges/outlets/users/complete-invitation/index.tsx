@@ -8,7 +8,7 @@ import { IVerificationData } from "@pages/privileges/outlets/users/complete-invi
 import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { InitialiserForm } from "../edit-user/forms/InitialiserForm";
+import { InitializerForm } from "../edit-user/forms/InitialiserForm";
 import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
 import {
   IAssignmentFormEntry,
@@ -98,7 +98,7 @@ function CompleteInvitation() {
       id: "branches",
       title: "Sucursales",
       content: (
-        <InitialiserForm
+        <InitializerForm
           dataOptionsForms={invitationData.branches.entries}
           readOnly
           handleSubmit={() => {}}
@@ -109,7 +109,7 @@ function CompleteInvitation() {
       id: "projects",
       title: "Proyectos",
       content: (
-        <InitialiserForm
+        <InitializerForm
           dataOptionsForms={invitationData.projects.entries}
           readOnly
           handleSubmit={() => {}}
@@ -120,7 +120,7 @@ function CompleteInvitation() {
       id: "events",
       title: "Eventos",
       content: (
-        <InitialiserForm
+        <InitializerForm
           dataOptionsForms={invitationData.events.entries}
           readOnly
           handleSubmit={() => {}}
@@ -131,7 +131,7 @@ function CompleteInvitation() {
       id: "aidBudgets",
       title: "Unidades de ayuda",
       content: (
-        <InitialiserForm
+        <InitializerForm
           dataOptionsForms={invitationData.aidBudgetUnits.entries}
           readOnly
           handleSubmit={() => {}}
@@ -142,7 +142,7 @@ function CompleteInvitation() {
       id: "payrolls",
       title: "Nómina",
       content: (
-        <InitialiserForm
+        <InitializerForm
           dataOptionsForms={invitationData.payrolls.entries}
           readOnly
           handleSubmit={() => {}}
