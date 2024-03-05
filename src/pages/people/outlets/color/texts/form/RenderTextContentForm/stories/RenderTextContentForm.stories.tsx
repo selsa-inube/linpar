@@ -1,14 +1,15 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Stack, inube } from "@inube/design-system";
 import { RenderTextContentForm, RenderTextContentFormProps } from "..";
-import { textFormsConfig } from "../../../config/text.config";
+import { textFormsConfig } from "@pages/people/outlets/color/texts/config/text.config";
 import { props } from "./props";
 import { TokenContext } from "@src/context/TokenContext";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { action } from "@storybook/addon-actions";
 
-const story = {
-  components: [RenderTextContentForm],
+const story: Meta<typeof RenderTextContentForm> = {
+  component: RenderTextContentForm,
   title: "layouts/people/outlets/color/texts/form/RenderTextContentForm",
   parameters: {
     layout: "fullscreen",
@@ -21,7 +22,7 @@ const story = {
           value={{
             tokenWithRef: presente,
             loading: false,
-            handleSubmit: () => {},
+            handleSubmit: action("handleSubmit"),
           }}
         >
           <Story />
