@@ -9,7 +9,7 @@ import {
 import { parameters, props } from "./props";
 import { Accordion, IAccordionProps } from "..";
 
-const meta: Meta<IAccordionProps> = {
+const meta: Meta<typeof Accordion> = {
   title: "data/Accordion",
   component: Accordion,
   parameters,

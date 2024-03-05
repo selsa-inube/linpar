@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/react";
 import { BoxAttribute, IBoxAttributeProps } from ".";
 
-const meta: Meta<IBoxAttributeProps> = {
+const meta: Meta<typeof BoxAttribute> = {
   title: "data/BoxAttribute",
   component: BoxAttribute,
 };
