@@ -1,3 +1,4 @@
+import { MdPersonOutline } from "react-icons/md";
 import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
@@ -16,9 +17,8 @@ import {
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
 import { GeneralInformationForm } from "./forms/GeneralInfoForm";
-import { InitializerForm } from "./forms/InitialiserForm";
+import { InitializerForm } from "./forms/InitializerForm";
 import { StyledContainer, StyledTabsContainer } from "./styles";
-import { MdPersonOutline } from "react-icons/md";
 import {
   IFormsInvitation,
   IAssignmentFormEntry,

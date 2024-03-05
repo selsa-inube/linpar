@@ -1,9 +1,10 @@
-import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { InitializerForm, IInitialiserForm } from "./index";
-import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
 import { StoryFn } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+
+import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
+import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import { InitializerForm, IInitializerForm } from "./index";
 
 const story = {
   components: [InitializerForm],
@@ -17,7 +18,7 @@ const story = {
   ],
 };
 
-const Template: StoryFn<IInitialiserForm> = (args) => (
+const Template: StoryFn<IInitializerForm> = (args) => (
   <InitializerForm {...args} />
 );
 

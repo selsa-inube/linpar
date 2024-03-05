@@ -8,14 +8,14 @@ import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
 
-interface IInitialiserForm {
+interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
   handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
-export function InitializerForm(props: IInitialiserForm) {
+export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms,
     handleSubmit,
@@ -78,4 +78,4 @@ export function InitializerForm(props: IInitialiserForm) {
   );
 }
 
-export type { IInitialiserForm };
+export type { IInitializerForm };
