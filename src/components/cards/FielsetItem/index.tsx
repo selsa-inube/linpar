@@ -14,9 +14,7 @@ export function Item(props: ItemProps) {
         <Text type="label" size="medium">
           {id}
         </Text>
-        <Text type="body" size="medium">
-          {name}
-        </Text>
+        <Text size="medium">{name}</Text>
       </Stack>
     </StyledItem>
   );
