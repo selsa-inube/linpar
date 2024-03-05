@@ -8,12 +8,12 @@ interface IStyledContainer {
 
 export const StyledContainer = styled.div<IStyledContainer>`
   display: flex;
-  padding: ${({ isMobile }) => (isMobile ? "16px" : "20px")};
+  padding: ${({ isMobile }) =>
+    isMobile ? inube.spacing.s0 : inube.spacing.s250};
   flex-direction: column;
-  gap: "16px";
+  gap: ${inube.spacing.s200};
   border-radius: 8px;
   width: auto;
-  min-height: 160px;
   box-sizing: border-box;
   align-items: flex-start;
   border: 1px solid
@@ -22,10 +22,7 @@ export const StyledContainer = styled.div<IStyledContainer>`
       inube.color.stroke.divider.regular};
 `;
 
-export const StyledHead = styled.button`
-  outline: none;
-  border: none;
-  background-color: transparent;
+export const StyledHead = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,9 +31,8 @@ export const StyledHead = styled.button`
 `;
 
 export const StyledDivider = styled.hr<IDividerProps>`
-  margin: 0;
+  margin: ${inube.spacing.s0};
   width: 100%;
-  height: 0px;
   border: none;
   border-top: 0.5px ${({ dashed }) => (dashed ? "dashed" : "solid")};
   border-top-color: ${({ theme }) =>
