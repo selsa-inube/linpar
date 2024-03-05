@@ -61,6 +61,10 @@ export function StrokesUI(props: IStrokesUIProps) {
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   const strokeTabs = Object.keys(strokesTabsConfig);
+  const optionLabel = "Líneas";
+  const selectedOption = peopleOptionsConfig.find(
+    (item) => item.label === optionLabel
+  );
 
   return (
     <>
@@ -71,12 +75,16 @@ export function StrokesUI(props: IStrokesUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[3].crumbs} />
-            <PageTitle
-              title={peopleOptionsConfig[3].label}
-              description={peopleOptionsConfig[3].description}
-              navigatePage="/people"
-            />
+            {selectedOption && (
+              <>
+                <Breadcrumbs crumbs={selectedOption.crumbs} />
+                <PageTitle
+                  title={selectedOption.label}
+                  description={selectedOption.description}
+                  navigatePage="/people"
+                />
+              </>
+            )}
           </Stack>
           <StyledContainer>
             <StyledTabsContainer typeTabs={typeTabs}>

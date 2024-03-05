@@ -13,7 +13,6 @@ import { RenderTextContentForm } from "./form/RenderTextContentForm";
 import { textFormsConfig } from "./config/text.config";
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { TextAppearance } from "./types";
-
 interface TextUIProps {
   handleTabChange: (id: string) => void;
   selectedTab: TextAppearance;
@@ -26,6 +25,10 @@ export function TextsUI(props: TextUIProps) {
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   const colorTabs = Object.keys(textsTabsConfig);
+  const optionLabel = "Textos";
+  const selectedOption = peopleOptionsConfig.find(
+    (item) => item.label === optionLabel
+  );
 
   return (
     <>
@@ -36,12 +39,16 @@ export function TextsUI(props: TextUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            <Breadcrumbs crumbs={peopleOptionsConfig[1].crumbs} />
-            <PageTitle
-              title={peopleOptionsConfig[1].label}
-              description={peopleOptionsConfig[1].description}
-              navigatePage="/people"
-            />
+            {selectedOption && (
+              <>
+                <Breadcrumbs crumbs={selectedOption.crumbs} />
+                <PageTitle
+                  title={selectedOption.label}
+                  description={selectedOption.description}
+                  navigatePage="/people"
+                />
+              </>
+            )}
           </Stack>
           <StyledContainer>
             <StyledTabsContainer typeTabs={typeTabs}>
