@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Strokes } from "..";
 import { TokenContext } from "@context/TokenContext";
@@ -6,8 +6,8 @@ import { props } from "./props";
 import { tokensWithReference } from "@src/mocks/design/tokensWithReference";
 import { action } from "@storybook/addon-actions";
 
-const story = {
-  components: [Strokes],
+const story: Meta<typeof Strokes> = {
+  component: Strokes,
   title: "layouts/people/outlets/color/strokes",
   parameters: {
     layout: "fullscreen",
@@ -16,20 +16,23 @@ const story = {
   decorators: [
     (
       Story: StoryFn,
-      context: { args: { clientName: keyof typeof tokensWithReference } }
-    ) => (
-      <BrowserRouter>
-        <TokenContext.Provider
-          value={{
-            tokenWithRef: tokensWithReference[context.args.clientName],
-            loading: false,
-            handleSubmit: action("handleSubmit"),
-          }}
-        >
-          <Story />
-        </TokenContext.Provider>
-      </BrowserRouter>
-    ),
+      context: { args: { clientName?: keyof typeof tokensWithReference } }
+    ) => {
+      const clientName = context.args.clientName || "presente";
+      return (
+        <BrowserRouter>
+          <TokenContext.Provider
+            value={{
+              tokenWithRef: tokensWithReference[clientName],
+              loading: false,
+              handleSubmit: action("handleSubmit"),
+            }}
+          >
+            <Story />
+          </TokenContext.Provider>
+        </BrowserRouter>
+      );
+    },
   ],
 };
 

@@ -1,14 +1,15 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Stack, inube } from "@inube/design-system";
 import { RenderContentFormPalette, RenderContentFormPaletteProps } from "..";
 import { TokenContext } from "@src/context/TokenContext";
-import { paletteTabsConfig } from "../../../config/paletteTabs.config";
+import { paletteTabsConfig } from "@pages/people/outlets/color/palette/config/paletteTabs.config";
 import { props } from "./props";
 import { presente } from "@src/mocks/design/tokensWithReference/presente";
+import { action } from "@storybook/addon-actions";
 
-const story = {
-  components: [RenderContentFormPalette],
+const story: Meta<typeof RenderContentFormPalette> = {
+  component: RenderContentFormPalette,
   title: "layouts/people/outlets/color/palette/form/RenderContentFormPalette",
   parameters: {
     layout: "fullscreen",
@@ -21,7 +22,7 @@ const story = {
           value={{
             tokenWithRef: presente,
             loading: false,
-            handleSubmit: () => {},
+            handleSubmit: action("handleSubmit"),
           }}
         >
           <Story />
