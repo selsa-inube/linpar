@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AidBudgetsFormUI } from "./interface";
+import { InitializerFormUI } from "./interface";
 import {
   IAssignmentFormEntry,
   IMessageState,
@@ -63,12 +63,12 @@ export function InitializerForm(props: IInitializerForm) {
   };
 
   return (
-    <AidBudgetsFormUI
-      handleChangeAidBudgets={handleChangeAidBudgets}
+    <InitializerFormUI
+      handleChangeInitializerForm={handleChangeAidBudgets}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      aidBudgetUnits={formDataOptions}
+      dataOptionsForms={formDataOptions}
       withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}

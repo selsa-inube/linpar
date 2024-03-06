@@ -3,15 +3,17 @@ import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import {
   IAssignmentFormEntry,
   IMessageState,
-} from "../../../types/forms.types";
+} from "@pages/privileges/outlets/users/types/forms.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
-interface AidBudgetsFormUIProps {
-  aidBudgetUnits: IAssignmentFormEntry[];
+interface InitializerFormUIProps {
+  dataOptionsForms: IAssignmentFormEntry[];
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeAidBudgets: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  handleChangeInitializerForm: (
+    dataOptionsForms: IAssignmentFormEntry[]
+  ) => void;
   withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -19,13 +21,13 @@ interface AidBudgetsFormUIProps {
   readOnly?: boolean;
 }
 
-function AidBudgetsFormUI(props: AidBudgetsFormUIProps) {
+export function InitializerFormUI(props: InitializerFormUIProps) {
   const {
-    aidBudgetUnits,
+    dataOptionsForms,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangeAidBudgets,
+    handleChangeInitializerForm,
     withSubmitButtons,
     message,
     onCloseSectionMessage,
@@ -37,14 +39,14 @@ function AidBudgetsFormUI(props: AidBudgetsFormUIProps) {
     return (
       <>
         <FormButtons
-          disabledButtons={!hasChanges(aidBudgetUnits)}
+          disabledButtons={!hasChanges(dataOptionsForms)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           loading={isLoading}
         >
           <AssignmentForm
-            handleChange={handleChangeAidBudgets}
-            entries={aidBudgetUnits}
+            handleChange={handleChangeInitializerForm}
+            entries={dataOptionsForms}
             title="Seleccione los presupuestos que desea asignar"
           />
         </FormButtons>
@@ -61,12 +63,10 @@ function AidBudgetsFormUI(props: AidBudgetsFormUIProps) {
 
   return (
     <AssignmentForm
-      handleChange={handleChangeAidBudgets}
-      entries={aidBudgetUnits}
+      handleChange={handleChangeInitializerForm}
+      entries={dataOptionsForms}
       title="Seleccione los presupuestos que desea asignar"
       readOnly={readOnly}
     />
   );
 }
-
-export { AidBudgetsFormUI };

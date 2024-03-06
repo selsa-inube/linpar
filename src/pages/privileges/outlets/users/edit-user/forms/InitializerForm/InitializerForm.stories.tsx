@@ -1,14 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
-import { StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { InitializerForm, IInitializerForm } from "./index";
 
-const story = {
-  components: [InitializerForm],
-  title: "forms/edit-user/AidBudgetsForm",
+const meta: Meta<typeof InitializerForm> = {
+  component: InitializerForm,
+  title: "forms/edit-user/InitializerForm",
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
@@ -40,4 +40,4 @@ WithoutSubmitButtons.args = {
   withSubmitButtons: false,
 };
 
-export default story;
+export default meta;
