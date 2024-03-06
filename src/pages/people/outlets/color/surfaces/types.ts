@@ -1,3 +1,14 @@
-import { inube } from "@inube/design-system";
-
-export type SurfaceAppearance = keyof typeof inube.color.surface;
+export type SurfaceAppearance = [
+  "primary",
+  "error",
+  "warning",
+  "success",
+  "information",
+  "help",
+  "nav",
+  "navLink",
+  "blanket",
+  "dark",
+  "gray",
+  "light"
+][number];

@@ -1,3 +1,13 @@
-import { inube } from "@inube/design-system";
+const appereanceText = [
+  "primary",
+  "error",
+  "warning",
+  "success",
+  "information",
+  "help",
+  "dark",
+  "gray",
+  "light",
+] as const;
 
-export type TextAppearance = keyof typeof inube.color.text;
+export type TextAppearance = typeof appereanceText[number];

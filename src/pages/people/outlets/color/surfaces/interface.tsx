@@ -21,7 +21,7 @@ import { RenderContentFormSurfaceNav } from "./form/RenderContentFormNav";
 import { SurfaceAppearance } from "./types";
 
 interface SurfaceUIProps {
-  handleTabChange: (id: string) => void;
+  handleTabChange: (id: SurfaceAppearance) => void;
   selectedTab: SurfaceAppearance;
   surfaceConfig: typeof surfaceFormsConfig;
 }
@@ -44,8 +44,7 @@ function renderForm(props: IRenderForm) {
   };
 
   const Component =
-    formTypeToComponentMap[formType as keyof typeof formTypeToComponentMap] ||
-    RenderSurfaceContentForm;
+    formTypeToComponentMap[formType] || RenderSurfaceContentForm;
 
   return (
     <Component
@@ -61,7 +60,9 @@ export function SurfacesUI(props: SurfaceUIProps) {
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
-  const colorTabs = Object.keys(surfaceTabsConfig);
+  const colorTabs: SurfaceAppearance[] = Object.keys(
+    surfaceTabsConfig
+  ) as SurfaceAppearance[];
   const optionLabel = "Superficies";
   const selectedOption = peopleOptionsConfig.find(
     (item) => item.label === optionLabel

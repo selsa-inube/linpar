@@ -14,7 +14,7 @@ import { textFormsConfig } from "./config/text.config";
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
 import { TextAppearance } from "./types";
 interface TextUIProps {
-  handleTabChange: (id: string) => void;
+  handleTabChange: (id: TextAppearance) => void;
   selectedTab: TextAppearance;
   textConfig: typeof textFormsConfig;
 }

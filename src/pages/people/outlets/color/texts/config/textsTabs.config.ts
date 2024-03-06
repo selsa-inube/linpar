@@ -1,4 +1,16 @@
-const textsTabsConfig = {
+import { TextAppearance } from "../types";
+
+interface OptionsTextsTabs {
+  id: TextAppearance;
+  isDisabled: boolean;
+  label: string;
+}
+
+type TextsTabsConfig = {
+  [key in TextAppearance]: OptionsTextsTabs;
+};
+
+const textsTabsConfig: TextsTabsConfig = {
   primary: {
     id: "primary",
     isDisabled: false,
