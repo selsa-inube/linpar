@@ -1,21 +1,23 @@
-import { Stack, Text } from "@inube/design-system";
-import { StyledItem } from "./styles";
+import { Stack, Text, useMediaQuery } from "@inube/design-system";
+import { StyledFielsetItem } from "./styles";
 
-interface ItemProps {
+interface FielsetItemProps {
   id: string;
   name: string;
 }
 
-export function Item(props: ItemProps) {
+export function FielsetItem(props: FielsetItemProps) {
   const { id, name } = props;
+
+  const mobile = useMediaQuery("(max-width: 768px)");
   return (
-    <StyledItem>
+    <StyledFielsetItem>
       <Stack direction="column" gap="s050">
         <Text type="label" size="medium">
           {id}
         </Text>
-        <Text size="medium">{name}</Text>
+        <Text size={mobile ? "small" : "medium"}>{name}</Text>
       </Stack>
-    </StyledItem>
+    </StyledFielsetItem>
   );
 }
