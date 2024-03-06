@@ -10,7 +10,7 @@ import { parameters, props } from "./props";
 import { Accordion, IAccordionProps } from "..";
 
 const meta: Meta<typeof Accordion> = {
-  title: "data/Accordion",
+  title: "components/data/Accordion",
   component: Accordion,
   parameters,
   argTypes: props,
