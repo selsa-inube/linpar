@@ -7,7 +7,7 @@ import { Privileges } from "@pages/privileges";
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { CompleteInvitation } from "@pages/privileges/outlets/users/complete-invitation";
 import { LinixUseCase } from "@pages/privileges/outlets/linixUseCase";
-import { Roles } from "@src/pages/privileges/outlets/roles";
+import { Roles } from "@pages/privileges/outlets/roles";
 
 function PrivilegesRoutes() {
   return (
