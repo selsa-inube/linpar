@@ -8,7 +8,6 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   gap: ${inube.spacing.s200};
   border-radius: 8px;
-  width: auto;
   box-sizing: border-box;
   align-items: flex-start;
   border: 1px solid
