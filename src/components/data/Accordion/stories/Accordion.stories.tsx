@@ -1,11 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { Meta, StoryFn } from "@storybook/react";
 
-import {
-  ControllerAccordion,
-  IControllerAccordionProps,
-} from "./ControllerAccordion";
-
 import { parameters, props } from "./props";
 import { Accordion, IAccordionProps } from "..";
 
@@ -70,13 +65,7 @@ const mockDataSummaryPage = [
 export const Default = (args: IAccordionProps) => <Accordion {...args} />;
 Default.args = {
   title: "Casos de uso",
-};
-
-export const ExampleSummaryPage = (args: IControllerAccordionProps) => (
-  <ControllerAccordion {...args} />
-);
-ExampleSummaryPage.args = {
-  steps: mockDataSummaryPage,
+  defaultOpen: true,
 };
 
 export default meta;

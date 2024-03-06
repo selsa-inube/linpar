@@ -2,14 +2,9 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 import { IDividerProps } from ".";
 
-interface IStyledContainer {
-  isMobile: boolean;
-}
-
-export const StyledContainer = styled.div<IStyledContainer>`
+export const StyledContainer = styled.div`
   display: flex;
-  padding: ${({ isMobile }) =>
-    isMobile ? inube.spacing.s0 : inube.spacing.s250};
+  padding: ${inube.spacing.s150} ${inube.spacing.s200};
   flex-direction: column;
   gap: ${inube.spacing.s200};
   border-radius: 8px;
