@@ -1,33 +1,33 @@
-import { PageTitle } from "@components/PageTitle";
-import { SubjectCard } from "@components/cards/SubjectCard";
-import { ItemNotFound } from "@components/layout/ItemNotFound";
+import { MdPersonOutline } from "react-icons/md";
 import {
   Breadcrumbs,
   Stack,
   Tabs,
   useMediaQueries,
 } from "@inube/design-system";
+
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { editUserContinueModalConfig } from "./config/editUser.config";
-import {
-  editUserOptionsConfig,
-  editUserSubjectCardLabels,
-} from "./config/editUser.config";
-import { editUserTabsConfig } from "./config/editUserTabs.config";
+import { GeneralInformationForm } from "@pages/privileges/outlets/forms/GeneralInfoForm";
+import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+import { PageTitle } from "@components/PageTitle";
+import { SubjectCard } from "@components/cards/SubjectCard";
+import { ItemNotFound } from "@components/layout/ItemNotFound";
+
 import { userNotFoundConfig } from "./config/itemNotFound.config";
-import { GeneralInformationForm } from "./forms/GeneralInfoForm";
-import { AidBudgetsForm } from "./forms/AidBudgetsForm";
-import { EventsForm } from "./forms/EventsForm";
-import { PayrollsForm } from "./forms/PayrollsForm";
-import { ProjectsForm } from "./forms/ProjectsForm";
-import { BranchesForm } from "./forms/BranchesForm";
-import { StyledContainer, StyledTabsContainer } from "./styles";
-import { MdPersonOutline } from "react-icons/md";
+import { editUserTabsConfig } from "./config/editUserTabs.config";
+
 import {
   IFormsInvitation,
   IAssignmentFormEntry,
   IGeneralInformationEntry,
 } from "../types/forms.types";
+
+import {
+  editUserOptionsConfig,
+  editUserSubjectCardLabels,
+} from "./config/editUser.config";
+import { StyledContainer, StyledTabsContainer } from "./styles";
 
 interface EditUserUIProps {
   selectedTab: string;
@@ -130,40 +130,40 @@ function EditUserUI(props: EditUserUIProps) {
               />
             )}
             {selectedTab === editUserTabsConfig.branches.id && (
-              <BranchesForm
-                currentBranches={editData.branches.entries}
+              <InitializerForm
+                dataOptionsForms={editData.branches.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.events.id && (
-              <EventsForm
-                currentEvents={editData.events.entries}
+              <InitializerForm
+                dataOptionsForms={editData.events.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.projects.id && (
-              <ProjectsForm
-                currentProjects={editData.projects.entries}
+              <InitializerForm
+                dataOptionsForms={editData.projects.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.aidBudgetUnits.id && (
-              <AidBudgetsForm
-                currentAidBudgetUnits={editData.aidBudgetUnits.entries}
+              <InitializerForm
+                dataOptionsForms={editData.aidBudgetUnits.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
               />
             )}
             {selectedTab === editUserTabsConfig.payrolls.id && (
-              <PayrollsForm
-                currentPayrolls={editData.payrolls.entries}
+              <InitializerForm
+                dataOptionsForms={editData.payrolls.entries}
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}

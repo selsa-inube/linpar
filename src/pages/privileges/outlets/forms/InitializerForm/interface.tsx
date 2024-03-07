@@ -3,15 +3,17 @@ import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
 import {
   IAssignmentFormEntry,
   IMessageState,
-} from "../../../types/forms.types";
+} from "@pages/privileges/outlets/users/types/forms.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
-interface ProjectsFormUIProps {
-  projects: IAssignmentFormEntry[];
+interface InitializerFormUIProps {
+  dataOptionsForms: IAssignmentFormEntry[];
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  handleChangeProjects: (projects: IAssignmentFormEntry[]) => void;
+  handleChangeInitializerForm: (
+    dataOptionsForms: IAssignmentFormEntry[]
+  ) => void;
   withSubmitButtons?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -19,13 +21,13 @@ interface ProjectsFormUIProps {
   readOnly?: boolean;
 }
 
-function ProjectsFormUI(props: ProjectsFormUIProps) {
+export function InitializerFormUI(props: InitializerFormUIProps) {
   const {
-    projects,
+    dataOptionsForms,
     isLoading,
     handleSubmitForm,
     handleReset,
-    handleChangeProjects,
+    handleChangeInitializerForm,
     withSubmitButtons,
     message,
     onCloseSectionMessage,
@@ -37,15 +39,15 @@ function ProjectsFormUI(props: ProjectsFormUIProps) {
     return (
       <>
         <FormButtons
-          disabledButtons={!hasChanges(projects)}
+          disabledButtons={!hasChanges(dataOptionsForms)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           loading={isLoading}
         >
           <AssignmentForm
-            handleChange={handleChangeProjects}
-            entries={projects}
-            title="Seleccione los proyectos que desea asignar"
+            handleChange={handleChangeInitializerForm}
+            entries={dataOptionsForms}
+            title="Seleccione los presupuestos que desea asignar"
           />
         </FormButtons>
         {message.visible && (
@@ -61,12 +63,10 @@ function ProjectsFormUI(props: ProjectsFormUIProps) {
 
   return (
     <AssignmentForm
-      handleChange={handleChangeProjects}
-      entries={projects}
-      title="Seleccione los proyectos que desea asignar"
+      handleChange={handleChangeInitializerForm}
+      entries={dataOptionsForms}
+      title="Seleccione los presupuestos que desea asignar"
       readOnly={readOnly}
     />
   );
 }
-
-export { ProjectsFormUI };
