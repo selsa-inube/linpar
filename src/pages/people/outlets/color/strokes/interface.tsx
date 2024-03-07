@@ -19,13 +19,13 @@ import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people
 import { StrokeAppearance } from "./types";
 
 interface IStrokesUIProps {
-  handleTabChange: (id: string) => void;
+  handleTabChange: (id: StrokeAppearance) => void;
   selectedTab: StrokeAppearance;
   strokesConfig: typeof strokesFormsConfig;
 }
 
 interface IRenderForm {
-  formType: StrokeAppearance;
+  formType: string;
   selectedTab: StrokeAppearance;
   strokesConfig: typeof strokesFormsConfig;
 }
