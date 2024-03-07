@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
-const StyledFielsetItem = styled.div`
+const StyledFieldsetItem = styled.div`
   cursor: pointer;
   height: 104px;
   padding: ${({ theme }) => theme?.spacing?.s150 || inube.spacing.s150};
@@ -14,4 +14,4 @@ const StyledFielsetItem = styled.div`
   overflow: hidden;
 `;
 
-export { StyledFielsetItem };
+export { StyledFieldsetItem };
