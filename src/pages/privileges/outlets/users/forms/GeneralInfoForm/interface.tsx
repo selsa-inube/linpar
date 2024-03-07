@@ -18,7 +18,7 @@ import { generalInfoMessages } from "./config/messages.config";
 import {
   IGeneralInformationEntry,
   IMessageState,
-} from "../../../types/forms.types";
+} from "../../types/forms.types";
 import { StyledMessageContainer, StyledSelectContainer } from "./styles";
 
 interface GeneralInformationFormUIProps {

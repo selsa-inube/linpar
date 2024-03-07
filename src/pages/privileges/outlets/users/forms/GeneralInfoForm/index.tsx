@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import {
   IGeneralInformationEntry,
   IMessageState,
-} from "../../../types/forms.types";
+} from "../../types/forms.types";
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;

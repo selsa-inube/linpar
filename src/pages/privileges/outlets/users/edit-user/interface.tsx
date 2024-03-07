@@ -16,8 +16,8 @@ import {
 } from "./config/editUser.config";
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { userNotFoundConfig } from "./config/itemNotFound.config";
-import { GeneralInformationForm } from "./forms/GeneralInfoForm";
-import { InitializerForm } from "./forms/InitializerForm";
+import { GeneralInformationForm } from "../forms/GeneralInfoForm";
+import { InitializerForm } from "../forms/InitializerForm";
 import { StyledContainer, StyledTabsContainer } from "./styles";
 import {
   IFormsInvitation,

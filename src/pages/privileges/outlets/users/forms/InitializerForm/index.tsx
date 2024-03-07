@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { InitializerFormUI } from "./interface";
-import {
-  IAssignmentFormEntry,
-  IMessageState,
-} from "../../../types/forms.types";
+import { IAssignmentFormEntry, IMessageState } from "../../types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
 
 const LOADING_TIMEOUT = 1500;
