@@ -1,29 +1,33 @@
 import { MdPersonOutline } from "react-icons/md";
-import { PageTitle } from "@components/PageTitle";
-import { SubjectCard } from "@components/cards/SubjectCard";
-import { ItemNotFound } from "@components/layout/ItemNotFound";
 import {
   Breadcrumbs,
   Stack,
   Tabs,
   useMediaQueries,
 } from "@inube/design-system";
+
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { editUserContinueModalConfig } from "./config/editUser.config";
-import {
-  editUserOptionsConfig,
-  editUserSubjectCardLabels,
-} from "./config/editUser.config";
-import { editUserTabsConfig } from "./config/editUserTabs.config";
+import { GeneralInformationForm } from "@pages/privileges/outlets/forms/GeneralInfoForm";
+import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+import { PageTitle } from "@components/PageTitle";
+import { SubjectCard } from "@components/cards/SubjectCard";
+import { ItemNotFound } from "@components/layout/ItemNotFound";
+
 import { userNotFoundConfig } from "./config/itemNotFound.config";
-import { GeneralInformationForm } from "../forms/GeneralInfoForm";
-import { InitializerForm } from "../forms/InitializerForm";
-import { StyledContainer, StyledTabsContainer } from "./styles";
+import { editUserTabsConfig } from "./config/editUserTabs.config";
+
 import {
   IFormsInvitation,
   IAssignmentFormEntry,
   IGeneralInformationEntry,
 } from "../types/forms.types";
+
+import {
+  editUserOptionsConfig,
+  editUserSubjectCardLabels,
+} from "./config/editUser.config";
+import { StyledContainer, StyledTabsContainer } from "./styles";
 
 interface EditUserUIProps {
   selectedTab: string;

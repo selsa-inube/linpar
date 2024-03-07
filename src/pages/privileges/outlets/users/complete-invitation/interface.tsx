@@ -11,8 +11,9 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 
-import { InitializerForm } from "../forms/InitializerForm";
-import { GeneralInformationForm } from "../forms/GeneralInfoForm";
+import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+import { GeneralInformationForm } from "@pages/privileges/outlets/forms/GeneralInfoForm";
+
 import {
   IAssignmentFormEntry,
   IFormsInvitation,

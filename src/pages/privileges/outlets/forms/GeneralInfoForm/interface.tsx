@@ -1,6 +1,5 @@
 import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
-import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
   Stack,
   Text,
@@ -12,13 +11,14 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 
+import { FormButtons } from "@components/forms/submit/FormButtons";
 import { options } from "@mocks/apps/privileges/users/users.mock";
 import { EMessageType } from "@src/types/messages.types";
-import { generalInfoMessages } from "./config/messages.config";
 import {
   IGeneralInformationEntry,
   IMessageState,
-} from "../../types/forms.types";
+} from "@pages/privileges/outlets/users/types/forms.types";
+import { generalInfoMessages } from "./config/messages.config";
 import { StyledMessageContainer, StyledSelectContainer } from "./styles";
 
 interface GeneralInformationFormUIProps {

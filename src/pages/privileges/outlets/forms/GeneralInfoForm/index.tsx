@@ -1,13 +1,15 @@
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
 import { EMessageType } from "@src/types/messages.types";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
-import { useFormik } from "formik";
-import { useState } from "react";
-import * as Yup from "yup";
 import {
   IGeneralInformationEntry,
   IMessageState,
-} from "../../types/forms.types";
+} from "@pages/privileges/outlets/users/types/forms.types";
+
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
