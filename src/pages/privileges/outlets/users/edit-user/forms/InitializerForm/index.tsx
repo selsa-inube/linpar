@@ -10,7 +10,7 @@ const LOADING_TIMEOUT = 1500;
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+  handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
@@ -32,10 +32,10 @@ export function InitializerForm(props: IInitializerForm) {
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
     JSON.stringify(dataOptionsForms) !== JSON.stringify(valueCompare);
 
-  const handleChangeAidBudgets = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setFormDataOptions(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+  const handleChangeRenderForm = (renderForm: IAssignmentFormEntry[]) => {
+    setFormDataOptions(renderForm);
+    if (onHasChanges) onHasChanges(hasChanges(renderForm));
+    if (!withSubmitButtons) handleSubmit(renderForm);
   };
 
   const handleSubmitForm = () => {
@@ -64,7 +64,7 @@ export function InitializerForm(props: IInitializerForm) {
 
   return (
     <InitializerFormUI
-      handleChangeInitializerForm={handleChangeAidBudgets}
+      handleChangeInitializerForm={handleChangeRenderForm}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
