@@ -29,7 +29,7 @@ interface iRolesProps {
   showMenu: boolean;
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
-  entries: typeof roles;
+
   searchRole: string;
 }
 
@@ -39,7 +39,7 @@ export function RolesUI(props: iRolesProps) {
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
-    entries,
+
     searchRole,
   } = props;
 
@@ -114,9 +114,10 @@ export function RolesUI(props: iRolesProps) {
             id="tableRoles"
             titles={titlesOptions}
             actions={actionsConfig}
-            entries={entries}
+            entries={roles}
             breakpoints={RolesBreakPointsConfig}
             modalTitle="Roles"
+            filter={searchRole}
           />
         </Stack>
       </Stack>

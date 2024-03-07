@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { roles } from "@mocks/privileges/roles/rolesData.muck";
 
 import { RolesUI } from "./interface";
 
@@ -10,13 +9,6 @@ export function Roles() {
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRole(e.target.value);
   };
-
-  const filteredRoles = roles.filter(
-    (role) =>
-      role.code.toString().includes(searchRole) ||
-      role.nameRoles.toLowerCase().includes(searchRole) ||
-      role.aplicaicionRoles.toLowerCase().includes(searchRole)
-  );
 
   const handleCloseMenuInvitation = () => {
     setShowMenu(false);
@@ -30,7 +22,6 @@ export function Roles() {
       showMenu={showMenu}
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
-      entries={filteredRoles}
       searchRole={searchRole}
     />
   );
