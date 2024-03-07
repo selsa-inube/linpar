@@ -14,30 +14,33 @@ import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
-import { StyledContainer } from "./styles";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
   actionsConfig,
   titlesOptions,
 } from "./config/dataRoles";
-import { roles } from "@mocks/privileges/roles/rolesData.muck";
+
+import { StyledContainer } from "./styles";
+import { roles } from "@src/mocks/privileges/roles/rolesData.muck";
 
 interface iRolesProps {
-  searchRole: string;
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
+  entries: typeof roles;
+  searchRole: string;
 }
 
 export function RolesUI(props: iRolesProps) {
   const {
-    searchRole,
     handleSearchRole,
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
+    entries,
+    searchRole,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -75,7 +78,9 @@ export function RolesUI(props: iRolesProps) {
               iconBefore={<MdSearch />}
               size="compact"
               value={searchRole}
-              onChange={handleSearchRole}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleSearchRole(e)
+              }
             />
 
             {smallScreen ? (
@@ -109,7 +114,7 @@ export function RolesUI(props: iRolesProps) {
             id="tableRoles"
             titles={titlesOptions}
             actions={actionsConfig}
-            entries={roles}
+            entries={entries}
             breakpoints={RolesBreakPointsConfig}
             modalTitle="Roles"
           />
