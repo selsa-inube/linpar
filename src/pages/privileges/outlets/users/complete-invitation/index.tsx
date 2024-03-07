@@ -8,8 +8,8 @@ import { IVerificationData } from "@pages/privileges/outlets/users/complete-invi
 import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { InitializerForm } from "@src/pages/privileges/outlets/users/forms/InitializerForm";
-import { GeneralInformationForm } from "@src/pages/privileges/outlets/users/forms/GeneralInfoForm";
+import { InitializerForm } from "@src/pages/privileges/outlets/forms/InitializerForm";
+import { GeneralInformationForm } from "@src/pages/privileges/outlets/forms/GeneralInfoForm";
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
