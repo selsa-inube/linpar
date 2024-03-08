@@ -1,172 +1,220 @@
 export const linixUseCases = [
   {
     id: "11",
-    linixUseCaseName: "Incluir las opciones web 30,31 y 32",
-    code: 1121212,
+    linixUseCaseName: "Radicar Prospectos de crédito, Pre-Viabilizar Créditos",
+    code: 11212,
     Type: "Insertar",
   },
   {
     id: "12",
-    linixUseCaseName: "Incluir la opción botón CON_ASIGNA_PRIV",
-    code: 23123213,
+    linixUseCaseName:
+      "Viabilizar crédito, Aprobar de Créditos de monto bajo, Validar requisitos y referencias, Registrar AJustes de cartera",
+    code: 231232,
     Type: "Insertar",
   },
   {
     id: "13",
-    linixUseCaseName: "Quitar la opción botón USUA_COPIAR_PRIV",
+    linixUseCaseName:
+      "Aprobar Créditos de alto monto, Configurar reglas de negocio",
     code: 3123213,
     Type: "Modificar",
   },
   {
     id: "14",
-    linixUseCaseName: "Quitar la opcion botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Atender movimientos de caja",
     code: 123123,
     Type: "Eliminar",
   },
 
   {
     id: "15",
-    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    linixUseCaseName:
+      "Registrar Movimientos, Registrar Cuentas bancarias nuevas, Inactivar Cuentas Bancarias , Cerrar la Caja, Anular Ordenes de Pago",
     code: 123123,
     Type: "Eliminar",
   },
 
   {
     id: "16",
-    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    linixUseCaseName:
+      "Registrar movimientos de pagos a proveedores, Generar Ordenes de pago a proveedores, Girara pagos en cheque a proveedores, ",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "17",
-    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Contabilizar Ordenes de pago de Nomina",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "18",
-    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    linixUseCaseName:
+      "Registrar ajustes de activos fijos, Dar de baja a los activos fijos",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "19",
-    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Constituir Inversiones, Procesar la valorizacion",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "20",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Causar compras",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "21",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Registrar Compras",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "22",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Registrar movimientos de cartera",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "23",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Configurar reglas de negocio",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "24",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Hacer el cierre contable",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "25",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Configurar reglas de negocio",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "26",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Configurar reglas de negocio",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "27",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Configurar reglas de negocio",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "28",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Liquidar la Nómina",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "29",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Contabilizar la Nómina",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "30",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Registrar Incapacidades",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "31",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Registrar Vacaciones",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "32",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Registrar Licencias",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "33",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Generar Orden de pago de Nómina",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "34",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Liquidar Retiros de Empleados",
     code: 123123,
     Type: "izar",
   },
 
   {
     id: "35",
-    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    linixUseCaseName: "Contabilizar Retiros de Empleados",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "36",
+    linixUseCaseName: "Liquidar seguridad social",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "37",
+    linixUseCaseName: "Contabilizar seguridad social",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "38",
+    linixUseCaseName: "Registrar nuevos empleados",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "39",
+    linixUseCaseName: "Registrar Novedades de Retiro de empleados",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "40",
+    linixUseCaseName: "Registrar Novedades de Seguridad Social",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "41",
+    linixUseCaseName:
+      "Configurar reglamento de tasas, Configurar Indices de Variablidad, Configurar Reglas de Negoci",
     code: 123123,
     Type: "izar",
   },
