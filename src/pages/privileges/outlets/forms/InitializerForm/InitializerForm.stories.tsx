@@ -1,13 +1,14 @@
-import { action } from "@storybook/addon-actions";
 import { BrowserRouter } from "react-router-dom";
-import { AidBudgetsForm, AidBudgetsFormProps } from "./index";
-import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
-import { StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
-const story = {
-  components: [AidBudgetsForm],
-  title: "forms/edit-user/AidBudgetsForm",
+import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
+import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import { InitializerForm, IInitializerForm } from "./index";
+
+const meta: Meta<typeof InitializerForm> = {
+  component: InitializerForm,
+  title: "forms/edit-user/InitializerForm",
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
@@ -17,8 +18,8 @@ const story = {
   ],
 };
 
-const Template: StoryFn<AidBudgetsFormProps> = (args) => (
-  <AidBudgetsForm {...args} />
+const Template: StoryFn<IInitializerForm> = (args) => (
+  <InitializerForm {...args} />
 );
 
 const handleSubmit = (newAidBudgets: IAssignmentFormEntry[]) => {
@@ -27,16 +28,16 @@ const handleSubmit = (newAidBudgets: IAssignmentFormEntry[]) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  currentAidBudgetUnits: aidBudgetsFormEditUser,
+  dataOptionsForms: aidBudgetsFormEditUser,
   handleSubmit,
   withSubmitButtons: true,
 };
 
 export const WithoutSubmitButtons = Template.bind({});
 WithoutSubmitButtons.args = {
-  currentAidBudgetUnits: aidBudgetsFormEditUser,
+  dataOptionsForms: aidBudgetsFormEditUser,
   handleSubmit,
   withSubmitButtons: false,
 };
 
-export default story;
+export default meta;
