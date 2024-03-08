@@ -22,7 +22,7 @@ import {
 } from "./config/dataRoles";
 
 import { StyledContainer } from "./styles";
-import { roles } from "@src/mocks/privileges/roles/rolesData.muck";
+import { roles } from "@src/mocks/privileges/roles/Roles.muck";
 
 interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -106,7 +106,7 @@ export function RolesUI(props: IRolesProps) {
                 type="link"
                 path="/privileges/roles/add-role"
               >
-                Agregar Role
+                Agregar rol
               </Button>
             )}
           </Stack>

@@ -3,24 +3,25 @@ import { Link } from "react-router-dom";
 import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
 import { Icon } from "@inube/design-system";
-import { roles } from "@mocks/privileges/roles/rolesData.muck";
+import { roles } from "@src/mocks/privileges/roles/Roles.muck";
 import { DeleteUser } from "../../users/tabs/users/DeleteUser";
+import { ActivateUser } from "../../users/tabs/users/ActivateUser";
 
 export const titlesOptions = [
   {
-    id: "code",
+    id: "k_rol",
     titleName: "Code",
     priority: 0,
   },
 
   {
-    id: "nameRoles",
+    id: "n_rol",
     titleName: "Nombre",
     priority: 1,
   },
 
   {
-    id: "aplicaicionRoles",
+    id: "k_aplica",
     titleName: "Aplicación",
     priority: 2,
   },
@@ -36,6 +37,11 @@ export const RolesBreakPointsConfig = [
 ];
 
 const handleClick = (id: string) => roles.find((role) => role.id === id);
+
+const handleActiuve = (id: string) => {
+  console.log("Activ", id);
+  return roles.find((role) => role.id === id);
+};
 
 export const actionsConfig = [
   {
@@ -67,5 +73,11 @@ export const actionsConfig = [
     actionName: "Eliminar",
     content: ({ id }: { id: string }) => <DeleteUser user={handleClick(id)} />,
     type: "remove",
+  },
+  {
+    id: "i_activo",
+    actionName: "Activo",
+    content: ({ id }) => <ActivateUser user={handleActiuve(id)} />,
+    type: "secondary",
   },
 ];
