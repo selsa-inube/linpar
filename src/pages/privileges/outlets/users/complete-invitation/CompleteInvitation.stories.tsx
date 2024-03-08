@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { CompleteInvitation } from "./index";
 
 const story = {
-  components: [CompleteInvitation],
+  component: CompleteInvitation,
   title: "layouts/privileges/outlets/users/complete-invitation",
   parameters: {
     layout: "fullscreen",
