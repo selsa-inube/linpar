@@ -13,7 +13,6 @@ interface IGeneralInformationEntry {
   email: string;
   phone: string;
   invitationDate?: string;
-  k_usecase?: string;
   status?: string;
   code?: string;
   position?: string;

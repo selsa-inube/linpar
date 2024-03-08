@@ -5,8 +5,8 @@ import { EAppearance } from "@src/types/colors.types";
 const deleteUserModal = {
   delete: {
     title: "Eliminar Usuario",
-    description: ({ k_usecase, code }: IGeneralInformationEntry) =>
-      `¿Está seguro de que desea eliminar al usuario ${k_usecase || code}?`,
+    description: ({ code }: IGeneralInformationEntry) =>
+      `¿Está seguro de que desea eliminar al usuario ${code}?`,
     actionText: "Eliminar",
     appearance: EAppearance.ERROR,
   },
