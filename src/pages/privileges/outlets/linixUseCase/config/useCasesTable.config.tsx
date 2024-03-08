@@ -1,11 +1,5 @@
-import styled from "styled-components";
-import {
-  MdDelete,
-  MdModeEdit,
-  MdOutlineAssignmentTurnedIn,
-} from "react-icons/md";
-
-import { inube, Icon } from "@inube/design-system";
+import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
+import { Icon } from "@inube/design-system";
 import { Link } from "react-router-dom";
 import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { DeleteUser } from "../../users/tabs/users/DeleteUser";
@@ -82,18 +76,5 @@ const actionsConfig = [
     type: "remove",
   },
 ];
-
-const StyledContainerActions = styled.div`
-  > svg {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    padding: 2px;
-  }
-
-  & :hover {
-    color: ${inube.color.stroke.gray.hover};
-  }
-`;
 
 export { useCasesBreakPointsConfig, titlesOptions, actionsConfig };

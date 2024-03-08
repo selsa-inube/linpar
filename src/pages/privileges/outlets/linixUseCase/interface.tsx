@@ -20,7 +20,6 @@ import { actionsConfig } from "./config/useCasesTable.config";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
-import { useState } from "react";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
