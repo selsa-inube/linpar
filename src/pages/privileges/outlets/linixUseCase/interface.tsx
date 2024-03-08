@@ -20,6 +20,7 @@ import { actionsConfig } from "./config/useCasesTable.config";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
+import { useState } from "react";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -37,6 +38,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
   } = props;
+
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const location = useLocation();
   const label = privilegeOptionsConfig.find(
@@ -96,7 +98,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
                 iconBefore={<MdPersonAddAlt />}
                 spacing="wide"
                 type="link"
-                path="/privileges/linixUseCase"
+                path="/privileges/linixUseCase/adding-linix-use-case"
               >
                 Agregar caso de uso
               </Button>
@@ -108,6 +110,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             actions={actionsConfig}
             entries={linixUseCases}
             breakpoints={useCasesBreakPointsConfig}
+            filter={searchUseCase}
             modalTitle="Caso de uso"
           />
         </Stack>

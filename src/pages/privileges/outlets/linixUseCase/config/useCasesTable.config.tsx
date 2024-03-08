@@ -5,7 +5,10 @@ import {
   MdOutlineAssignmentTurnedIn,
 } from "react-icons/md";
 
-import { inube } from "@inube/design-system";
+import { inube, Icon } from "@inube/design-system";
+import { Link } from "react-router-dom";
+import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
+import { DeleteUser } from "../../users/tabs/users/DeleteUser";
 
 const useCasesBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
@@ -36,34 +39,45 @@ const titlesOptions = [
   },
 ];
 
+const handleClick = (id: string) => {
+  linixUseCases.find((useCase) => useCase.id === id);
+};
+
 const actionsConfig = [
   {
     id: "Details",
     actionName: "Detalles",
-    content: () => (
-      <StyledContainerActions>
-        <MdOutlineAssignmentTurnedIn />
-      </StyledContainerActions>
+    content: ({ id }: { id: string }) => (
+      <Link to={`details/${id}`} onClick={() => handleClick(id)}>
+        <Icon
+          appearance="dark"
+          cursorHover
+          icon={<MdOutlineAssignmentTurnedIn />}
+        />
+      </Link>
     ),
     type: "secondary",
   },
   {
     id: "Edit",
     actionName: "Editar",
-    content: () => (
-      <StyledContainerActions>
-        <MdModeEdit />
-      </StyledContainerActions>
+    content: ({ id }: { id: string }) => (
+      <Link to={`edit/${id}`} onClick={() => handleClick(id)}>
+        <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+      </Link>
     ),
     type: "primary",
   },
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: () => (
-      <StyledContainerActions>
-        <MdDelete />
-      </StyledContainerActions>
+    content: ({ id }: { id: string }) => (
+      <DeleteUser
+        user={linixUseCases.find((useCase) => useCase.id === id)}
+        handleDeleteUser={() => {}}
+        showComplete={false}
+        closeModal={() => {}}
+      />
     ),
     type: "remove",
   },

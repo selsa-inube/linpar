@@ -19,8 +19,155 @@ export const linixUseCases = [
   },
   {
     id: "14",
-    linixUseCaseName: "Quitar la opción ciente-servidor GCATIPCONT_0",
-    code: 1233123,
+    linixUseCaseName: "Quitar la opcion botón USUA_ELIMINA_PRIV",
+    code: 123123,
     Type: "Eliminar",
+  },
+
+  {
+    id: "15",
+    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "Eliminar",
+  },
+
+  {
+    id: "16",
+    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "17",
+    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "18",
+    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "19",
+    linixUseCaseName: "Quitar la opción botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "20",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "21",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "22",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "23",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "24",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "25",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "26",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "27",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "28",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "29",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "30",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "31",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "32",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "33",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "34",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
+  },
+
+  {
+    id: "35",
+    linixUseCaseName: "Quitar la información botón USUA_ELIMINA_PRIV",
+    code: 123123,
+    Type: "izar",
   },
 ];
