@@ -24,7 +24,7 @@ import {
 import { StyledContainer } from "./styles";
 import { roles } from "@src/mocks/privileges/roles/rolesData.muck";
 
-interface iRolesProps {
+interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleCloseMenuInvitation: () => void;
@@ -33,7 +33,7 @@ interface iRolesProps {
   searchRole: string;
 }
 
-export function RolesUI(props: iRolesProps) {
+export function RolesUI(props: IRolesProps) {
   const {
     handleSearchRole,
     showMenu,
@@ -104,7 +104,7 @@ export function RolesUI(props: iRolesProps) {
                 iconBefore={<MdPersonAddAlt />}
                 spacing="wide"
                 type="link"
-                path="/privileges/linixUseCase"
+                path="/privileges/roles/add-role"
               >
                 Agregar Role
               </Button>
