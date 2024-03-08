@@ -7,6 +7,7 @@ import {
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
+import { ItemNotFound } from "@components/layout/ItemNotFound";
 
 import {
   CrateLinixUseCaseConfig,
@@ -14,6 +15,8 @@ import {
   stepsAddingLinixUseCase,
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
+
+import itemNotFound from "@src/assets/images/ItemNotFound.png";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -71,7 +74,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
         </Stack>
         <>
           <StyledAssistedContainer>
-            {" "}
             <Assisted
               steps={Object.values(stepsAddingLinixUseCase)}
               currentStepId={currentStep}
@@ -85,28 +87,76 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </StyledAssistedContainer>
 
           {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
-            <div>información general</div>
+            <ItemNotFound
+              image={itemNotFound}
+              title={"Información general"}
+              description={"Esta sección está en construcción."}
+              buttonDescription={"Retorna a la página de inicio"}
+              route={"/privileges/linixUseCase"}
+            />
           )}
           {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
-            <div>opciones botón cliente servidor</div>
+            <ItemNotFound
+              image={itemNotFound}
+              title={"Opciones botón cliente servidor"}
+              description={"Esta sección está en construcción."}
+              buttonDescription={"Retorna a la página de inicio"}
+              route={"/privileges/linixUseCase"}
+            />
           )}
           {currentStep === stepsAddingLinixUseCase.downloadableDocuments.id && (
-            <div>documentos descargables </div>
+            <ItemNotFound
+              image={itemNotFound}
+              title={"Documentos descargables"}
+              description={"Esta sección está en construcción."}
+              buttonDescription={"Retorna a la página de inicio"}
+              route={"/privileges/linixUseCase"}
+            />
           )}
           {currentStep === stepsAddingLinixUseCase.webReports.id && (
-            <div>reportes web</div>
+            <ItemNotFound
+              image={itemNotFound}
+              title={"Reportes web"}
+              description={"Esta sección está en construcción."}
+              buttonDescription={"Retorna a la página de inicio"}
+              route={"/privileges/linixUseCase"}
+            />
           )}
           {currentStep === stepsAddingLinixUseCase.webOptions.id && (
-            <div>opciones web</div>
+            <ItemNotFound
+              image={itemNotFound}
+              title={"Opciones web"}
+              description={"Esta sección está en construcción."}
+              buttonDescription={"Retorna a la página de inicio"}
+              route={"/privileges/linixUseCase"}
+            />
           )}
           {currentStep === stepsAddingLinixUseCase.clientServerReports.id && (
-            <div>Reportes cliente servidor</div>
+            <ItemNotFound
+              image={itemNotFound}
+              title={"Reportes cliente servidor"}
+              description={"Esta sección está en construcción."}
+              buttonDescription={"Retorna a la página de inicio"}
+              route={"/privileges/linixUseCase"}
+            />
           )}
           {currentStep === stepsAddingLinixUseCase.clientServerOptions.id && (
-            <div>Opciones cliente servidor</div>
+            <ItemNotFound
+              image={itemNotFound}
+              title={"Opciones cliente servidor"}
+              description={"Esta sección está en construcción."}
+              buttonDescription={"Retorna a la página de inicio"}
+              route={"/privileges/linixUseCase"}
+            />
           )}
           {currentStep === stepsAddingLinixUseCase.summary.id && (
-            <div>Resumen</div>
+            <ItemNotFound
+              image={itemNotFound}
+              title={"Página de resumen"}
+              description={"Esta sección está en construcción."}
+              buttonDescription={"Retorna a la página de inicio"}
+              route={"/privileges/linixUseCase"}
+            />
           )}
         </>
       </Stack>
