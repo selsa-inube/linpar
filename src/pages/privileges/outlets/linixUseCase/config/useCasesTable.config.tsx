@@ -15,19 +15,19 @@ const useCasesBreakPointsConfig = [
 
 const titlesOptions = [
   {
-    id: "code",
-    titleName: "Code",
+    id: "k_usecase",
+    titleName: "Código",
     priority: 0,
   },
 
   {
-    id: "linixUseCaseName",
+    id: "n_usecase",
     titleName: "Nombre",
     priority: 1,
   },
 
   {
-    id: "Type",
+    id: "i_tipusec",
     titleName: "Tipo",
     priority: 2,
   },
