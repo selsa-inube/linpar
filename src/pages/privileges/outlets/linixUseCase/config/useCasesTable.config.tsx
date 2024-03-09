@@ -1,11 +1,8 @@
-import styled from "styled-components";
-import {
-  MdDelete,
-  MdModeEdit,
-  MdOutlineAssignmentTurnedIn,
-} from "react-icons/md";
-
-import { inube } from "@inube/design-system";
+import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
+import { Icon } from "@inube/design-system";
+import { Link } from "react-router-dom";
+import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
+import { DeleteUser } from "../../users/tabs/users/DeleteUser";
 
 const useCasesBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
@@ -18,68 +15,66 @@ const useCasesBreakPointsConfig = [
 
 const titlesOptions = [
   {
-    id: "code",
-    titleName: "Code",
+    id: "k_usecase",
+    titleName: "Código",
     priority: 0,
   },
 
   {
-    id: "linixUseCaseName",
+    id: "n_usecase",
     titleName: "Nombre",
     priority: 1,
   },
 
   {
-    id: "Type",
+    id: "i_tipusec",
     titleName: "Tipo",
     priority: 2,
   },
 ];
 
+const handleClick = (id: string) => {
+  linixUseCases.find((useCase) => useCase.id === id);
+};
+
 const actionsConfig = [
   {
     id: "Details",
     actionName: "Detalles",
-    content: () => (
-      <StyledContainerActions>
-        <MdOutlineAssignmentTurnedIn />
-      </StyledContainerActions>
+    content: ({ id }: { id: string }) => (
+      <Link to={`details/${id}`} onClick={() => handleClick(id)}>
+        <Icon
+          appearance="dark"
+          cursorHover
+          icon={<MdOutlineAssignmentTurnedIn />}
+        />
+      </Link>
     ),
     type: "secondary",
   },
   {
     id: "Edit",
     actionName: "Editar",
-    content: () => (
-      <StyledContainerActions>
-        <MdModeEdit />
-      </StyledContainerActions>
+    content: ({ id }: { id: string }) => (
+      <Link to={`edit/${id}`} onClick={() => handleClick(id)}>
+        <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+      </Link>
     ),
     type: "primary",
   },
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: () => (
-      <StyledContainerActions>
-        <MdDelete />
-      </StyledContainerActions>
+    content: ({ id }: { id: string }) => (
+      <DeleteUser
+        user={linixUseCases.find((useCase) => useCase.id === id)}
+        handleDeleteUser={() => {}}
+        showComplete={false}
+        closeModal={() => {}}
+      />
     ),
     type: "remove",
   },
 ];
-
-const StyledContainerActions = styled.div`
-  > svg {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    padding: 2px;
-  }
-
-  & :hover {
-    color: ${inube.color.stroke.gray.hover};
-  }
-`;
 
 export { useCasesBreakPointsConfig, titlesOptions, actionsConfig };
