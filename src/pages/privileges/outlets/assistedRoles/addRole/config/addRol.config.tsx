@@ -75,7 +75,7 @@ export const createRolConfig = [
       },
       {
         path: "/privileges/linixUseCase/add-rol",
-        label: "Agregar un rol",
+        label: "Agregar rol",
         id: "/privileges/linixUseCase/add-rol",
         isActive: true,
       },
