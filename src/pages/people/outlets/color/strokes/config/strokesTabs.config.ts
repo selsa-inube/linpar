@@ -1,4 +1,15 @@
-const strokesTabsConfig = {
+import { StrokeAppearance } from "../types";
+
+type StrokeConfigItem = {
+  id: StrokeAppearance;
+  isDisabled: boolean;
+  label: string;
+};
+type IStrokesTabsConfig = {
+  [key in StrokeAppearance]: StrokeConfigItem;
+};
+
+const strokesTabsConfig: IStrokesTabsConfig = {
   primary: {
     id: "primary",
     isDisabled: false,

@@ -1,3 +1,14 @@
-import { inube } from "@inube/design-system";
-
-export type StrokeAppearance = keyof typeof inube.color.stroke;
+export type StrokeAppearance = [
+  "primary",
+  "error",
+  "warning",
+  "success",
+  "information",
+  "help",
+  "divider",
+  "spinner",
+  "dark",
+  "gray",
+  "light",
+  "link"
+][number];

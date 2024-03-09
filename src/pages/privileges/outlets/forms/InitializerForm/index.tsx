@@ -1,49 +1,50 @@
 import { useState } from "react";
-import { AidBudgetsFormUI } from "./interface";
+
 import {
   IAssignmentFormEntry,
   IMessageState,
-} from "../../../types/forms.types";
+} from "@pages/privileges/outlets/users/types/forms.types";
 import { EMessageType } from "@src/types/messages.types";
+
+import { InitializerFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
-interface AidBudgetsFormProps {
-  currentAidBudgetUnits: IAssignmentFormEntry[];
-  handleSubmit: (aidBudgetUnits: IAssignmentFormEntry[]) => void;
+interface IInitializerForm {
+  dataOptionsForms: IAssignmentFormEntry[];
+  handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
-
-function AidBudgetsForm(props: AidBudgetsFormProps) {
+export function InitializerForm(props: IInitializerForm) {
   const {
-    currentAidBudgetUnits,
+    dataOptionsForms,
     handleSubmit,
-    withSubmitButtons,
+    withSubmitButtons = false,
     onHasChanges,
-    readOnly,
+    readOnly = false,
   } = props;
-  const [aidBudgetUnits, setAidBudgetUnits] = useState(currentAidBudgetUnits);
+  const [formDataOptions, setFormDataOptions] = useState(dataOptionsForms);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(currentAidBudgetUnits) !== JSON.stringify(valueCompare);
+    JSON.stringify(dataOptionsForms) !== JSON.stringify(valueCompare);
 
-  const handleChangeAidBudgets = (aidBudgetUnits: IAssignmentFormEntry[]) => {
-    setAidBudgetUnits(aidBudgetUnits);
-    if (onHasChanges) onHasChanges(hasChanges(aidBudgetUnits));
-    if (!withSubmitButtons) handleSubmit(aidBudgetUnits);
+  const handleChangeRenderForm = (renderForm: IAssignmentFormEntry[]) => {
+    setFormDataOptions(renderForm);
+    if (onHasChanges) onHasChanges(hasChanges(renderForm));
+    if (!withSubmitButtons) handleSubmit(renderForm);
   };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      handleSubmit(aidBudgetUnits);
+      handleSubmit(formDataOptions);
       setIsLoading(false);
       setMessage({
         visible: true,
@@ -53,7 +54,7 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
   };
 
   const handleReset = () => {
-    setAidBudgetUnits(currentAidBudgetUnits);
+    setFormDataOptions(dataOptionsForms);
     if (onHasChanges) onHasChanges(false);
   };
 
@@ -64,12 +65,12 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
   };
 
   return (
-    <AidBudgetsFormUI
-      handleChangeAidBudgets={handleChangeAidBudgets}
+    <InitializerFormUI
+      handleChangeInitializerForm={handleChangeRenderForm}
       handleSubmitForm={handleSubmitForm}
       handleReset={handleReset}
       isLoading={isLoading}
-      aidBudgetUnits={aidBudgetUnits}
+      dataOptionsForms={formDataOptions}
       withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
@@ -79,5 +80,4 @@ function AidBudgetsForm(props: AidBudgetsFormProps) {
   );
 }
 
-export type { AidBudgetsFormProps };
-export { AidBudgetsForm };
+export type { IInitializerForm };

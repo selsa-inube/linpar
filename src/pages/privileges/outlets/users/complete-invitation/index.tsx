@@ -8,12 +8,8 @@ import { IVerificationData } from "@pages/privileges/outlets/users/complete-invi
 import { EMessageType } from "@src/types/messages.types";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AidBudgetsForm } from "../edit-user/forms/AidBudgetsForm";
-import { BranchesForm } from "../edit-user/forms/BranchesForm";
-import { EventsForm } from "../edit-user/forms/EventsForm";
-import { GeneralInformationForm } from "../edit-user/forms/GeneralInfoForm";
-import { PayrollsForm } from "../edit-user/forms/PayrollsForm";
-import { ProjectsForm } from "../edit-user/forms/ProjectsForm";
+import { InitializerForm } from "@src/pages/privileges/outlets/forms/InitializerForm";
+import { GeneralInformationForm } from "@src/pages/privileges/outlets/forms/GeneralInfoForm";
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
@@ -102,8 +98,8 @@ function CompleteInvitation() {
       id: "branches",
       title: "Sucursales",
       content: (
-        <BranchesForm
-          currentBranches={invitationData.branches.entries}
+        <InitializerForm
+          dataOptionsForms={invitationData.branches.entries}
           readOnly
           handleSubmit={() => {}}
         />
@@ -113,8 +109,8 @@ function CompleteInvitation() {
       id: "projects",
       title: "Proyectos",
       content: (
-        <ProjectsForm
-          currentProjects={invitationData.projects.entries}
+        <InitializerForm
+          dataOptionsForms={invitationData.projects.entries}
           readOnly
           handleSubmit={() => {}}
         />
@@ -124,8 +120,8 @@ function CompleteInvitation() {
       id: "events",
       title: "Eventos",
       content: (
-        <EventsForm
-          currentEvents={invitationData.events.entries}
+        <InitializerForm
+          dataOptionsForms={invitationData.events.entries}
           readOnly
           handleSubmit={() => {}}
         />
@@ -135,8 +131,8 @@ function CompleteInvitation() {
       id: "aidBudgets",
       title: "Unidades de ayuda",
       content: (
-        <AidBudgetsForm
-          currentAidBudgetUnits={invitationData.aidBudgetUnits.entries}
+        <InitializerForm
+          dataOptionsForms={invitationData.aidBudgetUnits.entries}
           readOnly
           handleSubmit={() => {}}
         />
@@ -146,8 +142,8 @@ function CompleteInvitation() {
       id: "payrolls",
       title: "Nómina",
       content: (
-        <PayrollsForm
-          currentPayrolls={invitationData.payrolls.entries}
+        <InitializerForm
+          dataOptionsForms={invitationData.payrolls.entries}
           readOnly
           handleSubmit={() => {}}
         />
