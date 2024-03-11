@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
 import { Icon } from "@inube/design-system";
-import { roles } from "@src/mocks/privileges/roles/Roles.muck";
+import { roles } from "@src/mocks/privileges/roles/Roles.mock";
 import { DeleteUser } from "../../users/tabs/users/DeleteUser";
 import { ActivateUser } from "../../users/tabs/users/ActivateUser";
 
@@ -45,6 +45,12 @@ const handleActiuve = (id: string) => {
 
 export const actionsConfig = [
   {
+    id: "i_activo",
+    actionName: "Activo",
+    content: ({ id }) => <ActivateUser user={handleActiuve(id)} />,
+    type: "secondary",
+  },
+  {
     id: "Details",
     actionName: "Detalles",
     content: ({ id }: { id: string }) => (
@@ -73,11 +79,5 @@ export const actionsConfig = [
     actionName: "Eliminar",
     content: ({ id }: { id: string }) => <DeleteUser user={handleClick(id)} />,
     type: "remove",
-  },
-  {
-    id: "i_activo",
-    actionName: "Activo",
-    content: ({ id }) => <ActivateUser user={handleActiuve(id)} />,
-    type: "secondary",
   },
 ];

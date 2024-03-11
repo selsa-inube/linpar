@@ -8,6 +8,7 @@ import {
   Textfield,
   useMediaQuery,
   Table,
+  inube,
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
@@ -22,7 +23,7 @@ import {
 } from "./config/dataRoles";
 
 import { StyledContainer } from "./styles";
-import { roles } from "@src/mocks/privileges/roles/Roles.muck";
+import { roles } from "@src/mocks/privileges/roles/Roles.mock";
 
 interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -55,8 +56,8 @@ export function RolesUI(props: IRolesProps) {
       width="-webkit-fill-available"
       padding={smallScreen ? "s300" : "s400 s800"}
     >
-      <Stack gap="48px" direction="column">
-        <Stack gap="24px" direction="column">
+      <Stack gap={inube.spacing.s600} direction="column">
+        <Stack gap={inube.spacing.s300} direction="column">
           {label && (
             <>
               <Breadcrumbs crumbs={label.crumbs} />
@@ -68,7 +69,7 @@ export function RolesUI(props: IRolesProps) {
             </>
           )}
         </Stack>
-        <Stack gap="32px" direction="column">
+        <Stack gap={inube.spacing.s400} direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Textfield
               name="searchLinixUseCases"
@@ -90,7 +91,7 @@ export function RolesUI(props: IRolesProps) {
                   size="24px"
                   onClick={handleToggleMenuInvitation}
                   cursorHover={true}
-                  appearance="error"
+                  appearance="dark"
                 />
                 {showMenu && (
                   <Menu

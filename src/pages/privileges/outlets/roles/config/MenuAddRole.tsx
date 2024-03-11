@@ -3,7 +3,7 @@ import { Icon } from "@inube/design-system";
 
 export const menuInvitationLinks = [
   {
-    id: "invite-user",
+    id: "Create-role",
     label: "Agregar Roles",
     path: "/privileges/roles",
     icon: <Icon icon={<MdPersonAddAlt />} size="16px" appearance="dark" />,
