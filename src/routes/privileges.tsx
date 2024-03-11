@@ -7,6 +7,7 @@ import { Privileges } from "@pages/privileges";
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { CompleteInvitation } from "@pages/privileges/outlets/users/complete-invitation";
 import { LinixUseCase } from "@pages/privileges/outlets/linixUseCase";
+import { Roles } from "@pages/privileges/outlets/roles";
 import { AddingLinixUseCase } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 
 function PrivilegesRoutes() {
@@ -16,6 +17,7 @@ function PrivilegesRoutes() {
         <Route path="options" element={<PrivilegesOptions />} />
         <Route path="users" element={<Users />} />
         <Route path="linixUseCase" element={<LinixUseCase />} />
+        <Route path="roles" element={<Roles />} />
         <Route
           path="linixUseCase/adding-linix-use-case"
           element={<AddingLinixUseCase />}

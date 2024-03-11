@@ -1,4 +1,4 @@
-import { MdPerson } from "react-icons/md";
+import { MdPerson, MdSync } from "react-icons/md";
 import { TfiMenuAlt } from "react-icons/tfi";
 
 const privilegeOptionsConfig = [
@@ -54,6 +54,34 @@ const privilegeOptionsConfig = [
         path: "/privileges/linixUseCase",
         label: "Casos de uso Linix",
         id: "/privileges/linixUseCase",
+        isActive: true,
+      },
+    ],
+  },
+  {
+    id: 3,
+    icon: <MdSync />,
+    label: "Roles",
+    description: "Crear, editar, activar y eliminar roles de Linix",
+    url: "/privileges/roles",
+    domain: "privileges",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/privileges/roles",
+        label: "Roles",
+        id: "/privileges/roles",
         isActive: true,
       },
     ],
