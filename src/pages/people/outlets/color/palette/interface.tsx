@@ -14,7 +14,7 @@ import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people
 import { PaletteAppearance } from "./types";
 
 interface PaletteUIProps {
-  handleTabChange: (id: string) => void;
+  handleTabChange: (id: PaletteAppearance) => void;
   selectedTab: PaletteAppearance;
   paletteConfig: typeof paletteTabsConfig;
 }

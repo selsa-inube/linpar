@@ -1,4 +1,16 @@
-const paletteTabsConfig = {
+import { PaletteAppearance } from "../types";
+
+interface optionPaletteTabsConfig {
+  id: PaletteAppearance;
+  isDisabled: boolean;
+  label: string;
+}
+
+export type tpaletteTabsConfig = {
+  [color in PaletteAppearance]: optionPaletteTabsConfig;
+};
+
+const paletteTabsConfig: tpaletteTabsConfig = {
   neutral: {
     id: "neutral",
     isDisabled: false,
