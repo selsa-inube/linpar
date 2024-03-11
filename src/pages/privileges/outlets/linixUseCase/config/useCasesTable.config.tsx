@@ -3,6 +3,7 @@ import { Icon } from "@inube/design-system";
 import { Link } from "react-router-dom";
 import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { DeleteUser } from "../../users/tabs/users/DeleteUser";
+import { DetailsModal } from "../details";
 
 const useCasesBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
@@ -42,13 +43,12 @@ const actionsConfig = [
     id: "Details",
     actionName: "Detalles",
     content: ({ id }: { id: string }) => (
-      <Link to={`details/${id}`} onClick={() => handleClick(id)}>
-        <Icon
-          appearance="dark"
-          cursorHover
-          icon={<MdOutlineAssignmentTurnedIn />}
-        />
-      </Link>
+      <DetailsModal
+        icon={<MdOutlineAssignmentTurnedIn />}
+        infoDataModal={{ id }}
+        closeModal={() => {}}
+        linixUseCases={[]}
+      />
     ),
     type: "secondary",
   },
