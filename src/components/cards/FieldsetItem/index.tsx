@@ -3,20 +3,21 @@ import { StyledFieldsetItem } from "./styles";
 
 interface FieldsetItemProps {
   id: string;
-  name: string;
+  description: string;
+  onClick: () => void;
 }
 
 export function FieldsetItem(props: FieldsetItemProps) {
-  const { id, name } = props;
+  const { id, description, onClick } = props;
 
   const mobile = useMediaQuery("(max-width: 768px)");
   return (
-    <StyledFieldsetItem>
+    <StyledFieldsetItem onClick={onClick}>
       <Stack direction="column" gap="s050">
         <Text type="label" size="medium">
           {id}
         </Text>
-        <Text size={mobile ? "small" : "medium"}>{name}</Text>
+        <Text size={mobile ? "small" : "medium"}>{description}</Text>
       </Stack>
     </StyledFieldsetItem>
   );
