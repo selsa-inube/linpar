@@ -2,11 +2,14 @@ import { useState } from "react";
 
 import { PaletteUI } from "./interface";
 import { paletteTabsConfig } from "./config/paletteTabs.config";
+import { PaletteAppearance } from "./types";
 
 function Palette() {
-  const [selectedTab, setSelectedTab] = useState(paletteTabsConfig.neutral.id);
+  const [selectedTab, setSelectedTab] = useState<PaletteAppearance>(
+    paletteTabsConfig.neutral.id
+  );
 
-  const handleTabChange = (tabId: string) => {
+  const handleTabChange = (tabId: PaletteAppearance) => {
     setSelectedTab(tabId);
   };
 

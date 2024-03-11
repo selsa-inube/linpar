@@ -8,34 +8,40 @@ import {
   Textfield,
   useMediaQuery,
   Table,
+  inube,
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
 
-import { useCasesBreakPointsConfig } from "./config/useCasesTable.config";
-import { titlesOptions } from "./config/useCasesTable.config";
-import { actionsConfig } from "./config/useCasesTable.config";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
-import { menuInvitationLinks } from "./config/menuInvitation.config";
-import { StyledContainer } from "./styles";
+import { menuInvitationLinks } from "./config/MenuAddRole";
+import {
+  RolesBreakPointsConfig,
+  actionsConfig,
+  titlesOptions,
+} from "./config/dataRoles";
 
-interface LinixUseCaseUIProps {
-  searchUseCase: string;
-  handleSearchUseCase: (e: React.ChangeEvent<HTMLInputElement>) => void;
+import { StyledContainer } from "./styles";
+import { roles } from "@src/mocks/privileges/roles/Roles.mock";
+
+interface IRolesProps {
+  handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
+
+  searchRole: string;
 }
 
-export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
+export function RolesUI(props: IRolesProps) {
   const {
-    searchUseCase,
-    handleSearchUseCase,
+    handleSearchRole,
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
+
+    searchRole,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -50,8 +56,8 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
       width="-webkit-fill-available"
       padding={smallScreen ? "s300" : "s400 s800"}
     >
-      <Stack gap="48px" direction="column">
-        <Stack gap="24px" direction="column">
+      <Stack gap={inube.spacing.s600} direction="column">
+        <Stack gap={inube.spacing.s300} direction="column">
           {label && (
             <>
               <Breadcrumbs crumbs={label.crumbs} />
@@ -63,7 +69,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             </>
           )}
         </Stack>
-        <Stack gap="32px" direction="column">
+        <Stack gap={inube.spacing.s400} direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Textfield
               name="searchLinixUseCases"
@@ -72,8 +78,10 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               type="search"
               iconBefore={<MdSearch />}
               size="compact"
-              value={searchUseCase}
-              onChange={handleSearchUseCase}
+              value={searchRole}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleSearchRole(e)
+              }
             />
 
             {smallScreen ? (
@@ -97,20 +105,20 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
                 iconBefore={<MdPersonAddAlt />}
                 spacing="wide"
                 type="link"
-                path="/privileges/linixUseCase/adding-linix-use-case"
+                path="/privileges/roles/add-role"
               >
-                Agregar caso de uso
+                Agregar rol
               </Button>
             )}
           </Stack>
           <Table
-            id="tableLinixUseCases"
+            id="tableRoles"
             titles={titlesOptions}
             actions={actionsConfig}
-            entries={linixUseCases}
-            breakpoints={useCasesBreakPointsConfig}
-            filter={searchUseCase}
-            modalTitle="Caso de uso"
+            entries={roles}
+            breakpoints={RolesBreakPointsConfig}
+            modalTitle="Roles"
+            filter={searchRole}
           />
         </Stack>
       </Stack>

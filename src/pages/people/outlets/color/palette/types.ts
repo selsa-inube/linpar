@@ -1,3 +1,12 @@
-import { inube } from "@inube/design-system";
+const appereanceText = [
+  "neutral",
+  "neutralAlpha",
+  "red",
+  "yellow",
+  "green",
+  "blue",
+  "teal",
+  "purple",
+] as const;
 
-export type PaletteAppearance = keyof typeof inube.color.palette;
+export type PaletteAppearance = typeof appereanceText[number];
