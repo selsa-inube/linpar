@@ -48,7 +48,7 @@ export const createRolConfig = [
     id: 1,
     title: "Agregar rol",
     description: "Completa la información para agregar rol",
-    route: "/privileges/roles/add-rol",
+    route: "/privileges/roles/add-role",
     crumbs: [
       {
         path: "/",
@@ -63,15 +63,15 @@ export const createRolConfig = [
         isActive: false,
       },
       {
-        path: "/privileges/linixUseCase",
+        path: "/privileges/roles",
         label: "roles",
         id: "/privileges/roles",
         isActive: false,
       },
       {
-        path: "/privileges/linixUseCase/add-rol",
+        path: "/privileges/roles/add-role",
         label: "Agregar rol",
-        id: "/privileges/linixUseCase/add-rol",
+        id: "/privileges/roles/add-role",
         isActive: true,
       },
     ],
@@ -91,7 +91,7 @@ export const finishAssistedRolMessagesConfig = {
     icon: <Icon appearance="dark" icons={<MdThumbUpOffAlt />} size="18px" />,
     title: "Creación exitosa",
     description: (value: string) =>
-      `Hemos creado el caso de uso ${value} exitosamente.`,
+      `Hemos creado el rol ${value} exitosamente.`,
     appearance: EAppearance.SUCCESS,
   },
   failed: {
@@ -99,7 +99,7 @@ export const finishAssistedRolMessagesConfig = {
     icon: <Icon appearance="dark" icons={<MdErrorOutline />} size="18px" />,
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
-      `Hemos presentado un error creando el caso de uso ${value}.`,
+      `Hemos presentado un error creando el rol ${value}.`,
     appearance: EAppearance.ERROR,
   },
 };
