@@ -23,7 +23,7 @@ function PrivilegesRoutes() {
           path="linixUseCase/adding-linix-use-case"
           element={<AddingLinixUseCase />}
         />
-        <Route path="roles/add-rol" element={<AddRol />} />
+        <Route path="roles/add-role" element={<AddRol />} />
         <Route path="users/invite" element={<Invite />} />
         <Route path="users/edit/:user_id" element={<EditUser />} />
         <Route

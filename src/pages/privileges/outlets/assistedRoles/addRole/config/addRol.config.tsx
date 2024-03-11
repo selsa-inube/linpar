@@ -9,38 +9,33 @@ export const stepsAddRol = {
     label: "Información general",
     description: "Por favor completa la información general.",
   },
-  clientServerButton: {
+  auxiliaryAccounts: {
     id: 2,
-    label: "Selección botón cliente servidor",
-    description: "Por favor selecciona el botón cliente servidor.",
+    label: "Cuentas auxiliares",
+    description: "Por favor completa la información de cuentas auxiliares.",
   },
-  downloadableDocuments: {
+  transactionTypes: {
     id: 3,
-    label: "Formatos descargables",
-    description: "Asigna los formatos descargables.",
+    label: "Tipos de movimiento",
+    description: "Asigna los tipos de movimiento para este rol.",
   },
-  webReports: {
+  businessRules: {
     id: 4,
-    label: "Reportes web",
-    description: "Asigna los reportes web.",
+    label: "Reglas de Negocio",
+    description: "Asigna las reglas de negocio para este rol.",
   },
-  webOptions: {
+  crediboardTasks: {
     id: 5,
-    label: "Opciones web",
-    description: "Asigna las opciones web.",
+    label: "Tareas crediboard",
+    description: "Asigna las tareas crediboard para este rol.",
   },
-  clientServerReports: {
+  useCases: {
     id: 6,
-    label: "Reportes cliente servidor",
-    description: "Asigna los reportes cliente servidor.",
-  },
-  clientServerOptions: {
-    id: 7,
-    label: "Opciones cliente servidor",
-    description: "Asigna las opciones cliente servidor.",
+    label: "Casos de uso",
+    description: "Asigna los casos de uso para este rol.",
   },
   summary: {
-    id: 8,
+    id: 7,
     label: "Verificación",
     description:
       "Verifica las opciones activadas, si es necesario cámbialas o por el contrario si todo está correcto dale enviar.",

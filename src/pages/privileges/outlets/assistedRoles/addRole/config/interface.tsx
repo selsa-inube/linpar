@@ -3,6 +3,7 @@ import {
   Breadcrumbs,
   Stack,
   useMediaQuery,
+  inube,
 } from "@inube/design-system";
 import itemNotFound from "@src/assets/images/ItemNotFound.png";
 
@@ -58,10 +59,14 @@ export function AddRolUI(props: AddRolUIProps) {
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
-      <Stack gap="48px" direction="column">
-        <Stack gap="32px" direction="column">
+      <Stack gap={inube.spacing.s600} direction="column">
+        <Stack gap={inube.spacing.s400} direction="column">
           <Breadcrumbs crumbs={createRolConfig[0].crumbs} />
-          <Stack justifyContent="space-between" alignItems="center" gap="50px">
+          <Stack
+            justifyContent="space-between"
+            alignItems="center"
+            gap={inube.spacing.s650}
+          >
             <PageTitle
               title={createRolConfig[0].title}
               description={createRolConfig[0].description}
@@ -87,70 +92,62 @@ export function AddRolUI(props: AddRolUIProps) {
               title={"Información general"}
               description={"Esta sección está en construcción."}
               buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+              route={"/privileges/roles"}
             />
           )}
-          {currentStep === stepsAddRol.clientServerButton.id && (
+          {currentStep === stepsAddRol.auxiliaryAccounts.id && (
             <ItemNotFound
               image={itemNotFound}
-              title={"Opciones botón cliente servidor"}
+              title={"Opciones de cuentas auxiliares"}
               description={"Esta sección está en construcción."}
               buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+              route={"/privileges/roles"}
             />
           )}
-          {currentStep === stepsAddRol.downloadableDocuments.id && (
+          {currentStep === stepsAddRol.transactionTypes.id && (
             <ItemNotFound
               image={itemNotFound}
-              title={"Documentos descargables"}
+              title={"Tipos de movimiento"}
               description={"Esta sección está en construcción."}
               buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+              route={"/privileges/roles"}
             />
           )}
-          {currentStep === stepsAddRol.webReports.id && (
+          {currentStep === stepsAddRol.businessRules.id && (
             <ItemNotFound
               image={itemNotFound}
-              title={"Reportes web"}
+              title={"Reglas de negocio"}
               description={"Esta sección está en construcción."}
               buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+              route={"/privileges/roles"}
             />
           )}
-          {currentStep === stepsAddRol.webOptions.id && (
+          {currentStep === stepsAddRol.crediboardTasks.id && (
             <ItemNotFound
               image={itemNotFound}
-              title={"Opciones web"}
+              title={"Tareas Crediboard"}
               description={"Esta sección está en construcción."}
               buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+              route={"/privileges/roles"}
             />
           )}
-          {currentStep === stepsAddRol.clientServerReports.id && (
+          {currentStep === stepsAddRol.useCases.id && (
             <ItemNotFound
               image={itemNotFound}
-              title={"Reportes cliente servidor"}
+              title={"Casos de uso"}
               description={"Esta sección está en construcción."}
               buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+              route={"/privileges/roles"}
             />
           )}
-          {currentStep === stepsAddRol.clientServerOptions.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Opciones cliente servidor"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
+
           {currentStep === stepsAddRol.summary.id && (
             <ItemNotFound
               image={itemNotFound}
               title={"Página de resumen"}
               description={"Esta sección está en construcción."}
               buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+              route={"/privileges/roles"}
             />
           )}
         </>
