@@ -28,21 +28,22 @@ interface GeneralInformationFormUIProps {
   readOnly?: boolean;
 }
 
-const OptionSelect = [
+const searchData = {
+  "Digita el nombre o numero de identificación.": "",
+};
+
+const OptionSelect: Record<string, string>[] = [
   {
-    id: "diferidos",
-    label: "diferidos",
-    disabled: false,
+    username: "diferidos",
+    userID: "diferidos",
   },
   {
-    id: "pagos",
-    label: "pagos PSE ACH",
-    disabled: false,
+    username: "pagos",
+    userID: "pagos",
   },
   {
-    id: "SIG",
-    label: "SIG",
-    disabled: false,
+    username: "SIG",
+    userID: "SIG",
   },
 ];
 
@@ -93,6 +94,8 @@ function RenderFormFields(
           placeholderModal="Digite el código o nombre de la aplicación."
           onUserSelect={() => {}}
           userData={OptionSelect}
+          searchFieldData={searchData}
+          onReset={() => {}}
         />
       </Stack>
 
