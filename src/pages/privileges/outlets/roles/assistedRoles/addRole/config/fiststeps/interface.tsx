@@ -135,10 +135,9 @@ function RenderFormFields(
             iconAfter={<MdOutlineModeEdit size={18} />}
             size="compact"
             fullwidth
-            onChange={(value: React.ChangeEvent<HTMLInputElement>) => {
-              console.log("value", value.target.innerText);
-              return formik.setFieldValue("pagos", value.target.innerText);
-            }}
+            onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
+              formik.setFieldValue("aplication", value.target.outerText)
+            }
             onBlur={formik.handleBlur}
             options={OptionSelect}
           />

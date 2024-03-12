@@ -39,7 +39,6 @@ export const RolesBreakPointsConfig = [
 const handleClick = (id: string) => roles.find((role) => role.id === id);
 
 const handleActiuve = (id: string) => {
-  console.log("Activ", id);
   return roles.find((role) => role.id === id);
 };
 
