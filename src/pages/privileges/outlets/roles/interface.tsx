@@ -13,8 +13,9 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
+import { roles } from "@mocks/privileges/roles/Roles.mock";
 
-import { privilegeOptionsConfig } from "../options/config/privileges.config";
+import { privilegeOptionsConfig } from "@pages/privileges/outlets//options/config/privileges.config";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
@@ -23,7 +24,6 @@ import {
 } from "./config/dataRoles";
 
 import { StyledContainer } from "./styles";
-import { roles } from "@src/mocks/privileges/roles/Roles.mock";
 
 interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
