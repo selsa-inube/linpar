@@ -168,7 +168,7 @@ function RenderFormFields(
       </Stack>
       <SearchUserCard
         id="Opcion cliente servidor"
-        label="Opcion cliente cervidor"
+        label="Opcion cliente servidor"
         placeholder="Seleccione una opción"
         name="Opcion Cliente Servidor"
         title="Búsqueda de cliente servidor"
