@@ -1,4 +1,4 @@
-import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
+import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
 import {
   Stack,
@@ -6,7 +6,6 @@ import {
   Textfield,
   Textarea,
   Icon,
-  Select,
   Grid,
   useMediaQuery,
 } from "@inube/design-system";
@@ -14,7 +13,7 @@ import {
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IGeneralInformationFormProps } from ".";
-import { StyledSelectContainer } from "./styles";
+import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -80,24 +79,21 @@ function RenderFormFields(
           fullwidth
           onChange={handleChangeForm}
         />
-        <StyledSelectContainer>
-          <Select
-            label="aplication"
-            placeholder="seleccione una opción"
-            name="aplication"
-            id="aplication"
-            value={formik.values.aplication}
-            type="aplication"
-            iconAfter={<MdOutlineModeEdit size={18} />}
-            size="compact"
-            fullwidth
-            onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              formik.setFieldValue("aplication", value.target.outerText)
-            }
-            onBlur={formik.handleBlur}
-            options={OptionSelect}
-          />
-        </StyledSelectContainer>
+
+        <SearchUserCard
+          id="aplication"
+          label="aplicación"
+          placeholder="seleccione una opción"
+          name="aplication"
+          title="Búsqueda de aplicación"
+          infoTitle="Buscar la aplicación para asignar el rol."
+          idModal="searchField"
+          nameModal="searchField"
+          labelModal="Digite el código o nombre de la aplicación."
+          placeholderModal="Digite el código o nombre de la aplicación."
+          onUserSelect={() => {}}
+          userData={OptionSelect}
+        />
       </Stack>
 
       <Textarea
@@ -109,6 +105,7 @@ function RenderFormFields(
         type="text"
         size="compact"
         fullwidth
+        maxLength={20}
         onChange={handleChangeForm}
       />
 
