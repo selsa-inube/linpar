@@ -67,6 +67,9 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+  const onClick = () => {
+    handleNextStep(currentStep);
+  };
 
   return (
     <Stack
@@ -174,7 +177,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
         <Button appearance="primary" type="submit" disabled>
           Atras
         </Button>
-        <Button appearance="primary" type="submit">
+        <Button appearance="primary" type="submit" onClick={onClick}>
           Continuar
         </Button>
       </Stack>
