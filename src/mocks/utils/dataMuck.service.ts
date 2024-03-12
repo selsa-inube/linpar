@@ -19,6 +19,7 @@ export async function intializedData<T>(option: string, data: T[]) {
 }
 
 export async function getData(option: string) {
+  await fakeNetwork();
   try {
     const optionsData = await localforage.getItem(option);
 
@@ -47,4 +48,10 @@ export async function getSpecificData(
   } catch (error) {
     return error;
   }
+}
+
+async function fakeNetwork() {
+  return new Promise((res) => {
+    setTimeout(res, Math.random() * 1000);
+  });
 }
