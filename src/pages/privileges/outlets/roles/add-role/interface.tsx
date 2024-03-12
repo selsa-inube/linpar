@@ -82,7 +82,7 @@ export function AddRolUI(props: AddRolUIProps) {
             <PageTitle
               title={createRolConfig[0].title}
               description={createRolConfig[0].description}
-              navigatePage="/privileges/linixUseCase"
+              navigatePage="/privileges/roles"
             />
           </Stack>
         </Stack>
