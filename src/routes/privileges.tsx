@@ -11,8 +11,6 @@ import { LinixUseCase } from "@pages/privileges/outlets/linixUseCase";
 import { Roles } from "@pages/privileges/outlets/roles";
 import { AddingLinixUseCase } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { AddRol } from "@pages/privileges/outlets/assistedRoles/addRole/config";
-import { getData } from "@src/mocks/utils/dataMuck.service";
-import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
 function PrivilegesRoutes() {
   return (
