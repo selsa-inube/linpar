@@ -80,21 +80,25 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-  const handleChangeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeForm = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const formikValues = {
       ...formik.values,
       [event.target.name]: event.target.value,
     };
 
     if (onHasChanges) onHasChanges(hasChanges(formikValues));
-    formik.setFieldValue(event.target.name, event.target.value).then(() => {
+    try {
+      await formik.setFieldValue(event.target.name, event.target.value);
       if (withSubmitButtons) return;
-      formik.validateForm().then((errors) => {
-        if (!errors || Object.keys(errors).length === 0) {
-          handleSubmit(formikValues);
-        }
-      });
-    });
+      const errors = await formik.validateForm();
+      if (!errors || Object.keys(errors).length === 0) {
+        handleSubmit(formikValues);
+      }
+    } catch (errors) {
+      return errors;
+    }
   };
 
   const handleCloseSectionMessage = () => {
