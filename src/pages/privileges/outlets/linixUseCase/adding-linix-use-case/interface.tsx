@@ -3,6 +3,7 @@ import {
   Breadcrumbs,
   Stack,
   useMediaQuery,
+  Button,
 } from "@inube/design-system";
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
@@ -16,8 +17,9 @@ import {
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
 import itemNotFound from "@src/assets/images/ItemNotFound.png";
-import { GeneralInformationForm } from "./FirstStep";
+
 import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
+import { GeneralInformationForm } from "./FirstStep";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -67,7 +69,11 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
   return (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+    <Stack
+      direction="column"
+      padding={smallScreen ? "s200" : "s400 s800"}
+      gap="32px"
+    >
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
@@ -163,6 +169,14 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             />
           )}
         </>
+      </Stack>
+      <Stack justifyContent="flex-end" whith="100%" gap="12px">
+        <Button appearance="primary" type="submit" disabled>
+          Atras
+        </Button>
+        <Button appearance="primary" type="submit">
+          Continuar
+        </Button>
       </Stack>
       {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
     </Stack>

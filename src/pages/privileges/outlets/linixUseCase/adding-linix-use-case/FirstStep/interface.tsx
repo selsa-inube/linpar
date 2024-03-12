@@ -5,6 +5,7 @@ import {
   Text,
   Textfield,
   Textarea,
+  Button,
   //SectionMessage,
   Icon,
   Select,
@@ -17,6 +18,7 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IGeneralInformationFormProps } from ".";
 import { StyledSelectContainer } from "./styles";
+import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -30,6 +32,25 @@ interface GeneralInformationFormUIProps {
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
 }
+
+const searchData = {
+  "Digita el nombre o numero de identificación.": "",
+};
+
+const OptionSelectSearch: Record<string, string>[] = [
+  {
+    username: "diferidos",
+    userID: "diferidos",
+  },
+  {
+    username: "pagos",
+    userID: "pagos",
+  },
+  {
+    username: "SIG",
+    userID: "SIG",
+  },
+];
 
 const OptionSelect = [
   {
@@ -48,47 +69,6 @@ const OptionSelect = [
     disabled: false,
   },
 ];
-/* 
-function renderMessages(
-  showMessage: IMessageState,
-  formInvalid: boolean,
-  handleCloseSectionMessage: GeneralInformationFormUIProps["handleCloseSectionMessage"]
-) {
-  if (!showMessage.visible) {
-    return null;
-  }
-  let messageType = EMessageType.SUCCESS;
-  if (formInvalid) {
-    messageType = EMessageType.FAILED;
-  }
-
-  const { title, description, icon, appearance } =
-    generalInfoMessages[messageType];
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          title={title}
-          description={description}
-          icon={icon}
-          appearance={appearance}
-          duration={4000}
-          closeSectionMessage={handleCloseSectionMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-} */
-
-/* function stateValue(
-  formik: GeneralInformationFormUIProps["formik"],
-  attribute: string
-) {
-  if (!formik.touched[attribute]) return "pending";
-  if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
-  return "valid";
-} */
 
 function RenderFormFields(
   formik: FormikValues,
@@ -103,7 +83,7 @@ function RenderFormFields(
   return (
     <Grid
       templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
-      gap="s0 s300"
+      gap="s200 s300"
       width={"100%"}
       autoRows="unset"
     >
@@ -151,6 +131,7 @@ function RenderFormFields(
         value={formik.values.description}
         type="text"
         size="compact"
+        maxLength={120}
         fullwidth
         onChange={handleChangeForm}
       />
@@ -170,7 +151,39 @@ function RenderFormFields(
             </Text>
           </Stack>
         )}
+        <SearchUserCard
+          id="Opciones Web"
+          label="Opciones Web"
+          placeholder="seleccione una opción"
+          name="aplication"
+          title="Búsqueda de aplicación"
+          infoTitle="Buscar caso de uso."
+          idModal="searchField"
+          nameModal="searchField"
+          labelModal="Digite el código o nombre de la aplicación."
+          placeholderModal="Digite el código o nombre de la aplicación."
+          onUserSelect={() => {}}
+          userData={OptionSelectSearch}
+          searchFieldData={searchData}
+          onReset={() => {}}
+        />
       </Stack>
+      <SearchUserCard
+        id="Opcion Cliente Servidor"
+        label="Opcion Cliente Servidor"
+        placeholder="Seleccione una opción"
+        name="Opcion Cliente Servidor"
+        title="Búsqueda de aplicación"
+        infoTitle="Buscar caso de uso."
+        idModal="searchField"
+        nameModal="searchField"
+        labelModal="Digite el código o nombre de la aplicación."
+        placeholderModal="Digite el código o nombre de la aplicación."
+        onUserSelect={() => {}}
+        userData={OptionSelect}
+        searchFieldData={searchData}
+        onReset={() => {}}
+      />
     </Grid>
   );
 }
@@ -180,8 +193,6 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     formik,
     loading,
     withSubmitButtons,
-    // showMessage,
-    // handleCloseSectionMessage,
     hasChanges,
     formInvalid,
     handleSubmitForm,
