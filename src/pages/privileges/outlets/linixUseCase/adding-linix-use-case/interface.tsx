@@ -15,8 +15,9 @@ import {
   stepsAddingLinixUseCase,
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
-
 import itemNotFound from "@src/assets/images/ItemNotFound.png";
+import { GeneralInformationForm } from "./FirstStep";
+import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -46,6 +47,12 @@ interface AddingLinixUseCaseUIProps {
   handleToggleModal: () => void;
   showModal: boolean;
 }
+
+const caseUseLinixData = linixUseCases.map((linixUseCases) => ({
+  caseUseLinixName: linixUseCases.n_usecase,
+  description: linixUseCases.n_descrip,
+  aplication: linixUseCases.i_tipusec,
+}));
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
@@ -87,12 +94,9 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </StyledAssistedContainer>
 
           {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Información general"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+            <GeneralInformationForm
+              currentInformation={caseUseLinixData[0]}
+              handleSubmit={() => {}}
             />
           )}
           {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
