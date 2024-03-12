@@ -15,6 +15,8 @@ import {
   finishAssistedRolModalConfig,
   stepsAddRol,
 } from "./addRol.config";
+import { GeneralInformationForm } from "./fiststeps";
+import { roles } from "@src/mocks/privileges/roles/Roles.mock";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;
@@ -24,6 +26,12 @@ interface AddRolUIProps {
   handleToggleModal: () => void;
   showModal: boolean;
 }
+
+const roleData = roles.map((rol) => ({
+  roleName: rol.n_rol,
+  description: rol.n_rol,
+  aplication: rol.k_aplica,
+}));
 
 function finishModal(
   handleCloseModal: () => void,
@@ -87,14 +95,12 @@ export function AddRolUI(props: AddRolUIProps) {
           />
 
           {currentStep === stepsAddRol.generalInformation.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Información general"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
+            <GeneralInformationForm
+              currentInformation={roleData[0]}
+              handleSubmit={() => {}}
             />
           )}
+
           {currentStep === stepsAddRol.auxiliaryAccounts.id && (
             <ItemNotFound
               image={itemNotFound}
