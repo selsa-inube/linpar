@@ -5,8 +5,6 @@ import {
   Text,
   Textfield,
   Textarea,
-  Button,
-  //SectionMessage,
   Icon,
   Select,
   Grid,
@@ -14,7 +12,7 @@ import {
 } from "@inube/design-system";
 
 import { FormButtons } from "@components/forms/submit/FormButtons";
-//import { EMessageType } from "@types/messages.types";
+
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IGeneralInformationFormProps } from ".";
 import { StyledSelectContainer } from "./styles";
@@ -93,7 +91,7 @@ function RenderFormFields(
         padding="s050 s0"
       >
         <Textfield
-          label="Nombre Caso de Uso "
+          label="Nombre del Caso de Uso "
           placeholder="Simular y radicar"
           name="Caso de Uso LinixeName"
           id="Caso de Uso LinixeName"
@@ -105,10 +103,10 @@ function RenderFormFields(
         />
         <StyledSelectContainer>
           <Select
-            label="Aplication"
+            label="Accion Caso de Uso"
             placeholder="Seleccione una opción"
-            name="aplication"
-            id="aplication"
+            name="Accion Caso de Uso"
+            id="Accion Caso de Uso"
             value={formik.values.aplication}
             type="aplication"
             iconAfter={<MdOutlineModeEdit size={18} />}
@@ -156,12 +154,12 @@ function RenderFormFields(
           label="Opciones Web"
           placeholder="seleccione una opción"
           name="aplication"
-          title="Búsqueda de aplicación"
+          title="Búsqueda de la opción web"
           infoTitle="Buscar caso de uso."
           idModal="searchField"
           nameModal="searchField"
-          labelModal="Digite el código o nombre de la aplicación."
-          placeholderModal="Digite el código o nombre de la aplicación."
+          labelModal="Digite el código o nombre del caso de uso."
+          placeholderModal="Digite el código o nombre del caso de uso."
           onUserSelect={() => {}}
           userData={OptionSelectSearch}
           searchFieldData={searchData}
@@ -173,12 +171,12 @@ function RenderFormFields(
         label="Opcion Cliente Servidor"
         placeholder="Seleccione una opción"
         name="Opcion Cliente Servidor"
-        title="Búsqueda de aplicación"
+        title="Búsqueda de cliente servidor"
         infoTitle="Buscar caso de uso."
         idModal="searchField"
         nameModal="searchField"
-        labelModal="Digite el código o nombre de la aplicación."
-        placeholderModal="Digite el código o nombre de la aplicación."
+        labelModal="Digite el código o nombre del caso de uso."
+        placeholderModal="Digite el código o nombre del caso de uso."
         onUserSelect={() => {}}
         userData={OptionSelect}
         searchFieldData={searchData}
