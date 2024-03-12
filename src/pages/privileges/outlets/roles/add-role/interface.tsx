@@ -18,9 +18,9 @@ import {
   createRolConfig,
   finishAssistedRolModalConfig,
   stepsAddRol,
-} from "./addRol.config";
+} from "./config/addRol.config";
 
-import { GeneralInformationForm } from "./fiststeps";
+import { GeneralInformationForm } from "./config/fiststeps";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;

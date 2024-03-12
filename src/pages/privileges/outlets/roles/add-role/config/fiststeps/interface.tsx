@@ -13,7 +13,7 @@ import {
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IGeneralInformationFormProps } from ".";
-import { SearchUserCard } from "@src/components/cards/SearchUserCard";
+import { SearchUserCard } from "@components/cards/SearchUserCard";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
