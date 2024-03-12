@@ -69,6 +69,10 @@ export function AddRolUI(props: AddRolUIProps) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
+  const onClick = () => {
+    handleNextStep(currentStep);
+  };
+
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap={inube.spacing.s600} direction="column">
@@ -169,7 +173,9 @@ export function AddRolUI(props: AddRolUIProps) {
         justifyContent="flex-end"
       >
         <Button disabled>Atras</Button>
-        <Button appearance="primary">Siguiente</Button>
+        <Button appearance="primary" onClick={onClick}>
+          Siguiente
+        </Button>
       </Stack>
       {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
     </Stack>
