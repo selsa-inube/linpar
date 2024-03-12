@@ -178,7 +178,7 @@ function RenderFormFields(
         labelModal="Digite el código o nombre del caso de uso."
         placeholderModal="Digite el código o nombre del caso de uso."
         onUserSelect={() => {}}
-        userData={OptionSelect}
+        userData={OptionSelectSearch}
         searchFieldData={searchData}
         onReset={() => {}}
       />
