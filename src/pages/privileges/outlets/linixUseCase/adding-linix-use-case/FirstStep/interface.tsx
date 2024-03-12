@@ -91,7 +91,7 @@ function RenderFormFields(
         padding="s050 s0"
       >
         <Textfield
-          label="Nombre del Caso de Uso "
+          label="Nombre del caso de uso "
           placeholder="Simular y radicar"
           name="Caso de Uso LinixeName"
           id="Caso de Uso LinixeName"
@@ -103,7 +103,7 @@ function RenderFormFields(
         />
         <StyledSelectContainer>
           <Select
-            label="Accion Caso de Uso"
+            label="Accion caso de uso"
             placeholder="Seleccione una opción"
             name="Accion Caso de Uso"
             id="Accion Caso de Uso"
@@ -151,7 +151,7 @@ function RenderFormFields(
         )}
         <SearchUserCard
           id="Opciones Web"
-          label="Opciones Web"
+          label="Opciones web"
           placeholder="seleccione una opción"
           name="aplication"
           title="Búsqueda de la opción web"
@@ -167,7 +167,7 @@ function RenderFormFields(
         />
       </Stack>
       <SearchUserCard
-        id="Opcion Cliente Servidor"
+        id="Opcion cliente servidor"
         label="Opcion Cliente Servidor"
         placeholder="Seleccione una opción"
         name="Opcion Cliente Servidor"
