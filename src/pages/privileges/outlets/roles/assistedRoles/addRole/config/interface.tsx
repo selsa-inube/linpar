@@ -1,6 +1,7 @@
 import {
   Assisted,
   Breadcrumbs,
+  Button,
   Stack,
   useMediaQuery,
   inube,
@@ -160,6 +161,15 @@ export function AddRolUI(props: AddRolUIProps) {
             />
           )}
         </>
+      </Stack>
+      <Stack
+        width="100%"
+        margin="s400 s0 s0 s0"
+        gap="16px"
+        justifyContent="flex-end"
+      >
+        <Button disabled>Atras</Button>
+        <Button appearance="primary">Siguiente</Button>
       </Stack>
       {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
     </Stack>
