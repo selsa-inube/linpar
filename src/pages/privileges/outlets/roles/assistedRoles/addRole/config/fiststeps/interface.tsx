@@ -13,9 +13,8 @@ import {
 } from "@inube/design-system";
 
 import { FormButtons } from "@components/forms/submit/FormButtons";
-//import { EMessageType } from "@src/types/messages.types";
+//import { EMessageType } from "@types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-//import { StyledMessageContainer, StyledSelectContainer } from "./styles";
 import { IGeneralInformationFormProps } from ".";
 import { StyledSelectContainer } from "./styles";
 

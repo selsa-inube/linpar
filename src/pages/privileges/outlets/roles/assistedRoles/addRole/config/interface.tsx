@@ -5,18 +5,21 @@ import {
   useMediaQuery,
   inube,
 } from "@inube/design-system";
-import itemNotFound from "@src/assets/images/ItemNotFound.png";
 
+import { roles } from "@mocks/privileges/roles/Roles.mock";
+
+import itemNotFound from "@assets/images/ItemNotFound.png";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
+
 import {
   createRolConfig,
   finishAssistedRolModalConfig,
   stepsAddRol,
 } from "./addRol.config";
+
 import { GeneralInformationForm } from "./fiststeps";
-import { roles } from "@src/mocks/privileges/roles/Roles.mock";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;
