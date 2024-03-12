@@ -16,7 +16,7 @@ interface SelectWithModalProps {
   nameModal: string;
   labelModal: string;
   placeholderModal: string;
-  userData: Record<string, string | number>;
+  data: Record<string, string | number>;
   searchFieldData: Record<string, string | number>;
   title: string;
   infoTitle: string;
@@ -37,7 +37,7 @@ function SelectWithModal(props: SelectWithModalProps) {
     labelModal,
     placeholderModal,
     searchFieldData,
-    userData,
+    data,
     title,
     infoTitle,
     labels,
@@ -100,7 +100,7 @@ function SelectWithModal(props: SelectWithModalProps) {
           infoData={searchFieldData}
           labels={labels}
           portalId={portalId}
-          searchData={userData}
+          searchData={data}
           id={idModal}
           name={nameModal}
           label={labelModal}

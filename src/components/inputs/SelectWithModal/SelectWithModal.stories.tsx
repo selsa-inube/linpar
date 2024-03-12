@@ -1,9 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { StoryFn } from "@storybook/react";
 
-// import { LinixUseCase } from "@src/pages/privileges/outlets/linixUseCase";
-// import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
-
+import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { SelectWithModal, SelectWithModalProps } from ".";
 
 const story = {
@@ -18,31 +16,8 @@ const story = {
   ],
 };
 
-const data: any = [
-  {
-    id: "11",
-    username: "David Leonardo Garzón",
-    code: "LGARZON",
-    userID: "1256545",
-    position: "Credit Analyst",
-    active: false,
-    email: "dgarzon@sistemasenlinea.com.co",
-    phone: "3123202874",
-  },
-  {
-    id: "12",
-    username: "Angie Pinilla",
-    code: "APINILLA",
-    userID: "789654",
-    position: "Adviser",
-    active: true,
-    email: "apinilla@sistemasenlinea.com.co",
-    phone: "1212145789",
-  },
-];
-
 const searchData = {
-  "Digita el nombre o numero de identificación.": "",
+  "Digita el nombre o el código del caso de uso linix.": "",
 };
 
 const Template: StoryFn<SelectWithModalProps> = (args) => (
@@ -51,18 +26,18 @@ const Template: StoryFn<SelectWithModalProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  userData: data,
+  data: linixUseCases as any,
   searchFieldData: searchData,
-  label: "Nombre",
-  name: "searchUser",
-  id: "searchUser",
-  placeholder: "Buscar usuario",
+  label: "Casos de uso linix",
+  name: "searchLinixUseCase",
+  id: "searchLinixUseCase",
+  placeholder: "Buscar caso de uso linix",
   title: "Búsqueda",
-  infoTitle: "Busca el usuario para enviar la invitación.",
+  infoTitle: "Busca el caso de uso linx.",
   idModal: "searchField",
   nameModal: "searchField",
-  labelModal: "Digita el nombre o numero de identificación.",
-  placeholderModal: "Digita el nombre o numero de identificación.",
+  labelModal: "Digita el nombre o el código del caso de uso linix.",
+  placeholderModal: "Digita el nombre o el código del caso de uso linix.",
   portalId: "portal",
   onUserSelect: () => {},
 };
