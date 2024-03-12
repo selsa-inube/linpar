@@ -5,7 +5,6 @@ import {
   Text,
   Textfield,
   Textarea,
-  //SectionMessage,
   Icon,
   Select,
   Grid,
@@ -13,7 +12,6 @@ import {
 } from "@inube/design-system";
 
 import { FormButtons } from "@components/forms/submit/FormButtons";
-//import { EMessageType } from "@types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IGeneralInformationFormProps } from ".";
 import { StyledSelectContainer } from "./styles";
@@ -48,47 +46,6 @@ const OptionSelect = [
     disabled: false,
   },
 ];
-/* 
-function renderMessages(
-  showMessage: IMessageState,
-  formInvalid: boolean,
-  handleCloseSectionMessage: GeneralInformationFormUIProps["handleCloseSectionMessage"]
-) {
-  if (!showMessage.visible) {
-    return null;
-  }
-  let messageType = EMessageType.SUCCESS;
-  if (formInvalid) {
-    messageType = EMessageType.FAILED;
-  }
-
-  const { title, description, icon, appearance } =
-    generalInfoMessages[messageType];
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          title={title}
-          description={description}
-          icon={icon}
-          appearance={appearance}
-          duration={4000}
-          closeSectionMessage={handleCloseSectionMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-} */
-
-/* function stateValue(
-  formik: GeneralInformationFormUIProps["formik"],
-  attribute: string
-) {
-  if (!formik.touched[attribute]) return "pending";
-  if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
-  return "valid";
-} */
 
 function RenderFormFields(
   formik: FormikValues,
@@ -180,8 +137,6 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     formik,
     loading,
     withSubmitButtons,
-    // showMessage,
-    // handleCloseSectionMessage,
     hasChanges,
     formInvalid,
     handleSubmitForm,

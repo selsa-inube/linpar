@@ -24,13 +24,7 @@ interface GeneralInformationFormProps {
 }
 
 function GeneralInformationForm(props: GeneralInformationFormProps) {
-  const {
-    withSubmitButtons,
-    //currentInformation,
-    handleSubmit,
-    onHasChanges,
-    readOnly,
-  } = props;
+  const { withSubmitButtons, handleSubmit, onHasChanges, readOnly } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({

@@ -97,18 +97,10 @@ export function AddRolUI(props: AddRolUIProps) {
             }
           />
 
-          {currentStep === stepsAddRol.generalInformation.id ? (
+          {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
               currentInformation={roleData[0]}
               handleSubmit={() => {}}
-            />
-          ) : (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Información general"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
             />
           )}
 
