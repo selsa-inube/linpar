@@ -5,6 +5,7 @@ import { DocumentsServiceMock } from "@mocks/privileges/documents/DocumentsServi
 import { clientServerMock } from "@mocks/privileges/client-server/client-serverServiceMock.mock";
 import { buttonOptionsMock } from "@mocks/privileges/button/buttonOptionsMock.mock";
 import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
+import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
 
 export function initializeDataDB() {
   localforage.clear();
@@ -25,4 +26,8 @@ export function initializeDataDB() {
     buttonOptionsMock
   );
   intializedData<typeof webOptionsMock[number]>("web-options", webOptionsMock);
+  intializedData<typeof linixUseCases[number]>(
+    "linix-use-cases",
+    linixUseCases
+  );
 }
