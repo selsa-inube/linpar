@@ -9,6 +9,7 @@ import { CompleteInvitation } from "@pages/privileges/outlets/users/complete-inv
 import { LinixUseCase } from "@pages/privileges/outlets/linixUseCase";
 import { Roles } from "@pages/privileges/outlets/roles";
 import { AddingLinixUseCase } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
+import { AddRol } from "@pages/privileges/outlets/assistedRoles/addRole/config";
 
 function PrivilegesRoutes() {
   return (
@@ -22,6 +23,7 @@ function PrivilegesRoutes() {
           path="linixUseCase/adding-linix-use-case"
           element={<AddingLinixUseCase />}
         />
+        <Route path="roles/add-role" element={<AddRol />} />
         <Route path="users/invite" element={<Invite />} />
         <Route path="users/edit/:user_id" element={<EditUser />} />
         <Route
