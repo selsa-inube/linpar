@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+
 import { PrivilegesOptions } from "@pages/privileges/outlets/options";
 import { Invite } from "@pages/privileges/outlets/users/invite";
 import { EditUser } from "@pages/privileges/outlets/users/edit-user";

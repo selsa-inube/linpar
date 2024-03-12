@@ -1,5 +1,11 @@
-import { useLocation } from "react-router-dom";
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { useLocation, Link } from "react-router-dom";
+import {
+  MdOutlineMoreHoriz,
+  MdPersonAddAlt,
+  MdSearch,
+  MdModeEdit,
+  MdOutlineAssignmentTurnedIn,
+} from "react-icons/md";
 import {
   Breadcrumbs,
   Button,
@@ -8,15 +14,19 @@ import {
   Textfield,
   useMediaQuery,
   Table,
+  inube,
 } from "@inube/design-system";
+
+import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
+import { DetailsModal } from "./components/DetailsModal";
 
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
+import { UseCase } from "./types";
 import { useCasesBreakPointsConfig } from "./config/useCasesTable.config";
 import { titlesOptions } from "./config/useCasesTable.config";
-import { actionsConfig } from "./config/useCasesTable.config";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
@@ -27,6 +37,8 @@ interface LinixUseCaseUIProps {
   showMenu: boolean;
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
+  linixUseCases: UseCase[];
+  loading: boolean;
 }
 
 export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
@@ -36,6 +48,8 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
+    linixUseCases,
+    loading,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -44,14 +58,58 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     (item) => item.url === location.pathname
   );
 
+  const handleClick = (id: string) => {
+    linixUseCases.find((useCase) => useCase.id === id);
+  };
+
+  const actionsConfig = [
+    {
+      id: "Details",
+      actionName: "Detalles",
+      content: ({ id }: { id: string }) => {
+        const useCase = linixUseCases.find((useCase) => useCase.id === id);
+        return useCase ? (
+          <DetailsModal
+            icon={<MdOutlineAssignmentTurnedIn />}
+            useCase={useCase}
+          />
+        ) : null;
+      },
+      type: "secondary",
+    },
+    {
+      id: "Edit",
+      actionName: "Editar",
+      content: ({ id }: { id: string }) => (
+        <Link to={`edit/${id}`} onClick={() => handleClick(id)}>
+          <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+        </Link>
+      ),
+      type: "primary",
+    },
+    {
+      id: "Delete",
+      actionName: "Eliminar",
+      content: ({ id }: { id: string }) => (
+        <DeleteUser
+          user={linixUseCases.find((useCase) => useCase.id === id)}
+          handleDeleteUser={() => {}}
+          showComplete={false}
+          closeModal={() => {}}
+        />
+      ),
+      type: "remove",
+    },
+  ];
+
   return (
     <Stack
       direction="column"
       width="-webkit-fill-available"
       padding={smallScreen ? "s300" : "s400 s800"}
     >
-      <Stack gap="48px" direction="column">
-        <Stack gap="24px" direction="column">
+      <Stack gap={inube.spacing.s600} direction="column">
+        <Stack gap={inube.spacing.s300} direction="column">
           {label && (
             <>
               <Breadcrumbs crumbs={label.crumbs} />
@@ -63,7 +121,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             </>
           )}
         </Stack>
-        <Stack gap="32px" direction="column">
+        <Stack gap={inube.spacing.s400} direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Textfield
               name="searchLinixUseCases"
@@ -103,15 +161,19 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               </Button>
             )}
           </Stack>
-          <Table
-            id="tableLinixUseCases"
-            titles={titlesOptions}
-            actions={actionsConfig}
-            entries={linixUseCases}
-            breakpoints={useCasesBreakPointsConfig}
-            filter={searchUseCase}
-            modalTitle="Caso de uso"
-          />
+          {loading ? (
+            <LoadingApp />
+          ) : (
+            <Table
+              id="tableLinixUseCases"
+              titles={titlesOptions}
+              actions={actionsConfig}
+              entries={linixUseCases}
+              breakpoints={useCasesBreakPointsConfig}
+              filter={searchUseCase}
+              modalTitle="Caso de uso"
+            />
+          )}
         </Stack>
       </Stack>
     </Stack>
