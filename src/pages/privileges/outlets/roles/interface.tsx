@@ -64,7 +64,7 @@ export function RolesUI(props: IRolesProps) {
               <PageTitle
                 title={label.label}
                 description={label.description}
-                navigatePage="/privileges/roles"
+                navigatePage="/privileges"
               />
             </>
           )}
