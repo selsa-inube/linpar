@@ -12,7 +12,7 @@ import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "../../config/usersTable.config";
-import { ActivateFormOptions } from "./ActivateUser";
+import { ActivateFormOptions } from "./ActivateFormOptions";
 import { DeleteUser } from "./DeleteUser";
 import { EditUser } from "./EditUser";
 import { IGeneralInformationEntry } from "../../types/forms.types";
