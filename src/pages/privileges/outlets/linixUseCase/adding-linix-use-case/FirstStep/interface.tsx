@@ -122,8 +122,8 @@ function RenderFormFields(
       </Stack>
 
       <Textarea
-        label="Descriptión"
-        placeholder="Enter the Use Case description..."
+        label="Descripción"
+        placeholder="Ingrese la descripción del caso de uso..."
         name="description"
         id="description"
         value={formik.values.description}
