@@ -34,5 +34,3 @@ export function ActivateFormOptions<T extends IDataActivateOption>(
     />
   );
 }
-
-//export { ActivateUser };
