@@ -1,10 +1,8 @@
-import { IGeneralInformationEntry } from "../../../types/forms.types";
+import { IDataActivateOption } from ".";
 
-interface IActivateUserModal {
-  active: IGeneralInformationEntry["active"];
-  user: IGeneralInformationEntry;
+export interface IActivateOptionModal<T extends IDataActivateOption> {
+  active: boolean;
   handleToggleModal: () => void;
-  handleActivateUser: () => void;
+  handleActivateOptions: () => void;
+  data: T;
 }
-
-export type { IActivateUserModal };

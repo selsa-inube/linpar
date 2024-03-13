@@ -12,7 +12,7 @@ import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "../../config/usersTable.config";
-import { ActivateUser } from "./ActivateUser";
+import { ActivateFormOptions } from "./ActivateUser";
 import { DeleteUser } from "./DeleteUser";
 import { EditUser } from "./EditUser";
 import { IGeneralInformationEntry } from "../../types/forms.types";
@@ -111,8 +111,8 @@ function UsersTab(props: UsersTabProps) {
       id: "1",
       actionName: "Activar",
       content: (user: IGeneralInformationEntry) => (
-        <ActivateUser
-          user={user}
+        <ActivateFormOptions<IGeneralInformationEntry>
+          data={user}
           handleActivateUser={() => handleActivateUser(user)}
           showComplete={smallScreen}
         />

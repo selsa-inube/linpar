@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import { ActivateUserUI } from "./interface";
-import { IGeneralInformationEntry } from "../../../types/forms.types";
+import { useState } from "react";
+import { ActivateFormOptionsUI } from "./interface";
 
-interface ActivateUserProps {
-  user: IGeneralInformationEntry;
-  handleActivateUser: () => void;
-  showComplete: boolean;
+export interface IDataActivateOption {
+  id: string;
+  active: boolean;
 }
 
-function ActivateUser(props: ActivateUserProps) {
-  const { user, handleActivateUser, showComplete } = props;
+interface IActivateFormOptionsProps<T extends IDataActivateOption> {
+  handleActivateUser: () => void;
+  showComplete: boolean;
+  data: T;
+}
+
+export function ActivateFormOptions<T extends IDataActivateOption>(
+  props: IActivateFormOptionsProps<T>
+) {
+  const { data, handleActivateUser, showComplete } = props;
   const [showActivateUserModal, setShowActivateUserModal] = useState(false);
 
   const handleToggleModal = () => {
@@ -17,16 +23,16 @@ function ActivateUser(props: ActivateUserProps) {
   };
 
   return (
-    <ActivateUserUI
-      active={user.active}
-      showActivateUserModal={showActivateUserModal}
-      user={user}
-      id={user.id}
+    <ActivateFormOptionsUI
+      active={data.active}
+      showActivateOptions={showActivateUserModal}
+      data={data}
+      id={data.id}
       handleToggleModal={handleToggleModal}
-      handleActivateUser={handleActivateUser}
+      handleActivateOptions={handleActivateUser}
       showComplete={showComplete}
     />
   );
 }
 
-export { ActivateUser };
+//export { ActivateUser };

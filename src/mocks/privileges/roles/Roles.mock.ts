@@ -1,4 +1,14 @@
-export const roles = [
+export interface IRole {
+  id: string;
+  k_rol: number;
+  code: number;
+  n_rol: string;
+  k_aplica: string;
+  i_activo: string;
+  active: boolean;
+}
+
+export const roles: IRole[] = [
   {
     id: "1121212",
     k_rol: 1121212,
@@ -47,7 +57,7 @@ export const roles = [
   {
     id: "1233120",
     k_rol: 1233120,
-    copde: 1233120,
+    code: 1233120,
     n_rol: "Pagos a proveedores",
     k_aplica: "Tesorería",
     i_activo: "Y",

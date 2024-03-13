@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
 import { Icon } from "@inube/design-system";
-import { roles } from "@src/mocks/privileges/roles/Roles.mock";
-import { DeleteUser } from "../../users/tabs/users/DeleteUser";
-import { ActivateUser } from "../../users/tabs/users/ActivateUser";
+import { IRole, roles } from "@src/mocks/privileges/roles/Roles.mock";
+import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
+import { ActivateFormOptions } from "@pages/privileges/outlets/users/tabs/users/ActivateUser";
 
 export const titlesOptions = [
   {
@@ -38,16 +38,20 @@ export const RolesBreakPointsConfig = [
 
 const handleClick = (id: string) => roles.find((role) => role.id === id);
 
-const handleActiuve = (id: string) => {
-  console.log("Activ", id);
-  return roles.find((role) => role.id === id);
-};
+const handleActiuve = (rolesData: IRole) =>
+  roles.find((role) => role.id === rolesData.id);
 
 export const actionsConfig = [
   {
     id: "i_activo",
     actionName: "Activo",
-    content: ({ id }) => <ActivateUser user={handleActiuve(id)} />,
+    content: (roles: IRole) => (
+      <ActivateFormOptions<IRole>
+        handleActivateUser={() => handleActiuve(roles)}
+        data={roles}
+        showComplete={false}
+      />
+    ),
     type: "secondary",
   },
   {

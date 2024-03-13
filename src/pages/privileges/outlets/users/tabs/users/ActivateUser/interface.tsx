@@ -1,22 +1,31 @@
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { Switch } from "@inube/design-system";
-import { activateUserModal } from "../../../config/activateUser.config";
-import { IActivateUserModal } from "./types";
-import { EMessageType } from "@src/types/messages.types";
-import { IGeneralInformationEntry } from "../../../types/forms.types";
 
-interface ActivateUserUIProps {
-  active: IGeneralInformationEntry["active"];
-  showActivateUserModal: boolean;
-  user: IGeneralInformationEntry;
-  id: IGeneralInformationEntry["id"];
+import { EMessageType } from "@src/types/messages.types";
+import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
+
+import { IActivateOptionModal } from "./types";
+import { IDataActivateOption } from ".";
+
+interface IctivateFormOptionsUI<T extends IDataActivateOption> {
+  active: boolean;
+  showActivateOptions: boolean;
+  id: string;
   handleToggleModal: () => void;
-  handleActivateUser: () => void;
+  handleActivateOptions: () => void;
   showComplete: boolean;
+  data: T;
 }
 
-function ActivateUserModal(props: IActivateUserModal) {
-  const { active, user, handleToggleModal, handleActivateUser } = props;
+function ActivateOptionsModal<T extends IDataActivateOption>(
+  props: IActivateOptionModal<T>
+) {
+  const {
+    active,
+    data,
+    handleToggleModal,
+    handleActivateOptions: handleActivateUser,
+  } = props;
   let messageType = EMessageType.DEACTIVATION;
   if (!active) {
     messageType = EMessageType.ACTIVATION;
@@ -29,7 +38,7 @@ function ActivateUserModal(props: IActivateUserModal) {
     <>
       <DecisionModal
         title={title}
-        description={description(user)}
+        description={description(data)}
         actionText={textAction}
         appearance={appearance}
         closeModal={handleToggleModal}
@@ -39,14 +48,16 @@ function ActivateUserModal(props: IActivateUserModal) {
   );
 }
 
-function ActivateUserUI(props: ActivateUserUIProps) {
+export function ActivateFormOptionsUI<T extends IDataActivateOption>(
+  props: IctivateFormOptionsUI<T>
+) {
   const {
     active,
-    showActivateUserModal,
-    user,
+    showActivateOptions: showActivateUserModal,
+    data,
     id,
     handleToggleModal,
-    handleActivateUser,
+    handleActivateOptions: handleActivateUser,
     showComplete,
   } = props;
 
@@ -61,14 +72,13 @@ function ActivateUserUI(props: ActivateUserUIProps) {
       />
 
       {showActivateUserModal && (
-        <ActivateUserModal
+        <ActivateOptionsModal
           active={active}
-          user={user}
+          data={data}
           handleToggleModal={handleToggleModal}
-          handleActivateUser={handleActivateUser}
+          handleActivateOptions={handleActivateUser}
         />
       )}
     </>
   );
 }
-export { ActivateUserUI };
