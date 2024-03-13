@@ -5,7 +5,7 @@ import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 import { IRole, roles } from "@src/mocks/privileges/roles/Roles.mock";
 import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
-import { ActivateFormOptions } from "@src/pages/privileges/outlets/users/tabs/users/ActivateFormOptions";
+import { ActivateFormOptions } from "@src/pages/privileges/outlets/forms/ActivateFormOptions";
 
 export const titlesOptions = [
   {
