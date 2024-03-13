@@ -107,13 +107,13 @@ function RenderFormFields(
             placeholder="Seleccione una opción"
             name="Acción Caso de Uso"
             id="Acción Caso de Uso"
-            value={formik.values.aplication}
-            type="aplication"
+            value={formik.values.actionCaseUse}
+            type="actionCaseUse"
             iconAfter={<MdOutlineModeEdit size={18} />}
             size="compact"
             fullwidth
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              formik.setFieldValue("aplication", value.target.outerText)
+              formik.setFieldValue("actionCaseUse", value.target.outerText)
             }
             onBlur={formik.handleBlur}
             options={OptionSelect}
@@ -153,7 +153,7 @@ function RenderFormFields(
           id="Opción  Web"
           label="Opción  web"
           placeholder="Seleccione una opción"
-          name="aplication"
+          name="Búsqueda"
           title="Búsqueda"
           infoTitle="Opciones web"
           idModal="searchField"

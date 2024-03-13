@@ -9,7 +9,9 @@ const LOADING_TIMEOUT = 1500;
 export interface IGeneralInformationFormProps {
   caseUseLinixName: string;
   description: string;
-  aplication: string;
+  webOptions: string;
+  ClientServerOption: string;
+  actionCaseUse: string;
 }
 
 interface GeneralInformationFormProps {
@@ -32,7 +34,9 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const initialValues: IGeneralInformationFormProps = {
     caseUseLinixName: "",
     description: "",
-    aplication: "",
+    actionCaseUse: "",
+    webOptions: "",
+    ClientServerOption: "",
   };
 
   const formik = useFormik({
