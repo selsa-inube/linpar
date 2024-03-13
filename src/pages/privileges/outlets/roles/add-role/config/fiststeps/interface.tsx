@@ -83,8 +83,8 @@ function RenderFormFields(
 
         <SearchUserCard
           id="aplication"
-          label="aplicación"
-          placeholder="seleccione una opción"
+          label="Aplicación"
+          placeholder="Seleccione una opción"
           name="aplication"
           title="Búsqueda de aplicación"
           infoTitle="Buscar la aplicación para asignar el rol."
@@ -101,7 +101,7 @@ function RenderFormFields(
 
       <Textarea
         label="Descripción"
-        placeholder="Enter product description"
+        placeholder="Ingresar descripción del rol."
         name="description"
         id="description"
         value={formik.values.description}
