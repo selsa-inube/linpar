@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useFormik } from "formik";
-
 import { EMessageType } from "@src/types/messages.types";
-
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
@@ -24,13 +21,7 @@ interface GeneralInformationFormProps {
 }
 
 function GeneralInformationForm(props: GeneralInformationFormProps) {
-  const {
-    withSubmitButtons,
-    //currentInformation,
-    handleSubmit,
-    onHasChanges,
-    readOnly,
-  } = props;
+  const { withSubmitButtons, handleSubmit, onHasChanges, readOnly } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({

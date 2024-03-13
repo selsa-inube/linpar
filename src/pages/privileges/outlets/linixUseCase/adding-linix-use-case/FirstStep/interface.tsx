@@ -103,10 +103,10 @@ function RenderFormFields(
         />
         <StyledSelectContainer>
           <Select
-            label="Accion caso de uso"
+            label="Acción caso de uso"
             placeholder="Seleccione una opción"
-            name="Accion Caso de Uso"
-            id="Accion Caso de Uso"
+            name="Acción Caso de Uso"
+            id="Acción Caso de Uso"
             value={formik.values.aplication}
             type="aplication"
             iconAfter={<MdOutlineModeEdit size={18} />}
@@ -122,8 +122,8 @@ function RenderFormFields(
       </Stack>
 
       <Textarea
-        label="Descripción"
-        placeholder="Enter the Use Case description"
+        label="Descriptión"
+        placeholder="Enter the Use Case description..."
         name="description"
         id="description"
         value={formik.values.description}
@@ -150,15 +150,15 @@ function RenderFormFields(
           </Stack>
         )}
         <SearchUserCard
-          id="Opciones Web"
-          label="Opciones web"
-          placeholder="seleccione una opción"
+          id="Opción  Web"
+          label="Opción  web"
+          placeholder="Seleccione una opción"
           name="aplication"
-          title="Búsqueda de la opción web"
-          infoTitle="Buscar caso de uso."
+          title="Búsqueda"
+          infoTitle="Opciones web"
           idModal="searchField"
           nameModal="searchField"
-          labelModal="Digite el código o nombre del caso de uso."
+          labelModal="Digite la opción a buscar."
           placeholderModal="Digite el código o nombre del caso de uso."
           onUserSelect={() => {}}
           userData={OptionSelectSearch}
@@ -167,15 +167,15 @@ function RenderFormFields(
         />
       </Stack>
       <SearchUserCard
-        id="Opcion cliente servidor"
-        label="Opcion cliente servidor"
+        id="Opción cliente servidor"
+        label="Opción cliente servidor"
         placeholder="Seleccione una opción"
         name="Opcion Cliente Servidor"
-        title="Búsqueda de cliente servidor"
-        infoTitle="Buscar caso de uso."
+        title="Búsqueda"
+        infoTitle="Opción cliente servidor"
         idModal="searchField"
         nameModal="searchField"
-        labelModal="Digite el código o nombre del caso de uso."
+        labelModal="Digite la opción a buscar."
         placeholderModal="Digite el código o nombre del caso de uso."
         onUserSelect={() => {}}
         userData={OptionSelectSearch}
