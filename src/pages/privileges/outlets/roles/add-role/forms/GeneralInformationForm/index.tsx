@@ -24,7 +24,11 @@ interface GeneralInformationFormProps {
 
 function GeneralInformationForm(props: GeneralInformationFormProps) {
   const {
-    initialValues,
+    initialValues = {
+      roleName: "",
+      description: "",
+      aplication: "",
+    },
     withSubmitButtons,
     handleSubmit,
     onHasChanges,
@@ -35,34 +39,27 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [formInvalid, setFormInvalid] = useState(false);
 
-  console.log(initialValues, "initialValues");
+  function onSubmit() {
+    setLoading(true);
+    setTimeout(() => {
+      handleSubmit(formik.values);
 
-  /*  const initialValues: IGeneralInformationFormProps = {
-    roleName: "",
-    description: "",
-    aplication: "",
-  };
- */
+      setLoading(false);
+      setShowMessage({
+        visible: true,
+        type: EMessageType.SUCCESS,
+      });
+    }, LOADING_TIMEOUT);
+  }
+
   const formik = useFormik({
     initialValues,
     validateOnChange: false,
     onReset: () => {
       if (onHasChanges) onHasChanges(false);
     },
-    onSubmit: () => {
-      setLoading(true);
-      setTimeout(() => {
-        handleSubmit(formik.values);
-        setFormInvalid(false);
-        setLoading(false);
-        setShowMessage({
-          visible: true,
-          type: EMessageType.SUCCESS,
-        });
-      }, LOADING_TIMEOUT);
-    },
+    onSubmit,
   });
 
   const handleSubmitForm = () => {
@@ -72,7 +69,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
           visible: true,
           type: EMessageType.FAILED,
         });
-        setFormInvalid(true);
       }
       formik.handleSubmit();
     });
@@ -81,7 +77,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-  const handleChangeForm = async (
+  /*   const handleChangeForm = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const formikValues = {
@@ -100,7 +96,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     } catch (errors) {
       return errors;
     }
-  };
+  }; */
 
   const handleCloseSectionMessage = () => {
     setShowMessage({
@@ -116,9 +112,9 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       withSubmitButtons={withSubmitButtons}
       handleCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      formInvalid={formInvalid}
+      formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
-      handleChangeForm={handleChangeForm}
+      handleChangeForm={formik.handleChange}
       readOnly={readOnly}
     />
   );
