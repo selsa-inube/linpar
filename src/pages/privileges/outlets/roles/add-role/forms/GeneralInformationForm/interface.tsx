@@ -29,7 +29,7 @@ interface GeneralInformationFormUIProps {
 }
 
 const searchData = {
-  "Digita el nombre o numero de identificación.": "",
+  "Digite el código o nombre de la aplicación.": "",
 };
 
 const OptionSelect: Record<string, string>[] = [
