@@ -16,14 +16,20 @@ export interface IGeneralInformationFormProps {
 
 interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
-  currentInformation: IGeneralInformationFormProps;
+  initialValues: IGeneralInformationFormProps;
   handleSubmit: (values: IGeneralInformationFormProps) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
 
 function GeneralInformationForm(props: GeneralInformationFormProps) {
-  const { withSubmitButtons, handleSubmit, onHasChanges, readOnly } = props;
+  const {
+    initialValues,
+    withSubmitButtons,
+    handleSubmit,
+    onHasChanges,
+    readOnly,
+  } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({
@@ -31,12 +37,14 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   });
   const [formInvalid, setFormInvalid] = useState(false);
 
-  const initialValues: IGeneralInformationFormProps = {
+  console.log(initialValues, "initialValues");
+
+  /*  const initialValues: IGeneralInformationFormProps = {
     roleName: "",
     description: "",
     aplication: "",
   };
-
+ */
   const formik = useFormik({
     initialValues,
     validateOnChange: false,

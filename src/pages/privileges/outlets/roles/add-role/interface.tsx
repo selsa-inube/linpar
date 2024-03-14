@@ -7,8 +7,6 @@ import {
   inube,
 } from "@inube/design-system";
 
-import { roles } from "@mocks/privileges/roles/Roles.mock";
-
 import itemNotFound from "@assets/images/ItemNotFound.png";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
@@ -19,7 +17,6 @@ import {
   finishAssistedRolModalConfig,
   stepsAddRol,
 } from "./config/addRol.config";
-
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 
 interface AddRolUIProps {
@@ -31,11 +28,11 @@ interface AddRolUIProps {
   showModal: boolean;
 }
 
-const roleData = roles.map((rol) => ({
-  roleName: rol.n_rol,
-  description: rol.n_rol,
-  aplication: rol.k_aplica,
-}));
+const roleData = {
+  roleName: "",
+  description: "",
+  aplication: "",
+};
 
 function finishModal(
   handleCloseModal: () => void,
@@ -100,7 +97,7 @@ export function AddRolUI(props: AddRolUIProps) {
 
           {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
-              currentInformation={roleData[0]}
+              initialValues={roleData}
               handleSubmit={() => {}}
             />
           )}
