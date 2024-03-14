@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useFormik } from "formik";
 
 import { EMessageType } from "@src/types/messages.types";
-
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { GeneralInformationFormUI } from "./interface";

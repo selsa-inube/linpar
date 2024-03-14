@@ -20,7 +20,7 @@ import {
   stepsAddRol,
 } from "./config/addRol.config";
 
-import { GeneralInformationForm } from "./config/GeneralInformationForm";
+import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;
