@@ -10,13 +10,12 @@ import {
   Grid,
   useMediaQuery,
 } from "@inube/design-system";
-
 import { FormButtons } from "@components/forms/submit/FormButtons";
-
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IGeneralInformationFormProps } from ".";
 import { StyledSelectContainer } from "./styles";
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
+import { OptionSelect } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -29,50 +28,21 @@ interface GeneralInformationFormUIProps {
   handleSubmitForm: () => void;
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
+  linixUseCases: Record<string, unknown>[];
+  webOptions: Record<string, unknown>[];
 }
 
 const searchData = {
-  "Digita el nombre o numero de identificación.": "",
+  "Digite el código o nombre de la aplicación:.": "",
 };
-
-const OptionSelectSearch: Record<string, string>[] = [
-  {
-    username: "diferidos",
-    userID: "diferidos",
-  },
-  {
-    username: "pagos",
-    userID: "pagos",
-  },
-  {
-    username: "SIG",
-    userID: "SIG",
-  },
-];
-
-const OptionSelect = [
-  {
-    id: "Insertar",
-    label: "Insertar",
-    disabled: false,
-  },
-  {
-    id: "Modificar",
-    label: "Modificar",
-    disabled: false,
-  },
-  {
-    id: "Eliminar",
-    label: "Eliminar",
-    disabled: false,
-  },
-];
 
 function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  linixUseCases: Record<string, unknown>[],
+  webOptions: Record<string, unknown>[],
   readOnly?: boolean
 ) {
   const mediaQuerie = "(max-width: 744px)";
@@ -160,10 +130,12 @@ function RenderFormFields(
           nameModal="searchField"
           labelModal="Digite la opción a buscar."
           placeholderModal="Digite el código o nombre del caso de uso."
-          onUserSelect={() => {}}
-          userData={OptionSelectSearch}
+          userData={webOptions}
           searchFieldData={searchData}
           onReset={() => {}}
+          idLabel="K_opcion"
+          nameLabel="Nombre_opcion"
+          onUserSelect={() => {}}
         />
       </Stack>
       <SearchUserCard
@@ -178,8 +150,10 @@ function RenderFormFields(
         labelModal="Digite la opción a buscar."
         placeholderModal="Digite el código o nombre del caso de uso."
         onUserSelect={() => {}}
-        userData={OptionSelectSearch}
+        userData={linixUseCases}
         searchFieldData={searchData}
+        idLabel="CODIGO_OPCION"
+        nameLabel="DESCRIPCION"
         onReset={() => {}}
       />
     </Grid>
@@ -196,6 +170,8 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     handleSubmitForm,
     handleChangeForm,
     readOnly,
+    linixUseCases,
+    webOptions,
   } = props;
 
   if (withSubmitButtons) {
@@ -207,7 +183,14 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
-          {RenderFormFields(formik, loading, formInvalid, handleChangeForm)}
+          {RenderFormFields(
+            formik,
+            loading,
+            formInvalid,
+            handleChangeForm,
+            linixUseCases,
+            webOptions
+          )}
         </FormButtons>
       </>
     );
@@ -220,6 +203,8 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         loading,
         formInvalid,
         handleChangeForm,
+        linixUseCases,
+        webOptions,
         readOnly
       )}
     </>

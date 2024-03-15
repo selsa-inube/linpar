@@ -3,13 +3,11 @@ import {
   Breadcrumbs,
   Stack,
   useMediaQuery,
-  Button,
+  inube,
 } from "@inube/design-system";
-
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
-
 import {
   CrateLinixUseCaseConfig,
   finishAssistedModalConfig,
@@ -17,9 +15,7 @@ import {
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
 import itemNotFound from "@src/assets/images/ItemNotFound.png";
-
-import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
-import { GeneralInformationForm } from "./FirstStep";
+import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -50,12 +46,6 @@ interface AddingLinixUseCaseUIProps {
   showModal: boolean;
 }
 
-const caseUseLinixData = linixUseCases.map((linixUseCases) => ({
-  caseUseLinixName: linixUseCases.n_usecase,
-  description: linixUseCases.n_descrip,
-  aplication: linixUseCases.i_tipusec,
-}));
-
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
     currentStep,
@@ -67,20 +57,16 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  const onClick = () => {
-    handleNextStep(currentStep);
-  };
-
   return (
-    <Stack
-      direction="column"
-      padding={smallScreen ? "s200" : "s400 s800"}
-      gap="32px"
-    >
-      <Stack gap="48px" direction="column">
-        <Stack gap="32px" direction="column">
+    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+      <Stack gap={inube.spacing.s600} direction="column">
+        <Stack gap={inube.spacing.s400} direction="column">
           <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
-          <Stack justifyContent="space-between" alignItems="center" gap="50px">
+          <Stack
+            justifyContent="space-between"
+            alignItems="center"
+            gap={inube.spacing.s650}
+          >
             <PageTitle
               title={CrateLinixUseCaseConfig[0].title}
               description={CrateLinixUseCaseConfig[0].description}
@@ -104,8 +90,8 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
 
           {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
             <GeneralInformationForm
-              currentInformation={caseUseLinixData[0]}
-              handleSubmit={() => {}}
+              handleSubmit={() => handleNextStep(currentStep)}
+              withSubmitButtons
             />
           )}
           {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
@@ -172,14 +158,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             />
           )}
         </>
-      </Stack>
-      <Stack justifyContent="flex-end" whith="100%" gap="12px">
-        <Button appearance="primary" type="submit" disabled>
-          Atras
-        </Button>
-        <Button appearance="primary" type="submit" onClick={onClick}>
-          Continuar
-        </Button>
       </Stack>
       {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
     </Stack>

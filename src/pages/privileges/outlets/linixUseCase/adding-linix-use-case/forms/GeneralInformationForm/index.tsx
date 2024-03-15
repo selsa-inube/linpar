@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { getData } from "@mocks/utils/dataMuck.service";
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
@@ -16,28 +17,70 @@ export interface IGeneralInformationFormProps {
 
 interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
-  currentInformation: IGeneralInformationFormProps;
+  initialValues?: IGeneralInformationFormProps;
   handleSubmit: (values: IGeneralInformationFormProps) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
 
 function GeneralInformationForm(props: GeneralInformationFormProps) {
-  const { withSubmitButtons, handleSubmit, onHasChanges, readOnly } = props;
+  const {
+    initialValues = {
+      caseUseLinixName: "",
+      description: "",
+      actionCaseUse: "",
+      webOptions: "",
+      ClientServerOption: "",
+    },
+    withSubmitButtons,
+    handleSubmit,
+    onHasChanges,
+    readOnly,
+  } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [formInvalid, setFormInvalid] = useState(false);
+  const [linixUseCases, setLinixUseCases] = useState<Record<string, unknown>[]>(
+    []
+  );
+  const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
 
-  const initialValues: IGeneralInformationFormProps = {
-    caseUseLinixName: "",
-    description: "",
-    actionCaseUse: "",
-    webOptions: "",
-    ClientServerOption: "",
-  };
+  useEffect(() => {
+    getData("clients-server")
+      .then((data) => {
+        if (data !== null) {
+          setLinixUseCases(data as Record<string, unknown>[]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching linix-use-cases:", error.message);
+      });
+
+    getData("web-options")
+      .then((data) => {
+        if (data !== null) {
+          setWebOptions(data as Record<string, unknown>[]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching web-options:", error.message);
+      });
+  }, []);
+
+  function onSubmit() {
+    setLoading(true);
+    setTimeout(() => {
+      handleSubmit(formik.values);
+
+      setLoading(false);
+      setShowMessage({
+        visible: true,
+        type: EMessageType.SUCCESS,
+      });
+    }, LOADING_TIMEOUT);
+  }
 
   const formik = useFormik({
     initialValues,
@@ -45,18 +88,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     onReset: () => {
       if (onHasChanges) onHasChanges(false);
     },
-    onSubmit: () => {
-      setLoading(true);
-      setTimeout(() => {
-        handleSubmit(formik.values);
-        setFormInvalid(false);
-        setLoading(false);
-        setShowMessage({
-          visible: true,
-          type: EMessageType.SUCCESS,
-        });
-      }, LOADING_TIMEOUT);
-    },
+    onSubmit,
   });
 
   const handleSubmitForm = () => {
@@ -66,7 +98,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
           visible: true,
           type: EMessageType.FAILED,
         });
-        setFormInvalid(true);
       }
       formik.handleSubmit();
     });
@@ -74,27 +105,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
 
   const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
-
-  const handleChangeForm = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const formikValues = {
-      ...formik.values,
-      [event.target.name]: event.target.value,
-    };
-
-    if (onHasChanges) onHasChanges(hasChanges(formikValues));
-    try {
-      await formik.setFieldValue(event.target.name, event.target.value);
-      if (withSubmitButtons) return;
-      const errors = await formik.validateForm();
-      if (!errors || Object.keys(errors).length === 0) {
-        handleSubmit(formikValues);
-      }
-    } catch (errors) {
-      return errors;
-    }
-  };
 
   const handleCloseSectionMessage = () => {
     setShowMessage({
@@ -110,10 +120,12 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       withSubmitButtons={withSubmitButtons}
       handleCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
-      formInvalid={formInvalid}
+      formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
-      handleChangeForm={handleChangeForm}
+      handleChangeForm={formik.handleChange}
       readOnly={readOnly}
+      linixUseCases={linixUseCases}
+      webOptions={webOptions}
     />
   );
 }
