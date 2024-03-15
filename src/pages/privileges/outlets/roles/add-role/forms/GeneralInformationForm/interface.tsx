@@ -12,8 +12,9 @@ import {
 
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { IGeneralInformationFormProps } from ".";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
+
+import { IGeneralInformationFormProps } from ".";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -26,32 +27,19 @@ interface GeneralInformationFormUIProps {
   handleSubmitForm: () => void;
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
+  linixUseCases: Record<string, unknown>[];
 }
 
 const searchData = {
   "Digite el código o nombre de la aplicación.": "",
 };
 
-const OptionSelect: Record<string, string>[] = [
-  {
-    username: "diferidos",
-    userID: "diferidos",
-  },
-  {
-    username: "pagos",
-    userID: "pagos",
-  },
-  {
-    username: "SIG",
-    userID: "SIG",
-  },
-];
-
 function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  linixUseCases: Record<string, unknown>[],
   readOnly?: boolean
 ) {
   const mediaQuerie = "(max-width: 744px)";
@@ -93,9 +81,11 @@ function RenderFormFields(
           labelModal="Digite el código o nombre de la aplicación."
           placeholderModal="Digite el código o nombre de la aplicación."
           onUserSelect={() => {}}
-          userData={OptionSelect}
+          userData={linixUseCases}
           searchFieldData={searchData}
           onReset={() => {}}
+          idLabel="k_usecase"
+          nameLabel="n_usecase"
         />
       </Stack>
 
@@ -142,6 +132,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     handleSubmitForm,
     handleChangeForm,
     readOnly,
+    linixUseCases,
   } = props;
 
   if (withSubmitButtons) {
@@ -153,7 +144,13 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
-          {RenderFormFields(formik, loading, formInvalid, handleChangeForm)}
+          {RenderFormFields(
+            formik,
+            loading,
+            formInvalid,
+            handleChangeForm,
+            linixUseCases
+          )}
         </FormButtons>
       </>
     );
@@ -166,6 +163,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         loading,
         formInvalid,
         handleChangeForm,
+        linixUseCases,
         readOnly
       )}
     </>

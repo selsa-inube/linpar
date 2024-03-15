@@ -22,7 +22,7 @@ export const linixUseCases = [
   {
     id: "13",
     n_usecase: "Aprobar Créditos de alto monto",
-    k_usecase: "131232",
+    k_usecase: "131233",
     n_descrip: "Explicacion prospectos de credito",
     i_tipusec: "Insertar",
     a_publicc: "12112312",
@@ -32,7 +32,7 @@ export const linixUseCases = [
   {
     id: "14",
     n_usecase: "Aprobar Créditos de bajo monto",
-    k_usecase: "131232",
+    k_usecase: "131234",
     n_descrip: "Explicacion prospectos de credito",
     i_tipusec: "Eliminar",
     a_publicc: "12112312",
@@ -42,7 +42,7 @@ export const linixUseCases = [
   {
     id: "15",
     n_usecase: "Atender movimientos de caja",
-    k_usecase: "131232",
+    k_usecase: "131235",
     n_descrip: "Explicacion prospectos de credito",
     i_tipusec: "Insertar",
     a_publicc: "12112312",
@@ -52,7 +52,7 @@ export const linixUseCases = [
   {
     id: "16",
     n_usecase: "Registrar Movimientos",
-    k_usecase: "131232",
+    k_usecase: "131236",
     n_descrip: "Explicacion prospectos de credito",
     i_tipusec: "Insertar",
     a_publicc: "12112312",

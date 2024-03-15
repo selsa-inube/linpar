@@ -10,7 +10,7 @@ import {
 } from "@inube/design-system";
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
-import { Key, SetStateAction, useState } from "react";
+import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 
 const InteractiveModal = ({
@@ -30,6 +30,8 @@ const InteractiveModal = ({
   searchData,
   divider,
   onClick,
+  idLabel = "userID",
+  nameLabel = "username",
 }: InteractiveModalProps) => {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const hasActions = actions.length > 0;
@@ -45,9 +47,9 @@ const InteractiveModal = ({
 
   const filteredSearchData = filterText
     ? searchData.filter(
-        (data: { username: string; userID: string }) =>
-          data.username.toLowerCase().includes(filterText.toLowerCase()) ||
-          data.userID.toLowerCase().includes(filterText.toLowerCase())
+        (data: { [key: string]: string }) =>
+          data[nameLabel].toLowerCase().includes(filterText.toLowerCase()) ||
+          data[idLabel].toLowerCase().includes(filterText.toLowerCase())
       )
     : searchData;
 
@@ -130,18 +132,16 @@ const InteractiveModal = ({
                 />
                 {filterText &&
                   filteredSearchData &&
-                  filteredSearchData.map(
-                    (data: {
-                      id: Key | null | undefined;
-                      username: string;
-                    }) => (
-                      <SubjectSearchCard
-                        key={data.id}
-                        subjectSearchData={data}
-                        onClick={() => onClick(data)}
-                      />
-                    )
-                  )}
+                  filteredSearchData.map((data: { [key: string]: string }) => (
+                    <SubjectSearchCard
+                      key={data[idLabel]}
+                      subjectSearchData={{
+                        id: data[idLabel],
+                        name: data[nameLabel],
+                      }}
+                      onClick={() => onClick(data)}
+                    />
+                  ))}
               </>
             )}
           </Stack>
