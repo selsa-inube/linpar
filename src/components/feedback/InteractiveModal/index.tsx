@@ -10,7 +10,7 @@ import {
 } from "@inube/design-system";
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
-import { Key, SetStateAction, useState } from "react";
+import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 
 const InteractiveModal = ({
@@ -132,18 +132,16 @@ const InteractiveModal = ({
                 />
                 {filterText &&
                   filteredSearchData &&
-                  filteredSearchData.map(
-                    (data: {
-                      id: Key | null | undefined;
-                      username: string;
-                    }) => (
-                      <SubjectSearchCard
-                        key={data.id}
-                        subjectSearchData={data}
-                        onClick={() => onClick(data)}
-                      />
-                    )
-                  )}
+                  filteredSearchData.map((data: any) => (
+                    <SubjectSearchCard
+                      key={data[idLabel]}
+                      subjectSearchData={{
+                        id: data[idLabel],
+                        name: data[nameLabel],
+                      }}
+                      onClick={() => onClick(data)}
+                    />
+                  ))}
               </>
             )}
           </Stack>

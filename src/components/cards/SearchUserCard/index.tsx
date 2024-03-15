@@ -21,6 +21,8 @@ interface SearchUserCardProps {
   labels?: ILabel[];
   onUserSelect: (data: Record<string, string | number>) => void;
   onReset: (field: () => void) => void;
+  idLabel?: string;
+  nameLabel?: string;
 }
 
 function SearchUserCard(props: SearchUserCardProps) {
@@ -40,6 +42,8 @@ function SearchUserCard(props: SearchUserCardProps) {
     labels,
     onUserSelect,
     onReset,
+    idLabel = "userID",
+    nameLabel = "username",
   } = props;
   const [showModal, setShowModal] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState("");
@@ -61,7 +65,7 @@ function SearchUserCard(props: SearchUserCardProps) {
 
   const handleUserSelect = (data: Record<string, string>) => {
     if (data && data.username) {
-      setSelectedUsername(data.username);
+      setSelectedUsername(data[nameLabel]);
     }
     onUserSelect(data);
     handleToggleModal();
@@ -104,6 +108,8 @@ function SearchUserCard(props: SearchUserCardProps) {
           divider
           type="search"
           onClick={handleUserSelect}
+          idLabel={idLabel}
+          nameLabel={nameLabel}
         />
       )}
     </>

@@ -39,7 +39,7 @@ function SubjectSearchCard(props: SubjectSearchCardProps) {
         <Stack justifyContent={"start"} gap={"8px"} padding={"s100 s200"}>
           <Stack direction="column">
             <Text type="label" size="medium" textAlign="start">
-              {Object.values(subjectSearchData)[3]}
+              {Object.values(subjectSearchData)[0]}
             </Text>
             <Text size="medium" textAlign="start">
               {Object.values(subjectSearchData)[1]}
