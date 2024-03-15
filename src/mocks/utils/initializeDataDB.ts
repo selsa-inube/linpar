@@ -1,6 +1,6 @@
 import localforage from "localforage";
 
-import { intializedData } from "@mocks/utils/dataMuck.service";
+import { intializedData } from "@src/mocks/utils/dataMock.service";
 import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 import { DocumentsServiceMock } from "@mocks/privileges/documents/DocumentsServiceMock.mock";
 import { clientServerMock } from "@mocks/privileges/client-server/client-serverServiceMock.mock";
