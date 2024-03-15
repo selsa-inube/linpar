@@ -1,3 +1,5 @@
+import { IRol } from "@pages/privileges/outlets/roles/types";
+
 export const roles = [
   {
     id: "1121212",
@@ -160,5 +162,85 @@ export const roles = [
     k_aplica: "Generales",
     i_activo: "Y",
     active: true,
+  },
+];
+
+export const mockRoles: IRol[] = [
+  {
+    i_Activo: "Y",
+    k_Rol: "1121212",
+    k_Tipcon: "1121212",
+    n_Rol: "Gestor Comercial de Servicio al cliente",
+    n_Uso: "Crédito y Cartera",
+  },
+  {
+    i_Activo: "Y",
+    k_Rol: "23123213",
+    k_Tipcon: "23123213",
+    n_Rol: "Analista de Crédito",
+    n_Uso: "Crédito y Cartera",
+  },
+  {
+    i_Activo: "Y",
+    k_Rol: "3123213",
+    k_Tipcon: "3123213",
+    n_Rol: "Grerente de Credito",
+    n_Uso: "Crédito y Cartera",
+  },
+  {
+    i_Activo: "Y",
+    k_Rol: "1233127",
+    k_Tipcon: "1233127",
+    n_Rol: "Cajero",
+    n_Uso: "Tesorería",
+  },
+  {
+    i_Activo: "N",
+    k_Rol: "1233128",
+    k_Tipcon: "1233128",
+    n_Rol: "Jefe de Tesorería",
+    n_Uso: "Tesorería",
+  },
+  {
+    i_Activo: "Y",
+    k_Rol: "1233120",
+    k_Tipcon: "1233120",
+    n_Rol: "Pagos a proveedores",
+    n_Uso: "Tesorería",
+  },
+  {
+    i_Activo: "N",
+    k_Rol: "1233122",
+    k_Tipcon: "1233122",
+    n_Rol: "Pagos de nómina",
+    n_Uso: "Tesorería",
+  },
+  {
+    i_Activo: "Y",
+    k_Rol: "1233124",
+    k_Tipcon: "1233124",
+    n_Rol: "Auxiliar de Activos fijos",
+    n_Uso: "Tesorería",
+  },
+  {
+    i_Activo: "Y",
+    k_Rol: "1233125",
+    k_Tipcon: "1233125",
+    n_Rol: "Auxiliar de Inversiones",
+    n_Uso: "Activos Fijos",
+  },
+  {
+    i_Activo: "N",
+    k_Rol: "1233112",
+    k_Tipcon: "1233112",
+    n_Rol: "Causaciones de Obligaciones por pagar",
+    n_Uso: "Inversiones",
+  },
+  {
+    i_Activo: "Y",
+    k_Rol: "26594581",
+    k_Tipcon: "26594581",
+    n_Rol: "Compra de activos fijos",
+    n_Uso: "Contabilidad",
   },
 ];

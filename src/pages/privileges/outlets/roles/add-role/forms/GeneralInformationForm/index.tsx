@@ -14,7 +14,7 @@ export interface IGeneralInformationFormProps {
   aplication: string;
 }
 
-interface GeneralInformationFormProps {
+export interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
   initialValues?: IGeneralInformationFormProps;
   handleSubmit: (values: IGeneralInformationFormProps) => void;
@@ -100,4 +100,3 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
 }
 
 export { GeneralInformationForm };
-export type { GeneralInformationFormProps };
