@@ -52,9 +52,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       })
       .catch((error) => {
         console.info(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   }, []);
 
