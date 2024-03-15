@@ -34,8 +34,7 @@ export const linixUseCases = [
     n_usecase: "Aprobar Créditos de bajo monto",
     k_usecase: "131234",
     n_descrip: "Explicacion prospectos de credito",
-    i_tipusec: "Eliminar",
-    a_publicc: "12112312",
+    i_tipusec: "Modificar",
     n_camprv: "GGRGRPARAMETRO_0",
   },
 
