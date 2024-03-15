@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+
 import { PrivilegesOptions } from "@pages/privileges/outlets/options";
 import { Invite } from "@pages/privileges/outlets/users/invite";
 import { EditUser } from "@pages/privileges/outlets/users/edit-user";
@@ -9,7 +10,7 @@ import { CompleteInvitation } from "@pages/privileges/outlets/users/complete-inv
 import { LinixUseCase } from "@pages/privileges/outlets/linixUseCase";
 import { Roles } from "@pages/privileges/outlets/roles";
 import { AddingLinixUseCase } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
-import { AddRol } from "@pages/privileges/outlets/assistedRoles/addRole/config";
+import { AddRol } from "@pages/privileges/outlets/roles/add-role";
 
 function PrivilegesRoutes() {
   return (

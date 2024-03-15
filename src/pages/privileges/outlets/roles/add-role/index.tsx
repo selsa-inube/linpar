@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { AddRolUI } from "./interface";
-import { stepsAddRol } from "./addRol.config";
+import { stepsAddRol } from "./config/addRol.config";
 
 export function AddRol() {
   const [currentStep, setCurrentStep] = useState<number>(

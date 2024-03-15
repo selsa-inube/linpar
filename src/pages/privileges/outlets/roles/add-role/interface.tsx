@@ -5,16 +5,18 @@ import {
   useMediaQuery,
   inube,
 } from "@inube/design-system";
-import itemNotFound from "@src/assets/images/ItemNotFound.png";
 
+import itemNotFound from "@assets/images/ItemNotFound.png";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
+
 import {
   createRolConfig,
   finishAssistedRolModalConfig,
   stepsAddRol,
-} from "./addRol.config";
+} from "./config/addRol.config";
+import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;
@@ -70,7 +72,7 @@ export function AddRolUI(props: AddRolUIProps) {
             <PageTitle
               title={createRolConfig[0].title}
               description={createRolConfig[0].description}
-              navigatePage="/privileges/linixUseCase"
+              navigatePage="/privileges/roles"
             />
           </Stack>
         </Stack>
@@ -87,14 +89,12 @@ export function AddRolUI(props: AddRolUIProps) {
           />
 
           {currentStep === stepsAddRol.generalInformation.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Información general"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
+            <GeneralInformationForm
+              handleSubmit={() => handleNextStep(currentStep)}
+              withSubmitButtons
             />
           )}
+
           {currentStep === stepsAddRol.auxiliaryAccounts.id && (
             <ItemNotFound
               image={itemNotFound}
@@ -152,6 +152,7 @@ export function AddRolUI(props: AddRolUIProps) {
           )}
         </>
       </Stack>
+
       {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
     </Stack>
   );
