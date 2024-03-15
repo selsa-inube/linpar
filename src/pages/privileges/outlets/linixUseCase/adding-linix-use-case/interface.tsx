@@ -5,16 +5,18 @@ import {
   useMediaQuery,
   inube,
 } from "@inube/design-system";
+
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
+import itemNotFound from "@src/assets/images/ItemNotFound.png";
+
 import {
   CrateLinixUseCaseConfig,
   finishAssistedModalConfig,
   stepsAddingLinixUseCase,
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
-import itemNotFound from "@src/assets/images/ItemNotFound.png";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 
 function finishModal(

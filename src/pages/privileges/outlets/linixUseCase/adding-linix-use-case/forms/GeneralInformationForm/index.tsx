@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
+
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { getData } from "@mocks/utils/dataMuck.service";
+
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
