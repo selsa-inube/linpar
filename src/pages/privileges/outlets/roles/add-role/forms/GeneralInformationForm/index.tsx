@@ -4,7 +4,6 @@ import { useFormik } from "formik";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { getData } from "@mocks/utils/dataMuck.service";
-import { UseCase } from "@pages/privileges/outlets/linixUseCase/types";
 
 import { GeneralInformationFormUI } from "./interface";
 
@@ -41,13 +40,15 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [linixUseCases, setLinixUseCases] = useState<UseCase[]>([]);
+  const [linixUseCases, setLinixUseCases] = useState<Record<string, unknown>[]>(
+    []
+  );
 
   useEffect(() => {
     getData("linix-use-cases")
       .then((data) => {
         if (data !== null) {
-          setLinixUseCases(data as UseCase[]);
+          setLinixUseCases(data as Record<string, unknown>[]);
         }
       })
       .catch((error) => {

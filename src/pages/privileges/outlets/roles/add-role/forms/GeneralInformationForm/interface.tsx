@@ -15,7 +15,7 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 
 import { IGeneralInformationFormProps } from ".";
-import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
+
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   loading: boolean;
@@ -27,7 +27,7 @@ interface GeneralInformationFormUIProps {
   handleSubmitForm: () => void;
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
-  linixUseCases: UseCase[];
+  linixUseCases: Record<string, unknown>[];
 }
 
 const searchData = {
@@ -39,7 +39,7 @@ function RenderFormFields(
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  linixUseCases: UseCase[],
+  linixUseCases: Record<string, unknown>[],
   readOnly?: boolean
 ) {
   const mediaQuerie = "(max-width: 744px)";
