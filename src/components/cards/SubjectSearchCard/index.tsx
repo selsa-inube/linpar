@@ -1,5 +1,5 @@
 import { Stack, Text, useMediaQuery } from "@inube/design-system";
-import { Key, useState } from "react";
+import { useState } from "react";
 import { StyledSubjectSearchCard } from "./styles";
 
 interface SubjectSearchCardProps {
