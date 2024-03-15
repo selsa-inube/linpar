@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { getData } from "@mocks/utils/dataMuck.service";
+import { UseCase } from "@pages/privileges/outlets/linixUseCase/types";
 
 import { GeneralInformationFormUI } from "./interface";
 
@@ -39,6 +41,22 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
+  const [linixUseCases, setLinixUseCases] = useState<UseCase[]>([]);
+
+  useEffect(() => {
+    getData("linix-use-cases")
+      .then((data) => {
+        if (data !== null) {
+          setLinixUseCases(data as UseCase[]);
+        }
+      })
+      .catch((error) => {
+        console.info(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   function onSubmit() {
     setLoading(true);
@@ -95,6 +113,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={formik.handleChange}
       readOnly={readOnly}
+      linixUseCases={linixUseCases}
     />
   );
 }

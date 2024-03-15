@@ -12,9 +12,10 @@ import {
 
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { IGeneralInformationFormProps } from ".";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 
+import { IGeneralInformationFormProps } from ".";
+import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   loading: boolean;
@@ -26,36 +27,49 @@ interface GeneralInformationFormUIProps {
   handleSubmitForm: () => void;
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
+  linixUseCases: UseCase[];
 }
 
 const searchData = {
   "Digite el código o nombre de la aplicación.": "",
 };
 
-const OptionSelect: Record<string, string>[] = [
+const data: any = [
   {
-    username: "diferidos",
-    userID: "diferidos",
+    id: "11",
+    username: "David Leonardo Garzón",
+    code: "LGARZON",
+    userID: "1256545",
+    position: "Credit Analyst",
+    active: false,
+    email: "dgarzon@sistemasenlinea.com.co",
+    phone: "3123202874",
   },
   {
-    username: "pagos",
-    userID: "pagos",
-  },
-  {
-    username: "SIG",
-    userID: "SIG",
+    id: "12",
+    username: "Angie Pinilla",
+    code: "APINILLA",
+    userID: "789654",
+    position: "Adviser",
+    active: true,
+    email: "apinilla@sistemasenlinea.com.co",
+    phone: "1212145789",
   },
 ];
-
 function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  linixUseCases: UseCase[],
   readOnly?: boolean
 ) {
   const mediaQuerie = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuerie);
+
+  const handleSelect = (data: UseCase) => {
+    formik.setFieldValue("aplication", data.n_usecase);
+  };
 
   return (
     <Grid
@@ -93,9 +107,11 @@ function RenderFormFields(
           labelModal="Digite el código o nombre de la aplicación."
           placeholderModal="Digite el código o nombre de la aplicación."
           onUserSelect={() => {}}
-          userData={OptionSelect}
+          userData={linixUseCases}
           searchFieldData={searchData}
           onReset={() => {}}
+          idLabel="k_usecase"
+          nameLabel="n_usecase"
         />
       </Stack>
 
@@ -142,6 +158,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     handleSubmitForm,
     handleChangeForm,
     readOnly,
+    linixUseCases,
   } = props;
 
   if (withSubmitButtons) {
@@ -153,7 +170,13 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
-          {RenderFormFields(formik, loading, formInvalid, handleChangeForm)}
+          {RenderFormFields(
+            formik,
+            loading,
+            formInvalid,
+            handleChangeForm,
+            linixUseCases
+          )}
         </FormButtons>
       </>
     );
@@ -166,6 +189,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         loading,
         formInvalid,
         handleChangeForm,
+        linixUseCases,
         readOnly
       )}
     </>

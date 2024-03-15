@@ -14,12 +14,12 @@ interface SearchUserCardProps {
   nameModal: string;
   labelModal: string;
   placeholderModal: string;
-  userData: Record<string, string | number>[];
+  userData: any;
   searchFieldData: Record<string, string | number>;
   title: string;
   infoTitle: string;
   labels?: ILabel[];
-  onUserSelect: (data: Record<string, string | number>) => void;
+  onUserSelect: (data: any) => void;
   onReset: (field: () => void) => void;
   idLabel?: string;
   nameLabel?: string;
@@ -64,7 +64,7 @@ function SearchUserCard(props: SearchUserCardProps) {
   };
 
   const handleUserSelect = (data: Record<string, string>) => {
-    if (data && data.username) {
+    if (data && data[nameLabel]) {
       setSelectedUsername(data[nameLabel]);
     }
     onUserSelect(data);
