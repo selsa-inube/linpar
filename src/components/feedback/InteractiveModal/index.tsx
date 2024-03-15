@@ -47,7 +47,7 @@ const InteractiveModal = ({
 
   const filteredSearchData = filterText
     ? searchData.filter(
-        (data: any) =>
+        (data: { [key: string]: string }) =>
           data[nameLabel].toLowerCase().includes(filterText.toLowerCase()) ||
           data[idLabel].toLowerCase().includes(filterText.toLowerCase())
       )
@@ -132,7 +132,7 @@ const InteractiveModal = ({
                 />
                 {filterText &&
                   filteredSearchData &&
-                  filteredSearchData.map((data: any) => (
+                  filteredSearchData.map((data: { [key: string]: string }) => (
                     <SubjectSearchCard
                       key={data[idLabel]}
                       subjectSearchData={{
