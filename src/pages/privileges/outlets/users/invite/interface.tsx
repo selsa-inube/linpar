@@ -27,7 +27,7 @@ interface InviteUIProps {
   screenMovil: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
-  usersInfo: Record<string, string | number | any>;
+  usersInfo: Record<string, string | number | any>[];
   searchFieldData: Record<string, string | number>;
   onReset: (resetFunction: () => void) => void;
 }
