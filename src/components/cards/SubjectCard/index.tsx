@@ -5,7 +5,7 @@ import { ILabel } from "./types";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
 
 interface SubjectCardProps {
-  subjectData: Record<string, string | number> | any;
+  subjectData: { [key: string]: string | number };
   title: string;
   labels?: ILabel[];
   icon?: JSX.Element;

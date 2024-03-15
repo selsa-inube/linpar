@@ -3,20 +3,8 @@ import { Key, useState } from "react";
 import { StyledSubjectSearchCard } from "./styles";
 
 interface SubjectSearchCardProps {
-  subjectSearchData:
-    | Record<string, string | number>
-    | {
-        id: Key | null | undefined;
-        username: string;
-      };
-  onClick: (
-    data:
-      | Record<string, string | number>
-      | {
-          id: Key | null | undefined;
-          username: string;
-        }
-  ) => void;
+  subjectSearchData: { [key: string]: string | number };
+  onClick: (data: { [key: string]: string | number }) => void;
 }
 
 function SubjectSearchCard(props: SubjectSearchCardProps) {
