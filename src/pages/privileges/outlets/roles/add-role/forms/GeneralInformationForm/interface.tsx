@@ -34,28 +34,6 @@ const searchData = {
   "Digite el código o nombre de la aplicación.": "",
 };
 
-const data: any = [
-  {
-    id: "11",
-    username: "David Leonardo Garzón",
-    code: "LGARZON",
-    userID: "1256545",
-    position: "Credit Analyst",
-    active: false,
-    email: "dgarzon@sistemasenlinea.com.co",
-    phone: "3123202874",
-  },
-  {
-    id: "12",
-    username: "Angie Pinilla",
-    code: "APINILLA",
-    userID: "789654",
-    position: "Adviser",
-    active: true,
-    email: "apinilla@sistemasenlinea.com.co",
-    phone: "1212145789",
-  },
-];
 function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
@@ -66,10 +44,6 @@ function RenderFormFields(
 ) {
   const mediaQuerie = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuerie);
-
-  const handleSelect = (data: UseCase) => {
-    formik.setFieldValue("aplication", data.n_usecase);
-  };
 
   return (
     <Grid
