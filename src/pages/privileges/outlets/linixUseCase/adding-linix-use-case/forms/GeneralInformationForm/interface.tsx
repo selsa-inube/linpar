@@ -9,6 +9,7 @@ import {
   Select,
   Grid,
   useMediaQuery,
+  inube,
 } from "@inube/design-system";
 
 import { FormButtons } from "@components/forms/submit/FormButtons";
@@ -35,7 +36,7 @@ interface GeneralInformationFormUIProps {
 }
 
 const searchData = {
-  "Digite el código o nombre de la aplicación:.": "",
+  "Digite el código o nombre de la aplicación:": "",
 };
 
 function RenderFormFields(
@@ -47,8 +48,8 @@ function RenderFormFields(
   webOptions: Record<string, unknown>[],
   readOnly?: boolean
 ) {
-  const mediaQuerie = "(max-width: 744px)";
-  const matches = useMediaQuery(mediaQuerie);
+  const mediaQuery = "(max-width: 744px)";
+  const matches = useMediaQuery(mediaQuery);
 
   return (
     <Grid
@@ -64,10 +65,10 @@ function RenderFormFields(
       >
         <Textfield
           label="Nombre del caso de uso "
-          placeholder="Simular y radicar"
-          name="Caso de Uso LinixeName"
-          id="Caso de Uso LinixeName"
-          value={formik.values.CaseUseLinixName}
+          placeholder="Digite un nombre para el caso de uso."
+          name="Caso de Uso Linix Name"
+          id="Caso de Uso Linix Name"
+          value={formik.values.useCaseName}
           type="text"
           size="compact"
           fullwidth
@@ -79,13 +80,13 @@ function RenderFormFields(
             placeholder="Seleccione una opción"
             name="Acción Caso de Uso"
             id="Acción Caso de Uso"
-            value={formik.values.actionCaseUse}
-            type="actionCaseUse"
+            value={formik.values.actionUseCase}
+            type="actionUseCase"
             iconAfter={<MdOutlineModeEdit size={18} />}
             size="compact"
             fullwidth
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              formik.setFieldValue("actionCaseUse", value.target.outerText)
+              formik.setFieldValue("actionUseCase", value.target.outerText)
             }
             onBlur={formik.handleBlur}
             options={OptionSelect}
@@ -95,7 +96,7 @@ function RenderFormFields(
 
       <Textarea
         label="Descripción"
-        placeholder="Ingrese la descripción del caso de uso..."
+        placeholder="Ingrese la descripción del caso de uso."
         name="description"
         id="description"
         value={formik.values.description}
@@ -106,7 +107,7 @@ function RenderFormFields(
         onChange={handleChangeForm}
       />
 
-      <Stack direction="column" gap="8px">
+      <Stack direction="column" gap={inube.spacing.s100}>
         {formik.errors.position && formInvalid && (
           <Stack alignItems="center" margin="s0 s0 s0 s150">
             <Icon

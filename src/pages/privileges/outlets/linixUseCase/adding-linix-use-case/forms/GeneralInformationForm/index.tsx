@@ -10,11 +10,11 @@ import { GeneralInformationFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 export interface IGeneralInformationFormProps {
-  caseUseLinixName: string;
+  useCaseName: string;
   description: string;
   webOptions: string;
   ClientServerOption: string;
-  actionCaseUse: string;
+  actionUseCase: string;
 }
 
 interface GeneralInformationFormProps {
@@ -28,9 +28,9 @@ interface GeneralInformationFormProps {
 function GeneralInformationForm(props: GeneralInformationFormProps) {
   const {
     initialValues = {
-      caseUseLinixName: "",
+      useCaseName: "",
       description: "",
-      actionCaseUse: "",
+      actionUseCase: "",
       webOptions: "",
       ClientServerOption: "",
     },
