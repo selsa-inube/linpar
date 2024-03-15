@@ -26,7 +26,7 @@ const Template: StoryFn<SelectWithModalProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  data: linixUseCases as any,
+  data: linixUseCases as [],
   searchFieldData: searchData,
   label: "Casos de uso linix",
   name: "searchLinixUseCase",

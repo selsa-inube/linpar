@@ -16,7 +16,7 @@ interface SelectWithModalProps {
   nameModal: string;
   labelModal: string;
   placeholderModal: string;
-  data: Record<string, string | number>;
+  data: [];
   searchFieldData: Record<string, string | number>;
   title: string;
   infoTitle: string;
@@ -108,6 +108,8 @@ function SelectWithModal(props: SelectWithModalProps) {
           divider
           type="search"
           onClick={handleSelect}
+          nameLabel="n_usecase"
+          idLabel="k_usecase"
         />
       )}
     </>

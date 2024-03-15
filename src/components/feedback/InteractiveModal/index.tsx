@@ -30,6 +30,8 @@ const InteractiveModal = ({
   searchData,
   divider,
   onClick,
+  idLabel = "userID",
+  nameLabel = "username",
 }: InteractiveModalProps) => {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const hasActions = actions.length > 0;
@@ -45,9 +47,9 @@ const InteractiveModal = ({
 
   const filteredSearchData = filterText
     ? searchData.filter(
-        (data: { username: string; userID: string }) =>
-          data.username.toLowerCase().includes(filterText.toLowerCase()) ||
-          data.userID.toLowerCase().includes(filterText.toLowerCase())
+        (data: any) =>
+          data[nameLabel].toLowerCase().includes(filterText.toLowerCase()) ||
+          data[idLabel].toLowerCase().includes(filterText.toLowerCase())
       )
     : searchData;
 
