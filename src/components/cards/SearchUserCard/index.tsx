@@ -14,7 +14,7 @@ interface SearchUserCardProps {
   nameModal: string;
   labelModal: string;
   placeholderModal: string;
-  userData: Record<string, string | number>;
+  userData: Record<string, string | number>[];
   searchFieldData: Record<string, string | number>;
   title: string;
   infoTitle: string;
