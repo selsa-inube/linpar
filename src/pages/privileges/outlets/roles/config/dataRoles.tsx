@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-
 import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
-
 import { Icon } from "@inube/design-system";
-import { roles } from "@src/mocks/privileges/roles/Roles.mock";
-import { DeleteUser } from "../../users/tabs/users/DeleteUser";
-import { ActivateUser } from "../../users/tabs/users/ActivateUser";
+
+import { roles } from "@mocks/privileges/roles/Roles.mock";
+import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
+import { ActivateUser } from "@pages/privileges/outlets/users/tabs/users/ActivateUser";
 
 export const titlesOptions = [
   {
@@ -38,7 +37,7 @@ export const RolesBreakPointsConfig = [
 
 const handleClick = (id: string) => roles.find((role) => role.id === id);
 
-const handleActiuve = (id: string) => {
+const handleActive = (id: string) => {
   return roles.find((role) => role.id === id);
 };
 
@@ -46,7 +45,7 @@ export const actionsConfig = [
   {
     id: "i_activo",
     actionName: "Activo",
-    content: ({ id }) => <ActivateUser user={handleActiuve(id)} />,
+    content: ({ id }) => <ActivateUser user={handleActive(id)} />,
     type: "secondary",
   },
   {

@@ -16,7 +16,7 @@ export interface IGeneralInformationFormProps {
 
 interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
-  initialValues: IGeneralInformationFormProps;
+  initialValues?: IGeneralInformationFormProps;
   handleSubmit: (values: IGeneralInformationFormProps) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
@@ -76,27 +76,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
 
   const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
-
-  /*   const handleChangeForm = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const formikValues = {
-      ...formik.values,
-      [event.target.name]: event.target.value,
-    };
-
-    if (onHasChanges) onHasChanges(hasChanges(formikValues));
-    try {
-      await formik.setFieldValue(event.target.name, event.target.value);
-      if (withSubmitButtons) return;
-      const errors = await formik.validateForm();
-      if (!errors || Object.keys(errors).length === 0) {
-        handleSubmit(formikValues);
-      }
-    } catch (errors) {
-      return errors;
-    }
-  }; */
 
   const handleCloseSectionMessage = () => {
     setShowMessage({

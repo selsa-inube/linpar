@@ -27,12 +27,6 @@ interface AddRolUIProps {
   showModal: boolean;
 }
 
-const roleData = {
-  roleName: "",
-  description: "",
-  aplication: "",
-};
-
 function finishModal(
   handleCloseModal: () => void,
   handleCompleteInvitation: () => void
@@ -96,8 +90,7 @@ export function AddRolUI(props: AddRolUIProps) {
 
           {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
-              initialValues={roleData}
-              handleSubmit={() => {}}
+              handleSubmit={() => handleNextStep(currentStep)}
               withSubmitButtons
             />
           )}
