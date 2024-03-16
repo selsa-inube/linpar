@@ -22,7 +22,6 @@ import {
   actionsConfig,
   titlesOptions,
 } from "./config/dataRoles";
-
 import { StyledContainer } from "./styles";
 
 interface IRolesProps {
@@ -30,7 +29,6 @@ interface IRolesProps {
   showMenu: boolean;
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
-
   searchRole: string;
 }
 
