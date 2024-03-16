@@ -12,7 +12,6 @@ import {
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
-import { IClientServerButtonSelectionProps } from ".";
 import { StyledSelectContainer } from "./styles";
 import { buttonOptionsMock } from "@src/mocks/privileges/button/buttonOptionsMock.mock";
 
@@ -22,13 +21,11 @@ interface ClientServerButtonSelectionUIProps {
   withSubmitButtons?: boolean;
   showMessage: IMessageState;
   handleCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IClientServerButtonSelectionProps) => boolean;
   formInvalid: boolean;
   handleSubmitForm: () => void;
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
   buttonOptionsMock: Record<string, unknown>[];
-  webOptions: Record<string, unknown>[];
 }
 
 function filtrado() {
@@ -48,7 +45,6 @@ function RenderFormFields(
   formInvalid: boolean,
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
   buttonOptionsMock: Record<string, unknown>[],
-  webOptions: Record<string, unknown>[],
   readOnly?: boolean
 ) {
   const mediaQuerie = "(max-width: 744px)";
@@ -70,15 +66,15 @@ function RenderFormFields(
           <Select
             label="Opción botón cliente servidor"
             placeholder="Seleccione una opción"
-            name="Acción Caso de Uso"
-            id="Acción Caso de Uso"
-            value={formik.values.actionCaseUse}
-            type="actionCaseUse"
+            name="csButtonOption"
+            id="csButtonOption"
+            value={formik.values.csButtonOption}
+            type="csButtonOption"
             iconAfter={<MdOutlineModeEdit size={18} />}
             size="compact"
             fullwidth
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              formik.setFieldValue("actionCaseUse", value.target.outerText)
+              formik.setFieldValue("csButtonOption", value.target.outerText)
             }
             onBlur={formik.handleBlur}
             options={filtrado().map((useCase) => ({
@@ -116,22 +112,18 @@ function ClientServerButtonSelectionUI(
     formik,
     loading,
     withSubmitButtons,
-    hasChanges,
     formInvalid,
     handleSubmitForm,
     handleChangeForm,
     readOnly,
     buttonOptionsMock,
-    webOptions,
   } = props;
-
-  if (withSubmitButtons) {
-    return (
-      <>
+  return (
+    <>
+      {withSubmitButtons && (
         <FormButtons
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
-          disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
           {RenderFormFields(
@@ -140,25 +132,19 @@ function ClientServerButtonSelectionUI(
             formInvalid,
             handleChangeForm,
             buttonOptionsMock,
-            webOptions,
             readOnly
           )}
         </FormButtons>
-      </>
-    );
-  }
-
-  return (
-    <>
-      {RenderFormFields(
-        formik,
-        loading,
-        formInvalid,
-        handleChangeForm,
-        buttonOptionsMock,
-        webOptions,
-        readOnly
       )}
+      {!withSubmitButtons &&
+        RenderFormFields(
+          formik,
+          loading,
+          formInvalid,
+          handleChangeForm,
+          buttonOptionsMock,
+          readOnly
+        )}
     </>
   );
 }

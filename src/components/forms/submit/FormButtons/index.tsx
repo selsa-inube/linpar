@@ -2,10 +2,10 @@ import { Button, Stack, inube } from "@inube/design-system";
 import { ThemeProvider } from "styled-components";
 
 interface FormButtonsProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   handleSubmit: () => void;
   handleReset: () => void;
-  disableReset?: boolean; // Nuevo prop para deshabilitar el botón de reset
+  disableReset?: boolean;
   disabledButtons?: boolean;
   loading?: boolean;
   cancelButtonText?: string;
@@ -24,14 +24,24 @@ function FormButtons(props: FormButtonsProps) {
     submitButtonText = "Guardar",
   } = props;
 
+  let disableCancel: boolean | undefined;
+
+  if (disableReset === undefined || disableReset === null) {
+    if (disabledButtons !== undefined && disabledButtons !== null) {
+      disableCancel = disabledButtons;
+    }
+  } else {
+    disableCancel = disableReset;
+  }
+
   return (
     <Stack direction="column" gap={inube.spacing.s300}>
-      {children && <Stack direction="column">{children}</Stack>}
+      <Stack direction="column">{children}</Stack>
       <Stack justifyContent="flex-end" gap={inube.spacing.s100}>
         <ThemeProvider theme={inube}>
           <Button
             appearance="gray"
-            disabled={disableReset || disabledButtons} // Aquí se aplica la deshabilitación del botón de reset
+            disabled={disableCancel}
             onClick={handleReset}
             type="reset"
           >

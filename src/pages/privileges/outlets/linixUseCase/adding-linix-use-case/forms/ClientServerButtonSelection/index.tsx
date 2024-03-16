@@ -8,72 +8,39 @@ import { ClientServerButtonSelectionUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
-export interface IClientServerButtonSelectionProps {
-  caseUseLinixName: string;
-  description: string;
-  webOptions: string;
-  ClientServerOption: string;
-  actionCaseUse: string;
-}
-
 interface ClientServerButtonSelectionProps {
-  withSubmitButtons?: boolean;
-  initialValues?: IClientServerButtonSelectionProps;
-  handleSubmit: (values: IClientServerButtonSelectionProps) => void;
+  handleSubmit: (csButtonOption: string) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
 
 function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
-  const {
-    initialValues = {
-      caseUseLinixName: "",
-      description: "",
-      actionCaseUse: "",
-      webOptions: "",
-      ClientServerOption: "",
-    },
-    withSubmitButtons,
-    handleSubmit,
-    onHasChanges,
-    readOnly,
-  } = props;
+  const { handleSubmit, onHasChanges, readOnly } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [buttonOptionsMock, setbuttonOptionsMock] = useState<
+  const [buttonOptionsMock, setButtonOptionsMock] = useState<
     Record<string, unknown>[]
   >([]);
-  const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
 
   useEffect(() => {
     getData("button-option")
       .then((data) => {
         if (data !== null) {
-          setbuttonOptionsMock(data as Record<string, unknown>[]);
+          setButtonOptionsMock(data as Record<string, unknown>[]);
         }
       })
       .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
-      });
-
-    getData("web-options")
-      .then((data) => {
-        if (data !== null) {
-          setWebOptions(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
+        console.error("Error fetching button-options:", error.message);
       });
   }, []);
 
-  function onSubmit() {
+  const onSubmit = (csButtonOption: string) => {
     setLoading(true);
     setTimeout(() => {
-      handleSubmit(formik.values);
+      handleSubmit(csButtonOption);
 
       setLoading(false);
       setShowMessage({
@@ -81,15 +48,19 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
         type: EMessageType.SUCCESS,
       });
     }, LOADING_TIMEOUT);
-  }
+  };
 
   const formik = useFormik({
-    initialValues,
+    initialValues: {
+      csButtonOption: "",
+    },
     validateOnChange: false,
     onReset: () => {
       if (onHasChanges) onHasChanges(false);
     },
-    onSubmit,
+    onSubmit: (values) => {
+      onSubmit(values.csButtonOption);
+    },
   });
 
   const handleSubmitForm = () => {
@@ -104,8 +75,8 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     });
   };
 
-  const hasChanges = (valueCompare: IClientServerButtonSelectionProps) =>
-    JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
+  const hasChanges = (valueCompare: string) =>
+    formik.values.csButtonOption !== valueCompare;
 
   const handleCloseSectionMessage = () => {
     setShowMessage({
@@ -118,15 +89,12 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       loading={loading}
       formik={formik}
       showMessage={showMessage}
-      withSubmitButtons={withSubmitButtons}
       handleCloseSectionMessage={handleCloseSectionMessage}
-      hasChanges={hasChanges}
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={formik.handleChange}
       readOnly={readOnly}
       buttonOptionsMock={buttonOptionsMock}
-      webOptions={webOptions}
     />
   );
 }

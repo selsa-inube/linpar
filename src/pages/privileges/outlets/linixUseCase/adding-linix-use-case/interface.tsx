@@ -107,7 +107,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             handleReset={isPreviousStepAvailable}
             cancelButtonText="Atras"
             submitButtonText="Siguiente"
-            disableReset={currentStep === 1} // Deshabilita el botón de reset
+            disableReset={currentStep === 1}
           >
             {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
               <GeneralInformationForm
