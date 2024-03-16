@@ -13,25 +13,26 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { roles } from "@mocks/privileges/roles/Roles.mock";
-
 import { privilegeOptionsConfig } from "@pages/privileges/outlets//options/config/privileges.config";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
   actionsConfig,
   titlesOptions,
 } from "./config/dataRoles";
-
 import { StyledContainer } from "./styles";
+import { Role } from "./types";
 
 interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
-
   searchRole: string;
+  linixRoles: Role[];
+  loading: boolean;
 }
 
 export function RolesUI(props: IRolesProps) {
@@ -40,8 +41,9 @@ export function RolesUI(props: IRolesProps) {
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
-
     searchRole,
+    linixRoles,
+    loading,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -111,15 +113,19 @@ export function RolesUI(props: IRolesProps) {
               </Button>
             )}
           </Stack>
-          <Table
-            id="tableRoles"
-            titles={titlesOptions}
-            actions={actionsConfig}
-            entries={roles}
-            breakpoints={RolesBreakPointsConfig}
-            modalTitle="Roles"
-            filter={searchRole}
-          />
+          {loading ? (
+            <LoadingApp />
+          ) : (
+            <Table
+              id="tableRoles"
+              titles={titlesOptions}
+              actions={actionsConfig}
+              entries={linixRoles}
+              breakpoints={RolesBreakPointsConfig}
+              modalTitle="Roles"
+              filter={searchRole}
+            />
+          )}
         </Stack>
       </Stack>
     </Stack>
