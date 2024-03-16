@@ -12,22 +12,34 @@ import {
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
-import { IGeneralInformationFormProps } from ".";
+import { IClientServerButtonSelectionProps } from ".";
 import { StyledSelectContainer } from "./styles";
+import { buttonOptionsMock } from "@src/mocks/privileges/button/buttonOptionsMock.mock";
 
-interface GeneralInformationFormUIProps {
+interface ClientServerButtonSelectionUIProps {
   formik: FormikValues;
   loading: boolean;
   withSubmitButtons?: boolean;
   showMessage: IMessageState;
   handleCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IGeneralInformationFormProps) => boolean;
+  hasChanges: (valueCompare: IClientServerButtonSelectionProps) => boolean;
   formInvalid: boolean;
   handleSubmitForm: () => void;
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
-  linixUseCases: Record<string, unknown>[];
+  buttonOptionsMock: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
+}
+
+function filtrado() {
+  const unico = new Map();
+  buttonOptionsMock.forEach((buttonOptionsMock) => {
+    if (!unico.has(buttonOptionsMock.OPCION_CLIENTE_SERVIDOR)) {
+      unico.set(buttonOptionsMock.OPCION_CLIENTE_SERVIDOR, buttonOptionsMock);
+    }
+  });
+
+  return Array.from(unico.values());
 }
 
 function RenderFormFields(
@@ -35,7 +47,7 @@ function RenderFormFields(
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  linixUseCases: Record<string, unknown>[],
+  buttonOptionsMock: Record<string, unknown>[],
   webOptions: Record<string, unknown>[],
   readOnly?: boolean
 ) {
@@ -56,7 +68,7 @@ function RenderFormFields(
       >
         <StyledSelectContainer>
           <Select
-            label="Acción caso de uso"
+            label="Opción botón cliente servidor"
             placeholder="Seleccione una opción"
             name="Acción Caso de Uso"
             id="Acción Caso de Uso"
@@ -69,9 +81,9 @@ function RenderFormFields(
               formik.setFieldValue("actionCaseUse", value.target.outerText)
             }
             onBlur={formik.handleBlur}
-            options={linixUseCases.map((useCase) => ({
-              label: useCase.n_usecase,
-              value: useCase.i_tipusec,
+            options={filtrado().map((useCase) => ({
+              id: useCase.OPCION_CLIENTE_SERVIDOR,
+              label: useCase.OPCION_CLIENTE_SERVIDOR,
             }))}
           />
         </StyledSelectContainer>
@@ -97,7 +109,9 @@ function RenderFormFields(
   );
 }
 
-function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
+function ClientServerButtonSelectionUI(
+  props: ClientServerButtonSelectionUIProps
+) {
   const {
     formik,
     loading,
@@ -107,7 +121,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     handleSubmitForm,
     handleChangeForm,
     readOnly,
-    linixUseCases,
+    buttonOptionsMock,
     webOptions,
   } = props;
 
@@ -125,8 +139,9 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             loading,
             formInvalid,
             handleChangeForm,
-            linixUseCases,
-            webOptions
+            buttonOptionsMock,
+            webOptions,
+            readOnly
           )}
         </FormButtons>
       </>
@@ -140,7 +155,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         loading,
         formInvalid,
         handleChangeForm,
-        linixUseCases,
+        buttonOptionsMock,
         webOptions,
         readOnly
       )}
@@ -148,4 +163,4 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   );
 }
 
-export { GeneralInformationFormUI };
+export { ClientServerButtonSelectionUI };

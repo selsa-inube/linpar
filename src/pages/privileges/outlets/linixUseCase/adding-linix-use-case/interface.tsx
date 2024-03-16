@@ -18,6 +18,8 @@ import {
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
+import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
+import { FormButtons } from "@src/components/forms/submit/FormButtons";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -59,6 +61,17 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+  const isCurrentStateValid = () => {
+    if (currentStep === Object.values(stepsAddingLinixUseCase).length) {
+      handleToggleModal();
+    } else {
+      handleNextStep(currentStep);
+    }
+  };
+  const isPreviousStepAvailable = () => {
+    return currentStep !== 1 ? (handlePrevStep(currentStep), true) : false;
+  };
+
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap={inube.spacing.s600} direction="column">
@@ -89,76 +102,79 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               }
             />
           </StyledAssistedContainer>
-
-          {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
-            <GeneralInformationForm
-              handleSubmit={() => handleNextStep(currentStep)}
-              withSubmitButtons
-            />
-          )}
-          {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Opciones botón cliente servidor"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
-          {currentStep === stepsAddingLinixUseCase.downloadableDocuments.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Documentos descargables"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
-          {currentStep === stepsAddingLinixUseCase.webReports.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Reportes web"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
-          {currentStep === stepsAddingLinixUseCase.webOptions.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Opciones web"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
-          {currentStep === stepsAddingLinixUseCase.clientServerReports.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Reportes cliente servidor"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
-          {currentStep === stepsAddingLinixUseCase.clientServerOptions.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Opciones cliente servidor"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
-          {currentStep === stepsAddingLinixUseCase.summary.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Página de resumen"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
+          <FormButtons
+            handleSubmit={isCurrentStateValid}
+            handleReset={isPreviousStepAvailable}
+            cancelButtonText="Atras"
+            submitButtonText="Siguiente"
+            disableReset={currentStep === 1} // Deshabilita el botón de reset
+          >
+            {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
+              <GeneralInformationForm
+                handleSubmit={() => handleNextStep(currentStep)}
+              />
+            )}
+            {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
+              <ClientServerButtonSelection
+                handleSubmit={() => handleNextStep(currentStep)}
+              />
+            )}
+            {currentStep ===
+              stepsAddingLinixUseCase.downloadableDocuments.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Documentos descargables"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/linixUseCase"}
+              />
+            )}
+            {currentStep === stepsAddingLinixUseCase.webReports.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Reportes web"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/linixUseCase"}
+              />
+            )}
+            {currentStep === stepsAddingLinixUseCase.webOptions.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Opciones web"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/linixUseCase"}
+              />
+            )}
+            {currentStep === stepsAddingLinixUseCase.clientServerReports.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Reportes cliente servidor"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/linixUseCase"}
+              />
+            )}
+            {currentStep === stepsAddingLinixUseCase.clientServerOptions.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Opciones cliente servidor"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/linixUseCase"}
+              />
+            )}
+            {currentStep === stepsAddingLinixUseCase.summary.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Página de resumen"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/linixUseCase"}
+              />
+            )}
+          </FormButtons>
         </>
       </Stack>
       {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}

@@ -4,11 +4,11 @@ import { useFormik } from "formik";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { getData } from "@mocks/utils/dataMuck.service";
-import { GeneralInformationFormUI } from "./interface";
+import { ClientServerButtonSelectionUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
-export interface IGeneralInformationFormProps {
+export interface IClientServerButtonSelectionProps {
   caseUseLinixName: string;
   description: string;
   webOptions: string;
@@ -16,15 +16,15 @@ export interface IGeneralInformationFormProps {
   actionCaseUse: string;
 }
 
-interface GeneralInformationFormProps {
+interface ClientServerButtonSelectionProps {
   withSubmitButtons?: boolean;
-  initialValues?: IGeneralInformationFormProps;
-  handleSubmit: (values: IGeneralInformationFormProps) => void;
+  initialValues?: IClientServerButtonSelectionProps;
+  handleSubmit: (values: IClientServerButtonSelectionProps) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
 
-function GeneralInformationForm(props: GeneralInformationFormProps) {
+function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const {
     initialValues = {
       caseUseLinixName: "",
@@ -43,16 +43,16 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [linixUseCases, setLinixUseCases] = useState<Record<string, unknown>[]>(
-    []
-  );
+  const [buttonOptionsMock, setbuttonOptionsMock] = useState<
+    Record<string, unknown>[]
+  >([]);
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
 
   useEffect(() => {
-    getData("clients-server")
+    getData("button-option")
       .then((data) => {
         if (data !== null) {
-          setLinixUseCases(data as Record<string, unknown>[]);
+          setbuttonOptionsMock(data as Record<string, unknown>[]);
         }
       })
       .catch((error) => {
@@ -104,7 +104,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     });
   };
 
-  const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
+  const hasChanges = (valueCompare: IClientServerButtonSelectionProps) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
   const handleCloseSectionMessage = () => {
@@ -114,7 +114,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   };
 
   return (
-    <GeneralInformationFormUI
+    <ClientServerButtonSelectionUI
       loading={loading}
       formik={formik}
       showMessage={showMessage}
@@ -125,11 +125,11 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={formik.handleChange}
       readOnly={readOnly}
-      linixUseCases={linixUseCases}
+      buttonOptionsMock={buttonOptionsMock}
       webOptions={webOptions}
     />
   );
 }
 
-export { GeneralInformationForm };
-export type { GeneralInformationFormProps };
+export { ClientServerButtonSelection };
+export type { ClientServerButtonSelectionProps };
