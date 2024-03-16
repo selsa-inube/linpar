@@ -74,7 +74,6 @@ function RenderFormFields(
           fullwidth
           onChange={handleChangeForm}
         />
-
         <StyledSelectContainer>
           <Select
             label="Acción caso de uso"
