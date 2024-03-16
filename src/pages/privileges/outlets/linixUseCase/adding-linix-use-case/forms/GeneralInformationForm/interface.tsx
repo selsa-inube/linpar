@@ -66,7 +66,7 @@ function RenderFormFields(
         <Textfield
           label="Nombre del caso de uso "
           placeholder="Digite un nombre para el caso de uso."
-          name="Caso de Uso Linix Name"
+          name="caseUseLinixName"
           id="Caso de Uso Linix Name"
           value={formik.values.caseUseLinixName}
           type="text"
