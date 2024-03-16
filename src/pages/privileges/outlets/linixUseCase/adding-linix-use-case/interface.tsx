@@ -3,11 +3,13 @@ import {
   Breadcrumbs,
   Stack,
   useMediaQuery,
+  inube,
 } from "@inube/design-system";
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
+import itemNotFound from "@src/assets/images/ItemNotFound.png";
 
 import {
   CrateLinixUseCaseConfig,
@@ -15,8 +17,7 @@ import {
   stepsAddingLinixUseCase,
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
-
-import itemNotFound from "@src/assets/images/ItemNotFound.png";
+import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -58,13 +59,16 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
-      <Stack gap="48px" direction="column">
-        <Stack gap="32px" direction="column">
+      <Stack gap={inube.spacing.s600} direction="column">
+        <Stack gap={inube.spacing.s400} direction="column">
           <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
-          <Stack justifyContent="space-between" alignItems="center" gap="50px">
+          <Stack
+            justifyContent="space-between"
+            alignItems="center"
+            gap={inube.spacing.s650}
+          >
             <PageTitle
               title={CrateLinixUseCaseConfig[0].title}
               description={CrateLinixUseCaseConfig[0].description}
@@ -87,12 +91,9 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </StyledAssistedContainer>
 
           {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Información general"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
+            <GeneralInformationForm
+              handleSubmit={() => handleNextStep(currentStep)}
+              withSubmitButtons
             />
           )}
           {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
