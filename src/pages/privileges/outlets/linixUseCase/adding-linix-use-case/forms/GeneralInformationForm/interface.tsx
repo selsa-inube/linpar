@@ -72,9 +72,7 @@ function RenderFormFields(
           type="text"
           size="compact"
           fullwidth
-          onChange={(event: { target: { value: string } }) => {
-            formik.setFieldValue("useCaseName", event.target.value);
-          }}
+          onChange={handleChangeForm}
         />
 
         <StyledSelectContainer>
