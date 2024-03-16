@@ -1,13 +1,48 @@
 import { useState } from "react";
 
-import { AddRolUI } from "./interface";
 import { stepsAddRol } from "./config/addRol.config";
+import { IGeneralInformationFormProps } from "./forms/GeneralInformationForm";
+import { AddRolUI } from "./interface";
+
+export interface IFormaddRole {
+  generalInformation: {
+    isValid: boolean;
+    values: IGeneralInformationFormProps;
+  };
+}
 
 export function AddRol() {
   const [currentStep, setCurrentStep] = useState<number>(
     stepsAddRol.generalInformation.id
   );
   const [showModal, setShowModal] = useState(false);
+
+  const [generalInformationData, setGeneralInformationData] =
+    useState<IFormaddRole>({
+      generalInformation: {
+        isValid: false,
+        values: {
+          roleName: "",
+          description: "",
+          aplication: "",
+        },
+      },
+    });
+
+  const handleUpdateGeneralInformation = (
+    values: IGeneralInformationFormProps
+  ) => {
+    const stepKey = Object.entries(stepsAddRol).find(
+      ([, config]) => config.id === currentStep
+    )?.[0];
+
+    if (stepKey) {
+      setGeneralInformationData((prevInvitationData) => ({
+        ...prevInvitationData,
+        [stepKey]: { values: values },
+      }));
+    }
+  };
 
   const handleNextStep = (step: number) => {
     setCurrentStep(step + 1);
@@ -33,6 +68,8 @@ export function AddRol() {
       handleToggleModal={handleToggleModal}
       handleCompleteInvitation={handleCompleteInvitation}
       showModal={showModal}
+      dataFomr={generalInformationData}
+      handleUpdateGeneralInformation={handleUpdateGeneralInformation}
     />
   );
 }

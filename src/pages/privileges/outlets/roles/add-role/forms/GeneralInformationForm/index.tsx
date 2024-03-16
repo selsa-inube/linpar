@@ -17,7 +17,7 @@ export interface IGeneralInformationFormProps {
 
 export interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
-  initialValues?: IGeneralInformationFormProps;
+  initialValuesData: IGeneralInformationFormProps;
   handleSubmit: (values: IGeneralInformationFormProps) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
@@ -25,12 +25,8 @@ export interface GeneralInformationFormProps {
 
 function GeneralInformationForm(props: GeneralInformationFormProps) {
   const {
-    initialValues = {
-      roleName: "",
-      description: "",
-      aplication: "",
-    },
     withSubmitButtons,
+    initialValuesData,
     handleSubmit,
     onHasChanges,
     readOnly,
@@ -40,6 +36,9 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
+
+  //const [formInvalid, setFormInvalid] = useState(false);
+
   const [linixUseCases, setLinixUseCases] = useState<Record<string, unknown>[]>(
     []
   );
@@ -56,26 +55,46 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       });
   }, []);
 
-  function onSubmit() {
-    setLoading(true);
-    setTimeout(() => {
-      handleSubmit(formik.values);
-
-      setLoading(false);
-      setShowMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
-      });
-    }, LOADING_TIMEOUT);
-  }
-
-  const formik = useFormik({
+  /*   const formik = useFormik({
     initialValues,
     validateOnChange: false,
     onReset: () => {
       if (onHasChanges) onHasChanges(false);
     },
-    onSubmit,
+    onSubmit: (values) => {
+      console.log("values, Andres", values);
+    },
+  }); */
+
+  const initialValues: IGeneralInformationFormProps = {
+    roleName: initialValuesData.roleName,
+    description: initialValuesData.description,
+    aplication: initialValuesData.aplication,
+  };
+
+  console.log("initialValus", initialValuesData);
+
+  const formik = useFormik({
+    initialValues,
+    validateOnChange: false,
+
+    onReset: () => {
+      if (onHasChanges) onHasChanges(false);
+    },
+
+    onSubmit: () => {
+      setLoading(true);
+
+      setTimeout(() => {
+        handleSubmit(formik.values);
+        //setFormInvalid(false);
+        setLoading(false);
+        setShowMessage({
+          visible: true,
+          type: EMessageType.SUCCESS,
+        });
+      }, LOADING_TIMEOUT);
+    },
   });
 
   const handleSubmitForm = () => {
@@ -91,7 +110,26 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   };
 
   const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
-    JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
+    JSON.stringify(initialValuesData) !== JSON.stringify(valueCompare);
+
+  const handleChangeForm = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const formikValues = {
+      ...formik.values,
+      [event.target.name]: event.target.value,
+    };
+
+    if (onHasChanges) onHasChanges(hasChanges(formikValues));
+    formik.setFieldValue(event.target.name, event.target.value).then(() => {
+      if (withSubmitButtons) return;
+      formik.validateForm().then((errors) => {
+        if (!errors || Object.keys(errors).length === 0) {
+          handleSubmit(formikValues);
+        }
+      });
+    });
+  };
 
   const handleCloseSectionMessage = () => {
     setShowMessage({
@@ -109,7 +147,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       hasChanges={hasChanges}
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
-      handleChangeForm={formik.handleChange}
+      handleChangeForm={handleChangeForm}
       readOnly={readOnly}
       linixUseCases={linixUseCases}
     />

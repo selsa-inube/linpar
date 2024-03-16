@@ -16,7 +16,11 @@ import {
   finishAssistedRolModalConfig,
   stepsAddRol,
 } from "./config/addRol.config";
-import { GeneralInformationForm } from "./forms/GeneralInformationForm";
+import {
+  GeneralInformationForm,
+  IGeneralInformationFormProps,
+} from "./forms/GeneralInformationForm";
+import { IFormaddRole } from ".";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;
@@ -25,6 +29,8 @@ interface AddRolUIProps {
   handleCompleteInvitation: () => void;
   handleToggleModal: () => void;
   showModal: boolean;
+  dataFomr: IFormaddRole;
+  handleUpdateGeneralInformation: (value: IGeneralInformationFormProps) => void;
 }
 
 function finishModal(
@@ -55,9 +61,15 @@ export function AddRolUI(props: AddRolUIProps) {
     showModal,
     handlePrevStep,
     handleNextStep,
+    dataFomr,
+    handleUpdateGeneralInformation,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+
+  const {
+    generalInformation: { values },
+  } = dataFomr;
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
@@ -90,8 +102,8 @@ export function AddRolUI(props: AddRolUIProps) {
 
           {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
-              handleSubmit={() => handleNextStep(currentStep)}
-              withSubmitButtons
+              handleSubmit={handleUpdateGeneralInformation}
+              initialValuesData={values}
             />
           )}
 
