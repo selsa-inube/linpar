@@ -68,7 +68,7 @@ function RenderFormFields(
           placeholder="Digite un nombre para el caso de uso."
           name="Caso de Uso Linix Name"
           id="Caso de Uso Linix Name"
-          value={formik.values.useCaseName}
+          value={formik.values.caseUseLinixName}
           type="text"
           size="compact"
           fullwidth
