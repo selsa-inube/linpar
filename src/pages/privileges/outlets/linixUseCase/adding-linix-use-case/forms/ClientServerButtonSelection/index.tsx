@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { getData } from "@mocks/utils/dataMock.service";
+
 import { ClientServerButtonSelectionUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
@@ -74,9 +75,6 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       formik.handleSubmit();
     });
   };
-
-  const hasChanges = (valueCompare: string) =>
-    formik.values.csButtonOption !== valueCompare;
 
   const handleCloseSectionMessage = () => {
     setShowMessage({
