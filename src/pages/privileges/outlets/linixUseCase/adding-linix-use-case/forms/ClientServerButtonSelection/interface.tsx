@@ -13,7 +13,6 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { StyledSelectContainer } from "./styles";
-import { buttonOptionsMock } from "@src/mocks/privileges/button/buttonOptionsMock.mock";
 
 interface ClientServerButtonSelectionUIProps {
   formik: FormikValues;
@@ -24,19 +23,18 @@ interface ClientServerButtonSelectionUIProps {
   formInvalid: boolean;
   handleSubmitForm: () => void;
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  readOnly?: boolean;
-  buttonOptionsMock: Record<string, unknown>[];
+  buttonOptions: Record<string, unknown>[];
 }
 
-function filtrado() {
-  const unico = new Map();
-  buttonOptionsMock.forEach((buttonOptionsMock) => {
-    if (!unico.has(buttonOptionsMock.OPCION_CLIENTE_SERVIDOR)) {
-      unico.set(buttonOptionsMock.OPCION_CLIENTE_SERVIDOR, buttonOptionsMock);
+function filtrado(buttonOptions: Record<string, unknown>[]) {
+  const uniqueButtonList = new Map();
+  buttonOptions.forEach((buttonOption) => {
+    if (!uniqueButtonList.has(buttonOption.OPCION_CLIENTE_SERVIDOR)) {
+      uniqueButtonList.set(buttonOption.OPCION_CLIENTE_SERVIDOR, buttonOption);
     }
   });
 
-  return Array.from(unico.values());
+  return Array.from(uniqueButtonList.values());
 }
 
 function RenderFormFields(
@@ -44,8 +42,7 @@ function RenderFormFields(
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  buttonOptionsMock: Record<string, unknown>[],
-  readOnly?: boolean
+  buttonOptions: Record<string, unknown>[]
 ) {
   const mediaQuerie = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuerie);
@@ -77,7 +74,7 @@ function RenderFormFields(
               formik.setFieldValue("csButtonOption", value.target.outerText)
             }
             onBlur={formik.handleBlur}
-            options={filtrado().map((useCase) => ({
+            options={filtrado(buttonOptions).map((useCase) => ({
               id: useCase.OPCION_CLIENTE_SERVIDOR,
               label: useCase.OPCION_CLIENTE_SERVIDOR,
             }))}
@@ -115,8 +112,7 @@ function ClientServerButtonSelectionUI(
     formInvalid,
     handleSubmitForm,
     handleChangeForm,
-    readOnly,
-    buttonOptionsMock,
+    buttonOptions,
   } = props;
   return (
     <>
@@ -131,8 +127,7 @@ function ClientServerButtonSelectionUI(
             loading,
             formInvalid,
             handleChangeForm,
-            buttonOptionsMock,
-            readOnly
+            buttonOptions
           )}
         </FormButtons>
       )}
@@ -142,8 +137,7 @@ function ClientServerButtonSelectionUI(
           loading,
           formInvalid,
           handleChangeForm,
-          buttonOptionsMock,
-          readOnly
+          buttonOptions
         )}
     </>
   );

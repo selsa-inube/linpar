@@ -6,7 +6,7 @@ import { FormButtons, FormButtonsProps } from "..";
 import { StyledForm } from "./stories.styles";
 
 const story = {
-  components: [FormButtons],
+  component: FormButtons,
   title: "components/forms/submit/FormButtons",
   decorators: [
     (Story: StoryFn) => (

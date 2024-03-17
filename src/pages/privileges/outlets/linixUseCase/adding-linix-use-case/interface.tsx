@@ -105,7 +105,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           <FormButtons
             handleSubmit={isCurrentStateValid}
             handleReset={isPreviousStepAvailable}
-            cancelButtonText="Atras"
+            cancelButtonText="Atrás"
             submitButtonText="Siguiente"
             disableReset={currentStep === 1}
           >

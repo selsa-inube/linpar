@@ -12,25 +12,24 @@ const LOADING_TIMEOUT = 1500;
 interface ClientServerButtonSelectionProps {
   handleSubmit: (csButtonOption: string) => void;
   onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
 }
 
 function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
-  const { handleSubmit, onHasChanges, readOnly } = props;
+  const { handleSubmit, onHasChanges } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [buttonOptionsMock, setButtonOptionsMock] = useState<
-    Record<string, unknown>[]
-  >([]);
+  const [buttonOptions, setButtonOptions] = useState<Record<string, unknown>[]>(
+    []
+  );
 
   useEffect(() => {
-    getData("button-option")
+    getData("button-options")
       .then((data) => {
         if (data !== null) {
-          setButtonOptionsMock(data as Record<string, unknown>[]);
+          setButtonOptions(data as Record<string, unknown>[]);
         }
       })
       .catch((error) => {
@@ -42,7 +41,6 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     setLoading(true);
     setTimeout(() => {
       handleSubmit(csButtonOption);
-
       setLoading(false);
       setShowMessage({
         visible: true,
@@ -91,8 +89,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={formik.handleChange}
-      readOnly={readOnly}
-      buttonOptionsMock={buttonOptionsMock}
+      buttonOptions={buttonOptions}
     />
   );
 }
