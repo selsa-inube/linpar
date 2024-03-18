@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { getData } from "@mocks/utils/dataMuck.service";
+import { getData } from "@mocks/utils/dataMock.service";
 
 import { GeneralInformationFormUI } from "./interface";
 

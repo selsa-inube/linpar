@@ -5,13 +5,34 @@ interface FormButtonsProps {
   children: React.ReactNode;
   handleSubmit: () => void;
   handleReset: () => void;
+  disableReset?: boolean;
   disabledButtons?: boolean;
   loading?: boolean;
+  cancelButtonText?: string;
+  submitButtonText?: string;
 }
 
 function FormButtons(props: FormButtonsProps) {
-  const { children, handleSubmit, handleReset, disabledButtons, loading } =
-    props;
+  const {
+    children,
+    handleSubmit,
+    handleReset,
+    disableReset,
+    disabledButtons,
+    loading,
+    cancelButtonText = "Cancelar",
+    submitButtonText = "Guardar",
+  } = props;
+
+  let disableCancel: boolean | undefined;
+
+  if (disableReset === undefined || disableReset === null) {
+    if (disabledButtons !== undefined && disabledButtons !== null) {
+      disableCancel = disabledButtons;
+    }
+  } else {
+    disableCancel = disableReset;
+  }
 
   return (
     <Stack direction="column" gap={inube.spacing.s300}>
@@ -20,11 +41,11 @@ function FormButtons(props: FormButtonsProps) {
         <ThemeProvider theme={inube}>
           <Button
             appearance="gray"
-            disabled={disabledButtons}
+            disabled={disableCancel}
             onClick={handleReset}
             type="reset"
           >
-            Cancelar
+            {cancelButtonText}
           </Button>
           <Button
             appearance="primary"
@@ -33,7 +54,7 @@ function FormButtons(props: FormButtonsProps) {
             disabled={disabledButtons}
             type="button"
           >
-            Guardar
+            {submitButtonText}
           </Button>
         </ThemeProvider>
       </Stack>
