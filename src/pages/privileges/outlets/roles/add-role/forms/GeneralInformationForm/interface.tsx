@@ -86,8 +86,6 @@ function RenderFormFields(
           onReset={() => {}}
           idLabel="k_usecase"
           nameLabel="n_usecase"
-          value={formik.values.aplication}
-          onchange={handleChangeForm}
         />
       </Stack>
 
