@@ -3,24 +3,22 @@ import { useFormik } from "formik";
 
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { getData } from "@mocks/utils/dataMock.service";
+import {
+  IGeneralInformation,
+  IHandleChangeFormData,
+} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
 
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
-export interface IGeneralInformationFormProps {
-  caseUseLinixName: string;
-  description: string;
-  webOptions: string;
-  ClientServerOption: string;
-  actionUseCase: string;
-}
-
 interface GeneralInformationFormProps {
+  handleSubmit: (values: IGeneralInformation) => void;
+  csOptions: Record<string, unknown>[];
+  webOptions: Record<string, unknown>[];
+  handleUpdateFormData: (values: IHandleChangeFormData) => void;
   withSubmitButtons?: boolean;
-  initialValues?: IGeneralInformationFormProps;
-  handleSubmit: (values: IGeneralInformationFormProps) => void;
+  initialValues?: IGeneralInformation;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
@@ -28,48 +26,25 @@ interface GeneralInformationFormProps {
 function GeneralInformationForm(props: GeneralInformationFormProps) {
   const {
     initialValues = {
-      caseUseLinixName: "",
-      description: "",
-      actionUseCase: "",
-      webOptions: "",
-      ClientServerOption: "",
+      n_Usecase: "",
+      n_Descrip: "",
+      i_Tipusec: "",
+      k_Funcio: "",
+      k_Opcion: "",
     },
     withSubmitButtons,
     handleSubmit,
     onHasChanges,
     readOnly,
+    csOptions,
+    webOptions,
+    handleUpdateFormData,
   } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [linixUseCases, setLinixUseCases] = useState<Record<string, unknown>[]>(
-    []
-  );
-  const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
-
-  useEffect(() => {
-    getData("clients-server")
-      .then((data) => {
-        if (data !== null) {
-          setLinixUseCases(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
-      });
-
-    getData("web-options")
-      .then((data) => {
-        if (data !== null) {
-          setWebOptions(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
-  }, []);
 
   function onSubmit() {
     setLoading(true);
@@ -93,6 +68,10 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     onSubmit,
   });
 
+  useEffect(() => {
+    handleUpdateFormData(formik.values);
+  }, [formik.values, handleUpdateFormData]);
+
   const handleSubmitForm = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length > 0) {
@@ -105,7 +84,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     });
   };
 
-  const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
+  const hasChanges = (valueCompare: IGeneralInformation) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
   const handleCloseSectionMessage = () => {
@@ -126,11 +105,10 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={formik.handleChange}
       readOnly={readOnly}
-      linixUseCases={linixUseCases}
+      csOptions={csOptions}
       webOptions={webOptions}
     />
   );
 }
 
 export { GeneralInformationForm };
-export type { GeneralInformationFormProps };

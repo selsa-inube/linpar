@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { getData } from "@mocks/utils/dataMock.service";
+import { IHandleChangeFormData } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
 
 import { ClientServerButtonSelectionUI } from "./interface";
 
@@ -11,11 +12,20 @@ const LOADING_TIMEOUT = 1500;
 
 interface ClientServerButtonSelectionProps {
   handleSubmit: (csButtonOption: string) => void;
+  csSelected: string;
+  handleUpdateFormData: (values: IHandleChangeFormData) => void;
   onHasChanges?: (hasChanges: boolean) => void;
+  initialValues?: { csButtonOption: string };
 }
 
 function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
-  const { handleSubmit, onHasChanges } = props;
+  const {
+    handleSubmit,
+    onHasChanges,
+    csSelected,
+    handleUpdateFormData,
+    initialValues = { csButtonOption: "" },
+  } = props;
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({
@@ -37,6 +47,10 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       });
   }, []);
 
+  const filteredButtonOptions = buttonOptions.filter(
+    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === csSelected
+  );
+
   const onSubmit = (csButtonOption: string) => {
     setLoading(true);
     setTimeout(() => {
@@ -50,9 +64,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   };
 
   const formik = useFormik({
-    initialValues: {
-      csButtonOption: "",
-    },
+    initialValues,
     validateOnChange: false,
     onReset: () => {
       if (onHasChanges) onHasChanges(false);
@@ -61,6 +73,10 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       onSubmit(values.csButtonOption);
     },
   });
+
+  useEffect(() => {
+    handleUpdateFormData(formik.values.csButtonOption);
+  }, [formik.values, handleUpdateFormData]);
 
   const handleSubmitForm = () => {
     formik.validateForm().then((errors) => {
@@ -89,7 +105,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={formik.handleChange}
-      buttonOptions={buttonOptions}
+      buttonOptions={filteredButtonOptions}
     />
   );
 }
