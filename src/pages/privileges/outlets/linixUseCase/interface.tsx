@@ -66,8 +66,10 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     {
       id: "Details",
       actionName: "Detalles",
-      content: ({ id }: { id: string }) => {
-        const useCase = linixUseCases.find((useCase) => useCase.id === id);
+      content: ({ k_Usecase }: { k_Usecase: string }) => {
+        const useCase = linixUseCases.find(
+          (useCase) => useCase.k_Usecase === k_Usecase
+        );
         return useCase ? (
           <DetailsModal
             icon={<MdOutlineAssignmentTurnedIn />}

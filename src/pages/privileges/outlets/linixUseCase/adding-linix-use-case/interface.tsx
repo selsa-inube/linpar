@@ -20,6 +20,7 @@ import { StyledAssistedContainer } from "./styles";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
+import { IFormAddLinixUseCase, IHandleChangeFormData } from "./index";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -48,6 +49,10 @@ interface AddingLinixUseCaseUIProps {
   handleCompleteInvitation: () => void;
   handleToggleModal: () => void;
   showModal: boolean;
+  formData: IFormAddLinixUseCase;
+  handleUpdateFormData: (values: IHandleChangeFormData) => void;
+  csOptions: Record<string, unknown>[];
+  webOptions: Record<string, unknown>[];
 }
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
@@ -58,6 +63,10 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     showModal,
     handlePrevStep,
     handleNextStep,
+    formData,
+    handleUpdateFormData,
+    csOptions,
+    webOptions,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -111,12 +120,17 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           >
             {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
               <GeneralInformationForm
-                handleSubmit={() => handleNextStep(currentStep)}
+                csOptions={csOptions}
+                webOptions={webOptions}
+                handleSubmit={handleUpdateFormData}
+                initialValues={formData.generalInformation.values}
               />
             )}
             {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
               <ClientServerButtonSelection
-                handleSubmit={() => handleNextStep(currentStep)}
+                csSelected={formData.generalInformation.values.k_Opcion}
+                handleSubmit={handleUpdateFormData}
+                initialValues={formData.clientServerButton.values}
               />
             )}
             {currentStep ===
