@@ -18,7 +18,7 @@ import {
 } from "./config/addRol.config";
 import {
   GeneralInformationForm,
-  IGeneralInformationFormProps,
+  IGeneralInformationForm,
 } from "./forms/GeneralInformationForm";
 import { IFormaddRole } from ".";
 
@@ -30,7 +30,7 @@ interface AddRolUIProps {
   handleToggleModal: () => void;
   showModal: boolean;
   dataFomr: IFormaddRole;
-  handleUpdateGeneralInformation: (value: IGeneralInformationFormProps) => void;
+  handleUpdateGeneralInformation: (value: IGeneralInformationForm) => void;
 }
 
 function finishModal(

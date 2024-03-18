@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 import { stepsAddRol } from "./config/addRol.config";
-import { IGeneralInformationFormProps } from "./forms/GeneralInformationForm";
+import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
 import { AddRolUI } from "./interface";
 
 export interface IFormaddRole {
   generalInformation: {
     isValid: boolean;
-    values: IGeneralInformationFormProps;
+    values: IGeneralInformationForm;
   };
 }
 
@@ -29,9 +29,7 @@ export function AddRol() {
       },
     });
 
-  const handleUpdateGeneralInformation = (
-    values: IGeneralInformationFormProps
-  ) => {
+  const handleUpdateGeneralInformation = (values: IGeneralInformationForm) => {
     const stepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.id === currentStep
     )?.[0];

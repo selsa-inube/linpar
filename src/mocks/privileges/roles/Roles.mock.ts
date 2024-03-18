@@ -1,4 +1,4 @@
-import { IRol } from "@pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/privileges/outlets/roles/add-role/forms/types/types";
 
 export const roles = [
   {

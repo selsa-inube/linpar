@@ -9,21 +9,21 @@ import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
-export interface IGeneralInformationFormProps {
+export interface IGeneralInformationForm {
   roleName: string;
   description: string;
   aplication: string;
 }
 
-export interface GeneralInformationFormProps {
+export interface IGeneralInformationFormProps {
   withSubmitButtons?: boolean;
-  valuesData: IGeneralInformationFormProps;
-  handleSubmit: (values: IGeneralInformationFormProps) => void;
+  valuesData: IGeneralInformationForm;
+  handleSubmit: (values: IGeneralInformationForm) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
 
-function GeneralInformationForm(props: GeneralInformationFormProps) {
+function GeneralInformationForm(props: IGeneralInformationFormProps) {
   const {
     withSubmitButtons,
     valuesData,
@@ -53,24 +53,20 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       });
   }, []);
 
-  const initialValues: IGeneralInformationFormProps = {
+  const initialValues: IGeneralInformationForm = {
     roleName: valuesData.roleName,
     description: valuesData.description,
     aplication: valuesData.aplication,
   };
 
-  console.log(initialValues.aplication, "initialValues.aplication");
   const formik = useFormik({
     initialValues,
     validateOnChange: false,
-
     onReset: () => {
       if (onHasChanges) onHasChanges(false);
     },
-
     onSubmit: () => {
       setLoading(true);
-
       setTimeout(() => {
         setLoading(false);
         setShowMessage({
@@ -93,7 +89,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     });
   };
 
-  const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
+  const hasChanges = (valueCompare: IGeneralInformationForm) =>
     JSON.stringify(valuesData) !== JSON.stringify(valueCompare);
 
   const handleChangeForm = (

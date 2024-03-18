@@ -23,7 +23,7 @@ import {
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
-import { IRol } from "./types";
+import { IRol } from "./add-role/forms/types/types";
 
 interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;

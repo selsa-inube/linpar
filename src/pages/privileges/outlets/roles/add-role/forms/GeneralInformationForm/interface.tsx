@@ -14,7 +14,7 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 
-import { IGeneralInformationFormProps } from ".";
+import { IGeneralInformationForm } from ".";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -22,7 +22,7 @@ interface GeneralInformationFormUIProps {
   withSubmitButtons?: boolean;
   showMessage: IMessageState;
   handleCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IGeneralInformationFormProps) => boolean;
+  hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
   formInvalid: boolean;
   handleSubmitForm: () => void;
   handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -86,6 +86,8 @@ function RenderFormFields(
           onReset={() => {}}
           idLabel="k_usecase"
           nameLabel="n_usecase"
+          value={formik.values.aplication}
+          onchange={handleChangeForm}
         />
       </Stack>
 
