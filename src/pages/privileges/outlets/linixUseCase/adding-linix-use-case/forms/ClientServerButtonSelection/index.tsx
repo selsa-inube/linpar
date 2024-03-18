@@ -54,10 +54,10 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === csSelected
   );
 
-  const onSubmit = (csButtonOption: string) => {
+  const onSubmit = () => {
     setLoading(true);
     setTimeout(() => {
-      handleSubmit(csButtonOption);
+      handleSubmit(formik.values);
       setLoading(false);
       setShowMessage({
         visible: true,
@@ -72,9 +72,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     onReset: () => {
       if (onHasChanges) onHasChanges(false);
     },
-    onSubmit: (values) => {
-      onSubmit(values.csButtonOption);
-    },
+    onSubmit,
   });
 
   const handleSubmitForm = () => {
@@ -89,8 +87,14 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     });
   };
 
-  const hasChanges = (valueCompare: { csButtonOption: string }) =>
+  const hasChanges = (valueCompare: IClientServerButton) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
+
+  const handleCloseSectionMessage = () => {
+    setShowMessage({
+      visible: false,
+    });
+  };
 
   const handleChangeForm = (name: string, value: string) => {
     const formikValues = {
@@ -102,14 +106,9 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       if (withSubmitButtons) return;
       formik.validateForm().then((errors) => {
         if (!errors || Object.keys(errors).length === 0) {
-          handleSubmit(formikValues.csButtonOption);
+          handleSubmit(formikValues);
         }
       });
-    });
-  };
-  const handleCloseSectionMessage = () => {
-    setShowMessage({
-      visible: false,
     });
   };
 
