@@ -20,7 +20,7 @@ export function AddRol() {
   const [generalInformationData, setGeneralInformationData] =
     useState<IFormaddRole>({
       generalInformation: {
-        isValid: false,
+        isValid: true,
         values: {
           roleName: "",
           description: "",

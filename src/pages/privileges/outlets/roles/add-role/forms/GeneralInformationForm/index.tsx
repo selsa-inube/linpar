@@ -62,9 +62,7 @@ function GeneralInformationForm(props: IGeneralInformationFormProps) {
   const formik = useFormik({
     initialValues,
     validateOnChange: false,
-    onReset: () => {
-      if (onHasChanges) onHasChanges(false);
-    },
+
     onSubmit: () => {
       setLoading(true);
       setTimeout(() => {

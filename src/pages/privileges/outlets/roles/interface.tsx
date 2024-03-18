@@ -16,6 +16,7 @@ import { Menu } from "@components/navigation/Menu";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets//options/config/privileges.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
+import { IRol } from "./add-role/forms/types/types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
@@ -23,7 +24,6 @@ import {
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
-import { IRol } from "./add-role/forms/types/types";
 
 interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
