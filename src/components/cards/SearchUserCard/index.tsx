@@ -23,6 +23,7 @@ interface SearchUserCardProps {
   onReset: (field: () => void) => void;
   idLabel?: string;
   nameLabel?: string;
+  selectedId?: string;
 }
 
 function SearchUserCard(props: SearchUserCardProps) {
@@ -44,10 +45,21 @@ function SearchUserCard(props: SearchUserCardProps) {
     onReset,
     idLabel = "userID",
     nameLabel = "username",
+    selectedId = "",
   } = props;
   const [showModal, setShowModal] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState("");
   const smallScreen = useMediaQuery("(max-width: 970px)");
+
+  useEffect(() => {
+    if (selectedId.length > 0) {
+      userData.forEach((data) => {
+        if (data[idLabel] === selectedId) {
+          setSelectedUsername(String(data[nameLabel]));
+        }
+      });
+    }
+  }, [idLabel, nameLabel, userData, selectedId]);
 
   useEffect(() => {
     if (onReset) {

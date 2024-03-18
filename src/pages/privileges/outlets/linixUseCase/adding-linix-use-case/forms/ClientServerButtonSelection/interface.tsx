@@ -22,15 +22,17 @@ interface ClientServerButtonSelectionUIProps {
   handleCloseSectionMessage: () => void;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeForm: (name: string, value: string) => void;
   buttonOptions: Record<string, unknown>[];
 }
 
-function filtrado(buttonOptions: Record<string, unknown>[]) {
+function uniqueButtonOptionsCalculator(
+  buttonOptions: Record<string, unknown>[]
+) {
   const uniqueButtonList = new Map();
   buttonOptions.forEach((buttonOption) => {
-    if (!uniqueButtonList.has(buttonOption.OPCION_CLIENTE_SERVIDOR)) {
-      uniqueButtonList.set(buttonOption.OPCION_CLIENTE_SERVIDOR, buttonOption);
+    if (!uniqueButtonList.has(buttonOption.CODIGO_BOTON)) {
+      uniqueButtonList.set(buttonOption.CODIGO_BOTON, buttonOption);
     }
   });
 
@@ -41,7 +43,7 @@ function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
-  handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  handleChangeForm: (name: string, value: string) => void,
   buttonOptions: Record<string, unknown>[]
 ) {
   const mediaQuerie = "(max-width: 744px)";
@@ -71,13 +73,15 @@ function RenderFormFields(
             size="compact"
             fullwidth
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              formik.setFieldValue("csButtonOption", value.target.outerText)
+              handleChangeForm("csButtonOption", value.target.outerText)
             }
             onBlur={formik.handleBlur}
-            options={filtrado(buttonOptions).map((useCase) => ({
-              id: useCase.OPCION_CLIENTE_SERVIDOR,
-              label: useCase.OPCION_CLIENTE_SERVIDOR,
-            }))}
+            options={uniqueButtonOptionsCalculator(buttonOptions).map(
+              (buttonOption) => ({
+                id: buttonOption.CODIGO_BOTON,
+                label: buttonOption.DESCRIPCION_BOTON,
+              })
+            )}
           />
         </StyledSelectContainer>
       </Stack>

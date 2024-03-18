@@ -3,7 +3,7 @@ import { StoryFn } from "@storybook/react";
 import { SearchUserCard, SearchUserCardProps } from ".";
 
 const story = {
-  component: [SearchUserCard],
+  component: SearchUserCard,
   title: "components/cards/SearchUserCard",
   decorators: [
     (Story: StoryFn) => (
