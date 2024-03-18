@@ -8,6 +8,7 @@ import {
 
 import itemNotFound from "@assets/images/ItemNotFound.png";
 import { DecisionModal } from "@components/feedback/DecisionModal";
+import { FormButtons } from "@components/forms/submit/FormButtons";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 
@@ -66,6 +67,16 @@ export function AddRolUI(props: AddRolUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+  const isCurrentStateValid = () => {
+    if (currentStep === Object.values(stepsAddRol).length) {
+      handleToggleModal();
+    } else {
+      handleNextStep(currentStep);
+    }
+  };
+  const isPreviousStepAvailable = () => {
+    return currentStep !== 1 ? (handlePrevStep(currentStep), true) : false;
+  };
 
   const {
     generalInformation: { values },
@@ -100,68 +111,76 @@ export function AddRolUI(props: AddRolUIProps) {
             }
           />
 
-          {currentStep === stepsAddRol.generalInformation.id && (
-            <GeneralInformationForm
-              handleSubmit={handleUpdateGeneralInformation}
-              valuesData={values}
-            />
-          )}
+          <FormButtons
+            handleSubmit={isCurrentStateValid}
+            handleReset={isPreviousStepAvailable}
+            cancelButtonText="Atrás"
+            submitButtonText="Siguiente"
+            disableReset={currentStep === 1}
+          >
+            {currentStep === stepsAddRol.generalInformation.id && (
+              <GeneralInformationForm
+                handleSubmit={handleUpdateGeneralInformation}
+                valuesData={values}
+              />
+            )}
 
-          {currentStep === stepsAddRol.auxiliaryAccounts.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Opciones de cuentas auxiliares"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
-            />
-          )}
-          {currentStep === stepsAddRol.transactionTypes.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Tipos de movimiento"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
-            />
-          )}
-          {currentStep === stepsAddRol.businessRules.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Reglas de negocio"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
-            />
-          )}
-          {currentStep === stepsAddRol.crediboardTasks.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Tareas Crediboard"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
-            />
-          )}
-          {currentStep === stepsAddRol.useCases.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Casos de uso"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
-            />
-          )}
+            {currentStep === stepsAddRol.auxiliaryAccounts.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Opciones de cuentas auxiliares"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/roles"}
+              />
+            )}
+            {currentStep === stepsAddRol.transactionTypes.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Tipos de movimiento"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/roles"}
+              />
+            )}
+            {currentStep === stepsAddRol.businessRules.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Reglas de negocio"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/roles"}
+              />
+            )}
+            {currentStep === stepsAddRol.crediboardTasks.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Tareas Crediboard"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/roles"}
+              />
+            )}
+            {currentStep === stepsAddRol.useCases.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Casos de uso"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/roles"}
+              />
+            )}
 
-          {currentStep === stepsAddRol.summary.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Página de resumen"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
-            />
-          )}
+            {currentStep === stepsAddRol.summary.id && (
+              <ItemNotFound
+                image={itemNotFound}
+                title={"Página de resumen"}
+                description={"Esta sección está en construcción."}
+                buttonDescription={"Retorna a la página de inicio"}
+                route={"/privileges/roles"}
+              />
+            )}
+          </FormButtons>
         </>
       </Stack>
 

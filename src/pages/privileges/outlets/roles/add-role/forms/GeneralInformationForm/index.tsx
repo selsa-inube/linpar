@@ -90,16 +90,14 @@ function GeneralInformationForm(props: IGeneralInformationFormProps) {
   const hasChanges = (valueCompare: IGeneralInformationForm) =>
     JSON.stringify(valuesData) !== JSON.stringify(valueCompare);
 
-  const handleChangeForm = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChangeForm = (name: string, value: string) => {
     const formikValues = {
       ...formik.values,
-      [event.target.name]: event.target.value,
+      [name]: value,
     };
 
     if (onHasChanges) onHasChanges(hasChanges(formikValues));
-    formik.setFieldValue(event.target.name, event.target.value).then(() => {
+    formik.setFieldValue(name, value).then(() => {
       if (withSubmitButtons) return;
       formik.validateForm().then((errors) => {
         if (!errors || Object.keys(errors).length === 0) {
