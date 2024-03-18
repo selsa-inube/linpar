@@ -142,8 +142,9 @@ function RenderFormFields(
           idLabel="K_opcion"
           nameLabel="Nombre_opcion"
           onUserSelect={(value: Record<string, unknown>) =>
-            formik.setFieldValue("k_Funcio", value)
+            formik.setFieldValue("k_Funcio", value.K_opcion)
           }
+          selectedId={formik.values.k_Funcio}
         />
       </Stack>
       <SearchUserCard
@@ -165,6 +166,7 @@ function RenderFormFields(
         idLabel="CODIGO_OPCION"
         nameLabel="DESCRIPCION"
         onReset={() => {}}
+        selectedId={formik.values.k_Opcion}
       />
     </Grid>
   );
