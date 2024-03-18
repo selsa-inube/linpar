@@ -28,11 +28,11 @@ export function DetailsModal(props: IDetailsModalProps) {
           portalId="portal"
           title="Detalles caso de uso"
           infoData={{
-            Codigo: useCase?.k_usecase || "",
-            Nombre: useCase?.n_usecase || "",
-            Tipo: useCase?.i_tipusec || "",
-            Descripicion: useCase?.n_descrip || "",
-            OpcionClienteServidor: useCase?.n_camprv || "",
+            Codigo: useCase?.k_Usecase || "",
+            Nombre: useCase?.n_Usecase || "",
+            Tipo: useCase?.i_Tipusec || "",
+            Descripicion: useCase?.n_Descrip || "",
+            OpcionButtonClienteServidor: useCase?.k_Nforma || "",
           }}
           infoTitle="Información"
           closeModal={handleClick}
