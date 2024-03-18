@@ -23,7 +23,7 @@ import {
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
-import { Role } from "./types";
+import { IRol } from "./types";
 
 interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -31,7 +31,7 @@ interface IRolesProps {
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
   searchRole: string;
-  linixRoles: Role[];
+  linixRoles: IRol[];
   loading: boolean;
 }
 

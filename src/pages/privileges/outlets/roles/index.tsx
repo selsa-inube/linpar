@@ -3,19 +3,19 @@ import { useState, useEffect } from "react";
 import { getData } from "@src/mocks/utils/dataMock.service";
 
 import { RolesUI } from "./interface";
-import { Role } from "./types";
+import { IRol } from "./types";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [linixRoles, setLinixRoles] = useState<Role[]>([]);
+  const [linixRoles, setLinixRoles] = useState<IRol[]>([]);
 
   useEffect(() => {
     getData("linix-roles")
       .then((data) => {
         if (data !== null) {
-          setLinixRoles(data as Role[]);
+          setLinixRoles(data as IRol[]);
         }
       })
       .catch((error) => {
@@ -23,18 +23,6 @@ export function Roles() {
       })
       .finally(() => {
         setLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    getData("linix-role")
-      .then((data) => {
-        if (data !== null) {
-          console.log(data);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }, []);
 

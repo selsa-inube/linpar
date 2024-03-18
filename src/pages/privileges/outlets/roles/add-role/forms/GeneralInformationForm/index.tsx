@@ -17,7 +17,7 @@ export interface IGeneralInformationFormProps {
 
 export interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
-  initialValuesData: IGeneralInformationFormProps;
+  valuesData: IGeneralInformationFormProps;
   handleSubmit: (values: IGeneralInformationFormProps) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
@@ -26,7 +26,7 @@ export interface GeneralInformationFormProps {
 function GeneralInformationForm(props: GeneralInformationFormProps) {
   const {
     withSubmitButtons,
-    initialValuesData,
+    valuesData,
     handleSubmit,
     onHasChanges,
     readOnly,
@@ -36,8 +36,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
-
-  //const [formInvalid, setFormInvalid] = useState(false);
 
   const [linixUseCases, setLinixUseCases] = useState<Record<string, unknown>[]>(
     []
@@ -55,25 +53,13 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       });
   }, []);
 
-  /*   const formik = useFormik({
-    initialValues,
-    validateOnChange: false,
-    onReset: () => {
-      if (onHasChanges) onHasChanges(false);
-    },
-    onSubmit: (values) => {
-      console.log("values, Andres", values);
-    },
-  }); */
-
   const initialValues: IGeneralInformationFormProps = {
-    roleName: initialValuesData.roleName,
-    description: initialValuesData.description,
-    aplication: initialValuesData.aplication,
+    roleName: valuesData.roleName,
+    description: valuesData.description,
+    aplication: valuesData.aplication,
   };
 
-  console.log("initialValus", initialValuesData);
-
+  console.log(initialValues.aplication, "initialValues.aplication");
   const formik = useFormik({
     initialValues,
     validateOnChange: false,
@@ -86,8 +72,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       setLoading(true);
 
       setTimeout(() => {
-        handleSubmit(formik.values);
-        //setFormInvalid(false);
         setLoading(false);
         setShowMessage({
           visible: true,
@@ -110,7 +94,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   };
 
   const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
-    JSON.stringify(initialValuesData) !== JSON.stringify(valueCompare);
+    JSON.stringify(valuesData) !== JSON.stringify(valueCompare);
 
   const handleChangeForm = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

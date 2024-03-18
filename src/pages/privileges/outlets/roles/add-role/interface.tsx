@@ -103,7 +103,7 @@ export function AddRolUI(props: AddRolUIProps) {
           {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
               handleSubmit={handleUpdateGeneralInformation}
-              initialValuesData={values}
+              valuesData={values}
             />
           )}
 
