@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 
 import { EMessageType } from "@src/types/messages.types";
@@ -13,10 +13,9 @@ import { GeneralInformationFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 interface GeneralInformationFormProps {
-  handleSubmit: (values: IGeneralInformation) => void;
+  handleSubmit: (values: IHandleChangeFormData) => void;
   csOptions: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
-  handleUpdateFormData: (values: IHandleChangeFormData) => void;
   withSubmitButtons?: boolean;
   initialValues?: IGeneralInformation;
   onHasChanges?: (hasChanges: boolean) => void;
@@ -38,7 +37,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     readOnly,
     csOptions,
     webOptions,
-    handleUpdateFormData,
   } = props;
 
   const [loading, setLoading] = useState(false);
@@ -50,7 +48,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     setLoading(true);
     setTimeout(() => {
       handleSubmit(formik.values);
-
       setLoading(false);
       setShowMessage({
         visible: true,
@@ -67,10 +64,6 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     },
     onSubmit,
   });
-
-  useEffect(() => {
-    handleUpdateFormData(formik.values);
-  }, [formik.values, handleUpdateFormData]);
 
   const handleSubmitForm = () => {
     formik.validateForm().then((errors) => {
@@ -93,6 +86,23 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     });
   };
 
+  const handleChangeForm = (name: string, value: string) => {
+    const formikValues = {
+      ...formik.values,
+      [name]: value,
+    };
+
+    if (onHasChanges) onHasChanges(hasChanges(formikValues));
+    formik.setFieldValue(name, value).then(() => {
+      if (withSubmitButtons) return;
+      formik.validateForm().then((errors) => {
+        if (!errors || Object.keys(errors).length === 0) {
+          handleSubmit(formikValues);
+        }
+      });
+    });
+  };
+
   return (
     <GeneralInformationFormUI
       loading={loading}
@@ -103,7 +113,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       hasChanges={hasChanges}
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
-      handleChangeForm={formik.handleChange}
+      handleChangeForm={handleChangeForm}
       readOnly={readOnly}
       csOptions={csOptions}
       webOptions={webOptions}

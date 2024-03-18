@@ -16,10 +16,7 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 import { OptionSelect } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
-import {
-  IGeneralInformation,
-  IHandleChangeFormData,
-} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
+import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
 
 import { StyledSelectContainer } from "./styles";
 
@@ -32,7 +29,7 @@ interface GeneralInformationFormUIProps {
   hasChanges: (valueCompare: IGeneralInformation) => boolean;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  handleChangeForm: (data: IHandleChangeFormData) => void;
+  handleChangeForm: (name: string, value: string) => void;
   readOnly?: boolean;
   csOptions: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
@@ -46,7 +43,7 @@ function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
-  handleChangeForm: (values: IHandleChangeFormData) => void,
+  handleChangeForm: (name: string, value: string) => void,
   csOptions: Record<string, unknown>[],
   webOptions: Record<string, unknown>[],
   readOnly?: boolean
@@ -75,7 +72,9 @@ function RenderFormFields(
           type="text"
           size="compact"
           fullwidth
-          onChange={handleChangeForm}
+          onChange={(
+            event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+          ) => handleChangeForm(event.target.name, event.target.value)}
         />
         <StyledSelectContainer>
           <Select
@@ -89,7 +88,7 @@ function RenderFormFields(
             size="compact"
             fullwidth
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              formik.setFieldValue("i_Tipusec", value.target.outerText)
+              handleChangeForm("i_Tipusec", value.target.outerText)
             }
             onBlur={formik.handleBlur}
             options={OptionSelect}
@@ -107,7 +106,9 @@ function RenderFormFields(
         size="compact"
         maxLength={120}
         fullwidth
-        onChange={handleChangeForm}
+        onChange={(
+          event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+        ) => handleChangeForm(event.target.name, event.target.value)}
       />
 
       <Stack direction="column" gap={inube.spacing.s100}>
@@ -142,7 +143,7 @@ function RenderFormFields(
           idLabel="K_opcion"
           nameLabel="Nombre_opcion"
           onUserSelect={(value: Record<string, unknown>) =>
-            formik.setFieldValue("k_Funcio", value.K_opcion)
+            handleChangeForm("k_Funcio", value.K_opcion as string)
           }
           selectedId={formik.values.k_Funcio}
         />
@@ -159,7 +160,7 @@ function RenderFormFields(
         labelModal="Digite la opción a buscar."
         placeholderModal="Digite el código o nombre del caso de uso."
         onUserSelect={(option: Record<string, unknown>) =>
-          formik.setFieldValue("k_Opcion", option.CODIGO_OPCION)
+          handleChangeForm("k_Opcion", option.CODIGO_OPCION as string)
         }
         userData={csOptions}
         searchFieldData={searchData}

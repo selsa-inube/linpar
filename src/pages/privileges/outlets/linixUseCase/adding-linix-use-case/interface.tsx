@@ -120,21 +120,17 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           >
             {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
               <GeneralInformationForm
-                handleSubmit={() => handleNextStep(currentStep)}
                 csOptions={csOptions}
                 webOptions={webOptions}
-                handleUpdateFormData={handleUpdateFormData}
+                handleSubmit={handleUpdateFormData}
                 initialValues={formData.generalInformation.values}
               />
             )}
             {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
               <ClientServerButtonSelection
-                handleSubmit={() => handleNextStep(currentStep)}
                 csSelected={formData.generalInformation.values.k_Opcion}
-                handleUpdateFormData={handleUpdateFormData}
-                initialValues={{
-                  csButtonOption: formData.clientServerButton.values,
-                }}
+                handleSubmit={handleUpdateFormData}
+                initialValues={formData.clientServerButton.values}
               />
             )}
             {currentStep ===

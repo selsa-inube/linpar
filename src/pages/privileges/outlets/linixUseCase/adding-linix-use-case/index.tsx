@@ -19,6 +19,11 @@ export interface IGeneralInformation {
   k_Funcio: string;
   k_Opcion: string;
 }
+
+export interface IClientServerButton {
+  csButtonOption: string;
+}
+
 export interface IFormAddLinixUseCase {
   generalInformation: {
     isValid: boolean;
@@ -26,7 +31,7 @@ export interface IFormAddLinixUseCase {
   };
   clientServerButton: {
     isValid: boolean;
-    values: string;
+    values: IClientServerButton;
   };
   downloadableDocuments: {
     values: TiposDeDocumentoPorCasoDeUso[];
@@ -47,7 +52,7 @@ export interface IFormAddLinixUseCase {
 
 export type IHandleChangeFormData =
   | IGeneralInformation
-  | string
+  | IClientServerButton
   | TiposDeDocumentoPorCasoDeUso[]
   | ReportesWebPorCasoDeUso[]
   | OpcionesPortalWebPorCasoDeUso[]
@@ -72,7 +77,9 @@ function AddingLinixUseCase() {
     },
     clientServerButton: {
       isValid: false,
-      values: "",
+      values: {
+        csButtonOption: "",
+      },
     },
     downloadableDocuments: {
       values: [],
@@ -120,7 +127,6 @@ function AddingLinixUseCase() {
     const stepKey = Object.entries(stepsAddingLinixUseCase).find(
       ([, config]) => config.id === currentStep
     )?.[0];
-
     if (stepKey) {
       setFormData((prevFormData) => ({
         ...prevFormData,

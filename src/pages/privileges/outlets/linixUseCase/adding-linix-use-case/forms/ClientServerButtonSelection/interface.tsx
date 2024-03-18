@@ -22,7 +22,7 @@ interface ClientServerButtonSelectionUIProps {
   handleCloseSectionMessage: () => void;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeForm: (name: string, value: string) => void;
   buttonOptions: Record<string, unknown>[];
 }
 
@@ -43,7 +43,7 @@ function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
-  handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  handleChangeForm: (name: string, value: string) => void,
   buttonOptions: Record<string, unknown>[]
 ) {
   const mediaQuerie = "(max-width: 744px)";
@@ -73,7 +73,7 @@ function RenderFormFields(
             size="compact"
             fullwidth
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              formik.setFieldValue("csButtonOption", value.target.outerText)
+              handleChangeForm("csButtonOption", value.target.outerText)
             }
             onBlur={formik.handleBlur}
             options={uniqueButtonOptionsCalculator(buttonOptions).map(
