@@ -29,14 +29,14 @@ export function AddRol() {
       },
     });
 
-  const handleUpdateGeneralInformation = (values: IGeneralInformationForm) => {
+  const handleUptdateForm = (values: IGeneralInformationForm) => {
     const stepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.id === currentStep
     )?.[0];
 
     if (stepKey) {
-      setGeneralInformationData((prevInvitationData) => ({
-        ...prevInvitationData,
+      setGeneralInformationData((prevFormData) => ({
+        ...prevFormData,
         [stepKey]: { values: values },
       }));
     }
@@ -67,7 +67,7 @@ export function AddRol() {
       handleCompleteInvitation={handleCompleteInvitation}
       showModal={showModal}
       dataForm={generalInformationData}
-      handleUpdateGeneralInformation={handleUpdateGeneralInformation}
+      handleUpdateGeneralInformation={handleUptdateForm}
     />
   );
 }
