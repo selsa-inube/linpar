@@ -136,14 +136,12 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             )}
             {currentStep ===
               stepsAddingLinixUseCase.downloadableDocuments.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Documentos descargables"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/linixUseCase"}
+              <InitializerForm
+                dataOptionsForms={formData.downloadableDocuments.values}
+                handleSubmit={handleUpdateFormData}
               />
             )}
+
             {currentStep === stepsAddingLinixUseCase.webReports.id && (
               <InitializerForm
                 dataOptionsForms={formData.webReports.values}
