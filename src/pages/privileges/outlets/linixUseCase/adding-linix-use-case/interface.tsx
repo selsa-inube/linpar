@@ -8,8 +8,6 @@ import {
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
-import { ItemNotFound } from "@components/layout/ItemNotFound";
-import itemNotFound from "@src/assets/images/ItemNotFound.png";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 
 import {
@@ -22,6 +20,7 @@ import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
 import { IFormAddLinixUseCase, IHandleChangeFormData } from "./index";
+import { ControllerAccordion } from "@src/components/AssistedFinalStep";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -168,12 +167,9 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               />
             )}
             {currentStep === stepsAddingLinixUseCase.summary.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Página de resumen"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/linixUseCase"}
+              <ControllerAccordion
+                formData={formData}
+                handleStepChange={handleNextStep}
               />
             )}
           </FormButtons>
