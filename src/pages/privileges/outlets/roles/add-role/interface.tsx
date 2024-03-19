@@ -21,7 +21,7 @@ import {
   GeneralInformationForm,
   IGeneralInformationForm,
 } from "./forms/GeneralInformationForm";
-import { IFormaddRole } from ".";
+import { IFormAddRole } from ".";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;
@@ -30,7 +30,7 @@ interface AddRolUIProps {
   handleCompleteInvitation: () => void;
   handleToggleModal: () => void;
   showModal: boolean;
-  dataFomr: IFormaddRole;
+  dataForm: IFormAddRole;
   handleUpdateGeneralInformation: (value: IGeneralInformationForm) => void;
 }
 
@@ -62,7 +62,7 @@ export function AddRolUI(props: AddRolUIProps) {
     showModal,
     handlePrevStep,
     handleNextStep,
-    dataFomr,
+    dataForm,
     handleUpdateGeneralInformation,
   } = props;
 
@@ -80,7 +80,7 @@ export function AddRolUI(props: AddRolUIProps) {
 
   const {
     generalInformation: { values },
-  } = dataFomr;
+  } = dataForm;
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>

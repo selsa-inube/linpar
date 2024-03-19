@@ -10,17 +10,17 @@ import { GeneralInformationFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 export interface IGeneralInformationForm {
-  roleName: string;
-  description: string;
   aplication: string;
+  description: string;
+  roleName: string;
 }
 
 export interface IGeneralInformationFormProps {
-  withSubmitButtons?: boolean;
-  valuesData: IGeneralInformationForm;
   handleSubmit: (values: IGeneralInformationForm) => void;
+  valuesData: IGeneralInformationForm;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
+  withSubmitButtons?: boolean;
 }
 
 function GeneralInformationForm(props: IGeneralInformationFormProps) {
@@ -53,14 +53,8 @@ function GeneralInformationForm(props: IGeneralInformationFormProps) {
       });
   }, []);
 
-  const initialValues: IGeneralInformationForm = {
-    roleName: valuesData.roleName,
-    description: valuesData.description,
-    aplication: valuesData.aplication,
-  };
-
   const formik = useFormik({
-    initialValues,
+    initialValues: { ...valuesData },
     validateOnChange: false,
 
     onSubmit: () => {

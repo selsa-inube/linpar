@@ -4,7 +4,7 @@ import { stepsAddRol } from "./config/addRol.config";
 import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
 import { AddRolUI } from "./interface";
 
-export interface IFormaddRole {
+export interface IFormAddRole {
   generalInformation: {
     isValid: boolean;
     values: IGeneralInformationForm;
@@ -18,7 +18,7 @@ export function AddRol() {
   const [showModal, setShowModal] = useState(false);
 
   const [generalInformationData, setGeneralInformationData] =
-    useState<IFormaddRole>({
+    useState<IFormAddRole>({
       generalInformation: {
         isValid: true,
         values: {
@@ -66,7 +66,7 @@ export function AddRol() {
       handleToggleModal={handleToggleModal}
       handleCompleteInvitation={handleCompleteInvitation}
       showModal={showModal}
-      dataFomr={generalInformationData}
+      dataForm={generalInformationData}
       handleUpdateGeneralInformation={handleUpdateGeneralInformation}
     />
   );

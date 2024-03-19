@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { getData } from "@src/mocks/utils/dataMock.service";
-import { IRol } from "@pages/privileges/outlets/roles/add-role/forms/types/types";
+import { IRol } from "@src/pages/privileges/outlets/roles/types";
 
 import { RolesUI } from "./interface";
 
