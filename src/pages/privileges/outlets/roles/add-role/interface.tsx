@@ -17,11 +17,9 @@ import {
   finishAssistedRolModalConfig,
   stepsAddRol,
 } from "./config/addRol.config";
-import {
-  GeneralInformationForm,
-  IGeneralInformationForm,
-} from "./forms/GeneralInformationForm";
+import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { IFormAddRole } from ".";
+import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;
@@ -31,7 +29,7 @@ interface AddRolUIProps {
   handleToggleModal: () => void;
   showModal: boolean;
   dataForm: IFormAddRole;
-  handleUpdateGeneralInformation: (value: IGeneralInformationForm) => void;
+  handleUpdateGeneralInformation: (value: IFormAddRole) => void;
 }
 
 function finishModal(
@@ -80,7 +78,12 @@ export function AddRolUI(props: AddRolUIProps) {
 
   const {
     generalInformation: { values },
+    ancillaryAccounts: { values: ancillaryAccountsValues },
   } = dataForm;
+
+  function ejecutora(data: IFormAddRole) {
+    handleUpdateGeneralInformation(data);
+  }
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
@@ -126,12 +129,9 @@ export function AddRolUI(props: AddRolUIProps) {
             )}
 
             {currentStep === stepsAddRol.auxiliaryAccounts.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Opciones de cuentas auxiliares"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/roles"}
+              <AncillaryAccountsForm
+                valuesData={ancillaryAccountsValues}
+                handleSubmit={ejecutora}
               />
             )}
             {currentStep === stepsAddRol.transactionTypes.id && (

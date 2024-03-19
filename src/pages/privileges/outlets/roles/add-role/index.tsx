@@ -3,11 +3,15 @@ import { useState } from "react";
 import { stepsAddRol } from "./config/addRol.config";
 import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
 import { AddRolUI } from "./interface";
+import { IAncillaryAccountsForm } from "./forms/AncillaryAccounts";
 
 export interface IFormAddRole {
   generalInformation: {
     isValid: boolean;
     values: IGeneralInformationForm;
+  };
+  ancillaryAccounts: {
+    values: IAncillaryAccountsForm;
   };
 }
 
@@ -27,9 +31,17 @@ export function AddRol() {
           aplication: "",
         },
       },
+      ancillaryAccounts: {
+        values: {
+          officialSector: "",
+          commercialSector: "",
+          solidaritySector: "",
+        },
+      },
     });
 
-  const handleUptdateForm = (values: IGeneralInformationForm) => {
+  const handleUptdateForm = (values: IFormAddRole) => {
+    console.log("values cuentas", values);
     const stepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.id === currentStep
     )?.[0];
