@@ -47,6 +47,7 @@ function SearchUserCard(props: SearchUserCardProps) {
     idLabel = "userID",
     nameLabel = "username",
     selectedId = "",
+    onReset,
   } = props;
   const [showModal, setShowModal] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState("");
@@ -61,6 +62,16 @@ function SearchUserCard(props: SearchUserCardProps) {
       });
     }
   }, [idLabel, nameLabel, userData, selectedId]);
+
+  const resetSelectedUser = () => {
+    setSelectedUsername("");
+  };
+
+  useEffect(() => {
+    if (onReset) {
+      onReset(resetSelectedUser);
+    }
+  }, [onReset]);
 
   const handleToggleModal = () => {
     setShowModal(!showModal);
