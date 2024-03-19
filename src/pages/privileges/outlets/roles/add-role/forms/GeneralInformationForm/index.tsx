@@ -9,28 +9,24 @@ import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
-export interface IGeneralInformationFormProps {
-  roleName: string;
-  description: string;
+export interface IGeneralInformationForm {
   aplication: string;
+  description: string;
+  roleName: string;
 }
 
-interface GeneralInformationFormProps {
-  withSubmitButtons?: boolean;
-  initialValues?: IGeneralInformationFormProps;
-  handleSubmit: (values: IGeneralInformationFormProps) => void;
+export interface IGeneralInformationFormProps {
+  handleSubmit: (values: IGeneralInformationForm) => void;
+  valuesData: IGeneralInformationForm;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
+  withSubmitButtons?: boolean;
 }
 
-function GeneralInformationForm(props: GeneralInformationFormProps) {
+function GeneralInformationForm(props: IGeneralInformationFormProps) {
   const {
-    initialValues = {
-      roleName: "",
-      description: "",
-      aplication: "",
-    },
     withSubmitButtons,
+    valuesData,
     handleSubmit,
     onHasChanges,
     readOnly,
@@ -40,6 +36,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
+
   const [linixUseCases, setLinixUseCases] = useState<Record<string, unknown>[]>(
     []
   );
@@ -56,26 +53,20 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       });
   }, []);
 
-  function onSubmit() {
-    setLoading(true);
-    setTimeout(() => {
-      handleSubmit(formik.values);
-
-      setLoading(false);
-      setShowMessage({
-        visible: true,
-        type: EMessageType.SUCCESS,
-      });
-    }, LOADING_TIMEOUT);
-  }
-
   const formik = useFormik({
-    initialValues,
+    initialValues: { ...valuesData },
     validateOnChange: false,
-    onReset: () => {
-      if (onHasChanges) onHasChanges(false);
+
+    onSubmit: () => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setShowMessage({
+          visible: true,
+          type: EMessageType.SUCCESS,
+        });
+      }, LOADING_TIMEOUT);
     },
-    onSubmit,
   });
 
   const handleSubmitForm = () => {
@@ -90,8 +81,25 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     });
   };
 
-  const hasChanges = (valueCompare: IGeneralInformationFormProps) =>
-    JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
+  const hasChanges = (valueCompare: IGeneralInformationForm) =>
+    JSON.stringify(valuesData) !== JSON.stringify(valueCompare);
+
+  const handleChangeForm = (name: string, value: string) => {
+    const formikValues = {
+      ...formik.values,
+      [name]: value,
+    };
+
+    if (onHasChanges) onHasChanges(hasChanges(formikValues));
+    formik.setFieldValue(name, value).then(() => {
+      if (withSubmitButtons) return;
+      formik.validateForm().then((errors) => {
+        if (!errors || Object.keys(errors).length === 0) {
+          handleSubmit(formikValues);
+        }
+      });
+    });
+  };
 
   const handleCloseSectionMessage = () => {
     setShowMessage({
@@ -109,7 +117,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       hasChanges={hasChanges}
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
-      handleChangeForm={formik.handleChange}
+      handleChangeForm={handleChangeForm}
       readOnly={readOnly}
       linixUseCases={linixUseCases}
     />
@@ -117,4 +125,3 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
 }
 
 export { GeneralInformationForm };
-export type { GeneralInformationFormProps };

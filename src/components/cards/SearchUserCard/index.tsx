@@ -1,9 +1,11 @@
-import { Textfield, useMediaQuery } from "@inube/design-system";
 import { useEffect, useState } from "react";
-import { StyledSearchUserCard } from "./styles";
-import { ILabel } from "./types";
-import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { MdSearch } from "react-icons/md";
+import { Textfield, useMediaQuery } from "@inube/design-system";
+
+import { InteractiveModal } from "@components/feedback/InteractiveModal";
+
+import { ILabel } from "./types";
+import { StyledSearchUserCard } from "./styles";
 
 interface SearchUserCardProps {
   id: string;
@@ -42,10 +44,10 @@ function SearchUserCard(props: SearchUserCardProps) {
     infoTitle,
     labels,
     onUserSelect,
-    onReset,
     idLabel = "userID",
     nameLabel = "username",
     selectedId = "",
+    onReset,
   } = props;
   const [showModal, setShowModal] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState("");
@@ -61,6 +63,10 @@ function SearchUserCard(props: SearchUserCardProps) {
     }
   }, [idLabel, nameLabel, userData, selectedId]);
 
+  const resetSelectedUser = () => {
+    setSelectedUsername("");
+  };
+
   useEffect(() => {
     if (onReset) {
       onReset(resetSelectedUser);
@@ -69,10 +75,6 @@ function SearchUserCard(props: SearchUserCardProps) {
 
   const handleToggleModal = () => {
     setShowModal(!showModal);
-  };
-
-  const resetSelectedUser = () => {
-    setSelectedUsername("");
   };
 
   const handleUserSelect = (data: { [key: string]: string | number }) => {
