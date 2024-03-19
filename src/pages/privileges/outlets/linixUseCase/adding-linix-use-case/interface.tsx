@@ -21,6 +21,7 @@ import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
 import { IFormAddLinixUseCase, IHandleChangeFormData } from "./index";
+import { InitializerForm } from "./forms/DownloadableFormats";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -53,6 +54,7 @@ interface AddingLinixUseCaseUIProps {
   handleUpdateFormData: (values: IHandleChangeFormData) => void;
   csOptions: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
+  documents: Record<string, unknown>[];
 }
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
@@ -67,6 +69,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     handleUpdateFormData,
     csOptions,
     webOptions,
+    documents,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -80,6 +83,12 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const isPreviousStepAvailable = () => {
     return currentStep !== 1 ? (handlePrevStep(currentStep), true) : false;
   };
+
+  const dataOptionsForms = documents.map((document) => ({
+    value: String(document.NOMBRE),
+    isActive: Boolean(document.isActive),
+    id: String(document.CODIGO),
+  }));
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
@@ -135,12 +144,10 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             )}
             {currentStep ===
               stepsAddingLinixUseCase.downloadableDocuments.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Documentos descargables"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/linixUseCase"}
+              <InitializerForm
+                dataOptionsForms={dataOptionsForms}
+                handleSubmit={handleUpdateFormData as any}
+                initialValues={formData.downloadableDocuments.values}
               />
             )}
             {currentStep === stepsAddingLinixUseCase.webReports.id && (

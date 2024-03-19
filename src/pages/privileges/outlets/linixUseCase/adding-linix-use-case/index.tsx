@@ -34,7 +34,10 @@ export interface IFormAddLinixUseCase {
     values: IClientServerButton;
   };
   downloadableDocuments: {
-    values: TiposDeDocumentoPorCasoDeUso[];
+    values: IFormAddLinixUseCase | undefined;
+    CODIGO: string;
+    NOMBRE: string;
+    isActive: false;
   };
   webReports: {
     values: ReportesWebPorCasoDeUso[];
@@ -82,7 +85,10 @@ function AddingLinixUseCase() {
       },
     },
     downloadableDocuments: {
-      values: [],
+      CODIGO: "",
+      NOMBRE: "",
+      isActive: false,
+      values: undefined,
     },
     webReports: {
       values: [],
@@ -100,6 +106,7 @@ function AddingLinixUseCase() {
 
   const [csOptions, setCsOptions] = useState<Record<string, unknown>[]>([]);
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
+  const [documents, setDocuments] = useState<Record<string, unknown>[]>([]);
 
   useEffect(() => {
     getData("clients-server")
@@ -118,8 +125,20 @@ function AddingLinixUseCase() {
           setWebOptions(data as Record<string, unknown>[]);
         }
       })
+
       .catch((error) => {
         console.error("Error fetching web-options:", error.message);
+      });
+
+    getData("documents")
+      .then((data) => {
+        if (data !== null) {
+          setDocuments(data as Record<string, unknown>[]);
+        }
+      })
+
+      .catch((error) => {
+        console.error("Error fetching documents:", error.message);
       });
   }, []);
 
@@ -163,6 +182,7 @@ function AddingLinixUseCase() {
       handleUpdateFormData={handleUpdateFormData}
       csOptions={csOptions}
       webOptions={webOptions}
+      documents={documents}
     />
   );
 }
