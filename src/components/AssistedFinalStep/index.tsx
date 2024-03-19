@@ -13,16 +13,8 @@ export const ControllerAccordion = (props: IControllerAccordionProps) => {
   const { formData, handleStepChange } = props;
   const isMobile = useMediaQuery("(max-width: 740px)");
   const generalInformation = formData.generalInformation.values;
-  const documents = formData.downloadableDocuments.values.filter(
-    (value) => value.isActive
-  );
-  const webReports = formData.webReports.values.filter(
-    (value) => value.isActive
-  );
+
   const webOptions = formData.webOptions.values.filter(
-    (value) => value.isActive
-  );
-  const clientServerReports = formData.clientServerReports.values.filter(
     (value) => value.isActive
   );
   const clientServerOptions = formData.clientServerOptions.values.filter(
