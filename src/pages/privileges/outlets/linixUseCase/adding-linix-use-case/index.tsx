@@ -169,7 +169,25 @@ function AddingLinixUseCase() {
       .catch((error) => {
         console.error("Error fetching web-options:", error.message);
       });
-
+    getData("documents")
+      .then((data) => {
+        if (data !== null) {
+          setFormData((prevFormData: IFormAddLinixUseCase) => ({
+            ...prevFormData,
+            downloadableDocuments: {
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "CODIGO",
+                valueLabel: "NOMBRE",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching linix-use-cases:", error.message);
+      });
     getData("web-options")
       .then((data) => {
         if (data !== null) {
