@@ -1,16 +1,26 @@
 import { useState, useEffect } from "react";
 
 import { getData } from "@mocks/utils/dataMock.service";
+import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
-import {
-  TiposDeDocumentoPorCasoDeUso,
-  ReportesWebPorCasoDeUso,
-  OpcionesPortalWebPorCasoDeUso,
-  ReportesCsPorCasoDeUso,
-  OpcionesCsPorCasoDeUso,
-} from "../types";
+
+interface DataToAssignmentFormEntryProps {
+  dataOptions: Record<string, unknown>[];
+  idLabel: string;
+  valueLabel: string;
+  isActiveLabel: string;
+}
+
+function dataToAssignmentFormEntry(props: DataToAssignmentFormEntryProps) {
+  const { dataOptions, idLabel, valueLabel, isActiveLabel } = props;
+  return dataOptions.map((dataOption) => ({
+    value: String(dataOption[valueLabel]),
+    isActive: Boolean(dataOption[isActiveLabel] === "Y"),
+    id: String(dataOption[idLabel]),
+  }));
+}
 
 export interface IGeneralInformation {
   n_Usecase: string;
@@ -34,30 +44,26 @@ export interface IFormAddLinixUseCase {
     values: IClientServerButton;
   };
   downloadableDocuments: {
-    values: TiposDeDocumentoPorCasoDeUso[];
+    values: IAssignmentFormEntry[];
   };
   webReports: {
-    values: ReportesWebPorCasoDeUso[];
+    values: IAssignmentFormEntry[];
   };
   webOptions: {
-    values: OpcionesPortalWebPorCasoDeUso[];
+    values: IAssignmentFormEntry[];
   };
   clientServerReports: {
-    values: ReportesCsPorCasoDeUso[];
+    values: IAssignmentFormEntry[];
   };
   clientServerOptions: {
-    values: OpcionesCsPorCasoDeUso[];
+    values: IAssignmentFormEntry[];
   };
 }
 
 export type IHandleChangeFormData =
   | IGeneralInformation
   | IClientServerButton
-  | TiposDeDocumentoPorCasoDeUso[]
-  | ReportesWebPorCasoDeUso[]
-  | OpcionesPortalWebPorCasoDeUso[]
-  | ReportesCsPorCasoDeUso[]
-  | OpcionesCsPorCasoDeUso[];
+  | IAssignmentFormEntry[];
 
 function AddingLinixUseCase() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -106,6 +112,37 @@ function AddingLinixUseCase() {
       .then((data) => {
         if (data !== null) {
           setCsOptions(data as Record<string, unknown>[]);
+          setFormData((prevFormData: IFormAddLinixUseCase) => ({
+            ...prevFormData,
+            clientServerOptions: {
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "CODIGO_OPCION",
+                valueLabel: "DESCRIPCION",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching linix-use-cases:", error.message);
+      });
+
+    getData("clients-server") // This is not a duplicate, correspond to the cs-reports
+      .then((data) => {
+        if (data !== null) {
+          setFormData((prevFormData: IFormAddLinixUseCase) => ({
+            ...prevFormData,
+            clientServerReports: {
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "CODIGO_OPCION",
+                valueLabel: "DESCRIPCION",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
         }
       })
       .catch((error) => {
@@ -116,6 +153,37 @@ function AddingLinixUseCase() {
       .then((data) => {
         if (data !== null) {
           setWebOptions(data as Record<string, unknown>[]);
+          setFormData((prevFormData: IFormAddLinixUseCase) => ({
+            ...prevFormData,
+            webOptions: {
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "K_opcion",
+                valueLabel: "Nombre_opcion",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching web-options:", error.message);
+      });
+
+    getData("web-options") // This is not a duplicate, correspond to the web-reports
+      .then((data) => {
+        if (data !== null) {
+          setFormData((prevFormData: IFormAddLinixUseCase) => ({
+            ...prevFormData,
+            webReports: {
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "K_opcion",
+                valueLabel: "Nombre_opcion",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
         }
       })
       .catch((error) => {
@@ -128,10 +196,33 @@ function AddingLinixUseCase() {
       ([, config]) => config.id === currentStep
     )?.[0];
     if (stepKey) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [stepKey]: { values: values },
-      }));
+      if (stepKey === "generalInformation") {
+        const updatedData: IFormAddLinixUseCase = {
+          ...formData,
+        };
+        Object.assign(updatedData[stepKey].values, values);
+        Object.assign(
+          updatedData.webOptions.values,
+          formData.webOptions.values.map((option) =>
+            option.id === (values as IGeneralInformation).k_Funcio
+              ? { ...option, isActive: true }
+              : option
+          )
+        );
+        Object.assign(
+          updatedData.clientServerOptions.values,
+          formData.clientServerOptions.values.map((option) =>
+            option.id === (values as IGeneralInformation).k_Opcion
+              ? { ...option, isActive: true }
+              : option
+          )
+        );
+      } else {
+        setFormData((prevFormData: IFormAddLinixUseCase) => ({
+          ...prevFormData,
+          [stepKey]: { values: values },
+        }));
+      }
     }
   };
 

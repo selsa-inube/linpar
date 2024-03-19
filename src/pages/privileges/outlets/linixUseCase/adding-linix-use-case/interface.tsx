@@ -10,6 +10,7 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import itemNotFound from "@src/assets/images/ItemNotFound.png";
+import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 
 import {
   CrateLinixUseCaseConfig,
@@ -144,39 +145,31 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               />
             )}
             {currentStep === stepsAddingLinixUseCase.webReports.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Reportes web"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/linixUseCase"}
+              <InitializerForm
+                dataOptionsForms={formData.webReports.values}
+                handleSubmit={handleUpdateFormData}
               />
             )}
+
             {currentStep === stepsAddingLinixUseCase.webOptions.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Opciones web"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/linixUseCase"}
-              />
+              <>
+                {console.log(formData)}
+                <InitializerForm
+                  dataOptionsForms={formData.webOptions.values}
+                  handleSubmit={handleUpdateFormData}
+                />
+              </>
             )}
             {currentStep === stepsAddingLinixUseCase.clientServerReports.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Reportes cliente servidor"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/linixUseCase"}
+              <InitializerForm
+                dataOptionsForms={formData.clientServerReports.values}
+                handleSubmit={handleUpdateFormData}
               />
             )}
             {currentStep === stepsAddingLinixUseCase.clientServerOptions.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Opciones cliente servidor"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/linixUseCase"}
+              <InitializerForm
+                dataOptionsForms={formData.clientServerOptions.values}
+                handleSubmit={handleUpdateFormData}
               />
             )}
             {currentStep === stepsAddingLinixUseCase.summary.id && (
