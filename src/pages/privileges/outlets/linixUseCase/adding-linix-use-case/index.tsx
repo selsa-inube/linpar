@@ -129,7 +129,7 @@ function AddingLinixUseCase() {
         console.error("Error fetching linix-use-cases:", error.message);
       });
 
-    getData("clients-server") // This is not a duplicate, correspond to the cs-reports
+    getData("clients-server")
       .then((data) => {
         if (data !== null) {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -170,7 +170,7 @@ function AddingLinixUseCase() {
         console.error("Error fetching web-options:", error.message);
       });
 
-    getData("web-options") // This is not a duplicate, correspond to the web-reports
+    getData("web-options")
       .then((data) => {
         if (data !== null) {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({

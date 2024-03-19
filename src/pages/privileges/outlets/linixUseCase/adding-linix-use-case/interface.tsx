@@ -152,13 +152,10 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             )}
 
             {currentStep === stepsAddingLinixUseCase.webOptions.id && (
-              <>
-                {console.log(formData)}
-                <InitializerForm
-                  dataOptionsForms={formData.webOptions.values}
-                  handleSubmit={handleUpdateFormData}
-                />
-              </>
+              <InitializerForm
+                dataOptionsForms={formData.webOptions.values}
+                handleSubmit={handleUpdateFormData}
+              />
             )}
             {currentStep === stepsAddingLinixUseCase.clientServerReports.id && (
               <InitializerForm
