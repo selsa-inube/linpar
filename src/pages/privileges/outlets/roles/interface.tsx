@@ -16,6 +16,7 @@ import { Menu } from "@components/navigation/Menu";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets//options/config/privileges.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
+import { IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
@@ -23,7 +24,6 @@ import {
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
-import { Role } from "./types";
 
 interface IRolesProps {
   handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -31,7 +31,7 @@ interface IRolesProps {
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
   searchRole: string;
-  linixRoles: Role[];
+  linixRoles: IRol[];
   loading: boolean;
 }
 

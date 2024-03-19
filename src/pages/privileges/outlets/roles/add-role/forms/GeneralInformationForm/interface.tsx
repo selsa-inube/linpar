@@ -14,7 +14,7 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 
-import { IGeneralInformationFormProps } from ".";
+import { IGeneralInformationForm } from ".";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -22,10 +22,10 @@ interface GeneralInformationFormUIProps {
   withSubmitButtons?: boolean;
   showMessage: IMessageState;
   handleCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IGeneralInformationFormProps) => boolean;
+  hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeForm: (name: string, values: string) => void;
   readOnly?: boolean;
   linixUseCases: Record<string, unknown>[];
 }
@@ -38,7 +38,7 @@ function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
-  handleChangeForm: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  handleChangeForm: (name: string, values: string) => void,
   linixUseCases: Record<string, unknown>[],
   readOnly?: boolean
 ) {
@@ -66,7 +66,9 @@ function RenderFormFields(
           type="text"
           size="compact"
           fullwidth
-          onChange={handleChangeForm}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleChangeForm(e.target.name, e.target.value)
+          }
         />
 
         <SearchUserCard
@@ -80,12 +82,15 @@ function RenderFormFields(
           nameModal="searchField"
           labelModal="Digite el código o nombre de la aplicación."
           placeholderModal="Digite el código o nombre de la aplicación."
-          onUserSelect={() => {}}
+          onUserSelect={(info) =>
+            handleChangeForm("aplication", info.k_Usecase as string)
+          }
           userData={linixUseCases}
           searchFieldData={searchData}
           onReset={() => {}}
-          idLabel="k_usecase"
-          nameLabel="n_usecase"
+          idLabel="k_Usecase"
+          nameLabel="n_Usecase"
+          selectedId={formik.values.aplication}
         />
       </Stack>
 
@@ -99,7 +104,9 @@ function RenderFormFields(
         size="compact"
         fullwidth
         maxLength={20}
-        onChange={handleChangeForm}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleChangeForm(e.target.name, e.target.value)
+        }
       />
 
       <Stack direction="column" gap="8px">
