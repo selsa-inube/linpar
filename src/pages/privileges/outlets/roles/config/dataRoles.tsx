@@ -37,8 +37,6 @@ export const RolesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-const handleClick = (id: string) => roles.find((role) => role.id === id);
-
 const dataDetailsRol = (id: string) => {
   const data = [roles.find((role) => role.id === id)!].map((roleselectd) => ({
     Código: roleselectd?.k_rol,
@@ -50,16 +48,14 @@ const dataDetailsRol = (id: string) => {
   return [...data].shift();
 };
 
-const handleActive = (id: string) => {
-  return roles.find((role) => role.id === id);
-};
+const selectedData = (id: string) => roles.find((role) => role.id === id);
 
 export const actionsConfig = [
   {
     id: "i_activo",
     actionName: "Activo",
     content: ({ id }: { id: string }) => (
-      <ActivateUser user={handleActive(id)} />
+      <ActivateUser user={selectedData(id)} />
     ),
     type: "secondary",
   },
@@ -75,7 +71,7 @@ export const actionsConfig = [
     id: "Edit",
     actionName: "Editar",
     content: ({ id }: { id: string }) => (
-      <Link to={`edit/${id}`} onClick={() => handleClick(id)}>
+      <Link to={`edit/${id}`} onClick={() => selectedData(id)}>
         <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
       </Link>
     ),
@@ -84,7 +80,7 @@ export const actionsConfig = [
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: ({ id }: { id: string }) => <DeleteUser user={handleClick(id)} />,
+    content: ({ id }: { id: string }) => <DeleteUser user={selectedData(id)} />,
     type: "remove",
   },
 ];
