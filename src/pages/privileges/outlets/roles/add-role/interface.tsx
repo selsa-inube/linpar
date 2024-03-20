@@ -1,6 +1,7 @@
 import {
   Assisted,
   Breadcrumbs,
+  Button,
   Stack,
   useMediaQuery,
   inube,
@@ -23,6 +24,7 @@ interface AddRolUIProps {
   currentStep: number;
   formReferences: IFormAddRoleRef;
   steps: IStep[];
+  isAddRoleFormValid: boolean;
   setAddRoleFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
@@ -36,6 +38,7 @@ export function AddRolUI(props: AddRolUIProps) {
     currentStep,
     formReferences,
     steps,
+    isAddRoleFormValid,
     handleNextStep,
     handlePreviousStep,
     setAddRoleFormValid,
@@ -135,6 +138,26 @@ export function AddRolUI(props: AddRolUIProps) {
             />
           )}
         </>
+        <Stack gap="16px" justifyContent="flex-end">
+          <Button
+            onClick={handlePreviousStep}
+            type="button"
+            disabled={currentStep === steps[0].id}
+            spacing="compact"
+            variant="none"
+            appearance="gray"
+          >
+            Atrás
+          </Button>
+
+          <Button
+            onClick={handleNextStep}
+            spacing="compact"
+            disabled={!isAddRoleFormValid}
+          >
+            {currentStep === steps.length ? "Enviar" : "Siguiente"}
+          </Button>
+        </Stack>
       </Stack>
     </Stack>
   );

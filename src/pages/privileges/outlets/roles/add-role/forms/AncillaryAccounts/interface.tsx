@@ -21,7 +21,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
       >
         <Textfield
           label="Sector oficial"
-          placeholder="xx.xxx.xxx"
+          placeholder="xxx, xxx, xxx, xxx"
           name="officialSector"
           id="officialSector"
           value={formik.values.officialSector}
@@ -33,7 +33,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
 
         <Textfield
           label="Sector comercial"
-          placeholder="Nombe del rol"
+          placeholder="xxx, xxx, xxx, xxx"
           name="commercialSector"
           id="commercialSector"
           value={formik.values.commercialSector}
@@ -45,7 +45,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
 
         <Textfield
           label="Sector solidario"
-          placeholder="Ingresar descripción del rol."
+          placeholder="xxx, xxx, xxx, xxx"
           name="solidaritySector"
           id="solidaritySector"
           value={formik.values.solidaritySector}
