@@ -13,6 +13,7 @@ export const ControllerAccordion = (props: IControllerAccordionProps) => {
   const { formData, handleStepChange } = props;
   const isMobile = useMediaQuery("(max-width: 740px)");
   const generalInformation = formData.generalInformation.values;
+  const clientServerButton = formData.clientServerButton.values;
 
   const webOptions = formData.webOptions.values.filter(
     (value) => value.isActive
@@ -65,6 +66,30 @@ export const ControllerAccordion = (props: IControllerAccordionProps) => {
               spacing="compact"
               iconBefore={<MdArrowBack />}
               onClick={() => handleStepChange(0)}
+              type="link"
+            >
+              Regresar a este paso
+            </Button>
+          </Stack>
+        </Accordion>
+      </>
+      <>
+        <Accordion
+          key={"Selección cliente servidor"}
+          title={"Selección cliente servidor"}
+          defaultOpen={!isMobile}
+        >
+          <BoxAttribute
+            attribute="Opción cliente servidor:"
+            value={clientServerButton.csButtonOption}
+          />
+          <Stack justifyContent="flex-end" width="100%">
+            <Button
+              variant="none"
+              appearance="dark"
+              spacing="compact"
+              iconBefore={<MdArrowBack />}
+              onClick={() => handleStepChange(1)}
               type="link"
             >
               Regresar a este paso
