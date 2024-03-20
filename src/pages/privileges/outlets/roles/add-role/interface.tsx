@@ -10,14 +10,13 @@ import itemNotFound from "@assets/images/ItemNotFound.png";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 
+import { IFormAddRole, IFormAddRoleRef, IStep } from "../types";
 import { createRolConfig, stepsAddRol } from "./config/addRol.config";
 import {
   GeneralInformationForm,
   IGeneralInformationForm,
 } from "./forms/GeneralInformationForm";
-import { IFormAddRole } from ".";
 import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
-import { IFormAddRoleRef, IStep } from "../types";
 
 interface AddRolUIProps {
   addRoleFormValid: IFormAddRole;

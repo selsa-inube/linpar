@@ -1,4 +1,5 @@
 import { FormikProps } from "formik";
+
 import { IAncillaryAccountsForm } from "./add-role/forms/AncillaryAccounts";
 import { IGeneralInformationForm } from "./add-role/forms/GeneralInformationForm";
 
@@ -43,4 +44,19 @@ export interface IStep {
   id: number;
   label: string;
   description: string;
+}
+
+interface IGeneralInformation {
+  isValid: boolean;
+  values: IGeneralInformationForm;
+}
+
+interface IAncillaryAccounts {
+  isValid: boolean;
+  values: IAncillaryAccountsForm;
+}
+
+export interface IFormAddRole {
+  generalInformation: IGeneralInformation;
+  ancillaryAccounts: IAncillaryAccounts;
 }
