@@ -2,12 +2,6 @@ import { FormikProps, useFormik } from "formik";
 import { forwardRef, useEffect, useImperativeHandle } from "react";
 import { AncillaryAccountsFormsUI } from "./interface";
 
-/* 
-const validationSchema = Yup.object({
-  creditDestination: Yup.string().required(validationMessages.required),
-  product: Yup.string().required(validationMessages.required),
-}); */
-
 export interface IAncillaryAccountsForm {
   officialSector: string;
   commercialSector: string;
@@ -41,7 +35,8 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
         onFormValid(Object.keys(errors).length === 0);
       });
     }
-  }, [formik, onFormValid]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formik.values]);
 
   return <AncillaryAccountsFormsUI loading={loading} formik={formik} />;
 });

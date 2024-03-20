@@ -195,6 +195,19 @@ export function AddRol() {
     handleStepChange(currentStep - 1);
   };
 
+  const handleUptdateForm = (values: IGeneralInformationForm) => {
+    const stepKey = Object.entries(stepsAddRol).find(
+      ([, config]) => config.id === currentStep
+    )?.[0];
+
+    if (stepKey) {
+      setataAddRoleLinix((prevFormData) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
+    }
+  };
+
   return (
     <AddRolUI
       steps={steps}
@@ -204,12 +217,7 @@ export function AddRol() {
       handlePreviousStep={handlePreviousStep}
       setAddRoleFormValid={setAddRoleFormValid}
       formReferences={formReferences}
-      /* 
-      handleToggleModal={handleToggleModal}
-      handleCompleteInvitation={handleCompleteInvitation}
-      showModal={showModal}
-      dataForm={generalInformationData}
-      handleUpdateGeneralInformation={handleUptdateForm} */
+      handleUpdateGeneralInformation={handleUptdateForm}
     />
   );
 }
