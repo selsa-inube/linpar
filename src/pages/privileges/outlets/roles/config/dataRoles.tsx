@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
-import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
+import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
 import { roles } from "@mocks/privileges/roles/Roles.mock";
 import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
 import { ActivateUser } from "@pages/privileges/outlets/users/tabs/users/ActivateUser";
+
+import { DetailsModal } from "../components/DetailsModalRol";
 
 export const titlesOptions = [
   {
@@ -37,6 +39,17 @@ export const RolesBreakPointsConfig = [
 
 const handleClick = (id: string) => roles.find((role) => role.id === id);
 
+const dataDetailsRol = (id: string) => {
+  const data = [roles.find((role) => role.id === id)!].map((roleselectd) => ({
+    Código: roleselectd?.k_rol,
+    Nombre: roleselectd?.n_rol,
+    Aplicación: roleselectd?.k_aplica,
+    Activo: roleselectd?.i_activo ? "Si" : "No",
+  }));
+
+  return [...data].shift();
+};
+
 const handleActive = (id: string) => {
   return roles.find((role) => role.id === id);
 };
@@ -45,20 +58,16 @@ export const actionsConfig = [
   {
     id: "i_activo",
     actionName: "Activo",
-    content: ({ id }) => <ActivateUser user={handleActive(id)} />,
+    content: ({ id }: { id: string }) => (
+      <ActivateUser user={handleActive(id)} />
+    ),
     type: "secondary",
   },
   {
     id: "Details",
     actionName: "Detalles",
     content: ({ id }: { id: string }) => (
-      <Link to={`datails/${id}`} onClick={() => handleClick(id)}>
-        <Icon
-          icon={<MdOutlineAssignmentTurnedIn />}
-          size="16px"
-          appearance="dark"
-        />
-      </Link>
+      <DetailsModal data={dataDetailsRol(id)} />
     ),
     type: "secondary",
   },
