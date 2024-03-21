@@ -16,13 +16,18 @@ export const ControllerAccordion = (props: IControllerAccordionProps) => {
   const clientServerButton = formData.clientServerButton.values;
   const downloadableDocuments = formData.downloadableDocuments.values;
   const webReports = formData.webReports.values;
-  const webOptions = formData.webOptions.values;
-
-  const clientServerOptions = formData.clientServerOptions.values.filter(
-    (value) => value.isActive
+  const webOptions = formData.webOptions.values.find(
+    (option) => option.isActive
   );
-
+  const clientServerOptions = formData.clientServerOptions.values.find(
+    (option) => option.isActive
+  );
+  const selectedClientServerOptions =
+    formData.clientServerOptions.values.filter((value) => value.isActive);
   const selectedWebOption = formData.webOptions.values.filter(
+    (option) => option.isActive
+  );
+  const clientServerReports = formData.clientServerReports.values.filter(
     (option) => option.isActive
   );
   return (
@@ -51,21 +56,14 @@ export const ControllerAccordion = (props: IControllerAccordionProps) => {
               attribute="Acción caso de uso:"
               value={generalInformation.i_Tipusec}
             />
-            {webOptions
-              .filter((option) => option.isActive)
-              .slice(0, 1)
-              .map((option) => (
-                <BoxAttribute
-                  key={option.id}
-                  attribute="Opción Web:"
-                  value={option.value}
-                />
-              ))}
+            <BoxAttribute
+              attribute="Opción Web:"
+              value={webOptions ? webOptions.value : ""}
+            />
+
             <BoxAttribute
               attribute="Opción cliente servidor:"
-              value={clientServerOptions
-                .map((option) => option.value)
-                .join(", ")}
+              value={clientServerOptions ? clientServerOptions.value : ""}
             />
           </Grid>
           <Stack justifyContent="flex-end" width="100%">
@@ -210,6 +208,78 @@ export const ControllerAccordion = (props: IControllerAccordionProps) => {
                 spacing="compact"
                 iconBefore={<MdArrowBack />}
                 onClick={() => handleStepChange(4)}
+                type="link"
+              >
+                Regresar a este paso
+              </Button>
+            </Stack>
+          </Accordion>
+        </>
+        <>
+          <Accordion
+            key={"Reportes clientes servidor"}
+            title={"Reportes clientes servidor"}
+            defaultOpen={!isMobile}
+          >
+            <Grid
+              templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
+              width="-webkit-fill-available"
+              autoRows="auto"
+              gap="s200"
+            >
+              <>
+                {clientServerReports.map((option) => (
+                  <BoxAttribute
+                    key={option.id}
+                    attribute={`Reportes clientes servidor:`}
+                    value={option.value}
+                  />
+                ))}
+              </>
+            </Grid>
+            <Stack justifyContent="flex-end" width="100%">
+              <Button
+                variant="none"
+                appearance="dark"
+                spacing="compact"
+                iconBefore={<MdArrowBack />}
+                onClick={() => handleStepChange(5)}
+                type="link"
+              >
+                Regresar a este paso
+              </Button>
+            </Stack>
+          </Accordion>
+        </>
+        <>
+          <Accordion
+            key={"Opciones clientes servidor"}
+            title={"Opciones clientes servidor"}
+            defaultOpen={!isMobile}
+          >
+            <Grid
+              templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
+              width="-webkit-fill-available"
+              autoRows="auto"
+              gap="s200"
+            >
+              <>
+                {selectedClientServerOptions.map((option) => (
+                  <BoxAttribute
+                    key={option.id}
+                    attribute={`Opciones clientes servidor:`}
+                    value={option.value}
+                  />
+                ))}
+              </>
+            </Grid>
+            <Stack justifyContent="flex-end" width="100%">
+              <Button
+                variant="none"
+                appearance="dark"
+                spacing="compact"
+                iconBefore={<MdArrowBack />}
+                onClick={() => handleStepChange(6)}
                 type="link"
               >
                 Regresar a este paso
