@@ -16,7 +16,7 @@ export interface IControllerAccordionProps {
   handleStepChange: (stepId: number) => void;
 }
 
-export const ControllerAccordion = (props: IControllerAccordionProps) => {
+export const VerificationForm = (props: IControllerAccordionProps) => {
   const { formData, handleStepChange } = props;
   const isMobile = useMediaQuery("(max-width: 740px)");
   const generalInformation = formData.generalInformation.values;

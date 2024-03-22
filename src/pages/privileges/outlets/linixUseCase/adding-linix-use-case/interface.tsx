@@ -20,7 +20,7 @@ import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
 import { IFormAddLinixUseCase, IHandleChangeFormData } from "./index";
-import { ControllerAccordion } from "./forms/AssistedFinalStep";
+import { VerificationForm } from "./forms/VerificationForm";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -167,7 +167,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               />
             )}
             {currentStep === stepsAddingLinixUseCase.summary.id && (
-              <ControllerAccordion
+              <VerificationForm
                 formData={formData}
                 handleStepChange={handleNextStep}
               />
