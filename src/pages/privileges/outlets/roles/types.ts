@@ -1,3 +1,5 @@
+import { IGeneralInformationForm } from "./add-role/forms/GeneralInformationForm";
+
 interface ICasosDeUsoPorRol {
   k_Rol: number;
   k_Usecase: string;
@@ -28,4 +30,45 @@ export interface IRol {
   cuentasAuxiliaresPorRol?: ICuentasAuxiliaresPorRol[];
   reglasDeNegocioPorRol?: IReglasDeNegocioPorRol[];
   tareasCrediboardPorRol?: ITareasCrediboardPorRol[];
+}
+
+export interface IStep {
+  id: number;
+  label: string;
+  description: string;
+}
+
+interface IGeneralInformation {
+  isValid: boolean;
+  values: IGeneralInformationForm;
+}
+
+interface IAncillaryAccounts {
+  isValid: boolean;
+  values: IAncillaryAccountsForm;
+}
+
+interface IAncillaryAccountsForm {
+  officialSector: string;
+  commercialSector: string;
+  solidaritySector: string;
+}
+
+export interface IInitialiceFormRole {
+  id: string;
+  value: string;
+  isActive: boolean;
+}
+
+export interface IOptionInitialiceForm {
+  values: IInitialiceFormRole[];
+}
+
+export interface IFormAddRole {
+  generalInformation: IGeneralInformation;
+  ancillaryAccounts: IAncillaryAccounts;
+  transactionTypes: IOptionInitialiceForm;
+  businessRules: IOptionInitialiceForm;
+  crediboardTasks: IOptionInitialiceForm;
+  useCases: IOptionInitialiceForm;
 }
