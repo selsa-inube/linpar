@@ -1,9 +1,11 @@
-import { Textfield, useMediaQuery } from "@inube/design-system";
 import { useEffect, useState } from "react";
-import { StyledSearchUserCard } from "./styles";
-import { ILabel } from "./types";
-import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { MdSearch } from "react-icons/md";
+import { Textfield, useMediaQuery } from "@inube/design-system";
+
+import { InteractiveModal } from "@components/feedback/InteractiveModal";
+
+import { ILabel } from "./types";
+import { StyledSearchUserCard } from "./styles";
 
 interface SearchUserCardProps {
   id: string;
@@ -14,13 +16,16 @@ interface SearchUserCardProps {
   nameModal: string;
   labelModal: string;
   placeholderModal: string;
-  userData: Record<string, string | number>;
+  userData: { [key: string]: string | number }[] | Record<string, unknown>[];
   searchFieldData: Record<string, string | number>;
   title: string;
   infoTitle: string;
   labels?: ILabel[];
-  onUserSelect: (data: Record<string, string | number>) => void;
+  onUserSelect: (data: { [key: string]: string | number }) => void;
   onReset: (field: () => void) => void;
+  idLabel?: string;
+  nameLabel?: string;
+  selectedId?: string;
 }
 
 function SearchUserCard(props: SearchUserCardProps) {
@@ -39,11 +44,28 @@ function SearchUserCard(props: SearchUserCardProps) {
     infoTitle,
     labels,
     onUserSelect,
+    idLabel = "userID",
+    nameLabel = "username",
+    selectedId = "",
     onReset,
   } = props;
   const [showModal, setShowModal] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState("");
   const smallScreen = useMediaQuery("(max-width: 970px)");
+
+  useEffect(() => {
+    if (selectedId.length > 0) {
+      userData.forEach((data) => {
+        if (data[idLabel] === selectedId) {
+          setSelectedUsername(String(data[nameLabel]));
+        }
+      });
+    }
+  }, [idLabel, nameLabel, userData, selectedId]);
+
+  const resetSelectedUser = () => {
+    setSelectedUsername("");
+  };
 
   useEffect(() => {
     if (onReset) {
@@ -55,13 +77,9 @@ function SearchUserCard(props: SearchUserCardProps) {
     setShowModal(!showModal);
   };
 
-  const resetSelectedUser = () => {
-    setSelectedUsername("");
-  };
-
-  const handleUserSelect = (data: Record<string, string>) => {
-    if (data && data.username) {
-      setSelectedUsername(data.username);
+  const handleUserSelect = (data: { [key: string]: string | number }) => {
+    if (data && data[nameLabel]) {
+      setSelectedUsername(String(data[nameLabel]));
     }
     onUserSelect(data);
     handleToggleModal();
@@ -104,6 +122,8 @@ function SearchUserCard(props: SearchUserCardProps) {
           divider
           type="search"
           onClick={handleUserSelect}
+          idLabel={idLabel}
+          nameLabel={nameLabel}
         />
       )}
     </>

@@ -1,11 +1,13 @@
 import localforage from "localforage";
-import { intializedData } from "@mocks/utils/dataMuck.service";
+
+import { intializedData } from "@src/mocks/utils/dataMock.service";
 import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 import { DocumentsServiceMock } from "@mocks/privileges/documents/DocumentsServiceMock.mock";
 import { clientServerMock } from "@mocks/privileges/client-server/client-serverServiceMock.mock";
 import { buttonOptionsMock } from "@mocks/privileges/button/buttonOptionsMock.mock";
 import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
 import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
+import { roles } from "@mocks/privileges/roles/Roles.mock";
 
 export function initializeDataDB() {
   localforage.clear();
@@ -30,4 +32,5 @@ export function initializeDataDB() {
     "linix-use-cases",
     linixUseCases
   );
+  intializedData<typeof roles[number]>("linix-roles", roles);
 }

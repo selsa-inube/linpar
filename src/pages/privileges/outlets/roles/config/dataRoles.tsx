@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-
-import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
-
+import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
-import { IRole, roles } from "@src/mocks/privileges/roles/Roles.mock";
+
+import { roles } from "@mocks/privileges/roles/Roles.mock";
 import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
 import { ActivateFormOptions } from "@src/pages/privileges/outlets/forms/ActivateFormOptions";
+
+import { DetailsModal } from "../components/DetailsModal";
+import { IRol } from "../types";
 
 export const titlesOptions = [
   {
@@ -36,35 +38,43 @@ export const RolesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-const handleClick = (id: string) => roles.find((role) => role.id === id);
+const dataDetailsRol = (id: string) => {
+  const data = [roles.find((role) => role.id === id)!].map((roleselectd) => ({
+    Código: roleselectd?.k_rol,
+    Nombre: roleselectd?.n_rol,
+    Aplicación: roleselectd?.k_aplica,
+    Activo: roleselectd?.i_activo ? "Si" : "No",
+  }));
 
-const handleActiuve = (rolesData: IRole) =>
-  roles.find((role) => role.id === rolesData.id);
+  // const selectedData = (id: string) => roles.find((role) => role.id === id);
+
+  // const handleActive = (rolesData: IRol) =>
+  // roles.find((role) => role.id === rolesData.k_Rol);
+  return [...data].shift();
+};
 
 export const actionsConfig = [
   {
     id: "i_activo",
     actionName: "Activo",
-    content: (roles: IRole) => (
-      <ActivateFormOptions<IRole>
-        handleActivateUser={() => handleActiuve(roles)}
-        data={roles}
-        showComplete={false}
-      />
-    ),
+    content: (role: IRol) => {
+      const adjustedRole = { id: role.k_Rol, active: role.i_Activo === "Y" };
+
+      return (
+        <ActivateFormOptions
+          handleActivateUser={() => console.log("Activate :" + role)}
+          data={adjustedRole}
+          showComplete={false}
+        />
+      );
+    },
     type: "secondary",
   },
   {
     id: "Details",
     actionName: "Detalles",
     content: ({ id }: { id: string }) => (
-      <Link to={`datails/${id}`} onClick={() => handleClick(id)}>
-        <Icon
-          icon={<MdOutlineAssignmentTurnedIn />}
-          size="16px"
-          appearance="dark"
-        />
-      </Link>
+      <DetailsModal data={dataDetailsRol(id)} />
     ),
     type: "secondary",
   },
@@ -72,7 +82,7 @@ export const actionsConfig = [
     id: "Edit",
     actionName: "Editar",
     content: ({ id }: { id: string }) => (
-      <Link to={`edit/${id}`} onClick={() => handleClick(id)}>
+      <Link to={`edit/${id}`} onClick={() => selectedData(id)}>
         <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
       </Link>
     ),
@@ -81,7 +91,7 @@ export const actionsConfig = [
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: ({ id }: { id: string }) => <DeleteUser user={handleClick(id)} />,
+    content: ({ id }: { id: string }) => <DeleteUser user={selectedData(id)} />,
     type: "remove",
   },
 ];
