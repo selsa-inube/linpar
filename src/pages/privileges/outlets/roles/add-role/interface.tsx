@@ -21,7 +21,8 @@ import {
   GeneralInformationForm,
   IGeneralInformationForm,
 } from "./forms/GeneralInformationForm";
-import { IFormAddRole } from ".";
+import { InitializerForm } from "../../forms/InitializerForm";
+import { IFormAddRole } from "../types";
 
 interface AddRolUIProps {
   handleNextStep: (step: number) => void;
@@ -32,6 +33,7 @@ interface AddRolUIProps {
   showModal: boolean;
   dataForm: IFormAddRole;
   handleUpdateGeneralInformation: (value: IGeneralInformationForm) => void;
+  handleUpdateTransactionTypes: (values: any) => void;
 }
 
 function finishModal(
@@ -64,6 +66,7 @@ export function AddRolUI(props: AddRolUIProps) {
     handleNextStep,
     dataForm,
     handleUpdateGeneralInformation,
+    handleUpdateTransactionTypes,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -80,6 +83,10 @@ export function AddRolUI(props: AddRolUIProps) {
 
   const {
     generalInformation: { values },
+    transactionTypes: { values: transactionTypes },
+    businessRules: { values: businessRules },
+    useCases: { values: useCases },
+    crediboardTasks: { values: crediboardTasks },
   } = dataForm;
 
   return (
@@ -135,39 +142,27 @@ export function AddRolUI(props: AddRolUIProps) {
               />
             )}
             {currentStep === stepsAddRol.transactionTypes.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Tipos de movimiento"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/roles"}
+              <InitializerForm
+                dataOptionsForms={transactionTypes}
+                handleSubmit={handleUpdateTransactionTypes}
               />
             )}
             {currentStep === stepsAddRol.businessRules.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Reglas de negocio"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/roles"}
+              <InitializerForm
+                dataOptionsForms={businessRules}
+                handleSubmit={handleUpdateTransactionTypes}
               />
             )}
             {currentStep === stepsAddRol.crediboardTasks.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Tareas Crediboard"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/roles"}
+              <InitializerForm
+                dataOptionsForms={crediboardTasks}
+                handleSubmit={handleUpdateTransactionTypes}
               />
             )}
             {currentStep === stepsAddRol.useCases.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Casos de uso"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/roles"}
+              <InitializerForm
+                dataOptionsForms={useCases}
+                handleSubmit={handleUpdateTransactionTypes}
               />
             )}
 
