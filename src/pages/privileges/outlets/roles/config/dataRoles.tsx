@@ -46,7 +46,7 @@ const dataDetailsRol = (id: string) => {
     Activo: roleselectd?.i_activo ? "Si" : "No",
   }));
 
-  // const selectedData = (id: string) => roles.find((role) => role.id === id);
+  const selectedData = (id: string) => roles.find((role) => role.id === id);
 
   // const handleActive = (rolesData: IRol) =>
   // roles.find((role) => role.id === rolesData.k_Rol);
@@ -82,7 +82,7 @@ export const actionsConfig = [
     id: "Edit",
     actionName: "Editar",
     content: ({ id }: { id: string }) => (
-      <Link to={`edit/${id}`} onClick={() => selectedData(id)}>
+      <Link to={`edit/${id}`} onClick={() => dataDetailsRol(id)}>
         <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
       </Link>
     ),
@@ -91,7 +91,7 @@ export const actionsConfig = [
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: ({ id }: { id: string }) => <DeleteUser user={selectedData(id)} />,
+    content: ({ id }: { id: string }) => <></>,
     type: "remove",
   },
 ];
