@@ -56,7 +56,22 @@ interface IAncillaryAccounts {
   values: IAncillaryAccountsForm;
 }
 
+export interface IInitialiceFormRole {
+  id: string;
+  value: string;
+  isActive: boolean;
+}
+
+export interface IOptionInitialiceForm {
+  isValid?: boolean;
+  values: IInitialiceFormRole[];
+}
+
 export interface IFormAddRole {
   generalInformation: IGeneralInformation;
   ancillaryAccounts: IAncillaryAccounts;
+  transactionTypes: IOptionInitialiceForm;
+  businessRules: IOptionInitialiceForm;
+  crediboardTasks: IOptionInitialiceForm;
+  useCases: IOptionInitialiceForm;
 }

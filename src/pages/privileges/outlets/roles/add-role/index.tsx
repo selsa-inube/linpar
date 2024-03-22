@@ -1,13 +1,15 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 
-import { IFormAddRole, IFormAddRoleRef } from "../types";
+import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
 import { addRoleStepsRules } from "./utils";
 import { stepsAddRol } from "./config/addRol.config";
 import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
 import { IAncillaryAccountsForm } from "./forms/AncillaryAccounts";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
+import { getData } from "@src/mocks/utils/dataMock.service";
+import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 
 const steps = Object.values(stepsAddRol);
 
@@ -18,27 +20,98 @@ export function AddRol() {
 
   const [isAddRoleFormValid, setIsAddRoleFormValid] = useState(false);
 
-  const [dataAddRoleLinix, setDataAddRoleLinix] = useState<IFormAddRole>({
-    generalInformation: {
-      isValid: true,
-      values: {
-        roleName: initialValuesAddRol.generalInformation.values.roleName,
-        description: initialValuesAddRol.generalInformation.values.description,
-        aplication: initialValuesAddRol.generalInformation.values.aplication,
+  const [dataAddRoleLinixForm, setDataAddRoleLinixForm] =
+    useState<IFormAddRole>({
+      generalInformation: {
+        isValid: true,
+        values: {
+          roleName: initialValuesAddRol.generalInformation.values.roleName,
+          description:
+            initialValuesAddRol.generalInformation.values.description,
+          aplication: initialValuesAddRol.generalInformation.values.aplication,
+        },
       },
-    },
-    ancillaryAccounts: {
-      isValid: false,
-      values: {
-        officialSector:
-          initialValuesAddRol.ancillaryAccounts.values.officialSector,
-        commercialSector:
-          initialValuesAddRol.ancillaryAccounts.values.commercialSector,
-        solidaritySector:
-          initialValuesAddRol.ancillaryAccounts.values.solidaritySector,
+      ancillaryAccounts: {
+        isValid: false,
+        values: {
+          officialSector:
+            initialValuesAddRol.ancillaryAccounts.values.officialSector,
+          commercialSector:
+            initialValuesAddRol.ancillaryAccounts.values.commercialSector,
+          solidaritySector:
+            initialValuesAddRol.ancillaryAccounts.values.solidaritySector,
+        },
       },
-    },
-  });
+      transactionTypes: {
+        values: [],
+      },
+      businessRules: {
+        values: [],
+      },
+      crediboardTasks: {
+        values: [],
+      },
+      useCases: {
+        values: [],
+      },
+    });
+
+  useEffect(() => {
+    getData("documents").then((documentsFetch) => {
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        transactionTypes: {
+          values: dataToAssignmentFormEntry({
+            dataOptions: documentsFetch as Record<string, unknown>[],
+            idLabel: "CODIGO",
+            valueLabel: "NOMBRE",
+            isActiveLabel: "asignado",
+          }),
+        },
+      }));
+    });
+    getData("linix-roles").then((linixRolesFetch) => {
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        businessRules: {
+          values: dataToAssignmentFormEntry({
+            dataOptions: linixRolesFetch as Record<string, unknown>[],
+            idLabel: "k_rol",
+            valueLabel: "n_rol",
+            isActiveLabel: "asignado",
+          }),
+        },
+      }));
+    });
+
+    getData("web-options").then((linixRolesFetch) => {
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        crediboardTasks: {
+          values: dataToAssignmentFormEntry({
+            dataOptions: linixRolesFetch as Record<string, unknown>[],
+            idLabel: "K_opcion",
+            valueLabel: "Nombre_opcion",
+            isActiveLabel: "asignado",
+          }),
+        },
+      }));
+    });
+
+    getData("linix-use-cases").then((linixRolesFetch) => {
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        useCases: {
+          values: dataToAssignmentFormEntry({
+            dataOptions: linixRolesFetch as Record<string, unknown>[],
+            idLabel: "k_Usecase",
+            valueLabel: "n_Usecase",
+            isActiveLabel: "id",
+          }),
+        },
+      }));
+    });
+  }, []);
 
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationForm>>(null);
@@ -53,11 +126,11 @@ export function AddRol() {
   const handleStepChange = (stepId: number) => {
     const newCreditDestinationRequest = addRoleStepsRules(
       currentStep,
-      dataAddRoleLinix,
+      dataAddRoleLinixForm,
       formReferences,
       isAddRoleFormValid
     );
-    setDataAddRoleLinix(newCreditDestinationRequest);
+    setDataAddRoleLinixForm(newCreditDestinationRequest);
 
     const changeStepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.id === stepId
@@ -94,7 +167,20 @@ export function AddRol() {
     )?.[0];
 
     if (stepKey) {
-      setDataAddRoleLinix((prevFormData) => ({
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
+    }
+  };
+
+  const handleUpdateDataSwitchstep = (values: IInitialiceFormRole[]) => {
+    const stepKey = Object.entries(stepsAddRol).find(
+      ([, config]) => config.id === currentStep
+    )?.[0];
+
+    if (stepKey) {
+      setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         [stepKey]: { values: values },
       }));
@@ -104,7 +190,7 @@ export function AddRol() {
   return (
     <AddRolUI
       steps={steps}
-      addRoleFormValid={dataAddRoleLinix}
+      addRoleFormValid={dataAddRoleLinixForm}
       currentStep={currentStep}
       isAddRoleFormValid={isAddRoleFormValid}
       handleNextStep={handleNextStep}
@@ -112,6 +198,7 @@ export function AddRol() {
       setAddRoleFormValid={setIsAddRoleFormValid}
       formReferences={formReferences}
       handleUpdateGeneralInformation={handleUptdateForm}
+      handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
     />
   );
 }

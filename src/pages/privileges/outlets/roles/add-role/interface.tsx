@@ -11,13 +11,19 @@ import itemNotFound from "@assets/images/ItemNotFound.png";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 
-import { IFormAddRole, IFormAddRoleRef, IStep } from "../types";
+import {
+  IFormAddRole,
+  IFormAddRoleRef,
+  IInitialiceFormRole,
+  IStep,
+} from "../types";
 import { createRolConfig, stepsAddRol } from "./config/addRol.config";
 import {
   GeneralInformationForm,
   IGeneralInformationForm,
 } from "./forms/GeneralInformationForm";
 import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
+import { InitializerForm } from "../../forms/InitializerForm";
 
 interface AddRolUIProps {
   addRoleFormValid: IFormAddRole;
@@ -30,6 +36,7 @@ interface AddRolUIProps {
   handlePreviousStep: () => void;
   handleFinishAssisted?: () => void;
   handleUpdateGeneralInformation: (value: IGeneralInformationForm) => void;
+  handleUpdateDataSwitchstep: (values: IInitialiceFormRole[]) => void;
 }
 
 export function AddRolUI(props: AddRolUIProps) {
@@ -42,13 +49,18 @@ export function AddRolUI(props: AddRolUIProps) {
     handleNextStep,
     handlePreviousStep,
     handleUpdateGeneralInformation,
+    handleUpdateDataSwitchstep,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
   const {
-    generalInformation: { values },
+    generalInformation: { values: generalInformationValues },
     ancillaryAccounts: { values: ancillaryAccountsValues },
+    transactionTypes: { values: transactionTypesValues },
+    businessRules: { values: businessRulesValues },
+    crediboardTasks: { values: crediboardTasksValues },
+    useCases: { values: useCasesValues },
   } = addRoleFormValid;
 
   return (
@@ -79,7 +91,7 @@ export function AddRolUI(props: AddRolUIProps) {
           {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
               handleSubmit={handleUpdateGeneralInformation}
-              valuesData={values}
+              valuesData={generalInformationValues}
             />
           )}
 
@@ -90,39 +102,27 @@ export function AddRolUI(props: AddRolUIProps) {
             />
           )}
           {currentStep === stepsAddRol.transactionTypes.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Tipos de movimiento"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
+            <InitializerForm
+              dataOptionsForms={transactionTypesValues}
+              handleSubmit={handleUpdateDataSwitchstep}
             />
           )}
           {currentStep === stepsAddRol.businessRules.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Reglas de negocio"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
+            <InitializerForm
+              dataOptionsForms={businessRulesValues}
+              handleSubmit={handleUpdateDataSwitchstep}
             />
           )}
           {currentStep === stepsAddRol.crediboardTasks.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Tareas Crediboard"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
+            <InitializerForm
+              dataOptionsForms={crediboardTasksValues}
+              handleSubmit={handleUpdateDataSwitchstep}
             />
           )}
           {currentStep === stepsAddRol.useCases.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Casos de uso"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
+            <InitializerForm
+              dataOptionsForms={useCasesValues}
+              handleSubmit={handleUpdateDataSwitchstep}
             />
           )}
 

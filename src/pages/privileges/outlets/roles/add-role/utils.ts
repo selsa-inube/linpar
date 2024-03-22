@@ -73,7 +73,10 @@ export const addRoleStepsRules = (
 
   if (!stepKey) return addLinixRole;
 
-  const values = formReferences[stepKey as keyof IFormAddRole]?.current?.values;
+  if (stepKey !== "generalInformation" && stepKey !== "ancillaryAccounts")
+    return addLinixRole;
+
+  const values = formReferences[stepKey]?.current?.values;
 
   return (newAddLinixRole = {
     ...newAddLinixRole,
