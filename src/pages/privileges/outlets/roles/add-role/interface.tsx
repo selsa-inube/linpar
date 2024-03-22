@@ -25,7 +25,7 @@ interface AddRolUIProps {
   formReferences: IFormAddRoleRef;
   steps: IStep[];
   isAddRoleFormValid: boolean;
-  setAddRoleFormValid: React.Dispatch<React.SetStateAction<boolean>>;
+  setAddRoleFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
   handleFinishAssisted?: () => void;
@@ -41,7 +41,6 @@ export function AddRolUI(props: AddRolUIProps) {
     isAddRoleFormValid,
     handleNextStep,
     handlePreviousStep,
-    setAddRoleFormValid,
     handleUpdateGeneralInformation,
   } = props;
 
@@ -88,7 +87,6 @@ export function AddRolUI(props: AddRolUIProps) {
             <AncillaryAccountsForm
               initialValues={ancillaryAccountsValues}
               ref={formReferences.ancillaryAccounts}
-              onFormValid={setAddRoleFormValid}
             />
           )}
           {currentStep === stepsAddRol.transactionTypes.id && (
