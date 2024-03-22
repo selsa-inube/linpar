@@ -13,7 +13,9 @@ interface DataToAssignmentFormEntryProps {
   isActiveLabel: string;
 }
 
-function dataToAssignmentFormEntry(props: DataToAssignmentFormEntryProps) {
+export function dataToAssignmentFormEntry(
+  props: DataToAssignmentFormEntryProps
+) {
   const { dataOptions, idLabel, valueLabel, isActiveLabel } = props;
   return dataOptions.map((dataOption) => ({
     value: String(dataOption[valueLabel]),

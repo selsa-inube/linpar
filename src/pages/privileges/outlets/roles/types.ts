@@ -48,7 +48,24 @@ interface IAncillaryAccounts {
   values: IAncillaryAccountsForm;
 }
 
+interface IAncillaryAccountsForm {
+  officialSector: string;
+  commercialSector: string;
+  solidaritySector: string;
+}
+
+export interface ITransactionTypesValues {
+  id: string;
+  value: string;
+  isActive: boolean;
+}
+
+export interface ITransactionTypes {
+  values: ITransactionTypesValues[];
+}
+
 export interface IFormAddRole {
   generalInformation: IGeneralInformation;
   ancillaryAccounts: IAncillaryAccounts;
+  transactionTypes: ITransactionTypes;
 }
