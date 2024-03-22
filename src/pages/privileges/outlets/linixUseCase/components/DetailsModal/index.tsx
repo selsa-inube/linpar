@@ -32,7 +32,7 @@ export function DetailsModal(props: IDetailsModalProps) {
             Nombre: useCase?.n_Usecase || "",
             Tipo: useCase?.i_Tipusec || "",
             Descripicion: useCase?.n_Descrip || "",
-            OpcionButtonClienteServidor: useCase?.k_Nforma || "",
+            OpcionButtonClienteServidor: useCase?.k_Ncampo || "",
           }}
           infoTitle="Información"
           closeModal={handleClick}
