@@ -3,13 +3,7 @@ import { useState } from "react";
 import { stepsAddRol } from "./config/addRol.config";
 import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
 import { AddRolUI } from "./interface";
-
-export interface IFormAddRole {
-  generalInformation: {
-    isValid: boolean;
-    values: IGeneralInformationForm;
-  };
-}
+import { IFormAddRole } from "../types";
 
 export function AddRol() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -17,7 +11,7 @@ export function AddRol() {
   );
   const [showModal, setShowModal] = useState(false);
 
-  const [generalInformationData, setGeneralInformationData] =
+  const [dataAddRoleLinixForm, setDataAddRoleLinixForm] =
     useState<IFormAddRole>({
       generalInformation: {
         isValid: true,
@@ -25,6 +19,14 @@ export function AddRol() {
           roleName: "",
           description: "",
           aplication: "",
+        },
+      },
+      ancillaryAccounts: {
+        isValid: false,
+        values: {
+          officialSector: "",
+          commercialSector: "",
+          solidaritySector: "",
         },
       },
     });
@@ -35,7 +37,7 @@ export function AddRol() {
     )?.[0];
 
     if (stepKey) {
-      setGeneralInformationData((prevFormData) => ({
+      setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         [stepKey]: { values: values },
       }));
@@ -66,7 +68,7 @@ export function AddRol() {
       handleToggleModal={handleToggleModal}
       handleCompleteInvitation={handleCompleteInvitation}
       showModal={showModal}
-      dataForm={generalInformationData}
+      dataForm={dataAddRoleLinixForm}
       handleUpdateGeneralInformation={handleUptdateForm}
     />
   );
