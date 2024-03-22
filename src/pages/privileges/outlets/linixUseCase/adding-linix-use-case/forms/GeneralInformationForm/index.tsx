@@ -38,6 +38,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     csOptions,
     webOptions,
   } = props;
+  console.log(initialValues);
 
   const [loading, setLoading] = useState(false);
   const [showMessage, setShowMessage] = useState<IMessageState>({
