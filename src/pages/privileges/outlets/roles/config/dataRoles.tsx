@@ -6,7 +6,7 @@ import { roles } from "@mocks/privileges/roles/Roles.mock";
 import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
 import { ActivateUser } from "@pages/privileges/outlets/users/tabs/users/ActivateUser";
 
-import { DetailsModal } from "../components/DetailsModalRol";
+import { DetailsModal } from "../components/DetailsModal";
 
 export const titlesOptions = [
   {
