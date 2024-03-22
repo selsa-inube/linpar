@@ -10,6 +10,7 @@ import {
 import itemNotFound from "@assets/images/ItemNotFound.png";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
+import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 
 import {
   IFormAddRole,
@@ -18,12 +19,8 @@ import {
   IStep,
 } from "../types";
 import { createRolConfig, stepsAddRol } from "./config/addRol.config";
-import {
-  GeneralInformationForm,
-  IGeneralInformationForm,
-} from "./forms/GeneralInformationForm";
+import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
-import { InitializerForm } from "../../forms/InitializerForm";
 
 interface AddRolUIProps {
   addRoleFormValid: IFormAddRole;
@@ -35,7 +32,7 @@ interface AddRolUIProps {
   handleNextStep: () => void;
   handlePreviousStep: () => void;
   handleFinishAssisted?: () => void;
-  handleUpdateGeneralInformation: (value: IGeneralInformationForm) => void;
+  handleUpdateGeneralInformation: (name: string, values: string) => void;
   handleUpdateDataSwitchstep: (values: IInitialiceFormRole[]) => void;
 }
 
@@ -91,7 +88,8 @@ export function AddRolUI(props: AddRolUIProps) {
           {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
               handleSubmit={handleUpdateGeneralInformation}
-              valuesData={generalInformationValues}
+              initialValues={generalInformationValues}
+              ref={formReferences.generalInformation}
             />
           )}
 

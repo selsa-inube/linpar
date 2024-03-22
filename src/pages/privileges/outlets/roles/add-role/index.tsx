@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 
+import { getData } from "@src/mocks/utils/dataMock.service";
+import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
+
 import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
 import { addRoleStepsRules } from "./utils";
 import { stepsAddRol } from "./config/addRol.config";
@@ -8,8 +11,6 @@ import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
 import { IAncillaryAccountsForm } from "./forms/AncillaryAccounts";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
-import { getData } from "@src/mocks/utils/dataMock.service";
-import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 
 const steps = Object.values(stepsAddRol);
 
@@ -161,7 +162,7 @@ export function AddRol() {
     handleStepChange(currentStep - 1);
   };
 
-  const handleUptdateForm = (values: IGeneralInformationForm) => {
+  const handleUptdateForm = (name: string, value: string) => {
     const stepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.id === currentStep
     )?.[0];
@@ -169,7 +170,7 @@ export function AddRol() {
     if (stepKey) {
       setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
-        [stepKey]: { values: values },
+        [name]: { values: value },
       }));
     }
   };
