@@ -18,7 +18,7 @@ export function AddRol() {
 
   const [isAddRoleFormValid, setIsAddRoleFormValid] = useState(false);
 
-  const [dataAddRoleLinix, setataAddRoleLinix] = useState<IFormAddRole>({
+  const [dataAddRoleLinix, setDataAddRoleLinix] = useState<IFormAddRole>({
     generalInformation: {
       isValid: true,
       values: {
@@ -57,7 +57,7 @@ export function AddRol() {
       formReferences,
       isAddRoleFormValid
     );
-    setataAddRoleLinix(newCreditDestinationRequest);
+    setDataAddRoleLinix(newCreditDestinationRequest);
 
     const changeStepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.id === stepId
@@ -94,7 +94,7 @@ export function AddRol() {
     )?.[0];
 
     if (stepKey) {
-      setataAddRoleLinix((prevFormData) => ({
+      setDataAddRoleLinix((prevFormData) => ({
         ...prevFormData,
         [stepKey]: { values: values },
       }));
