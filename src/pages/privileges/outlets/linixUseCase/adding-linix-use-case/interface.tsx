@@ -20,7 +20,7 @@ import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
 import { IFormAddLinixUseCase, IHandleChangeFormData } from "./index";
-import { ControllerAccordion } from "@src/components/AssistedFinalStep";
+import { ControllerAccordion } from "./forms/AssistedFinalStep";
 
 function finishModal(
   handleCloseModal: () => void,
