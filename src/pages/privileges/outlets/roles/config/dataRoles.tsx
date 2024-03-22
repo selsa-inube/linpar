@@ -3,7 +3,6 @@ import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
 import { roles } from "@mocks/privileges/roles/Roles.mock";
-import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
 import { ActivateFormOptions } from "@src/pages/privileges/outlets/forms/ActivateFormOptions";
 
 import { DetailsModal } from "../components/DetailsModal";
@@ -46,7 +45,7 @@ const dataDetailsRol = (id: string) => {
     Activo: roleselectd?.i_activo ? "Si" : "No",
   }));
 
-  const selectedData = (id: string) => roles.find((role) => role.id === id);
+  // const selectedData = (id: string) => roles.find((role) => role.id === id);
 
   // const handleActive = (rolesData: IRol) =>
   // roles.find((role) => role.id === rolesData.k_Rol);
