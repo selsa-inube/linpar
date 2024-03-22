@@ -84,6 +84,7 @@ export function AddRolUI(props: AddRolUIProps) {
   const {
     generalInformation: { values },
     transactionTypes: { values: transactionTypes },
+    useCases: { values: useCases },
   } = dataForm;
 
   return (
@@ -147,7 +148,7 @@ export function AddRolUI(props: AddRolUIProps) {
             {currentStep === stepsAddRol.businessRules.id && (
               <ItemNotFound
                 image={itemNotFound}
-                title={"Reglas de negocio"}
+                title={"Tareas Crediboard"}
                 description={"Esta sección está en construcción."}
                 buttonDescription={"Retorna a la página de inicio"}
                 route={"/privileges/roles"}
@@ -163,12 +164,9 @@ export function AddRolUI(props: AddRolUIProps) {
               />
             )}
             {currentStep === stepsAddRol.useCases.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Casos de uso"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/roles"}
+              <InitializerForm
+                dataOptionsForms={useCases}
+                handleSubmit={handleUpdateTransactionTypes}
               />
             )}
 

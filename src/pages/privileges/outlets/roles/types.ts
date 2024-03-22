@@ -54,18 +54,20 @@ interface IAncillaryAccountsForm {
   solidaritySector: string;
 }
 
-export interface ITransactionTypesValues {
+export interface IInitialiceFormRole {
   id: string;
   value: string;
   isActive: boolean;
 }
 
-export interface ITransactionTypes {
-  values: ITransactionTypesValues[];
+export interface IOptionInitialiceForm {
+  values: IInitialiceFormRole[];
 }
 
 export interface IFormAddRole {
   generalInformation: IGeneralInformation;
   ancillaryAccounts: IAncillaryAccounts;
-  transactionTypes: ITransactionTypes;
+  transactionTypes: IOptionInitialiceForm;
+  businessRules: IOptionInitialiceForm;
+  useCases: IOptionInitialiceForm;
 }

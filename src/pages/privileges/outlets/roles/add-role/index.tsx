@@ -34,17 +34,37 @@ export function AddRol() {
       transactionTypes: {
         values: [],
       },
+      businessRules: {
+        values: [],
+      },
+      useCases: {
+        values: [],
+      },
     });
 
   useEffect(() => {
-    getData("documents").then((option) => {
+    getData("documents").then((documentsFetch) => {
       setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         transactionTypes: {
           values: dataToAssignmentFormEntry({
-            dataOptions: option as Record<string, unknown>[],
+            dataOptions: documentsFetch as Record<string, unknown>[],
             idLabel: "CODIGO",
             valueLabel: "NOMBRE",
+            isActiveLabel: "asignado",
+          }),
+        },
+      }));
+    });
+
+    getData("linix-roles").then((linixRolesFetch) => {
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        useCases: {
+          values: dataToAssignmentFormEntry({
+            dataOptions: linixRolesFetch as Record<string, unknown>[],
+            idLabel: "k_rol",
+            valueLabel: "n_rol",
             isActiveLabel: "asignado",
           }),
         },
