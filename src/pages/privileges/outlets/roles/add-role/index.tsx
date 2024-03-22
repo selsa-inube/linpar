@@ -34,18 +34,68 @@ export function AddRol() {
       transactionTypes: {
         values: [],
       },
+      businessRules: {
+        values: [],
+      },
+      crediboardTasks: {
+        values: [],
+      },
+      useCases: {
+        values: [],
+      },
     });
 
   useEffect(() => {
-    getData("documents").then((option) => {
+    getData("documents").then((documentsFetch) => {
       setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         transactionTypes: {
           values: dataToAssignmentFormEntry({
-            dataOptions: option as Record<string, unknown>[],
+            dataOptions: documentsFetch as Record<string, unknown>[],
             idLabel: "CODIGO",
             valueLabel: "NOMBRE",
             isActiveLabel: "asignado",
+          }),
+        },
+      }));
+    });
+    getData("linix-roles").then((linixRolesFetch) => {
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        businessRules: {
+          values: dataToAssignmentFormEntry({
+            dataOptions: linixRolesFetch as Record<string, unknown>[],
+            idLabel: "k_rol",
+            valueLabel: "n_rol",
+            isActiveLabel: "asignado",
+          }),
+        },
+      }));
+    });
+
+    getData("web-options").then((linixRolesFetch) => {
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        crediboardTasks: {
+          values: dataToAssignmentFormEntry({
+            dataOptions: linixRolesFetch as Record<string, unknown>[],
+            idLabel: "K_opcion",
+            valueLabel: "Nombre_opcion",
+            isActiveLabel: "asignado",
+          }),
+        },
+      }));
+    });
+
+    getData("linix-use-cases").then((linixRolesFetch) => {
+      setDataAddRoleLinixForm((prevFormData) => ({
+        ...prevFormData,
+        useCases: {
+          values: dataToAssignmentFormEntry({
+            dataOptions: linixRolesFetch as Record<string, unknown>[],
+            idLabel: "k_Usecase",
+            valueLabel: "n_Usecase",
+            isActiveLabel: "id",
           }),
         },
       }));
