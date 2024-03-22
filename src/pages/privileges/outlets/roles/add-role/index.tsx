@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { FormikProps } from "formik";
 
 import { IFormAddRole, IFormAddRoleRef } from "../types";
-import { addRoleStepsRules } from "../utils";
+import { addRoleStepsRules } from "./utils";
 import { stepsAddRol } from "./config/addRol.config";
 import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
 import { IAncillaryAccountsForm } from "./forms/AncillaryAccounts";

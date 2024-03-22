@@ -1,6 +1,6 @@
-import { stepsAddRol } from "./add-role/config/addRol.config";
-import { initialValuesAddRol } from "./add-role/config/initialValues";
-import { IFormAddRole, IFormAddRoleRef } from "./types";
+import { stepsAddRol } from "./config/addRol.config";
+import { initialValuesAddRol } from "./config/initialValues";
+import { IFormAddRole, IFormAddRoleRef } from "../types";
 
 export const addRoleStepsRules = (
   currentStep: number,
