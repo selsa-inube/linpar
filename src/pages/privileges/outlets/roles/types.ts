@@ -1,3 +1,6 @@
+import { FormikProps } from "formik";
+
+import { IAncillaryAccountsForm } from "./add-role/forms/AncillaryAccounts";
 import { IGeneralInformationForm } from "./add-role/forms/GeneralInformationForm";
 
 interface ICasosDeUsoPorRol {
@@ -32,6 +35,11 @@ export interface IRol {
   tareasCrediboardPorRol?: ITareasCrediboardPorRol[];
 }
 
+export interface IFormAddRoleRef {
+  generalInformation: React.RefObject<FormikProps<IGeneralInformationForm>>;
+  ancillaryAccounts: React.RefObject<FormikProps<IAncillaryAccountsForm>>;
+}
+
 export interface IStep {
   id: number;
   label: string;
@@ -48,12 +56,6 @@ interface IAncillaryAccounts {
   values: IAncillaryAccountsForm;
 }
 
-interface IAncillaryAccountsForm {
-  officialSector: string;
-  commercialSector: string;
-  solidaritySector: string;
-}
-
 export interface IInitialiceFormRole {
   id: string;
   value: string;
@@ -61,6 +63,7 @@ export interface IInitialiceFormRole {
 }
 
 export interface IOptionInitialiceForm {
+  isValid?: boolean;
   values: IInitialiceFormRole[];
 }
 
