@@ -4,16 +4,16 @@ import { IGeneralInformationEntry } from "../types/forms.types";
 
 const activateUserModal = {
   activation: {
-    title: "Activate user",
+    title: "Activate",
     description: ({ code }: IGeneralInformationEntry) =>
-      `Esta seguro de Activar el usuario ${code}? `,
+      `Esta seguro de activar ${code}? `,
     textAction: "Activate",
     appearance: EAppearance.SUCCESS,
   },
   deactivation: {
-    title: "Deactivate user",
+    title: "Deactivate",
     description: ({ code }: IGeneralInformationEntry) =>
-      `Esta seguro de Desactivar el usuario ${code}? `,
+      `Esta seguro de desactivar ${code}? `,
     textAction: "Deactivate",
     appearance: EAppearance.ERROR,
   },

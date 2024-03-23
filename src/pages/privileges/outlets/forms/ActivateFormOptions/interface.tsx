@@ -22,7 +22,6 @@ function ActivateOptionsModal<T extends IDataActivateOption>(
 ) {
   const {
     active,
-    data,
     handleToggleModal,
     handleActivateOptions: handleActivateUser,
   } = props;
@@ -31,14 +30,13 @@ function ActivateOptionsModal<T extends IDataActivateOption>(
     messageType = EMessageType.ACTIVATION;
   }
 
-  const { title, description, textAction, appearance } =
-    activateUserModal[messageType];
+  const { title, textAction, appearance } = activateUserModal[messageType];
 
   return (
     <>
       <DecisionModal
         title={title}
-        description={description(data)}
+        description={"hola"}
         actionText={textAction}
         appearance={appearance}
         closeModal={handleToggleModal}

@@ -3,7 +3,8 @@ import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
 import { roles } from "@mocks/privileges/roles/Roles.mock";
-import { ActivateFormOptions } from "@src/pages/privileges/outlets/forms/ActivateFormOptions";
+import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
+import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
 
 import { DetailsModal } from "../components/DetailsModal";
 import { IRol } from "../types";
@@ -45,12 +46,13 @@ const dataDetailsRol = (id: string) => {
     Activo: roleselectd?.i_activo ? "Si" : "No",
   }));
 
-  // const selectedData = (id: string) => roles.find((role) => role.id === id);
-
-  // const handleActive = (rolesData: IRol) =>
-  // roles.find((role) => role.id === rolesData.k_Rol);
   return [...data].shift();
 };
+
+const selectedData = (id: string) => roles.find((role) => role.id === id);
+
+const handleActive = (rolesData: IRol) =>
+  roles.find((role) => role.id === rolesData.k_Rol);
 
 export const actionsConfig = [
   {
@@ -61,7 +63,7 @@ export const actionsConfig = [
 
       return (
         <ActivateFormOptions
-          handleActivateUser={() => console.log("Activate :" + role)}
+          handleActivateUser={() => handleActive(role)}
           data={adjustedRole}
           showComplete={false}
         />
@@ -81,7 +83,7 @@ export const actionsConfig = [
     id: "Edit",
     actionName: "Editar",
     content: ({ id }: { id: string }) => (
-      <Link to={`edit/${id}`} onClick={() => dataDetailsRol(id)}>
+      <Link to={`edit/${id}`} onClick={() => selectedData(id)}>
         <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
       </Link>
     ),
@@ -90,7 +92,7 @@ export const actionsConfig = [
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: ({ id }: { id: string }) => <></>,
+    content: ({ id }: { id: string }) => <DeleteUser user={selectedData(id)} />,
     type: "remove",
   },
 ];
