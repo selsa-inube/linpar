@@ -32,7 +32,6 @@ interface AddRolUIProps {
   handleNextStep: () => void;
   handlePreviousStep: () => void;
   handleFinishAssisted?: () => void;
-  handleUpdateGeneralInformation: (name: string, values: string) => void;
   handleUpdateDataSwitchstep: (values: IInitialiceFormRole[]) => void;
 }
 
@@ -45,7 +44,7 @@ export function AddRolUI(props: AddRolUIProps) {
     isAddRoleFormValid,
     handleNextStep,
     handlePreviousStep,
-    handleUpdateGeneralInformation,
+
     handleUpdateDataSwitchstep,
   } = props;
 
@@ -87,7 +86,6 @@ export function AddRolUI(props: AddRolUIProps) {
 
           {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
-              handleSubmit={handleUpdateGeneralInformation}
               initialValues={generalInformationValues}
               ref={formReferences.generalInformation}
             />
