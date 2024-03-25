@@ -112,7 +112,7 @@ export function AddRol() {
         },
       }));
     });
-  }, [currentStep]);
+  }, []);
 
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationForm>>(null);
@@ -168,10 +168,12 @@ export function AddRol() {
     )?.[0];
 
     if (stepKey) {
+      console.log("values actuales", values);
       setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         [stepKey]: { values: values },
       }));
+      console.log("linx", dataAddRoleLinixForm);
     }
   };
 

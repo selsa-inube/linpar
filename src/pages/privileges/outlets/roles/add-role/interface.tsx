@@ -7,8 +7,6 @@ import {
   inube,
 } from "@inube/design-system";
 
-import itemNotFound from "@assets/images/ItemNotFound.png";
-import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 
@@ -21,6 +19,7 @@ import {
 import { createRolConfig, stepsAddRol } from "./config/addRol.config";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
+import { VerificationAddRole } from "./forms/Verification";
 
 interface AddRolUIProps {
   addRoleFormValid: IFormAddRole;
@@ -123,13 +122,7 @@ export function AddRolUI(props: AddRolUIProps) {
           )}
 
           {currentStep === stepsAddRol.summary.id && (
-            <ItemNotFound
-              image={itemNotFound}
-              title={"Página de resumen"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/roles"}
-            />
+            <VerificationAddRole steps={addRoleFormValid} />
           )}
         </>
         <Stack gap="16px" justifyContent="flex-end">
