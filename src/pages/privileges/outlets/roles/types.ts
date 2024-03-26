@@ -64,14 +64,14 @@ export interface IInitialiceFormRole {
 
 export interface IOptionInitialiceForm {
   isValid?: boolean;
-  values: IInitialiceFormRole[];
+  values: IInitialiceFormRole[] | [];
 }
 
 export interface IFormAddRole {
   generalInformation: IGeneralInformation;
   ancillaryAccounts: IAncillaryAccounts;
-  transactionTypes: IOptionInitialiceForm;
-  businessRules: IOptionInitialiceForm;
-  crediboardTasks: IOptionInitialiceForm;
-  useCases: IOptionInitialiceForm;
+  transactionTypes?: IOptionInitialiceForm;
+  businessRules?: IOptionInitialiceForm;
+  crediboardTasks?: IOptionInitialiceForm;
+  useCases?: IOptionInitialiceForm;
 }
