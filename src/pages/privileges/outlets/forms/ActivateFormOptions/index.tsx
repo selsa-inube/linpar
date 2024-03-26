@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { ActivateFormOptionsUI } from "./interface";
-import { IActivateModalConfig } from "./types";
+import { activateUserModal } from "../../users/config/activateUser.config";
 
 export interface IDataActivateOption {
   id: string;
@@ -12,7 +12,7 @@ interface IActivateFormOptionsProps<T extends IDataActivateOption> {
   handleActivate: () => void;
   showComplete: boolean;
   data: T;
-  activateModalConfig: IActivateModalConfig;
+  activateModalConfig: typeof activateUserModal;
 }
 
 export function ActivateFormOptions<T extends IDataActivateOption>(

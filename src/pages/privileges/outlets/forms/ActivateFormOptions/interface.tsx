@@ -1,6 +1,7 @@
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { Switch } from "@inube/design-system";
 
+import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
 import { EMessageType } from "@src/types/messages.types";
 
 import { IActivateOptionModal } from "./types";
@@ -12,7 +13,7 @@ interface IctivateFormOptionsUI {
   handleToggleModal: () => void;
   handleActivateOptions: () => void;
   showComplete: boolean;
-  activateModalConfig: any;
+  activateModalConfig: typeof activateUserModal;
 }
 
 function ActivateOptionsModal(props: IActivateOptionModal) {
@@ -28,8 +29,12 @@ function ActivateOptionsModal(props: IActivateOptionModal) {
     messageType = EMessageType.ACTIVATION;
   }
 
-  const { title, description, textAction, appearance } =
-    activateModalConfig[messageType];
+  const {
+    title = "",
+    description,
+    textAction,
+    appearance,
+  } = activateModalConfig[messageType];
 
   return (
     <DecisionModal
@@ -56,7 +61,6 @@ export function ActivateFormOptionsUI(props: IctivateFormOptionsUI) {
 
   return (
     <>
-      {console.log(active)}
       <Switch
         checked={active}
         onChange={handleToggleModal}
