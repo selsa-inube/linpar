@@ -10,19 +10,17 @@ import { stepsAddingLinixUseCase } from "../../adding-linix-use-case/config/addi
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
-  IGeneralInformationEntry,
 } from "../../../users/types/forms.types";
 import { GeneralInformationForm } from "../../adding-linix-use-case/forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "../../adding-linix-use-case/forms/ClientServerButtonSelection";
 import { ItemNotFound } from "@src/components/layout/ItemNotFound";
+import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 
 interface EditUserUIProps {
   selectedTab: string;
   handleTabChange: (tabId: string) => void;
   editData: IFormsInvitation;
-  handleSubmit: (
-    values: IGeneralInformationEntry | IAssignmentFormEntry[]
-  ) => void;
+  handleSubmit: (values: IAssignmentFormEntry[]) => void;
   controlModal: {
     show: boolean;
     continueTab: string;
@@ -101,13 +99,13 @@ function EditUserUI(props: EditUserUIProps) {
         </Stack>
         <Stack gap="32px" direction="column">
           <Tabs
-            tabs={Object.values(stepsAddingLinixUseCase)}
+            tabs={Object.values(editLinixUseCaseTabsConfig)}
             selectedTab={selectedTab}
             type={typeTabs ? "select" : "tabs"}
             onChange={handleTabChange}
           />
           {selectedTab ===
-            stepsAddingLinixUseCase.generalInformation.id.toString() && (
+            editLinixUseCaseTabsConfig.generalInformation.id.toString() && (
             <GeneralInformationForm
               initialValues={currentInformation}
               handleSubmit={handleSubmit}
@@ -116,7 +114,7 @@ function EditUserUI(props: EditUserUIProps) {
             />
           )}
           {selectedTab ===
-            stepsAddingLinixUseCase.clientServerButton.id.toString() && (
+            editLinixUseCaseTabsConfig.clientServerButton.id.toString() && (
             <ClientServerButtonSelection
               initialValues={currentInformation}
               handleSubmit={handleSubmit}
@@ -125,7 +123,7 @@ function EditUserUI(props: EditUserUIProps) {
             />
           )}
           {selectedTab ===
-            stepsAddingLinixUseCase.downloadableDocuments.id.toString() && (
+            editLinixUseCaseTabsConfig.downloadableDocuments.id.toString() && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -133,7 +131,8 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit}
             />
           )}
-          {selectedTab === stepsAddingLinixUseCase.webReports.id.toString() && (
+          {selectedTab ===
+            editLinixUseCaseTabsConfig.webReports.id.toString() && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -142,7 +141,8 @@ function EditUserUI(props: EditUserUIProps) {
             />
           )}
 
-          {selectedTab === stepsAddingLinixUseCase.webOptions.id.toString() && (
+          {selectedTab ===
+            editLinixUseCaseTabsConfig.webOptions.id.toString() && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -151,7 +151,7 @@ function EditUserUI(props: EditUserUIProps) {
             />
           )}
           {selectedTab ===
-            stepsAddingLinixUseCase.clientServerReports.id.toString() && (
+            editLinixUseCaseTabsConfig.clientServerReports.id.toString() && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -161,7 +161,7 @@ function EditUserUI(props: EditUserUIProps) {
           )}
 
           {selectedTab ===
-            stepsAddingLinixUseCase.clientServerOptions.id.toString() && (
+            editLinixUseCaseTabsConfig.clientServerOptions.id.toString() && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}

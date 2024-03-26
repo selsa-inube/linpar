@@ -6,7 +6,6 @@ import { editUserTabsConfig } from "../../../users/edit-user/config/editUserTabs
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
-  IGeneralInformationEntry,
 } from "../../../users/types/forms.types";
 import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { DocumentsServiceMock } from "@src/mocks/privileges/documents/DocumentsServiceMock.mock";
@@ -30,10 +29,9 @@ function EditCaseLinix() {
   const [editData, setEditData] = useState<IFormsInvitation>({
     generalInformation: { entries: getUserInformation() },
   });
-  console.log(DocumentsServiceMock);
 
   const downloadableDocuments = DocumentsServiceMock.map((linixUseCase) => ({
-    id: linixUseCase.CODIGO,
+    id: linixUseCase.CODIGO.toString(),
     value: linixUseCase.NOMBRE,
     isActive: linixUseCase.asignado === "Y" ? true : false,
   }));
@@ -66,9 +64,7 @@ function EditCaseLinix() {
     return linixUseCases.find((linixUseCase) => linixUseCase.id === user_id);
   }
 
-  const handleSubmit = (
-    values: IGeneralInformationEntry | IAssignmentFormEntry[]
-  ) => {
+  const handleSubmit = (values: IAssignmentFormEntry[]) => {
     const editKey = Object.entries(editUserTabsConfig).find(
       ([, config]) => config.id === selectedTab
     )?.[0];
