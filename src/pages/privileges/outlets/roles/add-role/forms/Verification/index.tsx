@@ -77,6 +77,14 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
     },
   }));
 
+  const filterOptionsEmpties = dataVerificationStep.map((step) =>
+    Object.values(step.sections).map((section) =>
+      section.attributes.filter((attribute) => attribute.value !== "")
+    )
+  );
+
+  console.log(filterOptionsEmpties, "filterOptionsEmpties");
+
   const sections = dataVerificationStep.flatMap((step) =>
     Object.values(step.sections).map((section) => section.title)
   );
@@ -84,6 +92,18 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
   const attributes = dataVerificationStep.flatMap((step) =>
     Object.values(step.sections).flatMap((attributes) => attributes.attributes)
   );
+
+  /* const keySections = dataVerificationStep.flatMap((step) =>
+    Object.keys(step.sections).filter(
+      (section) =>
+        section !== "generalInformation" && section !== "ancillaryAccounts"
+    )
+  );
+
+  console.log(
+    dataVerificationStep[0].sections.transactionTypes.attributes.length,
+    "validar la data de la key"
+  ); */
 
   return (
     <Stack gap="8px" direction="column">
