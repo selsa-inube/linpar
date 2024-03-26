@@ -56,6 +56,7 @@ export function ActivateFormOptionsUI(props: IctivateFormOptionsUI) {
 
   return (
     <>
+      {console.log(active)}
       <Switch
         checked={active}
         onChange={handleToggleModal}

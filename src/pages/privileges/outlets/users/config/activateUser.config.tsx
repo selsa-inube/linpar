@@ -1,5 +1,7 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+
 import { EAppearance } from "@src/types/colors.types";
+
 import { IGeneralInformationEntry } from "../types/forms.types";
 
 const activateUserModal = {

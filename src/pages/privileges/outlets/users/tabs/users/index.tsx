@@ -1,25 +1,27 @@
+import { useState } from "react";
 import {
   Table,
   useMediaQuery,
   SectionMessage,
   Stack,
 } from "@inube/design-system";
-import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
-import { useState } from "react";
-import { activateUserMessages } from "../../config/activateUser.config";
-import { deleteUserMessages } from "../../config/deleteUser.config";
+
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
-} from "../../config/usersTable.config";
-import { ActivateFormOptions } from "../../../forms/ActivateFormOptions";
-import { DeleteUser } from "./DeleteUser";
-import { EditUser } from "./EditUser";
-import { IGeneralInformationEntry } from "../../types/forms.types";
+} from "@pages/privileges/outlets/users/config/usersTable.config";
+import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
+import { deleteUserMessages } from "@pages/privileges/outlets/users/config/deleteUser.config";
+import { activateUserMessages } from "@pages/privileges/outlets/users/config/activateUser.config";
+import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
+
 import { StyledMessageContainer } from "./styles";
+import { EditUser } from "./EditUser";
+import { DeleteUser } from "./DeleteUser";
 import { activateUserModal } from "../../config/activateUser.config";
+import { IGeneralInformationEntry } from "../../types/forms.types";
 
 const initialMessageState: IMessage = {
   show: false,
