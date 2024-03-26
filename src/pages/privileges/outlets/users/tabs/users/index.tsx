@@ -6,6 +6,7 @@ import {
   Stack,
 } from "@inube/design-system";
 
+import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
@@ -13,15 +14,14 @@ import {
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
 import { deleteUserMessages } from "@pages/privileges/outlets/users/config/deleteUser.config";
 import { activateUserMessages } from "@pages/privileges/outlets/users/config/activateUser.config";
-import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
+import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
+import { IGeneralInformationEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 
-import { StyledMessageContainer } from "./styles";
 import { EditUser } from "./EditUser";
 import { DeleteUser } from "./DeleteUser";
-import { activateUserModal } from "../../config/activateUser.config";
-import { IGeneralInformationEntry } from "../../types/forms.types";
+import { StyledMessageContainer } from "./styles";
 
 const initialMessageState: IMessage = {
   show: false,
