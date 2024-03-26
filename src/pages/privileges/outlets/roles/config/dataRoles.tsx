@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
-import { roles } from "@mocks/privileges/roles/Roles.mock";
+import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
 import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
 
 import { DetailsModal } from "../components/DetailsModal";
-import { IRol } from "../types";
+import { activateRoleModal } from "./activateRole.config";
 
 export const titlesOptions = [
   {
@@ -39,33 +39,40 @@ export const RolesBreakPointsConfig = [
 ];
 
 const dataDetailsRol = (id: string) => {
-  const data = [roles.find((role) => role.id === id)!].map((roleselectd) => ({
-    Código: roleselectd?.k_rol,
-    Nombre: roleselectd?.n_rol,
-    Aplicación: roleselectd?.k_aplica,
-    Activo: roleselectd?.i_activo ? "Si" : "No",
-  }));
+  const data = [mockRoles.find((role) => role.k_Rol === id)!].map(
+    (roleselectd) => ({
+      Código: roleselectd?.k_Rol,
+      Nombre: roleselectd?.n_Rol,
+      Aplicación: roleselectd?.n_Uso,
+      Activo: roleselectd?.i_Activo ? "Si" : "No",
+    })
+  );
 
   return [...data].shift();
 };
 
-const selectedData = (id: string) => roles.find((role) => role.id === id);
+const selectedData = (id: string) =>
+  mockRoles.find((role) => role.k_Rol === id);
 
-const handleActive = (rolesData: IRol) =>
-  roles.find((role) => role.id === rolesData.k_Rol);
+const handleActive = () => "Esto es un servicio de Backend";
 
 export const actionsConfig = [
   {
     id: "i_activo",
     actionName: "Activo",
-    content: (role: IRol) => {
-      const adjustedRole = { id: role.k_Rol, active: role.i_Activo === "Y" };
+    content: ({ id }: { id: string }) => {
+      const role = selectedData(id);
+      const adjustedRole = {
+        id: role?.k_Rol || "",
+        active: role?.i_Activo === "Y" || false,
+      };
 
       return (
         <ActivateFormOptions
-          handleActivateUser={() => handleActive(role)}
+          handleActivate={() => handleActive()}
           data={adjustedRole}
           showComplete={false}
+          activateModalConfig={activateRoleModal}
         />
       );
     },

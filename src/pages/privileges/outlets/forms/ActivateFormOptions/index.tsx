@@ -7,15 +7,16 @@ export interface IDataActivateOption {
 }
 
 interface IActivateFormOptionsProps<T extends IDataActivateOption> {
-  handleActivateUser: () => void;
+  handleActivate: () => void;
   showComplete: boolean;
   data: T;
+  activateModalConfig: any;
 }
 
 export function ActivateFormOptions<T extends IDataActivateOption>(
   props: IActivateFormOptionsProps<T>
 ) {
-  const { data, handleActivateUser, showComplete } = props;
+  const { data, handleActivate, showComplete, activateModalConfig } = props;
   const [showActivateUserModal, setShowActivateUserModal] = useState(false);
 
   const handleToggleModal = () => {
@@ -26,11 +27,11 @@ export function ActivateFormOptions<T extends IDataActivateOption>(
     <ActivateFormOptionsUI
       active={data.active}
       showActivateOptions={showActivateUserModal}
-      data={data}
       id={data.id}
       handleToggleModal={handleToggleModal}
-      handleActivateOptions={handleActivateUser}
+      handleActivateOptions={handleActivate}
       showComplete={showComplete}
+      activateModalConfig={activateModalConfig}
     />
   );
 }

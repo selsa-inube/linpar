@@ -1,8 +1,7 @@
-import { IDataActivateOption } from ".";
-
-export interface IActivateOptionModal<T extends IDataActivateOption> {
+export interface IActivateOptionModal {
   active: boolean;
   handleToggleModal: () => void;
   handleActivateOptions: () => void;
-  data: T;
+  id: string;
+  activateModalConfig: any;
 }

@@ -19,6 +19,7 @@ import { IGeneralInformationEntry } from "../../types/forms.types";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { StyledMessageContainer } from "./styles";
+import { activateUserModal } from "../../config/activateUser.config";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -113,8 +114,9 @@ function UsersTab(props: UsersTabProps) {
       content: (user: IGeneralInformationEntry) => (
         <ActivateFormOptions<IGeneralInformationEntry>
           data={user}
-          handleActivateUser={() => handleActivateUser(user)}
+          handleActivate={() => handleActivateUser(user)}
           showComplete={smallScreen}
+          activateModalConfig={activateUserModal}
         />
       ),
       type: "gray",
