@@ -3,10 +3,10 @@ import { Button, Grid, Stack } from "@inube/design-system";
 
 import { BoxAttribute } from "@components/data/BoxAttirbute";
 import { Accordion } from "@src/components/data/Accordion";
-import { DataVerificationStep } from ".";
+import { IDataVerificationStep } from ".";
 
 interface IVerificationAddRoleUIProps {
-  dataVerificationStep: DataVerificationStep[];
+  dataVerificationStep: IDataVerificationStep[];
   keySections: string[];
   isMobile: boolean;
   setCurrentStep: (step: number) => void;

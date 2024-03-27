@@ -11,28 +11,35 @@ export interface IControllerAccordionProps {
   setCurrentStep: (step: number) => void;
 }
 
-interface Sections {
-  [key: string]: {
-    title: string;
-    attributes: { attribute: string; value: string }[];
-  };
+interface IAttributes {
+  attribute: string;
+  value: string;
 }
 
-export interface DataVerificationStep {
-  sections: Sections;
+interface IOptionsSections {
+  title: string;
+  attributes: IAttributes[];
+}
+
+interface ISections {
+  [key: string]: IOptionsSections;
+}
+
+export interface IDataVerificationStep {
+  sections: ISections;
 }
 
 function createAttribute(
   attributeName: string,
   attributeValue: string
-): { attribute: string; value: string } {
+): IAttributes {
   return { attribute: attributeName, value: attributeValue };
 }
 
 function filterAndMapData(
   data: IInitialiceFormRole[] | [],
   isActiveKey: string
-): { attribute: string; value: string }[] {
+): IAttributes[] {
   return data
     .filter(
       (item: IInitialiceFormRole) =>
@@ -48,7 +55,7 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
 
   const isMobile = useMediaQuery("(max-width: 740px)");
 
-  const dataVerificationStep: DataVerificationStep[] = [steps].map((data) => ({
+  const dataVerificationStep: IDataVerificationStep[] = [steps].map((data) => ({
     sections: {
       generalInformation: {
         title: "Información general",
