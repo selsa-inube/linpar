@@ -25,13 +25,7 @@ export const VerificationAddRoleUI = (props: IVerificationAddRoleUIProps) => {
                 title={dataStept.sections[keySection].title}
               >
                 <Grid
-                  templateColumns={
-                    isMobile ||
-                    keySection === "transactionTypes" ||
-                    keySection === "businessRules"
-                      ? "1fr"
-                      : "repeat(2, 1fr)"
-                  }
+                  templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
                   width="-webkit-fill-available"
                   autoRows="auto"
                   gap="s200"
