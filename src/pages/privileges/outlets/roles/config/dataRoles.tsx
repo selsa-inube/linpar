@@ -44,7 +44,7 @@ const dataDetailsRol = (k_Rol: string) => {
       Código: roleselectd?.k_Rol,
       Nombre: roleselectd?.n_Rol,
       Aplicación: roleselectd?.n_Uso,
-      Activo: roleselectd?.i_Activo === "Y" ? "Si" : "No",
+      Activo: roleselectd?.i_Activo === "Y" ? "active" : "inactive",
     })
   );
 
