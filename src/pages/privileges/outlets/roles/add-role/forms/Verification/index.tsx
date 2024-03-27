@@ -1,8 +1,7 @@
-//import { MdArrowBack } from "react-icons/md";
-import { Grid, Stack, useMediaQuery } from "@inube/design-system";
-import { BoxAttribute } from "@components/data/BoxAttirbute";
-import { Accordion } from "@src/components/data/Accordion";
-import { IFormAddRole } from "../../../types";
+import { useMediaQuery } from "@inube/design-system";
+
+import { IFormAddRole, IInitialiceFormRole } from "../../../types";
+import { VerificationAddRoleUI } from "./interface";
 
 export interface IControllerAccordionProps {
   steps: IFormAddRole;
@@ -15,8 +14,29 @@ interface Sections {
   };
 }
 
-interface DataVerificationStep {
+export interface DataVerificationStep {
   sections: Sections;
+}
+
+function createAttribute(
+  attributeName: string,
+  attributeValue: string
+): { attribute: string; value: string } {
+  return { attribute: attributeName, value: attributeValue };
+}
+
+function filterAndMapData(
+  data: IInitialiceFormRole[] | [],
+  isActiveKey: string
+): { attribute: string; value: string }[] {
+  return data
+    .filter(
+      (item: IInitialiceFormRole) =>
+        item[isActiveKey as string as keyof IInitialiceFormRole] === true
+    )
+    .map((item: IInitialiceFormRole) =>
+      createAttribute(item.value, item.value)
+    );
 }
 
 export const VerificationAddRole = (props: IControllerAccordionProps) => {
@@ -89,29 +109,6 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
   }));
  */
 
-  function createAttribute(
-    attributeName: string,
-    attributeValue: string
-  ): { attribute: string; value: string } {
-    return { attribute: attributeName, value: attributeValue };
-  }
-
-  interface IInitialiceFormRole {
-    [key: string]: any;
-  }
-
-  function filterAndMapData(
-    data: IInitialiceFormRole[] | [],
-    isActiveKey: string
-  ): { attribute: string; value: string }[] {
-    console.log(data, "en la funcion");
-    return data
-      .filter((item: IInitialiceFormRole) => item[isActiveKey] === true)
-      .map((item: IInitialiceFormRole) =>
-        createAttribute(item.value, item.value)
-      );
-  }
-
   // Estructura de datos mejorada
   const dataVerificationStep: DataVerificationStep[] = [steps].map((data) => ({
     sections: {
@@ -183,42 +180,10 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
   dataVerificationStep.map((step) => console.log(step.sections)); */
 
   return (
-    <Stack gap="8px" direction="column">
-      {dataVerificationStep.map((dataStept) =>
-        keySections.map(
-          (keySection: string) =>
-            dataVerificationStep[0].sections[keySection].attributes.length >
-              0 && (
-              <Accordion
-                key={keySection}
-                title={dataStept.sections[keySection].title}
-              >
-                <Grid
-                  templateColumns={
-                    isMobile ||
-                    keySection === "transactionTypes" ||
-                    keySection === "businessRules"
-                      ? "1fr"
-                      : "repeat(2, 1fr)"
-                  }
-                  width="-webkit-fill-available"
-                  autoRows="auto"
-                  gap="s200"
-                >
-                  {dataStept.sections[keySection].attributes.map(
-                    (attribute) => (
-                      <BoxAttribute
-                        key={attribute.attribute}
-                        attribute={attribute.attribute}
-                        value={attribute.value}
-                      />
-                    )
-                  )}
-                </Grid>
-              </Accordion>
-            )
-        )
-      )}
-    </Stack>
+    <VerificationAddRoleUI
+      dataVerificationStep={dataVerificationStep}
+      keySections={keySections}
+      isMobile={isMobile}
+    />
   );
 };
