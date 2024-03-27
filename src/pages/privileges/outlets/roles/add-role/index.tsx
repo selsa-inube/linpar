@@ -186,6 +186,7 @@ export function AddRol() {
       setAddRoleFormValid={setIsAddRoleFormValid}
       formReferences={formReferences}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
+      setCurrentStep={setCurrentStep}
     />
   );
 }

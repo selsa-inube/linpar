@@ -1,10 +1,14 @@
 import { useMediaQuery } from "@inube/design-system";
 
-import { IFormAddRole, IInitialiceFormRole } from "../../../types";
+import {
+  IFormAddRole,
+  IInitialiceFormRole,
+} from "@pages/privileges/outlets/roles/types";
 import { VerificationAddRoleUI } from "./interface";
 
 export interface IControllerAccordionProps {
   steps: IFormAddRole;
+  setCurrentStep: (step: number) => void;
 }
 
 interface Sections {
@@ -40,7 +44,7 @@ function filterAndMapData(
 }
 
 export const VerificationAddRole = (props: IControllerAccordionProps) => {
-  const { steps } = props;
+  const { steps, setCurrentStep } = props;
 
   const isMobile = useMediaQuery("(max-width: 740px)");
 
@@ -117,6 +121,7 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
       dataVerificationStep={dataVerificationStep}
       keySections={keySections}
       isMobile={isMobile}
+      setCurrentStep={setCurrentStep}
     />
   );
 };

@@ -32,6 +32,7 @@ interface AddRolUIProps {
   handlePreviousStep: () => void;
   handleFinishAssisted?: () => void;
   handleUpdateDataSwitchstep: (values: IInitialiceFormRole[]) => void;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function AddRolUI(props: AddRolUIProps) {
@@ -45,6 +46,7 @@ export function AddRolUI(props: AddRolUIProps) {
     handlePreviousStep,
 
     handleUpdateDataSwitchstep,
+    setCurrentStep,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -122,7 +124,10 @@ export function AddRolUI(props: AddRolUIProps) {
           )}
 
           {currentStep === stepsAddRol.summary.id && (
-            <VerificationAddRole steps={addRoleFormValid} />
+            <VerificationAddRole
+              steps={addRoleFormValid}
+              setCurrentStep={setCurrentStep}
+            />
           )}
         </>
         <Stack gap="16px" justifyContent="flex-end">
