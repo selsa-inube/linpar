@@ -6,16 +6,14 @@ import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm
 import { PageTitle } from "@components/PageTitle";
 
 import { StyledContainer } from "./styles";
-import { stepsAddingLinixUseCase } from "../../adding-linix-use-case/config/addingLinixUseCase.config";
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
 } from "../../../users/types/forms.types";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { GeneralInformationForm } from "../../adding-linix-use-case/forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "../../adding-linix-use-case/forms/ClientServerButtonSelection";
-import { ItemNotFound } from "@src/components/layout/ItemNotFound";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
-
 interface EditUserUIProps {
   selectedTab: string;
   handleTabChange: (tabId: string) => void;
@@ -28,6 +26,7 @@ interface EditUserUIProps {
   handleCloseModal: () => void;
   handleDataChange: (hasChanges: boolean) => void;
   handleContinueTab: () => void;
+  message: IMessageState;
   downloadableDocuments: IAssignmentFormEntry[];
   webReports: IAssignmentFormEntry[];
   clientServerReports: IAssignmentFormEntry[];
@@ -89,12 +88,6 @@ function EditUserUI(props: EditUserUIProps) {
               navigatePage="/privileges/linixUseCase"
               description="describir la nueva informacion de caso de uso"
             />
-
-            {/* <SubjectCard
-              subjectData={controlModal.continueTab}
-              title="Informacion del usuario"
-              icon={<MdPersonOutline size={24} />}
-            /> */}
           </Stack>
         </Stack>
         <Stack gap="32px" direction="column">
@@ -169,18 +162,9 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit}
             />
           )}
-
-          {selectedTab === stepsAddingLinixUseCase.summary.id.toString() && (
-            <ItemNotFound
-              image={ItemNotFound}
-              title={"Página de resumen"}
-              description={"Esta sección está en construcción."}
-              buttonDescription={"Retorna a la página de inicio"}
-              route={"/privileges/linixUseCase"}
-            />
-          )}
         </Stack>
       </Stack>
+
       {controlModal.show && continueModal(handleCloseModal, handleContinueTab)}
     </StyledContainer>
   );

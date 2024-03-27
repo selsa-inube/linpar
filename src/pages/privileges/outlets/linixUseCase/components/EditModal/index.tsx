@@ -11,13 +11,21 @@ import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases
 import { DocumentsServiceMock } from "@src/mocks/privileges/documents/DocumentsServiceMock.mock";
 import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
 import { clientServerMock } from "@src/mocks/privileges/client-server/client-serverServiceMock.mock";
+import { UseCase } from "../../types";
+import { IUsersMessage } from "../../../users/types/users.types";
 
+export interface IGeneralInformation {
+  generalInformation: { entries: UseCase | undefined };
+}
 function EditCaseLinix() {
   const { user_id } = useParams<{ user_id: string }>();
 
   const [controlModal, setControlModal] = useState({
     show: false,
     continueTab: "",
+  });
+  const [message] = useState<IUsersMessage>({
+    visible: false,
   });
 
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
@@ -106,6 +114,7 @@ function EditCaseLinix() {
     <EditUserUI
       selectedTab={selectedTab}
       handleTabChange={handleTabChange}
+      message={message}
       editData={editData}
       handleSubmit={handleSubmit}
       controlModal={controlModal}
