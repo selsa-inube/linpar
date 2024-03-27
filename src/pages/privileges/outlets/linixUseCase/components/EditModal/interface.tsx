@@ -4,20 +4,22 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
-
 import { StyledContainer } from "./styles";
-import {
-  IAssignmentFormEntry,
-  IFormsInvitation,
-} from "../../../users/types/forms.types";
+import { IAssignmentFormEntry } from "../../../users/types/forms.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { GeneralInformationForm } from "../../adding-linix-use-case/forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "../../adding-linix-use-case/forms/ClientServerButtonSelection";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
+import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
+import { clientServerMock } from "@src/mocks/privileges/client-server/client-serverServiceMock.mock";
+import {
+  IClientServerButton,
+  IGeneralInformation,
+} from "../../adding-linix-use-case";
 interface EditUserUIProps {
   selectedTab: string;
   handleTabChange: (tabId: string) => void;
-  editData: IFormsInvitation;
+  editData: { [key: string]: { [key: string]: unknown } };
   handleSubmit: (values: IAssignmentFormEntry[]) => void;
   controlModal: {
     show: boolean;
@@ -28,6 +30,7 @@ interface EditUserUIProps {
   handleContinueTab: () => void;
   message: IMessageState;
   downloadableDocuments: IAssignmentFormEntry[];
+  csOptions: Record<string, unknown>[];
   webReports: IAssignmentFormEntry[];
   clientServerReports: IAssignmentFormEntry[];
   clientServerOptions: IAssignmentFormEntry[];
@@ -100,8 +103,12 @@ function EditUserUI(props: EditUserUIProps) {
           {selectedTab ===
             editLinixUseCaseTabsConfig.generalInformation.id.toString() && (
             <GeneralInformationForm
-              initialValues={currentInformation}
-              handleSubmit={handleSubmit}
+              initialValues={
+                currentInformation as unknown as IGeneralInformation
+              }
+              csOptions={clientServerMock}
+              webOptions={webOptionsMock}
+              handleSubmit={handleSubmit as unknown as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
             />
@@ -109,10 +116,13 @@ function EditUserUI(props: EditUserUIProps) {
           {selectedTab ===
             editLinixUseCaseTabsConfig.clientServerButton.id.toString() && (
             <ClientServerButtonSelection
-              initialValues={currentInformation}
-              handleSubmit={handleSubmit}
+              initialValues={
+                currentInformation as unknown as IClientServerButton
+              }
+              handleSubmit={handleSubmit as unknown as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
+              csSelected={""}
             />
           )}
           {selectedTab ===

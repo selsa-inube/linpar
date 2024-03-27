@@ -3,10 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { EditUserUI } from "./interface";
 import { editUserTabsConfig } from "../../../users/edit-user/config/editUserTabs.config";
-import {
-  IAssignmentFormEntry,
-  IFormsInvitation,
-} from "../../../users/types/forms.types";
+import { IAssignmentFormEntry } from "../../../users/types/forms.types";
 import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { DocumentsServiceMock } from "@src/mocks/privileges/documents/DocumentsServiceMock.mock";
 import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
@@ -34,7 +31,9 @@ function EditCaseLinix() {
     editUserTabsConfig.generalInformation.id
   );
 
-  const [editData, setEditData] = useState<IFormsInvitation>({
+  const [editData, setEditData] = useState<{
+    [key: string]: { [key: string]: unknown };
+  }>({
     generalInformation: { entries: getUserInformation() },
   });
 
@@ -126,6 +125,7 @@ function EditCaseLinix() {
       clientServerOptions={clientServerOptions}
       clientServerReports={clientServerReports}
       handleContinueTab={handleContinueTab}
+      csOptions={[]}
     />
   );
 }

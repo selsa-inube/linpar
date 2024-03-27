@@ -191,7 +191,6 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     csOptions,
     webOptions,
   } = props;
-  console.log("inube", message);
   if (withSubmitButtons) {
     return (
       <>

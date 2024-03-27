@@ -8,7 +8,7 @@ import {
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
 
 import { GeneralInformationFormUI } from "./interface";
-import { generalInfoMessages } from "@src/pages/privileges/outlets/forms/GeneralInfoForm/config/messages.config";
+import { generalMessage } from "../../config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -51,7 +51,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       setLoading(false);
       setMessage({
         visible: true,
-        data: generalInfoMessages.success,
+        data: generalMessage.success,
       });
     }, LOADING_TIMEOUT);
   }
@@ -73,7 +73,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       if (Object.keys(errors).length > 0) {
         setMessage({
           visible: true,
-          data: generalInfoMessages.failed,
+          data: generalMessage.failed,
         });
       }
       formik.handleSubmit();
@@ -103,7 +103,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
           handleSubmit(formikValues);
           setMessage({
             visible: true,
-            data: generalInfoMessages.success,
+            data: generalMessage.success,
           });
         }
       });
