@@ -4,6 +4,7 @@ import {
   IFormAddRole,
   IInitialiceFormRole,
 } from "@pages/privileges/outlets/roles/types";
+
 import { VerificationAddRoleUI } from "./interface";
 
 export interface IControllerAccordionProps {

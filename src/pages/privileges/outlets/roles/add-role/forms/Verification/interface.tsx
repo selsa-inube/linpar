@@ -1,8 +1,9 @@
 import { MdArrowBack } from "react-icons/md";
-import { Button, Grid, Stack } from "@inube/design-system";
+import { Button, Grid, Stack, inube } from "@inube/design-system";
 
 import { BoxAttribute } from "@components/data/BoxAttirbute";
-import { Accordion } from "@src/components/data/Accordion";
+import { Accordion } from "@components/data/Accordion";
+
 import { IDataVerificationStep } from ".";
 
 interface IVerificationAddRoleUIProps {
@@ -16,7 +17,7 @@ export const VerificationAddRoleUI = (props: IVerificationAddRoleUIProps) => {
   const { dataVerificationStep, keySections, isMobile, setCurrentStep } = props;
 
   return (
-    <Stack gap="8px" direction="column">
+    <Stack gap={inube.spacing.s100} direction="column">
       {dataVerificationStep.map((dataStept) =>
         keySections.map(
           (keySection, index) =>

@@ -24,7 +24,7 @@ export const GeneralInformationForm = forwardRef(
   ) {
     const { initialValues, onSubmit, loading } = props;
 
-    const handleUpdateDataFomr = (data: { [key: string]: string | number }) => {
+    const handleUpdateDataForm = (data: { [key: string]: string | number }) => {
       formik.setFieldValue("aplication", data.n_Usecase);
     };
 
@@ -54,7 +54,7 @@ export const GeneralInformationForm = forwardRef(
       <GeneralInformationFormUI
         loading={loading}
         formik={formik}
-        handleSubmit={handleUpdateDataFomr}
+        handleSubmit={handleUpdateDataForm}
         linixUseCases={linixUseCases}
       />
     );
