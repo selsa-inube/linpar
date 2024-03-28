@@ -1,39 +1,34 @@
 import { useState } from "react";
+import { deleteUserModal } from "../../users/config/deleteUser.config";
+import { DeleteFormOptionsUI } from "./interface";
 
-import { ActivateFormOptionsUI } from "./interface";
-import { activateUserModal } from "../../users/config/activateUser.config";
-
-export interface IDataActivateOption {
+export interface IDataDeleteOption {
   id: string;
-  active: boolean;
 }
 
-interface IActivateFormOptionsProps<T extends IDataActivateOption> {
-  handleActivate: () => void;
+interface IDeleteFormOptionsProps<T extends IDataDeleteOption> {
   showComplete: boolean;
   data: T;
-  activateModalConfig: typeof activateUserModal;
+  linuxUseCaseModalConfig: typeof deleteUserModal;
 }
 
-export function ActivateFormOptions<T extends IDataActivateOption>(
-  props: IActivateFormOptionsProps<T>
+export function DeleteFormOptions<T extends IDataDeleteOption>(
+  props: IDeleteFormOptionsProps<T>
 ) {
-  const { data, handleActivate, showComplete, activateModalConfig } = props;
-  const [showActivateUserModal, setShowActivateUserModal] = useState(false);
+  const { data, showComplete, linuxUseCaseModalConfig } = props;
+  const [showDeletModal, setShowActivateModal] = useState(false);
 
   const handleToggleModal = () => {
-    setShowActivateUserModal(!showActivateUserModal);
+    setShowActivateModal(!showDeletModal);
   };
 
   return (
-    <ActivateFormOptionsUI
-      active={data.active}
-      showActivateOptions={showActivateUserModal}
+    <DeleteFormOptionsUI
+      showActivateOptions={showDeletModal}
       id={data.id}
       handleToggleModal={handleToggleModal}
-      handleActivateOptions={handleActivate}
       showComplete={showComplete}
-      activateModalConfig={activateModalConfig}
+      linuxUseCaseModalConfig={linuxUseCaseModalConfig}
     />
   );
 }

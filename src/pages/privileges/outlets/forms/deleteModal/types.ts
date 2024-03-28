@@ -1,9 +1,7 @@
-import { activateUserModal } from "../../users/config/activateUser.config";
+import { deleteUserModal } from "../../users/config/deleteUser.config";
 
-export interface IActivateOptionModal {
-  active: boolean;
+export interface IDeleteOptionModal {
   handleToggleModal: () => void;
-  handleActivateOptions: () => void;
   id: string;
-  activateModalConfig: typeof activateUserModal;
+  linuxUseCaseModalConfig: typeof deleteUserModal;
 }

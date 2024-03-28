@@ -17,7 +17,6 @@ import {
   inube,
 } from "@inube/design-system";
 
-import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
 import { DetailsModal } from "./components/DetailsModal";
 
 import { PageTitle } from "@components/PageTitle";
@@ -30,6 +29,8 @@ import { titlesOptions } from "./config/useCasesTable.config";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
+import { deleteUserModal } from "./config/delteLinuxUseCase.config";
+import { DeleteFormOptions } from "../forms/deleteModal";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -61,6 +62,8 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const handleClick = (id: string) => {
     linixUseCases.find((useCase) => useCase.id === id);
   };
+  const selectedData = (k_Usecase: string) =>
+    linixUseCases.find((LinuxUseCase) => LinuxUseCase.k_Usecase === k_Usecase);
 
   const actionsConfig = [
     {
@@ -90,17 +93,24 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
       type: "primary",
     },
     {
-      id: "Delete",
+      id: "delete",
       actionName: "Eliminar",
-      content: ({ id }: { id: string }) => (
-        <DeleteUser
-          user={linixUseCases.find((useCase) => useCase.id === id)}
-          handleDeleteUser={() => {}}
-          showComplete={false}
-          closeModal={() => {}}
-        />
-      ),
-      type: "remove",
+      content: ({ k_Usecase }: { k_Usecase: string }) => {
+        const LinuxUseCase = selectedData(k_Usecase);
+        const adjustedLinuxUseCase = {
+          id: LinuxUseCase?.k_Usecase || "",
+          active: LinuxUseCase?.k_Usecase === "Y" || false,
+        };
+
+        return (
+          <DeleteFormOptions
+            data={adjustedLinuxUseCase}
+            showComplete={false}
+            linuxUseCaseModalConfig={deleteUserModal}
+          />
+        );
+      },
+      type: "secondary",
     },
   ];
 

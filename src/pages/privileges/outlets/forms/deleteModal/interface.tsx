@@ -1,62 +1,47 @@
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { Icon } from "@inube/design-system";
-
-import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
 import { EMessageType } from "@src/types/messages.types";
-
-import { IActivateOptionModal } from "./types";
 import { MdOutlineDelete } from "react-icons/md";
+import { deleteUserModal } from "../../users/config/deleteUser.config";
+import { IDeleteOptionModal } from "./types";
 
-interface IctivateFormOptionsUI {
-  active: boolean;
+interface IDeleteFormOptionsUI {
   showActivateOptions: boolean;
   id: string;
   handleToggleModal: () => void;
-  handleActivateOptions: () => void;
   showComplete: boolean;
-  activateModalConfig: typeof activateUserModal;
+  linuxUseCaseModalConfig: typeof deleteUserModal;
 }
 
-function ActivateOptionsModal(props: IActivateOptionModal) {
-  const {
-    active,
-    handleToggleModal,
-    handleActivateOptions: handleActivateUser,
-    id,
-    activateModalConfig,
-  } = props;
-  let messageType = EMessageType.DEACTIVATION;
-  if (!active) {
-    messageType = EMessageType.ACTIVATION;
-  }
+function DeleteOptionsModal(props: IDeleteOptionModal) {
+  const { handleToggleModal, id, linuxUseCaseModalConfig } = props;
+  let messageType = EMessageType.DELETE;
 
   const {
     title = "",
     description,
-    textAction,
+    actionText,
     appearance,
-  } = activateModalConfig[messageType];
+  } = linuxUseCaseModalConfig[messageType];
 
   return (
     <DecisionModal
       title={title}
       description={description(id)}
-      actionText={textAction}
+      actionText={actionText}
       appearance={appearance}
       closeModal={handleToggleModal}
-      handleClick={handleActivateUser}
+      handleClick={handleToggleModal}
     />
   );
 }
 
-export function ActivateFormOptionsUI(props: IctivateFormOptionsUI) {
+export function DeleteFormOptionsUI(props: IDeleteFormOptionsUI) {
   const {
-    active,
-    showActivateOptions: showActivateUserModal,
+    showActivateOptions: showActivateModal,
     id,
     handleToggleModal,
-    handleActivateOptions: handleActivateUser,
-    activateModalConfig,
+    linuxUseCaseModalConfig,
   } = props;
 
   return (
@@ -68,13 +53,11 @@ export function ActivateFormOptionsUI(props: IctivateFormOptionsUI) {
         cursorHover
       />
 
-      {showActivateUserModal && (
-        <ActivateOptionsModal
-          active={active}
+      {showActivateModal && (
+        <DeleteOptionsModal
           id={id}
           handleToggleModal={handleToggleModal}
-          handleActivateOptions={handleActivateUser}
-          activateModalConfig={activateModalConfig}
+          linuxUseCaseModalConfig={linuxUseCaseModalConfig}
         />
       )}
     </>

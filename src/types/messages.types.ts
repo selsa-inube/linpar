@@ -6,6 +6,7 @@ enum EMessageType {
   DELETE = "delete",
   ACTIVATION = "activation",
   DEACTIVATION = "deactivation",
+  DELETION = "DELETION",
 }
 
 interface IMessage {
