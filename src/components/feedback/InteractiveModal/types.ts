@@ -30,6 +30,8 @@ interface InteractiveModalProps {
   type?: ModalTypes;
   divider?: boolean;
   onClick?: any;
+  idLabel?: string;
+  nameLabel?: string;
 }
 
 export type { Field, Action, InteractiveModalProps, ModalTypes };

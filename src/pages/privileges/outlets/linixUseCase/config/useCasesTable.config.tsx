@@ -9,19 +9,19 @@ const useCasesBreakPointsConfig = [
 
 const titlesOptions = [
   {
-    id: "k_usecase",
+    id: "k_Usecase",
     titleName: "Código",
     priority: 0,
   },
 
   {
-    id: "n_usecase",
+    id: "n_Usecase",
     titleName: "Nombre",
     priority: 1,
   },
 
   {
-    id: "i_tipusec",
+    id: "i_Tipusec",
     titleName: "Tipo",
     priority: 2,
   },
