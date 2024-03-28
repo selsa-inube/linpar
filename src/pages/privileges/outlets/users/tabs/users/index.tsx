@@ -12,7 +12,7 @@ import {
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
-import { deleteUserMessages } from "@pages/privileges/outlets/users/config/deleteUser.config";
+import { deleteUserModal } from "@pages/privileges/outlets/users/config/deleteUser.config";
 import { activateUserMessages } from "@pages/privileges/outlets/users/config/activateUser.config";
 import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
 import { IGeneralInformationEntry } from "@pages/privileges/outlets/users/types/forms.types";
@@ -20,8 +20,8 @@ import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 
 import { EditUser } from "./EditUser";
-import { DeleteUser } from "./DeleteUser";
 import { StyledMessageContainer } from "./styles";
+import { DeleteFormOptions } from "../../../forms/deleteModal";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -39,28 +39,6 @@ function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
   const [users, setUsers] = useState(userEntriesDataMock);
   const [message, setMessage] = useState(initialMessageState);
-
-  const deleteUser = (user: IGeneralInformationEntry) => {
-    let MessageType = EMessageType.SUCCESS;
-
-    try {
-      setUsers((prevUsers) =>
-        prevUsers.filter((oldUser) => user.id !== oldUser.id)
-      );
-    } catch (error) {
-      MessageType = EMessageType.FAILED;
-    }
-
-    const { icon, title, description, appearance } =
-      deleteUserMessages[MessageType];
-
-    handleShowMessage({
-      title,
-      description: description(user),
-      icon,
-      appearance,
-    });
-  };
 
   const handleActivateUser = (user: IGeneralInformationEntry) => {
     let messageType = EMessageType.ACTIVATION;
@@ -108,6 +86,8 @@ function UsersTab(props: UsersTabProps) {
   };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
+  const selectedData = (username: string) =>
+    users.find((user) => user.username === username);
 
   const actions = [
     {
@@ -134,13 +114,20 @@ function UsersTab(props: UsersTabProps) {
     {
       id: "3",
       actionName: "Eliminar",
-      content: (user: IGeneralInformationEntry) => (
-        <DeleteUser
-          user={user}
-          handleDeleteUser={() => deleteUser(user)}
-          showComplete={smallScreen}
-        />
-      ),
+      content: ({ username }: { username: string }) => {
+        const user = selectedData(username);
+        const adjusteduser = {
+          id: user?.username || "",
+        };
+
+        return (
+          <DeleteFormOptions
+            data={adjusteduser}
+            showComplete={false}
+            linuxUseCaseModalConfig={deleteUserModal}
+          />
+        );
+      },
       type: "error",
     },
   ];

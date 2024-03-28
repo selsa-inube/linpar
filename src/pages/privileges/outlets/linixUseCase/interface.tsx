@@ -99,7 +99,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
         const LinuxUseCase = selectedData(k_Usecase);
         const adjustedLinuxUseCase = {
           id: LinuxUseCase?.k_Usecase || "",
-          active: LinuxUseCase?.k_Usecase === "Y" || false,
         };
 
         return (
