@@ -1,30 +1,32 @@
 import { Stack, Tabs, useMediaQueries, inube } from "@inube/design-system";
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
-
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
-import { StyledContainer } from "./styles";
-import { IAssignmentFormEntry } from "../../../users/types/forms.types";
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { GeneralInformationForm } from "../../adding-linix-use-case/forms/GeneralInformationForm";
-import { ClientServerButtonSelection } from "../../adding-linix-use-case/forms/ClientServerButtonSelection";
-import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
 import { clientServerMock } from "@src/mocks/privileges/client-server/client-serverServiceMock.mock";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import { GeneralInformationForm } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/GeneralInformationForm";
+import { ClientServerButtonSelection } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/ClientServerButtonSelection";
+
+import { StyledContainer } from "./styles";
+import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
+
 import {
   IClientServerButton,
   IGeneralInformation,
-} from "../../adding-linix-use-case";
+} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
+interface IControlModal {
+  show: boolean;
+  continueTab: string;
+}
 interface EditUserUIProps {
   selectedTab: string;
   handleTabChange: (tabId: string) => void;
   editData: { [key: string]: { [key: string]: unknown } };
   handleSubmit: (values: IAssignmentFormEntry[]) => void;
-  controlModal: {
-    show: boolean;
-    continueTab: string;
-  };
+  controlModal: IControlModal;
   handleCloseModal: () => void;
   handleDataChange: (hasChanges: boolean) => void;
   handleContinueTab: () => void;
@@ -103,12 +105,10 @@ function EditUserUI(props: EditUserUIProps) {
           {selectedTab ===
             editLinixUseCaseTabsConfig.generalInformation.id.toString() && (
             <GeneralInformationForm
-              initialValues={
-                currentInformation as unknown as IGeneralInformation
-              }
+              initialValues={currentInformation as IGeneralInformation}
               csOptions={clientServerMock}
               webOptions={webOptionsMock}
-              handleSubmit={handleSubmit as unknown as () => void}
+              handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
             />
@@ -116,10 +116,8 @@ function EditUserUI(props: EditUserUIProps) {
           {selectedTab ===
             editLinixUseCaseTabsConfig.clientServerButton.id.toString() && (
             <ClientServerButtonSelection
-              initialValues={
-                currentInformation as unknown as IClientServerButton
-              }
-              handleSubmit={handleSubmit as unknown as () => void}
+              initialValues={currentInformation as IClientServerButton}
+              handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
               csSelected={""}

@@ -6,7 +6,7 @@ import {
 } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { InitializerFormUI } from "./interface";
-import { generalInfoMessages } from "../GeneralInfoForm/config/messages.config";
+import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -47,7 +47,7 @@ export function InitializerForm(props: IInitializerForm) {
       setIsLoading(false);
       setMessage({
         visible: true,
-        data: generalInfoMessages.success,
+        data: generalMessage.success,
       });
     }, LOADING_TIMEOUT);
   };
