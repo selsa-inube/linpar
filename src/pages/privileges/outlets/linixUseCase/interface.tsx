@@ -16,20 +16,21 @@ import {
   Table,
   inube,
 } from "@inube/design-system";
-
-import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
-import { DetailsModal } from "./components/DetailsModal";
-
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
+import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
 
+import { DetailsModal } from "./components/DetailsModal";
 import { UseCase } from "./types";
 import { useCasesBreakPointsConfig } from "./config/useCasesTable.config";
 import { titlesOptions } from "./config/useCasesTable.config";
-import { privilegeOptionsConfig } from "../options/config/privileges.config";
+
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
+
+import { deleteUserModal } from "./config/deleteLinuxUseCase.config";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -38,9 +39,12 @@ interface LinixUseCaseUIProps {
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
   linixUseCases: UseCase[];
+  handleClick: HandleClickFunction;
+  selectedData: SelectedDataFunction;
   loading: boolean;
 }
-
+export type SelectedDataFunction = (k_Usecase: string) => UseCase | undefined;
+export type HandleClickFunction = (id: string) => void;
 export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const {
     searchUseCase,
@@ -48,6 +52,8 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
+    handleClick,
+    selectedData,
     linixUseCases,
     loading,
   } = props;
@@ -57,10 +63,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const label = privilegeOptionsConfig.find(
     (item) => item.url === location.pathname
   );
-
-  const handleClick = (id: string) => {
-    linixUseCases.find((useCase) => useCase.id === id);
-  };
 
   const actionsConfig = [
     {
@@ -90,17 +92,23 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
       type: "primary",
     },
     {
-      id: "Delete",
+      id: "delete",
       actionName: "Eliminar",
-      content: ({ id }: { id: string }) => (
-        <DeleteUser
-          user={linixUseCases.find((useCase) => useCase.id === id)}
-          handleDeleteUser={() => {}}
-          showComplete={false}
-          closeModal={() => {}}
-        />
-      ),
-      type: "remove",
+      content: ({ k_Usecase }: { k_Usecase: string }) => {
+        const LinuxUseCase = selectedData(k_Usecase);
+        const adjustedLinuxUseCase = {
+          id: LinuxUseCase?.k_Usecase || "",
+        };
+
+        return (
+          <DeleteFormOptions
+            data={adjustedLinuxUseCase}
+            showComplete={false}
+            linuxUseCaseModalConfig={deleteUserModal}
+          />
+        );
+      },
+      type: "secondary",
     },
   ];
 
