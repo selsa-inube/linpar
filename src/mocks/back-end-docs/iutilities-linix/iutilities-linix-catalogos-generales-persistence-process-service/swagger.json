@@ -1,0 +1,1804 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "El propósito de esta aplicación es proveer los servicios de procesos que permiten persistir los registros en las entidades de los catalogos generales",
+    "title": "Catalogos generales persistence Process Service",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:8303",
+  "basePath": "/iutilities-linix-catalogos-generales-persistence-process-service/api",
+  "paths": {
+    "/casos-de-uso/{AC:AgregarCasoDeUso}": {
+      "post": {
+        "description": "Acción que permite crear un agregado de caso de uso",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Crea el agregado de caso de uso",
+        "parameters": [
+          {
+            "description": "CatalogoDeCasoDeUso",
+            "name": "CatalogoDeCasoDeUso",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.AgregarCasoDeUsoRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AgregarCasoDeUso",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.AgregarCasoDeUsoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/casos-de-uso/{AC:EliminarCasoDeUso}": {
+      "delete": {
+        "description": "Acción que permite eliminar un agregado de caso de uso",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Elimina el agregado de caso de uso",
+        "parameters": [
+          {
+            "description": "CatalogoDeCasoDeUso",
+            "name": "CatalogoDeCasoDeUso",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.AggregateEliminarCasoDeUsoRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EliminarCasoDeUso",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.EliminarCasoDeUsoResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/casos-de-uso/{AC:ModificarCasoDeUso}": {
+      "patch": {
+        "description": "Acción que permite actualizar un agregado de caso de uso",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Actualiza un catalogo de caso de uso",
+        "parameters": [
+          {
+            "description": "CatalogoDeCasoDeUso",
+            "name": "CatalogoDeCasoDeUso",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.ModificarCasoDeUsoRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModificarCasoDeUso",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ModificarCasoDeUsoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/funciones-linix/{AC:AgregarFuncionLinix}": {
+      "post": {
+        "parameters": [
+          {
+            "description": "FuncionLinix",
+            "name": "FuncionLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtorequest.AgregarFuncionLinixRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AgregarFuncionLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/funciones-linix/{AC:EliminarFuncionLinix}": {
+      "delete": {
+        "parameters": [
+          {
+            "description": "FuncionLinix",
+            "name": "FuncionLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtorequest.AggregateEliminarFuncionLinixRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EliminarFuncionLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/funciones-linix/{AC:ModificarFuncionLinix}": {
+      "patch": {
+        "parameters": [
+          {
+            "description": "FuncionLinix",
+            "name": "FuncionLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtorequest.ModificarFuncionLinixRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModificarFuncionLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/roles/{AC:AgregarRol}": {
+      "post": {
+        "description": "Agrega un nuevo Rol",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Agrega un nuevo Rol",
+        "parameters": [
+          {
+            "description": "CatalogoDeRol",
+            "name": "CatalogoDeRol",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.AgregarRolRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AgregarRol",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.AgregarRolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles/{AC:EliminarRol}": {
+      "delete": {
+        "description": "Eliminar un Rol",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Eliminar un Rol",
+        "parameters": [
+          {
+            "description": "CatalogoDeRol",
+            "name": "CatalogoDeRol",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.AggregateEliminarRolRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EliminarRol",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.EliminarRolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles/{AC:ModificarRol}": {
+      "put": {
+        "description": "Modificar un Rol",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Modificar un Rol",
+        "parameters": [
+          {
+            "description": "CatalogoDeRol",
+            "name": "CatalogoDeRol",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.ModificarRolRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModificarRol",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.ModificarRolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "eetipfun.Etipfun": {
+      "type": "string",
+      "enum": ["L", "W"],
+      "x-enum-varnames": ["L", "W"]
+    },
+    "eitipusec.Itipusec": {
+      "type": "string",
+      "enum": ["I", "U", "D", "E", "O", "Q"],
+      "x-enum-varnames": ["I", "U", "D", "E", "O", "Q"]
+    },
+    "etransaoperation.Operation": {
+      "type": "string",
+      "enum": ["Insert", "Update", "PartialUpdate", "InsertOrUpdate", "Delete"],
+      "x-enum-varnames": [
+        "Insert",
+        "Update",
+        "PartialUpdate",
+        "InsertOrUpdate",
+        "Delete"
+      ]
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.AggregateEliminarCasoDeUsoRequest": {
+      "type": "object",
+      "properties": {
+        "eliminarCasoDeUso": {
+          "description": "List of records to remove",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.EliminarCasoDeUsoRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.AgregarCasoDeUsoRequest": {
+      "type": "object",
+      "required": [
+        "i_Tipusec",
+        "k_Ncampo",
+        "k_Nforma",
+        "k_Usecase",
+        "n_Descrip",
+        "n_Usecase"
+      ],
+      "properties": {
+        "a_Publicc": {
+          "description": "Codigo Publico",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "i_Tipusec": {
+          "description": "Tipo de caso de uso",
+          "maxLength": 1,
+          "minLength": 1,
+          "allOf": [
+            {
+              "$ref": "#/definitions/eitipusec.Itipusec"
+            }
+          ]
+        },
+        "k_Ncampo": {
+          "description": "identifica el nombre del botón de la forma que habilita en la opción c/s",
+          "type": "string",
+          "maxLength": 40,
+          "minLength": 1
+        },
+        "k_Nforma": {
+          "description": "identifica el nombre del la forma que habilita en la opción c/s",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "n_Descrip": {
+          "description": "Descripcion",
+          "type": "string",
+          "minLength": 1
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "opcionesCsPorCasoDeUso": {
+          "description": "List of OpcionesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.OpcionCsPorCasoDeUsoRequest"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "description": "List of OpcionesPortalWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.OpcionPortalWebPorCasoDeUsoRequest"
+          }
+        },
+        "reportesCsPorCasoDeUso": {
+          "description": "List of ReportesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.ReporteCsPorCasoDeUsoRequest"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "description": "List of ReportesWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.ReporteWebPorCasoDeUsoRequest"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "description": "List of TiposDeDocumentoPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.TipoDeDocumentoPorCasoDeUsoRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.EliminarCasoDeUsoRequest": {
+      "type": "object",
+      "required": ["n_Usecase", "removalJustification"],
+      "properties": {
+        "a_Publicc": {
+          "description": "Codigo Publico",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.ModificarCasoDeUsoRequest": {
+      "type": "object",
+      "required": ["modifyJustification"],
+      "properties": {
+        "a_Publicc": {
+          "description": "Codigo Publico",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "i_Tipusec": {
+          "description": "Tipo de caso de uso",
+          "maxLength": 1,
+          "minLength": 1,
+          "allOf": [
+            {
+              "$ref": "#/definitions/eitipusec.Itipusec"
+            }
+          ]
+        },
+        "k_Ncampo": {
+          "description": "identifica el nombre del botón de la forma que habilita en la opción c/s",
+          "type": "string",
+          "maxLength": 40,
+          "minLength": 1
+        },
+        "k_Nforma": {
+          "description": "identifica el nombre del la forma que habilita en la opción c/s",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "modifyJustification": {
+          "description": "Justification for the modification",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "n_Descrip": {
+          "description": "Descripcion",
+          "type": "string",
+          "minLength": 1
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "opcionesCsPorCasoDeUso": {
+          "description": "List of OpcionesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.OpcionCsPorCasoDeUsoRequest"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "description": "List of OpcionesPortalWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.OpcionPortalWebPorCasoDeUsoRequest"
+          }
+        },
+        "reportesCsPorCasoDeUso": {
+          "description": "List of ReportesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.ReporteCsPorCasoDeUsoRequest"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "description": "List of ReportesWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.ReporteWebPorCasoDeUsoRequest"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "description": "List of TiposDeDocumentoPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.TipoDeDocumentoPorCasoDeUsoRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.OpcionCsPorCasoDeUsoRequest": {
+      "type": "object",
+      "required": ["k_Opcion"],
+      "properties": {
+        "k_Opcion": {
+          "description": "Codigo de opcion",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Transaction operation",
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.OpcionPortalWebPorCasoDeUsoRequest": {
+      "type": "object",
+      "required": ["k_Funcio"],
+      "properties": {
+        "k_Funcio": {
+          "description": "Codigo de la opción (boton o pestaña del portal web)",
+          "type": "string",
+          "maxLength": 5,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Transaction operation",
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.ReporteCsPorCasoDeUsoRequest": {
+      "type": "object",
+      "required": ["k_Nforma"],
+      "properties": {
+        "k_Nforma": {
+          "description": "Nombre del reporte c/s",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Transaction operation",
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.ReporteWebPorCasoDeUsoRequest": {
+      "type": "object",
+      "required": ["k_Report"],
+      "properties": {
+        "k_Report": {
+          "description": "Codigo de reporte",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Transaction operation",
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtorequest.TipoDeDocumentoPorCasoDeUsoRequest": {
+      "type": "object",
+      "required": ["k_Docume"],
+      "properties": {
+        "k_Docume": {
+          "description": "Codigo tipo de documento",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Transaction operation",
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.AgregarCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "a_Publicc": {
+          "description": "Codigo Publico",
+          "type": "string"
+        },
+        "i_Tipusec": {
+          "description": "Tipo de caso de uso",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eitipusec.Itipusec"
+            }
+          ]
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Camprv": {
+          "description": "identifica el nombre del la forma que habilita en la opción c/s",
+          "type": "string"
+        },
+        "n_Descrip": {
+          "description": "Descripcion",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string"
+        },
+        "opcionesCsPorCasoDeUso": {
+          "description": "List of OpcionesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionCsPorCasoDeUsoResponse"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "description": "List of OpcionesPortalWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionPortalWebPorCasoDeUsoResponse"
+          }
+        },
+        "reportesCsPorCasoDeUso": {
+          "description": "List of ReportesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteCsPorCasoDeUsoResponse"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "description": "List of ReportesWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteWebPorCasoDeUsoResponse"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "description": "List of TiposDeDocumentoPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.TipoDeDocumentoPorCasoDeUsoResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.EliminarCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string"
+        },
+        "opcionesCsPorCasoDeUso": {
+          "description": "List of OpcionesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionCsPorCasoDeUsoResponse"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "description": "List of OpcionesPortalWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionPortalWebPorCasoDeUsoResponse"
+          }
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        },
+        "reportesCsPorCasoDeUso": {
+          "description": "List of ReportesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteCsPorCasoDeUsoResponse"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "description": "List of ReportesWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteWebPorCasoDeUsoResponse"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "description": "List of TiposDeDocumentoPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.TipoDeDocumentoPorCasoDeUsoResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ModificarCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "a_Publicc": {
+          "description": "Codigo Publico",
+          "type": "string"
+        },
+        "i_Tipusec": {
+          "description": "Tipo de caso de uso",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eitipusec.Itipusec"
+            }
+          ]
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "modifyJustification": {
+          "description": "Justification for the modification",
+          "type": "string"
+        },
+        "n_Camprv": {
+          "description": "identifica el nombre del la forma que habilita en la opción c/s",
+          "type": "string"
+        },
+        "n_Descrip": {
+          "description": "Descripcion",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string"
+        },
+        "opcionesCsPorCasoDeUso": {
+          "description": "List of OpcionesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionCsPorCasoDeUsoResponse"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "description": "List of OpcionesPortalWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionPortalWebPorCasoDeUsoResponse"
+          }
+        },
+        "reportesCsPorCasoDeUso": {
+          "description": "List of ReportesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteCsPorCasoDeUsoResponse"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "description": "List of ReportesWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteWebPorCasoDeUsoResponse"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "description": "List of TiposDeDocumentoPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.TipoDeDocumentoPorCasoDeUsoResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionCsPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Opcion": {
+          "description": "Codigo de opcion",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionPortalWebPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Funcio": {
+          "description": "Codigo de la opción (boton o pestaña del portal web)",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteCsPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Nforma": {
+          "description": "Nombre del reporte c/s",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteWebPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Report": {
+          "description": "Codigo de reporte",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.TipoDeDocumentoPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Docume": {
+          "description": "Codigo tipo de documento",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtorequest.AggregateEliminarFuncionLinixRequest": {
+      "type": "object",
+      "properties": {
+        "eliminarFuncionLinix": {
+          "description": "List of records to remove",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtorequest.EliminarFuncionLinixRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtorequest.AgregarFuncionLinixRequest": {
+      "type": "object",
+      "required": ["i_Tipfun", "k_Funcio", "n_Funcio"],
+      "properties": {
+        "i_Tipfun": {
+          "description": "Aplicación a la que pertenece (Propio de Sistemas en Linea)",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["L", "W"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/eetipfun.Etipfun"
+            }
+          ]
+        },
+        "k_Funcio": {
+          "description": "Código de la función",
+          "type": "string",
+          "maxLength": 5,
+          "minLength": 1
+        },
+        "k_Funmod": {
+          "description": "Codigo del modulo",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "n_Descri": {
+          "description": "Descripción de la función",
+          "type": "string",
+          "maxLength": 400,
+          "minLength": 1
+        },
+        "n_Funcio": {
+          "description": "Descripción de la función",
+          "type": "string",
+          "maxLength": 45,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtorequest.EliminarFuncionLinixRequest": {
+      "type": "object",
+      "required": ["k_Funcio", "removalJustification"],
+      "properties": {
+        "k_Funcio": {
+          "description": "Código de la función",
+          "type": "string",
+          "maxLength": 5,
+          "minLength": 1
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtorequest.ModificarFuncionLinixRequest": {
+      "type": "object",
+      "required": ["k_Funcio", "modifyJustification"],
+      "properties": {
+        "i_Tipfun": {
+          "description": "Aplicación a la que pertenece (Propio de Sistemas en Linea)",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["L", "W"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/eetipfun.Etipfun"
+            }
+          ]
+        },
+        "k_Funcio": {
+          "description": "Código de la función",
+          "type": "string",
+          "maxLength": 5,
+          "minLength": 1
+        },
+        "k_Funmod": {
+          "description": "Codigo del modulo",
+          "type": "string",
+          "maxLength": 10
+        },
+        "modifyJustification": {
+          "description": "Justification for the modification",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "n_Descri": {
+          "description": "Descripción de la función",
+          "type": "string",
+          "maxLength": 400,
+          "minLength": 1
+        },
+        "n_Funcio": {
+          "description": "Descripción de la función",
+          "type": "string",
+          "maxLength": 45,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.AggregateEliminarRolRequest": {
+      "type": "object",
+      "properties": {
+        "eliminarRol": {
+          "description": "List of records to remove",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.EliminarRolRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.AgregarRolRequest": {
+      "type": "object",
+      "required": ["i_Activo", "k_Rol", "k_Tipcon", "n_Rol", "n_Uso"],
+      "properties": {
+        "casosDeUsoPorRol": {
+          "description": "List of CasosDeUsoPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.CasoDeUsoPorRolRequest"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "description": "List of CuentasAuxiliaresPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.CuentaAuxiliarPorRolRequest"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y=Activo", "N=Inactivo"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_shared_domain_eactivo.Activo"
+            }
+          ]
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipcon": {
+          "description": "Tipcon",
+          "type": "string",
+          "maxLength": 8,
+          "minLength": 1
+        },
+        "n_Rol": {
+          "description": "Nombre del rol",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        },
+        "n_Uso": {
+          "description": "Descripcion Uso",
+          "type": "string",
+          "maxLength": 250,
+          "minLength": 1
+        },
+        "reglasDeNegocioPorRol": {
+          "description": "List of ReglasDeNegocioPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.ReglaDeNegocioPorRolRequest"
+          }
+        },
+        "tareasCrediboardPorRol": {
+          "description": "List of TareasCrediboardPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.TareaCrediboardPorRolRequest"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "description": "List of TiposDeMovimientoContablePorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.TipoDeMovimientoContablePorRolRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.CasoDeUsoPorRolRequest": {
+      "type": "object",
+      "required": ["k_Rol", "k_Usecase"],
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Tipo de Transaccion",
+          "maxLength": 14,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.CuentaAuxiliarPorRolRequest": {
+      "type": "object",
+      "required": ["i_Tipent", "k_Codcta", "k_Rol"],
+      "properties": {
+        "i_Tipent": {
+          "description": "Tipent",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Codcta": {
+          "description": "Codcta",
+          "type": "string",
+          "maxLength": 250,
+          "minLength": 1
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "transactionOperation": {
+          "description": "Tipo de Transaccion",
+          "maxLength": 14,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.EliminarRolRequest": {
+      "type": "object",
+      "required": ["k_Rol", "removalJustification"],
+      "properties": {
+        "casosDeUsoPorRol": {
+          "description": "List of CasosDeUsoPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.CasoDeUsoPorRolRequest"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "description": "List of CuentasAuxiliaresPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.CuentaAuxiliarPorRolRequest"
+          }
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "reglasDeNegocioPorRol": {
+          "description": "List of ReglasDeNegocioPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.ReglaDeNegocioPorRolRequest"
+          }
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "tareasCrediboardPorRol": {
+          "description": "List of TareasCrediboardPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.TareaCrediboardPorRolRequest"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "description": "List of TiposDeMovimientoContablePorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.TipoDeMovimientoContablePorRolRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.ModificarRolRequest": {
+      "type": "object",
+      "required": [
+        "i_Activo",
+        "k_Rol",
+        "k_Tipcon",
+        "modifyJustification",
+        "n_Rol",
+        "n_Uso"
+      ],
+      "properties": {
+        "casosDeUsoPorRol": {
+          "description": "List of CasosDeUsoPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.CasoDeUsoPorRolRequest"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "description": "List of CuentasAuxiliaresPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.CuentaAuxiliarPorRolRequest"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y=Activo", "N=Inactivo"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_shared_domain_eactivo.Activo"
+            }
+          ]
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipcon": {
+          "description": "Tipcon",
+          "type": "string",
+          "maxLength": 8,
+          "minLength": 1
+        },
+        "modifyJustification": {
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "n_Rol": {
+          "description": "Nombre del rol",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        },
+        "n_Uso": {
+          "description": "Descripcion Uso",
+          "type": "string",
+          "maxLength": 250,
+          "minLength": 1
+        },
+        "reglasDeNegocioPorRol": {
+          "description": "List of ReglasDeNegocioPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.ReglaDeNegocioPorRolRequest"
+          }
+        },
+        "tareasCrediboardPorRol": {
+          "description": "List of TareasCrediboardPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.TareaCrediboardPorRolRequest"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "description": "List of TiposDeMovimientoContablePorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.TipoDeMovimientoContablePorRolRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.ReglaDeNegocioPorRolRequest": {
+      "type": "object",
+      "required": ["k_Regla", "k_Rol"],
+      "properties": {
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "transactionOperation": {
+          "description": "Tipo de Transaccion",
+          "maxLength": 14,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.TareaCrediboardPorRolRequest": {
+      "type": "object",
+      "required": ["k_Rol", "tarea"],
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "tarea": {
+          "description": "Nombre de la tarea",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Tipo de Transaccion",
+          "maxLength": 14,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtorequest.TipoDeMovimientoContablePorRolRequest": {
+      "type": "object",
+      "required": ["k_Rol", "k_Tipmov"],
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipmov": {
+          "description": "Codigo tipo movimiento",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Tipo de Transaccion",
+          "maxLength": 14,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.AgregarRolResponse": {
+      "type": "object",
+      "properties": {
+        "casosDeUsoPorRol": {
+          "description": "List of CasosDeUsoPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CasoDeUsoPorRolResponse"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "description": "List of CuentasAuxiliaresPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CuentaAuxiliarPorRolResponse"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipcon": {
+          "description": "Tipcon",
+          "type": "string"
+        },
+        "n_Rol": {
+          "description": "Nombre del rol",
+          "type": "string"
+        },
+        "n_Uso": {
+          "description": "Descripcion Uso",
+          "type": "string"
+        },
+        "reglasDeNegocioPorRol": {
+          "description": "List of ReglasDeNegocioPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.ReglaDeNegocioPorRolResponse"
+          }
+        },
+        "tareasCrediboardPorRol": {
+          "description": "List of TareasCrediboardPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TareaCrediboardPorRolResponse"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "description": "List of TiposDeMovimientoContablePorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TipoDeMovimientoContablePorRolResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CasoDeUsoPorRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "transactionOperation": {
+          "description": "Tipo de transaccion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CuentaAuxiliarPorRolResponse": {
+      "type": "object",
+      "properties": {
+        "i_Tipent": {
+          "description": "Tipent",
+          "type": "string"
+        },
+        "k_Codcta": {
+          "description": "Codcta",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "transactionOperation": {
+          "description": "Tipo de transaccion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.EliminarRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.ModificarRolResponse": {
+      "type": "object",
+      "properties": {
+        "casosDeUsoPorRol": {
+          "description": "List of CasosDeUsoPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CasoDeUsoPorRolResponse"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "description": "List of CuentasAuxiliaresPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CuentaAuxiliarPorRolResponse"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipcon": {
+          "description": "Tipcon",
+          "type": "string"
+        },
+        "n_Rol": {
+          "description": "Nombre del rol",
+          "type": "string"
+        },
+        "n_Uso": {
+          "description": "Descripcion Uso",
+          "type": "string"
+        },
+        "reglasDeNegocioPorRol": {
+          "description": "List of ReglasDeNegocioPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.ReglaDeNegocioPorRolResponse"
+          }
+        },
+        "tareasCrediboardPorRol": {
+          "description": "List of TareasCrediboardPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TareaCrediboardPorRolResponse"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "description": "List of TiposDeMovimientoContablePorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TipoDeMovimientoContablePorRolResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.ReglaDeNegocioPorRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "transactionOperation": {
+          "description": "Tipo de transaccion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TareaCrediboardPorRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "tarea": {
+          "description": "Nombre de la tarea",
+          "type": "string"
+        },
+        "transactionOperation": {
+          "description": "Tipo de transaccion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TipoDeMovimientoContablePorRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipmov": {
+          "description": "Codigo tipo movimiento",
+          "type": "string"
+        },
+        "transactionOperation": {
+          "description": "Tipo de transaccion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-persistence-process-service_internal_shared_domain_eactivo.Activo": {
+      "type": "string",
+      "enum": ["Y", "N"],
+      "x-enum-comments": {
+        "N": "No Activo",
+        "Y": "Activo"
+      },
+      "x-enum-varnames": ["Y", "N"]
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

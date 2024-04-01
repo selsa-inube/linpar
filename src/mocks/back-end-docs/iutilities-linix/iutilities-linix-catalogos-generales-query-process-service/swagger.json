@@ -1,0 +1,3584 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "El propósito de esta aplicación es proveer los servicios de procesos que permiten consultar catalogos generales",
+    "title": "Catalogos generales Query Process Service",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:8303",
+  "basePath": "/iutilities-linix-catalogos-generales-query-process-service/api",
+  "paths": {
+    "/casos-de-uso/{AC:SearchAllCasoDeUso}": {
+      "get": {
+        "description": "Consulta todos los registros del agregado de casos de uso",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Consulta todos los registros del agregado de casos de uso",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllCasoDeUso",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchAllCasoDeUsoResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/casos-de-uso/{k_Usecase}/{AC:SearchByIdCasoDeUso}": {
+      "get": {
+        "description": "Consulta el agregado de un caso de uso",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Consulta el agregado de un caso de uso",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdCasoDeUso",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Usecase",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdCasoDeUsoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/casos-de-uso/{k_Usecase}/{AC:SearchOpcionesCSPorCasosDeUsoFull}": {
+      "get": {
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchOpcionesCSPorCasosDeUsoFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Usecase",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchOpcionesCSPorCasosDeUsoFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/casos-de-uso/{k_Usecase}/{AC:SearchOpcionesWebPorCasoDeUsoFull}": {
+      "get": {
+        "description": "Busca todas las opciones web relacionadas o no a un caso de uso",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Busca todas las opciones web relacionadas o no a un caso de uso",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchOpcionesWebPorCasoDeUsoFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Usecase",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchOpcionesWebPorCasoDeUsoFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/casos-de-uso/{k_Usecase}/{AC:SearchReportesCsPorCasoDeUsoFull}": {
+      "get": {
+        "description": "Busca todos los reportes cliente/servidor web relacionados o no a un caso de uso",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Busca todos los reportes cliente/servidor relacionados o no a un caso de uso",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchReportesCsPorCasoDeUsoFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Usecase",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchReportesCsPorCasoDeUsoFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/casos-de-uso/{k_Usecase}/{AC:SearchReportesWebPorCasoDeUsoFull}": {
+      "get": {
+        "description": "Busca todos los reportes web web relacionados o no a un caso de uso",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Busca todos los reportes web relacionados o no a un caso de uso",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchReportesWebPorCasoDeUsoFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Usecase",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchReportesWebPorCasoDeUsoFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/casos-de-uso/{k_Usecase}/{AC:SearchTiposDeDocumentoPorCasoDeUsoFull}": {
+      "get": {
+        "description": "Busca todos los tipos de documentos web relacionados o no a un caso de uso",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasoDeUso"],
+        "summary": "Busca todos los tipos de documentos relacionados o no a un caso de uso",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchTiposDeDocumentoPorCasoDeUsoFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Usecase",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchTiposDeDocumentoPorCasoDeUsoFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogo-opciones-menu/{AC:SearchAllCatalogoOpcionMenu}": {
+      "get": {
+        "description": "Consulta todos los registros de las opciones de menú",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoOpcionMenu"],
+        "summary": "Consulta todos los registros de las opciones de menú",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllCatalogoOpcionMenu",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-opcion-menu_infrastructure_adapter_rest_dto_dtoresponse.SearchAllCatalogoOpcionMenuResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogo-opciones-menu/{k_Opcion}/{AC:SearchByIdCatalogoOpcionMenu}": {
+      "get": {
+        "description": "Consulta el catalogo de opción menú por id",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoOpcionMenu"],
+        "summary": "Consulta el catalogo de opción menú por id",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdCatalogoOpcionMenu",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CatalogoOpcionMenu ID",
+            "name": "k_Opcion",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-opcion-menu_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdCatalogoOpcionMenuResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogos-reportes-web/{AC:SearchAllCatalogoReporteWeb}": {
+      "get": {
+        "description": "Consulta todos los reportes web",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoReporteWeb"],
+        "summary": "Consulta todos los reportes web",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllCatalogoReporteWeb",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-reporte-web_infrastructure_adapter_rest_dto_dtoresponse.SearchAllCatalogoReporteWebResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogos-reportes-web/{k_Report}/{AC:SearchByIdCatalogoReporteWeb}": {
+      "get": {
+        "description": "Consulta los reportes web por id",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoReporteWeb"],
+        "summary": "Consulta los reportes web por id",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdCatalogoReporteWeb",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CatalogoReporteWeb ID",
+            "name": "k_Report",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-reporte-web_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdCatalogoReporteWebResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogos-tipos-de-documento/{AC:SearchAllCatalogoTipoDeDocumento}": {
+      "get": {
+        "description": "Consulta todos los registros de los tipos de documentos",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoTipoDeDocumento"],
+        "summary": "Consulta todos los registros de los tipos de documento",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllCatalogoTipoDeDocumento",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-tipo-de-documento_infrastructure_adapter_rest_dto_dtoresponse.SearchAllCatalogoTipoDeDocumentoResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogos-tipos-de-documento/{K_Docume}/{AC:SearchByIdCatalogoTipoDeDocumento}": {
+      "get": {
+        "description": "Consulta el catalogo de tiepo de documento por id",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoTipoDeDocumento"],
+        "summary": "Consulta el catalogo de tiepo de documento por id",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdCatalogoTipoDeDocumento",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CatalogoTipoDeDocumento ID",
+            "name": "K_Docume",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-tipo-de-documento_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdCatalogoTipoDeDocumentoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/estructuras-reglas/{AC:QueryAllEstructurasReglas}": {
+      "get": {
+        "description": "Consulta todos los registros de estructura regla",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EstructuraRegla"],
+        "summary": "Consulta todos los registros de estructura regla",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryAllEstructurasReglas",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryAllEstructurasReglasResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total de registros encontrados"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/estructuras-reglas/{AC:QueryAllReglas}": {
+      "get": {
+        "description": "Consulta todos los registros de Regla",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EstructuraRegla"],
+        "summary": "Consulta todos los registros de Regla",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryAllReglas",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ReglaResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "total de registros encontrados"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/estructuras-reglas/{kiclarng}/{AC:QueryByIdEstructurasReglas}": {
+      "get": {
+        "description": "Consulta todos los registros de estructura regla por id",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EstructuraRegla"],
+        "summary": "Consulta todos los registros de estructura regla por id",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryByIdEstructurasReglas",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Kiclarng ID",
+            "name": "kiclarng",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryByIdEstructurasReglasResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/formas-y-reportes/{AC:SearchAllReportesCs}": {
+      "get": {
+        "description": "Consulta todos los registros de los reportes cliente servidor",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FormaYReporte"],
+        "summary": "Consulta todos los registros de los reportes cliente servidor",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllReportesCs",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_forma-y-reporte_infrastructure_adapter_rest_dto_dtoresponse.SearchAllReportesCsResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/formas-y-reportes/{k_Nforma}/campos/{AC:SearchAllBotonesPorFormaCs}": {
+      "get": {
+        "description": "Consulta el agregado de un forma y reporte",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FormaYReporte"],
+        "summary": "Consulta el agregado de un forma y reporte",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllBotonesPorFormaCs",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID de la forma",
+            "name": "k_Nforma",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_forma-y-reporte_infrastructure_adapter_rest_dto_dtoresponse.SearchAllBotonesPorFormaCsResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/funciones-linix/{AC:SearchAllFuncionLinix}": {
+      "get": {
+        "description": "Consulta las funciones linix",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FuncionLinix"],
+        "summary": "Consulta los registros de las funciones linix",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllFuncionLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchAllFuncionLinixResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/funciones-linix/{k_Funcio}/{AC:SearchByIdFuncionLinix}": {
+      "get": {
+        "description": "Consulta por id las funciones linix",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FuncionLinix"],
+        "summary": "Consulta la funcion linix",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdFuncionLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Funcio",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdFuncionLinixResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles/{AC:QueryAllRoles}": {
+      "get": {
+        "description": "Query all roles",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Consult all records of roles",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryAllRoles",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryAllRolesResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles/{k_Rol}/{AC:QueryByIdRoles}": {
+      "get": {
+        "description": "Query by id process manager",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Consult the process manager",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryByIdRoles",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CatalogoDeRol ID",
+            "name": "k_Rol",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryByIdRolesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles/{k_Rol}{AC:QueryCasosDeUsoPorRolFull}": {
+      "get": {
+        "description": "Muestra la relacion de los casos de uso con un Rol especifico identificando cuales tiene asignada y cuales aun no.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Muestra la relacion de los casos de uso con un Rol especifico",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "CasoDeUsoPorRolFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Rol Id",
+            "name": "k_Rol",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryCasoDeUsoPorRolFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles/{k_Rol}{AC:QueryReglasDeNegocioPorRolFull}": {
+      "get": {
+        "description": "Muestra la relacion de las reglas de negocio con un Rol especifico identificando cuales tiene asignados y cuales aun no.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Muestra la relacion de las reglas de negocio con un Rol especifico",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "ReglaDeNegocioPorRolFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Rol Id",
+            "name": "k_Rol",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryReglaDeNegocioPorRolFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles/{k_Rol}{AC:QueryTiposDeMovimientoPorRolFull}": {
+      "get": {
+        "description": "Muestra la relacion de los tipos de movimientos con un Rol especifico identificando cuales tiene asignados y cuales aun no.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Muestra la relacion de los tipos de movimientos con un Rol especifico",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "TipoDeMovimientoPorRolFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Rol Id",
+            "name": "k_Rol",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryTipoDeMovimientoPorRolFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles/{k_Rol}{AC:TareaDeCrediboardPorRolFull}": {
+      "get": {
+        "description": "Muestra la relacion de las tareas de crediboard con un Rol especifico identificando cuales tiene asignada y cuales aun no.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Rol"],
+        "summary": "Muestra la relacion de las tareas de crediboard con un Rol especifico",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "TareaDeCrediboardPorRolFull",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Rol Id",
+            "name": "k_Rol",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TareaDeCrediboardPorRolFullResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/tipos-de-movimiento-contable/{AC:SearchAllTipoDeMovimientoContable}": {
+      "get": {
+        "description": "Consulta los movimientos contables",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["TipoDeMovimientoContable"],
+        "summary": "Consulta los registros de los tipos de movimiento contable",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllTipoDeMovimientoContable",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_tipo-de-movimiento-contable_infrastructure_adapter_rest_dto_dtoresponse.SearchAllTipoDeMovimientoContableResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/tipos-de-movimiento-contable/{k_Tipmov}/{AC:SearchByIdTipoDeMovimientoContable}": {
+      "get": {
+        "description": "Consulta un registro de tipos de movimiento contable por id",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["TipoDeMovimientoContable"],
+        "summary": "Consulta un registro de tipos de movimiento contable por id",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdTipoDeMovimientoContable",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Tipmov",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_tipo-de-movimiento-contable_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdTipoDeMovimientoContableResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "eactivo.Activo": {
+      "type": "string",
+      "enum": ["Y", "N"],
+      "x-enum-comments": {
+        "N": "No Activo",
+        "Y": "Activo"
+      },
+      "x-enum-varnames": ["Y", "N"]
+    },
+    "eestado.Estado": {
+      "type": "string",
+      "enum": ["Y", "N"],
+      "x-enum-comments": {
+        "N": "No Estado",
+        "Y": "Estado"
+      },
+      "x-enum-varnames": ["Y", "N"]
+    },
+    "eetipfun.Etipfun": {
+      "type": "string",
+      "enum": ["L", "W"],
+      "x-enum-varnames": ["L", "W"]
+    },
+    "eitipofo.Itipofo": {
+      "type": "string",
+      "enum": ["B", "C", "F", "G", "L", "P", "R", "W"],
+      "x-enum-comments": {
+        "B": "Reporte LINEG V1",
+        "C": "Reporte de Crystal Report",
+        "F": "Forma de oracle forms",
+        "G": "Grafico",
+        "L": "Reporte LINEG V2",
+        "P": "Proceso",
+        "R": "Reporte oracle report",
+        "W": "Página WEB"
+      },
+      "x-enum-varnames": ["B", "C", "F", "G", "L", "P", "R", "W"]
+    },
+    "emodif.Emodif": {
+      "type": "string",
+      "enum": ["AP", "RC", "AD", "NA", "MV", "RV"],
+      "x-enum-comments": {
+        "AD": "Adicion",
+        "AP": "Apropiacion",
+        "MV": "Movimiento Auxilio",
+        "NA": "No Aplica",
+        "RC": "Recorte",
+        "RV": "Reversion"
+      },
+      "x-enum-varnames": ["AP", "RC", "AD", "NA", "MV", "RV"]
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionCsPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Opcion": {
+          "description": "Codigo de opcion",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionPortalWebPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Funcio": {
+          "description": "Codigo de la opción (boton o pestaña del portal web)",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteCsPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Nforma": {
+          "description": "Nombre del reporte c/s",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteWebPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Report": {
+          "description": "Codigo de reporte",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchAllCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "a_Publicc": {
+          "description": "Codigo Publico",
+          "type": "string"
+        },
+        "i_Tipusec": {
+          "description": "Tipo de caso de uso",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Camprv": {
+          "description": "identifica el nombre del botón que habilita en la opción c/s",
+          "type": "string"
+        },
+        "n_Descrip": {
+          "description": "Descripcion",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string"
+        },
+        "opcionesCsPorCasoDeUso": {
+          "description": "List of OpcionesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionCsPorCasoDeUsoResponse"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "description": "List of OpcionesPortalWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionPortalWebPorCasoDeUsoResponse"
+          }
+        },
+        "reportesCsPorCasoDeUso": {
+          "description": "List of ReportesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteCsPorCasoDeUsoResponse"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "description": "List of ReportesWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteWebPorCasoDeUsoResponse"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "description": "List of TiposDeDocumentoPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.TipoDeDocumentoPorCasoDeUsoResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "a_Publicc": {
+          "description": "Codigo Publico",
+          "type": "string"
+        },
+        "i_Tipusec": {
+          "description": "Tipo de caso de uso",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Camprv": {
+          "description": "identifica el nombre del botón que habilita en la opción c/s",
+          "type": "string"
+        },
+        "n_Descrip": {
+          "description": "Descripcion",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string"
+        },
+        "opcionesCsPorCasoDeUso": {
+          "description": "List of OpcionesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionCsPorCasoDeUsoResponse"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "description": "List of OpcionesPortalWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.OpcionPortalWebPorCasoDeUsoResponse"
+          }
+        },
+        "reportesCsPorCasoDeUso": {
+          "description": "List of ReportesCsPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteCsPorCasoDeUsoResponse"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "description": "List of ReportesWebPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.ReporteWebPorCasoDeUsoResponse"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "description": "List of TiposDeDocumentoPorCasoDeUso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.TipoDeDocumentoPorCasoDeUsoResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchOpcionesCSPorCasosDeUsoFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string",
+          "enum": ["Y", "N"]
+        },
+        "k_Nforma": {
+          "description": "Identificador de la forma relacionada con la opción del menú",
+          "type": "string"
+        },
+        "k_Opcion": {
+          "description": "Codigo de la opcion",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Opcion": {
+          "description": "Nombre de la opcion",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string"
+        },
+        "o_Padre": {
+          "description": "Opcion de la que depende",
+          "type": "string"
+        },
+        "q_Nivel": {
+          "description": "Nivel dentro de la jerarquia",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchOpcionesWebPorCasoDeUsoFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string",
+          "enum": ["Y", "N"]
+        },
+        "k_Funcio": {
+          "description": "Codigo del k_funcio",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Funcio": {
+          "description": "Descripción del campo N_Funcio",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Descripcion de caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchReportesCsPorCasoDeUsoFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string",
+          "enum": ["Y", "N"]
+        },
+        "k_Nforma": {
+          "description": "Nombre de la forma,reportes,procesos u otros",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Descri": {
+          "description": "Descripcion de la forma",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Descripcion de caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchReportesWebPorCasoDeUsoFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string",
+          "enum": ["Y", "N"]
+        },
+        "k_Report": {
+          "description": "Identificador del reporte",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Report": {
+          "description": "Descripción del reporte",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Descripcion de caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.SearchTiposDeDocumentoPorCasoDeUsoFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string",
+          "enum": ["Y", "N"]
+        },
+        "k_Docume": {
+          "description": "Identificador del documento",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        },
+        "n_Docume": {
+          "description": "Descripción del documento",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Descripcion de caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_caso-de-uso_infrastructure_adapter_rest_dto_dtoresponse.TipoDeDocumentoPorCasoDeUsoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Docume": {
+          "description": "Codigo tipo de documento",
+          "type": "string"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-opcion-menu_infrastructure_adapter_rest_dto_dtoresponse.SearchAllCatalogoOpcionMenuResponse": {
+      "type": "object",
+      "properties": {
+        "k_Nforma": {
+          "description": "Identificador de la forma relacionada con la opción del menú",
+          "type": "string"
+        },
+        "k_Opcion": {
+          "description": "Codigo de la opcion",
+          "type": "string"
+        },
+        "n_Descri": {
+          "description": "Descripcion",
+          "type": "string"
+        },
+        "n_Opcion": {
+          "description": "Nombre de la opcion",
+          "type": "string"
+        },
+        "o_Comand": {
+          "description": "Comando que se debe ejecutar",
+          "type": "string"
+        },
+        "o_Icono": {
+          "description": "Nombre del archivo del icono",
+          "type": "string"
+        },
+        "o_Padre": {
+          "description": "Opcion de la que depende",
+          "type": "string"
+        },
+        "q_Nivel": {
+          "description": "Nivel dentro de la jerarquia",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-opcion-menu_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdCatalogoOpcionMenuResponse": {
+      "type": "object",
+      "properties": {
+        "k_Nforma": {
+          "description": "Identificador de la forma relacionada con la opción del menú",
+          "type": "string"
+        },
+        "k_Opcion": {
+          "description": "Codigo de la opcion",
+          "type": "string"
+        },
+        "n_Descri": {
+          "description": "Descripcion",
+          "type": "string"
+        },
+        "n_Opcion": {
+          "description": "Nombre de la opcion",
+          "type": "string"
+        },
+        "o_Comand": {
+          "description": "Comando que se debe ejecutar",
+          "type": "string"
+        },
+        "o_Icono": {
+          "description": "Nombre del archivo del icono",
+          "type": "string"
+        },
+        "o_Padre": {
+          "description": "Opcion de la que depende",
+          "type": "string"
+        },
+        "q_Nivel": {
+          "description": "Nivel dentro de la jerarquia",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-reporte-web_infrastructure_adapter_rest_dto_dtoresponse.SearchAllCatalogoReporteWebResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Indicador que determina SI el nivel de criticidad esta activo o vigente. Asociado al dominio DM_ESTADO",
+          "type": "string"
+        },
+        "i_Ejeaut": {
+          "type": "string"
+        },
+        "i_Menu": {
+          "description": "Indica si el reporte es utilizado como menu (con el indicador a Y)",
+          "type": "string"
+        },
+        "i_Pagina": {
+          "description": "Indica si el reporte usa paginacion Y para si, N para no",
+          "type": "string"
+        },
+        "i_Pestan": {
+          "type": "string"
+        },
+        "i_Tiprep": {
+          "description": "Tipo de reporte. (MT matriz, LT Listado , FT Formato)",
+          "type": "string"
+        },
+        "k_Formul": {
+          "description": "Codigo de formulario dinamico que reemplaza los parametros WE1890MFORMULA.K_FORMUL",
+          "type": "string"
+        },
+        "k_Funcio": {
+          "type": "string"
+        },
+        "k_Report": {
+          "description": "Identificador del reporte",
+          "type": "string"
+        },
+        "n_DescriWeb": {
+          "description": "Descripción para mostrar en la aplicación WEB",
+          "type": "string"
+        },
+        "n_Keypag": {
+          "description": "La llave primaria que se usara para paginar el reporte usando lazy loading, dejar nulo si no se va a usar lazy loading",
+          "type": "string"
+        },
+        "n_Report": {
+          "description": "Descripción del reporte",
+          "type": "string"
+        },
+        "n_Servic": {
+          "description": "Procedimiento pl que obtiene los datos del reporte",
+          "type": "string"
+        },
+        "o_Titulo": {
+          "description": "Título del reporte",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-reporte-web_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdCatalogoReporteWebResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Indicador que determina SI el nivel de criticidad esta activo o vigente. Asociado al dominio DM_ESTADO",
+          "type": "string"
+        },
+        "i_Ejeaut": {
+          "type": "string"
+        },
+        "i_Menu": {
+          "description": "Indica si el reporte es utilizado como menu (con el indicador a Y)",
+          "type": "string"
+        },
+        "i_Pagina": {
+          "description": "Indica si el reporte usa paginacion Y para si, N para no",
+          "type": "string"
+        },
+        "i_Pestan": {
+          "type": "string"
+        },
+        "i_Tiprep": {
+          "description": "Tipo de reporte. (MT matriz, LT Listado , FT Formato)",
+          "type": "string"
+        },
+        "k_Formul": {
+          "description": "Codigo de formulario dinamico que reemplaza los parametros WE1890MFORMULA.K_FORMUL",
+          "type": "string"
+        },
+        "k_Funcio": {
+          "type": "string"
+        },
+        "k_Report": {
+          "description": "Identificador del reporte",
+          "type": "string"
+        },
+        "n_DescriWeb": {
+          "description": "Descripción para mostrar en la aplicación WEB",
+          "type": "string"
+        },
+        "n_Keypag": {
+          "description": "La llave primaria que se usara para paginar el reporte usando lazy loading, dejar nulo si no se va a usar lazy loading",
+          "type": "string"
+        },
+        "n_Report": {
+          "description": "Descripción del reporte",
+          "type": "string"
+        },
+        "n_Servic": {
+          "description": "Procedimiento pl que obtiene los datos del reporte",
+          "type": "string"
+        },
+        "o_Titulo": {
+          "description": "Título del reporte",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-tipo-de-documento_infrastructure_adapter_rest_dto_dtoresponse.SearchAllCatalogoTipoDeDocumentoResponse": {
+      "type": "object",
+      "properties": {
+        "f_Finrep": {
+          "description": "Fecha para la que se encuentra generado el último informe, sirve de base para establecer la cantidad de periodos que se muestran hacia atras. Se debe bucar el mecanismo para que se actualice con la generación de los informes",
+          "type": "string"
+        },
+        "i_Activo": {
+          "description": "Indicador de activo",
+          "type": "string"
+        },
+        "i_Ano": {
+          "description": "Indica si el año hace parte del nombre del documento",
+          "type": "string"
+        },
+        "i_Dia": {
+          "description": "Indica si el día hace parte del nombre del archivo",
+          "type": "string"
+        },
+        "i_Ejecuc": {
+          "description": "Forma de ejecución del reporte Linea 'LI', 'BT' Batch",
+          "type": "string"
+        },
+        "i_Mes": {
+          "description": "Indica si el mes hace parte del nombre del archivo",
+          "type": "string"
+        },
+        "i_Tipdto": {
+          "description": "Tipo de documento 'AS'= Documento para asociado, 'EM' Documento para empresa, 'GR' Documento General, 'GA' Documento general para asociado, 'GE' Documento general para empresa",
+          "type": "string"
+        },
+        "k_Cladoc": {
+          "type": "string"
+        },
+        "k_Docume": {
+          "description": "Identificador del documento",
+          "type": "string"
+        },
+        "k_Nforma": {
+          "type": "string"
+        },
+        "n_Archivo": {
+          "description": "Nombre del archivo del documento",
+          "type": "string"
+        },
+        "n_Desweb": {
+          "description": "Descripción del documento para presentar en la WEB",
+          "type": "string"
+        },
+        "n_Direct_Des": {
+          "description": "Directorio para descargar los documentos",
+          "type": "string"
+        },
+        "n_Direct_Gen": {
+          "description": "Directorio para generar los docuementos",
+          "type": "string"
+        },
+        "n_Docume": {
+          "description": "Descripción del documento",
+          "type": "string"
+        },
+        "n_Extens": {
+          "description": "Extensión del archivo del documento",
+          "type": "string"
+        },
+        "q_Period": {
+          "description": "Cantidad de periodos hacia atras con respecto a la fecha f_finrep que se construyen para permitir seleccionar informes",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_catalogo-tipo-de-documento_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdCatalogoTipoDeDocumentoResponse": {
+      "type": "object",
+      "properties": {
+        "f_Finrep": {
+          "description": "Fecha para la que se encuentra generado el último informe, sirve de base para establecer la cantidad de periodos que se muestran hacia atras. Se debe bucar el mecanismo para que se actualice con la generación de los informes",
+          "type": "string"
+        },
+        "i_Activo": {
+          "description": "Indicador de activo",
+          "type": "string"
+        },
+        "i_Ano": {
+          "description": "Indica si el año hace parte del nombre del documento",
+          "type": "string"
+        },
+        "i_Dia": {
+          "description": "Indica si el día hace parte del nombre del archivo",
+          "type": "string"
+        },
+        "i_Ejecuc": {
+          "description": "Forma de ejecución del reporte Linea 'LI', 'BT' Batch",
+          "type": "string"
+        },
+        "i_Mes": {
+          "description": "Indica si el mes hace parte del nombre del archivo",
+          "type": "string"
+        },
+        "i_Tipdto": {
+          "description": "Tipo de documento 'AS'= Documento para asociado, 'EM' Documento para empresa, 'GR' Documento General, 'GA' Documento general para asociado, 'GE' Documento general para empresa",
+          "type": "string"
+        },
+        "k_Cladoc": {
+          "type": "string"
+        },
+        "k_Docume": {
+          "description": "Identificador del documento",
+          "type": "string"
+        },
+        "k_Nforma": {
+          "type": "string"
+        },
+        "n_Archivo": {
+          "description": "Nombre del archivo del documento",
+          "type": "string"
+        },
+        "n_Desweb": {
+          "description": "Descripción del documento para presentar en la WEB",
+          "type": "string"
+        },
+        "n_Direct_Des": {
+          "description": "Directorio para descargar los documentos",
+          "type": "string"
+        },
+        "n_Direct_Gen": {
+          "description": "Directorio para generar los docuementos",
+          "type": "string"
+        },
+        "n_Docume": {
+          "description": "Descripción del documento",
+          "type": "string"
+        },
+        "n_Extens": {
+          "description": "Extensión del archivo del documento",
+          "type": "string"
+        },
+        "q_Period": {
+          "description": "Cantidad de periodos hacia atras con respecto a la fecha f_finrep que se construyen para permitir seleccionar informes",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ColumnaPorClaseResponse": {
+      "type": "object",
+      "properties": {
+        "a_Column": {
+          "description": "Nombre de la columns",
+          "type": "string"
+        },
+        "iCatrng": {
+          "description": "Categoría de la columna, asociada al dominio DM_CATRGN",
+          "type": "string"
+        },
+        "i_Discrim": {
+          "description": "Indicador discrim",
+          "type": "string"
+        },
+        "i_Operng": {
+          "description": "Operador que aplica, asociado al dominio DM_OPERNG",
+          "type": "string"
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato de la columna, asociado al dominio DM_TIPDAT_RNG",
+          "type": "string"
+        },
+        "i_Valifk": {
+          "description": "Validación de columna de regla de negocio contra dominio o llave foránea, relacionada con dominio DM_VALIFK",
+          "type": "string"
+        },
+        "k_Idcolum": {
+          "description": "Código interno asociado a secuencia IN2221K_SERIE",
+          "type": "integer"
+        },
+        "kiclarng": {
+          "description": "Clase de regla de negocio",
+          "type": "string"
+        },
+        "n_Column": {
+          "description": "Descripción de la columna",
+          "type": "string"
+        },
+        "n_Label": {
+          "description": "Espacio descripcion",
+          "type": "string"
+        },
+        "n_Nombfk": {
+          "description": "Almacena nombre del dominio o llave foránea para validar la columna de la regla",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ColumnaPorReglaResponse": {
+      "type": "object",
+      "properties": {
+        "k_Idcolum": {
+          "description": "Código interno asociado a secuencia IN2221K_SERIE",
+          "type": "integer"
+        },
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string"
+        },
+        "kiclarng": {
+          "description": "Clase de la Regla de Negocio",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryAllEstructurasReglasResponse": {
+      "type": "object",
+      "properties": {
+        "columnasPorClase": {
+          "description": "List of ColumnasPorClase",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ColumnaPorClaseResponse"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado de activo o inactivo",
+          "type": "string"
+        },
+        "i_Ubcrng": {
+          "description": "Indica si la Clase de Regla de Negocio se encuentra en la aplicación o en archivo plano",
+          "type": "string"
+        },
+        "i_Valida": {
+          "description": "Indica si la regla es validadora (Y) o no (N)",
+          "type": "string"
+        },
+        "kiaplica": {
+          "description": "Aplicación",
+          "type": "string"
+        },
+        "kiclarng": {
+          "description": "Clase de regla de negocio",
+          "type": "string"
+        },
+        "n_Regla": {
+          "description": "Descripción regla",
+          "type": "string"
+        },
+        "reglas": {
+          "description": "List of Reglas",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ReglaResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryByIdEstructurasReglasResponse": {
+      "type": "object",
+      "properties": {
+        "columnasPorClase": {
+          "description": "List of ColumnasPorClase",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ColumnaPorClaseResponse"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado de activo o inactivo",
+          "type": "string"
+        },
+        "i_Ubcrng": {
+          "description": "Indica si la Clase de Regla de Negocio se encuentra en la aplicación o en archivo plano",
+          "type": "string"
+        },
+        "i_Valida": {
+          "description": "Indica si la regla es validadora (Y) o no (N)",
+          "type": "string"
+        },
+        "kiaplica": {
+          "description": "Aplicación",
+          "type": "string"
+        },
+        "kiclarng": {
+          "description": "Clase de regla de negocio",
+          "type": "string"
+        },
+        "n_Regla": {
+          "description": "Descripción regla",
+          "type": "string"
+        },
+        "reglas": {
+          "description": "List of Reglas",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ReglaResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ReglaResponse": {
+      "type": "object",
+      "properties": {
+        "columnasPorRegla": {
+          "description": "List of ColumnasPorRegla",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.ColumnaPorReglaResponse"
+          }
+        },
+        "i_Cargue": {
+          "description": "Indica si el uso de la regla de negocio se carga en memoria o no",
+          "type": "string"
+        },
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string"
+        },
+        "k_Regla_Padre": {
+          "description": "Regla Padre a partir de la que fue creada la regla de negocio",
+          "type": "string"
+        },
+        "kiclarng": {
+          "description": "Clase de la Regla de Negocio",
+          "type": "string"
+        },
+        "n_Regla": {
+          "description": "Descripcion de la Regla de Negocio",
+          "type": "string"
+        },
+        "o_Discrim": {
+          "description": "Codigo Discriminante",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_forma-y-reporte_infrastructure_adapter_rest_dto_dtoresponse.SearchAllBotonesPorFormaCsResponse": {
+      "type": "object",
+      "properties": {
+        "k_Ncampo": {
+          "description": "Nombre del campo en la forma",
+          "type": "string"
+        },
+        "k_Nforma": {
+          "description": "Nombre de la forma,reportes,procesos u otros",
+          "type": "string"
+        },
+        "n_Descri": {
+          "description": "Descripcion del campo",
+          "type": "string"
+        },
+        "n_Hint": {
+          "description": "Decripcion de los campos LINIX (Propio de Sistemas en Linea)",
+          "type": "string"
+        },
+        "o_Icono": {
+          "description": "Nombre del icono para los botones de la forma",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_forma-y-reporte_infrastructure_adapter_rest_dto_dtoresponse.SearchAllReportesCsResponse": {
+      "type": "object",
+      "properties": {
+        "i_Tipofo": {
+          "description": "Opciones posibles de los menús del sistema LINIX",
+          "enum": ["R", "C", "B"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/eitipofo.Itipofo"
+            }
+          ]
+        },
+        "k_Nforma": {
+          "description": "Nombre de la forma,reportes,procesos u otros",
+          "type": "string"
+        },
+        "n_Descri": {
+          "description": "Descripcion de la forma",
+          "type": "string"
+        },
+        "o_Codigo": {
+          "description": "Código descriptivo de la forma, proceso o reporte",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchAllFuncionLinixResponse": {
+      "type": "object",
+      "properties": {
+        "i_Tipfun": {
+          "description": "Aplicación a la que pertenece (Propio de Sistemas en Linea)",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eetipfun.Etipfun"
+            }
+          ]
+        },
+        "k_Funcio": {
+          "description": "Código de la función",
+          "type": "string"
+        },
+        "k_Funmod": {
+          "description": "Codigo del modulo",
+          "type": "string"
+        },
+        "n_Descri": {
+          "description": "Descripción de la función",
+          "type": "string"
+        },
+        "n_Funcio": {
+          "description": "Descripción de la función",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_funcion-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdFuncionLinixResponse": {
+      "type": "object",
+      "properties": {
+        "i_Tipfun": {
+          "description": "Aplicación a la que pertenece (Propio de Sistemas en Linea)",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eetipfun.Etipfun"
+            }
+          ]
+        },
+        "k_Funcio": {
+          "description": "Código de la función",
+          "type": "string"
+        },
+        "k_Funmod": {
+          "description": "Codigo del modulo",
+          "type": "string"
+        },
+        "n_Descri": {
+          "description": "Descripción de la función",
+          "type": "string"
+        },
+        "n_Funcio": {
+          "description": "Descripción de la función",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CasoDeUsoPorRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CuentaAuxiliarPorRolResponse": {
+      "type": "object",
+      "properties": {
+        "i_Tipent": {
+          "description": "Tipent",
+          "type": "string"
+        },
+        "k_Codcta": {
+          "description": "Codcta",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryAllRolesResponse": {
+      "type": "object",
+      "properties": {
+        "casosDeUsoPorRol": {
+          "description": "List of CasosDeUsoPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CasoDeUsoPorRolResponse"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "description": "List of CuentasAuxiliaresPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CuentaAuxiliarPorRolResponse"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipcon": {
+          "description": "Tipcon",
+          "type": "string"
+        },
+        "n_Rol": {
+          "description": "Nombre del rol",
+          "type": "string"
+        },
+        "n_Uso": {
+          "description": "Descripcion Uso",
+          "type": "string"
+        },
+        "reglasDeNegocioPorRol": {
+          "description": "List of ReglasDeNegocioPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.ReglaDeNegocioPorRolResponse"
+          }
+        },
+        "tareasCrediboardPorRol": {
+          "description": "List of TareasCrediboardPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TareaCrediboardPorRolResponse"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "description": "List of TiposDeMovimientoContablePorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TipoDeMovimientoContablePorRolResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryByIdRolesResponse": {
+      "type": "object",
+      "properties": {
+        "casosDeUsoPorRol": {
+          "description": "List of CasosDeUsoPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CasoDeUsoPorRolResponse"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "description": "List of CuentasAuxiliaresPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.CuentaAuxiliarPorRolResponse"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipcon": {
+          "description": "Tipcon",
+          "type": "string"
+        },
+        "n_Rol": {
+          "description": "Nombre del rol",
+          "type": "string"
+        },
+        "n_Uso": {
+          "description": "Descripcion Uso",
+          "type": "string"
+        },
+        "reglasDeNegocioPorRol": {
+          "description": "List of ReglasDeNegocioPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.ReglaDeNegocioPorRolResponse"
+          }
+        },
+        "tareasCrediboardPorRol": {
+          "description": "List of TareasCrediboardPorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TareaCrediboardPorRolResponse"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "description": "List of TiposDeMovimientoContablePorRol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TipoDeMovimientoContablePorRolResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryCasoDeUsoPorRolFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Usecase": {
+          "description": "Codigo de la tarea",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Descripcion de la tarea",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryReglaDeNegocioPorRolFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string"
+        },
+        "k_Regla": {
+          "description": "Codigo de regla",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "n_Regla": {
+          "description": "Descripcion de la regla",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.QueryTipoDeMovimientoPorRolFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipmov": {
+          "description": "Codigo de tipo de movimiento",
+          "type": "string"
+        },
+        "n_Tipmov": {
+          "description": "Descripcion de tipo de movimiento",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.ReglaDeNegocioPorRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TareaCrediboardPorRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "tarea": {
+          "description": "Nombre de la tarea",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TareaDeCrediboardPorRolFullResponse": {
+      "type": "object",
+      "properties": {
+        "i_Privi": {
+          "description": "Indicador de privilegio",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "rv_Low_Value": {
+          "description": "Codigo de la tarea",
+          "type": "string"
+        },
+        "rv_Meaning": {
+          "description": "Descripcion de la tarea",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_rol_infrastructure_adapter_rest_dto_dtoresponse.TipoDeMovimientoContablePorRolResponse": {
+      "type": "object",
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipmov": {
+          "description": "Codigo tipo movimiento",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_tipo-de-movimiento-contable_infrastructure_adapter_rest_dto_dtoresponse.SearchAllTipoDeMovimientoContableResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Capcom": {
+          "description": "Indicador que determina SI se debe capturar un número de comprobante referncia en el movimiento. Util para capturar el número de la consignacion, el cual puede ser usado posteriormente por el proceso de consolidación bancaria",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Cardet": {
+          "description": "Determina si la cartera se captura por concepto",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Contab": {
+          "description": "Determina si el tipo de movimiento contabiliza",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Ctacob": {
+          "description": "Determina si el movimiento se va a deducir de la generación de una cuenta de cobro",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Dosxmi": {
+          "description": "Determina si el tipo de movimiento debe calcular el impuesto de emergencia economica, al generar los cheques de las ordenes de pago",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Fecapl": {
+          "description": "Determina si se digita una fecha de aplicacion diferente para cartera en el movimiento",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Gmf": {
+          "description": "Indicador que determina si a los documentos registrados con éste tipo de movimiento se les debe liquidar el 3 por mil",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Juridi": {
+          "description": "Indicador para saber si se pueden capturar  movimientos a obligaciones de cartera que estan en estado juridico",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Modul1": {
+          "description": "Modulo de movimientos de la ventana 1",
+          "type": "string"
+        },
+        "i_Modul2": {
+          "description": "Modulo de movimientos de la ventana 2",
+          "type": "string"
+        },
+        "i_Modul3": {
+          "description": "Modulo de movimiento de la ventana 3",
+          "type": "string"
+        },
+        "i_Modul4": {
+          "description": "Modulo de movimientos en la ventana 4",
+          "type": "string"
+        },
+        "i_Movaux": {
+          "description": "Indica de que tipo es el movimiento de auxilios AP Apropiacion, RC recorte, AD adición, MV movimiento auxilio, RV reversion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/emodif.Emodif"
+            }
+          ]
+        },
+        "i_Movdif": {
+          "description": "Indicador si se puede mover documentos soportes de tipo diferido en el movimiento",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Movesp": {
+          "description": "Tipos de movimientos con validaciones especiales",
+          "type": "string"
+        },
+        "i_Movmon": {
+          "description": "Indicador que determina la opción de movimientos en unidad alterna",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Natco1": {
+          "description": "Tipo de naturaleza",
+          "type": "string"
+        },
+        "i_Natco2": {
+          "description": "Naturaleza con la que quedan registrados los movimientos del módulo secudario o contraparte",
+          "type": "string"
+        },
+        "i_Natco3": {
+          "description": "Naturaleza con la que quedan registrados los movimientos",
+          "type": "string"
+        },
+        "i_Natco4": {
+          "description": "Naturaleza con que quedan registrados los movimientos",
+          "type": "string"
+        },
+        "i_Orden": {
+          "description": "Determina si se genera en forma automática la contraparte de la cuenta de orden",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Presup": {
+          "description": "Determina si el movimiento debe generarse en el presupuesto",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Sucdet": {
+          "description": "Determina si se captura la sucursal en el detalle contable",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Terdet": {
+          "description": "Determina si se pueden capturar movimientos para terceros diferentes",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Valcom": {
+          "description": "Se valida el comprobante con los Talonarios?",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Venci1": {
+          "description": "Afecta o no vencimientos segun aplicacion concepto 1",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Venci2": {
+          "description": "Afecta o no vencimientos segun aplicacion concepto 2",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Venci3": {
+          "description": "Afecta o no vencimientos dependiendo del tipo de movimiento del modulo 3",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Venci4": {
+          "description": "Afecta o no vencimientos dependiendo del modulo que escojan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "k_Codcon": {
+          "description": "Codigo del concepto",
+          "type": "string"
+        },
+        "k_Forpag": {
+          "description": "Codigo forpag",
+          "type": "string"
+        },
+        "k_Tipdoc": {
+          "description": "Codigo tipo de documento",
+          "type": "string"
+        },
+        "k_Tipmov": {
+          "description": "Codigo tipo movimiento",
+          "type": "string"
+        },
+        "k_Tipmov_Pre": {
+          "description": "Codigo del Tipo de documento a utilizar si se genera interface con el modulo de Presupuesto",
+          "type": "string"
+        },
+        "n_Tipmov": {
+          "description": "Descripcion tipo movimiento",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-catalogos-generales-query-process-service_internal_tipo-de-movimiento-contable_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdTipoDeMovimientoContableResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Capcom": {
+          "description": "Indicador que determina SI se debe capturar un número de comprobante referncia en el movimiento. Util para capturar el número de la consignacion, el cual puede ser usado posteriormente por el proceso de consolidación bancaria",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Cardet": {
+          "description": "Determina si la cartera se captura por concepto",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Contab": {
+          "description": "Determina si el tipo de movimiento contabiliza",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Ctacob": {
+          "description": "Determina si el movimiento se va a deducir de la generación de una cuenta de cobro",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Dosxmi": {
+          "description": "Determina si el tipo de movimiento debe calcular el impuesto de emergencia economica, al generar los cheques de las ordenes de pago",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Fecapl": {
+          "description": "Determina si se digita una fecha de aplicacion diferente para cartera en el movimiento",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Gmf": {
+          "description": "Indicador que determina si a los documentos registrados con éste tipo de movimiento se les debe liquidar el 3 por mil",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Juridi": {
+          "description": "Indicador para saber si se pueden capturar  movimientos a obligaciones de cartera que estan en estado juridico",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Modul1": {
+          "description": "Modulo de movimientos de la ventana 1",
+          "type": "string"
+        },
+        "i_Modul2": {
+          "description": "Modulo de movimientos de la ventana 2",
+          "type": "string"
+        },
+        "i_Modul3": {
+          "description": "Modulo de movimiento de la ventana 3",
+          "type": "string"
+        },
+        "i_Modul4": {
+          "description": "Modulo de movimientos en la ventana 4",
+          "type": "string"
+        },
+        "i_Movaux": {
+          "description": "Indica de que tipo es el movimiento de auxilios AP Apropiacion, RC recorte, AD adición, MV movimiento auxilio, RV reversion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/emodif.Emodif"
+            }
+          ]
+        },
+        "i_Movdif": {
+          "description": "Indicador si se puede mover documentos soportes de tipo diferido en el movimiento",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Movesp": {
+          "description": "Tipos de movimientos con validaciones especiales",
+          "type": "string"
+        },
+        "i_Movmon": {
+          "description": "Indicador que determina la opción de movimientos en unidad alterna",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Natco1": {
+          "description": "Tipo de naturaleza",
+          "type": "string"
+        },
+        "i_Natco2": {
+          "description": "Naturaleza con la que quedan registrados los movimientos del módulo secudario o contraparte",
+          "type": "string"
+        },
+        "i_Natco3": {
+          "description": "Naturaleza con la que quedan registrados los movimientos",
+          "type": "string"
+        },
+        "i_Natco4": {
+          "description": "Naturaleza con que quedan registrados los movimientos",
+          "type": "string"
+        },
+        "i_Orden": {
+          "description": "Determina si se genera en forma automática la contraparte de la cuenta de orden",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Presup": {
+          "description": "Determina si el movimiento debe generarse en el presupuesto",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Sucdet": {
+          "description": "Determina si se captura la sucursal en el detalle contable",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Terdet": {
+          "description": "Determina si se pueden capturar movimientos para terceros diferentes",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Valcom": {
+          "description": "Se valida el comprobante con los Talonarios?",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Venci1": {
+          "description": "Afecta o no vencimientos segun aplicacion concepto 1",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Venci2": {
+          "description": "Afecta o no vencimientos segun aplicacion concepto 2",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Venci3": {
+          "description": "Afecta o no vencimientos dependiendo del tipo de movimiento del modulo 3",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "i_Venci4": {
+          "description": "Afecta o no vencimientos dependiendo del modulo que escojan",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "k_Codcon": {
+          "description": "Codigo del concepto",
+          "type": "string"
+        },
+        "k_Forpag": {
+          "description": "Codigo forpag",
+          "type": "string"
+        },
+        "k_Tipdoc": {
+          "description": "Codigo tipo de documento",
+          "type": "string"
+        },
+        "k_Tipmov": {
+          "description": "Codigo tipo movimiento",
+          "type": "string"
+        },
+        "k_Tipmov_Pre": {
+          "description": "Codigo del Tipo de documento a utilizar si se genera interface con el modulo de Presupuesto",
+          "type": "string"
+        },
+        "n_Tipmov": {
+          "description": "Descripcion tipo movimiento",
+          "type": "string"
+        }
+      }
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
