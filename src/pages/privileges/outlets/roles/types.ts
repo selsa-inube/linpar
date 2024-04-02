@@ -14,13 +14,18 @@ interface ICuentasAuxiliaresPorRol {
 }
 
 interface IReglasDeNegocioPorRol {
-  k_Regla: "string";
+  k_Regla: string;
   k_Rol: number;
 }
 
 interface ITareasCrediboardPorRol {
   k_Rol: number;
-  tarea: "string";
+  tarea: string;
+}
+
+interface ITiposDeMovimientoContablePorRol {
+  k_Rol: number;
+  k_Tipmov: string;
 }
 
 export interface IRol {
@@ -33,6 +38,7 @@ export interface IRol {
   cuentasAuxiliaresPorRol?: ICuentasAuxiliaresPorRol[];
   reglasDeNegocioPorRol?: IReglasDeNegocioPorRol[];
   tareasCrediboardPorRol?: ITareasCrediboardPorRol[];
+  tiposDeMovimientoContablePorRol?: ITiposDeMovimientoContablePorRol[];
 }
 
 export interface IFormAddRoleRef {
