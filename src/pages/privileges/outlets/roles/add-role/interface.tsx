@@ -145,9 +145,9 @@ export function AddRolUI(props: AddRolUIProps) {
           <Button
             onClick={handleNextStep}
             spacing="compact"
-            disabled={!isAddRoleFormValid}
+            disabled={isAddRoleFormValid}
           >
-            {currentStep === steps.length ? "Enviar" : "Siguiente"}
+            {currentStep === steps.length ? "Enviarr" : "Siguiente"}
           </Button>
         </Stack>
       </Stack>

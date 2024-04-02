@@ -133,7 +133,8 @@ export const saveRole = (addRoleFormValid: IFormAddRole) => {
     tareasCrediboardPorRol: normalizeCrediboardTasks,
     casosDeUsoPorRol: normalizeUseCases,
   };
-  JSON.stringify(newRole);
 
-  localforage.setItem("linix-roles", newRole);
+  localforage
+    .setItem("linix-roles", newRole)
+    .then(() => console.log("Guardado"));
 };
