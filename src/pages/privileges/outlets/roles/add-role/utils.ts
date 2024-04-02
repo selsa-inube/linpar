@@ -1,6 +1,7 @@
 import { stepsAddRol } from "./config/addRol.config";
 import { initialValuesAddRol } from "./config/initialValues";
-import { IFormAddRole, IFormAddRoleRef } from "../types";
+import { IFormAddRole, IFormAddRoleRef, IRol } from "../types";
+import localforage from "localforage";
 
 export const addRoleStepsRules = (
   currentStep: number,
@@ -82,4 +83,57 @@ export const addRoleStepsRules = (
     ...newAddLinixRole,
     [stepKey]: { isValid: isCurrentFormValid, values },
   });
+};
+
+export const saveRole = (addRoleFormValid: IFormAddRole) => {
+  const {
+    ancillaryAccounts: { values: ancillaryAccountsValues },
+    crediboardTasks: { values: crediboardTasksValues },
+    transactionTypes: { values: transactionTypesValues },
+    useCases: { values: useCasesValues },
+  } = addRoleFormValid;
+
+  const normalizeAncillaryAccounts = [
+    {
+      k_Rol: addRoleFormValid.generalInformation.values.roleName,
+      i_Tipent: ancillaryAccountsValues.commercialSector,
+      k_Codcta: ancillaryAccountsValues.commercialSector,
+    },
+  ];
+
+  const normalizeCrediboardTasks = crediboardTasksValues
+    .filter((crediboardTasksValue) => crediboardTasksValue.isActive === true)
+    .map((mapNewCrediboardTask) => ({
+      k_Rol: +addRoleFormValid.generalInformation.values.roleName,
+      tarea: mapNewCrediboardTask.value,
+    }));
+
+  const normalizeTransactionTypes = transactionTypesValues
+    .filter((transactionTypesValue) => transactionTypesValue.isActive === true)
+    .map((mapNewTransactionType) => ({
+      k_Rol: +addRoleFormValid.generalInformation.values.roleName,
+      k_Tipmov: mapNewTransactionType.value,
+    }));
+
+  const normalizeUseCases = useCasesValues
+    .filter((useCasesValue) => useCasesValue.isActive === true)
+    .map((mapNewUseCases) => ({
+      k_Rol: +addRoleFormValid.generalInformation.values.roleName,
+      k_Usecase: mapNewUseCases.value,
+    }));
+
+  const newRole: IRol = {
+    i_Activo: "Y",
+    k_Rol: addRoleFormValid.generalInformation.values.roleName,
+    k_Tipcon: addRoleFormValid.generalInformation.values.aplication,
+    n_Rol: addRoleFormValid.generalInformation.values.description,
+    n_Uso: addRoleFormValid.generalInformation.values.roleName,
+    cuentasAuxiliaresPorRol: normalizeAncillaryAccounts,
+    tiposDeMovimientoContablePorRol: normalizeTransactionTypes,
+    tareasCrediboardPorRol: normalizeCrediboardTasks,
+    casosDeUsoPorRol: normalizeUseCases,
+  };
+  JSON.stringify(newRole);
+
+  localforage.setItem("linix-roles", newRole);
 };
