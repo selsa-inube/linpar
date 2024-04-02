@@ -1,7 +1,6 @@
 import { stepsAddRol } from "./config/addRol.config";
 import { initialValuesAddRol } from "./config/initialValues";
 import { IFormAddRole, IFormAddRoleRef, IRol } from "../types";
-import localforage from "localforage";
 
 export const addRoleStepsRules = (
   currentStep: number,
@@ -134,7 +133,5 @@ export const saveRole = (addRoleFormValid: IFormAddRole) => {
     casosDeUsoPorRol: normalizeUseCases,
   };
 
-  localforage
-    .setItem("linix-roles", newRole)
-    .then(() => console.log("Guardado"));
+  console.log(newRole);
 };
