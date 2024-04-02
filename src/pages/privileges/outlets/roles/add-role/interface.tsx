@@ -20,13 +20,14 @@ import { createRolConfig, stepsAddRol } from "./config/addRol.config";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
 import { VerificationAddRole } from "./forms/Verification";
+import { saveRole } from "./utils";
 
 interface AddRolUIProps {
   addRoleFormValid: IFormAddRole;
   currentStep: number;
   formReferences: IFormAddRoleRef;
   steps: IStep[];
-  isAddRoleFormValid: boolean;
+  isAddRoleFormValid?: boolean;
   setAddRoleFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
@@ -41,10 +42,8 @@ export function AddRolUI(props: AddRolUIProps) {
     currentStep,
     formReferences,
     steps,
-    isAddRoleFormValid,
     handleNextStep,
     handlePreviousStep,
-
     handleUpdateDataSwitchstep,
     setCurrentStep,
   } = props;
@@ -143,11 +142,14 @@ export function AddRolUI(props: AddRolUIProps) {
           </Button>
 
           <Button
-            onClick={handleNextStep}
+            onClick={
+              currentStep === steps.length
+                ? () => saveRole(addRoleFormValid)
+                : handleNextStep
+            }
             spacing="compact"
-            disabled={isAddRoleFormValid}
           >
-            {currentStep === steps.length ? "Enviarr" : "Siguiente"}
+            {currentStep === steps.length ? "Enviar" : "Siguiente"}
           </Button>
         </Stack>
       </Stack>
