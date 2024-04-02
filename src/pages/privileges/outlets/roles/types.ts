@@ -10,7 +10,7 @@ interface ICasosDeUsoPorRol {
 interface ICuentasAuxiliaresPorRol {
   i_Tipent: string;
   k_Codcta: string;
-  k_Rol: number;
+  k_Rol: number | string;
 }
 
 interface IReglasDeNegocioPorRol {
