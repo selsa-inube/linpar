@@ -2,26 +2,26 @@ import { MdOutlineDelete } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
 import { DecisionModal } from "@src/components/feedback/DecisionModal";
+import { EMessageType } from "@src/types/messages.types";
+import { deleteRolModal } from "./config/deleteRol.config";
 
 interface DeleteRoleUIProps {
   showModal: boolean;
   setShowModal: (show: boolean) => void;
   rol: string;
   handleDeleteUser?: () => void;
+  deleteRolModal: typeof deleteRolModal;
 }
 
-const deleteRolModal = {
-  delete: {
-    title: "Eliminar Rol",
-    description: (k_Rol: string) =>
-      `¿Está seguro de que desea eliminar el rol ${k_Rol}?`,
-    actionText: "Eliminar",
-    appearance: "error",
-  },
-};
-
 export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
-  const { showModal, setShowModal, rol, handleDeleteUser } = props;
+  const { showModal, setShowModal, rol, handleDeleteUser, deleteRolModal } =
+    props;
+
+  const messageType = EMessageType.DELETE;
+
+  const { title, description, actionText, appearance } =
+    deleteRolModal[messageType!];
+
   return (
     <>
       <Icon
@@ -32,9 +32,10 @@ export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
       />
       {showModal && (
         <DecisionModal
-          title={deleteRolModal.delete.title}
-          description={deleteRolModal.delete.description(rol)}
-          actionText={deleteRolModal.delete.actionText}
+          title={title}
+          description={description(rol)}
+          actionText={actionText}
+          appearance={appearance}
           closeModal={() => setShowModal(false)}
           handleClick={handleDeleteUser!}
         />
