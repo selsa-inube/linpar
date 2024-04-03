@@ -4,6 +4,7 @@ import { Icon } from "@inube/design-system";
 
 import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
+import { deleteItemData } from "@src/mocks/utils/dataMock.service";
 
 import { DetailsModal } from "../components/DetailsModal";
 import { deleteRolModal } from "../delete-role/config/deleteRol.config";
@@ -101,7 +102,11 @@ export const actionsConfig = [
     id: "Delete",
     actionName: "Eliminar",
     content: ({ k_Rol }: { k_Rol: string }) => (
-      <DeleteRole rol={k_Rol} deleteRolModal={deleteRolModal} />
+      <DeleteRole
+        rol={k_Rol}
+        deleteRolModal={deleteRolModal}
+        handleDeleteRol={() => deleteItemData("linix-roles", k_Rol)}
+      />
     ),
     type: "remove",
   },
