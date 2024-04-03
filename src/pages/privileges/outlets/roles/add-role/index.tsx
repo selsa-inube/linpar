@@ -112,7 +112,7 @@ export function AddRol() {
         },
       }));
     });
-  }, [dataAddRoleLinixForm]);
+  }, []);
 
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationForm>>(null);
