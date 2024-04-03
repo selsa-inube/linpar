@@ -24,7 +24,7 @@ export function Roles() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [linixRoles]);
 
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRole(e.target.value);
