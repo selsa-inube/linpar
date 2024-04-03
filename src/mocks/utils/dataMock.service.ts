@@ -50,6 +50,21 @@ export async function getSpecificData(
   }
 }
 
+export async function deleteItemData(nameBD: string, id: string) {
+  try {
+    const data = await getData(nameBD);
+    if (Array.isArray(data)) {
+      const indexData = data.findIndex((item) => item.id === id);
+      data.splice(indexData, 1);
+      await localforage.setItem(nameBD, data);
+      return data;
+    }
+    throw new Error("data structure not valid, must be an object list");
+  } catch (error) {
+    return error;
+  }
+}
+
 async function fakeNetwork() {
   return new Promise((res) => {
     setTimeout(res, Math.random() * 1000);
