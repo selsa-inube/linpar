@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { EditUserUI } from "./interface";
 import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
-import { DocumentsServiceMock } from "@src/mocks/privileges/documents/DocumentsServiceMock.mock";
-import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
-import { clientServerMock } from "@src/mocks/privileges/client-server/client-serverServiceMock.mock";
+import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
+import { DocumentsServiceMock } from "@mocks/privileges/documents/DocumentsServiceMock.mock";
+import { webOptionsMock } from "@mocks/privileges/web/webOptionsMock.mock";
+import { clientServerMock } from "@mocks/privileges/client-server/client-serverServiceMock.mock";
 
+import { EditUserUI } from "./interface";
 import { UseCase } from "../../types";
 
 export interface IGeneralInformation {
@@ -22,9 +22,9 @@ function EditCaseLinix() {
     show: false,
     continueTab: "",
   });
-  const [message] = useState<IUsersMessage>({
+  const message: IUsersMessage = {
     visible: false,
-  });
+  };
 
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
 

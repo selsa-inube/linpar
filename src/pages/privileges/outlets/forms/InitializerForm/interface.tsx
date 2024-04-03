@@ -4,7 +4,7 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface InitializerFormUIProps {
   dataOptionsForms: IAssignmentFormEntry[];

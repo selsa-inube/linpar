@@ -9,14 +9,14 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { GeneralInformationForm } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/ClientServerButtonSelection";
-
-import { StyledContainer } from "./styles";
-import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
-
 import {
   IClientServerButton,
   IGeneralInformation,
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
+
+import { StyledContainer } from "./styles";
+import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
+
 interface IControlModal {
   show: boolean;
   continueTab: string;
@@ -95,7 +95,7 @@ function EditUserUI(props: EditUserUIProps) {
             />
           </Stack>
         </Stack>
-        <Stack gap="32px" direction="column">
+        <Stack gap={inube.spacing.s400} direction="column">
           <Tabs
             tabs={Object.values(editLinixUseCaseTabsConfig)}
             selectedTab={selectedTab}

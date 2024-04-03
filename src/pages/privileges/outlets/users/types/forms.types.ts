@@ -1,7 +1,7 @@
 import { EMessageType, IMessage } from "@src/types/messages.types";
 
 interface IAssignmentFormEntry {
-  id: string | number;
+  id: string;
   value: string;
   isActive: boolean;
 }

@@ -4,9 +4,9 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
+import { EMessageType } from "@src/types/messages.types";
 
 import { InitializerFormUI } from "./interface";
-import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -42,17 +42,19 @@ export function InitializerForm(props: IInitializerForm) {
 
   const handleSubmitForm = () => {
     setIsLoading(true);
+
     setTimeout(() => {
       handleSubmit(formDataOptions);
       setIsLoading(false);
       setMessage({
         visible: true,
-        data: generalMessage.success,
+        type: EMessageType.SUCCESS,
       });
     }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
+    setFormDataOptions(dataOptionsForms);
     if (onHasChanges) onHasChanges(false);
   };
 

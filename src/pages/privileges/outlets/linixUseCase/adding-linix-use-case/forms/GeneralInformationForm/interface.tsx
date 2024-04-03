@@ -13,12 +13,12 @@ import {
 } from "@inube/design-system";
 
 import { FormButtons } from "@components/forms/submit/FormButtons";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 import { OptionSelect } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
 import { StyledSelectContainer } from "./styles";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
