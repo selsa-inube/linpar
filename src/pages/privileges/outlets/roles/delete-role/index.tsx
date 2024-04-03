@@ -5,7 +5,7 @@ import { DeleteRoleUI } from "./interface";
 
 interface IDeleteRoleProps {
   rol: string;
-  handleDeleteRol?: () => void;
+  handleDeleteRol: () => void;
   deleteRolModal: typeof deleteRolModal;
 }
 
@@ -13,6 +13,7 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
   const { rol, handleDeleteRol, deleteRolModal } = props;
 
   const [showModal, setShowModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <DeleteRoleUI
@@ -21,6 +22,8 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
       rol={rol}
       handleDeleteRol={handleDeleteRol}
       deleteRolModal={deleteRolModal}
+      hover={isHovered}
+      setHover={setIsHovered}
     />
   );
 };
