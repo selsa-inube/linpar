@@ -9,12 +9,12 @@ interface DeleteRoleUIProps {
   showModal: boolean;
   setShowModal: (show: boolean) => void;
   rol: string;
-  handleDeleteUser?: () => void;
+  handleDeleteRol?: () => void;
   deleteRolModal: typeof deleteRolModal;
 }
 
 export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
-  const { showModal, setShowModal, rol, handleDeleteUser, deleteRolModal } =
+  const { showModal, setShowModal, rol, handleDeleteRol, deleteRolModal } =
     props;
 
   const messageType = EMessageType.DELETE;
@@ -37,7 +37,7 @@ export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
           actionText={actionText}
           appearance={appearance}
           closeModal={() => setShowModal(false)}
-          handleClick={handleDeleteUser!}
+          handleClick={handleDeleteRol!}
         />
       )}
     </>

@@ -5,12 +5,12 @@ import { DeleteRoleUI } from "./interface";
 
 interface IDeleteRoleProps {
   rol: string;
-  handleDeleteUser?: () => void;
+  handleDeleteRol?: () => void;
   deleteRolModal: typeof deleteRolModal;
 }
 
 export const DeleteRole = (props: IDeleteRoleProps) => {
-  const { rol, handleDeleteUser, deleteRolModal } = props;
+  const { rol, handleDeleteRol, deleteRolModal } = props;
 
   const [showModal, setShowModal] = useState(false);
 
@@ -19,7 +19,7 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
       showModal={showModal}
       setShowModal={setShowModal}
       rol={rol}
-      handleDeleteUser={handleDeleteUser}
+      handleDeleteRol={handleDeleteRol}
       deleteRolModal={deleteRolModal}
     />
   );
