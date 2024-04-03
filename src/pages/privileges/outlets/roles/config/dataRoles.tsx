@@ -4,10 +4,10 @@ import { Icon } from "@inube/design-system";
 
 import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
-import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
 
 import { DetailsModal } from "../components/DetailsModal";
 import { activateRoleModal } from "./activateRole.config";
+import { DeleteRole } from "../delete-role";
 
 export const titlesOptions = [
   {
@@ -99,7 +99,7 @@ export const actionsConfig = [
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: ({ id }: { id: string }) => <DeleteUser user={selectedData(id)} />,
+    content: ({ k_Rol }: { k_Rol: string }) => <DeleteRole rol={k_Rol} />,
     type: "remove",
   },
 ];
