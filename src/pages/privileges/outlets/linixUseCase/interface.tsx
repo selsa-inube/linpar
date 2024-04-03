@@ -43,7 +43,7 @@ interface LinixUseCaseUIProps {
   selectedData: SelectedDataFunction;
   loading: boolean;
 }
-export type SelectedDataFunction = (k_Usecase: string) => UseCase;
+export type SelectedDataFunction = (k_Usecase: string) => UseCase | undefined;
 export type HandleClickFunction = (id: string) => void;
 export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const {
