@@ -6,8 +6,9 @@ import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
 
 import { DetailsModal } from "../components/DetailsModal";
-import { activateRoleModal } from "./activateRole.config";
+import { deleteRolModal } from "../delete-role/config/deleteRol.config";
 import { DeleteRole } from "../delete-role";
+import { activateRoleModal } from "./activateRole.config";
 
 export const titlesOptions = [
   {
@@ -99,7 +100,9 @@ export const actionsConfig = [
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: ({ k_Rol }: { k_Rol: string }) => <DeleteRole rol={k_Rol} />,
+    content: ({ k_Rol }: { k_Rol: string }) => (
+      <DeleteRole rol={k_Rol} deleteRolModal={deleteRolModal} />
+    ),
     type: "remove",
   },
 ];
