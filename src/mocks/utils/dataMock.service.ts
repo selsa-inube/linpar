@@ -50,13 +50,13 @@ export async function getSpecificData(
   }
 }
 
-export async function deleteItemData(nameBD: string, id: string) {
+export async function deleteItemData(nameDB: string, k_Rol: string) {
   try {
-    const data = await getData(nameBD);
+    const data = await getData(nameDB);
     if (Array.isArray(data)) {
-      const indexData = data.findIndex((item) => item.id === id);
+      const indexData = data.findIndex((item) => item.k_Rol === k_Rol);
       data.splice(indexData, 1);
-      await localforage.setItem(nameBD, data);
+      await localforage.setItem(nameDB, data);
       return data;
     }
     throw new Error("data structure not valid, must be an object list");
