@@ -5,7 +5,7 @@ import { DeleteRoleUI } from "./interface";
 
 interface IDeleteRoleProps {
   rol: string;
-  handleDeleteRol: () => void;
+  handleDeleteRol: (nameBD: string, id: string) => Promise<unknown>;
   deleteRolModal: typeof deleteRolModal;
 }
 
@@ -15,12 +15,17 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleOnclick = async () => {
+    await handleDeleteRol("linix-roles", rol);
+    setShowModal(false);
+  };
+
   return (
     <DeleteRoleUI
       showModal={showModal}
       setShowModal={setShowModal}
       rol={rol}
-      handleDeleteRol={handleDeleteRol}
+      handleDeleteRol={handleOnclick}
       deleteRolModal={deleteRolModal}
       hover={isHovered}
       setHover={setIsHovered}

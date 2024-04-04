@@ -105,7 +105,7 @@ export const actionsConfig = [
       <DeleteRole
         rol={k_Rol}
         deleteRolModal={deleteRolModal}
-        handleDeleteRol={() => deleteItemData("linix-roles", k_Rol)}
+        handleDeleteRol={deleteItemData}
       />
     ),
     type: "remove",
