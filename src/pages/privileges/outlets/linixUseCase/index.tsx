@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 
 import { getData } from "@src/mocks/utils/dataMock.service";
 
-import { LinixUseCaseUI } from "./interface";
+import {
+  LinixUseCaseUI,
+  SelectedDataFunction,
+  HandleClickFunction,
+} from "./interface";
 import { UseCase } from "./types";
 
 function LinixUseCase() {
@@ -33,9 +37,18 @@ function LinixUseCase() {
   const handleCloseMenuInvitation = () => {
     setShowMenu(false);
   };
+
   const handleToggleMenuInvitation = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
   };
+
+  const handleClick: HandleClickFunction = (id: string) => {
+    linixUseCases.find((useCase) => useCase.id === id);
+  };
+
+  const selectedData: SelectedDataFunction = (k_Usecase: string) =>
+    linixUseCases.find((LinuxUseCase) => LinuxUseCase.k_Usecase === k_Usecase)!;
+
   return (
     <LinixUseCaseUI
       searchUseCase={searchUseCase}
@@ -45,6 +58,8 @@ function LinixUseCase() {
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       linixUseCases={linixUseCases}
       loading={loading}
+      handleClick={handleClick}
+      selectedData={selectedData}
     />
   );
 }
