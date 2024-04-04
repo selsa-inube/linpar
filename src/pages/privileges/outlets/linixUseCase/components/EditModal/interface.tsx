@@ -1,21 +1,27 @@
-import { Stack, Tabs, useMediaQueries, inube } from "@inube/design-system";
+import {
+  Stack,
+  Tabs,
+  useMediaQueries,
+  inube,
+  Breadcrumbs,
+} from "@inube/design-system";
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
-import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
-import { clientServerMock } from "@src/mocks/privileges/client-server/client-serverServiceMock.mock";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { GeneralInformationForm } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/ClientServerButtonSelection";
-import {
-  IClientServerButton,
-  IGeneralInformation,
-} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
 
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
+
+import {
+  IFormAddLinixUseCase,
+  IGeneralInformation,
+} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
+import { editLinixUseCaseConfig } from "./config/editLinuxUseCase.config";
 
 interface IControlModal {
   show: boolean;
@@ -23,6 +29,7 @@ interface IControlModal {
 }
 interface EditUserUIProps {
   selectedTab: string;
+  formData: IFormAddLinixUseCase;
   handleTabChange: (tabId: string) => void;
   editData: { [key: string]: { [key: string]: unknown } };
   handleSubmit: (values: IAssignmentFormEntry[]) => void;
@@ -31,12 +38,8 @@ interface EditUserUIProps {
   handleDataChange: (hasChanges: boolean) => void;
   handleContinueTab: () => void;
   message: IMessageState;
-  downloadableDocuments: IAssignmentFormEntry[];
+  webOptions: Record<string, unknown>[];
   csOptions: Record<string, unknown>[];
-  webReports: IAssignmentFormEntry[];
-  clientServerReports: IAssignmentFormEntry[];
-  clientServerOptions: IAssignmentFormEntry[];
-  webOptions: IAssignmentFormEntry[];
 }
 
 function continueModal(
@@ -66,11 +69,9 @@ function EditUserUI(props: EditUserUIProps) {
     handleCloseModal,
     handleDataChange,
     handleContinueTab,
-    webReports,
-    clientServerOptions,
+    formData,
+    csOptions,
     webOptions,
-    clientServerReports,
-    downloadableDocuments,
   } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
@@ -83,6 +84,7 @@ function EditUserUI(props: EditUserUIProps) {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s200} direction="column">
+          <Breadcrumbs crumbs={editLinixUseCaseConfig[0].crumbs} />
           <Stack
             justifyContent="space-between"
             alignItems="center"
@@ -95,78 +97,74 @@ function EditUserUI(props: EditUserUIProps) {
             />
           </Stack>
         </Stack>
-        <Stack gap={inube.spacing.s400} direction="column">
+        <Stack gap="32px" direction="column">
           <Tabs
             tabs={Object.values(editLinixUseCaseTabsConfig)}
             selectedTab={selectedTab}
             type={typeTabs ? "select" : "tabs"}
             onChange={handleTabChange}
           />
-          {selectedTab ===
-            editLinixUseCaseTabsConfig.generalInformation.id.toString() && (
+          {selectedTab === editLinixUseCaseTabsConfig.generalInformation.id && (
             <GeneralInformationForm
               initialValues={currentInformation as IGeneralInformation}
-              csOptions={clientServerMock}
-              webOptions={webOptionsMock}
+              csOptions={csOptions}
+              webOptions={webOptions}
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
             />
           )}
-          {selectedTab ===
-            editLinixUseCaseTabsConfig.clientServerButton.id.toString() && (
+          {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (
             <ClientServerButtonSelection
-              initialValues={currentInformation as IClientServerButton}
+              initialValues={formData.clientServerButton.values}
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
-              csSelected={""}
+              csSelected={formData.generalInformation.values.k_Opcion}
             />
           )}
           {selectedTab ===
-            editLinixUseCaseTabsConfig.downloadableDocuments.id.toString() && (
+            editLinixUseCaseTabsConfig.downloadableDocuments.id && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
-              dataOptionsForms={downloadableDocuments}
+              dataOptionsForms={formData.downloadableDocuments.values}
+              handleSubmit={handleSubmit}
+            />
+          )}
+          {selectedTab === editLinixUseCaseTabsConfig.webReports.id && (
+            <InitializerForm
+              withSubmitButtons
+              onHasChanges={handleDataChange}
+              dataOptionsForms={formData.webReports.values}
+              handleSubmit={handleSubmit}
+            />
+          )}
+
+          {selectedTab === editLinixUseCaseTabsConfig.webOptions.id && (
+            <InitializerForm
+              withSubmitButtons
+              onHasChanges={handleDataChange}
+              dataOptionsForms={formData.webOptions.values}
               handleSubmit={handleSubmit}
             />
           )}
           {selectedTab ===
-            editLinixUseCaseTabsConfig.webReports.id.toString() && (
+            editLinixUseCaseTabsConfig.clientServerReports.id && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
-              dataOptionsForms={webReports}
+              dataOptionsForms={formData.clientServerReports.values}
               handleSubmit={handleSubmit}
             />
           )}
 
           {selectedTab ===
-            editLinixUseCaseTabsConfig.webOptions.id.toString() && (
+            editLinixUseCaseTabsConfig.clientServerOptions.id && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
-              dataOptionsForms={webOptions}
-              handleSubmit={handleSubmit}
-            />
-          )}
-          {selectedTab ===
-            editLinixUseCaseTabsConfig.clientServerReports.id.toString() && (
-            <InitializerForm
-              withSubmitButtons
-              onHasChanges={handleDataChange}
-              dataOptionsForms={clientServerReports}
-              handleSubmit={handleSubmit}
-            />
-          )}
-
-          {selectedTab ===
-            editLinixUseCaseTabsConfig.clientServerOptions.id.toString() && (
-            <InitializerForm
-              withSubmitButtons
-              onHasChanges={handleDataChange}
-              dataOptionsForms={clientServerOptions}
+              dataOptionsForms={formData.clientServerReports.values}
               handleSubmit={handleSubmit}
             />
           )}

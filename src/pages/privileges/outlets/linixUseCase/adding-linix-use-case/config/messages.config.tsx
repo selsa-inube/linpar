@@ -6,7 +6,7 @@ const generalMessage = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "Cambios guardados con éxito!",
-    description: "Hemos guardado los cambios correctamente para el caso de uso",
+    description: "Hemos guardado los cambios correctamente ",
     appearance: EAppearance.SUCCESS,
   },
   failed: {
