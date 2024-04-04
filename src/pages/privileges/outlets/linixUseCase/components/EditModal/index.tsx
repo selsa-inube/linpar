@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
-import { linixUseCases } from "@src/mocks/privileges/linixUseCases/LinixUseCases.mock";
-import { getData } from "@src/mocks/utils/dataMock.service";
+import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
+import { getData } from "@mocks/utils/dataMock.service";
 
 import { EditUserUI } from "./interface";
 import { UseCase } from "../../types";
@@ -25,9 +25,9 @@ function EditCaseLinix() {
     show: false,
     continueTab: "",
   });
-  const [message] = useState<IUsersMessage>({
+  const message: IUsersMessage = {
     visible: false,
-  });
+  };
 
   const [formData, setFormData] = useState<IFormAddLinixUseCase>({
     generalInformation: {
