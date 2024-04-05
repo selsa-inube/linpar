@@ -81,3 +81,9 @@ export interface IFormAddRole {
   crediboardTasks: IOptionInitialiceForm;
   useCases: IOptionInitialiceForm;
 }
+
+export interface IActions {
+  k_action: number;
+  n_action: string;
+  i_active: "Y" | "N";
+}
