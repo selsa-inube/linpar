@@ -78,6 +78,41 @@ export const createRolConfig = [
   },
 ];
 
+export const editRolConfig = [
+  {
+    id: 1,
+    title: "Editar rol",
+    description: "Editar la información del rol",
+    route: "/privileges/roles/adit",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/home",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/privileges/roles",
+        label: "roles",
+        id: "/privileges/roles",
+        isActive: false,
+      },
+      {
+        path: "/privileges/roles/edit",
+        label: "Agregar rol",
+        id: "/privileges/roles/edit",
+        isActive: true,
+      },
+    ],
+  },
+];
+
 export const finishAssistedRolModalConfig = {
   title: "Finalizar registro",
   description: "¿Está seguro de que desea finalizar el proceso de creación?",
