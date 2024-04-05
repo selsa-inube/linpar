@@ -1,127 +1,62 @@
-import { useState, useEffect } from "react";
-import { useFormik } from "formik";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import { FormikProps, useFormik } from "formik";
 
-import { EMessageType } from "@src/types/messages.types";
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { getData } from "@mocks/utils/dataMock.service";
+import { getData } from "@src/mocks/utils/dataMock.service";
 
 import { GeneralInformationFormUI } from "./interface";
 
-const LOADING_TIMEOUT = 1500;
-
 export interface IGeneralInformationForm {
-  aplication: string;
-  description: string;
   roleName: string;
+  description: string;
+  aplication: string;
 }
 
-export interface IGeneralInformationFormProps {
-  handleSubmit: (values: IGeneralInformationForm) => void;
-  valuesData: IGeneralInformationForm;
-  onHasChanges?: (hasChanges: boolean) => void;
-  readOnly?: boolean;
-  withSubmitButtons?: boolean;
+interface IGeneralInformationFormProps {
+  initialValues: IGeneralInformationForm;
+  onSubmit?: (values: IGeneralInformationForm) => void;
+  loading?: boolean;
 }
 
-function GeneralInformationForm(props: IGeneralInformationFormProps) {
-  const {
-    withSubmitButtons,
-    valuesData,
-    handleSubmit,
-    onHasChanges,
-    readOnly,
-  } = props;
+export const GeneralInformationForm = forwardRef(
+  function GeneralInformationForm(
+    props: IGeneralInformationFormProps,
+    ref: React.Ref<FormikProps<IGeneralInformationForm>>
+  ) {
+    const { initialValues, onSubmit, loading } = props;
 
-  const [loading, setLoading] = useState(false);
-  const [showMessage, setShowMessage] = useState<IMessageState>({
-    visible: false,
-  });
-
-  const [linixUseCases, setLinixUseCases] = useState<Record<string, unknown>[]>(
-    []
-  );
-
-  useEffect(() => {
-    getData("linix-use-cases")
-      .then((data) => {
-        if (data !== null) {
-          setLinixUseCases(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      });
-  }, []);
-
-  const formik = useFormik({
-    initialValues: { ...valuesData },
-    validateOnChange: false,
-
-    onSubmit: () => {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setShowMessage({
-          visible: true,
-          type: EMessageType.SUCCESS,
-        });
-      }, LOADING_TIMEOUT);
-    },
-  });
-
-  const handleSubmitForm = () => {
-    formik.validateForm().then((errors) => {
-      if (Object.keys(errors).length > 0) {
-        setShowMessage({
-          visible: true,
-          type: EMessageType.FAILED,
-        });
-      }
-      formik.handleSubmit();
-    });
-  };
-
-  const hasChanges = (valueCompare: IGeneralInformationForm) =>
-    JSON.stringify(valuesData) !== JSON.stringify(valueCompare);
-
-  const handleChangeForm = (name: string, value: string) => {
-    const formikValues = {
-      ...formik.values,
-      [name]: value,
+    const handleUpdateDataForm = (data: { [key: string]: string | number }) => {
+      formik.setFieldValue("aplication", data.n_Usecase);
     };
 
-    if (onHasChanges) onHasChanges(hasChanges(formikValues));
-    formik.setFieldValue(name, value).then(() => {
-      if (withSubmitButtons) return;
-      formik.validateForm().then((errors) => {
-        if (!errors || Object.keys(errors).length === 0) {
-          handleSubmit(formikValues);
-        }
-      });
+    const [linixUseCases, setLinixUseCases] = useState<
+      Record<string, unknown>[]
+    >([]);
+
+    useEffect(() => {
+      getData("linix-use-cases")
+        .then((data) => {
+          setLinixUseCases(data as Record<string, unknown>[]);
+        })
+        .catch((error) => {
+          console.info(error.message);
+        });
+    }, []);
+
+    const formik = useFormik({
+      initialValues,
+      validateOnBlur: true,
+      onSubmit: onSubmit || (() => true),
     });
-  };
 
-  const handleCloseSectionMessage = () => {
-    setShowMessage({
-      visible: false,
-    });
-  };
+    useImperativeHandle(ref, () => formik);
 
-  return (
-    <GeneralInformationFormUI
-      loading={loading}
-      formik={formik}
-      showMessage={showMessage}
-      withSubmitButtons={withSubmitButtons}
-      handleCloseSectionMessage={handleCloseSectionMessage}
-      hasChanges={hasChanges}
-      formInvalid={formik.isValidating || formik.isValid}
-      handleSubmitForm={handleSubmitForm}
-      handleChangeForm={handleChangeForm}
-      readOnly={readOnly}
-      linixUseCases={linixUseCases}
-    />
-  );
-}
-
-export { GeneralInformationForm };
+    return (
+      <GeneralInformationFormUI
+        loading={loading}
+        formik={formik}
+        handleSubmit={handleUpdateDataForm}
+        linixUseCases={linixUseCases}
+      />
+    );
+  }
+);

@@ -1,7 +1,7 @@
-import { EAppearance } from "@src/types/colors.types";
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
-
 import { Icon } from "@inube/design-system";
+
+import { EAppearance } from "@src/types/colors.types";
 
 export const stepsAddRol = {
   generalInformation: {

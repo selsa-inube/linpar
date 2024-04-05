@@ -1,93 +1,64 @@
 import {
   Assisted,
   Breadcrumbs,
+  Button,
   Stack,
   useMediaQuery,
   inube,
 } from "@inube/design-system";
 
-import itemNotFound from "@assets/images/ItemNotFound.png";
-import { DecisionModal } from "@components/feedback/DecisionModal";
-import { FormButtons } from "@components/forms/submit/FormButtons";
-import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
+import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 
 import {
-  createRolConfig,
-  finishAssistedRolModalConfig,
-  stepsAddRol,
-} from "./config/addRol.config";
-import {
-  GeneralInformationForm,
-  IGeneralInformationForm,
-} from "./forms/GeneralInformationForm";
-import { InitializerForm } from "../../forms/InitializerForm";
-import { IFormAddRole } from "../types";
+  IFormAddRole,
+  IFormAddRoleRef,
+  IInitialiceFormRole,
+  IStep,
+} from "../types";
+import { createRolConfig, stepsAddRol } from "./config/addRol.config";
+import { GeneralInformationForm } from "./forms/GeneralInformationForm";
+import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
+import { VerificationAddRole } from "./forms/Verification";
 
 interface AddRolUIProps {
-  handleNextStep: (step: number) => void;
-  handlePrevStep: (step: number) => void;
+  addRoleFormValid: IFormAddRole;
   currentStep: number;
-  handleCompleteInvitation: () => void;
-  handleToggleModal: () => void;
-  showModal: boolean;
-  dataForm: IFormAddRole;
-  handleUpdateGeneralInformation: (value: IGeneralInformationForm) => void;
-  handleUpdateTransactionTypes: (values: any) => void;
-}
-
-function finishModal(
-  handleCloseModal: () => void,
-  handleCompleteInvitation: () => void
-) {
-  const { title, description, actionText, appearance } =
-    finishAssistedRolModalConfig;
-
-  return (
-    <DecisionModal
-      title={title}
-      description={description}
-      actionText={actionText}
-      loading={false}
-      appearance={appearance}
-      closeModal={handleCloseModal}
-      handleClick={handleCompleteInvitation}
-    />
-  );
+  formReferences: IFormAddRoleRef;
+  steps: IStep[];
+  isAddRoleFormValid: boolean;
+  setAddRoleFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
+  handleNextStep: () => void;
+  handlePreviousStep: () => void;
+  handleFinishAssisted?: () => void;
+  handleUpdateDataSwitchstep: (values: IInitialiceFormRole[]) => void;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function AddRolUI(props: AddRolUIProps) {
   const {
+    addRoleFormValid,
     currentStep,
-    handleCompleteInvitation,
-    handleToggleModal,
-    showModal,
-    handlePrevStep,
+    formReferences,
+    steps,
+    isAddRoleFormValid,
     handleNextStep,
-    dataForm,
-    handleUpdateGeneralInformation,
-    handleUpdateTransactionTypes,
+    handlePreviousStep,
+
+    handleUpdateDataSwitchstep,
+    setCurrentStep,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  const isCurrentStateValid = () => {
-    if (currentStep === Object.values(stepsAddRol).length) {
-      handleToggleModal();
-    } else {
-      handleNextStep(currentStep);
-    }
-  };
-  const isPreviousStepAvailable = () => {
-    return currentStep !== 1 ? (handlePrevStep(currentStep), true) : false;
-  };
 
   const {
-    generalInformation: { values },
-    transactionTypes: { values: transactionTypes },
-    businessRules: { values: businessRules },
-    useCases: { values: useCases },
-    crediboardTasks: { values: crediboardTasks },
-  } = dataForm;
+    generalInformation: { values: generalInformationValues },
+    ancillaryAccounts: { values: ancillaryAccountsValues },
+    transactionTypes: { values: transactionTypesValues },
+    businessRules: { values: businessRulesValues },
+    crediboardTasks: { values: crediboardTasksValues },
+    useCases: { values: useCasesValues },
+  } = addRoleFormValid;
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
@@ -108,78 +79,78 @@ export function AddRolUI(props: AddRolUIProps) {
         </Stack>
         <>
           <Assisted
-            steps={Object.values(stepsAddRol)}
+            steps={steps}
             currentStepId={currentStep}
-            handlePrev={handlePrevStep}
-            handleNext={
-              currentStep === Object.values(stepsAddRol).length
-                ? handleToggleModal
-                : handleNextStep
-            }
+            handlePrev={handlePreviousStep}
+            handleNext={handleNextStep}
           />
 
-          <FormButtons
-            handleSubmit={isCurrentStateValid}
-            handleReset={isPreviousStepAvailable}
-            cancelButtonText="Atrás"
-            submitButtonText="Siguiente"
-            disableReset={currentStep === 1}
-          >
-            {currentStep === stepsAddRol.generalInformation.id && (
-              <GeneralInformationForm
-                handleSubmit={handleUpdateGeneralInformation}
-                valuesData={values}
-              />
-            )}
+          {currentStep === stepsAddRol.generalInformation.id && (
+            <GeneralInformationForm
+              initialValues={generalInformationValues}
+              ref={formReferences.generalInformation}
+            />
+          )}
 
-            {currentStep === stepsAddRol.auxiliaryAccounts.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Opciones de cuentas auxiliares"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/roles"}
-              />
-            )}
-            {currentStep === stepsAddRol.transactionTypes.id && (
-              <InitializerForm
-                dataOptionsForms={transactionTypes}
-                handleSubmit={handleUpdateTransactionTypes}
-              />
-            )}
-            {currentStep === stepsAddRol.businessRules.id && (
-              <InitializerForm
-                dataOptionsForms={businessRules}
-                handleSubmit={handleUpdateTransactionTypes}
-              />
-            )}
-            {currentStep === stepsAddRol.crediboardTasks.id && (
-              <InitializerForm
-                dataOptionsForms={crediboardTasks}
-                handleSubmit={handleUpdateTransactionTypes}
-              />
-            )}
-            {currentStep === stepsAddRol.useCases.id && (
-              <InitializerForm
-                dataOptionsForms={useCases}
-                handleSubmit={handleUpdateTransactionTypes}
-              />
-            )}
+          {currentStep === stepsAddRol.auxiliaryAccounts.id && (
+            <AncillaryAccountsForm
+              initialValues={ancillaryAccountsValues}
+              ref={formReferences.ancillaryAccounts}
+            />
+          )}
+          {currentStep === stepsAddRol.transactionTypes.id && (
+            <InitializerForm
+              dataOptionsForms={transactionTypesValues}
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
+          )}
+          {currentStep === stepsAddRol.businessRules.id && (
+            <InitializerForm
+              dataOptionsForms={businessRulesValues}
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
+          )}
+          {currentStep === stepsAddRol.crediboardTasks.id && (
+            <InitializerForm
+              dataOptionsForms={crediboardTasksValues}
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
+          )}
+          {currentStep === stepsAddRol.useCases.id && (
+            <InitializerForm
+              dataOptionsForms={useCasesValues}
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
+          )}
 
-            {currentStep === stepsAddRol.summary.id && (
-              <ItemNotFound
-                image={itemNotFound}
-                title={"Página de resumen"}
-                description={"Esta sección está en construcción."}
-                buttonDescription={"Retorna a la página de inicio"}
-                route={"/privileges/roles"}
-              />
-            )}
-          </FormButtons>
+          {currentStep === stepsAddRol.summary.id && (
+            <VerificationAddRole
+              steps={addRoleFormValid}
+              setCurrentStep={setCurrentStep}
+            />
+          )}
         </>
-      </Stack>
+        <Stack gap="16px" justifyContent="flex-end">
+          <Button
+            onClick={handlePreviousStep}
+            type="button"
+            disabled={currentStep === steps[0].id}
+            spacing="compact"
+            variant="none"
+            appearance="gray"
+          >
+            Atrás
+          </Button>
 
-      {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
+          <Button
+            onClick={handleNextStep}
+            spacing="compact"
+            disabled={!isAddRoleFormValid}
+          >
+            {currentStep === steps.length ? "Enviar" : "Siguiente"}
+          </Button>
+        </Stack>
+      </Stack>
     </Stack>
   );
 }

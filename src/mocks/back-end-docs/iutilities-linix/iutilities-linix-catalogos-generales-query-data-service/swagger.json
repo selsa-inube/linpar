@@ -1,0 +1,2992 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "El propósito de esta aplicación es proporcionar los servicios de persistencia de la aplicacion catalogos generales",
+    "title": "Catalogos generales Persistence Data Service API",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:8302",
+  "basePath": "/iutilities-linix-catalogos-generales-persistence-data-service/api",
+  "paths": {
+    "/casos-de-uso": {
+      "post": {
+        "description": "Guardado de el agregado de casos de uso",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasosDeUso"],
+        "summary": "Guardado de el agregado de casos de uso",
+        "parameters": [
+          {
+            "description": "Aggregate CasoDeUso",
+            "name": "AggregateCasoDeUso",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CasoDeUso"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CasoDeUso"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Eliminacion de el agregado de casos de uso",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasosDeUso"],
+        "summary": "Eliminacion de el agregado de casos de uso",
+        "parameters": [
+          {
+            "description": "Aggregate CasoDeUso",
+            "name": "AggregateCasoDeUso",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CasoDeUso"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CasoDeUso"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualizacion parcial de el agregado de casos de uso",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CasosDeUso"],
+        "summary": "Actualizacion parcial de el agregado de casos de uso",
+        "parameters": [
+          {
+            "description": "Aggregate CasoDeUso",
+            "name": "AggregateCasoDeUso",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CasoDeUso"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CasoDeUso"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogo-reportes-web": {
+      "put": {
+        "description": "Actualizacion de el agregado de catalogo reportes web",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoReportesWeb"],
+        "summary": "Actualizacion de el agregado de catalogo reportes web",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoReporteWeb",
+            "name": "AggregateCatalogoReporteWeb",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoReporteWeb"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoReporteWeb"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Guardado de el agregado de catalogo reportes web",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoReportesWeb"],
+        "summary": "Guardado de el agregado de catalogo reportes web",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoReporteWeb",
+            "name": "AggregateCatalogoReporteWeb",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoReporteWeb"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoReporteWeb"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Eliminacion de el agregado de catalogo reportes web",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoReportesWeb"],
+        "summary": "Eliminacion de el agregado de catalogo reportes web",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoReporteWeb",
+            "name": "AggregateCatalogoReporteWeb",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoReporteWeb"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoReporteWeb"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualizacion parcial de el agregado de catalogo reportes web",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogoReportesWeb"],
+        "summary": "Actualizacion parcial de el agregado de catalogo reportes web",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoReporteWeb",
+            "name": "AggregateCatalogoReporteWeb",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoReporteWeb"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoReporteWeb"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogos-opciones-menu": {
+      "put": {
+        "description": "Actualizacion de el agregado de catalogos opciones menu",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogosOpcionesMenu"],
+        "summary": "Actualizacion de el agregado de catalogos opciones menu",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoOpcionMenu",
+            "name": "AggregateCatalogoOpcionMenu",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoOpcionMenu"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoOpcionMenu"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Guardado de el agregado de catalogos opciones menu",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogosOpcionesMenu"],
+        "summary": "Guardado de el agregado de catalogos opciones menu",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoOpcionMenu",
+            "name": "AggregateCatalogoOpcionMenu",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoOpcionMenu"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoOpcionMenu"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Eliminacion de el agregado de catalogos opciones menu",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogosOpcionesMenu"],
+        "summary": "Eliminacion de el agregado de catalogos opciones menu",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoOpcionMenu",
+            "name": "AggregateCatalogoOpcionMenu",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoOpcionMenu"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoOpcionMenu"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualizacion parcial de el agregado de catalogos opciones menu",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogosOpcionesMenu"],
+        "summary": "Actualizacion parcial de el agregado de catalogos opciones menu",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoOpcionMenu",
+            "name": "AggregateCatalogoOpcionMenu",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoOpcionMenu"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoOpcionMenu"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/catalogos-tipos-de-documento": {
+      "put": {
+        "description": "Actualizacion de el agregado de catalogos tipos de documento",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogosTiposDeDocumento"],
+        "summary": "Actualizacion de el agregado de catalogos tipos de documento",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoTipoDeDocumento",
+            "name": "AggregateCatalogoTipoDeDocumento",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoTipoDeDocumento"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoTipoDeDocumento"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Guardado de el agregado de catalogos tipos de documento",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogosTiposDeDocumento"],
+        "summary": "Guardado de el agregado de catalogos tipos de documento",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoTipoDeDocumento",
+            "name": "AggregateCatalogoTipoDeDocumento",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoTipoDeDocumento"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoTipoDeDocumento"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Eliminacion de el agregado de catalogos tipos de documento",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogosTiposDeDocumento"],
+        "summary": "Eliminacion de el agregado de catalogos tipos de documento",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoTipoDeDocumento",
+            "name": "AggregateCatalogoTipoDeDocumento",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoTipoDeDocumento"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoTipoDeDocumento"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualizacion parcial de el agregado de catalogos tipos de documento",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CatalogosTiposDeDocumento"],
+        "summary": "Actualizacion parcial de el agregado de catalogos tipos de documento",
+        "parameters": [
+          {
+            "description": "Aggregate CatalogoTipoDeDocumento",
+            "name": "AggregateCatalogoTipoDeDocumento",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoTipoDeDocumento"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.CatalogoTipoDeDocumento"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/estructuras-reglas": {
+      "post": {
+        "description": "Inserta los registros de estructuras reglas",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EstructurasReglas"],
+        "summary": "Inserta los registros de estructuras reglas",
+        "parameters": [
+          {
+            "description": "Aggregate EstructuraRegla",
+            "name": "AggregateEstructuraRegla",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.EstructuraRegla"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.EstructuraRegla"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Elimina los registros de estructuras reglas",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EstructurasReglas"],
+        "summary": "Elimina los registros de estructuras reglas",
+        "parameters": [
+          {
+            "description": "Aggregate EstructuraRegla",
+            "name": "AggregateEstructuraRegla",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.EstructuraRegla"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.EstructuraRegla"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualiza parcialmente los registros de estructuras reglas",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EstructurasReglas"],
+        "summary": "Actualiza parcialmente los registros de estructuras reglas",
+        "parameters": [
+          {
+            "description": "Aggregate EstructuraRegla",
+            "name": "AggregateEstructuraRegla",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.EstructuraRegla"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.EstructuraRegla"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/formas-y-reportes": {
+      "post": {
+        "description": "Guardado de el agregado de formas y reportes",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FormasYReportes"],
+        "summary": "Guardado de el agregado de formas y reportes",
+        "parameters": [
+          {
+            "description": "Aggregate FormaYReporte",
+            "name": "AggregateFormaYReporte",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FormaYReporte"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FormaYReporte"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Eliminacion de el agregado de formas y reportes",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FormasYReportes"],
+        "summary": "Eliminacion de el agregado de formas y reportes",
+        "parameters": [
+          {
+            "description": "Aggregate FormaYReporte",
+            "name": "AggregateFormaYReporte",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FormaYReporte"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FormaYReporte"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualizacion parcial de el agregado de formas y reportes",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FormasYReportes"],
+        "summary": "Actualizacion parcial de el agregado de formas y reportes",
+        "parameters": [
+          {
+            "description": "Aggregate FormaYReporte",
+            "name": "AggregateFormaYReporte",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FormaYReporte"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FormaYReporte"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/funciones-linix": {
+      "put": {
+        "description": "Actualizacion de el agregado de funciones linix",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FuncionesLinix"],
+        "summary": "Actualizacion de el agregado de funciones linix",
+        "parameters": [
+          {
+            "description": "Aggregate FuncionLinix",
+            "name": "AggregateFuncionLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FuncionLinix"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FuncionLinix"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Guardado de el agregado de funciones linix",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FuncionesLinix"],
+        "summary": "Guardado de el agregado de funciones linix",
+        "parameters": [
+          {
+            "description": "Aggregate FuncionLinix",
+            "name": "AggregateFuncionLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FuncionLinix"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FuncionLinix"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Eliminacion de el agregado de funciones linix",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FuncionesLinix"],
+        "summary": "Eliminacion de el agregado de funciones linix",
+        "parameters": [
+          {
+            "description": "Aggregate FuncionLinix",
+            "name": "AggregateFuncionLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FuncionLinix"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FuncionLinix"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualizacion parcial de el agregado de funciones linix",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["FuncionesLinix"],
+        "summary": "Actualizacion parcial de el agregado de funciones linix",
+        "parameters": [
+          {
+            "description": "Aggregate FuncionLinix",
+            "name": "AggregateFuncionLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FuncionLinix"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.FuncionLinix"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/roles": {
+      "post": {
+        "description": "Guardado de el agregado de roles",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Roles"],
+        "summary": "Guardado de el agregado de roles",
+        "parameters": [
+          {
+            "description": "Aggregate Rol",
+            "name": "AggregateRol",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.Rol"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.Rol"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Eliminacion de el agregado de roles",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Roles"],
+        "summary": "Eliminacion de el agregado de roles",
+        "parameters": [
+          {
+            "description": "Aggregate Rol",
+            "name": "AggregateRol",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.Rol"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.Rol"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualizacion parcial de el agregado de roles",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Roles"],
+        "summary": "Actualizacion parcial de el agregado de roles",
+        "parameters": [
+          {
+            "description": "Aggregate Rol",
+            "name": "AggregateRol",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.Rol"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.Rol"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/tipos-de-movimiento-contable": {
+      "put": {
+        "description": "Actualizacion de el agregado de tipos de movimiento contable",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["TiposDeMovimientoContable"],
+        "summary": "Actualizacion de el agregado de tipos de movimiento contable",
+        "parameters": [
+          {
+            "description": "Aggregate TipoDeMovimientoContable",
+            "name": "AggregateTipoDeMovimientoContable",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.TipoDeMovimientoContable"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.TipoDeMovimientoContable"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Guardado de tipos de movimiento contable",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["TiposDeMovimientoContable"],
+        "summary": "Guardado de tipos de movimiento contable",
+        "parameters": [
+          {
+            "description": "Aggregate TipoDeMovimientoContable",
+            "name": "AggregateTipoDeMovimientoContable",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.TipoDeMovimientoContable"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.TipoDeMovimientoContable"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Eliminacion de el agregado de tipos de movimiento contable",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["TiposDeMovimientoContable"],
+        "summary": "Eliminacion de el agregado de tipos de movimiento contable",
+        "parameters": [
+          {
+            "description": "Aggregate TipoDeMovimientoContable",
+            "name": "AggregateTipoDeMovimientoContable",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.TipoDeMovimientoContable"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.TipoDeMovimientoContable"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Actualizacion parcial de el agregado de tipos de movimiento contable",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["TiposDeMovimientoContable"],
+        "summary": "Actualizacion parcial de el agregado de tipos de movimiento contable",
+        "parameters": [
+          {
+            "description": "Aggregate TipoDeMovimientoContable",
+            "name": "AggregateTipoDeMovimientoContable",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.TipoDeMovimientoContable"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoaggregatepersistence.TipoDeMovimientoContable"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "dtoaggregatepersistence.CasoDeUso": {
+      "type": "object",
+      "properties": {
+        "catalogoDeCasosDeUso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.CatalogoDeCasoDeUso"
+          }
+        },
+        "opcionesCsPorCasoDeUso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.OpcionCsPorCasoDeUso"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.OpcionPortalWebPorCasoDeUso"
+          }
+        },
+        "reportesCsPorCasoDeUso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.ReporteCsPorCasoDeUso"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.ReporteWebPorCasoDeUso"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.TipoDeDocumentoPorCasoDeUso"
+          }
+        }
+      }
+    },
+    "dtoaggregatepersistence.CatalogoOpcionMenu": {
+      "type": "object",
+      "properties": {
+        "catalogosOpcionesMenu": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocatalogoopcionmenu.CatalogoOpcionMenu"
+          }
+        }
+      }
+    },
+    "dtoaggregatepersistence.CatalogoReporteWeb": {
+      "type": "object",
+      "properties": {
+        "catalogoReportesWeb": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocatalogoreporteweb.CatalogoReporteWeb"
+          }
+        }
+      }
+    },
+    "dtoaggregatepersistence.CatalogoTipoDeDocumento": {
+      "type": "object",
+      "properties": {
+        "catalogosTiposDeDocumento": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocatalogotipodedocumento.CatalogoTipoDeDocumento"
+          }
+        }
+      }
+    },
+    "dtoaggregatepersistence.EstructuraRegla": {
+      "type": "object",
+      "properties": {
+        "catalogoDeClases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoestructurasreglas.CatalogoDeClase"
+          }
+        },
+        "columnasPorClase": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoestructurasreglas.ColumnaPorClase"
+          }
+        },
+        "columnasPorRegla": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoestructurasreglas.ColumnaPorRegla"
+          }
+        },
+        "reglas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoestructurasreglas.Regla"
+          }
+        }
+      }
+    },
+    "dtoaggregatepersistence.FormaYReporte": {
+      "type": "object",
+      "properties": {
+        "camposPorFormas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoformasyreportes.CampoPorForma"
+          }
+        },
+        "catalogosFormasYReportes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoformasyreportes.CatalogoFormaYReporte"
+          }
+        }
+      }
+    },
+    "dtoaggregatepersistence.FuncionLinix": {
+      "type": "object",
+      "properties": {
+        "funcionesLinix": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtofuncionlinix.FuncionLinix"
+          }
+        }
+      }
+    },
+    "dtoaggregatepersistence.Rol": {
+      "type": "object",
+      "properties": {
+        "casosDeUsoPorRol": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.CasoDeUsoPorRol"
+          }
+        },
+        "catalogoDeRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.CatalogoDeRol"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.CuentaAuxiliarPorRol"
+          }
+        },
+        "reglasDeNegocioPorRol": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.ReglaDeNegocioPorRol"
+          }
+        },
+        "tareasCrediboardPorRol": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.TareaCrediboardPorRol"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.TipoDeMovimientoContablePorRol"
+          }
+        }
+      }
+    },
+    "dtoaggregatepersistence.TipoDeMovimientoContable": {
+      "type": "object",
+      "properties": {
+        "tiposDeMovimientoContable": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtotipodemovimientocontable.TipoDeMovimientoContable"
+          }
+        }
+      }
+    },
+    "dtocasosdeuso.CatalogoDeCasoDeUso": {
+      "type": "object",
+      "required": [
+        "a_Publicc",
+        "i_Tipusec",
+        "k_Usecase",
+        "n_Descrip",
+        "n_Usecase"
+      ],
+      "properties": {
+        "a_Publicc": {
+          "description": "Codigo Publico",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "i_Tipusec": {
+          "description": "Tipo de caso de uso",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "n_Camprv": {
+          "description": "identifica el nombre del botón que habilita en la opción c/s",
+          "type": "string",
+          "maxLength": 60,
+          "minLength": 1
+        },
+        "n_Descrip": {
+          "description": "Descripcion",
+          "type": "string"
+        },
+        "n_Usecase": {
+          "description": "Nombre del caso de uso",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "opcionesCsPorCasoDeUso": {
+          "description": "opcion cs por caso de uso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.OpcionCsPorCasoDeUso"
+          }
+        },
+        "opcionesPortalWebPorCasoDeUso": {
+          "description": "opcion portal web por caso de uso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.OpcionPortalWebPorCasoDeUso"
+          }
+        },
+        "reportesCsPorCasoDeUso": {
+          "description": "reporte cs por caso de uso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.ReporteCsPorCasoDeUso"
+          }
+        },
+        "reportesWebPorCasoDeUso": {
+          "description": "reporte web por caso de uso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.ReporteWebPorCasoDeUso"
+          }
+        },
+        "tiposDeDocumentoPorCasoDeUso": {
+          "description": "tipo de documento por caso de uso",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtocasosdeuso.TipoDeDocumentoPorCasoDeUso"
+          }
+        }
+      }
+    },
+    "dtocasosdeuso.OpcionCsPorCasoDeUso": {
+      "type": "object",
+      "required": ["k_Opcion", "k_Usecase", "transactionOperation"],
+      "properties": {
+        "k_Opcion": {
+          "description": "Codigo de opcion",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtocasosdeuso.OpcionPortalWebPorCasoDeUso": {
+      "type": "object",
+      "required": ["k_Funcio", "k_Usecase", "transactionOperation"],
+      "properties": {
+        "k_Funcio": {
+          "description": "Codigo de la opción (boton o pestaña del portal web)",
+          "type": "string",
+          "maxLength": 5,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtocasosdeuso.ReporteCsPorCasoDeUso": {
+      "type": "object",
+      "required": ["k_Nforma", "k_Usecase", "transactionOperation"],
+      "properties": {
+        "k_Nforma": {
+          "description": "Nombre del reporte c/s",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtocasosdeuso.ReporteWebPorCasoDeUso": {
+      "type": "object",
+      "required": ["k_Report", "k_Usecase", "transactionOperation"],
+      "properties": {
+        "k_Report": {
+          "description": "Codigo de reporte",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtocasosdeuso.TipoDeDocumentoPorCasoDeUso": {
+      "type": "object",
+      "required": ["k_Docume", "k_Usecase", "transactionOperation"],
+      "properties": {
+        "k_Docume": {
+          "description": "Codigo tipo de documento",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtocatalogoopcionmenu.CatalogoOpcionMenu": {
+      "type": "object",
+      "required": ["k_Opcion", "n_Opcion", "o_Comand"],
+      "properties": {
+        "k_Nforma": {
+          "description": "Identificador de la forma relacionada con la opción del menú",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "k_Opcion": {
+          "description": "Codigo de la opcion",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "n_Descri": {
+          "description": "Descripcion",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "n_Opcion": {
+          "description": "Nombre de la opcion",
+          "type": "string",
+          "maxLength": 40,
+          "minLength": 1
+        },
+        "o_Comand": {
+          "description": "Comando que se debe ejecutar",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "o_Icono": {
+          "description": "Nombre del archivo del icono",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "o_Padre": {
+          "description": "Opcion de la que depende",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "q_Nivel": {
+          "description": "Nivel dentro de la jerarquia",
+          "type": "integer"
+        }
+      }
+    },
+    "dtocatalogoreporteweb.CatalogoReporteWeb": {
+      "type": "object",
+      "required": [
+        "i_Activo",
+        "i_Menu",
+        "i_Tiprep",
+        "k_Funcio",
+        "k_Report",
+        "n_Descri_Web",
+        "n_Report",
+        "o_Titulo"
+      ],
+      "properties": {
+        "i_Activo": {
+          "description": "Indicador que determina SI el nivel de criticidad esta activo o vigente. Asociado al dominio DM_ESTADO",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Ejeaut": {
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Menu": {
+          "description": "Indica si el reporte es utilizado como menu (con el indicador a Y)",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Pagina": {
+          "description": "Indica si el reporte usa paginacion Y para si, N para no",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Pestan": {
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Tiprep": {
+          "description": "Tipo de reporte. (MT matriz, LT Listado , FT Formato)",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "k_Formul": {
+          "description": "Codigo de formulario dinamico que reemplaza los parametros WE1890MFORMULA.K_FORMUL",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "k_Funcio": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "k_Report": {
+          "description": "Identificador del reporte",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "n_Descri_Web": {
+          "description": "Descripción para mostrar en la aplicación WEB",
+          "type": "string",
+          "maxLength": 250,
+          "minLength": 1
+        },
+        "n_Keypag": {
+          "description": "La llave primaria que se usara para paginar el reporte usando lazy loading, dejar nulo si no se va a usar lazy loading",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "n_Report": {
+          "description": "Descripción del reporte",
+          "type": "string",
+          "maxLength": 4000,
+          "minLength": 1
+        },
+        "n_Servic": {
+          "description": "Procedimiento pl que obtiene los datos del reporte",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "o_Titulo": {
+          "description": "Título del reporte",
+          "type": "string",
+          "maxLength": 4000,
+          "minLength": 1
+        }
+      }
+    },
+    "dtocatalogotipodedocumento.CatalogoTipoDeDocumento": {
+      "type": "object",
+      "required": [
+        "i_Ano",
+        "i_Dia",
+        "i_Ejecuc",
+        "i_Mes",
+        "i_Tipdto",
+        "k_Docume",
+        "n_Archivo",
+        "n_Desweb",
+        "n_Direct_Des",
+        "n_Direct_Gen",
+        "n_Docume",
+        "n_Extens"
+      ],
+      "properties": {
+        "f_Finrep": {
+          "description": "Fecha para la que se encuentra generado el último informe, sirve de base para establecer la cantidad de periodos que se muestran hacia atras. Se debe bucar el mecanismo para que se actualice con la generación de los informes",
+          "type": "string"
+        },
+        "i_Activo": {
+          "description": "Indicador de activo",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Ano": {
+          "description": "Indica si el año hace parte del nombre del documento",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Dia": {
+          "description": "Indica si el día  hace parte del  nombre del archivo",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Ejecuc": {
+          "description": "Forma de ejecución del reporte  Linea 'LI', 'BT' Batch",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Mes": {
+          "description": "Indica si el mes hace parte del  nombre del archivo",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Tipdto": {
+          "description": "Tipo de documento 'AS'= Documento para asociado, 'EM' Documento para empresa, 'GR' Documento General, 'GA' Documento general para asociado, 'GE' Documento general para empresa",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "k_Cladoc": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "k_Docume": {
+          "description": "Identificador del documento",
+          "type": "string",
+          "maxLength": 8,
+          "minLength": 1
+        },
+        "k_Nforma": {
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "n_Archivo": {
+          "description": "Nombre del archivo del documento",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "n_Desweb": {
+          "description": "Descripción del documento para presentar en la WEB",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "n_Direct_Des": {
+          "description": "Directorio para descargar los documentos",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "n_Direct_Gen": {
+          "description": "Directorio para generar los docuementos",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "n_Docume": {
+          "description": "Descripción del documento",
+          "type": "string",
+          "maxLength": 300,
+          "minLength": 1
+        },
+        "n_Extens": {
+          "description": "Extensión  del archivo del documento",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "q_Period": {
+          "description": "Cantidad de periodos hacia atras con respecto a la fecha f_finrep que se construyen para permitir seleccionar informes",
+          "type": "integer"
+        }
+      }
+    },
+    "dtoestructurasreglas.CatalogoDeClase": {
+      "type": "object",
+      "required": ["i_Activo", "i_Valida", "kiaplica", "kiclarng", "n_Regla"],
+      "properties": {
+        "columnasPorClase": {
+          "description": "columna por clase",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoestructurasreglas.ColumnaPorClase"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado de activo o inactivo",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Ubcrng": {
+          "description": "Indica si la Clase de Regla de Negocio se encuentra en la aplicación o en archivo plano",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Valida": {
+          "description": "Indica si la regla es validadora (Y) o no (N)",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "kiaplica": {
+          "description": "Aplicación",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "kiclarng": {
+          "description": "Clase de regla de negocio",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "n_Regla": {
+          "description": "Descripción regla",
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1
+        },
+        "reglas": {
+          "description": "regla",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoestructurasreglas.Regla"
+          }
+        }
+      }
+    },
+    "dtoestructurasreglas.ColumnaPorClase": {
+      "type": "object",
+      "required": [
+        "a_Column",
+        "i_Catrng",
+        "i_Operng",
+        "i_Tipdat",
+        "i_Valifk",
+        "k_Idcolum",
+        "kiclarng",
+        "transactionOperation"
+      ],
+      "properties": {
+        "a_Column": {
+          "description": "Nombre de la columns",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "i_Catrng": {
+          "description": "Categoría de la columna, asociada al dominio DM_CATRGN",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Discrim": {
+          "description": "Indicador discrim",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Operng": {
+          "description": "Operador que aplica, asociado al dominio DM_OPERNG",
+          "type": "string",
+          "maxLength": 4,
+          "minLength": 1
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato de la columna, asociado al dominio DM_TIPDAT_RNG",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Valifk": {
+          "description": "Validación de columna de regla de negocio contra dominio o llave foránea, relacionada con dominio DM_VALIFK",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Idcolum": {
+          "description": "Código interno asociado a secuencia IN2221K_SERIE",
+          "type": "integer"
+        },
+        "kiclarng": {
+          "description": "Clase de regla de negocio",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "n_Column": {
+          "description": "Descripción de la columna",
+          "type": "string",
+          "maxLength": 250,
+          "minLength": 1
+        },
+        "n_Label": {
+          "description": "Espacio descripcion",
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "n_Nombfk": {
+          "description": "Almacena nombre del dominio o llave foránea  para validar la columna de la regla",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtoestructurasreglas.ColumnaPorRegla": {
+      "type": "object",
+      "required": ["k_Idcolum", "k_Regla", "kiclarng", "transactionOperation"],
+      "properties": {
+        "k_Idcolum": {
+          "description": "Código interno asociado a secuencia IN2221K_SERIE",
+          "type": "integer"
+        },
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "kiclarng": {
+          "description": "Clase de la Regla de Negocio",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtoestructurasreglas.Regla": {
+      "type": "object",
+      "required": ["i_Cargue", "k_Regla", "kiclarng", "n_Regla"],
+      "properties": {
+        "columnasPorRegla": {
+          "description": "columna por regla",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoestructurasreglas.ColumnaPorRegla"
+          }
+        },
+        "i_Cargue": {
+          "description": "Indica si el uso de la regla de negocio se carga en memoria o no",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "k_Regla_Padre": {
+          "description": "Regla Padre a partir de la que fue creada la regla de negocio",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "kiclarng": {
+          "description": "Clase de la Regla de Negocio",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "n_Regla": {
+          "description": "Descripcion de la Regla de Negocio",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "o_Discrim": {
+          "description": "Codigo Discriminante",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtoformasyreportes.CampoPorForma": {
+      "type": "object",
+      "required": ["k_Ncampo", "k_Nforma", "n_Descri"],
+      "properties": {
+        "k_Ncampo": {
+          "description": "Nombre del campo en la forma",
+          "type": "string",
+          "maxLength": 40,
+          "minLength": 1
+        },
+        "k_Nforma": {
+          "description": "Nombre de la forma,reportes,procesos u otros",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "n_Descri": {
+          "description": "Descripcion del campo",
+          "type": "string",
+          "maxLength": 60,
+          "minLength": 1
+        },
+        "n_Hint": {
+          "description": "Decripcion de los campos LINIX (Propio de Sistemas en Linea)",
+          "type": "string",
+          "maxLength": 180,
+          "minLength": 1
+        },
+        "o_Icono": {
+          "description": "Nombre del icono para los botones de la forma",
+          "type": "string",
+          "maxLength": 60,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtoformasyreportes.CatalogoFormaYReporte": {
+      "type": "object",
+      "required": ["i_Tipofo", "k_Nforma", "n_Descri"],
+      "properties": {
+        "camposPorFormas": {
+          "description": "campo por forma",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoformasyreportes.CampoPorForma"
+          }
+        },
+        "i_Tipofo": {
+          "description": "Opciones posibles de los menús del sistema LINIX",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Nforma": {
+          "description": "Nombre de la forma,reportes,procesos u otros",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "n_Descri": {
+          "description": "Descripcion de la forma",
+          "type": "string",
+          "maxLength": 120,
+          "minLength": 1
+        },
+        "o_Codigo": {
+          "description": "Código descriptivo de la forma, proceso o reporte",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "dtofuncionlinix.FuncionLinix": {
+      "type": "object",
+      "required": ["i_Tipfun", "k_Funcio", "n_Funcio"],
+      "properties": {
+        "i_Tipfun": {
+          "description": "Aplicación a la que pertenece (Propio de Sistemas en Linea)",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Funcio": {
+          "description": "Código de la función",
+          "type": "string",
+          "maxLength": 5,
+          "minLength": 1
+        },
+        "k_Funmod": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "n_Descri": {
+          "description": "Descripción de la función",
+          "type": "string",
+          "maxLength": 400,
+          "minLength": 1
+        },
+        "n_Funcio": {
+          "description": "Descripción de la función",
+          "type": "string",
+          "maxLength": 45,
+          "minLength": 1
+        }
+      }
+    },
+    "dtoroles.CasoDeUsoPorRol": {
+      "type": "object",
+      "required": ["k_Rol", "k_Usecase", "transactionOperation"],
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Usecase": {
+          "description": "Codigo del caso de uso",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtoroles.CatalogoDeRol": {
+      "type": "object",
+      "required": ["i_Activo", "k_Rol", "n_Rol"],
+      "properties": {
+        "casosDeUsoPorRol": {
+          "description": "caso de uso por rol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.CasoDeUsoPorRol"
+          }
+        },
+        "cuentasAuxiliaresPorRol": {
+          "description": "cuenta auxiliar por rol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.CuentaAuxiliarPorRol"
+          }
+        },
+        "i_Activo": {
+          "description": "Estado",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipcon": {
+          "description": "Tipcon",
+          "type": "string",
+          "maxLength": 8,
+          "minLength": 1
+        },
+        "n_Rol": {
+          "description": "Nombre del rol",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        },
+        "n_Uso": {
+          "description": "Descripcion Uso",
+          "type": "string"
+        },
+        "reglasDeNegocioPorRol": {
+          "description": "regla de negocio por rol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.ReglaDeNegocioPorRol"
+          }
+        },
+        "tareasCrediboardPorRol": {
+          "description": "tarea crediboard por rol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.TareaCrediboardPorRol"
+          }
+        },
+        "tiposDeMovimientoContablePorRol": {
+          "description": "tipo de movimiento contable por rol",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtoroles.TipoDeMovimientoContablePorRol"
+          }
+        }
+      }
+    },
+    "dtoroles.CuentaAuxiliarPorRol": {
+      "type": "object",
+      "required": ["i_Tipent", "k_Codcta", "k_Rol", "transactionOperation"],
+      "properties": {
+        "i_Tipent": {
+          "description": "Tipent",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Codcta": {
+          "description": "Codcta",
+          "type": "string"
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtoroles.ReglaDeNegocioPorRol": {
+      "type": "object",
+      "required": ["k_Regla", "k_Rol", "transactionOperation"],
+      "properties": {
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtoroles.TareaCrediboardPorRol": {
+      "type": "object",
+      "required": ["k_Rol", "tarea", "transactionOperation"],
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "tarea": {
+          "description": "Nombre de la tarea",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtoroles.TipoDeMovimientoContablePorRol": {
+      "type": "object",
+      "required": ["k_Rol", "k_Tipmov", "transactionOperation"],
+      "properties": {
+        "k_Rol": {
+          "description": "Codigo del rol",
+          "type": "integer"
+        },
+        "k_Tipmov": {
+          "description": "Codigo tipo movimiento",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "transactionOperation": {
+          "description": "Type of transaction",
+          "maxLength": 14,
+          "minLength": 6,
+          "enum": ["Insert", "Update", "InsertOrUpdate", "Delete"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etransaoperation.Operation"
+            }
+          ]
+        }
+      }
+    },
+    "dtotipodemovimientocontable.TipoDeMovimientoContable": {
+      "type": "object",
+      "required": [
+        "i_Activo",
+        "i_Capcom",
+        "i_Cardet",
+        "i_Contab",
+        "i_Ctacob",
+        "i_Dosxmi",
+        "i_Fecapl",
+        "i_Gmf",
+        "i_Juridi",
+        "i_Modul1",
+        "i_Movaux",
+        "i_Movdif",
+        "i_Movesp",
+        "i_Movmon",
+        "i_Orden",
+        "i_Presup",
+        "i_Sucdet",
+        "i_Terdet",
+        "i_Valcom",
+        "i_Venci1",
+        "i_Venci2",
+        "k_Tipdoc",
+        "k_Tipmov",
+        "n_Tipmov"
+      ],
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Capcom": {
+          "description": "Indicador que determina SI se debe capturar un número de comprobante referncia en el movimiento. Util para capturar el número de la consignacion, el cual puede ser usado posteriormente por el proceso de consolidación bancaria",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Cardet": {
+          "description": "Determina si la cartera se captura por concepto",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Contab": {
+          "description": "Determina si el tipo de movimiento contabiliza",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Ctacob": {
+          "description": "Determina si el movimiento se va a deducir de la generación de una cuenta de cobro",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Dosxmi": {
+          "description": "Determina si el tipo de movimiento debe calcular el impuesto de emergencia economica, al generar los cheques de las ordenes de pago",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Fecapl": {
+          "description": "Determina si se digita una fecha de aplicacion diferente para cartera en el movimiento",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Gmf": {
+          "description": "INdicador que determina si a los documentos registrados con éste tipo de movimiento se les debe liquidar el 3 por mil",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Juridi": {
+          "description": "Indicador para saber si se pueden capturar  movimientos a obligaciones de cartera que estan en estado juridico",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Modul1": {
+          "description": "Modulo de movimientos de la ventana 1",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Modul2": {
+          "description": "Modulo de movimientos de la ventana 2",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Modul3": {
+          "description": "Modulo de movimiento de la ventana 3",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Modul4": {
+          "description": "Modulo de movimientos en la ventana 4",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Movaux": {
+          "description": "Indica de que tipo es el movimiento de auxilios AP Apropiacion, RC recorte, AD adición, MV movimiento auxilio, RV reversion",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Movdif": {
+          "description": "Indicador si se puede mover documentos soportes de tipo diferido en el movimiento",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Movesp": {
+          "description": "Tipos de movimientos con validaciones especiales",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Movmon": {
+          "description": "Indicador que determina la opción de movimientos en unidad alterna",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Natco1": {
+          "description": "Tipo de naturaleza",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Natco2": {
+          "description": "Naturaleza con la que quedan registrados los movimientos del módulo secudario o contraparte",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Natco3": {
+          "description": "Naturaleza con la que quedan registrados los movimientos",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Natco4": {
+          "description": "Naturaleza con que quedan registrados los movimientos",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Orden": {
+          "description": "Determina si se genera en forma automática la contraparte de la cuenta de orden",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Presup": {
+          "description": "Dtermina si el movimiento debe generarse en el presupuesto",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Sucdet": {
+          "description": "Determina si se captura la sucursal en el detalle contable",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Terdet": {
+          "description": "Determina si se pueden capturar movimientos para terceros diferentes",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Valcom": {
+          "description": "Se valida el comprobante con los Talonarios?",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Venci1": {
+          "description": "Afecta o no vencimientos segun aplicacion concepto 1",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Venci2": {
+          "description": "Afecta o no vencimientos segun aplicacion concepto 2",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Venci3": {
+          "description": "Afecta o no vencimientos dependiendo del tipo de movimiento del modulo 3",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Venci4": {
+          "description": "Afecta o no vencimientos dependiendo del modulo que escojan",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Codcon": {
+          "description": "Codigo del concepto",
+          "type": "string",
+          "maxLength": 16,
+          "minLength": 1
+        },
+        "k_Forpag": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Tipdoc": {
+          "description": "Codigo tipo de documento",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Tipmov": {
+          "description": "Codigo tipo movimiento",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Tipmov_Pre": {
+          "description": "Codigo del Tipo de documento a utilizar si se genera interface con el modulo de Presupuesto",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "n_Tipmov": {
+          "description": "Descripcion tipo movimiento",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "etransaoperation.Operation": {
+      "type": "string",
+      "enum": ["Insert", "Update", "PartialUpdate", "InsertOrUpdate", "Delete"],
+      "x-enum-varnames": [
+        "Insert",
+        "Update",
+        "PartialUpdate",
+        "InsertOrUpdate",
+        "Delete"
+      ]
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

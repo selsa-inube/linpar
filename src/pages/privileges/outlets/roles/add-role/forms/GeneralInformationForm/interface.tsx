@@ -1,32 +1,18 @@
-import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
 import {
   Stack,
-  Text,
   Textfield,
   Textarea,
-  Icon,
   Grid,
   useMediaQuery,
 } from "@inube/design-system";
 
-import { FormButtons } from "@components/forms/submit/FormButtons";
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { SearchUserCard } from "@components/cards/SearchUserCard";
-
-import { IGeneralInformationForm } from ".";
+import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
-  loading: boolean;
-  withSubmitButtons?: boolean;
-  showMessage: IMessageState;
-  handleCloseSectionMessage: () => void;
-  hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
-  formInvalid: boolean;
-  handleSubmitForm: () => void;
-  handleChangeForm: (name: string, values: string) => void;
-  readOnly?: boolean;
+  loading?: boolean;
+  handleSubmit: (dataSelect: { [key: string]: string | number }) => void;
   linixUseCases: Record<string, unknown>[];
 }
 
@@ -34,147 +20,70 @@ const searchData = {
   "Digite el código o nombre de la aplicación.": "",
 };
 
-function RenderFormFields(
-  formik: FormikValues,
-  loading: boolean,
-  formInvalid: boolean,
-  handleChangeForm: (name: string, values: string) => void,
-  linixUseCases: Record<string, unknown>[],
-  readOnly?: boolean
-) {
-  const mediaQuerie = "(max-width: 744px)";
-  const matches = useMediaQuery(mediaQuerie);
+export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
+  const { formik, handleSubmit, linixUseCases } = props;
+
+  const isMobile = useMediaQuery("(max-width: 750px)");
 
   return (
-    <Grid
-      templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
-      gap="s0 s300"
-      width={"100%"}
-      autoRows="unset"
-    >
-      <Stack
-        direction="column"
-        justifyContent="space-between"
-        padding="s050 s0"
+    <form>
+      <Grid
+        templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
+        gap="s0 s300"
+        width={"100%"}
+        autoRows="unset"
       >
-        <Textfield
-          label="Nombre Rol"
-          placeholder="Nombe del rol"
-          name="roleName"
-          id="roleName"
-          value={formik.values.roleName}
+        <Stack
+          direction="column"
+          justifyContent="space-between"
+          padding="s050 s0"
+        >
+          <Textfield
+            label="Nombre Rol"
+            placeholder="Nombe del rol"
+            name="roleName"
+            id="roleName"
+            value={formik.values.roleName}
+            type="text"
+            size="compact"
+            fullwidth
+            onChange={formik.handleChange}
+          />
+
+          <SearchUserCard
+            id="aplication"
+            label="Aplicación"
+            placeholder="Seleccione una opción"
+            name="aplication"
+            title="Búsqueda de aplicación"
+            infoTitle="Buscar la aplicación para asignar el rol."
+            idModal="searchField"
+            nameModal="searchField"
+            labelModal="Digite el código o nombre de la aplicación."
+            placeholderModal="Digite el código o nombre de la aplicación."
+            onUserSelect={handleSubmit}
+            userData={linixUseCases}
+            searchFieldData={searchData}
+            onReset={() => {}}
+            idLabel="k_Usecase"
+            nameLabel="n_Usecase"
+            selectedId={formik.values.aplication}
+          />
+        </Stack>
+
+        <Textarea
+          label="Descripción"
+          placeholder="Ingresar descripción del rol."
+          name="description"
+          id="description"
+          value={formik.values.description}
           type="text"
           size="compact"
           fullwidth
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleChangeForm(e.target.name, e.target.value)
-          }
+          maxLength={20}
+          onChange={formik.handleChange}
         />
-
-        <SearchUserCard
-          id="aplication"
-          label="Aplicación"
-          placeholder="Seleccione una opción"
-          name="aplication"
-          title="Búsqueda de aplicación"
-          infoTitle="Buscar la aplicación para asignar el rol."
-          idModal="searchField"
-          nameModal="searchField"
-          labelModal="Digite el código o nombre de la aplicación."
-          placeholderModal="Digite el código o nombre de la aplicación."
-          onUserSelect={(info) =>
-            handleChangeForm("aplication", info.k_Usecase as string)
-          }
-          userData={linixUseCases}
-          searchFieldData={searchData}
-          onReset={() => {}}
-          idLabel="k_Usecase"
-          nameLabel="n_Usecase"
-          selectedId={formik.values.aplication}
-        />
-      </Stack>
-
-      <Textarea
-        label="Descripción"
-        placeholder="Ingresar descripción del rol."
-        name="description"
-        id="description"
-        value={formik.values.description}
-        type="text"
-        size="compact"
-        fullwidth
-        maxLength={20}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleChangeForm(e.target.name, e.target.value)
-        }
-      />
-
-      <Stack direction="column" gap="8px">
-        {formik.errors.position && formInvalid && (
-          <Stack alignItems="center" margin="s0 s0 s0 s150">
-            <Icon
-              appearance={"error"}
-              icon={<MdOutlineError />}
-              spacing="wide"
-              size="14px"
-              shape="circle"
-            />
-            <Text size="small" margin="8px 0px 0px 4px" appearance="error">
-              ({formik.errors.position})
-            </Text>
-          </Stack>
-        )}
-      </Stack>
-    </Grid>
+      </Grid>
+    </form>
   );
 }
-
-function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const {
-    formik,
-    loading,
-    withSubmitButtons,
-    hasChanges,
-    formInvalid,
-    handleSubmitForm,
-    handleChangeForm,
-    readOnly,
-    linixUseCases,
-  } = props;
-
-  if (withSubmitButtons) {
-    return (
-      <>
-        <FormButtons
-          handleSubmit={handleSubmitForm}
-          handleReset={formik.resetForm}
-          disabledButtons={!hasChanges(formik.values)}
-          loading={loading}
-        >
-          {RenderFormFields(
-            formik,
-            loading,
-            formInvalid,
-            handleChangeForm,
-            linixUseCases
-          )}
-        </FormButtons>
-      </>
-    );
-  }
-
-  return (
-    <>
-      {RenderFormFields(
-        formik,
-        loading,
-        formInvalid,
-        handleChangeForm,
-        linixUseCases,
-        readOnly
-      )}
-    </>
-  );
-}
-
-export { GeneralInformationFormUI };

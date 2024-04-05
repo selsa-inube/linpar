@@ -1,34 +1,46 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FormikProps } from "formik";
 
+import { getData } from "@src/mocks/utils/dataMock.service";
+import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
+
+import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
+import { addRoleStepsRules } from "./utils";
 import { stepsAddRol } from "./config/addRol.config";
 import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
+import { IAncillaryAccountsForm } from "./forms/AncillaryAccounts";
 import { AddRolUI } from "./interface";
-import { IFormAddRole } from "../types";
-import { getData } from "@src/mocks/utils/dataMock.service";
-import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
+import { initialValuesAddRol } from "./config/initialValues";
+
+const steps = Object.values(stepsAddRol);
 
 export function AddRol() {
   const [currentStep, setCurrentStep] = useState<number>(
     stepsAddRol.generalInformation.id
   );
-  const [showModal, setShowModal] = useState(false);
+
+  const [isAddRoleFormValid, setIsAddRoleFormValid] = useState(false);
 
   const [dataAddRoleLinixForm, setDataAddRoleLinixForm] =
     useState<IFormAddRole>({
       generalInformation: {
         isValid: true,
         values: {
-          roleName: "",
-          description: "",
-          aplication: "",
+          roleName: initialValuesAddRol.generalInformation.values.roleName,
+          description:
+            initialValuesAddRol.generalInformation.values.description,
+          aplication: initialValuesAddRol.generalInformation.values.aplication,
         },
       },
       ancillaryAccounts: {
         isValid: false,
         values: {
-          officialSector: "",
-          commercialSector: "",
-          solidaritySector: "",
+          officialSector:
+            initialValuesAddRol.ancillaryAccounts.values.officialSector,
+          commercialSector:
+            initialValuesAddRol.ancillaryAccounts.values.commercialSector,
+          solidaritySector:
+            initialValuesAddRol.ancillaryAccounts.values.solidaritySector,
         },
       },
       transactionTypes: {
@@ -65,8 +77,8 @@ export function AddRol() {
         businessRules: {
           values: dataToAssignmentFormEntry({
             dataOptions: linixRolesFetch as Record<string, unknown>[],
-            idLabel: "k_rol",
-            valueLabel: "n_rol",
+            idLabel: "k_Rol",
+            valueLabel: "n_Rol",
             isActiveLabel: "asignado",
           }),
         },
@@ -102,7 +114,55 @@ export function AddRol() {
     });
   }, []);
 
-  const handleUptdateForm = (values: IGeneralInformationForm) => {
+  const generalInformationRef =
+    useRef<FormikProps<IGeneralInformationForm>>(null);
+  const ancillaryAccountsRef =
+    useRef<FormikProps<IAncillaryAccountsForm>>(null);
+
+  const formReferences: IFormAddRoleRef = {
+    generalInformation: generalInformationRef,
+    ancillaryAccounts: ancillaryAccountsRef,
+  };
+
+  const handleStepChange = (stepId: number) => {
+    const newCreditDestinationRequest = addRoleStepsRules(
+      currentStep,
+      dataAddRoleLinixForm,
+      formReferences,
+      isAddRoleFormValid
+    );
+    setDataAddRoleLinixForm(newCreditDestinationRequest);
+
+    const changeStepKey = Object.entries(stepsAddRol).find(
+      ([, config]) => config.id === stepId
+    )?.[0];
+
+    if (!changeStepKey) return;
+
+    const changeIsVerification = stepId === steps.length;
+    setIsAddRoleFormValid(
+      changeIsVerification ||
+        newCreditDestinationRequest[changeStepKey as keyof IFormAddRole]
+          ?.isValid ||
+        false
+    );
+
+    setCurrentStep(stepId);
+
+    document.getElementsByTagName("main")[0].scrollTo(0, 0);
+  };
+
+  const handleNextStep = () => {
+    if (currentStep + 1 <= steps.length) {
+      handleStepChange(currentStep + 1);
+    }
+  };
+
+  const handlePreviousStep = () => {
+    handleStepChange(currentStep - 1);
+  };
+
+  const handleUpdateDataSwitchstep = (values: IInitialiceFormRole[]) => {
     const stepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.id === currentStep
     )?.[0];
@@ -113,50 +173,20 @@ export function AddRol() {
         [stepKey]: { values: values },
       }));
     }
-  };
-
-  const handleUpdateTransactionTypes = (
-    values: { [key: string]: string | boolean }[]
-  ) => {
-    const stepKey = Object.entries(stepsAddRol).find(
-      ([, config]) => config.id === currentStep
-    )?.[0];
-
-    if (stepKey) {
-      setDataAddRoleLinixForm((prevFormData) => ({
-        ...prevFormData,
-        [stepKey]: { values: values },
-      }));
-    }
-  };
-
-  const handleNextStep = (step: number) => {
-    setCurrentStep(step + 1);
-  };
-
-  const handlePrevStep = (step: number) => {
-    setCurrentStep(step - 1);
-  };
-
-  const handleCompleteInvitation = () => {
-    return;
-  };
-
-  const handleToggleModal = () => {
-    setShowModal((prevShowModal) => !prevShowModal);
   };
 
   return (
     <AddRolUI
-      handlePrevStep={handlePrevStep}
-      handleNextStep={handleNextStep}
+      steps={steps}
+      addRoleFormValid={dataAddRoleLinixForm}
       currentStep={currentStep}
-      handleToggleModal={handleToggleModal}
-      handleCompleteInvitation={handleCompleteInvitation}
-      showModal={showModal}
-      dataForm={dataAddRoleLinixForm}
-      handleUpdateGeneralInformation={handleUptdateForm}
-      handleUpdateTransactionTypes={handleUpdateTransactionTypes}
+      isAddRoleFormValid={isAddRoleFormValid}
+      handleNextStep={handleNextStep}
+      handlePreviousStep={handlePreviousStep}
+      setAddRoleFormValid={setIsAddRoleFormValid}
+      formReferences={formReferences}
+      handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
+      setCurrentStep={setCurrentStep}
     />
   );
 }
