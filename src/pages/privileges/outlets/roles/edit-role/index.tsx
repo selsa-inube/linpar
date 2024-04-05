@@ -33,21 +33,12 @@ export const EditRole = () => {
     k_Tipcon: "",
     n_Rol: "",
     n_Uso: "",
+    cuentasAuxiliaresPorRol: [],
+    casosDeUsoPorRol: [],
+    reglasDeNegocioPorRol: [],
+    tareasCrediboardPorRol: [],
+    tiposDeMovimientoContablePorRol: [],
   });
-  /* 
-  useEffect(() => {
-    getData("linix-roles")
-      .then((data) => {
-        if (Array.isArray(data) && data !== null && data !== undefined) {
-          const rol: IRol = data.find((itemRol) => itemRol.k_Rol === rol_id);
-          setEditData((prev) => ({ ...prev, ...rol }));
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      });
-  }, [rol_id]);
- */
 
   useEffect(() => {
     setLoading(true);
@@ -67,11 +58,65 @@ export const EditRole = () => {
       });
   }, [rol_id]);
 
+  useEffect(() => {
+    setLoading(true);
+
+    getData("documents")
+      .then((documentsFetch) => {
+        if (
+          Array.isArray(documentsFetch) &&
+          documentsFetch !== null &&
+          documentsFetch !== undefined
+        ) {
+          const documents = documentsFetch.map((document) => ({
+            k_Tipmov: document.NOMBRE,
+            k_Rol: document.CODIGO,
+          }));
+          setEditData((prevData) => ({
+            ...prevData,
+            tiposDeMovimientoContablePorRol: documents,
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+
+    getData("web-options")
+      .then((linixRolesFetch) => {
+        if (
+          Array.isArray(linixRolesFetch) &&
+          linixRolesFetch !== null &&
+          linixRolesFetch !== undefined
+        ) {
+          const documents = linixRolesFetch.map((linixRolFetch) => ({
+            k_Rol: linixRolFetch.k_opcion,
+            tarea: linixRolFetch.Nombre_opcion,
+          }));
+          setEditData((prevData) => ({
+            ...prevData,
+            tareasCrediboardPorRol: documents,
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   const handleTabChange = (tabId: string) => {
     setSelectedTab(tabId);
   };
-
-  console.log(editData, "data que se envia para renderizar");
 
   const valuesGeneralInformation = {
     roleName: editData.k_Rol,
@@ -79,7 +124,40 @@ export const EditRole = () => {
     aplication: editData.k_Tipcon,
   };
 
-  console.log(valuesGeneralInformation, "valors para general informacin");
+  const valuesAncillaryAccounts = {
+    officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta,
+    commercialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta,
+    solidaritySector: "",
+  };
+
+  const valuesTransactionTypes = editData?.tiposDeMovimientoContablePorRol?.map(
+    (transactionTypes) => ({
+      id: transactionTypes.k_Rol,
+      value: transactionTypes.k_Tipmov,
+      isActive: false,
+    })
+  );
+
+  const valuesBusinessRules = editData?.tareasCrediboardPorRol?.map(
+    (businessRol) => ({
+      id: businessRol.k_Rol,
+      value: businessRol.tarea,
+      isActive: false,
+    })
+  );
+
+  const handleUpdateDataSwitchstep = (values: IRol[]) => {
+    const stepKey = Object.entries(stepsAddRol).find(
+      ([, config]) => config.label === selectedTab
+    )?.[0];
+
+    if (stepKey) {
+      setEditData((prevFormData) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
+    }
+  };
 
   return (
     <EditRoleUI
@@ -89,6 +167,10 @@ export const EditRole = () => {
       dataTabs={Tabs}
       smallScreen={smallScreen}
       loading={loading}
+      valuesAncillaryAccounts={valuesAncillaryAccounts}
+      valuesTransactionTypes={valuesTransactionTypes}
+      handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
+      valuesBusinessRules={valuesBusinessRules}
       /*  
       handleTabChange={handleTabChange}
       editData={editData}

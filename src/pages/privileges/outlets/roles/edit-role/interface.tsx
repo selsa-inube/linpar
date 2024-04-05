@@ -8,8 +8,8 @@ import {
 } from "@inube/design-system";
 import { PageTitle } from "@src/components/PageTitle";
 import { GeneralInformationForm } from "../add-role/forms/GeneralInformationForm";
-//import { AncillaryAccountsForm } from "../add-role/forms/AncillaryAccounts";
-//import { InitializerForm } from "../../forms/InitializerForm";
+import { AncillaryAccountsForm } from "../add-role/forms/AncillaryAccounts";
+import { InitializerForm } from "../../forms/InitializerForm";
 import { editRolConfig, stepsAddRol } from "../add-role/config/addRol.config";
 
 interface ITabs {
@@ -25,11 +25,25 @@ interface IEditRoleUIProps {
   selectedTab: string;
   smallScreen: boolean;
   loading: boolean;
+  valuesAncillaryAccounts: any;
+  valuesTransactionTypes: any;
+  valuesBusinessRules: any;
+  handleUpdateDataSwitchstep: (values: any) => void;
 }
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
-  const { data, onTabChange, selectedTab, dataTabs, smallScreen, loading } =
-    props;
+  const {
+    data,
+    onTabChange,
+    selectedTab,
+    dataTabs,
+    smallScreen,
+    loading,
+    valuesAncillaryAccounts,
+    valuesTransactionTypes,
+    valuesBusinessRules,
+    handleUpdateDataSwitchstep,
+  } = props;
 
   return loading ? (
     <SkeletonLine animated />
@@ -60,6 +74,35 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
           {selectedTab === stepsAddRol.generalInformation.label && (
             <GeneralInformationForm initialValues={data} />
           )}
+
+          {selectedTab === stepsAddRol.auxiliaryAccounts.label && (
+            <AncillaryAccountsForm initialValues={valuesAncillaryAccounts} />
+          )}
+
+          {selectedTab === stepsAddRol.transactionTypes.label && (
+            <InitializerForm
+              dataOptionsForms={valuesTransactionTypes}
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
+          )}
+          {selectedTab === stepsAddRol.businessRules.label && (
+            <InitializerForm
+              dataOptionsForms={valuesBusinessRules}
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
+          )}
+          {/* {selectedTab === stepsAddRol.crediboardTasks.label && (
+            <InitializerForm
+              dataOptionsForms={crediboardTasksValues}
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
+          )}
+          {selectedTab === stepsAddRol.useCases.label && (
+            <InitializerForm
+              dataOptionsForms={useCasesValues}
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
+          )} */}
         </>
         <Stack gap="16px" justifyContent="flex-end">
           <Button
