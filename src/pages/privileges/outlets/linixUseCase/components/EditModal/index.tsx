@@ -3,13 +3,11 @@ import { useParams } from "react-router-dom";
 
 import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { getData } from "@mocks/utils/dataMock.service";
 
 import { EditUserUI } from "./interface";
 import { UseCase } from "../../types";
-
 import {
   IFormAddLinixUseCase,
   dataToAssignmentFormEntry,
@@ -25,9 +23,6 @@ function EditCaseLinix() {
     show: false,
     continueTab: "",
   });
-  const message: IUsersMessage = {
-    visible: false,
-  };
 
   const [formData, setFormData] = useState<IFormAddLinixUseCase>({
     generalInformation: {
@@ -245,7 +240,6 @@ function EditCaseLinix() {
       selectedTab={selectedTab}
       formData={formData}
       handleTabChange={handleTabChange}
-      message={message}
       editData={editData}
       handleSubmit={handleSubmit}
       controlModal={controlModal}

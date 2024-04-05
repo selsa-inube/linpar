@@ -18,6 +18,7 @@ import {
   IGeneralInformationEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
+
 import { generalInfoMessages } from "./config/messages.config";
 import { StyledMessageContainer, StyledSelectContainer } from "./styles";
 

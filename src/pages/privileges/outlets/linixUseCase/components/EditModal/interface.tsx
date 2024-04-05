@@ -9,7 +9,6 @@ import {
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { GeneralInformationForm } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/ClientServerButtonSelection";
@@ -20,7 +19,6 @@ import {
 
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
-
 import { editLinixUseCaseConfig } from "./config/editLinuxUseCase.config";
 
 interface IControlModal {
@@ -37,7 +35,6 @@ interface EditUserUIProps {
   handleCloseModal: () => void;
   handleDataChange: (hasChanges: boolean) => void;
   handleContinueTab: () => void;
-  message: IMessageState;
   webOptions: Record<string, unknown>[];
   csOptions: Record<string, unknown>[];
 }
