@@ -136,7 +136,7 @@ const strokesFormsConfig = {
   },
   divider: {
     description:
-      "Las líneas de tipo Spinner son usadas en los estados de carga, para indicarle al usuario que hay un tiempo de espera. Este cambio modificara solo el color de la senda, la línea que realiza la rotación está determinado por los tokens de color definidos en Primario, Error, Advertencia, Éxito, Información y Ayuda.",
+      "Los divisores se usan para reducir el espacio que ocupa un grupos de información, el divisor se expande o contrae para mostrar u ocultar contenido respectivamente. Este cambio modificará solo el color de la línea. Las líneas de tipo primario se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
     status: {
       regular: {
         title: "Regular",
@@ -256,6 +256,14 @@ const strokesFormsConfig = {
   },
 };
 
+const mockDivider = {
+  0: {
+    title: "Divisor 1",
+    content:
+      "Cras viverra sed ipsum ac interdum. Ut non tempor odio. Sed vel felis nec augue vehicula facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet massa commodo, sodales nibh sed, vestibulum mauris. Maecenas ac sem ac metus lobortis rutrum.",
+  },
+};
+
 const strokesMessagesConfig = {
   success: {
     id: 1,
@@ -273,4 +281,4 @@ const strokesMessagesConfig = {
   },
 };
 
-export { strokesFormsConfig, strokesMessagesConfig };
+export { strokesFormsConfig, strokesMessagesConfig, mockDivider };

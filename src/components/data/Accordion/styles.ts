@@ -12,8 +12,7 @@ export const StyledContainer = styled.div`
   align-items: flex-start;
   border: 1px solid
     ${({ theme }) =>
-      theme.color?.stroke?.divider?.regular ||
-      inube.color.stroke.divider.regular};
+      theme.color?.stroke?.dark?.regular || inube.color.stroke.dark.regular};
 `;
 
 export const StyledHead = styled.div`
