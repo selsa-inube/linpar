@@ -27,7 +27,9 @@ interface IEditRoleUIProps {
   loading: boolean;
   valuesAncillaryAccounts: any;
   valuesTransactionTypes: any;
-  valuesBusinessRules: any;
+  valuesBusinessRules?: any;
+  valuesCreditboardTasks?: any;
+  valuesUseCases: any;
   handleUpdateDataSwitchstep: (values: any) => void;
 }
 
@@ -41,7 +43,8 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     loading,
     valuesAncillaryAccounts,
     valuesTransactionTypes,
-    valuesBusinessRules,
+    valuesCreditboardTasks,
+    valuesUseCases,
     handleUpdateDataSwitchstep,
   } = props;
 
@@ -85,24 +88,24 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               handleSubmit={handleUpdateDataSwitchstep}
             />
           )}
-          {selectedTab === stepsAddRol.businessRules.label && (
+          {/* {selectedTab === stepsAddRol.businessRules.label && (
             <InitializerForm
               dataOptionsForms={valuesBusinessRules}
               handleSubmit={handleUpdateDataSwitchstep}
             />
-          )}
-          {/* {selectedTab === stepsAddRol.crediboardTasks.label && (
+          )} */}
+          {selectedTab === stepsAddRol.crediboardTasks.label && (
             <InitializerForm
-              dataOptionsForms={crediboardTasksValues}
+              dataOptionsForms={valuesCreditboardTasks}
               handleSubmit={handleUpdateDataSwitchstep}
             />
           )}
           {selectedTab === stepsAddRol.useCases.label && (
             <InitializerForm
-              dataOptionsForms={useCasesValues}
+              dataOptionsForms={valuesUseCases}
               handleSubmit={handleUpdateDataSwitchstep}
             />
-          )} */}
+          )}
         </>
         <Stack gap="16px" justifyContent="flex-end">
           <Button

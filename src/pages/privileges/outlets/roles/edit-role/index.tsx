@@ -59,8 +59,6 @@ export const EditRole = () => {
   }, [rol_id]);
 
   useEffect(() => {
-    setLoading(true);
-
     getData("documents")
       .then((documentsFetch) => {
         if (
@@ -80,14 +78,7 @@ export const EditRole = () => {
       })
       .catch((error) => {
         console.error(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
       });
-  }, []);
-
-  useEffect(() => {
-    setLoading(true);
 
     getData("web-options")
       .then((linixRolesFetch) => {
@@ -108,10 +99,24 @@ export const EditRole = () => {
       })
       .catch((error) => {
         console.error(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
       });
+
+    getData("linix-use-cases").then((linixRolesFetch) => {
+      if (
+        Array.isArray(linixRolesFetch) &&
+        linixRolesFetch !== null &&
+        linixRolesFetch !== undefined
+      ) {
+        const documents = linixRolesFetch.map((linixRolFetch) => ({
+          k_Rol: linixRolFetch.k_Usecase,
+          k_Usecase: linixRolFetch.n_Usecase,
+        }));
+        setEditData((prevData) => ({
+          ...prevData,
+          casosDeUsoPorRol: documents,
+        }));
+      }
+    });
   }, []);
 
   const handleTabChange = (tabId: string) => {
@@ -138,13 +143,27 @@ export const EditRole = () => {
     })
   );
 
-  const valuesBusinessRules = editData?.tareasCrediboardPorRol?.map(
+  /*  const valuesBusinessRules = editData?.tareasCrediboardPorRol?.map(
     (businessRol) => ({
       id: businessRol.k_Rol,
       value: businessRol.tarea,
       isActive: false,
     })
   );
+ */
+  const valuesCreditboardTasks = editData?.tareasCrediboardPorRol?.map(
+    (creditboardTask) => ({
+      id: creditboardTask.k_Rol,
+      value: creditboardTask.tarea,
+      isActive: false,
+    })
+  );
+
+  const valuesUseCases = editData?.casosDeUsoPorRol?.map((useCase) => ({
+    id: useCase.k_Rol,
+    value: useCase.k_Usecase,
+    isActive: false,
+  }));
 
   const handleUpdateDataSwitchstep = (values: IRol[]) => {
     const stepKey = Object.entries(stepsAddRol).find(
@@ -170,15 +189,9 @@ export const EditRole = () => {
       valuesAncillaryAccounts={valuesAncillaryAccounts}
       valuesTransactionTypes={valuesTransactionTypes}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
-      valuesBusinessRules={valuesBusinessRules}
-      /*  
-      handleTabChange={handleTabChange}
-      editData={editData}
-      handleSubmit={handleSubmit}
-      controlModal={controlModal}
-      handleDataChange={handleDataChange}
-      handleCloseModal={handleCloseModal}
-      handleContinueTab={handleContinueTab} */
+      //valuesBusinessRules={valuesBusinessRules}
+      valuesUseCases={valuesUseCases}
+      valuesCreditboardTasks={valuesCreditboardTasks}
     />
   );
 };
