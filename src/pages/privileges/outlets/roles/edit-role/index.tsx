@@ -50,7 +50,7 @@ export const EditRole = () => {
  */
 
   useEffect(() => {
-    setLoading(true); // Activar el estado de carga
+    setLoading(true);
 
     getData("linix-roles")
       .then((data) => {
@@ -63,7 +63,7 @@ export const EditRole = () => {
         console.error(error.message);
       })
       .finally(() => {
-        setLoading(false); // Desactivar el estado de carga una vez que se ha completado la obtención de datos
+        setLoading(false);
       });
   }, [rol_id]);
 
