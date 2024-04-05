@@ -26,21 +26,23 @@ export function AddRol() {
       generalInformation: {
         isValid: true,
         values: {
-          roleName: initialValuesAddRol.generalInformation.values.roleName,
+          roleName:
+            initialValuesAddRol.generalInformation.values.roleName.trim(),
           description:
-            initialValuesAddRol.generalInformation.values.description,
-          aplication: initialValuesAddRol.generalInformation.values.aplication,
+            initialValuesAddRol.generalInformation.values.description.trim(),
+          aplication:
+            initialValuesAddRol.generalInformation.values.aplication.trim(),
         },
       },
       ancillaryAccounts: {
         isValid: false,
         values: {
           officialSector:
-            initialValuesAddRol.ancillaryAccounts.values.officialSector,
+            initialValuesAddRol.ancillaryAccounts.values.officialSector.trim(),
           commercialSector:
-            initialValuesAddRol.ancillaryAccounts.values.commercialSector,
+            initialValuesAddRol.ancillaryAccounts.values.commercialSector.trim(),
           solidaritySector:
-            initialValuesAddRol.ancillaryAccounts.values.solidaritySector,
+            initialValuesAddRol.ancillaryAccounts.values.solidaritySector.trim(),
         },
       },
       transactionTypes: {
