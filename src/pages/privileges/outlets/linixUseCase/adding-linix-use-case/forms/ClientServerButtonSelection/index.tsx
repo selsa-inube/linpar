@@ -7,7 +7,7 @@ import { getData } from "@mocks/utils/dataMock.service";
 import {
   IHandleChangeFormData,
   IClientServerButton,
-} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
+} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 
 import { ClientServerButtonSelectionUI } from "./interface";
 

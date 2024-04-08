@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { FormikProps } from "formik";
 
 import { getData } from "@mocks/utils/dataMock.service";
-import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
-
-interface DataToAssignmentFormEntryProps {
-  dataOptions: Record<string, unknown>[];
-  idLabel: string;
-  valueLabel: string;
-  isActiveLabel: string;
-}
+import {
+  DataToAssignmentFormEntryProps,
+  IGeneralInformation,
+  IFormAddLinixUseCase,
+  IHandleChangeFormData,
+  IFormAddLinixUseCaseRef,
+} from "./types";
 
 export function dataToAssignmentFormEntry(
   props: DataToAssignmentFormEntryProps
@@ -23,49 +23,6 @@ export function dataToAssignmentFormEntry(
     id: String(dataOption[idLabel]),
   }));
 }
-
-export interface IGeneralInformation {
-  n_Usecase: string;
-  n_Descrip: string;
-  i_Tipusec: string;
-  k_Funcio: string;
-  k_Opcion: string;
-}
-
-export interface IClientServerButton {
-  csButtonOption: string;
-}
-
-export interface IFormAddLinixUseCase {
-  generalInformation: {
-    isValid: boolean;
-    values: IGeneralInformation;
-  };
-  clientServerButton: {
-    isValid: boolean;
-    values: IClientServerButton;
-  };
-  downloadableDocuments: {
-    values: IAssignmentFormEntry[];
-  };
-  webReports: {
-    values: IAssignmentFormEntry[];
-  };
-  webOptions: {
-    values: IAssignmentFormEntry[];
-  };
-  clientServerReports: {
-    values: IAssignmentFormEntry[];
-  };
-  clientServerOptions: {
-    values: IAssignmentFormEntry[];
-  };
-}
-
-export type IHandleChangeFormData =
-  | IGeneralInformation
-  | IClientServerButton
-  | IAssignmentFormEntry[];
 
 function AddingLinixUseCase() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -246,6 +203,12 @@ function AddingLinixUseCase() {
     }
   };
 
+  const generalInformationRef = useRef<FormikProps<IGeneralInformation>>(null);
+
+  const formReferences: IFormAddLinixUseCaseRef = {
+    generalInformation: generalInformationRef,
+  };
+
   const handleNextStep = (step: number) => {
     setCurrentStep(step + 1);
   };
@@ -274,6 +237,7 @@ function AddingLinixUseCase() {
       handleUpdateFormData={handleUpdateFormData}
       csOptions={csOptions}
       webOptions={webOptions}
+      formReferences={formReferences}
     />
   );
 }
