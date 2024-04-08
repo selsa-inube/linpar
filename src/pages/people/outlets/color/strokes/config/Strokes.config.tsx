@@ -136,7 +136,7 @@ const strokesFormsConfig = {
   },
   divider: {
     description:
-      "Los divisores se usan para reducir el espacio que ocupa un grupos de información, el divisor se expande o contrae para mostrar u ocultar contenido respectivamente. Este cambio modificará solo el color de la línea. Las líneas de tipo primario se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
+      "Este cambio modificará solo el color de la línea del Divisor. Las líneas de tipo primario se utilizan en componentes que están relacionados a acciones principales o comunican relación a la marca.",
     status: {
       regular: {
         title: "Regular",
@@ -258,9 +258,9 @@ const strokesFormsConfig = {
 
 const mockDivider = {
   0: {
-    title: "Divisor 1",
+    title: "Divisor",
     content:
-      "Cras viverra sed ipsum ac interdum. Ut non tempor odio. Sed vel felis nec augue vehicula facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet massa commodo, sodales nibh sed, vestibulum mauris. Maecenas ac sem ac metus lobortis rutrum.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor mauris a nisl auctor posuere. In eu metus dapibus, tristique felis sit amet, convallis ligula.",
   },
 };
 

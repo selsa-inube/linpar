@@ -77,19 +77,15 @@ function RenderStrokesWithDividerFormUI(
               autoRows="unset"
             >
               {strokesCards.map(([key, config]) => (
-                <Stack
-                  key={key}
-                  direction="column"
-                  alignItems="center"
-                  width="200px"
-                >
+                <Stack key={key} direction="column" alignItems="center">
                   {Object.entries(mockDivider).map(([key, value]) => (
                     <Accordion
                       key={key}
                       title={value.title}
                       children={<div>{value.content}</div>}
+                      dashed={false}
                     />
-                  ))}{" "}
+                  ))}
                   <FieldsetColorCard
                     appearance={formType}
                     category={key}

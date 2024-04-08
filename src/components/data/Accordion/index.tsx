@@ -8,6 +8,7 @@ export interface IAccordionProps {
   title: string;
   defaultOpen?: boolean;
   children?: JSX.Element | JSX.Element[];
+  dashed?: boolean;
 }
 
 export interface IDividerProps {
@@ -16,12 +17,11 @@ export interface IDividerProps {
 
 export function Divider(props: IDividerProps) {
   const { dashed } = props;
-
   return <StyledDivider dashed={dashed} />;
 }
 
 export const Accordion = (props: IAccordionProps) => {
-  const { title, defaultOpen = true, children } = props;
+  const { title, defaultOpen = true, children, dashed } = props;
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   const handleToggleOpen = () => setIsOpen(!isOpen);
@@ -46,7 +46,7 @@ export const Accordion = (props: IAccordionProps) => {
 
       {isOpen && (
         <>
-          <Divider dashed />
+          <Divider dashed={dashed} />
           {children}
         </>
       )}
