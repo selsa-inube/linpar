@@ -137,11 +137,11 @@ export const EditRole = () => {
 
   const valuesTransactionTypes = editData?.tiposDeMovimientoContablePorRol?.map(
     (transactionTypes) => ({
-      id: transactionTypes.k_Rol,
+      id: transactionTypes.k_Rol.toString(),
       value: transactionTypes.k_Tipmov,
       isActive: false,
     })
-  );
+  )!;
 
   /*  const valuesBusinessRules = editData?.tareasCrediboardPorRol?.map(
     (businessRol) => ({
@@ -157,13 +157,13 @@ export const EditRole = () => {
       value: creditboardTask.tarea,
       isActive: false,
     })
-  );
+  )!;
 
   const valuesUseCases = editData?.casosDeUsoPorRol?.map((useCase) => ({
-    id: useCase.k_Rol,
+    id: useCase.k_Rol.toString(),
     value: useCase.k_Usecase,
     isActive: false,
-  }));
+  }))!;
 
   const handleUpdateDataSwitchstep = (values: IRol[]) => {
     const stepKey = Object.entries(stepsAddRol).find(

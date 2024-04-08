@@ -35,7 +35,7 @@ export interface IRol {
   n_Rol: string;
   n_Uso: string;
   casosDeUsoPorRol?: ICasosDeUsoPorRol[];
-  cuentasAuxiliaresPorRol?: ICuentasAuxiliaresPorRol[];
+  cuentasAuxiliaresPorRol: ICuentasAuxiliaresPorRol[];
   reglasDeNegocioPorRol?: IReglasDeNegocioPorRol[];
   tareasCrediboardPorRol?: ITareasCrediboardPorRol[];
   tiposDeMovimientoContablePorRol?: ITiposDeMovimientoContablePorRol[];

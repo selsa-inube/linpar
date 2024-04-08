@@ -8,9 +8,13 @@ import {
 } from "@inube/design-system";
 import { PageTitle } from "@src/components/PageTitle";
 import { GeneralInformationForm } from "../add-role/forms/GeneralInformationForm";
-import { AncillaryAccountsForm } from "../add-role/forms/AncillaryAccounts";
+import {
+  AncillaryAccountsForm,
+  IAncillaryAccountsForm,
+} from "../add-role/forms/AncillaryAccounts";
 import { InitializerForm } from "../../forms/InitializerForm";
 import { editRolConfig, stepsAddRol } from "../add-role/config/addRol.config";
+import { IAssignmentFormEntry } from "../../users/types/forms.types";
 
 interface ITabs {
   id: string;
@@ -25,11 +29,11 @@ interface IEditRoleUIProps {
   selectedTab: string;
   smallScreen: boolean;
   loading: boolean;
-  valuesAncillaryAccounts: any;
-  valuesTransactionTypes: any;
+  valuesAncillaryAccounts: IAncillaryAccountsForm;
+  valuesTransactionTypes: IAssignmentFormEntry[];
   valuesBusinessRules?: any;
-  valuesCreditboardTasks?: any;
-  valuesUseCases: any;
+  valuesCreditboardTasks: IAssignmentFormEntry[];
+  valuesUseCases: IAssignmentFormEntry[];
   handleUpdateDataSwitchstep: (values: any) => void;
 }
 
@@ -47,6 +51,8 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     valuesUseCases,
     handleUpdateDataSwitchstep,
   } = props;
+
+  console.log(valuesAncillaryAccounts, "vslurd");
 
   return loading ? (
     <SkeletonLine animated />
