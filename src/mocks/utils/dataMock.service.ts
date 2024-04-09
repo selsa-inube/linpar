@@ -1,4 +1,4 @@
-import localforage, { key } from "localforage";
+import localforage from "localforage";
 
 function buildData<T>(data: T[]) {
   const dataMock = data.map((optionData) => {
