@@ -1,8 +1,7 @@
 import { FormikProps } from "formik";
-
+import localforage from "localforage";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { UseCase } from "../types";
-import localforage from "localforage";
 
 export interface DataToAssignmentFormEntryProps {
   dataOptions: Record<string, unknown>[];
