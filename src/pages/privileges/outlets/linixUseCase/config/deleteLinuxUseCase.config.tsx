@@ -5,7 +5,7 @@ const deleteUserModal = {
   delete: {
     title: "Eliminar Caso de Uso",
     description: (id: string) =>
-      `¿Está seguro de que desea eliminar el Caso de Uso${id}?`,
+      `¿Está seguro de que desea eliminar el Caso de Uso ${id}?`,
     actionText: "Eliminar",
     appearance: EAppearance.ERROR,
   },
