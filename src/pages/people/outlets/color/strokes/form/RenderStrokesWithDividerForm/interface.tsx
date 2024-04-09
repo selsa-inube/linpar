@@ -70,15 +70,6 @@ function RenderStrokesWithDividerFormUI(
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
-            {Object.entries(mockDivider).map(([key, value]) => (
-              <Accordion
-                key={key}
-                title={value.title}
-                children={<div>{value.content}</div>}
-                dashed={false}
-              />
-            ))}
-
             <Grid
               templateColumns={templateColumns}
               gap="s350"
@@ -87,6 +78,15 @@ function RenderStrokesWithDividerFormUI(
             >
               {strokesCards.map(([key, config]) => (
                 <Stack key={key} direction="column" alignItems="center">
+                  {Object.entries(mockDivider).map(([key, value]) => (
+                    <Accordion
+                      key={key}
+                      title={value.title}
+                      children={<div>{value.content}</div>}
+                      dashed={false}
+                    />
+                  ))}
+
                   <FieldsetColorCard
                     appearance={formType}
                     category={key}
