@@ -1,11 +1,13 @@
 import { useState } from "react";
 
+import { functionById } from "@src/mocks/utils/dataMock.service";
+
 import { deleteRolModal } from "./config/deleteRol.config";
 import { DeleteRoleUI } from "./interface";
 
 interface IDeleteRoleProps {
   rol: string;
-  handleDeleteRol: (nameBD: string, id: string) => Promise<unknown>;
+  handleDeleteRol: (props: functionById) => Promise<unknown>;
   deleteRolModal: typeof deleteRolModal;
 }
 
@@ -16,7 +18,11 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleOnclick = async () => {
-    await handleDeleteRol("linix-roles", rol);
+    await handleDeleteRol({
+      key: "k_Rol",
+      nameDB: "linix-roles",
+      identifier: rol,
+    });
     setShowModal(false);
   };
 
