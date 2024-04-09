@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { FormikProps } from "formik";
 
-import { getData } from "@mocks/utils/dataMock.service";
+import { getAll } from "@mocks/utils/dataMock.service";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
@@ -67,7 +67,7 @@ function AddingLinixUseCase() {
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
 
   useEffect(() => {
-    getData("clients-server")
+    getAll("clients-server")
       .then((data) => {
         if (data !== null) {
           setCsOptions(data as Record<string, unknown>[]);
@@ -88,7 +88,7 @@ function AddingLinixUseCase() {
         console.error("Error fetching linix-use-cases:", error.message);
       });
 
-    getData("clients-server")
+    getAll("clients-server")
       .then((data) => {
         if (data !== null) {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -108,7 +108,7 @@ function AddingLinixUseCase() {
         console.error("Error fetching linix-use-cases:", error.message);
       });
 
-    getData("web-options")
+    getAll("web-options")
       .then((data) => {
         if (data !== null) {
           setWebOptions(data as Record<string, unknown>[]);
@@ -128,7 +128,7 @@ function AddingLinixUseCase() {
       .catch((error) => {
         console.error("Error fetching web-options:", error.message);
       });
-    getData("documents")
+    getAll("documents")
       .then((data) => {
         if (data !== null) {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -147,7 +147,7 @@ function AddingLinixUseCase() {
       .catch((error) => {
         console.error("Error fetching linix-use-cases:", error.message);
       });
-    getData("web-options")
+    getAll("web-options")
       .then((data) => {
         if (data !== null) {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({

@@ -18,7 +18,7 @@ export async function intializedData<T>(option: string, data: T[]) {
   }
 }
 
-export async function getData(option: string) {
+export async function getAll(option: string) {
   await fakeNetwork();
   try {
     const optionsData = await localforage.getItem(option);
@@ -31,13 +31,16 @@ export async function getData(option: string) {
   }
 }
 
-export async function getSpecificData(
-  key: string,
-  option: string,
-  identifier: number | string
-) {
+interface functionById {
+  key: string;
+  nameDB: string;
+  identifier: number | string;
+}
+
+export async function getById(props: functionById) {
+  const { key, nameDB, identifier } = props;
   try {
-    const optionsData = await getData(option);
+    const optionsData = await getAll(nameDB);
 
     if (Array.isArray(optionsData)) {
       const foundData = optionsData.find((data) => data[key] === identifier);
@@ -50,8 +53,26 @@ export async function getSpecificData(
   }
 }
 
+export async function deleteItemData(props: functionById) {
+  const { key, nameDB, identifier } = props;
+  try {
+    const data = await getAll(nameDB);
+    if (Array.isArray(data)) {
+      const indexData = data.findIndex((item) => item[key] === identifier);
+      data.splice(indexData, 1);
+      await localforage.setItem(nameDB, data);
+      return data;
+    }
+    throw new Error("data structure not valid, must be an object list");
+  } catch (error) {
+    return error;
+  }
+}
+
 async function fakeNetwork() {
   return new Promise((res) => {
     setTimeout(res, Math.random() * 1000);
   });
 }
+
+export type { functionById };

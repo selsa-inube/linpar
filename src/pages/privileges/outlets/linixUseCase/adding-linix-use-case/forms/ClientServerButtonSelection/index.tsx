@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { getData } from "@mocks/utils/dataMock.service";
+import { getAll } from "@mocks/utils/dataMock.service";
 import {
   IHandleChangeFormData,
   IClientServerButton,
@@ -39,7 +39,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   );
 
   useEffect(() => {
-    getData("button-options")
+    getAll("button-options")
       .then((data) => {
         if (data !== null) {
           setButtonOptions(data as Record<string, unknown>[]);

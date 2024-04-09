@@ -10,11 +10,11 @@ interface IDeleteFormOptionsUI {
   id: string;
   handleToggleModal: () => void;
   showComplete: boolean;
-  linuxUseCaseModalConfig: typeof deleteUserModal;
+  modalConfig: typeof deleteUserModal;
 }
 
 function DeleteOptionsModal(props: IDeleteOptionModal) {
-  const { handleToggleModal, id, linuxUseCaseModalConfig } = props;
+  const { handleToggleModal, id, modalConfig } = props;
   let messageType = EMessageType.DELETE;
 
   const {
@@ -22,7 +22,7 @@ function DeleteOptionsModal(props: IDeleteOptionModal) {
     description,
     actionText,
     appearance,
-  } = linuxUseCaseModalConfig[messageType];
+  } = modalConfig[messageType];
 
   return (
     <DecisionModal
@@ -41,7 +41,7 @@ export function DeleteFormOptionsUI(props: IDeleteFormOptionsUI) {
     showActivateOptions: showActivateModal,
     id,
     handleToggleModal,
-    linuxUseCaseModalConfig,
+    modalConfig,
   } = props;
 
   return (
@@ -57,7 +57,7 @@ export function DeleteFormOptionsUI(props: IDeleteFormOptionsUI) {
         <DeleteOptionsModal
           id={id}
           handleToggleModal={handleToggleModal}
-          linuxUseCaseModalConfig={linuxUseCaseModalConfig}
+          modalConfig={modalConfig}
         />
       )}
     </>
