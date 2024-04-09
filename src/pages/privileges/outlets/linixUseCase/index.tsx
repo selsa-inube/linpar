@@ -47,7 +47,7 @@ function LinixUseCase() {
   };
 
   const selectedData: SelectedDataFunction = (k_Usecase: string) =>
-    linixUseCases.find((LinuxUseCase) => LinuxUseCase.k_Usecase === k_Usecase)!;
+    linixUseCases.find((linixUseCase) => linixUseCase.k_Usecase === k_Usecase)!;
 
   return (
     <LinixUseCaseUI
