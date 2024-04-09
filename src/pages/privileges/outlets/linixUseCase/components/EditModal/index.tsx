@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
-import { getData } from "@mocks/utils/dataMock.service";
+import { getAll } from "@mocks/utils/dataMock.service";
 
 import { EditUserUI } from "./interface";
 import { UseCase } from "../../types";
@@ -74,7 +74,7 @@ function EditCaseLinix() {
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
 
   useEffect(() => {
-    getData("documents")
+    getAll("documents")
       .then((data) => {
         if (data !== null) {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -93,7 +93,7 @@ function EditCaseLinix() {
       .catch((error) => {
         console.error("Error fetching linix-use-cases:", error.message);
       });
-    getData("web-options")
+    getAll("web-options")
       .then((data) => {
         if (data !== null) {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -112,7 +112,7 @@ function EditCaseLinix() {
       .catch((error) => {
         console.error("Error fetching web-options:", error.message);
       });
-    getData("clients-server")
+    getAll("clients-server")
       .then((data) => {
         if (data !== null) {
           setCsOptions(data as Record<string, unknown>[]);
@@ -132,7 +132,7 @@ function EditCaseLinix() {
       .catch((error) => {
         console.error("Error fetching linix-use-cases:", error.message);
       });
-    getData("web-options")
+    getAll("web-options")
       .then((data) => {
         if (data !== null) {
           setWebOptions(data as Record<string, unknown>[]);
@@ -152,7 +152,7 @@ function EditCaseLinix() {
       .catch((error) => {
         console.error("Error fetching web-options:", error.message);
       });
-    getData("clients-server")
+    getAll("clients-server")
       .then((data) => {
         if (data !== null) {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -171,7 +171,7 @@ function EditCaseLinix() {
       .catch((error) => {
         console.error("Error fetching linix-use-cases:", error.message);
       });
-    getData("clients-server")
+    getAll("clients-server")
       .then((data) => {
         if (data !== null) {
           setCsOptions(data as Record<string, unknown>[]);

@@ -124,7 +124,7 @@ function UsersTab(props: UsersTabProps) {
           <DeleteFormOptions
             data={adjusteduser}
             showComplete={false}
-            linuxUseCaseModalConfig={deleteUserModal}
+            modalConfig={deleteUserModal}
           />
         );
       },

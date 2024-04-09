@@ -16,6 +16,7 @@ import {
   Table,
   inube,
 } from "@inube/design-system";
+
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
@@ -26,10 +27,8 @@ import { DetailsModal } from "./components/DetailsModal";
 import { UseCase } from "./types";
 import { useCasesBreakPointsConfig } from "./config/useCasesTable.config";
 import { titlesOptions } from "./config/useCasesTable.config";
-
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
-
 import { deleteUserModal } from "./config/deleteLinuxUseCase.config";
 
 interface LinixUseCaseUIProps {
@@ -92,19 +91,19 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
       type: "primary",
     },
     {
-      id: "delete",
+      id: "Delete",
       actionName: "Eliminar",
       content: ({ k_Usecase }: { k_Usecase: string }) => {
-        const LinuxUseCase = selectedData(k_Usecase);
+        const linixUseCase = selectedData(k_Usecase);
         const adjustedLinuxUseCase = {
-          id: LinuxUseCase?.k_Usecase || "",
+          id: linixUseCase?.k_Usecase || "",
         };
 
         return (
           <DeleteFormOptions
             data={adjustedLinuxUseCase}
             showComplete={false}
-            linuxUseCaseModalConfig={deleteUserModal}
+            modalConfig={deleteUserModal}
           />
         );
       },

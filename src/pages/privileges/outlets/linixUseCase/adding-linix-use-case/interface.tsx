@@ -19,7 +19,11 @@ import { StyledAssistedContainer } from "./styles";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
 import { FormButtons } from "@src/components/forms/submit/FormButtons";
-import { IFormAddLinixUseCase, IHandleChangeFormData } from "./index";
+import {
+  IFormAddLinixUseCase,
+  IHandleChangeFormData,
+  IFormAddLinixUseCaseRef,
+} from "./types";
 import { VerificationForm } from "./forms/VerificationForm";
 
 function finishModal(
@@ -53,6 +57,7 @@ interface AddingLinixUseCaseUIProps {
   handleUpdateFormData: (values: IHandleChangeFormData) => void;
   csOptions: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
+  formReferences: IFormAddLinixUseCaseRef;
 }
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
@@ -67,6 +72,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     handleUpdateFormData,
     csOptions,
     webOptions,
+    formReferences,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -124,6 +130,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                 webOptions={webOptions}
                 handleSubmit={handleUpdateFormData}
                 initialValues={formData.generalInformation.values}
+                ref={formReferences.generalInformation}
               />
             )}
             {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (

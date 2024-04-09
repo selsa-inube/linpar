@@ -43,3 +43,9 @@ export type {
   ReportesWebPorCasoDeUso,
   TiposDeDocumentoPorCasoDeUso,
 };
+
+export interface IActions {
+  k_action: number;
+  n_action: string;
+  i_active: "Y" | "N";
+}
