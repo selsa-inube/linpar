@@ -17,7 +17,7 @@ import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 import { OptionSelect } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
-import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
+import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 
 import { StyledSelectContainer } from "./styles";
 
