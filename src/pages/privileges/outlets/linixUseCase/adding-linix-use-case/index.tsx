@@ -209,12 +209,12 @@ function AddingLinixUseCase() {
     generalInformation: generalInformationRef,
   };
 
-  const handleNextStep = (step: number) => {
-    setCurrentStep(step + 1);
+  const handleNextStep = () => {
+    setCurrentStep((step) => step + 1);
   };
 
-  const handlePrevStep = (step: number) => {
-    setCurrentStep(step - 1);
+  const handlePrevStep = () => {
+    setCurrentStep((prevStep) => Math.max(prevStep - 1, 1));
   };
 
   const handleCompleteInvitation = () => {

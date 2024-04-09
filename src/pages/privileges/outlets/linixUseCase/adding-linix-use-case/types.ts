@@ -1,6 +1,8 @@
 import { FormikProps } from "formik";
 
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import { UseCase } from "../types";
+import localforage from "localforage";
 
 export interface DataToAssignmentFormEntryProps {
   dataOptions: Record<string, unknown>[];
@@ -50,6 +52,31 @@ export interface IFormAddLinixUseCase {
     values: IAssignmentFormEntry[];
   };
 }
+
+export const saveLinixUseCase = (addLinixUseCase: IFormAddLinixUseCase) => {
+  const { generalInformation, clientServerButton } = addLinixUseCase;
+
+  const newLinixUseCase: UseCase = {
+    id: "",
+    k_Usecase: "",
+    n_Usecase: generalInformation.values.n_Usecase,
+    n_Descrip: generalInformation.values.n_Descrip,
+    a_Publicc: "",
+    i_Tipusec: generalInformation.values.i_Tipusec,
+    k_Ncampo: clientServerButton.values.csButtonOption,
+    k_Nforma: generalInformation.values.k_Opcion,
+  };
+  localforage.getItem("linix-use-cases").then((data) => {
+    if (data) {
+      localforage.setItem("linix-use-cases", [
+        ...(data as UseCase[]),
+        newLinixUseCase,
+      ]);
+    } else {
+      localforage.setItem("linix-use-cases", [newLinixUseCase]);
+    }
+  });
+};
 
 export type IHandleChangeFormData =
   | IGeneralInformation
