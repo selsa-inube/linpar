@@ -10,7 +10,6 @@ import {
 } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
-
 interface RenderStrokesWithDividerFormUIProps {
   formType: StrokeAppearance;
   handleReset: () => void;
@@ -57,6 +56,7 @@ function RenderStrokesWithDividerFormUI(
   const isSmallScreen = useMediaQuery("(max-width: 743px)");
 
   const templateColumns = isSmallScreen ? "repeat(1, 1fr)" : "repeat(2, 1fr)";
+
   return (
     <>
       <Text size="medium" appearance="gray">
@@ -70,6 +70,15 @@ function RenderStrokesWithDividerFormUI(
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack direction="column" gap={inube.spacing.s350}>
+            {Object.entries(mockDivider).map(([key, value]) => (
+              <Accordion
+                key={key}
+                title={value.title}
+                children={<div>{value.content}</div>}
+                dashed={false}
+              />
+            ))}
+
             <Grid
               templateColumns={templateColumns}
               gap="s350"
@@ -78,14 +87,6 @@ function RenderStrokesWithDividerFormUI(
             >
               {strokesCards.map(([key, config]) => (
                 <Stack key={key} direction="column" alignItems="center">
-                  {Object.entries(mockDivider).map(([key, value]) => (
-                    <Accordion
-                      key={key}
-                      title={value.title}
-                      children={<div>{value.content}</div>}
-                      dashed={false}
-                    />
-                  ))}
                   <FieldsetColorCard
                     appearance={formType}
                     category={key}
