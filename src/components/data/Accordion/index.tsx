@@ -2,24 +2,14 @@ import { useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 import { Icon, Text, useMediaQuery } from "@inube/design-system";
-import { StyledContainer, StyledDivider, StyledHead } from "./styles";
+import { StyledContainer, StyledHead } from "./styles";
+import { Divider } from "@src/components/layout/Divider";
 
 export interface IAccordionProps {
   title: string;
   defaultOpen?: boolean;
   children?: JSX.Element | JSX.Element[];
 }
-
-export interface IDividerProps {
-  dashed?: boolean;
-}
-
-export function Divider(props: IDividerProps) {
-  const { dashed } = props;
-
-  return <StyledDivider dashed={dashed} />;
-}
-
 export const Accordion = (props: IAccordionProps) => {
   const { title, defaultOpen = true, children } = props;
   const [isOpen, setIsOpen] = useState(defaultOpen);
