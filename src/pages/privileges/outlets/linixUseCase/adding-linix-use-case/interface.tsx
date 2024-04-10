@@ -164,7 +164,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             />
           )}
         </>
-        <Stack gap="16px" justifyContent="flex-end">
+        <Stack gap={inube.spacing.s200} justifyContent="flex-end">
           <Button
             onClick={handlePrevStep}
             type="button"
