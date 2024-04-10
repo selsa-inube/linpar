@@ -11,12 +11,13 @@ import {
   StyledMain,
   StyledContainerNav,
   StyledMenuContainer,
+  StyledHeaderContainer,
 } from "./styles";
 import { AppContext } from "@context/AppContext";
-import { MenuSection } from "@src/components/navigation/MenuSection";
+import { MenuSection } from "@components/navigation/MenuSection";
 import { MdLogout } from "react-icons/md";
-import { MenuUser } from "@src/components/navigation/MenuUser";
-import { LogoutModal } from "@src/components/feedback/LogoutModal";
+import { MenuUser } from "@components/navigation/MenuUser";
+import { LogoutModal } from "@components/feedback/LogoutModal";
 
 const renderLogo = (imgUrl: string) => {
   return (
@@ -66,13 +67,15 @@ function AppPage() {
   return (
     <StyledAppPage>
       <Grid templateRows="auto 1fr" height="100vh" justifyContent="unset">
-        <Header
-          portalId="portal"
-          navigation={navigationConfig}
-          logoURL={renderLogo(user.operator.logo)}
-          userName={user.username}
-          client={user.company}
-        />
+        <StyledHeaderContainer>
+          <Header
+            portalId="portal"
+            navigation={navigationConfig}
+            logoURL={renderLogo(user.operator.logo)}
+            userName={user.username}
+            client={user.company}
+          />
+        </StyledHeaderContainer>
         {showUserMenu && (
           <StyledMenuContainer ref={userMenuRef}>
             <MenuUser userName={user.username} businessUnit={user.company} />

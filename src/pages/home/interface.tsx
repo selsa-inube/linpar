@@ -7,10 +7,14 @@ import {
 } from "@components/layout/AppPage/styles";
 
 import { navigationConfig, logoutConfig } from "./config/apps.config";
-import { StyledHome, StyledMenuContainer } from "./styles";
-import { LogoutModal } from "@src/components/feedback/LogoutModal";
-import { MenuUser } from "@src/components/navigation/MenuUser";
-import { MenuSection } from "@src/components/navigation/MenuSection";
+import {
+  StyledHeaderContainer,
+  StyledHome,
+  StyledMenuContainer,
+} from "./styles";
+import { LogoutModal } from "@components/feedback/LogoutModal";
+import { MenuUser } from "@components/navigation/MenuUser";
+import { MenuSection } from "@components/navigation/MenuSection";
 import { MdLogout } from "react-icons/md";
 
 const renderLogo = (imgUrl: string) => {
@@ -60,13 +64,15 @@ function HomeUI() {
 
   return (
     <StyledHome>
-      <Header
-        portalId="portal"
-        navigation={navigationConfig}
-        logoURL={renderLogo(user.operator.logo)}
-        userName={user.username}
-        client={user.company}
-      />
+      <StyledHeaderContainer>
+        <Header
+          portalId="portal"
+          navigation={navigationConfig}
+          logoURL={renderLogo(user.operator.logo)}
+          userName={user.username}
+          client={user.company}
+        />
+      </StyledHeaderContainer>
       {showUserMenu && (
         <StyledMenuContainer ref={userMenuRef}>
           <MenuUser userName={user.username} businessUnit={user.company} />

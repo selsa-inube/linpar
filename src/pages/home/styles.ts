@@ -9,6 +9,11 @@ const StyledHome = styled.div`
     list-style: none;
   }
 `;
+const StyledHeaderContainer = styled.div`
+  div > div {
+    cursor: pointer;
+  }
+`;
 
 const StyledMenuContainer = styled.div`
   position: absolute;
@@ -24,4 +29,4 @@ const StyledMenuContainer = styled.div`
     theme.color?.surface?.light?.clear || inube.color.surface.light.clear};
 `;
 
-export { StyledHome, StyledMenuContainer };
+export { StyledHome, StyledHeaderContainer, StyledMenuContainer };

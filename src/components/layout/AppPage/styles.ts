@@ -7,6 +7,12 @@ const StyledAppPage = styled.div`
   box-sizing: border-box;
 `;
 
+const StyledHeaderContainer = styled.div`
+  div > div {
+    cursor: pointer;
+  }
+`;
+
 const StyledContainer = styled.div`
   display: inherit;
   overflow: hidden;
@@ -46,6 +52,7 @@ const StyledMenuContainer = styled.div`
 
 export {
   StyledAppPage,
+  StyledHeaderContainer,
   StyledContainer,
   StyledContentImg,
   StyledLogo,
