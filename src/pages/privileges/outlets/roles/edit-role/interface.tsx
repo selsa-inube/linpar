@@ -52,7 +52,12 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     handleUpdateDataSwitchstep,
   } = props;
 
-  console.log(valuesAncillaryAccounts, "vslurd");
+  //console.log(valuesAncillaryAccounts, "vslurd");
+  console.log("- - - - - - - - - - - - - - - - ");
+  // console.log("editRolConfig", editRolConfig);
+  // console.log("dataTabs", dataTabs);
+  console.log("valuesTransactionTypes", valuesTransactionTypes);
+  console.log("loading", loading);
 
   return loading ? (
     <SkeletonLine animated />

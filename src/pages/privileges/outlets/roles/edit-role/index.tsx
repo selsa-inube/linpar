@@ -43,11 +43,75 @@ export const EditRole = () => {
   useEffect(() => {
     setLoading(true);
 
-    getData("linix-roles")
-      .then((data) => {
-        if (Array.isArray(data) && data !== null && data !== undefined) {
-          const rol: IRol = data.find((itemRol) => itemRol.k_Rol === rol_id);
+    Promise.all([
+      getData("linix-roles"),
+      getData("documents"),
+      getData("web-options"),
+      getData("linix-use-cases"),
+    ])
+      .then((results) => {
+        const [
+          linixRolesData,
+          documentsData,
+          webOptionsData,
+          linixUseCasesData,
+        ] = results;
+
+        if (
+          Array.isArray(linixRolesData) &&
+          linixRolesData !== null &&
+          linixRolesData !== undefined
+        ) {
+          const rol: IRol = linixRolesData.find(
+            (itemRol) => itemRol.k_Rol === rol_id
+          );
           setEditData(rol);
+        }
+
+        if (
+          Array.isArray(documentsData) &&
+          documentsData !== null &&
+          documentsData !== undefined
+        ) {
+          const documentos = documentsData.map((document) => ({
+            k_Tipmov: document.NOMBRE,
+            k_Rol: document.CODIGO,
+            i_Activo: document.ASIGNADO,
+          }));
+          setEditData((prevData) => ({
+            ...prevData,
+            tiposDeMovimientoContablePorRol: documentos,
+          }));
+        }
+
+        if (
+          Array.isArray(webOptionsData) &&
+          webOptionsData !== null &&
+          webOptionsData !== undefined
+        ) {
+          const tareas = webOptionsData.map((option) => ({
+            k_Rol: option.k_opcion,
+            tarea: option.Nombre_opcion,
+          }));
+          setEditData((prevData) => ({
+            ...prevData,
+            tareasCrediboardPorRol: tareas,
+          }));
+        }
+
+        if (
+          Array.isArray(linixUseCasesData) &&
+          linixUseCasesData !== null &&
+          linixUseCasesData !== undefined
+        ) {
+          const casosDeUso = linixUseCasesData.map((useCase) => ({
+            k_Rol: useCase.k_Usecase,
+            k_Usecase: useCase.n_Usecase,
+          }));
+          setEditData((prevData) => ({
+            ...prevData,
+            casosDeUsoPorRol: casosDeUso,
+          }));
         }
       })
       .catch((error) => {
@@ -58,67 +122,6 @@ export const EditRole = () => {
       });
   }, [rol_id]);
 
-  useEffect(() => {
-    getData("documents")
-      .then((documentsFetch) => {
-        if (
-          Array.isArray(documentsFetch) &&
-          documentsFetch !== null &&
-          documentsFetch !== undefined
-        ) {
-          const documents = documentsFetch.map((document) => ({
-            k_Tipmov: document.NOMBRE,
-            k_Rol: document.CODIGO,
-          }));
-          setEditData((prevData) => ({
-            ...prevData,
-            tiposDeMovimientoContablePorRol: documents,
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-
-    getData("web-options")
-      .then((linixRolesFetch) => {
-        if (
-          Array.isArray(linixRolesFetch) &&
-          linixRolesFetch !== null &&
-          linixRolesFetch !== undefined
-        ) {
-          const documents = linixRolesFetch.map((linixRolFetch) => ({
-            k_Rol: linixRolFetch.k_opcion,
-            tarea: linixRolFetch.Nombre_opcion,
-          }));
-          setEditData((prevData) => ({
-            ...prevData,
-            tareasCrediboardPorRol: documents,
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-
-    getData("linix-use-cases").then((linixRolesFetch) => {
-      if (
-        Array.isArray(linixRolesFetch) &&
-        linixRolesFetch !== null &&
-        linixRolesFetch !== undefined
-      ) {
-        const documents = linixRolesFetch.map((linixRolFetch) => ({
-          k_Rol: linixRolFetch.k_Usecase,
-          k_Usecase: linixRolFetch.n_Usecase,
-        }));
-        setEditData((prevData) => ({
-          ...prevData,
-          casosDeUsoPorRol: documents,
-        }));
-      }
-    });
-  }, []);
-
   const handleTabChange = (tabId: string) => {
     setSelectedTab(tabId);
   };
@@ -128,6 +131,8 @@ export const EditRole = () => {
     description: editData.n_Uso,
     aplication: editData.k_Tipcon,
   };
+  // console.log("editData", editData);
+  // console.log("valuesGeneralInformation", valuesGeneralInformation);
 
   const valuesAncillaryAccounts = {
     officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta,
@@ -139,18 +144,18 @@ export const EditRole = () => {
     (transactionTypes) => ({
       id: transactionTypes.k_Rol.toString(),
       value: transactionTypes.k_Tipmov,
-      isActive: false,
+      isActive: transactionTypes.isActive,
     })
   )!;
 
-  /*  const valuesBusinessRules = editData?.tareasCrediboardPorRol?.map(
-    (businessRol) => ({
-      id: businessRol.k_Rol,
-      value: businessRol.tarea,
-      isActive: false,
-    })
-  );
- */
+  // const valuesBusinessRules = editData?.tareasCrediboardPorRol?.map(
+  //   (businessRol) => ({
+  //     id: businessRol.k_Rol,
+  //     value: businessRol.tarea,
+  //     isActive: false,
+  //   })
+  // );
+
   const valuesCreditboardTasks = editData?.tareasCrediboardPorRol?.map(
     (creditboardTask) => ({
       id: creditboardTask.k_Rol,

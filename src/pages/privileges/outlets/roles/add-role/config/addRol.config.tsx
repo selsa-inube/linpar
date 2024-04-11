@@ -83,7 +83,7 @@ export const editRolConfig = [
     id: 1,
     title: "Editar rol",
     description: "Editar la información del rol",
-    route: "/privileges/roles/adit",
+    route: "/privileges/roles/edit",
     crumbs: [
       {
         path: "/",
@@ -105,7 +105,7 @@ export const editRolConfig = [
       },
       {
         path: "/privileges/roles/edit",
-        label: "Agregar rol",
+        label: "Editar rol",
         id: "/privileges/roles/edit",
         isActive: true,
       },
