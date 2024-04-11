@@ -90,7 +90,7 @@ export const EditRole = () => {
           webOptionsData !== undefined
         ) {
           const tareas = webOptionsData.map((option) => ({
-            k_Rol: option.k_opcion,
+            k_Rol: option.K_opcion,
             tarea: option.Nombre_opcion,
           }));
           setEditData((prevData) => ({
@@ -127,12 +127,10 @@ export const EditRole = () => {
   };
 
   const valuesGeneralInformation = {
-    roleName: editData.k_Rol,
+    roleName: editData.n_Rol,
     description: editData.n_Uso,
-    aplication: editData.k_Tipcon,
+    aplication: editData.n_Uso,
   };
-  // console.log("editData", editData);
-  // console.log("valuesGeneralInformation", valuesGeneralInformation);
 
   const valuesAncillaryAccounts = {
     officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta,
@@ -148,13 +146,13 @@ export const EditRole = () => {
     })
   )!;
 
-  // const valuesBusinessRules = editData?.tareasCrediboardPorRol?.map(
-  //   (businessRol) => ({
-  //     id: businessRol.k_Rol,
-  //     value: businessRol.tarea,
-  //     isActive: false,
-  //   })
-  // );
+  const valuesBusinessRules = editData?.tareasCrediboardPorRol?.map(
+    (businessRol) => ({
+      id: businessRol.k_Rol,
+      value: businessRol.tarea,
+      isActive: false,
+    })
+  );
 
   const valuesCreditboardTasks = editData?.tareasCrediboardPorRol?.map(
     (creditboardTask) => ({
@@ -194,7 +192,7 @@ export const EditRole = () => {
       valuesAncillaryAccounts={valuesAncillaryAccounts}
       valuesTransactionTypes={valuesTransactionTypes}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
-      //valuesBusinessRules={valuesBusinessRules}
+      valuesBusinessRules={valuesBusinessRules}
       valuesUseCases={valuesUseCases}
       valuesCreditboardTasks={valuesCreditboardTasks}
     />

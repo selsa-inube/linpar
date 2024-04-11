@@ -47,17 +47,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     loading,
     valuesAncillaryAccounts,
     valuesTransactionTypes,
+    valuesBusinessRules,
     valuesCreditboardTasks,
     valuesUseCases,
     handleUpdateDataSwitchstep,
   } = props;
-
-  //console.log(valuesAncillaryAccounts, "vslurd");
-  console.log("- - - - - - - - - - - - - - - - ");
-  // console.log("editRolConfig", editRolConfig);
-  // console.log("dataTabs", dataTabs);
-  console.log("valuesTransactionTypes", valuesTransactionTypes);
-  console.log("loading", loading);
 
   return loading ? (
     <SkeletonLine animated />
@@ -99,12 +93,12 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               handleSubmit={handleUpdateDataSwitchstep}
             />
           )}
-          {/* {selectedTab === stepsAddRol.businessRules.label && (
+          {selectedTab === stepsAddRol.businessRules.label && (
             <InitializerForm
               dataOptionsForms={valuesBusinessRules}
               handleSubmit={handleUpdateDataSwitchstep}
             />
-          )} */}
+          )}
           {selectedTab === stepsAddRol.crediboardTasks.label && (
             <InitializerForm
               dataOptionsForms={valuesCreditboardTasks}
