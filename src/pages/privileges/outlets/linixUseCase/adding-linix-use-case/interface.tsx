@@ -59,10 +59,12 @@ interface AddingLinixUseCaseUIProps {
   csOptions: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
   formReferences: IFormAddLinixUseCaseRef;
+  handleNextStepSingle: () => void;
 }
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
+    handleNextStepSingle,
     currentStep,
     handleCompleteInvitation,
     handleToggleModal,
@@ -179,7 +181,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             onClick={
               currentStep === Object.values(stepsAddingLinixUseCase).length
                 ? () => saveLinixUseCase(formData)
-                : handleNextStep
+                : handleNextStepSingle
             }
             spacing="compact"
           >

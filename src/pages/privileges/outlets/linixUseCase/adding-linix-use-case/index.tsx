@@ -212,9 +212,17 @@ function AddingLinixUseCase() {
   const handleNextStep = (step: number) => {
     setCurrentStep(step + 1);
   };
+  const handleNextStepSingle = () => {
+    const totalSteps = Object.values(stepsAddingLinixUseCase).length;
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
 
-  const handlePrevStep = (step: number) => {
-    setCurrentStep(step - 1);
+  const handlePrevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
   const handleCompleteInvitation = () => {
@@ -228,6 +236,7 @@ function AddingLinixUseCase() {
   return (
     <AddingLinixUseCaseUI
       handlePrevStep={handlePrevStep}
+      handleNextStepSingle={handleNextStepSingle}
       handleNextStep={handleNextStep}
       currentStep={currentStep}
       handleToggleModal={handleToggleModal}
