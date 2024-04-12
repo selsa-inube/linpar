@@ -13,6 +13,7 @@ import { AddingLinixUseCase } from "@pages/privileges/outlets/linixUseCase/addin
 import { AddRol } from "@pages/privileges/outlets/roles/add-role";
 import { EditCaseLinix } from "@src/pages/privileges/outlets/linixUseCase/components/EditModal";
 import { Positions } from "@src/pages/privileges/outlets/positions";
+import { AddPosition } from "@pages/privileges/outlets/positions/add-position";
 
 function PrivilegesRoutes() {
   return (
