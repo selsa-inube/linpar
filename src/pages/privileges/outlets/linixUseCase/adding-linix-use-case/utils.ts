@@ -7,9 +7,37 @@ export const saveLinixUseCase = (addLinixUseCase: IFormAddLinixUseCase) => {
     generalInformation: { values: generalInformation },
     clientServerButton: { values: clientServerButton },
     webOptions: { values: webOptions },
+    webReports: { values: webReports },
+    downloadableDocuments: { values: downloadableDocuments },
+    clientServerReports: { values: clientServerReports },
+    clientServerOptions: { values: clientServerOptions },
   } = addLinixUseCase;
-  const normalizeAncillaryAccounts = webOptions.filter(
-    (webOption) => webOption.isActive === true
+
+  const normalizeReportsWeb = webReports
+    .filter((webReport) => webReport.isActive === true)
+    .map((webReport) => ({
+      k_Funcio: webReport.value,
+    }));
+
+  const normalizeReportesCsPorCasoDeUso = clientServerReports
+    .filter((clientServerReport) => clientServerReport.isActive === true)
+    .map((clientServerReport) => ({
+      k_Nforma: clientServerReport.value,
+    }));
+
+  const normalizeWebOptionsCsPorCasoDeUso = clientServerOptions
+    .filter((clientServerOption) => clientServerOption.isActive === true)
+    .map((clientServerOption) => ({
+      k_Opcion: clientServerOption.value,
+    }));
+
+  const normalizeDocumentoPorCasoDeUso = downloadableDocuments
+    .filter((downloadableDocument) => downloadableDocument.isActive === true)
+    .map((downloadableDocument) => ({
+      k_Docume: downloadableDocument.value,
+    }));
+  const normalizeWebOptions = webOptions.filter(
+    (webOptions) => webOptions.isActive === true
   );
 
   const newLinixUseCase: UseCase = {
@@ -21,7 +49,11 @@ export const saveLinixUseCase = (addLinixUseCase: IFormAddLinixUseCase) => {
     i_Tipusec: generalInformation.i_Tipusec,
     k_Ncampo: clientServerButton.csButtonOption,
     k_Nforma: generalInformation.k_Opcion,
-    reportesWebPorCasoDeUso: normalizeAncillaryAccounts,
+    opcionesPortalWebPorCasoDeUso: normalizeReportsWeb,
+    reportesWebPorCasoDeUso: normalizeWebOptions,
+    reportesCsPorCasoDeUso: normalizeReportesCsPorCasoDeUso,
+    opcionesCsPorCasoDeUso: normalizeWebOptionsCsPorCasoDeUso,
+    tiposDeDocumentoPorCasoDeUso: normalizeDocumentoPorCasoDeUso,
   };
   localforage.getItem("linix-use-cases").then((data) => {
     if (data) {

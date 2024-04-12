@@ -18,7 +18,6 @@ interface ReportesWebPorCasoDeUso {
 
 interface TiposDeDocumentoPorCasoDeUso {
   k_Docume: string;
-  transactionOperation: string;
 }
 
 interface UseCase {

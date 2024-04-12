@@ -209,14 +209,9 @@ function AddingLinixUseCase() {
     generalInformation: generalInformationRef,
   };
 
-  const handleNextStep = (step: number) => {
-    setCurrentStep(step + 1);
-  };
-  const handleNextStepSingle = () => {
-    const totalSteps = Object.values(stepsAddingLinixUseCase).length;
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-    }
+  const handleNextStep = (step?: number) => {
+    const nextStep = typeof step === "number" ? step : currentStep + 1;
+    setCurrentStep(nextStep);
   };
 
   const handlePrevStep = () => {
@@ -236,7 +231,6 @@ function AddingLinixUseCase() {
   return (
     <AddingLinixUseCaseUI
       handlePrevStep={handlePrevStep}
-      handleNextStepSingle={handleNextStepSingle}
       handleNextStep={handleNextStep}
       currentStep={currentStep}
       handleToggleModal={handleToggleModal}

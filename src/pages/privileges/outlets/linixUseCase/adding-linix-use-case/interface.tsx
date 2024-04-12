@@ -29,7 +29,7 @@ import { saveLinixUseCase } from "./utils";
 
 function finishModal(
   handleCloseModal: () => void,
-  handleCompleteInvitation: () => void
+  formData: IFormAddLinixUseCase
 ) {
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
@@ -42,7 +42,7 @@ function finishModal(
       loading={false}
       appearance={appearance}
       closeModal={handleCloseModal}
-      handleClick={handleCompleteInvitation}
+      handleClick={() => saveLinixUseCase(formData)}
     />
   );
 }
@@ -51,7 +51,6 @@ interface AddingLinixUseCaseUIProps {
   handleNextStep: (step: number) => void;
   handlePrevStep: (step: number) => void;
   currentStep: number;
-  handleCompleteInvitation: () => void;
   handleToggleModal: () => void;
   showModal: boolean;
   formData: IFormAddLinixUseCase;
@@ -59,14 +58,11 @@ interface AddingLinixUseCaseUIProps {
   csOptions: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
   formReferences: IFormAddLinixUseCaseRef;
-  handleNextStepSingle: () => void;
 }
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
-    handleNextStepSingle,
     currentStep,
-    handleCompleteInvitation,
     handleToggleModal,
     showModal,
     handlePrevStep,
@@ -105,7 +101,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               handleNext={
                 currentStep === Object.values(stepsAddingLinixUseCase).length
                   ? handleToggleModal
-                  : handleNextStep
+                  : () => handleNextStep(currentStep + 1)
               }
             />
           </StyledAssistedContainer>
@@ -181,7 +177,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             onClick={
               currentStep === Object.values(stepsAddingLinixUseCase).length
                 ? () => saveLinixUseCase(formData)
-                : handleNextStepSingle
+                : handleNextStep
             }
             spacing="compact"
           >
@@ -191,7 +187,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </Button>
         </Stack>
       </Stack>
-      {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
+      {showModal && finishModal(handleToggleModal, formData)}
     </Stack>
   );
 }
