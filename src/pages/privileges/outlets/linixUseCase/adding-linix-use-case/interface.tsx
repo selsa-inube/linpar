@@ -23,9 +23,9 @@ import {
   IFormAddLinixUseCase,
   IHandleChangeFormData,
   IFormAddLinixUseCaseRef,
-  saveLinixUseCase,
 } from "./types";
 import { VerificationForm } from "./forms/VerificationForm";
+import { saveLinixUseCase } from "./utils";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -77,7 +77,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap={inube.spacing.s600} direction="column">
