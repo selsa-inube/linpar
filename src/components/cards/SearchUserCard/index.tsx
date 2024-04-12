@@ -111,6 +111,7 @@ function SearchUserCard(props: SearchUserCardProps) {
       {showModal && (
         <InteractiveModal
           title={title}
+          selectedItem={selectedUsername}
           infoTitle={infoTitle}
           closeModal={handleToggleModal}
           infoData={searchFieldData}

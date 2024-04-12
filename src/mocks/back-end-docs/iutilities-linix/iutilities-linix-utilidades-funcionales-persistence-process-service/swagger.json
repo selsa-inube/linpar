@@ -1,0 +1,1825 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "El propósito de esta aplicación es proveer los servicios de proceso que soportan las acciones para la persitencia de Utilidades Funcionales",
+    "title": "Utilidades Funcionales Persistence Process Service API",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:8082",
+  "basePath": "/iutilities-linix-utilidades-funcionales-persistence-process-service/api",
+  "paths": {
+    "/bancos/{AC:AgregarBanco}": {
+      "post": {
+        "description": "Acción que permite agregar un banco",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Banco"],
+        "summary": "Crear un banco",
+        "parameters": [
+          {
+            "description": "Banco",
+            "name": "Banco",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtorequest.AgregarBancoRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AgregarBanco",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.AgregarBancoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/bancos/{AC:EliminarBanco}": {
+      "delete": {
+        "description": "Acción que permite eliminar un banco",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Banco"],
+        "summary": "Eliminar un banco",
+        "parameters": [
+          {
+            "description": "Banco",
+            "name": "Banco",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtorequest.AggregateEliminarBancoRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EliminarBanco",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.EliminarBancoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/bancos/{AC:ModificarBanco}": {
+      "patch": {
+        "description": "Acción que permite modificar un banco",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Banco"],
+        "summary": "Modificar un banco",
+        "parameters": [
+          {
+            "description": "Banco",
+            "name": "Banco",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtorequest.ModificarBancoRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModificarBanco",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.ModificarBancoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/dominios-linix/{AC:AgregarDominioLinix}": {
+      "post": {
+        "description": "Acción que permite crear un dominio linux",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["DominiosLinix"],
+        "summary": "Agrega un dominio linix",
+        "parameters": [
+          {
+            "description": "DominioLinix",
+            "name": "DominioLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest.AgregarDominioLinixRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AgregarDominioLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.AgregarDominioLinixResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/dominios-linix/{AC:EliminarDominioLinixPorId}": {
+      "delete": {
+        "description": "Accion que perimite eliminar un unico campo de los dominios. esto por medio de su llave compuesta \"rv_Domain\" y \"rv_Low_Value\".",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["DominiosLinix"],
+        "summary": "Elimina un dominio linix Por Id",
+        "parameters": [
+          {
+            "description": "DominioLinix",
+            "name": "DominioLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest_dto-aggregate-request.DominioLinixPorIdRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EliminarDominioLinixPorId",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.EliminarDominioLinixPorIdResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/dominios-linix/{AC:EliminarDominioLinix}": {
+      "delete": {
+        "description": "Acción que permite eliminar un dominio linix, esto por medio del dominio o campo \"rv_Domain\".",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["DominiosLinix"],
+        "summary": "Elimina un dominio linix",
+        "parameters": [
+          {
+            "description": "DominioLinix",
+            "name": "DominioLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest_dto-aggregate-request.DominioLinixRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EliminarDominioLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.EliminarDominioLinixResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/dominios-linix/{AC:ModificarDominioLinix}": {
+      "patch": {
+        "description": "Acción que permite modificar un dominio linux",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["DominiosLinix"],
+        "summary": "Modifica un dominio linix",
+        "parameters": [
+          {
+            "description": "DominioLinix",
+            "name": "DominioLinix",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest.ModificarDominioLinixRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModificarDominioLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.ModificarDominioLinixResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/numeradores/{AC:AgregarNumerador}": {
+      "post": {
+        "description": "Acción que permite crear un numerador",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Numeradores"],
+        "summary": "Agrega un numerador",
+        "parameters": [
+          {
+            "description": "Numerador",
+            "name": "Numerador",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtorequest.AgregarNumeradorRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AgregarNumerador",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.AgregarNumeradorResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/numeradores/{AC:EliminarNumerador}": {
+      "delete": {
+        "description": "Acción que permite eliminar un numerador",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Numeradores"],
+        "summary": "Elimina un numerador",
+        "parameters": [
+          {
+            "description": "Numerador",
+            "name": "Numerador",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtorequest_dto-aggregate-request.NumeradorRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EliminarNumerador",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.EliminarNumeradorResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/numeradores/{AC:ModificarNumerador}": {
+      "patch": {
+        "description": "Acción que permite modificar un numerador",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Numeradores"],
+        "summary": "Modifica un numerador",
+        "parameters": [
+          {
+            "description": "Numerador",
+            "name": "Numerador",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtorequest.ModificarNumeradorRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModificarNumerador",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.ModificarNumeradorResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/parametros-generales/{AC:AgregarParametroGeneral}": {
+      "post": {
+        "description": "Acción que permite crear un parametro general",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ParametrosGenerales"],
+        "summary": "Agrega un parametro general",
+        "parameters": [
+          {
+            "description": "ParametroGeneral",
+            "name": "ParametroGeneral",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtorequest.AgregarParametroGeneralRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AgregarParametroGeneral",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.AgregarParametroGeneralResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/parametros-generales/{AC:EliminarParametroGeneral}": {
+      "delete": {
+        "description": "Acción que permite eliminar un parametro general",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ParametrosGenerales"],
+        "summary": "Elimina un parametro general",
+        "parameters": [
+          {
+            "description": "ParametroGeneral",
+            "name": "ParametroGeneral",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtorequest_dto-aggregate-request.ParametroGeneralRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EliminarParametroGeneral",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.EliminarParametroGeneralResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/parametros-generales/{AC:ModificarParametroGeneral}": {
+      "patch": {
+        "description": "Acción que permite modificar un parametro general",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ParametrosGenerales"],
+        "summary": "Modifica un parametro general",
+        "parameters": [
+          {
+            "description": "ParametroGeneral",
+            "name": "ParametroGeneral",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtorequest.ModificarParametroGeneralRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModificarParametroGeneral",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.ModificarParametroGeneralResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "eactivo.Activo": {
+      "type": "string",
+      "enum": ["Y", "N"],
+      "x-enum-varnames": ["Y", "N"]
+    },
+    "edmactivo.DmActivo": {
+      "type": "string",
+      "enum": ["Y", "N"],
+      "x-enum-varnames": ["Y", "N"]
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtorequest.AggregateEliminarBancoRequest": {
+      "type": "object",
+      "properties": {
+        "eliminarBanco": {
+          "description": "List of records to remove",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtorequest.EliminarBancoRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtorequest.AgregarBancoRequest": {
+      "type": "object",
+      "required": [
+        "i_Activo",
+        "i_Chekeo",
+        "i_Dosxmi",
+        "k_Ciudad",
+        "k_Codban",
+        "k_Codsap",
+        "k_Depart",
+        "k_Format",
+        "k_Idterc",
+        "k_Pais",
+        "k_Tipent",
+        "n_Banco",
+        "q_Digito"
+      ],
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "maxLength": 1,
+          "minLength": 1,
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Chekeo": {
+          "description": "Chekeo",
+          "type": "integer"
+        },
+        "i_Dosxmi": {
+          "description": "Indicador para controlar en cada transaccion el calculo del impuesto de emergencia economica. (Y/N)",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Ciudad": {
+          "description": "Ciudad donde se encuentra ubicado el banco.",
+          "type": "string",
+          "maxLength": 8,
+          "minLength": 1
+        },
+        "k_Codban": {
+          "description": "Codigo de banco",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Codsap": {
+          "description": "Codigo del SAP para hacer transferencias entre entidades bancarias.",
+          "type": "string",
+          "maxLength": 9,
+          "minLength": 1
+        },
+        "k_Depart": {
+          "description": "Departamento donde se encuentra ubicado el banco.",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Format": {
+          "description": "Codigo del formato",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Idterc": {
+          "description": "Código Interno del tercero que corresponde a la entidad financiera.",
+          "type": "integer"
+        },
+        "k_Pais": {
+          "description": "País donde se encuentra ubicado el banco.",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Tipent": {
+          "description": "Código",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "n_Banco": {
+          "description": "Nombre de banco",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        },
+        "q_Digito": {
+          "description": "Digito",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtorequest.EliminarBancoRequest": {
+      "type": "object",
+      "required": ["k_Codban", "removalJustification"],
+      "properties": {
+        "k_Codban": {
+          "description": "Codigo de banco",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtorequest.ModificarBancoRequest": {
+      "type": "object",
+      "required": ["k_Codban", "modifyJustification"],
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "maxLength": 1,
+          "minLength": 1,
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Chekeo": {
+          "description": "Chekeo",
+          "type": "integer"
+        },
+        "i_Dosxmi": {
+          "description": "Indicador para controlar en cada transaccion el calculo del impuesto de emergencia economica. (Y/N)",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Ciudad": {
+          "description": "Ciudad donde se encuentra ubicado el banco.",
+          "type": "string",
+          "maxLength": 8,
+          "minLength": 1
+        },
+        "k_Codban": {
+          "description": "Codigo de banco",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Codsap": {
+          "description": "Codigo del SAP para hacer transferencias entre entidades bancarias.",
+          "type": "string",
+          "maxLength": 9,
+          "minLength": 1
+        },
+        "k_Depart": {
+          "description": "Departamento donde se encuentra ubicado el banco.",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Format": {
+          "description": "Codigo del formato",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Idterc": {
+          "description": "Código Interno del tercero que corresponde a la entidad financiera.",
+          "type": "integer"
+        },
+        "k_Pais": {
+          "description": "País donde se encuentra ubicado el banco.",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "k_Tipent": {
+          "description": "Código",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "modifyJustification": {
+          "description": "Justification for the modification",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "n_Banco": {
+          "description": "Nombre de banco",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        },
+        "q_Digito": {
+          "description": "Digito",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.AgregarBancoResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Chekeo": {
+          "description": "Chekeo",
+          "type": "integer"
+        },
+        "i_Dosxmi": {
+          "description": "Indicador para controlar en cada transaccion el calculo del impuesto de emergencia economica. (Y/N)",
+          "type": "string"
+        },
+        "k_Ciudad": {
+          "description": "Ciudad donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Codban": {
+          "description": "Codigo de banco",
+          "type": "string"
+        },
+        "k_Codsap": {
+          "description": "Codigo del SAP para hacer transferencias entre entidades bancarias.",
+          "type": "string"
+        },
+        "k_Depart": {
+          "description": "Departamento donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Format": {
+          "description": "Codigo del formato",
+          "type": "string"
+        },
+        "k_Idterc": {
+          "description": "Código Interno del tercero que corresponde a la entidad financiera.",
+          "type": "integer"
+        },
+        "k_Pais": {
+          "description": "País donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Tipent": {
+          "description": "Código",
+          "type": "string"
+        },
+        "n_Banco": {
+          "description": "Nombre de banco",
+          "type": "string"
+        },
+        "q_Digito": {
+          "description": "Digito",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.EliminarBancoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Codban": {
+          "description": "Codigo de banco",
+          "type": "string"
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.ModificarBancoResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Chekeo": {
+          "description": "Chekeo",
+          "type": "integer"
+        },
+        "i_Dosxmi": {
+          "description": "Indicador para controlar en cada transaccion el calculo del impuesto de emergencia economica. (Y/N)",
+          "type": "string"
+        },
+        "k_Ciudad": {
+          "description": "Ciudad donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Codban": {
+          "description": "Codigo de banco",
+          "type": "string"
+        },
+        "k_Codsap": {
+          "description": "Codigo del SAP para hacer transferencias entre entidades bancarias.",
+          "type": "string"
+        },
+        "k_Depart": {
+          "description": "Departamento donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Format": {
+          "description": "Codigo del formato",
+          "type": "string"
+        },
+        "k_Idterc": {
+          "description": "Código Interno del tercero que corresponde a la entidad financiera.",
+          "type": "integer"
+        },
+        "k_Pais": {
+          "description": "País donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Tipent": {
+          "description": "Código",
+          "type": "string"
+        },
+        "modifyJustification": {
+          "description": "Justification for the modification",
+          "type": "string"
+        },
+        "n_Banco": {
+          "description": "Nombre de banco",
+          "type": "string"
+        },
+        "q_Digito": {
+          "description": "Digito",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest.AgregarDominioLinixRequest": {
+      "type": "object",
+      "required": ["rv_Domain", "rv_Low_Value"],
+      "properties": {
+        "rv_Abbreviation": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240,
+          "minLength": 1
+        },
+        "rv_Meaning": {
+          "description": "Descripcion",
+          "type": "string",
+          "maxLength": 240
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest.EliminarDominioLinixPorIdRequest": {
+      "type": "object",
+      "required": ["removalJustification", "rv_Domain", "rv_Low_Value"],
+      "properties": {
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest.EliminarDominioLinixRequest": {
+      "type": "object",
+      "required": ["removalJustification", "rv_Domain"],
+      "properties": {
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest.ModificarDominioLinixRequest": {
+      "type": "object",
+      "required": ["modifyJustification", "rv_Domain", "rv_Low_Value"],
+      "properties": {
+        "modifyJustification": {
+          "description": "Justification de la modification",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "rv_Abbreviation": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240,
+          "minLength": 1
+        },
+        "rv_Meaning": {
+          "description": "Descripcion",
+          "type": "string",
+          "maxLength": 240
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest_dto-aggregate-request.DominioLinixPorIdRequest": {
+      "type": "object",
+      "properties": {
+        "eliminarDominiosLinixPorId": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest.EliminarDominioLinixPorIdRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest_dto-aggregate-request.DominioLinixRequest": {
+      "type": "object",
+      "properties": {
+        "eliminarDominiosLinix": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtorequest.EliminarDominioLinixRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.AgregarDominioLinixResponse": {
+      "type": "object",
+      "properties": {
+        "rv_Abbreviation": {
+          "description": "Codigo",
+          "type": "string"
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string"
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string"
+        },
+        "rv_Meaning": {
+          "description": "Descripcion",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.EliminarDominioLinixPorIdResponse": {
+      "type": "object",
+      "properties": {
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string"
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.EliminarDominioLinixResponse": {
+      "type": "object",
+      "properties": {
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string"
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.ModificarDominioLinixResponse": {
+      "type": "object",
+      "properties": {
+        "modifyJustification": {
+          "description": "Justification for the modification",
+          "type": "string"
+        },
+        "rv_Abbreviation": {
+          "description": "Codigo",
+          "type": "string"
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string"
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string"
+        },
+        "rv_Meaning": {
+          "description": "Descipcion",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtorequest.AgregarNumeradorRequest": {
+      "type": "object",
+      "required": ["i_Activo", "i_Iniuno", "k_Numera", "n_Numera"],
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y", "N"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmactivo.DmActivo"
+            }
+          ]
+        },
+        "i_Commit": {
+          "description": "No aplica",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Iniuno": {
+          "description": "null",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Numera": {
+          "description": "Codigo que identifica el numerador consecutivo",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "n_Numera": {
+          "description": "Descripcion del numerador consecutivo",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtorequest.EliminarNumeradorRequest": {
+      "type": "object",
+      "required": ["k_Numera", "removalJustification"],
+      "properties": {
+        "k_Numera": {
+          "description": "Codigo que identifica el numerador consecutivo",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtorequest.ModificarNumeradorRequest": {
+      "type": "object",
+      "required": ["k_Numera", "modifyJustification"],
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y", "N"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmactivo.DmActivo"
+            }
+          ]
+        },
+        "i_Commit": {
+          "description": "No aplica",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Iniuno": {
+          "description": "null",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Numera": {
+          "description": "Codigo que identifica el numerador consecutivo",
+          "type": "string",
+          "maxLength": 3,
+          "minLength": 1
+        },
+        "modifyJustification": {
+          "description": "Justification for the modification",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "n_Numera": {
+          "description": "Descripcion del numerador consecutivo",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtorequest_dto-aggregate-request.NumeradorRequest": {
+      "type": "object",
+      "properties": {
+        "eliminarNumeradores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtorequest.EliminarNumeradorRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.AgregarNumeradorResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si esta activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmactivo.DmActivo"
+            }
+          ]
+        },
+        "i_Commit": {
+          "description": "No aplica",
+          "type": "string"
+        },
+        "i_Iniuno": {
+          "description": "Indica si el numerador debe iniciar en 1 cada año, en el proceso de generación de numeradores inicio de año (valores posibles Y/N)",
+          "type": "string"
+        },
+        "k_Numera": {
+          "description": "Codigo que identifica el numerador consecutivo",
+          "type": "string"
+        },
+        "n_Numera": {
+          "description": "Descripcion del numerador consecutivo",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.EliminarNumeradorResponse": {
+      "type": "object",
+      "properties": {
+        "k_Parame": {
+          "description": "Codigo que identifica el numerador consecutivo",
+          "type": "string"
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.ModificarNumeradorResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si esta activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmactivo.DmActivo"
+            }
+          ]
+        },
+        "i_Commit": {
+          "description": "No aplica",
+          "type": "string"
+        },
+        "i_Iniuno": {
+          "description": "Indica si el numerador debe iniciar en 1 cada año, en el proceso de generación de numeradores inicio de año (valores posibles Y/N)",
+          "type": "string"
+        },
+        "k_Numera": {
+          "description": "Codigo que identifica el numerador consecutivo",
+          "type": "string"
+        },
+        "modifyJustification": {
+          "description": "Justification de la modification",
+          "type": "string"
+        },
+        "n_Numera": {
+          "description": "Descripcion del numerador consecutivo",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtorequest.AgregarParametroGeneralRequest": {
+      "type": "object",
+      "required": [
+        "i_Activo",
+        "i_Aplica",
+        "i_Modifi",
+        "i_Relaci",
+        "i_Tipdat",
+        "k_Parame",
+        "n_Parame"
+      ],
+      "properties": {
+        "f_Fecha": {
+          "description": "Valor fecha",
+          "type": "string",
+          "maxLength": 50
+        },
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y", "N"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmactivo.DmActivo"
+            }
+          ]
+        },
+        "i_Aplica": {
+          "description": "Aplicacion",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "i_Modifi": {
+          "description": "Determina si el parametro puede ser modificado despues de instalar",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Relaci": {
+          "description": "Indicador de relacion",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "integer"
+        },
+        "n_Parame": {
+          "description": "Nombre del parametro",
+          "type": "string",
+          "maxLength": 160,
+          "minLength": 1
+        },
+        "o_Alfabe": {
+          "description": "Valor alfabetico",
+          "type": "string",
+          "maxLength": 100
+        },
+        "o_Domini": {
+          "description": "Nombre del dominio",
+          "type": "string",
+          "maxLength": 10
+        },
+        "v_Numeri": {
+          "description": "Valor numerico",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtorequest.EliminarParametroGeneralRequest": {
+      "type": "object",
+      "required": ["k_Parame", "removalJustification"],
+      "properties": {
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "integer"
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtorequest.ModificarParametroGeneralRequest": {
+      "type": "object",
+      "required": ["k_Parame", "modifyJustification"],
+      "properties": {
+        "f_Fecha": {
+          "description": "Valor fecha",
+          "type": "string",
+          "maxLength": 50
+        },
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y", "N"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmactivo.DmActivo"
+            }
+          ]
+        },
+        "i_Aplica": {
+          "description": "Aplicacion",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "i_Modifi": {
+          "description": "Determina si el parametro puede ser modificado despues de instalar",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Relaci": {
+          "description": "Indicador de relacion",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "integer"
+        },
+        "modifyJustification": {
+          "description": "Justification for the modification",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "n_Parame": {
+          "description": "Nombre del parametro",
+          "type": "string",
+          "maxLength": 160,
+          "minLength": 1
+        },
+        "o_Alfabe": {
+          "description": "Valor alfabetico",
+          "type": "string",
+          "maxLength": 100
+        },
+        "o_Domini": {
+          "description": "Nombre del dominio",
+          "type": "string",
+          "maxLength": 10
+        },
+        "v_Numeri": {
+          "description": "Valor numerico",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtorequest_dto-aggregate-request.ParametroGeneralRequest": {
+      "type": "object",
+      "properties": {
+        "eliminarParametrosGenerales": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtorequest.EliminarParametroGeneralRequest"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.AgregarParametroGeneralResponse": {
+      "type": "object",
+      "properties": {
+        "f_Fecha": {
+          "description": "Valor fecha",
+          "type": "string"
+        },
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "type": "string"
+        },
+        "i_Aplica": {
+          "description": "Aplicacion",
+          "type": "string"
+        },
+        "i_Modifi": {
+          "description": "Determina si el parametro puede ser modificado despues de instalar",
+          "type": "string"
+        },
+        "i_Relaci": {
+          "description": "Indicador de relacion",
+          "type": "string"
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato",
+          "type": "string"
+        },
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "integer"
+        },
+        "n_Parame": {
+          "description": "Nombre del parametro",
+          "type": "string"
+        },
+        "o_Alfabe": {
+          "description": "Valor alfabetico",
+          "type": "string"
+        },
+        "o_Domini": {
+          "description": "Nombre del dominio",
+          "type": "string"
+        },
+        "v_Numeri": {
+          "description": "Valor numerico",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.EliminarParametroGeneralResponse": {
+      "type": "object",
+      "properties": {
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "integer"
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-persistence-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.ModificarParametroGeneralResponse": {
+      "type": "object",
+      "properties": {
+        "f_Fecha": {
+          "description": "Valor fecha",
+          "type": "string"
+        },
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "type": "string"
+        },
+        "i_Aplica": {
+          "description": "Aplicacion",
+          "type": "string"
+        },
+        "i_Modifi": {
+          "description": "Determina si el parametro puede ser modificado despues de instalar",
+          "type": "string"
+        },
+        "i_Relaci": {
+          "description": "Indicador de relacion",
+          "type": "string"
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato",
+          "type": "string"
+        },
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "integer"
+        },
+        "modifyJustification": {
+          "description": "Justification de la modification",
+          "type": "string"
+        },
+        "n_Parame": {
+          "description": "Nombre del parametro",
+          "type": "string"
+        },
+        "o_Alfabe": {
+          "description": "Valor alfabetico",
+          "type": "string"
+        },
+        "o_Domini": {
+          "description": "Nombre del dominio",
+          "type": "string"
+        },
+        "v_Numeri": {
+          "description": "Valor numerico",
+          "type": "integer"
+        }
+      }
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

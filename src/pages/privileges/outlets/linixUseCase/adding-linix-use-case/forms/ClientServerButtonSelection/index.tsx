@@ -3,11 +3,11 @@ import { useFormik } from "formik";
 
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { getData } from "@mocks/utils/dataMock.service";
+import { getAll } from "@mocks/utils/dataMock.service";
 import {
   IHandleChangeFormData,
   IClientServerButton,
-} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
+} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 
 import { ClientServerButtonSelectionUI } from "./interface";
 
@@ -39,7 +39,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   );
 
   useEffect(() => {
-    getData("button-options")
+    getAll("button-options")
       .then((data) => {
         if (data !== null) {
           setButtonOptions(data as Record<string, unknown>[]);

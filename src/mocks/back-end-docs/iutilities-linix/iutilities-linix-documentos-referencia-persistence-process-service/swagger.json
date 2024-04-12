@@ -1,0 +1,494 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The purpose of this application is to provide process service to manage the persistence data of documentos referencia",
+    "title": "Documentos Referencia Persistence Process service",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:8082",
+  "basePath": "/iutilities-linix-documentos-referencia-persistence-process-service/api",
+  "paths": {
+    "/tipos/{AC:AgregarDocumentoSeguroCartera}": {
+      "post": {
+        "description": "Crea un tipo de documento de seguro cartera o capitalización",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Tipo"],
+        "summary": "Crea un tipo de documento de seguro cartera o capitalización",
+        "parameters": [
+          {
+            "description": "DocumentoSeguroCartera",
+            "name": "DocumentoSeguroCartera",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-documentos-referencia-persistence-process-service_internal_tipo_infrastructure_adapter_rest_dto_dtorequest.AgregarDocumentoSeguroCarteraRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AgregarDocumentoSeguroCartera",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-documentos-referencia-persistence-process-service_internal_tipo_infrastructure_adapter_rest_dto_dtoresponse.CatalogoDeTipoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "edmplacau.DmPlacau": {
+      "type": "string",
+      "enum": ["C", "F", "N", "P"],
+      "x-enum-varnames": ["C", "F", "N", "P"]
+    },
+    "edmsegpat.DmSegpat": {
+      "type": "string",
+      "enum": ["I", "N", "V"],
+      "x-enum-varnames": ["I", "N", "V"]
+    },
+    "edmtipodr.DmTipodr": {
+      "type": "string",
+      "enum": [
+        "AH",
+        "AP",
+        "AX",
+        "CC",
+        "CD",
+        "CF",
+        "CP",
+        "EM",
+        "GF",
+        "IF",
+        "IN",
+        "OB",
+        "OF",
+        "OS",
+        "SC",
+        "SP",
+        "SV"
+      ],
+      "x-enum-varnames": [
+        "AH",
+        "AP",
+        "AX",
+        "CC",
+        "CD",
+        "CF",
+        "CP",
+        "EM",
+        "GF",
+        "IF",
+        "IN",
+        "OB",
+        "OF",
+        "OS",
+        "SC",
+        "SP",
+        "SV"
+      ]
+    },
+    "edmtipval.DmTipval": {
+      "type": "string",
+      "enum": ["C", "F", "G", "M", "N", "P", "S", "V"],
+      "x-enum-varnames": ["C", "F", "G", "M", "N", "P", "S", "V"]
+    },
+    "edmvlrcau.DmVlrcau": {
+      "type": "string",
+      "enum": ["C", "F", "N", "P", "V"],
+      "x-enum-varnames": ["C", "F", "N", "P", "V"]
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-documentos-referencia-persistence-process-service_internal_tipo_infrastructure_adapter_rest_dto_dtorequest.AgregarDocumentoSeguroCarteraRequest": {
+      "type": "object",
+      "required": [
+        "i_Movaso",
+        "i_Placau",
+        "i_Tipodr",
+        "i_Tipval",
+        "i_Vlrcau",
+        "k_Cencos",
+        "n_Tipodr"
+      ],
+      "properties": {
+        "i_Mipyme": {
+          "description": "determina si el seguro patrimonial es para la comisión mipyme",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y", "N"]
+        },
+        "i_Movaso": {
+          "description": "Determina si se requiere que el cliente sea un asociado activo",
+          "type": "string",
+          "maxLength": 1,
+          "enum": ["Y", "N"]
+        },
+        "i_Placau": {
+          "description": "El plazo de causación",
+          "maxLength": 1,
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmplacau.DmPlacau"
+            }
+          ]
+        },
+        "i_Segpat": {
+          "description": "Tipo de poliza",
+          "minLength": 1,
+          "enum": ["I", "N", "V"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmsegpat.DmSegpat"
+            }
+          ]
+        },
+        "i_Tipodr": {
+          "description": "Tipo de documento, valores permitidos SV, SP, AP",
+          "maxLength": 2,
+          "enum": ["SV", "SP", "AP"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmtipodr.DmTipodr"
+            }
+          ]
+        },
+        "i_Tipval": {
+          "description": "La base del valor asegurado",
+          "maxLength": 1,
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmtipval.DmTipval"
+            }
+          ]
+        },
+        "i_Vlrcau": {
+          "description": "La base para el cobro periodico del seguro",
+          "maxLength": 1,
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmvlrcau.DmVlrcau"
+            }
+          ]
+        },
+        "k_Cencos": {
+          "description": "Centro de costo",
+          "type": "string",
+          "maxLength": 3
+        },
+        "k_Idterc_Proveedor": {
+          "description": "Código del proveedor",
+          "type": "integer"
+        },
+        "n_Tipodr": {
+          "description": "Nombre del tipo de documento",
+          "type": "string",
+          "maxLength": 45
+        },
+        "p_Comisi": {
+          "description": "Porcentaje de comision por valor causado",
+          "type": "number"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-documentos-referencia-persistence-process-service_internal_tipo_infrastructure_adapter_rest_dto_dtoresponse.CatalogoDeTipoResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Indicador que sirve para inactivar un tipo de documento soporte que ya no debe ser usado o que perdió vigencia en la aplicación. Para inactivarlo éste indicador debe tener el valor (N), de los contrario debe tomar el valor (Y).",
+          "type": "string"
+        },
+        "i_Ano": {
+          "description": "Para los tipos de documento soporte que usan numerador automático, el usuario puede requerir que el sistema concatene el año al número del documento generado. Para lograrlo éste campo debe llevar el valor (Y), de lo contario, debe llevar el valor (N).",
+          "type": "string"
+        },
+        "i_Antici": {
+          "description": "Sirve para identificar los documentos soporte sobre los cuales se registran anticipos ya sea de cuentas por cobrar o de cuentas por pagar. Estos documentos son utilizados por los módulos de compras y/o ventas de LINIX, para ofrecerle la facilidad  al usuario de poder cruzar en el momento de la creación de la factura los anticipos que tengan saldo.",
+          "type": "string"
+        },
+        "i_Basend": {
+          "description": "Indicador que sirve para determinar que el saldo del documento soporte debe ser incluído dentro de la sumatoria de los aportes y ahorros del cliente o asociado en el momento de determinar su capacidad de endeudamiento.",
+          "type": "string"
+        },
+        "i_Caumov": {
+          "description": "Para documentos soporte de seguros éste indicador sirve para determinar si el sistema debe generar en el mismo momento de la causación del seguro la cuenta por pagar al proveedor del seguro. En caso que el valor de éste campo sea (N), el sistema ofrece la posibilidad de causar la cuenta por pagar al proveedor basado en los valores realmente pagados por los clientes de dicho seguro.",
+          "type": "string"
+        },
+        "i_Clanom": {
+          "description": "Campo de clasificación adicional para los documentos soporte que están directamente relacionados con la aplicación de nómina.  Los valores posible están determinado por el dominio DM_CLANOM.",
+          "type": "string"
+        },
+        "i_Contra": {
+          "description": "Para entidades que usen el módulo de contraros de LINIX y requieran asociar los documentos soporte de causación de las cuentas por pagar con el contrato que los originó, este indicador sirve para hacer obligatoria dicha asociación en el momento de la creación del documento soporte de causación.",
+          "type": "string"
+        },
+        "i_Ctacob": {
+          "description": "Indicador que sirve para determinar que el documento soporte debe ser incluído dentro de las cuentas de cobro generadas por el sistema. Para activarlos éste campo debe tomar el valor (Y), de lo contrario debe estar en (N). Este campo es usado por el proceso de generación de cuentas de cobro",
+          "type": "string"
+        },
+        "i_Ctamin": {
+          "description": "Indicador si los ahorros programados deben tener el control de cuota minima.",
+          "type": "string"
+        },
+        "i_Darsub": {
+          "description": "Para documentos soporte de seguros este indicador sirve para determinar si el la cooperativa le otorga subsidia total o parcialmente a sus clientes o asociados por éste seguro. En caso que así sea éste campo debe llevar el valor (Y), de lo contrario debe quedar en (N). El valor del subsidio puede estar determinado por rango de sueldo por lo tanto se almacena en la tabla CU043MPARAMSUB. Por favor remitirse a dicha tabla para conocer todos los detalles.",
+          "type": "string"
+        },
+        "i_Doccar": {
+          "description": "Para los documentos soporte como: seguros patrimoniales, seguros de vida y gastos adicionales por embargos, que deben estar directamente asociados con una obligación de cartera, éste indicador sirve para condicionar al usuario a que siempre digite la obligación en el momento en que está creando el documento. Para lograrlo éste campo debe tomar el valor (Y), de lo contrario debe quedar en (N).",
+          "type": "string"
+        },
+        "i_Efecto": {
+          "description": "Determina la forma de deducir el saldo del documento soporte, es decir si el efecto es (CP): El saldo se determina como el resultado del credito menos el debito y si la efecto es (CC): El saldo se determina como debitos menos creditos",
+          "type": "string"
+        },
+        "i_Forpag": {
+          "description": "Determina si el documento soporte va a tener pactados unos vencimientos en el momento de su creación o si simplemente va a ser usado para registrar movimientos y manetener el saldo pero no se requiere el saldo vencido.",
+          "type": "string"
+        },
+        "i_Fpretah": {
+          "description": "Forma de pago para los retiros de los ahorros programados.Dominio DM_PAGGEN",
+          "type": "string"
+        },
+        "i_Intcar": {
+          "description": "Indicador para saber si la causación del documento se hace en un Doc.Soporte (N) o en una obligación de cartera (Y)",
+          "type": "string"
+        },
+        "i_Liqret": {
+          "description": "Este indicador sirve para determinar si el saldo del documento soporte debe incluirse, ya sea aumentado ó disminuyendo el neto por pagar, en la liquidación de retiro de la cooperativa de un asociado. Para activarlo éste campo debe tomar el valor(Y), de lo contrario debe quedar en (N).",
+          "type": "string"
+        },
+        "i_Mipyme": {
+          "description": "Indicador si el seguro patrimonial es para la comisión mipyme",
+          "type": "string"
+        },
+        "i_Modint": {
+          "description": "Este es un campo puramente informativo ya que no tiene ninguna aplicación en el sistema. Los valores posibles están definidos en el dominio DM_MODINT",
+          "type": "string"
+        },
+        "i_Modren": {
+          "description": "Modalidad de calculo de rendimiento del tipo de documento soporte",
+          "type": "string"
+        },
+        "i_Monetg": {
+          "description": "Sirve para manejar paralelamente el saldo del documentos soporte en otra unidad monetaria distinta al peso. Para activarlo éste campo debe tomar el valor (Y) y en caso contrario debe llevar el valor (N)",
+          "type": "string"
+        },
+        "i_Movaso": {
+          "description": "Para los documentos soporte de aportes y/o seguros, sirve para condicionar que los clientes ó terceros de éstos documentos sean obligatoriamente asociados a la cooperativa. Para colocarlo restrictivo éste campo debe tomar el valor (Y), de lo contrario debe quedar en (N).",
+          "type": "string"
+        },
+        "i_Movdoc": {
+          "description": "Este indicador sirve para restringir el uso de más de un documento soporte de éste tipo en un mismo documento del módulo de movimientos. Es decir si éste indicador se encuentra en (Y), el usuario sólamente podrá mover un documento soporte de éste tipo de cada documento( Recibo de caja, egreso, nota contable, etc ) que haga.",
+          "type": "string"
+        },
+        "i_Natura": {
+          "description": "Determina la naturaleza de los movimientos que disminuyen el saldo vencido del documento. Es decir, para los documentos de cuentas por cobrar los abonos son de naturaleza crédito mientras que para las cuentas por pagar los abono son de naturaleza debito. En los aportes, que son un caso especial de las cuentas por pagar, los abonos son de naturaleza crédito",
+          "type": "string"
+        },
+        "i_Novpmt": {
+          "description": "Para los documentos soporte que se incluyen en las cuentas de cobro éste indicador sirve para determinarle al sistema si siempre se debe cobrar el saldo vencido ( en cuyo caso este campo debe tomar el valor (N) ) del documento ó si simplemente se debe cobrar la cuota pactada para el período independientemente que el cliente se encuentre anticipado ó vencido ( En este caso debe tener el valor (Y)).",
+          "type": "string"
+        },
+        "i_Placau": {
+          "description": "Para documentos soporte de seguros este indicador sirve para determinar el lapso de tiempo durante el cual el sistema debe hacer la causación de éste seguro. Los valores posibles están determinado por el dominio DM_PLACAU.",
+          "type": "string"
+        },
+        "i_Presup": {
+          "description": "Para entidades que manejan presupuesto oficial, éste indicador sirve para determinar si el tipo de documento tiene relación o afecta el presupuesto. En caso que sea así el valor debe ser (Y), de lo contrario debe ser (N)",
+          "type": "string"
+        },
+        "i_Renaut": {
+          "description": "Para documentos soporte de seguros este indicador sirve para determinar si el documento se renueva en forma automática. Esta opción todavía no se encuentra implementada en el sistema.",
+          "type": "string"
+        },
+        "i_Repvac": {
+          "description": "Indicador de la acción a seguir con respecto a las cuotas de Ahorros programados que se venzan durante el periodo de disfrute de las vacaciones del asociado",
+          "type": "string"
+        },
+        "i_Saldo": {
+          "description": "Sirve para determinar si el sistema debe mantener el saldo del documento soporte. Existen documentos soporte para los cuales se requiere registrar los movimientos y determinar el saldo vencido pero para los cuales el saldo no tiene ninguna aplicación práctica ni útil y por el contrario puede resultar confuso. Un ejemplo de ello son documentos soporte del Auxilio Funerario, el objetivo de ello es registrar los pago y poder saber el saldo vencido; sinembargo el saldo resulta ser irrelevante y sin ninguna aplicación práctica.",
+          "type": "string"
+        },
+        "i_Salneg": {
+          "description": "Saldo negativo por obligación?",
+          "type": "string"
+        },
+        "i_Segpat": {
+          "description": "Tipo de Indicador para los seguros que determina el tipo de poliza si de vehiculo o inmueble",
+          "type": "string"
+        },
+        "i_Sucurs": {
+          "description": "Para los tipos de documento soporte que usan numerador automático, el usuario puede requerir que el sistema concatene el código de la sucursal al número del documento generado. Para lograrlo éste campo debe llevar el valor (Y), de lo contario, debe llevar el valor (N).",
+          "type": "string"
+        },
+        "i_Tasaobl": {
+          "description": "Indicador que determina si la tasa Individual obligatoria, asociada al dominio DM_ESTADO",
+          "type": "string"
+        },
+        "i_Tipint": {
+          "description": "Este es un campo puramente informativo ya que no tiene ninguna aplicación en el sistema. Los valores posibles están definidos en el dominio DM_TIPINT",
+          "type": "string"
+        },
+        "i_Tipodr": {
+          "description": "Usado para clasificar el tipo de documento soporte dentro uno de los grandes grupos que trae implementados la aplicación.",
+          "type": "string"
+        },
+        "i_Tiprel": {
+          "description": "Este es un campo puramente informativo ya que no tiene ninguna aplicación en el sistema. Los valores posibles están definidos en el dominio DM_TIPREL",
+          "type": "string"
+        },
+        "i_Tipval": {
+          "description": "Para los documentos soporte de seguros, éste indicador sirve para determinar el valor base ó valor asegurado. Los valores posibles están determinados por el dominio DM_TIPVAL",
+          "type": "string"
+        },
+        "i_Venuni": {
+          "description": "Indicador si el ahorro programado es de vencimiento unico",
+          "type": "string"
+        },
+        "i_Vlrcau": {
+          "description": "Para documentos soporte de seguros éste indicador determina las posibilidades que ofrece el sistema para determinar el valor a pagar periódicamente( quincenal ó mensualmente por dicho seguro ). Los valores posibles están determinado por el dominio DM_VLRCAU",
+          "type": "string"
+        },
+        "k_Cencos": {
+          "description": "Código del centro de Costo default. Foránera de la tabla GR022MCENTROCO. Este valor es heredado en el momento de la creación de los documentos soporte",
+          "type": "string"
+        },
+        "k_Crgdct": {
+          "description": "Código de la retención en la fuente en caso que el tipo de rendimiento sea tasa individual y cubrimiento total",
+          "type": "string"
+        },
+        "k_Format": {
+          "description": "Código del formato con el cual se deben imprimir los documentos soporte creados con éste tipo. Foránea de la tabla GR037TFORMATO.",
+          "type": "string"
+        },
+        "k_Idterc": {
+          "description": "Código del proveedor por defecto. Este valor es heredado al documento soporte en el momento de su creación. Este valor es útil para tipos de documentos soporte cuyo proveedor siempre es el mismo",
+          "type": "integer"
+        },
+        "k_Indvar": {
+          "description": "Codigo del índice de variabilidad para los ahorros programados",
+          "type": "string"
+        },
+        "k_Modali": {
+          "description": "Código de la modalidad",
+          "type": "string"
+        },
+        "k_Moneda": {
+          "description": "En caso que el documento soporte maneje saldo en otra moneda, en éste campo debe especificar el código de la moneda o unidad monetaria adicional. Foranea de la tabla GR058MMONEDA",
+          "type": "string"
+        },
+        "k_Tipodr": {
+          "description": "Código que identifica el tipo de documento soporte. Este campo es la llave primaria de la tabla.",
+          "type": "string"
+        },
+        "n_Tipodr": {
+          "description": "Sirve para hacer una descripción del objetivo del tipo de documento que se está definiendo",
+          "type": "string"
+        },
+        "numeradoresPorSucursal": {
+          "description": "numerador por sucursal",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-documentos-referencia-persistence-process-service_internal_tipo_infrastructure_adapter_rest_dto_dtoresponse.NumeradorPorSucursal"
+          }
+        },
+        "p_Comisi": {
+          "description": "Para documentos soporte de seguros para los cuales el proveedor del seguro le ofrece a la cooperativa una comisión por cada cliente ó asociado equivalente a un porcentaje aplicable al valor causado, en éste campo se debe digitar el porcentaje de dicha comisión. El valor de la comisión es calculada y causada por el proceso de causación de aportes y seguros.",
+          "type": "number"
+        },
+        "p_Intere": {
+          "description": "Este campo almacena el porcentaje de Interés. Su aplicación está directamente relacionada con el tipo de documento que se está definiendo. Este valor se herda al documento soporte en el momento de su creación.",
+          "type": "number"
+        },
+        "v_Basfac": {
+          "description": "Para documentos soporte de Aportes cuya modalidad de causación es por Factor, en éste campo debe digitarse dicho factor. Para documentos soporte de seguros cuya casuación está determinada por un Factor aplicado a un valor dado en el tipo de documento soporte, en éste campo  debe digitar dicho valor base",
+          "type": "number"
+        },
+        "v_Conver": {
+          "description": "Para documentos soporte de seguros cuya casuación está determinada por un Factor aplicado a un valor dado en el tipo de documento soporte, en éste campo  debe digitar dicho factor",
+          "type": "number"
+        },
+        "v_Facapl": {
+          "description": "Para documentos soporte de seguros cuya modalidad de causación es factor sobre el valor asegurado en éste campo debe digitrarse dicho factor. Este valor es usado para sugerirlo en el momento de la creación del documento soporte del seguro. Sinembargo el usuario puede modificarselo directamente a cada uno de los documentos cuando así lo requiera.",
+          "type": "number"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-documentos-referencia-persistence-process-service_internal_tipo_infrastructure_adapter_rest_dto_dtoresponse.NumeradorPorSucursal": {
+      "type": "object",
+      "properties": {
+        "i_Numera": {
+          "description": "Indicador que sirve para determinar si la relaciòn tipo de documento-sucursal maneja numerador ò no. Para activarlo èste campo debe tomar el valor (Y), de lo contrario debe quedar en (N).",
+          "type": "string"
+        },
+        "k_Numera": {
+          "description": "Còdigo del numerador automàtico que se le va a asociar a la relaciòn tipo de documento-sucursal. Recuerde que los numeradores tienen su propia tabla donde se definen su paràmetros. Foànea de la tabla GR032TNUMERADO",
+          "type": "string"
+        },
+        "k_Sucurs": {
+          "description": "Còdigo la sucursal a la cual se la va a asociar el numerador. Para empresas que no tengan sino una sucursal, deben hacer referencia a ella. Para empresas que manejen diferentes sucursales pero no estàn interesadas en manejar un numerador independiente para cada una de ellas, deben asociarle el mismo numerador a todas. Forànea de la tabla GR021MSUCURSAL",
+          "type": "string"
+        },
+        "k_Tipodr": {
+          "description": "Còdigo del Tipo de documento soporte al cual se le estàn definiendo los paràmetros de numeraciòn automàtica. Forànea de la tabla DR039MTIPDOCRE.",
+          "type": "string"
+        }
+      }
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
