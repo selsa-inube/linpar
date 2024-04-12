@@ -156,7 +156,7 @@ export const EditRole = () => {
 
   const valuesCreditboardTasks = editData?.tareasCrediboardPorRol?.map(
     (creditboardTask) => ({
-      id: creditboardTask.k_Rol,
+      id: creditboardTask.k_Rol.toString(),
       value: creditboardTask.tarea,
       isActive: false,
     })
