@@ -7,6 +7,10 @@ export default {
     name: "@storybook/react-vite",
     options: {},
   },
+  docs: {
+    autodocs: true,
+    defaultName: "Documentation",
+  },
   async viteFinal(config) {
     return mergeConfig(config, {
       optimizeDeps: {

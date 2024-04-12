@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 
-import { getData } from "@src/mocks/utils/dataMock.service";
+import { getAll } from "@src/mocks/utils/dataMock.service";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 
 import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
@@ -60,7 +60,7 @@ export function AddRol() {
     });
 
   useEffect(() => {
-    getData("documents").then((documentsFetch) => {
+    getAll("documents").then((documentsFetch) => {
       setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         transactionTypes: {
@@ -73,7 +73,7 @@ export function AddRol() {
         },
       }));
     });
-    getData("linix-roles").then((linixRolesFetch) => {
+    getAll("linix-roles").then((linixRolesFetch) => {
       setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         businessRules: {
@@ -87,7 +87,7 @@ export function AddRol() {
       }));
     });
 
-    getData("web-options").then((linixRolesFetch) => {
+    getAll("web-options").then((linixRolesFetch) => {
       setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         crediboardTasks: {
@@ -101,7 +101,7 @@ export function AddRol() {
       }));
     });
 
-    getData("linix-use-cases").then((linixRolesFetch) => {
+    getAll("linix-use-cases").then((linixRolesFetch) => {
       setDataAddRoleLinixForm((prevFormData) => ({
         ...prevFormData,
         useCases: {

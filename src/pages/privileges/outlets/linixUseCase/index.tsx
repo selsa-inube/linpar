@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { getData } from "@src/mocks/utils/dataMock.service";
+import { getAll } from "@src/mocks/utils/dataMock.service";
 
 import {
   LinixUseCaseUI,
@@ -16,7 +16,7 @@ function LinixUseCase() {
   const [linixUseCases, setLinixUseCases] = useState<UseCase[]>([]);
 
   useEffect(() => {
-    getData("linix-use-cases")
+    getAll("linix-use-cases")
       .then((data) => {
         if (data !== null) {
           setLinixUseCases(data as UseCase[]);
@@ -47,7 +47,7 @@ function LinixUseCase() {
   };
 
   const selectedData: SelectedDataFunction = (k_Usecase: string) =>
-    linixUseCases.find((LinuxUseCase) => LinuxUseCase.k_Usecase === k_Usecase)!;
+    linixUseCases.find((linixUseCase) => linixUseCase.k_Usecase === k_Usecase)!;
 
   return (
     <LinixUseCaseUI
