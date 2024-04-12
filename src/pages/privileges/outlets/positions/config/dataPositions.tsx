@@ -1,13 +1,15 @@
-import { mockRoles } from "@src/mocks/privileges/roles/Roles.mock";
 import {
   MdModeEdit,
   MdOutlineAssignmentTurnedIn,
   MdOutlineDelete,
 } from "react-icons/md";
-import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
+
+import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
+
 import { activateRoleModal } from "../../roles/config/activateRole.config";
+import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 
 export const titlesOptions = [
   {

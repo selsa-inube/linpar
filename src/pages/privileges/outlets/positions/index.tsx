@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+
 import { getAll } from "@src/mocks/utils/dataMock.service";
+
 import { PositionsUI } from "./interface";
 import { IRol } from "../roles/types";
 
