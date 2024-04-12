@@ -220,10 +220,6 @@ function AddingLinixUseCase() {
     }
   };
 
-  const handleCompleteInvitation = () => {
-    return;
-  };
-
   const handleToggleModal = () => {
     setShowModal((prevShowModal) => !prevShowModal);
   };
@@ -234,7 +230,6 @@ function AddingLinixUseCase() {
       handleNextStep={handleNextStep}
       currentStep={currentStep}
       handleToggleModal={handleToggleModal}
-      handleCompleteInvitation={handleCompleteInvitation}
       showModal={showModal}
       formData={formData}
       handleUpdateFormData={handleUpdateFormData}
