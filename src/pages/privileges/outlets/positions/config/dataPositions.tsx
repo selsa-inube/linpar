@@ -1,8 +1,4 @@
-import {
-  MdModeEdit,
-  MdOutlineAssignmentTurnedIn,
-  MdOutlineDelete,
-} from "react-icons/md";
+import { MdModeEdit, MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
 
@@ -10,6 +6,20 @@ import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
 
 import { activateRoleModal } from "../../roles/config/activateRole.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
+import { DetailsModal } from "../components/DetailsModal";
+
+const dataDetailsRol = (k_Rol: string) => {
+  const data = [mockRoles.find((role) => role.k_Rol === k_Rol)!].map(
+    (roleselectd) => ({
+      Código: roleselectd?.k_Rol,
+      Nombre: roleselectd?.n_Rol,
+      Aplicación: roleselectd?.n_Uso,
+      Activo: roleselectd?.i_Activo === "Y" ? "active" : "inactive",
+    })
+  );
+
+  return [...data].shift();
+};
 
 export const titlesOptions = [
   {
@@ -56,14 +66,8 @@ export const actionsConfig = [
   {
     id: "Details",
     actionName: "Detalles",
-    content: () => (
-      <Link to={`Details`}>
-        <Icon
-          icon={<MdOutlineAssignmentTurnedIn />}
-          size="16px"
-          appearance="dark"
-        />
-      </Link>
+    content: ({ k_Rol }: { k_Rol: string }) => (
+      <DetailsModal data={dataDetailsRol(k_Rol)} />
     ),
     type: "secondary",
   },
