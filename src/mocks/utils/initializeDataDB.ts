@@ -35,6 +35,9 @@ export function initializeDataDB() {
     linixUseCases
   );
   intializedData<typeof mockRoles[number]>("linix-roles", mockRoles);
-  intializedData<typeof MockPositions[number]>("linix-roles", MockPositions);
+  intializedData<typeof MockPositions[number]>(
+    "linix-positions",
+    MockPositions
+  );
   intializedData<typeof mockActions[number]>("linix-actions", mockActions);
 }
