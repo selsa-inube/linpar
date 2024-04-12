@@ -1,7 +1,5 @@
-export interface IPosition {
+export interface IPositions {
   i_Activo: "Y" | "N";
-  k_position: string;
-  k_Tipcon: string;
-  n_position: string;
-  n_Uso: string;
+  k_Grupo: string;
+  n_Grupo: string;
 }
