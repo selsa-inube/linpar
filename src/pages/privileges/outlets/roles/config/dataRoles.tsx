@@ -83,8 +83,8 @@ export const actionsConfig = [
   {
     id: "Details",
     actionName: "Detalles",
-    content: ({ k_Rol }: { k_Rol: string }) => (
-      <DetailsModal data={dataDetailsRol(k_Rol)} />
+    content: ({ id }: { id: string }) => (
+      <DetailsModal data={dataDetailsRol(id)} />
     ),
     type: "secondary",
   },
