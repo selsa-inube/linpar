@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useMediaQuery } from "@inube/design-system";
 
-import { getData } from "@src/mocks/utils/dataMock.service";
+import { getAll } from "@src/mocks/utils/dataMock.service";
 
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { EditRoleUI } from "./interface";
@@ -44,10 +44,10 @@ export const EditRole = () => {
     setLoading(true);
 
     Promise.all([
-      getData("linix-roles"),
-      getData("documents"),
-      getData("web-options"),
-      getData("linix-use-cases"),
+      getAll("linix-roles"),
+      getAll("documents"),
+      getAll("web-options"),
+      getAll("linix-use-cases"),
     ])
       .then((results) => {
         const [
@@ -73,10 +73,12 @@ export const EditRole = () => {
           documentsData !== null &&
           documentsData !== undefined
         ) {
+          console.log("documentsData", documentsData);
           const documentos = documentsData.map((document) => ({
-            k_Tipmov: document.NOMBRE,
             k_Rol: document.CODIGO,
-            i_Activo: document.ASIGNADO,
+            k_Tipmov: document.NOMBRE,
+            n_Tipmov: document.NOMBRE,
+            i_Privi: document.i_Privi === "Y",
           }));
           setEditData((prevData) => ({
             ...prevData,
@@ -142,7 +144,7 @@ export const EditRole = () => {
     (transactionTypes) => ({
       id: transactionTypes.k_Rol.toString(),
       value: transactionTypes.k_Tipmov,
-      isActive: transactionTypes.isActive,
+      isActive: transactionTypes.i_Privi,
     })
   )!;
 
