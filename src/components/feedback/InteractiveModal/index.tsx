@@ -98,7 +98,7 @@ const InteractiveModal = ({
                 {infoTitle}
               </Text>
             )}
-            {searchData.map(renderCard)}
+            {searchData && searchData.map(renderCard)}
             {divider && <StyledDivider smallScreen={smallScreen} />}
             {type === "fields" ? (
               hasLabels ? (
@@ -130,6 +130,7 @@ const InteractiveModal = ({
                     fullwidth={true}
                     type="text"
                     size="compact"
+                    readOnly
                   />
                 ))
               )
