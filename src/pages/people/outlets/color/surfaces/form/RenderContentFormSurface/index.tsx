@@ -28,7 +28,7 @@ function RenderSurfaceContentForm(props: RenderSurfaceContentFormProps) {
   const [navLinkIsSelected, setNavLinkIsSelected] = useState(false);
 
   useEffect(() => {
-    if (!loading && tokenWithRef.color && tokenWithRef.color.stroke) {
+    if (!loading && tokenWithRef.color && tokenWithRef.color.surface) {
       setSurfaceToken(
         JSON.parse(JSON.stringify({ ...tokenWithRef.color.surface }))
       );

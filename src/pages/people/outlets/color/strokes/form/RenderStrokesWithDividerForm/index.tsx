@@ -1,15 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { RenderStrokesWithDividerFormUI } from "./interface";
+
 import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import {
   strokesMessagesConfig,
   strokesFormsConfig,
 } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { TokenContext } from "@context/TokenContext";
-import { tokenCalculator } from "@src/utils/tokenCalculator";
+import { tokenCalculator } from "@utils/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
 import { inube } from "@inube/design-system";
+
+import { RenderStrokesWithDividerFormUI } from "./interface";
 
 interface RenderStrokesWithDividerFormProps {
   formType: StrokeAppearance;
