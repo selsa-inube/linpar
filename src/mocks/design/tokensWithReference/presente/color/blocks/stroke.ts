@@ -33,6 +33,9 @@ const stroke = {
   table: {
     regular: "N40",
   },
+  divider: {
+    regular: "N40",
+  },
   spinner: {
     regular: "N30",
     transparent: "N0A",
