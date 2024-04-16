@@ -8,6 +8,8 @@ import { buttonOptionsMock } from "@mocks/privileges/button/buttonOptionsMock.mo
 import { webOptionsMock } from "@src/mocks/privileges/web/webOptionsMock.mock";
 import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
+import { mockActions } from "@mocks/privileges/actions/Actions.mock";
+import { MockPositions } from "@mocks/privileges/positions/Positions.mock";
 
 export function initializeDataDB() {
   localforage.clear();
@@ -33,4 +35,9 @@ export function initializeDataDB() {
     linixUseCases
   );
   intializedData<typeof mockRoles[number]>("linix-roles", mockRoles);
+  intializedData<typeof MockPositions[number]>(
+    "linix-positions",
+    MockPositions
+  );
+  intializedData<typeof mockActions[number]>("linix-actions", mockActions);
 }

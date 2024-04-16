@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { getData } from "@src/mocks/utils/dataMock.service";
+import { getAll } from "@src/mocks/utils/dataMock.service";
 import { IRol } from "@src/pages/privileges/outlets/roles/types";
 
 import { RolesUI } from "./interface";
@@ -12,7 +12,7 @@ export function Roles() {
   const [linixRoles, setLinixRoles] = useState<IRol[]>([]);
 
   useEffect(() => {
-    getData("linix-roles")
+    getAll("linix-roles")
       .then((data) => {
         if (data !== null) {
           setLinixRoles(data as IRol[]);
@@ -24,7 +24,7 @@ export function Roles() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [linixRoles]);
 
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRole(e.target.value);

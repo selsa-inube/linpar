@@ -4,9 +4,11 @@ import { Icon } from "@inube/design-system";
 
 import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
-import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
+import { deleteItemData } from "@src/mocks/utils/dataMock.service";
 
 import { DetailsModal } from "../components/DetailsModal";
+import { deleteRolModal } from "../delete-role/config/deleteRol.config";
+import { DeleteRole } from "../delete-role";
 import { activateRoleModal } from "./activateRole.config";
 
 export const titlesOptions = [
@@ -81,8 +83,8 @@ export const actionsConfig = [
   {
     id: "Details",
     actionName: "Detalles",
-    content: ({ id }: { id: string }) => (
-      <DetailsModal data={dataDetailsRol(id)} />
+    content: ({ k_Rol }: { k_Rol: string }) => (
+      <DetailsModal data={dataDetailsRol(k_Rol)} />
     ),
     type: "secondary",
   },
@@ -99,7 +101,13 @@ export const actionsConfig = [
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: ({ id }: { id: string }) => <DeleteUser user={selectedData(id)} />,
+    content: ({ k_Rol }: { k_Rol: string }) => (
+      <DeleteRole
+        rol={k_Rol}
+        deleteRolModal={deleteRolModal}
+        handleDeleteRol={deleteItemData}
+      />
+    ),
     type: "remove",
   },
 ];

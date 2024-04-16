@@ -4,21 +4,19 @@ import { EAppearance } from "@src/types/colors.types";
 
 const deleteUserModal = {
   delete: {
-    title: "Eliminar Usuario",
-    description: ({ code }: IGeneralInformationEntry) =>
-      `¿Está seguro de que desea eliminar al usuario ${code}?`,
+    title: "Eliminar",
+    description: (id: string) =>
+      `¿Está seguro de que desea eliminar al usuario ${id}?`,
     actionText: "Eliminar",
     appearance: EAppearance.ERROR,
   },
 };
-
 const deleteUserMessages = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: ({ code }: IGeneralInformationEntry) =>
-      `Hemos eliminado con éxito al usuario ${code}.`,
+    description: (id: string) => `Hemos eliminado con éxito al usuario ${id}.`,
     appearance: EAppearance.SUCCESS,
   },
   failed: {
@@ -30,5 +28,4 @@ const deleteUserMessages = {
     appearance: EAppearance.ERROR,
   },
 };
-
 export { deleteUserMessages, deleteUserModal };

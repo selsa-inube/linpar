@@ -16,6 +16,7 @@ import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 const InteractiveModal = ({
   portalId,
   title,
+  selectedItem,
   closeModal,
   infoData,
   actions = [],
@@ -38,6 +39,21 @@ const InteractiveModal = ({
   const hasLabels = labels.length > 0;
   const node = document.getElementById(portalId);
   const [filterText, setFilterText] = useState("");
+
+  const renderCard = (data: { [key: string]: string }) => {
+    if (data[nameLabel] !== selectedItem) return null;
+
+    return (
+      <SubjectSearchCard
+        key={data[idLabel]}
+        subjectSearchData={{
+          id: data[idLabel],
+          name: data[nameLabel],
+        }}
+        onClick={() => onClick(data)}
+      />
+    );
+  };
 
   const handleFilterChange = (e: {
     target: { value: SetStateAction<string> };
@@ -82,6 +98,7 @@ const InteractiveModal = ({
                 {infoTitle}
               </Text>
             )}
+            {searchData && searchData.map(renderCard)}
             {divider && <StyledDivider smallScreen={smallScreen} />}
             {type === "fields" ? (
               hasLabels ? (
@@ -113,6 +130,7 @@ const InteractiveModal = ({
                     fullwidth={true}
                     type="text"
                     size="compact"
+                    readOnly
                   />
                 ))
               )

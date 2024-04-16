@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { FormikProps, useFormik } from "formik";
 
-import { getData } from "@src/mocks/utils/dataMock.service";
+import { getAll } from "@src/mocks/utils/dataMock.service";
 
 import { GeneralInformationFormUI } from "./interface";
 
@@ -33,7 +33,7 @@ export const GeneralInformationForm = forwardRef(
     >([]);
 
     useEffect(() => {
-      getData("linix-use-cases")
+      getAll("linix-use-cases")
         .then((data) => {
           setLinixUseCases(data as Record<string, unknown>[]);
         })

@@ -9,7 +9,8 @@ import {
 
 import { Accordion } from "@components/data/Accordion";
 import { BoxAttribute } from "@components/data/BoxAttirbute";
-import { IFormAddLinixUseCase } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case";
+
+import { IFormAddLinixUseCase } from "../../types";
 
 export interface IControllerAccordionProps {
   formData: IFormAddLinixUseCase;

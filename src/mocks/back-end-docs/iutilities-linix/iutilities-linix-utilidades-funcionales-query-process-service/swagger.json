@@ -1,0 +1,1378 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "El propósito de esta aplicación es proveer los servicios de proceso que soportan las acciones para consultar informacion sobre las entidades de configuracion de Utilidades funcionales.",
+    "title": "Utilidades Funcionales Query Process Service API",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:7109",
+  "basePath": "/utilidades-funcionales-query-process-service/api",
+  "paths": {
+    "/bancos/{AC:SearchAllBanco}": {
+      "get": {
+        "description": "Query all bancos",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Banco"],
+        "summary": "Consult all records of bancos",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllBanco",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.SearchAllBancoResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/bancos/{k_Codban}/{AC:SearchByIdBanco}": {
+      "get": {
+        "description": "Query by id bancos",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Banco"],
+        "summary": "Consult the bancos",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdBanco",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "k_Codban",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdBancoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/dominios-linix/{AC:SearchAllDominioLinix}": {
+      "get": {
+        "description": "Query all dominios linix",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["DominiosLinix"],
+        "summary": "Consult the dominios linix",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "default": "SearchAllDominioLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchAllDominioLinixResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/dominios-linix/{rv_Domain}{rv_Low_Value}{AC:SearchByIdDominioLinix}": {
+      "get": {
+        "description": "Query by id dominios linix",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["DominiosLinix"],
+        "summary": "Consult the dominios linix by id",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DominioLinix ID",
+            "name": "K_Parame",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "default": "SearchByIdDominioLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdDominioLinixResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/numeradores/{AC:SearchAllNumerador}": {
+      "get": {
+        "description": "Query all numeradores",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Numerador"],
+        "summary": "Consult all records of numeradores",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllNumerador",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.SearchAllNumeradorResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/numeradores/{K_Numera}/{AC:SearchByIdNumerador}": {
+      "get": {
+        "description": "Query by id numeradores",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["Numerador"],
+        "summary": "Consult the numeradores",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdNumerador",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "K_Numera",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdNumeradorResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/parametros-generales/{AC:SearchAllParametroGeneral}": {
+      "get": {
+        "description": "Query all parametros generales",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ParametrosGenerales"],
+        "summary": "Consult the parametros generales",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "default": "SearchAllParametroGeneral",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.SearchAllParametroGeneralResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/parametros-generales/{K_Parame}{AC:SearchByIdParametroGeneral}": {
+      "get": {
+        "description": "Query by id parametros generales",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ParametrosGenerales"],
+        "summary": "Consult the parametros generales by id",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ParametroGeneral ID",
+            "name": "K_Parame",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "default": "SearchByIdParametroGeneral",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdParametroGeneralResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/parametros-web/{AC:SearchAllParametroWeb}": {
+      "get": {
+        "description": "Busca todos los parámetros web",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ParametroWeb"],
+        "summary": "Busca todos los parámetros web",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllParametroWeb",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dtoresponse.SearchAllParametroWebResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/parametros-web/{k_Parame}/{AC:SearchByIdParametroWeb}": {
+      "get": {
+        "description": "Busca todos los parámetros web por Id",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ParametroWeb"],
+        "summary": "Busca todos los parámetros web por Id",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdParametroWeb",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ParametroWeb ID",
+            "name": "k_Parame",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.SearchByIdParametroWebResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/registro-licencias-linix/{AC:SearchAllRegistroLicenciaLinix}": {
+      "get": {
+        "description": "Obtiene los valores de los registros de licencia linix",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["RegistroLicenciaLinix"],
+        "summary": "Consultar la informacion de todos los registros de licencia linix",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllRegistroLicenciaLinix",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_registro-licencia-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchAllRegistroLicenciaLinixResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/registro-licencias-linix/{k_Numnit}/{AC:SearchRegistroLicenciaLinixById}": {
+      "get": {
+        "description": "Obtiene los valores de los registros de licencia linix segun el id.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["RegistroLicenciaLinix"],
+        "summary": "Consulta la informacion de un registro de licencia linix segun el id.",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchRegistroLicenciaLinixById",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": " ID",
+            "name": "k_Numnit",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_registro-licencia-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchRegistroLicenciaLinixByIdResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "dtoresponse.SearchAllParametroWebResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "enum": ["Y", "N"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Grupo": {
+          "description": "Grupo del parametro",
+          "type": "string"
+        },
+        "i_Modifi": {
+          "description": "Determina si el parametro puede ser modificado despues de instalar",
+          "enum": ["Y", "N"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato",
+          "enum": ["A", "N", "F", "M"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etipdat.TipoDato"
+            }
+          ]
+        },
+        "k_Funcio": {
+          "description": "Funcion web",
+          "type": "string"
+        },
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "string"
+        },
+        "n_Parame": {
+          "description": "Nombre del parametro",
+          "type": "string"
+        },
+        "o_Alfabe": {
+          "description": "Valor alfabetico",
+          "type": "string"
+        },
+        "v_Numeri": {
+          "description": "Valor numerico",
+          "type": "number"
+        }
+      }
+    },
+    "dtoresponse.SearchByIdParametroWebResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "enum": ["Y", "N"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Grupo": {
+          "description": "Grupo del parametro",
+          "type": "string"
+        },
+        "i_Modifi": {
+          "description": "Determina si el parametro puede ser modificado despues de instalar",
+          "enum": ["Y", "N"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato",
+          "enum": ["A", "N", "F", "M"],
+          "allOf": [
+            {
+              "$ref": "#/definitions/etipdat.TipoDato"
+            }
+          ]
+        },
+        "k_Funcio": {
+          "description": "Funcion web",
+          "type": "string"
+        },
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "string"
+        },
+        "n_Parame": {
+          "description": "Nombre del parametro",
+          "type": "string"
+        },
+        "o_Alfabe": {
+          "description": "Valor alfabetico",
+          "type": "string"
+        },
+        "v_Numeri": {
+          "description": "Valor numerico",
+          "type": "number"
+        }
+      }
+    },
+    "eactivo.Activo": {
+      "type": "string",
+      "enum": ["Y", "N"],
+      "x-enum-varnames": ["Y", "N"]
+    },
+    "edmactivo.DmActivo": {
+      "type": "string",
+      "enum": ["Y", "N"],
+      "x-enum-varnames": ["Y", "N"]
+    },
+    "etipdat.TipoDato": {
+      "type": "string",
+      "enum": ["A", "N", "F", "M"],
+      "x-enum-comments": {
+        "A": "Alfabetico",
+        "F": "Fecha",
+        "M": "Mezcla",
+        "N": "Numerico"
+      },
+      "x-enum-varnames": ["A", "N", "F", "M"]
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.SearchAllBancoResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Chekeo": {
+          "description": "Chekeo",
+          "type": "integer"
+        },
+        "i_Dosxmi": {
+          "description": "Indicador para controlar en cada transaccion el calculo del impuesto de emergencia economica. (Y/N)",
+          "type": "string"
+        },
+        "k_Ciudad": {
+          "description": "Ciudad donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Codban": {
+          "description": "Codigo de banco",
+          "type": "string"
+        },
+        "k_Codsap": {
+          "description": "Codigo del SAP para hacer transferencias entre entidades bancarias.",
+          "type": "string"
+        },
+        "k_Depart": {
+          "description": "Departamento donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Format": {
+          "description": "Codigo del formato",
+          "type": "string"
+        },
+        "k_Idterc": {
+          "description": "Código Interno del tercero que corresponde a la entidad financiera.",
+          "type": "integer"
+        },
+        "k_Pais": {
+          "description": "País donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Tipent": {
+          "description": "Código",
+          "type": "string"
+        },
+        "n_Banco": {
+          "description": "Nombre de banco",
+          "type": "string"
+        },
+        "q_Digito": {
+          "description": "Digito",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_banco_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdBancoResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eactivo.Activo"
+            }
+          ]
+        },
+        "i_Chekeo": {
+          "description": "Chekeo",
+          "type": "integer"
+        },
+        "i_Dosxmi": {
+          "description": "Indicador para controlar en cada transaccion el calculo del impuesto de emergencia economica. (Y/N)",
+          "type": "string"
+        },
+        "k_Ciudad": {
+          "description": "Ciudad donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Codban": {
+          "description": "Codigo de banco",
+          "type": "string"
+        },
+        "k_Codsap": {
+          "description": "Codigo del SAP para hacer transferencias entre entidades bancarias.",
+          "type": "string"
+        },
+        "k_Depart": {
+          "description": "Departamento donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Format": {
+          "description": "Codigo del formato",
+          "type": "string"
+        },
+        "k_Idterc": {
+          "description": "Código Interno del tercero que corresponde a la entidad financiera.",
+          "type": "integer"
+        },
+        "k_Pais": {
+          "description": "País donde se encuentra ubicado el banco.",
+          "type": "string"
+        },
+        "k_Tipent": {
+          "description": "Código",
+          "type": "string"
+        },
+        "n_Banco": {
+          "description": "Nombre de banco",
+          "type": "string"
+        },
+        "q_Digito": {
+          "description": "Digito",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchAllDominioLinixResponse": {
+      "type": "object",
+      "required": ["rv_Domain", "rv_Low_Value"],
+      "properties": {
+        "rv_Abbreviation": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240,
+          "minLength": 1
+        },
+        "rv_Meaning": {
+          "description": "Descripcion",
+          "type": "string",
+          "maxLength": 240
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_dominio-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdDominioLinixResponse": {
+      "type": "object",
+      "required": ["rv_Domain", "rv_Low_Value"],
+      "properties": {
+        "rv_Abbreviation": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240
+        },
+        "rv_Domain": {
+          "description": "Nombre Dominio",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "rv_Low_Value": {
+          "description": "Codigo",
+          "type": "string",
+          "maxLength": 240,
+          "minLength": 1
+        },
+        "rv_Meaning": {
+          "description": "Descripcion",
+          "type": "string",
+          "maxLength": 240
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.SearchAllNumeradorResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si esta activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmactivo.DmActivo"
+            }
+          ]
+        },
+        "i_Commit": {
+          "description": "No aplica",
+          "type": "string"
+        },
+        "i_Iniuno": {
+          "description": "Indica si el numerador debe iniciar en 1 cada año, en el proceso de generación de numeradores inicio de año (valores posibles Y/N)",
+          "type": "string"
+        },
+        "k_Numera": {
+          "description": "Codigo que identifica el numerador consecutivo",
+          "type": "string"
+        },
+        "n_Numera": {
+          "description": "Descripcion del numerador consecutivo",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_numerador_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdNumeradorResponse": {
+      "type": "object",
+      "properties": {
+        "i_Activo": {
+          "description": "Determina si esta activo",
+          "allOf": [
+            {
+              "$ref": "#/definitions/edmactivo.DmActivo"
+            }
+          ]
+        },
+        "i_Commit": {
+          "description": "No aplica",
+          "type": "string"
+        },
+        "i_Iniuno": {
+          "description": "Indica si el numerador debe iniciar en 1 cada año, en el proceso de generación de numeradores inicio de año (valores posibles Y/N)",
+          "type": "string"
+        },
+        "k_Numera": {
+          "description": "Codigo que identifica el numerador consecutivo",
+          "type": "string"
+        },
+        "n_Numera": {
+          "description": "Descripcion del numerador consecutivo",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.SearchAllParametroGeneralResponse": {
+      "type": "object",
+      "required": [
+        "i_Activo",
+        "i_Aplica",
+        "i_Modifi",
+        "i_Relaci",
+        "i_Tipdat",
+        "k_Parame",
+        "n_Parame"
+      ],
+      "properties": {
+        "f_Fecha": {
+          "description": "Valor fecha",
+          "type": "string",
+          "maxLength": 50
+        },
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y", "N"]
+        },
+        "i_Aplica": {
+          "description": "Aplicacion",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "i_Modifi": {
+          "description": "Determina si el parametro puede ser modificado despues de instalar",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Relaci": {
+          "description": "Indicador de relacion",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "integer"
+        },
+        "n_Parame": {
+          "description": "Nombre del parametro",
+          "type": "string",
+          "maxLength": 160,
+          "minLength": 1
+        },
+        "o_Alfabe": {
+          "description": "Valor alfabetico",
+          "type": "string",
+          "maxLength": 100
+        },
+        "o_Domini": {
+          "description": "Nombre del dominio",
+          "type": "string",
+          "maxLength": 10
+        },
+        "v_Numeri": {
+          "description": "Valor numerico",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_parametro-general_infrastructure_adapter_rest_dto_dtoresponse.SearchByIdParametroGeneralResponse": {
+      "type": "object",
+      "required": [
+        "i_Activo",
+        "i_Aplica",
+        "i_Modifi",
+        "i_Relaci",
+        "i_Tipdat",
+        "k_Parame",
+        "n_Parame"
+      ],
+      "properties": {
+        "f_Fecha": {
+          "description": "Valor fecha",
+          "type": "string",
+          "maxLength": 50
+        },
+        "i_Activo": {
+          "description": "Determina si se encuentra activo",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1,
+          "enum": ["Y", "N"]
+        },
+        "i_Aplica": {
+          "description": "Aplicacion",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        },
+        "i_Modifi": {
+          "description": "Determina si el parametro puede ser modificado despues de instalar",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "i_Relaci": {
+          "description": "Indicador de relacion",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 1
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato",
+          "type": "string",
+          "maxLength": 1,
+          "minLength": 1
+        },
+        "k_Parame": {
+          "description": "Codigo del parametro",
+          "type": "integer"
+        },
+        "n_Parame": {
+          "description": "Nombre del parametro",
+          "type": "string",
+          "maxLength": 160,
+          "minLength": 1
+        },
+        "o_Alfabe": {
+          "description": "Valor alfabetico",
+          "type": "string",
+          "maxLength": 100
+        },
+        "o_Domini": {
+          "description": "Nombre del dominio",
+          "type": "string",
+          "maxLength": 10
+        },
+        "v_Numeri": {
+          "description": "Valor numerico",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_registro-licencia-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchAllRegistroLicenciaLinixResponse": {
+      "type": "object",
+      "properties": {
+        "a_Numnit_Rep": {
+          "type": "string"
+        },
+        "i_Autret": {
+          "description": "Determina si el dueño de la licencia es Responsable del Impuesto de Renta",
+          "type": "string"
+        },
+        "i_Natsoi": {
+          "type": "string"
+        },
+        "i_Retica": {
+          "description": "Determina si el dueño de la licencia se encuentra en una ciudad donde se aplice reteica",
+          "type": "string"
+        },
+        "i_Retiva": {
+          "description": "Determina si el dueño de la licencia aplica Retención de IVA",
+          "type": "string"
+        },
+        "k_Formpre": {
+          "description": "Forma de presentación de la planilla unica los posibles valores son Unico Consolidado Sucursal Dependencia",
+          "type": "string"
+        },
+        "k_Numnit": {
+          "description": "Número del nit del cliente",
+          "type": "string"
+        },
+        "n_Codsuc": {
+          "description": "Si la forma de presentación es S o D colocar el código de la sucursal o dependencia",
+          "type": "string"
+        },
+        "n_Licenc": {
+          "description": "Nombre de la licencia",
+          "type": "string"
+        },
+        "n_Nomsoi": {
+          "description": "Nombre de la empresa para ser utilizado por el SOI",
+          "type": "string"
+        },
+        "n_Nomsuc": {
+          "description": "Si la forma de presentación es S o D colocar el nombre de la sucursal o dependencia",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-utilidades-funcionales-query-process-service_internal_registro-licencia-linix_infrastructure_adapter_rest_dto_dtoresponse.SearchRegistroLicenciaLinixByIdResponse": {
+      "type": "object",
+      "properties": {
+        "a_Numnit_Rep": {
+          "type": "string"
+        },
+        "i_Autret": {
+          "description": "Determina si el dueño de la licencia es Responsable del Impuesto de Renta",
+          "type": "string"
+        },
+        "i_Natsoi": {
+          "type": "string"
+        },
+        "i_Retica": {
+          "description": "Determina si el dueño de la licencia se encuentra en una ciudad donde se aplice reteica",
+          "type": "string"
+        },
+        "i_Retiva": {
+          "description": "Determina si el dueño de la licencia aplica Retención de IVA",
+          "type": "string"
+        },
+        "k_Formpre": {
+          "description": "Forma de presentación de la planilla unica los posibles valores son Unico Consolidado Sucursal Dependencia",
+          "type": "string"
+        },
+        "k_Numnit": {
+          "description": "Número del nit del cliente",
+          "type": "string"
+        },
+        "n_Codsuc": {
+          "description": "Si la forma de presentación es S o D colocar el código de la sucursal o dependencia",
+          "type": "string"
+        },
+        "n_Licenc": {
+          "description": "Nombre de la licencia",
+          "type": "string"
+        },
+        "n_Nomsoi": {
+          "description": "Nombre de la empresa para ser utilizado por el SOI",
+          "type": "string"
+        },
+        "n_Nomsuc": {
+          "description": "Si la forma de presentación es S o D colocar el nombre de la sucursal o dependencia",
+          "type": "string"
+        }
+      }
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
