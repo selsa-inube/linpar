@@ -13,6 +13,7 @@ import {
   RenderStrokesContentFormProps,
 } from "./form/RenderStrokesContentForm";
 import { RenderStrokesWithSpinnerForm } from "./form/RenderStrokesWithSpinnerForm";
+import { RenderStrokesWithDividerForm } from "./form/RenderStrokesWithDividerForm";
 import { RenderStrokesWithLinkForm } from "./form/RenderStrokesWithLinkForm";
 import { strokesFormsConfig } from "./config/Strokes.config";
 import { peopleOptionsConfig } from "@pages/people/outlets/options/config/people.config";
@@ -39,6 +40,7 @@ function renderForm(props: IRenderForm) {
   } = {
     spinner: RenderStrokesWithSpinnerForm,
     link: RenderStrokesWithLinkForm,
+    divider: RenderStrokesWithDividerForm,
   };
 
   const Component =

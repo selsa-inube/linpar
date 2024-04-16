@@ -103,7 +103,7 @@ export function PositionsUI(props: IPositionsProps) {
                 iconBefore={<MdPersonAddAlt />}
                 spacing="wide"
                 type="link"
-                path="/add-position"
+                path="/privileges/positions/add-position"
               >
                 Agregar cargo
               </Button>
