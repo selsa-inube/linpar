@@ -14,8 +14,13 @@ import {
   createPositionConfig,
   stepsAddPosition,
 } from "./config/addPosition.config";
-import { IFormAddPosition, IFormAddPositionRef } from "./types";
+import {
+  IFormAddPosition,
+  IFormAddPositionRef,
+  titleButtonTextAssited,
+} from "./types";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
+import { StyledContainerAssisted } from "./styles";
 
 const renderStepContent = (
   currentStep: number,
@@ -79,12 +84,15 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Stack>
         </Stack>
         <>
-          <Assisted
-            steps={steps}
-            currentStepId={currentStep}
-            handlePrev={handlePreviousStep}
-            handleNext={handleNextStep}
-          />
+          <StyledContainerAssisted cursorDisabled={!isCurrentFormValid}>
+            <Assisted
+              steps={steps}
+              currentStepId={currentStep}
+              handlePrev={handlePreviousStep}
+              handleNext={handleNextStep}
+              titleButtonText={titleButtonTextAssited}
+            />
+          </StyledContainerAssisted>
           {renderStepContent(
             currentStep,
             formReferences,

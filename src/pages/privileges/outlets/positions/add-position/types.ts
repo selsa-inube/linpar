@@ -1,6 +1,12 @@
 import { FormikProps } from "formik";
 import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
 
+export const titleButtonTextAssited = {
+  before: "Anterior",
+  after: "Siguiente",
+  finish: "Enviar",
+};
+
 export interface IPositions {
   i_Activo: "Y" | "N";
   k_Grupo: string;
