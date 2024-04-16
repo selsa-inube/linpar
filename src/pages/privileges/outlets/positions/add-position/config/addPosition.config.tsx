@@ -48,7 +48,7 @@ export const createPositionConfig = [
         isActive: false,
       },
       {
-        path: "/privileges/positions/add-positions",
+        path: "/privileges/positions/add-position",
         label: "Agregar cargo",
         id: "/privileges/positions/add-position",
         isActive: true,
