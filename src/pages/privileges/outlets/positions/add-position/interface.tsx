@@ -49,7 +49,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
             handleNext={handleNextStep}
           />
         </>
-        <Stack gap="16px" justifyContent="flex-end">
+        <Stack gap={inube.spacing.s200} justifyContent="flex-end">
           <Button
             onClick={handlePreviousStep}
             type="button"
