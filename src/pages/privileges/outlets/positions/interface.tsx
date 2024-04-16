@@ -22,7 +22,7 @@ import {
   titlesOptions,
 } from "./config/dataPositions";
 import { StyledContainer } from "./styles";
-import { IRol } from "../roles/types";
+import { IPosition } from "./types";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -30,7 +30,7 @@ interface IPositionsProps {
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
   searchPosition: string;
-  linixPosition: IRol[];
+  linixPosition: IPosition[];
   loading: boolean;
 }
 
