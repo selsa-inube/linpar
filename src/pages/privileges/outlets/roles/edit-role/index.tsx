@@ -73,7 +73,6 @@ export const EditRole = () => {
           documentsData !== null &&
           documentsData !== undefined
         ) {
-          console.log("documentsData", documentsData);
           const documentos = documentsData.map((document) => ({
             k_Rol: document.CODIGO,
             k_Tipmov: document.NOMBRE,
