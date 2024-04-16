@@ -31,7 +31,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             fullwidth
             message={
               stateValue(formik, "positionName") === "valid"
-                ? "El nombre es valido"
+                ? "El nombre del cargo es valido"
                 : formik.errors.positionName
             }
             status={stateValue(formik, "positionName")}
@@ -48,7 +48,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             value={formik.values.description}
             message={
               stateValue(formik, "description") === "valid"
-                ? "El nombre es valido"
+                ? "La descripción del cargo es valido"
                 : formik.errors.positionName
             }
             status={stateValue(formik, "description")}

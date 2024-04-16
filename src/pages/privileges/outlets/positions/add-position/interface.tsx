@@ -10,17 +10,54 @@ import {
 import { PageTitle } from "@components/PageTitle";
 
 import { IStep } from "../types";
-import { createPositionConfig } from "./config/addPosition.config";
+import {
+  createPositionConfig,
+  stepsAddPosition,
+} from "./config/addPosition.config";
+import { IFormAddPosition, IFormAddPositionRef } from "./types";
+import { GeneralInformationForm } from "./forms/GeneralInformationForm";
+
+const renderStepContent = (
+  currentStep: number,
+  formReferences: IFormAddPositionRef,
+  dataAddPositionLinixForm: IFormAddPosition,
+  setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  return (
+    <>
+      {currentStep === stepsAddPosition.generalInformation.id && (
+        <GeneralInformationForm
+          initialValues={dataAddPositionLinixForm.generalInformation.values}
+          ref={formReferences.generalInformation}
+          onFormValid={setIsCurrentFormValid}
+        />
+      )}
+    </>
+  );
+};
 
 interface AddPositionUIProps {
   currentStep: number;
   steps: IStep[];
+  isCurrentFormValid: boolean;
+  dataAddPositionLinixForm: IFormAddPosition;
+  formReferences: IFormAddPositionRef;
+  setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
 }
 
 export function AddPositionUI(props: AddPositionUIProps) {
-  const { currentStep, steps, handleNextStep, handlePreviousStep } = props;
+  const {
+    currentStep,
+    steps,
+    isCurrentFormValid,
+    dataAddPositionLinixForm,
+    formReferences,
+    setIsCurrentFormValid,
+    handleNextStep,
+    handlePreviousStep,
+  } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -48,6 +85,12 @@ export function AddPositionUI(props: AddPositionUIProps) {
             handlePrev={handlePreviousStep}
             handleNext={handleNextStep}
           />
+          {renderStepContent(
+            currentStep,
+            formReferences,
+            dataAddPositionLinixForm,
+            setIsCurrentFormValid
+          )}
         </>
         <Stack gap={inube.spacing.s200} justifyContent="flex-end">
           <Button
@@ -62,8 +105,9 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Button>
 
           <Button
-            onClick={currentStep === steps.length ? () => [] : handleNextStep}
+            onClick={handleNextStep}
             spacing="compact"
+            disabled={!isCurrentFormValid}
           >
             {currentStep === steps.length ? "Enviar" : "Siguiente"}
           </Button>
