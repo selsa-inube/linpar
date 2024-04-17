@@ -1,0 +1,877 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "El propósito de esta aplicación es proveer los servicios de proceso que soportan las acciones para consultar informacion sobre las entidades de configuracion de Reglas de Negocio.",
+    "title": "Reglas de Negocio Query Process Service API",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:8283",
+  "basePath": "/iutilities-linix-reglas-de-negocio-query-process-service/api",
+  "paths": {
+    "/columnas-de-las-reglas/{k_Regla}/{AC:QueryColumnasConfiguradasByRegla}": {
+      "get": {
+        "description": "Obtiene las columnas asociadas a una regla y la informacion sobre su definicion.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ColumnaDeLaRegla"],
+        "summary": "Consulta la informacion de las columnas asociadas a una regla.",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryColumnasConfiguradasByRegla",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CargoYDescuento ID",
+            "name": "k_Regla",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_columna-de-la-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryColumnasConfiguradasByReglaResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/configuracion-reglas/{k_Regla}/{f_Fecha}/omitir-serie/{k_Serie}/{AC:QueryDatosReglaVigente}": {
+      "get": {
+        "description": "Valida si segun la regla existe una vigencia valida, si es asi retorna la informacion.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ConfiguracionRegla"],
+        "summary": "Consulta la informacion de una vigencia abierta segun la regla recibida.",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryDatosReglaVigente",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Vigencia ID",
+            "name": "k_Regla",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Vigencia ID",
+            "name": "k_Serie",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_configuracion-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryDatosReglaVigenteResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/estructuras-reglas/{k_Regla}/{AC:QueryColumnasEstructuraByRegla}": {
+      "get": {
+        "description": "Obtiene las columnas asociadas a la estructura de una regla y la informacion sobre su definicion.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EstructuraRegla"],
+        "summary": "Consulta la informacion de las columnas asociadas a la estructura de una regla.",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryColumnasEstructuraByRegla",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "EstructuraRegla ID",
+            "name": "k_Regla",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryColumnasEstructuraByReglaResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/evalua-reglas-de-negocios/{AC:EvaluaReglaDeNegocioIndividual}": {
+      "get": {
+        "description": "Consulta la evaluación de la regla de negocio de LINIX y para ello es necesario enviar, la clase de la regla, el nombre de la regla, los hechos y acciones.\nSi el argumento de acciones no es enviado se toma todas las acciones de la regla y el argumento de salida son todas las acciones de un unico registro.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EvaluaReglaDeNegocio"],
+        "summary": "Consultar la evaluación de la regla de negocio LINIX de manera individual",
+        "parameters": [
+          {
+            "description": "EvaluaReglaDeNegocioInput",
+            "name": "EvaluaReglaDeNegocioInput",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtorequest.EvaluaReglaDeNegocioInputRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EvaluaReglaDeNegocioIndividual",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluaReglaDeNegocioIndividualResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/evalua-reglas-de-negocios/{AC:EvaluaReglaDeNegocioMultiple}": {
+      "get": {
+        "description": "Consulta la evaluación de la regla de negocio de LINIX y para ello es necesario enviar, la clase de la regla, el nombre de la regla, los hechos y acciones.\nSi el argumento de acciones no es enviado se toma todas las acciones de la regla y el argumento de salida son todas las acciones que pueda contener.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["EvaluaReglaDeNegocio"],
+        "summary": "Consultar la evaluación de la regla de negocio LINIX de manera multiple",
+        "parameters": [
+          {
+            "description": "EvaluaReglaDeNegocioInput",
+            "name": "EvaluaReglaDeNegocioInput",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtorequest.EvaluaReglaDeNegocioInputRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "EvaluaReglaDeNegocioMultiple",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluaReglaDeNegocioMultipleResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/reglas-en-proceso-de-cargue/{k_Proces}/{AC:QueryReglasEnProcesoDeCargueByProceso}": {
+      "get": {
+        "description": "Obtiene los valores de las Reglas en Proceso de Cargue con el proceso recibido.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ReglaEnProcesoDeCargue"],
+        "summary": "Consultar la informacion de las Reglas en Proceso de Cargue segun el codigo de proceso recibido.",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryReglasEnProcesoDeCargueByProceso",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CargoYDescuento ID",
+            "name": "k_Proces",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_regla-en-proceso-de-cargue_infrastructure_adapter_rest_dto_dtoresponse.QueryReglasEnProcesoDeCargueByProcesoResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/reglas-en-proceso-de-cargue/{k_Proces}/{k_Regla}/{AC:QueryReglaEnProcesoDeCargueByProcesoAndRegla}": {
+      "get": {
+        "description": "Obtiene los valores de la Reglas en Proceso de Cargue con el proceso y regla recibidos.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["ReglaEnProcesoDeCargue"],
+        "summary": "Consultar la informacion de las Reglas en Proceso de Cargue segun el codigo de proceso y la regla recibidos.",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "QueryReglaEnProcesoDeCargueByProcesoAndRegla",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CargoYDescuento ID_1",
+            "name": "k_Proces",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CargoYDescuento ID_2",
+            "name": "k_Regla",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_regla-en-proceso-de-cargue_infrastructure_adapter_rest_dto_dtoresponse.QueryReglaEnProcesoDeCargueByProcesoAndReglaResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "eestado.Estado": {
+      "type": "string",
+      "enum": ["Y", "N"],
+      "x-enum-varnames": ["Y", "N"]
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_columna-de-la-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryColumnasConfiguradasByReglaResponse": {
+      "type": "object",
+      "properties": {
+        "a_Column": {
+          "description": "Nombre de la columns",
+          "type": "string"
+        },
+        "i_Catrng": {
+          "description": "Categoría de la columna, asociada al dominio DM_CATRGN",
+          "type": "string"
+        },
+        "i_Discrim": {
+          "description": "Indicador discrim",
+          "type": "string"
+        },
+        "i_Operng": {
+          "description": "Operador que aplica, asociado al dominio DM_OPERNG",
+          "type": "string"
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato de la columna, asociado al dominio DM_TIPDAT_RNG",
+          "type": "string"
+        },
+        "i_Valifk": {
+          "description": "Validación de columna de regla de negocio contra dominio o llave foránea, relacionada con dominio DM_VALIFK",
+          "type": "string"
+        },
+        "k_Idcolum": {
+          "description": "Numero del registro al que pertenece el dato",
+          "type": "integer"
+        },
+        "k_Regla": {
+          "description": "Codigo de la regla",
+          "type": "string"
+        },
+        "kiclarng": {
+          "description": "Nombre del campo en la regla",
+          "type": "string"
+        },
+        "n_Column": {
+          "description": "Descripción de la columna",
+          "type": "string"
+        },
+        "n_Nombfk": {
+          "description": "Almacena nombre del dominio o llave foránea  para validar la columna de la regla",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_configuracion-regla_infrastructure_adapter_rest_dto_dtoresponse.DatoResponse": {
+      "type": "object",
+      "properties": {
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string"
+        },
+        "registros": {
+          "description": "Valores del registro",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_configuracion-regla_infrastructure_adapter_rest_dto_dtoresponse.RegistroVigenciaResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_configuracion-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryDatosReglaVigenteResponse": {
+      "type": "object",
+      "properties": {
+        "datos": {
+          "description": "List of Datos",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_configuracion-regla_infrastructure_adapter_rest_dto_dtoresponse.DatoResponse"
+          }
+        },
+        "f_Fin": {
+          "description": "Fecha Fin de Vigencia de la Regla",
+          "type": "string"
+        },
+        "f_Inicio": {
+          "description": "Fecha de Inicio de Vigencia de la Regla",
+          "type": "string"
+        },
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string"
+        },
+        "k_Serie": {
+          "description": "Serie de la Regla de Negocio",
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_configuracion-regla_infrastructure_adapter_rest_dto_dtoresponse.RegistroVigenciaResponse": {
+      "type": "object",
+      "properties": {
+        "k_Serie": {
+          "type": "integer"
+        },
+        "valores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_configuracion-regla_infrastructure_adapter_rest_dto_dtoresponse.ValoresRegistroResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_configuracion-regla_infrastructure_adapter_rest_dto_dtoresponse.ValoresRegistroResponse": {
+      "type": "object",
+      "properties": {
+        "columnas": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "v_Regist": {
+          "type": "integer"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_estructura-regla_infrastructure_adapter_rest_dto_dtoresponse.QueryColumnasEstructuraByReglaResponse": {
+      "type": "object",
+      "properties": {
+        "a_Column": {
+          "description": "Nombre de la columns",
+          "type": "string"
+        },
+        "i_Catrng": {
+          "description": "Categoría de la columna, asociada al dominio DM_CATRGN",
+          "type": "string"
+        },
+        "i_Discrim": {
+          "description": "Indicador discrim",
+          "type": "string"
+        },
+        "i_Operng": {
+          "description": "Operador que aplica, asociado al dominio DM_OPERNG",
+          "type": "string"
+        },
+        "i_Tipdat": {
+          "description": "Tipo de dato de la columna, asociado al dominio DM_TIPDAT_RNG",
+          "type": "string"
+        },
+        "i_Valifk": {
+          "description": "Validación de columna de regla de negocio contra dominio o llave foránea, relacionada con dominio DM_VALIFK",
+          "type": "string"
+        },
+        "k_Idcolum": {
+          "description": "Código interno asociado a secuencia IN2221K_SERIE",
+          "type": "integer"
+        },
+        "k_Regla": {
+          "description": "Codigo de la Regla de Negocio",
+          "type": "string"
+        },
+        "kiclarng": {
+          "description": "Clase de la Regla de Negocio",
+          "type": "string"
+        },
+        "n_Column": {
+          "description": "Descripción de la columna",
+          "type": "string"
+        },
+        "n_Nombfk": {
+          "description": "Almacena nombre del dominio o llave foránea  para validar la columna de la regla",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtorequest.EvaluaReglaDeNegocioInputRequest": {
+      "type": "object",
+      "required": ["clase", "nombreRegla"],
+      "properties": {
+        "accionesBusqueda": {
+          "description": "Acciones parametrizados en la regla LINIX",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clase": {
+          "description": "Clase de la regla",
+          "type": "string"
+        },
+        "evaluaRegla": {
+          "description": "Evaula si la regla esta cargada Y, N",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "hechos": {
+          "description": "Hechos parametrizados en la regla LINIX",
+          "type": "object",
+          "additionalProperties": true
+        },
+        "nombreRegla": {
+          "description": "Nombre de la regla",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluaReglaDeNegocioIndividualResponse": {
+      "type": "object",
+      "properties": {
+        "acciones": {
+          "description": "Acciones parametrizados en la regla LINIX",
+          "type": "object",
+          "additionalProperties": true
+        },
+        "datosPrincipales": {
+          "description": "Datos principales de la evaluacion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluaReglaDeNegocioInputResponse"
+            }
+          ]
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluaReglaDeNegocioInputResponse": {
+      "type": "object",
+      "properties": {
+        "accionesBusqueda": {
+          "description": "Acciones parametrizados en la regla LINIX",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clase": {
+          "description": "Clase de la regla",
+          "type": "string"
+        },
+        "evaluaRegla": {
+          "description": "Evaula si la regla esta cargada Y, N",
+          "allOf": [
+            {
+              "$ref": "#/definitions/eestado.Estado"
+            }
+          ]
+        },
+        "hechos": {
+          "description": "Hechos parametrizados en la regla LINIX",
+          "type": "object",
+          "additionalProperties": true
+        },
+        "nombreRegla": {
+          "description": "Nombre de la regla",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluaReglaDeNegocioMultipleResponse": {
+      "type": "object",
+      "properties": {
+        "datosPrincipales": {
+          "description": "Datos principales de la evaluacion",
+          "allOf": [
+            {
+              "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluaReglaDeNegocioInputResponse"
+            }
+          ]
+        },
+        "multiple": {
+          "description": "Acciones parametrizados en la regla LINIX",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluacionMultipleResponse"
+          }
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_evalua-regla-de-negocio_infrastructure_adapter_rest_dto_dtoresponse.EvaluacionMultipleResponse": {
+      "type": "object",
+      "properties": {
+        "acciones": {
+          "description": "Acciones parametrizados en la regla LINIX",
+          "type": "object",
+          "additionalProperties": true
+        },
+        "hechos": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_regla-en-proceso-de-cargue_infrastructure_adapter_rest_dto_dtoresponse.QueryReglaEnProcesoDeCargueByProcesoAndReglaResponse": {
+      "type": "object",
+      "properties": {
+        "a_Campo": {
+          "description": "Nombre del campo en la regla",
+          "type": "string"
+        },
+        "f_Regis": {
+          "description": "Fecha de registro",
+          "type": "string"
+        },
+        "id_Tmprng": {
+          "description": "codigo del dato",
+          "type": "string"
+        },
+        "k_Proces": {
+          "description": "codigo de identificacion del producto",
+          "type": "string"
+        },
+        "k_Regla": {
+          "description": "Codigo de la regla",
+          "type": "string"
+        },
+        "v_Registro": {
+          "description": "Numero del registro al que pertenece el dato",
+          "type": "integer"
+        },
+        "v_Valor": {
+          "description": "Valor del hecho o accion",
+          "type": "string"
+        }
+      }
+    },
+    "gitlab_inube_com_co_iutilities-linix_iutilities-linix-reglas-de-negocio-query-process-service_internal_regla-en-proceso-de-cargue_infrastructure_adapter_rest_dto_dtoresponse.QueryReglasEnProcesoDeCargueByProcesoResponse": {
+      "type": "object",
+      "properties": {
+        "a_Campo": {
+          "description": "Nombre del campo en la regla",
+          "type": "string"
+        },
+        "f_Regis": {
+          "description": "Fecha de registro",
+          "type": "string"
+        },
+        "id_Tmprng": {
+          "description": "codigo del dato",
+          "type": "string"
+        },
+        "k_Proces": {
+          "description": "codigo de identificacion del producto",
+          "type": "string"
+        },
+        "k_Regla": {
+          "description": "Codigo de la regla",
+          "type": "string"
+        },
+        "v_Registro": {
+          "description": "Numero del registro al que pertenece el dato",
+          "type": "integer"
+        },
+        "v_Valor": {
+          "description": "Valor del hecho o accion",
+          "type": "string"
+        }
+      }
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

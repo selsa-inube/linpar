@@ -26,6 +26,8 @@ interface ITareasCrediboardPorRol {
 interface ITiposDeMovimientoContablePorRol {
   k_Rol: number;
   k_Tipmov: string;
+  n_Tipmov: string;
+  i_Privi: boolean;
 }
 
 export interface IRol {
@@ -35,7 +37,7 @@ export interface IRol {
   n_Rol: string;
   n_Uso: string;
   casosDeUsoPorRol?: ICasosDeUsoPorRol[];
-  cuentasAuxiliaresPorRol?: ICuentasAuxiliaresPorRol[];
+  cuentasAuxiliaresPorRol: ICuentasAuxiliaresPorRol[];
   reglasDeNegocioPorRol?: IReglasDeNegocioPorRol[];
   tareasCrediboardPorRol?: ITareasCrediboardPorRol[];
   tiposDeMovimientoContablePorRol?: ITiposDeMovimientoContablePorRol[];

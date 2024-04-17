@@ -37,6 +37,7 @@ export function DetailsModal(props: IDetailsModalProps) {
           }}
           infoTitle="Información"
           closeModal={handleClick}
+          selectedItem={useCase.id}
         />
       )}
     </>

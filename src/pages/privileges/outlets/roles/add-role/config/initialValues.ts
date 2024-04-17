@@ -1,6 +1,4 @@
-import { IFormAddRole } from "@pages/privileges/outlets/roles/types";
-
-export const initialValuesAddRol: IFormAddRole = {
+export const initialValuesAddRol = {
   generalInformation: {
     isValid: false,
     values: {
