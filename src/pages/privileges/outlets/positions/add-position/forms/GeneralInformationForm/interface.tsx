@@ -49,7 +49,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             message={
               stateValue(formik, "description") === "valid"
                 ? "La descripción del cargo es valido"
-                : formik.errors.positionName
+                : formik.errors.description
             }
             status={stateValue(formik, "description")}
             type="text"
