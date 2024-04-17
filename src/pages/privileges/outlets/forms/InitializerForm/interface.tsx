@@ -47,7 +47,7 @@ export function InitializerFormUI(props: InitializerFormUIProps) {
           <AssignmentForm
             handleChange={handleChangeInitializerForm}
             entries={dataOptionsForms}
-            title="Seleccione los presupuestos que desea asignar"
+            title="Seleccione las opciones que desea asignar:"
           />
         </FormButtons>
         {message.visible && (
@@ -65,7 +65,7 @@ export function InitializerFormUI(props: InitializerFormUIProps) {
     <AssignmentForm
       handleChange={handleChangeInitializerForm}
       entries={dataOptionsForms}
-      title="Seleccione los presupuestos que desea asignar"
+      title="Seleccione las opciones que desea asignar:"
       readOnly={readOnly}
     />
   );
