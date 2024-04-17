@@ -1,6 +1,5 @@
-import { Icon, Text, Stack } from "@inube/design-system";
-import { StyledMenuItemContainer } from "./styles";
-
+import { Icon, Text, Stack, inube } from "@inube/design-system";
+import { StyledMenuItemLink } from "./styles";
 import { MenuItemSpacingType } from "./types";
 
 interface MenuItemProps {
@@ -27,13 +26,13 @@ function MenuItem(props: MenuItemProps) {
   } = props;
 
   return (
-    <StyledMenuItemContainer
+    <StyledMenuItemLink
       spacing={spacing}
       disabled={isDisabled}
       to={path}
       onClick={onClick}
     >
-      <Stack gap="s150" alignItems="center">
+      <Stack gap={inube.spacing.s150} alignItems="center">
         {iconBefore && (
           <Icon
             icon={iconBefore}
@@ -66,7 +65,7 @@ function MenuItem(props: MenuItemProps) {
           disabled={isDisabled}
         />
       )}
-    </StyledMenuItemContainer>
+    </StyledMenuItemLink>
   );
 }
 

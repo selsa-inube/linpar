@@ -1,37 +1,16 @@
+import { Meta } from "@storybook/react";
+import { props } from "./props";
 import { Divider, DividerProps } from ".";
 
-import { props } from "./props";
-
-import { themes } from "@mocks/design/themes";
-import { StoryFn } from "@storybook/react";
-import { ThemeProvider } from "styled-components";
-
-const story = {
-  title: "design/input/Divider",
-  component: [Divider],
-  tags: ["autodocs"],
-  argTypes: {
-    ...props,
-  },
+const meta: Meta<typeof Divider> = {
+  title: "components/layouts/Divider",
+  component: Divider,
+  argTypes: props,
 };
 
-export const Default: StoryFn<DividerProps> = (args) => <Divider {...args} />;
+export const Default = (args: DividerProps) => <Divider {...args} />;
 Default.args = {
   dashed: true,
 };
 
-const theme = {
-  ...themes["fondecom"],
-};
-
-export const Themed: StoryFn<DividerProps> = (args) => (
-  <ThemeProvider theme={theme}>
-    <Divider {...args} />
-  </ThemeProvider>
-);
-
-Themed.args = {
-  ...Default.args,
-};
-
-export default story;
+export default meta;

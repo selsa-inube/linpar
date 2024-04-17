@@ -1,8 +1,9 @@
+import { inube, Stack } from "@inube/design-system";
+import { Divider } from "@src/components/layout/Divider";
 import { MenuHeading } from "../MenuHeading";
 import { ISection } from "./types";
 import { MenuItemSpacingType } from "../MenuItem/types";
-import { inube, Stack } from "@inube/design-system";
-import { Divider } from "@src/components/layout/Divider";
+
 import { MenuItem } from "../MenuItem";
 
 interface MenuSectionProps {

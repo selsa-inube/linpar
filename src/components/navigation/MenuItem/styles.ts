@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { inube } from "@inube/design-system";
 import { MenuItemSpacingType } from "./types";
 
-interface IStyledMenuItemContainer {
+interface IStyledMenuItemLink {
   spacing: MenuItemSpacingType;
   disabled: boolean;
 }
 
-const StyledMenuItemContainer = styled(Link)<IStyledMenuItemContainer>`
+const StyledMenuItemLink = styled(Link)<IStyledMenuItemLink>`
   display: flex;
   justify-content: space-between;
   text-decoration: none;
@@ -32,4 +32,4 @@ const StyledMenuItemContainer = styled(Link)<IStyledMenuItemContainer>`
   }
 `;
 
-export { StyledMenuItemContainer };
+export { StyledMenuItemLink };

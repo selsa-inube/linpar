@@ -1,8 +1,9 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
 import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
-import { navigationConfig } from "@pages/home/config/apps.config";
 
+import { navigationConfig } from "@pages/home/config/apps.config";
 import {
   StyledAppPage,
   StyledContainer,
@@ -15,7 +16,6 @@ import {
 } from "./styles";
 import { AppContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
-import { MdLogout } from "react-icons/md";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
 
@@ -78,7 +78,7 @@ function AppPage() {
         </StyledHeaderContainer>
         {showUserMenu && (
           <StyledMenuContainer ref={userMenuRef}>
-            <MenuUser userName={user.username} businessUnit={user.company} />
+            <MenuUser userName={user.username} businessUnit="Linix" />
             <MenuSection
               sections={[
                 {

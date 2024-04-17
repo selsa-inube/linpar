@@ -1,10 +1,10 @@
-import { StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { MenuHeading, MenuHeadingProps } from ".";
 
-const story = {
-  title: "design/navigation/MenuHeading",
-  components: [MenuHeading],
+const meta: Meta<typeof MenuHeading> = {
+  title: "components/data/MenuHeading",
+  component: MenuHeading,
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
@@ -14,11 +14,9 @@ const story = {
   ],
 };
 
-export const Default: StoryFn<MenuHeadingProps> = (args) => (
-  <MenuHeading {...args} />
-);
+export const Default = (args: MenuHeadingProps) => <MenuHeading {...args} />;
 Default.args = {
   title: "Title",
 };
 
-export default story;
+export default meta;
