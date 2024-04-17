@@ -1,3 +1,5 @@
+import { IAssignmentFormEntry } from "../users/types/forms.types";
+
 interface OpcionesCsPorCasoDeUso {
   k_Opcion: string;
 }
@@ -16,7 +18,6 @@ interface ReportesWebPorCasoDeUso {
 
 interface TiposDeDocumentoPorCasoDeUso {
   k_Docume: string;
-  transactionOperation: string;
 }
 
 interface UseCase {
@@ -31,7 +32,7 @@ interface UseCase {
   opcionesCsPorCasoDeUso?: OpcionesCsPorCasoDeUso[];
   opcionesPortalWebPorCasoDeUso?: OpcionesPortalWebPorCasoDeUso[];
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];
-  reportesWebPorCasoDeUso?: ReportesWebPorCasoDeUso[];
+  reportesWebPorCasoDeUso?: IAssignmentFormEntry[];
   tiposDeDocumentoPorCasoDeUso?: TiposDeDocumentoPorCasoDeUso[];
 }
 

@@ -78,7 +78,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
             appearance="dark"
             spacing="compact"
             iconBefore={<MdArrowBack />}
-            onClick={() => handleStepChange(0)}
+            onClick={() => handleStepChange(1)}
             type="link"
           >
             Regresar a este paso
@@ -101,7 +101,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
             appearance="dark"
             spacing="compact"
             iconBefore={<MdArrowBack />}
-            onClick={() => handleStepChange(1)}
+            onClick={() => handleStepChange(2)}
             type="link"
           >
             Regresar a este paso
@@ -137,7 +137,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
             appearance="dark"
             spacing="compact"
             iconBefore={<MdArrowBack />}
-            onClick={() => handleStepChange(2)}
+            onClick={() => handleStepChange(3)}
             type="link"
           >
             Regresar a este paso
@@ -175,7 +175,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
               appearance="dark"
               spacing="compact"
               iconBefore={<MdArrowBack />}
-              onClick={() => handleStepChange(3)}
+              onClick={() => handleStepChange(4)}
               type="link"
             >
               Regresar a este paso
@@ -210,7 +210,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
                 appearance="dark"
                 spacing="compact"
                 iconBefore={<MdArrowBack />}
-                onClick={() => handleStepChange(4)}
+                onClick={() => handleStepChange(5)}
                 type="link"
               >
                 Regresar a este paso
@@ -246,7 +246,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
                 appearance="dark"
                 spacing="compact"
                 iconBefore={<MdArrowBack />}
-                onClick={() => handleStepChange(5)}
+                onClick={() => handleStepChange(6)}
                 type="link"
               >
                 Regresar a este paso
@@ -282,7 +282,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
                 appearance="dark"
                 spacing="compact"
                 iconBefore={<MdArrowBack />}
-                onClick={() => handleStepChange(6)}
+                onClick={() => handleStepChange(7)}
                 type="link"
               >
                 Regresar a este paso

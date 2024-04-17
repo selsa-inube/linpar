@@ -4,6 +4,7 @@ import {
   Stack,
   useMediaQuery,
   inube,
+  Button,
 } from "@inube/design-system";
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
@@ -18,17 +19,17 @@ import {
 import { StyledAssistedContainer } from "./styles";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
-import { FormButtons } from "@src/components/forms/submit/FormButtons";
 import {
   IFormAddLinixUseCase,
   IHandleChangeFormData,
   IFormAddLinixUseCaseRef,
 } from "./types";
 import { VerificationForm } from "./forms/VerificationForm";
+import { saveLinixUseCase } from "./utils";
 
 function finishModal(
   handleCloseModal: () => void,
-  handleCompleteInvitation: () => void
+  formData: IFormAddLinixUseCase
 ) {
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
@@ -41,7 +42,7 @@ function finishModal(
       loading={false}
       appearance={appearance}
       closeModal={handleCloseModal}
-      handleClick={handleCompleteInvitation}
+      handleClick={() => saveLinixUseCase(formData)}
     />
   );
 }
@@ -50,7 +51,6 @@ interface AddingLinixUseCaseUIProps {
   handleNextStep: (step: number) => void;
   handlePrevStep: (step: number) => void;
   currentStep: number;
-  handleCompleteInvitation: () => void;
   handleToggleModal: () => void;
   showModal: boolean;
   formData: IFormAddLinixUseCase;
@@ -63,7 +63,6 @@ interface AddingLinixUseCaseUIProps {
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
     currentStep,
-    handleCompleteInvitation,
     handleToggleModal,
     showModal,
     handlePrevStep,
@@ -76,17 +75,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  const isCurrentStateValid = () => {
-    if (currentStep === Object.values(stepsAddingLinixUseCase).length) {
-      handleToggleModal();
-    } else {
-      handleNextStep(currentStep);
-    }
-  };
-  const isPreviousStepAvailable = () => {
-    return currentStep !== 1 ? (handlePrevStep(currentStep), true) : false;
-  };
-
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap={inube.spacing.s600} direction="column">
@@ -113,76 +101,93 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               handleNext={
                 currentStep === Object.values(stepsAddingLinixUseCase).length
                   ? handleToggleModal
-                  : handleNextStep
+                  : () => handleNextStep(currentStep + 1)
               }
             />
           </StyledAssistedContainer>
-          <FormButtons
-            handleSubmit={isCurrentStateValid}
-            handleReset={isPreviousStepAvailable}
-            cancelButtonText="Atrás"
-            submitButtonText="Siguiente"
-            disableReset={currentStep === 1}
-          >
-            {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
-              <GeneralInformationForm
-                csOptions={csOptions}
-                webOptions={webOptions}
-                handleSubmit={handleUpdateFormData}
-                initialValues={formData.generalInformation.values}
-                ref={formReferences.generalInformation}
-              />
-            )}
-            {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
-              <ClientServerButtonSelection
-                csSelected={formData.generalInformation.values.k_Opcion}
-                handleSubmit={handleUpdateFormData}
-                initialValues={formData.clientServerButton.values}
-              />
-            )}
-            {currentStep ===
-              stepsAddingLinixUseCase.downloadableDocuments.id && (
-              <InitializerForm
-                dataOptionsForms={formData.downloadableDocuments.values}
-                handleSubmit={handleUpdateFormData}
-              />
-            )}
 
-            {currentStep === stepsAddingLinixUseCase.webReports.id && (
-              <InitializerForm
-                dataOptionsForms={formData.webReports.values}
-                handleSubmit={handleUpdateFormData}
-              />
-            )}
+          {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
+            <GeneralInformationForm
+              csOptions={csOptions}
+              webOptions={webOptions}
+              handleSubmit={handleUpdateFormData}
+              initialValues={formData.generalInformation.values}
+              ref={formReferences.generalInformation}
+            />
+          )}
+          {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
+            <ClientServerButtonSelection
+              csSelected={formData.generalInformation.values.k_Opcion}
+              handleSubmit={handleUpdateFormData}
+              initialValues={formData.clientServerButton.values}
+            />
+          )}
+          {currentStep === stepsAddingLinixUseCase.downloadableDocuments.id && (
+            <InitializerForm
+              dataOptionsForms={formData.downloadableDocuments.values}
+              handleSubmit={handleUpdateFormData}
+            />
+          )}
 
-            {currentStep === stepsAddingLinixUseCase.webOptions.id && (
-              <InitializerForm
-                dataOptionsForms={formData.webOptions.values}
-                handleSubmit={handleUpdateFormData}
-              />
-            )}
-            {currentStep === stepsAddingLinixUseCase.clientServerReports.id && (
-              <InitializerForm
-                dataOptionsForms={formData.clientServerReports.values}
-                handleSubmit={handleUpdateFormData}
-              />
-            )}
-            {currentStep === stepsAddingLinixUseCase.clientServerOptions.id && (
-              <InitializerForm
-                dataOptionsForms={formData.clientServerOptions.values}
-                handleSubmit={handleUpdateFormData}
-              />
-            )}
-            {currentStep === stepsAddingLinixUseCase.summary.id && (
-              <VerificationForm
-                formData={formData}
-                handleStepChange={handleNextStep}
-              />
-            )}
-          </FormButtons>
+          {currentStep === stepsAddingLinixUseCase.webReports.id && (
+            <InitializerForm
+              dataOptionsForms={formData.webReports.values}
+              handleSubmit={handleUpdateFormData}
+            />
+          )}
+
+          {currentStep === stepsAddingLinixUseCase.webOptions.id && (
+            <InitializerForm
+              dataOptionsForms={formData.webOptions.values}
+              handleSubmit={handleUpdateFormData}
+            />
+          )}
+          {currentStep === stepsAddingLinixUseCase.clientServerReports.id && (
+            <InitializerForm
+              dataOptionsForms={formData.clientServerReports.values}
+              handleSubmit={handleUpdateFormData}
+            />
+          )}
+          {currentStep === stepsAddingLinixUseCase.clientServerOptions.id && (
+            <InitializerForm
+              dataOptionsForms={formData.clientServerOptions.values}
+              handleSubmit={handleUpdateFormData}
+            />
+          )}
+          {currentStep === stepsAddingLinixUseCase.summary.id && (
+            <VerificationForm
+              formData={formData}
+              handleStepChange={handleNextStep}
+            />
+          )}
         </>
+        <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+          <Button
+            onClick={handlePrevStep}
+            type="button"
+            disabled={currentStep === 1}
+            spacing="compact"
+            variant="none"
+            appearance="gray"
+          >
+            Atrás
+          </Button>
+
+          <Button
+            onClick={
+              currentStep === Object.values(stepsAddingLinixUseCase).length
+                ? () => saveLinixUseCase(formData)
+                : handleNextStep
+            }
+            spacing="compact"
+          >
+            {currentStep === Object.values(stepsAddingLinixUseCase).length
+              ? "Enviar"
+              : "Siguiente"}
+          </Button>
+        </Stack>
       </Stack>
-      {showModal && finishModal(handleToggleModal, handleCompleteInvitation)}
+      {showModal && finishModal(handleToggleModal, formData)}
     </Stack>
   );
 }
