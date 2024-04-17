@@ -53,6 +53,11 @@ function RenderFormFields(
 ) {
   const mediaQuery = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuery);
+  const stateValue = (fieldName: string) => {
+    if (!formik.touched[fieldName]) return "pending";
+    if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
+    return "valid";
+  };
 
   return (
     <Grid
@@ -70,11 +75,19 @@ function RenderFormFields(
           label="Nombre del caso de uso "
           placeholder="Digite un nombre para el caso de uso."
           name="n_Usecase"
-          id="Caso de Uso Linix Name"
+          id="n_Usecase"
           value={formik.values.n_Usecase}
+          onBlur={formik.handleBlur}
+          message={
+            stateValue("n_Usecase") === "invalid"
+              ? formik.errors.n_Usecase
+              : "El nombre del caso de uso es requerido."
+          }
+          status={stateValue("n_Usecase")}
           type="text"
           size="compact"
           fullwidth
+          required
           onChange={(
             event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
           ) => handleChangeForm(event.target.name, event.target.value)}
@@ -84,16 +97,22 @@ function RenderFormFields(
             label="Acción caso de uso"
             placeholder="Seleccione una opción"
             name="i_Tipusec"
-            id="Acción Caso de Uso"
+            id="i_Tipusec"
             value={formik.values.i_Tipusec}
-            type="i_Tipusec"
+            onBlur={formik.handleBlur}
+            message={
+              stateValue("i_Tipusec") === "invalid"
+                ? formik.errors.i_Tipusec
+                : "La selección del caso de uso es requerido."
+            }
+            status={stateValue("i_Tipusec")}
             iconAfter={<MdOutlineModeEdit size={18} />}
             size="compact"
             fullwidth
+            required
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeForm("i_Tipusec", value.target.outerText)
             }
-            onBlur={formik.handleBlur}
             options={OptionSelect}
           />
         </StyledSelectContainer>
@@ -106,6 +125,14 @@ function RenderFormFields(
         id="n_Descrip"
         value={formik.values.n_Descrip}
         type="text"
+        onBlur={formik.handleBlur}
+        required
+        message={
+          stateValue("n_Descrip") === "invalid"
+            ? formik.errors.n_Descrip
+            : "La Descripción del caso de uso es requerido."
+        }
+        status={stateValue("n_Descrip")}
         size="compact"
         maxLength={120}
         fullwidth
@@ -130,10 +157,10 @@ function RenderFormFields(
           </Stack>
         )}
         <SearchUserCard
-          id="Opción  Web"
+          id="webSearch"
           label="Opción  web"
           placeholder="Seleccione una opción"
-          name="WebSearch"
+          name="webSearch"
           title="Búsqueda"
           infoTitle="Opciones web"
           idModal="searchField"
@@ -152,7 +179,7 @@ function RenderFormFields(
         />
       </Stack>
       <SearchUserCard
-        id="Opción cliente servidor"
+        id="Opción cliente servido"
         label="Opción cliente servidor"
         placeholder="Seleccione una opción"
         name="csSearch"
@@ -192,13 +219,24 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     csOptions,
     webOptions,
   } = props;
+
+  const allRequiredFieldsFilled = () => {
+    const requiredFields = ["nUsecase", "iTipusec", "nDescrip"];
+    return requiredFields.every((field) => {
+      const fieldError = formik.errors[field];
+      return !fieldError;
+    });
+  };
+
   if (withSubmitButtons) {
     return (
       <>
         <FormButtons
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
-          disabledButtons={!hasChanges(formik.values)}
+          disabledButtons={
+            !hasChanges(formik.values) || allRequiredFieldsFilled()
+          }
           loading={loading}
         >
           {RenderFormFields(
@@ -228,6 +266,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         loading,
         formInvalid,
         handleChangeForm,
+
         csOptions,
         webOptions,
         readOnly

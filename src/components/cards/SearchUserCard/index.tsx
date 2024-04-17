@@ -100,7 +100,6 @@ function SearchUserCard(props: SearchUserCardProps) {
           name={name}
           placeholder={placeholder}
           type="search"
-          required={true}
           iconAfter={<MdSearch />}
           size="compact"
           fullwidth={true}
