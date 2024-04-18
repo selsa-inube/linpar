@@ -3,11 +3,12 @@ import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
 import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
 
-import { navigationConfig } from "@pages/home/config/apps.config";
 import { AppContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
+
+import { navigationConfig, logoutConfig } from "./config/apps.config";
 
 import {
   StyledAppPage,
@@ -79,7 +80,7 @@ function AppPage() {
         </StyledHeaderContainer>
         {showUserMenu && (
           <StyledMenuContainer ref={userMenuRef}>
-            <MenuUser userName={user.username} />
+            <MenuUser userName={user.username} businessUnit={user.company} />
             <MenuSection
               sections={[
                 {
@@ -113,8 +114,8 @@ function AppPage() {
               <StyledContainerNav>
                 <Nav
                   navigation={navigationConfig}
-                  logoutPath="/"
-                  logoutTitle="Cerrar Sesión"
+                  logoutPath={logoutConfig.logoutPath}
+                  logoutTitle={logoutConfig.logoutTitle}
                 />
               </StyledContainerNav>
             )}
