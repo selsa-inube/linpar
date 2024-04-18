@@ -1,7 +1,7 @@
-import { menuInvitationLinks } from "@pages/privileges/outlets/users/config/menuInvitation.config";
 import { BrowserRouter } from "react-router-dom";
-import { MenuLink, MenuLinkprops } from ".";
 import { StoryFn } from "@storybook/react";
+import { menuInvitationLinks } from "@pages/privileges/outlets/users/config/menuInvitation.config";
+import { MenuLink, MenuLinkprops } from ".";
 
 const story = {
   component: [MenuLink],

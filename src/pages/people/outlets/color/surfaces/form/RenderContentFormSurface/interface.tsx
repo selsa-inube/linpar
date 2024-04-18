@@ -1,4 +1,4 @@
-import { FormButtons } from "@components/forms/submit/FormButtons";
+import { MdOutlineHouse } from "react-icons/md";
 import {
   Stack,
   Text,
@@ -7,16 +7,18 @@ import {
   useMediaQuery,
   NavLink,
 } from "@inube/design-system";
-import { StyledNavLinkContainer } from "./styles";
+import { ThemeProvider } from "styled-components";
+
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
-import { ThemeProvider } from "styled-components";
 import { SendInformationMessage } from "@components/feedback/SendingInformation";
 import { surfaceFormsConfig } from "@pages/people/outlets/color/surfaces/config/surface.config";
-import { MdOutlineHouse } from "react-icons/md";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
+import { TextAppearance } from "@pages/people/outlets/color/texts/types";
+import { FormButtons } from "@components/forms/submit/FormButtons";
 
+import { StyledNavLinkContainer } from "./styles";
 interface ISurfaceCardConfig {
   title: string;
   description: string;
@@ -97,7 +99,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
 
             {formType !== "navLink" && (
               <SendInformationMessage
-                appearance={formType}
+                appearance={formType as TextAppearance}
                 buttonType="filled"
               />
             )}
