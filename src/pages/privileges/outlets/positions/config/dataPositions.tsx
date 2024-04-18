@@ -2,33 +2,18 @@ import { MdModeEdit, MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
 
-import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
-
-import { activateRoleModal } from "../../roles/config/activateRole.config";
+import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
-import { DetailsModal } from "../components/DetailsModal";
-
-const dataDetailsRol = (k_Rol: string) => {
-  const data = [mockRoles.find((role) => role.k_Rol === k_Rol)!].map(
-    (roleselectd) => ({
-      Código: roleselectd?.k_Rol,
-      Nombre: roleselectd?.n_Rol,
-      Aplicación: roleselectd?.n_Uso,
-      Activo: roleselectd?.i_Activo === "Y" ? "active" : "inactive",
-    })
-  );
-
-  return [...data].shift();
-};
+import { MockPositions } from "@src/mocks/privileges/positions/Positions.mock";
 
 export const titlesOptions = [
   {
-    id: "k_Rol",
+    id: "k_Grupo",
     titleName: "Code",
     priority: 0,
   },
   {
-    id: "n_Rol",
+    id: "n_Grupo",
     titleName: "Nombre",
     priority: 1,
   },
@@ -41,23 +26,23 @@ export const PositionsBreakPointsConfig = [
   { breakpoint: "(max-width: 430px)", totalColumns: 1 },
 ];
 
-const selectedData = (k_Rol: string) =>
-  mockRoles.find((role) => role.k_Rol === k_Rol);
+const selectedData = (k_Grupo: string) =>
+  MockPositions.find((position) => position.k_Grupo === k_Grupo);
 
 export const actionsConfig = [
   {
     id: "i_activo",
     actionName: "Activo",
-    content: ({ k_Rol }: { k_Rol: string }) => {
+    content: ({ k_Grupo }: { k_Grupo: string }) => {
       return (
         <ActivateFormOptions
           handleActivate={() => {}}
           data={{
-            id: selectedData(k_Rol)?.k_Rol || "",
-            active: selectedData(k_Rol)?.i_Activo === "Y" || false,
+            id: selectedData(k_Grupo)?.k_Grupo || "",
+            active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
           }}
           showComplete={false}
-          activateModalConfig={activateRoleModal}
+          activateModalConfig={activatePositionModal}
         />
       );
     },
