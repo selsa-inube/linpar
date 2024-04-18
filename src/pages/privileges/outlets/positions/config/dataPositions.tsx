@@ -1,10 +1,10 @@
 import { MdModeEdit, MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
-
+import { MockPositions } from "@mocks/privileges/positions/Positions.mock";
 import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
-import { MockPositions } from "@src/mocks/privileges/positions/Positions.mock";
+import { DetailsModal } from "../components/DetailsModal";
 
 export const titlesOptions = [
   {
@@ -25,6 +25,19 @@ export const PositionsBreakPointsConfig = [
   { breakpoint: "(max-width: 848px)", totalColumns: 2 },
   { breakpoint: "(max-width: 430px)", totalColumns: 1 },
 ];
+
+const dataDetailsPosition = (k_Grupo: string) => {
+  const data = [
+    MockPositions.find((position) => position.k_Grupo === k_Grupo)!,
+  ].map((positionSelected) => ({
+    Código: positionSelected?.k_Grupo,
+    Nombre: positionSelected?.n_Grupo,
+    Descripción: positionSelected?.n_Uso,
+    Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
+  }));
+
+  return [...data].shift();
+};
 
 const selectedData = (k_Grupo: string) =>
   MockPositions.find((position) => position.k_Grupo === k_Grupo);
@@ -51,8 +64,8 @@ export const actionsConfig = [
   {
     id: "Details",
     actionName: "Detalles",
-    content: ({ k_Rol }: { k_Rol: string }) => (
-      <DetailsModal data={dataDetailsRol(k_Rol)} />
+    content: ({ k_Grupo }: { k_Grupo: string }) => (
+      <DetailsModal data={dataDetailsPosition(k_Grupo)} />
     ),
     type: "secondary",
   },
