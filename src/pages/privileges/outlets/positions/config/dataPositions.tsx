@@ -6,7 +6,7 @@ import {
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
 
-import { activateRoleModal } from "../../roles/config/activateRole.config";
+import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 import { MockPositions } from "@src/mocks/privileges/positions/Positions.mock";
 
@@ -46,7 +46,7 @@ export const actionsConfig = [
             active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
           }}
           showComplete={false}
-          activateModalConfig={activateRoleModal}
+          activateModalConfig={activatePositionModal}
         />
       );
     },
