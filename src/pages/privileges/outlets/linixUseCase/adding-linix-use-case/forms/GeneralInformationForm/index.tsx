@@ -41,7 +41,6 @@ export const GeneralInformationForm = forwardRef(
       withSubmitButtons,
       onHasChanges,
       handleSubmit,
-      // onSubmit,
       onFormValid,
       readOnly,
       csOptions,
