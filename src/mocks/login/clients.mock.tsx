@@ -47,7 +47,12 @@ const clientsDataMock = [
     sigla: "Fondecom",
     logo: "/fondecom.png",
   },
-
+  {
+    id: "5545451",
+    name: "Sistemas Enlínea",
+    sigla: "SistemasEnlinea",
+    logo: "/sistemas_enlinea.png",
+  },
   // {
   //   id: 8,
   //   name: "Fondo de Empleados y Trabajadores de la Universidad del Valle",
