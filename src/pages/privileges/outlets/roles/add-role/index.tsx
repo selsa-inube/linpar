@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 
-import { getAll } from "@src/mocks/utils/dataMock.service";
+import { getAll } from "@mocks/utils/dataMock.service";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 
 import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";

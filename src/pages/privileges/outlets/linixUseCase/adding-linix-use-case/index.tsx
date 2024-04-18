@@ -209,16 +209,15 @@ function AddingLinixUseCase() {
     generalInformation: generalInformationRef,
   };
 
-  const handleNextStep = (step: number) => {
-    setCurrentStep(step + 1);
+  const handleNextStep = (step?: number) => {
+    const nextStep = typeof step === "number" ? step : currentStep + 1;
+    setCurrentStep(nextStep);
   };
 
-  const handlePrevStep = (step: number) => {
-    setCurrentStep(step - 1);
-  };
-
-  const handleCompleteInvitation = () => {
-    return;
+  const handlePrevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
   const handleToggleModal = () => {
@@ -231,7 +230,6 @@ function AddingLinixUseCase() {
       handleNextStep={handleNextStep}
       currentStep={currentStep}
       handleToggleModal={handleToggleModal}
-      handleCompleteInvitation={handleCompleteInvitation}
       showModal={showModal}
       formData={formData}
       handleUpdateFormData={handleUpdateFormData}

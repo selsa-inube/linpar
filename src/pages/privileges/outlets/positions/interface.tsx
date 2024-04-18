@@ -13,7 +13,7 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { privilegeOptionsConfig } from "@pages/privileges/outlets//options/config/privileges.config";
+
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
 import {
@@ -23,6 +23,7 @@ import {
 } from "./config/dataPositions";
 import { StyledContainer } from "./styles";
 import { IPosition } from "./types";
+import { privilegeOptionsConfig } from "../options/config/privileges.config";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
