@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import { Divider } from "@src/components/layout/Divider";
 import { Icon, Text, useMediaQuery } from "@inube/design-system";
+
+import { Divider } from "@components/layout/Divider";
+
 import { StyledContainer, StyledHead } from "./styles";
 
 export interface IAccordionProps {

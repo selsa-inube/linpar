@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
+
 import { MenuUser, MenuUserProps } from ".";
 
 const meta: Meta<typeof MenuUser> = {
@@ -14,7 +15,9 @@ const meta: Meta<typeof MenuUser> = {
   ],
 };
 
-export const Default = (args: MenuUserProps) => <MenuUser {...args} />;
+type Story = StoryObj<typeof MenuUser>;
+
+export const Default: Story = (args: MenuUserProps) => <MenuUser {...args} />;
 Default.args = {
   userName: "Name",
   businessUnit: "Business Unit",

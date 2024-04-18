@@ -1,6 +1,7 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
+
 import { props } from "./props";
-import { Divider, DividerProps } from ".";
+import { Divider, DividerProps } from "..";
 
 const meta: Meta<typeof Divider> = {
   title: "components/layouts/Divider",
@@ -8,7 +9,9 @@ const meta: Meta<typeof Divider> = {
   argTypes: props,
 };
 
-export const Default = (args: DividerProps) => <Divider {...args} />;
+type Story = StoryObj<typeof Divider>;
+
+export const Default: Story = (args: DividerProps) => <Divider {...args} />;
 Default.args = {
   dashed: true,
 };

@@ -42,7 +42,7 @@ const StyledMenuContainer = styled.div`
   right: 15px;
   z-index: 1;
   overflow: hidden;
-  border-radius: ${inube.spacing.s050};
+  border-radius: 8px;
   width: 312px;
   box-shadow: 0px 2px 3px 0px #091e4221;
   box-shadow: 0px 6px 10px 4px #091e4221;

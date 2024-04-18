@@ -4,6 +4,11 @@ import { Outlet } from "react-router-dom";
 import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
 
 import { navigationConfig } from "@pages/home/config/apps.config";
+import { AppContext } from "@context/AppContext";
+import { MenuSection } from "@components/navigation/MenuSection";
+import { MenuUser } from "@components/navigation/MenuUser";
+import { LogoutModal } from "@components/feedback/LogoutModal";
+
 import {
   StyledAppPage,
   StyledContainer,
@@ -14,10 +19,6 @@ import {
   StyledMenuContainer,
   StyledHeaderContainer,
 } from "./styles";
-import { AppContext } from "@context/AppContext";
-import { MenuSection } from "@components/navigation/MenuSection";
-import { MenuUser } from "@components/navigation/MenuUser";
-import { LogoutModal } from "@components/feedback/LogoutModal";
 
 const renderLogo = (imgUrl: string) => {
   return (

@@ -1,6 +1,7 @@
 import { MdAndroid } from "react-icons/md";
 import { BrowserRouter } from "react-router-dom";
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
+
 import { MenuItem, MenuItemProps } from ".";
 
 const meta: Meta<typeof MenuItem> = {
@@ -15,7 +16,9 @@ const meta: Meta<typeof MenuItem> = {
   ],
 };
 
-export const Default = (args: MenuItemProps) => <MenuItem {...args} />;
+type Story = StoryObj<typeof MenuItem>;
+
+export const Default: Story = (args: MenuItemProps) => <MenuItem {...args} />;
 Default.args = {
   title: "Title",
   description: "Description",
@@ -24,7 +27,7 @@ Default.args = {
   isDisabled: false,
 };
 
-export const IconAfter = (args: MenuItemProps) => <MenuItem {...args} />;
+export const IconAfter: Story = (args: MenuItemProps) => <MenuItem {...args} />;
 IconAfter.args = {
   title: "Title",
   description: "Description",
@@ -33,7 +36,7 @@ IconAfter.args = {
   isDisabled: false,
 };
 
-export const Disabled = (args: MenuItemProps) => <MenuItem {...args} />;
+export const Disabled: Story = (args: MenuItemProps) => <MenuItem {...args} />;
 Disabled.args = {
   ...Default.args,
   isDisabled: true,

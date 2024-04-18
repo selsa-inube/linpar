@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { inube } from "@inube/design-system";
+
 import { MenuItemSpacingType } from "./types";
 
 interface IStyledMenuItemLink {
