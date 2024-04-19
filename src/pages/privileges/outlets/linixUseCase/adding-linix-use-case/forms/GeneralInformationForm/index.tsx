@@ -37,7 +37,13 @@ export const GeneralInformationForm = forwardRef(
     ref: React.Ref<FormikProps<IGeneralInformation>>
   ) {
     const {
-      initialValues,
+      initialValues = {
+        n_Usecase: "",
+        n_Descrip: "",
+        i_Tipusec: "",
+        k_Funcio: "",
+        k_Opcion: "",
+      },
       withSubmitButtons,
       onHasChanges,
       handleSubmit,
