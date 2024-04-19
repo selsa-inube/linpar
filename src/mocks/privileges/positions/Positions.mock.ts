@@ -1,6 +1,6 @@
-import { IPositions } from "@src/pages/privileges/outlets/positions/types";
+import { IPosition } from "@src/pages/privileges/outlets/positions/types";
 
-const MockPositions: IPositions[] = [
+const MockPositions: IPosition[] = [
   {
     i_Activo: "Y",
     k_Grupo: "001",

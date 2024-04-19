@@ -12,7 +12,6 @@ import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { ClientServerButtonSelection } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/ClientServerButtonSelection";
-import {} from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
 
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";

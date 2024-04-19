@@ -220,23 +220,13 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     webOptions,
   } = props;
 
-  const allRequiredFieldsFilled = () => {
-    const requiredFields = ["nUsecase", "iTipusec", "nDescrip"];
-    return requiredFields.every((field) => {
-      const fieldError = formik.errors[field];
-      return !fieldError;
-    });
-  };
-
   if (withSubmitButtons) {
     return (
       <>
         <FormButtons
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
-          disabledButtons={
-            !hasChanges(formik.values) || allRequiredFieldsFilled()
-          }
+          disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
           {RenderFormFields(
