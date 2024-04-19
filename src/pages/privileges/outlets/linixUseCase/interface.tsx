@@ -21,7 +21,7 @@ import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
-import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
+import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { DetailsModal } from "./components/DetailsModal";
 import { UseCase } from "./types";
@@ -29,7 +29,9 @@ import { useCasesBreakPointsConfig } from "./config/useCasesTable.config";
 import { titlesOptions } from "./config/useCasesTable.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
-import { deleteUserModal } from "./config/deleteLinuxUseCase.config";
+
+import { deleteLinixUseCaseModal } from "./delete-linix-use-case/config/deleteLinixUseCase.config";
+import { DeleteLinixUseCase } from "./delete-linix-use-case";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -52,7 +54,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
     handleClick,
-    selectedData,
     linixUseCases,
     loading,
   } = props;
@@ -93,21 +94,14 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Usecase }: { k_Usecase: string }) => {
-        const linixUseCase = selectedData(k_Usecase);
-        const adjustedLinuxUseCase = {
-          id: linixUseCase?.k_Usecase || "",
-        };
-
-        return (
-          <DeleteFormOptions
-            data={adjustedLinuxUseCase}
-            showComplete={false}
-            modalConfig={deleteUserModal}
-          />
-        );
-      },
-      type: "secondary",
+      content: ({ k_Usecase }: { k_Usecase: string }) => (
+        <DeleteLinixUseCase
+          linixUseCase={k_Usecase}
+          deleteLinixUseCaseModal={deleteLinixUseCaseModal}
+          handleDeleteLinixUseCase={deleteItemData}
+        />
+      ),
+      type: "remove",
     },
   ];
 
