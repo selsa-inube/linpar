@@ -13,7 +13,7 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { privilegeOptionsConfig } from "@pages/privileges/outlets//options/config/privileges.config";
+
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
 import {
@@ -22,7 +22,8 @@ import {
   titlesOptions,
 } from "./config/dataPositions";
 import { StyledContainer } from "./styles";
-import { IRol } from "../roles/types";
+import { IPosition } from "./types";
+import { privilegeOptionsConfig } from "../options/config/privileges.config";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -30,7 +31,7 @@ interface IPositionsProps {
   handleCloseMenuInvitation: () => void;
   handleToggleMenuInvitation: () => void;
   searchPosition: string;
-  linixPosition: IRol[];
+  linixPosition: IPosition[];
   loading: boolean;
 }
 
