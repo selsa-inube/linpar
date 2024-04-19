@@ -2,7 +2,7 @@ import { color } from "@mocks/design/tokensWithReference/sistemasEnlinea/color/c
 import { spacing } from "@mocks/design/tokensWithReference/sistemasEnlinea/spacing/spacing";
 import { typography } from "@mocks/design/tokensWithReference/sistemasEnlinea/typography/typography";
 
-export const sistemasEnlinea = {
+export const sistemasenlinea = {
   color,
   spacing,
   typography,

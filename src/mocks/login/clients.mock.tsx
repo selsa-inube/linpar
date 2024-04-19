@@ -50,7 +50,7 @@ const clientsDataMock = [
   {
     id: "5545451",
     name: "Sistemas Enlínea",
-    sigla: "SistemasEnlinea",
+    sigla: "sistemasenlinea",
     logo: "/sistemas_enlinea.png",
   },
   // {
