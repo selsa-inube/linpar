@@ -86,6 +86,34 @@ const privilegeOptionsConfig = [
       },
     ],
   },
+  {
+    id: 4,
+    icon: <MdSync />,
+    label: "Cargos",
+    description: "Crear, editar, activar y eliminar cargos de Linix",
+    url: "/privileges/positions",
+    domain: "privileges",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/privileges/positions",
+        label: "Cargos",
+        id: "/privileges/positions",
+        isActive: true,
+      },
+    ],
+  },
 ];
 
 export { privilegeOptionsConfig };

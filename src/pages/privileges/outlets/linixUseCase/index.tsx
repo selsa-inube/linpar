@@ -28,7 +28,7 @@ function LinixUseCase() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [linixUseCases]);
 
   const handleSearchUseCase = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchUseCase(event.target.value);
