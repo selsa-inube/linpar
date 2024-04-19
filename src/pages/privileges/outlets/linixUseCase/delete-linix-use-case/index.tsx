@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { functionById } from "@src/mocks/utils/dataMock.service";
+import { functionById } from "@mocks/utils/dataMock.service";
 
 import { deleteLinixUseCaseModal } from "./config/deleteLinixUseCase.config";
 import { DeleteLinixUseCaseUI } from "./interface";

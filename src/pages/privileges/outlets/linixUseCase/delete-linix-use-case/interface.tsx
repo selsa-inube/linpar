@@ -1,8 +1,9 @@
 import { MdOutlineDelete } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
-import { DecisionModal } from "@src/components/feedback/DecisionModal";
+import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
+
 import { deleteLinixUseCaseModal } from "./config/deleteLinixUseCase.config";
 
 interface DeleteLinixUseCaseUIProps {

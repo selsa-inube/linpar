@@ -21,7 +21,7 @@ import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
-import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { DetailsModal } from "./components/DetailsModal";
 import { UseCase } from "./types";
