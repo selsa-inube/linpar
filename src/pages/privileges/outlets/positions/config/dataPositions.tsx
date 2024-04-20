@@ -4,10 +4,10 @@ import { Icon } from "@inube/design-system";
 
 import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
-import { MockPositions } from "@src/mocks/privileges/positions/Positions.mock";
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
 import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+import { IPosition } from "../types";
 
 export const titlesOptions = [
   {
@@ -29,62 +29,65 @@ export const PositionsBreakPointsConfig = [
   { breakpoint: "(max-width: 430px)", totalColumns: 1 },
 ];
 
-const selectedData = (k_Grupo: string) =>
-  MockPositions.find((position) => position.k_Grupo === k_Grupo);
+export const actionsConfigPosition = (linixPosition: IPosition[]) => {
+  const selectedData = (k_Grupo: string) =>
+    linixPosition.find((position) => position.k_Grupo === k_Grupo);
 
-export const actionsConfig = [
-  {
-    id: "i_activo",
-    actionName: "Activo",
-    content: ({ k_Grupo }: { k_Grupo: string }) => {
-      return (
-        <ActivateFormOptions
-          handleActivate={() => {}}
-          data={{
-            id: selectedData(k_Grupo)?.k_Grupo || "",
-            active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
-          }}
-          showComplete={false}
-          activateModalConfig={activatePositionModal}
-        />
-      );
+  const actionsConfig = [
+    {
+      id: "i_activo",
+      actionName: "Activo",
+      content: ({ k_Grupo }: { k_Grupo: string }) => {
+        return (
+          <ActivateFormOptions
+            handleActivate={() => {}}
+            data={{
+              id: selectedData(k_Grupo)?.k_Grupo || "",
+              active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
+            }}
+            showComplete={false}
+            activateModalConfig={activatePositionModal}
+          />
+        );
+      },
+      type: "secondary",
     },
-    type: "secondary",
-  },
-  {
-    id: "Details",
-    actionName: "Detalles",
-    content: () => (
-      <Link to={`Details`}>
-        <Icon
-          icon={<MdOutlineAssignmentTurnedIn />}
-          size="16px"
-          appearance="dark"
+    {
+      id: "Details",
+      actionName: "Detalles",
+      content: () => (
+        <Link to={`Details`}>
+          <Icon
+            icon={<MdOutlineAssignmentTurnedIn />}
+            size="16px"
+            appearance="dark"
+          />
+        </Link>
+      ),
+      type: "secondary",
+    },
+    {
+      id: "Edit",
+      actionName: "Editar",
+      content: () => (
+        <Link to={`edit`}>
+          <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
+        </Link>
+      ),
+      type: "primary",
+    },
+    {
+      id: "Delete",
+      actionName: "Eliminar",
+      content: ({ k_Grupo }: { k_Grupo: string }) => (
+        <DeletePosition
+          linixPosition={k_Grupo}
+          deletePosition={deletePositionModal}
+          handleDeletePosition={deleteItemData}
         />
-      </Link>
-    ),
-    type: "secondary",
-  },
-  {
-    id: "Edit",
-    actionName: "Editar",
-    content: () => (
-      <Link to={`edit`}>
-        <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
-      </Link>
-    ),
-    type: "primary",
-  },
-  {
-    id: "Delete",
-    actionName: "Eliminar",
-    content: ({ k_Grupo }: { k_Grupo: string }) => (
-      <DeletePosition
-        linixPosition={k_Grupo}
-        deletePosition={deletePositionModal}
-        handleDeletePosition={deleteItemData}
-      />
-    ),
-    type: "remove",
-  },
-];
+      ),
+      type: "remove",
+    },
+  ];
+  return actionsConfig;
+};
