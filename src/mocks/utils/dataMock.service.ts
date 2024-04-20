@@ -1,3 +1,4 @@
+import { IGeneralInformation } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import localforage from "localforage";
 
 function buildData<T>(data: T[]) {
@@ -35,7 +36,7 @@ interface functionById {
   key: string;
   nameDB: string;
   identifier: number | string;
-  editData?: any;
+  editData?: IGeneralInformation | boolean;
 }
 
 export async function getById(props: functionById) {
