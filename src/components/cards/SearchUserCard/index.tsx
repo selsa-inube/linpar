@@ -26,10 +26,12 @@ interface SearchUserCardProps {
   idLabel?: string;
   nameLabel?: string;
   selectedId?: string;
+  required?: boolean;
 }
 
 function SearchUserCard(props: SearchUserCardProps) {
   const {
+    required = false,
     id,
     label,
     name,
@@ -100,7 +102,7 @@ function SearchUserCard(props: SearchUserCardProps) {
           name={name}
           placeholder={placeholder}
           type="search"
-          required={true}
+          required={required}
           iconAfter={<MdSearch />}
           size="compact"
           fullwidth={true}

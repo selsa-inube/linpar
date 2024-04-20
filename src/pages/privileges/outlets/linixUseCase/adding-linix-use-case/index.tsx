@@ -11,7 +11,10 @@ import {
   IFormAddLinixUseCase,
   IHandleChangeFormData,
   IFormAddLinixUseCaseRef,
+  IClientServerButton,
 } from "./types";
+import { addLinixUseCaseStepsRules } from "./utils";
+import { IAssignmentFormEntry } from "../../users/types/forms.types";
 
 export function dataToAssignmentFormEntry(
   props: DataToAssignmentFormEntryProps
@@ -28,6 +31,10 @@ function AddingLinixUseCase() {
   const [currentStep, setCurrentStep] = useState<number>(
     stepsAddingLinixUseCase.generalInformation.id
   );
+
+  const [selectOptions, setSelectOptions] = useState(false);
+  const steps = Object.values(stepsAddingLinixUseCase);
+  const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState<IFormAddLinixUseCase>({
     generalInformation: {
@@ -47,24 +54,33 @@ function AddingLinixUseCase() {
       },
     },
     downloadableDocuments: {
+      isValid: false,
       values: [],
     },
     webReports: {
+      isValid: false,
       values: [],
     },
     webOptions: {
+      isValid: false,
       values: [],
     },
     clientServerReports: {
+      isValid: false,
       values: [],
     },
     clientServerOptions: {
+      isValid: false,
       values: [],
     },
   });
 
   const [csOptions, setCsOptions] = useState<Record<string, unknown>[]>([]);
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
+
+  useEffect(() => {
+    setSelectOptions(webOptions.length === 0 && csOptions.length === 0);
+  }, [webOptions, csOptions]);
 
   useEffect(() => {
     getAll("clients-server")
@@ -74,6 +90,7 @@ function AddingLinixUseCase() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             clientServerOptions: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "CODIGO_OPCION",
@@ -94,6 +111,7 @@ function AddingLinixUseCase() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             clientServerReports: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "CODIGO_OPCION",
@@ -115,6 +133,7 @@ function AddingLinixUseCase() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             webOptions: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "K_opcion",
@@ -134,6 +153,7 @@ function AddingLinixUseCase() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             downloadableDocuments: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "CODIGO",
@@ -153,6 +173,7 @@ function AddingLinixUseCase() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             webReports: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "K_opcion",
@@ -204,14 +225,58 @@ function AddingLinixUseCase() {
   };
 
   const generalInformationRef = useRef<FormikProps<IGeneralInformation>>(null);
+  const clientServerButtonRef = useRef<FormikProps<IClientServerButton>>(null);
+  const downloadableDocumentsRef =
+    useRef<FormikProps<IAssignmentFormEntry>>(null);
+  const webReportsRef = useRef<FormikProps<IAssignmentFormEntry>>(null);
+  const webOptionsRef = useRef<FormikProps<IAssignmentFormEntry>>(null);
+  const clientServerReportsRef =
+    useRef<FormikProps<IAssignmentFormEntry>>(null);
+  const clientServerOptionsRef =
+    useRef<FormikProps<IAssignmentFormEntry>>(null);
 
   const formReferences: IFormAddLinixUseCaseRef = {
     generalInformation: generalInformationRef,
+    clientServerButton: clientServerButtonRef,
+    downloadableDocuments: downloadableDocumentsRef,
+    webReports: webReportsRef,
+    webOptions: webOptionsRef,
+    clientServerReports: clientServerReportsRef,
+    clientServerOptions: clientServerOptionsRef,
   };
+  const handleStepChange = (stepId: number) => {
+    const newAddLinixUseCase = addLinixUseCaseStepsRules(
+      currentStep,
+      formData,
+      formReferences,
+      isCurrentFormValid
+    );
+    setFormData(newAddLinixUseCase);
 
+    const changeStepKey = Object.entries(stepsAddingLinixUseCase).find(
+      ([, config]) => config.id === stepId
+    )?.[0];
+
+    if (!changeStepKey) return;
+
+    const changeIsVerification = stepId === steps.length;
+
+    setIsCurrentFormValid(
+      changeIsVerification ||
+        newAddLinixUseCase[changeStepKey as keyof IFormAddLinixUseCase]
+          ?.isValid ||
+        false
+    );
+
+    setCurrentStep(stepId);
+
+    document.getElementsByTagName("main")[0].scrollTo(0, 0);
+  };
   const handleNextStep = (step?: number) => {
-    const nextStep = typeof step === "number" ? step : currentStep + 1;
-    setCurrentStep(nextStep);
+    if (isCurrentFormValid) {
+      const nextStep = typeof step === "number" ? step : currentStep + 1;
+      setCurrentStep(nextStep);
+    }
   };
 
   const handlePrevStep = () => {
@@ -231,11 +296,15 @@ function AddingLinixUseCase() {
       currentStep={currentStep}
       handleToggleModal={handleToggleModal}
       showModal={showModal}
-      formData={formData}
       handleUpdateFormData={handleUpdateFormData}
       csOptions={csOptions}
       webOptions={webOptions}
       formReferences={formReferences}
+      isCurrentFormValid={isCurrentFormValid}
+      handleStepChange={handleStepChange}
+      setIsCurrentFormValid={setIsCurrentFormValid}
+      formData={formData}
+      selectOptions={selectOptions}
     />
   );
 }

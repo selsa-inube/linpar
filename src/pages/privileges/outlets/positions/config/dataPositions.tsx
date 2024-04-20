@@ -1,12 +1,9 @@
-import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
+import { MdModeEdit, MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
-
 import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
-import { DeletePosition } from "../delete-positions";
-import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
-import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+import { DetailsModal } from "../components/DetailsModal";
 import { IPosition } from "../types";
 
 export const titlesOptions = [
@@ -30,6 +27,19 @@ export const PositionsBreakPointsConfig = [
 ];
 
 export const actionsConfigPosition = (linixPosition: IPosition[]) => {
+  const dataDetailsPosition = (k_Grupo: string) => {
+    const data = [
+      linixPosition.find((position) => position.k_Grupo === k_Grupo)!,
+    ].map((positionSelected) => ({
+      Código: positionSelected?.k_Grupo,
+      Nombre: positionSelected?.n_Grupo,
+      Descripción: positionSelected?.n_Uso,
+      Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
+    }));
+
+    return [...data].shift();
+  };
+
   const selectedData = (k_Grupo: string) =>
     linixPosition.find((position) => position.k_Grupo === k_Grupo);
 
@@ -55,14 +65,8 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     {
       id: "Details",
       actionName: "Detalles",
-      content: () => (
-        <Link to={`Details`}>
-          <Icon
-            icon={<MdOutlineAssignmentTurnedIn />}
-            size="16px"
-            appearance="dark"
-          />
-        </Link>
+      content: ({ k_Grupo }: { k_Grupo: string }) => (
+        <DetailsModal data={dataDetailsPosition(k_Grupo)} />
       ),
       type: "secondary",
     },
@@ -79,15 +83,14 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <DeletePosition
-          linixPosition={k_Grupo}
-          deletePosition={deletePositionModal}
-          handleDeletePosition={deleteItemData}
-        />
+      content: () => (
+        <Link to={`delete`}>
+          <Icon icon={<MdOutlineDelete />} size="16px" appearance="dark" />
+        </Link>
       ),
       type: "remove",
     },
   ];
+
   return actionsConfig;
 };
