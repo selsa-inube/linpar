@@ -1,14 +1,13 @@
-import {
-  MdModeEdit,
-  MdOutlineAssignmentTurnedIn,
-  MdOutlineDelete,
-} from "react-icons/md";
+import { MdModeEdit, MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
 
 import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 import { MockPositions } from "@src/mocks/privileges/positions/Positions.mock";
+import { DeletePosition } from "../delete-positions";
+import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
+import { deleteItemData } from "@src/mocks/utils/dataMock.service";
 
 export const titlesOptions = [
   {
@@ -79,10 +78,12 @@ export const actionsConfig = [
   {
     id: "Delete",
     actionName: "Eliminar",
-    content: () => (
-      <Link to={`delete`}>
-        <Icon icon={<MdOutlineDelete />} size="16px" appearance="dark" />
-      </Link>
+    content: ({ k_Grupo }: { k_Grupo: string }) => (
+      <DeletePosition
+        linixPosition={k_Grupo}
+        deletePosition={deletePositionModal}
+        handleDeletePosition={deleteItemData}
+      />
     ),
     type: "remove",
   },
