@@ -17,7 +17,7 @@ import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
 import {
-  actionsConfig,
+  actionsConfigPosition,
   PositionsBreakPointsConfig,
   titlesOptions,
 } from "./config/dataPositions";
@@ -116,7 +116,7 @@ export function PositionsUI(props: IPositionsProps) {
             <Table
               id="tablePositions"
               titles={titlesOptions}
-              actions={actionsConfig}
+              actions={actionsConfigPosition(linixPosition)}
               entries={linixPosition}
               breakpoints={PositionsBreakPointsConfig}
               modalTitle="Positions"
