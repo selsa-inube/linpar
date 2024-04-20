@@ -1,7 +1,7 @@
-import { HomeUI } from "./interface";
+import { AppPage } from "@components/layout/AppPage";
 
 function Home() {
-  return <HomeUI />;
+  return <AppPage />;
 }
 
 export { Home };

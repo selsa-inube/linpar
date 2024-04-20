@@ -1,6 +1,6 @@
 import { PeopleOptionsUI } from "./interface";
 import { peopleOptionsConfig } from "./config/people.config";
-import { appsConfig } from "../../../home/config/apps.config";
+import { appsConfig } from "@components/layout/AppPage/config/apps.config";
 
 function PeopleOptions() {
   return (
