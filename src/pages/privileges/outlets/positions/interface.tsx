@@ -17,7 +17,7 @@ import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
 import {
-  actionsConfig,
+  actionsConfigPosition,
   PositionsBreakPointsConfig,
   titlesOptions,
 } from "./config/dataPositions";
@@ -45,6 +45,71 @@ export function PositionsUI(props: IPositionsProps) {
     linixPosition,
     loading,
   } = props;
+
+  // const dataDetailsPosition = (k_Grupo: string) => {
+  //   const data = [
+  //     linixPosition.find((position) => position.k_Grupo === k_Grupo)!,
+  //   ].map((positionSelected) => ({
+  //     Código: positionSelected?.k_Grupo,
+  //     Nombre: positionSelected?.n_Grupo,
+  //     Descripción: positionSelected?.n_Uso,
+  //     Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
+  //   }));
+
+  //   return [...data].shift();
+  // };
+
+  // const selectedData = (k_Grupo: string) =>
+  //   linixPosition.find((position) => position.k_Grupo === k_Grupo);
+
+  // const actionsConfig = [
+  //   {
+  //     id: "i_activo",
+  //     actionName: "Activo",
+  //     content: ({ k_Grupo }: { k_Grupo: string }) => {
+  //       return (
+  //         <ActivateFormOptions
+  //           handleActivate={() => {}}
+  //           data={{
+  //             id: selectedData(k_Grupo)?.k_Grupo || "",
+  //             active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
+  //           }}
+  //           showComplete={false}
+  //           activateModalConfig={activatePositionModal}
+  //         />
+  //       );
+  //     },
+  //     type: "secondary",
+  //   },
+  //   {
+  //     id: "Details",
+  //     actionName: "Detalles",
+  //     content: ({ k_Grupo }: { k_Grupo: string }) => (
+  //       <DetailsModal data={dataDetailsPosition(k_Grupo)} />
+  //     ),
+  //     type: "secondary",
+  //   },
+  //   {
+  //     id: "Edit",
+  //     actionName: "Editar",
+  //     content: () => (
+  //       <Link to={`edit`}>
+  //         <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
+  //       </Link>
+  //     ),
+  //     type: "primary",
+  //   },
+  //   {
+  //     id: "Delete",
+  //     actionName: "Eliminar",
+  //     content: () => (
+  //       <Link to={`delete`}>
+  //         <Icon icon={<MdOutlineDelete />} size="16px" appearance="dark" />
+  //       </Link>
+  //     ),
+  //     type: "remove",
+  //   },
+  // ];
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const location = useLocation();
@@ -116,7 +181,7 @@ export function PositionsUI(props: IPositionsProps) {
             <Table
               id="tablePositions"
               titles={titlesOptions}
-              actions={actionsConfig}
+              actions={actionsConfigPosition(linixPosition)}
               entries={linixPosition}
               breakpoints={PositionsBreakPointsConfig}
               modalTitle="Positions"

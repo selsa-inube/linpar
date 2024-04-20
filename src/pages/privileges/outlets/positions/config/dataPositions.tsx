@@ -1,10 +1,10 @@
 import { MdModeEdit, MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
-import { MockPositions } from "@mocks/privileges/positions/Positions.mock";
 import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 import { DetailsModal } from "../components/DetailsModal";
+import { IPosition } from "../types";
 
 export const titlesOptions = [
   {
@@ -26,67 +26,71 @@ export const PositionsBreakPointsConfig = [
   { breakpoint: "(max-width: 430px)", totalColumns: 1 },
 ];
 
-const dataDetailsPosition = (k_Grupo: string) => {
-  const data = [
-    MockPositions.find((position) => position.k_Grupo === k_Grupo)!,
-  ].map((positionSelected) => ({
-    Código: positionSelected?.k_Grupo,
-    Nombre: positionSelected?.n_Grupo,
-    Descripción: positionSelected?.n_Uso,
-    Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
-  }));
+export const actionsConfigPosition = (linixPosition: IPosition[]) => {
+  const dataDetailsPosition = (k_Grupo: string) => {
+    const data = [
+      linixPosition.find((position) => position.k_Grupo === k_Grupo)!,
+    ].map((positionSelected) => ({
+      Código: positionSelected?.k_Grupo,
+      Nombre: positionSelected?.n_Grupo,
+      Descripción: positionSelected?.n_Uso,
+      Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
+    }));
 
-  return [...data].shift();
-};
+    return [...data].shift();
+  };
 
-const selectedData = (k_Grupo: string) =>
-  MockPositions.find((position) => position.k_Grupo === k_Grupo);
+  const selectedData = (k_Grupo: string) =>
+    linixPosition.find((position) => position.k_Grupo === k_Grupo);
 
-export const actionsConfig = [
-  {
-    id: "i_activo",
-    actionName: "Activo",
-    content: ({ k_Grupo }: { k_Grupo: string }) => {
-      return (
-        <ActivateFormOptions
-          handleActivate={() => {}}
-          data={{
-            id: selectedData(k_Grupo)?.k_Grupo || "",
-            active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
-          }}
-          showComplete={false}
-          activateModalConfig={activatePositionModal}
-        />
-      );
+  const actionsConfig = [
+    {
+      id: "i_activo",
+      actionName: "Activo",
+      content: ({ k_Grupo }: { k_Grupo: string }) => {
+        return (
+          <ActivateFormOptions
+            handleActivate={() => {}}
+            data={{
+              id: selectedData(k_Grupo)?.k_Grupo || "",
+              active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
+            }}
+            showComplete={false}
+            activateModalConfig={activatePositionModal}
+          />
+        );
+      },
+      type: "secondary",
     },
-    type: "secondary",
-  },
-  {
-    id: "Details",
-    actionName: "Detalles",
-    content: ({ k_Grupo }: { k_Grupo: string }) => (
-      <DetailsModal data={dataDetailsPosition(k_Grupo)} />
-    ),
-    type: "secondary",
-  },
-  {
-    id: "Edit",
-    actionName: "Editar",
-    content: () => (
-      <Link to={`edit`}>
-        <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
-      </Link>
-    ),
-    type: "primary",
-  },
-  {
-    id: "Delete",
-    actionName: "Eliminar",
-    content: () => (
-      <Link to={`delete`}>
-        <Icon icon={<MdOutlineDelete />} size="16px" appearance="dark" />
-      </Link>
-    ),
-    type: "remove",
-  },
-];
+    {
+      id: "Details",
+      actionName: "Detalles",
+      content: ({ k_Grupo }: { k_Grupo: string }) => (
+        <DetailsModal data={dataDetailsPosition(k_Grupo)} />
+      ),
+      type: "secondary",
+    },
+    {
+      id: "Edit",
+      actionName: "Editar",
+      content: () => (
+        <Link to={`edit`}>
+          <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
+        </Link>
+      ),
+      type: "primary",
+    },
+    {
+      id: "Delete",
+      actionName: "Eliminar",
+      content: () => (
+        <Link to={`delete`}>
+          <Icon icon={<MdOutlineDelete />} size="16px" appearance="dark" />
+        </Link>
+      ),
+      type: "remove",
+    },
+  ];
+
+  return actionsConfig;
+};
