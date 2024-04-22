@@ -1,6 +1,7 @@
 import localforage from "localforage";
 import { UseCase } from "../types";
-import { IFormAddLinixUseCase } from "./types";
+import { IFormAddLinixUseCase, IFormAddLinixUseCaseRef } from "./types";
+import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 
 export const saveLinixUseCase = (addLinixUseCase: IFormAddLinixUseCase) => {
   const {
@@ -66,3 +67,30 @@ export const saveLinixUseCase = (addLinixUseCase: IFormAddLinixUseCase) => {
     }
   });
 };
+
+const addLinixUseCaseStepsRules = (
+  currentStep: number,
+  currentDataAddUseCaseLinixForm: IFormAddLinixUseCase,
+  formReferences: IFormAddLinixUseCaseRef,
+  isCurrentFormValid: boolean
+) => {
+  let newDataAddUseCaseLinixForm = {
+    ...currentDataAddUseCaseLinixForm,
+  };
+
+  const stepKey = Object.entries(stepsAddingLinixUseCase).find(
+    ([, config]) => config.id === currentStep
+  )?.[0];
+
+  if (!stepKey) return currentDataAddUseCaseLinixForm;
+
+  const values =
+    formReferences[stepKey as keyof IFormAddLinixUseCase]?.current?.values;
+
+  return (newDataAddUseCaseLinixForm = {
+    ...newDataAddUseCaseLinixForm,
+    [stepKey]: { isValid: isCurrentFormValid, values },
+  });
+};
+
+export { addLinixUseCaseStepsRules };

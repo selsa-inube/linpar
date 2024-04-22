@@ -40,18 +40,23 @@ function EditCaseLinix() {
       },
     },
     downloadableDocuments: {
+      isValid: false,
       values: [],
     },
     webReports: {
+      isValid: false,
       values: [],
     },
     webOptions: {
+      isValid: false,
       values: [],
     },
     clientServerReports: {
+      isValid: false,
       values: [],
     },
     clientServerOptions: {
+      isValid: false,
       values: [],
     },
   });
@@ -78,6 +83,7 @@ function EditCaseLinix() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             downloadableDocuments: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "CODIGO",
@@ -97,6 +103,7 @@ function EditCaseLinix() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             webReports: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "K_opcion",
@@ -117,6 +124,7 @@ function EditCaseLinix() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             clientServerOptions: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "CODIGO_OPCION",
@@ -137,6 +145,7 @@ function EditCaseLinix() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             webOptions: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "K_opcion",
@@ -156,6 +165,7 @@ function EditCaseLinix() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             clientServerReports: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "CODIGO_OPCION",
@@ -176,6 +186,7 @@ function EditCaseLinix() {
           setFormData((prevFormData: IFormAddLinixUseCase) => ({
             ...prevFormData,
             clientServerOptions: {
+              isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
                 idLabel: "CODIGO_OPCION",
