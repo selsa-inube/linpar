@@ -127,7 +127,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                 <Button
                   spacing="compact"
                   onClick={() => handleToggleAllEntries(false)}
-                  disabled={!isAssignAll}
+                  disabled={!entries.some((entry) => entry.isActive)}
                 >
                   Desasignar todos
                 </Button>
