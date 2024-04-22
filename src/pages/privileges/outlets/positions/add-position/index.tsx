@@ -1,11 +1,18 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
 import { stepsAddPosition } from "./config/addPosition.config";
-import { IFormAddPosition, IFormAddPositionRef } from "./types";
+import {
+  IFormAddPosition,
+  IFormAddPositionRef,
+  IHandleUpdateDataSwitchstep,
+  IOptionInitialiceEntry,
+} from "./types";
 import { initalValuesPositions } from "./config/initialValues";
 import { addPositionStepsRules } from "./utils";
 import { AddPositionUI } from "./interface";
+import { getAll } from "@src/mocks/utils/dataMock.service";
+import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 
 export function AddPosition() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -22,13 +29,42 @@ export function AddPosition() {
         isValid: false,
         values: initalValuesPositions.generalInformation,
       },
+      roles: {
+        isValid: false,
+        values: [],
+      },
     });
+
+  useEffect(() => {
+    getAll("linix-roles")
+      .then((data) => {
+        if (data !== null) {
+          setDataAddPositionLinixForm((prevFormData) => ({
+            ...prevFormData,
+            roles: {
+              isValid: true,
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "k_Rol",
+                valueLabel: "n_Rol",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching roles:", error.message);
+      });
+  }, []);
 
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationEntry>>(null);
+  const rolesRef = useRef<FormikProps<IOptionInitialiceEntry[]>>(null);
 
   const formReferences: IFormAddPositionRef = {
     generalInformation: generalInformationRef,
+    roles: rolesRef,
   };
 
   const handleStepChange = (stepId: number) => {
@@ -38,10 +74,11 @@ export function AddPosition() {
       formReferences,
       isCurrentFormValid
     );
+
     setDataAddPositionLinixForm(newAddPosition);
 
     const changeStepKey = Object.entries(stepsAddPosition).find(
-      ([, config]) => config.id === stepId
+      ([, config]) => config.id === currentStep
     )?.[0];
 
     if (!changeStepKey) return;
@@ -51,6 +88,7 @@ export function AddPosition() {
     setIsCurrentFormValid(
       changeIsVerification ||
         newAddPosition[changeStepKey as keyof IFormAddPosition]?.isValid ||
+        currentStep === 3 ||
         false
     );
 
@@ -69,6 +107,18 @@ export function AddPosition() {
     handleStepChange(currentStep - 1);
   };
 
+  function handleUpdateDataSwitchstep(values: IHandleUpdateDataSwitchstep) {
+    const stepKey = Object.entries(stepsAddPosition).find(
+      ([, config]) => config.id === currentStep
+    )?.[0];
+    if (stepKey) {
+      setDataAddPositionLinixForm({
+        ...dataAddPositionLinixForm,
+        [stepKey]: { values },
+      });
+    }
+  }
+
   return (
     <AddPositionUI
       steps={steps}
@@ -79,6 +129,7 @@ export function AddPosition() {
       setIsCurrentFormValid={setIsCurrentFormValid}
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
+      handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
     />
   );
 }
