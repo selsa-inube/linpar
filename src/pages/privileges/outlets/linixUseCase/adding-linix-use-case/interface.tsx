@@ -28,6 +28,7 @@ import {
 import { VerificationForm } from "./forms/VerificationForm";
 import { saveLinixUseCase } from "./utils";
 import { buttonOptionsMock } from "@src/mocks/privileges/button/buttonOptionsMock.mock";
+import { useNavigate } from "react-router-dom";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -35,6 +36,12 @@ function finishModal(
 ) {
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
+
+  const handleFinish = () => {
+    saveLinixUseCase(formData);
+    handleCloseModal();
+    window.location.href = "/privileges/linixUseCase";
+  };
 
   return (
     <DecisionModal
@@ -44,7 +51,7 @@ function finishModal(
       loading={false}
       appearance={appearance}
       closeModal={handleCloseModal}
-      handleClick={() => saveLinixUseCase(formData)}
+      handleClick={handleFinish}
     />
   );
 }
@@ -173,6 +180,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
       handleNextStep(currentStep + 1);
     }
   };
+  const navigate = useNavigate();
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap={inube.spacing.s600} direction="column">
@@ -261,6 +269,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                 currentStep === Object.values(stepsAddingLinixUseCase).length
               ) {
                 saveLinixUseCase(formData);
+                navigate("/privileges/linixUseCase");
               } else {
                 optionValidations();
               }
