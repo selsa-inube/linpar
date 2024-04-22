@@ -1,4 +1,5 @@
-import { useState, forwardRef, useImperativeHandle } from "react";
+import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
+import * as Yup from "yup";
 import { useFormik, FormikProps } from "formik";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
@@ -9,15 +10,23 @@ import {
 
 import { GeneralInformationFormUI } from "./interface";
 import { generalMessage } from "../../config/messages.config";
+import { validationMessages } from "@src/validations/validationMessages";
 
 const LOADING_TIMEOUT = 1500;
 
+const validationSchema = Yup.object({
+  n_Usecase: Yup.string().required(validationMessages.required),
+  i_Tipusec: Yup.string().required(validationMessages.required),
+  n_Descrip: Yup.string().required(validationMessages.required),
+});
+
 interface GeneralInformationFormProps {
+  initialValues: IGeneralInformation;
   handleSubmit: (values: IHandleChangeFormData) => void;
+  onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   csOptions: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
   withSubmitButtons?: boolean;
-  initialValues?: IGeneralInformation;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
 }
@@ -36,13 +45,13 @@ export const GeneralInformationForm = forwardRef(
         k_Opcion: "",
       },
       withSubmitButtons,
-      handleSubmit,
       onHasChanges,
+      handleSubmit,
+      onFormValid,
       readOnly,
       csOptions,
       webOptions,
     } = props;
-
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
@@ -62,7 +71,9 @@ export const GeneralInformationForm = forwardRef(
 
     const formik = useFormik({
       initialValues,
+      validationSchema,
       validateOnChange: false,
+      validateOnBlur: false,
       onReset: () => {
         if (onHasChanges) onHasChanges(false);
       },
@@ -104,7 +115,7 @@ export const GeneralInformationForm = forwardRef(
         if (withSubmitButtons) return;
         formik.validateForm().then((errors) => {
           if (!errors || Object.keys(errors).length === 0) {
-            handleSubmit(formikValues);
+            handleSubmit && handleSubmit(formikValues);
             setMessage({
               visible: true,
               data: generalMessage.success,
@@ -115,6 +126,16 @@ export const GeneralInformationForm = forwardRef(
     };
 
     useImperativeHandle(ref, () => formik);
+
+    useEffect(() => {
+      if (formik.values) {
+        formik.validateForm().then((errors) => {
+          onFormValid && onFormValid(Object.keys(errors).length === 0);
+        });
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formik.values, onFormValid]);
+
     return (
       <GeneralInformationFormUI
         loading={loading}
