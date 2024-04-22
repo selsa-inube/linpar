@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
+import { getAll } from "@mocks/utils/dataMock.service";
 import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
 import { stepsAddPosition } from "./config/addPosition.config";
 import {
@@ -11,7 +12,6 @@ import {
 import { initalValuesPositions } from "./config/initialValues";
 import { addPositionStepsRules } from "./utils";
 import { AddPositionUI } from "./interface";
-import { getAll } from "@src/mocks/utils/dataMock.service";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 
 export function AddPosition() {
