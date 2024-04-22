@@ -1,7 +1,9 @@
 import { MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Icon } from "@inube/design-system";
-import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+
+import { deleteItemData } from "@mocks/utils/dataMock.service";
+
 import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 import { DetailsModal } from "../components/DetailsModal";
