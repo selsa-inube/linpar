@@ -13,8 +13,9 @@ import {
   IFormAddLinixUseCaseRef,
   IClientServerButton,
 } from "./types";
-import { addLinixUseCaseStepsRules } from "./utils";
+import { addLinixUseCaseStepsRules, saveLinixUseCase } from "./utils";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
+import { useNavigate } from "react-router-dom";
 
 export function dataToAssignmentFormEntry(
   props: DataToAssignmentFormEntryProps
@@ -289,6 +290,13 @@ function AddingLinixUseCase() {
     setShowModal((prevShowModal) => !prevShowModal);
   };
 
+  const navigate = useNavigate();
+  const handleFinishForm = () => {
+    saveLinixUseCase(formData);
+    handleToggleModal();
+    navigate("/privileges/linixUseCase");
+  };
+
   return (
     <AddingLinixUseCaseUI
       handlePrevStep={handlePrevStep}
@@ -305,6 +313,7 @@ function AddingLinixUseCase() {
       setIsCurrentFormValid={setIsCurrentFormValid}
       formData={formData}
       selectOptions={selectOptions}
+      handleFinishForm={handleFinishForm}
     />
   );
 }

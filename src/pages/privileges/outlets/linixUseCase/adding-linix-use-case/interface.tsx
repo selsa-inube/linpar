@@ -31,7 +31,7 @@ import { buttonOptionsMock } from "@src/mocks/privileges/button/buttonOptionsMoc
 
 function finishModal(
   handleCloseModal: () => void,
-  formData: IFormAddLinixUseCase
+  handleFinishForm: () => void
 ) {
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
@@ -44,7 +44,7 @@ function finishModal(
       loading={false}
       appearance={appearance}
       closeModal={handleCloseModal}
-      handleClick={() => saveLinixUseCase(formData)}
+      handleClick={handleFinishForm}
     />
   );
 }
@@ -122,6 +122,7 @@ const renderStepContent = (
 };
 
 interface AddingLinixUseCaseUIProps {
+  handleFinishForm: () => void;
   handleNextStep: (step: number) => void;
   handlePrevStep: (step: number) => void;
   currentStep: number;
@@ -140,6 +141,7 @@ interface AddingLinixUseCaseUIProps {
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
+    handleFinishForm,
     currentStep,
     handleToggleModal,
     showModal,
@@ -260,7 +262,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               if (
                 currentStep === Object.values(stepsAddingLinixUseCase).length
               ) {
-                saveLinixUseCase(formData);
+                handleFinishForm();
               } else {
                 optionValidations();
               }
@@ -274,7 +276,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </Button>
         </Stack>
       </Stack>
-      {showModal && finishModal(handleToggleModal, formData)}
+      {showModal && finishModal(handleToggleModal, handleFinishForm)}
     </Stack>
   );
 }
