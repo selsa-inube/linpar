@@ -17,12 +17,13 @@ const addPositionStepsRules = (
 
   if (!stepKey) return currentDataAddPositionLinixForm;
 
-  const values =
-    formReferences[stepKey as keyof IFormAddPosition]?.current?.values;
+  if (stepKey !== "generalInformation") return currentDataAddPositionLinixForm;
+
+  const values = formReferences[stepKey]?.current?.values;
 
   return (newDataAddPositionLinixForm = {
     ...newDataAddPositionLinixForm,
-    [stepKey]: { isValid: isCurrentFormValid, values },
+    [stepKey]: { isValid: isCurrentFormValid, values: values! },
   });
 };
 

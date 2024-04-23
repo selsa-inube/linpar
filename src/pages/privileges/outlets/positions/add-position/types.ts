@@ -1,5 +1,6 @@
 import { FormikProps } from "formik";
 import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
+import { IAssignmentFormEntry } from "../../users/types/forms.types";
 
 export const titleButtonTextAssited = {
   before: "Anterior",
@@ -20,10 +21,21 @@ export interface IStep {
   description: string;
 }
 
+export interface IOptionInitialiceEntry {
+  id: string;
+  value: string;
+  isActive: boolean;
+}
+
 export interface IFormAddPosition {
   generalInformation: { isValid: boolean; values: IGeneralInformationEntry };
+  roles: { isValid: boolean; values: IOptionInitialiceEntry[] };
 }
 
 export interface IFormAddPositionRef {
   generalInformation: React.RefObject<FormikProps<IGeneralInformationEntry>>;
 }
+
+export type IHandleUpdateDataSwitchstep =
+  | IGeneralInformationEntry
+  | IAssignmentFormEntry[];
