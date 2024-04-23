@@ -7,7 +7,6 @@ import {
   IFormAddPosition,
   IFormAddPositionRef,
   IHandleUpdateDataSwitchstep,
-  IOptionInitialiceEntry,
 } from "./types";
 import { initalValuesPositions } from "./config/initialValues";
 import { addPositionStepsRules } from "./utils";
@@ -60,11 +59,9 @@ export function AddPosition() {
 
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationEntry>>(null);
-  const rolesRef = useRef<FormikProps<IOptionInitialiceEntry[]>>(null);
 
   const formReferences: IFormAddPositionRef = {
     generalInformation: generalInformationRef,
-    roles: rolesRef,
   };
 
   const handleStepChange = (stepId: number) => {
