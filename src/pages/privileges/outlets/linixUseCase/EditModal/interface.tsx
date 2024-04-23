@@ -11,16 +11,16 @@ import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 
-import { ClientServerButtonSelection } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/ClientServerButtonSelection";
-
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 import { editLinixUseCaseConfig } from "./config/editLinuxUseCase.config";
+
 import {
   IFormAddLinixUseCase,
   IGeneralInformation,
-} from "../../adding-linix-use-case/types";
-import { GeneralInformationForm } from "../../adding-linix-use-case/forms/GeneralInformationForm";
+} from "../adding-linix-use-case/types";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
+import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 
 interface IControlModal {
   show: boolean;
