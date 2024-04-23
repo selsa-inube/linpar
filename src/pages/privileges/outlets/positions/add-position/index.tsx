@@ -12,6 +12,7 @@ import { initalValuesPositions } from "./config/initialValues";
 import { addPositionStepsRules } from "./utils";
 import { AddPositionUI } from "./interface";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
+import { useNavigate } from "react-router-dom";
 
 export function AddPosition() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -119,6 +120,20 @@ export function AddPosition() {
     }
   }
 
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+    setLoading(true);
+  };
+
+  const navigateToRoute = () => {
+    navigate("/privileges/positions");
+  };
+
+  const handleFinishForm = () => {
+    // saveLinixPositions(dataAddPositionLinixForm);
+    handleToggleModal();
+    navigateToRoute();
+  };
   return (
     <AddPositionUI
       steps={steps}
@@ -133,6 +148,9 @@ export function AddPosition() {
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
+      setCurrentStep={setCurrentStep}
+      handleToggleModal={handleToggleModal}
+      handleFinishForm={handleFinishForm}
     />
   );
 }
