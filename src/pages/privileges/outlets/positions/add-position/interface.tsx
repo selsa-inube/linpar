@@ -17,17 +17,19 @@ import {
 import {
   IFormAddPosition,
   IFormAddPositionRef,
+  IOptionInitialiceEntry,
   titleButtonTextAssited,
 } from "./types";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { StyledContainerAssisted } from "./styles";
-import { saveLinixPositions } from "./utils";
+import { InitializerForm } from "../../forms/InitializerForm";
 
 const renderStepContent = (
   currentStep: number,
   formReferences: IFormAddPositionRef,
   dataAddPositionLinixForm: IFormAddPosition,
-  setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>
+  setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>,
+  handleUpdateDataSwitchstep: (values: IOptionInitialiceEntry[]) => void
 ) => {
   return (
     <>
@@ -36,6 +38,12 @@ const renderStepContent = (
           initialValues={dataAddPositionLinixForm.generalInformation.values}
           ref={formReferences.generalInformation}
           onFormValid={setIsCurrentFormValid}
+        />
+      )}
+      {currentStep === stepsAddPosition.roles.id && (
+        <InitializerForm
+          dataOptionsForms={dataAddPositionLinixForm.roles.values}
+          handleSubmit={handleUpdateDataSwitchstep}
         />
       )}
     </>
@@ -51,6 +59,7 @@ interface AddPositionUIProps {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
+  handleUpdateDataSwitchstep: (values: IOptionInitialiceEntry[]) => void;
 }
 
 export function AddPositionUI(props: AddPositionUIProps) {
@@ -63,6 +72,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
     setIsCurrentFormValid,
     handleNextStep,
     handlePreviousStep,
+    handleUpdateDataSwitchstep,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -98,7 +108,8 @@ export function AddPositionUI(props: AddPositionUIProps) {
             currentStep,
             formReferences,
             dataAddPositionLinixForm,
-            setIsCurrentFormValid
+            setIsCurrentFormValid,
+            handleUpdateDataSwitchstep
           )}
         </>
         <Stack gap={inube.spacing.s200} justifyContent="flex-end">

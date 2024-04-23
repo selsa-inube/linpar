@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import { ErrorPage } from "@components/layout/ErrorPage";
-import { Home } from "@pages/home";
+import { AppPage } from "@components/layout/AppPage";
 import AppContextProvider, { AppContext } from "@context/AppContext";
 import { GlobalStyles } from "@styles/global";
 import { initializeDataDB } from "@mocks/utils/initializeDataDB";
@@ -24,12 +24,12 @@ function LogOut() {
   localStorage.clear();
   const { logout } = useAuth0();
   logout({ logoutParams: { returnTo: redirect_uri } });
-  return <Home />;
+  return <AppPage />;
 }
 
 function FirstPage() {
   const { user } = useContext(AppContext);
-  return user.company.length === 0 ? <Login /> : <Home />;
+  return user.company.length === 0 ? <Login /> : <AppPage />;
 }
 
 const router = createBrowserRouter(
