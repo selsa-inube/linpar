@@ -8,25 +8,32 @@ import {
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
+import { DecisionModal } from "@src/components/feedback/DecisionModal";
 
 import { IStep } from "../types";
 import {
   createPositionConfig,
+  finishAssistedModalConfig,
   stepsAddPosition,
 } from "./config/addPosition.config";
 import {
   IFormAddPosition,
   IFormAddPositionRef,
+  IOptionInitialiceEntry,
   titleButtonTextAssited,
 } from "./types";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { StyledContainerAssisted } from "./styles";
+import { InitializerForm } from "../../forms/InitializerForm";
+import { VerificationAddPosition } from "./forms/VerificationForm";
 
 const renderStepContent = (
   currentStep: number,
   formReferences: IFormAddPositionRef,
   dataAddPositionLinixForm: IFormAddPosition,
-  setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>
+  setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>,
+  handleUpdateDataSwitchstep: (values: IOptionInitialiceEntry[]) => void,
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>
 ) => {
   return (
     <>
@@ -37,6 +44,18 @@ const renderStepContent = (
           onFormValid={setIsCurrentFormValid}
         />
       )}
+      {currentStep === stepsAddPosition.roles.id && (
+        <InitializerForm
+          dataOptionsForms={dataAddPositionLinixForm.roles.values}
+          handleSubmit={handleUpdateDataSwitchstep}
+        />
+      )}
+      {currentStep === stepsAddPosition.summary.id && (
+        <VerificationAddPosition
+          steps={dataAddPositionLinixForm}
+          setCurrentStep={setCurrentStep}
+        />
+      )}
     </>
   );
 };
@@ -44,25 +63,42 @@ const renderStepContent = (
 interface AddPositionUIProps {
   currentStep: number;
   steps: IStep[];
+  showModal: boolean;
   isCurrentFormValid: boolean;
   dataAddPositionLinixForm: IFormAddPosition;
   formReferences: IFormAddPositionRef;
+  loading: boolean;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
+  handleUpdateDataSwitchstep: (values: IOptionInitialiceEntry[]) => void;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  handleToggleModal: () => void;
+  navigateTo: () => void;
+  handleFinishForm: () => void;
 }
 
 export function AddPositionUI(props: AddPositionUIProps) {
   const {
     currentStep,
     steps,
+    showModal,
     isCurrentFormValid,
     dataAddPositionLinixForm,
     formReferences,
+    loading,
     setIsCurrentFormValid,
     handleNextStep,
     handlePreviousStep,
+    handleUpdateDataSwitchstep,
+    setCurrentStep,
+    handleToggleModal,
+    navigateTo,
+    handleFinishForm,
   } = props;
+
+  const { title, description, actionText, appearance } =
+    finishAssistedModalConfig;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -89,7 +125,11 @@ export function AddPositionUI(props: AddPositionUIProps) {
               steps={steps}
               currentStepId={currentStep}
               handlePrev={handlePreviousStep}
-              handleNext={handleNextStep}
+              handleNext={
+                currentStep === Object.values(stepsAddPosition).length
+                  ? handleToggleModal
+                  : handleNextStep
+              }
               titleButtonText={titleButtonTextAssited}
             />
           </StyledContainerAssisted>
@@ -97,7 +137,9 @@ export function AddPositionUI(props: AddPositionUIProps) {
             currentStep,
             formReferences,
             dataAddPositionLinixForm,
-            setIsCurrentFormValid
+            setIsCurrentFormValid,
+            handleUpdateDataSwitchstep,
+            setCurrentStep
           )}
         </>
         <Stack gap={inube.spacing.s200} justifyContent="flex-end">
@@ -113,7 +155,9 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Button>
 
           <Button
-            onClick={handleNextStep}
+            onClick={
+              currentStep === steps.length ? () => navigateTo() : handleNextStep
+            }
             spacing="compact"
             disabled={!isCurrentFormValid}
           >
@@ -121,6 +165,17 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Button>
         </Stack>
       </Stack>
+      {showModal && (
+        <DecisionModal
+          title={title}
+          description={description}
+          actionText={actionText}
+          loading={loading}
+          appearance={appearance}
+          closeModal={handleToggleModal}
+          handleClick={handleFinishForm}
+        />
+      )}
     </Stack>
   );
 }
