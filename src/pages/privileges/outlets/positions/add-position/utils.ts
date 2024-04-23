@@ -1,5 +1,6 @@
+import localforage from "localforage";
 import { stepsAddPosition } from "./config/addPosition.config";
-import { IFormAddPosition, IFormAddPositionRef } from "./types";
+import { IFormAddPosition, IFormAddPositionRef, IPosition } from "./types";
 
 const addPositionStepsRules = (
   currentStep: number,
@@ -23,6 +24,37 @@ const addPositionStepsRules = (
   return (newDataAddPositionLinixForm = {
     ...newDataAddPositionLinixForm,
     [stepKey]: { isValid: isCurrentFormValid, values },
+  });
+};
+
+export const saveLinixPositions = (addLinixPositions: IFormAddPosition) => {
+  const {
+    generalInformation: { values: generalInformation },
+    roles: { values: roles },
+  } = addLinixPositions;
+
+  const normalizeRoles = roles
+    .filter((rol) => rol.isActive === true)
+    .map((rol) => ({
+      k_Rol: rol.value,
+    }));
+
+  const newLinixPosition: IPosition = {
+    k_Grupo: "",
+    n_Grupo: generalInformation.positionName,
+    i_Activo: "Y",
+    n_Uso: generalInformation.description,
+    roles: normalizeRoles,
+  };
+  localforage.getItem("linix-positions").then((data) => {
+    if (data) {
+      localforage.setItem("linix-positions", [
+        ...(data as IFormAddPosition[]),
+        newLinixPosition,
+      ]);
+    } else {
+      localforage.setItem("linix-positions", [newLinixPosition]);
+    }
   });
 };
 

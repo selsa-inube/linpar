@@ -21,6 +21,7 @@ import {
 } from "./types";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { StyledContainerAssisted } from "./styles";
+import { saveLinixPositions } from "./utils";
 
 const renderStepContent = (
   currentStep: number,
@@ -113,7 +114,11 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Button>
 
           <Button
-            onClick={handleNextStep}
+            onClick={
+              currentStep === steps.length
+                ? () => saveLinixPositions(dataAddPositionLinixForm)
+                : handleNextStep
+            }
             spacing="compact"
             disabled={!isCurrentFormValid}
           >
