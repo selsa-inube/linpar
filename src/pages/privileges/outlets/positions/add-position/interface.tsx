@@ -23,6 +23,7 @@ import {
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { StyledContainerAssisted } from "./styles";
 import { InitializerForm } from "../../forms/InitializerForm";
+import { saveLinixPositions } from "./utils";
 
 const renderStepContent = (
   currentStep: number,
