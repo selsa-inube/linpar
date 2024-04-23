@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { FormikProps } from "formik";
 import { getAll } from "@mocks/utils/dataMock.service";
 import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
@@ -120,21 +119,6 @@ export function AddPosition() {
     }
   }
 
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
-    setLoading(true);
-  };
-
-  const navigateToRoute = () => {
-    navigate("/privileges/positions");
-  };
-
-  const handleFinishForm = () => {
-    // saveLinixPositions(dataAddPositionLinixForm);
-    handleToggleModal();
-    navigateToRoute();
-  };
-
   return (
     <AddPositionUI
       steps={steps}
@@ -149,9 +133,6 @@ export function AddPosition() {
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
-      setCurrentStep={setCurrentStep}
-      handleToggleModal={handleToggleModal}
-      handleFinishForm={handleFinishForm}
     />
   );
 }
