@@ -12,14 +12,15 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
+import { IGeneralInformationForm } from ".";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   isLoading?: boolean;
-  handleSubmit: (name: string, value: string) => void;
+  handleSubmit: () => void;
   linixRoles: Record<string, unknown>[];
   withSubmitButtons: boolean;
-  hasChanges: (valueCompare: GeneralInformationFormUIProps) => boolean;
+  hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
 }
@@ -41,13 +42,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   } = props;
 
   const isMobile = useMediaQuery("(max-width: 750px)");
-
-  const handleAplicationChange = (value) => {
-    formik.setValues({
-      ...formik.values,
-      aplicationId: value.k_Usecase,
-    });
-  };
 
   const handleFormReset = () => {
     formik.resetForm();
@@ -90,7 +84,10 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             labelModal="Digite el código o nombre de la aplicación."
             placeholderModal="Digite el código o nombre de la aplicación."
             onUserSelect={(value) => {
-              handleAplicationChange(value);
+              formik.setValues({
+                ...formik.values,
+                aplicationId: value.k_Usecase,
+              });
             }}
             userData={linixRoles}
             searchFieldData={searchData}
@@ -121,6 +118,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             handleSubmit={handleSubmit}
             handleReset={handleFormReset}
             loading={isLoading}
+            children={""}
           />
           {message.visible && (
             <RenderMessage
