@@ -38,7 +38,6 @@ export interface IFormAddPosition {
 
 export interface IFormAddPositionRef {
   generalInformation: React.RefObject<FormikProps<IGeneralInformationEntry>>;
-  roles: React.RefObject<FormikProps<IOptionInitialiceEntry[]>>;
 }
 
 export type IHandleUpdateDataSwitchstep =
