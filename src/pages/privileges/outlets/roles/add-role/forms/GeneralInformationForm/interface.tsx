@@ -6,14 +6,23 @@ import {
   Grid,
   useMediaQuery,
 } from "@inube/design-system";
+import { FormButtons } from "@components/forms/submit/FormButtons";
+
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
+import { IGeneralInformationForm } from ".";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
-  loading?: boolean;
-  handleSubmit: (dataSelect: { [key: string]: string | number }) => void;
-  linixUseCases: Record<string, unknown>[];
+  isLoading?: boolean;
+  handleSubmit: () => void;
+  linixRoles: Record<string, unknown>[];
+  withSubmitButtons: boolean;
+  hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
 }
 
 const searchData = {
@@ -21,9 +30,22 @@ const searchData = {
 };
 
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const { formik, handleSubmit, linixUseCases } = props;
+  const {
+    formik,
+    handleSubmit,
+    linixRoles,
+    withSubmitButtons = false,
+    hasChanges,
+    isLoading,
+    message,
+    onCloseSectionMessage,
+  } = props;
 
   const isMobile = useMediaQuery("(max-width: 750px)");
+
+  const handleFormReset = () => {
+    formik.resetForm();
+  };
 
   return (
     <form>
@@ -55,19 +77,24 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             label="Aplicación"
             placeholder="Seleccione una opción"
             name="aplication"
-            title="Búsqueda de aplicación"
-            infoTitle="Buscar la aplicación para asignar el rol."
+            title="Aplicación"
+            infoTitle="Busque y seleccione una aplicación:"
             idModal="searchField"
             nameModal="searchField"
             labelModal="Digite el código o nombre de la aplicación."
             placeholderModal="Digite el código o nombre de la aplicación."
-            onUserSelect={handleSubmit}
-            userData={linixUseCases}
+            onUserSelect={(value) => {
+              formik.setValues({
+                ...formik.values,
+                aplicationId: value.k_Usecase,
+              });
+            }}
+            userData={linixRoles}
             searchFieldData={searchData}
-            onReset={() => {}}
             idLabel="k_Usecase"
             nameLabel="n_Usecase"
-            selectedId={formik.values.aplication}
+            selectedId={formik.values.aplicationId}
+            onReset={() => {}}
           />
         </Stack>
 
@@ -84,6 +111,24 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           onChange={formik.handleChange}
         />
       </Grid>
+      {withSubmitButtons && (
+        <>
+          <FormButtons
+            disabledButtons={!hasChanges(formik.values)}
+            handleSubmit={handleSubmit}
+            handleReset={handleFormReset}
+            loading={isLoading}
+            children={""}
+          />
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={onCloseSectionMessage}
+              onMessageClosed={handleFormReset}
+            />
+          )}
+        </>
+      )}
     </form>
   );
 }
