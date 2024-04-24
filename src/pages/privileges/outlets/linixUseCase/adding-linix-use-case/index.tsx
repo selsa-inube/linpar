@@ -1,7 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { FormikProps } from "formik";
+import { useNavigate } from "react-router-dom";
 
 import { getAll } from "@mocks/utils/dataMock.service";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "@pages/privileges/outlets/users/types/forms.types";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
@@ -13,8 +18,8 @@ import {
   IFormAddLinixUseCaseRef,
   IClientServerButton,
 } from "./types";
-import { addLinixUseCaseStepsRules } from "./utils";
-import { IAssignmentFormEntry } from "../../users/types/forms.types";
+import { addLinixUseCaseStepsRules, saveLinixUseCase } from "./utils";
+import { generalMessage } from "./config/messages.config";
 
 export function dataToAssignmentFormEntry(
   props: DataToAssignmentFormEntryProps
@@ -36,6 +41,7 @@ function AddingLinixUseCase() {
   const steps = Object.values(stepsAddingLinixUseCase);
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<IFormAddLinixUseCase>({
     generalInformation: {
       isValid: false,
@@ -286,11 +292,34 @@ function AddingLinixUseCase() {
   };
 
   const handleToggleModal = () => {
-    setShowModal((prevShowModal) => !prevShowModal);
+    setShowModal(!showModal);
+    setLoading(true);
+  };
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
+  const navigate = useNavigate();
+  const handleFinishForm = () => {
+    saveLinixUseCase(formData);
+    handleToggleModal();
+    setMessage({
+      visible: true,
+      data: generalMessage.success,
+    });
+  };
+
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+    navigate("/privileges/linixUseCase");
   };
 
   return (
     <AddingLinixUseCaseUI
+      loading={loading}
+      onCloseSectionMessage={handleCloseSectionMessage}
+      message={message}
       handlePrevStep={handlePrevStep}
       handleNextStep={handleNextStep}
       currentStep={currentStep}
@@ -305,6 +334,7 @@ function AddingLinixUseCase() {
       setIsCurrentFormValid={setIsCurrentFormValid}
       formData={formData}
       selectOptions={selectOptions}
+      handleFinishForm={handleFinishForm}
     />
   );
 }
