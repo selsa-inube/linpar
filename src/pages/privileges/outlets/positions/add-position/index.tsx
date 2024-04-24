@@ -9,7 +9,7 @@ import {
   IHandleUpdateDataSwitchstep,
 } from "./types";
 import { initalValuesPositions } from "./config/initialValues";
-import { addPositionStepsRules } from "./utils";
+import { addPositionStepsRules, saveLinixPositions } from "./utils";
 import { AddPositionUI } from "./interface";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 
@@ -95,6 +95,9 @@ export function AddPosition() {
   };
 
   const handleNextStep = () => {
+    if (currentStep === steps.length) {
+      saveLinixPositions(dataAddPositionLinixForm);
+    }
     if (currentStep + 1 <= steps.length && isCurrentFormValid) {
       handleStepChange(currentStep + 1);
     }
