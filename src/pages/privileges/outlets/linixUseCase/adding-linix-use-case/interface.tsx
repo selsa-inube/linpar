@@ -6,10 +6,12 @@ import {
   inube,
   Button,
 } from "@inube/design-system";
-
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { buttonOptionsMock } from "@mocks/privileges/button/buttonOptionsMock.mock";
 
 import {
   CrateLinixUseCaseConfig,
@@ -27,11 +29,11 @@ import {
 } from "./types";
 import { VerificationForm } from "./forms/VerificationForm";
 import { saveLinixUseCase } from "./utils";
-import { buttonOptionsMock } from "@src/mocks/privileges/button/buttonOptionsMock.mock";
 
 function finishModal(
   handleCloseModal: () => void,
-  formData: IFormAddLinixUseCase
+  loading: boolean,
+  handleFinishForm: () => void
 ) {
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
@@ -41,10 +43,10 @@ function finishModal(
       title={title}
       description={description}
       actionText={actionText}
-      loading={false}
+      loading={loading}
       appearance={appearance}
       closeModal={handleCloseModal}
-      handleClick={() => saveLinixUseCase(formData)}
+      handleClick={handleFinishForm}
     />
   );
 }
@@ -122,6 +124,10 @@ const renderStepContent = (
 };
 
 interface AddingLinixUseCaseUIProps {
+  message: IMessageState;
+  loading: boolean;
+  onCloseSectionMessage: () => void;
+  handleFinishForm: () => void;
   handleNextStep: (step: number) => void;
   handlePrevStep: (step: number) => void;
   currentStep: number;
@@ -140,6 +146,10 @@ interface AddingLinixUseCaseUIProps {
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
+    message,
+    onCloseSectionMessage,
+    loading,
+    handleFinishForm,
     currentStep,
     handleToggleModal,
     showModal,
@@ -260,7 +270,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               if (
                 currentStep === Object.values(stepsAddingLinixUseCase).length
               ) {
-                saveLinixUseCase(formData);
+                handleToggleModal();
               } else {
                 optionValidations();
               }
@@ -272,9 +282,17 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               ? "Enviar"
               : "Siguiente"}
           </Button>
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={onCloseSectionMessage}
+              onMessageClosed={onCloseSectionMessage}
+            />
+          )}
         </Stack>
       </Stack>
-      {showModal && finishModal(handleToggleModal, formData)}
+
+      {showModal && finishModal(handleToggleModal, loading, handleFinishForm)}
     </Stack>
   );
 }

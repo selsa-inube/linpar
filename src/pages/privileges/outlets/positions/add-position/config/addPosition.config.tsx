@@ -82,3 +82,10 @@ export const finishAssistedPositionMessagesConfig = {
     appearance: EAppearance.ERROR,
   },
 };
+
+export const finishAssistedModalConfig = {
+  title: "Finalizar registro",
+  description: "¿Está seguro de que desea finalizar el proceso de creación?",
+  actionText: "Finalizar",
+  appearance: EAppearance.SUCCESS,
+};

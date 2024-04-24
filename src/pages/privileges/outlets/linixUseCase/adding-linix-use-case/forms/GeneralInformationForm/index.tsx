@@ -11,6 +11,7 @@ import {
 import { GeneralInformationFormUI } from "./interface";
 import { generalMessage } from "../../config/messages.config";
 import { validationMessages } from "@src/validations/validationMessages";
+import { functionById } from "@src/mocks/utils/dataMock.service";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -22,6 +23,7 @@ const validationSchema = Yup.object({
 
 interface GeneralInformationFormProps {
   initialValues: IGeneralInformation;
+  id?: string;
   handleSubmit: (values: IHandleChangeFormData) => void;
   onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   csOptions: Record<string, unknown>[];
@@ -29,6 +31,7 @@ interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
+  editItemData?: (props: functionById) => Promise<unknown>;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -46,9 +49,11 @@ export const GeneralInformationForm = forwardRef(
       },
       withSubmitButtons,
       onHasChanges,
+      id,
       handleSubmit,
       onFormValid,
       readOnly,
+      editItemData,
       csOptions,
       webOptions,
     } = props;
@@ -57,10 +62,21 @@ export const GeneralInformationForm = forwardRef(
       visible: false,
     });
 
+    const handleOnclick = async () => {
+      if (editItemData) {
+        await editItemData({
+          key: "id",
+          nameDB: "linix-use-cases",
+          identifier: id!,
+          editData: formik.values,
+        });
+      }
+    };
     function onSubmit() {
       setLoading(true);
       setTimeout(() => {
         handleSubmit(formik.values);
+        handleOnclick();
         setLoading(false);
         setMessage({
           visible: true,
@@ -79,6 +95,7 @@ export const GeneralInformationForm = forwardRef(
       },
       onSubmit,
     });
+
     const handleReset = () => {
       if (onHasChanges) onHasChanges(false);
     };

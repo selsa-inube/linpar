@@ -1,15 +1,36 @@
 import { FormikValues } from "formik";
 import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
+import { FormButtons } from "@components/forms/submit/FormButtons";
+
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface AncillaryAccountsFormsUIProps {
   formik: FormikValues;
-  loading?: boolean;
+  withSubmitButtons: boolean;
+  hasChanges: (valueCompare: AncillaryAccountsFormsUIProps) => boolean;
+  handleSubmit: (name: string, value: string) => void;
+  isLoading?: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
 }
 
 export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
-  const { formik } = props;
+  const {
+    formik,
+    withSubmitButtons,
+    hasChanges,
+    handleSubmit,
+    isLoading,
+    message,
+    onCloseSectionMessage,
+  } = props;
 
   const isMobile = useMediaQuery("(max-width: 750px)");
+
+  const handleFormReset = () => {
+    formik.resetForm();
+  };
 
   return (
     <form>
@@ -21,7 +42,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
       >
         <Textfield
           label="Sector oficial"
-          placeholder="xxx, xxx, xxx, xxx"
+          placeholder="#######, #######, ..."
           name="officialSector"
           id="officialSector"
           value={formik.values.officialSector}
@@ -33,7 +54,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
 
         <Textfield
           label="Sector comercial"
-          placeholder="xxx, xxx, xxx, xxx"
+          placeholder="#######, #######, ..."
           name="commercialSector"
           id="commercialSector"
           value={formik.values.commercialSector}
@@ -45,7 +66,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
 
         <Textfield
           label="Sector solidario"
-          placeholder="xxx, xxx, xxx, xxx"
+          placeholder="#######, #######, ..."
           name="solidaritySector"
           id="solidaritySector"
           value={formik.values.solidaritySector}
@@ -55,6 +76,24 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           onChange={formik.handleChange}
         />
       </Grid>
+
+      {withSubmitButtons && (
+        <>
+          <FormButtons
+            disabledButtons={!hasChanges(formik.values)}
+            handleSubmit={handleSubmit}
+            handleReset={handleFormReset}
+            loading={isLoading}
+          />
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={onCloseSectionMessage}
+              onMessageClosed={handleFormReset}
+            />
+          )}
+        </>
+      )}
     </form>
   );
 }

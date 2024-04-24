@@ -33,6 +33,7 @@ export const EditRole = () => {
     k_Tipcon: "",
     n_Rol: "",
     n_Uso: "",
+    k_Aplica: "",
     cuentasAuxiliaresPorRol: [],
     casosDeUsoPorRol: [],
     reglasDeNegocioPorRol: [],
@@ -130,13 +131,13 @@ export const EditRole = () => {
   const valuesGeneralInformation = {
     roleName: editData.n_Rol,
     description: editData.n_Uso,
-    aplication: editData.n_Uso,
+    aplicationId: editData.k_Aplica,
   };
 
   const valuesAncillaryAccounts = {
-    officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta,
-    commercialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta,
-    solidaritySector: "",
+    officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
+    commercialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
+    solidaritySector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
   };
 
   const valuesTransactionTypes = editData?.tiposDeMovimientoContablePorRol?.map(
