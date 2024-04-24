@@ -1,8 +1,11 @@
-import { PrivilegesOptionsUI } from "./interface";
-import { privilegeOptionsConfig } from "./config/privileges.config";
-import { useContext } from "react";
-import { AppContext } from "@src/context/AppContext";
+import { AppContext } from "@context/AppContext";
 import { appsConfig } from "@src/components/layout/AppPage/config/apps.config";
+import { PrivilegesOptionsUI } from "@pages/privileges/outlets/options/interface";
+
+import { useContext } from "react";
+
+import { privilegeOptionsConfig } from "./config/privileges.config";
+
 function PrivilegesOptions() {
   const { user } = useContext(AppContext);
 
