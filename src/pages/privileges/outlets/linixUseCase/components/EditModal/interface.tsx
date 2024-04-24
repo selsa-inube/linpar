@@ -1,3 +1,4 @@
+import { MdPersonOutline } from "react-icons/md";
 import {
   Stack,
   Tabs,
@@ -10,12 +11,15 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-
 import { ClientServerButtonSelection } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/ClientServerButtonSelection";
+import { SubjectCard } from "@src/components/cards/SubjectCard";
 
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
-import { editLinixUseCaseConfig } from "./config/editLinuxUseCase.config";
+import {
+  editLinixUseCaseConfig,
+  editLinixUseCaseSubjectCardLabels,
+} from "./config/editLinuxUseCase.config";
 import {
   IFormAddLinixUseCase,
   IGeneralInformation,
@@ -78,6 +82,13 @@ function EditUserUI(props: EditUserUIProps) {
     generalInformation: { entries: currentInformation },
   } = editData;
 
+  const userCardData = currentInformation && {
+    username: (currentInformation as { n_Usecase: string }).n_Usecase,
+    code: (currentInformation as { k_Usecase: string }).k_Usecase,
+    type: (currentInformation as { i_Tipusec: string }).i_Tipusec,
+    description: (currentInformation as { n_Descrip: string }).n_Descrip,
+  };
+
   return (
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
@@ -93,6 +104,15 @@ function EditUserUI(props: EditUserUIProps) {
               navigatePage="/privileges/linixUseCase"
               description="describir la nueva informacion de caso de uso"
             />
+
+            {userCardData && (
+              <SubjectCard
+                subjectData={userCardData}
+                title="Informacion del usuario"
+                icon={<MdPersonOutline size={24} />}
+                labels={editLinixUseCaseSubjectCardLabels}
+              />
+            )}
           </Stack>
         </Stack>
         <Stack gap={inube.spacing.s400} direction="column">
