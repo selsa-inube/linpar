@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FormikProps } from "formik";
 import { getAll } from "@mocks/utils/dataMock.service";
 import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
@@ -13,14 +14,23 @@ import { addPositionStepsRules, saveLinixPositions } from "./utils";
 import { AddPositionUI } from "./interface";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 
+import { IMessageState } from "../../users/types/forms.types";
+import { generalMessage } from "./config/messages.config";
+
 export function AddPosition() {
   const [currentStep, setCurrentStep] = useState<number>(
     stepsAddPosition.generalInformation.id
   );
 
   const steps = Object.values(stepsAddPosition);
-
+  const [loading, setLoading] = useState(false);
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
+
+  const navigate = useNavigate();
 
   const [dataAddPositionLinixForm, setDataAddPositionLinixForm] =
     useState<IFormAddPosition>({
@@ -96,7 +106,7 @@ export function AddPosition() {
 
   const handleNextStep = () => {
     if (currentStep === steps.length) {
-      saveLinixPositions(dataAddPositionLinixForm);
+      handleToggleModal();
     }
     if (currentStep + 1 <= steps.length && isCurrentFormValid) {
       handleStepChange(currentStep + 1);
@@ -119,6 +129,27 @@ export function AddPosition() {
     }
   }
 
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+    setLoading(true);
+  };
+
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+    navigate("/privileges/positions");
+  };
+
+  const handleFinishForm = () => {
+    saveLinixPositions(dataAddPositionLinixForm);
+    handleToggleModal();
+    setMessage({
+      visible: true,
+      data: generalMessage.success,
+    });
+  };
+
   return (
     <AddPositionUI
       steps={steps}
@@ -126,10 +157,17 @@ export function AddPosition() {
       isCurrentFormValid={isCurrentFormValid}
       dataAddPositionLinixForm={dataAddPositionLinixForm}
       formReferences={formReferences}
+      showModal={showModal}
+      loading={loading}
+      message={message}
       setIsCurrentFormValid={setIsCurrentFormValid}
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
+      setCurrentStep={setCurrentStep}
+      handleToggleModal={handleToggleModal}
+      handleFinishForm={handleFinishForm}
+      handleCloseSectionMessage={handleCloseSectionMessage}
     />
   );
 }
