@@ -9,6 +9,7 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@src/components/feedback/DecisionModal";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
 
 import { IStep } from "../types";
 import {
@@ -26,6 +27,7 @@ import { GeneralInformationForm } from "./forms/GeneralInformationForm";
 import { StyledContainerAssisted } from "./styles";
 import { InitializerForm } from "../../forms/InitializerForm";
 import { VerificationAddPosition } from "./forms/VerificationForm";
+import { IMessageState } from "../../users/types/forms.types";
 
 const renderStepContent = (
   currentStep: number,
@@ -68,14 +70,15 @@ interface AddPositionUIProps {
   dataAddPositionLinixForm: IFormAddPosition;
   formReferences: IFormAddPositionRef;
   loading: boolean;
+  message: IMessageState;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
   handleUpdateDataSwitchstep: (values: IOptionInitialiceEntry[]) => void;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   handleToggleModal: () => void;
-  navigateTo: () => void;
   handleFinishForm: () => void;
+  handleCloseSectionMessage: () => void;
 }
 
 export function AddPositionUI(props: AddPositionUIProps) {
@@ -87,14 +90,15 @@ export function AddPositionUI(props: AddPositionUIProps) {
     dataAddPositionLinixForm,
     formReferences,
     loading,
+    message,
     setIsCurrentFormValid,
     handleNextStep,
     handlePreviousStep,
     handleUpdateDataSwitchstep,
     setCurrentStep,
     handleToggleModal,
-    navigateTo,
     handleFinishForm,
+    handleCloseSectionMessage,
   } = props;
 
   const { title, description, actionText, appearance } =
@@ -125,11 +129,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
               steps={steps}
               currentStepId={currentStep}
               handlePrev={handlePreviousStep}
-              handleNext={
-                currentStep === Object.values(stepsAddPosition).length
-                  ? handleToggleModal
-                  : handleNextStep
-              }
+              handleNext={handleNextStep}
               titleButtonText={titleButtonTextAssited}
             />
           </StyledContainerAssisted>
@@ -155,9 +155,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Button>
 
           <Button
-            onClick={
-              currentStep === steps.length ? () => navigateTo() : handleNextStep
-            }
+            onClick={handleNextStep}
             spacing="compact"
             disabled={!isCurrentFormValid}
           >
@@ -174,6 +172,13 @@ export function AddPositionUI(props: AddPositionUIProps) {
           appearance={appearance}
           closeModal={handleToggleModal}
           handleClick={handleFinishForm}
+        />
+      )}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseSectionMessage}
+          onMessageClosed={handleCloseSectionMessage}
         />
       )}
     </Stack>
