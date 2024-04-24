@@ -36,6 +36,7 @@ export interface IRol {
   k_Tipcon: string;
   n_Rol: string;
   n_Uso: string;
+  k_Aplica: string;
   casosDeUsoPorRol?: ICasosDeUsoPorRol[];
   cuentasAuxiliaresPorRol: ICuentasAuxiliaresPorRol[];
   reglasDeNegocioPorRol?: IReglasDeNegocioPorRol[];

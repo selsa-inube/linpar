@@ -1,5 +1,5 @@
 import { AppMenuCard, AppMenuCardProps } from "./index";
-import { appsConfig } from "@pages/home/config/apps.config";
+import { appsConfig } from "@src/components/layout/AppMenu/config/apps.config";
 import { BrowserRouter } from "react-router-dom";
 import { StoryFn } from "@storybook/react";
 
