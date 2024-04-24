@@ -19,16 +19,18 @@ import {
   stepsAddingLinixUseCase,
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
-import { GeneralInformationForm } from "./forms/GeneralInformationForm";
-import { ClientServerButtonSelection } from "./forms/ClientServerButtonSelection";
+
 import {
   IFormAddLinixUseCase,
   IHandleChangeFormData,
   IFormAddLinixUseCaseRef,
   titleButtonTextAssited,
 } from "./types";
-import { VerificationForm } from "./forms/VerificationForm";
+
 import { saveLinixUseCase } from "./utils";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
+import { VerificationForm } from "../components/VerificationForm";
+import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 
 function finishModal(
   handleCloseModal: () => void,

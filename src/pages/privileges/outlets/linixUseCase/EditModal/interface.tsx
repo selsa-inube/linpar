@@ -11,7 +11,7 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-import { ClientServerButtonSelection } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/forms/ClientServerButtonSelection";
+
 import { SubjectCard } from "@src/components/cards/SubjectCard";
 
 import { StyledContainer } from "./styles";
@@ -23,9 +23,11 @@ import {
 import {
   IFormAddLinixUseCase,
   IGeneralInformation,
-} from "../../adding-linix-use-case/types";
-import { GeneralInformationForm } from "../../adding-linix-use-case/forms/GeneralInformationForm";
+} from "../adding-linix-use-case/types";
+
 import { editItemData } from "@mocks/utils/dataMock.service";
+import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
 
 interface IControlModal {
   show: boolean;
