@@ -1,3 +1,4 @@
+import { IGeneralInformation } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import localforage from "localforage";
 
 function buildData<T>(data: T[]) {
@@ -35,6 +36,7 @@ interface functionById {
   key: string;
   nameDB: string;
   identifier: number | string;
+  editData?: IGeneralInformation | boolean;
 }
 
 export async function getById(props: functionById) {
@@ -62,6 +64,22 @@ export async function deleteItemData(props: functionById) {
       data.splice(indexData, 1);
       await localforage.setItem(nameDB, data);
       return data;
+    }
+    throw new Error("data structure not valid, must be an object list");
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function editItemData(props: functionById) {
+  const { key, nameDB, identifier, editData } = props;
+
+  try {
+    const data = await getAll(nameDB);
+    if (Array.isArray(data)) {
+      const indexData = data.findIndex((item) => item[key] === identifier);
+      data[indexData] = editData;
+      await localforage.setItem(nameDB, data);
     }
     throw new Error("data structure not valid, must be an object list");
   } catch (error) {

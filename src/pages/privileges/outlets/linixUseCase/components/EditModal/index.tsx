@@ -15,12 +15,12 @@ export interface IGeneralInformation {
   generalInformation: { entries: UseCase | undefined };
 }
 function EditCaseLinix() {
-  const { user_id } = useParams<{ user_id: string }>();
-
   const [controlModal, setControlModal] = useState({
     show: false,
     continueTab: "",
   });
+
+  const { user_id } = useParams();
 
   const [formData, setFormData] = useState<IFormAddLinixUseCase>({
     generalInformation: {
@@ -257,6 +257,7 @@ function EditCaseLinix() {
       webOptions={webOptions}
       handleContinueTab={handleContinueTab}
       csOptions={csOptions}
+      id={user_id || ""}
     />
   );
 }

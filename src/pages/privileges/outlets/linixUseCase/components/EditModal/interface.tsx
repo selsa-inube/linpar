@@ -21,6 +21,7 @@ import {
   IGeneralInformation,
 } from "../../adding-linix-use-case/types";
 import { GeneralInformationForm } from "../../adding-linix-use-case/forms/GeneralInformationForm";
+import { editItemData } from "@mocks/utils/dataMock.service";
 
 interface IControlModal {
   show: boolean;
@@ -29,6 +30,7 @@ interface IControlModal {
 interface EditUserUIProps {
   selectedTab: string;
   formData: IFormAddLinixUseCase;
+  id: string;
   handleTabChange: (tabId: string) => void;
   editData: { [key: string]: { [key: string]: unknown } };
   handleSubmit: (values: IAssignmentFormEntry[]) => void;
@@ -61,6 +63,7 @@ function EditUserUI(props: EditUserUIProps) {
   const {
     selectedTab,
     editData,
+    id,
     handleTabChange,
     handleSubmit,
     controlModal,
@@ -110,6 +113,8 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
+              editItemData={editItemData}
+              id={id}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (
