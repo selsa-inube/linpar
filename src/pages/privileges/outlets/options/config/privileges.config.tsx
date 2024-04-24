@@ -32,6 +32,34 @@ const privilegeOptionsConfig = [
   },
   {
     id: 2,
+    icon: <MdSync />,
+    label: "Cargos",
+    description: "Crear, editar, activar y eliminar cargos de Linix",
+    url: "/privileges/positions",
+    domain: "privileges",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: false,
+      },
+      {
+        path: "/privileges/positions",
+        label: "Cargos",
+        id: "/privileges/positions",
+        isActive: true,
+      },
+    ],
+  },
+  {
+    id: 3,
     icon: <TfiMenuAlt />,
     label: "Casos de uso Linix",
     description: "Completa la información para agregar el caso de uso Linix",
@@ -59,7 +87,7 @@ const privilegeOptionsConfig = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     icon: <MdSync />,
     label: "Roles",
     description: "Crear, editar, activar y eliminar roles de Linix",
@@ -82,34 +110,6 @@ const privilegeOptionsConfig = [
         path: "/privileges/roles",
         label: "Roles",
         id: "/privileges/roles",
-        isActive: true,
-      },
-    ],
-  },
-  {
-    id: 4,
-    icon: <MdSync />,
-    label: "Cargos",
-    description: "Crear, editar, activar y eliminar cargos de Linix",
-    url: "/privileges/positions",
-    domain: "privileges",
-    crumbs: [
-      {
-        path: "/",
-        label: "Inicio",
-        id: "/",
-        isActive: false,
-      },
-      {
-        path: "/privileges",
-        label: "Privilegios",
-        id: "/privileges",
-        isActive: false,
-      },
-      {
-        path: "/privileges/positions",
-        label: "Cargos",
-        id: "/privileges/positions",
         isActive: true,
       },
     ],
