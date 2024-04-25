@@ -19,20 +19,23 @@ interface IInitializerForm {
 }
 export function InitializerForm(props: IInitializerForm) {
   const {
-    dataOptionsForms,
+    dataOptionsForms: initialDataOptionsForms,
     handleSubmit,
     withSubmitButtons = false,
     onHasChanges,
     readOnly = false,
   } = props;
-  const [formDataOptions, setFormDataOptions] = useState(dataOptionsForms);
+  const [formDataOptions, setFormDataOptions] = useState(
+    initialDataOptionsForms
+  );
+  const [initialFormDataOptions] = useState(initialDataOptionsForms);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
   const hasChanges = (valueCompare: IAssignmentFormEntry[]) =>
-    JSON.stringify(dataOptionsForms) !== JSON.stringify(valueCompare);
+    JSON.stringify(initialDataOptionsForms) !== JSON.stringify(valueCompare);
 
   const handleChangeRenderForm = (renderForm: IAssignmentFormEntry[]) => {
     setFormDataOptions(renderForm);
@@ -53,6 +56,7 @@ export function InitializerForm(props: IInitializerForm) {
   };
 
   const handleReset = () => {
+    setFormDataOptions(initialFormDataOptions);
     if (onHasChanges) onHasChanges(false);
   };
 

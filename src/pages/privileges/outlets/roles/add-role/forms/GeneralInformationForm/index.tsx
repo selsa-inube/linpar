@@ -54,8 +54,11 @@ export const GeneralInformationForm = forwardRef(
 
     useEffect(() => {
       setIsLoading(true);
+      setIsLoading(true);
       getAll("linix-use-cases")
         .then((data) => {
+          setLinixRoles(data as Record<string, unknown>[]);
+          setIsLoading(false);
           setLinixRoles(data as Record<string, unknown>[]);
           setIsLoading(false);
         })

@@ -7,20 +7,20 @@ import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.moc
 import { getAll } from "@mocks/utils/dataMock.service";
 
 import { EditUserUI } from "./interface";
-import { UseCase } from "../../types";
-import { dataToAssignmentFormEntry } from "../../adding-linix-use-case";
-import { IFormAddLinixUseCase } from "../../adding-linix-use-case/types";
+import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
+import { dataToAssignmentFormEntry } from "../adding-linix-use-case";
+import { UseCase } from "../types";
 
 export interface IGeneralInformation {
   generalInformation: { entries: UseCase | undefined };
 }
 function EditCaseLinix() {
-  const { user_id } = useParams<{ user_id: string }>();
-
   const [controlModal, setControlModal] = useState({
     show: false,
     continueTab: "",
   });
+
+  const { user_id } = useParams();
 
   const [formData, setFormData] = useState<IFormAddLinixUseCase>({
     generalInformation: {
@@ -257,6 +257,7 @@ function EditCaseLinix() {
       webOptions={webOptions}
       handleContinueTab={handleContinueTab}
       csOptions={csOptions}
+      id={user_id || ""}
     />
   );
 }
