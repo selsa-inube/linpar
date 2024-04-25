@@ -9,9 +9,10 @@ import {
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 
 import { GeneralInformationFormUI } from "./interface";
-import { generalMessage } from "../../config/messages.config";
+
 import { validationMessages } from "@src/validations/validationMessages";
 import { functionById } from "@src/mocks/utils/dataMock.service";
+import { generalMessage } from "../../adding-linix-use-case/config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
 
