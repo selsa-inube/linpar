@@ -15,6 +15,7 @@ import { EditRole } from "@src/pages/privileges/outlets/roles/edit-role";
 import { EditCaseLinix } from "@src/pages/privileges/outlets/linixUseCase/components/EditModal";
 import { Positions } from "@src/pages/privileges/outlets/positions";
 import { AddPosition } from "@pages/privileges/outlets/positions/add-position";
+import { EditPosition } from "@src/pages/privileges/outlets/positions/edit-position";
 
 function PrivilegesRoutes() {
   return (
@@ -31,7 +32,10 @@ function PrivilegesRoutes() {
           element={<AddingLinixUseCase />}
         />
         <Route path="roles/add-role" element={<AddRol />} />
+
         <Route path="positions/add-position" element={<AddPosition />} />
+        <Route path="positions/edit/:position_id" element={<EditPosition />} />
+
         <Route path="users/invite" element={<Invite />} />
         <Route path="users/edit/:user_id" element={<EditUser />} />
         <Route path="roles/edit/:rol_id" element={<EditRole />} />

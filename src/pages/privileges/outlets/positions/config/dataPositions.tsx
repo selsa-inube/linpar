@@ -7,9 +7,10 @@ import { deleteItemData } from "@mocks/utils/dataMock.service";
 import { activatePositionModal } from "./activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 import { DetailsModal } from "../components/DetailsModal";
-import { IPosition } from "../types";
+
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
+import { IPosition } from "../add-position/types";
 
 export const titlesOptions = [
   {
@@ -78,8 +79,8 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     {
       id: "Edit",
       actionName: "Editar",
-      content: () => (
-        <Link to={`edit`}>
+      content: ({ k_Grupo }: { k_Grupo: string }) => (
+        <Link to={`edit/${k_Grupo}`} onClick={() => selectedData(k_Grupo)}>
           <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
         </Link>
       ),

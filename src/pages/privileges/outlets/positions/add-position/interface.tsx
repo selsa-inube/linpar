@@ -9,7 +9,6 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 
-import { IStep } from "../types";
 import {
   createPositionConfig,
   stepsAddPosition,
@@ -18,6 +17,7 @@ import {
   IFormAddPosition,
   IFormAddPositionRef,
   IOptionInitialiceEntry,
+  IStep,
   titleButtonTextAssited,
 } from "./types";
 import { GeneralInformationForm } from "./forms/GeneralInformationForm";
