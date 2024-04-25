@@ -7,12 +7,16 @@ export const titleButtonTextAssited = {
   after: "Siguiente",
   finish: "Enviar",
 };
+interface IRolByPosition {
+  k_Rol: string;
+}
 
 export interface IPosition {
   i_Activo: "Y" | "N";
   k_Grupo: string;
   n_Grupo: string;
   n_Uso: string;
+  roles: IRolByPosition[];
 }
 
 export interface IStep {

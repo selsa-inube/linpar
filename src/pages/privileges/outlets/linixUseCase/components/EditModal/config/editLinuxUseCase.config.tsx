@@ -33,4 +33,33 @@ const editLinixUseCaseConfig = [
   },
 ];
 
-export { editLinixUseCaseConfig };
+const editLinixUseCaseSubjectCardLabels = [
+  {
+    id: "code",
+    titleName: "Código",
+    priority: 0,
+  },
+  {
+    id: "username",
+    titleName: "Nombre",
+    priority: 1,
+  },
+
+  {
+    id: "type",
+    titleName: "Tipo",
+    priority: 2,
+  },
+  {
+    id: "description",
+    titleName: "Descripicion",
+    priority: 3,
+  },
+  {
+    id: "csButton",
+    titleName: "Opción botón cliente servidor",
+    priority: 4,
+  },
+];
+
+export { editLinixUseCaseConfig, editLinixUseCaseSubjectCardLabels };

@@ -13,7 +13,7 @@ import {
 
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { privilegeOptionsConfig } from "@pages/privileges/outlets//options/config/privileges.config";
+import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
 import { IRol } from "./types";

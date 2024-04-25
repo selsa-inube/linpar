@@ -1,5 +1,4 @@
 import {
-  Button,
   Stack,
   SkeletonLine,
   Breadcrumbs,
@@ -78,52 +77,46 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             selectedTab={selectedTab}
             tabs={dataTabs}
           />
-
           {selectedTab === stepsAddRol.generalInformation.label && (
-            <GeneralInformationForm initialValues={data} />
+            <GeneralInformationForm initialValues={data} withSubmitButtons />
           )}
 
           {selectedTab === stepsAddRol.auxiliaryAccounts.label && (
-            <AncillaryAccountsForm initialValues={valuesAncillaryAccounts} />
+            <AncillaryAccountsForm
+              initialValues={valuesAncillaryAccounts}
+              withSubmitButtons
+            />
           )}
 
           {selectedTab === stepsAddRol.transactionTypes.label && (
             <InitializerForm
               dataOptionsForms={valuesTransactionTypes}
               handleSubmit={handleUpdateDataSwitchstep}
+              withSubmitButtons
             />
           )}
           {selectedTab === stepsAddRol.businessRules.label && (
             <InitializerForm
               dataOptionsForms={valuesBusinessRules}
               handleSubmit={handleUpdateDataSwitchstep}
+              withSubmitButtons
             />
           )}
           {selectedTab === stepsAddRol.crediboardTasks.label && (
             <InitializerForm
               dataOptionsForms={valuesCreditboardTasks}
               handleSubmit={handleUpdateDataSwitchstep}
+              withSubmitButtons
             />
           )}
           {selectedTab === stepsAddRol.useCases.label && (
             <InitializerForm
               dataOptionsForms={valuesUseCases}
               handleSubmit={handleUpdateDataSwitchstep}
+              withSubmitButtons
             />
           )}
         </>
-        <Stack gap="16px" justifyContent="flex-end">
-          <Button
-            type="button"
-            spacing="compact"
-            variant="none"
-            appearance="gray"
-          >
-            Cancelar
-          </Button>
-
-          <Button spacing="compact">Guardar</Button>
-        </Stack>
       </Stack>
     </Stack>
   );
