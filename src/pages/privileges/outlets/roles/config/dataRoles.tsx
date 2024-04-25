@@ -57,6 +57,8 @@ const selectedData = (k_Rol: string) =>
   mockRoles.find((role) => role.k_Rol === k_Rol);
 
 const handleActive = () => "Esto es un servicio de Backend";
+// const handleActive = () => {
+// };
 
 export const actionsConfig = [
   {
