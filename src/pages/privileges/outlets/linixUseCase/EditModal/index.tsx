@@ -7,9 +7,9 @@ import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.moc
 import { getAll } from "@mocks/utils/dataMock.service";
 
 import { EditUserUI } from "./interface";
-import { UseCase } from "../../types";
-import { dataToAssignmentFormEntry } from "../../adding-linix-use-case";
-import { IFormAddLinixUseCase } from "../../adding-linix-use-case/types";
+import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
+import { dataToAssignmentFormEntry } from "../adding-linix-use-case";
+import { UseCase } from "../types";
 
 export interface IGeneralInformation {
   generalInformation: { entries: UseCase | undefined };

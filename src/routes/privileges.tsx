@@ -12,10 +12,10 @@ import { Roles } from "@pages/privileges/outlets/roles";
 import { AddingLinixUseCase } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { AddRol } from "@pages/privileges/outlets/roles/add-role";
 import { EditRole } from "@src/pages/privileges/outlets/roles/edit-role";
-import { EditCaseLinix } from "@src/pages/privileges/outlets/linixUseCase/components/EditModal";
+
 import { Positions } from "@src/pages/privileges/outlets/positions";
 import { AddPosition } from "@pages/privileges/outlets/positions/add-position";
-import { EditPosition } from "@src/pages/privileges/outlets/positions/edit-position";
+import { EditCaseLinix } from "@src/pages/privileges/outlets/linixUseCase/EditModal";
 
 function PrivilegesRoutes() {
   return (
