@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormikProps } from "formik";
 import { getAll } from "@mocks/utils/dataMock.service";
-import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
+import { IGeneralInformationEntry } from "../components/GeneralInformationForm";
 import { stepsAddPosition } from "./config/addPosition.config";
 import {
   IFormAddPosition,

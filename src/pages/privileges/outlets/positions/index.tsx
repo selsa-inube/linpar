@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getAll } from "@mocks/utils/dataMock.service";
 
 import { PositionsUI } from "./interface";
-import { IPosition } from "./types";
+import { IPosition } from "./add-position/types";
 
 export function Positions() {
   const [searchPosition, setSearchPosition] = useState<string>("");

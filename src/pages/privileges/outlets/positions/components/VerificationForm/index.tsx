@@ -1,7 +1,10 @@
 import { useMediaQuery } from "@inube/design-system";
 import { VerificationAddPositionUI } from "./interface";
 import { IAttributes, IDataVerificationStep } from "./types";
-import { IFormAddPosition, IOptionInitialiceEntry } from "../../types";
+import {
+  IFormAddPosition,
+  IOptionInitialiceEntry,
+} from "../../add-position/types";
 
 export interface IControllerAccordionProps {
   steps: IFormAddPosition;
