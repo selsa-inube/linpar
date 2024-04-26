@@ -7,14 +7,14 @@ const activateRoleModal = {
     title: "Activar",
     description: (id: string) =>
       `Esta seguro de activar el Rol con código: ${id}? `,
-    textAction: "Activate",
+    textAction: "Activar",
     appearance: EAppearance.SUCCESS,
   },
   deactivation: {
     title: "Desactivar",
     description: (id: string) =>
       `Esta seguro de desactivar el Rol con código: ${id}? `,
-    textAction: "Deactivate",
+    textAction: "Desactivar",
     appearance: EAppearance.ERROR,
   },
 };

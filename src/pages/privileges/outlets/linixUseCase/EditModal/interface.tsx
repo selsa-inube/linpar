@@ -25,7 +25,7 @@ import {
   IGeneralInformation,
 } from "../adding-linix-use-case/types";
 
-import { editItemData } from "@mocks/utils/dataMock.service";
+import { updateItemData } from "@mocks/utils/dataMock.service";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 
@@ -135,7 +135,7 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
-              editItemData={editItemData}
+              updateItemData={updateItemData}
               id={id}
             />
           )}
