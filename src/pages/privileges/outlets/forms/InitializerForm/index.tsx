@@ -7,22 +7,36 @@ import {
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
+import { functionById } from "@src/mocks/utils/dataMock.service";
 
 const LOADING_TIMEOUT = 1500;
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
-  handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
-  withSubmitButtons?: boolean;
-  onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
+  withSubmitButtons?: boolean;
+  id?: string;
+  property?: string;
+  keyData?: string;
+  nameDB?: string;
+  propertyData?: string;
+  handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
+  onHasChanges?: (hasChanges: boolean) => void;
+  editItemData?: (props: functionById) => Promise<unknown>;
 }
+
 export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms,
+    id,
+    keyData,
+    nameDB,
+    property,
+    propertyData,
     handleSubmit,
     withSubmitButtons = false,
     onHasChanges,
+    editItemData,
     readOnly = false,
   } = props;
   const [formDataOptions, setFormDataOptions] = useState(dataOptionsForms);
@@ -40,10 +54,29 @@ export function InitializerForm(props: IInitializerForm) {
     if (!withSubmitButtons) handleSubmit(renderForm);
   };
 
+  const normalizeDataOption = formDataOptions
+    .filter((dataOption) => dataOption.isActive === true)
+    .map((option) => ({
+      [propertyData as keyof string]: option.value,
+    }));
+
+  const handleEditData = async () => {
+    if (nameDB && keyData && editItemData) {
+      await editItemData({
+        key: keyData,
+        nameDB: nameDB,
+        identifier: id!,
+        editData: normalizeDataOption,
+        property: property,
+      });
+    }
+  };
+
   const handleSubmitForm = () => {
     setIsLoading(true);
     setTimeout(() => {
       handleSubmit(formDataOptions);
+      handleEditData();
       setIsLoading(false);
       setMessage({
         visible: true,

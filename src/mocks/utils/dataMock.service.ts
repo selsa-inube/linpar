@@ -1,4 +1,5 @@
 import { IGeneralInformation } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
+import { IGeneralInformationEntry } from "@src/pages/privileges/outlets/positions/add-position/forms/GeneralInformationForm";
 import localforage from "localforage";
 
 function buildData<T>(data: T[]) {
@@ -36,7 +37,12 @@ interface functionById {
   key: string;
   nameDB: string;
   identifier: number | string;
-  editData?: IGeneralInformation | boolean;
+  property?: string;
+  editData?:
+    | IGeneralInformation
+    | IGeneralInformationEntry
+    | { [x: string]: string }[]
+    | boolean;
 }
 
 export async function getById(props: functionById) {
@@ -71,14 +77,22 @@ export async function deleteItemData(props: functionById) {
   }
 }
 
-export async function editItemData(props: functionById) {
-  const { key, nameDB, identifier, editData } = props;
+export async function updateItemData(props: functionById) {
+  const { key, nameDB, identifier, editData, property } = props;
 
   try {
     const data = await getAll(nameDB);
     if (Array.isArray(data)) {
       const indexData = data.findIndex((item) => item[key] === identifier);
-      data[indexData] = editData;
+
+      const dataItem = data.filter((item) => item[key] === identifier && item);
+
+      const editDataInitializer = dataItem.map((optionData: string[]) => {
+        return property && Object.assign({ [property]: editData }, optionData);
+      });
+
+      data[indexData] = property ? editDataInitializer : editData;
+
       await localforage.setItem(nameDB, data);
     }
     throw new Error("data structure not valid, must be an object list");

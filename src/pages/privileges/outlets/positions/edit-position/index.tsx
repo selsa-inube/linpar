@@ -10,7 +10,7 @@ import { editPositionTabsConfig } from "./config/editPosition.config";
 import { initalValuesPositions } from "../add-position/config/initialValues";
 
 export function EditPosition() {
-  const { k_Grupo } = useParams();
+  const { position_id } = useParams();
 
   const [controlModal, setControlModal] = useState({
     show: false,
@@ -19,7 +19,7 @@ export function EditPosition() {
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
 
   const [selectedTab, setSelectedTab] = useState<string>(
-    editPositionTabsConfig.roles.id
+    editPositionTabsConfig.generalInformation.id
   );
 
   const [dataEditPositionForm, setDataEditPositionForm] =
@@ -66,7 +66,7 @@ export function EditPosition() {
   }, []);
 
   function getInformation() {
-    return MockPositions.find((position) => position.k_Grupo === k_Grupo);
+    return MockPositions.find((position) => position.k_Grupo === position_id);
   }
 
   const handleSubmit = (values: IAssignmentFormEntry[]) => {
@@ -116,6 +116,7 @@ export function EditPosition() {
       selectedTab={selectedTab}
       dataEditPositionForm={dataEditPositionForm}
       editData={editData}
+      id={position_id || ""}
       handleTabChange={handleTabChange}
       handleSubmit={handleSubmit}
       controlModal={controlModal}

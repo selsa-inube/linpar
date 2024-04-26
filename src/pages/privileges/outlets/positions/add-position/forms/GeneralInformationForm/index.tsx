@@ -4,6 +4,7 @@ import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import { validationMessages } from "@src/validations/validationMessages";
 import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
+import { functionById } from "@src/mocks/utils/dataMock.service";
 import { generalMessage } from "../../config/messages.config";
 import { IHandleUpdateDataSwitchstep } from "../../types";
 
@@ -22,9 +23,11 @@ interface IGeneralInformationFormProps {
   initialValues: IGeneralInformationEntry;
   withSubmitButtons?: boolean;
   loading?: boolean;
+  id?: string;
   onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit?: (values: IHandleUpdateDataSwitchstep) => void;
   onHasChanges?: (hasChanges: boolean) => void;
+  editItemData?: (props: functionById) => Promise<unknown>;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -35,15 +38,28 @@ export const GeneralInformationForm = forwardRef(
     const {
       initialValues,
       withSubmitButtons,
+      id,
       handleSubmit,
       onFormValid,
       onHasChanges,
+      editItemData,
     } = props;
 
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
     });
+
+    const editDataPosition = async () => {
+      if (editItemData) {
+        await editItemData({
+          key: "k_Grupo",
+          nameDB: "linix-positions",
+          identifier: id!,
+          editData: formik.values,
+        });
+      }
+    };
 
     const formik = useFormik({
       initialValues,
@@ -53,6 +69,7 @@ export const GeneralInformationForm = forwardRef(
         setLoading(true);
         setTimeout(() => {
           handleSubmit && handleSubmit(formik.values);
+          editDataPosition();
           setLoading(false);
           setMessage({
             visible: true,

@@ -14,8 +14,8 @@ export const editPositionTabsConfig = {
 export const editPositionConfig = [
   {
     id: 1,
-    title: "Agregar cargo",
-    description: "Completa la información para agregar cargo",
+    title: "  Editar cargo",
+    description: "Completa la información para editar cargo",
     route: "/privileges/positions/add-position",
     crumbs: [
       {

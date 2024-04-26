@@ -22,12 +22,14 @@ import {
 } from "./config/editPosition.config";
 import { IFormAddPosition } from "../add-position/types";
 import { IControlModal } from "./types";
+import { updateItemData } from "@src/mocks/utils/dataMock.service";
 
 interface EditPositionUIProps {
   selectedTab: string;
   dataEditPositionForm: IFormAddPosition;
   editData: { [key: string]: { [key: string]: unknown } };
   controlModal: IControlModal;
+  id: string;
   handleTabChange: (tabId: string) => void;
   handleSubmit: (values: IAssignmentFormEntry[]) => void;
   handleCloseModal: () => void;
@@ -41,6 +43,7 @@ export function EditPositionUI(props: EditPositionUIProps) {
     dataEditPositionForm,
     controlModal,
     editData,
+    id,
     handleTabChange,
     handleSubmit,
     handleCloseModal,
@@ -50,6 +53,7 @@ export function EditPositionUI(props: EditPositionUIProps) {
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
+
   const {
     generalInformation: { entries: currentInformation },
   } = editData;
@@ -65,9 +69,9 @@ export function EditPositionUI(props: EditPositionUIProps) {
             gap={inube.spacing.s400}
           >
             <PageTitle
-              title="Editar un caso de uso"
-              navigatePage="/privileges/linixUseCase"
-              description="describir la nueva informacion de caso de uso"
+              title="Editar un cargo"
+              navigatePage="/privileges/positions"
+              description="Describir la nueva información de cargo"
             />
           </Stack>
         </Stack>
@@ -81,8 +85,11 @@ export function EditPositionUI(props: EditPositionUIProps) {
           {selectedTab === editPositionTabsConfig.generalInformation.id && (
             <GeneralInformationForm
               initialValues={currentInformation as IGeneralInformationEntry}
+              handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
+              id={id}
+              editItemData={updateItemData}
             />
           )}
           {selectedTab === editPositionTabsConfig.roles.id && (
@@ -91,6 +98,12 @@ export function EditPositionUI(props: EditPositionUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={dataEditPositionForm.roles.values}
               handleSubmit={handleSubmit}
+              id={id}
+              keyData={"k_Grupo"}
+              nameDB={"linix-positions"}
+              property={"roles"}
+              editItemData={updateItemData}
+              propertyData={"k_Rol"}
             />
           )}
         </Stack>

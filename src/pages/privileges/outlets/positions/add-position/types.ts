@@ -16,7 +16,7 @@ export interface IPosition {
   k_Grupo: string;
   n_Grupo: string;
   n_Uso: string;
-  roles: IRolByPosition[];
+  roles?: IRolByPosition[];
 }
 
 export interface IStep {
