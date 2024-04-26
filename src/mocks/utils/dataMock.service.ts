@@ -1,4 +1,5 @@
 import { IGeneralInformation } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
+//import { IGeneralInformationForm } from "@src/pages/privileges/outlets/roles/add-role/forms/GeneralInformationForm"
 import localforage from "localforage";
 
 function buildData<T>(data: T[]) {
@@ -36,7 +37,7 @@ interface functionById {
   key: string;
   nameDB: string;
   identifier: number | string;
-  editData?: IGeneralInformation | boolean | { i_Activo: string };
+  editData?: IGeneralInformation | { i_Activo: string };
   toggleI_Activo?: boolean;
 }
 
@@ -79,7 +80,7 @@ export async function updateItemData(props: functionById) {
     const data = await getAll(nameDB);
     if (Array.isArray(data)) {
       const indexData = data.findIndex((item) => item[key] === identifier);
-      if (toggleI_Activo) {
+      if (toggleI_Activo && editData) {
         data[indexData].i_Activo = editData.i_Activo;
       } else {
         data[indexData] = editData;
