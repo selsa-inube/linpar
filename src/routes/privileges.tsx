@@ -16,6 +16,7 @@ import { EditRole } from "@src/pages/privileges/outlets/roles/edit-role";
 import { Positions } from "@src/pages/privileges/outlets/positions";
 import { AddPosition } from "@pages/privileges/outlets/positions/add-position";
 import { EditCaseLinix } from "@src/pages/privileges/outlets/linixUseCase/EditModal";
+import { EditPosition } from "@src/pages/privileges/outlets/positions/edit-position";
 
 function PrivilegesRoutes() {
   return (

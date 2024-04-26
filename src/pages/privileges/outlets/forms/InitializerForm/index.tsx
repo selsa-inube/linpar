@@ -28,6 +28,11 @@ interface IInitializerForm {
 export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms: initialDataOptionsForms,
+    id,
+    keyData,
+    nameDB,
+    property,
+    propertyData,
     handleSubmit,
     withSubmitButtons = false,
     onHasChanges,
