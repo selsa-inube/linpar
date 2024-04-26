@@ -33,7 +33,7 @@ const privilegeOptionsConfig = [
   {
     id: 2,
     icon: <MdSync />,
-    label: "Cargos Linx",
+    label: "Cargos Linix",
     description: "Crear, editar, activar y eliminar cargos de Linix",
     url: "/privileges/positions",
     domain: "privileges",
@@ -52,7 +52,7 @@ const privilegeOptionsConfig = [
       },
       {
         path: "/privileges/positions",
-        label: "Cargos Linx",
+        label: "Cargos Linix",
         id: "/privileges/positions",
         isActive: true,
       },
