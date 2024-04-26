@@ -101,7 +101,7 @@ export function EditPositionUI(props: EditPositionUIProps) {
               id={id}
               keyData={"k_Grupo"}
               nameDB={"linix-positions"}
-              property={"roles"}
+              property={"rolesPorCargo"}
               editItemData={updateItemData}
               propertyData={"k_Rol"}
             />

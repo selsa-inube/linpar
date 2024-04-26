@@ -6,7 +6,7 @@ export interface position {
   k_Grupo: string;
   n_Grupo: string;
   n_Uso: string;
-  roles: IRolByPosition[];
+  rolesPorCargo: IRolByPosition[];
 }
 
 export interface IControlModal {
