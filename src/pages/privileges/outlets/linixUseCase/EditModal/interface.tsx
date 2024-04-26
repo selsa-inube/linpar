@@ -1,3 +1,4 @@
+import { TfiMenuAlt } from "react-icons/tfi";
 import {
   Stack,
   Tabs,
@@ -27,7 +28,6 @@ import {
 import { editItemData } from "@mocks/utils/dataMock.service";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
-import { TfiMenuAlt } from "react-icons/tfi";
 
 interface IControlModal {
   show: boolean;
