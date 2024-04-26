@@ -11,8 +11,8 @@ function PrivilegesOptions() {
 
   const allowedOptions =
     user.company !== "sistemasenlinea"
-      ? ["Usuarios", "Cargos"]
-      : ["Usuarios", "Casos de uso Linix", "Roles", "Cargos"];
+      ? ["Usuarios linix", "Cargos Linx"]
+      : ["Usuarios linix", "Casos de uso Linix", "Roles Linix", "Cargos Linx"];
 
   const filteredOptions = privilegeOptionsConfig.filter((option) =>
     allowedOptions.includes(option.label)

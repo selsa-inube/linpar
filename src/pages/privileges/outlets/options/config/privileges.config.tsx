@@ -5,7 +5,7 @@ const privilegeOptionsConfig = [
   {
     id: 1,
     icon: <MdPerson />,
-    label: "Usuarios",
+    label: "Usuarios linix",
     description: "invitar, editar, activar y eliminar usuarios de Linix",
     url: "/privileges/users",
     domain: "privileges",
@@ -24,7 +24,7 @@ const privilegeOptionsConfig = [
       },
       {
         path: "/privileges/users",
-        label: "Usuarios",
+        label: "Usuarios linix",
         id: "/privileges/users",
         isActive: true,
       },
@@ -33,7 +33,7 @@ const privilegeOptionsConfig = [
   {
     id: 2,
     icon: <MdSync />,
-    label: "Cargos",
+    label: "Cargos Linx",
     description: "Crear, editar, activar y eliminar cargos de Linix",
     url: "/privileges/positions",
     domain: "privileges",
@@ -52,7 +52,7 @@ const privilegeOptionsConfig = [
       },
       {
         path: "/privileges/positions",
-        label: "Cargos",
+        label: "Cargos Linx",
         id: "/privileges/positions",
         isActive: true,
       },
@@ -89,7 +89,7 @@ const privilegeOptionsConfig = [
   {
     id: 4,
     icon: <MdSync />,
-    label: "Roles",
+    label: "Roles Linix",
     description: "Crear, editar, activar y eliminar roles de Linix",
     url: "/privileges/roles",
     domain: "privileges",
@@ -108,7 +108,7 @@ const privilegeOptionsConfig = [
       },
       {
         path: "/privileges/roles",
-        label: "Roles",
+        label: "Roles Linix",
         id: "/privileges/roles",
         isActive: true,
       },

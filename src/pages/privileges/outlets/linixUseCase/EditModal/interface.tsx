@@ -1,4 +1,3 @@
-import { MdPersonOutline } from "react-icons/md";
 import {
   Stack,
   Tabs,
@@ -28,6 +27,7 @@ import {
 import { editItemData } from "@mocks/utils/dataMock.service";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
+import { TfiMenuAlt } from "react-icons/tfi";
 
 interface IControlModal {
   show: boolean;
@@ -113,8 +113,8 @@ function EditUserUI(props: EditUserUIProps) {
             {userCardData && (
               <SubjectCard
                 subjectData={userCardData}
-                title="Informacion del usuario"
-                icon={<MdPersonOutline size={24} />}
+                title="Informacion del caso de uso"
+                icon={<TfiMenuAlt size={24} />}
                 labels={editLinixUseCaseSubjectCardLabels}
               />
             )}
