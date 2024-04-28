@@ -155,7 +155,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     currentStep,
     handleToggleModal,
     showModal,
-    handlePrevStep,
     handleNextStep,
     formData,
     handleUpdateFormData,
@@ -207,16 +206,20 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             <Assisted
               steps={Object.values(stepsAddingLinixUseCase)}
               currentStepId={currentStep}
-              handlePrev={
-                (formData.generalInformation.values.k_Opcion === "" &&
-                  currentStep === 3) ||
-                (formData.clientServerButton.values.csButtonOption === "" &&
-                  currentStep === 3)
-                  ? () => {
-                      handleNextStep(1);
-                    }
-                  : handlePrevStep
-              }
+              handlePrev={() => {
+                const prevStep =
+                  currentStep === Object.values(stepsAddingLinixUseCase).length
+                    ? currentStep - 1
+                    : currentStep === 3 &&
+                      !buttonOptionsMock.some(
+                        (buttonOptions) =>
+                          buttonOptions.OPCION_CLIENTE_SERVIDOR ===
+                          formData.generalInformation.values.k_Opcion
+                      )
+                    ? 1
+                    : currentStep - 1;
+                handleNextStep(prevStep);
+              }}
               handleNext={() => {
                 const nextStep =
                   currentStep === Object.values(stepsAddingLinixUseCase).length
@@ -248,16 +251,20 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
         </>
         <Stack gap={inube.spacing.s200} justifyContent="flex-end">
           <Button
-            onClick={
-              (formData.generalInformation.values.k_Opcion === "" &&
-                currentStep === 3) ||
-              (formData.clientServerButton.values.csButtonOption === "" &&
-                currentStep === 3)
-                ? () => {
-                    handleNextStep(1);
-                  }
-                : handlePrevStep
-            }
+            onClick={() => {
+              const prevStep =
+                currentStep === Object.values(stepsAddingLinixUseCase).length
+                  ? currentStep - 1
+                  : currentStep === 3 &&
+                    !buttonOptionsMock.some(
+                      (buttonOptions) =>
+                        buttonOptions.OPCION_CLIENTE_SERVIDOR ===
+                        formData.generalInformation.values.k_Opcion
+                    )
+                  ? 1
+                  : currentStep - 1;
+              handleNextStep(prevStep);
+            }}
             type="button"
             disabled={currentStep === 1}
             spacing="compact"

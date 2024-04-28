@@ -158,11 +158,11 @@ function RenderFormFields(
         )}
         <SearchUserCard
           id="webSearch"
-          label="Opción  web"
+          label="Opción de menú web Linix"
           placeholder="Seleccione una opción"
           name="webSearch"
           title="Búsqueda"
-          infoTitle="Opciones web"
+          infoTitle="Opción de menú web Linix"
           idModal="searchField"
           nameModal="searchField"
           labelModal="Digite la opción a buscar."
@@ -180,11 +180,11 @@ function RenderFormFields(
       </Stack>
       <SearchUserCard
         id="Opción cliente servido"
-        label="Opción cliente servidor"
+        label="Opción de menú cliente servidor Linix"
         placeholder="Seleccione una opción"
         name="csSearch"
         title="Búsqueda"
-        infoTitle="Opción cliente servidor"
+        infoTitle="Opción de menú cliente servidor Linix"
         idModal="searchField"
         nameModal="searchField"
         labelModal="Digite la opción a buscar."
