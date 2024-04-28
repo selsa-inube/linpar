@@ -11,8 +11,8 @@ export const stepsAddRol = {
   },
   auxiliaryAccounts: {
     id: 2,
-    label: "Cuentas auxiliares",
-    description: "Por favor completa la información de cuentas auxiliares.",
+    label: "Cuentas Mayores",
+    description: "Por favor completa la información de cuentas mayores.",
   },
   transactionTypes: {
     id: 3,
