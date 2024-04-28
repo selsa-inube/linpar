@@ -14,8 +14,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^2.2.3",
-    "@inube/auth": "^1.0.7",
+    "@inube/auth": "^1.0.17",
     "@inube/design-system": "^5.15.0",
     "chromatic": "^6.17.1",
     "formik": "^2.4.1",
