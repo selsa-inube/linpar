@@ -1,8 +1,9 @@
 import { useState } from "react";
 
+import { updateItemData } from "@mocks/utils/dataMock.service";
+
 import { ActivateRoleUI } from "./interface";
 import { activateUserModal } from "../../users/config/activateUser.config";
-import { updateItemData } from "@src/mocks/utils/dataMock.service";
 
 export interface IDataActivateOption {
   id: string;

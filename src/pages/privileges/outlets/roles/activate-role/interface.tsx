@@ -1,10 +1,10 @@
-import { DecisionModal } from "@components/feedback/DecisionModal";
 import { Switch } from "@inube/design-system";
 
-import { activateRoleModal } from "../config/activateRole.config";
 import { EMessageType } from "@src/types/messages.types";
+import { DecisionModal } from "@components/feedback/DecisionModal";
 
 import { IActivateOptionModal } from "./types";
+import { activateRoleModal } from "../config/activateRole.config";
 
 interface IActivateRoleUI {
   active: boolean;

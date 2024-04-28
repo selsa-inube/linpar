@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
-import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { DetailsModal } from "../components/DetailsModal";
 import { deleteRolModal } from "../delete-role/config/deleteRol.config";
