@@ -31,6 +31,7 @@ export interface IGeneralInformation {
   i_Tipusec: string;
   k_Funcio: string;
   k_Opcion: string;
+  i_Activo?: string;
 }
 
 export interface IClientServerButton {
