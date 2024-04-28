@@ -5,7 +5,7 @@ const privilegeOptionsConfig = [
   {
     id: 1,
     icon: <MdPerson />,
-    label: "Usuarios linix",
+    label: "Usuarios Linix",
     description: "invitar, editar, activar y eliminar usuarios de Linix",
     url: "/privileges/users",
     domain: "privileges",
@@ -24,7 +24,7 @@ const privilegeOptionsConfig = [
       },
       {
         path: "/privileges/users",
-        label: "Usuarios linix",
+        label: "Usuarios Linix",
         id: "/privileges/users",
         isActive: true,
       },
