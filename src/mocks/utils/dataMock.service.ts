@@ -1,6 +1,7 @@
 import localforage from "localforage";
 
 import { IGeneralInformation } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
+import { IGeneralInformationEntry } from "@src/pages/privileges/outlets/positions/add-position/forms/GeneralInformationForm";
 
 function buildData<T>(data: T[]) {
   const dataMock = data.map((optionData) => {
@@ -37,7 +38,11 @@ interface functionById {
   key: string;
   nameDB: string;
   identifier: number | string;
-  editData?: IGeneralInformation | { i_Activo: string };
+  property?: string;
+  editData?:
+    | IGeneralInformation
+    | IGeneralInformationEntry
+    | { i_Activo: string };
   toggleI_Activo?: boolean;
 }
 
@@ -74,7 +79,14 @@ export async function deleteItemData(props: functionById) {
 }
 
 export async function updateItemData(props: functionById) {
-  const { key, nameDB, identifier, editData, toggleI_Activo = false } = props;
+  const {
+    key,
+    nameDB,
+    identifier,
+    editData,
+    property,
+    toggleI_Activo = false,
+  } = props;
 
   try {
     const data = await getAll(nameDB);
@@ -82,6 +94,16 @@ export async function updateItemData(props: functionById) {
       const indexData = data.findIndex((item) => item[key] === identifier);
       if (toggleI_Activo && editData) {
         data[indexData].i_Activo = editData.i_Activo;
+      } else if (property) {
+        const dataItem = data.filter(
+          (item) => item[key] === identifier && item
+        );
+        const editDataInitializer = dataItem.map((optionData: string[]) => {
+          return (
+            property && Object.assign({ [property]: editData }, optionData)
+          );
+        });
+        data[indexData] = editDataInitializer;
       } else {
         data[indexData] = editData;
       }

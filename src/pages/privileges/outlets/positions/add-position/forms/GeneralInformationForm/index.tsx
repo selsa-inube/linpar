@@ -12,6 +12,7 @@ const LOADING_TIMEOUT = 1500;
 export interface IGeneralInformationEntry {
   n_Grupo: string;
   n_Uso: string;
+  i_Activo?: string;
 }
 
 const validationSchema = Yup.object({
