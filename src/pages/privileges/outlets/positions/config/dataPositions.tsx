@@ -4,10 +4,9 @@ import { Icon } from "@inube/design-system";
 
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
-import { activatePositionModal } from "./activatePosition.config";
+import { activatePositionModal } from "../active-position/config/activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 import { DetailsModal } from "../components/DetailsModal";
-
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
 import { IPosition } from "../add-position/types";
