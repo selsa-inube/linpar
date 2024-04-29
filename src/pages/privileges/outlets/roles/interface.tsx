@@ -20,7 +20,7 @@ import { IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
-  actionsConfig,
+  actionsConfigPosition,
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
@@ -119,7 +119,7 @@ export function RolesUI(props: IRolesProps) {
             <Table
               id="tableRoles"
               titles={titlesOptions}
-              actions={actionsConfig}
+              actions={actionsConfigPosition(linixRoles)}
               entries={linixRoles}
               breakpoints={RolesBreakPointsConfig}
               modalTitle="Roles"

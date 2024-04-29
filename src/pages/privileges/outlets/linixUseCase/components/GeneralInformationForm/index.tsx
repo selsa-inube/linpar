@@ -32,7 +32,7 @@ interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
-  editItemData?: (props: functionById) => Promise<unknown>;
+  updateItemData?: (props: functionById) => Promise<unknown>;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -54,7 +54,7 @@ export const GeneralInformationForm = forwardRef(
       handleSubmit,
       onFormValid,
       readOnly,
-      editItemData,
+      updateItemData,
       csOptions,
       webOptions,
     } = props;
@@ -64,8 +64,8 @@ export const GeneralInformationForm = forwardRef(
     });
 
     const handleOnclick = async () => {
-      if (editItemData) {
-        await editItemData({
+      if (updateItemData) {
+        await updateItemData({
           key: "id",
           nameDB: "linix-use-cases",
           identifier: id!,
