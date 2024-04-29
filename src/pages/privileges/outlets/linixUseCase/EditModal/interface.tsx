@@ -1,4 +1,4 @@
-import { MdPersonOutline } from "react-icons/md";
+import { TfiMenuAlt } from "react-icons/tfi";
 import {
   Stack,
   Tabs,
@@ -113,8 +113,8 @@ function EditUserUI(props: EditUserUIProps) {
             {userCardData && (
               <SubjectCard
                 subjectData={userCardData}
-                title="Informacion del usuario"
-                icon={<MdPersonOutline size={24} />}
+                title="Informacion del caso de uso"
+                icon={<TfiMenuAlt size={24} />}
                 labels={editLinixUseCaseSubjectCardLabels}
               />
             )}
@@ -135,7 +135,7 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
-              editItemData={updateItemData}
+              updateItemData={updateItemData}
               id={id}
             />
           )}

@@ -24,7 +24,7 @@ const stepsAddingLinixUseCase = {
   },
   webOptions: {
     id: 5,
-    label: "Opciones web",
+    label: "Opción de menú web Linix",
     description: "Asigna las opciones web.",
   },
   clientServerReports: {
@@ -34,7 +34,7 @@ const stepsAddingLinixUseCase = {
   },
   clientServerOptions: {
     id: 7,
-    label: "Opciones cliente servidor",
+    label: "Opción de menú cliente servidor Linix",
     description: "Asigna las opciones cliente servidor.",
   },
   summary: {

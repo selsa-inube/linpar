@@ -4,17 +4,17 @@ import { EAppearance } from "@src/types/colors.types";
 
 const activateRoleModal = {
   activation: {
-    title: "Activate",
+    title: "Activar",
     description: (id: string) =>
-      `Esta seguro de activar el rol con código ${id}? `,
-    textAction: "Activate",
+      `Esta seguro de activar el Rol con código: ${id}? `,
+    textAction: "Activar",
     appearance: EAppearance.SUCCESS,
   },
   deactivation: {
-    title: "Deactivate",
+    title: "Desactivar",
     description: (id: string) =>
-      `Esta seguro de desactivar el rol con código ${id}? `,
-    textAction: "Deactivate",
+      `Esta seguro de desactivar el Rol con código: ${id}? `,
+    textAction: "Desactivar",
     appearance: EAppearance.ERROR,
   },
 };

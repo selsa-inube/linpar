@@ -1,29 +1,28 @@
 import { useEffect, useContext } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { useAuth } from "@inube/auth";
 
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { AppPage } from "@components/layout/AppPage";
 import AppContextProvider, { AppContext } from "@context/AppContext";
 import { GlobalStyles } from "@styles/global";
 import { initializeDataDB } from "@mocks/utils/initializeDataDB";
+
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
 
-const redirect_uri = window.location.origin;
-
 function LogOut() {
   localStorage.clear();
-  const { logout } = useAuth0();
-  logout({ logoutParams: { returnTo: redirect_uri } });
+  const { logout } = useAuth();
+  logout();
   return <AppPage />;
 }
 
@@ -49,7 +48,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {

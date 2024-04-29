@@ -1,6 +1,6 @@
-import { IGeneralInformation } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
-import { IGeneralInformationEntry } from "@src/pages/privileges/outlets/positions/add-position/forms/GeneralInformationForm";
 import localforage from "localforage";
+
+import { IGeneralInformation } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 
 function buildData<T>(data: T[]) {
   const dataMock = data.map((optionData) => {
@@ -37,12 +37,8 @@ interface functionById {
   key: string;
   nameDB: string;
   identifier: number | string;
-  property?: string;
-  editData?:
-    | IGeneralInformation
-    | IGeneralInformationEntry
-    | { [x: string]: string }[]
-    | boolean;
+  editData?: IGeneralInformation | { i_Activo: string };
+  toggleI_Activo?: boolean;
 }
 
 export async function getById(props: functionById) {
@@ -78,21 +74,17 @@ export async function deleteItemData(props: functionById) {
 }
 
 export async function updateItemData(props: functionById) {
-  const { key, nameDB, identifier, editData, property } = props;
+  const { key, nameDB, identifier, editData, toggleI_Activo = false } = props;
 
   try {
     const data = await getAll(nameDB);
     if (Array.isArray(data)) {
       const indexData = data.findIndex((item) => item[key] === identifier);
-
-      const dataItem = data.filter((item) => item[key] === identifier && item);
-
-      const editDataInitializer = dataItem.map((optionData: string[]) => {
-        return property && Object.assign({ [property]: editData }, optionData);
-      });
-
-      data[indexData] = property ? editDataInitializer : editData;
-
+      if (toggleI_Activo && editData) {
+        data[indexData].i_Activo = editData.i_Activo;
+      } else {
+        data[indexData] = editData;
+      }
       await localforage.setItem(nameDB, data);
     }
     throw new Error("data structure not valid, must be an object list");

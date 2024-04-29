@@ -76,7 +76,7 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
         ],
       },
       ancillaryAccounts: {
-        title: "Cuentas auxiliares",
+        title: "Cuentas Mayores",
         attributes: [
           createAttribute(
             "Sector oficial",
