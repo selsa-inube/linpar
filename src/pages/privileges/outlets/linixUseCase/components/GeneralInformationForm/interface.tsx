@@ -79,9 +79,7 @@ function RenderFormFields(
           value={formik.values.n_Usecase}
           onBlur={formik.handleBlur}
           message={
-            stateValue("n_Usecase") === "invalid"
-              ? formik.errors.n_Usecase
-              : "El nombre del caso de uso es requerido."
+            stateValue("n_Usecase") === "invalid" && formik.errors.n_Usecase
           }
           status={stateValue("n_Usecase")}
           type="text"
@@ -101,9 +99,7 @@ function RenderFormFields(
             value={formik.values.i_Tipusec}
             onBlur={formik.handleBlur}
             message={
-              stateValue("i_Tipusec") === "invalid"
-                ? formik.errors.i_Tipusec
-                : "La selección del caso de uso es requerido."
+              stateValue("i_Tipusec") === "invalid" && formik.errors.i_Tipusec
             }
             status={stateValue("i_Tipusec")}
             iconAfter={<MdOutlineModeEdit size={18} />}
@@ -128,9 +124,7 @@ function RenderFormFields(
         onBlur={formik.handleBlur}
         required
         message={
-          stateValue("n_Descrip") === "invalid"
-            ? formik.errors.n_Descrip
-            : "La Descripción del caso de uso es requerido."
+          stateValue("n_Descrip") === "invalid" && formik.errors.n_Descrip
         }
         status={stateValue("n_Descrip")}
         size="compact"
