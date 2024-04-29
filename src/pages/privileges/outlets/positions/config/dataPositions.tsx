@@ -39,7 +39,6 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     ].map((positionSelected) => ({
       Código: positionSelected?.k_Grupo,
       Nombre: positionSelected?.n_Grupo,
-      Descripción: positionSelected?.n_Uso,
       Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
     }));
 
