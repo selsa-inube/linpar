@@ -97,6 +97,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
               formik.setValues({
                 ...formik.values,
                 aplicationId: value.k_Usecase,
+                aplication: value.n_Usecase,
               });
             }}
             userData={linixRoles}

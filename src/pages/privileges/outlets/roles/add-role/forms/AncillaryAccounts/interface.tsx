@@ -53,7 +53,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           size="compact"
           fullwidth
           onChange={formik.handleChange}
-          required
           onBlur={formik.handleBlur}
           message={
             stateValue("officialSector") === "invalid"
@@ -73,7 +72,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           size="compact"
           fullwidth
           onChange={formik.handleChange}
-          required
           onBlur={formik.handleBlur}
           message={
             stateValue("commercialSector") === "invalid"
@@ -93,7 +91,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           size="compact"
           fullwidth
           onChange={formik.handleChange}
-          required
           onBlur={formik.handleBlur}
           message={
             stateValue("solidaritySector") === "invalid"

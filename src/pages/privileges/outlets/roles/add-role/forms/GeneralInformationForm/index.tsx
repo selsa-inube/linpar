@@ -15,6 +15,7 @@ const LOADING_TIMEOUT = 1500;
 const validationSchema = Yup.object({
   roleName: Yup.string().required(validationMessages.required),
   description: Yup.string().required(validationMessages.required),
+  aplication: Yup.string().required(validationMessages.required),
 });
 
 export interface IGeneralInformationForm {

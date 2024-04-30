@@ -1,20 +1,10 @@
 import { FormikProps, useFormik } from "formik";
-import * as Yup from "yup";
-
 import { forwardRef, useImperativeHandle, useState, useEffect } from "react";
 import { AncillaryAccountsFormsUI } from "./interface";
-
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
-import { validationMessages } from "@src/validations/validationMessages";
 
 const LOADING_TIMEOUT = 1500;
-
-const validationSchema = Yup.object({
-  officialSector: Yup.string().required(validationMessages.required),
-  commercialSector: Yup.string().required(validationMessages.required),
-  solidaritySector: Yup.string().required(validationMessages.required),
-});
 
 export interface IAncillaryAccountsForm {
   officialSector: string;
@@ -46,9 +36,8 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
-    validateOnChange: true,
-    validateOnBlur: true,
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: onSubmit || (() => true),
   });
 
