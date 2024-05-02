@@ -10,7 +10,7 @@ interface AncillaryAccountsFormsUIProps {
   formik: FormikValues;
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: AncillaryAccountsFormsUIProps) => boolean;
-  handleSubmit: (name: string, value: string) => void;
+  handleSubmit: () => void;
   isLoading?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -28,12 +28,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
   } = props;
 
   const isMobile = useMediaQuery("(max-width: 750px)");
-
-  const stateValue = (fieldName: string) => {
-    if (!formik.touched[fieldName]) return "pending";
-    if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
-    return "valid";
-  };
 
   return (
     <form>
@@ -54,12 +48,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           fullwidth
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          message={
-            stateValue("officialSector") === "invalid"
-              ? formik.errors.officialSector
-              : "Cuentas del Sector Oficial: válido"
-          }
-          status={stateValue("officialSector")}
         />
 
         <Textfield
@@ -73,12 +61,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           fullwidth
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          message={
-            stateValue("commercialSector") === "invalid"
-              ? formik.errors.commercialSector
-              : "Cuentas del Sector Comercial: válido"
-          }
-          status={stateValue("commercialSector")}
         />
 
         <Textfield
@@ -92,12 +74,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           fullwidth
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          message={
-            stateValue("solidaritySector") === "invalid"
-              ? formik.errors.solidaritySector
-              : "Cuentas del Sector Solidario: válido"
-          }
-          status={stateValue("solidaritySector")}
         />
       </Grid>
 
@@ -108,6 +84,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
             handleSubmit={handleSubmit}
             handleReset={formik.resetForm}
             loading={isLoading}
+            children={""}
           />
           {message.visible && (
             <RenderMessage
