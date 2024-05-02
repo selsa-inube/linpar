@@ -11,7 +11,6 @@ import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@src/components/feedback/DecisionModal";
 import { RenderMessage } from "@src/components/feedback/RenderMessage";
 
-import { IStep } from "../types";
 import {
   createPositionConfig,
   finishAssistedModalConfig,
@@ -21,12 +20,13 @@ import {
   IFormAddPosition,
   IFormAddPositionRef,
   IOptionInitialiceEntry,
+  IStep,
   titleButtonTextAssited,
 } from "./types";
-import { GeneralInformationForm } from "./forms/GeneralInformationForm";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { StyledContainerAssisted } from "./styles";
 import { InitializerForm } from "../../forms/InitializerForm";
-import { VerificationAddPosition } from "./forms/VerificationForm";
+import { VerificationAddPosition } from "../components/VerificationForm";
 import { IMessageState } from "../../users/types/forms.types";
 
 const renderStepContent = (

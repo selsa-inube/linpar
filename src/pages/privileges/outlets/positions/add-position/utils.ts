@@ -45,7 +45,7 @@ export const saveLinixPositions = (addLinixPositions: IFormAddPosition) => {
     n_Grupo: generalInformation.positionName,
     i_Activo: "Y",
     n_Uso: generalInformation.description,
-    roles: normalizeRoles,
+    rolesPorCargo: normalizeRoles,
   };
   localforage.getItem("linix-positions").then((data) => {
     if (data) {
