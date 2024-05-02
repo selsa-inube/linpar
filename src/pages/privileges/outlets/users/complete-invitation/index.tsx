@@ -6,10 +6,12 @@ import { payrollsFormInvitation } from "@mocks/apps/privileges/invitations/payro
 import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
 import { IVerificationData } from "@pages/privileges/outlets/users/complete-invitation/interface";
 import { EMessageType } from "@src/types/messages.types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { InitializerForm } from "@src/pages/privileges/outlets/forms/InitializerForm";
 import { GeneralInformationForm } from "@src/pages/privileges/outlets/forms/GeneralInfoForm";
+import { getAll } from "@src/mocks/utils/dataMock.service";
+
 import {
   IAssignmentFormEntry,
   IFormsInvitation,
@@ -90,6 +92,7 @@ function CompleteInvitation() {
           currentInformation={invitationData.generalInformation.entries}
           readOnly
           handleSubmit={() => {}}
+          positionsOptions={[]}
         />
       ),
       fullwidth: true,
@@ -151,6 +154,22 @@ function CompleteInvitation() {
     },
   };
 
+  const [positionsOptions, setPositionsOptions] = useState<
+    Record<string, unknown>[]
+  >([]);
+
+  useEffect(() => {
+    getAll("linix-positions")
+      .then((data) => {
+        if (data !== null) {
+          setPositionsOptions(data as Record<string, unknown>[]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching web-options:", error.message);
+      });
+  }, []);
+
   return (
     <CompleteInvitationUI
       invitationData={invitationData}
@@ -162,6 +181,7 @@ function CompleteInvitation() {
       handleCompleteInvitation={handleCompleteInvitation}
       showModal={showModal}
       verificationData={verificationData}
+      positionsOptions={positionsOptions}
     />
   );
 }

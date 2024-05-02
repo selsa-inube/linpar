@@ -20,10 +20,7 @@ interface InteractiveModalProps {
   labels?: Field[];
   infoTitle?: string;
   actionsTitle?: string;
-  searchData?:
-    | { [key: string]: string }
-    | Record<string, string | number>
-    | any;
+  searchData: { [key: string]: string } | Record<string, string | number> | any;
   id?: string;
   label?: string;
   name?: string;

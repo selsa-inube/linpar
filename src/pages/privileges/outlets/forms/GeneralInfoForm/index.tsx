@@ -11,6 +11,7 @@ import {
 } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { GeneralInformationFormUI } from "./interface";
+import { generalMessage } from "../../linixUseCase/adding-linix-use-case/config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -25,6 +26,7 @@ interface GeneralInformationFormProps {
   handleSubmit: (values: IGeneralInformationEntry) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
+  positionsOptions: Record<string, unknown>[];
 }
 
 function GeneralInformationForm(props: GeneralInformationFormProps) {
@@ -34,9 +36,13 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     handleSubmit,
     onHasChanges,
     readOnly,
+    positionsOptions,
   } = props;
 
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
@@ -49,6 +55,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     email: currentInformation.email,
     phone: currentInformation.phone || "",
     position: currentInformation.position || "",
+    active: false,
   };
 
   const formik = useFormik({
@@ -91,20 +98,22 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   const hasChanges = (valueCompare: IGeneralInformationEntry) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-  const handleChangeForm = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChangeForm = (name: string, value: string) => {
     const formikValues = {
       ...formik.values,
-      [event.target.name]: event.target.value,
+      [name]: value,
     };
 
     if (onHasChanges) onHasChanges(hasChanges(formikValues));
-    formik.setFieldValue(event.target.name, event.target.value).then(() => {
+    formik.setFieldValue(name, value).then(() => {
       if (withSubmitButtons) return;
       formik.validateForm().then((errors) => {
         if (!errors || Object.keys(errors).length === 0) {
-          handleSubmit(formikValues);
+          handleSubmit && handleSubmit(formikValues);
+          setMessage({
+            visible: true,
+            data: generalMessage.success,
+          });
         }
       });
     });
@@ -128,6 +137,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
       readOnly={readOnly}
+      positionsOptions={positionsOptions}
     />
   );
 }
