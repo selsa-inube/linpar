@@ -40,9 +40,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   } = props;
 
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
-    visible: false,
-  });
+
   const [showMessage, setShowMessage] = useState<IMessageState>({
     visible: false,
   });
@@ -110,7 +108,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       formik.validateForm().then((errors) => {
         if (!errors || Object.keys(errors).length === 0) {
           handleSubmit && handleSubmit(formikValues);
-          setMessage({
+          setShowMessage({
             visible: true,
             data: generalMessage.success,
           });
