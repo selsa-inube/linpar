@@ -17,9 +17,9 @@ import {
   IStep,
 } from "../types";
 import { createRolConfig, stepsAddRol } from "./config/addRol.config";
-import { GeneralInformationForm } from "./forms/GeneralInformationForm";
-import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
-import { VerificationAddRole } from "./forms/Verification";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
+import { AncillaryAccountsForm } from "../components/AncillaryAccounts";
+import { VerificationAddRole } from "../components/Verification";
 import { saveRole } from "./utils";
 
 interface AddRolUIProps {

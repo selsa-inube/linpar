@@ -6,11 +6,11 @@ import {
   Tabs,
 } from "@inube/design-system";
 import { PageTitle } from "@src/components/PageTitle";
-import { GeneralInformationForm } from "../add-role/forms/GeneralInformationForm";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import {
   AncillaryAccountsForm,
   IAncillaryAccountsForm,
-} from "../add-role/forms/AncillaryAccounts";
+} from "../components/AncillaryAccounts";
 import { InitializerForm } from "../../forms/InitializerForm";
 import { editRolConfig, stepsAddRol } from "../add-role/config/addRol.config";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
