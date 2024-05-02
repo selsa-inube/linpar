@@ -1,11 +1,13 @@
 import { useState } from "react";
+
 import { updateItemData } from "@mocks/utils/dataMock.service";
+import { EAppearance } from "@src/types/colors.types";
+import { EMessageType, IMessage } from "@src/types/messages.types";
+
 import { activateUserModal } from "../../users/config/activateUser.config";
 import { ActivatePositionUI } from "./interface";
 import { IMessageState } from "../../users/types/forms.types";
 import { activatePositionMessages } from "./config/activatePosition.config";
-import { EMessageType, IMessage } from "@src/types/messages.types";
-import { EAppearance } from "@src/types/colors.types";
 
 export interface IDataActivateOption {
   id: string;
