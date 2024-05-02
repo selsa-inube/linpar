@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@inube/design-system";
 
 import { getAll } from "@src/mocks/utils/dataMock.service";
+import { updateItemData } from "@mocks/utils/dataMock.service";
 
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { EditRoleUI } from "./interface";
@@ -18,6 +19,7 @@ const Tabs = Object.values(stepsAddRol)
 
 export const EditRole = () => {
   const { rol_id } = useParams();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
 
@@ -97,6 +99,7 @@ export const EditRole = () => {
           }));
           setEditData((prevData) => ({
             ...prevData,
+            reglasDeNegocioPorRol: tareas,
             tareasCrediboardPorRol: tareas,
           }));
         }
@@ -132,12 +135,13 @@ export const EditRole = () => {
     roleName: editData.n_Rol,
     description: editData.n_Uso,
     aplicationId: editData.k_Aplica,
+    k_Rol: editData.k_Rol,
   };
 
   const valuesAncillaryAccounts = {
-    officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
     commercialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
-    solidaritySector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
+    officialSector: editData?.cuentasAuxiliaresPorRol?.[1]?.k_Codcta || "",
+    solidaritySector: editData?.cuentasAuxiliaresPorRol?.[2]?.k_Codcta || "",
   };
 
   const valuesTransactionTypes = editData?.tiposDeMovimientoContablePorRol?.map(
@@ -170,16 +174,91 @@ export const EditRole = () => {
     isActive: false,
   }))!;
 
-  const handleUpdateDataSwitchstep = (values: IRol[]) => {
+  const handleUpdateDataSwitchstep = async (values: IRol) => {
     const stepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.label === selectedTab
     )?.[0];
 
     if (stepKey) {
-      setEditData((prevFormData) => ({
-        ...prevFormData,
-        [stepKey]: { values: values },
-      }));
+      const editedRole = { ...editData };
+
+      // console.log("-------------------------------------");
+      // console.log("values", values);
+      // console.log("stepKey", stepKey);
+      // console.log("editedRole", editedRole);
+
+      if (stepKey && stepKey === "generalInformation") {
+        editedRole.k_Aplica = values.k_Aplica;
+        editedRole.n_Rol = values.n_Rol;
+        editedRole.n_Uso = values.n_Uso;
+      }
+
+      if (stepKey && stepKey === "auxiliaryAccounts") {
+        const formattedAccounts = Object.entries(values).map(
+          ([key, value]) => ({
+            i_Tipent: key,
+            k_Codcta: value,
+            k_Rol: editedRole.k_Rol,
+          })
+        );
+        editedRole.cuentasAuxiliaresPorRol = formattedAccounts;
+      }
+
+      if (stepKey && stepKey === "transactionTypes") {
+        const formattedTypes = Object.entries(values)
+          .map(([key, value]) => ({
+            ...value,
+            k_Rol: editedRole.k_Rol,
+            i_Privi: value.isActive ? "Y" : "N",
+          }))
+          .filter((object) => object.isActive);
+        editedRole.tiposDeMovimientoContablePorRol = formattedTypes;
+      }
+
+      if (stepKey && stepKey === "businessRules") {
+        const formattedRules = Object.entries(values)
+          .map(([key, value]) => ({
+            ...value,
+            k_Rol: editedRole.k_Rol,
+          }))
+          .filter((object) => object.isActive);
+        editedRole.reglasDeNegocioPorRol = formattedRules;
+      }
+
+      if (stepKey && stepKey === "crediboardTasks") {
+        const formattedTasks = Object.entries(values)
+          .map(([key, value]) => ({
+            ...value,
+            k_Rol: editedRole.k_Rol,
+          }))
+          .filter((object) => object.isActive);
+        editedRole.tareasCrediboardPorRol = formattedTasks;
+      }
+
+      if (stepKey && stepKey === "useCases") {
+        const formattedCases = Object.entries(values)
+          .map(([key, value]) => ({
+            ...value,
+            k_Rol: editedRole.k_Rol,
+          }))
+          .filter((object) => object.isActive);
+        editedRole.casosDeUsoPorRol = formattedCases;
+      }
+
+      updateItemData({
+        key: "k_Rol",
+        nameDB: "linix-roles",
+        identifier: editedRole.k_Rol,
+        editData: editedRole,
+      })
+        .then(() => {})
+        .catch((error) => {
+          console.info(error.message);
+        })
+        .finally(() => {
+          setEditData(editedRole);
+          navigate("/privileges/roles");
+        });
     }
   };
 

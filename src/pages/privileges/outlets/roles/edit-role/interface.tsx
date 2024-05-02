@@ -78,13 +78,18 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             tabs={dataTabs}
           />
           {selectedTab === stepsAddRol.generalInformation.label && (
-            <GeneralInformationForm initialValues={data} withSubmitButtons />
+            <GeneralInformationForm
+              initialValues={data}
+              withSubmitButtons
+              handleSubmit={handleUpdateDataSwitchstep}
+            />
           )}
 
           {selectedTab === stepsAddRol.auxiliaryAccounts.label && (
             <AncillaryAccountsForm
               initialValues={valuesAncillaryAccounts}
               withSubmitButtons
+              handleSubmit={handleUpdateDataSwitchstep}
             />
           )}
 

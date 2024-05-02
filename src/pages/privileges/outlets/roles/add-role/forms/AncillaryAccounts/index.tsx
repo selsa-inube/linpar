@@ -17,13 +17,19 @@ interface IAncillaryAccountsFormProps {
   initialValues: IAncillaryAccountsForm;
   onSubmit?: (values: IAncillaryAccountsForm) => void;
   withSubmitButtons?: boolean;
+  handleSubmit?: () => void;
 }
 
 export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   props: IAncillaryAccountsFormProps,
   ref: React.Ref<FormikProps<IAncillaryAccountsForm>>
 ) {
-  const { initialValues, onSubmit, withSubmitButtons = false } = props;
+  const {
+    initialValues,
+    onSubmit,
+    withSubmitButtons = false,
+    handleSubmit,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
@@ -38,8 +44,18 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   const hasChanges = (valueCompare: IAncillaryAccountsForm) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-  const handleSubmit = () => {
+  const handleSubmitForm = () => {
     setIsLoading(true);
+    const editedValues = {
+      commercialSector: formik.values.commercialSector,
+      officialSector: formik.values.officialSector,
+      solidaritySector: formik.values.solidaritySector,
+    };
+
+    handleSubmit(editedValues);
+    formik.initialValues = initialValues;
+    formik.values = initialValues;
+
     setTimeout(() => {
       setMessage({
         visible: true,
@@ -60,7 +76,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   return (
     <AncillaryAccountsFormsUI
       formik={formik}
-      handleSubmit={handleSubmit}
+      handleSubmitForm={handleSubmitForm}
       withSubmitButtons={withSubmitButtons}
       hasChanges={hasChanges}
       message={message}

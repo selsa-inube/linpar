@@ -161,7 +161,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "26",
     n_Usecase: "Configurar reglas de negocio",
-    k_Usecase: "131232",
+    k_Usecase: "1312322",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Insertar",
     a_Publicc: "12112312",
@@ -241,7 +241,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "34",
     n_Usecase: "Generar Orden de pago de Nómina",
-    k_Usecase: "1231132",
+    k_Usecase: "12311322",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Eliminar",
     a_Publicc: "12112313",
@@ -251,7 +251,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "35",
     n_Usecase: "Liquidar Retiros de Empleados",
-    k_Usecase: "131232",
+    k_Usecase: "1312323",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Insertar",
     a_Publicc: "12112314",
@@ -262,7 +262,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "36",
     n_Usecase: "Contabilizar Retiros de Empleados",
-    k_Usecase: "131232",
+    k_Usecase: "1312324",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Insertar",
     a_Publicc: "12112315",
@@ -273,7 +273,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "37",
     n_Usecase: "Liquidar seguridad social",
-    k_Usecase: "131232",
+    k_Usecase: "1312325",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Insertar",
     a_Publicc: "12112316",
@@ -284,7 +284,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "38",
     n_Usecase: "Contabilizar seguridad social",
-    k_Usecase: "131232",
+    k_Usecase: "1312326",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Insertar",
     a_Publicc: "12112317",
@@ -295,7 +295,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "39",
     n_Usecase: "Registrar nuevos empleados",
-    k_Usecase: "131232",
+    k_Usecase: "1312327",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Eliminar",
     a_Publicc: "12112318",
@@ -305,7 +305,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "40",
     n_Usecase: "Registrar Novedades de Retiro de empleados",
-    k_Usecase: "131232",
+    k_Usecase: "1312328",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Insertar",
     a_Publicc: "12112319",
@@ -315,7 +315,7 @@ export const linixUseCases: UseCase[] = [
   {
     id: "41",
     n_Usecase: "Registrar Novedades de Seguridad Social",
-    k_Usecase: "131232",
+    k_Usecase: "1312329",
     n_Descrip: "Explicacion prospectos de credito",
     i_Tipusec: "Insertar",
     a_Publicc: "21321",

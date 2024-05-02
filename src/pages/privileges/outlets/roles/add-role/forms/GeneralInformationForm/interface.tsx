@@ -17,7 +17,7 @@ import { IGeneralInformationForm } from ".";
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   isLoading?: boolean;
-  handleSubmit: () => void;
+  handleSubmitForm: () => void;
   linixRoles: Record<string, unknown>[];
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
@@ -32,7 +32,7 @@ const searchData = {
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
     formik,
-    handleSubmit,
+    handleSubmitForm,
     linixRoles,
     withSubmitButtons = false,
     hasChanges,
@@ -87,6 +87,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
               formik.setValues({
                 ...formik.values,
                 aplicationId: value.k_Usecase,
+                aplication: value.n_Usecase,
               });
             }}
             userData={linixRoles}
@@ -115,7 +116,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         <>
           <FormButtons
             disabledButtons={!hasChanges(formik.values)}
-            handleSubmit={handleSubmit}
+            handleSubmit={handleSubmitForm}
             handleReset={handleFormReset}
             loading={isLoading}
             children={""}

@@ -11,6 +11,7 @@ import { GeneralInformationFormUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 export interface IGeneralInformationForm {
+  k_Rol: string;
   roleName: string;
   description: string;
   aplication: string;
@@ -22,6 +23,7 @@ interface IGeneralInformationFormProps {
   onSubmit?: (values: IGeneralInformationForm) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  handleSubmit?: () => void;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -29,13 +31,19 @@ export const GeneralInformationForm = forwardRef(
     props: IGeneralInformationFormProps,
     ref: React.Ref<FormikProps<IGeneralInformationForm>>
   ) {
-    const { initialValues, onSubmit, withSubmitButtons = false } = props;
+    const {
+      initialValues,
+      onSubmit,
+      withSubmitButtons = false,
+      handleSubmit,
+    } = props;
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
     });
 
     const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
+    const [, forceUpdate] = useState();
 
     useEffect(() => {
       setIsLoading(true);
@@ -49,25 +57,48 @@ export const GeneralInformationForm = forwardRef(
         });
     }, []);
 
-    const formik = useFormik({
+    let formik = useFormik({
       initialValues,
       validateOnBlur: true,
       onSubmit: onSubmit || (() => true),
+      enableReinitialze: true,
     });
+
+    useEffect(() => {
+      // console.log("acutalizar----------");
+      // console.log("initialValues", initialValues);
+      formik.initialValues = initialValues;
+      formik.values = initialValues;
+      formik.setValues(initialValues);
+      // console.log("acutalizar----------");
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [initialValues]);
 
     useImperativeHandle(ref, () => formik);
 
     const hasChanges = (valueCompare: IGeneralInformationForm) =>
       JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-    const handleSubmit = () => {
+    const handleSubmitForm = () => {
       setIsLoading(true);
+      const editedValues = {
+        k_Aplica: formik.values.aplicationId,
+        k_Rol: formik.values.k_Rol,
+        n_Rol: formik.values.roleName,
+        n_Uso: formik.values.description,
+      };
+
+      handleSubmit(editedValues);
+      formik.initialValues = initialValues;
+      formik.values = initialValues;
+
       setTimeout(() => {
         setMessage({
           visible: true,
           data: generalMessage.success,
         });
         setIsLoading(false);
+        forceUpdate({});
       }, LOADING_TIMEOUT);
     };
 
@@ -77,11 +108,17 @@ export const GeneralInformationForm = forwardRef(
       });
     };
 
+    // console.log("linixRoles", linixRoles);
+    // console.log("props", props);
+    // console.log("initialValues", initialValues);
+    // console.log("formik.initialValues", formik.initialValues);
+    // console.log("formik.values", formik.values);
+
     return (
       <>
         <GeneralInformationFormUI
           formik={formik}
-          handleSubmit={handleSubmit}
+          handleSubmitForm={handleSubmitForm}
           linixRoles={linixRoles}
           withSubmitButtons={withSubmitButtons}
           hasChanges={hasChanges}

@@ -9,7 +9,7 @@ interface AncillaryAccountsFormsUIProps {
   formik: FormikValues;
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: AncillaryAccountsFormsUIProps) => boolean;
-  handleSubmit: (name: string, value: string) => void;
+  handleSubmitForm: (name: string, value: string) => void;
   isLoading?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -20,7 +20,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
     formik,
     withSubmitButtons,
     hasChanges,
-    handleSubmit,
+    handleSubmitForm,
     isLoading,
     message,
     onCloseSectionMessage,
@@ -81,7 +81,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
         <>
           <FormButtons
             disabledButtons={!hasChanges(formik.values)}
-            handleSubmit={handleSubmit}
+            handleSubmit={handleSubmitForm}
             handleReset={handleFormReset}
             loading={isLoading}
           />
