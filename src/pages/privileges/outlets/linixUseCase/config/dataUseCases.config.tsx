@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-import { DetailsModal } from "../components/DetailsModal";
-import { UseCase } from "../types";
 import { MdModeEdit } from "react-icons/md";
+
 import { Icon } from "@inube/design-system";
+import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+
 import { DeleteLinixUseCase } from "../delete-linix-use-case";
 import { deleteLinixUseCaseModal } from "../delete-linix-use-case/config/deleteLinixUseCase.config";
-import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+import { DetailsModal } from "../components/DetailsModal";
+import { UseCase } from "../types";
 
 const titlesOptions = [
   {

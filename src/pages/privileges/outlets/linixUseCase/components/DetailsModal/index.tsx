@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
+
 import { Icon } from "@inube/design-system";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
-import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
 interface IDetailsModalProps {
   data?: { [key: string]: string | number };
