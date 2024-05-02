@@ -4,12 +4,12 @@ import { Icon } from "@inube/design-system";
 
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
-import { activatePositionModal } from "./activatePosition.config";
+import { activatePositionModal } from "../active-position/config/activatePosition.config";
 import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
 import { DetailsModal } from "../components/DetailsModal";
-import { IPosition } from "../types";
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
+import { IPosition } from "../add-position/types";
 
 export const titlesOptions = [
   {
@@ -38,7 +38,6 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     ].map((positionSelected) => ({
       Código: positionSelected?.k_Grupo,
       Nombre: positionSelected?.n_Grupo,
-      Descripción: positionSelected?.n_Uso,
       Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
     }));
 

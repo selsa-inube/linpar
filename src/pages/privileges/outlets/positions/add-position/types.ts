@@ -1,5 +1,5 @@
 import { FormikProps } from "formik";
-import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
+import { IGeneralInformationEntry } from "../components/GeneralInformationForm";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
 
 export const titleButtonTextAssited = {
@@ -16,7 +16,7 @@ export interface IPosition {
   k_Grupo: string;
   n_Grupo: string;
   n_Uso: string;
-  roles: IRolByPosition[];
+  rolesPorCargo?: IRolByPosition[];
 }
 
 export interface IStep {

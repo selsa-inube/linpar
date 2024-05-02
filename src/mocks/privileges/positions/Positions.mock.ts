@@ -1,4 +1,4 @@
-import { IPosition } from "@src/pages/privileges/outlets/positions/types";
+import { IPosition } from "@src/pages/privileges/outlets/positions/add-position/types";
 
 const MockPositions: IPosition[] = [
   {

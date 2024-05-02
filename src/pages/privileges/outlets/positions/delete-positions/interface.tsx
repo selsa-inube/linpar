@@ -5,26 +5,34 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
 
 import { deletePositionModal } from "./config/deletePositions.config";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { IMessageState } from "../../users/types/forms.types";
 
 interface DeletePositionUIProps {
   showModal: boolean;
-  setShowModal: (show: boolean) => void;
   linixPosition: string;
-  handleDeletePosition: () => void;
   deletePosition: typeof deletePositionModal;
   hover: boolean;
+  message: IMessageState;
+  loading: boolean;
+  setShowModal: (show: boolean) => void;
+  handleDeletePosition: () => void;
   setHover: (hover: boolean) => void;
+  handleCloseSectionMessage: () => void;
 }
 
 export const DeletePositionUI = (props: DeletePositionUIProps) => {
   const {
     showModal,
-    setShowModal,
     linixPosition,
-    handleDeletePosition,
     deletePosition,
     hover,
+    message,
+    loading,
+    setShowModal,
+    handleDeletePosition,
     setHover,
+    handleCloseSectionMessage,
   } = props;
 
   const messageType = EMessageType.DELETE;
@@ -51,8 +59,16 @@ export const DeletePositionUI = (props: DeletePositionUIProps) => {
           description={description(linixPosition)}
           actionText={actionText}
           appearance={appearance}
+          loading={loading}
           closeModal={() => setShowModal(false)}
           handleClick={handleDeletePosition}
+        />
+      )}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseSectionMessage}
+          onMessageClosed={handleCloseSectionMessage}
         />
       )}
     </>
