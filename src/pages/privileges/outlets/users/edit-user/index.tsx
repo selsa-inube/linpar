@@ -7,7 +7,7 @@ import { eventsFormEditUser } from "@mocks/apps/privileges/users/eventsForm.mock
 import { payrollsFormEditUser } from "@mocks/apps/privileges/users/payrollsForm.mock";
 import { projectsFormEditUser } from "@mocks/apps/privileges/users/projectsForm.mock";
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
-import { getAll } from "@src/mocks/utils/dataMock.service";
+import { getAll } from "@mocks/utils/dataMock.service";
 
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { EditUserUI } from "./interface";
