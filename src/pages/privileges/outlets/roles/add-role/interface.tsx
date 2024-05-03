@@ -18,8 +18,8 @@ import {
 } from "../types";
 import { createRolConfig, stepsAddRol } from "./config/addRol.config";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
-import { AncillaryAccountsForm } from "../components/AncillaryAccounts";
-import { VerificationAddRole } from "../components/Verification";
+import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
+import { VerificationAddRole } from "../components/VerificationForm";
 import { saveRole } from "./utils";
 
 interface AddRolUIProps {

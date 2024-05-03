@@ -10,7 +10,7 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import {
   AncillaryAccountsForm,
   IAncillaryAccountsForm,
-} from "../components/AncillaryAccounts";
+} from "../components/AncillaryAccountsForm";
 import { InitializerForm } from "../../forms/InitializerForm";
 import { editRolConfig, stepsAddRol } from "../add-role/config/addRol.config";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
