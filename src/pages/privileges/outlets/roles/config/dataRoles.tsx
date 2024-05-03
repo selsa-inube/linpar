@@ -7,7 +7,7 @@ import { deleteItemData } from "@mocks/utils/dataMock.service";
 import { DetailsModal } from "../components/DetailsModal";
 import { deleteRolModal } from "../delete-role/config/deleteRol.config";
 import { DeleteRole } from "../delete-role";
-import { activateRoleModal } from "./activateRole.config";
+import { activateRoleModal } from "../activate-role/config/activateRole.config";
 import { ActivateRole } from "../activate-role";
 import { IRol } from "../types";
 

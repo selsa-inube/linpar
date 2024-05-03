@@ -38,7 +38,7 @@ interface functionById {
   nameDB: string;
   identifier: number | string;
   editData?: IGeneralInformation | { i_Activo: string };
-  toggleI_Activo?: boolean;
+  toggleI_Active?: boolean;
 }
 
 export async function getById(props: functionById) {
@@ -74,13 +74,13 @@ export async function deleteItemData(props: functionById) {
 }
 
 export async function updateItemData(props: functionById) {
-  const { key, nameDB, identifier, editData, toggleI_Activo = false } = props;
+  const { key, nameDB, identifier, editData, toggleI_Active = false } = props;
 
   try {
     const data = await getAll(nameDB);
     if (Array.isArray(data)) {
       const indexData = data.findIndex((item) => item[key] === identifier);
-      if (toggleI_Activo && editData) {
+      if (toggleI_Active && editData) {
         data[indexData].i_Activo = editData.i_Activo;
       } else {
         data[indexData] = editData;
