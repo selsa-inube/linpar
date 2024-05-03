@@ -5,15 +5,19 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
 
 import { deleteLinixUseCaseModal } from "./config/deleteLinixUseCase.config";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { IMessageState } from "../../users/types/forms.types";
 
 interface DeleteLinixUseCaseUIProps {
   showModal: boolean;
   setShowModal: (show: boolean) => void;
   linixUseCase: string;
+  message: IMessageState;
   handleDeleteLinixUseCase: () => void;
   deleteLinixUseCaseModal: typeof deleteLinixUseCaseModal;
   hover: boolean;
   setHover: (hover: boolean) => void;
+  handleCloseSectionMessage: () => void;
 }
 
 export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
@@ -25,6 +29,8 @@ export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
     deleteLinixUseCaseModal,
     hover,
     setHover,
+    message,
+    handleCloseSectionMessage,
   } = props;
 
   const messageType = EMessageType.DELETE;
@@ -53,6 +59,13 @@ export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
           appearance={appearance}
           closeModal={() => setShowModal(false)}
           handleClick={handleDeleteLinixUseCase}
+        />
+      )}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={() => handleCloseSectionMessage}
+          onMessageClosed={handleCloseSectionMessage}
         />
       )}
     </>
