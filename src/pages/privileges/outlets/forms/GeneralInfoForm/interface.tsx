@@ -16,7 +16,7 @@ import {
   IGeneralInformationEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { SearchUserCard } from "@src/components/cards/SearchUserCard";
+import { SearchUserCard } from "@components/cards/SearchUserCard";
 
 import { generalInfoMessages } from "./config/messages.config";
 import { StyledMessageContainer, StyledSelectContainer } from "./styles";
@@ -142,7 +142,9 @@ function RenderFormFields(
         size="compact"
         fullwidth
         state={stateValue(formik, "email")}
-        onChange={handleChangeForm}
+        onChange={(
+          event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+        ) => handleChangeForm(event.target.name, event.target.value)}
         onBlur={formik.handleBlur}
       />
 
@@ -165,7 +167,9 @@ function RenderFormFields(
         size="compact"
         fullwidth
         state={stateValue(formik, "phone")}
-        onChange={handleChangeForm}
+        onChange={(
+          event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+        ) => handleChangeForm(event.target.name, event.target.value)}
         onBlur={formik.handleBlur}
       />
 
