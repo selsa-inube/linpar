@@ -50,7 +50,6 @@ interface functionActiveById {
   nameDB: string;
   identifier: number | string;
   editData: { i_Activo: string };
-  toggleI_Activo: boolean;
 }
 
 export async function getById(props: functionById) {

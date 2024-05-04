@@ -48,7 +48,6 @@ export function ActivatePosition<T extends IDataActivateOption>(
       nameDB: "linix-positions",
       identifier: props.data.id,
       editData: { i_Activo: !props.data.active ? "Y" : "N" },
-      toggleI_Activo: true,
     };
 
     try {

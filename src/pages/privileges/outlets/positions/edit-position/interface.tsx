@@ -16,7 +16,6 @@ import {
   editPositionConfig,
   editPositionTabsConfig,
 } from "./config/editPosition.config";
-import { IFormAddPosition } from "../add-position/types";
 import { IControlModal } from "./types";
 import {
   GeneralInformationForm,
@@ -25,7 +24,6 @@ import {
 
 interface EditPositionUIProps {
   selectedTab: string;
-  dataEditPositionForm: IFormAddPosition;
   editData: { [key: string]: { [key: string]: unknown } };
   controlModal: IControlModal;
   id: string;
@@ -39,7 +37,6 @@ interface EditPositionUIProps {
 export function EditPositionUI(props: EditPositionUIProps) {
   const {
     selectedTab,
-    dataEditPositionForm,
     controlModal,
     editData,
     id,
@@ -54,7 +51,8 @@ export function EditPositionUI(props: EditPositionUIProps) {
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   const {
-    generalInformation: { entries: currentInformation },
+    generalInformation: { entries: currentGeneralInformation },
+    roles: { entries: currentRoles },
   } = editData;
 
   return (
@@ -83,7 +81,9 @@ export function EditPositionUI(props: EditPositionUIProps) {
           />
           {selectedTab === editPositionTabsConfig.generalInformation.id && (
             <GeneralInformationForm
-              initialValues={currentInformation as IGeneralInformationEntry}
+              initialValues={
+                currentGeneralInformation as IGeneralInformationEntry
+              }
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -95,7 +95,7 @@ export function EditPositionUI(props: EditPositionUIProps) {
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
-              dataOptionsForms={dataEditPositionForm.roles.values}
+              dataOptionsForms={currentRoles as IAssignmentFormEntry[]}
               handleSubmit={handleSubmit}
               id={id}
               keyData={"k_Grupo"}

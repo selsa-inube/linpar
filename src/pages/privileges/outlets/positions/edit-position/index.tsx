@@ -3,13 +3,9 @@ import { useParams } from "react-router-dom";
 import { PositionsContext } from "@context/positionsContext";
 import { getAll } from "@mocks/utils/dataMock.service";
 import { EditPositionUI } from "./interface";
-import {
-  IFormAddPosition,
-  IHandleUpdateDataSwitchstep,
-} from "../add-position/types";
+import { IHandleUpdateDataSwitchstep } from "../add-position/types";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 import { editPositionTabsConfig } from "./config/editPosition.config";
-import { initalValuesPositions } from "../add-position/config/initialValues";
 
 export function EditPosition() {
   const { position_id } = useParams();
@@ -21,56 +17,42 @@ export function EditPosition() {
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
   const { positions } = useContext(PositionsContext);
 
+  const getInformation = positions.find(
+    (position) => position.k_Grupo === position_id
+  );
+
   const [selectedTab, setSelectedTab] = useState<string>(
     editPositionTabsConfig.generalInformation.id
   );
 
-  const [dataEditPositionForm, setDataEditPositionForm] =
-    useState<IFormAddPosition>({
-      generalInformation: {
-        isValid: false,
-        values: initalValuesPositions.generalInformation,
-      },
-      roles: {
-        isValid: false,
-        values: [],
-      },
-    });
-
   const [editData, setEditData] = useState<{
     [key: string]: { [key: string]: unknown };
   }>({
-    generalInformation: { entries: getInformation() },
+    generalInformation: { entries: getInformation },
+    roles: { entries: [] },
   });
 
   useEffect(() => {
     getAll("linix-roles")
       .then((data) => {
         if (data !== null) {
-          setDataEditPositionForm(
-            (prevDataEditPositionForm: IFormAddPosition) => ({
-              ...prevDataEditPositionForm,
-              roles: {
-                isValid: true,
-                values: dataToAssignmentFormEntry({
-                  dataOptions: data as Record<string, unknown>[],
-                  idLabel: "k_Rol",
-                  valueLabel: "n_Rol",
-                  isActiveLabel: "asignado",
-                }),
-              },
-            })
-          );
+          setEditData((prevDataEditPositionForm) => ({
+            ...prevDataEditPositionForm,
+            roles: {
+              entries: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "k_Rol",
+                valueLabel: "n_Rol",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
         }
       })
       .catch((error) => {
         console.error("Error fetching roles:", error.message);
       });
   }, []);
-
-  function getInformation() {
-    return positions.find((position) => position.k_Grupo === position_id);
-  }
 
   const handleSubmit = (values: IHandleUpdateDataSwitchstep) => {
     const editKey = Object.entries(editPositionTabsConfig).find(
@@ -117,7 +99,6 @@ export function EditPosition() {
   return (
     <EditPositionUI
       selectedTab={selectedTab}
-      dataEditPositionForm={dataEditPositionForm}
       editData={editData}
       id={position_id || ""}
       handleTabChange={handleTabChange}
