@@ -1,5 +1,5 @@
 import { FormikProps } from "formik";
-import { IGeneralInformationEntry } from "./forms/GeneralInformationForm";
+import { IGeneralInformationEntry } from "../components/GeneralInformationForm";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
 
 export const titleButtonTextAssited = {

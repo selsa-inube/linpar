@@ -4,12 +4,11 @@ import { Icon } from "@inube/design-system";
 
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
-import { activatePositionModal } from "./activatePosition.config";
-import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
+import { activatePositionModal } from "../active-position/config/activatePosition.config";
 import { DetailsModal } from "../components/DetailsModal";
-
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
+import { ActivatePosition } from "../active-position";
 import { IPosition } from "../add-position/types";
 
 export const titlesOptions = [
@@ -39,7 +38,6 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     ].map((positionSelected) => ({
       Código: positionSelected?.k_Grupo,
       Nombre: positionSelected?.n_Grupo,
-      Descripción: positionSelected?.n_Uso,
       Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
     }));
 
@@ -55,11 +53,12 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
       actionName: "Activo",
       content: ({ k_Grupo }: { k_Grupo: string }) => {
         return (
-          <ActivateFormOptions
+          <ActivatePosition
             handleActivate={() => {}}
             data={{
               id: selectedData(k_Grupo)?.k_Grupo || "",
               active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
+              name: selectedData(k_Grupo)?.n_Grupo || "",
             }}
             showComplete={false}
             activateModalConfig={activatePositionModal}

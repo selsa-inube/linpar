@@ -1,4 +1,4 @@
-import { IGeneralInformationEntry } from "../forms/GeneralInformationForm";
+import { IGeneralInformationEntry } from "../../components/GeneralInformationForm";
 
 const generalInformation: IGeneralInformationEntry = {
   n_Grupo: "",

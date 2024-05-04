@@ -23,10 +23,10 @@ import {
   IStep,
   titleButtonTextAssited,
 } from "./types";
-import { GeneralInformationForm } from "./forms/GeneralInformationForm";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { StyledContainerAssisted } from "./styles";
 import { InitializerForm } from "../../forms/InitializerForm";
-import { VerificationAddPosition } from "./forms/VerificationForm";
+import { VerificationAddPosition } from "../components/VerificationForm";
 import { IMessageState } from "../../users/types/forms.types";
 
 const renderStepContent = (
