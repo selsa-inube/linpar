@@ -2,8 +2,8 @@ import { Button, Stack, inube } from "@inube/design-system";
 import { ThemeProvider } from "styled-components";
 
 interface FormButtonsProps {
-  children: React.ReactNode;
-  handleSubmit: () => void;
+  children?: React.ReactNode;
+  handleSubmit: (name: string, value: string) => void;
   handleReset: () => void;
   disableReset?: boolean;
   disabledButtons?: boolean;
