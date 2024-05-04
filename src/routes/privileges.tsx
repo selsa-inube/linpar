@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-
+import { PositionsProvider } from "@context/positionsContext";
 import { PrivilegesOptions } from "@pages/privileges/outlets/options";
 import { Invite } from "@pages/privileges/outlets/users/invite";
 import { EditUser } from "@pages/privileges/outlets/users/edit-user";
@@ -20,35 +20,43 @@ import { EditPosition } from "@src/pages/privileges/outlets/positions/edit-posit
 
 function PrivilegesRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Privileges />}>
-        <Route path="options" element={<PrivilegesOptions />} />
-        <Route path="users" element={<Users />} />
-        <Route path="linixUseCase" element={<LinixUseCase />} />
-        <Route path="roles" element={<Roles />} />
-        <Route path="positions" element={<Positions />} />
+    <PositionsProvider>
+      <Routes>
+        <Route path="/" element={<Privileges />}>
+          <Route path="options" element={<PrivilegesOptions />} />
+          <Route path="users" element={<Users />} />
+          <Route path="linixUseCase" element={<LinixUseCase />} />
+          <Route path="roles" element={<Roles />} />
+          <Route path="positions" element={<Positions />} />
 
-        <Route
-          path="linixUseCase/adding-linix-use-case"
-          element={<AddingLinixUseCase />}
-        />
-        <Route path="roles/add-role" element={<AddRol />} />
+          <Route
+            path="linixUseCase/adding-linix-use-case"
+            element={<AddingLinixUseCase />}
+          />
+          <Route path="roles/add-role" element={<AddRol />} />
 
-        <Route path="positions/add-position" element={<AddPosition />} />
-        <Route path="positions/edit/:position_id" element={<EditPosition />} />
+          <Route path="positions/add-position" element={<AddPosition />} />
+          <Route
+            path="positions/edit/:position_id"
+            element={<EditPosition />}
+          />
 
-        <Route path="users/invite" element={<Invite />} />
-        <Route path="users/edit/:user_id" element={<EditUser />} />
-        <Route path="roles/edit/:rol_id" element={<EditRole />} />
+          <Route path="users/invite" element={<Invite />} />
+          <Route path="users/edit/:user_id" element={<EditUser />} />
+          <Route path="roles/edit/:rol_id" element={<EditRole />} />
 
-        <Route path="linixUseCase/edit/:user_id" element={<EditCaseLinix />} />
-        <Route
-          path="users/complete-invitation/:invitation_id"
-          element={<CompleteInvitation />}
-        />
-      </Route>
-      <Route path="/*" element={<ErrorPage />} />
-    </Routes>
+          <Route
+            path="linixUseCase/edit/:user_id"
+            element={<EditCaseLinix />}
+          />
+          <Route
+            path="users/complete-invitation/:invitation_id"
+            element={<CompleteInvitation />}
+          />
+        </Route>
+        <Route path="/*" element={<ErrorPage />} />
+      </Routes>
+    </PositionsProvider>
   );
 }
 

@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import { PositionsContext } from "@context/positionsContext";
 import { getAll } from "@mocks/utils/dataMock.service";
-import { MockPositions } from "@src/mocks/privileges/positions/Positions.mock";
 import { EditPositionUI } from "./interface";
-import { IFormAddPosition } from "../add-position/types";
+import {
+  IFormAddPosition,
+  IHandleUpdateDataSwitchstep,
+} from "../add-position/types";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 import { editPositionTabsConfig } from "./config/editPosition.config";
 import { initalValuesPositions } from "../add-position/config/initialValues";
@@ -17,6 +19,7 @@ export function EditPosition() {
     continueTab: "",
   });
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
+  const { positions } = useContext(PositionsContext);
 
   const [selectedTab, setSelectedTab] = useState<string>(
     editPositionTabsConfig.generalInformation.id
@@ -66,17 +69,17 @@ export function EditPosition() {
   }, []);
 
   function getInformation() {
-    return MockPositions.find((position) => position.k_Grupo === position_id);
+    return positions.find((position) => position.k_Grupo === position_id);
   }
 
-  const handleSubmit = (values: IAssignmentFormEntry[]) => {
+  const handleSubmit = (values: IHandleUpdateDataSwitchstep) => {
     const editKey = Object.entries(editPositionTabsConfig).find(
       ([, config]) => config.id === selectedTab
     )?.[0];
 
     if (editKey) {
-      setEditData((prevDataEditPositionForm) => ({
-        ...prevDataEditPositionForm,
+      setEditData((prevDataEditPosition) => ({
+        ...prevDataEditPosition,
         [editKey as keyof string]: { entries: values },
       }));
       setCurrentFormHasChanges(false);

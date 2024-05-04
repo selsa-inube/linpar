@@ -2,9 +2,9 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { GeneralInformationFormUI } from "./interface";
 import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
-import { validationMessages } from "@src/validations/validationMessages";
-import { IMessageState } from "@src/pages/privileges/outlets/users/types/forms.types";
-import { functionById } from "@src/mocks/utils/dataMock.service";
+import { validationMessages } from "@validations/validationMessages";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { functionById } from "@mocks/utils/dataMock.service";
 import { generalMessage } from "../../config/messages.config";
 import { IHandleUpdateDataSwitchstep } from "../../types";
 
@@ -22,13 +22,13 @@ const validationSchema = Yup.object({
 
 interface IGeneralInformationFormProps {
   initialValues: IGeneralInformationEntry;
-  withSubmitButtons?: boolean;
-  loading?: boolean;
   id?: string;
-  onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSubmit?: (values: IHandleUpdateDataSwitchstep) => void;
-  onHasChanges?: (hasChanges: boolean) => void;
+  loading?: boolean;
+  withSubmitButtons?: boolean;
   editItemData?: (props: functionById) => Promise<unknown>;
+  handleSubmit?: (values: IHandleUpdateDataSwitchstep) => void;
+  onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
+  onHasChanges?: (hasChanges: boolean) => void;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -38,12 +38,12 @@ export const GeneralInformationForm = forwardRef(
   ) {
     const {
       initialValues,
-      withSubmitButtons,
       id,
+      withSubmitButtons,
+      editItemData,
       handleSubmit,
       onFormValid,
       onHasChanges,
-      editItemData,
     } = props;
 
     const [loading, setLoading] = useState(false);
@@ -96,6 +96,7 @@ export const GeneralInformationForm = forwardRef(
             data: generalMessage.failed,
           });
         }
+
         formik.handleSubmit();
       });
     };
@@ -135,13 +136,13 @@ export const GeneralInformationForm = forwardRef(
       <GeneralInformationFormUI
         formik={formik}
         message={message}
+        disabledButtons={disabledButtons}
+        handleCloseSectionMessage={handleCloseSectionMessage}
+        handleChangeForm={handleChangeForm}
+        handleSubmitForm={handleSubmitForm}
+        handleReset={handleCloseSectionMessage}
         loading={loading}
         withSubmitButtons={withSubmitButtons}
-        handleSubmitForm={handleSubmitForm}
-        handleChangeForm={handleChangeForm}
-        handleReset={handleCloseSectionMessage}
-        handleCloseSectionMessage={handleCloseSectionMessage}
-        disabledButtons={disabledButtons}
       />
     );
   }

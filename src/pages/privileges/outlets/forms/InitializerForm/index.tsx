@@ -7,36 +7,37 @@ import {
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
-import { functionById } from "@src/mocks/utils/dataMock.service";
+import { functionById } from "@mocks/utils/dataMock.service";
 
 const LOADING_TIMEOUT = 1500;
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
-  readOnly?: boolean;
-  withSubmitButtons?: boolean;
+  handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
+  editItemData?: (props: functionById) => Promise<unknown>;
   id?: string;
-  property?: string;
   keyData?: string;
   nameDB?: string;
+  property?: string;
   propertyData?: string;
-  handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
+  readOnly?: boolean;
+  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
-  editItemData?: (props: functionById) => Promise<unknown>;
 }
 
 export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms: initialDataOptionsForms,
+    handleSubmit,
+    editItemData,
     id,
     keyData,
     nameDB,
     property,
     propertyData,
-    handleSubmit,
     withSubmitButtons = false,
     onHasChanges,
-    editItemData,
+
     readOnly = false,
   } = props;
   const [formDataOptions, setFormDataOptions] = useState(

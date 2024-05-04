@@ -1,7 +1,6 @@
 import localforage from "localforage";
-
-import { IGeneralInformation } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
-import { IGeneralInformationEntry } from "@src/pages/privileges/outlets/positions/add-position/forms/GeneralInformationForm";
+import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
+import { IGeneralInformationEntry } from "@pages/privileges/outlets/positions/add-position/forms/GeneralInformationForm";
 
 function buildData<T>(data: T[]) {
   const dataMock = data.map((optionData) => {
@@ -42,8 +41,16 @@ interface functionById {
   editData?:
     | IGeneralInformation
     | IGeneralInformationEntry
-    | { i_Activo: string };
+    | { [key: string]: string }[];
   toggleI_Activo?: boolean;
+}
+
+interface functionActiveById {
+  key: string;
+  nameDB: string;
+  identifier: number | string;
+  editData: { i_Activo: string };
+  toggleI_Activo: boolean;
 }
 
 export async function getById(props: functionById) {
@@ -79,34 +86,37 @@ export async function deleteItemData(props: functionById) {
 }
 
 export async function updateItemData(props: functionById) {
-  const {
-    key,
-    nameDB,
-    identifier,
-    editData,
-    property,
-    toggleI_Activo = false,
-  } = props;
+  const { key, nameDB, identifier, editData, property } = props;
 
   try {
     const data = await getAll(nameDB);
     if (Array.isArray(data)) {
       const indexData = data.findIndex((item) => item[key] === identifier);
-      if (toggleI_Activo && editData) {
-        data[indexData].i_Activo = editData.i_Activo;
-      } else if (property) {
-        const dataItem = data.filter(
-          (item) => item[key] === identifier && item
-        );
-        const editDataInitializer = dataItem.map((optionData: string[]) => {
-          return (
-            property && Object.assign({ [property]: editData }, optionData)
-          );
-        });
-        data[indexData] = editDataInitializer;
-      } else {
-        data[indexData] = editData;
-      }
+
+      const dataItem = data.find((item) => item[key] === identifier && item);
+
+      data[indexData] = property
+        ? { ...dataItem, [property]: editData }
+        : editData;
+
+      await localforage.setItem(nameDB, data);
+    }
+    throw new Error("data structure not valid, must be an object list");
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function updateActive(props: functionActiveById) {
+  const { key, nameDB, identifier, editData } = props;
+
+  try {
+    const data = await getAll(nameDB);
+    if (Array.isArray(data)) {
+      const indexData = data.findIndex((item) => item[key] === identifier);
+
+      data[indexData].i_Activo = editData.i_Activo;
+
       await localforage.setItem(nameDB, data);
     }
     throw new Error("data structure not valid, must be an object list");
