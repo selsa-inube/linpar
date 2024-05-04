@@ -5,8 +5,9 @@ import * as Yup from "yup";
 import { validationMessages } from "@validations/validationMessages";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { functionById } from "@mocks/utils/dataMock.service";
-import { generalMessage } from "../../config/messages.config";
-import { IHandleUpdateDataSwitchstep } from "../../types";
+
+import { generalMessage } from "../../add-position/config/messages.config";
+import { IHandleUpdateDataSwitchstep } from "../../add-position/types";
 
 const LOADING_TIMEOUT = 1500;
 export interface IGeneralInformationEntry {

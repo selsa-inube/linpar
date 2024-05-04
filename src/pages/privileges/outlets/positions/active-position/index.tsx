@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { updateItemData } from "@mocks/utils/dataMock.service";
+import { updateActive } from "@mocks/utils/dataMock.service";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 
@@ -52,7 +52,7 @@ export function ActivatePosition<T extends IDataActivateOption>(
     };
 
     try {
-      await updateItemData(params);
+      await updateActive(params);
       handleToggleModal();
       if (params.editData.i_Activo === "Y") {
         messageType = EMessageType.ACTIVATION;

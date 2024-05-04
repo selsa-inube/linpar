@@ -10,19 +10,18 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-
+import { updateItemData } from "@mocks/utils/dataMock.service";
 import { StyledContainer } from "./styles";
-import {
-  GeneralInformationForm,
-  IGeneralInformationEntry,
-} from "../add-position/forms/GeneralInformationForm";
 import {
   editPositionConfig,
   editPositionTabsConfig,
 } from "./config/editPosition.config";
 import { IFormAddPosition } from "../add-position/types";
 import { IControlModal } from "./types";
-import { updateItemData } from "@src/mocks/utils/dataMock.service";
+import {
+  GeneralInformationForm,
+  IGeneralInformationEntry,
+} from "../components/GeneralInformationForm";
 
 interface EditPositionUIProps {
   selectedTab: string;

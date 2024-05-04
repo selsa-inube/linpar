@@ -52,14 +52,16 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
       id: "i_activo",
       actionName: "Activo",
       content: ({ k_Grupo }: { k_Grupo: string }) => {
+        const position = selectedData(k_Grupo);
+        const adjustedPosition = {
+          id: position?.k_Grupo || "",
+          active: position?.i_Activo === "Y" || false,
+          name: position?.n_Grupo || "",
+        };
         return (
           <ActivatePosition
             handleActivate={() => {}}
-            data={{
-              id: selectedData(k_Grupo)?.k_Grupo || "",
-              active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
-              name: selectedData(k_Grupo)?.n_Grupo || "",
-            }}
+            data={adjustedPosition}
             showComplete={false}
             activateModalConfig={activatePositionModal}
           />
