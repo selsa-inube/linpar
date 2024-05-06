@@ -7,14 +7,13 @@ import {
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
-import { functionById } from "@mocks/utils/dataMock.service";
+import { updateItemData } from "@mocks/utils/dataMock.service";
 
 const LOADING_TIMEOUT = 1500;
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
   handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
-  editItemData?: (props: functionById) => Promise<unknown>;
   id?: string;
   keyData?: string;
   nameDB?: string;
@@ -29,7 +28,6 @@ export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms: initialDataOptionsForms,
     handleSubmit,
-    editItemData,
     id,
     keyData,
     nameDB,
@@ -65,8 +63,8 @@ export function InitializerForm(props: IInitializerForm) {
     }));
 
   const handleEditData = async () => {
-    if (nameDB && keyData && editItemData) {
-      await editItemData({
+    if (nameDB && keyData) {
+      await updateItemData({
         key: keyData,
         nameDB: nameDB,
         identifier: id!,

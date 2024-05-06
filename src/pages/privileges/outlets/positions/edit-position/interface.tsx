@@ -10,7 +10,6 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-import { updateItemData } from "@mocks/utils/dataMock.service";
 import { StyledContainer } from "./styles";
 import {
   editPositionConfig,
@@ -88,7 +87,6 @@ export function EditPositionUI(props: EditPositionUIProps) {
               withSubmitButtons
               onHasChanges={handleDataChange}
               id={id}
-              editItemData={updateItemData}
             />
           )}
           {selectedTab === editPositionTabsConfig.roles.id && (
@@ -101,7 +99,6 @@ export function EditPositionUI(props: EditPositionUIProps) {
               keyData={"k_Grupo"}
               nameDB={"linix-positions"}
               property={"rolesPorCargo"}
-              editItemData={updateItemData}
               propertyData={"k_Rol"}
             />
           )}

@@ -4,10 +4,9 @@ import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import { validationMessages } from "@validations/validationMessages";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { functionById } from "@mocks/utils/dataMock.service";
-
 import { generalMessage } from "../../add-position/config/messages.config";
 import { IHandleUpdateDataSwitchstep } from "../../add-position/types";
+import { updateItemData } from "@src/mocks/utils/dataMock.service";
 
 const LOADING_TIMEOUT = 1500;
 export interface IGeneralInformationEntry {
@@ -25,7 +24,6 @@ interface IGeneralInformationFormProps {
   id?: string;
   loading?: boolean;
   withSubmitButtons?: boolean;
-  editItemData?: (props: functionById) => Promise<unknown>;
   handleSubmit?: (values: IHandleUpdateDataSwitchstep) => void;
   onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   onHasChanges?: (hasChanges: boolean) => void;
@@ -40,7 +38,6 @@ export const GeneralInformationForm = forwardRef(
       initialValues,
       id,
       withSubmitButtons,
-      editItemData,
       handleSubmit,
       onFormValid,
       onHasChanges,
@@ -52,14 +49,12 @@ export const GeneralInformationForm = forwardRef(
     });
 
     const editDataPosition = async () => {
-      if (editItemData) {
-        await editItemData({
-          key: "k_Grupo",
-          nameDB: "linix-positions",
-          identifier: id!,
-          editData: formik.values,
-        });
-      }
+      await updateItemData({
+        key: "k_Grupo",
+        nameDB: "linix-positions",
+        identifier: id!,
+        editData: formik.values,
+      });
     };
 
     const formik = useFormik({
