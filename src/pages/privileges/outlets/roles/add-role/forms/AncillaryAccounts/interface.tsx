@@ -3,13 +3,14 @@ import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
 import { FormButtons } from "@components/forms/submit/FormButtons";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface AncillaryAccountsFormsUIProps {
   formik: FormikValues;
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: AncillaryAccountsFormsUIProps) => boolean;
-  handleSubmit: (name: string, value: string) => void;
+  handleSubmit: () => void;
   isLoading?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -27,10 +28,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
   } = props;
 
   const isMobile = useMediaQuery("(max-width: 750px)");
-
-  const handleFormReset = () => {
-    formik.resetForm();
-  };
 
   return (
     <form>
@@ -50,6 +47,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           size="compact"
           fullwidth
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
 
         <Textfield
@@ -62,6 +60,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           size="compact"
           fullwidth
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
 
         <Textfield
@@ -74,6 +73,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           size="compact"
           fullwidth
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
       </Grid>
 
@@ -82,14 +82,15 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           <FormButtons
             disabledButtons={!hasChanges(formik.values)}
             handleSubmit={handleSubmit}
-            handleReset={handleFormReset}
+            handleReset={formik.resetForm}
             loading={isLoading}
+            children={""}
           />
           {message.visible && (
             <RenderMessage
               message={message}
               handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={handleFormReset}
+              onMessageClosed={formik.resetForm}
             />
           )}
         </>
