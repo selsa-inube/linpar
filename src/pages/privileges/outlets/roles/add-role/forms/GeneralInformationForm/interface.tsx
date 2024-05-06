@@ -44,9 +44,8 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const isMobile = useMediaQuery("(max-width: 750px)");
 
   const stateValue = (fieldName: string) => {
-    if (!formik.touched[fieldName]) return "pending";
     if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
-    return "valid";
+    return null;
   };
 
   return (
@@ -77,9 +76,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             message={
               stateValue("roleName") === "invalid"
                 ? formik.errors.roleName
-                : "Nombre Rol: válido"
+                : null
             }
-            status={stateValue("roleName")}
+            status={stateValue("roleName") === "invalid" ? "invalid" : null}
           />
 
           <SearchUserCard
@@ -126,9 +125,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           message={
             stateValue("description") === "invalid"
               ? formik.errors.description
-              : "Descripción: válido"
+              : null
           }
-          status={stateValue("description")}
+          status={stateValue("description") === "invalid" ? "invalid" : null}
         />
       </Grid>
       {withSubmitButtons && (
