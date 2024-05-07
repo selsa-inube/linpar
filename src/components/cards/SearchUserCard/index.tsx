@@ -27,6 +27,8 @@ interface SearchUserCardProps {
   nameLabel?: string;
   selectedId?: string;
   required?: boolean;
+  message?: string;
+  status?: string;
 }
 
 function SearchUserCard(props: SearchUserCardProps) {
@@ -50,10 +52,14 @@ function SearchUserCard(props: SearchUserCardProps) {
     nameLabel = "username",
     selectedId = "",
     onReset,
+    message,
+    status,
   } = props;
   const [showModal, setShowModal] = useState(false);
 
   const [selectedUsername, setSelectedUsername] = useState(selectedId);
+
+  const [validateCardRemoved, setValidateCardRemoved] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
@@ -77,8 +83,15 @@ function SearchUserCard(props: SearchUserCardProps) {
     }
   }, [onReset]);
 
+  useEffect(() => {
+    if (validateCardRemoved) {
+      setSelectedUsername("");
+    }
+  }, [validateCardRemoved]);
+
   const handleToggleModal = () => {
     setShowModal(!showModal);
+    setValidateCardRemoved(false);
   };
 
   const handleUserSelect = (data: { [key: string]: string | number }) => {
@@ -129,6 +142,9 @@ function SearchUserCard(props: SearchUserCardProps) {
           onClick={handleUserSelect}
           idLabel={idLabel}
           nameLabel={nameLabel}
+          setValidateCardRemoved={setValidateCardRemoved}
+          message={message}
+          status={status}
         />
       )}
     </>

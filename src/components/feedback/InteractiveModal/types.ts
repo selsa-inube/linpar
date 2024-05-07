@@ -33,6 +33,9 @@ interface InteractiveModalProps {
   onClick?: any;
   idLabel?: string;
   nameLabel?: string;
+  setValidateCardRemoved?: React.Dispatch<React.SetStateAction<boolean>>;
+  message?: string;
+  status?: string;
 }
 
 export type { Field, Action, InteractiveModalProps, ModalTypes };

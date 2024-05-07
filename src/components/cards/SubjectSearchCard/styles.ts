@@ -6,6 +6,12 @@ interface IStyledSubjectSearchCard {
   smallScreen: boolean;
 }
 
+const StyledSubjectSearchCardText = styled.div`
+  justify-content: start;
+  gap: 8px;
+  padding: 8px 16px;
+`;
+
 const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
   width: 100%;
   height: ${({ smallScreen }) => (smallScreen ? "56px" : "auto")};
@@ -30,4 +36,4 @@ const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
     }`};
 `;
 
-export { StyledSubjectSearchCard };
+export { StyledSubjectSearchCard, StyledSubjectSearchCardText };
