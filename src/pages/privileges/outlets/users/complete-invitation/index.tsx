@@ -1,16 +1,17 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { aidBudgetsFormInvitation } from "@mocks/apps/privileges/invitations/aidBudgetsForm.mock";
 import { branchesFormInvitation } from "@mocks/apps/privileges/invitations/branchesForm.mock";
 import { eventsFormInvitation } from "@mocks/apps/privileges/invitations/eventsForm.mock";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { payrollsFormInvitation } from "@mocks/apps/privileges/invitations/payrollsForm.mock";
+import { getAll } from "@mocks/utils/dataMock.service";
 import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
 import { IVerificationData } from "@pages/privileges/outlets/users/complete-invitation/interface";
 import { EMessageType } from "@src/types/messages.types";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { InitializerForm } from "@src/pages/privileges/outlets/forms/InitializerForm";
 import { GeneralInformationForm } from "@src/pages/privileges/outlets/forms/GeneralInfoForm";
-import { getAll } from "@src/mocks/utils/dataMock.service";
 
 import {
   IAssignmentFormEntry,
@@ -22,6 +23,10 @@ import { CompleteInvitationUI } from "./interface";
 
 function CompleteInvitation() {
   const { invitation_id } = useParams<{ invitation_id: string }>();
+
+  const [positionsOptions, setPositionsOptions] = useState<
+    Record<string, unknown>[]
+  >([]);
 
   const [currentStep, setCurrentStep] = useState<number>(
     stepsRegisterUserConfig.generalInformation.id
@@ -37,6 +42,18 @@ function CompleteInvitation() {
     aidBudgetUnits: { entries: aidBudgetsFormInvitation },
     payrolls: { entries: payrollsFormInvitation },
   });
+
+  useEffect(() => {
+    getAll("linix-positions")
+      .then((data) => {
+        if (data !== null) {
+          setPositionsOptions(data as Record<string, unknown>[]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching web-options:", error.message);
+      });
+  }, []);
 
   function getInvitationInformation() {
     return invitationEntriesDataMock.find(
@@ -153,22 +170,6 @@ function CompleteInvitation() {
       ),
     },
   };
-
-  const [positionsOptions, setPositionsOptions] = useState<
-    Record<string, unknown>[]
-  >([]);
-
-  useEffect(() => {
-    getAll("linix-positions")
-      .then((data) => {
-        if (data !== null) {
-          setPositionsOptions(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
-  }, []);
 
   return (
     <CompleteInvitationUI
