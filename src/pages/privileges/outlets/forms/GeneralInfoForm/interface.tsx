@@ -1,23 +1,22 @@
 import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
+
 import {
   Stack,
   Text,
   Textfield,
   SectionMessage,
   Icon,
-  Select,
   Grid,
   useMediaQuery,
 } from "@inube/design-system";
-
 import { FormButtons } from "@components/forms/submit/FormButtons";
-import { options } from "@mocks/apps/privileges/users/users.mock";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IGeneralInformationEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
+import { SearchUserCard } from "@components/cards/SearchUserCard";
 
 import { generalInfoMessages } from "./config/messages.config";
 import { StyledMessageContainer, StyledSelectContainer } from "./styles";
@@ -31,9 +30,8 @@ interface GeneralInformationFormUIProps {
   hasChanges: (valueCompare: IGeneralInformationEntry) => boolean;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  handleChangeForm: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
+  handleChangeForm: (name: string, value: string) => void;
+  positionsOptions: Record<string, unknown>[];
   readOnly?: boolean;
 }
 
@@ -82,14 +80,15 @@ function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
   formInvalid: boolean,
-  handleChangeForm: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void,
+  handleChangeForm: (name: string, value: string) => void,
+  positionsOptions: Record<string, unknown>[],
   readOnly?: boolean
 ) {
   const mediaQuerie = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuerie);
-
+  const searchData = {
+    "Digite el código o nombre de la aplicación:": "",
+  };
   return (
     <Grid
       templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
@@ -143,7 +142,9 @@ function RenderFormFields(
         size="compact"
         fullwidth
         state={stateValue(formik, "email")}
-        onChange={handleChangeForm}
+        onChange={(
+          event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+        ) => handleChangeForm(event.target.name, event.target.value)}
         onBlur={formik.handleBlur}
       />
 
@@ -166,26 +167,34 @@ function RenderFormFields(
         size="compact"
         fullwidth
         state={stateValue(formik, "phone")}
-        onChange={handleChangeForm}
+        onChange={(
+          event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+        ) => handleChangeForm(event.target.name, event.target.value)}
         onBlur={formik.handleBlur}
       />
 
       <Stack direction="column" gap="8px">
         <StyledSelectContainer>
-          <Select
-            name="position"
+          <SearchUserCard
             id="position"
             label="Cargo"
-            size="compact"
-            required
             placeholder="Seleccione una opción"
-            value={formik.values.position}
-            onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              formik.setFieldValue("position", value.target.outerText)
+            name="position"
+            title="Búsqueda"
+            infoTitle="Opción de Cargo"
+            idModal="searchField"
+            nameModal="searchField"
+            labelModal="Digite la opción a buscar."
+            placeholderModal="Digite el código o nombre del cargo."
+            userData={positionsOptions}
+            searchFieldData={searchData}
+            onReset={() => {}}
+            idLabel="k_Grupo"
+            nameLabel="n_Grupo"
+            onUserSelect={(value: Record<string, unknown>) =>
+              handleChangeForm("k_Funcio", value.k_Grupo as string)
             }
-            options={options}
-            fullwidth
-            disabled={readOnly || loading}
+            selectedId={formik.values.k_Funcio}
           />
         </StyledSelectContainer>
 
@@ -212,6 +221,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
     formik,
     loading,
+    positionsOptions,
     withSubmitButtons,
     showMessage,
     handleCloseSectionMessage,
@@ -231,7 +241,13 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
-          {RenderFormFields(formik, loading, formInvalid, handleChangeForm)}
+          {RenderFormFields(
+            formik,
+            loading,
+            formInvalid,
+            handleChangeForm,
+            positionsOptions
+          )}
         </FormButtons>
         {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
       </>
@@ -245,6 +261,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         loading,
         formInvalid,
         handleChangeForm,
+        positionsOptions,
         readOnly
       )}
     </>
