@@ -1,7 +1,7 @@
 import { FormikProps } from "formik";
 
-import { IAncillaryAccountsForm } from "./add-role/forms/AncillaryAccounts";
-import { IGeneralInformationForm } from "./add-role/forms/GeneralInformationForm";
+import { IAncillaryAccountsForm } from "./components/AncillaryAccounts";
+import { IGeneralInformationForm } from "./components/GeneralInformationForm";
 
 interface ICasosDeUsoPorRol {
   k_Rol: number;

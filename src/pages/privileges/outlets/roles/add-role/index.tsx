@@ -7,8 +7,8 @@ import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCas
 import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
 import { addRoleStepsRules } from "./utils";
 import { stepsAddRol } from "./config/addRol.config";
-import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
-import { IAncillaryAccountsForm } from "./forms/AncillaryAccounts";
+import { IGeneralInformationForm } from "../components/GeneralInformationForm";
+import { IAncillaryAccountsForm } from "../components/AncillaryAccounts";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
 
