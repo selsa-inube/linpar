@@ -43,6 +43,7 @@ interface EditUserUIProps {
   handleCloseModal: () => void;
   handleDataChange: (hasChanges: boolean) => void;
   handleContinueTab: () => void;
+  positionsOptions: Record<string, unknown>[];
 }
 
 function continueModal(
@@ -67,6 +68,7 @@ function continueModal(
 function EditUserUI(props: EditUserUIProps) {
   const {
     selectedTab,
+    positionsOptions,
     handleTabChange,
     editData,
     handleSubmit,
@@ -86,8 +88,8 @@ function EditUserUI(props: EditUserUIProps) {
   const userCardData = currentInformation && {
     username: currentInformation.username,
     userID: currentInformation.userID,
-    code: currentInformation.code || "",
-    position: currentInformation.position || "",
+    code: currentInformation.code,
+    position: currentInformation.position,
   };
 
   return (
@@ -127,6 +129,7 @@ function EditUserUI(props: EditUserUIProps) {
                 handleSubmit={handleSubmit}
                 withSubmitButtons
                 onHasChanges={handleDataChange}
+                positionsOptions={positionsOptions}
               />
             )}
             {selectedTab === editUserTabsConfig.branches.id && (

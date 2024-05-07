@@ -69,10 +69,12 @@ interface CompleteInvitationUIProps {
   handleToggleModal: () => void;
   showModal: boolean;
   verificationData: Record<string, IVerificationData>;
+  positionsOptions: Record<string, unknown>[];
 }
 
 function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const {
+    positionsOptions,
     invitationData,
     handleSubmit,
     handleNextStep,
@@ -143,6 +145,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               <GeneralInformationForm
                 currentInformation={currentInformation}
                 handleSubmit={handleSubmit}
+                positionsOptions={positionsOptions}
               />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
