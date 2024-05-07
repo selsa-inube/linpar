@@ -1,0 +1,531 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The purpose of this application is to provide the process services that support the actions to consult information about the entities of Irole User Signup Invitation.",
+    "title": "Irole User Signup Invitation Query Process Service API",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:9054",
+  "basePath": "/irole-user-signup-invitation-query-process-service/api",
+  "paths": {
+    "/customers-catalog-users-signup-invitations/{AC:SearchAllCustomersCatalogUsersSignupInvitations}": {
+      "get": {
+        "description": "Consult all Customers Catalog Users Signup Invitations records",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CustomerCatalogUserSignupInvitation"],
+        "summary": "Consult all Customers Catalog Users Signup Invitations",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllCustomersCatalogUsersSignupInvitations",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dtoresponse.SearchAllCustomersCatalogUsersSignupInvitationsResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/customers-catalog-users-signup-invitations/{customerId}/{AC:SearchByIdCustomerCatalogUserSignupInvitation}": {
+      "get": {
+        "description": "Consult a Customer Catalog User Signup Invitation record according to the Customer ID",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CustomerCatalogUserSignupInvitation"],
+        "summary": "Consult a Customer Catalog User Signup Invitation according to the ID",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdCustomerCatalogUserSignupInvitation",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "CustomerCatalogUserSignupInvitation ID",
+            "name": "customerId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.SearchByIdCustomerCatalogUserSignupInvitationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{AC:SearchAllUsersSignupInvitations}": {
+      "get": {
+        "description": "Consult all Users Signup Invitations records, also showing part of the token information",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Consult all Users Signup Invitations records",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchAllUsersSignupInvitations",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 1,
+            "description": "page",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 50,
+            "description": "Per Page",
+            "name": "per_page",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dtoresponse.SearchAllUsersSignupInvitationsResponse"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "type": "integer",
+                "description": "Total records found in the query"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{AC:SearchByTokenUserSignupInvitation}": {
+      "get": {
+        "description": "Consult the information of a User Signup Invitation according to the token received",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Consult the information of a User Signup Invitation according to the token received",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByTokenUserSignupInvitation",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Token",
+            "name": "X-Token-Process",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "UserSignupInvitation ID",
+            "name": "invitationId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.SearchByTokenUserSignupInvitationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{invitationId}/{AC:SearchByIdUserSignupInvitation}": {
+      "get": {
+        "description": "Consult a User Signup Invitation record according to the Invitation ID, also showing part of the token information",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Consult a User Signup Invitation record according to the Invitation ID",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "SearchByIdUserSignupInvitation",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "UserSignupInvitation ID",
+            "name": "invitationId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.SearchByIdUserSignupInvitationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "dtoresponse.SearchAllCustomersCatalogUsersSignupInvitationsResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Customer full name",
+          "type": "string"
+        },
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.SearchAllUsersSignupInvitationsResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "dateEnd": {
+          "description": "Invitation expiration date",
+          "type": "string"
+        },
+        "dateStart": {
+          "description": "Invitation send date",
+          "type": "string"
+        },
+        "email": {
+          "description": "Contact email",
+          "type": "string"
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string"
+        },
+        "requestingUser": {
+          "description": "Requesting user",
+          "type": "string"
+        },
+        "status": {
+          "description": "Request status",
+          "type": "string"
+        },
+        "userAccountId": {
+          "description": "User code",
+          "type": "string"
+        },
+        "userIdentification": {
+          "description": "User ID",
+          "type": "string"
+        },
+        "userName": {
+          "description": "User full name",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.SearchByIdCustomerCatalogUserSignupInvitationResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Customer full name",
+          "type": "string"
+        },
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.SearchByIdUserSignupInvitationResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "dateEnd": {
+          "description": "Invitation expiration date",
+          "type": "string"
+        },
+        "dateStart": {
+          "description": "Invitation send date",
+          "type": "string"
+        },
+        "email": {
+          "description": "Contact email",
+          "type": "string"
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string"
+        },
+        "requestingUser": {
+          "description": "Requesting user",
+          "type": "string"
+        },
+        "status": {
+          "description": "Request status",
+          "type": "string"
+        },
+        "userAccountId": {
+          "description": "User code",
+          "type": "string"
+        },
+        "userIdentification": {
+          "description": "User ID",
+          "type": "string"
+        },
+        "userName": {
+          "description": "User full name",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.SearchByTokenUserSignupInvitationResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "dateEnd": {
+          "description": "Invitation expiration date",
+          "type": "string"
+        },
+        "dateStart": {
+          "description": "Invitation send date",
+          "type": "string"
+        },
+        "email": {
+          "description": "Contact email",
+          "type": "string"
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string"
+        },
+        "requestingUser": {
+          "description": "Requesting user",
+          "type": "string"
+        },
+        "status": {
+          "description": "Request status",
+          "type": "string"
+        },
+        "userAccountId": {
+          "description": "User code",
+          "type": "string"
+        },
+        "userIdentification": {
+          "description": "User ID",
+          "type": "string"
+        },
+        "userName": {
+          "description": "User full name",
+          "type": "string"
+        }
+      }
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

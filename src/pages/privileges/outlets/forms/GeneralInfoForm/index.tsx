@@ -49,6 +49,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     email: currentInformation.email,
     phone: currentInformation.phone || "",
     position: currentInformation.position || "",
+    active: currentInformation.active,
   };
 
   const formik = useFormik({

@@ -1,43 +1,36 @@
 import { useState } from "react";
+import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
+
 import { Icon } from "@inube/design-system";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
-import { UseCase } from "@pages/privileges/outlets/linixUseCase/types";
 
 interface IDetailsModalProps {
-  icon: JSX.Element;
-  useCase: UseCase;
+  data?: { [key: string]: string | number };
 }
 
 export function DetailsModal(props: IDetailsModalProps) {
-  const { icon, useCase } = props;
+  const { data } = props;
   const [showModal, setShowModal] = useState(false);
-  const handleClick = () => {
-    setShowModal(false);
+
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
   };
   return (
     <>
       <Icon
-        icon={icon}
+        icon={<MdOutlineAssignmentTurnedIn />}
         size="16px"
         appearance="dark"
-        onClick={() => setShowModal(true)}
+        onClick={handleToggleModal}
         cursorHover
       />
-      {showModal && (
+      {showModal && data && (
         <InteractiveModal
           portalId="portal"
-          title="Detalles caso de uso"
-          infoData={{
-            Codigo: useCase?.k_Usecase || "",
-            Nombre: useCase?.n_Usecase || "",
-            Tipo: useCase?.i_Tipusec || "",
-            Descripicion: useCase?.n_Descrip || "",
-            "Opción botón cliente servidor":
-              useCase?.k_Nforma + "-" + useCase?.k_Ncampo || "",
-          }}
+          title="Detalles de casos uso linix"
+          infoData={data}
           infoTitle="Información"
-          closeModal={handleClick}
-          selectedItem={useCase.id}
+          closeModal={handleToggleModal}
         />
       )}
     </>

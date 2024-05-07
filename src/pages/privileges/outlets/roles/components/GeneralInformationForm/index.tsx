@@ -1,14 +1,22 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { FormikProps, useFormik } from "formik";
+import * as Yup from "yup";
 
 import { getAll } from "@src/mocks/utils/dataMock.service";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
+import { validationMessages } from "@src/validations/validationMessages";
 
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
+
+const validationSchema = Yup.object({
+  roleName: Yup.string().required(validationMessages.required),
+  description: Yup.string().required(validationMessages.required),
+  aplication: Yup.string().required(validationMessages.required),
+});
 
 export interface IGeneralInformationForm {
   roleName: string;
@@ -22,6 +30,8 @@ interface IGeneralInformationFormProps {
   onSubmit?: (values: IGeneralInformationForm) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  handleAddRoleFormValid: (newValue: boolean) => void;
+  currentStep: number;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -29,8 +39,14 @@ export const GeneralInformationForm = forwardRef(
     props: IGeneralInformationFormProps,
     ref: React.Ref<FormikProps<IGeneralInformationForm>>
   ) {
-    const { initialValues, onSubmit, withSubmitButtons = false } = props;
+    const {
+      initialValues,
+      onSubmit,
+      withSubmitButtons = false,
+      handleAddRoleFormValid,
+    } = props;
     const [isLoading, setIsLoading] = useState(false);
+
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
     });
@@ -39,8 +55,11 @@ export const GeneralInformationForm = forwardRef(
 
     useEffect(() => {
       setIsLoading(true);
+      setIsLoading(true);
       getAll("linix-use-cases")
         .then((data) => {
+          setLinixRoles(data as Record<string, unknown>[]);
+          setIsLoading(false);
           setLinixRoles(data as Record<string, unknown>[]);
           setIsLoading(false);
         })
@@ -51,6 +70,8 @@ export const GeneralInformationForm = forwardRef(
 
     const formik = useFormik({
       initialValues,
+      validationSchema,
+      validateOnChange: true,
       validateOnBlur: true,
       onSubmit: onSubmit || (() => true),
     });
@@ -76,6 +97,15 @@ export const GeneralInformationForm = forwardRef(
         visible: false,
       });
     };
+
+    useEffect(() => {
+      if (formik.values) {
+        formik.validateForm();
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formik.values]);
+
+    if (handleAddRoleFormValid) handleAddRoleFormValid(formik.isValid);
 
     return (
       <>
