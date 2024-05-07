@@ -22,8 +22,8 @@ import {
   titlesOptions,
 } from "./config/dataPositions";
 import { StyledContainer } from "./styles";
-import { IPosition } from "./types";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
+import { IPosition } from "./add-position/types";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;

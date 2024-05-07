@@ -86,12 +86,12 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
       </Accordion>
 
       <Accordion
-        key={"Selección cliente servidor"}
-        title={"Selección cliente servidor"}
+        key={"Opción menú cliente-servidor linix"}
+        title={"Opción menú cliente-servidor linix"}
         defaultOpen={!isMobile}
       >
         <BoxAttribute
-          attribute="Selección cliente servidor:"
+          attribute="Opción menú cliente-servidor linix"
           value={clientServerButton.csButtonOption}
         />
         <Stack justifyContent="flex-end" width="100%">
@@ -125,7 +125,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
                 <BoxAttribute
                   key={index}
                   attribute={`Formato descargable:`}
-                  value={option.value}
+                  value={`${option.id} - ${option.value}`}
                 />
               ))}
           </>
@@ -163,7 +163,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
                   <BoxAttribute
                     key={index}
                     attribute={`Reportes web:`}
-                    value={option.value}
+                    value={`${option.id} - ${option.value}`}
                   />
                 ))}
             </>
@@ -184,7 +184,7 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
         <>
           <Accordion
             key={"Opciones web"}
-            title={"Opciones web"}
+            title={"Opción menú web linix"}
             defaultOpen={!isMobile}
           >
             <Grid
@@ -197,8 +197,8 @@ export const VerificationForm = (props: IControllerAccordionProps) => {
                 {selectedWebOption.map((option) => (
                   <BoxAttribute
                     key={option.id}
-                    attribute={`Opción web:`}
-                    value={option.value}
+                    attribute={`Opción menú web linix:`}
+                    value={`${option.id} - ${option.value}`}
                   />
                 ))}
               </>

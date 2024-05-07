@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
-import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
-import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
-import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { DetailsModal } from "../components/DetailsModal";
 import { deleteRolModal } from "../delete-role/config/deleteRol.config";
 import { DeleteRole } from "../delete-role";
-import { activateRoleModal } from "./activateRole.config";
+import { activateRoleModal } from "../activate-role/config/activateRole.config";
+import { ActivateRole } from "../activate-role";
+import { IRol } from "../types";
 
 export const titlesOptions = [
   {
@@ -40,74 +40,76 @@ export const RolesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-const dataDetailsRol = (k_Rol: string) => {
-  const data = [mockRoles.find((role) => role.k_Rol === k_Rol)!].map(
-    (roleselectd) => ({
-      Código: roleselectd?.k_Rol,
-      Nombre: roleselectd?.n_Rol,
-      Aplicación: roleselectd?.n_Uso,
-      Activo: roleselectd?.i_Activo === "Y" ? "active" : "inactive",
-    })
-  );
+export const actionsConfigPosition = (linixRoles: IRol[]) => {
+  const dataDetailsRole = (k_Rol: string) => {
+    const data = [linixRoles.find((role) => role.k_Rol === k_Rol)!].map(
+      (roleSelected) => ({
+        Código: roleSelected?.k_Rol,
+        Nombre: roleSelected?.n_Rol,
+        Aplicación: roleSelected?.n_Uso,
+        Activo: roleSelected?.i_Activo === "Y" ? "active" : "inactive",
+      })
+    );
 
-  return [...data].shift();
-};
+    return [...data].shift();
+  };
 
-const selectedData = (k_Rol: string) =>
-  mockRoles.find((role) => role.k_Rol === k_Rol);
+  const selectedData = (k_Rol: string) =>
+    linixRoles.find((role) => role.k_Rol === k_Rol);
 
-const handleActive = () => "Esto es un servicio de Backend";
+  const actionsConfig = [
+    {
+      id: "i_activo",
+      actionName: "Activo",
+      content: ({ k_Rol }: { k_Rol: string }) => {
+        const role = selectedData(k_Rol);
+        const adjustedRole = {
+          id: role?.k_Rol || "",
+          active: role?.i_Activo === "Y" || false,
+        };
 
-export const actionsConfig = [
-  {
-    id: "i_activo",
-    actionName: "Activo",
-    content: ({ k_Rol }: { k_Rol: string }) => {
-      const role = selectedData(k_Rol);
-      const adjustedRole = {
-        id: role?.k_Rol || "",
-        active: role?.i_Activo === "Y" || false,
-      };
-
-      return (
-        <ActivateFormOptions
-          handleActivate={() => handleActive()}
-          data={adjustedRole}
-          showComplete={false}
-          activateModalConfig={activateRoleModal}
-        />
-      );
+        return (
+          <ActivateRole
+            handleActivate={() => {}}
+            data={adjustedRole}
+            showComplete={false}
+            activateModalConfig={activateRoleModal}
+          />
+        );
+      },
+      type: "secondary",
     },
-    type: "secondary",
-  },
-  {
-    id: "Details",
-    actionName: "Detalles",
-    content: ({ k_Rol }: { k_Rol: string }) => (
-      <DetailsModal data={dataDetailsRol(k_Rol)} />
-    ),
-    type: "secondary",
-  },
-  {
-    id: "Edit",
-    actionName: "Editar",
-    content: ({ k_Rol }: { k_Rol: string }) => (
-      <Link to={`edit/${k_Rol}`} onClick={() => selectedData(k_Rol)}>
-        <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
-      </Link>
-    ),
-    type: "primary",
-  },
-  {
-    id: "Delete",
-    actionName: "Eliminar",
-    content: ({ k_Rol }: { k_Rol: string }) => (
-      <DeleteRole
-        rol={k_Rol}
-        deleteRolModal={deleteRolModal}
-        handleDeleteRol={deleteItemData}
-      />
-    ),
-    type: "remove",
-  },
-];
+    {
+      id: "Details",
+      actionName: "Detalles",
+      content: ({ k_Rol }: { k_Rol: string }) => (
+        <DetailsModal data={dataDetailsRole(k_Rol)} />
+      ),
+      type: "secondary",
+    },
+    {
+      id: "Edit",
+      actionName: "Editar",
+      content: ({ k_Rol }: { k_Rol: string }) => (
+        <Link to={`edit/${k_Rol}`} onClick={() => selectedData(k_Rol)}>
+          <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
+        </Link>
+      ),
+      type: "primary",
+    },
+    {
+      id: "Delete",
+      actionName: "Eliminar",
+      content: ({ k_Rol }: { k_Rol: string }) => (
+        <DeleteRole
+          rol={k_Rol}
+          deleteRolModal={deleteRolModal}
+          handleDeleteRol={deleteItemData}
+        />
+      ),
+      type: "remove",
+    },
+  ];
+
+  return actionsConfig;
+};

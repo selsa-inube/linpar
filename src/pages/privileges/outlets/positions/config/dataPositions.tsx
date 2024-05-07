@@ -4,12 +4,12 @@ import { Icon } from "@inube/design-system";
 
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
-import { activatePositionModal } from "./activatePosition.config";
-import { ActivateFormOptions } from "../../forms/ActivateFormOptions";
+import { activatePositionModal } from "../active-position/config/activatePosition.config";
 import { DetailsModal } from "../components/DetailsModal";
-import { IPosition } from "../types";
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
+import { ActivatePosition } from "../active-position";
+import { IPosition } from "../add-position/types";
 
 export const titlesOptions = [
   {
@@ -38,7 +38,6 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     ].map((positionSelected) => ({
       Código: positionSelected?.k_Grupo,
       Nombre: positionSelected?.n_Grupo,
-      Descripción: positionSelected?.n_Uso,
       Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
     }));
 
@@ -53,13 +52,16 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
       id: "i_activo",
       actionName: "Activo",
       content: ({ k_Grupo }: { k_Grupo: string }) => {
+        const position = selectedData(k_Grupo);
+        const adjustedPosition = {
+          id: position?.k_Grupo || "",
+          active: position?.i_Activo === "Y" || false,
+          name: position?.n_Grupo || "",
+        };
         return (
-          <ActivateFormOptions
+          <ActivatePosition
             handleActivate={() => {}}
-            data={{
-              id: selectedData(k_Grupo)?.k_Grupo || "",
-              active: selectedData(k_Grupo)?.i_Activo === "Y" || false,
-            }}
+            data={adjustedPosition}
             showComplete={false}
             activateModalConfig={activatePositionModal}
           />
@@ -78,8 +80,8 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     {
       id: "Edit",
       actionName: "Editar",
-      content: () => (
-        <Link to={`edit`}>
+      content: ({ k_Grupo }: { k_Grupo: string }) => (
+        <Link to={`edit/${k_Grupo}`} onClick={() => selectedData(k_Grupo)}>
           <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
         </Link>
       ),

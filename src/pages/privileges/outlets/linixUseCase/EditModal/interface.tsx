@@ -1,4 +1,4 @@
-import { MdPersonOutline } from "react-icons/md";
+import { TfiMenuAlt } from "react-icons/tfi";
 import {
   Stack,
   Tabs,
@@ -25,7 +25,7 @@ import {
   IGeneralInformation,
 } from "../adding-linix-use-case/types";
 
-import { editItemData } from "@mocks/utils/dataMock.service";
+import { updateItemData } from "@mocks/utils/dataMock.service";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 
@@ -113,8 +113,8 @@ function EditUserUI(props: EditUserUIProps) {
             {userCardData && (
               <SubjectCard
                 subjectData={userCardData}
-                title="Informacion del usuario"
-                icon={<MdPersonOutline size={24} />}
+                title="Informacion del caso de uso"
+                icon={<TfiMenuAlt size={24} />}
                 labels={editLinixUseCaseSubjectCardLabels}
               />
             )}
@@ -135,7 +135,7 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
-              editItemData={editItemData}
+              updateItemData={updateItemData}
               id={id}
             />
           )}

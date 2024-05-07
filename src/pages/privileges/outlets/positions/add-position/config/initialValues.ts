@@ -1,8 +1,8 @@
-import { IGeneralInformationEntry } from "../forms/GeneralInformationForm";
+import { IGeneralInformationEntry } from "../../components/GeneralInformationForm";
 
 const generalInformation: IGeneralInformationEntry = {
-  positionName: "",
-  description: "",
+  n_Grupo: "",
+  n_Uso: "",
 };
 
 export const initalValuesPositions = {

@@ -42,10 +42,10 @@ export const saveLinixPositions = (addLinixPositions: IFormAddPosition) => {
 
   const newLinixPosition: IPosition = {
     k_Grupo: "",
-    n_Grupo: generalInformation.positionName,
+    n_Grupo: generalInformation.n_Grupo,
     i_Activo: "Y",
-    n_Uso: generalInformation.description,
-    roles: normalizeRoles,
+    n_Uso: generalInformation.n_Uso,
+    rolesPorCargo: normalizeRoles,
   };
   localforage.getItem("linix-positions").then((data) => {
     if (data) {

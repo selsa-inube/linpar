@@ -11,7 +11,6 @@ import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@src/components/feedback/DecisionModal";
 import { RenderMessage } from "@src/components/feedback/RenderMessage";
 
-import { IStep } from "../types";
 import {
   createPositionConfig,
   finishAssistedModalConfig,
@@ -21,12 +20,13 @@ import {
   IFormAddPosition,
   IFormAddPositionRef,
   IOptionInitialiceEntry,
+  IStep,
   titleButtonTextAssited,
 } from "./types";
-import { GeneralInformationForm } from "./forms/GeneralInformationForm";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { StyledContainerAssisted } from "./styles";
 import { InitializerForm } from "../../forms/InitializerForm";
-import { VerificationAddPosition } from "./forms/VerificationForm";
+import { VerificationAddPosition } from "../components/VerificationForm";
 import { IMessageState } from "../../users/types/forms.types";
 
 const renderStepContent = (
@@ -79,6 +79,7 @@ interface AddPositionUIProps {
   handleToggleModal: () => void;
   handleFinishForm: () => void;
   handleCloseSectionMessage: () => void;
+  validateActiveRoles: () => boolean;
 }
 
 export function AddPositionUI(props: AddPositionUIProps) {
@@ -99,12 +100,14 @@ export function AddPositionUI(props: AddPositionUIProps) {
     handleToggleModal,
     handleFinishForm,
     handleCloseSectionMessage,
+    validateActiveRoles,
   } = props;
 
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+  const disabled = !isCurrentFormValid || validateActiveRoles();
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
@@ -124,7 +127,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Stack>
         </Stack>
         <>
-          <StyledContainerAssisted cursorDisabled={!isCurrentFormValid}>
+          <StyledContainerAssisted cursorDisabled={disabled}>
             <Assisted
               steps={steps}
               currentStepId={currentStep}
@@ -157,7 +160,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
           <Button
             onClick={handleNextStep}
             spacing="compact"
-            disabled={!isCurrentFormValid}
+            disabled={disabled}
           >
             {currentStep === steps.length ? "Enviar" : "Siguiente"}
           </Button>

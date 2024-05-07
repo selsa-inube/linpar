@@ -20,6 +20,16 @@ const validationSchema = Yup.object({
   n_Usecase: Yup.string().required(validationMessages.required),
   i_Tipusec: Yup.string().required(validationMessages.required),
   n_Descrip: Yup.string().required(validationMessages.required),
+  k_Funcio: Yup.string(),
+  k_Opcion: Yup.string(),
+}).test(function (value) {
+  const { k_Funcio, k_Opcion } = value;
+  if (!k_Funcio && !k_Opcion) {
+    return this.createError({
+      path: "k_Funcio",
+    });
+  }
+  return true;
 });
 
 interface GeneralInformationFormProps {
@@ -32,7 +42,7 @@ interface GeneralInformationFormProps {
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
-  editItemData?: (props: functionById) => Promise<unknown>;
+  updateItemData?: (props: functionById) => Promise<unknown>;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -54,7 +64,7 @@ export const GeneralInformationForm = forwardRef(
       handleSubmit,
       onFormValid,
       readOnly,
-      editItemData,
+      updateItemData,
       csOptions,
       webOptions,
     } = props;
@@ -64,8 +74,8 @@ export const GeneralInformationForm = forwardRef(
     });
 
     const handleOnclick = async () => {
-      if (editItemData) {
-        await editItemData({
+      if (updateItemData) {
+        await updateItemData({
           key: "id",
           nameDB: "linix-use-cases",
           identifier: id!,

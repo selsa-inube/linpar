@@ -1,21 +1,21 @@
-import { useState, useEffect } from "react";
-
+import { useEffect, useContext, useState } from "react";
 import { getAll } from "@mocks/utils/dataMock.service";
-
+import { PositionsContext } from "@context/positionsContext";
 import { PositionsUI } from "./interface";
-import { IPosition } from "./types";
+import { IPosition } from "./add-position/types";
 
 export function Positions() {
   const [searchPosition, setSearchPosition] = useState<string>("");
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [linixPositions, setLinixPositions] = useState<IPosition[]>([]);
+
+  const { positions, setPositions } = useContext(PositionsContext);
 
   useEffect(() => {
     getAll("linix-positions")
       .then((data) => {
         if (data !== null) {
-          setLinixPositions(data as IPosition[]);
+          setPositions(data as IPosition[]);
         }
       })
       .catch((error) => {
@@ -24,7 +24,7 @@ export function Positions() {
       .finally(() => {
         setLoading(false);
       });
-  }, [linixPositions]);
+  }, [positions, setPositions]);
 
   const handleSearchPositions = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchPosition(e.target.value);
@@ -44,7 +44,7 @@ export function Positions() {
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       searchPosition={searchPosition}
-      linixPosition={linixPositions}
+      linixPosition={positions}
       loading={loading}
     />
   );
