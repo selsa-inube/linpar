@@ -43,12 +43,9 @@ export const VerificationAddPosition = (props: IControllerAccordionProps) => {
         attributes: [
           createAttribute(
             "Nombre del cargo",
-            data.generalInformation.values.positionName
+            data.generalInformation.values.n_Grupo
           ),
-          createAttribute(
-            "Descripción",
-            data.generalInformation.values.description
-          ),
+          createAttribute("Descripción", data.generalInformation.values.n_Uso),
         ],
       },
       roles: {
