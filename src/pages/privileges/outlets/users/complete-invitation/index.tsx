@@ -9,9 +9,9 @@ import { payrollsFormInvitation } from "@mocks/apps/privileges/invitations/payro
 import { getAll } from "@mocks/utils/dataMock.service";
 import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
 import { IVerificationData } from "@pages/privileges/outlets/users/complete-invitation/interface";
+import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+import { GeneralInformationForm } from "@pages/privileges/outlets/forms/GeneralInfoForm";
 import { EMessageType } from "@src/types/messages.types";
-import { InitializerForm } from "@src/pages/privileges/outlets/forms/InitializerForm";
-import { GeneralInformationForm } from "@src/pages/privileges/outlets/forms/GeneralInfoForm";
 
 import {
   IAssignmentFormEntry,
