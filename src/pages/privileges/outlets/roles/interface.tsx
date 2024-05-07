@@ -16,6 +16,9 @@ import { Menu } from "@components/navigation/Menu";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { RenderMessage } from "@components/feedback/RenderMessage";
+
 import { IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
@@ -26,24 +29,30 @@ import {
 import { StyledContainer } from "./styles";
 
 interface IRolesProps {
-  handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  showMenu: boolean;
   handleCloseMenuInvitation: () => void;
+  handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleToggleMenuInvitation: () => void;
-  searchRole: string;
   linixRoles: IRol[];
   loading: boolean;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  searchRole: string;
+  showMenu: boolean;
+  onDeleteRole?: (k_role?: string) => void;
 }
 
 export function RolesUI(props: IRolesProps) {
   const {
-    handleSearchRole,
-    showMenu,
     handleCloseMenuInvitation,
+    handleSearchRole,
     handleToggleMenuInvitation,
-    searchRole,
     linixRoles,
     loading,
+    message,
+    onCloseSectionMessage,
+    searchRole,
+    showMenu,
+    onDeleteRole,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -119,11 +128,18 @@ export function RolesUI(props: IRolesProps) {
             <Table
               id="tableRoles"
               titles={titlesOptions}
-              actions={actionsConfigPosition(linixRoles)}
+              actions={actionsConfigPosition(linixRoles, onDeleteRole)}
               entries={linixRoles}
               breakpoints={RolesBreakPointsConfig}
               modalTitle="Roles"
               filter={searchRole}
+            />
+          )}
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={onCloseSectionMessage}
+              onMessageClosed={() => {}}
             />
           )}
         </Stack>

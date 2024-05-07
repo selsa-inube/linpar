@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
-import { deleteItemData } from "@mocks/utils/dataMock.service";
-
 import { DetailsModal } from "../components/DetailsModal";
 import { deleteRolModal } from "../delete-role/config/deleteRol.config";
 import { DeleteRole } from "../delete-role";
@@ -40,7 +38,7 @@ export const RolesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-export const actionsConfigPosition = (linixRoles: IRol[]) => {
+export const actionsConfigPosition = (linixRoles: IRol[], deleteCallback) => {
   const dataDetailsRole = (k_Rol: string) => {
     const data = [linixRoles.find((role) => role.k_Rol === k_Rol)!].map(
       (roleSelected) => ({
@@ -104,7 +102,7 @@ export const actionsConfigPosition = (linixRoles: IRol[]) => {
         <DeleteRole
           rol={k_Rol}
           deleteRolModal={deleteRolModal}
-          handleDeleteRol={deleteItemData}
+          handleDeleteRol={deleteCallback}
         />
       ),
       type: "remove",

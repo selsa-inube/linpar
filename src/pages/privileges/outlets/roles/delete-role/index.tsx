@@ -17,21 +17,12 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleOnclick = async () => {
-    await handleDeleteRol({
-      key: "k_Rol",
-      nameDB: "linix-roles",
-      identifier: rol,
-    });
-    setShowModal(false);
-  };
-
   return (
     <DeleteRoleUI
       showModal={showModal}
       setShowModal={setShowModal}
       rol={rol}
-      handleDeleteRol={handleOnclick}
+      handleDeleteRol={handleDeleteRol}
       deleteRolModal={deleteRolModal}
       hover={isHovered}
       setHover={setIsHovered}

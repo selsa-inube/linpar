@@ -51,7 +51,7 @@ export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
           actionText={actionText}
           appearance={appearance}
           closeModal={() => setShowModal(false)}
-          handleClick={handleDeleteRol}
+          handleClick={() => handleDeleteRol(rol)}
         />
       )}
     </>
