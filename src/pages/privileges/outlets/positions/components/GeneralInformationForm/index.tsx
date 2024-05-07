@@ -1,24 +1,32 @@
-import { forwardRef, useImperativeHandle } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { GeneralInformationFormUI } from "./interface";
 import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
-import { validationMessages } from "@src/validations/validationMessages";
+import { validationMessages } from "@validations/validationMessages";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { generalMessage } from "../../add-position/config/messages.config";
+import { IHandleUpdateDataSwitchstep } from "../../add-position/types";
+import { updateItemData } from "@src/mocks/utils/dataMock.service";
 
+const LOADING_TIMEOUT = 1500;
 export interface IGeneralInformationEntry {
-  positionName: string;
-  description: string;
+  n_Grupo: string;
+  n_Uso: string;
 }
 
 const validationSchema = Yup.object({
-  positionName: Yup.string().required(validationMessages.required),
-  description: Yup.string().required(validationMessages.required),
+  n_Grupo: Yup.string().required(validationMessages.required),
+  n_Uso: Yup.string().required(validationMessages.required),
 });
 
 interface IGeneralInformationFormProps {
   initialValues: IGeneralInformationEntry;
-  onFormValid: React.Dispatch<React.SetStateAction<boolean>>;
-  onSubmit?: (values: IGeneralInformationEntry) => void;
+  id?: string;
   loading?: boolean;
+  withSubmitButtons?: boolean;
+  handleSubmit?: (values: IHandleUpdateDataSwitchstep) => void;
+  onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
+  onHasChanges?: (hasChanges: boolean) => void;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -26,32 +34,110 @@ export const GeneralInformationForm = forwardRef(
     props: IGeneralInformationFormProps,
     ref: React.Ref<FormikProps<IGeneralInformationEntry>>
   ) {
-    const { initialValues, onFormValid, onSubmit } = props;
+    const {
+      initialValues,
+      id,
+      withSubmitButtons,
+      handleSubmit,
+      onFormValid,
+      onHasChanges,
+    } = props;
+
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState<IMessageState>({
+      visible: false,
+    });
+
+    const editDataPosition = async () => {
+      await updateItemData({
+        key: "k_Grupo",
+        nameDB: "linix-positions",
+        identifier: id!,
+        editData: formik.values,
+      });
+    };
 
     const formik = useFormik({
       initialValues,
       validationSchema,
       validateOnBlur: false,
-      onSubmit: onSubmit || (() => true),
+      onSubmit: () => {
+        setLoading(true);
+        setTimeout(() => {
+          handleSubmit && handleSubmit(formik.values);
+          editDataPosition();
+          setLoading(false);
+          setMessage({
+            visible: true,
+            data: generalMessage.success,
+          });
+        }, LOADING_TIMEOUT);
+      },
     });
 
     useImperativeHandle(ref, () => formik);
 
-    const customHandleBlur = (
-      event: React.FocusEvent<HTMLElement, Element>
-    ) => {
-      formik.handleBlur(event);
-
-      if (onSubmit) return;
-
-      formik.validateForm().then((errors) => {
-        onFormValid(Object.keys(errors).length === 0);
+    const handleCloseSectionMessage = () => {
+      setMessage({
+        visible: false,
       });
     };
+
+    const handleSubmitForm = () => {
+      formik.validateForm().then((errors) => {
+        if (Object.keys(errors).length > 0) {
+          setMessage({
+            visible: true,
+            data: generalMessage.failed,
+          });
+        }
+
+        formik.handleSubmit();
+      });
+    };
+
+    const disabledButtons = (valueCompare: IGeneralInformationEntry) =>
+      JSON.stringify(formik.initialValues) !== JSON.stringify(valueCompare);
+
+    const handleChangeForm = (
+      event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+      if (onHasChanges) onHasChanges(disabledButtons(formik.values));
+      formik
+        .setFieldValue(event.target.name, event.target.value)
+        .then((errors) => {
+          if (withSubmitButtons) return;
+
+          if (!errors || Object.keys(errors).length === 0) {
+            handleSubmit &&
+              handleSubmit({
+                ...formik.values,
+                [event.target.name]: event.target.value,
+              });
+          }
+        });
+    };
+
+    useEffect(() => {
+      if (formik.values) {
+        formik.validateForm().then((errors) => {
+          onFormValid && onFormValid(Object.keys(errors).length === 0);
+        });
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formik.values, onFormValid]);
+
     return (
       <GeneralInformationFormUI
         formik={formik}
-        customHandleBlur={customHandleBlur}
+        message={message}
+        disabledButtons={disabledButtons}
+        handleCloseSectionMessage={handleCloseSectionMessage}
+        handleChangeForm={handleChangeForm}
+        handleSubmitForm={handleSubmitForm}
+        handleReset={handleCloseSectionMessage}
+        loading={loading}
+        withSubmitButtons={withSubmitButtons}
       />
     );
   }

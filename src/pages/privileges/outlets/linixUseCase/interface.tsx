@@ -1,11 +1,5 @@
-import { useLocation, Link } from "react-router-dom";
-import {
-  MdOutlineMoreHoriz,
-  MdPersonAddAlt,
-  MdSearch,
-  MdModeEdit,
-  MdOutlineAssignmentTurnedIn,
-} from "react-icons/md";
+import { useLocation } from "react-router-dom";
+import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   Breadcrumbs,
   Button,
@@ -21,17 +15,15 @@ import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
-import { deleteItemData } from "@mocks/utils/dataMock.service";
 
-import { DetailsModal } from "./components/DetailsModal";
 import { UseCase } from "./types";
-import { useCasesBreakPointsConfig } from "./config/useCasesTable.config";
-import { titlesOptions } from "./config/useCasesTable.config";
+import {
+  actionsConfigLinixUseCase,
+  useCasesBreakPointsConfig,
+} from "./config/dataUseCases.config";
+import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
-
-import { deleteLinixUseCaseModal } from "./delete-linix-use-case/config/deleteLinixUseCase.config";
-import { DeleteLinixUseCase } from "./delete-linix-use-case";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -53,7 +45,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
-    handleClick,
     linixUseCases,
     loading,
   } = props;
@@ -63,47 +54,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const label = privilegeOptionsConfig.find(
     (item) => item.url === location.pathname
   );
-
-  const actionsConfig = [
-    {
-      id: "Details",
-      actionName: "Detalles",
-      content: ({ k_Usecase }: { k_Usecase: string }) => {
-        const useCase = linixUseCases.find(
-          (useCase) => useCase.k_Usecase === k_Usecase
-        );
-        return useCase ? (
-          <DetailsModal
-            icon={<MdOutlineAssignmentTurnedIn />}
-            useCase={useCase}
-          />
-        ) : null;
-      },
-      type: "secondary",
-    },
-    {
-      id: "Edit",
-      actionName: "Editar",
-      content: ({ id }: { id: string }) => (
-        <Link to={`edit/${id}`} onClick={() => handleClick(id)}>
-          <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
-        </Link>
-      ),
-      type: "primary",
-    },
-    {
-      id: "Delete",
-      actionName: "Eliminar",
-      content: ({ k_Usecase }: { k_Usecase: string }) => (
-        <DeleteLinixUseCase
-          linixUseCase={k_Usecase}
-          deleteLinixUseCaseModal={deleteLinixUseCaseModal}
-          handleDeleteLinixUseCase={deleteItemData}
-        />
-      ),
-      type: "remove",
-    },
-  ];
 
   return (
     <Stack
@@ -170,7 +120,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             <Table
               id="tableLinixUseCases"
               titles={titlesOptions}
-              actions={actionsConfig}
+              actions={actionsConfigLinixUseCase(linixUseCases)}
               entries={linixUseCases}
               breakpoints={useCasesBreakPointsConfig}
               filter={searchUseCase}

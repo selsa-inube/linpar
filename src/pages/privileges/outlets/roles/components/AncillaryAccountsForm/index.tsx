@@ -1,7 +1,6 @@
 import { FormikProps, useFormik } from "formik";
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle, useState, useEffect } from "react";
 import { AncillaryAccountsFormsUI } from "./interface";
-
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
@@ -17,13 +16,19 @@ interface IAncillaryAccountsFormProps {
   initialValues: IAncillaryAccountsForm;
   onSubmit?: (values: IAncillaryAccountsForm) => void;
   withSubmitButtons?: boolean;
+  handleAddRoleFormValid: (newValue: boolean) => void;
 }
 
 export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   props: IAncillaryAccountsFormProps,
   ref: React.Ref<FormikProps<IAncillaryAccountsForm>>
 ) {
-  const { initialValues, onSubmit, withSubmitButtons = false } = props;
+  const {
+    initialValues,
+    onSubmit,
+    withSubmitButtons = false,
+    handleAddRoleFormValid,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
@@ -31,7 +36,8 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
 
   const formik = useFormik({
     initialValues,
-    validateOnBlur: true,
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: onSubmit || (() => true),
   });
 
@@ -56,6 +62,15 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   };
 
   useImperativeHandle(ref, () => formik);
+
+  useEffect(() => {
+    if (formik.values) {
+      formik.validateForm();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formik.values]);
+
+  if (handleAddRoleFormValid) handleAddRoleFormValid(formik.isValid);
 
   return (
     <AncillaryAccountsFormsUI

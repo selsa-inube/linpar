@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { updateItemData } from "@mocks/utils/dataMock.service";
+import { updateActive } from "@mocks/utils/dataMock.service";
 
 import { ActivateRoleUI } from "./interface";
 import { activateUserModal } from "../../users/config/activateUser.config";
@@ -29,11 +29,10 @@ export function ActivateRole<T extends IDataActivateOption>(
       nameDB: "linix-roles",
       identifier: props.data.id,
       editData: { i_Activo: !props.data.active ? "Y" : "N" },
-      toggleI_Activo: true,
     };
 
     try {
-      await updateItemData(params);
+      await updateActive(params);
     } catch (error) {
       console.error("Error inesperado:", error);
     }
