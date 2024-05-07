@@ -43,8 +43,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
 
   const isMobile = useMediaQuery("(max-width: 750px)");
 
-  const handleFormReset = () => {
-    formik.resetForm();
+  const stateValue = (fieldName: string) => {
+    if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
+    return null;
   };
 
   return (
@@ -70,6 +71,14 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             size="compact"
             fullwidth
             onChange={formik.handleChange}
+            required
+            onBlur={formik.handleBlur}
+            message={
+              stateValue("roleName") === "invalid"
+                ? formik.errors.roleName
+                : null
+            }
+            status={stateValue("roleName") === "invalid" ? "invalid" : null}
           />
 
           <SearchUserCard
@@ -87,6 +96,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
               formik.setValues({
                 ...formik.values,
                 aplicationId: value.k_Usecase,
+                aplication: value.n_Usecase,
               });
             }}
             userData={linixRoles}
@@ -95,6 +105,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             nameLabel="n_Usecase"
             selectedId={formik.values.aplicationId}
             onReset={() => {}}
+            required
           />
         </Stack>
 
@@ -109,6 +120,14 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           fullwidth
           maxLength={20}
           onChange={formik.handleChange}
+          required
+          onBlur={formik.handleBlur}
+          message={
+            stateValue("description") === "invalid"
+              ? formik.errors.description
+              : null
+          }
+          status={stateValue("description") === "invalid" ? "invalid" : null}
         />
       </Grid>
       {withSubmitButtons && (
@@ -116,7 +135,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           <FormButtons
             disabledButtons={!hasChanges(formik.values)}
             handleSubmit={handleSubmit}
-            handleReset={handleFormReset}
+            handleReset={formik.resetForm}
             loading={isLoading}
             children={""}
           />
@@ -124,7 +143,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             <RenderMessage
               message={message}
               handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={handleFormReset}
+              onMessageClosed={formik.resetForm}
             />
           )}
         </>

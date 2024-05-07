@@ -33,6 +33,7 @@ export const addRoleStepsRules = (
             roleName: values.roleName,
             description: values.description,
             aplication: values.aplication,
+            aplicationId: values.aplicationId,
           },
         };
       }
