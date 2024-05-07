@@ -1,0 +1,1015 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The purpose of this application is to provide the process services that support the actions for the configuration of Irole User Signup Invitation.",
+    "title": "Irole User Signup Invitation Persistence Process Service API",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "host": "localhost:9055",
+  "basePath": "/irole-user-signup-invitation-persistence-process-service/api",
+  "paths": {
+    "/customers-catalog-users-signup-invitations/{AC:AddCustomerCatalogUserSignupInvitation}": {
+      "post": {
+        "description": "Add records to the business entity, consuming the data service .../customers-catalog-users-signup-invitations",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CustomerCatalogUserSignupInvitation"],
+        "summary": "Add a new customer catalog user signup invitation",
+        "parameters": [
+          {
+            "description": "CustomerCatalogUserSignupInvitation",
+            "name": "CustomerCatalogUserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.AddCustomerCatalogUserSignupInvitationRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AddCustomerCatalogUserSignupInvitation",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.AddCustomerCatalogUserSignupInvitationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/customers-catalog-users-signup-invitations/{AC:ModifyCustomerCatalogUserSignupInvitation}": {
+      "patch": {
+        "description": "Modify records to the business entity, consuming the data service .../customers-catalog-users-signup-invitations",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CustomerCatalogUserSignupInvitation"],
+        "summary": "Modify a customer catalog user signup invitation",
+        "parameters": [
+          {
+            "description": "CustomerCatalogUserSignupInvitation",
+            "name": "CustomerCatalogUserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.ModifyCustomerCatalogUserSignupInvitationRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModifyCustomerCatalogUserSignupInvitation",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.ModifyCustomerCatalogUserSignupInvitationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/customers-catalog-users-signup-invitations/{AC:RemoveCustomersCatalogUsersSignupInvitations}": {
+      "delete": {
+        "description": "Deletes records in the business entity, consuming the data service .../customers-catalog-users-signup-invitations",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["CustomerCatalogUserSignupInvitation"],
+        "summary": "Delete customers catalog users signup invitations",
+        "parameters": [
+          {
+            "description": "CustomerCatalogUserSignupInvitation",
+            "name": "CustomerCatalogUserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.AggregateRemoveCustomersCatalogUsersSignupInvitationsRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "RemoveCustomersCatalogUsersSignupInvitations",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.RemoveCustomersCatalogUsersSignupInvitationsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{AC:AddUserSignupInvitation}": {
+      "post": {
+        "description": "Add records to the business entity, consuming the data service .../users-signup-invitations\nWith the information obtained, a notification is sent to complete the registration process.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Add a new user signup invitation",
+        "parameters": [
+          {
+            "description": "UserSignupInvitation",
+            "name": "UserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.AddUserSignupInvitationRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AddUserSignupInvitation",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.AddUserSignupInvitationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{AC:AutoUserSignup}": {
+      "patch": {
+        "description": "Modify business entity records, consuming the data service .../users-signup-invitations\nYou need the user name if you do not want to enter an account ID.",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Modify a user signup invitation and set the status to pending",
+        "parameters": [
+          {
+            "description": "UserSignupInvitation",
+            "name": "UserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.AutoUserSignupRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "AutoUserSignup",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.AutoUserSignupResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{AC:CompleteUserSignup}": {
+      "patch": {
+        "description": "Modify business entity records, consuming the data service .../users-signup-invitations",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Modify the status of the invitation and publishes the user information for the completion of the registration.",
+        "parameters": [
+          {
+            "description": "UserSignupInvitation",
+            "name": "UserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.CompleteUserSignupRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "CompleteUserSignup",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.CompleteUserSignupResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{AC:ModifyUserSignupInvitation}": {
+      "patch": {
+        "description": "Modify business entity records, consuming the data service .../users-signup-invitations",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Modify a user signup invitation",
+        "parameters": [
+          {
+            "description": "UserSignupInvitation",
+            "name": "UserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.ModifyUserSignupInvitationRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ModifyUserSignupInvitation",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.ModifyUserSignupInvitationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{AC:RemoveUserSignupInvitation}": {
+      "delete": {
+        "description": "Delete business entity records, consuming the data service .../users-signup-invitations",
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Delete a user signup invitation",
+        "parameters": [
+          {
+            "description": "UserSignupInvitation",
+            "name": "UserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.AggregateRemoveUserSignupInvitationRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "RemoveUserSignupInvitation",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.RemoveUserSignupInvitationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    },
+    "/users-signup-invitations/{CU:ResendNotification}": {
+      "post": {
+        "description": "Envia una notificacion obteniendo la informacion con el servicio de datos .../users-signup-invitations",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/json", "application/xml"],
+        "tags": ["UserSignupInvitation"],
+        "summary": "Resend a notification",
+        "parameters": [
+          {
+            "description": "UserSignupInvitation",
+            "name": "UserSignupInvitation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dtorequest.ResendNotificationRequest"
+            }
+          },
+          {
+            "type": "string",
+            "default": "ResendNotification",
+            "description": "Action",
+            "name": "X-Action",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Business Unit",
+            "name": "X-Business-Unit",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtoresponse.ResendNotificationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/tycause.Cause"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "dtorequest.AddCustomerCatalogUserSignupInvitationRequest": {
+      "type": "object",
+      "required": ["fullName", "publicCode"],
+      "properties": {
+        "fullName": {
+          "description": "Customer full name",
+          "type": "string",
+          "maxLength": 500,
+          "minLength": 1
+        },
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "dtorequest.AddUserSignupInvitationRequest": {
+      "type": "object",
+      "required": ["email", "phoneNumber", "publicCode", "userIdentification"],
+      "properties": {
+        "email": {
+          "description": "Contact email",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "userIdentification": {
+          "description": "User ID",
+          "type": "string",
+          "maxLength": 11,
+          "minLength": 1
+        }
+      }
+    },
+    "dtorequest.AggregateRemoveCustomersCatalogUsersSignupInvitationsRequest": {
+      "type": "object",
+      "properties": {
+        "removeCustomersCatalogUsersSignupInvitations": {
+          "description": "List of records to remove",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtorequest.RemoveCustomersCatalogUsersSignupInvitationsRequest"
+          }
+        }
+      }
+    },
+    "dtorequest.AggregateRemoveUserSignupInvitationRequest": {
+      "type": "object",
+      "properties": {
+        "removeUserSignupInvitation": {
+          "description": "List of records to remove",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtorequest.RemoveUserSignupInvitationRequest"
+          }
+        }
+      }
+    },
+    "dtorequest.AutoUserSignupRequest": {
+      "type": "object",
+      "required": ["invitationId", "modifyJustification", "password"],
+      "properties": {
+        "email": {
+          "description": "Contact email",
+          "type": "string",
+          "maxLength": 200
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "modifyJustification": {
+          "description": "Justification for modify",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "password": {
+          "description": "User password",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string",
+          "maxLength": 200
+        },
+        "userAccountId": {
+          "description": "User code",
+          "type": "string",
+          "maxLength": 200
+        },
+        "userName": {
+          "description": "User code",
+          "type": "string",
+          "maxLength": 200
+        }
+      }
+    },
+    "dtorequest.CompleteUserSignupRequest": {
+      "type": "object",
+      "required": ["invitationId", "modifyJustification"],
+      "properties": {
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "modifyJustification": {
+          "description": "Justification for modify",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "userData": {
+          "description": "User data",
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "dtorequest.ModifyCustomerCatalogUserSignupInvitationRequest": {
+      "type": "object",
+      "required": ["fullName", "modifyJustification", "publicCode"],
+      "properties": {
+        "fullName": {
+          "description": "Customer full name",
+          "type": "string",
+          "maxLength": 500,
+          "minLength": 1
+        },
+        "modifyJustification": {
+          "description": "Justification for modify",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "dtorequest.ModifyUserSignupInvitationRequest": {
+      "type": "object",
+      "required": ["invitationId", "modifyJustification"],
+      "properties": {
+        "dateEnd": {
+          "description": "Invitation expiration date",
+          "type": "string"
+        },
+        "dateStart": {
+          "description": "Invitation send date",
+          "type": "string"
+        },
+        "email": {
+          "description": "Contact email",
+          "type": "string",
+          "maxLength": 200
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "modifyJustification": {
+          "description": "Justification for modify",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "password": {
+          "description": "User password",
+          "type": "string",
+          "maxLength": 200
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string",
+          "maxLength": 200
+        },
+        "userAccountId": {
+          "description": "User code",
+          "type": "string",
+          "maxLength": 200
+        }
+      }
+    },
+    "dtorequest.RemoveCustomersCatalogUsersSignupInvitationsRequest": {
+      "type": "object",
+      "required": ["publicCode", "removalJustification"],
+      "properties": {
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        }
+      }
+    },
+    "dtorequest.RemoveUserSignupInvitationRequest": {
+      "type": "object",
+      "required": [
+        "invitationDescription",
+        "invitationId",
+        "removalJustification"
+      ],
+      "properties": {
+        "invitationDescription": {
+          "description": "Invitation Description",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        }
+      }
+    },
+    "dtorequest.ResendNotificationRequest": {
+      "type": "object",
+      "required": ["invitationId"],
+      "properties": {
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "dtoresponse.AddCustomerCatalogUserSignupInvitationResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Customer full name",
+          "type": "string"
+        },
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.AddUserSignupInvitationResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "dateEnd": {
+          "description": "Invitation expiration date",
+          "type": "string"
+        },
+        "dateStart": {
+          "description": "Invitation send date",
+          "type": "string"
+        },
+        "email": {
+          "description": "Contact email",
+          "type": "string"
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string"
+        },
+        "requestingUser": {
+          "description": "Requesting user",
+          "type": "string"
+        },
+        "status": {
+          "description": "Request status",
+          "type": "string"
+        },
+        "token": {
+          "description": "Invitation token",
+          "type": "string"
+        },
+        "trackingCode": {
+          "description": "Tracking Code",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.AutoUserSignupResponse": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "description": "Contact email",
+          "type": "string"
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "modifyJustification": {
+          "description": "Justification for modify",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string"
+        },
+        "status": {
+          "description": "Request status",
+          "type": "string"
+        },
+        "userAccountId": {
+          "description": "User code",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.CompleteUserSignupResponse": {
+      "type": "object",
+      "properties": {
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "modifyJustification": {
+          "description": "Justification for modify",
+          "type": "string"
+        },
+        "status": {
+          "description": "Request status",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.ModifyCustomerCatalogUserSignupInvitationResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Customer full name",
+          "type": "string"
+        },
+        "modifyJustification": {
+          "description": "Justification for modify",
+          "type": "string"
+        },
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.ModifyUserSignupInvitationResponse": {
+      "type": "object",
+      "properties": {
+        "dateEnd": {
+          "description": "Invitation expiration date",
+          "type": "string"
+        },
+        "dateStart": {
+          "description": "Invitation send date",
+          "type": "string"
+        },
+        "email": {
+          "description": "Contact email",
+          "type": "string"
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "modifyJustification": {
+          "description": "Justification for modify",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Contact user phone number",
+          "type": "string"
+        },
+        "userAccountId": {
+          "description": "User code",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.RemoveCustomersCatalogUsersSignupInvitationsResponse": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "description": "Customer code",
+          "type": "string"
+        },
+        "publicCode": {
+          "description": "Public Code",
+          "type": "string"
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.RemoveUserSignupInvitationResponse": {
+      "type": "object",
+      "properties": {
+        "invitationDescription": {
+          "description": "Invitation Description",
+          "type": "string"
+        },
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "removalJustification": {
+          "description": "Justification for removal",
+          "type": "string"
+        }
+      }
+    },
+    "dtoresponse.ResendNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "invitationId": {
+          "description": "Invitation registration code",
+          "type": "string"
+        },
+        "trackingCode": {
+          "description": "Tracking Code",
+          "type": "string"
+        }
+      }
+    },
+    "tycause.Cause": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tycause.Cause"
+          }
+        },
+        "helpUrl": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "originalCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
