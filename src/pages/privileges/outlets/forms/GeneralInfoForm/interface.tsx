@@ -89,6 +89,7 @@ function RenderFormFields(
   const searchData = {
     "Digite el código o nombre de la aplicación:": "",
   };
+
   return (
     <Grid
       templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
@@ -191,10 +192,14 @@ function RenderFormFields(
             onReset={() => {}}
             idLabel="k_Grupo"
             nameLabel="n_Grupo"
-            onUserSelect={(value: Record<string, unknown>) =>
-              handleChangeForm("k_Funcio", value.k_Grupo as string)
-            }
-            selectedId={formik.values.k_Funcio}
+            onUserSelect={(value) => {
+              formik.setValues({
+                ...formik.values,
+                cargo: value.n_Grupo,
+              });
+              handleChangeForm("cargo", String(value.n_Grupo));
+            }}
+            selectedId={formik.values.cargo}
           />
         </StyledSelectContainer>
 

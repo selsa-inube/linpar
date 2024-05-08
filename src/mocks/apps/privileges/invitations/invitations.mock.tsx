@@ -7,6 +7,8 @@ const invitationEntriesDataMock = [
     invitationDate: "11/JUN/2022",
     status: "Sent",
     phone: "3123456789",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "11",
@@ -16,6 +18,8 @@ const invitationEntriesDataMock = [
     invitationDate: "11/ENE/2022",
     status: "Pending",
     phone: "3209876543",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "12",
@@ -25,6 +29,8 @@ const invitationEntriesDataMock = [
     invitationDate: "26/AGO/2022",
     status: "Sent",
     phone: "3145678901",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "13",
@@ -34,6 +40,8 @@ const invitationEntriesDataMock = [
     invitationDate: "17/MAY/2022",
     status: "Sent",
     phone: "3187654321",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "14",
@@ -43,6 +51,8 @@ const invitationEntriesDataMock = [
     invitationDate: "07/OCT/2022",
     status: "Pending",
     phone: "3198765432",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "15",
@@ -52,6 +62,8 @@ const invitationEntriesDataMock = [
     invitationDate: "05/ENE/2022",
     status: "Sent",
     phone: "3134567890",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "16",
@@ -61,6 +73,8 @@ const invitationEntriesDataMock = [
     invitationDate: "03/MAR/2022",
     status: "Sent",
     phone: "3176543210",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "17",
@@ -70,6 +84,8 @@ const invitationEntriesDataMock = [
     invitationDate: "20/JUL/2022",
     status: "Pending",
     phone: "3156789012",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "18",
@@ -79,6 +95,8 @@ const invitationEntriesDataMock = [
     invitationDate: "26/ABR/2022",
     status: "Sent",
     phone: "3167890123",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "19",
@@ -88,6 +106,8 @@ const invitationEntriesDataMock = [
     invitationDate: "03/AGO/2022",
     status: "Pending",
     phone: "3145678901",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "20",
@@ -97,6 +117,8 @@ const invitationEntriesDataMock = [
     invitationDate: "07/FEB/2022",
     status: "Pending",
     phone: "3209876543",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "21",
@@ -106,6 +128,8 @@ const invitationEntriesDataMock = [
     invitationDate: "24/FEB/2022",
     status: "Pending",
     phone: "3176543210",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "22",
@@ -115,6 +139,8 @@ const invitationEntriesDataMock = [
     invitationDate: "10/JUN/2022",
     status: "Pending",
     phone: "3187654321",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "23",
@@ -124,6 +150,8 @@ const invitationEntriesDataMock = [
     invitationDate: "27/AGO/2022",
     status: "Pending",
     phone: "3156789012",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "24",
@@ -133,6 +161,8 @@ const invitationEntriesDataMock = [
     invitationDate: "01/JUN/2022",
     status: "Pending",
     phone: "3134567890",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "25",
@@ -142,6 +172,8 @@ const invitationEntriesDataMock = [
     invitationDate: "09/AGO/2022",
     status: "Pending",
     phone: "3198765432",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "26",
@@ -151,6 +183,8 @@ const invitationEntriesDataMock = [
     invitationDate: "20/JUN/2022",
     status: "Sent",
     phone: "3123456789",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "27",
@@ -160,6 +194,8 @@ const invitationEntriesDataMock = [
     invitationDate: "10/JUL/2022",
     status: "Sent",
     phone: "3187654321",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "28",
@@ -169,6 +205,8 @@ const invitationEntriesDataMock = [
     invitationDate: "07/ABR/2022",
     status: "Sent",
     phone: "3198765432",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "29",
@@ -178,6 +216,8 @@ const invitationEntriesDataMock = [
     invitationDate: "22/ABR/2022",
     status: "Sent",
     phone: "3167890123",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "30",
@@ -187,6 +227,8 @@ const invitationEntriesDataMock = [
     invitationDate: "18/MAR/2022",
     status: "Pending",
     phone: "3145678901",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "31",
@@ -196,6 +238,8 @@ const invitationEntriesDataMock = [
     invitationDate: "23/MAR/2022",
     status: "Sent",
     phone: "3134567890",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "32",
@@ -205,6 +249,8 @@ const invitationEntriesDataMock = [
     invitationDate: "15/SEP/2022",
     status: "Pending",
     phone: "3156789012",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "33",
@@ -214,6 +260,8 @@ const invitationEntriesDataMock = [
     invitationDate: "12/FEB/2022",
     status: "Pending",
     phone: "3176543210",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "34",
@@ -223,6 +271,8 @@ const invitationEntriesDataMock = [
     invitationDate: "24/ABR/2022",
     status: "Sent",
     phone: "3187654321",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "35",
@@ -232,6 +282,8 @@ const invitationEntriesDataMock = [
     invitationDate: "30/OCT/2022",
     status: "Sent",
     phone: "3123456789",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "36",
@@ -241,6 +293,8 @@ const invitationEntriesDataMock = [
     invitationDate: "16/ABR/2022",
     status: "Sent",
     phone: "3198765432",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "37",
@@ -250,6 +304,8 @@ const invitationEntriesDataMock = [
     invitationDate: "06/FEB/2022",
     status: "Pending",
     phone: "3156789012",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
   {
     id: "38",
@@ -259,6 +315,8 @@ const invitationEntriesDataMock = [
     invitationDate: "15/NOV/2022",
     status: "Sent",
     phone: "3145678901",
+    cargoId: "001",
+    cargo: "Adminstrador Funcional",
   },
 ];
 

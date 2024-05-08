@@ -13,6 +13,7 @@ interface IGeneralInformationEntry {
   email: string;
   phone: string;
   cargo: string;
+  cargoId: string;
   invitationDate?: string;
   status?: string;
   code?: string;
