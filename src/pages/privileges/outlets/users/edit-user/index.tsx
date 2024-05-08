@@ -1,11 +1,14 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { aidBudgetsFormEditUser } from "@mocks/apps/privileges/users/aidBudgetsForm.mock";
 import { branchesFormEditUser } from "@mocks/apps/privileges/users/branchesForm.mock";
 import { eventsFormEditUser } from "@mocks/apps/privileges/users/eventsForm.mock";
 import { payrollsFormEditUser } from "@mocks/apps/privileges/users/payrollsForm.mock";
 import { projectsFormEditUser } from "@mocks/apps/privileges/users/projectsForm.mock";
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { getAll } from "@mocks/utils/dataMock.service";
+
 import { editUserTabsConfig } from "./config/editUserTabs.config";
 import { EditUserUI } from "./interface";
 import {
@@ -80,6 +83,20 @@ function EditUser() {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
   };
+  const [positionsOptions, setPositionsOptions] = useState<
+    Record<string, unknown>[]
+  >([]);
+  useEffect(() => {
+    getAll("linix-positions")
+      .then((data) => {
+        if (data !== null) {
+          setPositionsOptions(data as Record<string, unknown>[]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching web-options:", error.message);
+      });
+  }, []);
 
   return (
     <EditUserUI
@@ -91,6 +108,7 @@ function EditUser() {
       handleDataChange={handleDataChange}
       handleCloseModal={handleCloseModal}
       handleContinueTab={handleContinueTab}
+      positionsOptions={positionsOptions}
     />
   );
 }

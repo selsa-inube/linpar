@@ -71,7 +71,7 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
           ),
           createAttribute(
             "Aplicación",
-            data.generalInformation.values.aplication
+            data.generalInformation.values.aplicationId
           ),
         ],
       },

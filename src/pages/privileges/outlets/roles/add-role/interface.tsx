@@ -16,10 +16,13 @@ import {
   IInitialiceFormRole,
   IStep,
 } from "../types";
+import { titleButtonTextAssited } from "./types";
+import { StyledContainerAssisted } from "./styles";
+
 import { createRolConfig, stepsAddRol } from "./config/addRol.config";
-import { GeneralInformationForm } from "./forms/GeneralInformationForm";
-import { AncillaryAccountsForm } from "./forms/AncillaryAccounts";
-import { VerificationAddRole } from "./forms/Verification";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
+import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
+import { VerificationAddRole } from "../components/VerificationForm";
 import { saveRole } from "./utils";
 
 interface AddRolUIProps {
@@ -28,12 +31,12 @@ interface AddRolUIProps {
   formReferences: IFormAddRoleRef;
   steps: IStep[];
   isAddRoleFormValid?: boolean;
-  setAddRoleFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   handleNextStep: () => void;
   handlePreviousStep: () => void;
   handleFinishAssisted?: () => void;
   handleUpdateDataSwitchstep: (values: IInitialiceFormRole[]) => void;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  handleAddRoleFormValid: (newValue: boolean) => void;
 }
 
 export function AddRolUI(props: AddRolUIProps) {
@@ -42,10 +45,12 @@ export function AddRolUI(props: AddRolUIProps) {
     currentStep,
     formReferences,
     steps,
+    isAddRoleFormValid,
     handleNextStep,
     handlePreviousStep,
     handleUpdateDataSwitchstep,
     setCurrentStep,
+    handleAddRoleFormValid,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -77,17 +82,22 @@ export function AddRolUI(props: AddRolUIProps) {
           </Stack>
         </Stack>
         <>
-          <Assisted
-            steps={steps}
-            currentStepId={currentStep}
-            handlePrev={handlePreviousStep}
-            handleNext={handleNextStep}
-          />
+          <StyledContainerAssisted cursorDisabled={!isAddRoleFormValid}>
+            <Assisted
+              steps={steps}
+              currentStepId={currentStep}
+              handlePrev={handlePreviousStep}
+              handleNext={handleNextStep}
+              titleButtonText={titleButtonTextAssited}
+            />
+          </StyledContainerAssisted>
 
           {currentStep === stepsAddRol.generalInformation.id && (
             <GeneralInformationForm
               initialValues={generalInformationValues}
               ref={formReferences.generalInformation}
+              handleAddRoleFormValid={handleAddRoleFormValid}
+              currentStep={currentStep}
             />
           )}
 
@@ -95,6 +105,7 @@ export function AddRolUI(props: AddRolUIProps) {
             <AncillaryAccountsForm
               initialValues={ancillaryAccountsValues}
               ref={formReferences.ancillaryAccounts}
+              handleAddRoleFormValid={handleAddRoleFormValid}
             />
           )}
           {currentStep === stepsAddRol.transactionTypes.id && (
@@ -134,7 +145,7 @@ export function AddRolUI(props: AddRolUIProps) {
             onClick={handlePreviousStep}
             type="button"
             disabled={currentStep === steps[0].id}
-            spacing="compact"
+            spacing="wide"
             variant="none"
             appearance="gray"
           >
@@ -147,7 +158,8 @@ export function AddRolUI(props: AddRolUIProps) {
                 ? () => saveRole(addRoleFormValid)
                 : handleNextStep
             }
-            spacing="compact"
+            spacing="wide"
+            disabled={!isAddRoleFormValid}
           >
             {currentStep === steps.length ? "Enviar" : "Siguiente"}
           </Button>

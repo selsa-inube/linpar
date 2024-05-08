@@ -74,6 +74,13 @@ export function AddPosition() {
     generalInformation: generalInformationRef,
   };
 
+  const validateActiveRoles = () => {
+    const validateAct = dataAddPositionLinixForm.roles.values.some(
+      (x) => x.isActive === true
+    );
+    return currentStep === 2 && !validateAct;
+  };
+
   const handleStepChange = (stepId: number) => {
     const newAddPosition = addPositionStepsRules(
       currentStep,
@@ -168,6 +175,7 @@ export function AddPosition() {
       handleToggleModal={handleToggleModal}
       handleFinishForm={handleFinishForm}
       handleCloseSectionMessage={handleCloseSectionMessage}
+      validateActiveRoles={validateActiveRoles}
     />
   );
 }

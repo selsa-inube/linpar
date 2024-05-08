@@ -173,7 +173,7 @@ function RenderFormFields(
         />
       </Stack>
       <SearchUserCard
-        id="Opción cliente servido"
+        id="csSearch"
         label="Opción de menú cliente servidor Linix"
         placeholder="Seleccione una opción"
         name="csSearch"

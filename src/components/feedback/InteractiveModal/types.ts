@@ -13,17 +13,14 @@ interface Action {
 interface InteractiveModalProps {
   portalId: string;
   title: string;
-  selectedItem?: string;
   closeModal: () => void;
   infoData: { [key: string]: string } | Record<string, string | number>;
+  searchData: { [key: string]: string } | Record<string, string | number> | any;
+  selectedItem?: string;
   actions?: Action[];
   labels?: Field[];
   infoTitle?: string;
   actionsTitle?: string;
-  searchData?:
-    | { [key: string]: string }
-    | Record<string, string | number>
-    | any;
   id?: string;
   label?: string;
   name?: string;

@@ -4,11 +4,12 @@ import { FormButtons } from "@components/forms/submit/FormButtons";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { IAncillaryAccountsForm } from ".";
 
 interface AncillaryAccountsFormsUIProps {
   formik: FormikValues;
   withSubmitButtons: boolean;
-  hasChanges: (valueCompare: AncillaryAccountsFormsUIProps) => boolean;
+  hasChanges: (valueCompare: IAncillaryAccountsForm) => boolean;
   handleSubmit: (name: string, value: string) => void;
   isLoading?: boolean;
   message: IMessageState;
@@ -78,21 +79,20 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
       </Grid>
 
       {withSubmitButtons && (
-        <>
-          <FormButtons
-            disabledButtons={!hasChanges(formik.values)}
-            handleSubmit={handleSubmit}
-            handleReset={handleFormReset}
-            loading={isLoading}
-          />
-          {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={handleFormReset}
-            />
-          )}
-        </>
+        <FormButtons
+          disabledButtons={!hasChanges(formik.values)}
+          handleSubmit={handleSubmit}
+          handleReset={handleFormReset}
+          loading={isLoading}
+        />
+      )}
+
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={onCloseSectionMessage}
+          onMessageClosed={handleFormReset}
+        />
       )}
     </form>
   );

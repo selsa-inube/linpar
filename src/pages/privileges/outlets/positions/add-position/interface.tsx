@@ -79,6 +79,7 @@ interface AddPositionUIProps {
   handleToggleModal: () => void;
   handleFinishForm: () => void;
   handleCloseSectionMessage: () => void;
+  validateActiveRoles: () => boolean;
 }
 
 export function AddPositionUI(props: AddPositionUIProps) {
@@ -99,12 +100,14 @@ export function AddPositionUI(props: AddPositionUIProps) {
     handleToggleModal,
     handleFinishForm,
     handleCloseSectionMessage,
+    validateActiveRoles,
   } = props;
 
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+  const disabled = !isCurrentFormValid || validateActiveRoles();
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
@@ -124,7 +127,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Stack>
         </Stack>
         <>
-          <StyledContainerAssisted $cursorDisabled={!isCurrentFormValid}>
+          <StyledContainerAssisted cursorDisabled={disabled}>
             <Assisted
               steps={steps}
               currentStepId={currentStep}
@@ -157,7 +160,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
           <Button
             onClick={handleNextStep}
             spacing="compact"
-            disabled={!isCurrentFormValid}
+            disabled={disabled}
           >
             {currentStep === steps.length ? "Enviar" : "Siguiente"}
           </Button>

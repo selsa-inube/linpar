@@ -7,8 +7,8 @@ import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCas
 import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
 import { addRoleStepsRules } from "./utils";
 import { stepsAddRol } from "./config/addRol.config";
-import { IGeneralInformationForm } from "./forms/GeneralInformationForm";
-import { IAncillaryAccountsForm } from "./forms/AncillaryAccounts";
+import { IGeneralInformationForm } from "../components/GeneralInformationForm";
+import { IAncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
 
@@ -21,6 +21,10 @@ export function AddRol() {
 
   const [isAddRoleFormValid, setIsAddRoleFormValid] = useState(false);
 
+  const handleAddRoleFormValid = (isValid: boolean) => {
+    setIsAddRoleFormValid(isValid);
+  };
+
   const [dataAddRoleLinixForm, setDataAddRoleLinixForm] =
     useState<IFormAddRole>({
       generalInformation: {
@@ -32,6 +36,8 @@ export function AddRol() {
             initialValuesAddRol.generalInformation.values.description.trim(),
           aplication:
             initialValuesAddRol.generalInformation.values.aplication.trim(),
+          aplicationId:
+            initialValuesAddRol.generalInformation.values.aplicationId.trim(),
         },
       },
       ancillaryAccounts: {
@@ -152,10 +158,12 @@ export function AddRol() {
     setCurrentStep(stepId);
 
     document.getElementsByTagName("main")[0].scrollTo(0, 0);
+
+    setIsAddRoleFormValid(stepId >= 2);
   };
 
   const handleNextStep = () => {
-    if (currentStep + 1 <= steps.length) {
+    if (currentStep + 1 <= steps.length && isAddRoleFormValid) {
       handleStepChange(currentStep + 1);
     }
   };
@@ -185,7 +193,7 @@ export function AddRol() {
       isAddRoleFormValid={isAddRoleFormValid}
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
-      setAddRoleFormValid={setIsAddRoleFormValid}
+      handleAddRoleFormValid={handleAddRoleFormValid}
       formReferences={formReferences}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
       setCurrentStep={setCurrentStep}
