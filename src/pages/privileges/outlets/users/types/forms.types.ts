@@ -8,6 +8,12 @@ interface IAssignmentFormEntry {
 
 interface IGeneralInformationEntry {
   id: string;
+  k_Usuari: string;
+  n_Usuari: string;
+  k_Grupo: string;
+  n_Grupo: string;
+  a_Numnit: string;
+  i_Activo: string;
   userID: string;
   username: string;
   email: string;
@@ -16,7 +22,6 @@ interface IGeneralInformationEntry {
   status?: string;
   code?: string;
   position?: string;
-  active?: boolean;
 }
 
 interface IFormsInvitation {

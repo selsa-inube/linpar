@@ -26,16 +26,16 @@ const activateUserMessages = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Activación exitosa!",
-    description: ({ username }: IGeneralInformationEntry) =>
-      `El Usuario ${username} esta activado `,
+    description: ({ n_Usuari }: IGeneralInformationEntry) =>
+      `El Usuario ${n_Usuari} esta activado `,
     appearance: EAppearance.SUCCESS,
   },
   deactivation: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Desactivación exitosa!",
-    description: ({ username }: IGeneralInformationEntry) =>
-      `El Usuario ${username} esta desactivado `,
+    description: ({ n_Usuari }: IGeneralInformationEntry) =>
+      `El Usuario ${n_Usuari} esta desactivado `,
     appearance: EAppearance.SUCCESS,
   },
   failed: {

@@ -5,8 +5,8 @@ import { EAppearance } from "@src/types/colors.types";
 const deleteUserModal = {
   delete: {
     title: "Eliminar",
-    description: (id: string) =>
-      `¿Está seguro de que desea eliminar al usuario ${id}?`,
+    description: (k_Usuari: string) =>
+      `¿Está seguro de que desea eliminar al usuario ${k_Usuari}?`,
     actionText: "Eliminar",
     appearance: EAppearance.ERROR,
   },
@@ -16,7 +16,8 @@ const deleteUserMessages = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: (id: string) => `Hemos eliminado con éxito al usuario ${id}.`,
+    description: (k_Usuari: string) =>
+      `Hemos eliminado con éxito al usuario ${k_Usuari}.`,
     appearance: EAppearance.SUCCESS,
   },
   failed: {

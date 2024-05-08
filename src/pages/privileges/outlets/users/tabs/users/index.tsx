@@ -86,8 +86,8 @@ function UsersTab(props: UsersTabProps) {
   };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
-  const selectedData = (username: string) =>
-    users.find((user) => user.username === username);
+  const selectedData = (k_Usuari: string) =>
+    users.find((user) => user.k_Usuari === k_Usuari);
 
   const actions = [
     {
@@ -114,10 +114,10 @@ function UsersTab(props: UsersTabProps) {
     {
       id: "3",
       actionName: "Eliminar",
-      content: ({ username }: { username: string }) => {
-        const user = selectedData(username);
+      content: ({ k_Usuari }: { k_Usuari: string }) => {
+        const user = selectedData(k_Usuari);
         const adjusteduser = {
-          id: user?.username || "",
+          id: user?.k_Usuari || "",
         };
 
         return (
