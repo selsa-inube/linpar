@@ -1,6 +1,6 @@
 import { FormikProps } from "formik";
 
-import { IAncillaryAccountsForm } from "./components/AncillaryAccounts";
+import { IAncillaryAccountsForm } from "./components/AncillaryAccountsForm";
 import { IGeneralInformationForm } from "./components/GeneralInformationForm";
 
 interface ICasosDeUsoPorRol {
