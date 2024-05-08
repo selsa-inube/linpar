@@ -3,16 +3,15 @@ import { inube } from "@inube/design-system";
 import { StrokeAppearance } from "../../types";
 
 interface IStyledLinkFormProps {
-  appearance: StrokeAppearance;
-  category: string;
-  theme: typeof inube;
+  $appearance: StrokeAppearance;
+  $category: string;
 }
 
-const StyledLinkContainer = styled.div`
+const StyledLinkContainer = styled.div<IStyledLinkFormProps>`
   > label > a {
-    color: ${({ appearance, category, theme }: IStyledLinkFormProps) =>
-      theme?.color?.stroke?.[appearance]?.[category] ||
-      inube?.color?.stroke?.[appearance]?.[category]};
+    color: ${({ $appearance, $category, theme }) =>
+      theme?.color?.stroke?.[$appearance]?.[$category] ||
+      inube?.color?.stroke?.[$appearance]?.[$category]};
   }
 `;
 

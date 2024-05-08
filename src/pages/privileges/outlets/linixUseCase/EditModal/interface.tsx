@@ -95,7 +95,7 @@ function EditUserUI(props: EditUserUIProps) {
   };
 
   return (
-    <StyledContainer smallScreen={smallScreen}>
+    <StyledContainer $smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s200} direction="column">
           <Breadcrumbs crumbs={editLinixUseCaseConfig[0].crumbs} />

@@ -91,7 +91,7 @@ function EditUserUI(props: EditUserUIProps) {
   };
 
   return (
-    <StyledContainer smallScreen={smallScreen}>
+    <StyledContainer $smallScreen={smallScreen}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={editUserOptionsConfig.editUserPage.crumbs} />
@@ -113,7 +113,7 @@ function EditUserUI(props: EditUserUIProps) {
         </Stack>
         {currentInformation ? (
           <Stack gap="32px" direction="column">
-            <StyledTabsContainer typeTabs={typeTabs}>
+            <StyledTabsContainer $typeTabs={typeTabs}>
               <Tabs
                 tabs={Object.values(editUserTabsConfig)}
                 selectedTab={selectedTab}

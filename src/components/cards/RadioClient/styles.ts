@@ -1,20 +1,16 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
-interface IStyledRadioClient {
-  theme?: typeof inube;
-}
-
 const StyledRadioClient = styled.label`
   & div {
     box-sizing: border-box;
     min-height: 58px;
     box-shadow: 1px 2px 2px 1px
-      ${({ theme }: IStyledRadioClient) =>
+      ${({ theme }) =>
         theme?.color?.surface?.gray?.regular ||
         inube.color.surface.gray.regular};
     border: 1px solid
-      ${({ theme }: IStyledRadioClient) =>
+      ${({ theme }) =>
         theme?.color?.surface?.gray?.regular ||
         inube.color.surface.gray.regular};
     cursor: pointer;

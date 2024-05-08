@@ -124,7 +124,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Stack>
         </Stack>
         <>
-          <StyledContainerAssisted cursorDisabled={!isCurrentFormValid}>
+          <StyledContainerAssisted $cursorDisabled={!isCurrentFormValid}>
             <Assisted
               steps={steps}
               currentStepId={currentStep}

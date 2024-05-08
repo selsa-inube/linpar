@@ -21,8 +21,8 @@ function SubjectSearchCard(props: SubjectSearchCardProps) {
     <>
       <StyledSubjectSearchCard
         onClick={handleToggleModal}
-        smallScreen={smallScreen}
-        isActive={isActive}
+        $smallScreen={smallScreen}
+        $isActive={isActive}
       >
         <Stack justifyContent={"start"} gap={"8px"} padding={"s100 s200"}>
           <Stack direction="column">

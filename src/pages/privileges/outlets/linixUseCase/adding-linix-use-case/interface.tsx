@@ -202,7 +202,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </Stack>
         </Stack>
         <>
-          <StyledAssistedContainer cursorDisabled={!isCurrentFormValid}>
+          <StyledAssistedContainer $cursorDisabled={!isCurrentFormValid}>
             <Assisted
               steps={Object.values(stepsAddingLinixUseCase)}
               currentStepId={currentStep}

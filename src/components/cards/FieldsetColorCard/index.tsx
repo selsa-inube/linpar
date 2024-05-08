@@ -66,7 +66,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
           {description}
         </Text>
         <Stack gap={inube.spacing.s200} alignItems="center">
-          <StyledTokenColorCardContainer requireBackground={requireBackground}>
+          <StyledTokenColorCardContainer $requireBackground={requireBackground}>
             <TokenColorCard
               tokenName={tokenName!}
               type="tokenPicker"
@@ -79,7 +79,9 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             />
           </StyledTokenColorCardContainer>
           {children && (
-            <StyledTextWithTokenContainer requireBackground={requireBackground}>
+            <StyledTextWithTokenContainer
+              $requireBackground={requireBackground}
+            >
               <Stack padding="s100">{children}</Stack>
             </StyledTextWithTokenContainer>
           )}

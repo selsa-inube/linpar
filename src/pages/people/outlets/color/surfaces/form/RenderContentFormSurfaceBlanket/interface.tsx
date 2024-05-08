@@ -100,7 +100,7 @@ function RenderContentFormSurfaceBlanketUI(
                 }}
               >
                 <Blanket>
-                  <StyledModal isSmallScreen={isSmallScreen}>
+                  <StyledModal $isSmallScreen={isSmallScreen}>
                     <Stack
                       direction="column"
                       gap={inube.spacing.s300}

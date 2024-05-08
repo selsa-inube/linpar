@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 interface IStyledContainer {
-  smallScreen?: boolean;
-  typeTabs?: boolean;
+  $smallScreen?: boolean;
+  $typeTabs?: boolean;
 }
 
 const StyledContainer = styled.div`
@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledTabsContainer = styled.div<IStyledContainer>`
-  position: ${(props) => (props.typeTabs ? "relative" : "unset")};
+  position: ${(props) => (props.$typeTabs ? "relative" : "unset")};
 `;
 
 export { StyledContainer, StyledTabsContainer };

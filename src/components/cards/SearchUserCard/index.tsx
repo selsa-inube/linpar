@@ -93,8 +93,8 @@ function SearchUserCard(props: SearchUserCardProps) {
     <>
       <StyledSearchUserCard
         onClick={handleToggleModal}
-        smallScreen={smallScreen}
-        isActive={showModal}
+        $smallScreen={smallScreen}
+        $isActive={showModal}
       >
         <Textfield
           id={id}

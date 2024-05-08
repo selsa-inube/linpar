@@ -54,7 +54,7 @@ export function PaletteUI(props: PaletteUIProps) {
         </Stack>
 
         <StyledContainer>
-          <StyledTabsContainer typeTabs={typeTabs}>
+          <StyledTabsContainer $typeTabs={typeTabs}>
             <Stack direction="column" gap={inube.spacing.s400}>
               <Tabs
                 onChange={handleTabChange}

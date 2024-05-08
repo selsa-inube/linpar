@@ -66,7 +66,7 @@ function ClientsUI({
             />
           )}
           {filteredClients.length === 0 && <NoResultsMessage search={search} />}
-          <StyledClientsList scroll={clients.length > 5}>
+          <StyledClientsList $scroll={clients.length > 5}>
             <Stack
               direction="column"
               padding="s0 s100"
