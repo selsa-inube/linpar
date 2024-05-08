@@ -34,18 +34,21 @@ const InteractiveModal = ({
   idLabel = "userID",
   nameLabel = "username",
   setValidateCardRemoved,
-  message,
-  status,
 }: InteractiveModalProps) => {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const hasActions = actions.length > 0;
   const hasLabels = labels.length > 0;
   const node = document.getElementById(portalId);
   const [filterText, setFilterText] = useState("");
-  const [closeCard, setCloseCard] = useState(true);
+  const [closeCard, setCloseCard] = useState(false);
 
   const removeCard = () => {
-    setCloseCard(false);
+    const dataEmpty = {
+      id: "",
+      name: "",
+    };
+    onClick(dataEmpty);
+    setCloseCard(true);
     setValidateCardRemoved && setValidateCardRemoved(true);
   };
 
@@ -109,7 +112,7 @@ const InteractiveModal = ({
                 {infoTitle}
               </Text>
             )}
-            {closeCard && searchData && searchData.map(renderCard)}
+            {!closeCard && searchData && searchData.map(renderCard)}
 
             {divider && <StyledDivider smallScreen={smallScreen} />}
             {type === "fields" ? (
@@ -127,8 +130,6 @@ const InteractiveModal = ({
                         fullwidth={true}
                         type="text"
                         size="compact"
-                        message={message}
-                        status={status}
                       />
                     )
                 )
@@ -142,8 +143,6 @@ const InteractiveModal = ({
                     placeholder={index}
                     value={infoData[index]}
                     fullwidth={true}
-                    message={message}
-                    status={status}
                     type="text"
                     size="compact"
                     readOnly

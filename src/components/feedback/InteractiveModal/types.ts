@@ -15,7 +15,10 @@ interface InteractiveModalProps {
   title: string;
   closeModal: () => void;
   infoData: { [key: string]: string } | Record<string, string | number>;
-  searchData: { [key: string]: string } | Record<string, string | number> | any;
+  searchData?:
+    | { [key: string]: string }
+    | Record<string, string | number>
+    | any;
   selectedItem?: string;
   actions?: Action[];
   labels?: Field[];
@@ -31,8 +34,6 @@ interface InteractiveModalProps {
   idLabel?: string;
   nameLabel?: string;
   setValidateCardRemoved?: React.Dispatch<React.SetStateAction<boolean>>;
-  message?: string;
-  status?: string;
 }
 
 export type { Field, Action, InteractiveModalProps, ModalTypes };
