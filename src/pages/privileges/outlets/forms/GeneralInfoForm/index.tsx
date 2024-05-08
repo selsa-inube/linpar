@@ -52,7 +52,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     userID: currentInformation.userID,
     email: currentInformation.email,
     phone: currentInformation.phone || "",
-    position: currentInformation.position || "",
+    cargo: currentInformation.cargo || "",
     active: false,
   };
 

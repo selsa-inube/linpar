@@ -29,6 +29,7 @@ import {
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 
 import { StyledAssistedContainer } from "./styles";
+import { VerificationAddPosition } from "../VerificationForm";
 
 export interface IVerificationData {
   id: string;
@@ -176,6 +177,12 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               <InitializerForm
                 dataOptionsForms={invitationData.payrolls.entries}
                 handleSubmit={handleSubmit}
+              />
+            )}
+            {currentStep === stepsRegisterUserConfig.verification.id && (
+              <VerificationAddPosition
+                steps={invitationData}
+                setCurrentStep={handleNextStep}
               />
             )}
           </>

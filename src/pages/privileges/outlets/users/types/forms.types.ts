@@ -12,11 +12,18 @@ interface IGeneralInformationEntry {
   username: string;
   email: string;
   phone: string;
+  cargo: string;
   invitationDate?: string;
   status?: string;
   code?: string;
   position?: string;
   active?: boolean;
+}
+
+export interface IOptionInitialiceEntry {
+  id: string;
+  value: string;
+  isActive: boolean;
 }
 
 interface IFormsInvitation {

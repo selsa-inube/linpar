@@ -176,8 +176,8 @@ function RenderFormFields(
       <Stack direction="column" gap="8px">
         <StyledSelectContainer>
           <SearchUserCard
-            id="position"
-            label="Cargo"
+            id="cargo"
+            label="cargo"
             placeholder="Seleccione una opción"
             name="position"
             title="Búsqueda"
