@@ -39,48 +39,48 @@ export const VerificationAddPosition = (props: IControllerAccordionProps) => {
         title: "Información general",
         attributes: [
           createAttribute(
-            "Nombre",
+            "Nombre:",
             data.generalInformation.entries?.username ?? ""
           ),
           createAttribute(
-            "Identificación",
+            "Identificación:",
             data.generalInformation.entries?.userID ?? ""
           ),
           createAttribute(
-            "Correo",
+            "Correo:",
             data.generalInformation.entries?.email ?? ""
           ),
           createAttribute(
-            "Número de teléfono",
+            "Número de teléfono:",
             data.generalInformation.entries?.phone ?? ""
           ),
           createAttribute(
-            "Cargo",
+            "Cargo:",
             data.generalInformation.entries?.cargo ?? ""
           ),
         ],
       },
       branches: {
-        title: "Sucursales",
+        title: "Sucursales:",
         attributes: filterAndMapData(data.branches?.entries || [], "isActive"),
       },
       projects: {
-        title: "Proyectos",
+        title: "Proyectos:",
         attributes: filterAndMapData(data.projects?.entries || [], "isActive"),
       },
       events: {
-        title: "Eventos",
+        title: "Eventos:",
         attributes: filterAndMapData(data.events?.entries || [], "isActive"),
       },
       aidBudgetUnits: {
-        title: "Unidades de ayuda",
+        title: "Unidades de ayuda:",
         attributes: filterAndMapData(
           data.aidBudgetUnits?.entries || [],
           "isActive"
         ),
       },
       payrolls: {
-        title: "Nómina",
+        title: "Nómina:",
         attributes: filterAndMapData(data.payrolls?.entries || [], "isActive"),
       },
     },

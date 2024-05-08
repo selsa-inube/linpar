@@ -38,6 +38,9 @@ Default.args = {
     email: userEntriesDataMock[0].email,
     phone: userEntriesDataMock[0].phone,
     position: userEntriesDataMock[0].position,
+    active: userEntriesDataMock[0].active,
+    cargo: userEntriesDataMock[0].position,
+    cargoId: userEntriesDataMock[0].position,
   },
   handleSubmit: handleSubmit,
 };
@@ -52,6 +55,9 @@ WithoutSubmitButtons.args = {
     email: userEntriesDataMock[0].email,
     phone: userEntriesDataMock[0].phone,
     position: userEntriesDataMock[0].position,
+    active: userEntriesDataMock[0].active,
+    cargo: userEntriesDataMock[0].position,
+    cargoId: userEntriesDataMock[0].position,
   },
   handleSubmit: handleSubmit,
 };
