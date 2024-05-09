@@ -4,8 +4,11 @@ import {
   SectionMessage,
   Stack,
 } from "@inube/design-system";
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { useState } from "react";
+import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
+import { EMessageType, IMessage } from "@src/types/messages.types";
+import { EAppearance } from "@src/types/colors.types";
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
 import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
 import {
   deleteInvitationMessagesConfig,
@@ -15,9 +18,6 @@ import {
 import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
-import { EMessageType, IMessage } from "@src/types/messages.types";
-import { IGeneralInformationEntry } from "../../types/forms.types";
-import { EAppearance } from "@src/types/colors.types";
 import { StyledMessageContainer } from "./styles";
 
 const initialMessageState: IMessage = {
@@ -43,7 +43,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "1",
       actionName: "Completar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <CompleteInvitationLink
           invitation={invitation}
           showComplete={smallScreen}
@@ -54,7 +54,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "2",
       actionName: "Reenviar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <ResendInvitation
           invitation={invitation}
           handleResendInvitation={() => handleResendInvitation(invitation)}
@@ -66,7 +66,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "3",
       actionName: "Eliminar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <DeleteInvitation
           handleDelete={() => deleteInvitation(invitation)}
           showComplete={smallScreen}
@@ -76,14 +76,15 @@ function InvitationsTab(props: InvitationsTabProps) {
     },
   ];
 
-  const deleteInvitation = (invitation: IGeneralInformationEntry) => {
+  const deleteInvitation = (invitation: IInvitationsEntry) => {
     // Create fetch request here...
     let responseType = EMessageType.SUCCESS;
 
     try {
       setInvitations((prevInvitations) =>
         prevInvitations.filter(
-          (oldInvitation) => invitation.id !== oldInvitation.id
+          (oldInvitation) =>
+            invitation.invitationId !== oldInvitation.invitationId
         )
       );
     } catch (error) {
@@ -95,13 +96,13 @@ function InvitationsTab(props: InvitationsTabProps) {
 
     handleShowMessage({
       title,
-      description: description(invitation.username),
+      description: description(invitation.userName),
       icon,
       appearance,
     });
   };
 
-  const handleResendInvitation = (invitation: IGeneralInformationEntry) => {
+  const handleResendInvitation = (invitation: IInvitationsEntry) => {
     let messageType = EMessageType.SUCCESS;
 
     try {
