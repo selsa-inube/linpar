@@ -52,8 +52,8 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     userID: currentInformation.userID,
     email: currentInformation.email,
     phone: currentInformation.phone || "",
-    cargo: currentInformation.cargo || "",
-    cargoId: currentInformation.cargoId || "",
+    position: currentInformation.position || "",
+    positionId: currentInformation.positionId || "",
     active: false,
   };
 

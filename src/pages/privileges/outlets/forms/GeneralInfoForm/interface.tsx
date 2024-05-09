@@ -177,7 +177,7 @@ function RenderFormFields(
       <Stack direction="column" gap="8px">
         <StyledSelectContainer>
           <SearchUserCard
-            id="cargo"
+            id="position"
             label="cargo"
             placeholder="Seleccione una opción"
             name="position"
@@ -195,11 +195,11 @@ function RenderFormFields(
             onUserSelect={(value) => {
               formik.setValues({
                 ...formik.values,
-                cargo: value.n_Grupo,
+                position: value.n_Grupo,
               });
-              handleChangeForm("cargo", String(value.n_Grupo));
+              handleChangeForm("position", String(value.n_Grupo));
             }}
-            selectedId={formik.values.cargo}
+            selectedId={formik.values.position}
           />
         </StyledSelectContainer>
 

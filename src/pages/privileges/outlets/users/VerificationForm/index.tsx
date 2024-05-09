@@ -1,4 +1,5 @@
 import { useMediaQuery } from "@inube/design-system";
+
 import { VerificationAddPositionUI } from "./interface";
 import { IAttributes, IDataVerificationStep } from "./types";
 import { IFormsInvitation, IOptionInitialiceEntry } from "../types/forms.types";
@@ -56,7 +57,7 @@ export const VerificationAddPosition = (props: IControllerAccordionProps) => {
           ),
           createAttribute(
             "Cargo:",
-            data.generalInformation.entries?.cargo ?? ""
+            data.generalInformation.entries?.position ?? ""
           ),
         ],
       },

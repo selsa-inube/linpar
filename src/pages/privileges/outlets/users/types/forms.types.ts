@@ -12,12 +12,11 @@ interface IGeneralInformationEntry {
   username: string;
   email: string;
   phone: string;
-  cargo: string;
-  cargoId: string;
+  position: string;
+  positionId: string;
   invitationDate?: string;
   status?: string;
   code?: string;
-  position?: string;
   active?: boolean;
 }
 
