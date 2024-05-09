@@ -39,6 +39,7 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
       Código: positionSelected?.k_Grupo,
       Nombre: positionSelected?.n_Grupo,
       Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
+      Descripción: positionSelected?.n_Uso,
     }));
 
     return [...data].shift();
