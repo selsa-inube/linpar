@@ -6,6 +6,10 @@ interface IStyledSubjectSearchCard {
   smallScreen: boolean;
 }
 
+const StyledSubjectSearchCardText = styled.div`
+  padding: ${inube.spacing.s100} ${inube.spacing.s200};
+`;
+
 const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
   width: 100%;
   height: ${({ smallScreen }) => (smallScreen ? "56px" : "auto")};
@@ -30,4 +34,4 @@ const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
     }`};
 `;
 
-export { StyledSubjectSearchCard };
+export { StyledSubjectSearchCard, StyledSubjectSearchCardText };
