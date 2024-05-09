@@ -4,8 +4,8 @@ import { ActivateFormOptionsUI } from "./interface";
 import { activateUserModal } from "../../users/config/activateUser.config";
 
 export interface IDataActivateOption {
-  id: string;
-  active: boolean;
+  k_Usuari: string;
+  i_Activo: string;
 }
 
 interface IActivateFormOptionsProps<T extends IDataActivateOption> {
@@ -27,9 +27,9 @@ export function ActivateFormOptions<T extends IDataActivateOption>(
 
   return (
     <ActivateFormOptionsUI
-      active={data.active}
+      i_Activo={data.i_Activo}
       showActivateOptions={showActivateUserModal}
-      id={data.id}
+      k_Usuari={data.k_Usuari}
       handleToggleModal={handleToggleModal}
       handleActivateOptions={handleActivate}
       showComplete={showComplete}

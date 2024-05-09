@@ -15,13 +15,14 @@ import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFor
 import { deleteUserModal } from "@pages/privileges/outlets/users/config/deleteUser.config";
 import { activateUserMessages } from "@pages/privileges/outlets/users/config/activateUser.config";
 import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
-import { IGeneralInformationEntry } from "@pages/privileges/outlets/users/types/forms.types";
+
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
 
 import { EditUser } from "./EditUser";
 import { StyledMessageContainer } from "./styles";
+import { IGeneralInformationEntry } from "@src/services/users/users.types";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -44,10 +45,10 @@ function UsersTab(props: UsersTabProps) {
     let messageType = EMessageType.ACTIVATION;
 
     const newUsers = users.map((actUser) => {
-      if (actUser.id === user.id) {
+      if (actUser.k_Usuari === user.k_Usuari) {
         return {
           ...actUser,
-          active: !actUser.active,
+          active: !actUser.i_Activo,
         };
       }
       return actUser;
@@ -55,7 +56,7 @@ function UsersTab(props: UsersTabProps) {
 
     setUsers(newUsers);
 
-    if (user.active) {
+    if (user.i_Activo) {
       messageType = EMessageType.DEACTIVATION;
     }
 

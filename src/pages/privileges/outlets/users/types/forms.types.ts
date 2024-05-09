@@ -1,27 +1,10 @@
+import { IGeneralInformationEntry } from "@src/services/users/users.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 
 interface IAssignmentFormEntry {
   id: string;
   value: string;
   isActive: boolean;
-}
-
-interface IGeneralInformationEntry {
-  id: string;
-  k_Usuari: string;
-  n_Usuari: string;
-  k_Grupo: string;
-  n_Grupo: string;
-  a_Numnit: string;
-  i_Activo: string;
-  userID: string;
-  username: string;
-  email: string;
-  phone: string;
-  invitationDate?: string;
-  status?: string;
-  code?: string;
-  position?: string;
 }
 
 interface IFormsInvitation {
@@ -39,9 +22,4 @@ interface IMessageState {
   type?: EMessageType;
 }
 
-export type {
-  IFormsInvitation,
-  IAssignmentFormEntry,
-  IGeneralInformationEntry,
-  IMessageState,
-};
+export type { IFormsInvitation, IAssignmentFormEntry, IMessageState };

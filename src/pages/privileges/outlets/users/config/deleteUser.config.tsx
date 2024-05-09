@@ -1,6 +1,7 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
-import { IGeneralInformationEntry } from "../types/forms.types";
+
 import { EAppearance } from "@src/types/colors.types";
+import { IGeneralInformationEntry } from "@src/services/users/users.types";
 
 const deleteUserModal = {
   delete: {
@@ -24,8 +25,8 @@ const deleteUserMessages = {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
-    description: ({ code }: IGeneralInformationEntry) =>
-      `Hemos presentado problemas eliminando al usuario ${code}.`,
+    description: ({ k_Usuari }: IGeneralInformationEntry) =>
+      `Hemos presentado problemas eliminando al usuario ${k_Usuari}.`,
     appearance: EAppearance.ERROR,
   },
 };
