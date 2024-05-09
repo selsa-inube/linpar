@@ -16,9 +16,8 @@ interface InteractiveModalProps {
   closeModal: () => void;
   infoData: { [key: string]: string } | Record<string, string | number>;
   searchData?:
-    | { [key: string]: string }
-    | Record<string, string | number>
-    | any;
+    | Record<string, string | number | unknown>[]
+    | { [key: string]: string };
   selectedItem?: string;
   actions?: Action[];
   labels?: Field[];

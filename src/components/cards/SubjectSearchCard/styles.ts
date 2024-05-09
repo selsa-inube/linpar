@@ -7,9 +7,7 @@ interface IStyledSubjectSearchCard {
 }
 
 const StyledSubjectSearchCardText = styled.div`
-  justify-content: start;
-  gap: 8px;
-  padding: 8px 16px;
+  padding: ${inube.spacing.s100} ${inube.spacing.s200};
 `;
 
 const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
