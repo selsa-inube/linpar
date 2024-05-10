@@ -94,11 +94,6 @@ function EditUserUI(props: EditUserUIProps) {
     description: (currentInformation as { n_Descrip: string }).n_Descrip,
   };
 
-  console.log(
-    "editLinixUseCaseSubjectCardLabels",
-    editLinixUseCaseSubjectCardLabels
-  );
-
   return (
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
