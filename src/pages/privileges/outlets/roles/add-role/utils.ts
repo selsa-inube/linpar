@@ -32,8 +32,8 @@ export const addRoleStepsRules = (
             ...initialValuesAddRol.generalInformation,
             roleName: values.roleName,
             description: values.description,
-            aplication: values.aplication,
-            aplicationId: values.aplicationId,
+            application: values.application,
+            applicationId: values.applicationId,
           },
         };
       }
@@ -86,60 +86,79 @@ export const addRoleStepsRules = (
   });
 };
 
-export const saveRole = (addRoleFormValid: IFormAddRole) => {
-  const {
-    ancillaryAccounts: { values: ancillaryAccountsValues },
-    crediboardTasks: { values: crediboardTasksValues },
-    transactionTypes: { values: transactionTypesValues },
-    useCases: { values: useCasesValues },
-  } = addRoleFormValid;
+export const saveRole = async (addRoleFormValid: IFormAddRole) => {
+  return new Promise<string>((resolve, reject) => {
+    const {
+      ancillaryAccounts: { values: ancillaryAccountsValues },
+      crediboardTasks: { values: crediboardTasksValues },
+      transactionTypes: { values: transactionTypesValues },
+      useCases: { values: useCasesValues },
+    } = addRoleFormValid;
 
-  const normalizeAncillaryAccounts = [
-    {
+    const normalizeAncillaryAccounts = [
+      {
+        k_Rol: addRoleFormValid.generalInformation.values.roleName,
+        i_Tipent: ancillaryAccountsValues.commercialSector,
+        k_Codcta: ancillaryAccountsValues.commercialSector,
+      },
+      {
+        k_Rol: addRoleFormValid.generalInformation.values.roleName,
+        i_Tipent: ancillaryAccountsValues.officialSector,
+        k_Codcta: ancillaryAccountsValues.officialSector,
+      },
+      {
+        k_Rol: addRoleFormValid.generalInformation.values.roleName,
+        i_Tipent: ancillaryAccountsValues.solidaritySector,
+        k_Codcta: ancillaryAccountsValues.solidaritySector,
+      },
+    ];
+
+    const normalizeCrediboardTasks = crediboardTasksValues
+      .filter((crediboardTasksValue) => crediboardTasksValue.isActive === true)
+      .map((mapNewCrediboardTask) => ({
+        k_Rol: +addRoleFormValid.generalInformation.values.roleName,
+        tarea: mapNewCrediboardTask.value,
+      }));
+
+    const normalizeTransactionTypes = transactionTypesValues
+      .filter(
+        (transactionTypesValue) => transactionTypesValue.isActive === true
+      )
+      .map((mapNewTransactionType) => ({
+        k_Rol: +addRoleFormValid.generalInformation.values.roleName,
+        k_Tipmov: mapNewTransactionType.id,
+        n_Tipmov: mapNewTransactionType.value,
+        i_Privi: true,
+      }));
+
+    const normalizeUseCases = useCasesValues
+      .filter((useCasesValue) => useCasesValue.isActive === true)
+      .map((mapNewUseCases) => ({
+        k_Rol: +addRoleFormValid.generalInformation.values.roleName,
+        k_Usecase: mapNewUseCases.value,
+      }));
+
+    const newRole: IRol = {
+      i_Activo: "Y",
       k_Rol: addRoleFormValid.generalInformation.values.roleName,
-      i_Tipent: ancillaryAccountsValues.commercialSector,
-      k_Codcta: ancillaryAccountsValues.commercialSector,
-    },
-  ];
+      k_Tipcon: addRoleFormValid.generalInformation.values.applicationId,
+      n_Rol: addRoleFormValid.generalInformation.values.roleName,
+      n_Uso: addRoleFormValid.generalInformation.values.application,
+      k_Aplica: addRoleFormValid.generalInformation.values.applicationId,
+      cuentasAuxiliaresPorRol: normalizeAncillaryAccounts,
+      tiposDeMovimientoContablePorRol: normalizeTransactionTypes,
+      tareasCrediboardPorRol: normalizeCrediboardTasks,
+      casosDeUsoPorRol: normalizeUseCases,
+    };
 
-  const normalizeCrediboardTasks = crediboardTasksValues
-    .filter((crediboardTasksValue) => crediboardTasksValue.isActive === true)
-    .map((mapNewCrediboardTask) => ({
-      k_Rol: +addRoleFormValid.generalInformation.values.roleName,
-      tarea: mapNewCrediboardTask.value,
-    }));
-
-  const normalizeTransactionTypes = transactionTypesValues
-    .filter((transactionTypesValue) => transactionTypesValue.isActive === true)
-    .map((mapNewTransactionType) => ({
-      k_Rol: +addRoleFormValid.generalInformation.values.roleName,
-      k_Tipmov: mapNewTransactionType.value,
-    }));
-
-  const normalizeUseCases = useCasesValues
-    .filter((useCasesValue) => useCasesValue.isActive === true)
-    .map((mapNewUseCases) => ({
-      k_Rol: +addRoleFormValid.generalInformation.values.roleName,
-      k_Usecase: mapNewUseCases.value,
-    }));
-
-  const newRole: IRol = {
-    i_Activo: "Y",
-    k_Rol: addRoleFormValid.generalInformation.values.roleName,
-    k_Tipcon: addRoleFormValid.generalInformation.values.aplication,
-    n_Rol: addRoleFormValid.generalInformation.values.description,
-    n_Uso: addRoleFormValid.generalInformation.values.roleName,
-    cuentasAuxiliaresPorRol: normalizeAncillaryAccounts,
-    tiposDeMovimientoContablePorRol: normalizeTransactionTypes,
-    tareasCrediboardPorRol: normalizeCrediboardTasks,
-    casosDeUsoPorRol: normalizeUseCases,
-  };
-
-  localforage.getItem("linix-roles").then((data) => {
-    if (data) {
-      localforage.setItem("linix-roles", [...(data as IRol[]), newRole]);
-    } else {
-      localforage.setItem("linix-roles", [newRole]);
-    }
+    localforage
+      .getItem("linix-roles")
+      .then((data) => {
+        const rolesArray = data ? (data as IRol[]) : [];
+        rolesArray.push(newRole);
+        return localforage.setItem("linix-roles", rolesArray);
+      })
+      .then(() => resolve(newRole.k_Rol))
+      .catch((error) => reject(error));
   });
 };

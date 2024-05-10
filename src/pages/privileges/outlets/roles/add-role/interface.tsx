@@ -6,6 +6,8 @@ import {
   useMediaQuery,
   inube,
 } from "@inube/design-system";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
@@ -19,10 +21,20 @@ import {
 import { titleButtonTextAssited } from "./types";
 import { StyledContainerAssisted } from "./styles";
 
-import { createRolConfig, stepsAddRol } from "./config/addRol.config";
+import {
+  createRolConfig,
+  stepsAddRol,
+  finishAssistedRoleModalConfig,
+  finishAssistedRoleMessagesConfig,
+} from "./config/addRol.config";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { VerificationAddRole } from "../components/VerificationForm";
+
+import { DecisionModal } from "@src/components/feedback/DecisionModal";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+
 import { saveRole } from "./utils";
 
 interface AddRolUIProps {
@@ -52,6 +64,11 @@ export function AddRolUI(props: AddRolUIProps) {
     setCurrentStep,
     handleAddRoleFormValid,
   } = props;
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
+  const navigate = useNavigate();
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
@@ -63,6 +80,57 @@ export function AddRolUI(props: AddRolUIProps) {
     crediboardTasks: { values: crediboardTasksValues },
     useCases: { values: useCasesValues },
   } = addRoleFormValid;
+
+  const { title, description, actionText, appearance } =
+    finishAssistedRoleModalConfig;
+
+  const handleAddRole = async (addRoleData: IFormAddRole) => {
+    saveRole(addRoleFormValid);
+
+    await saveRole(addRoleData)
+      .then((newK_Role) => {
+        renderMessage(newK_Role, "success");
+      })
+      .catch((error) => {
+        renderMessage("", "failed");
+      })
+      .finally(() => {
+        handleToggleModal();
+      });
+  };
+
+  const renderMessage = (
+    k_Role: string | "",
+    type: "success" | "failed" = "failed"
+  ) => {
+    let messageType;
+    if (type === "success")
+      messageType = finishAssistedRoleMessagesConfig.success;
+    if (type === "failed")
+      messageType = finishAssistedRoleMessagesConfig.failed;
+
+    messageType &&
+      setMessage({
+        visible: true,
+        data: {
+          icon: messageType?.icon,
+          title: messageType?.title,
+          description: messageType.description(k_Role),
+          appearance: messageType?.appearance,
+        },
+      });
+  };
+
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+    navigate("/privileges/roles");
+  };
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
@@ -154,15 +222,31 @@ export function AddRolUI(props: AddRolUIProps) {
 
           <Button
             onClick={
-              currentStep === steps.length
-                ? () => saveRole(addRoleFormValid)
-                : handleNextStep
+              currentStep === steps.length ? handleToggleModal : handleNextStep
             }
             spacing="wide"
             disabled={!isAddRoleFormValid}
           >
             {currentStep === steps.length ? "Enviar" : "Siguiente"}
           </Button>
+          {showModal && (
+            <DecisionModal
+              title={title}
+              description={description}
+              actionText={actionText}
+              appearance={appearance}
+              closeModal={handleToggleModal}
+              handleClick={() => handleAddRole(addRoleFormValid)}
+            />
+          )}
+
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={handleCloseSectionMessage}
+              onMessageClosed={handleCloseSectionMessage}
+            />
+          )}
         </Stack>
       </Stack>
     </Stack>

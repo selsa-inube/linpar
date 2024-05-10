@@ -15,14 +15,14 @@ const LOADING_TIMEOUT = 1500;
 const validationSchema = Yup.object({
   roleName: Yup.string().required(validationMessages.required),
   description: Yup.string().required(validationMessages.required),
-  aplication: Yup.string().required(validationMessages.required),
+  application: Yup.string().required(validationMessages.required),
 });
 
 export interface IGeneralInformationForm {
   roleName: string;
   description: string;
-  aplication: string;
-  aplicationId: string;
+  application: string;
+  applicationId: string;
 }
 
 interface IGeneralInformationFormProps {
@@ -64,7 +64,7 @@ export const GeneralInformationForm = forwardRef(
           setIsLoading(false);
         })
         .catch((error) => {
-          console.info(error.message);
+          console.error(error.message);
         });
     }, []);
 

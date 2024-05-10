@@ -82,10 +82,10 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           />
 
           <SearchUserCard
-            id="aplication"
+            id="application"
             label="Aplicación"
             placeholder="Seleccione una opción"
-            name="aplication"
+            name="application"
             title="Aplicación"
             infoTitle="Busque y seleccione una aplicación:"
             idModal="searchField"
@@ -95,15 +95,15 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             onUserSelect={(value) => {
               formik.setValues({
                 ...formik.values,
-                aplicationId: value.k_Usecase,
-                aplication: value.n_Usecase,
+                applicationId: value.k_Usecase,
+                application: value.n_Usecase,
               });
             }}
             userData={linixRoles}
             searchFieldData={searchData}
             idLabel="k_Usecase"
             nameLabel="n_Usecase"
-            selectedId={formik.values.aplicationId}
+            selectedId={formik.values.applicationId}
             onReset={() => {}}
             required
           />

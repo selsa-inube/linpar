@@ -78,20 +78,20 @@ export const createRolConfig = [
   },
 ];
 
-export const finishAssistedRolModalConfig = {
+export const finishAssistedRoleModalConfig = {
   title: "Finalizar registro",
   description: "¿Está seguro de que desea finalizar el proceso de creación?",
   actionText: "Finalizar",
   appearance: EAppearance.SUCCESS,
 };
 
-export const finishAssistedRolMessagesConfig = {
+export const finishAssistedRoleMessagesConfig = {
   success: {
     id: 1,
     icon: <Icon appearance="dark" icons={<MdThumbUpOffAlt />} size="18px" />,
     title: "Creación exitosa",
     description: (value: string) =>
-      `Hemos creado el rol ${value} exitosamente.`,
+      `Hemos creado el Rol '${value}' exitosamente.`,
     appearance: EAppearance.SUCCESS,
   },
   failed: {
@@ -99,7 +99,7 @@ export const finishAssistedRolMessagesConfig = {
     icon: <Icon appearance="dark" icons={<MdErrorOutline />} size="18px" />,
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
-      `Hemos presentado un error creando el rol ${value}.`,
+      `Hemos presentado un error creando el Rol, por favor contacte a soporte.`,
     appearance: EAppearance.ERROR,
   },
 };

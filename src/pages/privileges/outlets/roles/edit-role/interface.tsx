@@ -78,8 +78,8 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             {roleCardData && (
               <SubjectCard
                 subjectData={roleCardData}
-                title="Informacion del caso de uso"
-                icon={<FaUserGear size={32} />}
+                title="Editar Rol"
+                icon={<FaUserGear />}
                 labels={editRoleCardLabels}
               />
             )}
