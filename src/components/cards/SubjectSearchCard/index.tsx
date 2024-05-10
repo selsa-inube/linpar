@@ -22,7 +22,7 @@ function SubjectSearchCard(props: SubjectSearchCardProps) {
 
   return (
     <>
-      <StyledSubjectSearchCard smallScreen={smallScreen} isActive={isActive}>
+      <StyledSubjectSearchCard $smallScreen={smallScreen} $isActive={isActive}>
         <Grid templateColumns="1fr auto">
           <StyledSubjectSearchCardText onClick={handleToggleModal}>
             <Stack direction="column">

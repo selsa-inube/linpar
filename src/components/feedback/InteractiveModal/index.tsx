@@ -114,7 +114,7 @@ const InteractiveModal = ({
             )}
             {!closeCard && searchData && searchData.map(renderCard)}
 
-            {divider && <StyledDivider smallScreen={smallScreen} />}
+            {divider && <StyledDivider $smallScreen={smallScreen} />}
             {type === "fields" ? (
               hasLabels ? (
                 labels.map(
