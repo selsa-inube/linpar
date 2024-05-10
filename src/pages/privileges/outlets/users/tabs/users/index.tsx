@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Table,
   useMediaQuery,
@@ -6,7 +6,6 @@ import {
   Stack,
 } from "@inube/design-system";
 
-import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
@@ -23,6 +22,8 @@ import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
 import { EditUser } from "./EditUser";
 import { StyledMessageContainer } from "./styles";
 import { IGeneralInformationEntry } from "@src/services/users/users.types";
+import { getAll } from "@src/mocks/utils/dataMock.service";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -38,8 +39,24 @@ interface UsersTabProps {
 
 function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
-  const [users, setUsers] = useState(userEntriesDataMock);
+  const [users, setUsers] = useState<IGeneralInformationEntry[]>([]);
   const [message, setMessage] = useState(initialMessageState);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAll("linix-users")
+      .then((data) => {
+        if (data !== null) {
+          setUsers(data as IGeneralInformationEntry[]);
+        }
+      })
+      .catch((error) => {
+        console.info(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [users]);
 
   const handleActivateUser = (user: IGeneralInformationEntry) => {
     let messageType = EMessageType.ACTIVATION;
@@ -135,15 +152,19 @@ function UsersTab(props: UsersTabProps) {
 
   return (
     <>
-      <Table
-        id="portal"
-        titles={usersTitlesConfig}
-        actions={actions}
-        entries={users}
-        breakpoints={usersBreakPointsConfig}
-        filter={searchText}
-        modalTitle="Usuario"
-      />
+      {loading ? (
+        <LoadingApp />
+      ) : (
+        <Table
+          id="portal"
+          titles={usersTitlesConfig}
+          actions={actions}
+          entries={users}
+          breakpoints={usersBreakPointsConfig}
+          filter={searchText}
+          modalTitle="Usuario"
+        />
+      )}
       {message.show && (
         <StyledMessageContainer>
           <Stack justifyContent="flex-end" width="100%">
