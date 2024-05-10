@@ -183,8 +183,14 @@ export const EditRole = () => {
     }
   };
 
+  const roleCardData = editData && {
+    code: (editData as { k_Rol: string }).k_Rol,
+    username: (editData as { n_Rol: string }).n_Rol,
+  };
+
   return (
     <EditRoleUI
+      roleCardData={roleCardData}
       data={valuesGeneralInformation}
       onTabChange={handleTabChange}
       selectedTab={selectedTab}
