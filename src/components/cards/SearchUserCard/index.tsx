@@ -6,7 +6,6 @@ import { InteractiveModal } from "@components/feedback/InteractiveModal";
 
 import { ILabel } from "./types";
 import { StyledSearchUserCard } from "./styles";
-
 interface SearchUserCardProps {
   id: string;
   label: string;
@@ -25,8 +24,11 @@ interface SearchUserCardProps {
   onReset: (field: () => void) => void;
   idLabel?: string;
   nameLabel?: string;
-  selectedId?: string;
+  selectedId: string;
   required?: boolean;
+  message?: string;
+  status?: string;
+  onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 function SearchUserCard(props: SearchUserCardProps) {
@@ -48,24 +50,27 @@ function SearchUserCard(props: SearchUserCardProps) {
     onUserSelect,
     idLabel = "userID",
     nameLabel = "username",
-    selectedId = "",
+    selectedId,
     onReset,
+    message,
+    status,
+    onBlur,
   } = props;
   const [showModal, setShowModal] = useState(false);
 
   const [selectedUsername, setSelectedUsername] = useState(selectedId);
 
+  const [validateCardRemoved, setValidateCardRemoved] = useState(false);
+
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
   useEffect(() => {
-    if (selectedId.length > 0) {
-      userData.forEach((data) => {
-        if (data[idLabel] === selectedId) {
-          setSelectedUsername(String(data[nameLabel]));
-        }
-      });
-    }
-  }, [idLabel, nameLabel, userData, selectedId]);
+    userData.forEach((data) => {
+      if (data[idLabel] === selectedId) {
+        setSelectedUsername(String(data[nameLabel]));
+      }
+    });
+  }, [idLabel, selectedId, nameLabel, userData]);
 
   const resetSelectedUser = () => {
     setSelectedUsername("");
@@ -77,8 +82,15 @@ function SearchUserCard(props: SearchUserCardProps) {
     }
   }, [onReset]);
 
+  useEffect(() => {
+    if (validateCardRemoved) {
+      setSelectedUsername("");
+    }
+  }, [validateCardRemoved]);
+
   const handleToggleModal = () => {
     setShowModal(!showModal);
+    setValidateCardRemoved(false);
   };
 
   const handleUserSelect = (data: { [key: string]: string | number }) => {
@@ -108,6 +120,9 @@ function SearchUserCard(props: SearchUserCardProps) {
           fullwidth={true}
           readOnly
           value={selectedUsername}
+          message={message}
+          status={status}
+          onBlur={onBlur}
         />
       </StyledSearchUserCard>
       {showModal && (
@@ -129,6 +144,7 @@ function SearchUserCard(props: SearchUserCardProps) {
           onClick={handleUserSelect}
           idLabel={idLabel}
           nameLabel={nameLabel}
+          setValidateCardRemoved={setValidateCardRemoved}
         />
       )}
     </>
