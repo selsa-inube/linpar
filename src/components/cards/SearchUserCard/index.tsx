@@ -27,7 +27,7 @@ interface SearchUserCardProps {
   selectedId: string;
   required?: boolean;
   message?: string;
-  status?: string;
+  status?: string | null;
   onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

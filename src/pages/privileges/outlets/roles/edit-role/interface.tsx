@@ -28,6 +28,7 @@ interface IEditRoleUIProps {
   selectedTab: string;
   smallScreen: boolean;
   loading: boolean;
+  rol_id: string;
   valuesAncillaryAccounts: IAncillaryAccountsForm;
   valuesTransactionTypes: IAssignmentFormEntry[];
   valuesBusinessRules?: any;
@@ -44,6 +45,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     dataTabs,
     smallScreen,
     loading,
+    rol_id,
     valuesAncillaryAccounts,
     valuesTransactionTypes,
     valuesBusinessRules,
@@ -78,12 +80,17 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             tabs={dataTabs}
           />
           {selectedTab === stepsAddRol.generalInformation.label && (
-            <GeneralInformationForm initialValues={data} withSubmitButtons />
+            <GeneralInformationForm
+              initialValues={data}
+              rol_id={rol_id}
+              withSubmitButtons
+            />
           )}
 
           {selectedTab === stepsAddRol.auxiliaryAccounts.label && (
             <AncillaryAccountsForm
               initialValues={valuesAncillaryAccounts}
+              rol_id={rol_id}
               withSubmitButtons
             />
           )}
@@ -93,6 +100,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               dataOptionsForms={valuesTransactionTypes}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
+              id={rol_id}
+              keyData={"k_Rol"}
+              nameDB={"linix-roles"}
+              property={"tiposDeMovimientoContablePorRol"}
+              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.businessRules.label && (
@@ -100,6 +112,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               dataOptionsForms={valuesBusinessRules}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
+              id={rol_id}
+              keyData={"k_Rol"}
+              nameDB={"linix-roles"}
+              property={"reglasDeNegocioPorRol"}
+              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.crediboardTasks.label && (
@@ -107,6 +124,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               dataOptionsForms={valuesCreditboardTasks}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
+              id={rol_id}
+              keyData={"k_Rol"}
+              nameDB={"linix-roles"}
+              property={"tareasCrediboardPorRol"}
+              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.useCases.label && (
@@ -114,6 +136,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               dataOptionsForms={valuesUseCases}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
+              id={rol_id}
+              keyData={"k_Rol"}
+              nameDB={"linix-positions"}
+              property={"casosDeUsoPorRol"}
+              propertyData={"k_Id"}
             />
           )}
         </>

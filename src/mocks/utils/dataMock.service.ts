@@ -41,7 +41,8 @@ interface functionById {
   editData?:
     | IGeneralInformation
     | IGeneralInformationEntry
-    | { [key: string]: string }[];
+    | { [key: string]: string }[]
+    | { [key: string]: string };
 }
 
 interface functionActiveById {

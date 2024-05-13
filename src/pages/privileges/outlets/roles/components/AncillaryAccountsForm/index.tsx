@@ -4,8 +4,7 @@ import { AncillaryAccountsFormsUI } from "./interface";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
-const LOADING_TIMEOUT = 1500;
-
+import { updateItemData } from "@mocks/utils/dataMock.service";
 export interface IAncillaryAccountsForm {
   officialSector: string;
   commercialSector: string;
@@ -14,9 +13,10 @@ export interface IAncillaryAccountsForm {
 
 interface IAncillaryAccountsFormProps {
   initialValues: IAncillaryAccountsForm;
+  rol_id?: string | number;
   onSubmit?: (values: IAncillaryAccountsForm) => void;
   withSubmitButtons?: boolean;
-  handleAddRoleFormValid: (newValue: boolean) => void;
+  handleAddRoleFormValid?: (newValue: boolean) => void;
 }
 
 export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
@@ -25,6 +25,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
 ) {
   const {
     initialValues,
+    rol_id,
     onSubmit,
     withSubmitButtons = false,
     handleAddRoleFormValid,
@@ -44,15 +45,40 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   const hasChanges = (valueCompare: IAncillaryAccountsForm) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      setMessage({
-        visible: true,
-        data: generalMessage.success,
+
+    const editedAccounts = Object.entries(formik.values).map(
+      ([key, value]) => ({
+        i_Tipent: key,
+        k_Codcta: value,
+      })
+    );
+
+    await updateItemData({
+      key: "k_Rol",
+      nameDB: "linix-roles",
+      identifier: rol_id as string,
+      editData: editedAccounts,
+      property: "cuentasAuxiliaresPorRol",
+    })
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch((error) => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+
+        console.info(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-      setIsLoading(false);
-    }, LOADING_TIMEOUT);
   };
 
   const handleCloseSectionMessage = () => {

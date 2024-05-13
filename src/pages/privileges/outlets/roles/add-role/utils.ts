@@ -32,8 +32,8 @@ export const addRoleStepsRules = (
             ...initialValuesAddRol.generalInformation,
             roleName: values.roleName,
             description: values.description,
-            aplication: values.aplication,
-            aplicationId: values.aplicationId,
+            application: values.application,
+            applicationId: values.applicationId,
           },
         };
       }
@@ -126,7 +126,7 @@ export const saveRole = (addRoleFormValid: IFormAddRole) => {
   const newRole: IRol = {
     i_Activo: "Y",
     k_Rol: addRoleFormValid.generalInformation.values.roleName,
-    k_Tipcon: addRoleFormValid.generalInformation.values.aplication,
+    k_Tipcon: addRoleFormValid.generalInformation.values.application,
     n_Rol: addRoleFormValid.generalInformation.values.description,
     n_Uso: addRoleFormValid.generalInformation.values.roleName,
     cuentasAuxiliaresPorRol: normalizeAncillaryAccounts,
