@@ -155,7 +155,11 @@ export function AddRolUI(props: AddRolUIProps) {
               steps={steps}
               currentStepId={currentStep}
               handlePrev={handlePreviousStep}
-              handleNext={handleNextStep}
+              handleNext={
+                currentStep === steps.length
+                  ? handleToggleModal
+                  : handleNextStep
+              }
               titleButtonText={titleButtonTextAssited}
             />
           </StyledContainerAssisted>
