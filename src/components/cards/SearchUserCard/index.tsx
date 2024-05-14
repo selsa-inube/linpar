@@ -24,7 +24,7 @@ interface SearchUserCardProps {
   onReset: (field: () => void) => void;
   idLabel?: string;
   nameLabel?: string;
-  selectedId: string;
+  selectedId?: string;
   required?: boolean;
   message?: string;
   status?: string;
