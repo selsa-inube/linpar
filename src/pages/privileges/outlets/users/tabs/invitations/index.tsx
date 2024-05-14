@@ -4,8 +4,12 @@ import {
   SectionMessage,
   Stack,
 } from "@inube/design-system";
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
 import { useEffect, useState } from "react";
+import { EMessageType, IMessage } from "@src/types/messages.types";
+import { EAppearance } from "@src/types/colors.types";
+import { getAll } from "@mocks/utils/dataMock.service";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
 import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
 import {
   deleteInvitationMessagesConfig,
@@ -15,9 +19,6 @@ import {
 import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
-import { EMessageType, IMessage } from "@src/types/messages.types";
-import { IGeneralInformationEntry } from "../../types/forms.types";
-import { EAppearance } from "@src/types/colors.types";
 import { StyledMessageContainer } from "./styles";
 import { IInvitationsEntry } from "@src/services/users/invitation.types";
 import { getAll } from "@src/mocks/utils/dataMock.service";
@@ -39,7 +40,7 @@ function InvitationsTab(props: InvitationsTabProps) {
   const { searchText } = props;
   const [message, setMessage] = useState(initialMessageState);
   const [loading, setLoading] = useState(true);
-  const [invitations, setInvitations] = useState(invitationEntriesDataMock);
+  const [invitations, setInvitations] = useState<IInvitationsEntry[]>([]);
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
 
@@ -62,7 +63,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "1",
       actionName: "Completar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <CompleteInvitationLink
           invitation={invitation}
           showComplete={smallScreen}
@@ -73,7 +74,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "2",
       actionName: "Reenviar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <ResendInvitation
           invitation={invitation}
           handleResendInvitation={() => handleResendInvitation(invitation)}
@@ -121,7 +122,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     });
   };
 
-  const handleResendInvitation = (invitation: IGeneralInformationEntry) => {
+  const handleResendInvitation = (invitation: IInvitationsEntry) => {
     let messageType = EMessageType.SUCCESS;
 
     try {

@@ -1,9 +1,9 @@
 import { activateUserModal } from "../../users/config/activateUser.config";
 
 export interface IActivateOptionModal {
-  active: boolean;
+  i_Activo: string;
   handleToggleModal: () => void;
   handleActivateOptions: () => void;
-  id: string;
+  k_Usuari: string;
   activateModalConfig: typeof activateUserModal;
 }

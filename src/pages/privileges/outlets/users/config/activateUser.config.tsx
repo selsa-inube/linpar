@@ -1,8 +1,7 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
 import { EAppearance } from "@src/types/colors.types";
-
-import { IGeneralInformationEntry } from "../types/forms.types";
+import { IGeneralInformationEntry } from "@src/services/users/users.types";
 
 const activateUserModal = {
   activation: {
@@ -26,24 +25,24 @@ const activateUserMessages = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Activación exitosa!",
-    description: ({ username }: IGeneralInformationEntry) =>
-      `El Usuario ${username} esta activado `,
+    description: ({ n_Usuari }: IGeneralInformationEntry) =>
+      `El Usuario ${n_Usuari} esta activado `,
     appearance: EAppearance.SUCCESS,
   },
   deactivation: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Desactivación exitosa!",
-    description: ({ username }: IGeneralInformationEntry) =>
-      `El Usuario ${username} esta desactivado `,
+    description: ({ n_Usuari }: IGeneralInformationEntry) =>
+      `El Usuario ${n_Usuari} esta desactivado `,
     appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
-    description: ({ code }: IGeneralInformationEntry) =>
-      `Hemos presentado problemas eliminando al usuario ${code}.`,
+    description: ({ k_Usuari }: IGeneralInformationEntry) =>
+      `Hemos presentado problemas eliminando al usuario ${k_Usuari}.`,
     appearance: EAppearance.ERROR,
   },
 };

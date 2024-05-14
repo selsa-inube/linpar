@@ -22,8 +22,8 @@ interface SearchUserCardProps {
   labels?: ILabel[];
   onUserSelect: (data: { [key: string]: string | number }) => void;
   onReset: (field: () => void) => void;
-  idLabel: string;
-  nameLabel: string;
+  idLabel?: string;
+  nameLabel?: string;
   selectedId?: string;
   required?: boolean;
   message?: string;
