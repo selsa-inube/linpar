@@ -17,7 +17,8 @@ interface InteractiveModalProps {
   infoData: { [key: string]: string } | Record<string, string | number>;
   searchData?:
     | Record<string, string | number | unknown>[]
-    | { [key: string]: string };
+    | { [key: string]: string }
+    | any;
   selectedItem?: string;
   actions?: Action[];
   labels?: Field[];

@@ -130,6 +130,7 @@ const InteractiveModal = ({
                         fullwidth={true}
                         type="text"
                         size="compact"
+                        readOnly
                       />
                     )
                 )

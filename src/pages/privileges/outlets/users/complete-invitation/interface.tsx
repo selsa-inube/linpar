@@ -12,13 +12,8 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
-import { GeneralInformationForm } from "@pages/privileges/outlets/forms/GeneralInfoForm";
 
-import {
-  IAssignmentFormEntry,
-  IFormsInvitation,
-  IGeneralInformationEntry,
-} from "../types/forms.types";
+import { IAssignmentFormEntry, IFormsInvitation } from "../types/forms.types";
 
 import {
   CompleteInvitationUserConfig,
@@ -29,6 +24,8 @@ import {
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
 
 import { StyledAssistedContainer } from "./styles";
+import { GeneralInformationForm } from "./GeneralInformation";
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
 
 export interface IVerificationData {
   id: string;
@@ -59,9 +56,7 @@ function finishModal(
 
 interface CompleteInvitationUIProps {
   invitationData: IFormsInvitation;
-  handleSubmit: (
-    values: IGeneralInformationEntry | IAssignmentFormEntry[]
-  ) => void;
+  handleSubmit: (values: IInvitationsEntry | IAssignmentFormEntry[]) => void;
   handleNextStep: (step: number) => void;
   handlePrevStep: (step: number) => void;
   currentStep: number;
@@ -93,16 +88,16 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
 
   const invitationCardData = currentInformation
     ? {
-        username: currentInformation.username,
-        userID: currentInformation.userID,
+        userName: currentInformation.userName,
+        userIdentification: currentInformation.userIdentification,
         email: currentInformation.email,
-        invitationDate: currentInformation.invitationDate || "",
+        dateStart: currentInformation.dateStart || "",
       }
     : {
-        username: "",
-        userID: "",
+        userName: "",
+        userIdentification: "",
         email: "",
-        invitationDate: "",
+        dateStart: "",
       };
 
   return (

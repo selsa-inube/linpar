@@ -81,12 +81,12 @@ const CompleteInvitationUserConfig = [
 
 const completeInvitationSubjectCardLabels = [
   {
-    id: "username",
+    id: "userName",
     titleName: "Nombre",
     priority: 0,
   },
   {
-    id: "userID",
+    id: "userIdentification",
     titleName: "Identificación",
     priority: 1,
   },
@@ -96,7 +96,7 @@ const completeInvitationSubjectCardLabels = [
     priority: 2,
   },
   {
-    id: "invitationDate",
+    id: "dateStart",
     titleName: "Fecha de invitación",
     priority: 3,
   },

@@ -2,14 +2,14 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { Button, Icon } from "@inube/design-system";
 import { MdOutlineShortcut } from "react-icons/md";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
-import { IGeneralInformationEntry } from "../../../types/forms.types";
 import { useState } from "react";
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
 
 interface ResendInvitationUIProps {
   showResendInvModal: boolean;
   toggleModal: () => void;
   resendInvitationUser: () => void;
-  invitation: IGeneralInformationEntry;
+  invitation: IInvitationsEntry;
   showComplete: boolean;
 }
 

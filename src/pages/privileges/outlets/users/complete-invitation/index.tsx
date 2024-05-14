@@ -10,7 +10,7 @@ import { getAll } from "@mocks/utils/dataMock.service";
 import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/projectsForm.mock";
 import { IVerificationData } from "@pages/privileges/outlets/users/complete-invitation/interface";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
-import { GeneralInformationForm } from "@pages/privileges/outlets/forms/GeneralInfoForm";
+
 import { EMessageType } from "@src/types/messages.types";
 
 import {
@@ -20,6 +20,7 @@ import {
 } from "../types/forms.types";
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { CompleteInvitationUI } from "./interface";
+import { GeneralInformationForm } from "./GeneralInformation";
 
 function CompleteInvitation() {
   const { invitation_id } = useParams<{ invitation_id: string }>();
@@ -57,7 +58,7 @@ function CompleteInvitation() {
 
   function getInvitationInformation() {
     return invitationEntriesDataMock.find(
-      (invitation) => invitation.id === invitation_id
+      (invitation) => invitation.customerId === invitation_id
     );
   }
 
@@ -89,7 +90,7 @@ function CompleteInvitation() {
       navigate("/privileges/users", {
         state: {
           messageType: EMessageType.SUCCESS,
-          username: invitationData.generalInformation.entries.username,
+          username: invitationData.generalInformation.entries.userName,
           tab: "privileges-invitations",
         },
       });
