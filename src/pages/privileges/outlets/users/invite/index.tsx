@@ -9,21 +9,22 @@ import { validationMessages } from "@validations/validationMessages";
 
 import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
-import { userEntriesDataMock } from "@src/mocks/apps/privileges/users/users.mock";
 import { userSearchCardData } from "@src/mocks/apps/privileges/users/usersSearchField.mock";
+import { saveLinixInvitations } from "./utils";
+import { invitationUserEntriesDataMock } from "@src/mocks/apps/privileges/invitations/invitationUsers.mock";
 
 const LOADING_TIMEOUT = 1500;
 
 const initialValues: IInviteFormValues = {
-  name: "",
-  userID: "",
-  phone: "",
+  userName: "",
+  userIdentification: "",
+  phoneNumber: "",
   email: "",
 };
 
 const validationSchema = Yup.object({
-  userID: validationRules.identification,
-  phone: validationRules.phone.required(validationMessages.required),
+  userIdentification: validationRules.identification,
+  phoneNumber: validationRules.phone.required(validationMessages.required),
   email: validationRules.email.required(validationMessages.required),
 });
 
@@ -47,6 +48,7 @@ function Invite() {
       setTimeout(() => {
         setLoading(false);
         setFormInvalid(false);
+        saveLinixInvitations(formik.values);
         setShowMessage(true);
         formik.resetForm();
         resetSearchUserRef.current();
@@ -83,7 +85,7 @@ function Invite() {
       handleSubmit={handleSubmit}
       screenMovil={screenMovil}
       searchFieldData={userSearchCardData}
-      usersInfo={userEntriesDataMock}
+      usersInfo={invitationUserEntriesDataMock}
       onReset={handleResetSearchUser}
     />
   );

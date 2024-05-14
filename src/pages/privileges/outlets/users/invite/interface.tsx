@@ -90,12 +90,13 @@ function InviteUI(props: InviteUIProps) {
   const [isUserSelected, setIsUserSelected] = useState(false);
 
   const checkIfAnyFieldIsEmpty = () => {
-    return !formik.values.userID || !formik.values.phone;
+    return !formik.values.userIdentification || !formik.values.phoneNumber;
   };
 
   const handleUserSelect = (userData: Record<string, string | number>) => {
-    formik.setFieldValue("userID", userData.userID);
-    formik.setFieldValue("phone", userData.phone);
+    formik.setFieldValue("userName", userData.userName);
+    formik.setFieldValue("userIdentification", userData.userIdentification);
+    formik.setFieldValue("phoneNumber", userData.phoneNumber);
     setIsUserSelected(true);
   };
 
@@ -132,6 +133,8 @@ function InviteUI(props: InviteUIProps) {
                 infoTitle={"Busca el usuario para enviar la invitación."}
                 idModal="searchField"
                 nameModal="searchField"
+                idLabel="userIdentification"
+                nameLabel="userName"
                 labelModal={"Digita el nombre o numero de identificación."}
                 placeholderModal={
                   "Digita el nombre o numero de identificación."
@@ -142,9 +145,9 @@ function InviteUI(props: InviteUIProps) {
               <Textfield
                 label="Identificación"
                 placeholder="Ingrese su número de identificación"
-                name="userID"
-                id="userID"
-                value={formik.values.userID}
+                name="userIdentification"
+                id="userIdentification"
+                value={formik.values.userIdentification}
                 type="number"
                 disabled={loading}
                 size="compact"
@@ -155,9 +158,9 @@ function InviteUI(props: InviteUIProps) {
               <Textfield
                 label="Número de teléfono"
                 placeholder="Ingrese su número telefónico"
-                name="phone"
-                id="phone"
-                value={formik.values.phone}
+                name="phoneNumber"
+                id="phoneNumber"
+                value={formik.values.phoneNumber}
                 type="tel"
                 disabled={loading}
                 size="compact"

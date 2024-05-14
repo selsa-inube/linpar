@@ -31,8 +31,8 @@ const InteractiveModal = ({
   searchData,
   divider,
   onClick,
-  idLabel = "userID",
-  nameLabel = "username",
+  idLabel,
+  nameLabel,
   setValidateCardRemoved,
 }: InteractiveModalProps) => {
   const smallScreen = useMediaQuery("(max-width: 580px)");

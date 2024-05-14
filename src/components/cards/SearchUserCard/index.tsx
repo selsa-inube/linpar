@@ -22,9 +22,9 @@ interface SearchUserCardProps {
   labels?: ILabel[];
   onUserSelect: (data: { [key: string]: string | number }) => void;
   onReset: (field: () => void) => void;
-  idLabel?: string;
-  nameLabel?: string;
-  selectedId: string;
+  idLabel: string;
+  nameLabel: string;
+  selectedId?: string;
   required?: boolean;
   message?: string;
   status?: string;
@@ -48,8 +48,8 @@ function SearchUserCard(props: SearchUserCardProps) {
     infoTitle,
     labels,
     onUserSelect,
-    idLabel = "userID",
-    nameLabel = "username",
+    idLabel,
+    nameLabel,
     selectedId,
     onReset,
     message,

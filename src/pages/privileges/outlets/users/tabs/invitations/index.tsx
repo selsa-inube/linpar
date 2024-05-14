@@ -5,7 +5,7 @@ import {
   Stack,
 } from "@inube/design-system";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
 import {
   deleteInvitationMessagesConfig,
@@ -19,6 +19,9 @@ import { EMessageType, IMessage } from "@src/types/messages.types";
 import { IGeneralInformationEntry } from "../../types/forms.types";
 import { EAppearance } from "@src/types/colors.types";
 import { StyledMessageContainer } from "./styles";
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { getAll } from "@src/mocks/utils/dataMock.service";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -35,9 +38,25 @@ interface InvitationsTabProps {
 function InvitationsTab(props: InvitationsTabProps) {
   const { searchText } = props;
   const [message, setMessage] = useState(initialMessageState);
+  const [loading, setLoading] = useState(true);
   const [invitations, setInvitations] = useState(invitationEntriesDataMock);
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
+
+  useEffect(() => {
+    getAll("linix-invitations")
+      .then((data) => {
+        if (data !== null) {
+          setInvitations(data as IInvitationsEntry[]);
+        }
+      })
+      .catch((error) => {
+        console.info(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [invitations]);
 
   const invitationsTableActions = [
     {
@@ -66,7 +85,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "3",
       actionName: "Eliminar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <DeleteInvitation
           handleDelete={() => deleteInvitation(invitation)}
           showComplete={smallScreen}
@@ -76,14 +95,15 @@ function InvitationsTab(props: InvitationsTabProps) {
     },
   ];
 
-  const deleteInvitation = (invitation: IGeneralInformationEntry) => {
+  const deleteInvitation = (invitation: IInvitationsEntry) => {
     // Create fetch request here...
     let responseType = EMessageType.SUCCESS;
 
     try {
       setInvitations((prevInvitations) =>
         prevInvitations.filter(
-          (oldInvitation) => invitation.id !== oldInvitation.id
+          (oldInvitation) =>
+            invitation.invitationId !== oldInvitation.invitationId
         )
       );
     } catch (error) {
@@ -95,7 +115,7 @@ function InvitationsTab(props: InvitationsTabProps) {
 
     handleShowMessage({
       title,
-      description: description(invitation.username),
+      description: description(invitation.userName),
       icon,
       appearance,
     });
@@ -138,15 +158,19 @@ function InvitationsTab(props: InvitationsTabProps) {
 
   return (
     <>
-      <Table
-        id="portal"
-        titles={invitationsTableTitles}
-        entries={invitations}
-        actions={invitationsTableActions}
-        breakpoints={invitationsTableBreakpoints}
-        filter={searchText}
-        modalTitle="Invitación"
-      />
+      {loading ? (
+        <LoadingApp />
+      ) : (
+        <Table
+          id="portal"
+          titles={invitationsTableTitles}
+          entries={invitations}
+          actions={invitationsTableActions}
+          breakpoints={invitationsTableBreakpoints}
+          filter={searchText}
+          modalTitle="Invitación"
+        />
+      )}
       {message.show && (
         <StyledMessageContainer>
           <Stack justifyContent="flex-end" width="100%">
