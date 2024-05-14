@@ -9,22 +9,22 @@ const usersBreakPointsConfig = [
 
 const usersTitlesConfig = [
   {
-    id: "username",
+    id: "n_Usuari",
     titleName: "Nombre de usuario",
     priority: 0,
   },
   {
-    id: "code",
+    id: "k_Usuari",
     titleName: "Código",
     priority: 2,
   },
   {
-    id: "userID",
+    id: "a_Numnit",
     titleName: "Identificación",
     priority: 1,
   },
   {
-    id: "position",
+    id: "n_Grupo",
     titleName: "Cargo",
     priority: 3,
   },
