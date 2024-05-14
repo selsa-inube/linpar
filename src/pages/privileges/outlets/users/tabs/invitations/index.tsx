@@ -20,9 +20,6 @@ import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
 import { StyledMessageContainer } from "./styles";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
-import { getAll } from "@src/mocks/utils/dataMock.service";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 const initialMessageState: IMessage = {
   show: false,
