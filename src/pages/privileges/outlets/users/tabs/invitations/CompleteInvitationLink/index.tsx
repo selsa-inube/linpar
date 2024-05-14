@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { Button, Icon } from "@inube/design-system";
-import { IGeneralInformationEntry } from "../../../types/forms.types";
-import { useState } from "react";
+
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
 
 interface CompleteInvitationLinkProps {
-  invitation: IGeneralInformationEntry;
+  invitation: IInvitationsEntry;
   showComplete: boolean;
 }
 
@@ -20,7 +21,7 @@ function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
           iconBefore={<MdOutlineAssignmentTurnedIn />}
           type="link"
           disabled={invitation.status === "Sent"}
-          path={`complete-invitation/${invitation.id}`}
+          path={`complete-invitation/${invitation.invitationId}`}
           variant="none"
           appearance="gray"
           spacing="compact"
@@ -31,7 +32,7 @@ function CompleteInvitationLink(props: CompleteInvitationLinkProps) {
         <Link
           to={
             invitation.status === "Pending"
-              ? `complete-invitation/${invitation.id}`
+              ? `complete-invitation/${invitation.invitationId}`
               : ""
           }
           onMouseEnter={() => setIsHovered(true)}

@@ -57,7 +57,7 @@ function CompleteInvitation() {
 
   function getInvitationInformation() {
     return invitationEntriesDataMock.find(
-      (invitation) => invitation.id === invitation_id
+      (invitation) => invitation.invitationId === invitation_id
     );
   }
 
@@ -89,7 +89,7 @@ function CompleteInvitation() {
       navigate("/privileges/users", {
         state: {
           messageType: EMessageType.SUCCESS,
-          username: invitationData.generalInformation.entries.username,
+          username: invitationData.generalInformation.entries.userName,
           tab: "privileges-invitations",
         },
       });

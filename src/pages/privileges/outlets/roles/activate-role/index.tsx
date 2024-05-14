@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { updateItemData } from "@mocks/utils/dataMock.service";
+import { updateActive } from "@mocks/utils/dataMock.service";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { activateRoleMessages } from "./config/activateRole.config";
 
@@ -33,10 +33,9 @@ export function ActivateRole<T extends IDataActivateOption>(
       nameDB: "linix-roles",
       identifier: props.data.id,
       editData: { i_Activo: !props.data.active ? "Y" : "N" },
-      toggleI_Active: true,
     };
 
-    await updateItemData(params)
+    await updateActive(params)
       .then(() => {
         renderMessage(
           props.data.id,

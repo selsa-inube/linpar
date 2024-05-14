@@ -4,8 +4,12 @@ import {
   SectionMessage,
   Stack,
 } from "@inube/design-system";
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { EMessageType, IMessage } from "@src/types/messages.types";
+import { EAppearance } from "@src/types/colors.types";
+import { getAll } from "@mocks/utils/dataMock.service";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
 import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
 import {
   deleteInvitationMessagesConfig,
@@ -15,9 +19,6 @@ import {
 import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
-import { EMessageType, IMessage } from "@src/types/messages.types";
-import { IGeneralInformationEntry } from "../../types/forms.types";
-import { EAppearance } from "@src/types/colors.types";
 import { StyledMessageContainer } from "./styles";
 
 const initialMessageState: IMessage = {
@@ -35,15 +36,31 @@ interface InvitationsTabProps {
 function InvitationsTab(props: InvitationsTabProps) {
   const { searchText } = props;
   const [message, setMessage] = useState(initialMessageState);
-  const [invitations, setInvitations] = useState(invitationEntriesDataMock);
+  const [loading, setLoading] = useState(true);
+  const [invitations, setInvitations] = useState<IInvitationsEntry[]>([]);
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
+
+  useEffect(() => {
+    getAll("linix-invitations")
+      .then((data) => {
+        if (data !== null) {
+          setInvitations(data as IInvitationsEntry[]);
+        }
+      })
+      .catch((error) => {
+        console.info(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [invitations]);
 
   const invitationsTableActions = [
     {
       id: "1",
       actionName: "Completar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <CompleteInvitationLink
           invitation={invitation}
           showComplete={smallScreen}
@@ -54,7 +71,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "2",
       actionName: "Reenviar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <ResendInvitation
           invitation={invitation}
           handleResendInvitation={() => handleResendInvitation(invitation)}
@@ -66,7 +83,7 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "3",
       actionName: "Eliminar",
-      content: (invitation: IGeneralInformationEntry) => (
+      content: (invitation: IInvitationsEntry) => (
         <DeleteInvitation
           handleDelete={() => deleteInvitation(invitation)}
           showComplete={smallScreen}
@@ -76,14 +93,15 @@ function InvitationsTab(props: InvitationsTabProps) {
     },
   ];
 
-  const deleteInvitation = (invitation: IGeneralInformationEntry) => {
+  const deleteInvitation = (invitation: IInvitationsEntry) => {
     // Create fetch request here...
     let responseType = EMessageType.SUCCESS;
 
     try {
       setInvitations((prevInvitations) =>
         prevInvitations.filter(
-          (oldInvitation) => invitation.id !== oldInvitation.id
+          (oldInvitation) =>
+            invitation.invitationId !== oldInvitation.invitationId
         )
       );
     } catch (error) {
@@ -95,13 +113,13 @@ function InvitationsTab(props: InvitationsTabProps) {
 
     handleShowMessage({
       title,
-      description: description(invitation.username),
+      description: description(invitation.userName),
       icon,
       appearance,
     });
   };
 
-  const handleResendInvitation = (invitation: IGeneralInformationEntry) => {
+  const handleResendInvitation = (invitation: IInvitationsEntry) => {
     let messageType = EMessageType.SUCCESS;
 
     try {
@@ -138,15 +156,19 @@ function InvitationsTab(props: InvitationsTabProps) {
 
   return (
     <>
-      <Table
-        id="portal"
-        titles={invitationsTableTitles}
-        entries={invitations}
-        actions={invitationsTableActions}
-        breakpoints={invitationsTableBreakpoints}
-        filter={searchText}
-        modalTitle="Invitación"
-      />
+      {loading ? (
+        <LoadingApp />
+      ) : (
+        <Table
+          id="portal"
+          titles={invitationsTableTitles}
+          entries={invitations}
+          actions={invitationsTableActions}
+          breakpoints={invitationsTableBreakpoints}
+          filter={searchText}
+          modalTitle="Invitación"
+        />
+      )}
       {message.show && (
         <StyledMessageContainer>
           <Stack justifyContent="flex-end" width="100%">

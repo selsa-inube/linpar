@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
 import { ResendInvitationUI } from "./interface";
-import { IGeneralInformationEntry } from "../../../types/forms.types";
 
 interface ResendInvitationProps {
-  invitation: IGeneralInformationEntry;
+  invitation: IInvitationsEntry;
   handleResendInvitation: () => void;
   showComplete: boolean;
 }

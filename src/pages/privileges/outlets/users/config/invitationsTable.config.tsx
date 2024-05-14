@@ -3,12 +3,12 @@ import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
 const invitationsTableTitles = [
   {
-    id: "userID",
+    id: "userIdentification",
     titleName: "Identificación",
     priority: 1,
   },
   {
-    id: "username",
+    id: "userName",
     titleName: "Nombre de usuario",
     priority: 0,
   },
@@ -18,7 +18,7 @@ const invitationsTableTitles = [
     priority: 2,
   },
   {
-    id: "invitationDate",
+    id: "dateStart",
     titleName: "Fecha de invitación",
     priority: 3,
   },
@@ -31,16 +31,14 @@ const invitationsTableTitles = [
 
 const invitationsTableBreakpoints = [
   { breakpoint: "(min-width: 1229px)", totalColumns: 5 },
-  { breakpoint: "(max-width: 1228px)", totalColumns: 4 },
-  { breakpoint: "(max-width: 1150px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 1021px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 1000px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 1320px)", totalColumns: 4 },
+  { breakpoint: "(max-width: 1200px)", totalColumns: 3 },
+  { breakpoint: "(max-width: 1110px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 865px)", totalColumns: 1 },
   { breakpoint: "(max-width: 849px)", totalColumns: 4 },
   { breakpoint: "(max-width: 760px)", totalColumns: 3 },
   { breakpoint: "(max-width: 650px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 579px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 506px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 316px)", totalColumns: 1 },
+  { breakpoint: "(max-width: 400px)", totalColumns: 1 },
 ];
 
 const deleteInvitationModalConfig = {

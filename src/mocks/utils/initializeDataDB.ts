@@ -11,6 +11,7 @@ import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
 import { mockActions } from "@mocks/privileges/actions/Actions.mock";
 import { MockPositions } from "@mocks/privileges/positions/Positions.mock";
 import { userEntriesDataMock } from "../apps/privileges/users/users.mock";
+import { invitationEntriesDataMock } from "../apps/privileges/invitations/invitations.mock";
 
 export function initializeDataDB() {
   localforage.clear();
@@ -39,6 +40,10 @@ export function initializeDataDB() {
   intializedData<typeof MockPositions[number]>(
     "linix-positions",
     MockPositions
+  );
+  intializedData<typeof invitationEntriesDataMock[number]>(
+    "linix-invitations",
+    invitationEntriesDataMock
   );
   intializedData<typeof mockActions[number]>("linix-actions", mockActions);
   intializedData<typeof mockActions[number]>(
