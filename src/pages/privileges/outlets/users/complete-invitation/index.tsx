@@ -91,6 +91,7 @@ function CompleteInvitation() {
         state: {
           messageType: EMessageType.SUCCESS,
           username: invitationData.generalInformation.entries.userName,
+          username: invitationData.generalInformation.entries.userName,
           tab: "privileges-invitations",
         },
       });

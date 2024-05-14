@@ -7,19 +7,6 @@ interface IAssignmentFormEntry {
   isActive: boolean;
 }
 
-interface IGeneralInformationEntry {
-  id: string;
-  userID: string;
-  username: string;
-  email: string;
-  phone: string;
-  invitationDate?: string;
-  status?: string;
-  code?: string;
-  position?: string;
-  active?: boolean;
-}
-
 interface IFormsInvitation {
   generalInformation: { entries?: IInvitationsEntry };
   branches: { entries: IAssignmentFormEntry[] };
@@ -35,9 +22,4 @@ interface IMessageState {
   type?: EMessageType;
 }
 
-export type {
-  IFormsInvitation,
-  IAssignmentFormEntry,
-  IGeneralInformationEntry,
-  IMessageState,
-};
+export type { IFormsInvitation, IAssignmentFormEntry, IMessageState };

@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { Button, Icon } from "@inube/design-system";
 import { useState } from "react";
 import { IInvitationsEntry } from "@src/services/users/invitation.types";
 
 interface CompleteInvitationLinkProps {
+  invitation: IInvitationsEntry;
   invitation: IInvitationsEntry;
   showComplete: boolean;
 }
