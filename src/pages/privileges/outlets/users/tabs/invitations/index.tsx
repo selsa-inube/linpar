@@ -7,12 +7,11 @@ import {
 import { useEffect, useState } from "react";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { EAppearance } from "@src/types/colors.types";
-import { getAll } from "@mocks/utils/dataMock.service";
+import { deleteItemData, getAll } from "@mocks/utils/dataMock.service";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IInvitationsEntry } from "@src/services/users/invitation.types";
 import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
 import {
-  deleteInvitationMessagesConfig,
   invitationsTableBreakpoints,
   invitationsTableTitles,
 } from "../../config/invitationsTable.config";
@@ -20,6 +19,7 @@ import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
 import { StyledMessageContainer } from "./styles";
+import { deleteInvitationModal } from "./DeleteInvitation/config/deleteInvitation.config";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -83,41 +83,23 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "3",
       actionName: "Eliminar",
-      content: (invitation: IInvitationsEntry) => (
+      content: ({
+        customerId,
+        userName,
+      }: {
+        customerId: string;
+        userName: string;
+      }) => (
         <DeleteInvitation
-          handleDelete={() => deleteInvitation(invitation)}
-          showComplete={smallScreen}
+          deleteInvitation={deleteInvitationModal}
+          linixInvitation={customerId}
+          userNameInvitation={userName}
+          handleDeleteInvitation={deleteItemData}
         />
       ),
       type: "error",
     },
   ];
-
-  const deleteInvitation = (invitation: IInvitationsEntry) => {
-    // Create fetch request here...
-    let responseType = EMessageType.SUCCESS;
-
-    try {
-      setInvitations((prevInvitations) =>
-        prevInvitations.filter(
-          (oldInvitation) =>
-            invitation.invitationId !== oldInvitation.invitationId
-        )
-      );
-    } catch (error) {
-      responseType = EMessageType.FAILED;
-    }
-
-    const { icon, title, description, appearance } =
-      deleteInvitationMessagesConfig[responseType];
-
-    handleShowMessage({
-      title,
-      description: description(invitation.userName),
-      icon,
-      appearance,
-    });
-  };
 
   const handleResendInvitation = (invitation: IInvitationsEntry) => {
     let messageType = EMessageType.SUCCESS;
