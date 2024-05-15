@@ -3,17 +3,17 @@ import { EAppearance } from "@src/types/colors.types";
 
 const activateUsersModal = {
   activation: {
-    title: "Activate",
+    title: "Activar",
     description: (id: string) =>
       `Esta seguro de activar el cargo con código ${id}? `,
-    textAction: "Activate",
+    textAction: "Activar",
     appearance: EAppearance.SUCCESS,
   },
   deactivation: {
-    title: "Deactivate",
+    title: "Desactivar",
     description: (id: string) =>
       `Esta seguro de desactivar el cargo con código ${id}? `,
-    textAction: "Deactivate",
+    textAction: "Desactivar",
     appearance: EAppearance.ERROR,
   },
 };
