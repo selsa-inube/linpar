@@ -1,29 +1,27 @@
 import { useEffect, useState } from "react";
+
 import {
   Table,
   useMediaQuery,
   SectionMessage,
   Stack,
 } from "@inube/design-system";
-
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
-import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
 import { deleteUserModal } from "@pages/privileges/outlets/users/config/deleteUser.config";
-import { activateUserMessages } from "@pages/privileges/outlets/users/config/activateUser.config";
-import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
-
 import { EAppearance } from "@src/types/colors.types";
-import { EMessageType, IMessage } from "@src/types/messages.types";
+import { IMessage } from "@src/types/messages.types";
 import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
+import { IGeneralInformationEntry } from "@src/services/users/users.types";
+import { getAll } from "@mocks/utils/dataMock.service";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 import { EditUser } from "./EditUser";
 import { StyledMessageContainer } from "./styles";
-import { IGeneralInformationEntry } from "@src/services/users/users.types";
-import { getAll } from "@src/mocks/utils/dataMock.service";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { ActivateUsers } from "./ActivateFormOptions";
+import { activateUsersModal } from "./ActivateFormOptions/config/activateUsers.config";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -58,47 +56,6 @@ function UsersTab(props: UsersTabProps) {
       });
   }, [users]);
 
-  const handleActivateUser = (user: IGeneralInformationEntry) => {
-    let messageType = EMessageType.ACTIVATION;
-
-    const newUsers = users.map((actUser) => {
-      if (actUser.k_Usuari === user.k_Usuari) {
-        return {
-          ...actUser,
-          active: !actUser.i_Activo,
-        };
-      }
-      return actUser;
-    });
-
-    setUsers(newUsers);
-
-    if (user.i_Activo) {
-      messageType = EMessageType.DEACTIVATION;
-    }
-
-    const { title, description, icon, appearance } =
-      activateUserMessages[messageType];
-
-    handleShowMessage({
-      title,
-      description: description(user),
-      icon,
-      appearance,
-    });
-  };
-
-  const handleShowMessage = (message: IMessage) => {
-    const { title, description, icon, appearance } = message;
-    setMessage({
-      show: true,
-      title,
-      description,
-      icon,
-      appearance,
-    });
-  };
-
   const onCloseMessage = () => {
     setMessage(initialMessageState);
   };
@@ -109,17 +66,25 @@ function UsersTab(props: UsersTabProps) {
 
   const actions = [
     {
-      id: "1",
-      actionName: "Activar",
-      content: (user: IGeneralInformationEntry) => (
-        <ActivateFormOptions<IGeneralInformationEntry>
-          data={user}
-          handleActivate={() => handleActivateUser(user)}
-          showComplete={smallScreen}
-          activateModalConfig={activateUserModal}
-        />
-      ),
-      type: "gray",
+      id: "i_activo",
+      actionName: "Activo",
+      content: ({ k_Usuari }: { k_Usuari: string }) => {
+        const Users = selectedData(k_Usuari);
+        const adjustedUsers = {
+          id: Users?.k_Usuari || "",
+          active: Users?.i_Activo === "Y" || false,
+          name: Users?.n_Usuari || "",
+        };
+        return (
+          <ActivateUsers
+            handleActivate={() => {}}
+            data={adjustedUsers}
+            showComplete={false}
+            activateModalConfig={activateUsersModal}
+          />
+        );
+      },
+      type: "secondary",
     },
     {
       id: "2",
