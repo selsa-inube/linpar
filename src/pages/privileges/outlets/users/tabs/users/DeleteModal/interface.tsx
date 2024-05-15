@@ -3,7 +3,7 @@ import { Icon } from "@inube/design-system";
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
-import { deleteLinixUsersModal } from "./config/deleteLinixUseCase.config";
+import { deleteLinixUsersModal } from "./config/deleteLinixUsers.config";
 
 interface DeleteLinixUsersUIProps {
   showModal: boolean;

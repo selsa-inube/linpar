@@ -22,7 +22,7 @@ import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 import { EditUser } from "./EditUser";
 import { StyledMessageContainer } from "./styles";
 import { DeleteLinixUsers } from "./DeleteModal";
-import { deleteLinixUsersModal } from "./DeleteModal/config/deleteLinixUseCase.config";
+import { deleteLinixUsersModal } from "./DeleteModal/config/deleteLinixUsers.config";
 
 const initialMessageState: IMessage = {
   show: false,
