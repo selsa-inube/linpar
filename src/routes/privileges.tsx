@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import { PositionsProvider } from "@context/positionsContext";
 import { PrivilegesOptions } from "@pages/privileges/outlets/options";
 import { Invite } from "@pages/privileges/outlets/users/invite";
-import { EditUser } from "@pages/privileges/outlets/users/edit-user";
 import { Users } from "@pages/privileges/outlets/users";
 import { Privileges } from "@pages/privileges";
 import { ErrorPage } from "@components/layout/ErrorPage";
@@ -17,6 +16,7 @@ import { Positions } from "@src/pages/privileges/outlets/positions";
 import { AddPosition } from "@pages/privileges/outlets/positions/add-position";
 import { EditCaseLinix } from "@src/pages/privileges/outlets/linixUseCase/EditModal";
 import { EditPosition } from "@src/pages/privileges/outlets/positions/edit-position";
+import { EditUsers } from "@src/pages/privileges/outlets/users/tabs/users/EditUser";
 
 function PrivilegesRoutes() {
   return (
@@ -42,7 +42,7 @@ function PrivilegesRoutes() {
           />
 
           <Route path="users/invite" element={<Invite />} />
-          <Route path="users/edit/:user_id" element={<EditUser />} />
+          <Route path="users/edit/:user_id" element={<EditUsers />} />
           <Route path="roles/edit/:rol_id" element={<EditRole />} />
 
           <Route

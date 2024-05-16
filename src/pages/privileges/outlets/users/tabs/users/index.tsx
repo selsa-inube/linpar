@@ -19,11 +19,13 @@ import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
 
-import { EditUser } from "./EditUser";
+import { Icon } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
 import { IGeneralInformationEntry } from "@src/services/users/users.types";
 import { getAll } from "@src/mocks/utils/dataMock.service";
 import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { Link } from "react-router-dom";
+import { MdModeEdit } from "react-icons/md";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -121,11 +123,14 @@ function UsersTab(props: UsersTabProps) {
       ),
       type: "gray",
     },
+
     {
-      id: "2",
+      id: "Edit",
       actionName: "Editar",
-      content: (entry: IGeneralInformationEntry) => (
-        <EditUser entry={entry} showComplete={smallScreen} />
+      content: ({ id }: { id: string }) => (
+        <Link to={`edit/${id}`}>
+          <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+        </Link>
       ),
       type: "primary",
     },
