@@ -3,7 +3,10 @@ import {
   useMediaQuery,
   SectionMessage,
   Stack,
+  Icon,
 } from "@inube/design-system";
+import { Link } from "react-router-dom";
+import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { EAppearance } from "@src/types/colors.types";
@@ -16,7 +19,6 @@ import {
   invitationsTableBreakpoints,
   invitationsTableTitles,
 } from "../../config/invitationsTable.config";
-import { CompleteInvitationLink } from "./CompleteInvitationLink";
 import { DeleteInvitation } from "./DeleteInvitation";
 import { ResendInvitation } from "./ResendInvitation";
 import { StyledMessageContainer } from "./styles";
@@ -37,6 +39,7 @@ function InvitationsTab(props: InvitationsTabProps) {
   const { searchText } = props;
   const [message, setMessage] = useState(initialMessageState);
   const [loading, setLoading] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const [invitations, setInvitations] = useState<IInvitationsEntry[]>([]);
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
@@ -60,14 +63,31 @@ function InvitationsTab(props: InvitationsTabProps) {
     {
       id: "1",
       actionName: "Completar",
-      content: (invitation: IInvitationsEntry) => (
-        <CompleteInvitationLink
-          invitation={invitation}
-          showComplete={smallScreen}
-        />
+      content: ({
+        invitationId,
+        status,
+      }: {
+        invitationId: string;
+        status: string;
+      }) => (
+        <Link to={`complete-invitation/${invitationId}`}>
+          <Stack
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <Icon
+              appearance={isHovered ? "primary" : "dark"}
+              parentHover={isHovered ? true : false}
+              icon={<MdOutlineAssignmentTurnedIn />}
+              disabled={status === "Sent"}
+              cursorHover
+            />
+          </Stack>
+        </Link>
       ),
       type: "gray",
     },
+
     {
       id: "2",
       actionName: "Reenviar",

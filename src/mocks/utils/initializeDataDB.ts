@@ -12,6 +12,11 @@ import { mockActions } from "@mocks/privileges/actions/Actions.mock";
 import { MockPositions } from "@mocks/privileges/positions/Positions.mock";
 import { userEntriesDataMock } from "../apps/privileges/users/users.mock";
 import { invitationEntriesDataMock } from "../apps/privileges/invitations/invitations.mock";
+import { branchesFormInvitation } from "../apps/privileges/invitations/branchesForm.mock";
+import { aidBudgetsFormInvitation } from "../apps/privileges/invitations/aidBudgetsForm.mock";
+import { eventsFormInvitation } from "../apps/privileges/invitations/eventsForm.mock";
+import { payrollsFormInvitation } from "../apps/privileges/invitations/payrollsForm.mock";
+import { projectsFormInvitation } from "../apps/privileges/invitations/projectsForm.mock";
 
 export function initializeDataDB() {
   localforage.clear();
@@ -49,5 +54,25 @@ export function initializeDataDB() {
   intializedData<typeof mockActions[number]>(
     "linix-users",
     userEntriesDataMock
+  );
+  intializedData<typeof mockActions[number]>(
+    "linix-invitatiton-branches",
+    branchesFormInvitation
+  );
+  intializedData<typeof mockActions[number]>(
+    "linix-invitatiton-projects",
+    projectsFormInvitation
+  );
+  intializedData<typeof mockActions[number]>(
+    "linix-invitatiton-events",
+    eventsFormInvitation
+  );
+  intializedData<typeof mockActions[number]>(
+    "linix-invitatiton-aidBudgetUnits",
+    aidBudgetsFormInvitation
+  );
+  intializedData<typeof mockActions[number]>(
+    "linix-invitatiton-payrolls",
+    payrollsFormInvitation
   );
 }

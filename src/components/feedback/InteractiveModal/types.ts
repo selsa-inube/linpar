@@ -10,15 +10,16 @@ interface Action {
   content: string | ((data: { [key: string]: any }) => JSX.Element);
 }
 
+interface SearchDataItem {
+  [key: string]: string;
+}
+
 interface InteractiveModalProps {
   portalId: string;
   title: string;
   closeModal: () => void;
   infoData: { [key: string]: string } | Record<string, string | number>;
-  searchData?:
-    | Record<string, string | number | unknown>[]
-    | { [key: string]: string }
-    | any;
+  searchData?: SearchDataItem[];
   selectedItem?: string;
   actions?: Action[];
   labels?: Field[];
@@ -36,4 +37,10 @@ interface InteractiveModalProps {
   setValidateCardRemoved?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export type { Field, Action, InteractiveModalProps, ModalTypes };
+export type {
+  Field,
+  Action,
+  InteractiveModalProps,
+  ModalTypes,
+  SearchDataItem,
+};

@@ -9,7 +9,7 @@ import {
   Icon,
 } from "@inube/design-system";
 import { StyledModal, StyledDivider } from "./styles";
-import { InteractiveModalProps } from "./types";
+import { InteractiveModalProps, SearchDataItem } from "./types";
 import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 
@@ -75,9 +75,9 @@ const InteractiveModal = ({
     setFilterText(e.target.value);
   };
 
-  const filteredSearchData = filterText
-    ? searchData.filter(
-        (data: { [key: string]: string }) =>
+  const filteredSearchData: SearchDataItem[] | undefined = filterText
+    ? (searchData as SearchDataItem[]).filter(
+        (data: SearchDataItem) =>
           data[nameLabel].toLowerCase().includes(filterText.toLowerCase()) ||
           data[idLabel].toLowerCase().includes(filterText.toLowerCase())
       )
@@ -112,7 +112,7 @@ const InteractiveModal = ({
                 {infoTitle}
               </Text>
             )}
-            {!closeCard && searchData && searchData.map(renderCard)}
+            {!closeCard && searchData && filteredSearchData?.map(renderCard)}
 
             {divider && <StyledDivider smallScreen={smallScreen} />}
             {type === "fields" ? (
@@ -130,7 +130,6 @@ const InteractiveModal = ({
                         fullwidth={true}
                         type="text"
                         size="compact"
-                        readOnly
                       />
                     )
                 )
