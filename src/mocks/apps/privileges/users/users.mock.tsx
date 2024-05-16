@@ -1,6 +1,6 @@
-import { IGeneralInformationEntry } from "@src/services/users/users.types";
+import { IGeneralInformationEntryyyyy } from "@src/services/users/users.types";
 
-const userEntriesDataMock: IGeneralInformationEntry[] = [
+const userEntriesDataMock: IGeneralInformationEntryyyyy[] = [
   {
     k_Usuari: "AHIDAL",
     n_Usuari: "ANGIE MARGARITA HIDALGO ROMERO",

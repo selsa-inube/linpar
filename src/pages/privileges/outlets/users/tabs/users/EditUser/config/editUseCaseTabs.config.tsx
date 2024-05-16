@@ -4,9 +4,9 @@ const editLinixUseCaseTabsConfig = {
     label: "Información general",
     isDisabled: false,
   },
-  clientServerButton: {
-    id: "Client-Server-Button-Selection",
-    label: "Selección botón cliente servidor",
+  branches: {
+    id: "branches",
+    label: "aaaaaaaa",
     isDisabled: false,
   },
   downloadableDocuments: {

@@ -21,11 +21,12 @@ import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
 
 import { Icon } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
-import { IGeneralInformationEntry } from "@src/services/users/users.types";
+
 import { getAll } from "@src/mocks/utils/dataMock.service";
 import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
+import { IGeneralInformationEntryyyyy } from "@src/services/users/users.types";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -41,7 +42,7 @@ interface UsersTabProps {
 
 function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
-  const [users, setUsers] = useState<IGeneralInformationEntry[]>([]);
+  const [users, setUsers] = useState<IGeneralInformationEntryyyyy[]>([]);
   const [message, setMessage] = useState(initialMessageState);
   const [loading, setLoading] = useState(true);
 
@@ -49,7 +50,7 @@ function UsersTab(props: UsersTabProps) {
     getAll("linix-users")
       .then((data) => {
         if (data !== null) {
-          setUsers(data as IGeneralInformationEntry[]);
+          setUsers(data as IGeneralInformationEntryyyyy[]);
         }
       })
       .catch((error) => {
@@ -60,7 +61,7 @@ function UsersTab(props: UsersTabProps) {
       });
   }, [users]);
 
-  const handleActivateUser = (user: IGeneralInformationEntry) => {
+  const handleActivateUser = (user: IGeneralInformationEntryyyyy) => {
     let messageType = EMessageType.ACTIVATION;
 
     const newUsers = users.map((actUser) => {
@@ -113,8 +114,8 @@ function UsersTab(props: UsersTabProps) {
     {
       id: "1",
       actionName: "Activar",
-      content: (user: IGeneralInformationEntry) => (
-        <ActivateFormOptions<IGeneralInformationEntry>
+      content: (user: IGeneralInformationEntryyyyy) => (
+        <ActivateFormOptions<IGeneralInformationEntryyyyy>
           data={user}
           handleActivate={() => handleActivateUser(user)}
           showComplete={smallScreen}
@@ -127,8 +128,8 @@ function UsersTab(props: UsersTabProps) {
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ id }: { id: string }) => (
-        <Link to={`edit/${id}`}>
+      content: ({ k_Usuari }: { k_Usuari: string }) => (
+        <Link to={`edit/${k_Usuari}`}>
           <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
         </Link>
       ),

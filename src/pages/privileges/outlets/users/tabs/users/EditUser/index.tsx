@@ -3,17 +3,19 @@ import { useParams } from "react-router-dom";
 
 import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { getAll } from "@mocks/utils/dataMock.service";
 
 import { EditUserUI } from "./interface";
 
-import { IFormAddLinixUseCase } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { dataToAssignmentFormEntry } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case";
-import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
+import {
+  IFormAddUsers,
+  IGeneralInformationEntryyyyy,
+} from "@src/services/users/users.types";
+import { userEntriesDataMock } from "@src/mocks/apps/privileges/users/users.mock";
 
 export interface IGeneralInformation {
-  generalInformation: { entries: UseCase | undefined };
+  generalInformation: { entries: IGeneralInformationEntryyyyy | undefined };
 }
 function EditUsers() {
   const [controlModal, setControlModal] = useState({
@@ -22,41 +24,37 @@ function EditUsers() {
   });
 
   const { user_id } = useParams();
-
-  const [formData, setFormData] = useState<IFormAddLinixUseCase>({
+  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState<IFormAddUsers>({
     generalInformation: {
       isValid: false,
       values: {
-        n_Usecase: "",
-        n_Descrip: "",
-        i_Tipusec: "",
-        k_Funcio: "",
-        k_Opcion: "",
+        k_Usuari: "",
+        n_Usuari: "",
+        k_Grupo: "",
+        n_Grupo: "",
+        a_Numnit: "",
+        i_Activo: "",
       },
     },
-    clientServerButton: {
-      isValid: false,
-      values: {
-        csButtonOption: "",
-      },
-    },
-    downloadableDocuments: {
+
+    branches: {
       isValid: false,
       values: [],
     },
-    webReports: {
+    projects: {
       isValid: false,
       values: [],
     },
-    webOptions: {
+    events: {
       isValid: false,
       values: [],
     },
-    clientServerReports: {
+    aidBudgetUnits: {
       isValid: false,
       values: [],
     },
-    clientServerOptions: {
+    payrolls: {
       isValid: false,
       values: [],
     },
@@ -74,41 +72,44 @@ function EditUsers() {
     generalInformation: { entries: getUserInformation() },
   });
 
-  const [csOptions, setCsOptions] = useState<Record<string, unknown>[]>([]);
-  const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
-
   useEffect(() => {
-    getAll("documents")
+    setLoading(true);
+    getAll("linix-users")
       .then((data) => {
         if (data !== null) {
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
+          const invitationsLinix =
+            data &&
+            Object.values(data).find(
+              (invitation) => invitation.invitationId === user_id
+            );
+          setFormData((prevFormData) => ({
             ...prevFormData,
-            downloadableDocuments: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO",
-                valueLabel: "NOMBRE",
-                isActiveLabel: "asignado",
-              }),
+            generalInformation: {
+              isValid: false,
+              values: invitationsLinix,
             },
           }));
         }
       })
       .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
+        console.info(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    getAll("web-options")
+  }, [user_id]);
+  useEffect(() => {
+    getAll("linix-users-branches")
       .then((data) => {
         if (data !== null) {
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            webReports: {
+          setFormData((prevDataEditPositionForm) => ({
+            ...prevDataEditPositionForm,
+            branches: {
               isValid: true,
               values: dataToAssignmentFormEntry({
                 dataOptions: data as Record<string, unknown>[],
-                idLabel: "K_opcion",
-                valueLabel: "Nombre_opcion",
+                idLabel: "id",
+                valueLabel: "value",
                 isActiveLabel: "asignado",
               }),
             },
@@ -116,95 +117,14 @@ function EditUsers() {
         }
       })
       .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
-    getAll("clients-server")
-      .then((data) => {
-        if (data !== null) {
-          setCsOptions(data as Record<string, unknown>[]);
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            clientServerOptions: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO_OPCION",
-                valueLabel: "DESCRIPCION",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
-      });
-    getAll("web-options")
-      .then((data) => {
-        if (data !== null) {
-          setWebOptions(data as Record<string, unknown>[]);
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            webOptions: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "K_opcion",
-                valueLabel: "Nombre_opcion",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
-    getAll("clients-server")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            clientServerReports: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO_OPCION",
-                valueLabel: "DESCRIPCION",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
-      });
-    getAll("clients-server")
-      .then((data) => {
-        if (data !== null) {
-          setCsOptions(data as Record<string, unknown>[]);
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            clientServerOptions: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO_OPCION",
-                valueLabel: "DESCRIPCION",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
+        console.error("Error fetching roles:", error.message);
       });
   }, []);
-
+  console.log("edit data", editData);
   function getUserInformation() {
-    return linixUseCases.find((linixUseCase) => linixUseCase.id === user_id);
+    return userEntriesDataMock.find(
+      (userEntriesDataMock) => userEntriesDataMock.k_Usuari === user_id
+    );
   }
 
   const handleSubmit = (values: IAssignmentFormEntry[]) => {
@@ -255,10 +175,9 @@ function EditUsers() {
       controlModal={controlModal}
       handleDataChange={handleDataChange}
       handleCloseModal={handleCloseModal}
-      webOptions={webOptions}
       handleContinueTab={handleContinueTab}
-      csOptions={csOptions}
       id={user_id || ""}
+      loading={loading}
     />
   );
 }
