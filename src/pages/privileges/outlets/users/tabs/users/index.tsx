@@ -11,12 +11,12 @@ import {
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { deleteUserModal } from "@pages/privileges/outlets/users/config/deleteUser.config";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { EAppearance } from "@src/types/colors.types";
 import { IMessage } from "@src/types/messages.types";
 import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
 import { IGeneralInformationEntry } from "@src/services/users/users.types";
 import { getAll } from "@mocks/utils/dataMock.service";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 import { EditUser } from "./EditUser";
 import { StyledMessageContainer } from "./styles";
