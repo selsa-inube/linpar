@@ -8,15 +8,8 @@ import { getAll } from "@mocks/utils/dataMock.service";
 import { EditUserUI } from "./interface";
 
 import { dataToAssignmentFormEntry } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case";
-import {
-  IFormAddUsers,
-  IGeneralInformationEntryyyyy,
-} from "@src/services/users/users.types";
-import { userEntriesDataMock } from "@src/mocks/apps/privileges/users/users.mock";
+import { IFormAddUsers } from "@src/services/users/users.types";
 
-export interface IGeneralInformation {
-  generalInformation: { entries: IGeneralInformationEntryyyyy | undefined };
-}
 function EditUsers() {
   const [controlModal, setControlModal] = useState({
     show: false,
@@ -62,15 +55,13 @@ function EditUsers() {
 
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
 
+  const [positionsOptions, setPositionsOptions] = useState<
+    Record<string, unknown>[]
+  >([]);
+
   const [selectedTab, setSelectedTab] = useState(
     editUserTabsConfig.generalInformation.id
   );
-
-  const [editData, setEditData] = useState<{
-    [key: string]: { [key: string]: unknown };
-  }>({
-    generalInformation: { entries: getUserInformation() },
-  });
 
   useEffect(() => {
     setLoading(true);
@@ -80,7 +71,7 @@ function EditUsers() {
           const invitationsLinix =
             data &&
             Object.values(data).find(
-              (invitation) => invitation.invitationId === user_id
+              (invitation) => invitation.k_Usuari === user_id
             );
           setFormData((prevFormData) => ({
             ...prevFormData,
@@ -96,6 +87,15 @@ function EditUsers() {
       })
       .finally(() => {
         setLoading(false);
+      });
+    getAll("linix-positions")
+      .then((data) => {
+        if (data !== null) {
+          setPositionsOptions(data as Record<string, unknown>[]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching web-options:", error.message);
       });
   }, [user_id]);
   useEffect(() => {
@@ -119,13 +119,87 @@ function EditUsers() {
       .catch((error) => {
         console.error("Error fetching roles:", error.message);
       });
+    getAll("linix-users-projects")
+      .then((data) => {
+        if (data !== null) {
+          setFormData((prevDataEditPositionForm) => ({
+            ...prevDataEditPositionForm,
+            projects: {
+              isValid: true,
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "id",
+                valueLabel: "value",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching roles:", error.message);
+      });
+    getAll("linix-users-events")
+      .then((data) => {
+        if (data !== null) {
+          setFormData((prevDataEditPositionForm) => ({
+            ...prevDataEditPositionForm,
+            events: {
+              isValid: true,
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "id",
+                valueLabel: "value",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching roles:", error.message);
+      });
+    getAll("linix-users-aidBudgetUnits")
+      .then((data) => {
+        if (data !== null) {
+          setFormData((prevDataEditPositionForm) => ({
+            ...prevDataEditPositionForm,
+            aidBudgetUnits: {
+              isValid: true,
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "id",
+                valueLabel: "value",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching roles:", error.message);
+      });
+    getAll("linix-users-payrolls")
+      .then((data) => {
+        if (data !== null) {
+          setFormData((prevDataEditPositionForm) => ({
+            ...prevDataEditPositionForm,
+            payrolls: {
+              isValid: true,
+              values: dataToAssignmentFormEntry({
+                dataOptions: data as Record<string, unknown>[],
+                idLabel: "id",
+                valueLabel: "value",
+                isActiveLabel: "asignado",
+              }),
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching roles:", error.message);
+      });
   }, []);
-  console.log("edit data", editData);
-  function getUserInformation() {
-    return userEntriesDataMock.find(
-      (userEntriesDataMock) => userEntriesDataMock.k_Usuari === user_id
-    );
-  }
 
   const handleSubmit = (values: IAssignmentFormEntry[]) => {
     const editKey = Object.entries(editUserTabsConfig).find(
@@ -133,10 +207,10 @@ function EditUsers() {
     )?.[0];
 
     if (editKey) {
-      setEditData((prevEditData) => ({
-        ...prevEditData,
-        [editKey]: { entries: values },
-      }));
+      setFormData({
+        ...formData,
+        [editKey]: { values },
+      });
     }
 
     setCurrentFormHasChanges(false);
@@ -170,13 +244,13 @@ function EditUsers() {
       selectedTab={selectedTab}
       formData={formData}
       handleTabChange={handleTabChange}
-      editData={editData}
       handleSubmit={handleSubmit}
       controlModal={controlModal}
       handleDataChange={handleDataChange}
       handleCloseModal={handleCloseModal}
       handleContinueTab={handleContinueTab}
       id={user_id || ""}
+      positionsOptions={positionsOptions}
       loading={loading}
     />
   );

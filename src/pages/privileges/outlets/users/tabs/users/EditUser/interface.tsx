@@ -1,4 +1,3 @@
-import { TfiMenuAlt } from "react-icons/tfi";
 import {
   Stack,
   Tabs,
@@ -15,30 +14,28 @@ import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/form
 import { SubjectCard } from "@src/components/cards/SubjectCard";
 
 import { StyledContainer } from "./styles";
-import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
+
+import { GeneralInformationForm } from "../GeneralInfoForm";
+import { IFormAddUsers } from "@src/services/users/users.types";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { MdPersonOutline } from "react-icons/md";
 import {
   editLinixUseCaseConfig,
   editLinixUseCaseSubjectCardLabels,
 } from "./config/editLinuxUseCase.config";
-
-import {
-  GeneralInformationForm,
-  IGeneralInformationEntryyyyy,
-} from "../GeneralInfoForm";
-import { IFormAddUsers } from "@src/services/users/users.types";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { editLinixUseCaseTabsConfig } from "./config/editUsersTabs.config";
 
 interface IControlModal {
   show: boolean;
   continueTab: string;
 }
 interface EditUserUIProps {
+  positionsOptions: Record<string, unknown>[];
   selectedTab: string;
   loading: boolean;
   formData: IFormAddUsers;
   id: string;
   handleTabChange: (tabId: string) => void;
-  editData: { [key: string]: { [key: string]: unknown } };
   handleSubmit: (values: IAssignmentFormEntry[]) => void;
   controlModal: IControlModal;
   handleCloseModal: () => void;
@@ -65,8 +62,8 @@ function continueModal(
 
 function EditUserUI(props: EditUserUIProps) {
   const {
+    positionsOptions,
     selectedTab,
-    editData,
     loading,
     id,
     handleTabChange,
@@ -81,11 +78,12 @@ function EditUserUI(props: EditUserUIProps) {
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
   const {
-    generalInformation: { entries: currentInformation },
-  } = editData;
+    generalInformation: { values: currentInformation },
+  } = formData;
 
   const userCardData = currentInformation && {
-    username: (currentInformation as { k_Usuari: string }).k_Usuari,
+    username: (currentInformation as { n_Usuari: string }).n_Usuari,
+    code: (currentInformation as { a_Numnit: string }).a_Numnit,
   };
 
   return loading ? (
@@ -109,8 +107,8 @@ function EditUserUI(props: EditUserUIProps) {
             {currentInformation && userCardData && (
               <SubjectCard
                 subjectData={userCardData}
-                title="Informacion del caso de uso"
-                icon={<TfiMenuAlt size={24} />}
+                title="Informacion del Usuario"
+                icon={<MdPersonOutline size={24} />}
                 labels={editLinixUseCaseSubjectCardLabels}
               />
             )}
@@ -125,9 +123,10 @@ function EditUserUI(props: EditUserUIProps) {
           />
           {selectedTab === editLinixUseCaseTabsConfig.generalInformation.id && (
             <GeneralInformationForm
-              initialValues={currentInformation as IGeneralInformationEntryyyyy}
+              initialValues={currentInformation}
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
+              positionsOptions={positionsOptions}
               onHasChanges={handleDataChange}
               id={id}
             />
@@ -137,6 +136,38 @@ function EditUserUI(props: EditUserUIProps) {
               withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.branches.values}
+              handleSubmit={handleSubmit}
+            />
+          )}
+          {selectedTab === editLinixUseCaseTabsConfig.projects.id && (
+            <InitializerForm
+              withSubmitButtons
+              onHasChanges={handleDataChange}
+              dataOptionsForms={formData.projects.values}
+              handleSubmit={handleSubmit}
+            />
+          )}
+          {selectedTab === editLinixUseCaseTabsConfig.event.id && (
+            <InitializerForm
+              withSubmitButtons
+              onHasChanges={handleDataChange}
+              dataOptionsForms={formData.events.values}
+              handleSubmit={handleSubmit}
+            />
+          )}
+          {selectedTab === editLinixUseCaseTabsConfig.aidBudgetUnits.id && (
+            <InitializerForm
+              withSubmitButtons
+              onHasChanges={handleDataChange}
+              dataOptionsForms={formData.aidBudgetUnits.values}
+              handleSubmit={handleSubmit}
+            />
+          )}
+          {selectedTab === editLinixUseCaseTabsConfig.payrolls.id && (
+            <InitializerForm
+              withSubmitButtons
+              onHasChanges={handleDataChange}
+              dataOptionsForms={formData.payrolls.values}
               handleSubmit={handleSubmit}
             />
           )}

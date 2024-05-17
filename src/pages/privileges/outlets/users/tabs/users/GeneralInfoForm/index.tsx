@@ -9,21 +9,21 @@ import { updateItemData } from "@src/mocks/utils/dataMock.service";
 import { generalMessage } from "@src/pages/privileges/outlets/positions/add-position/config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
-export interface IGeneralInformationEntryyyyy {
+export interface IGeneralInformationUsersForm {
   k_Usuari: string;
 }
 
 const validationSchema = Yup.object({
-  k_Usuari: Yup.string().required(validationMessages.required),
-  n_Usuari: Yup.string().required(validationMessages.required),
+  position: Yup.string().required(validationMessages.required),
 });
 
 interface IGeneralInformationFormProps {
-  initialValues: IGeneralInformationEntryyyyy;
+  initialValues: IGeneralInformationUsersForm;
+  positionsOptions: Record<string, unknown>[];
   id?: string;
   loading?: boolean;
   withSubmitButtons?: boolean;
-  handleSubmit?: (values: IGeneralInformationEntryyyyy) => void;
+  handleSubmit?: (values: IGeneralInformationUsersForm) => void;
   onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   onHasChanges?: (hasChanges: boolean) => void;
 }
@@ -31,12 +31,13 @@ interface IGeneralInformationFormProps {
 export const GeneralInformationForm = forwardRef(
   function GeneralInformationForm(
     props: IGeneralInformationFormProps,
-    ref: React.Ref<FormikProps<IGeneralInformationEntryyyyy>>
+    ref: React.Ref<FormikProps<IGeneralInformationUsersForm>>
   ) {
     const {
       initialValues,
       id,
       withSubmitButtons,
+      positionsOptions,
       handleSubmit,
       onFormValid,
       onHasChanges,
@@ -95,7 +96,7 @@ export const GeneralInformationForm = forwardRef(
       });
     };
 
-    const disabledButtons = (valueCompare: IGeneralInformationEntryyyyy) =>
+    const disabledButtons = (valueCompare: IGeneralInformationUsersForm) =>
       JSON.stringify(formik.initialValues) !== JSON.stringify(valueCompare);
 
     const handleChangeForm = (
@@ -129,6 +130,7 @@ export const GeneralInformationForm = forwardRef(
     return (
       <GeneralInformationFormUI
         formik={formik}
+        positionsOptions={positionsOptions}
         message={message}
         disabledButtons={disabledButtons}
         handleCloseSectionMessage={handleCloseSectionMessage}

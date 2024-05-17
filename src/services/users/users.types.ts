@@ -1,6 +1,6 @@
 import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
 
-export interface IGeneralInformationEntryyyyy {
+export interface IGeneralInformationUsersForm {
   k_Usuari: string;
   n_Usuari: string;
   k_Grupo: string;
@@ -12,7 +12,7 @@ export interface IGeneralInformationEntryyyyy {
 export interface IFormAddUsers {
   generalInformation: {
     isValid: boolean;
-    values: IGeneralInformationEntryyyyy;
+    values: IGeneralInformationUsersForm;
   };
   branches: {
     isValid: boolean;
@@ -37,7 +37,7 @@ export interface IFormAddUsers {
 }
 
 export interface IFormsUsers {
-  generalInformation: { entries?: IGeneralInformationEntryyyyy };
+  generalInformation: { entries?: IGeneralInformationUsersForm };
   branches: { entries: IAssignmentFormEntry[] };
   projects: { entries: IAssignmentFormEntry[] };
   events: { entries: IAssignmentFormEntry[] };

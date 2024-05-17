@@ -26,7 +26,7 @@ import { getAll } from "@src/mocks/utils/dataMock.service";
 import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
-import { IGeneralInformationEntryyyyy } from "@src/services/users/users.types";
+import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -42,7 +42,7 @@ interface UsersTabProps {
 
 function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
-  const [users, setUsers] = useState<IGeneralInformationEntryyyyy[]>([]);
+  const [users, setUsers] = useState<IGeneralInformationUsersForm[]>([]);
   const [message, setMessage] = useState(initialMessageState);
   const [loading, setLoading] = useState(true);
 
@@ -50,7 +50,7 @@ function UsersTab(props: UsersTabProps) {
     getAll("linix-users")
       .then((data) => {
         if (data !== null) {
-          setUsers(data as IGeneralInformationEntryyyyy[]);
+          setUsers(data as IGeneralInformationUsersForm[]);
         }
       })
       .catch((error) => {
@@ -61,7 +61,7 @@ function UsersTab(props: UsersTabProps) {
       });
   }, [users]);
 
-  const handleActivateUser = (user: IGeneralInformationEntryyyyy) => {
+  const handleActivateUser = (user: IGeneralInformationUsersForm) => {
     let messageType = EMessageType.ACTIVATION;
 
     const newUsers = users.map((actUser) => {
@@ -114,8 +114,8 @@ function UsersTab(props: UsersTabProps) {
     {
       id: "1",
       actionName: "Activar",
-      content: (user: IGeneralInformationEntryyyyy) => (
-        <ActivateFormOptions<IGeneralInformationEntryyyyy>
+      content: (user: IGeneralInformationUsersForm) => (
+        <ActivateFormOptions<IGeneralInformationUsersForm>
           data={user}
           handleActivate={() => handleActivateUser(user)}
           showComplete={smallScreen}

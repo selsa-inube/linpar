@@ -1,9 +1,10 @@
-import { Grid, Textfield } from "@inube/design-system";
+import { Grid, Textfield, useMediaQuery } from "@inube/design-system";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FormikValues } from "formik";
-import { IGeneralInformationEntryyyyy } from ".";
+import { IGeneralInformationUsersForm } from ".";
+import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 
 function stateValue(formik: FormikValues, attribute: string) {
   if (!formik.touched[attribute]) return undefined;
@@ -13,8 +14,9 @@ function stateValue(formik: FormikValues, attribute: string) {
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
+  positionsOptions: Record<string, unknown>[];
   message: IMessageState;
-  disabledButtons: (valueCompare: IGeneralInformationEntryyyyy) => boolean;
+  disabledButtons: (valueCompare: IGeneralInformationUsersForm) => boolean;
   handleCloseSectionMessage: () => void;
   handleChangeForm: (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -29,31 +31,28 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
     formik,
     loading,
+    positionsOptions,
     withSubmitButtons,
     message,
     disabledButtons,
     handleCloseSectionMessage,
     handleReset,
-    handleChangeForm,
     handleSubmitForm,
   } = props;
-
+  const searchData = {
+    "Digite el código o nombre de la aplicación:": "",
+  };
+  const mediaQuery = "(max-width: 744px)";
+  const matches = useMediaQuery(mediaQuery);
   return (
     <>
       <form>
-        <Grid templateColumns="1fr" gap="s200" width="100%" autoRows="unset">
-          <Textfield
-            label="Nombre Cargo"
-            placeholder="Nombre del cargo"
-            name="k_Usuari"
-            id="k_Usuari"
-            value={formik.values.k_Usuari}
-            type="text"
-            size="compact"
-            fullwidth
-            readOnly
-            disabled
-          />
+        <Grid
+          templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
+          gap="s200 s300"
+          width="100%"
+          autoRows="unset"
+        >
           <Textfield
             label="Nombre Cargo"
             placeholder="Nombre del cargo"
@@ -63,16 +62,50 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             type="text"
             size="compact"
             fullwidth
+            readOnly
+            disabled
+          />
+          <Textfield
+            label="Identificación"
+            name="a_Numnit"
+            id="a_Numnit"
+            value={formik.values.a_Numnit}
+            type="text"
+            size="compact"
+            fullwidth
+            readOnly
+            disabled
+          />
+          <SearchUserCard
+            id="position"
+            label="Cargo"
+            placeholder="Seleccione una opción"
+            name="position"
+            title="Búsqueda"
+            infoTitle="Opción de Cargo"
+            idModal="searchField"
+            nameModal="searchField"
+            labelModal="Digite la opción a buscar."
+            placeholderModal="Digite el código o nombre del cargo."
+            userData={positionsOptions}
+            searchFieldData={searchData}
+            onReset={() => {}}
+            idLabel="k_Grupo"
+            nameLabel="n_Grupo"
+            onUserSelect={(value) => {
+              formik.setValues({
+                ...formik.values,
+                positionId: value.k_Grupo,
+                position: value.n_Grupo,
+              });
+            }}
+            selectedId={formik.values.positionId}
             message={
-              stateValue(formik, "n_Usuari") === "valid"
-                ? "El nombre del cargo es valido"
-                : formik.errors.n_Usuari
+              stateValue(formik, "position") === "invalid" &&
+              formik.errors.position
             }
-            status={stateValue(formik, "n_Usuari")}
+            status={stateValue(formik, "position")}
             onBlur={formik.handleBlur}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeForm(event)
-            }
             required
           />
         </Grid>
