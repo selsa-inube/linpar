@@ -18,3 +18,10 @@ export const StyledContainerAssisted = styled.div<IStyledContainerAssisted>`
         : inube.color.text.primary.regular};
   }
 `;
+
+export const StyledContainerLoading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 300px;
+`;

@@ -20,7 +20,7 @@ import {
   stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
-import { StyledContainerAssisted } from "./styles";
+import { StyledContainerAssisted, StyledContainerLoading } from "./styles";
 import { GeneralInformationForm } from "./GeneralInformation";
 
 import {
@@ -115,7 +115,9 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
       };
 
   return loading ? (
-    <LoadingApp />
+    <StyledContainerLoading>
+      <LoadingApp />
+    </StyledContainerLoading>
   ) : (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap="48px" direction="column">
