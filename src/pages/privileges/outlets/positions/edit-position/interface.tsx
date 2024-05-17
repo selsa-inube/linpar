@@ -10,7 +10,8 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-import { StyledContainer } from "./styles";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { StyledContainer, StyledContainerLoading } from "./styles";
 import {
   editPositionConfig,
   editPositionTabsConfig,
@@ -26,6 +27,7 @@ interface EditPositionUIProps {
   editData: { [key: string]: { [key: string]: unknown } };
   controlModal: IControlModal;
   id: string;
+  loading: boolean;
   handleTabChange: (tabId: string) => void;
   handleSubmit: (values: IAssignmentFormEntry[]) => void;
   handleCloseModal: () => void;
@@ -39,6 +41,7 @@ export function EditPositionUI(props: EditPositionUIProps) {
     controlModal,
     editData,
     id,
+    loading,
     handleTabChange,
     handleSubmit,
     handleCloseModal,
@@ -54,7 +57,11 @@ export function EditPositionUI(props: EditPositionUIProps) {
     roles: { entries: currentRoles },
   } = editData;
 
-  return (
+  return loading ? (
+    <StyledContainerLoading>
+      <LoadingApp />
+    </StyledContainerLoading>
+  ) : (
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s200} direction="column">
