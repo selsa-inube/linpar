@@ -10,37 +10,29 @@ interface Action {
   content: string | ((data: { [key: string]: any }) => JSX.Element);
 }
 
-interface SearchDataItem {
-  [key: string]: string;
-}
-
 interface InteractiveModalProps {
-  portalId: string;
-  title: string;
   closeModal: () => void;
   infoData: { [key: string]: string } | Record<string, string | number>;
-  searchData?: SearchDataItem[];
-  selectedItem?: string;
-  actions?: Action[];
-  labels?: Field[];
-  infoTitle?: string;
+  portalId: string;
+  title: string;
   actionsTitle?: string;
-  id?: string;
-  label?: string;
-  name?: string;
-  placeholder?: string;
-  type?: ModalTypes;
+  actions?: Action[];
   divider?: boolean;
-  onClick?: any;
+  id?: string;
   idLabel?: string;
+  infoTitle?: string;
+  label?: string;
+  labels?: Field[];
+  name?: string;
   nameLabel?: string;
+  onClick?: any;
+  placeholder?: string;
+  searchData?:
+    | { [key: string]: string }
+    | Record<string, string | number | unknown>[];
+  selectedItem?: string;
   setValidateCardRemoved?: React.Dispatch<React.SetStateAction<boolean>>;
+  type?: ModalTypes;
 }
 
-export type {
-  Field,
-  Action,
-  InteractiveModalProps,
-  ModalTypes,
-  SearchDataItem,
-};
+export type { Field, Action, InteractiveModalProps, ModalTypes };
