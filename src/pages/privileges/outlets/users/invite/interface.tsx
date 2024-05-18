@@ -1,4 +1,3 @@
-import { PageTitle } from "@components/PageTitle";
 import { MdOutlineShortcut } from "react-icons/md";
 import { FormikValues } from "formik";
 import {
@@ -10,26 +9,27 @@ import {
   Textfield,
   useMediaQueries,
 } from "@inube/design-system";
-
+import { useState } from "react";
 import { EMessageType } from "@src/types/messages.types";
-
+import { PageTitle } from "@components/PageTitle";
+import { SearchUserCard } from "@components/cards/SearchUserCard";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
-import { StyledMessageContainer } from "./styles";
-import { SearchUserCard } from "@components/cards/SearchUserCard";
-import { useState } from "react";
+import { StyledContainerLoading, StyledMessageContainer } from "./styles";
 
 interface InviteUIProps {
   formik: FormikValues;
   formInvalid: boolean;
-  loading: boolean;
-  showMessage: boolean;
-  screenMovil: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
-  usersInfo: Record<string, string | number | any>[];
-  searchFieldData: Record<string, string | number>;
+  loading: boolean;
+  loadingPage: boolean;
   onReset: (resetFunction: () => void) => void;
+  screenMovil: boolean;
+  searchFieldData: Record<string, string | number>;
+  showMessage: boolean;
+  usersInfo: Record<string, string | number | any>[];
 }
 
 function renderMessages(
@@ -77,12 +77,13 @@ function InviteUI(props: InviteUIProps) {
     formik,
     formInvalid,
     loading,
-    showMessage,
+    loadingPage,
     handleCloseSectionMessage,
     handleSubmit,
-    usersInfo,
-    searchFieldData,
     onReset,
+    searchFieldData,
+    usersInfo,
+    showMessage,
   } = props;
 
   const mediaQueries = ["(max-width: 1111px)", "(max-width: 565px)"];
@@ -100,7 +101,11 @@ function InviteUI(props: InviteUIProps) {
     setIsUserSelected(true);
   };
 
-  return (
+  return loadingPage ? (
+    <StyledContainerLoading>
+      <LoadingApp />
+    </StyledContainerLoading>
+  ) : (
     <Stack direction="column" padding="s400 s800">
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">

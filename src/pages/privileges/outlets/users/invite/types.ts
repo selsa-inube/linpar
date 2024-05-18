@@ -16,4 +16,12 @@ interface IUserEntry {
   phone: string;
 }
 
-export type { IInviteFormValues, IUserEntry };
+interface IInvitationUser {
+  id: string;
+  userName: string;
+  userIdentification: string;
+  phoneNumber: string;
+  email: string;
+}
+
+export type { IInviteFormValues, IUserEntry, IInvitationUser };

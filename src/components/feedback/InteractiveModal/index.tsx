@@ -14,26 +14,26 @@ import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 
 const InteractiveModal = ({
-  portalId,
-  title,
-  selectedItem,
-  closeModal,
-  infoData,
   actions = [],
-  labels = [],
-  infoTitle,
   actionsTitle,
-  type = "fields",
+  closeModal,
+  divider,
   id,
+  infoData,
+  idLabel = "userID",
+  infoTitle,
+  labels = [],
   label,
   name,
-  placeholder,
-  searchData,
-  divider,
+  nameLabel = "username",
   onClick,
-  idLabel,
-  nameLabel,
+  placeholder,
+  portalId,
+  searchData,
+  selectedItem,
   setValidateCardRemoved,
+  title,
+  type = "fields",
 }: InteractiveModalProps) => {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const hasActions = actions.length > 0;
@@ -75,13 +75,14 @@ const InteractiveModal = ({
     setFilterText(e.target.value);
   };
 
-  const filteredSearchData = filterText
-    ? searchData.filter(
-        (data: { [key: string]: string }) =>
-          data[nameLabel].toLowerCase().includes(filterText.toLowerCase()) ||
-          data[idLabel].toLowerCase().includes(filterText.toLowerCase())
-      )
-    : searchData;
+  const filteredSearchData =
+    filterText && searchData
+      ? Object.values(searchData).filter(
+          (data: { [key: string]: string }) =>
+            data[nameLabel].toLowerCase().includes(filterText.toLowerCase()) ||
+            data[idLabel].toLowerCase().includes(filterText.toLowerCase())
+        )
+      : searchData;
 
   if (!node) {
     throw new Error(
@@ -112,7 +113,9 @@ const InteractiveModal = ({
                 {infoTitle}
               </Text>
             )}
-            {!closeCard && searchData && searchData.map(renderCard)}
+            {!closeCard &&
+              searchData &&
+              Object.values(searchData).map(renderCard)}
 
             {divider && <StyledDivider smallScreen={smallScreen} />}
             {type === "fields" ? (
@@ -165,16 +168,18 @@ const InteractiveModal = ({
                 />
                 {filterText &&
                   filteredSearchData &&
-                  filteredSearchData.map((data: { [key: string]: string }) => (
-                    <SubjectSearchCard
-                      key={data[idLabel]}
-                      subjectSearchData={{
-                        id: data[idLabel],
-                        name: data[nameLabel],
-                      }}
-                      onClick={() => onClick(data)}
-                    />
-                  ))}
+                  Object.values(filteredSearchData).map(
+                    (data: { [key: string]: string }) => (
+                      <SubjectSearchCard
+                        key={data[idLabel]}
+                        subjectSearchData={{
+                          id: data[idLabel],
+                          name: data[nameLabel],
+                        }}
+                        onClick={() => onClick(data)}
+                      />
+                    )
+                  )}
               </>
             )}
           </Stack>

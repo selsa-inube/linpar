@@ -1,4 +1,6 @@
-export const invitationUserEntriesDataMock = [
+import { IInvitationUser } from "@pages/privileges/outlets/users/invite/types";
+
+export const invitationUserEntriesDataMock: IInvitationUser[] = [
   {
     id: "50",
     userName: "Cesar Gutierrez",
