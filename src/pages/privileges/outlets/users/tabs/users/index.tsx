@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-
 import {
   Table,
   useMediaQuery,
   SectionMessage,
   Stack,
 } from "@inube/design-system";
+
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
