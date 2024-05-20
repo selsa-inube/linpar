@@ -106,6 +106,15 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             selectedId={formik.values.applicationId}
             onReset={() => {}}
             required
+            message={
+              stateValue("applicationId") === "invalid"
+                ? formik.errors.applicationID
+                : null
+            }
+            status={
+              stateValue("applicationId") === "invalid" ? "invalid" : null
+            }
+            onBlur={formik.handleBlur}
           />
         </Stack>
 
@@ -133,7 +142,10 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
       {withSubmitButtons && (
         <>
           <FormButtons
-            disabledButtons={!hasChanges(formik.values)}
+            disabledButtons={
+              !hasChanges(formik.values) ||
+              !(Object.keys(formik.errors).length === 0)
+            }
             handleSubmit={handleSubmit}
             handleReset={formik.resetForm}
             loading={isLoading}

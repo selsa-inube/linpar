@@ -197,6 +197,7 @@ export const EditRole = () => {
       dataTabs={Tabs}
       smallScreen={smallScreen}
       loading={loading}
+      rol_id={rol_id as string}
       valuesAncillaryAccounts={valuesAncillaryAccounts}
       valuesTransactionTypes={valuesTransactionTypes}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
