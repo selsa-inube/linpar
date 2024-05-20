@@ -179,7 +179,7 @@ function CompleteInvitation() {
         console.error("Error fetching aidBudgetUnits:", error.message);
       });
 
-    getAll("linix-invitations-payrolls")
+    getAll("linix-invitation-payrolls")
       .then((data) => {
         if (data !== null) {
           setInvitationData((prevInvitationData) => ({
