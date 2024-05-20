@@ -3,8 +3,8 @@ import { FormikValues } from "formik";
 import { Grid, Textfield, useMediaQuery } from "@inube/design-system";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
+import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 
 import { IGeneralInformationUsersForm } from ".";
 
