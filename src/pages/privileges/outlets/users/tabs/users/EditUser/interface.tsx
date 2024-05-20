@@ -12,7 +12,7 @@ import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import { SubjectCard } from "@src/components/cards/SubjectCard";
+import { SubjectCard } from "@components/cards/SubjectCard";
 import { IFormAddUsers } from "@src/services/users/users.types";
 
 import { StyledContainer } from "./styles";
@@ -135,6 +135,11 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.branches.values}
               handleSubmit={handleSubmit}
+              id={id}
+              keyData={"k_Usuari"}
+              nameDB={"linix-users"}
+              property={"sucursales"}
+              propertyData={"id"}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.projects.id && (
@@ -143,6 +148,11 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.projects.values}
               handleSubmit={handleSubmit}
+              id={id}
+              keyData={"k_Usuari"}
+              nameDB={"linix-users"}
+              property={"proyectos"}
+              propertyData={"id"}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.event.id && (
@@ -151,6 +161,11 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.events.values}
               handleSubmit={handleSubmit}
+              id={id}
+              keyData={"k_Usuari"}
+              nameDB={"linix-users"}
+              property={"eventos"}
+              propertyData={"id"}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.aidBudgetUnits.id && (
@@ -159,6 +174,11 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.aidBudgetUnits.values}
               handleSubmit={handleSubmit}
+              id={id}
+              keyData={"k_Usuari"}
+              nameDB={"linix-users"}
+              property={"unidadesPresupuestales"}
+              propertyData={"id"}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.payrolls.id && (
@@ -167,6 +187,11 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.payrolls.values}
               handleSubmit={handleSubmit}
+              id={id}
+              keyData={"k_Usuari"}
+              nameDB={"linix-users"}
+              property={"nomina"}
+              propertyData={"id"}
             />
           )}
         </Stack>

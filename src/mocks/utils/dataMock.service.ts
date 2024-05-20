@@ -1,8 +1,9 @@
 import localforage from "localforage";
+
 import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { IGeneralInformationEntry } from "@src/pages/privileges/outlets/positions/components/GeneralInformationForm";
 import { IGeneralInformationUsersForm } from "@src/pages/privileges/outlets/users/tabs/users/GeneralInfoForm";
-import { InvitationEntry } from "@src/pages/privileges/outlets/users/tabs/invitations/Complete-invitation/utils";
+import { InvitationEntry } from "@pages/privileges/outlets/users/tabs/invitations/Complete-invitation/utils";
 
 function buildData<T>(data: T[]) {
   const dataMock = data.map((optionData) => {

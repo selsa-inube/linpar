@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { getAll } from "@mocks/utils/dataMock.service";
-import { dataToAssignmentFormEntry } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { IFormAddUsers } from "@src/services/users/users.types";
 
 import { EditUserUI } from "./interface";

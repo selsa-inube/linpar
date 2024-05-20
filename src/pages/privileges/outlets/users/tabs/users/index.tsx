@@ -12,11 +12,12 @@ import {
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { EAppearance } from "@src/types/colors.types";
+import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
 import { IMessage } from "@src/types/messages.types";
 import { getAll } from "@mocks/utils/dataMock.service";
+
 import { StyledMessageContainer } from "./styles";
 import { actionsConfigUsers } from "./config/dataUsers.config";
-import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
 
 const initialMessageState: IMessage = {
   show: false,
