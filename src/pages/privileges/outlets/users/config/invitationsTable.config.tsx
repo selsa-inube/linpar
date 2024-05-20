@@ -1,5 +1,4 @@
 import { EAppearance } from "@src/types/colors.types";
-import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
 const invitationsTableTitles = [
   {
@@ -49,29 +48,7 @@ const deleteInvitationModalConfig = {
   appearance: EAppearance.ERROR,
 };
 
-const deleteInvitationMessagesConfig = {
-  success: {
-    id: 1,
-    icon: <MdThumbUpOffAlt size={18} />,
-    title: "¡Eliminación exitosa!",
-    description: (value: string) =>
-      `Hemos eliminado correctamente la invitación del usuario ${value}.`,
-    appearance: EAppearance.SUCCESS,
-    duration: 2000,
-  },
-  failed: {
-    id: 2,
-    icon: <MdErrorOutline size={18} />,
-    title: "¡Uy, algo ha salido mal!",
-    description: (value: string) =>
-      `Hemos presentado problemas al eliminar la invitación del usuario ${value}.`,
-    appearance: EAppearance.ERROR,
-    duration: 2000,
-  },
-};
-
 export {
-  deleteInvitationMessagesConfig,
   deleteInvitationModalConfig,
   invitationsTableBreakpoints,
   invitationsTableTitles,
