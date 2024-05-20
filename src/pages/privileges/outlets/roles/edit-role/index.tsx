@@ -131,13 +131,14 @@ export const EditRole = () => {
   const valuesGeneralInformation = {
     roleName: editData.n_Rol,
     description: editData.n_Uso,
-    aplicationId: editData.k_Aplica,
+    applicationId: editData.k_Aplica,
+    application: editData.k_Aplica,
   };
 
   const valuesAncillaryAccounts = {
-    officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
     commercialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
-    solidaritySector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
+    officialSector: editData?.cuentasAuxiliaresPorRol?.[1]?.k_Codcta || "",
+    solidaritySector: editData?.cuentasAuxiliaresPorRol?.[2]?.k_Codcta || "",
   };
 
   const valuesTransactionTypes = editData?.tiposDeMovimientoContablePorRol?.map(
@@ -191,6 +192,7 @@ export const EditRole = () => {
       dataTabs={Tabs}
       smallScreen={smallScreen}
       loading={loading}
+      rol_id={rol_id as string}
       valuesAncillaryAccounts={valuesAncillaryAccounts}
       valuesTransactionTypes={valuesTransactionTypes}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}

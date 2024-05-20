@@ -34,10 +34,10 @@ export function AddRol() {
             initialValuesAddRol.generalInformation.values.roleName.trim(),
           description:
             initialValuesAddRol.generalInformation.values.description.trim(),
-          aplication:
-            initialValuesAddRol.generalInformation.values.aplication.trim(),
-          aplicationId:
-            initialValuesAddRol.generalInformation.values.aplicationId.trim(),
+          application:
+            initialValuesAddRol.generalInformation.values.application.trim(),
+          applicationId:
+            initialValuesAddRol.generalInformation.values.applicationId.trim(),
         },
       },
       ancillaryAccounts: {
