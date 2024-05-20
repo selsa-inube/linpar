@@ -1,4 +1,4 @@
-const editLinixUseCaseTabsConfig = {
+const editLinixUserTabsConfig = {
   generalInformation: {
     id: "general-information",
     label: "Informacion General ",
@@ -31,4 +31,4 @@ const editLinixUseCaseTabsConfig = {
   },
 };
 
-export { editLinixUseCaseTabsConfig };
+export { editLinixUserTabsConfig };

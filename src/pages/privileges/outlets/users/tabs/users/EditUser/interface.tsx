@@ -1,3 +1,5 @@
+import { MdPersonOutline } from "react-icons/md";
+
 import {
   Stack,
   Tabs,
@@ -5,25 +7,21 @@ import {
   inube,
   Breadcrumbs,
 } from "@inube/design-system";
-
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { SubjectCard } from "@src/components/cards/SubjectCard";
+import { IFormAddUsers } from "@src/services/users/users.types";
 
 import { StyledContainer } from "./styles";
-
 import { GeneralInformationForm } from "../GeneralInfoForm";
-import { IFormAddUsers } from "@src/services/users/users.types";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
-import { MdPersonOutline } from "react-icons/md";
+import { editLinixUserTabsConfig } from "./config/editUsersTabs.config";
 import {
-  editLinixUseCaseConfig,
-  editLinixUseCaseSubjectCardLabels,
-} from "./config/editLinuxUseCase.config";
-import { editLinixUseCaseTabsConfig } from "./config/editUsersTabs.config";
+  editLinixUserSubjectCardLabels,
+  editLinixUsersConfig,
+} from "./config/editLinuxUsers.config";
 
 interface IControlModal {
   show: boolean;
@@ -92,7 +90,7 @@ function EditUserUI(props: EditUserUIProps) {
     <StyledContainer smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s200} direction="column">
-          <Breadcrumbs crumbs={editLinixUseCaseConfig[0].crumbs} />
+          <Breadcrumbs crumbs={editLinixUsersConfig[0].crumbs} />
           <Stack
             justifyContent="space-between"
             alignItems="center"
@@ -109,19 +107,19 @@ function EditUserUI(props: EditUserUIProps) {
                 subjectData={userCardData}
                 title="Informacion del Usuario"
                 icon={<MdPersonOutline size={24} />}
-                labels={editLinixUseCaseSubjectCardLabels}
+                labels={editLinixUserSubjectCardLabels}
               />
             )}
           </Stack>
         </Stack>
         <Stack gap={inube.spacing.s400} direction="column">
           <Tabs
-            tabs={Object.values(editLinixUseCaseTabsConfig)}
+            tabs={Object.values(editLinixUserTabsConfig)}
             selectedTab={selectedTab}
             type={typeTabs ? "select" : "tabs"}
             onChange={handleTabChange}
           />
-          {selectedTab === editLinixUseCaseTabsConfig.generalInformation.id && (
+          {selectedTab === editLinixUserTabsConfig.generalInformation.id && (
             <GeneralInformationForm
               initialValues={currentInformation}
               handleSubmit={handleSubmit as () => void}
@@ -131,7 +129,7 @@ function EditUserUI(props: EditUserUIProps) {
               id={id}
             />
           )}
-          {selectedTab === editLinixUseCaseTabsConfig.branches.id && (
+          {selectedTab === editLinixUserTabsConfig.branches.id && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -139,7 +137,7 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit}
             />
           )}
-          {selectedTab === editLinixUseCaseTabsConfig.projects.id && (
+          {selectedTab === editLinixUserTabsConfig.projects.id && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -147,7 +145,7 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit}
             />
           )}
-          {selectedTab === editLinixUseCaseTabsConfig.event.id && (
+          {selectedTab === editLinixUserTabsConfig.event.id && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -155,7 +153,7 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit}
             />
           )}
-          {selectedTab === editLinixUseCaseTabsConfig.aidBudgetUnits.id && (
+          {selectedTab === editLinixUserTabsConfig.aidBudgetUnits.id && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
@@ -163,7 +161,7 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit}
             />
           )}
-          {selectedTab === editLinixUseCaseTabsConfig.payrolls.id && (
+          {selectedTab === editLinixUserTabsConfig.payrolls.id && (
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}

@@ -1,10 +1,12 @@
+import { FormikValues } from "formik";
+
 import { Grid, Textfield, useMediaQuery } from "@inube/design-system";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { FormikValues } from "formik";
-import { IGeneralInformationUsersForm } from ".";
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
+
+import { IGeneralInformationUsersForm } from ".";
 
 function stateValue(formik: FormikValues, attribute: string) {
   if (!formik.touched[attribute]) return undefined;
@@ -116,7 +118,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           handleReset={formik.resetForm}
           disabledButtons={!disabledButtons(formik.values)}
           loading={loading}
-          children=""
         />
       )}
       {message.visible && (

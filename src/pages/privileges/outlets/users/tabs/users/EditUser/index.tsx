@@ -4,11 +4,10 @@ import { useParams } from "react-router-dom";
 import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { getAll } from "@mocks/utils/dataMock.service";
-
-import { EditUserUI } from "./interface";
-
 import { dataToAssignmentFormEntry } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { IFormAddUsers } from "@src/services/users/users.types";
+
+import { EditUserUI } from "./interface";
 
 function EditUsers() {
   const [controlModal, setControlModal] = useState({

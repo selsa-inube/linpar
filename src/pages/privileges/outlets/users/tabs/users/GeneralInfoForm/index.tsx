@@ -1,12 +1,13 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
-import { GeneralInformationFormUI } from "./interface";
 import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
+
 import { validationMessages } from "@validations/validationMessages";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { generalMessage } from "@pages/privileges/outlets/positions/add-position/config/messages.config";
+import { updateItemData } from "@mocks/utils/dataMock.service";
 
-import { updateItemData } from "@src/mocks/utils/dataMock.service";
-import { generalMessage } from "@src/pages/privileges/outlets/positions/add-position/config/messages.config";
+import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 export interface IGeneralInformationUsersForm {

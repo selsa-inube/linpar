@@ -1,4 +1,6 @@
-const editLinixUseCaseConfig = [
+import { EAppearance } from "@src/types/colors.types";
+
+const editLinixUsersConfig = [
   {
     id: 1,
     title: "Agregar un caso de uso",
@@ -33,7 +35,15 @@ const editLinixUseCaseConfig = [
   },
 ];
 
-const editLinixUseCaseSubjectCardLabels = [
+const editUserContinueModalConfig = {
+  title: "Continuar sin guardar",
+  description:
+    "¿Seguro que desea salir? cualquier cambio no guardado se perderá",
+  actionText: "Continuar",
+  appearance: EAppearance.SUCCESS,
+};
+
+const editLinixUserSubjectCardLabels = [
   {
     id: "code",
     titleName: "Código",
@@ -62,4 +72,8 @@ const editLinixUseCaseSubjectCardLabels = [
   },
 ];
 
-export { editLinixUseCaseConfig, editLinixUseCaseSubjectCardLabels };
+export {
+  editLinixUsersConfig,
+  editLinixUserSubjectCardLabels,
+  editUserContinueModalConfig,
+};
