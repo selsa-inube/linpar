@@ -7,9 +7,9 @@ import { EMessageType } from "@src/types/messages.types";
 import { IActivateOptionModal } from "./types";
 
 interface IctivateFormOptionsUI {
-  active: boolean;
+  i_Activo: string;
   showActivateOptions: boolean;
-  id: string;
+  k_Usuari: string;
   handleToggleModal: () => void;
   handleActivateOptions: () => void;
   showComplete: boolean;
@@ -18,14 +18,14 @@ interface IctivateFormOptionsUI {
 
 function ActivateOptionsModal(props: IActivateOptionModal) {
   const {
-    active,
+    i_Activo,
     handleToggleModal,
     handleActivateOptions: handleActivateUser,
-    id,
+    k_Usuari,
     activateModalConfig,
   } = props;
   let messageType = EMessageType.DEACTIVATION;
-  if (!active) {
+  if (!i_Activo) {
     messageType = EMessageType.ACTIVATION;
   }
 
@@ -39,7 +39,7 @@ function ActivateOptionsModal(props: IActivateOptionModal) {
   return (
     <DecisionModal
       title={title}
-      description={description(id)}
+      description={description(k_Usuari)}
       actionText={textAction}
       appearance={appearance}
       closeModal={handleToggleModal}
@@ -50,9 +50,9 @@ function ActivateOptionsModal(props: IActivateOptionModal) {
 
 export function ActivateFormOptionsUI(props: IctivateFormOptionsUI) {
   const {
-    active,
+    i_Activo,
     showActivateOptions: showActivateUserModal,
-    id,
+    k_Usuari,
     handleToggleModal,
     handleActivateOptions: handleActivateUser,
     showComplete,
@@ -62,17 +62,17 @@ export function ActivateFormOptionsUI(props: IctivateFormOptionsUI) {
   return (
     <>
       <Switch
-        checked={active}
+        checked={i_Activo}
         onChange={handleToggleModal}
-        id={id}
+        id={k_Usuari}
         label={showComplete ? "Activar" : ""}
         padding={`s0 s0 s0 ${showComplete ? "s200" : "s0"}`}
       />
 
       {showActivateUserModal && (
         <ActivateOptionsModal
-          active={active}
-          id={id}
+          i_Activo={i_Activo}
+          k_Usuari={k_Usuari}
           handleToggleModal={handleToggleModal}
           handleActivateOptions={handleActivateUser}
           activateModalConfig={activateModalConfig}

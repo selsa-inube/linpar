@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Table,
   useMediaQuery,
@@ -6,22 +6,23 @@ import {
   Stack,
 } from "@inube/design-system";
 
-import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
-import { deleteUserModal } from "@pages/privileges/outlets/users/config/deleteUser.config";
 import { activateUserMessages } from "@pages/privileges/outlets/users/config/activateUser.config";
 import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
-import { IGeneralInformationEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
-import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
+import { IGeneralInformationEntry } from "@src/services/users/users.types";
+import { deleteItemData, getAll } from "@mocks/utils/dataMock.service";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 import { EditUser } from "./EditUser";
 import { StyledMessageContainer } from "./styles";
+import { DeleteLinixUsers } from "./DeleteModal";
+import { deleteLinixUsersModal } from "./DeleteModal/config/deleteLinixUsers.config";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -37,17 +38,33 @@ interface UsersTabProps {
 
 function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
-  const [users, setUsers] = useState(userEntriesDataMock);
+  const [users, setUsers] = useState<IGeneralInformationEntry[]>([]);
   const [message, setMessage] = useState(initialMessageState);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAll("linix-users")
+      .then((data) => {
+        if (data !== null) {
+          setUsers(data as IGeneralInformationEntry[]);
+        }
+      })
+      .catch((error) => {
+        console.info(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [users]);
 
   const handleActivateUser = (user: IGeneralInformationEntry) => {
     let messageType = EMessageType.ACTIVATION;
 
     const newUsers = users.map((actUser) => {
-      if (actUser.id === user.id) {
+      if (actUser.k_Usuari === user.k_Usuari) {
         return {
           ...actUser,
-          active: !actUser.active,
+          active: !actUser.i_Activo,
         };
       }
       return actUser;
@@ -55,7 +72,7 @@ function UsersTab(props: UsersTabProps) {
 
     setUsers(newUsers);
 
-    if (user.active) {
+    if (user.i_Activo) {
       messageType = EMessageType.DEACTIVATION;
     }
 
@@ -86,9 +103,6 @@ function UsersTab(props: UsersTabProps) {
   };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
-  const selectedData = (username: string) =>
-    users.find((user) => user.username === username);
-
   const actions = [
     {
       id: "1",
@@ -112,37 +126,34 @@ function UsersTab(props: UsersTabProps) {
       type: "primary",
     },
     {
-      id: "3",
+      id: "Delete",
       actionName: "Eliminar",
-      content: ({ username }: { username: string }) => {
-        const user = selectedData(username);
-        const adjusteduser = {
-          id: user?.username || "",
-        };
-
-        return (
-          <DeleteFormOptions
-            data={adjusteduser}
-            showComplete={false}
-            modalConfig={deleteUserModal}
-          />
-        );
-      },
-      type: "error",
+      content: ({ k_Usuari }: { k_Usuari: string }) => (
+        <DeleteLinixUsers
+          linixUsers={k_Usuari}
+          deleteLinixUsersModal={deleteLinixUsersModal}
+          handleDeleteLinixUsers={deleteItemData}
+        />
+      ),
+      type: "remove",
     },
   ];
 
   return (
     <>
-      <Table
-        id="portal"
-        titles={usersTitlesConfig}
-        actions={actions}
-        entries={users}
-        breakpoints={usersBreakPointsConfig}
-        filter={searchText}
-        modalTitle="Usuario"
-      />
+      {loading ? (
+        <LoadingApp />
+      ) : (
+        <Table
+          id="portal"
+          titles={usersTitlesConfig}
+          actions={actions}
+          entries={users}
+          breakpoints={usersBreakPointsConfig}
+          filter={searchText}
+          modalTitle="Usuario"
+        />
+      )}
       {message.show && (
         <StyledMessageContainer>
           <Stack justifyContent="flex-end" width="100%">
