@@ -4,22 +4,15 @@ import {
   Breadcrumbs,
   Stack,
   useMediaQuery,
+  Button,
+  inube,
 } from "@inube/design-system";
-
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
-
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
-import { GeneralInformationForm } from "@pages/privileges/outlets/forms/GeneralInfoForm";
-
-import {
-  IAssignmentFormEntry,
-  IFormsInvitation,
-  IGeneralInformationEntry,
-} from "../types/forms.types";
-
+import { IInvitationsEntry } from "@src/services/users/invitation.types";
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
@@ -27,8 +20,17 @@ import {
   stepsRegisterUserConfig,
 } from "./config/completeInvitation.config";
 import { invitationNotFoundConfig } from "./config/invitationNotFound.config";
+import { StyledContainerAssisted, StyledContainerLoading } from "./styles";
+import { GeneralInformationForm } from "./GeneralInformation";
 
-import { StyledAssistedContainer } from "./styles";
+import {
+  IFormCompleteInvitation,
+  IFormCompleteInvitationRef,
+  IStep,
+  titleButtonTextAssited,
+} from "./types";
+import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 export interface IVerificationData {
   id: string;
@@ -58,54 +60,65 @@ function finishModal(
 }
 
 interface CompleteInvitationUIProps {
-  invitationData: IFormsInvitation;
-  handleSubmit: (
-    values: IGeneralInformationEntry | IAssignmentFormEntry[]
-  ) => void;
+  currentStep: number;
+  formReferences: IFormCompleteInvitationRef;
+  invitationData: IFormCompleteInvitation;
+  isCurrentFormValid: boolean;
+  loading: boolean;
+  positionsOptions: Record<string, unknown>[];
+  showModal: boolean;
+  steps: IStep[];
+  handleCompleteInvitation: () => void;
   handleNextStep: (step: number) => void;
   handlePrevStep: (step: number) => void;
-  currentStep: number;
-  handleCompleteInvitation: () => void;
+  handleSubmit: (values: IInvitationsEntry | IAssignmentFormEntry[]) => void;
   handleToggleModal: () => void;
-  showModal: boolean;
-  verificationData: Record<string, IVerificationData>;
-  positionsOptions: Record<string, unknown>[];
+  setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const {
-    positionsOptions,
+    currentStep,
+    formReferences,
+    isCurrentFormValid,
     invitationData,
-    handleSubmit,
+    loading,
+    positionsOptions,
+    showModal,
+    steps,
+    handleCompleteInvitation,
     handleNextStep,
     handlePrevStep,
-    currentStep,
-    handleCompleteInvitation,
+    handleSubmit,
     handleToggleModal,
-    showModal,
+    setIsCurrentFormValid,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
   const {
-    generalInformation: { entries: currentInformation },
+    generalInformation: { values: currentInformation },
   } = invitationData;
 
   const invitationCardData = currentInformation
     ? {
-        username: currentInformation.username,
-        userID: currentInformation.userID,
+        userName: currentInformation.userName,
+        userIdentification: currentInformation.userIdentification,
         email: currentInformation.email,
-        invitationDate: currentInformation.invitationDate || "",
+        dateStart: currentInformation.dateStart || "",
       }
     : {
-        username: "",
-        userID: "",
+        userName: "",
+        userIdentification: "",
         email: "",
-        invitationDate: "",
+        dateStart: "",
       };
 
-  return (
+  return loading ? (
+    <StyledContainerLoading>
+      <LoadingApp />
+    </StyledContainerLoading>
+  ) : (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
@@ -128,7 +141,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         </Stack>
         {currentInformation ? (
           <>
-            <StyledAssistedContainer>
+            <StyledContainerAssisted cursorDisabled={!isCurrentFormValid}>
               <Assisted
                 steps={Object.values(stepsRegisterUserConfig)}
                 currentStepId={currentStep}
@@ -138,46 +151,68 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
                     ? handleToggleModal
                     : handleNextStep
                 }
+                titleButtonText={titleButtonTextAssited}
               />
-            </StyledAssistedContainer>
+            </StyledContainerAssisted>
 
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
-                currentInformation={currentInformation}
-                handleSubmit={handleSubmit}
+                initialValues={currentInformation}
+                ref={formReferences.generalInformation}
+                onFormValid={setIsCurrentFormValid}
                 positionsOptions={positionsOptions}
               />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
               <InitializerForm
-                dataOptionsForms={invitationData.branches.entries}
+                dataOptionsForms={invitationData.branches.values}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.projects.id && (
               <InitializerForm
-                dataOptionsForms={invitationData.projects.entries}
+                dataOptionsForms={invitationData.projects.values}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.events.id && (
               <InitializerForm
-                dataOptionsForms={invitationData.events.entries}
+                dataOptionsForms={invitationData.events.values}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.aidBudgetUnits.id && (
               <InitializerForm
-                dataOptionsForms={invitationData.aidBudgetUnits.entries}
+                dataOptionsForms={invitationData.aidBudgetUnits.values}
                 handleSubmit={handleSubmit}
               />
             )}
             {currentStep === stepsRegisterUserConfig.payrolls.id && (
               <InitializerForm
-                dataOptionsForms={invitationData.payrolls.entries}
+                dataOptionsForms={invitationData.payrolls.values}
                 handleSubmit={handleSubmit}
               />
             )}
+            <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+              <Button
+                onClick={handlePrevStep}
+                type="button"
+                disabled={currentStep === steps[0].id}
+                spacing="compact"
+                variant="none"
+                appearance="gray"
+              >
+                Atrás
+              </Button>
+
+              <Button
+                onClick={handleNextStep}
+                spacing="compact"
+                disabled={!isCurrentFormValid}
+              >
+                {currentStep === steps.length ? "Enviar" : "Siguiente"}
+              </Button>
+            </Stack>
           </>
         ) : (
           <ItemNotFound

@@ -1,5 +1,9 @@
 import { EAppearance } from "@src/types/colors.types";
-import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+import {
+  MdErrorOutline,
+  MdOutlineSentimentNeutral,
+  MdThumbUpOffAlt,
+} from "react-icons/md";
 
 const stepsRegisterUserConfig = {
   generalInformation: {
@@ -81,12 +85,12 @@ const CompleteInvitationUserConfig = [
 
 const completeInvitationSubjectCardLabels = [
   {
-    id: "username",
+    id: "userName",
     titleName: "Nombre",
     priority: 0,
   },
   {
-    id: "userID",
+    id: "userIdentification",
     titleName: "Identificación",
     priority: 1,
   },
@@ -96,11 +100,30 @@ const completeInvitationSubjectCardLabels = [
     priority: 2,
   },
   {
-    id: "invitationDate",
+    id: "dateStart",
     titleName: "Fecha de invitación",
     priority: 3,
   },
 ];
+
+const generalInfoMessages = {
+  success: {
+    id: 1,
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "¡Los cambios se guardaron exitosamente!",
+    description: (userName: string) =>
+      `Hemos guardado los cambios correctamente para el usuario ${userName}`,
+    appearance: EAppearance.SUCCESS,
+  },
+  failed: {
+    id: 2,
+    icon: <MdOutlineSentimentNeutral size={18} />,
+    title: "¡Ups, algo ha salido mal!",
+    description: (userName: string) =>
+      `Tuvimos problemas para guardar cambios para el usuario ${userName}`,
+    appearance: EAppearance.ERROR,
+  },
+};
 
 const finishAssistedModalConfig = {
   title: "Finalizar registro",
@@ -134,4 +157,5 @@ export {
   finishAssistedMessagesConfig,
   finishAssistedModalConfig,
   stepsRegisterUserConfig,
+  generalInfoMessages,
 };

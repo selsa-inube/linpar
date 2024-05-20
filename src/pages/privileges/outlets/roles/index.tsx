@@ -19,7 +19,7 @@ export function Roles() {
         }
       })
       .catch((error) => {
-        console.info(error.message);
+        console.error(error.message);
       })
       .finally(() => {
         setLoading(false);

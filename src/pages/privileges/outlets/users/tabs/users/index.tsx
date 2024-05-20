@@ -11,13 +11,11 @@ import {
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
-import { deleteUserModal } from "@pages/privileges/outlets/users/config/deleteUser.config";
 import { activateUserMessages } from "@pages/privileges/outlets/users/config/activateUser.config";
 import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
-
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
-import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
+import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { Icon } from "@inube/design-system";
 import { StyledMessageContainer } from "./styles";
@@ -27,6 +25,8 @@ import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
+import { DeleteLinixUsers } from "./DeleteModal";
+import { deleteLinixUsersModal } from "./DeleteModal/config/deleteLinixUsers.config";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -107,9 +107,6 @@ function UsersTab(props: UsersTabProps) {
   };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
-  const selectedData = (k_Usuari: string) =>
-    users.find((user) => user.k_Usuari === k_Usuari);
-
   const actions = [
     {
       id: "1",
@@ -136,23 +133,16 @@ function UsersTab(props: UsersTabProps) {
       type: "primary",
     },
     {
-      id: "3",
+      id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Usuari }: { k_Usuari: string }) => {
-        const user = selectedData(k_Usuari);
-        const adjusteduser = {
-          id: user?.k_Usuari || "",
-        };
-
-        return (
-          <DeleteFormOptions
-            data={adjusteduser}
-            showComplete={false}
-            modalConfig={deleteUserModal}
-          />
-        );
-      },
-      type: "error",
+      content: ({ k_Usuari }: { k_Usuari: string }) => (
+        <DeleteLinixUsers
+          linixUsers={k_Usuari}
+          deleteLinixUsersModal={deleteLinixUsersModal}
+          handleDeleteLinixUsers={deleteItemData}
+        />
+      ),
+      type: "remove",
     },
   ];
 
