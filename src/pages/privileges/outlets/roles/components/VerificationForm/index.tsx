@@ -47,7 +47,7 @@ function filterAndMapData(
         item[isActiveKey as string as keyof IInitialiceFormRole] === true
     )
     .map((item: IInitialiceFormRole) =>
-      createAttribute(item.value, item.value)
+      createAttribute(item.id + ": ", item.value)
     );
 }
 
@@ -62,16 +62,18 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
         title: "Información general",
         attributes: [
           createAttribute(
-            "Nombre del rol",
+            "Nombre del rol: ",
             data.generalInformation.values.roleName
           ),
           createAttribute(
-            "Descripción",
+            "Descripción: ",
             data.generalInformation.values.description
           ),
           createAttribute(
-            "Aplicación",
-            data.generalInformation.values.aplicationId
+            "Aplicación: ",
+            data.generalInformation.values.applicationId +
+              " - " +
+              data.generalInformation.values.application
           ),
         ],
       },
@@ -79,15 +81,15 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
         title: "Cuentas Mayores",
         attributes: [
           createAttribute(
-            "Sector oficial",
+            "Sector oficial: ",
             data.ancillaryAccounts.values.officialSector
           ),
           createAttribute(
-            "Sector comercial",
+            "Sector comercial: ",
             data.ancillaryAccounts.values.commercialSector
           ),
           createAttribute(
-            "Sector solidario",
+            "Sector solidario: ",
             data.ancillaryAccounts.values.solidaritySector
           ),
         ],
