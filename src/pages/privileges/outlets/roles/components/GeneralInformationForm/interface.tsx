@@ -82,10 +82,10 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           />
 
           <SearchUserCard
-            id="applicationId"
+            id="application"
             label="Aplicación"
             placeholder="Seleccione una opción"
-            name="applicationId"
+            name="application"
             title="Aplicación"
             infoTitle="Busque y seleccione una aplicación:"
             idModal="searchField"

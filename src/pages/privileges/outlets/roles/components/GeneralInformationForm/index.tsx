@@ -65,7 +65,7 @@ export const GeneralInformationForm = forwardRef(
           setIsLoading(false);
         })
         .catch((error) => {
-          console.info(error.message);
+          console.error(error.message);
         });
     }, []);
 

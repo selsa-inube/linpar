@@ -66,60 +66,55 @@ export function AddRol() {
     });
 
   useEffect(() => {
-    getAll("documents").then((documentsFetch) => {
-      setDataAddRoleLinixForm((prevFormData) => ({
-        ...prevFormData,
-        transactionTypes: {
-          values: dataToAssignmentFormEntry({
-            dataOptions: documentsFetch as Record<string, unknown>[],
-            idLabel: "CODIGO",
-            valueLabel: "NOMBRE",
-            isActiveLabel: "asignado",
-          }),
-        },
-      }));
-    });
-    getAll("linix-roles").then((linixRolesFetch) => {
-      setDataAddRoleLinixForm((prevFormData) => ({
-        ...prevFormData,
-        businessRules: {
-          values: dataToAssignmentFormEntry({
-            dataOptions: linixRolesFetch as Record<string, unknown>[],
-            idLabel: "k_Rol",
-            valueLabel: "n_Rol",
-            isActiveLabel: "asignado",
-          }),
-        },
-      }));
-    });
-
-    getAll("web-options").then((linixRolesFetch) => {
-      setDataAddRoleLinixForm((prevFormData) => ({
-        ...prevFormData,
-        crediboardTasks: {
-          values: dataToAssignmentFormEntry({
-            dataOptions: linixRolesFetch as Record<string, unknown>[],
-            idLabel: "K_opcion",
-            valueLabel: "Nombre_opcion",
-            isActiveLabel: "asignado",
-          }),
-        },
-      }));
-    });
-
-    getAll("linix-use-cases").then((linixRolesFetch) => {
-      setDataAddRoleLinixForm((prevFormData) => ({
-        ...prevFormData,
-        useCases: {
-          values: dataToAssignmentFormEntry({
-            dataOptions: linixRolesFetch as Record<string, unknown>[],
-            idLabel: "k_Usecase",
-            valueLabel: "n_Usecase",
-            isActiveLabel: "id",
-          }),
-        },
-      }));
-    });
+    Promise.all([
+      getAll("documents"),
+      getAll("linix-roles"),
+      getAll("web-options"),
+      getAll("linix-use-cases"),
+    ]).then(
+      ([
+        documentsFetch,
+        linixRolesFetch,
+        webOptionsFetch,
+        linixUseCasesFetch,
+      ]) => {
+        setDataAddRoleLinixForm((prevFormData) => ({
+          ...prevFormData,
+          transactionTypes: {
+            values: dataToAssignmentFormEntry({
+              dataOptions: documentsFetch as Record<string, unknown>[],
+              idLabel: "CODIGO",
+              valueLabel: "NOMBRE",
+              isActiveLabel: "asignado",
+            }),
+          },
+          businessRules: {
+            values: dataToAssignmentFormEntry({
+              dataOptions: linixRolesFetch as Record<string, unknown>[],
+              idLabel: "k_Rol",
+              valueLabel: "n_Rol",
+              isActiveLabel: "asignado",
+            }),
+          },
+          crediboardTasks: {
+            values: dataToAssignmentFormEntry({
+              dataOptions: webOptionsFetch as Record<string, unknown>[],
+              idLabel: "K_opcion",
+              valueLabel: "Nombre_opcion",
+              isActiveLabel: "asignado",
+            }),
+          },
+          useCases: {
+            values: dataToAssignmentFormEntry({
+              dataOptions: linixUseCasesFetch as Record<string, unknown>[],
+              idLabel: "k_Usecase",
+              valueLabel: "n_Usecase",
+              isActiveLabel: "id",
+            }),
+          },
+        }));
+      }
+    );
   }, []);
 
   const generalInformationRef =
@@ -139,6 +134,7 @@ export function AddRol() {
       formReferences,
       isAddRoleFormValid
     );
+
     setDataAddRoleLinixForm(newCreditDestinationRequest);
 
     const changeStepKey = Object.entries(stepsAddRol).find(

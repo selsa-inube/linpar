@@ -14,7 +14,7 @@ import { IRol } from "../types";
 export const titlesOptions = [
   {
     id: "k_Rol",
-    titleName: "Code",
+    titleName: "Código",
     priority: 0,
   },
 

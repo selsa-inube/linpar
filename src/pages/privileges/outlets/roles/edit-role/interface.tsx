@@ -1,3 +1,4 @@
+import { FaUserGear } from "react-icons/fa6";
 import {
   Stack,
   SkeletonLine,
@@ -6,13 +7,15 @@ import {
   Tabs,
 } from "@inube/design-system";
 import { PageTitle } from "@src/components/PageTitle";
+import { SubjectCard } from "@src/components/cards/SubjectCard";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import {
   AncillaryAccountsForm,
   IAncillaryAccountsForm,
 } from "../components/AncillaryAccountsForm";
 import { InitializerForm } from "../../forms/InitializerForm";
-import { editRolConfig, stepsAddRol } from "../add-role/config/addRol.config";
+import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
+import { stepsAddRol } from "../add-role/config/addRol.config";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
 
 interface ITabs {
@@ -22,6 +25,7 @@ interface ITabs {
 }
 
 interface IEditRoleUIProps {
+  roleCardData: { username: string; code: string };
   data: any;
   dataTabs: ITabs[];
   onTabChange: (tabId: string) => void;
@@ -39,6 +43,7 @@ interface IEditRoleUIProps {
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
   const {
+    roleCardData,
     data,
     onTabChange,
     selectedTab,
@@ -60,17 +65,26 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s400} direction="column">
-          <Breadcrumbs crumbs={editRolConfig[0].crumbs} />
+          <Breadcrumbs crumbs={editRoleConfig[0].crumbs} />
           <Stack
             justifyContent="space-between"
             alignItems="center"
             gap={inube.spacing.s650}
           >
             <PageTitle
-              title={editRolConfig[0].title}
-              description={editRolConfig[0].description}
+              title={editRoleConfig[0].title}
+              description={editRoleConfig[0].description}
               navigatePage="/privileges/roles"
             />
+
+            {roleCardData && (
+              <SubjectCard
+                subjectData={roleCardData}
+                title="Editar Rol"
+                icon={<FaUserGear />}
+                labels={editRoleCardLabels}
+              />
+            )}
           </Stack>
         </Stack>
         <>

@@ -132,12 +132,11 @@ export const EditRole = () => {
     roleName: editData.n_Rol,
     description: editData.n_Uso,
     applicationId: editData.k_Aplica,
-    application: editData.k_Aplica,
   };
 
   const valuesAncillaryAccounts = {
-    commercialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
-    officialSector: editData?.cuentasAuxiliaresPorRol?.[1]?.k_Codcta || "",
+    officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
+    commercialSector: editData?.cuentasAuxiliaresPorRol?.[1]?.k_Codcta || "",
     solidaritySector: editData?.cuentasAuxiliaresPorRol?.[2]?.k_Codcta || "",
   };
 
@@ -184,8 +183,14 @@ export const EditRole = () => {
     }
   };
 
+  const roleCardData = editData && {
+    code: (editData as { k_Rol: string }).k_Rol,
+    username: (editData as { n_Rol: string }).n_Rol,
+  };
+
   return (
     <EditRoleUI
+      roleCardData={roleCardData}
       data={valuesGeneralInformation}
       onTabChange={handleTabChange}
       selectedTab={selectedTab}
