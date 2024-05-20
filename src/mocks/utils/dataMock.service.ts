@@ -1,6 +1,7 @@
 import localforage from "localforage";
 import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { IGeneralInformationEntry } from "@src/pages/privileges/outlets/positions/components/GeneralInformationForm";
+import { InvitationEntry } from "@src/pages/privileges/outlets/users/tabs/invitations/Complete-invitation/utils";
 
 function buildData<T>(data: T[]) {
   const dataMock = data.map((optionData) => {
@@ -41,7 +42,8 @@ interface functionById {
   editData?:
     | IGeneralInformation
     | IGeneralInformationEntry
-    | { [key: string]: string }[];
+    | { [key: string]: string }[]
+    | InvitationEntry;
 }
 
 interface functionActiveById {

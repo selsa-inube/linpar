@@ -10,18 +10,14 @@ import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
-import { deleteUserModal } from "@pages/privileges/outlets/users/config/deleteUser.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { EAppearance } from "@src/types/colors.types";
 import { IMessage } from "@src/types/messages.types";
-import { DeleteFormOptions } from "@pages/privileges/outlets/forms/DeleteModal";
 import { IGeneralInformationEntry } from "@src/services/users/users.types";
 import { getAll } from "@mocks/utils/dataMock.service";
 
-import { EditUser } from "./EditUser";
 import { StyledMessageContainer } from "./styles";
-import { ActivateUsers } from "./ActivateFormOptions";
-import { activateUsersModal } from "./ActivateFormOptions/config/activateUsers.config";
+import { actionsConfigUsers } from "./config/dataUsers.config";
 
 const initialMessageState: IMessage = {
   show: false,
@@ -61,59 +57,6 @@ function UsersTab(props: UsersTabProps) {
   };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
-  const selectedData = (k_Usuari: string) =>
-    users.find((user) => user.k_Usuari === k_Usuari);
-
-  const actions = [
-    {
-      id: "i_activo",
-      actionName: "Activo",
-      content: ({ k_Usuari }: { k_Usuari: string }) => {
-        const Users = selectedData(k_Usuari);
-        const adjustedUsers = {
-          id: Users?.k_Usuari || "",
-          active: Users?.i_Activo === "Y" || false,
-          name: Users?.n_Usuari || "",
-        };
-        return (
-          <ActivateUsers
-            handleActivate={() => {}}
-            data={adjustedUsers}
-            showComplete={false}
-            activateModalConfig={activateUsersModal}
-          />
-        );
-      },
-      type: "secondary",
-    },
-    {
-      id: "2",
-      actionName: "Editar",
-      content: (entry: IGeneralInformationEntry) => (
-        <EditUser entry={entry} showComplete={smallScreen} />
-      ),
-      type: "primary",
-    },
-    {
-      id: "3",
-      actionName: "Eliminar",
-      content: ({ k_Usuari }: { k_Usuari: string }) => {
-        const user = selectedData(k_Usuari);
-        const adjusteduser = {
-          id: user?.k_Usuari || "",
-        };
-
-        return (
-          <DeleteFormOptions
-            data={adjusteduser}
-            showComplete={false}
-            modalConfig={deleteUserModal}
-          />
-        );
-      },
-      type: "error",
-    },
-  ];
 
   return (
     <>
@@ -123,7 +66,7 @@ function UsersTab(props: UsersTabProps) {
         <Table
           id="portal"
           titles={usersTitlesConfig}
-          actions={actions}
+          actions={actionsConfigUsers(smallScreen, users)}
           entries={users}
           breakpoints={usersBreakPointsConfig}
           filter={searchText}
