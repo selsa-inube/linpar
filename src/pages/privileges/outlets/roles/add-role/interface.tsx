@@ -11,6 +11,9 @@ import { useNavigate } from "react-router-dom";
 
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+import { DecisionModal } from "@components/feedback/DecisionModal";
+import { RenderMessage } from "@components/feedback/RenderMessage";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
 import {
   IFormAddRole,
@@ -20,7 +23,6 @@ import {
 } from "../types";
 import { titleButtonTextAssited } from "./types";
 import { StyledContainerAssisted } from "./styles";
-
 import {
   createRolConfig,
   stepsAddRol,
@@ -30,11 +32,6 @@ import {
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { VerificationAddRole } from "../components/VerificationForm";
-
-import { DecisionModal } from "@src/components/feedback/DecisionModal";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
 import { saveRole } from "./utils";
 
 interface AddRolUIProps {
