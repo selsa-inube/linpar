@@ -95,7 +95,7 @@ function CompleteInvitation() {
   }, [invitation_id]);
 
   useEffect(() => {
-    getAll("linix-invitatiton-branches")
+    getAll("linix-invitation-branches")
       .then((data) => {
         if (data !== null) {
           setInvitationData((prevInvitationData) => ({
@@ -116,7 +116,7 @@ function CompleteInvitation() {
         console.error("Error fetching branches:", error.message);
       });
 
-    getAll("linix-invitatiton-projects")
+    getAll("linix-invitation-projects")
       .then((data) => {
         if (data !== null) {
           setInvitationData((prevInvitationData) => ({
@@ -137,7 +137,7 @@ function CompleteInvitation() {
         console.error("Error fetching projects:", error.message);
       });
 
-    getAll("linix-invitatiton-events")
+    getAll("linix-invitation-events")
       .then((data) => {
         if (data !== null) {
           setInvitationData((prevInvitationData) => ({
@@ -158,7 +158,7 @@ function CompleteInvitation() {
         console.error("Error fetching events:", error.message);
       });
 
-    getAll("linix-invitatiton-aidBudgetUnits")
+    getAll("linix-invitation-aidBudgetUnits")
       .then((data) => {
         if (data !== null) {
           setInvitationData((prevInvitationData) => ({
@@ -179,7 +179,7 @@ function CompleteInvitation() {
         console.error("Error fetching aidBudgetUnits:", error.message);
       });
 
-    getAll("linix-invitatiton-payrolls")
+    getAll("linix-invitations-payrolls")
       .then((data) => {
         if (data !== null) {
           setInvitationData((prevInvitationData) => ({
