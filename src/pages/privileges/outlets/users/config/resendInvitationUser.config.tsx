@@ -1,11 +1,12 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+
 import { EAppearance } from "@src/types/colors.types";
 import { IInvitationsEntry } from "@src/services/users/invitation.types";
 
 const resendInvitationModal = {
-  title: "resend  invitation",
+  title: "Reenviar Invitación",
   description: ({ userName }: IInvitationsEntry) =>
-    `Are you sure you want to resend the  invitation ${userName} ?`,
+    `¿Esta seguro de que quiere reenviar la invitación ${userName} ?`,
   textAction: "Resend",
   appearance: EAppearance.SUCCESS,
 };
@@ -14,17 +15,17 @@ const resendInvitationMessages = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
-    title: "Successful  forwarding!",
+    title: "¡Reenvío exitoso!",
     description: ({ userName }: IInvitationsEntry) =>
-      `We have successfully  forward the invitation  to the user ${userName}`,
+      `Hemos reenviado con éxito la invitación al usuario ${userName}`,
     appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
-    title: "Oops, something has gone wrong!",
+    title: "Ups, ¡algo salió mal!",
     description: ({ userName }: IInvitationsEntry) =>
-      `We have presented problems forwarding the invitation to the user ${userName}`,
+      `Hemos presentado problemas para reenviar la invitación al usuario ${userName}`,
     appearance: EAppearance.ERROR,
   },
 };

@@ -1,8 +1,10 @@
 import { MdOutlineDelete } from "react-icons/md";
 import { Icon, Stack } from "@inube/design-system";
+
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { EMessageType } from "@src/types/messages.types";
+
 import { IMessageState } from "../../../types/forms.types";
 import { deleteInvitationModal } from "./config/deleteInvitation.config";
 
@@ -41,6 +43,7 @@ function DeleteInvitationUI(props: DeleteInvitationUIProps) {
   return (
     <>
       <Stack
+        justifyContent="space-around"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >

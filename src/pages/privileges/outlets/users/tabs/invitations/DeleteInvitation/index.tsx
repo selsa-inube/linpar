@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import { functionById } from "@mocks/utils/dataMock.service";
 import { generalMessage } from "@pages/privileges/outlets/roles/config/messages.config";
+
 import { DeleteInvitationUI } from "./interface";
 import { IMessageState } from "../../../types/forms.types";
 import { deleteInvitationModal } from "./config/deleteInvitation.config";
