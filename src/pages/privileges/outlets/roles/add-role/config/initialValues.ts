@@ -4,8 +4,8 @@ export const initialValuesAddRol = {
     values: {
       roleName: "",
       description: "",
-      aplication: "",
-      aplicationId: "",
+      application: "",
+      applicationId: "",
     },
   },
   ancillaryAccounts: {

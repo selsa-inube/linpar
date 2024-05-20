@@ -59,7 +59,7 @@ export function InitializerForm(props: IInitializerForm) {
   const normalizeDataOption = formDataOptions
     .filter((dataOption) => dataOption.isActive === true)
     .map((option) => ({
-      [propertyData as keyof string]: option.value,
+      [propertyData as keyof string]: option.id,
     }));
 
   const handleEditData = async () => {
