@@ -13,7 +13,9 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IInvitationsEntry } from "@src/services/users/invitation.types";
+
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
@@ -31,7 +33,7 @@ import {
   titleButtonTextAssited,
 } from "./types";
 import { IAssignmentFormEntry } from "../../../types/forms.types";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+
 import { VerificationAddInvitation } from "../verificationForm";
 
 export interface IVerificationData {
