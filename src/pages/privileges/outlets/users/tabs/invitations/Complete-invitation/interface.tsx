@@ -1,4 +1,5 @@
 import { MdPersonOutline } from "react-icons/md";
+
 import {
   Assisted,
   Breadcrumbs,
@@ -31,6 +32,7 @@ import {
 } from "./types";
 import { IAssignmentFormEntry } from "../../../types/forms.types";
 import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { VerificationAddInvitation } from "../verificationForm";
 
 export interface IVerificationData {
   id: string;
@@ -74,6 +76,7 @@ interface CompleteInvitationUIProps {
   handleSubmit: (values: IInvitationsEntry | IAssignmentFormEntry[]) => void;
   handleToggleModal: () => void;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function CompleteInvitationUI(props: CompleteInvitationUIProps) {
@@ -92,6 +95,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
     handleSubmit,
     handleToggleModal,
     setIsCurrentFormValid,
+    setCurrentStep,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -193,6 +197,13 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
                 handleSubmit={handleSubmit}
               />
             )}
+            {currentStep === stepsRegisterUserConfig.verification.id && (
+              <VerificationAddInvitation
+                steps={invitationData}
+                setCurrentStep={setCurrentStep}
+              />
+            )}
+
             <Stack gap={inube.spacing.s200} justifyContent="flex-end">
               <Button
                 onClick={handlePrevStep}
