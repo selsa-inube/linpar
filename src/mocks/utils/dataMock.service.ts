@@ -43,6 +43,7 @@ interface functionById {
     | IGeneralInformation
     | IGeneralInformationEntry
     | { [key: string]: string }[]
+    | { [key: string]: string }
     | InvitationEntry;
 }
 

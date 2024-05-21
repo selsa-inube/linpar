@@ -24,26 +24,36 @@ import {
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { IMessageState } from "../users/types/forms.types";
 
 interface IRolesProps {
-  handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  showMenu: boolean;
   handleCloseMenuInvitation: () => void;
+  handleSearchRole: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleToggleMenuInvitation: () => void;
-  searchRole: string;
+  handleCloseSectionMessage: () => void;
+  message: IMessageState;
   linixRoles: IRol[];
   loading: boolean;
+  idDeleted: string;
+  searchRole: string;
+  setIdDeleted: (show: string) => void;
+  showMenu: boolean;
 }
 
 export function RolesUI(props: IRolesProps) {
   const {
-    handleSearchRole,
-    showMenu,
+    idDeleted,
     handleCloseMenuInvitation,
+    handleCloseSectionMessage,
+    handleSearchRole,
     handleToggleMenuInvitation,
-    searchRole,
+    message,
     linixRoles,
     loading,
+    searchRole,
+    setIdDeleted,
+    showMenu,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -119,11 +129,18 @@ export function RolesUI(props: IRolesProps) {
             <Table
               id="tableRoles"
               titles={titlesOptions}
-              actions={actionsConfigPosition(linixRoles)}
+              actions={actionsConfigPosition(linixRoles, setIdDeleted)}
               entries={linixRoles}
               breakpoints={RolesBreakPointsConfig}
               modalTitle="Roles"
               filter={searchRole}
+            />
+          )}
+          {idDeleted && message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={handleCloseSectionMessage}
+              onMessageClosed={handleCloseSectionMessage}
             />
           )}
         </Stack>
