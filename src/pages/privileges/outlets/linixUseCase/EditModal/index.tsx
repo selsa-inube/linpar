@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { linixUseCases } from "@mocks/privileges/linixUseCases/LinixUseCases.mock";
 import { getAll } from "@mocks/utils/dataMock.service";
@@ -10,6 +9,7 @@ import { EditUserUI } from "./interface";
 import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
 import { dataToAssignmentFormEntry } from "../adding-linix-use-case";
 import { UseCase } from "../types";
+import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 
 export interface IGeneralInformation {
   generalInformation: { entries: UseCase | undefined };
@@ -64,7 +64,7 @@ function EditCaseLinix() {
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
 
   const [selectedTab, setSelectedTab] = useState(
-    editUserTabsConfig.generalInformation.id
+    editLinixUseCaseTabsConfig.generalInformation.id
   );
 
   const [editData, setEditData] = useState<{
@@ -207,7 +207,7 @@ function EditCaseLinix() {
   }
 
   const handleSubmit = (values: IAssignmentFormEntry[]) => {
-    const editKey = Object.entries(editUserTabsConfig).find(
+    const editKey = Object.entries(editLinixUseCaseTabsConfig).find(
       ([, config]) => config.id === selectedTab
     )?.[0];
 
