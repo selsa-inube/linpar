@@ -1,10 +1,10 @@
 import { EMessageType } from "@src/types/messages.types";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { finishAssistedMessagesConfig } from "./complete-invitation/config/completeInvitation.config";
 import { privilegeUserTabsConfig } from "./config/usersTabs.config";
 import { UsersUI } from "./interface";
 import { IUsersMessage } from "./types/users.types";
+import { finishAssistedMessagesConfig } from "./tabs/invitations/Complete-invitation/config/completeInvitation.config";
 
 function Users() {
   const [isSelected, setIsSelected] = useState<string>();

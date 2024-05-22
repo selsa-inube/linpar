@@ -6,16 +6,19 @@ import { deleteRolModal } from "./config/deleteRol.config";
 import { DeleteRoleUI } from "./interface";
 
 interface IDeleteRoleProps {
-  rol: string;
-  handleDeleteRol: (props: functionById) => Promise<unknown>;
   deleteRolModal: typeof deleteRolModal;
+  setIdDeleted: (show: string) => void;
+  handleDeleteRol: (props: functionById) => Promise<unknown>;
+  nameRol: string;
+  rol: string;
 }
 
 export const DeleteRole = (props: IDeleteRoleProps) => {
-  const { rol, handleDeleteRol, deleteRolModal } = props;
+  const { deleteRolModal, handleDeleteRol, nameRol, rol, setIdDeleted } = props;
 
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleOnclick = async () => {
     await handleDeleteRol({
@@ -24,17 +27,20 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
       identifier: rol,
     });
     setShowModal(false);
+    setLoading(true);
+    setIdDeleted(rol);
   };
 
   return (
     <DeleteRoleUI
-      showModal={showModal}
-      setShowModal={setShowModal}
-      rol={rol}
-      handleDeleteRol={handleOnclick}
       deleteRolModal={deleteRolModal}
+      handleDeleteRol={handleOnclick}
       hover={isHovered}
+      loading={loading}
+      nameRol={nameRol}
       setHover={setIsHovered}
+      setShowModal={setShowModal}
+      showModal={showModal}
     />
   );
 };

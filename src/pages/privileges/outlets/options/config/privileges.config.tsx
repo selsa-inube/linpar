@@ -1,4 +1,5 @@
 import { MdPerson, MdSync } from "react-icons/md";
+import { FaUserGear } from "react-icons/fa6";
 import { TfiMenuAlt } from "react-icons/tfi";
 
 const privilegeOptionsConfig = [
@@ -88,7 +89,7 @@ const privilegeOptionsConfig = [
   },
   {
     id: 4,
-    icon: <MdSync />,
+    icon: <FaUserGear />,
     label: "Roles Linix",
     description: "Crear, editar, activar y eliminar roles de Linix",
     url: "/privileges/roles",
