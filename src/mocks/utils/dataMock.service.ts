@@ -46,6 +46,7 @@ interface functionById {
     | IGeneralInformationEntry
     | IGeneralInformationUsersForm
     | { [key: string]: string }[]
+    | { [key: string]: string }
     | InvitationEntry;
 }
 

@@ -40,7 +40,10 @@ export const RolesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-export const actionsConfigPosition = (linixRoles: IRol[]) => {
+export const actionsConfigPosition = (
+  linixRoles: IRol[],
+  setIdDeleted: (show: string) => void
+) => {
   const dataDetailsRole = (k_Rol: string) => {
     const data = [linixRoles.find((role) => role.k_Rol === k_Rol)!].map(
       (roleSelected) => ({
@@ -66,6 +69,7 @@ export const actionsConfigPosition = (linixRoles: IRol[]) => {
         const adjustedRole = {
           id: role?.k_Rol || "",
           active: role?.i_Activo === "Y" || false,
+          name: role?.n_Rol || "",
         };
 
         return (
@@ -100,11 +104,13 @@ export const actionsConfigPosition = (linixRoles: IRol[]) => {
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Rol }: { k_Rol: string }) => (
+      content: ({ k_Rol, n_Rol }: { k_Rol: string; n_Rol: string }) => (
         <DeleteRole
+          nameRol={n_Rol}
           rol={k_Rol}
           deleteRolModal={deleteRolModal}
           handleDeleteRol={deleteItemData}
+          setIdDeleted={setIdDeleted}
         />
       ),
       type: "remove",
