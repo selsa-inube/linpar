@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import { FormikProps } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { getAll } from "@mocks/utils/dataMock.service";
 import { EMessageType } from "@src/types/messages.types";
 import { IInvitationsEntry } from "@src/services/users/invitation.types";
 import { updateItemData } from "@mocks/utils/dataMock.service";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
+
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { CompleteInvitationUI } from "./interface";
 import { completeInvitationData, completeInvitationStepsRules } from "./utils";
-import { FormikProps } from "formik";
 import { IFormCompleteInvitation, IFormCompleteInvitationRef } from "./types";
 import { IAssignmentFormEntry } from "../../../types/forms.types";
 
@@ -305,6 +307,7 @@ function CompleteInvitation() {
       handleToggleModal={handleToggleModal}
       handleCompleteInvitation={handleCompleteInvitation}
       setIsCurrentFormValid={setIsCurrentFormValid}
+      setCurrentStep={setCurrentStep}
     />
   );
 }
