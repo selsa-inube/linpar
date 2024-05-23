@@ -29,8 +29,9 @@ import {
 
 import { saveLinixUseCase } from "./utils";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
-import { VerificationForm } from "../components/VerificationForm";
+
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
+import { VerificationAddLinixUseCase } from "../components/VerificationForm";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -62,7 +63,8 @@ const renderStepContent = (
   handleStepChange: (stepId: number) => void,
   handleUpdateFormData: (values: IHandleChangeFormData) => void,
   handleNextStep: (step: number) => void,
-  formData: IFormAddLinixUseCase
+  formData: IFormAddLinixUseCase,
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>
 ) => {
   return (
     <>
@@ -116,9 +118,9 @@ const renderStepContent = (
         />
       )}
       {currentStep === stepsAddingLinixUseCase.summary.id && (
-        <VerificationForm
-          formData={formData}
-          handleStepChange={handleNextStep}
+        <VerificationAddLinixUseCase
+          steps={formData}
+          setCurrentStep={setCurrentStep}
         />
       )}
     </>
@@ -144,6 +146,7 @@ interface AddingLinixUseCaseUIProps {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   isCurrentFormValid: boolean;
   selectOptions: boolean;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
@@ -164,6 +167,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     webOptions,
     formReferences,
     isCurrentFormValid,
+    setCurrentStep,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -246,7 +250,8 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
             handleStepChange,
             handleUpdateFormData,
             handleNextStep,
-            formData
+            formData,
+            setCurrentStep
           )}
         </>
         <Stack gap={inube.spacing.s200} justifyContent="flex-end">
