@@ -10,6 +10,7 @@ import { activateUserModal } from "../../users/config/activateUser.config";
 export interface IDataActivateOption {
   id: string;
   active: boolean;
+  name: string;
 }
 interface IActivateRoleProps<T extends IDataActivateOption> {
   handleActivate: () => void;
@@ -38,12 +39,12 @@ export function ActivateRole<T extends IDataActivateOption>(
     await updateActive(params)
       .then(() => {
         renderMessage(
-          props.data.id,
+          props.data.name,
           props.data.active ? "deactivate" : "activate"
         );
       })
       .catch((error) => {
-        renderMessage(props.data.id, "failed");
+        renderMessage(props.data.name, "failed");
       })
       .finally(() => {
         setShowActivateRoleModal(false);
@@ -51,7 +52,7 @@ export function ActivateRole<T extends IDataActivateOption>(
   };
 
   const renderMessage = (
-    k_Rol: string,
+    n_Rol: string,
     type: "activate" | "deactivate" | "failed" = "failed"
   ) => {
     let messageType;
@@ -65,7 +66,7 @@ export function ActivateRole<T extends IDataActivateOption>(
         data: {
           icon: messageType?.icon,
           title: messageType?.title,
-          description: messageType.description(k_Rol),
+          description: messageType.description(n_Rol),
           appearance: messageType?.appearance,
         },
       });
@@ -85,7 +86,7 @@ export function ActivateRole<T extends IDataActivateOption>(
     <ActivateRoleUI
       active={data.active}
       showActivateRole={showActivateRoleModal}
-      id={data.id}
+      id={data.name}
       handleToggleModal={handleToggleModal}
       handleActivateRole={handleActivateDeactivateRole}
       showComplete={showComplete}
