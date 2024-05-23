@@ -62,7 +62,7 @@ export const VerificationAddLinixUseCase = (
       (value) => value.id === webId
     )?.value;
 
-    return webId + " - " + webValue;
+    return webId ? webId + " - " + webValue : "";
   };
 
   const clientServerOptions = () => {
@@ -71,7 +71,7 @@ export const VerificationAddLinixUseCase = (
       steps.clientServerOptions.values
     ).find((value) => value.id === clientServerId)?.value;
 
-    return clientServerId + " - " + clientServerValue;
+    return clientServerId ? clientServerId + " - " + clientServerValue : "";
   };
 
   const dataVerificationStep: IDataVerificationStep[] = [steps].map((data) => ({
