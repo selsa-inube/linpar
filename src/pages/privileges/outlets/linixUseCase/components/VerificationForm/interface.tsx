@@ -1,19 +1,21 @@
 import { MdArrowBack } from "react-icons/md";
-import { Button, Grid, Stack, inube } from "@inube/design-system";
 
+import { Button, Grid, Stack, inube } from "@inube/design-system";
 import { BoxAttribute } from "@components/data/BoxAttirbute";
 import { Accordion } from "@components/data/Accordion";
 
 import { IDataVerificationStep } from ".";
 
-interface IVerificationAddRoleUIProps {
+interface IVerificationAddLinixUseCaseUIProps {
   dataVerificationStep: IDataVerificationStep[];
   keySections: string[];
   isMobile: boolean;
   setCurrentStep: (step: number) => void;
 }
 
-export const VerificationAddRoleUI = (props: IVerificationAddRoleUIProps) => {
+export const VerificationAddLinixUseCaseUI = (
+  props: IVerificationAddLinixUseCaseUIProps
+) => {
   const { dataVerificationStep, keySections, isMobile, setCurrentStep } = props;
 
   return (

@@ -1,9 +1,8 @@
 import { useMediaQuery } from "@inube/design-system";
 
-import { IInitialiceFormRole } from "@pages/privileges/outlets/roles/types";
-
-import { VerificationAddRoleUI } from "./interface";
 import { IFormAddLinixUseCase } from "../../adding-linix-use-case/types";
+import { IInitialiceFormLinixUseCase } from "../../types";
+import { VerificationAddLinixUseCaseUI } from "./interface";
 
 export interface IControllerAccordionProps {
   steps: IFormAddLinixUseCase;
@@ -36,15 +35,16 @@ function createAttribute(
 }
 
 function filterAndMapData(
-  data: IInitialiceFormRole[] | [],
+  data: IInitialiceFormLinixUseCase[] | [],
   isActiveKey: string
 ): IAttributes[] {
   return data
     .filter(
-      (item: IInitialiceFormRole) =>
-        item[isActiveKey as string as keyof IInitialiceFormRole] === true
+      (item: IInitialiceFormLinixUseCase) =>
+        item[isActiveKey as string as keyof IInitialiceFormLinixUseCase] ===
+        true
     )
-    .map((item: IInitialiceFormRole) =>
+    .map((item: IInitialiceFormLinixUseCase) =>
       createAttribute(item.id + ": ", item.value)
     );
 }
@@ -55,6 +55,24 @@ export const VerificationAddLinixUseCase = (
   const { steps, setCurrentStep } = props;
 
   const isMobile = useMediaQuery("(max-width: 740px)");
+
+  const webOptions = () => {
+    const webId = steps.generalInformation.values.k_Funcio;
+    const webValue = Object.values(steps.webOptions.values).find(
+      (value) => value.id === webId
+    )?.value;
+
+    return webId + " - " + webValue;
+  };
+
+  const clientServerOptions = () => {
+    const clientServerId = steps.generalInformation.values.k_Opcion;
+    const clientServerValue = Object.values(
+      steps.clientServerOptions.values
+    ).find((value) => value.id === clientServerId)?.value;
+
+    return clientServerId + " - " + clientServerValue;
+  };
 
   const dataVerificationStep: IDataVerificationStep[] = [steps].map((data) => ({
     sections: {
@@ -73,14 +91,8 @@ export const VerificationAddLinixUseCase = (
             "Tipo de caso de uso: ",
             data.generalInformation.values.i_Tipusec
           ),
-          createAttribute(
-            "Opción Web:",
-            data.generalInformation.values.k_Funcio
-          ),
-          createAttribute(
-            "Opción Cliente Servidor:",
-            data.generalInformation.values.k_Opcion
-          ),
+          createAttribute("Opción Web:", webOptions()),
+          createAttribute("Opción Cliente Servidor:", clientServerOptions()),
         ],
       },
       ancillaryAccounts: {
@@ -129,7 +141,7 @@ export const VerificationAddLinixUseCase = (
   );
 
   return (
-    <VerificationAddRoleUI
+    <VerificationAddLinixUseCaseUI
       dataVerificationStep={dataVerificationStep}
       keySections={keySections}
       isMobile={isMobile}

@@ -20,6 +20,12 @@ interface TiposDeDocumentoPorCasoDeUso {
   k_Docume: string;
 }
 
+export interface IInitialiceFormLinixUseCase {
+  id: string;
+  value: string;
+  isActive: boolean;
+}
+
 interface UseCase {
   id: string;
   k_Usecase: string;
@@ -29,6 +35,7 @@ interface UseCase {
   i_Tipusec: string;
   k_Ncampo: string;
   k_Nforma: string;
+  k_Opcion: string;
   opcionesCsPorCasoDeUso?: OpcionesCsPorCasoDeUso[];
   opcionesPortalWebPorCasoDeUso?: OpcionesPortalWebPorCasoDeUso[];
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];
