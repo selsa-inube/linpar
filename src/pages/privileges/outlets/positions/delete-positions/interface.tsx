@@ -3,27 +3,26 @@ import { MdOutlineDelete } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
+import { deletePositionModal } from "./config/deletePositions.config";
 
-import { deleteRolModal } from "../../roles/delete-role/config/deleteRol.config";
-
-interface DeleteRoleUIProps {
-  deleteRolModal: typeof deleteRolModal;
-  handleDeleteRol: () => void;
+interface DeletePositionUIProps {
+  deletePositionModal: typeof deletePositionModal;
+  handleDeletePosition: () => void;
   hover: boolean;
   loading: boolean;
-  nameRol: string;
+  namePosition: string;
   setHover: (hover: boolean) => void;
   setShowModal: (show: boolean) => void;
   showModal: boolean;
 }
 
-export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
+export const DeletePositionUI = (props: DeletePositionUIProps) => {
   const {
-    deleteRolModal,
-    handleDeleteRol,
+    deletePositionModal,
+    handleDeletePosition,
     hover,
     loading,
-    nameRol,
+    namePosition,
     setHover,
     setShowModal,
     showModal,
@@ -32,7 +31,7 @@ export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
   const messageType = EMessageType.DELETE;
 
   const { title, description, actionText, appearance } =
-    deleteRolModal[messageType!];
+    deletePositionModal[messageType!];
 
   return (
     <>
@@ -50,12 +49,12 @@ export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
       {showModal && (
         <DecisionModal
           title={title}
-          description={description(nameRol)}
+          description={description(namePosition)}
           actionText={actionText}
           appearance={appearance}
           loading={loading}
           closeModal={() => setShowModal(false)}
-          handleClick={handleDeleteRol}
+          handleClick={handleDeletePosition}
         />
       )}
     </>

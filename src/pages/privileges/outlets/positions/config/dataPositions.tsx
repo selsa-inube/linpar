@@ -9,7 +9,7 @@ import { DetailsModal } from "../components/DetailsModal";
 import { ActivatePosition } from "../active-position";
 import { IPosition } from "../add-position/types";
 import { DeletePosition } from "../delete-positions";
-import { deleteRolModal } from "../../roles/delete-role/config/deleteRol.config";
+import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
 
 export const titlesOptions = [
   {
@@ -96,10 +96,10 @@ export const actionsConfigPosition = (
       actionName: "Eliminar",
       content: ({ k_Grupo, n_Grupo }: { k_Grupo: string; n_Grupo: string }) => (
         <DeletePosition
-          nameRol={n_Grupo}
+          namePosition={n_Grupo}
           linixPosition={k_Grupo}
-          deleteRolModal={deleteRolModal}
-          handleDeleteRol={deleteItemData}
+          deletePositionModal={deletePositionModal}
+          handleDeletePosition={deleteItemData}
           setIdDeleted={setIdDeleted}
         />
       ),

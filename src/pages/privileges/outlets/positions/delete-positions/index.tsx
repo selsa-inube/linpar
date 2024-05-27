@@ -2,22 +2,22 @@ import { useState } from "react";
 
 import { functionById } from "@mocks/utils/dataMock.service";
 
-import { DeleteRoleUI } from "./interface";
-import { deleteRolModal } from "../../roles/delete-role/config/deleteRol.config";
+import { DeletePositionUI } from "./interface";
+import { deletePositionModal } from "./config/deletePositions.config";
 
-interface IDeleteRoleProps {
-  deleteRolModal: typeof deleteRolModal;
+interface IDeletePositionProps {
+  deletePositionModal: typeof deletePositionModal;
   setIdDeleted: (show: string) => void;
-  handleDeleteRol: (props: functionById) => Promise<unknown>;
-  nameRol: string;
+  handleDeletePosition: (props: functionById) => Promise<unknown>;
+  namePosition: string;
   linixPosition: string;
 }
 
-export const DeletePosition = (props: IDeleteRoleProps) => {
+export const DeletePosition = (props: IDeletePositionProps) => {
   const {
-    deleteRolModal,
-    handleDeleteRol,
-    nameRol,
+    deletePositionModal,
+    handleDeletePosition,
+    namePosition,
     linixPosition,
     setIdDeleted,
   } = props;
@@ -27,7 +27,7 @@ export const DeletePosition = (props: IDeleteRoleProps) => {
   const [loading, setLoading] = useState(false);
 
   const handleOnclick = async () => {
-    await handleDeleteRol({
+    await handleDeletePosition({
       key: "k_Grupo",
       nameDB: "linix-positions",
       identifier: linixPosition,
@@ -38,12 +38,12 @@ export const DeletePosition = (props: IDeleteRoleProps) => {
   };
 
   return (
-    <DeleteRoleUI
-      deleteRolModal={deleteRolModal}
-      handleDeleteRol={handleOnclick}
+    <DeletePositionUI
+      deletePositionModal={deletePositionModal}
+      handleDeletePosition={handleOnclick}
       hover={isHovered}
       loading={loading}
-      nameRol={nameRol}
+      namePosition={namePosition}
       setHover={setIsHovered}
       setShowModal={setShowModal}
       showModal={showModal}
