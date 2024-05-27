@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { getAll } from "@src/mocks/utils/dataMock.service";
+import { getAll } from "@mocks/utils/dataMock.service";
 
 import {
   LinixUseCaseUI,
