@@ -2,7 +2,7 @@ import { MdOutlineSentimentNeutral, MdThumbUpOffAlt } from "react-icons/md";
 
 import { EAppearance } from "@src/types/colors.types";
 
-export const deleteLinixUseCaseModal = {
+export const deleteInvitationModal = {
   delete: {
     title: "Eliminar Caso de Uso",
     description: (k_Usecase: string) =>
@@ -12,12 +12,12 @@ export const deleteLinixUseCaseModal = {
   },
 };
 
-export const deleteUserMessages = {
+export const deleteInvitationMessages = {
   success: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: "Hemos eliminado con éxito el Caso de Uso",
+    description: "Hemos eliminado con éxito la invtacion ",
     appearance: EAppearance.SUCCESS,
   },
   failed: {
@@ -25,7 +25,7 @@ export const deleteUserMessages = {
     icon: <MdOutlineSentimentNeutral size={18} />,
     title: "Ups, algo ha salido mal!",
     description:
-      "Tuvimos problemas para guardar cambios para el caso de uso edita algun campo de Opción de menú ",
+      "Tuvimos problemas para eliminar la invitación, por favor intenta nuevamente",
     appearance: EAppearance.ERROR,
   },
 };

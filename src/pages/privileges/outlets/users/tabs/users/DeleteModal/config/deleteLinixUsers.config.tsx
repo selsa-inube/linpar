@@ -17,16 +17,15 @@ export const deleteUserMessages = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: (id: string) =>
-      `Hemos eliminado con éxito el Caso de Uso ${id}.`,
+    description: "Hemos eliminado con éxito el usuario ",
     appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
-    title: "¡Uy, algo salió mal!",
-    description: (id: string) =>
-      `Hemos presentado problemas eliminando el Caso de Uso ${id}.`,
+    title:
+      "¡Tuvimos problemas para eliminar el usuario, por favor intenta nuevamente!",
+    description: " ",
     appearance: EAppearance.ERROR,
   },
 };

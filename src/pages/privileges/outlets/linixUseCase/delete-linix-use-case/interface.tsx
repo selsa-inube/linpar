@@ -1,30 +1,32 @@
 import { MdOutlineDelete } from "react-icons/md";
-import { Icon } from "@inube/design-system";
 
+import { Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
 
 import { deleteLinixUseCaseModal } from "./config/deleteLinixUseCase.config";
 
 interface DeleteLinixUseCaseUIProps {
-  showModal: boolean;
-  setShowModal: (show: boolean) => void;
-  linixUseCase: string;
-  handleDeleteLinixUseCase: () => void;
   deleteLinixUseCaseModal: typeof deleteLinixUseCaseModal;
+  handleDeleteLinixUseCase: () => void;
   hover: boolean;
+  loading: boolean;
+  nameLinixuseCase: string;
   setHover: (hover: boolean) => void;
+  setShowModal: (show: boolean) => void;
+  showModal: boolean;
 }
 
 export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
   const {
-    showModal,
-    setShowModal,
-    linixUseCase,
-    handleDeleteLinixUseCase,
     deleteLinixUseCaseModal,
+    handleDeleteLinixUseCase,
     hover,
+    loading,
+    nameLinixuseCase,
     setHover,
+    setShowModal,
+    showModal,
   } = props;
 
   const messageType = EMessageType.DELETE;
@@ -48,9 +50,10 @@ export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
       {showModal && (
         <DecisionModal
           title={title}
-          description={description(linixUseCase)}
+          description={description(nameLinixuseCase)}
           actionText={actionText}
           appearance={appearance}
+          loading={loading}
           closeModal={() => setShowModal(false)}
           handleClick={handleDeleteLinixUseCase}
         />
