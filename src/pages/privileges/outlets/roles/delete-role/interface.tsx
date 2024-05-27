@@ -6,24 +6,26 @@ import { EMessageType } from "@src/types/messages.types";
 import { deleteRolModal } from "./config/deleteRol.config";
 
 interface DeleteRoleUIProps {
-  showModal: boolean;
-  setShowModal: (show: boolean) => void;
-  rol: string;
-  handleDeleteRol: () => void;
   deleteRolModal: typeof deleteRolModal;
+  handleDeleteRol: () => void;
   hover: boolean;
+  loading: boolean;
+  nameRol: string;
   setHover: (hover: boolean) => void;
+  setShowModal: (show: boolean) => void;
+  showModal: boolean;
 }
 
 export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
   const {
-    showModal,
-    setShowModal,
-    rol,
-    handleDeleteRol,
     deleteRolModal,
+    handleDeleteRol,
     hover,
+    loading,
+    nameRol,
     setHover,
+    setShowModal,
+    showModal,
   } = props;
 
   const messageType = EMessageType.DELETE;
@@ -47,9 +49,10 @@ export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
       {showModal && (
         <DecisionModal
           title={title}
-          description={description(rol)}
+          description={description(nameRol)}
           actionText={actionText}
           appearance={appearance}
+          loading={loading}
           closeModal={() => setShowModal(false)}
           handleClick={handleDeleteRol}
         />
