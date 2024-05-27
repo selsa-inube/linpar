@@ -54,17 +54,17 @@ export const actionsConfigUsers = (
       actionName: "Eliminar",
       content: ({
         k_Usuari,
-        n_Grupo,
+        n_Usuari,
       }: {
         k_Usuari: string;
-        n_Grupo: string;
+        n_Usuari: string;
       }) => (
         <DeleteLinixUsers
           linixUsers={k_Usuari}
           deleteLinixUsersModal={deleteLinixUsersModal}
           handleDeleteLinixUser={deleteItemData}
           setIdDeleted={setIdDeleted}
-          nameLinixuser={n_Grupo}
+          nameLinixuser={n_Usuari}
         />
       ),
       type: "remove",

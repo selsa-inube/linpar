@@ -4,9 +4,9 @@ import { EAppearance } from "@src/types/colors.types";
 
 export const deleteLinixUsersModal = {
   delete: {
-    title: "Eliminar Caso de Uso",
-    description: (k_Usecase: string) =>
-      `¿Está seguro de que desea eliminar el Caso de Uso ${k_Usecase}?`,
+    title: "Eliminar Usuario",
+    description: (n_Usuari: string) =>
+      `¿Está seguro de que desea eliminar el Usuario ${n_Usuari}?`,
     actionText: "Eliminar",
     appearance: EAppearance.ERROR,
   },

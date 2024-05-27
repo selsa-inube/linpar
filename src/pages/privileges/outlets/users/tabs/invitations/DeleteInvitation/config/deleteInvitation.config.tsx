@@ -4,9 +4,9 @@ import { EAppearance } from "@src/types/colors.types";
 
 export const deleteInvitationModal = {
   delete: {
-    title: "Eliminar Caso de Uso",
-    description: (k_Usecase: string) =>
-      `¿Está seguro de que desea eliminar el Caso de Uso ${k_Usecase}?`,
+    title: "Eliminar Invitación",
+    description: (userName: string) =>
+      `¿Está seguro de que desea eliminar la Invitación de ${userName}?`,
     actionText: "Eliminar",
     appearance: EAppearance.ERROR,
   },
