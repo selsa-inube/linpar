@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+
 import {
   Breadcrumbs,
   Button,
@@ -10,10 +11,9 @@ import {
   Table,
   inube,
 } from "@inube/design-system";
-
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
 import {
@@ -24,6 +24,7 @@ import {
 import { StyledContainer } from "./styles";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { IPosition } from "./add-position/types";
+import { IMessageState } from "../users/types/forms.types";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -32,7 +33,11 @@ interface IPositionsProps {
   handleToggleMenuInvitation: () => void;
   searchPosition: string;
   linixPosition: IPosition[];
+  handleCloseSectionMessage: () => void;
   loading: boolean;
+  setIdDeleted: (show: string) => void;
+  message: IMessageState;
+  idDeleted: string;
 }
 
 export function PositionsUI(props: IPositionsProps) {
@@ -41,9 +46,13 @@ export function PositionsUI(props: IPositionsProps) {
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
+    handleCloseSectionMessage,
     searchPosition,
     linixPosition,
     loading,
+    message,
+    idDeleted,
+    setIdDeleted,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -116,11 +125,18 @@ export function PositionsUI(props: IPositionsProps) {
             <Table
               id="tablePositions"
               titles={titlesOptions}
-              actions={actionsConfigPosition(linixPosition)}
+              actions={actionsConfigPosition(linixPosition, setIdDeleted)}
               entries={linixPosition}
               breakpoints={PositionsBreakPointsConfig}
               modalTitle="Positions"
               filter={searchPosition}
+            />
+          )}
+          {idDeleted && message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={handleCloseSectionMessage}
+              onMessageClosed={handleCloseSectionMessage}
             />
           )}
         </Stack>

@@ -1,57 +1,52 @@
 import { useState } from "react";
+
 import { functionById } from "@mocks/utils/dataMock.service";
-import { deletePositionModal } from "./config/deletePositions.config";
-import { DeletePositionUI } from "./interface";
-import { IMessageState } from "../../users/types/forms.types";
-import { generalMessage } from "./config/messages.config";
-interface IDeletePositionProps {
+
+import { DeleteRoleUI } from "./interface";
+import { deleteRolModal } from "../../roles/delete-role/config/deleteRol.config";
+
+interface IDeleteRoleProps {
+  deleteRolModal: typeof deleteRolModal;
+  setIdDeleted: (show: string) => void;
+  handleDeleteRol: (props: functionById) => Promise<unknown>;
+  nameRol: string;
   linixPosition: string;
-  deletePosition: typeof deletePositionModal;
-  handleDeletePosition: (props: functionById) => Promise<unknown>;
 }
 
-export const DeletePosition = (props: IDeletePositionProps) => {
-  const { linixPosition, deletePosition, handleDeletePosition } = props;
+export const DeletePosition = (props: IDeleteRoleProps) => {
+  const {
+    deleteRolModal,
+    handleDeleteRol,
+    nameRol,
+    linixPosition,
+    setIdDeleted,
+  } = props;
 
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
-    visible: false,
-  });
 
   const handleOnclick = async () => {
-    await handleDeletePosition({
+    await handleDeleteRol({
       key: "k_Grupo",
       nameDB: "linix-positions",
       identifier: linixPosition,
     });
     setShowModal(false);
     setLoading(true);
-    setMessage({
-      visible: true,
-      data: generalMessage.success,
-    });
-  };
-
-  const handleCloseSectionMessage = () => {
-    setMessage({
-      visible: false,
-    });
+    setIdDeleted(linixPosition);
   };
 
   return (
-    <DeletePositionUI
-      showModal={showModal}
-      linixPosition={linixPosition}
-      deletePosition={deletePosition}
+    <DeleteRoleUI
+      deleteRolModal={deleteRolModal}
+      handleDeleteRol={handleOnclick}
       hover={isHovered}
-      message={message}
       loading={loading}
-      setShowModal={setShowModal}
+      nameRol={nameRol}
       setHover={setIsHovered}
-      handleDeletePosition={handleOnclick}
-      handleCloseSectionMessage={handleCloseSectionMessage}
+      setShowModal={setShowModal}
+      showModal={showModal}
     />
   );
 };

@@ -1,44 +1,38 @@
 import { MdOutlineDelete } from "react-icons/md";
-import { Icon } from "@inube/design-system";
 
+import { Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
 
-import { deletePositionModal } from "./config/deletePositions.config";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
-import { IMessageState } from "../../users/types/forms.types";
+import { deleteRolModal } from "../../roles/delete-role/config/deleteRol.config";
 
-interface DeletePositionUIProps {
-  showModal: boolean;
-  linixPosition: string;
-  deletePosition: typeof deletePositionModal;
+interface DeleteRoleUIProps {
+  deleteRolModal: typeof deleteRolModal;
+  handleDeleteRol: () => void;
   hover: boolean;
-  message: IMessageState;
   loading: boolean;
-  setShowModal: (show: boolean) => void;
-  handleDeletePosition: () => void;
+  nameRol: string;
   setHover: (hover: boolean) => void;
-  handleCloseSectionMessage: () => void;
+  setShowModal: (show: boolean) => void;
+  showModal: boolean;
 }
 
-export const DeletePositionUI = (props: DeletePositionUIProps) => {
+export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
   const {
-    showModal,
-    linixPosition,
-    deletePosition,
+    deleteRolModal,
+    handleDeleteRol,
     hover,
-    message,
     loading,
-    setShowModal,
-    handleDeletePosition,
+    nameRol,
     setHover,
-    handleCloseSectionMessage,
+    setShowModal,
+    showModal,
   } = props;
 
   const messageType = EMessageType.DELETE;
 
   const { title, description, actionText, appearance } =
-    deletePosition[messageType!];
+    deleteRolModal[messageType!];
 
   return (
     <>
@@ -56,19 +50,12 @@ export const DeletePositionUI = (props: DeletePositionUIProps) => {
       {showModal && (
         <DecisionModal
           title={title}
-          description={description(linixPosition)}
+          description={description(nameRol)}
           actionText={actionText}
           appearance={appearance}
           loading={loading}
           closeModal={() => setShowModal(false)}
-          handleClick={handleDeletePosition}
-        />
-      )}
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleCloseSectionMessage}
+          handleClick={handleDeleteRol}
         />
       )}
     </>

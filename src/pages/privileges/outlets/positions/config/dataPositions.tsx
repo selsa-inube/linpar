@@ -1,15 +1,15 @@
 import { MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Icon } from "@inube/design-system";
 
+import { Icon } from "@inube/design-system";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { activatePositionModal } from "../active-position/config/activatePosition.config";
 import { DetailsModal } from "../components/DetailsModal";
-import { DeletePosition } from "../delete-positions";
-import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
 import { ActivatePosition } from "../active-position";
 import { IPosition } from "../add-position/types";
+import { DeletePosition } from "../delete-positions";
+import { deleteRolModal } from "../../roles/delete-role/config/deleteRol.config";
 
 export const titlesOptions = [
   {
@@ -31,7 +31,10 @@ export const PositionsBreakPointsConfig = [
   { breakpoint: "(max-width: 430px)", totalColumns: 1 },
 ];
 
-export const actionsConfigPosition = (linixPosition: IPosition[]) => {
+export const actionsConfigPosition = (
+  linixPosition: IPosition[],
+  setIdDeleted: (show: string) => void
+) => {
   const dataDetailsPosition = (k_Grupo: string) => {
     const data = [
       linixPosition.find((position) => position.k_Grupo === k_Grupo)!,
@@ -91,11 +94,13 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Grupo }: { k_Grupo: string }) => (
+      content: ({ k_Grupo, n_Grupo }: { k_Grupo: string; n_Grupo: string }) => (
         <DeletePosition
+          nameRol={n_Grupo}
           linixPosition={k_Grupo}
-          deletePosition={deletePositionModal}
-          handleDeletePosition={deleteItemData}
+          deleteRolModal={deleteRolModal}
+          handleDeleteRol={deleteItemData}
+          setIdDeleted={setIdDeleted}
         />
       ),
       type: "remove",
