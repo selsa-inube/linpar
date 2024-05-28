@@ -5,14 +5,15 @@ import { Icon } from "@inube/design-system";
 import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
-import { DeleteLinixUsers } from "../DeleteModal";
 import { deleteLinixUsersModal } from "../DeleteModal/config/deleteLinixUsers.config";
 import { ActivateUsers } from "../ActivateFormOptions";
 import { activateUsersModal } from "../ActivateFormOptions/config/activateUsers.config";
+import { DeleteLinixUsers } from "../DeleteModal";
 
 export const actionsConfigUsers = (
   smallScreen: boolean,
-  users: IGeneralInformationUsersForm[]
+  users: IGeneralInformationUsersForm[],
+  setIdDeleted: (show: string) => void
 ) => {
   const selectedData = (k_Usuari: string) =>
     users.find((user) => user.k_Usuari === k_Usuari);
@@ -51,11 +52,19 @@ export const actionsConfigUsers = (
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Usuari }: { k_Usuari: string }) => (
+      content: ({
+        k_Usuari,
+        n_Usuari,
+      }: {
+        k_Usuari: string;
+        n_Usuari: string;
+      }) => (
         <DeleteLinixUsers
           linixUsers={k_Usuari}
           deleteLinixUsersModal={deleteLinixUsersModal}
-          handleDeleteLinixUsers={deleteItemData}
+          handleDeleteLinixUser={deleteItemData}
+          setIdDeleted={setIdDeleted}
+          nameLinixuser={n_Usuari}
         />
       ),
       type: "remove",

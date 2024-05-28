@@ -1,49 +1,44 @@
 import { MdOutlineDelete } from "react-icons/md";
-import { Icon, Stack } from "@inube/design-system";
 
+import { Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { EMessageType } from "@src/types/messages.types";
 
-import { IMessageState } from "../../../types/forms.types";
 import { deleteInvitationModal } from "./config/deleteInvitation.config";
 
-interface DeleteInvitationUIProps {
-  deleteInvitation: typeof deleteInvitationModal;
+interface DeleteLinixInvitationUIProps {
+  deleteInvitationModal: typeof deleteInvitationModal;
+  handleDeleteLinixInvitation: () => void;
   hover: boolean;
-  userNameInvitation: string;
   loading: boolean;
-  message: IMessageState;
-  showModal: boolean;
-  handleCloseSectionMessage: () => void;
-  handleRemoveInvitation: () => void;
+  nameLinixInvitation: string;
   setHover: (hover: boolean) => void;
   setShowModal: (show: boolean) => void;
+  showModal: boolean;
 }
 
-function DeleteInvitationUI(props: DeleteInvitationUIProps) {
+export const DeleteLinixInvitationUI = (
+  props: DeleteLinixInvitationUIProps
+) => {
   const {
-    deleteInvitation,
+    deleteInvitationModal,
+    handleDeleteLinixInvitation,
     hover,
-    userNameInvitation,
     loading,
-    message,
-    showModal,
-    handleCloseSectionMessage,
-    handleRemoveInvitation,
+    nameLinixInvitation,
     setHover,
     setShowModal,
+    showModal,
   } = props;
 
   const messageType = EMessageType.DELETE;
 
   const { title, description, actionText, appearance } =
-    deleteInvitation[messageType];
+    deleteInvitationModal[messageType!];
 
   return (
     <>
-      <Stack
-        justifyContent="space-around"
+      <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
@@ -53,28 +48,18 @@ function DeleteInvitationUI(props: DeleteInvitationUIProps) {
           appearance={hover ? "primary" : "dark"}
           cursorHover
         />
-      </Stack>
-
+      </div>
       {showModal && (
         <DecisionModal
           title={title}
-          description={description(userNameInvitation)}
-          loading={loading}
+          description={description(nameLinixInvitation)}
           actionText={actionText}
-          closeModal={() => setShowModal(false)}
-          handleClick={handleRemoveInvitation}
           appearance={appearance}
-        />
-      )}
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleCloseSectionMessage}
+          loading={loading}
+          closeModal={() => setShowModal(false)}
+          handleClick={handleDeleteLinixInvitation}
         />
       )}
     </>
   );
-}
-
-export { DeleteInvitationUI };
+};

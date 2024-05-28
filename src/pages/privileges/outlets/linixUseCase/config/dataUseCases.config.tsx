@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 
 import { Icon } from "@inube/design-system";
-import { deleteItemData } from "@src/mocks/utils/dataMock.service";
+import { deleteItemData } from "@mocks/utils/dataMock.service";
 
-import { DeleteLinixUseCase } from "../delete-linix-use-case";
 import { deleteLinixUseCaseModal } from "../delete-linix-use-case/config/deleteLinixUseCase.config";
 import { DetailsModal } from "../components/DetailsModal";
 import { UseCase } from "../types";
+import { DeleteLinixUseCase } from "../delete-linix-use-case";
 
 const titlesOptions = [
   {
@@ -38,7 +38,10 @@ const useCasesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-export const actionsConfigLinixUseCase = (linixUseCases: UseCase[]) => {
+export const actionsConfigLinixUseCase = (
+  linixUseCases: UseCase[],
+  setIdDeleted: (show: string) => void
+) => {
   const dataDetailsLinixUseCase = (k_Usecase: string) => {
     const data = [
       linixUseCases.find(
@@ -77,11 +80,19 @@ export const actionsConfigLinixUseCase = (linixUseCases: UseCase[]) => {
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Usecase }: { k_Usecase: string }) => (
+      content: ({
+        k_Usecase,
+        n_Usecase,
+      }: {
+        k_Usecase: string;
+        n_Usecase: string;
+      }) => (
         <DeleteLinixUseCase
           linixUseCase={k_Usecase}
           deleteLinixUseCaseModal={deleteLinixUseCaseModal}
           handleDeleteLinixUseCase={deleteItemData}
+          setIdDeleted={setIdDeleted}
+          nameLinixuseCase={n_Usecase}
         />
       ),
       type: "remove",

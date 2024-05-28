@@ -1,31 +1,19 @@
 import { useEffect, useState } from "react";
 
-import {
-  Table,
-  useMediaQuery,
-  SectionMessage,
-  Stack,
-} from "@inube/design-system";
+import { Table, useMediaQuery } from "@inube/design-system";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import { EAppearance } from "@src/types/colors.types";
 import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
-import { IMessage } from "@src/types/messages.types";
 import { getAll } from "@mocks/utils/dataMock.service";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
-import { StyledMessageContainer } from "./styles";
 import { actionsConfigUsers } from "./config/dataUsers.config";
 
-const initialMessageState: IMessage = {
-  show: false,
-  title: "",
-  description: "",
-  icon: <></>,
-  appearance: "" as EAppearance,
-};
+import { IMessageState } from "../../types/forms.types";
+import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
 
 interface UsersTabProps {
   searchText: string;
@@ -34,7 +22,10 @@ interface UsersTabProps {
 function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
   const [users, setUsers] = useState<IGeneralInformationUsersForm[]>([]);
-  const [message, setMessage] = useState(initialMessageState);
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
+  const [idDeleted, setIdDeleted] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -52,8 +43,22 @@ function UsersTab(props: UsersTabProps) {
       });
   }, [users]);
 
-  const onCloseMessage = () => {
-    setMessage(initialMessageState);
+  useEffect(() => {
+    const filterRecordRemoved = users.filter(
+      (users) => users.k_Usuari !== idDeleted
+    );
+    filterRecordRemoved &&
+      setMessage({
+        visible: true,
+        data: deleteUserMessages.success,
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idDeleted]);
+
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
   };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
@@ -66,26 +71,19 @@ function UsersTab(props: UsersTabProps) {
         <Table
           id="portal"
           titles={usersTitlesConfig}
-          actions={actionsConfigUsers(smallScreen, users)}
+          actions={actionsConfigUsers(smallScreen, users, setIdDeleted)}
           entries={users}
           breakpoints={usersBreakPointsConfig}
           filter={searchText}
           modalTitle="Usuario"
         />
       )}
-      {message.show && (
-        <StyledMessageContainer>
-          <Stack justifyContent="flex-end" width="100%">
-            <SectionMessage
-              title={message.title}
-              description={message.description}
-              icon={message.icon}
-              appearance={message.appearance}
-              duration={4000}
-              closeSectionMessage={onCloseMessage}
-            />
-          </Stack>
-        </StyledMessageContainer>
+      {idDeleted && message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseSectionMessage}
+          onMessageClosed={handleCloseSectionMessage}
+        />
       )}
     </>
   );

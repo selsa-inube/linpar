@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+
 import {
   Breadcrumbs,
   Button,
@@ -10,9 +11,9 @@ import {
   Table,
   inube,
 } from "@inube/design-system";
-
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
 
@@ -24,29 +25,38 @@ import {
 import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
+import { IMessageState } from "../users/types/forms.types";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
   handleSearchUseCase: (e: React.ChangeEvent<HTMLInputElement>) => void;
   showMenu: boolean;
   handleCloseMenuInvitation: () => void;
+  handleCloseSectionMessage: () => void;
   handleToggleMenuInvitation: () => void;
+  message: IMessageState;
   linixUseCases: UseCase[];
   handleClick: HandleClickFunction;
   selectedData: SelectedDataFunction;
   loading: boolean;
+  idDeleted: string;
+  setIdDeleted: (show: string) => void;
 }
 export type SelectedDataFunction = (k_Usecase: string) => UseCase;
 export type HandleClickFunction = (id: string) => void;
 export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const {
+    idDeleted,
+    message,
     searchUseCase,
+    handleCloseSectionMessage,
     handleSearchUseCase,
-    showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
     linixUseCases,
     loading,
+    setIdDeleted,
+    showMenu,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
@@ -120,11 +130,18 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             <Table
               id="tableLinixUseCases"
               titles={titlesOptions}
-              actions={actionsConfigLinixUseCase(linixUseCases)}
+              actions={actionsConfigLinixUseCase(linixUseCases, setIdDeleted)}
               entries={linixUseCases}
               breakpoints={useCasesBreakPointsConfig}
               filter={searchUseCase}
               modalTitle="Caso de uso"
+            />
+          )}
+          {idDeleted && message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={handleCloseSectionMessage}
+              onMessageClosed={handleCloseSectionMessage}
             />
           )}
         </Stack>
