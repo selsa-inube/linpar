@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
 interface IStyledSubjectSearchCard {
-  isActive: boolean;
-  smallScreen: boolean;
+  $isActive: boolean;
+  $smallScreen: boolean;
 }
 
 const StyledSubjectSearchCardText = styled.div`
@@ -12,15 +12,15 @@ const StyledSubjectSearchCardText = styled.div`
 
 const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
   width: 100%;
-  height: ${({ smallScreen }) => (smallScreen ? "56px" : "auto")};
+  height: ${({ $smallScreen }) => ($smallScreen ? "56px" : "auto")};
   box-sizing: border-box;
   border-radius: ${inube.spacing.s100};
   border: 1px solid
     ${({ theme }) =>
       theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
   cursor: pointer;
-  background-color: ${({ theme, isActive }) =>
-    isActive
+  background-color: ${({ theme, $isActive }) =>
+    $isActive
       ? theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular
       : theme?.color?.surface?.light?.clear || inube.color.surface.light.clear};
 

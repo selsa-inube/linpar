@@ -1,18 +1,24 @@
 import { inube } from "@inube/design-system";
 import styled from "styled-components";
-import { ISectionMessageProps } from ".";
+import { TextAppearance } from "@src/pages/people/outlets/color/texts/types";
+import { ButtonType } from "./types";
+import { StrokeAppearance } from "@src/pages/people/outlets/color/strokes/types";
 
-type Themed = typeof inube;
-
-interface IStyledSectionMessageProps extends ISectionMessageProps {
-  theme: Themed;
+interface IStyledSectionMessageProps {
+  $icon: JSX.Element;
+  $title: string;
+  $description: string;
+  $appearance: TextAppearance | StrokeAppearance;
+  $duration: number;
+  $closeSectionMessage: () => void;
+  $buttonType?: ButtonType;
 }
 
-const StyledSectionMessage = styled.div`
-  background-color: ${({ theme, appearance }: IStyledSectionMessageProps) => {
+const StyledSectionMessage = styled.div<IStyledSectionMessageProps>`
+  background-color: ${({ theme, $appearance }) => {
     return (
-      theme?.color?.surface?.[appearance!]?.clear ||
-      inube.color.surface[appearance!].clear
+      theme?.color?.surface?.[$appearance!]?.clear ||
+      inube.color.surface[$appearance!].clear
     );
   }};
   width: 100%;

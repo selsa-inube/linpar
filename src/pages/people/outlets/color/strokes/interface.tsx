@@ -89,7 +89,7 @@ export function StrokesUI(props: IStrokesUIProps) {
             )}
           </Stack>
           <StyledContainer>
-            <StyledTabsContainer typeTabs={typeTabs}>
+            <StyledTabsContainer $typeTabs={typeTabs}>
               <Stack direction="column" gap="32px">
                 <Tabs
                   tabs={Object.values(strokesTabsConfig)}

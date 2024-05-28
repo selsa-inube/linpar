@@ -92,10 +92,10 @@ function TokenColorCard(props: ITokenColorCardProps) {
     <StyledColorTokenCard
       type={type}
       key={tokenName}
-      tokenName={tokenName}
+      $tokenName={tokenName}
       onClick={handleToggleModal}
-      smallScreen={smallScreen}
-      isActive={isActive}
+      $smallScreen={smallScreen}
+      $isActive={isActive}
       width={width}
     >
       <Stack

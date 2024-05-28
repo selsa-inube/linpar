@@ -2,21 +2,21 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
 interface IStyledSubjectCard {
-  isActive: boolean;
-  smallScreen: boolean;
+  $isActive: boolean;
+  $smallScreen: boolean;
 }
 
 const StyledSubjectCard = styled.div<IStyledSubjectCard>`
-  width: ${({ smallScreen }) => (smallScreen ? "56px" : "260px")};
-  height: ${({ smallScreen }) => (smallScreen ? "56px" : "auto")};
+  width: ${({ $smallScreen }) => ($smallScreen ? "56px" : "260px")};
+  height: ${({ $smallScreen }) => ($smallScreen ? "56px" : "auto")};
   box-sizing: border-box;
   border-radius: ${inube.spacing.s100};
   border: 1px solid
     ${({ theme }) =>
       theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
   cursor: pointer;
-  background-color: ${({ theme, isActive }) =>
-    isActive
+  background-color: ${({ theme, $isActive }) =>
+    $isActive
       ? theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular
       : theme?.color?.surface?.light?.clear || inube.color.surface.light.clear};
 

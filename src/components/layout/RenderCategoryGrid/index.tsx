@@ -55,7 +55,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
             </Text>
           </ThemeProvider>
         )}
-        <StyledGridContainer hasBackground={hasBackground}>
+        <StyledGridContainer $hasBackground={hasBackground}>
           <Grid
             templateColumns={templateColumns}
             templateRows={templateRows}

@@ -80,7 +80,7 @@ function RenderStrokesWithLinkFormUI(props: RenderStrokesWithLinkFormUIProps) {
               >
                 <Text size="medium" appearance="dark">
                   {config.example}
-                  <StyledLinkContainer appearance={formType} category={key}>
+                  <StyledLinkContainer $appearance={formType} $category={key}>
                     <Label
                       size="medium"
                       appearance={formType}

@@ -18,18 +18,18 @@ interface ILogoutModalProps {
 
 function LogoutModal(props: ILogoutModalProps) {
   const { logoutPath, handleShowBlanket } = props;
-  const isSmallScreen = useMediaQuery("(max-width: 743px)");
+  const smallScreen = useMediaQuery("(max-width: 743px)");
 
   return (
     <StyledBackdropBlanket>
       <Blanket>
-        <StyledModal isSmallScreen={isSmallScreen}>
+        <StyledModal $smallScreen={smallScreen}>
           <Stack direction="column" gap={inube.spacing.s300} padding="s300">
             <Stack direction="column" gap={inube.spacing.s300}>
               <Stack direction="row" justifyContent="space-between">
                 <Text
                   type="title"
-                  size={isSmallScreen ? "small" : "medium"}
+                  size={smallScreen ? "small" : "medium"}
                   appearance="dark"
                 >
                   Cerrar sesión
@@ -37,19 +37,19 @@ function LogoutModal(props: ILogoutModalProps) {
                 <Icon
                   appearance="dark"
                   icon={<MdClose />}
-                  size={isSmallScreen ? "20px" : "24px"}
+                  size={smallScreen ? "20px" : "24px"}
                   onClick={handleShowBlanket}
                 />
               </Stack>
 
-              <Text size={isSmallScreen ? "small" : "large"} appearance="gray">
+              <Text size={smallScreen ? "small" : "large"} appearance="gray">
                 ¿Realmente quieres cerrar sesión?
               </Text>
             </Stack>
             <Stack justifyContent="flex-end" gap="8px">
               <Button
                 appearance="gray"
-                spacing={isSmallScreen ? "compact" : "wide"}
+                spacing={smallScreen ? "compact" : "wide"}
                 onClick={handleShowBlanket}
               >
                 Cancelar
@@ -57,7 +57,7 @@ function LogoutModal(props: ILogoutModalProps) {
               <Link to={logoutPath}>
                 <Button
                   appearance="primary"
-                  spacing={isSmallScreen ? "compact" : "wide"}
+                  spacing={smallScreen ? "compact" : "wide"}
                   onClick={handleShowBlanket}
                 >
                   Cerrar sesión

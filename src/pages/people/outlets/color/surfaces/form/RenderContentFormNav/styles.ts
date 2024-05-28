@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
 interface IStyledNavLinkProps {
-  theme?: typeof inube;
-  smallScreen: boolean;
+  $smallScreen: boolean;
 }
 
 const StyledBackdropNav = styled.div`
@@ -17,7 +16,7 @@ const StyledNav = styled.div<IStyledNavLinkProps>`
   > div {
     border-radius: 8px;
     border: none;
-    width: ${({ smallScreen }) => (smallScreen ? "100%" : "248px")};
+    width: ${({ $smallScreen }) => ($smallScreen ? "100%" : "248px")};
   }
 
   > div > div {

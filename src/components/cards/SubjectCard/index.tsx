@@ -25,8 +25,8 @@ function SubjectCard(props: SubjectCardProps) {
     <>
       <StyledSubjectCard
         onClick={handleToggleModal}
-        smallScreen={smallScreen}
-        isActive={showModal}
+        $smallScreen={smallScreen}
+        $isActive={showModal}
       >
         <Stack
           justifyContent={smallScreen ? "center" : "flex-end"}

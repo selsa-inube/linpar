@@ -56,7 +56,7 @@ function DecisionModal(props: DecisionModalProps) {
 
   return createPortal(
     <Blanket>
-      <StyledModal smallScreen={smallScreen}>
+      <StyledModal $smallScreen={smallScreen}>
         <Stack
           direction="column"
           gap={smallScreen ? "16px" : "24px"}

@@ -87,14 +87,14 @@ function RenderContentFormSurfaceNavUI(
       >
         <ThemeProvider theme={updatedTheme}>
           <Stack gap={inube.spacing.s350} direction={flexDirection}>
-            <StyledNav smallScreen={isSmallScreen}>
+            <StyledNav $smallScreen={isSmallScreen}>
               <Nav navigation={mockNav} logoutTitle="Logout" />
             </StyledNav>
 
             <Grid>
               {surfaceCards.map(
                 ([key, config]: [string, ISurfaceCardConfig]) => (
-                  <StyledContainerNav>
+                  <StyledContainerNav key={key}>
                     <FieldsetColorCard
                       key={key}
                       optionsMenu={updatedTheme.color.palette}
