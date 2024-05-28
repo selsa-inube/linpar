@@ -35,7 +35,7 @@ interface UseCase {
   i_Tipusec: string;
   k_Ncampo: string;
   k_Nforma: string;
-  k_Opcion: string;
+  k_Opcion?: string;
   opcionesCsPorCasoDeUso?: OpcionesCsPorCasoDeUso[];
   opcionesPortalWebPorCasoDeUso?: OpcionesPortalWebPorCasoDeUso[];
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];
