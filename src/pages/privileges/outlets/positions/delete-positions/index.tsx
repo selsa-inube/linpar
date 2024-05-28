@@ -1,24 +1,30 @@
 import { useState } from "react";
+
 import { functionById } from "@mocks/utils/dataMock.service";
-import { deletePositionModal } from "./config/deletePositions.config";
+
 import { DeletePositionUI } from "./interface";
-import { IMessageState } from "../../users/types/forms.types";
-import { generalMessage } from "./config/messages.config";
+import { deletePositionModal } from "./config/deletePositions.config";
+
 interface IDeletePositionProps {
-  linixPosition: string;
-  deletePosition: typeof deletePositionModal;
+  deletePositionModal: typeof deletePositionModal;
+  setIdDeleted: (show: string) => void;
   handleDeletePosition: (props: functionById) => Promise<unknown>;
+  namePosition: string;
+  linixPosition: string;
 }
 
 export const DeletePosition = (props: IDeletePositionProps) => {
-  const { linixPosition, deletePosition, handleDeletePosition } = props;
+  const {
+    deletePositionModal,
+    handleDeletePosition,
+    namePosition,
+    linixPosition,
+    setIdDeleted,
+  } = props;
 
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
-    visible: false,
-  });
 
   const handleOnclick = async () => {
     await handleDeletePosition({
@@ -28,30 +34,19 @@ export const DeletePosition = (props: IDeletePositionProps) => {
     });
     setShowModal(false);
     setLoading(true);
-    setMessage({
-      visible: true,
-      data: generalMessage.success,
-    });
-  };
-
-  const handleCloseSectionMessage = () => {
-    setMessage({
-      visible: false,
-    });
+    setIdDeleted(linixPosition);
   };
 
   return (
     <DeletePositionUI
-      showModal={showModal}
-      linixPosition={linixPosition}
-      deletePosition={deletePosition}
-      hover={isHovered}
-      message={message}
-      loading={loading}
-      setShowModal={setShowModal}
-      setHover={setIsHovered}
+      deletePositionModal={deletePositionModal}
       handleDeletePosition={handleOnclick}
-      handleCloseSectionMessage={handleCloseSectionMessage}
+      hover={isHovered}
+      loading={loading}
+      namePosition={namePosition}
+      setHover={setIsHovered}
+      setShowModal={setShowModal}
+      showModal={showModal}
     />
   );
 };
