@@ -335,6 +335,7 @@ function AddingLinixUseCase() {
       formData={formData}
       selectOptions={selectOptions}
       handleFinishForm={handleFinishForm}
+      setCurrentStep={setCurrentStep}
     />
   );
 }
