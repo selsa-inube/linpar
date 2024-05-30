@@ -11,9 +11,9 @@ import { getAll } from "@mocks/utils/dataMock.service";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { actionsConfigUsers } from "./config/dataUsers.config";
-
 import { IMessageState } from "../../types/forms.types";
 import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
+import { getUsers } from "@src/services/users";
 
 interface UsersTabProps {
   searchText: string;
@@ -62,7 +62,12 @@ function UsersTab(props: UsersTabProps) {
   };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
-
+  useEffect(() => {
+    (async () => {
+      const result = await getUsers("abc123");
+      console.log(result);
+    })();
+  }, []);
   return (
     <>
       {loading ? (
