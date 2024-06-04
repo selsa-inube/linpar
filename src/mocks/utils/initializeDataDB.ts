@@ -57,51 +57,51 @@ export function initializeDataDB() {
     invitationEntriesDataMock
   );
   intializedData<typeof mockActions[number]>("linix-actions", mockActions);
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof userEntriesDataMock[number]>(
     "linix-users",
     userEntriesDataMock
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof branchesFormEditUser[number]>(
     "linix-users-branches",
     branchesFormEditUser
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof projectsFormEditUser[number]>(
     "linix-users-projects",
     projectsFormEditUser
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof eventsFormEditUser[number]>(
     "linix-users-events",
     eventsFormEditUser
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof aidBudgetsFormEditUser[number]>(
     "linix-users-aidBudgetUnits",
     aidBudgetsFormEditUser
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof payrollsFormEditUser[number]>(
     "linix-users-payrolls",
     payrollsFormEditUser
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof branchesFormInvitation[number]>(
     "linix-invitation-branches",
     branchesFormInvitation
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof projectsFormInvitation[number]>(
     "linix-invitation-projects",
     projectsFormInvitation
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof eventsFormInvitation[number]>(
     "linix-invitation-events",
     eventsFormInvitation
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof aidBudgetsFormInvitation[number]>(
     "linix-invitation-aidBudgetUnits",
     aidBudgetsFormInvitation
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof payrollsFormInvitation[number]>(
     "linix-invitation-payrolls",
     payrollsFormInvitation
   );
-  intializedData<typeof mockActions[number]>(
+  intializedData<typeof invitationUserEntriesDataMock[number]>(
     "linix-invitation-users",
     invitationUserEntriesDataMock
   );

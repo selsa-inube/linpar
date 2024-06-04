@@ -3,11 +3,13 @@ import { useState } from "react";
 import { updateActive } from "@mocks/utils/dataMock.service";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
-import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
 
 import { ActivateUsersUI } from "./interface";
 import { IMessageState } from "../../../types/forms.types";
-import { activateUsersMessages } from "./config/activateUsers.config";
+import {
+  activateUsersMessages,
+  activateUsersModal,
+} from "./config/activateUsers.config";
 
 export interface IDataActivateOption {
   id: string;
@@ -19,7 +21,7 @@ interface IActivateUsersProps<T extends IDataActivateOption> {
   handleActivate: () => void;
   showComplete: boolean;
   data: T;
-  activateModalConfig: typeof activateUserModal;
+  activateModalConfig: typeof activateUsersModal;
 }
 
 const initialMessageState: IMessage = {
