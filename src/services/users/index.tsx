@@ -14,7 +14,6 @@ const getUsers = async (
     enviroment.ICLIENT_API_URL_QUERY
   }/usuarios?${queryParams.toString()}`;
 
-  console.log(requestUrl);
   try {
     const options: RequestInit = {
       method: "GET",
