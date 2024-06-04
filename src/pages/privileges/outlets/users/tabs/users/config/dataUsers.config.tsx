@@ -10,6 +10,13 @@ import { ActivateUsers } from "../ActivateFormOptions";
 import { activateUsersModal } from "../ActivateFormOptions/config/activateUsers.config";
 import { DeleteLinixUsers } from "../DeleteModal";
 
+export const pruebas = (probando: IGeneralInformationUsersForm[]) =>
+  probando.map((entry) => ({
+    ...entry,
+    k_Usuari: entry.k_Usuari,
+    n_Usuari: entry.n_Usuari,
+  }));
+
 export const actionsConfigUsers = (
   smallScreen: boolean,
   users: IGeneralInformationUsersForm[],
