@@ -1,7 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
 import { PageTitle, PageTitleProps } from "./index";
-import { appsConfig } from "@src/components/layout/AppMenu/config/apps.config";
+
 import { StoryFn } from "@storybook/react";
+import { appsConfig } from "../layout/AppPage/config/apps.config";
 
 const story = {
   component: [PageTitle],
