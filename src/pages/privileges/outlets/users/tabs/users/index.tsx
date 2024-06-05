@@ -7,14 +7,13 @@ import {
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { getUsers } from "@src/services/users";
+import { UsersContext } from "@context/users";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { actionsConfigUsers, usersTable } from "./config/dataUsers.config";
 import { IMessageState } from "../../types/forms.types";
 import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
-import { getUsers } from "@src/services/users";
-import { UsersContext } from "@src/context/users";
-import { useAuth0 } from "@auth0/auth0-react";
-
 interface UsersTabProps {
   searchText: string;
 }
