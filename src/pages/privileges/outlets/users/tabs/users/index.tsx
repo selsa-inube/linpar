@@ -8,7 +8,7 @@ import {
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
-import { actionsConfigUsers, pruebas } from "./config/dataUsers.config";
+import { actionsConfigUsers, usersTable } from "./config/dataUsers.config";
 import { IMessageState } from "../../types/forms.types";
 import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
 import { getUsers } from "@src/services/users";
@@ -46,7 +46,7 @@ function UsersTab(props: UsersTabProps) {
   useEffect(() => {
     usersData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const filterRecordRemoved = users.filter(
@@ -71,13 +71,13 @@ function UsersTab(props: UsersTabProps) {
   return (
     <>
       {loading ? (
-        <LoadingApp time={40000} />
+        <LoadingApp time={30000} />
       ) : (
         <Table
           id="portal"
           titles={usersTitlesConfig}
           actions={actionsConfigUsers(smallScreen, users, setIdDeleted)}
-          entries={pruebas(users)}
+          entries={usersTable(users)}
           breakpoints={usersBreakPointsConfig}
           filter={searchText}
           modalTitle="Usuario"

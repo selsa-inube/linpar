@@ -6,6 +6,7 @@ const mapUsersApiToEntity = (
   const buildUsers: IGeneralInformationUsersForm = {
     k_Usuari: String(users.k_Usuari),
     n_Usuari: String(users.n_Usuari),
+    a_Numnit: String(users.a_Numnit),
     k_Grupo: String(users.k_Grupo),
     i_Activo: String(users.i_Activo),
   };
