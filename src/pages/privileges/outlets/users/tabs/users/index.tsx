@@ -34,7 +34,7 @@ function UsersTab(props: UsersTabProps) {
     if (users.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getUsers(user.identification);
+        const newUsers = await getUsers();
         setUsers(newUsers);
       } catch (error) {
         console.info(error);

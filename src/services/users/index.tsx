@@ -3,16 +3,8 @@ import { enviroment } from "@src/config/environment";
 import { IGeneralInformationUsersForm } from "./users.types";
 import { mapUserApiToEntities } from "./mappers";
 
-const getUsers = async (
-  userIdentification: string
-): Promise<IGeneralInformationUsersForm[]> => {
-  const queryParams = new URLSearchParams({
-    customerPublicCode: userIdentification,
-  });
-
-  const requestUrl = `${
-    enviroment.ICLIENT_API_URL_QUERY
-  }/usuarios?${queryParams.toString()}`;
+const getUsers = async (): Promise<IGeneralInformationUsersForm[]> => {
+  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY}/usuario-full`;
 
   try {
     const options: RequestInit = {
