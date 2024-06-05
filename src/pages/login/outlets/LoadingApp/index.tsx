@@ -15,7 +15,7 @@ function LoadingApp(props: LoadingProps) {
     }, time);
 
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [navigate, time]);
 
   return <LoadingAppUI />;
 }
