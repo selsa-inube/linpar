@@ -1,11 +1,4 @@
-import {
-  Stack,
-  Text,
-  useMediaQuery,
-  Grid,
-  inube,
-  Icon,
-} from "@inube/design-system";
+import { useMediaQuery, Grid, inube, Icon } from "@inube/design-system";
 import { useContext, useRef, useState, useEffect } from "react";
 import tinycolor from "tinycolor2";
 import {
@@ -21,6 +14,8 @@ import { Popup } from "@components/feedback/Popup";
 import { MdOutlineEdit } from "react-icons/md";
 import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
 import { getTokenColor } from "@src/utils/getTokenColor";
+import { Stack } from "@inubekit/stack";
+import { ITextAppearance, Text } from "@inubekit/text";
 
 interface ITokenColorCardProps {
   tokenName: string;
@@ -55,7 +50,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
   const color = tinycolor(getTokenColor(tokenName, theme));
   const isTransparent = color.getAlpha() < 0.5;
   const isDark = color.isDark();
-  let textAppearance = isDark ? "light" : "dark";
+  let textAppearance: ITextAppearance = isDark ? "light" : "dark";
   textAppearance = isTransparent ? "dark" : textAppearance;
 
   let hasChanges = toggleActive === isActive;
@@ -100,9 +95,8 @@ function TokenColorCard(props: ITokenColorCardProps) {
     >
       <Stack
         gap="12px"
-        padding="s100 s150"
+        padding="8px 15px"
         alignContent="stretch"
-        justify="center"
         width={type === "colorPicker" ? "100%" : "auto"}
       >
         <Stack
