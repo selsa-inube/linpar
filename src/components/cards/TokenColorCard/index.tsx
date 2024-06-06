@@ -1,6 +1,19 @@
-import { useMediaQuery, Grid, inube, Icon } from "@inube/design-system";
 import { useContext, useRef, useState, useEffect } from "react";
+import { MdOutlineEdit } from "react-icons/md";
 import tinycolor from "tinycolor2";
+import { ThemeContext, ThemeProvider } from "styled-components";
+
+import { inube } from "@inube/design-system";
+import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
+import { Popup } from "@components/feedback/Popup";
+import { getTokenColor } from "@src/utils/getTokenColor";
+import { Stack } from "@inubekit/stack";
+import { ITextAppearance, Text } from "@inubekit/text";
+import { inube as newInube } from "@inubekit/foundations";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Grid } from "@inubekit/grid";
+import { Icon } from "@inubekit/icon";
+
 import {
   StyledColorTokenCard,
   HiddenColorPicker,
@@ -9,13 +22,6 @@ import {
   StyledHoverPopup,
   StyledHoverIcon,
 } from "./styles";
-import { ThemeContext, ThemeProvider } from "styled-components";
-import { Popup } from "@components/feedback/Popup";
-import { MdOutlineEdit } from "react-icons/md";
-import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
-import { getTokenColor } from "@src/utils/getTokenColor";
-import { Stack } from "@inubekit/stack";
-import { ITextAppearance, Text } from "@inubekit/text";
 
 interface ITokenColorCardProps {
   tokenName: string;
@@ -104,7 +110,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
           gap="12px"
           width={type === "colorPicker" ? "100%" : "auto"}
         >
-          <ThemeProvider theme={inube}>
+          <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
             <StyledDivText>
               <Text
                 type="label"
