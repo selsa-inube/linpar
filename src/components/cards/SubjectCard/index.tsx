@@ -1,10 +1,13 @@
-import { Stack, Text } from "@inube/design-system";
 import { useState } from "react";
-import { StyledSubjectCard } from "./styles";
-import { ILabel } from "./types";
+
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Icon } from "@inubekit/icon";
+import { Stack } from "@inubekit/stack";
+import { Text } from "@inube/design-system";
+
+import { StyledSubjectCard } from "./styles";
+import { ILabel } from "./types";
 
 interface SubjectCardProps {
   subjectData: Record<string, string | number> | any;
