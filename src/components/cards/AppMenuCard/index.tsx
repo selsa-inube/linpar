@@ -1,4 +1,8 @@
-import { Stack, Text, Icon, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
+import { Text } from "@inubekit/text";
+import { Icon } from "@inubekit/icon";
+
 import { StyledAppMenuCard } from "./styles";
 
 interface AppMenuCardProps {
