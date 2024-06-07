@@ -1,4 +1,3 @@
-import { inube } from "@inube/design-system";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 import { Icon } from "@inubekit/icon";
@@ -11,7 +10,7 @@ interface AppMenuCardProps {
   label: string;
   description: string;
   url: string;
-  domain: keyof typeof inube;
+  domain: string;
 }
 
 function AppMenuCard(props: AppMenuCardProps) {

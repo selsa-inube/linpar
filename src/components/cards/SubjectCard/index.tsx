@@ -36,7 +36,7 @@ function SubjectCard(props: SubjectCardProps) {
         <Stack
           justifyContent={smallScreen ? "center" : "flex-end"}
           gap={smallScreen ? "0px" : "8px"}
-          padding={smallScreen ? "s0" : "s100 s200"}
+          padding={smallScreen ? "0px" : "8px"}
         >
           {!smallScreen && (
             <Stack direction="column">

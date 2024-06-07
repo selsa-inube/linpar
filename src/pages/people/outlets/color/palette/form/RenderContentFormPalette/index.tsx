@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 
-// import { inube } from "@inubekit/foundations";
+import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "@pages/people/outlets/color/palette/config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";
 import { TokenContext } from "@context/TokenContext";
-// import { tokenCalculator } from "@src/utils/tokenCalculator";
+import { tokenCalculator } from "@src/utils/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { PaletteAppearance } from "@pages/people/outlets/color/palette/types";
 
@@ -51,16 +51,16 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
     tokenName: string,
     newColor: string | undefined
   ) => {
-    // setPaletteToken((prevTokens: typeof inube) => {
-    //   const newTokens = { ...prevTokens };
-    //   for (const category in newTokens) {
-    //     if (newTokens[category][tokenName]) {
-    //       newTokens[category][tokenName] = newColor;
-    //       break;
-    //     }
-    //   }
-    //   return newTokens;
-    // });
+    setPaletteToken((prevTokens: typeof inube) => {
+      const newTokens = { ...prevTokens };
+      for (const category in newTokens) {
+        if (newTokens[category][tokenName]) {
+          newTokens[category][tokenName] = newColor;
+          break;
+        }
+      }
+      return newTokens;
+    });
   };
 
   const handleSubmitForm = () => {
@@ -111,14 +111,14 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
     );
   };
 
-  // const updatedTokens = {
-  //   ...tokenWithRef,
-  //   color: {
-  //     ...tokenWithRef.color,
-  //     palette: paletteToken,
-  //   },
-  // };
-  // const updatedTheme = tokenCalculator(updatedTokens);
+  const updatedTokens = {
+    ...tokenWithRef,
+    color: {
+      ...tokenWithRef.color,
+      palette: paletteToken,
+    },
+  };
+  const updatedTheme = tokenCalculator(updatedTokens);
 
   return (
     <RenderContentFormPaletteUI
@@ -131,7 +131,7 @@ function RenderContentFormPalette(props: RenderContentFormPaletteProps) {
       hasChanges={hasChanges}
       isLoading={isLoadingFormButtons}
       message={message}
-      // updatedTheme={updatedTheme}
+      updatedTheme={updatedTheme}
     />
   );
 }
