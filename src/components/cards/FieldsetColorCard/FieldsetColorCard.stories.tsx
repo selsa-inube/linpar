@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { StoryFn } from "@storybook/react";
-import { inube } from "@inube/design-system";
+import { inube } from "@inube/design-system"; //nose
 import { FieldsetColorCard, FieldsetColorCardProps } from ".";
 import { useState } from "react";
 import React from "react";

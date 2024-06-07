@@ -1,6 +1,12 @@
-import { Stack, Text, useMediaQuery, Icon, Grid } from "@inube/design-system";
 import { useState } from "react";
 import { MdClear } from "react-icons/md";
+
+import { Stack } from "@inubekit/stack";
+import { Text } from "@inubekit/text";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Icon } from "@inubekit/icon";
+import { Grid } from "@inubekit/grid";
+
 import { StyledSubjectSearchCard, StyledSubjectSearchCardText } from "./styles";
 
 interface SubjectSearchCardProps {

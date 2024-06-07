@@ -1,8 +1,10 @@
-import { Stack, Text, Icon, useMediaQuery } from "@inube/design-system";
+import { Stack, Text } from "@inube/design-system";
 import { useState } from "react";
 import { StyledSubjectCard } from "./styles";
 import { ILabel } from "./types";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Icon } from "@inubekit/icon";
 
 interface SubjectCardProps {
   subjectData: Record<string, string | number> | any;
@@ -54,7 +56,7 @@ function SubjectCard(props: SubjectCardProps) {
               icon={icon}
               size="24px"
               shape="circle"
-              spacings="none"
+              spacing="none"
             />
           </Stack>
         </Stack>
