@@ -20,6 +20,8 @@ import {
 } from "./types";
 import { addLinixUseCaseStepsRules, saveLinixUseCase } from "./utils";
 import { generalMessage } from "./config/messages.config";
+import { getWebOptionsFormats } from "@src/services/webOptions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export function dataToAssignmentFormEntry(
   props: DataToAssignmentFormEntryProps
@@ -83,10 +85,46 @@ function AddingLinixUseCase() {
 
   const [csOptions, setCsOptions] = useState<Record<string, unknown>[]>([]);
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
+  const { user } = useAuth0();
 
   useEffect(() => {
     setSelectOptions(webOptions.length === 0 && csOptions.length === 0);
   }, [webOptions, csOptions]);
+
+  const usersData = () => {
+    if (!user) return;
+    if (webOptions.length === 0) {
+      setLoading(true);
+      getWebOptionsFormats("1")
+        .then((data) => {
+          if (data !== null) {
+            setWebOptions(data as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddLinixUseCase) => ({
+              ...prevFormData,
+              webOptions: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "id",
+                  valueLabel: "value",
+                  isActiveLabel: "isActive",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+  useEffect(() => {
+    usersData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   useEffect(() => {
     getAll("clients-server")
@@ -132,27 +170,6 @@ function AddingLinixUseCase() {
         console.error("Error fetching linix-use-cases:", error.message);
       });
 
-    getAll("web-options")
-      .then((data) => {
-        if (data !== null) {
-          setWebOptions(data as Record<string, unknown>[]);
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            webOptions: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "K_opcion",
-                valueLabel: "Nombre_opcion",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
     getAll("documents")
       .then((data) => {
         if (data !== null) {
