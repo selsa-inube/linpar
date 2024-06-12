@@ -1,4 +1,4 @@
-import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
+import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 
 const mapReportsWebFormatsApiToEntity = (
   reportsWebFormat: Record<string, string | number | object>

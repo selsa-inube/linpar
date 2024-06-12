@@ -1,6 +1,7 @@
 import { enviroment } from "@src/config/environment";
+import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+
 import { mapReportsWebFormatsApiToEntities } from "./mappers";
-import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
 
 const getReportsWebFormats = async (
   k_Usecase: string
@@ -47,7 +48,7 @@ const getReportsWebFormats = async (
       return normalizedReportsWebFormats;
     } catch (error) {
       if (attempt === maxRetries) {
-        throw new Error("Todos los intentos fallaro.");
+        throw new Error("Todos los intentos fallaron.");
       }
     }
   }

@@ -1,6 +1,7 @@
 import { enviroment } from "@src/config/environment";
+import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+
 import { mapDownloadableFormatsApiToEntities } from "./mappers";
-import { IAssignmentFormEntry } from "@src/pages/privileges/outlets/users/types/forms.types";
 
 const getDownloadableFormats = async (
   k_Usecase: string
@@ -29,7 +30,7 @@ const getDownloadableFormats = async (
       const res = await fetch(requestUrl, options);
 
       clearTimeout(timeoutId);
-
+      console.log("res", res.status);
       if (res.status === 204) {
         return [];
       }
