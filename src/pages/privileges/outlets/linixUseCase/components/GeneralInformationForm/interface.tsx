@@ -164,12 +164,12 @@ function RenderFormFields(
           userData={webOptions}
           searchFieldData={searchData}
           onReset={() => {}}
-          idLabel="id"
-          nameLabel="value"
+          idLabel="k_Funcio"
+          nameLabel="n_Funcio"
           onUserSelect={(value: Record<string, unknown>) =>
-            handleChangeForm("id", value.id as string)
+            handleChangeForm("k_Funcio", value.k_Funcio as string)
           }
-          selectedId={formik.values.id}
+          selectedId={formik.values.k_Funcio}
         />
       </Stack>
       <SearchUserCard
@@ -184,14 +184,14 @@ function RenderFormFields(
         labelModal="Digite la opción a buscar."
         placeholderModal="Digite el código o nombre del caso de uso."
         onUserSelect={(option: Record<string, unknown>) =>
-          handleChangeForm("k_Funcio", option.CODIGO_OPCION as string)
+          handleChangeForm("k_Opcion", option.CODIGO_OPCION as string)
         }
         userData={csOptions}
         searchFieldData={searchData}
         idLabel="CODIGO_OPCION"
         nameLabel="DESCRIPCION"
         onReset={() => {}}
-        selectedId={formik.values.k_Funcio}
+        selectedId={formik.values.k_Opcion}
       />
     </Grid>
   );

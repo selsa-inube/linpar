@@ -19,13 +19,13 @@ const validationSchema = Yup.object({
   n_Usecase: Yup.string().required(validationMessages.required),
   i_Tipusec: Yup.string().required(validationMessages.required),
   n_Descrip: Yup.string().required(validationMessages.required),
+  k_Opcion: Yup.string(),
   k_Funcio: Yup.string(),
-  id: Yup.string(),
 }).test(function (value) {
-  const { k_Funcio, id } = value;
-  if (!k_Funcio && !id) {
+  const { k_Opcion, k_Funcio } = value;
+  if (!k_Opcion && !k_Funcio) {
     return this.createError({
-      path: "k_Funcio",
+      path: "k_Opcion",
     });
   }
   return true;

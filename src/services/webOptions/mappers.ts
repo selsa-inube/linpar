@@ -2,8 +2,8 @@ const mapWebOptionsFormatsApiToEntity = (
   webOptionsFormat: Record<string, string | number | object>
 ): Record<string, unknown> => {
   const buildWebOptionsFormat: Record<string, unknown> = {
-    id: String(webOptionsFormat.k_Funcio),
-    value: String(webOptionsFormat.n_Funcio),
+    k_Funcio: String(webOptionsFormat.k_Funcio),
+    n_Funcio: String(webOptionsFormat.n_Funcio),
     isActive: Boolean(webOptionsFormat.i_Privi),
   };
   return buildWebOptionsFormat;
