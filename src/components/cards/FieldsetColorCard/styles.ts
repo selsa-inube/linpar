@@ -7,7 +7,7 @@ interface IStyledFieldsetColorCard {
 
 const StyledTokenColorCardContainer = styled.div<IStyledFieldsetColorCard>`
   width: 100%;
-  max-width: ${"64px"};
+  max-width: 64px;
   & > div {
     width: 100%;
     height: 24px;
@@ -27,7 +27,7 @@ const StyledTokenColorCardContainer = styled.div<IStyledFieldsetColorCard>`
 
 const StyledTextWithTokenContainer = styled.div<IStyledFieldsetColorCard>`
   & > div {
-    border-radius: ${"8px"};
+    border-radius: 8px;
     background-color: ${({ theme, $requireBackground }) =>
       $requireBackground
         ? theme?.color?.text?.dark?.regular || inube.palette.neutral.N900
