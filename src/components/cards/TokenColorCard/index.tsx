@@ -4,15 +4,16 @@ import tinycolor from "tinycolor2";
 import { ThemeContext, ThemeProvider } from "styled-components";
 
 import { inube } from "@inube/design-system";
-import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
-import { Popup } from "@components/feedback/Popup";
-import { getTokenColor } from "@src/utils/getTokenColor";
 import { Stack } from "@inubekit/stack";
 import { ITextAppearance, Text } from "@inubekit/text";
 import { inube as newInube } from "@inubekit/foundations";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Grid } from "@inubekit/grid";
 import { Icon } from "@inubekit/icon";
+
+import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
+import { Popup } from "@components/feedback/Popup";
+import { getTokenColor } from "@src/utils/getTokenColor";
 
 import {
   StyledColorTokenCard,

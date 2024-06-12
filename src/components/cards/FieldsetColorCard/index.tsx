@@ -65,11 +65,11 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
 
   return (
     <Fieldset title={title} fieldsetRef={fieldsetRef}>
-      <Stack direction="column" gap={"16px"}>
+      <Stack direction="column" gap="16px">
         <Text size="medium" appearance="gray">
           {description}
         </Text>
-        <Stack gap={"16px"} alignItems="center">
+        <Stack gap="16px" alignItems="center">
           <StyledTokenColorCardContainer $requireBackground={requireBackground}>
             <TokenColorCard
               tokenName={tokenName!}
@@ -86,7 +86,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             <StyledTextWithTokenContainer
               $requireBackground={requireBackground}
             >
-              <Stack padding="s100">{children}</Stack>
+              <Stack padding="8px">{children}</Stack>
             </StyledTextWithTokenContainer>
           )}
         </Stack>

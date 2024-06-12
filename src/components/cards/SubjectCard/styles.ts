@@ -10,7 +10,7 @@ const StyledSubjectCard = styled.div<IStyledSubjectCard>`
   width: ${({ $smallScreen }) => ($smallScreen ? "56px" : "260px")};
   height: ${({ $smallScreen }) => ($smallScreen ? "56px" : "auto")};
   box-sizing: border-box;
-  border-radius: ${"8px"};
+  border-radius: 8px;
   border: 1px solid
     ${({ theme }) =>
       theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};

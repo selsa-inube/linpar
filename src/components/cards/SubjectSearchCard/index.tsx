@@ -41,7 +41,7 @@ function SubjectSearchCard(props: SubjectSearchCardProps) {
             </Stack>
           </StyledSubjectSearchCardText>
           {closeIcon && (
-            <Stack justifyContent="end" padding="s100 s200 s0 s0">
+            <Stack justifyContent="end" padding="8px 16px 0px 0px">
               <Icon
                 icon={<MdClear />}
                 appearance="dark"

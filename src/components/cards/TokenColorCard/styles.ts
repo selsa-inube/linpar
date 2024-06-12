@@ -41,7 +41,7 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   width: ${({ width }) => (width ? width : "auto")};
   height: ${({ $smallScreen }) => ($smallScreen ? "36px" : "auto")};
   box-sizing: border-box;
-  border-radius: ${"8px"};
+  border-radius: 8px;
   cursor: pointer;
   min-width: max-content;
   background-color: ${({ $tokenName, theme }) =>
@@ -58,7 +58,7 @@ const StyledGridContainer = styled.div<StyledPaletteUI>`
     $hasBackground
       ? theme?.color?.surface?.dark?.clear || inube.palette.neutral.N30
       : "unset"};
-  border-radius: ${"8px"};
+  border-radius: 8px;
   padding: ${({ $hasBackground }) => ($hasBackground ? "12px" : "0px")};
   width: 100%;
   & div {

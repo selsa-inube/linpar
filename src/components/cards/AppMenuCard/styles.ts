@@ -4,7 +4,7 @@ import { inube } from "@inubekit/foundations";
 
 const StyledAppMenuCard = styled(Link)`
   box-sizing: border-box;
-  padding: ${({ theme }) => theme?.spacing?.s200 || "12px"};
+  padding: 16px 12px;
   width: 191px;
   height: 140px;
   text-decoration: none;
@@ -25,9 +25,7 @@ const StyledAppMenuCard = styled(Link)`
     display: flex;
     width: 100%;
     height: 72px;
-    padding: ${({ theme }) =>
-      `${theme?.spacing?.s200} ${theme?.spacing?.s100}` ||
-      `${"12px"} ${"8px"}`};
+    padding: 12px 8px;
     & div:first-child {
       flex-direction: row;
       gap: 8px;
