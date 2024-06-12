@@ -30,7 +30,7 @@ const getDownloadableFormats = async (
       const res = await fetch(requestUrl, options);
 
       clearTimeout(timeoutId);
-      console.log("res", res.status);
+
       if (res.status === 204) {
         return [];
       }
