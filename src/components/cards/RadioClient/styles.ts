@@ -25,7 +25,7 @@ const StyledRadio = styled.input`
 `;
 
 const StyledImage = styled.img`
-  font-family: "Roboto";
+  font-family: Roboto;
   font-size: 14px;
   width: 100%;
   transition: filter 500ms ease-out;

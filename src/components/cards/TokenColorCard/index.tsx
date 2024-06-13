@@ -116,7 +116,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
               <Text
                 type="label"
                 size={smallScreen ? "small" : "medium"}
-                textAlign={"center"}
+                textAlign="center"
                 appearance={textAppearance}
               >
                 {tokenName}
