@@ -66,12 +66,6 @@ const renderStepContent = (
   formData: IFormAddLinixUseCase,
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>
 ) => {
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await getDownloadableFormats("1");
-  //     console.log(result);
-  //   })();
-  // }, []);
   return (
     <>
       {currentStep === stepsAddingLinixUseCase.generalInformation.id && (
