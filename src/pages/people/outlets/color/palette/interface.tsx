@@ -35,7 +35,7 @@ export function PaletteUI(props: PaletteUIProps) {
         direction="column"
         width="-webkit-fill-available"
         padding={smallScreen ? "s300" : "s400 s800"}
-        gap={"48px"}
+        gap="48px"
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
@@ -54,7 +54,7 @@ export function PaletteUI(props: PaletteUIProps) {
 
         <StyledContainer>
           <StyledTabsContainer $typeTabs={typeTabs}>
-            <Stack direction="column" gap={"32px"}>
+            <Stack direction="column" gap="32px">
               <Tabs
                 onChange={handleTabChange}
                 selectedTab={selectedTab}
