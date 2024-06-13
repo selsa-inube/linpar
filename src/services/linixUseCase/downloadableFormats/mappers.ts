@@ -4,9 +4,9 @@ const mapDownloadableFormatsApiToEntity = (
   downloadableFormat: Record<string, string | number | object>
 ): IAssignmentFormEntry => {
   const buildDownloadableFormat: IAssignmentFormEntry = {
-    id: String(downloadableFormat.k_Docume),
-    value: String(downloadableFormat.n_Docume),
-    isActive: Boolean(downloadableFormat.i_Privi),
+    id: String(downloadableFormat.id),
+    value: String(downloadableFormat.value),
+    isActive: Boolean(downloadableFormat.isActive),
   };
   return buildDownloadableFormat;
 };
