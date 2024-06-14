@@ -243,7 +243,6 @@ function EditCaseLinix() {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
   };
-
   return (
     <EditUserUI
       selectedTab={selectedTab}
