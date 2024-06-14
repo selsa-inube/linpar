@@ -48,11 +48,11 @@ const getWebOptionsFormats = async (
         : [];
 
       return normalizedWebOptionsFormats;
-    } catch (error) {
+    } catch (error: any) {
       clearTimeout(timeoutId);
       if (attempt === maxRetries) {
         throw new Error(
-          "Todos los intentos fallaron. No se pudieron obtener los créditos del usuario."
+          `Todos los intentos fallaron. No se pudieron obtener los créditos del usuario. Último error: ${error.message}`
         );
       }
     }
