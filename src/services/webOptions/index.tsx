@@ -19,8 +19,6 @@ const getWebOptionsFormats = async (
     },
   };
 
-  let lastError: Error | null = null;
-
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), fetchTimeout);
@@ -52,15 +50,12 @@ const getWebOptionsFormats = async (
       return normalizedWebOptionsFormats;
     } catch (error) {
       clearTimeout(timeoutId);
-      console.error(`Attempt ${attempt} failed:`, error);
-      lastError = error instanceof Error ? error : new Error(String(error));
+      if (attempt === maxRetries) {
+        throw new Error(
+          "Todos los intentos fallaron. No se pudieron obtener los créditos del usuario."
+        );
+      }
     }
-  }
-
-  if (lastError) {
-    throw new Error(
-      `Todos los intentos fallaron. No se pudieron obtener los créditos del usuario. Último error: ${lastError.message}`
-    );
   }
 
   return [];
