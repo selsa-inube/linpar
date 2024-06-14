@@ -10,7 +10,6 @@ import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
 import { dataToAssignmentFormEntry } from "../adding-linix-use-case";
 import { UseCase } from "../types";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
-import { getReportsWebFormats } from "@src/services/linixUseCase/reportsWeb";
 
 export interface IGeneralInformation {
   generalInformation: { entries: UseCase | undefined };
@@ -244,12 +243,6 @@ function EditCaseLinix() {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
   };
-  useEffect(() => {
-    (async () => {
-      const result = await getReportsWebFormats("1");
-      console.log(result);
-    })();
-  }, []);
   return (
     <EditUserUI
       selectedTab={selectedTab}

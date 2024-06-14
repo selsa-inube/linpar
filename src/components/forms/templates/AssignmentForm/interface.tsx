@@ -1,6 +1,4 @@
-import { Fieldset } from "@components/inputs/Fieldset";
-import { Menu } from "@components/navigation/Menu";
-import { IOption } from "@components/navigation/Menu/types";
+import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
   Button,
   Stack,
@@ -11,7 +9,12 @@ import {
   useMediaQuery,
   inube,
 } from "@inube/design-system";
-import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
+import { Text } from "@inubekit/text";
+
+import { Menu } from "@components/navigation/Menu";
+import { IOption } from "@components/navigation/Menu/types";
+import { Fieldset } from "@components/inputs/Fieldset";
+
 import {
   StyledEntriesContainer,
   StyledForm,
@@ -57,6 +60,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
       entry.value.toLowerCase().includes(filter.toLowerCase()) ||
       entry.id.includes(filter.toLowerCase())
   );
+  const dataValidations = entries.length === 0;
 
   if (readOnly) {
     return (
@@ -141,21 +145,25 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               </Stack>
             )}
           </Grid>
-          <StyledEntriesContainer>
-            <Stack direction="column" gap={inube.spacing.s200} margin={"s0"}>
-              {filteredRows.map((entry) => (
-                <Stack alignItems="center" key={entry.id}>
-                  <Switch
-                    id={entry.id}
-                    label={`${entry.id} - ${entry.value}`}
-                    checked={entry.isActive}
-                    onChange={() => handleToggleEntry(entry.id)}
-                    size="large"
-                  />
-                </Stack>
-              ))}
-            </Stack>
-          </StyledEntriesContainer>
+          {dataValidations ? (
+            <Text>No se encuentran datos para seleccionar.</Text>
+          ) : (
+            <StyledEntriesContainer>
+              <Stack direction="column" gap={inube.spacing.s200} margin={"s0"}>
+                {filteredRows.map((entry) => (
+                  <Stack alignItems="center" key={entry.id}>
+                    <Switch
+                      id={entry.id}
+                      label={`${entry.id} - ${entry.value}`}
+                      checked={entry.isActive}
+                      onChange={() => handleToggleEntry(entry.id)}
+                      size="large"
+                    />
+                  </Stack>
+                ))}
+              </Stack>
+            </StyledEntriesContainer>
+          )}
         </Stack>
       </Fieldset>
     </StyledForm>

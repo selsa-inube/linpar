@@ -2,11 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
 
+import { useAuth0 } from "@auth0/auth0-react";
 import { getAll } from "@mocks/utils/dataMock.service";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
+import { getDownloadableFormats } from "@src/services/linixUseCase/downloadableFormats";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
@@ -83,10 +85,51 @@ function AddingLinixUseCase() {
 
   const [csOptions, setCsOptions] = useState<Record<string, unknown>[]>([]);
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
+  const [downloadableDocuments, setDownloadableDocuments] = useState<
+    Record<string, unknown>[]
+  >([]);
+  const { user } = useAuth0();
 
   useEffect(() => {
     setSelectOptions(webOptions.length === 0 && csOptions.length === 0);
   }, [webOptions, csOptions]);
+
+  const usersData = () => {
+    if (!user) return;
+    if (downloadableDocuments.length === 0) {
+      setLoading(true);
+      getDownloadableFormats("1")
+        .then((data) => {
+          if (data !== null) {
+            setDownloadableDocuments(
+              data as unknown as Record<string, unknown>[]
+            );
+            setFormData((prevFormData: IFormAddLinixUseCase) => ({
+              ...prevFormData,
+              downloadableDocuments: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "id",
+                  valueLabel: "value",
+                  isActiveLabel: "isActive",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+  useEffect(() => {
+    usersData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   useEffect(() => {
     getAll("clients-server")
@@ -152,26 +195,6 @@ function AddingLinixUseCase() {
       })
       .catch((error) => {
         console.error("Error fetching web-options:", error.message);
-      });
-    getAll("documents")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            downloadableDocuments: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO",
-                valueLabel: "NOMBRE",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
       });
     getAll("web-options")
       .then((data) => {
