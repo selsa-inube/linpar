@@ -20,42 +20,37 @@ export const saveLinixUseCase = async (
     .filter((webReport) => webReport.isActive === true)
     .map((webReport) => ({
       k_Funcio: webReport.id,
-      k_Usecase: webReport.value,
     }));
 
   const normalizeReportesCsPorCasoDeUso = clientServerReports
     .filter((clientServerReport) => clientServerReport.isActive === true)
     .map((clientServerReport) => ({
       k_Nforma: clientServerReport.id,
-      k_Usecase: clientServerReport.value,
     }));
 
   const normalizeWebOptionsCsPorCasoDeUso = clientServerOptions
     .filter((clientServerOption) => clientServerOption.isActive === true)
     .map((clientServerOption) => ({
       k_Opcion: clientServerOption.id,
-      k_Usecase: clientServerOption.value,
     }));
 
   const normalizeDocumentoPorCasoDeUso = downloadableDocuments
     .filter((downloadableDocument) => downloadableDocument.isActive === true)
     .map((downloadableDocument) => ({
       k_Docume: downloadableDocument.id,
-      k_Usecase: downloadableDocument.value,
     }));
 
   const normalizeWebOptions = webOptions
     .filter((webOptions) => webOptions.isActive === true)
     .map((webOptions) => ({
       k_Report: webOptions.id,
-      k_Usecase: webOptions.value,
     }));
 
   const newLinixUseCase: UseCase = {
-    k_Usecase: generalInformation.n_Descrip,
+    k_Usecase: "2",
     n_Usecase: generalInformation.n_Usecase,
     n_Descrip: generalInformation.n_Descrip,
-    a_Publicc: "",
+    a_Publicc: "a",
     i_Tipusec: generalInformation.i_Tipusec,
     k_Ncampo: clientServerButton.csButtonOption,
     k_Nforma: generalInformation.k_Funcio,
@@ -66,7 +61,7 @@ export const saveLinixUseCase = async (
     tiposDeDocumentoPorCasoDeUso: normalizeDocumentoPorCasoDeUso,
   };
   let confirmationType = true;
-
+  console.log(newLinixUseCase);
   try {
     await addLinixUseCase(newLinixUseCase);
   } catch (error) {

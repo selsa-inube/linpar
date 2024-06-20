@@ -52,8 +52,7 @@ export const actionsConfigLinixUseCase = (
       Nombre: linixUseCasesSelected?.n_Usecase,
       Tipo: linixUseCasesSelected?.i_Tipusec,
       Descripcion: linixUseCasesSelected?.n_Descrip,
-      "Opción botón cliente servidor":
-        linixUseCasesSelected?.k_Nforma + "-" + linixUseCasesSelected?.k_Ncampo,
+      "Opción botón cliente servidor": linixUseCasesSelected?.k_Ncampo,
     }));
     return [...data].shift();
   };

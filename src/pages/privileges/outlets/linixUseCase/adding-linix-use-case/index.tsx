@@ -414,7 +414,6 @@ function AddingLinixUseCase() {
     });
     navigate("/privileges/linixUseCase");
   };
-
   return (
     <AddingLinixUseCaseUI
       loading={loading}

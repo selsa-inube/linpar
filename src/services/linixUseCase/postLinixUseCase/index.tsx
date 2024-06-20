@@ -1,17 +1,11 @@
-import {
-  UseCase,
-  UseCaseResponse,
-} from "@src/pages/privileges/outlets/linixUseCase/types";
+import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
 import { enviroment } from "@src/config/environment";
-import {
-  mapLinixUseCaseApiToEntity,
-  mapLinixUseCaseEntityToApi,
-} from "./mappers";
+import { mapLinixUseCaseEntityToApi } from "./mappers";
 
 const addLinixUseCase = async (
   linixUseCase: UseCase
-): Promise<UseCaseResponse | undefined> => {
+): Promise<UseCase | undefined> => {
   const requestUrl = `${enviroment.ICLIENT_API_URL_PERSISTENCE_POST}/casos-de-uso`;
 
   try {
@@ -44,8 +38,7 @@ const addLinixUseCase = async (
       }, Data: ${JSON.stringify(data)}`;
       throw new Error(errorMessage);
     }
-
-    return mapLinixUseCaseApiToEntity(data);
+    return data;
   } catch (error) {
     console.error("Failed to add linix use case:", error);
     throw error;

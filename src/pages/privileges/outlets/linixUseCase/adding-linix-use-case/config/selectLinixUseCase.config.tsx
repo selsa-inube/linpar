@@ -6,18 +6,18 @@ interface Option {
 
 export const OptionSelect: Option[] = [
   {
-    id: "Insertar",
-    label: "Insertar",
+    id: "I",
+    label: "I",
     disabled: false,
   },
   {
-    id: "Modificar",
-    label: "Modificar",
+    id: "M",
+    label: "M",
     disabled: false,
   },
   {
-    id: "Eliminar",
-    label: "Eliminar",
+    id: "E",
+    label: "E",
     disabled: false,
   },
 ];
