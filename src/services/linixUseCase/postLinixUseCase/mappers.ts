@@ -7,7 +7,7 @@ const mapLinixUseCaseEntityToApi = (
     i_Tipusec: String(linixUseCase.i_Tipusec),
     k_Ncampo: "CD387MCERTIDEP.I_CONTIT",
     k_Nforma: "121",
-    k_Usecase: "629",
+    k_Usecase: "649",
     n_Descrip: String(linixUseCase.n_Descrip),
     n_Usecase: String(linixUseCase.n_Usecase),
     a_Publicc: "a",
