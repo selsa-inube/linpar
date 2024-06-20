@@ -172,6 +172,7 @@ function RenderFormFields(
           selectedId={formik.values.k_Funcio}
         />
       </Stack>
+
       <SearchUserCard
         id="csSearch"
         label="Opción de menú cliente servidor Linix"

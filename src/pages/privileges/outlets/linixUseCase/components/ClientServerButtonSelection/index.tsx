@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
+import { useAuth0 } from "@auth0/auth0-react";
 
+import { getClientServerButtonDataFormats } from "@src/services/linixUseCase/clientServerButtonData";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { getAll } from "@mocks/utils/dataMock.service";
 import {
   IHandleChangeFormData,
   IClientServerButton,
@@ -25,7 +26,6 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const {
     handleSubmit,
     onHasChanges,
-    csSelected,
     initialValues = { csButtonOption: "" },
     withSubmitButtons = false,
   } = props;
@@ -37,21 +37,30 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const [buttonOptions, setButtonOptions] = useState<Record<string, unknown>[]>(
     []
   );
+  const { user } = useAuth0();
+
+  const clientServerButtonMenuOption = async () => {
+    if (!user) return;
+    if (buttonOptions.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getClientServerButtonDataFormats("CDDEFINCDT_0");
+        setButtonOptions(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    getAll("button-options")
-      .then((data) => {
-        if (data !== null) {
-          setButtonOptions(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching button-options:", error.message);
-      });
-  }, []);
+    clientServerButtonMenuOption();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const filteredButtonOptions = buttonOptions.filter(
-    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === csSelected
+    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === "CDDEFINCDT_0"
   );
 
   const onSubmit = () => {
@@ -111,7 +120,6 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       });
     });
   };
-
   return (
     <ClientServerButtonSelectionUI
       loading={loading}

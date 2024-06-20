@@ -11,7 +11,7 @@ import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { buttonOptionsMock } from "@mocks/privileges/button/buttonOptionsMock.mock";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 import {
   CrateLinixUseCaseConfig,
@@ -32,7 +32,6 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { VerificationAddLinixUseCase } from "../components/VerificationForm";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -129,8 +128,10 @@ const renderStepContent = (
 };
 
 interface AddingLinixUseCaseUIProps {
+  csOptionsButtons: Record<string, unknown>[];
   message: IMessageState;
   loading: boolean;
+  loadingButton: boolean;
   onCloseSectionMessage: () => void;
   handleFinishForm: () => void;
   handleNextStep: (step: number) => void;
@@ -152,9 +153,11 @@ interface AddingLinixUseCaseUIProps {
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
+    csOptionsButtons,
     message,
     onCloseSectionMessage,
     loading,
+    loadingButton,
     handleFinishForm,
     currentStep,
     handleToggleModal,
@@ -173,7 +176,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const optionValidations = () => {
-    const validate = buttonOptionsMock.filter(
+    const validate = csOptionsButtons.filter(
       (buttonOptions) =>
         buttonOptions.OPCION_CLIENTE_SERVIDOR ===
         formData.generalInformation.values.k_Opcion
@@ -221,7 +224,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                       Object.values(stepsAddingLinixUseCase).length
                         ? currentStep - 1
                         : currentStep === 3 &&
-                          !buttonOptionsMock.some(
+                          !csOptionsButtons.some(
                             (buttonOptions) =>
                               buttonOptions.OPCION_CLIENTE_SERVIDOR ===
                               formData.generalInformation.values.k_Opcion
@@ -236,7 +239,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                       Object.values(stepsAddingLinixUseCase).length
                         ? (handleToggleModal(), currentStep)
                         : currentStep === 1 &&
-                          !buttonOptionsMock.some(
+                          !csOptionsButtons.some(
                             (buttonOptions) =>
                               buttonOptions.OPCION_CLIENTE_SERVIDOR ===
                               formData.generalInformation.values.k_Opcion
@@ -269,7 +272,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                     Object.values(stepsAddingLinixUseCase).length
                       ? currentStep - 1
                       : currentStep === 3 &&
-                        !buttonOptionsMock.some(
+                        !csOptionsButtons.some(
                           (buttonOptions) =>
                             buttonOptions.OPCION_CLIENTE_SERVIDOR ===
                             formData.generalInformation.values.k_Opcion
@@ -316,7 +319,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </Stack>
 
           {showModal &&
-            finishModal(handleToggleModal, loading, handleFinishForm)}
+            finishModal(handleToggleModal, loadingButton, handleFinishForm)}
         </Stack>
       )}
     </>

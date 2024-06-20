@@ -1,5 +1,3 @@
-import { IAssignmentFormEntry } from "../users/types/forms.types";
-
 interface OpcionesCsPorCasoDeUso {
   k_Opcion: string;
 }
@@ -27,20 +25,58 @@ export interface IInitialiceFormLinixUseCase {
 }
 
 interface UseCase {
-  id: string;
-  k_Usecase: string;
-  n_Usecase: string;
-  n_Descrip: string;
   a_Publicc: string;
   i_Tipusec: string;
   k_Ncampo: string;
   k_Nforma: string;
-  k_Opcion?: string;
+  k_Usecase: string;
+  n_Descrip: string;
+  n_Usecase: string;
   opcionesCsPorCasoDeUso?: OpcionesCsPorCasoDeUso[];
   opcionesPortalWebPorCasoDeUso?: OpcionesPortalWebPorCasoDeUso[];
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];
-  reportesWebPorCasoDeUso?: IAssignmentFormEntry[];
+  reportesWebPorCasoDeUso?: ReportesWebPorCasoDeUso[];
   tiposDeDocumentoPorCasoDeUso?: TiposDeDocumentoPorCasoDeUso[];
+  id?: string;
+}
+
+interface UseCaseResponse {
+  a_Publicc: string;
+  i_Tipusec: string;
+  k_Usecase: string;
+  n_Camprv: string;
+  n_Descrip: string;
+  n_Usecase: string;
+  opcionesCsPorCasoDeUso: [
+    {
+      k_Opcion: string;
+      k_Usecase: string;
+    }
+  ];
+  opcionesPortalWebPorCasoDeUso: [
+    {
+      k_Funcio: string;
+      k_Usecase: string;
+    }
+  ];
+  reportesCsPorCasoDeUso: [
+    {
+      k_Nforma: string;
+      k_Usecase: string;
+    }
+  ];
+  reportesWebPorCasoDeUso: [
+    {
+      k_Report: string;
+      k_Usecase: string;
+    }
+  ];
+  tiposDeDocumentoPorCasoDeUso: [
+    {
+      k_Docume: string;
+      k_Usecase: string;
+    }
+  ];
 }
 
 export type {
@@ -50,6 +86,7 @@ export type {
   ReportesCsPorCasoDeUso,
   ReportesWebPorCasoDeUso,
   TiposDeDocumentoPorCasoDeUso,
+  UseCaseResponse,
 };
 
 export interface IActions {

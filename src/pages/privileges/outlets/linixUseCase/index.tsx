@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { getAll } from "@mocks/utils/dataMock.service";
-
 import {
   LinixUseCaseUI,
   SelectedDataFunction,
@@ -10,6 +8,8 @@ import {
 import { UseCase } from "./types";
 import { IMessageState } from "../users/types/forms.types";
 import { deleteUserMessages } from "./delete-linix-use-case/config/deleteLinixUseCase.config";
+import { getLinixUseCase } from "@src/services/linixUseCase/getLinixUseCase";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function LinixUseCase() {
   const [searchUseCase, setSearchUseCase] = useState("");
@@ -20,21 +20,27 @@ function LinixUseCase() {
     visible: false,
   });
   const [idDeleted, setIdDeleted] = useState("");
+  const { user } = useAuth0();
 
-  useEffect(() => {
-    getAll("linix-use-cases")
-      .then((data) => {
-        if (data !== null) {
-          setLinixUseCases(data as UseCase[]);
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
+  const linixUseCaseData = async () => {
+    if (!user) return;
+    if (linixUseCases.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getLinixUseCase();
+        setLinixUseCases(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [linixUseCases]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixUseCaseData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
   useEffect(() => {
     const filterRecordRemoved = linixUseCases.filter(
       (linixUseCases) => linixUseCases.k_Usecase !== idDeleted
@@ -65,7 +71,7 @@ function LinixUseCase() {
   };
 
   const handleClick: HandleClickFunction = (id: string) => {
-    linixUseCases.find((useCase) => useCase.id === id);
+    linixUseCases.find((useCase) => useCase.k_Usecase === id);
   };
 
   const selectedData: SelectedDataFunction = (k_Usecase: string) =>

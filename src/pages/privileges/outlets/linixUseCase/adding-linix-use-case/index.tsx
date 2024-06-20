@@ -3,12 +3,16 @@ import { FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import { getAll } from "@mocks/utils/dataMock.service";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
 import { getDownloadableFormats } from "@src/services/linixUseCase/downloadableFormats";
+import { getWebOptionsFormats } from "@src/services/webOptions";
+import { getWebReportsFormats } from "@src/services/linixUseCase/reportsWeb";
+import { getReportsClientServerFormats } from "@src/services/linixUseCase/reportsClientServer";
+import { getClientServerMenuOptionFormats } from "@src/services/linixUseCase/clientServerMenuOption";
+import { getClientServerButtonDataFormats } from "@src/services/linixUseCase/clientServerButtonData";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
@@ -22,7 +26,6 @@ import {
 } from "./types";
 import { addLinixUseCaseStepsRules, saveLinixUseCase } from "./utils";
 import { generalMessage } from "./config/messages.config";
-import { getWebOptionsFormats } from "@src/services/webOptions";
 
 export function dataToAssignmentFormEntry(
   props: DataToAssignmentFormEntryProps
@@ -45,6 +48,7 @@ function AddingLinixUseCase() {
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingButton, setLoadingButton] = useState(false);
   const [formData, setFormData] = useState<IFormAddLinixUseCase>({
     generalInformation: {
       isValid: false,
@@ -84,8 +88,13 @@ function AddingLinixUseCase() {
     },
   });
 
+  const [csReports, setCsReports] = useState<Record<string, unknown>[]>([]);
+  const [csOptionsButtons, setCsOptionsButtons] = useState<
+    Record<string, unknown>[]
+  >([]);
   const [csOptions, setCsOptions] = useState<Record<string, unknown>[]>([]);
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
+  const [webReports, setWebReports] = useState<Record<string, unknown>[]>([]);
   const [downloadableDocuments, setDownloadableDocuments] = useState<
     Record<string, unknown>[]
   >([]);
@@ -157,76 +166,122 @@ function AddingLinixUseCase() {
         });
     }
   };
+  const webReportsData = () => {
+    if (!user) return;
+    if (webReports.length === 0) {
+      setLoading(true);
+      getWebReportsFormats("1")
+        .then((data) => {
+          if (data !== null) {
+            setWebReports(data as unknown as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddLinixUseCase) => ({
+              ...prevFormData,
+              webReports: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Report",
+                  valueLabel: "n_Report",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const clientServerReports = () => {
+    if (!user) return;
+    if (csReports.length === 0) {
+      setLoading(true);
+      getReportsClientServerFormats("1")
+        .then((data) => {
+          if (data !== null) {
+            setCsReports(data as unknown as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddLinixUseCase) => ({
+              ...prevFormData,
+              clientServerReports: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Nforma",
+                  valueLabel: "n_Descri",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const clientServerMenuOption = () => {
+    if (!user) return;
+    if (csOptions.length === 0) {
+      setLoading(true);
+      getClientServerMenuOptionFormats("1")
+        .then((data) => {
+          if (data !== null) {
+            setCsOptions(data as unknown as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddLinixUseCase) => ({
+              ...prevFormData,
+              clientServerOptions: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "CODIGO_OPCION",
+                  valueLabel: "DESCRIPCION",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const clientServerButtonMenuOption = async () => {
+    if (!user) return;
+    if (csOptionsButtons.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getClientServerButtonDataFormats("CDDEFINCDT_0");
+        setCsOptionsButtons(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
   useEffect(() => {
     usersData();
     webOptionsData();
+    webReportsData();
+    clientServerReports();
+    clientServerMenuOption();
+    clientServerButtonMenuOption();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
-  useEffect(() => {
-    getAll("clients-server")
-      .then((data) => {
-        if (data !== null) {
-          setCsOptions(data as Record<string, unknown>[]);
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            clientServerOptions: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO_OPCION",
-                valueLabel: "DESCRIPCION",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
-      });
-
-    getAll("clients-server")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            clientServerReports: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO_OPCION",
-                valueLabel: "DESCRIPCION",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
-      });
-    getAll("web-options")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            webReports: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "K_opcion",
-                valueLabel: "Nombre_opcion",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
-  }, []);
 
   const handleUpdateFormData = (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(stepsAddingLinixUseCase).find(
@@ -312,6 +367,9 @@ function AddingLinixUseCase() {
     document.getElementsByTagName("main")[0].scrollTo(0, 0);
   };
   const handleNextStep = (step?: number) => {
+    if (currentStep === steps.length) {
+      handleToggleModal();
+    }
     if (isCurrentFormValid) {
       const nextStep = typeof step === "number" ? step : currentStep + 1;
       setCurrentStep(nextStep);
@@ -326,19 +384,28 @@ function AddingLinixUseCase() {
 
   const handleToggleModal = () => {
     setShowModal(!showModal);
-    setLoading(true);
+    setLoadingButton(true);
   };
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
   const navigate = useNavigate();
   const handleFinishForm = () => {
-    saveLinixUseCase(formData);
+    const addnewdata = saveLinixUseCase(formData);
+    addnewdata
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+      });
     handleToggleModal();
-    setMessage({
-      visible: true,
-      data: generalMessage.success,
-    });
   };
 
   const handleCloseSectionMessage = () => {
@@ -351,6 +418,7 @@ function AddingLinixUseCase() {
   return (
     <AddingLinixUseCaseUI
       loading={loading}
+      loadingButton={loadingButton}
       onCloseSectionMessage={handleCloseSectionMessage}
       message={message}
       handlePrevStep={handlePrevStep}
@@ -369,6 +437,7 @@ function AddingLinixUseCase() {
       selectOptions={selectOptions}
       handleFinishForm={handleFinishForm}
       setCurrentStep={setCurrentStep}
+      csOptionsButtons={csOptionsButtons}
     />
   );
 }

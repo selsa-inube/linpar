@@ -1,9 +1,11 @@
-import localforage from "localforage";
 import { UseCase } from "../types";
 import { IFormAddLinixUseCase, IFormAddLinixUseCaseRef } from "./types";
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
+import { addLinixUseCase } from "@src/services/linixUseCase/postLinixUseCase";
 
-export const saveLinixUseCase = (addLinixUseCase: IFormAddLinixUseCase) => {
+export const saveLinixUseCase = async (
+  linixUseCaseData: IFormAddLinixUseCase
+) => {
   const {
     generalInformation: { values: generalInformation },
     clientServerButton: { values: clientServerButton },
@@ -12,61 +14,68 @@ export const saveLinixUseCase = (addLinixUseCase: IFormAddLinixUseCase) => {
     downloadableDocuments: { values: downloadableDocuments },
     clientServerReports: { values: clientServerReports },
     clientServerOptions: { values: clientServerOptions },
-  } = addLinixUseCase;
+  } = linixUseCaseData;
 
   const normalizeReportsWeb = webReports
     .filter((webReport) => webReport.isActive === true)
     .map((webReport) => ({
-      k_Funcio: webReport.value,
+      k_Funcio: webReport.id,
+      k_Usecase: webReport.value,
     }));
 
   const normalizeReportesCsPorCasoDeUso = clientServerReports
     .filter((clientServerReport) => clientServerReport.isActive === true)
     .map((clientServerReport) => ({
-      k_Nforma: clientServerReport.value,
+      k_Nforma: clientServerReport.id,
+      k_Usecase: clientServerReport.value,
     }));
 
   const normalizeWebOptionsCsPorCasoDeUso = clientServerOptions
     .filter((clientServerOption) => clientServerOption.isActive === true)
     .map((clientServerOption) => ({
-      k_Opcion: clientServerOption.value,
+      k_Opcion: clientServerOption.id,
+      k_Usecase: clientServerOption.value,
     }));
 
   const normalizeDocumentoPorCasoDeUso = downloadableDocuments
     .filter((downloadableDocument) => downloadableDocument.isActive === true)
     .map((downloadableDocument) => ({
-      k_Docume: downloadableDocument.value,
+      k_Docume: downloadableDocument.id,
+      k_Usecase: downloadableDocument.value,
     }));
-  const normalizeWebOptions = webOptions.filter(
-    (webOptions) => webOptions.isActive === true
-  );
+
+  const normalizeWebOptions = webOptions
+    .filter((webOptions) => webOptions.isActive === true)
+    .map((webOptions) => ({
+      k_Report: webOptions.id,
+      k_Usecase: webOptions.value,
+    }));
 
   const newLinixUseCase: UseCase = {
-    id: "",
-    k_Usecase: "",
+    k_Usecase: generalInformation.n_Descrip,
     n_Usecase: generalInformation.n_Usecase,
     n_Descrip: generalInformation.n_Descrip,
     a_Publicc: "",
     i_Tipusec: generalInformation.i_Tipusec,
     k_Ncampo: clientServerButton.csButtonOption,
     k_Nforma: generalInformation.k_Funcio,
-    k_Opcion: generalInformation.k_Opcion,
     opcionesPortalWebPorCasoDeUso: normalizeReportsWeb,
     reportesWebPorCasoDeUso: normalizeWebOptions,
     reportesCsPorCasoDeUso: normalizeReportesCsPorCasoDeUso,
     opcionesCsPorCasoDeUso: normalizeWebOptionsCsPorCasoDeUso,
     tiposDeDocumentoPorCasoDeUso: normalizeDocumentoPorCasoDeUso,
   };
-  localforage.getItem("linix-use-cases").then((data) => {
-    if (data) {
-      localforage.setItem("linix-use-cases", [
-        ...(data as UseCase[]),
-        newLinixUseCase,
-      ]);
-    } else {
-      localforage.setItem("linix-use-cases", [newLinixUseCase]);
-    }
-  });
+  let confirmationType = true;
+
+  try {
+    await addLinixUseCase(newLinixUseCase);
+  } catch (error) {
+    confirmationType = false;
+
+    throw error;
+  }
+
+  return confirmationType;
 };
 
 const addLinixUseCaseStepsRules = (
