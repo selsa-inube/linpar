@@ -8,6 +8,14 @@ import { deleteLinixUseCaseModal } from "../delete-linix-use-case/config/deleteL
 import { DetailsModal } from "../components/DetailsModal";
 import { UseCase } from "../types";
 import { DeleteLinixUseCase } from "../delete-linix-use-case";
+import { OptionSelect } from "../adding-linix-use-case/config/selectLinixUseCase.config";
+
+export const formSelectLabel = (value: string) => {
+  return OptionSelect.find((option: any) => value === option.label)?.id;
+};
+export const formSelectOptionId = (value: string) => {
+  return OptionSelect.find((option: any) => value === option.id)?.label;
+};
 
 const titlesOptions = [
   {

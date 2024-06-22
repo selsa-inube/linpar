@@ -7,17 +7,17 @@ interface Option {
 export const OptionSelect: Option[] = [
   {
     id: "I",
-    label: "I",
+    label: "Insertar",
     disabled: false,
   },
   {
     id: "M",
-    label: "M",
+    label: "Modificar",
     disabled: false,
   },
   {
     id: "E",
-    label: "E",
+    label: "Eliminar",
     disabled: false,
   },
 ];

@@ -242,7 +242,7 @@ function AddingLinixUseCase() {
                 isValid: true,
                 values: dataToAssignmentFormEntry({
                   dataOptions: data as unknown as Record<string, unknown>[],
-                  idLabel: "CODIGO_OPCION",
+                  idLabel: "k_Opcion",
                   valueLabel: "DESCRIPCION",
                   isActiveLabel: "i_Privi",
                 }),

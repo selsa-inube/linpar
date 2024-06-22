@@ -1,3 +1,4 @@
+import { formSelectOptionId } from "@src/pages/privileges/outlets/linixUseCase/config/dataUseCases.config";
 import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
 const mapLinixUseCaseApiToEntity = (
@@ -9,7 +10,7 @@ const mapLinixUseCaseApiToEntity = (
     n_Usecase: String(linixUseCase.n_Usecase),
     n_Descrip: String(linixUseCase.n_Descrip),
     a_Publicc: String(linixUseCase.a_Publicc),
-    i_Tipusec: String(linixUseCase.i_Tipusec),
+    i_Tipusec: formSelectOptionId(String(linixUseCase?.i_Tipusec)) || "",
     k_Ncampo: String(linixUseCase.k_Ncampo),
     k_Nforma: String(linixUseCase.k_Nforma),
   };

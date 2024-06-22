@@ -5,21 +5,21 @@ const mapLinixUseCaseEntityToApi = (
 ): Record<string, string | number | object> => {
   return {
     i_Tipusec: String(linixUseCase.i_Tipusec),
-    k_Ncampo: "CD387MCERTIDEP.I_CONTIT",
-    k_Nforma: "121",
-    k_Usecase: "649",
+    k_Ncampo: String(linixUseCase.k_Ncampo), //CD387MCERTIDEP.I_CONTIT
+    k_Nforma: String(linixUseCase.k_Nforma), //121
+    k_Usecase: "401", //no echo la 7
     n_Descrip: String(linixUseCase.n_Descrip),
     n_Usecase: String(linixUseCase.n_Usecase),
     a_Publicc: "a",
-    opcionesCsPorCasoDeUso: [{ k_Opcion: "ACFACMAESTRA_0" }],
-    opcionesPortalWebPorCasoDeUso: [{ k_Funcio: "241" }],
-    reportesCsPorCasoDeUso: [{ k_Nforma: "3528" }],
-    reportesWebPorCasoDeUso: [
-      {
-        k_Report: "10006",
-      },
-    ],
+    opcionesCsPorCasoDeUso: Object(linixUseCase.opcionesCsPorCasoDeUso), //ACFACMAESTRA_0
+    opcionesPortalWebPorCasoDeUso: Object(
+      linixUseCase.opcionesPortalWebPorCasoDeUso //[{ k_Funcio: "241" }]
+    ),
+    reportesCsPorCasoDeUso: Object(linixUseCase.reportesCsPorCasoDeUso), // {"k_Nforma": "3528"}
+    reportesWebPorCasoDeUso: Object(linixUseCase.reportesWebPorCasoDeUso), // k_Report: "10006",
   };
+
+  //10006
   // a_Publicc: String(linixUseCase.a_Publicc),
   // i_Tipusec: String(linixUseCase.i_Tipusec),
   // k_Ncampo: String(linixUseCase.k_Ncampo),

@@ -189,7 +189,7 @@ function RenderFormFields(
         }
         userData={csOptions}
         searchFieldData={searchData}
-        idLabel="CODIGO_OPCION"
+        idLabel="k_Opcion"
         nameLabel="DESCRIPCION"
         onReset={() => {}}
         selectedId={formik.values.k_Opcion}

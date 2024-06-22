@@ -2,6 +2,7 @@ import { UseCase } from "../types";
 import { IFormAddLinixUseCase, IFormAddLinixUseCaseRef } from "./types";
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { addLinixUseCase } from "@src/services/linixUseCase/postLinixUseCase";
+import { formSelectLabel } from "../config/dataUseCases.config";
 
 export const saveLinixUseCase = async (
   linixUseCaseData: IFormAddLinixUseCase
@@ -11,15 +12,21 @@ export const saveLinixUseCase = async (
     clientServerButton: { values: clientServerButton },
     webOptions: { values: webOptions },
     webReports: { values: webReports },
-    downloadableDocuments: { values: downloadableDocuments },
+    // downloadableDocuments: { values: downloadableDocuments },
     clientServerReports: { values: clientServerReports },
     clientServerOptions: { values: clientServerOptions },
   } = linixUseCaseData;
 
-  const normalizeReportsWeb = webReports
-    .filter((webReport) => webReport.isActive === true)
-    .map((webReport) => ({
-      k_Funcio: webReport.id,
+  const normalizeReportsWeb = webOptions
+    .filter((webOptions) => webOptions.isActive === true)
+    .map((webOptions) => ({
+      k_Funcio: webOptions.id,
+    }));
+
+  const normalizeWebOptions = webReports
+    .filter((webReports) => webReports.isActive === true)
+    .map((webReports) => ({
+      k_Report: webReports.id,
     }));
 
   const normalizeReportesCsPorCasoDeUso = clientServerReports
@@ -34,31 +41,31 @@ export const saveLinixUseCase = async (
       k_Opcion: clientServerOption.id,
     }));
 
-  const normalizeDocumentoPorCasoDeUso = downloadableDocuments
-    .filter((downloadableDocument) => downloadableDocument.isActive === true)
-    .map((downloadableDocument) => ({
-      k_Docume: downloadableDocument.id,
-    }));
+  // const normalizeDocumentoPorCasoDeUso = downloadableDocuments
+  //   .filter((downloadableDocument) => downloadableDocument.isActive === true)
+  //   .map((downloadableDocument) => ({
+  //     k_Docume: downloadableDocument.id,
+  //   }));
 
-  const normalizeWebOptions = webOptions
-    .filter((webOptions) => webOptions.isActive === true)
-    .map((webOptions) => ({
-      k_Report: webOptions.id,
-    }));
+  // const normalizeWebOptions = webOptions
+  //   .filter((webOptions) => webOptions.isActive === true)
+  //   .map((webOptions) => ({
+  //     k_Report: webOptions.id,
+  //   }));
 
   const newLinixUseCase: UseCase = {
     k_Usecase: "2",
     n_Usecase: generalInformation.n_Usecase,
     n_Descrip: generalInformation.n_Descrip,
     a_Publicc: "a",
-    i_Tipusec: generalInformation.i_Tipusec,
+    i_Tipusec: formSelectLabel(generalInformation.i_Tipusec) || "",
     k_Ncampo: clientServerButton.csButtonOption,
     k_Nforma: generalInformation.k_Funcio,
     opcionesPortalWebPorCasoDeUso: normalizeReportsWeb,
     reportesWebPorCasoDeUso: normalizeWebOptions,
     reportesCsPorCasoDeUso: normalizeReportesCsPorCasoDeUso,
     opcionesCsPorCasoDeUso: normalizeWebOptionsCsPorCasoDeUso,
-    tiposDeDocumentoPorCasoDeUso: normalizeDocumentoPorCasoDeUso,
+    tiposDeDocumentoPorCasoDeUso: [{ k_Docume: "string" }],
   };
   let confirmationType = true;
   console.log(newLinixUseCase);

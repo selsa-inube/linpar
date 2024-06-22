@@ -15,6 +15,8 @@ import { ClientServerButtonSelectionUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 interface ClientServerButtonSelectionProps {
+  id?: string;
+
   handleSubmit: (values: IHandleChangeFormData) => void;
   csSelected: string;
   onHasChanges?: (hasChanges: boolean) => void;
@@ -24,6 +26,7 @@ interface ClientServerButtonSelectionProps {
 
 function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const {
+    id,
     handleSubmit,
     onHasChanges,
     initialValues = { csButtonOption: "" },
@@ -39,12 +42,12 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   );
   const { user } = useAuth0();
 
-  const clientServerButtonMenuOption = async () => {
+  const clientServerButtonMenuOption = async (id: string) => {
     if (!user) return;
     if (buttonOptions.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getClientServerButtonDataFormats("CDDEFINCDT_0");
+        const newUsers = await getClientServerButtonDataFormats(id);
         setButtonOptions(newUsers);
       } catch (error) {
         console.info(error);
@@ -55,12 +58,12 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   };
 
   useEffect(() => {
-    clientServerButtonMenuOption();
+    clientServerButtonMenuOption(id!);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const filteredButtonOptions = buttonOptions.filter(
-    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === "CDDEFINCDT_0"
+    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === id
   );
 
   const onSubmit = () => {

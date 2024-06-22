@@ -80,6 +80,7 @@ const renderStepContent = (
       )}
       {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
         <ClientServerButtonSelection
+          id={formData.generalInformation.values.k_Opcion}
           csSelected={formData.generalInformation.values.k_Opcion}
           handleSubmit={handleUpdateFormData}
           initialValues={formData.clientServerButton.values}
