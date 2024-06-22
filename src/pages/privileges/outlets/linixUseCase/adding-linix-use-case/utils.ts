@@ -1,7 +1,8 @@
+import { addLinixUseCase } from "@src/services/linixUseCase/postLinixUseCase";
+
 import { UseCase } from "../types";
 import { IFormAddLinixUseCase, IFormAddLinixUseCaseRef } from "./types";
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
-import { addLinixUseCase } from "@src/services/linixUseCase/postLinixUseCase";
 import { formSelectLabel } from "../config/dataUseCases.config";
 
 export const saveLinixUseCase = async (
@@ -12,7 +13,6 @@ export const saveLinixUseCase = async (
     clientServerButton: { values: clientServerButton },
     webOptions: { values: webOptions },
     webReports: { values: webReports },
-    // downloadableDocuments: { values: downloadableDocuments },
     clientServerReports: { values: clientServerReports },
     clientServerOptions: { values: clientServerOptions },
   } = linixUseCaseData;
@@ -41,18 +41,6 @@ export const saveLinixUseCase = async (
       k_Opcion: clientServerOption.id,
     }));
 
-  // const normalizeDocumentoPorCasoDeUso = downloadableDocuments
-  //   .filter((downloadableDocument) => downloadableDocument.isActive === true)
-  //   .map((downloadableDocument) => ({
-  //     k_Docume: downloadableDocument.id,
-  //   }));
-
-  // const normalizeWebOptions = webOptions
-  //   .filter((webOptions) => webOptions.isActive === true)
-  //   .map((webOptions) => ({
-  //     k_Report: webOptions.id,
-  //   }));
-
   const newLinixUseCase: UseCase = {
     k_Usecase: "2",
     n_Usecase: generalInformation.n_Usecase,
@@ -68,7 +56,6 @@ export const saveLinixUseCase = async (
     tiposDeDocumentoPorCasoDeUso: [{ k_Docume: "string" }],
   };
   let confirmationType = true;
-  console.log(newLinixUseCase);
   try {
     await addLinixUseCase(newLinixUseCase);
   } catch (error) {
