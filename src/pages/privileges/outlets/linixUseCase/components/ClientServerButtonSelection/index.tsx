@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { getClientServerButtonDataFormats } from "@src/services/linixUseCase/clientServerButtonData";
+import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import {

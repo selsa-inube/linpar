@@ -162,6 +162,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     handleFinishForm,
     currentStep,
     handleToggleModal,
+    handlePrevStep,
     showModal,
     handleNextStep,
     formData,
@@ -232,7 +233,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                           )
                         ? 1
                         : currentStep - 1;
-                    handleNextStep(prevStep);
+                    handlePrevStep(prevStep);
                   }}
                   handleNext={() => {
                     const nextStep =
@@ -280,7 +281,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                         )
                       ? 1
                       : currentStep - 1;
-                  handleNextStep(prevStep);
+                  handlePrevStep(prevStep);
                 }}
                 type="button"
                 disabled={currentStep === 1}

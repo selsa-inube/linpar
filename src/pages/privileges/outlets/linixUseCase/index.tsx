@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+import { getLinixUseCase } from "@services/linixUseCase/getLinixUseCase";
+import { useAuth0 } from "@auth0/auth0-react";
+
 import {
   LinixUseCaseUI,
   SelectedDataFunction,
@@ -8,8 +11,6 @@ import {
 import { UseCase } from "./types";
 import { IMessageState } from "../users/types/forms.types";
 import { deleteUserMessages } from "./delete-linix-use-case/config/deleteLinixUseCase.config";
-import { getLinixUseCase } from "@src/services/linixUseCase/getLinixUseCase";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function LinixUseCase() {
   const [searchUseCase, setSearchUseCase] = useState("");

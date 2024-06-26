@@ -1,4 +1,4 @@
-import { addLinixUseCase } from "@src/services/linixUseCase/postLinixUseCase";
+import { addLinixUseCase } from "@services/linixUseCase/postLinixUseCase";
 
 import { UseCase } from "../types";
 import { IFormAddLinixUseCase, IFormAddLinixUseCaseRef } from "./types";
@@ -42,10 +42,10 @@ export const saveLinixUseCase = async (
     }));
 
   const newLinixUseCase: UseCase = {
-    k_Usecase: "2",
+    k_Usecase: "3",
     n_Usecase: generalInformation.n_Usecase,
     n_Descrip: generalInformation.n_Descrip,
-    a_Publicc: "a",
+    a_Publicc: "b",
     i_Tipusec: formSelectLabel(generalInformation.i_Tipusec) || "",
     k_Ncampo: clientServerButton.csButtonOption,
     k_Nforma: generalInformation.k_Funcio,

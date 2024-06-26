@@ -77,8 +77,8 @@ export const actionsConfigLinixUseCase = (
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ id }: { id: string }) => (
-        <Link to={`edit/${id}`}>
+      content: ({ k_Usecase }: { k_Usecase: string }) => (
+        <Link to={`edit/${k_Usecase}`}>
           <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
         </Link>
       ),

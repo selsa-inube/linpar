@@ -25,7 +25,8 @@ export interface IInitialiceFormLinixUseCase {
 }
 
 interface UseCase {
-  a_Publicc: string;
+  id?: string;
+  a_Publicc?: string;
   i_Tipusec: string;
   k_Ncampo: string;
   k_Nforma: string;
@@ -37,7 +38,6 @@ interface UseCase {
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];
   reportesWebPorCasoDeUso?: ReportesWebPorCasoDeUso[];
   tiposDeDocumentoPorCasoDeUso?: TiposDeDocumentoPorCasoDeUso[];
-  id?: string;
 }
 
 export type {

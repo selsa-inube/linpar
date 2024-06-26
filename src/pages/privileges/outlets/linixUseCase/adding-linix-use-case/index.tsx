@@ -7,12 +7,12 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { getDownloadableFormats } from "@src/services/linixUseCase/downloadableFormats";
-import { getWebOptionsFormats } from "@src/services/webOptions";
-import { getWebReportsFormats } from "@src/services/linixUseCase/reportsWeb";
-import { getReportsClientServerFormats } from "@src/services/linixUseCase/reportsClientServer";
-import { getClientServerMenuOptionFormats } from "@src/services/linixUseCase/clientServerMenuOption";
-import { getClientServerButtonDataFormats } from "@src/services/linixUseCase/clientServerButtonData";
+import { getDownloadableFormats } from "@services/linixUseCase/downloadableFormats";
+import { getWebOptionsFormats } from "@services/webOptions";
+import { getWebReportsFormats } from "@services/linixUseCase/reportsWeb";
+import { getReportsClientServerFormats } from "@services/linixUseCase/reportsClientServer";
+import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientServerMenuOption";
+import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
