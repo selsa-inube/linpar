@@ -95,6 +95,57 @@ function AddingLinixUseCase() {
     setSelectOptions(webOptions.length === 0 && csOptions.length === 0);
   }, [webOptions, csOptions]);
 
+  useEffect(() => {
+    Promise.all([
+      getAll("clients-server"),
+      getAll("clients-server"),
+      getAll("web-options"),
+      webOptionsData(),
+      usersData(),
+    ]).then(([clientServerOptions, clientServerReports, webOptions]) => {
+      setLoading(true);
+      setCsOptions(clientServerOptions as Record<string, unknown>[]);
+      setFormData((prevFormData: IFormAddLinixUseCase) => ({
+        ...prevFormData,
+        clientServerOptions: {
+          isValid: true,
+          values: dataToAssignmentFormEntry({
+            dataOptions: clientServerOptions as unknown as Record<
+              string,
+              unknown
+            >[],
+            idLabel: "CODIGO_OPCION",
+            valueLabel: "DESCRIPCION",
+            isActiveLabel: "asignado",
+          }),
+        },
+        clientServerReports: {
+          isValid: true,
+          values: dataToAssignmentFormEntry({
+            dataOptions: clientServerReports as unknown as Record<
+              string,
+              unknown
+            >[],
+            idLabel: "CODIGO_OPCION",
+            valueLabel: "DESCRIPCION",
+            isActiveLabel: "asignado",
+          }),
+        },
+        webReports: {
+          isValid: true,
+          values: dataToAssignmentFormEntry({
+            dataOptions: webOptions as unknown as Record<string, unknown>[],
+            idLabel: "K_opcion",
+            valueLabel: "Nombre_opcion",
+            isActiveLabel: "asignado",
+          }),
+        },
+      }));
+      setLoading(false);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const usersData = () => {
     if (!user) return;
     if (downloadableDocuments.length === 0) {
@@ -121,16 +172,13 @@ function AddingLinixUseCase() {
         })
         .catch((error) => {
           console.error("Error fetching:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
+
   const webOptionsData = () => {
     if (!user) return;
     if (webOptions.length === 0) {
-      setLoading(true);
       getWebOptionsFormats("1")
         .then((data) => {
           if (data !== null) {
@@ -151,82 +199,9 @@ function AddingLinixUseCase() {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
-  useEffect(() => {
-    usersData();
-    webOptionsData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
-  useEffect(() => {
-    getAll("clients-server")
-      .then((data) => {
-        if (data !== null) {
-          setCsOptions(data as Record<string, unknown>[]);
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            clientServerOptions: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO_OPCION",
-                valueLabel: "DESCRIPCION",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
-      });
-
-    getAll("clients-server")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            clientServerReports: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "CODIGO_OPCION",
-                valueLabel: "DESCRIPCION",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching linix-use-cases:", error.message);
-      });
-    getAll("web-options")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            webReports: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "K_opcion",
-                valueLabel: "Nombre_opcion",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
-  }, []);
 
   const handleUpdateFormData = (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(stepsAddingLinixUseCase).find(
