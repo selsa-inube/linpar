@@ -14,7 +14,7 @@ import { getRolFormats } from "@src/services/roles/ tipoDeMovimientoPorRol";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getBusinessRulesByRoleFormats } from "@src/services/roles/businessRulesByRole";
 import { getCreditboardTasksByRole } from "@src/services/roles/creditboardTasksByRole";
-// import { getUseCaseByRole } from "@src/services/roles/useCasesByRole";
+import { getUseCaseByRole } from "@src/services/roles/useCasesByRole";
 
 const steps = Object.values(stepsAddRol);
 
@@ -40,7 +40,7 @@ export function AddRol() {
     Record<string, unknown>[]
   >([]);
 
-  // const [useCases, setUseCases] = useState<Record<string, unknown>[]>([]);
+  const [useCasesRol, setUseCases] = useState<Record<string, unknown>[]>([]);
 
   const { user } = useAuth0();
 
@@ -89,7 +89,7 @@ export function AddRol() {
       typesOfMovements(),
       businessRulesFull(),
       crediboardsTasks(),
-      // useCasesRoles(),
+      rolesUseCases(),
     ]).then(() => {
       setLoading(false);
     });
@@ -265,35 +265,35 @@ export function AddRol() {
     }
   };
 
-  // const useCasesRoles = () => {
-  //   if (!user) return;
-  //   if (useCases.length === 0) {
-  //     getUseCaseByRole("1")
-  //       .then((data) => {
-  //         if (data !== null) {
-  //           setUseCases(data as Record<string, unknown>[]);
-  //           setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
-  //             ...prevFormData,
-  //             useCases: {
-  //               isValid: true,
-  //               values: dataToAssignmentFormEntry({
-  //                 dataOptions: data as Record<string, unknown>[],
-  //                 idLabel: "k_Usecase",
-  //                 valueLabel: "n_Usecase",
-  //                 isActiveLabel: "i_Privi",
-  //               }),
-  //             },
-  //           }));
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching web options:", error.message);
-  //       })
-  //       .finally(() => {
-  //         setLoading(false);
-  //       });
-  //   }
-  // };
+  const rolesUseCases = () => {
+    if (!user) return;
+    if (useCasesRol.length === 0) {
+      getUseCaseByRole("1")
+        .then((data) => {
+          if (data !== null) {
+            setUseCases(data as Record<string, unknown>[]);
+            setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
+              ...prevFormData,
+              useCasesRol: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Usecase",
+                  valueLabel: "n_Usecase",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationForm>>(null);
   const ancillaryAccountsRef =
