@@ -1,7 +1,7 @@
 import { enviroment } from "@src/config/environment";
-import { mapTipoDeMovimientoPorRolFormatsApiToEntities } from "./mapper";
+import { mapUseCasesByRoleByRoleFormatsApiToEntities } from "./mappers";
 
-const getRolFormats = async (
+const getUseCaseByRole = async (
   k_Rol: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = 5;
@@ -13,7 +13,7 @@ const getRolFormats = async (
     method: "GET",
     headers: {
       Realm: enviroment.REALM,
-      "X-Action": "QueryTiposDeMovimientoPorRolFull",
+      "X-Action": "QueryCasosDeUsoPorRolFull",
       "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -44,7 +44,7 @@ const getRolFormats = async (
       const data = await res.json();
 
       const normalizedRolFormats = Array.isArray(data)
-        ? mapTipoDeMovimientoPorRolFormatsApiToEntities(data)
+        ? mapUseCasesByRoleByRoleFormatsApiToEntities(data)
         : [];
 
       return normalizedRolFormats;
@@ -61,4 +61,4 @@ const getRolFormats = async (
   return [];
 };
 
-export { getRolFormats };
+export { getUseCaseByRole };
