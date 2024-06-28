@@ -40,7 +40,7 @@ export function AddRol() {
     Record<string, unknown>[]
   >([]);
 
-  const [useCasesRol, setUseCases] = useState<Record<string, unknown>[]>([]);
+  const [useCases, setUseCases] = useState<Record<string, unknown>[]>([]);
 
   const { user } = useAuth0();
 
@@ -89,7 +89,7 @@ export function AddRol() {
       typesOfMovements(),
       businessRulesFull(),
       crediboardsTasks(),
-      rolesUseCases(),
+      rolesuseCases(),
     ]).then(() => {
       setLoading(false);
     });
@@ -265,16 +265,16 @@ export function AddRol() {
     }
   };
 
-  const rolesUseCases = () => {
+  const rolesuseCases = () => {
     if (!user) return;
-    if (useCasesRol.length === 0) {
+    if (useCases.length === 0) {
       getUseCaseByRole("1")
         .then((data) => {
           if (data !== null) {
             setUseCases(data as Record<string, unknown>[]);
             setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
               ...prevFormData,
-              useCasesRol: {
+              useCases: {
                 isValid: true,
                 values: dataToAssignmentFormEntry({
                   dataOptions: data as Record<string, unknown>[],
