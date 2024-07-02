@@ -16,7 +16,7 @@ export function Roles() {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState(0);
   const { user } = useAuth0();
 
   const linixRolesData = async () => {
@@ -37,21 +37,6 @@ export function Roles() {
     linixRolesData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
-  // useEffect(() => {
-  //   getAll("linix-roles")
-  //     .then((data) => {
-  //       if (data !== null) {
-  //         setLinixRoles(data as IRol[]);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error.message);
-  //     })
-  //     .finally(() => {
-  //       setLoading(false);
-  //     });
-  // }, [linixRoles]);
 
   useEffect(() => {
     const filterRecordRemoved = linixRoles.filter(

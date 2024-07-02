@@ -15,6 +15,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getBusinessRulesByRoleFormats } from "@src/services/roles/businessRulesByRole";
 import { getCreditboardTasksByRole } from "@src/services/roles/creditboardTasksByRole";
 import { getUseCaseByRole } from "@src/services/roles/useCasesByRole";
+import { getAplicationRoles } from "@src/services/roles/aplicationRoles";
 
 const steps = Object.values(stepsAddRol);
 
@@ -41,6 +42,7 @@ export function AddRol() {
   >([]);
 
   const [useCases, setUseCases] = useState<Record<string, unknown>[]>([]);
+  const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
 
   const { user } = useAuth0();
 
@@ -90,92 +92,13 @@ export function AddRol() {
       businessRulesFull(),
       crediboardsTasks(),
       rolesuseCases(),
+      aplication(),
     ]).then(() => {
       setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   Promise.all([
-  //     typesOfMovements(),
-  //     // getAll("linix-roles"),
-  //     // getAll("web-options"),
-  //     // getAll("linix-use-cases"),
-  //   ]).then(([]) => {
-  //     setLoading(true);
-  //     // setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
-  //     //   ...prevFormData,
-  //     //   // transactionTypes: {
-  //     //   //   values: dataToAssignmentFormEntry({
-  //     //   //     dataOptions: documentsFetch as Record<string, unknown>[],
-  //     //   //     idLabel: "CODIGO",
-  //     //   //     valueLabel: "NOMBRE",
-  //     //   //     isActiveLabel: "asignado",
-  //     //   //   }),
-  //     //   // },
-  //     //   // businessRules: {
-  //     //   //   values: dataToAssignmentFormEntry({
-  //     //   //     dataOptions: linixRolesFetch as unknown as Record<
-  //     //   //       string,
-  //     //   //       unknown
-  //     //   //     >[],
-  //     //   //     idLabel: "k_Rol",
-  //     //   //     valueLabel: "n_Rol",
-  //     //   //     isActiveLabel: "asignado",
-  //     //   //   }),
-  //     //   // },
-  //     //   // crediboardTasks: {
-  //     //   //   values: dataToAssignmentFormEntry({
-  //     //   //     dataOptions: webOptionsFetch as Record<string, unknown>[],
-  //     //   //     idLabel: "K_opcion",
-  //     //   //     valueLabel: "Nombre_opcion",
-  //     //   //     isActiveLabel: "asignado",
-  //     //   //   }),
-  //     //   // },
-  //     //   // useCases: {
-  //     //   //   values: dataToAssignmentFormEntry({
-  //     //   //     dataOptions: linixUseCasesFetch as Record<string, unknown>[],
-  //     //   //     idLabel: "k_Usecase",
-  //     //   //     valueLabel: "n_Usecase",
-  //     //   //     isActiveLabel: "id",
-  //     //   //   }),
-  //     //   // },
-  //     // }));
-  //     setLoading(false);
-  //   });
-  // }, []);
-
-  // const webOptionsData = () => {
-  //   if (!user) return;
-  //   if (webOptions.length === 0) {
-  //     setLoading(true);
-  //     getWebOptionsFormats("1")
-  //       .then((data) => {
-  //         if (data !== null) {
-  //           setWebOptions(data as Record<string, unknown>[]);
-  //           setFormData((prevFormData: IFormAddLinixUseCase) => ({
-  //             ...prevFormData,
-  //             webOptions: {
-  //               isValid: true,
-  //               values: dataToAssignmentFormEntry({
-  //                 dataOptions: data as Record<string, unknown>[],
-  //                 idLabel: "k_Funcio",
-  //                 valueLabel: "n_Funcio",
-  //                 isActiveLabel: "isActive",
-  //               }),
-  //             },
-  //           }));
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching web options:", error.message);
-  //       })
-  //       .finally(() => {
-  //         setLoading(false);
-  //       });
-  //   }
-  // };
   const typesOfMovements = () => {
     if (!user) return;
     if (transactionTypes.length === 0) {
@@ -233,6 +156,21 @@ export function AddRol() {
         .finally(() => {
           setLoading(false);
         });
+    }
+  };
+
+  const aplication = async () => {
+    if (!user) return;
+    if (linixRoles.length === 0) {
+      setLoading(true);
+      try {
+        const newAplication = await getAplicationRoles();
+        setLinixRoles(newAplication);
+      } catch (error) {
+        console.info(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
   const crediboardsTasks = () => {
@@ -361,6 +299,7 @@ export function AddRol() {
   return (
     <AddRolUI
       loading={loading}
+      linixRoles={linixRoles}
       steps={steps}
       addRoleFormValid={dataAddRoleLinixForm}
       currentStep={currentStep}

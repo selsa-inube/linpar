@@ -48,10 +48,12 @@ interface AddRolUIProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   handleAddRoleFormValid: (newValue: boolean) => void;
   loading: boolean;
+  linixRoles: Record<string, unknown>[];
 }
 
 export function AddRolUI(props: AddRolUIProps) {
   const {
+    linixRoles,
     loading,
     addRoleFormValid,
     currentStep,
@@ -88,8 +90,8 @@ export function AddRolUI(props: AddRolUIProps) {
     saveRole(addRoleFormValid);
 
     await saveRole(addRoleData)
-      .then((newK_Role) => {
-        renderMessage(newK_Role, "success");
+      .then(() => {
+        renderMessage(generalInformationValues.roleName, "success");
       })
       .catch((error) => {
         renderMessage("", "failed");
@@ -171,6 +173,7 @@ export function AddRolUI(props: AddRolUIProps) {
               {currentStep === stepsAddRol.generalInformation.id && (
                 <GeneralInformationForm
                   initialValues={generalInformationValues}
+                  linixRoles={linixRoles}
                   ref={formReferences.generalInformation}
                   handleAddRoleFormValid={handleAddRoleFormValid}
                   currentStep={currentStep}
