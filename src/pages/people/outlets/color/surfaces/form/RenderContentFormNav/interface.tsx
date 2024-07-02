@@ -1,3 +1,5 @@
+import { ThemeProvider } from "styled-components";
+
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
   Nav,
@@ -8,16 +10,18 @@ import {
   useMediaQueries,
 } from "@inube/design-system";
 import { inube as newInube } from "@inubekit/foundations";
-import { StyledContainerNav, StyledNav } from "./styles";
+
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
-import { ThemeProvider } from "styled-components";
+
 import {
   mockNav,
   surfaceFormsConfig,
 } from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+
+import { StyledContainerNav, StyledNav } from "./styles";
 
 interface ISurfaceCardConfig {
   title: string;

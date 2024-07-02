@@ -1,3 +1,5 @@
+import { ThemeProvider } from "styled-components";
+
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import {
   Grid,
@@ -10,7 +12,7 @@ import {
 import { inube as newInube } from "@inubekit/foundations";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
-import { ThemeProvider } from "styled-components";
+
 import { strokesFormsConfig } from "@pages/people/outlets/color/strokes/config/Strokes.config";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
