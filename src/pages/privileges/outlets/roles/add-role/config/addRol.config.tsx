@@ -99,7 +99,7 @@ export const finishAssistedRoleMessagesConfig = {
     icon: <Icon appearance="dark" icons={<MdErrorOutline />} size="18px" />,
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
-      `Hemos presentado un error creando el Rol, por favor contacte a soporte.`,
+      `Hemos presentado un error creando el Rol'${value}', por favor contacte a soporte.`,
     appearance: EAppearance.ERROR,
   },
 };

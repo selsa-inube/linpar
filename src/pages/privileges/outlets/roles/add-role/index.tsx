@@ -164,8 +164,8 @@ export function AddRol() {
     if (linixRoles.length === 0) {
       setLoading(true);
       try {
-        const newAplication = await getAplicationRoles();
-        setLinixRoles(newAplication);
+        const newUsers = await getAplicationRoles();
+        setLinixRoles(newUsers);
       } catch (error) {
         console.info(error);
       } finally {

@@ -102,7 +102,7 @@ export function AddRolUI(props: AddRolUIProps) {
   };
 
   const renderMessage = (
-    k_Role: string | "",
+    roleName: string | "",
     type: "success" | "failed" = "failed"
   ) => {
     let messageType;
@@ -117,7 +117,7 @@ export function AddRolUI(props: AddRolUIProps) {
         data: {
           icon: messageType?.icon,
           title: messageType?.title,
-          description: messageType.description(k_Role),
+          description: messageType.description(roleName),
           appearance: messageType?.appearance,
         },
       });

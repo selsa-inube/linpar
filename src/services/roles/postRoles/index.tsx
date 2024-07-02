@@ -30,14 +30,14 @@ const addRoles = async (roles: IRol): Promise<IRol | undefined> => {
     }
 
     if (!res.ok) {
-      const errorMessage = `Error al crear caso de uso linix. Status: ${
+      const errorMessage = `Error al crear el rol. Status: ${
         res.status
       }, Data: ${JSON.stringify(data)}`;
       throw new Error(errorMessage);
     }
     return data;
   } catch (error) {
-    console.error("Failed to add linix use case:", error);
+    console.error("Failed to add roles:", error);
     throw error;
   }
 };

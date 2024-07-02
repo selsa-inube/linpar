@@ -6,7 +6,7 @@ const mapRolesEntityToApi = (
   return {
     i_Activo: "Y",
     k_Aplica: String(roles.k_Aplica),
-    k_Rol: 4,
+    k_Rol: 10,
     k_Tipcon: "<string>",
     n_Rol: String(roles.n_Rol),
     n_Uso: String(roles.n_Uso),
