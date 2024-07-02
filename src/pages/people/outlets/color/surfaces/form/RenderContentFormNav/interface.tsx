@@ -1,4 +1,5 @@
-import { FormButtons } from "@components/forms/submit/FormButtons";
+import { ThemeProvider } from "styled-components";
+
 import {
   Nav,
   Stack,
@@ -7,16 +8,17 @@ import {
   Grid,
   useMediaQueries,
 } from "@inube/design-system";
-import { StyledContainerNav, StyledNav } from "./styles";
+import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
-import { ThemeProvider } from "styled-components";
 import {
   mockNav,
   surfaceFormsConfig,
 } from "@pages/people/outlets/color/surfaces/config/surface.config";
 import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+
+import { StyledContainerNav, StyledNav } from "./styles";
 
 interface ISurfaceCardConfig {
   title: string;
