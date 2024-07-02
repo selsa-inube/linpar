@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/privileges/outlets/roles/types";
+import { getRoles } from "@src/services/roles/getRoles";
 
 import { RolesUI } from "./interface";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
-import { useAuth0 } from "@auth0/auth0-react";
-import { getRoles } from "@src/services/roles/getRoles";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
