@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { RenderStrokesWithSpinnerFormUI } from "./interface";
+
 import { IPeopleMessage } from "@pages/people/outlets/types/people.types";
 import {
   strokesMessagesConfig,
@@ -10,6 +10,8 @@ import { tokenCalculator } from "@src/utils/tokenCalculator";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { StrokeAppearance } from "@pages/people/outlets/color/strokes/types";
 import { inube } from "@inube/design-system";
+
+import { RenderStrokesWithSpinnerFormUI } from "./interface";
 
 interface RenderStrokesWithSpinnerFormProps {
   formType: StrokeAppearance;

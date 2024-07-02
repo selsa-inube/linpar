@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { RenderContentFormSurfaceNavUI } from "./interface";
+
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
 import {
   surfaceFormsConfig,
@@ -10,6 +10,8 @@ import { SurfaceAppearance } from "@pages/people/outlets/color/surfaces/types";
 import { LoadingAppUI } from "@pages/login/outlets/LoadingApp/interface";
 import { inube } from "@inube/design-system";
 import { tokenCalculator } from "@src/utils/tokenCalculator";
+
+import { RenderContentFormSurfaceNavUI } from "./interface";
 
 interface RenderContentFormSurfaceNavProps {
   formType: SurfaceAppearance;
