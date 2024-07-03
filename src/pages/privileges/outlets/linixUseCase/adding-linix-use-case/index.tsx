@@ -111,7 +111,6 @@ function AddingLinixUseCase() {
       webReportsData(),
       clientServerReports(),
       clientServerMenuOption(),
-      clientServerButtonMenuOption(),
     ]).then(() => {
       setLoading(false);
     });
@@ -264,7 +263,9 @@ function AddingLinixUseCase() {
     if (csOptionsButtons.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getClientServerButtonDataFormats("CDDEFINCDT_0");
+        const newUsers = await getClientServerButtonDataFormats(
+          formData.generalInformation.values.k_Opcion
+        );
         setCsOptionsButtons(newUsers);
       } catch (error) {
         console.info(error);
@@ -273,6 +274,11 @@ function AddingLinixUseCase() {
       }
     }
   };
+
+  useEffect(() => {
+    clientServerButtonMenuOption();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.generalInformation.values.k_Opcion]);
 
   const handleUpdateFormData = (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(stepsAddingLinixUseCase).find(
@@ -367,9 +373,13 @@ function AddingLinixUseCase() {
     }
   };
 
-  const handlePrevStep = () => {
+  const handlePrevStep = (step?: number) => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+    }
+    if (isCurrentFormValid) {
+      const preveStep = typeof step === "number" ? step : currentStep - 1;
+      setCurrentStep(preveStep);
     }
   };
 

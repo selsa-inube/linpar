@@ -7,13 +7,13 @@ const getClientServerButtonDataFormats = async (
   const maxRetries = 5;
   const fetchTimeout = 3000;
 
-  const requestUrl = `${enviroment.ICLIENT_API_URL_SERVER_BUTTON}/campo-por-forma?k_Nforma=${id}`;
+  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY_PROCESS}/formas-y-reportes/${id}/campos`;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
       Realm: enviroment.REALM,
-      "X-Action": "SearchOpcionesCSPorCasosDeUsoFull",
+      "X-Action": "SearchAllBotonesPorFormaCs",
       "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
