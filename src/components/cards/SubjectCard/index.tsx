@@ -1,11 +1,9 @@
 import { useState } from "react";
-
-import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Icon } from "@inubekit/icon";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inube/design-system";
-
+import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { StyledSubjectCard } from "./styles";
 import { ILabel } from "./types";
 
@@ -36,7 +34,7 @@ function SubjectCard(props: SubjectCardProps) {
         <Stack
           justifyContent={smallScreen ? "center" : "flex-end"}
           gap={smallScreen ? "0px" : "8px"}
-          padding={smallScreen ? "0px" : "8px"}
+          padding={smallScreen ? "0px" : "4px 8px"}
         >
           {!smallScreen && (
             <Stack direction="column">

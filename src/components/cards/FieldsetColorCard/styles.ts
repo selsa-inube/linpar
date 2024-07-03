@@ -7,7 +7,7 @@ interface IStyledFieldsetColorCard {
 
 const StyledTokenColorCardContainer = styled.div<IStyledFieldsetColorCard>`
   width: 100%;
-  max-width: 64px;
+  max-width: 80px;
   & > div {
     width: 100%;
     height: 24px;

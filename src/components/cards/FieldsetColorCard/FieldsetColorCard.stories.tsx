@@ -1,10 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
-import { useState } from "react";
-import React from "react";
-
-import { StoryFn } from "@storybook/react";
+import React, { useState } from "react";
 import { inube } from "@inubekit/foundations";
-
+import { StoryFn } from "@storybook/react";
 import { Appearance } from "./types";
 import { FieldsetColorCard, FieldsetColorCardProps } from ".";
 
@@ -66,7 +63,7 @@ Default.args = {
   typeToken: "text",
   appearance: "primary",
   category: "hover",
-  optionsMenu: inube,
+  optionsMenu: inube.palette,
 };
 
 export default story;

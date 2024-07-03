@@ -4,7 +4,7 @@ import { inube } from "@inubekit/foundations";
 
 const StyledAppMenuCard = styled(Link)`
   box-sizing: border-box;
-  padding: 16px 12px;
+  padding: 16px;
   width: 191px;
   height: 140px;
   text-decoration: none;

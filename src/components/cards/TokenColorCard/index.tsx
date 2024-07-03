@@ -102,7 +102,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
     >
       <Stack
         gap="12px"
-        padding="8px 15px"
+        padding="8px 12px"
         alignContent="stretch"
         width={type === "colorPicker" ? "100%" : "auto"}
       >

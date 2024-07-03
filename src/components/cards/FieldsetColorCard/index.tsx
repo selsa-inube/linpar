@@ -1,10 +1,10 @@
 import tinycolor from "tinycolor2";
 import { useRef, useEffect } from "react";
 
-import { getTokenColor } from "@src/utils/getTokenColor";
 import { Stack } from "@inubekit/stack";
 import { inube } from "@inubekit/foundations";
 import { Text } from "@inubekit/text";
+import { getTokenColor } from "@utils/getTokenColor";
 import { Fieldset } from "@components/inputs/Fieldset";
 
 import { TokenColorCard } from "../TokenColorCard";
@@ -21,7 +21,7 @@ interface FieldsetColorCardProps {
   category: string;
   children?: React.ReactNode;
   typeToken?: string;
-  optionsMenu: typeof inube;
+  optionsMenu: typeof inube.palette;
   onChange: (tokenName: string) => void;
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
