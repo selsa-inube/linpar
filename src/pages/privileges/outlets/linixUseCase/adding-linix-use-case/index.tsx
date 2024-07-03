@@ -104,6 +104,20 @@ function AddingLinixUseCase() {
     setSelectOptions(webOptions.length === 0 && csOptions.length === 0);
   }, [webOptions, csOptions]);
 
+  useEffect(() => {
+    Promise.all([
+      webOptionsData(),
+      usersData(),
+      webReportsData(),
+      clientServerReports(),
+      clientServerMenuOption(),
+      clientServerButtonMenuOption(),
+    ]).then(() => {
+      setLoading(false);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const usersData = () => {
     if (!user) return;
     if (downloadableDocuments.length === 0) {
@@ -130,16 +144,13 @@ function AddingLinixUseCase() {
         })
         .catch((error) => {
           console.error("Error fetching:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
+
   const webOptionsData = () => {
     if (!user) return;
     if (webOptions.length === 0) {
-      setLoading(true);
       getWebOptionsFormats("1")
         .then((data) => {
           if (data !== null) {
@@ -160,12 +171,10 @@ function AddingLinixUseCase() {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
+
   const webReportsData = () => {
     if (!user) return;
     if (webReports.length === 0) {
@@ -190,9 +199,6 @@ function AddingLinixUseCase() {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
@@ -221,9 +227,6 @@ function AddingLinixUseCase() {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
@@ -252,9 +255,6 @@ function AddingLinixUseCase() {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
@@ -273,15 +273,6 @@ function AddingLinixUseCase() {
       }
     }
   };
-  useEffect(() => {
-    usersData();
-    webOptionsData();
-    webReportsData();
-    clientServerReports();
-    clientServerMenuOption();
-    clientServerButtonMenuOption();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
 
   const handleUpdateFormData = (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(stepsAddingLinixUseCase).find(
