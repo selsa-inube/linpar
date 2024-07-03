@@ -185,11 +185,11 @@ function RenderFormFields(
         labelModal="Digite la opción a buscar."
         placeholderModal="Digite el código o nombre del caso de uso."
         onUserSelect={(value: Record<string, unknown>) =>
-          handleChangeForm("k_Opcion", value.CODIGO_OPCION as string)
+          handleChangeForm("k_Opcion", value.k_Opcion as string)
         }
         userData={csOptions}
         searchFieldData={searchData}
-        idLabel="CODIGO_OPCION"
+        idLabel="k_Opcion"
         nameLabel="DESCRIPCION"
         onReset={() => {}}
         selectedId={formik.values.k_Opcion}

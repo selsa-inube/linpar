@@ -105,6 +105,11 @@ function AddingLinixUseCase() {
   }, [webOptions, csOptions]);
 
   useEffect(() => {
+    clientServerButtonMenuOption();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.generalInformation.values.k_Opcion]);
+
+  useEffect(() => {
     Promise.all([
       webOptionsData(),
       usersData(),
@@ -274,11 +279,6 @@ function AddingLinixUseCase() {
       }
     }
   };
-
-  useEffect(() => {
-    clientServerButtonMenuOption();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formData.generalInformation.values.k_Opcion]);
 
   const handleUpdateFormData = (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(stepsAddingLinixUseCase).find(
