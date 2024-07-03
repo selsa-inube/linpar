@@ -25,7 +25,7 @@ const StyledAppMenuCard = styled(Link)`
     display: flex;
     width: 100%;
     height: 72px;
-    padding: 12px 8px;
+    padding: 16px 8px;
     & div:first-child {
       flex-direction: row;
       gap: 8px;
