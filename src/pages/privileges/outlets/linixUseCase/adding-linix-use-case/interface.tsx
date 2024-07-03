@@ -195,14 +195,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     }
   };
 
-  console.log(formData.generalInformation.values.k_Opcion, "k_Opcion");
-  console.log(
-    csOptionsButtons.some(
-      (buttonOptions) => buttonOptions.OPCION_CLIENTE_SERVIDOR
-    ),
-    "botton"
-  );
-
   return (
     <>
       {loading ? (
