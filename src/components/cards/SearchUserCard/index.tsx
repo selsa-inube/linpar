@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { MdSearch } from "react-icons/md";
-import { Textfield, useMediaQuery } from "@inube/design-system";
-
+import { Textfield } from "@inubekit/textfield";
+import { useMediaQuery } from "@inubekit/hooks";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
-
 import { ILabel } from "./types";
 import { StyledSearchUserCard } from "./styles";
+
 interface SearchUserCardProps {
   id: string;
   label: string;
@@ -53,7 +53,6 @@ function SearchUserCard(props: SearchUserCardProps) {
     selectedId,
     onReset,
     message,
-    status,
     onBlur,
   } = props;
   const [showModal, setShowModal] = useState(false);
@@ -118,10 +117,8 @@ function SearchUserCard(props: SearchUserCardProps) {
           iconAfter={<MdSearch />}
           size="compact"
           fullwidth={true}
-          readOnly
           value={selectedUsername}
           message={message}
-          status={status}
           onBlur={onBlur}
         />
       </StyledSearchUserCard>
