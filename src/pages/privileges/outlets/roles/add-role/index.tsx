@@ -159,20 +159,23 @@ export function AddRol() {
     }
   };
 
-  const aplication = async () => {
+  const aplication = () => {
     if (!user) return;
     if (linixRoles.length === 0) {
       setLoading(true);
-      try {
-        const newUsers = await getAplicationRoles();
-        setLinixRoles(newUsers);
-      } catch (error) {
-        console.info(error);
-      } finally {
-        setLoading(false);
-      }
+      getAplicationRoles()
+        .then((newUsers) => {
+          setLinixRoles(newUsers);
+        })
+        .catch((error) => {
+          console.info(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
+
   const crediboardsTasks = () => {
     if (!user) return;
     if (crediboardTasks.length === 0) {

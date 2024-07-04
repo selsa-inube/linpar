@@ -88,8 +88,6 @@ export function AddRolUI(props: AddRolUIProps) {
     finishAssistedRoleModalConfig;
 
   const handleAddRole = async (addRoleData: IFormAddRole) => {
-    saveRole(addRoleFormValid);
-
     await saveRole(addRoleData)
       .then(() => {
         renderMessage(generalInformationValues.roleName, "success");
