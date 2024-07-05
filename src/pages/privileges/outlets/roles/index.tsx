@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { IRol } from "@pages/privileges/outlets/roles/types";
+import { IDeleteForMessage, IRol } from "@pages/privileges/outlets/roles/types";
 import { getRoles } from "@src/services/roles/getRoles";
 
 import { RolesUI } from "./interface";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
+import { IMessage } from "@src/types/messages.types";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
@@ -16,7 +17,11 @@ export function Roles() {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [idDeleted, setIdDeleted] = useState(0);
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: 0,
+    successfulDiscard: false,
+  });
+
   const { user } = useAuth0();
 
   const linixRolesData = async () => {
@@ -39,16 +44,34 @@ export function Roles() {
   }, [user]);
 
   useEffect(() => {
-    const filterRecordRemoved = linixRoles.filter(
-      (linixRol) => linixRol.k_Rol !== idDeleted
+    const messageType = idDeleted.successfulDiscard
+      ? generalMessage.success
+      : generalMessage.failed;
+
+    const filterDiscardPublication = linixRoles.filter(
+      (roles) => roles.id !== idDeleted.id
     );
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: generalMessage.success,
-      });
+
+    idDeleted.successfulDiscard && setLinixRoles(filterDiscardPublication);
+
+    setMessage({
+      visible: true,
+      data: messageType as IMessage,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idDeleted]);
+  }, [idDeleted.successfulDiscard]);
+
+  // useEffect(() => {
+  //   const filterRecordRemoved = linixRoles.filter(
+  //     (linixRol) => linixRol.k_Rol !== idDeleted
+  //   );
+  //   filterRecordRemoved &&
+  //     setMessage({
+  //       visible: true,
+  //       data: generalMessage.success,
+  //     });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [idDeleted]);
 
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRole(e.target.value);
@@ -77,7 +100,7 @@ export function Roles() {
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
-      idDeleted={idDeleted}
+      idDeleted={idDeleted.id}
       searchRole={searchRole}
       setIdDeleted={setIdDeleted}
       showMenu={showMenu}
