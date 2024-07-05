@@ -12,6 +12,7 @@ import { RenderMessage } from "@components/feedback/RenderMessage";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import {
   CrateLinixUseCaseConfig,
@@ -56,6 +57,7 @@ function finishModal(
 
 const renderStepContent = (
   currentStep: number,
+  selectLinixUseCase: Option[],
   formReferences: IFormAddLinixUseCaseRef,
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>,
   csOptions: Record<string, unknown>[],
@@ -73,6 +75,7 @@ const renderStepContent = (
           initialValues={formData.generalInformation.values}
           handleSubmit={handleUpdateFormData}
           csOptions={csOptions}
+          selectLinixUseCase={selectLinixUseCase}
           webOptions={webOptions}
           ref={formReferences.generalInformation}
           onFormValid={setIsCurrentFormValid}
@@ -129,6 +132,7 @@ const renderStepContent = (
 };
 
 interface AddingLinixUseCaseUIProps {
+  selectLinixUseCase: Option[];
   csOptionsButtons: Record<string, unknown>[];
   message: IMessageState;
   loading: boolean;
@@ -154,6 +158,7 @@ interface AddingLinixUseCaseUIProps {
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
+    selectLinixUseCase,
     csOptionsButtons,
     message,
     onCloseSectionMessage,
@@ -256,6 +261,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               </StyledAssistedContainer>
               {renderStepContent(
                 currentStep,
+                selectLinixUseCase,
                 formReferences,
                 setIsCurrentFormValid,
                 csOptions,

@@ -1,23 +1,34 @@
-interface Option {
+export interface Option {
   id: string;
   label: string;
-  disabled: boolean;
 }
 
 export const OptionSelect: Option[] = [
   {
     id: "I",
     label: "Insertar",
-    disabled: false,
   },
   {
-    id: "M",
-    label: "Modificar",
-    disabled: false,
+    id: "U",
+    label: "Actualizar",
   },
+  {
+    id: "D",
+    label: "Borrar",
+  },
+
   {
     id: "E",
-    label: "Eliminar",
-    disabled: false,
+    label: "Ejecutar",
+  },
+
+  {
+    id: "O",
+    label: "Otros",
+  },
+
+  {
+    id: "Q",
+    label: "Consultar",
   },
 ];

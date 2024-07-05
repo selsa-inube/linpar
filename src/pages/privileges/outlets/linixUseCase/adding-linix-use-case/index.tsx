@@ -13,6 +13,7 @@ import { getWebReportsFormats } from "@services/linixUseCase/reportsWeb";
 import { getReportsClientServerFormats } from "@services/linixUseCase/reportsClientServer";
 import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientServerMenuOption";
 import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
+import { Option } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
@@ -26,6 +27,7 @@ import {
 } from "./types";
 import { addLinixUseCaseStepsRules, saveLinixUseCase } from "./utils";
 import { generalMessage } from "./config/messages.config";
+import { getSelectLinixUseCase } from "@src/services/linixUseCase/selectLinixUseCase";
 
 export function dataToAssignmentFormEntry(
   props: DataToAssignmentFormEntryProps
@@ -95,6 +97,7 @@ function AddingLinixUseCase() {
   const [csOptions, setCsOptions] = useState<Record<string, unknown>[]>([]);
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
   const [webReports, setWebReports] = useState<Record<string, unknown>[]>([]);
+  const [selectLinixUseCase, setSelectLinixUseCase] = useState<Option[]>([]);
   const [downloadableDocuments, setDownloadableDocuments] = useState<
     Record<string, unknown>[]
   >([]);
@@ -116,6 +119,7 @@ function AddingLinixUseCase() {
       webReportsData(),
       clientServerReports(),
       clientServerMenuOption(),
+      clientSelectLinixUseCase(),
     ]).then(() => {
       setLoading(false);
     });
@@ -272,6 +276,21 @@ function AddingLinixUseCase() {
           formData.generalInformation.values.k_Opcion
         );
         setCsOptionsButtons(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  const clientSelectLinixUseCase = async () => {
+    if (!user) return;
+    if (selectLinixUseCase.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getSelectLinixUseCase();
+        setSelectLinixUseCase(newUsers);
       } catch (error) {
         console.info(error);
       } finally {
@@ -438,6 +457,7 @@ function AddingLinixUseCase() {
       handleFinishForm={handleFinishForm}
       setCurrentStep={setCurrentStep}
       csOptionsButtons={csOptionsButtons}
+      selectLinixUseCase={selectLinixUseCase}
     />
   );
 }
