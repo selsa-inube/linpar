@@ -25,7 +25,7 @@ interface ITabs {
 }
 
 interface IEditRoleUIProps {
-  roleCardData: { username: string; code: string };
+  roleCardData: { username: string; code: number };
   data: any;
   dataTabs: ITabs[];
   onTabChange: (tabId: string) => void;
@@ -98,6 +98,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               initialValues={data}
               rol_id={rol_id}
               withSubmitButtons
+              linixRoles={data}
             />
           )}
 

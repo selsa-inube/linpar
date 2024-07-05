@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 
-import { getAll } from "@mocks/utils/dataMock.service";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 
 import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
@@ -11,6 +10,12 @@ import { IGeneralInformationForm } from "../components/GeneralInformationForm";
 import { IAncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
+import { getRolFormats } from "@src/services/roles/ tipoDeMovimientoPorRol";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getBusinessRulesByRoleFormats } from "@src/services/roles/businessRulesByRole";
+import { getCreditboardTasksByRole } from "@src/services/roles/creditboardTasksByRole";
+import { getUseCaseByRole } from "@src/services/roles/useCasesByRole";
+import { getAplicationRoles } from "@src/services/roles/aplicationRoles";
 
 const steps = Object.values(stepsAddRol);
 
@@ -24,6 +29,22 @@ export function AddRol() {
   const handleAddRoleFormValid = (isValid: boolean) => {
     setIsAddRoleFormValid(isValid);
   };
+  const [loading, setLoading] = useState(false);
+  const [transactionTypes, setTypesOfmovement] = useState<
+    Record<string, unknown>[]
+  >([]);
+  const [businessRules, setBusinessRules] = useState<Record<string, unknown>[]>(
+    []
+  );
+
+  const [crediboardTasks, setCrediboardTask] = useState<
+    Record<string, unknown>[]
+  >([]);
+
+  const [useCases, setUseCases] = useState<Record<string, unknown>[]>([]);
+  const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
+
+  const { user } = useAuth0();
 
   const [dataAddRoleLinixForm, setDataAddRoleLinixForm] =
     useState<IFormAddRole>({
@@ -67,56 +88,153 @@ export function AddRol() {
 
   useEffect(() => {
     Promise.all([
-      getAll("documents"),
-      getAll("linix-roles"),
-      getAll("web-options"),
-      getAll("linix-use-cases"),
-    ]).then(
-      ([
-        documentsFetch,
-        linixRolesFetch,
-        webOptionsFetch,
-        linixUseCasesFetch,
-      ]) => {
-        setDataAddRoleLinixForm((prevFormData) => ({
-          ...prevFormData,
-          transactionTypes: {
-            values: dataToAssignmentFormEntry({
-              dataOptions: documentsFetch as Record<string, unknown>[],
-              idLabel: "CODIGO",
-              valueLabel: "NOMBRE",
-              isActiveLabel: "asignado",
-            }),
-          },
-          businessRules: {
-            values: dataToAssignmentFormEntry({
-              dataOptions: linixRolesFetch as Record<string, unknown>[],
-              idLabel: "k_Rol",
-              valueLabel: "n_Rol",
-              isActiveLabel: "asignado",
-            }),
-          },
-          crediboardTasks: {
-            values: dataToAssignmentFormEntry({
-              dataOptions: webOptionsFetch as Record<string, unknown>[],
-              idLabel: "K_opcion",
-              valueLabel: "Nombre_opcion",
-              isActiveLabel: "asignado",
-            }),
-          },
-          useCases: {
-            values: dataToAssignmentFormEntry({
-              dataOptions: linixUseCasesFetch as Record<string, unknown>[],
-              idLabel: "k_Usecase",
-              valueLabel: "n_Usecase",
-              isActiveLabel: "id",
-            }),
-          },
-        }));
-      }
-    );
+      typesOfMovements(),
+      businessRulesFull(),
+      crediboardsTasks(),
+      rolesuseCases(),
+      aplication(),
+    ]).then(() => {
+      setLoading(false);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const typesOfMovements = () => {
+    if (!user) return;
+    if (transactionTypes.length === 0) {
+      getRolFormats("1")
+        .then((data) => {
+          if (data !== null) {
+            setTypesOfmovement(data as Record<string, unknown>[]);
+            setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
+              ...prevFormData,
+              transactionTypes: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "CODIGO",
+                  valueLabel: "NOMBRE",
+                  isActiveLabel: "asignado",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const businessRulesFull = () => {
+    if (!user) return;
+    if (businessRules.length === 0) {
+      getBusinessRulesByRoleFormats("1")
+        .then((data) => {
+          if (data !== null) {
+            setBusinessRules(data as Record<string, unknown>[]);
+            setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
+              ...prevFormData,
+              businessRules: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Regla",
+                  valueLabel: "n_Regla",
+                  isActiveLabel: "asignado",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const aplication = () => {
+    if (!user) return;
+    if (linixRoles.length === 0) {
+      setLoading(true);
+      getAplicationRoles()
+        .then((newUsers) => {
+          setLinixRoles(newUsers);
+        })
+        .catch((error) => {
+          console.info(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const crediboardsTasks = () => {
+    if (!user) return;
+    if (crediboardTasks.length === 0) {
+      getCreditboardTasksByRole("1")
+        .then((data) => {
+          if (data !== null) {
+            setCrediboardTask(data as Record<string, unknown>[]);
+            setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
+              ...prevFormData,
+              crediboardTasks: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "id",
+                  valueLabel: "value",
+                  isActiveLabel: "isActive",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const rolesuseCases = () => {
+    if (!user) return;
+    if (useCases.length === 0) {
+      getUseCaseByRole("1")
+        .then((data) => {
+          if (data !== null) {
+            setUseCases(data as Record<string, unknown>[]);
+            setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
+              ...prevFormData,
+              useCases: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Usecase",
+                  valueLabel: "n_Usecase",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationForm>>(null);
   const ancillaryAccountsRef =
@@ -183,6 +301,8 @@ export function AddRol() {
 
   return (
     <AddRolUI
+      loading={loading}
+      linixRoles={linixRoles}
       steps={steps}
       addRoleFormValid={dataAddRoleLinixForm}
       currentStep={currentStep}

@@ -10,7 +10,7 @@ import {
 import { ActivateRoleUI } from "./interface";
 
 export interface IDataActivateOption {
-  id: string;
+  id: number;
   active: boolean;
   name: string;
 }

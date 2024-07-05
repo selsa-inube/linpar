@@ -10,7 +10,7 @@ interface ICasosDeUsoPorRol {
 interface ICuentasAuxiliaresPorRol {
   i_Tipent: string;
   k_Codcta: string;
-  k_Rol: number | string;
+  k_Rol: number;
 }
 
 interface IReglasDeNegocioPorRol {
@@ -31,14 +31,15 @@ interface ITiposDeMovimientoContablePorRol {
 }
 
 export interface IRol {
+  id?: number;
   i_Activo: "Y" | "N";
-  k_Rol: string;
+  k_Rol: number;
   k_Tipcon: string;
   n_Rol: string;
   n_Uso: string;
   k_Aplica: string;
   casosDeUsoPorRol?: ICasosDeUsoPorRol[];
-  cuentasAuxiliaresPorRol: ICuentasAuxiliaresPorRol[];
+  cuentasAuxiliaresPorRol?: ICuentasAuxiliaresPorRol[];
   reglasDeNegocioPorRol?: IReglasDeNegocioPorRol[];
   tareasCrediboardPorRol?: ITareasCrediboardPorRol[];
   tiposDeMovimientoContablePorRol?: ITiposDeMovimientoContablePorRol[];
