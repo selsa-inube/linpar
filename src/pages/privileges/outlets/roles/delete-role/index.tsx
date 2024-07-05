@@ -45,17 +45,6 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
     setShowModal(false);
   };
 
-  // const handleOnclick = async () => {
-  //   await handleDeleteRol({
-  //     key: "k_Rol",
-  //     nameDB: "linix-roles",
-  //     identifier: rol,
-  //   });
-  //   setShowModal(false);
-  //   setLoading(true);
-  //   setIdDeleted(rol);
-  // };
-
   return (
     <DeleteRoleUI
       deleteRolModal={deleteRolModal}

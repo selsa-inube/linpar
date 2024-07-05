@@ -61,18 +61,6 @@ export function Roles() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idDeleted.successfulDiscard]);
 
-  // useEffect(() => {
-  //   const filterRecordRemoved = linixRoles.filter(
-  //     (linixRol) => linixRol.k_Rol !== idDeleted
-  //   );
-  //   filterRecordRemoved &&
-  //     setMessage({
-  //       visible: true,
-  //       data: generalMessage.success,
-  //     });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [idDeleted]);
-
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRole(e.target.value);
   };
