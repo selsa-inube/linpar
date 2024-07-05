@@ -35,9 +35,9 @@ interface IRolesProps {
   message: IMessageState;
   linixRoles: IRol[];
   loading: boolean;
-  idDeleted: string;
+  idDeleted: number;
   searchRole: string;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: number) => void;
   showMenu: boolean;
 }
 
@@ -136,7 +136,7 @@ export function RolesUI(props: IRolesProps) {
               filter={searchRole}
             />
           )}
-          {idDeleted && message.visible && (
+          {idDeleted !== 0 && message.visible && (
             <RenderMessage
               message={message}
               handleCloseMessage={handleCloseSectionMessage}

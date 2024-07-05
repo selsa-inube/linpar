@@ -7,10 +7,10 @@ import { DeleteRoleUI } from "./interface";
 
 interface IDeleteRoleProps {
   deleteRolModal: typeof deleteRolModal;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: number) => void;
   handleDeleteRol: (props: functionById) => Promise<unknown>;
   nameRol: string;
-  rol: string;
+  rol: number;
 }
 
 export const DeleteRole = (props: IDeleteRoleProps) => {

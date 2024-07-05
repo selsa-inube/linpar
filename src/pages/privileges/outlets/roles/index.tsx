@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import { getAll } from "@src/mocks/utils/dataMock.service";
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/privileges/outlets/roles/types";
+import { getRoles } from "@src/services/roles/getRoles";
 
 import { RolesUI } from "./interface";
 import { IMessageState } from "../users/types/forms.types";
@@ -15,22 +16,27 @@ export function Roles() {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState(0);
+  const { user } = useAuth0();
 
-  useEffect(() => {
-    getAll("linix-roles")
-      .then((data) => {
-        if (data !== null) {
-          setLinixRoles(data as IRol[]);
-        }
-      })
-      .catch((error) => {
-        console.error(error.message);
-      })
-      .finally(() => {
+  const linixRolesData = async () => {
+    if (!user) return;
+    if (linixRoles.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getRoles();
+        setLinixRoles(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [linixRoles]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixRolesData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   useEffect(() => {
     const filterRecordRemoved = linixRoles.filter(

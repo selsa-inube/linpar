@@ -95,14 +95,14 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             onUserSelect={(value) => {
               formik.setValues({
                 ...formik.values,
-                applicationId: value.k_Usecase,
-                application: value.n_Usecase,
+                applicationId: value.k_Aplica,
+                application: value.n_Aplica,
               });
             }}
             userData={linixRoles}
             searchFieldData={searchData}
-            idLabel="k_Usecase"
-            nameLabel="n_Usecase"
+            idLabel="k_Aplica"
+            nameLabel="n_Aplica"
             selectedId={formik.values.applicationId}
             onReset={() => {}}
             required
