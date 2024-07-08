@@ -4,10 +4,12 @@ import { functionById } from "@src/mocks/utils/dataMock.service";
 
 import { deleteLinixUseCaseModal } from "./config/deleteLinixUseCase.config";
 import { DeleteLinixUseCaseUI } from "./interface";
+import { deleteUseCase } from "./utils";
+import { IDeleteForMessage } from "../types";
 
 interface IDeleteLinixUseCaseProps {
   deleteLinixUseCaseModal: typeof deleteLinixUseCaseModal;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: IDeleteForMessage) => void;
   handleDeleteLinixUseCase: (props: functionById) => Promise<unknown>;
   nameLinixuseCase: string;
   linixUseCase: string;
@@ -16,7 +18,6 @@ interface IDeleteLinixUseCaseProps {
 export const DeleteLinixUseCase = (props: IDeleteLinixUseCaseProps) => {
   const {
     deleteLinixUseCaseModal,
-    handleDeleteLinixUseCase,
     nameLinixuseCase,
     linixUseCase,
     setIdDeleted,
@@ -26,27 +27,38 @@ export const DeleteLinixUseCase = (props: IDeleteLinixUseCaseProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleOnclick = async () => {
-    await handleDeleteLinixUseCase({
-      key: "k_Usecase",
-      nameDB: "linix-use-cases",
-      identifier: linixUseCase,
-    });
-    setShowModal(false);
+  const handleLinixUseCase = () => {
     setLoading(true);
-    setIdDeleted(linixUseCase);
+    const data = deleteUseCase(linixUseCase, nameLinixuseCase);
+    data
+      .then(() => {
+        setIdDeleted({
+          id: linixUseCase,
+          successfulDiscard: true,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setIdDeleted({
+          id: linixUseCase,
+          successfulDiscard: false,
+        });
+      });
+
+    setLoading(false);
+    setShowModal(false);
   };
 
   return (
     <DeleteLinixUseCaseUI
       deleteLinixUseCaseModal={deleteLinixUseCaseModal}
-      handleDeleteLinixUseCase={handleOnclick}
+      handleDeleteLinixUseCase={handleLinixUseCase}
       hover={isHovered}
       loading={loading}
-      nameLinixuseCase={nameLinixuseCase}
       setHover={setIsHovered}
       setShowModal={setShowModal}
       showModal={showModal}
+      linixUseCase={linixUseCase}
     />
   );
 };
