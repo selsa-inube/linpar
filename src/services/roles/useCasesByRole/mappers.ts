@@ -1,19 +1,19 @@
 const mapUseCasesByRoleByRoleFormatsApiToEntity = (
-  reportsClientServerFormat: Record<string, string | number | object>
+  rolesUseCaseByRolesFormat: Record<string, string | number | object>
 ): Record<string, unknown> => {
-  const buildreportsClientServerFormat: Record<string, unknown> = {
-    k_Rol: String(reportsClientServerFormat.k_Rol),
-    k_Usecase: String(reportsClientServerFormat.k_Usecase),
-    n_Usecase: String(reportsClientServerFormat.n_Usecase),
-    i_Privi: Boolean(reportsClientServerFormat.i_Privi),
+  const buildRolesUseCaseByRolesFormat: Record<string, unknown> = {
+    k_Rol: String(rolesUseCaseByRolesFormat.k_Rol),
+    k_Usecase: String(rolesUseCaseByRolesFormat.k_Usecase),
+    n_Usecase: String(rolesUseCaseByRolesFormat.n_Usecase),
+    i_Privi: Boolean(rolesUseCaseByRolesFormat.i_Privi),
   };
-  return buildreportsClientServerFormat;
+  return buildRolesUseCaseByRolesFormat;
 };
 
 const mapUseCasesByRoleByRoleFormatsApiToEntities = (
-  reportsClientServerFormat: Record<string, string | number | object>[]
+  rolesUseCaseByRolesFormat: Record<string, string | number | object>[]
 ): Record<string, unknown>[] => {
-  return reportsClientServerFormat.map(
+  return rolesUseCaseByRolesFormat.map(
     mapUseCasesByRoleByRoleFormatsApiToEntity
   );
 };
