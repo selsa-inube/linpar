@@ -87,7 +87,7 @@ function LinixUseCase() {
 
   const selectedData: SelectedDataFunction = (k_Usecase: string) =>
     linixUseCases.find((linixUseCase) => linixUseCase.k_Usecase === k_Usecase)!;
-  console.log(idDeleted, "deleted");
+
   return (
     <LinixUseCaseUI
       message={message}
