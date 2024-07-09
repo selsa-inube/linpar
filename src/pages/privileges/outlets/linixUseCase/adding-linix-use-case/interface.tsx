@@ -11,7 +11,8 @@ import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { buttonOptionsMock } from "@mocks/privileges/button/buttonOptionsMock.mock";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import {
   CrateLinixUseCaseConfig,
@@ -32,7 +33,6 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { VerificationAddLinixUseCase } from "../components/VerificationForm";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -57,6 +57,7 @@ function finishModal(
 
 const renderStepContent = (
   currentStep: number,
+  selectLinixUseCase: Option[],
   formReferences: IFormAddLinixUseCaseRef,
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>,
   csOptions: Record<string, unknown>[],
@@ -74,6 +75,7 @@ const renderStepContent = (
           initialValues={formData.generalInformation.values}
           handleSubmit={handleUpdateFormData}
           csOptions={csOptions}
+          selectLinixUseCase={selectLinixUseCase}
           webOptions={webOptions}
           ref={formReferences.generalInformation}
           onFormValid={setIsCurrentFormValid}
@@ -81,6 +83,7 @@ const renderStepContent = (
       )}
       {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
         <ClientServerButtonSelection
+          id={formData.generalInformation.values.k_Opcion}
           csSelected={formData.generalInformation.values.k_Opcion}
           handleSubmit={handleUpdateFormData}
           initialValues={formData.clientServerButton.values}
@@ -129,8 +132,11 @@ const renderStepContent = (
 };
 
 interface AddingLinixUseCaseUIProps {
+  selectLinixUseCase: Option[];
+  csOptionsButtons: Record<string, unknown>[];
   message: IMessageState;
   loading: boolean;
+  loadingButton: boolean;
   onCloseSectionMessage: () => void;
   handleFinishForm: () => void;
   handleNextStep: (step: number) => void;
@@ -152,12 +158,16 @@ interface AddingLinixUseCaseUIProps {
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
+    selectLinixUseCase,
+    csOptionsButtons,
     message,
     onCloseSectionMessage,
     loading,
+    loadingButton,
     handleFinishForm,
     currentStep,
     handleToggleModal,
+    handlePrevStep,
     showModal,
     handleNextStep,
     formData,
@@ -173,7 +183,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const optionValidations = () => {
-    const validate = buttonOptionsMock.filter(
+    const validate = csOptionsButtons.filter(
       (buttonOptions) =>
         buttonOptions.OPCION_CLIENTE_SERVIDOR ===
         formData.generalInformation.values.k_Opcion
@@ -189,6 +199,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
       handleNextStep(currentStep + 1);
     }
   };
+
   return (
     <>
       {loading ? (
@@ -221,14 +232,14 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                       Object.values(stepsAddingLinixUseCase).length
                         ? currentStep - 1
                         : currentStep === 3 &&
-                          !buttonOptionsMock.some(
+                          !csOptionsButtons.some(
                             (buttonOptions) =>
                               buttonOptions.OPCION_CLIENTE_SERVIDOR ===
                               formData.generalInformation.values.k_Opcion
                           )
                         ? 1
                         : currentStep - 1;
-                    handleNextStep(prevStep);
+                    handlePrevStep(prevStep);
                   }}
                   handleNext={() => {
                     const nextStep =
@@ -236,7 +247,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                       Object.values(stepsAddingLinixUseCase).length
                         ? (handleToggleModal(), currentStep)
                         : currentStep === 1 &&
-                          !buttonOptionsMock.some(
+                          !csOptionsButtons.some(
                             (buttonOptions) =>
                               buttonOptions.OPCION_CLIENTE_SERVIDOR ===
                               formData.generalInformation.values.k_Opcion
@@ -250,6 +261,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
               </StyledAssistedContainer>
               {renderStepContent(
                 currentStep,
+                selectLinixUseCase,
                 formReferences,
                 setIsCurrentFormValid,
                 csOptions,
@@ -269,14 +281,14 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                     Object.values(stepsAddingLinixUseCase).length
                       ? currentStep - 1
                       : currentStep === 3 &&
-                        !buttonOptionsMock.some(
+                        !csOptionsButtons.some(
                           (buttonOptions) =>
                             buttonOptions.OPCION_CLIENTE_SERVIDOR ===
                             formData.generalInformation.values.k_Opcion
                         )
                       ? 1
                       : currentStep - 1;
-                  handleNextStep(prevStep);
+                  handlePrevStep(prevStep);
                 }}
                 type="button"
                 disabled={currentStep === 1}
@@ -316,7 +328,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </Stack>
 
           {showModal &&
-            finishModal(handleToggleModal, loading, handleFinishForm)}
+            finishModal(handleToggleModal, loadingButton, handleFinishForm)}
         </Stack>
       )}
     </>

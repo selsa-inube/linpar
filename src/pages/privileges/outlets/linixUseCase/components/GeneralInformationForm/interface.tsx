@@ -15,14 +15,15 @@ import { Text } from "@inubekit/text";
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { OptionSelect } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { StyledSelectContainer } from "./styles";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
+  selectLinixUseCase: Option[];
   loading: boolean;
   withSubmitButtons?: boolean;
   message: IMessageState;
@@ -44,6 +45,7 @@ const searchData = {
 
 function RenderFormFields(
   formik: FormikValues,
+  selectLinixUseCase: Option[],
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (name: string, value: string) => void,
@@ -109,7 +111,7 @@ function RenderFormFields(
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeForm("i_Tipusec", value.target.outerText)
             }
-            options={OptionSelect}
+            options={selectLinixUseCase}
           />
         </StyledSelectContainer>
       </Stack>
@@ -172,6 +174,7 @@ function RenderFormFields(
           selectedId={formik.values.k_Funcio}
         />
       </Stack>
+
       <SearchUserCard
         id="csSearch"
         label="Opción de menú cliente servidor Linix"
@@ -183,12 +186,12 @@ function RenderFormFields(
         nameModal="searchField"
         labelModal="Digite la opción a buscar."
         placeholderModal="Digite el código o nombre del caso de uso."
-        onUserSelect={(option: Record<string, unknown>) =>
-          handleChangeForm("k_Opcion", option.CODIGO_OPCION as string)
+        onUserSelect={(value: Record<string, unknown>) =>
+          handleChangeForm("k_Opcion", value.k_Opcion as string)
         }
         userData={csOptions}
         searchFieldData={searchData}
-        idLabel="CODIGO_OPCION"
+        idLabel="k_Opcion"
         nameLabel="DESCRIPCION"
         onReset={() => {}}
         selectedId={formik.values.k_Opcion}
@@ -199,6 +202,7 @@ function RenderFormFields(
 
 function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
+    selectLinixUseCase,
     formik,
     loading,
     withSubmitButtons,
@@ -225,6 +229,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         >
           {RenderFormFields(
             formik,
+            selectLinixUseCase,
             loading,
             formInvalid,
             handleChangeForm,
@@ -247,6 +252,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     <>
       {RenderFormFields(
         formik,
+        selectLinixUseCase,
         loading,
         formInvalid,
         handleChangeForm,

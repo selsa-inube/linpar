@@ -9,6 +9,7 @@ import {
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { validationMessages } from "@src/validations/validationMessages";
 import { functionById } from "@mocks/utils/dataMock.service";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { GeneralInformationFormUI } from "./interface";
 import { generalMessage } from "../../adding-linix-use-case/config/messages.config";
@@ -42,6 +43,7 @@ interface GeneralInformationFormProps {
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
   updateItemData?: (props: functionById) => Promise<unknown>;
+  selectLinixUseCase: Option[];
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -63,6 +65,7 @@ export const GeneralInformationForm = forwardRef(
       handleSubmit,
       onFormValid,
       readOnly,
+      selectLinixUseCase,
       updateItemData,
       csOptions,
       webOptions,
@@ -179,6 +182,7 @@ export const GeneralInformationForm = forwardRef(
         readOnly={readOnly}
         csOptions={csOptions}
         webOptions={webOptions}
+        selectLinixUseCase={selectLinixUseCase}
       />
     );
   }
