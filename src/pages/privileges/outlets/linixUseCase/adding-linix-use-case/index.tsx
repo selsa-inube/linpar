@@ -13,7 +13,7 @@ import { getWebReportsFormats } from "@services/linixUseCase/reportsWeb";
 import { getReportsClientServerFormats } from "@services/linixUseCase/reportsClientServer";
 import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientServerMenuOption";
 import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
-import { Option } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";

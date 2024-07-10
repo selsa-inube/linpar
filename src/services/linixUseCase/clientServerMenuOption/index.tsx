@@ -38,7 +38,9 @@ const getClientServerMenuOptionFormats = async (
       }
 
       if (!res.ok) {
-        throw new Error(`Error al obtener los casos de uso: ${res.status}`);
+        throw new Error(
+          `Error al obtener los clientes servidor : ${res.status}`
+        );
       }
 
       const data = await res.json();
@@ -51,7 +53,7 @@ const getClientServerMenuOptionFormats = async (
       clearTimeout(timeoutId);
       if (attempt === maxRetries) {
         throw new Error(
-          `Todos los intentos fallaron. No se pudieron obtener los créditos del usuario. Último error: ${error.message}`
+          `Todos los intentos fallaron. No se pudieron obtener los clientes servidor: ${error.message}`
         );
       }
     }

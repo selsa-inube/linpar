@@ -1,3 +1,8 @@
+export interface IDeleteForMessage {
+  id: string;
+  successfulDiscard: boolean;
+}
+
 interface OpcionesCsPorCasoDeUso {
   k_Opcion: string;
 }
