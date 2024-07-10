@@ -61,13 +61,6 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  const filteredButtonOptions = buttonOptions.filter(
-    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === id
-  );
-
-  console.log("filteredButtonOptions", buttonOptions);
-  console.log("id", id);
-
   const onSubmit = () => {
     setLoading(true);
     setTimeout(() => {
