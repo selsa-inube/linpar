@@ -33,6 +33,9 @@ interface UseCase {
   k_Usecase: string;
   n_Descrip: string;
   n_Usecase: string;
+  k_Funcio?: string;
+  k_Opcion?: string;
+  k_option_button?: string;
   opcionesCsPorCasoDeUso?: OpcionesCsPorCasoDeUso[];
   opcionesPortalWebPorCasoDeUso?: OpcionesPortalWebPorCasoDeUso[];
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];

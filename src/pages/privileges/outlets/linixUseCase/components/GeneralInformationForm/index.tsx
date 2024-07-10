@@ -13,8 +13,10 @@ import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-
 
 import { GeneralInformationFormUI } from "./interface";
 import { generalMessage } from "../../adding-linix-use-case/config/messages.config";
+import { editLinixUseCases } from "./utils";
+import { UseCase } from "../../types";
 
-const LOADING_TIMEOUT = 1500;
+// const LOADING_TIMEOUT = 1500;
 
 const validationSchema = Yup.object({
   n_Usecase: Yup.string().required(validationMessages.required),
@@ -61,12 +63,11 @@ export const GeneralInformationForm = forwardRef(
       },
       withSubmitButtons,
       onHasChanges,
-      id,
       handleSubmit,
       onFormValid,
       readOnly,
       selectLinixUseCase,
-      updateItemData,
+
       csOptions,
       webOptions,
     } = props;
@@ -75,27 +76,35 @@ export const GeneralInformationForm = forwardRef(
       visible: false,
     });
 
-    const handleOnclick = async () => {
-      if (updateItemData) {
-        await updateItemData({
-          key: "id",
-          nameDB: "linix-use-cases",
-          identifier: id!,
-          editData: formik.values,
-        });
-      }
-    };
+    // const handleOnclick = async () => {
+    //   if (updateItemData) {
+    //     await updateItemData({
+    //       key: "id",
+    //       nameDB: "linix-use-cases",
+    //       identifier: id!,
+    //       editData: formik.values,
+    //     });
+    //   }
+    // };
+
     function onSubmit() {
       setLoading(true);
-      setTimeout(() => {
-        handleSubmit(formik.values);
-        handleOnclick();
-        setLoading(false);
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
-        });
-      }, LOADING_TIMEOUT);
+      const addnewdata = editLinixUseCases(formik.values as UseCase);
+      addnewdata
+        .then(() => {
+          handleSubmit(formik.values);
+          setMessage({
+            visible: true,
+            data: generalMessage.success,
+          });
+        })
+        .catch(() => {
+          setMessage({
+            visible: true,
+            data: generalMessage.failed,
+          });
+        })
+        .finally(() => setLoading(false));
     }
 
     const formik = useFormik({

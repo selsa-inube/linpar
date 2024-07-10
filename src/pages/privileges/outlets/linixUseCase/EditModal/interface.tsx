@@ -12,6 +12,7 @@ import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { SubjectCard } from "@src/components/cards/SubjectCard";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
@@ -27,6 +28,10 @@ import {
 import { updateItemData } from "@mocks/utils/dataMock.service";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
+import { StyledContainerLoading } from "../../users/invite/styles";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+
+import { UseCase } from "../types";
 
 interface IControlModal {
   show: boolean;
@@ -34,8 +39,10 @@ interface IControlModal {
 }
 interface EditUserUIProps {
   selectedTab: string;
-
+  selectLinixUseCase: Option[];
+  linixUseCasesEdit: UseCase;
   formData: IFormAddLinixUseCase;
+  loading: boolean;
   id: string;
   handleTabChange: (tabId: string) => void;
   editData: { [key: string]: { [key: string]: unknown } };
@@ -68,12 +75,14 @@ function continueModal(
 function EditUserUI(props: EditUserUIProps) {
   const {
     selectedTab,
+    selectLinixUseCase,
     editData,
     id,
+    loading,
     handleTabChange,
     handleSubmit,
     controlModal,
-
+    linixUseCasesEdit,
     handleCloseModal,
     handleDataChange,
     handleContinueTab,
@@ -95,7 +104,11 @@ function EditUserUI(props: EditUserUIProps) {
     description: (currentInformation as { n_Descrip: string }).n_Descrip,
   };
 
-  return (
+  return loading ? (
+    <StyledContainerLoading>
+      <LoadingApp />
+    </StyledContainerLoading>
+  ) : (
     <StyledContainer $smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s200} direction="column">
@@ -130,7 +143,7 @@ function EditUserUI(props: EditUserUIProps) {
           />
           {selectedTab === editLinixUseCaseTabsConfig.generalInformation.id && (
             <GeneralInformationForm
-              initialValues={currentInformation as IGeneralInformation}
+              initialValues={linixUseCasesEdit as IGeneralInformation}
               csOptions={csOptions}
               webOptions={webOptions}
               handleSubmit={handleSubmit as () => void}
@@ -138,7 +151,7 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               updateItemData={updateItemData}
               id={id}
-              selectLinixUseCase={[]}
+              selectLinixUseCase={selectLinixUseCase}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (
@@ -191,7 +204,7 @@ function EditUserUI(props: EditUserUIProps) {
             <InitializerForm
               withSubmitButtons
               onHasChanges={handleDataChange}
-              dataOptionsForms={formData.clientServerReports.values}
+              dataOptionsForms={formData.clientServerOptions.values}
               handleSubmit={handleSubmit}
             />
           )}
