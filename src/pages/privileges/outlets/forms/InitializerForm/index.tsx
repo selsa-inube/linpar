@@ -7,7 +7,6 @@ import {
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
-import { updateItemData } from "@mocks/utils/dataMock.service";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -28,11 +27,7 @@ export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms: initialDataOptionsForms,
     handleSubmit,
-    id,
-    keyData,
-    nameDB,
-    property,
-    propertyData,
+
     withSubmitButtons = false,
     onHasChanges,
 
@@ -56,29 +51,29 @@ export function InitializerForm(props: IInitializerForm) {
     if (!withSubmitButtons) handleSubmit(renderForm);
   };
 
-  const normalizeDataOption = formDataOptions
-    .filter((dataOption) => dataOption.isActive === true)
-    .map((option) => ({
-      [propertyData as keyof string]: option.id,
-    }));
+  // const normalizeDataOption = formDataOptions
+  //   .filter((dataOption) => dataOption.isActive === true)
+  //   .map((option) => ({
+  //     [propertyData as keyof string]: option.id,
+  //   }));
 
-  const handleEditData = async () => {
-    if (nameDB && keyData) {
-      await updateItemData({
-        key: keyData,
-        nameDB: nameDB,
-        identifier: id!,
-        editData: normalizeDataOption,
-        property: property,
-      });
-    }
-  };
+  // // const handleEditData = async () => {
+  // //   if (nameDB && keyData) {
+  // //     await updateItemData({
+  // //       key: keyData,
+  // //       nameDB: nameDB,
+  // //       identifier: id!,
+  // //       editData: normalizeDataOption,
+  // //       property: property,
+  // //     });
+  // //   }
+  // // };
 
   const handleSubmitForm = () => {
     setIsLoading(true);
     setTimeout(() => {
       handleSubmit(formDataOptions);
-      handleEditData();
+      // handleEditData();
       setIsLoading(false);
       setMessage({
         visible: true,

@@ -17,6 +17,12 @@ const mapLinixUseCaseApiToEntity = (
     k_Nforma: String(linixUseCase.k_Nforma),
     k_Funcio: opcionMenu[0],
     k_option_button: opcionMenu[1] || "",
+    reportesWebPorCasoDeUso: Object(linixUseCase.reportesWebPorCasoDeUso),
+    opcionesPortalWebPorCasoDeUso: Object(
+      linixUseCase.opcionesPortalWebPorCasoDeUso
+    ),
+    reportesCsPorCasoDeUso: Object(linixUseCase.reportesCsPorCasoDeUso),
+    opcionesCsPorCasoDeUso: Object(linixUseCase.opcionesCsPorCasoDeUso),
   };
   return buildLinixUseCase;
 };

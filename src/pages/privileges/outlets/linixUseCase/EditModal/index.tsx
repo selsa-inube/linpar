@@ -100,6 +100,8 @@ function EditCaseLinix() {
     );
   }
 
+  const editUser = linixUseCasesEdit.find((x) => x.id === user_id);
+
   const [editData, setEditData] = useState<{
     [key: string]: { [key: string]: unknown };
   }>({
@@ -195,7 +197,6 @@ function EditCaseLinix() {
         });
     }
   };
-
   const webReportsData = () => {
     if (!user) return;
     if (webReports.length === 0) {
@@ -309,6 +310,49 @@ function EditCaseLinix() {
 
     setCurrentFormHasChanges(false);
   };
+
+  const validateActiveOptions = (option: string) => {
+    switch (option) {
+      case "webReports":
+        formData.webReports.values.forEach((x) => {
+          editUser?.reportesWebPorCasoDeUso?.forEach((y) => {
+            if (x.id === y.k_Report) x.isActive = true;
+          });
+        });
+        break;
+      case "portalWeb":
+        formData.webOptions.values.forEach((x) => {
+          editUser?.opcionesPortalWebPorCasoDeUso?.forEach((y) => {
+            if (x.id === y.k_Funcio) x.isActive = true;
+          });
+        });
+        break;
+      case "opClientServer":
+        formData.clientServerOptions.values.forEach((x) => {
+          editUser?.opcionesCsPorCasoDeUso?.forEach((y) => {
+            if (x.id === y.k_Opcion) x.isActive = true;
+          });
+        });
+        break;
+      case "reportesCs":
+        formData.clientServerReports.values.forEach((x) => {
+          editUser?.reportesCsPorCasoDeUso?.forEach((y) => {
+            if (x.id === y.k_Nforma) x.isActive = true;
+          });
+        });
+        break;
+    }
+  };
+
+  validateActiveOptions("webReports");
+  validateActiveOptions("reportesCs");
+  validateActiveOptions("portalWeb");
+  validateActiveOptions("opClientServer");
+
+  validateActiveOptions("webReports");
+  validateActiveOptions("reportesCs");
+  validateActiveOptions("portalWeb");
+  validateActiveOptions("opClientServer");
 
   const handleTabChange = (tabId: string) => {
     setControlModal(
