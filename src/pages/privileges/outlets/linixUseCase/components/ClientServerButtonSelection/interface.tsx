@@ -26,19 +26,6 @@ interface ClientServerButtonSelectionUIProps {
   buttonOptions: Record<string, unknown>[];
 }
 
-function uniqueButtonOptionsCalculator(
-  buttonOptions: Record<string, unknown>[]
-) {
-  const uniqueButtonList = new Map();
-  buttonOptions.forEach((buttonOption) => {
-    if (!uniqueButtonList.has(buttonOption.CODIGO_BOTON)) {
-      uniqueButtonList.set(buttonOption.CODIGO_BOTON, buttonOption);
-    }
-  });
-
-  return Array.from(uniqueButtonList.values());
-}
-
 function RenderFormFields(
   formik: FormikValues,
   loading: boolean,
@@ -46,8 +33,8 @@ function RenderFormFields(
   handleChangeForm: (name: string, value: string) => void,
   buttonOptions: Record<string, unknown>[]
 ) {
-  const mediaQuerie = "(max-width: 744px)";
-  const matches = useMediaQuery(mediaQuerie);
+  const mediaQuery = "(max-width: 744px)";
+  const matches = useMediaQuery(mediaQuery);
 
   return (
     <Grid
@@ -76,12 +63,10 @@ function RenderFormFields(
               handleChangeForm("csButtonOption", value.target.outerText)
             }
             onBlur={formik.handleBlur}
-            options={uniqueButtonOptionsCalculator(buttonOptions).map(
-              (buttonOption) => ({
-                id: buttonOption.CODIGO_BOTON,
-                label: buttonOption.DESCRIPCION_BOTON,
-              })
-            )}
+            options={buttonOptions.map((buttonOption) => ({
+              id: buttonOption.CODIGO_BOTON,
+              label: buttonOption.DESCRIPCION_BOTON,
+            }))}
           />
         </StyledSelectContainer>
       </Stack>

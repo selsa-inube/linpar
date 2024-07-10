@@ -13,7 +13,8 @@ import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { SubjectCard } from "@src/components/cards/SubjectCard";
 import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
-
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { updateItemData } from "@mocks/utils/dataMock.service";
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 import {
@@ -24,12 +25,9 @@ import {
   IFormAddLinixUseCase,
   IGeneralInformation,
 } from "../adding-linix-use-case/types";
-
-import { updateItemData } from "@mocks/utils/dataMock.service";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { StyledContainerLoading } from "../../users/invite/styles";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 import { UseCase } from "../types";
 
@@ -152,6 +150,7 @@ function EditUserUI(props: EditUserUIProps) {
               updateItemData={updateItemData}
               id={id}
               selectLinixUseCase={selectLinixUseCase}
+              editform={false}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (
@@ -160,7 +159,6 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
               onHasChanges={handleDataChange}
-              csSelected={formData.generalInformation.values.k_Opcion}
             />
           )}
           {selectedTab ===

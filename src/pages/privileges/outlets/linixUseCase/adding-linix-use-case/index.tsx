@@ -13,7 +13,8 @@ import { getWebReportsFormats } from "@services/linixUseCase/reportsWeb";
 import { getReportsClientServerFormats } from "@services/linixUseCase/reportsClientServer";
 import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientServerMenuOption";
 import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
-import { Option } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
+import { getSelectLinixUseCase } from "@services/linixUseCase/selectLinixUseCase";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
@@ -27,7 +28,6 @@ import {
 } from "./types";
 import { addLinixUseCaseStepsRules, saveLinixUseCase } from "./utils";
 import { generalMessage } from "./config/messages.config";
-import { getSelectLinixUseCase } from "@src/services/linixUseCase/selectLinixUseCase";
 
 export function dataToAssignmentFormEntry(
   props: DataToAssignmentFormEntryProps
@@ -267,13 +267,19 @@ function AddingLinixUseCase() {
     }
   };
 
+  const filterNForma = csOptions.find(
+    (x) =>
+      x.k_Opcion === formData.generalInformation.values.k_Opcion &&
+      x.CODIGO_OPCION
+  )?.CODIGO_OPCION;
+
   const clientServerButtonMenuOption = async () => {
     if (!user) return;
     if (csOptionsButtons.length === 0) {
       setLoading(true);
       try {
         const newUsers = await getClientServerButtonDataFormats(
-          formData.generalInformation.values.k_Opcion
+          filterNForma as string
         );
         setCsOptionsButtons(newUsers);
       } catch (error) {
@@ -411,7 +417,7 @@ function AddingLinixUseCase() {
   });
   const navigate = useNavigate();
   const handleFinishForm = () => {
-    const addnewdata = saveLinixUseCase(formData);
+    const addnewdata = saveLinixUseCase(formData, filterNForma as string);
     addnewdata
       .then(() => {
         setMessage({
@@ -434,6 +440,7 @@ function AddingLinixUseCase() {
     });
     navigate("/privileges/linixUseCase");
   };
+
   return (
     <AddingLinixUseCaseUI
       loading={loading}
@@ -458,6 +465,7 @@ function AddingLinixUseCase() {
       setCurrentStep={setCurrentStep}
       csOptionsButtons={csOptionsButtons}
       selectLinixUseCase={selectLinixUseCase}
+      filterNForma={filterNForma as string}
     />
   );
 }

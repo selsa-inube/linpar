@@ -15,7 +15,6 @@ const mapLinixUseCaseApiToEntity = (
     i_Tipusec: formSelectOptionId(String(linixUseCase?.i_Tipusec)) || "",
     k_Ncampo: String(linixUseCase.n_Camprv),
     k_Nforma: String(linixUseCase.k_Nforma),
-    k_Opcion: Object(linixUseCase.opcionesCsPorCasoDeUso)[0].k_Opcion,
     k_Funcio: opcionMenu[0],
     k_option_button: opcionMenu[1] || "",
   };

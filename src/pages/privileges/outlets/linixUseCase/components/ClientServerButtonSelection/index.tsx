@@ -18,7 +18,6 @@ interface ClientServerButtonSelectionProps {
   id?: string;
 
   handleSubmit: (values: IHandleChangeFormData) => void;
-  csSelected: string;
   onHasChanges?: (hasChanges: boolean) => void;
   initialValues?: IClientServerButton;
   withSubmitButtons?: boolean;
@@ -65,6 +64,9 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const filteredButtonOptions = buttonOptions.filter(
     (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === id
   );
+
+  console.log("filteredButtonOptions", buttonOptions);
+  console.log("id", id);
 
   const onSubmit = () => {
     setLoading(true);
@@ -123,6 +125,8 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       });
     });
   };
+
+  console.log("buttonOptions", buttonOptions);
   return (
     <ClientServerButtonSelectionUI
       loading={loading}
@@ -132,7 +136,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
-      buttonOptions={filteredButtonOptions}
+      buttonOptions={buttonOptions}
     />
   );
 }

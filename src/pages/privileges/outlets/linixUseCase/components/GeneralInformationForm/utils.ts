@@ -11,28 +11,6 @@ export const editLinixUseCases = async (linixUseCaseData: UseCase) => {
     i_Tipusec: formSelectLabel(linixUseCaseData.i_Tipusec) || "",
     k_Ncampo: "CD387MCERTIDEP.I_CONTIT",
     k_Nforma: linixUseCaseData.k_Funcio || "",
-    // opcionesCsPorCasoDeUso: [
-    //   {
-    //     k_Opcion: linixUseCaseData.k_Opcion || "",
-    //   },
-    // ],
-    // opcionesPortalWebPorCasoDeUso: [
-    //   {
-    //     k_Funcio: "string",
-    //   },
-    // ],
-    // reportesWebPorCasoDeUso: [
-    //   {
-    //     k_Report: "string",
-    //   },
-    // ],
-    // reportesCsPorCasoDeUso: [
-    //   {
-    //     k_Nforma: "string",
-    //   },
-    // ],
-
-    // tiposDeDocumentoPorCasoDeUso: [{ k_Docume: "string" }],
   };
   let confirmationType = true;
   try {

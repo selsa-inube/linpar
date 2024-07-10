@@ -16,8 +16,6 @@ import { generalMessage } from "../../adding-linix-use-case/config/messages.conf
 import { editLinixUseCases } from "./utils";
 import { UseCase } from "../../types";
 
-// const LOADING_TIMEOUT = 1500;
-
 const validationSchema = Yup.object({
   n_Usecase: Yup.string().required(validationMessages.required),
   i_Tipusec: Yup.string().required(validationMessages.required),
@@ -46,6 +44,7 @@ interface GeneralInformationFormProps {
   readOnly?: boolean;
   updateItemData?: (props: functionById) => Promise<unknown>;
   selectLinixUseCase: Option[];
+  editform?: boolean;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -67,7 +66,7 @@ export const GeneralInformationForm = forwardRef(
       onFormValid,
       readOnly,
       selectLinixUseCase,
-
+      editform = true,
       csOptions,
       webOptions,
     } = props;
@@ -75,17 +74,6 @@ export const GeneralInformationForm = forwardRef(
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
     });
-
-    // const handleOnclick = async () => {
-    //   if (updateItemData) {
-    //     await updateItemData({
-    //       key: "id",
-    //       nameDB: "linix-use-cases",
-    //       identifier: id!,
-    //       editData: formik.values,
-    //     });
-    //   }
-    // };
 
     function onSubmit() {
       setLoading(true);
@@ -192,6 +180,7 @@ export const GeneralInformationForm = forwardRef(
         csOptions={csOptions}
         webOptions={webOptions}
         selectLinixUseCase={selectLinixUseCase}
+        editform={editform}
       />
     );
   }
