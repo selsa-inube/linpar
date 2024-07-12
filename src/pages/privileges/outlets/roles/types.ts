@@ -3,6 +3,11 @@ import { FormikProps } from "formik";
 import { IAncillaryAccountsForm } from "./components/AncillaryAccountsForm";
 import { IGeneralInformationForm } from "./components/GeneralInformationForm";
 
+export interface IDeleteForMessage {
+  id: number;
+  successfulDiscard: boolean;
+}
+
 interface ICasosDeUsoPorRol {
   k_Rol: number;
   k_Usecase: string;

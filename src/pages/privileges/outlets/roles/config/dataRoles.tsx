@@ -9,7 +9,7 @@ import { deleteRolModal } from "../delete-role/config/deleteRol.config";
 import { DeleteRole } from "../delete-role";
 import { activateRoleModal } from "../activate-role/config/activateRole.config";
 import { ActivateRole } from "../activate-role";
-import { IRol } from "../types";
+import { IDeleteForMessage, IRol } from "../types";
 
 export const titlesOptions = [
   {
@@ -42,7 +42,7 @@ export const RolesBreakPointsConfig = [
 
 export const actionsConfigPosition = (
   linixRoles: IRol[],
-  setIdDeleted: (show: number) => void
+  setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
   const dataDetailsRole = (k_Rol: number) => {
     const data = [linixRoles.find((role) => role.k_Rol === k_Rol)!].map(

@@ -16,7 +16,7 @@ import { Menu } from "@components/navigation/Menu";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
-import { IRol } from "./types";
+import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
@@ -37,7 +37,7 @@ interface IRolesProps {
   loading: boolean;
   idDeleted: number;
   searchRole: string;
-  setIdDeleted: (show: number) => void;
+  setIdDeleted: (show: IDeleteForMessage) => void;
   showMenu: boolean;
 }
 

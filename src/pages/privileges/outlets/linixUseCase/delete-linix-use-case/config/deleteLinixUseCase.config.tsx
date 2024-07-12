@@ -25,7 +25,7 @@ export const deleteUserMessages = {
     icon: <MdOutlineSentimentNeutral size={18} />,
     title: "Ups, algo ha salido mal!",
     description:
-      "Tuvimos problemas para guardar cambios para el caso de uso edita algun campo de Opción de menú ",
+      "Tuvimos problemas para guardar cambios para el caso de uso ya que se encuentra agregado en Roles",
     appearance: EAppearance.ERROR,
   },
 };

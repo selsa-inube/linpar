@@ -6,7 +6,7 @@ import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { deleteLinixUseCaseModal } from "../delete-linix-use-case/config/deleteLinixUseCase.config";
 import { DetailsModal } from "../components/DetailsModal";
-import { UseCase } from "../types";
+import { IDeleteForMessage, UseCase } from "../types";
 import { DeleteLinixUseCase } from "../delete-linix-use-case";
 import { OptionSelect } from "../adding-linix-use-case/config/selectLinixUseCase.config";
 
@@ -48,7 +48,7 @@ const useCasesBreakPointsConfig = [
 
 export const actionsConfigLinixUseCase = (
   linixUseCases: UseCase[],
-  setIdDeleted: (show: string) => void
+  setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
   const dataDetailsLinixUseCase = (k_Usecase: string) => {
     const data = [

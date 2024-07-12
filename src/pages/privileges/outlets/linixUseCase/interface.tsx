@@ -17,7 +17,7 @@ import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
 
-import { UseCase } from "./types";
+import { IDeleteForMessage, UseCase } from "./types";
 import {
   actionsConfigLinixUseCase,
   useCasesBreakPointsConfig,
@@ -40,7 +40,7 @@ interface LinixUseCaseUIProps {
   selectedData: SelectedDataFunction;
   loading: boolean;
   idDeleted: string;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: IDeleteForMessage) => void;
 }
 export type SelectedDataFunction = (k_Usecase: string) => UseCase;
 export type HandleClickFunction = (id: string) => void;

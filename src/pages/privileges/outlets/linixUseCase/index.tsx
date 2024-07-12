@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { getLinixUseCase } from "@services/linixUseCase/getLinixUseCase";
-import { useAuth0 } from "@auth0/auth0-react";
 
 import {
   LinixUseCaseUI,
   SelectedDataFunction,
   HandleClickFunction,
 } from "./interface";
-import { UseCase } from "./types";
+import { IDeleteForMessage, UseCase } from "./types";
 import { IMessageState } from "../users/types/forms.types";
 import { deleteUserMessages } from "./delete-linix-use-case/config/deleteLinixUseCase.config";
 
@@ -20,7 +20,10 @@ function LinixUseCase() {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: "",
+    successfulDiscard: false,
+  });
   const { user } = useAuth0();
 
   const linixUseCaseData = async () => {
@@ -43,13 +46,20 @@ function LinixUseCase() {
   }, [user]);
 
   useEffect(() => {
+    const messageType = idDeleted.successfulDiscard
+      ? deleteUserMessages.success
+      : deleteUserMessages.failed;
+
     const filterRecordRemoved = linixUseCases.filter(
-      (linixUseCases) => linixUseCases.k_Usecase !== idDeleted
+      (linixUseCases) => linixUseCases.k_Usecase !== idDeleted.id
     );
+
+    idDeleted.successfulDiscard && setLinixUseCases(filterRecordRemoved);
+
     filterRecordRemoved &&
       setMessage({
         visible: true,
-        data: deleteUserMessages.success,
+        data: messageType,
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idDeleted]);
@@ -92,7 +102,7 @@ function LinixUseCase() {
       handleClick={handleClick}
       selectedData={selectedData}
       setIdDeleted={setIdDeleted}
-      idDeleted={idDeleted}
+      idDeleted={idDeleted.id}
     />
   );
 }
