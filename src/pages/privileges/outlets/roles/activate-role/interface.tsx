@@ -18,6 +18,7 @@ interface IActivateRoleUI {
   showComplete: boolean;
   activateModalConfig: typeof activateRoleModal;
   message: IMessageState;
+  loading: boolean;
   onCloseSectionMessage: () => void;
 }
 
