@@ -45,7 +45,7 @@ function PrivilegesRoutes() {
           <Route path="roles/edit/:rol_id" element={<EditRole />} />
 
           <Route
-            path="linixUseCase/edit/:user_id"
+            path="linixUseCase/edit/:k_Usecase"
             element={<EditCaseLinix />}
           />
           <Route

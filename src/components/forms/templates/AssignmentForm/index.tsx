@@ -8,10 +8,19 @@ interface AssignmentFormProps {
   entries: IEntry[];
   title: string;
   readOnly?: boolean;
+  setChangedData?: (changeData: IEntry[]) => void;
+  changeData?: IEntry[];
 }
 
 function AssignmentForm(props: AssignmentFormProps) {
-  const { handleChange, entries, title, readOnly } = props;
+  const {
+    handleChange,
+    entries,
+    title,
+    readOnly,
+    setChangedData = () => {},
+    changeData = [],
+  } = props;
   const [filter, setFilter] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [isAssignAll, setIsAssignAll] = useState(false);
@@ -41,6 +50,13 @@ function AssignmentForm(props: AssignmentFormProps) {
   const handleToggleEntry = (id: string) => {
     const newEntries = entries.map((entry) => {
       if (entry.id === id) {
+        setChangedData([
+          ...changeData,
+          {
+            ...entry,
+            isActive: !entry.isActive,
+          },
+        ]);
         return {
           ...entry,
           isActive: !entry.isActive,

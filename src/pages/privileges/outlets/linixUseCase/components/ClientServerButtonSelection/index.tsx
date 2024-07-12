@@ -119,7 +119,6 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     });
   };
 
-  console.log("buttonOptions", buttonOptions);
   return (
     <ClientServerButtonSelectionUI
       loading={loading}

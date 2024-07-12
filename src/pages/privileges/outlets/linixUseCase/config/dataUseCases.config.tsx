@@ -56,11 +56,11 @@ export const actionsConfigLinixUseCase = (
         (linixUseCases) => linixUseCases.k_Usecase === k_Usecase
       )!,
     ].map((linixUseCasesSelected) => ({
-      Código: linixUseCasesSelected?.k_Usecase,
-      Nombre: linixUseCasesSelected?.n_Usecase,
-      Tipo: linixUseCasesSelected?.i_Tipusec,
-      Descripcion: linixUseCasesSelected?.n_Descrip,
-      "Opción botón cliente servidor": linixUseCasesSelected?.k_Ncampo,
+      Código: linixUseCasesSelected?.k_Usecase || "",
+      Nombre: linixUseCasesSelected?.n_Usecase || "",
+      Tipo: linixUseCasesSelected?.i_Tipusec || "",
+      Descripcion: linixUseCasesSelected?.n_Descrip || "",
+      "Opción botón cliente servidor": linixUseCasesSelected?.k_Ncampo || "",
     }));
     return [...data].shift();
   };

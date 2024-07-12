@@ -28,11 +28,11 @@ interface UseCase {
   id?: string;
   a_Publicc?: string;
   i_Tipusec: string;
-  k_Ncampo: string;
-  k_Nforma: string;
+  k_Ncampo?: string;
+  k_Nforma?: string;
   k_Usecase: string;
-  n_Descrip: string;
-  n_Usecase: string;
+  n_Descrip?: string;
+  n_Usecase?: string;
   k_Funcio?: string;
   k_Opcion?: string;
   k_option_button?: string;
@@ -41,6 +41,7 @@ interface UseCase {
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];
   reportesWebPorCasoDeUso?: ReportesWebPorCasoDeUso[];
   tiposDeDocumentoPorCasoDeUso?: TiposDeDocumentoPorCasoDeUso[];
+  modifyJustification?: string;
 }
 
 export type {

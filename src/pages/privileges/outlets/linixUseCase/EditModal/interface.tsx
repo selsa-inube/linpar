@@ -51,6 +51,10 @@ interface EditUserUIProps {
   handleContinueTab: () => void;
   webOptions: Record<string, unknown>[];
   csOptions: Record<string, unknown>[];
+  setCsOptionsChange: (csOptionsChange: IAssignmentFormEntry[]) => void;
+  csOptionsChange: IAssignmentFormEntry[];
+  handleSubmitAssignmentForm: (csOptionsChange: IAssignmentFormEntry[]) => void;
+  EditOptionsData: Record<string, unknown>[];
 }
 
 function continueModal(
@@ -87,6 +91,10 @@ function EditUserUI(props: EditUserUIProps) {
     formData,
     csOptions,
     webOptions,
+    setCsOptionsChange,
+    csOptionsChange,
+    handleSubmitAssignmentForm,
+    EditOptionsData,
   } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
@@ -168,6 +176,10 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.downloadableDocuments.values}
               handleSubmit={handleSubmit}
+              EditOptionsData={{
+                id: id,
+                opcionesCsPorCasoDeUso: EditOptionsData,
+              }}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.webReports.id && (
@@ -176,6 +188,10 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.webReports.values}
               handleSubmit={handleSubmit}
+              EditOptionsData={{
+                id: id,
+                opcionesCsPorCasoDeUso: EditOptionsData,
+              }}
             />
           )}
 
@@ -185,6 +201,10 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.webOptions.values}
               handleSubmit={handleSubmit}
+              EditOptionsData={{
+                id: id,
+                opcionesCsPorCasoDeUso: EditOptionsData,
+              }}
             />
           )}
           {selectedTab ===
@@ -193,18 +213,34 @@ function EditUserUI(props: EditUserUIProps) {
               withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.clientServerReports.values}
-              handleSubmit={handleSubmit}
+              handleSubmit={() => {
+                handleSubmitAssignmentForm(csOptionsChange);
+              }}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
+              EditOptionsData={{
+                id: id,
+                opcionesCsPorCasoDeUso: EditOptionsData,
+              }}
             />
           )}
 
           {selectedTab ===
             editLinixUseCaseTabsConfig.clientServerOptions.id && (
-            <InitializerForm
-              withSubmitButtons
-              onHasChanges={handleDataChange}
-              dataOptionsForms={formData.clientServerOptions.values}
-              handleSubmit={handleSubmit}
-            />
+            <>
+              {console.log("csOptionsChange", csOptionsChange)}
+              <InitializerForm
+                withSubmitButtons
+                onHasChanges={handleDataChange}
+                dataOptionsForms={formData.clientServerOptions.values}
+                handleSubmit={() => {
+                  handleSubmitAssignmentForm(csOptionsChange);
+                }}
+                changeData={csOptionsChange}
+                setChangedData={setCsOptionsChange}
+                EditOptionsData={EditOptionsData}
+              />
+            </>
           )}
         </Stack>
       </Stack>

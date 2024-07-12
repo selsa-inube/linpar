@@ -28,7 +28,7 @@ function EditCaseLinix() {
     continueTab: "",
   });
 
-  const { user_id } = useParams();
+  const { k_Usecase } = useParams();
 
   const [formData, setFormData] = useState<IFormAddLinixUseCase>({
     generalInformation: {
@@ -86,22 +86,26 @@ function EditCaseLinix() {
   const { user } = useAuth0();
   const [loading, setLoading] = useState(false);
   const [linixUseCasesEdit, setLinixUseCasesEdit] = useState<UseCase[]>([]);
+  const [csOptionsChange, setCSOptionsChange] = useState<
+    IAssignmentFormEntry[]
+  >([]);
+
+  const [EditOptionsData, setEditOptionsData] = useState<
+    Record<string, unknown>[]
+  >([]);
 
   function generalInformationData() {
     return linixUseCasesEdit.find(
       (data) =>
-        data.id === user_id && {
+        data.id === k_Usecase && {
           n_Usecase: data.n_Usecase,
           n_Descrip: data.n_Descrip,
-          i_Tipusec: formSelectOptionId(data.i_Tipusec),
+          i_Tipusec: formSelectOptionId(data.i_Tipusec || ""),
           k_Funcio: data.k_Funcio,
           k_Opcion: data.k_Opcion,
         }
     );
   }
-
-  const editUser = linixUseCasesEdit.find((x) => x.id === user_id);
-
   const [editData, setEditData] = useState<{
     [key: string]: { [key: string]: unknown };
   }>({
@@ -125,7 +129,7 @@ function EditCaseLinix() {
   useEffect(() => {
     linixUseCaseData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     Promise.all([
@@ -145,7 +149,7 @@ function EditCaseLinix() {
     if (!user) return;
     if (downloadableDocuments.length === 0) {
       setLoading(true);
-      getDownloadableFormats("1")
+      getDownloadableFormats(k_Usecase || "1")
         .then((data) => {
           if (data !== null) {
             setDownloadableDocuments(
@@ -174,7 +178,7 @@ function EditCaseLinix() {
   const webOptionsData = () => {
     if (!user) return;
     if (webOptions.length === 0) {
-      getWebOptionsFormats("1")
+      getWebOptionsFormats(k_Usecase || "1")
         .then((data) => {
           if (data !== null) {
             setWebOptions(data as Record<string, unknown>[]);
@@ -186,7 +190,7 @@ function EditCaseLinix() {
                   dataOptions: data as Record<string, unknown>[],
                   idLabel: "k_Funcio",
                   valueLabel: "n_Funcio",
-                  isActiveLabel: "isActive",
+                  isActiveLabel: "i_Privi",
                 }),
               },
             }));
@@ -201,7 +205,7 @@ function EditCaseLinix() {
     if (!user) return;
     if (webReports.length === 0) {
       setLoading(true);
-      getWebReportsFormats("1")
+      getWebReportsFormats(k_Usecase || "1")
         .then((data) => {
           if (data !== null) {
             setWebReports(data as unknown as Record<string, unknown>[]);
@@ -229,7 +233,7 @@ function EditCaseLinix() {
     if (!user) return;
     if (csReports.length === 0) {
       setLoading(true);
-      getReportsClientServerFormats("1")
+      getReportsClientServerFormats(k_Usecase || "1")
         .then((data) => {
           if (data !== null) {
             setCsReports(data as unknown as Record<string, unknown>[]);
@@ -257,7 +261,7 @@ function EditCaseLinix() {
     if (!user) return;
     if (csOptions.length === 0) {
       setLoading(true);
-      getClientServerMenuOptionFormats("1")
+      getClientServerMenuOptionFormats(k_Usecase || "1")
         .then((data) => {
           if (data !== null) {
             setCsOptions(data as unknown as Record<string, unknown>[]);
@@ -311,49 +315,6 @@ function EditCaseLinix() {
     setCurrentFormHasChanges(false);
   };
 
-  const validateActiveOptions = (option: string) => {
-    switch (option) {
-      case "webReports":
-        formData.webReports.values.forEach((x) => {
-          editUser?.reportesWebPorCasoDeUso?.forEach((y) => {
-            if (x.id === y.k_Report) x.isActive = true;
-          });
-        });
-        break;
-      case "portalWeb":
-        formData.webOptions.values.forEach((x) => {
-          editUser?.opcionesPortalWebPorCasoDeUso?.forEach((y) => {
-            if (x.id === y.k_Funcio) x.isActive = true;
-          });
-        });
-        break;
-      case "opClientServer":
-        formData.clientServerOptions.values.forEach((x) => {
-          editUser?.opcionesCsPorCasoDeUso?.forEach((y) => {
-            if (x.id === y.k_Opcion) x.isActive = true;
-          });
-        });
-        break;
-      case "reportesCs":
-        formData.clientServerReports.values.forEach((x) => {
-          editUser?.reportesCsPorCasoDeUso?.forEach((y) => {
-            if (x.id === y.k_Nforma) x.isActive = true;
-          });
-        });
-        break;
-    }
-  };
-
-  validateActiveOptions("webReports");
-  validateActiveOptions("reportesCs");
-  validateActiveOptions("portalWeb");
-  validateActiveOptions("opClientServer");
-
-  validateActiveOptions("webReports");
-  validateActiveOptions("reportesCs");
-  validateActiveOptions("portalWeb");
-  validateActiveOptions("opClientServer");
-
   const handleTabChange = (tabId: string) => {
     setControlModal(
       currentFormHasChanges ? { show: true, continueTab: tabId } : controlModal
@@ -378,6 +339,27 @@ function EditCaseLinix() {
   };
 
   const prueba = generalInformationData();
+
+  //const bodyForPatch: any = [];
+
+  const handleSubmitAssignmentForm = (changes: IAssignmentFormEntry[]) => {
+    //Incluir un reducer para garantizar que doble click no daña el funcionamiento
+    const bodyForPatch: any = [];
+
+    changes.forEach((change) => {
+      const changeForPatch = {
+        transactionOperation: change.isActive ? "Insert" : "Delete",
+        k_Report: change.id,
+      };
+      bodyForPatch.push(changeForPatch);
+    });
+
+    setCSOptionsChange([]);
+    setEditOptionsData(bodyForPatch);
+  };
+
+  console.log("editoptionsData", EditOptionsData);
+
   return (
     <EditUserUI
       linixUseCasesEdit={prueba!}
@@ -394,7 +376,11 @@ function EditCaseLinix() {
       webOptions={webOptions}
       handleContinueTab={handleContinueTab}
       csOptions={csOptions}
-      id={user_id || ""}
+      id={k_Usecase || "1"}
+      setCsOptionsChange={setCSOptionsChange}
+      csOptionsChange={csOptionsChange}
+      handleSubmitAssignmentForm={handleSubmitAssignmentForm}
+      EditOptionsData={EditOptionsData}
     />
   );
 }

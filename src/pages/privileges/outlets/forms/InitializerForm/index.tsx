@@ -7,12 +7,12 @@ import {
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
-
-const LOADING_TIMEOUT = 1500;
+import { editOptionsUseCases } from "./utils";
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
   handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
+  EditOptionsData?: {};
   id?: string;
   keyData?: string;
   nameDB?: string;
@@ -21,17 +21,19 @@ interface IInitializerForm {
   readOnly?: boolean;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  setChangedData?: (changeData: IAssignmentFormEntry[]) => void;
+  changeData?: IAssignmentFormEntry[];
 }
 
 export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms: initialDataOptionsForms,
     handleSubmit,
-
     withSubmitButtons = false,
     onHasChanges,
-
     readOnly = false,
+    setChangedData = () => {},
+    changeData = [],
   } = props;
   const [formDataOptions, setFormDataOptions] = useState(
     initialDataOptionsForms
@@ -51,35 +53,26 @@ export function InitializerForm(props: IInitializerForm) {
     if (!withSubmitButtons) handleSubmit(renderForm);
   };
 
-  // const normalizeDataOption = formDataOptions
-  //   .filter((dataOption) => dataOption.isActive === true)
-  //   .map((option) => ({
-  //     [propertyData as keyof string]: option.id,
-  //   }));
-
-  // // const handleEditData = async () => {
-  // //   if (nameDB && keyData) {
-  // //     await updateItemData({
-  // //       key: keyData,
-  // //       nameDB: nameDB,
-  // //       identifier: id!,
-  // //       editData: normalizeDataOption,
-  // //       property: property,
-  // //     });
-  // //   }
-  // // };
-
   const handleSubmitForm = () => {
     setIsLoading(true);
-    setTimeout(() => {
-      handleSubmit(formDataOptions);
-      // handleEditData();
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        data: generalMessage.success,
-      });
-    }, LOADING_TIMEOUT);
+
+    const editOpt = editOptionsUseCases();
+
+    editOpt
+      .then(() => {
+        handleSubmit(formDataOptions);
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleReset = () => {
@@ -105,6 +98,8 @@ export function InitializerForm(props: IInitializerForm) {
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
       readOnly={readOnly}
+      setChangedData={setChangedData}
+      changeData={changeData}
     />
   );
 }

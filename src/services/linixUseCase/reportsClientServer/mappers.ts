@@ -4,7 +4,7 @@ const mapReportsClientServerFormatsApiToEntity = (
   const buildreportsClientServerFormat: Record<string, unknown> = {
     k_Nforma: String(reportsClientServerFormat.k_Nforma),
     n_Descri: String(reportsClientServerFormat.n_Descri),
-    isActive: Boolean(reportsClientServerFormat.i_Privi),
+    i_Privi: String(reportsClientServerFormat.i_Privi),
   };
   return buildreportsClientServerFormat;
 };

@@ -19,6 +19,8 @@ interface InitializerFormUIProps {
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
   readOnly?: boolean;
+  setChangedData?: (changeData: IAssignmentFormEntry[]) => void;
+  changeData?: IAssignmentFormEntry[];
 }
 
 export function InitializerFormUI(props: InitializerFormUIProps) {
@@ -33,6 +35,8 @@ export function InitializerFormUI(props: InitializerFormUIProps) {
     onCloseSectionMessage,
     hasChanges,
     readOnly,
+    setChangedData = () => {},
+    changeData = [],
   } = props;
 
   if (withSubmitButtons) {
@@ -48,6 +52,8 @@ export function InitializerFormUI(props: InitializerFormUIProps) {
             handleChange={handleChangeInitializerForm}
             entries={dataOptionsForms}
             title="Seleccione las opciones que desea asignar:"
+            setChangedData={setChangedData}
+            changeData={changeData}
           />
         </FormButtons>
         {message.visible && (
