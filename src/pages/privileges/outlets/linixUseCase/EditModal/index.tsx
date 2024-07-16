@@ -90,10 +90,6 @@ function EditCaseLinix() {
     IAssignmentFormEntry[]
   >([]);
 
-  const [EditOptionsData, setEditOptionsData] = useState<
-    Record<string, unknown>[]
-  >([]);
-
   function generalInformationData() {
     return linixUseCasesEdit.find(
       (data) =>
@@ -345,7 +341,6 @@ function EditCaseLinix() {
   const handleSubmitAssignmentForm = (changes: IAssignmentFormEntry[]) => {
     //Incluir un reducer para garantizar que doble click no daña el funcionamiento
     const bodyForPatch: any = [];
-
     changes.forEach((change) => {
       const changeForPatch = {
         transactionOperation: change.isActive ? "Insert" : "Delete",
@@ -353,12 +348,7 @@ function EditCaseLinix() {
       };
       bodyForPatch.push(changeForPatch);
     });
-
-    setCSOptionsChange([]);
-    setEditOptionsData(bodyForPatch);
   };
-
-  console.log("editoptionsData", EditOptionsData);
 
   return (
     <EditUserUI
@@ -380,7 +370,6 @@ function EditCaseLinix() {
       setCsOptionsChange={setCSOptionsChange}
       csOptionsChange={csOptionsChange}
       handleSubmitAssignmentForm={handleSubmitAssignmentForm}
-      EditOptionsData={EditOptionsData}
     />
   );
 }

@@ -9,7 +9,7 @@ import {
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
@@ -33,6 +33,7 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { VerificationAddLinixUseCase } from "../components/VerificationForm";
+import { InitializerForm } from "../components/InitializerForm";
 
 function finishModal(
   handleCloseModal: () => void,

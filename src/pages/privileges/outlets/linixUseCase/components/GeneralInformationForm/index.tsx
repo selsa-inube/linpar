@@ -13,8 +13,9 @@ import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-
 
 import { GeneralInformationFormUI } from "./interface";
 import { generalMessage } from "../../adding-linix-use-case/config/messages.config";
-import { editLinixUseCases } from "./utils";
+
 import { UseCase } from "../../types";
+import { editLinixUseCases } from "../InitializerForm/utils";
 
 const validationSchema = Yup.object({
   n_Usecase: Yup.string().required(validationMessages.required),

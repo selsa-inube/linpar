@@ -7,9 +7,9 @@ import {
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
-import { updateItemData } from "@mocks/utils/dataMock.service";
-
-const LOADING_TIMEOUT = 1500;
+import { editLinixUseCases } from "./utils";
+import { UseCase } from "../../types";
+import { useNavigate } from "react-router-dom";
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
@@ -22,21 +22,24 @@ interface IInitializerForm {
   readOnly?: boolean;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
+  setChangedData?: (changeData: IAssignmentFormEntry[]) => void;
+  changeData?: IAssignmentFormEntry[];
+  nameOption?: string;
+  formData?: UseCase;
 }
 
 export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms: initialDataOptionsForms,
     handleSubmit,
-    id,
-    keyData,
-    nameDB,
-    property,
-    propertyData,
     withSubmitButtons = false,
     onHasChanges,
-
+    id,
     readOnly = false,
+    setChangedData = () => {},
+    changeData = [],
+    nameOption = "",
+    formData,
   } = props;
   const [formDataOptions, setFormDataOptions] = useState(
     initialDataOptionsForms
@@ -56,35 +59,27 @@ export function InitializerForm(props: IInitializerForm) {
     if (!withSubmitButtons) handleSubmit(renderForm);
   };
 
-  const normalizeDataOption = formDataOptions
-    .filter((dataOption) => dataOption.isActive === true)
-    .map((option) => ({
-      [propertyData as keyof string]: option.id,
-    }));
-
-  const handleEditData = async () => {
-    if (nameDB && keyData) {
-      await updateItemData({
-        key: keyData,
-        nameDB: nameDB,
-        identifier: id!,
-        editData: normalizeDataOption,
-        property: property,
-      });
-    }
-  };
-
+  const navigate = useNavigate();
   const handleSubmitForm = () => {
+    if (!id) return;
+    handleSubmit(formDataOptions);
     setIsLoading(true);
-    setTimeout(() => {
-      handleSubmit(formDataOptions);
-      handleEditData();
-      setIsLoading(false);
-      setMessage({
-        visible: true,
-        data: generalMessage.success,
+    editLinixUseCases(formData!, changeData, id, nameOption)
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
@@ -96,12 +91,14 @@ export function InitializerForm(props: IInitializerForm) {
     setMessage({
       visible: false,
     });
+
+    navigate("/privileges/linixUseCase");
   };
 
   return (
     <InitializerFormUI
       handleChangeInitializerForm={handleChangeRenderForm}
-      handleSubmitForm={handleSubmitForm}
+      handleSubmitForm={() => handleSubmitForm()}
       handleReset={handleReset}
       isLoading={isLoading}
       dataOptionsForms={formDataOptions}
@@ -110,6 +107,8 @@ export function InitializerForm(props: IInitializerForm) {
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
       readOnly={readOnly}
+      setChangedData={setChangedData}
+      changeData={changeData}
     />
   );
 }

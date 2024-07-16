@@ -13,7 +13,10 @@ const mapEditLinixUseCaseEntityToApi = (
     k_Usecase: String(editUseCase.k_Usecase),
     n_Descrip: String(editUseCase.n_Descrip),
     n_Usecase: String(editUseCase.n_Usecase),
-    // opcionesCsPorCasoDeUso: Object(editUseCase.opcionesCsPorCasoDeUso),
+    opcionesCsPorCasoDeUso: Object(editUseCase.opcionesCsPorCasoDeUso),
+    opcionesPortalWebPorCasoDeUso: Object(
+      editUseCase.opcionesPortalWebPorCasoDeUso
+    ),
   };
 };
 

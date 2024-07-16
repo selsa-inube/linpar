@@ -8,7 +8,7 @@ import {
 } from "@inube/design-system";
 
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { SubjectCard } from "@src/components/cards/SubjectCard";
@@ -30,6 +30,7 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { StyledContainerLoading } from "../../users/invite/styles";
 
 import { UseCase } from "../types";
+import { InitializerForm } from "../components/InitializerForm";
 
 interface IControlModal {
   show: boolean;
@@ -54,7 +55,7 @@ interface EditUserUIProps {
   setCsOptionsChange: (csOptionsChange: IAssignmentFormEntry[]) => void;
   csOptionsChange: IAssignmentFormEntry[];
   handleSubmitAssignmentForm: (csOptionsChange: IAssignmentFormEntry[]) => void;
-  EditOptionsData: Record<string, unknown>[];
+  //EditOptionsData: Record<string, unknown>[];
 }
 
 function continueModal(
@@ -94,7 +95,6 @@ function EditUserUI(props: EditUserUIProps) {
     setCsOptionsChange,
     csOptionsChange,
     handleSubmitAssignmentForm,
-    EditOptionsData,
   } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
@@ -176,10 +176,7 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.downloadableDocuments.values}
               handleSubmit={handleSubmit}
-              EditOptionsData={{
-                id: id,
-                opcionesCsPorCasoDeUso: EditOptionsData,
-              }}
+              id={id}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.webReports.id && (
@@ -188,10 +185,7 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.webReports.values}
               handleSubmit={handleSubmit}
-              EditOptionsData={{
-                id: id,
-                opcionesCsPorCasoDeUso: EditOptionsData,
-              }}
+              id={id}
             />
           )}
 
@@ -200,11 +194,14 @@ function EditUserUI(props: EditUserUIProps) {
               withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.webOptions.values}
-              handleSubmit={handleSubmit}
-              EditOptionsData={{
-                id: id,
-                opcionesCsPorCasoDeUso: EditOptionsData,
+              handleSubmit={() => {
+                handleSubmitAssignmentForm(csOptionsChange);
               }}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
+              id={id}
+              nameOption="webOptions"
+              formData={linixUseCasesEdit}
             />
           )}
           {selectedTab ===
@@ -218,17 +215,14 @@ function EditUserUI(props: EditUserUIProps) {
               }}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
-              EditOptionsData={{
-                id: id,
-                opcionesCsPorCasoDeUso: EditOptionsData,
-              }}
+              id={id}
+              formData={linixUseCasesEdit}
             />
           )}
 
           {selectedTab ===
             editLinixUseCaseTabsConfig.clientServerOptions.id && (
             <>
-              {console.log("csOptionsChange", csOptionsChange)}
               <InitializerForm
                 withSubmitButtons
                 onHasChanges={handleDataChange}
@@ -238,7 +232,9 @@ function EditUserUI(props: EditUserUIProps) {
                 }}
                 changeData={csOptionsChange}
                 setChangedData={setCsOptionsChange}
-                EditOptionsData={EditOptionsData}
+                id={id}
+                nameOption={"clientServerOptions"}
+                formData={linixUseCasesEdit}
               />
             </>
           )}
