@@ -1,67 +1,52 @@
 import { useState } from "react";
 
 import { functionById } from "@mocks/utils/dataMock.service";
-import { generalMessage } from "@pages/privileges/outlets/roles/config/messages.config";
 
-import { DeleteInvitationUI } from "./interface";
-import { IMessageState } from "../../../types/forms.types";
 import { deleteInvitationModal } from "./config/deleteInvitation.config";
+import { DeleteLinixInvitationUI } from "./interface";
 
-interface DeleteInvitationProps {
-  deleteInvitation: typeof deleteInvitationModal;
+interface IDeleteLinixInvitationProps {
+  deleteLinixInvitationModal: typeof deleteInvitationModal;
+  setIdDeleted: (show: string) => void;
+  handleDeleteLinixInvitation: (props: functionById) => Promise<unknown>;
+  nameLinixInvitation: string;
   linixInvitation: string;
-  userNameInvitation: string;
-  handleDeleteInvitation: (props: functionById) => Promise<unknown>;
 }
 
-function DeleteInvitation(props: DeleteInvitationProps) {
+export const DeleteLinixInvitation = (props: IDeleteLinixInvitationProps) => {
   const {
-    deleteInvitation,
+    deleteLinixInvitationModal,
+    handleDeleteLinixInvitation,
+    nameLinixInvitation,
     linixInvitation,
-    userNameInvitation,
-    handleDeleteInvitation,
+    setIdDeleted,
   } = props;
+
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
-    visible: false,
-  });
 
   const handleOnclick = async () => {
-    await handleDeleteInvitation({
+    await handleDeleteLinixInvitation({
       key: "customerId",
       nameDB: "linix-invitations",
       identifier: linixInvitation,
     });
     setShowModal(false);
     setLoading(true);
-    setMessage({
-      visible: true,
-      data: generalMessage.success,
-    });
-  };
-
-  const handleCloseSectionMessage = () => {
-    setMessage({
-      visible: false,
-    });
+    setIdDeleted(linixInvitation);
   };
 
   return (
-    <DeleteInvitationUI
-      deleteInvitation={deleteInvitation}
+    <DeleteLinixInvitationUI
+      deleteInvitationModal={deleteLinixInvitationModal}
+      handleDeleteLinixInvitation={handleOnclick}
       hover={isHovered}
-      userNameInvitation={userNameInvitation}
       loading={loading}
-      message={message}
-      showModal={showModal}
-      handleCloseSectionMessage={handleCloseSectionMessage}
-      handleRemoveInvitation={handleOnclick}
+      nameLinixInvitation={nameLinixInvitation}
       setHover={setIsHovered}
       setShowModal={setShowModal}
+      showModal={showModal}
     />
   );
-}
-
-export { DeleteInvitation };
+};

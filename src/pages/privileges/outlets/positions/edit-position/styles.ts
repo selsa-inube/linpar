@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
 interface IStyledContainer {
-  smallScreen?: boolean;
+  $smallScreen?: boolean;
   typeTabs?: boolean;
 }
 
@@ -15,7 +15,7 @@ const StyledContainerLoading = styled.div<IStyledContainer>`
 
 const StyledContainer = styled.div<IStyledContainer>`
   padding: ${(props) =>
-    props.smallScreen
+    props.$smallScreen
       ? inube.spacing.s200
       : `${inube.spacing.s400} ${inube.spacing.s800}`};
 `;

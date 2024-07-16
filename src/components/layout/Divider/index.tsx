@@ -7,7 +7,7 @@ interface DividerProps {
 function Divider(props: DividerProps) {
   const { dashed } = props;
 
-  return <StyledDivider dashed={dashed} />;
+  return <StyledDivider $dashed={dashed} />;
 }
 
 export { Divider };

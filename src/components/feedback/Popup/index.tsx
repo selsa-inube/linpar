@@ -28,12 +28,12 @@ const Popup = (props: PopupProps) => {
   width = Math.max(width, 244);
   width += (spacingOffset - scrollWidth) / 2 + scrollWidth;
   width = width + "px";
-  let position: string = -13.5 + "px";
+  let position = String(-13.5 + "px");
 
   const padding = tablet ? "s200 s075 s200 s200" : "s300 s100 s300 s300";
 
   return (
-    <StyledPopup tablet={tablet} position={position}>
+    <StyledPopup $tablet={tablet} $position={position}>
       <Stack
         width={width}
         height="500px"

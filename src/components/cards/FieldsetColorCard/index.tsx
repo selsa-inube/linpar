@@ -1,14 +1,18 @@
-import { Stack, Text, inube } from "@inube/design-system";
+import tinycolor from "tinycolor2";
+import { useRef, useEffect } from "react";
+
+import { Stack } from "@inubekit/stack";
+import { inube } from "@inubekit/foundations";
+import { Text } from "@inubekit/text";
+import { getTokenColor } from "@utils/getTokenColor";
+import { Fieldset } from "@components/inputs/Fieldset";
+
+import { TokenColorCard } from "../TokenColorCard";
+import { Appearance } from "./types";
 import {
   StyledTokenColorCardContainer,
   StyledTextWithTokenContainer,
 } from "./styles";
-import { Fieldset } from "@components/inputs/Fieldset";
-import { TokenColorCard } from "../TokenColorCard";
-import { Appearance } from "./types";
-import tinycolor from "tinycolor2";
-import { useRef, useEffect } from "react";
-import { getTokenColor } from "@src/utils/getTokenColor";
 
 interface FieldsetColorCardProps {
   title: string;
@@ -17,7 +21,7 @@ interface FieldsetColorCardProps {
   category: string;
   children?: React.ReactNode;
   typeToken?: string;
-  optionsMenu: typeof inube;
+  optionsMenu: typeof inube.palette;
   onChange: (tokenName: string) => void;
   toggleActive?: boolean;
   setToggleActive?: (props: boolean) => void;
@@ -61,12 +65,12 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
 
   return (
     <Fieldset title={title} fieldsetRef={fieldsetRef}>
-      <Stack direction="column" gap={inube.spacing.s200}>
+      <Stack direction="column" gap="16px">
         <Text size="medium" appearance="gray">
           {description}
         </Text>
-        <Stack gap={inube.spacing.s200} alignItems="center">
-          <StyledTokenColorCardContainer requireBackground={requireBackground}>
+        <Stack gap="16px" alignItems="center">
+          <StyledTokenColorCardContainer $requireBackground={requireBackground}>
             <TokenColorCard
               tokenName={tokenName!}
               type="tokenPicker"
@@ -79,8 +83,10 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             />
           </StyledTokenColorCardContainer>
           {children && (
-            <StyledTextWithTokenContainer requireBackground={requireBackground}>
-              <Stack padding="s100">{children}</Stack>
+            <StyledTextWithTokenContainer
+              $requireBackground={requireBackground}
+            >
+              <Stack padding="8px">{children}</Stack>
             </StyledTextWithTokenContainer>
           )}
         </Stack>

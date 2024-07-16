@@ -2,7 +2,6 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 
-import { getAll } from "@src/mocks/utils/dataMock.service";
 import { updateItemData } from "@mocks/utils/dataMock.service";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
@@ -25,6 +24,7 @@ export interface IGeneralInformationForm {
 }
 
 interface IGeneralInformationFormProps {
+  linixRoles: Record<string, unknown>[];
   initialValues: IGeneralInformationForm;
   rol_id?: string | number;
   onSubmit?: (values: IGeneralInformationForm) => void;
@@ -44,6 +44,7 @@ export const GeneralInformationForm = forwardRef(
       rol_id,
       onSubmit,
       withSubmitButtons = false,
+      linixRoles,
       handleAddRoleFormValid,
     } = props;
     const [isLoading, setIsLoading] = useState(false);
@@ -51,23 +52,6 @@ export const GeneralInformationForm = forwardRef(
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
     });
-
-    const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
-
-    useEffect(() => {
-      setIsLoading(true);
-      setIsLoading(true);
-      getAll("linix-use-cases")
-        .then((data) => {
-          setLinixRoles(data as Record<string, unknown>[]);
-          setIsLoading(false);
-          setLinixRoles(data as Record<string, unknown>[]);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error(error.message);
-        });
-    }, []);
 
     const formik = useFormik({
       initialValues,

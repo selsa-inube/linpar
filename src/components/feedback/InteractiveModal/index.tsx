@@ -53,7 +53,7 @@ const InteractiveModal = ({
   };
 
   const renderCard = (data: { [key: string]: string }) => {
-    if (data[nameLabel] !== selectedItem) return null;
+    if (data[idLabel] !== selectedItem) return null;
 
     return (
       <SubjectSearchCard
@@ -92,7 +92,7 @@ const InteractiveModal = ({
 
   return createPortal(
     <Blanket>
-      <StyledModal smallScreen={smallScreen} type={type}>
+      <StyledModal $smallScreen={smallScreen} type={type}>
         <Stack direction="column" gap="24px">
           <Stack direction="column" gap="20px">
             <Stack alignItems="center" justifyContent="space-between">
@@ -117,7 +117,7 @@ const InteractiveModal = ({
               searchData &&
               Object.values(searchData).map(renderCard)}
 
-            {divider && <StyledDivider smallScreen={smallScreen} />}
+            {divider && <StyledDivider $smallScreen={smallScreen} />}
             {type === "fields" ? (
               hasLabels ? (
                 labels.map(

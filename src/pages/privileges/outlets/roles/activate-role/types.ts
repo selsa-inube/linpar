@@ -1,7 +1,7 @@
-import { activateUserModal } from "../../users/config/activateUser.config";
+import { activateRoleModal } from "./config/activateRole.config";
 
 export interface IActivateOptionModal {
-  activateModalConfig: typeof activateUserModal;
+  activateModalConfig: typeof activateRoleModal;
   active: boolean;
   handleToggleModal: () => void;
   handleActivateRole: () => void;

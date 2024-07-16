@@ -1,44 +1,37 @@
 import { MdOutlineDelete } from "react-icons/md";
-import { Icon } from "@inube/design-system";
 
+import { Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
-
 import { deletePositionModal } from "./config/deletePositions.config";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
-import { IMessageState } from "../../users/types/forms.types";
 
 interface DeletePositionUIProps {
-  showModal: boolean;
-  linixPosition: string;
-  deletePosition: typeof deletePositionModal;
-  hover: boolean;
-  message: IMessageState;
-  loading: boolean;
-  setShowModal: (show: boolean) => void;
+  deletePositionModal: typeof deletePositionModal;
   handleDeletePosition: () => void;
+  hover: boolean;
+  loading: boolean;
+  namePosition: string;
   setHover: (hover: boolean) => void;
-  handleCloseSectionMessage: () => void;
+  setShowModal: (show: boolean) => void;
+  showModal: boolean;
 }
 
 export const DeletePositionUI = (props: DeletePositionUIProps) => {
   const {
-    showModal,
-    linixPosition,
-    deletePosition,
-    hover,
-    message,
-    loading,
-    setShowModal,
+    deletePositionModal,
     handleDeletePosition,
+    hover,
+    loading,
+    namePosition,
     setHover,
-    handleCloseSectionMessage,
+    setShowModal,
+    showModal,
   } = props;
 
   const messageType = EMessageType.DELETE;
 
   const { title, description, actionText, appearance } =
-    deletePosition[messageType!];
+    deletePositionModal[messageType!];
 
   return (
     <>
@@ -56,19 +49,12 @@ export const DeletePositionUI = (props: DeletePositionUIProps) => {
       {showModal && (
         <DecisionModal
           title={title}
-          description={description(linixPosition)}
+          description={description(namePosition)}
           actionText={actionText}
           appearance={appearance}
           loading={loading}
           closeModal={() => setShowModal(false)}
           handleClick={handleDeletePosition}
-        />
-      )}
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleCloseSectionMessage}
         />
       )}
     </>

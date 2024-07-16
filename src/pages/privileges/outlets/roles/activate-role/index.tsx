@@ -2,13 +2,15 @@ import { useState } from "react";
 
 import { updateActive } from "@mocks/utils/dataMock.service";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { activateRoleMessages } from "./config/activateRole.config";
+import {
+  activateRoleMessages,
+  activateRoleModal,
+} from "./config/activateRole.config";
 
 import { ActivateRoleUI } from "./interface";
-import { activateUserModal } from "../../users/config/activateUser.config";
 
 export interface IDataActivateOption {
-  id: string;
+  id: number;
   active: boolean;
   name: string;
 }
@@ -16,7 +18,7 @@ interface IActivateRoleProps<T extends IDataActivateOption> {
   handleActivate: () => void;
   showComplete: boolean;
   data: T;
-  activateModalConfig: typeof activateUserModal;
+  activateModalConfig: typeof activateRoleModal;
 }
 
 export function ActivateRole<T extends IDataActivateOption>(

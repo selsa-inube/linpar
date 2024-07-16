@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { MdSearch } from "react-icons/md";
-import { Textfield, useMediaQuery } from "@inube/design-system";
-
+import { Textfield } from "@inubekit/textfield";
+import { useMediaQuery } from "@inubekit/hooks";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
-
 import { ILabel } from "./types";
 import { StyledSearchUserCard } from "./styles";
+
 interface SearchUserCardProps {
   id: string;
   label: string;
@@ -53,23 +53,26 @@ function SearchUserCard(props: SearchUserCardProps) {
     selectedId,
     onReset,
     message,
-    status,
     onBlur,
   } = props;
   const [showModal, setShowModal] = useState(false);
 
-  const [selectedUsername, setSelectedUsername] = useState(selectedId);
+  const [selectedUsername, setSelectedUsername] = useState(
+    String(
+      userData.find((data) => data[idLabel] === selectedId)?.[nameLabel] || ""
+    )
+  );
 
   const [validateCardRemoved, setValidateCardRemoved] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
   useEffect(() => {
-    userData.forEach((data) => {
-      if (data[idLabel] === selectedId) {
-        setSelectedUsername(String(data[nameLabel]));
-      }
-    });
+    setSelectedUsername(
+      String(
+        userData.find((data) => data[idLabel] === selectedId)?.[nameLabel] || ""
+      )
+    );
   }, [idLabel, selectedId, nameLabel, userData]);
 
   const resetSelectedUser = () => {
@@ -105,8 +108,8 @@ function SearchUserCard(props: SearchUserCardProps) {
     <>
       <StyledSearchUserCard
         onClick={handleToggleModal}
-        smallScreen={smallScreen}
-        isActive={showModal}
+        $smallScreen={smallScreen}
+        $isActive={showModal}
       >
         <Textfield
           id={id}
@@ -118,17 +121,15 @@ function SearchUserCard(props: SearchUserCardProps) {
           iconAfter={<MdSearch />}
           size="compact"
           fullwidth={true}
-          readOnly
           value={selectedUsername}
           message={message}
-          status={status}
           onBlur={onBlur}
         />
       </StyledSearchUserCard>
       {showModal && (
         <InteractiveModal
           title={title}
-          selectedItem={selectedUsername}
+          selectedItem={selectedId}
           infoTitle={infoTitle}
           closeModal={handleToggleModal}
           infoData={searchFieldData}

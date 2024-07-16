@@ -11,7 +11,6 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-
 import { SubjectCard } from "@src/components/cards/SubjectCard";
 
 import { StyledContainer } from "./styles";
@@ -35,6 +34,7 @@ interface IControlModal {
 }
 interface EditUserUIProps {
   selectedTab: string;
+
   formData: IFormAddLinixUseCase;
   id: string;
   handleTabChange: (tabId: string) => void;
@@ -73,6 +73,7 @@ function EditUserUI(props: EditUserUIProps) {
     handleTabChange,
     handleSubmit,
     controlModal,
+
     handleCloseModal,
     handleDataChange,
     handleContinueTab,
@@ -95,7 +96,7 @@ function EditUserUI(props: EditUserUIProps) {
   };
 
   return (
-    <StyledContainer smallScreen={smallScreen}>
+    <StyledContainer $smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s200} direction="column">
           <Breadcrumbs crumbs={editLinixUseCaseConfig[0].crumbs} />
@@ -137,6 +138,7 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               updateItemData={updateItemData}
               id={id}
+              selectLinixUseCase={[]}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (

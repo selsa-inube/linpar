@@ -1,22 +1,16 @@
+import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
-
-interface IStyledRadioClient {
-  theme?: typeof inube;
-}
 
 const StyledRadioClient = styled.label`
   & div {
     box-sizing: border-box;
     min-height: 58px;
     box-shadow: 1px 2px 2px 1px
-      ${({ theme }: IStyledRadioClient) =>
-        theme?.color?.surface?.gray?.regular ||
-        inube.color.surface.gray.regular};
+      ${({ theme }) =>
+        theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
     border: 1px solid
-      ${({ theme }: IStyledRadioClient) =>
-        theme?.color?.surface?.gray?.regular ||
-        inube.color.surface.gray.regular};
+      ${({ theme }) =>
+        theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
     cursor: pointer;
   }
 `;
@@ -31,7 +25,7 @@ const StyledRadio = styled.input`
 `;
 
 const StyledImage = styled.img`
-  font-family: "Roboto";
+  font-family: Roboto;
   font-size: 14px;
   width: 100%;
   transition: filter 500ms ease-out;

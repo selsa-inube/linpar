@@ -7,11 +7,11 @@ import {
   IGeneralInformation,
   IHandleChangeFormData,
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
+import { validationMessages } from "@src/validations/validationMessages";
+import { functionById } from "@mocks/utils/dataMock.service";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { GeneralInformationFormUI } from "./interface";
-
-import { validationMessages } from "@src/validations/validationMessages";
-import { functionById } from "@src/mocks/utils/dataMock.service";
 import { generalMessage } from "../../adding-linix-use-case/config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
@@ -20,13 +20,13 @@ const validationSchema = Yup.object({
   n_Usecase: Yup.string().required(validationMessages.required),
   i_Tipusec: Yup.string().required(validationMessages.required),
   n_Descrip: Yup.string().required(validationMessages.required),
-  k_Funcio: Yup.string(),
   k_Opcion: Yup.string(),
+  k_Funcio: Yup.string(),
 }).test(function (value) {
-  const { k_Funcio, k_Opcion } = value;
-  if (!k_Funcio && !k_Opcion) {
+  const { k_Opcion, k_Funcio } = value;
+  if (!k_Opcion && !k_Funcio) {
     return this.createError({
-      path: "k_Funcio",
+      path: "k_Opcion",
     });
   }
   return true;
@@ -43,6 +43,7 @@ interface GeneralInformationFormProps {
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
   updateItemData?: (props: functionById) => Promise<unknown>;
+  selectLinixUseCase: Option[];
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -64,6 +65,7 @@ export const GeneralInformationForm = forwardRef(
       handleSubmit,
       onFormValid,
       readOnly,
+      selectLinixUseCase,
       updateItemData,
       csOptions,
       webOptions,
@@ -180,6 +182,7 @@ export const GeneralInformationForm = forwardRef(
         readOnly={readOnly}
         csOptions={csOptions}
         webOptions={webOptions}
+        selectLinixUseCase={selectLinixUseCase}
       />
     );
   }

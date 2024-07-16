@@ -29,7 +29,7 @@ export const EditRole = () => {
 
   const [editData, setEditData] = useState<IRol>({
     i_Activo: "Y",
-    k_Rol: "",
+    k_Rol: 0,
     k_Tipcon: "",
     n_Rol: "",
     n_Uso: "",
@@ -184,7 +184,7 @@ export const EditRole = () => {
   };
 
   const roleCardData = editData && {
-    code: (editData as { k_Rol: string }).k_Rol,
+    code: (editData as { k_Rol: number }).k_Rol,
     username: (editData as { n_Rol: string }).n_Rol,
   };
 

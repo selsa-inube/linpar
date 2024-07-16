@@ -1,11 +1,12 @@
-import { Table } from "@inube/design-system";
-import { useMediaQuery } from "@inube/design-system";
 import { useEffect, useState } from "react";
 
+import { Table } from "@inube/design-system";
+import { useMediaQuery } from "@inube/design-system";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { getAll } from "@mocks/utils/dataMock.service";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import {
   invitationsTableBreakpoints,
@@ -13,8 +14,9 @@ import {
 } from "../../config/invitationsTable.config";
 import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
 import { actionsConfigInvitation } from "./config/dataInvitation";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
+
 import { IMessageState } from "../../types/forms.types";
+import { deleteInvitationMessages } from "./DeleteInvitation/config/deleteInvitation.config";
 
 interface InvitationsTabProps {
   searchText: string;
@@ -25,6 +27,7 @@ function InvitationsTab(props: InvitationsTabProps) {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
+  const [idDeleted, setIdDeleted] = useState("");
   const [loading, setLoading] = useState(true);
   const [invitations, setInvitations] = useState<IInvitationsEntry[]>([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -44,6 +47,18 @@ function InvitationsTab(props: InvitationsTabProps) {
         setLoading(false);
       });
   }, [invitations]);
+
+  useEffect(() => {
+    const filterRecordRemoved = invitations.filter(
+      (invitations) => invitations.customerId !== idDeleted
+    );
+    filterRecordRemoved &&
+      setMessage({
+        visible: true,
+        data: deleteInvitationMessages.success,
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idDeleted]);
 
   const handleResendInvitation = (invitation: IInvitationsEntry) => {
     let messageType = EMessageType.SUCCESS;
@@ -91,14 +106,15 @@ function InvitationsTab(props: InvitationsTabProps) {
             isHovered,
             handleResendInvitation,
             setIsHovered,
-            smallScreen
+            smallScreen,
+            setIdDeleted
           )}
           breakpoints={invitationsTableBreakpoints}
           filter={searchText}
           modalTitle="Invitación"
         />
       )}
-      {message.visible && (
+      {idDeleted && message.visible && (
         <RenderMessage
           message={message}
           handleCloseMessage={handleCloseMessage}

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import { getAll } from "@src/mocks/utils/dataMock.service";
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IDeleteForMessage, IRol } from "@pages/privileges/outlets/roles/types";
+import { getRoles } from "@src/services/roles/getRoles";
 
 import { RolesUI } from "./interface";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
+import { IMessage } from "@src/types/messages.types";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
@@ -15,34 +17,49 @@ export function Roles() {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: 0,
+    successfulDiscard: false,
+  });
 
-  useEffect(() => {
-    getAll("linix-roles")
-      .then((data) => {
-        if (data !== null) {
-          setLinixRoles(data as IRol[]);
-        }
-      })
-      .catch((error) => {
-        console.error(error.message);
-      })
-      .finally(() => {
+  const { user } = useAuth0();
+
+  const linixRolesData = async () => {
+    if (!user) return;
+    if (linixRoles.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getRoles();
+        setLinixRoles(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [linixRoles]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixRolesData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   useEffect(() => {
-    const filterRecordRemoved = linixRoles.filter(
-      (linixRol) => linixRol.k_Rol !== idDeleted
+    const messageType = idDeleted.successfulDiscard
+      ? generalMessage.success
+      : generalMessage.failed;
+
+    const filterDiscardPublication = linixRoles.filter(
+      (roles) => roles.id !== idDeleted.id
     );
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: generalMessage.success,
-      });
+
+    idDeleted.successfulDiscard && setLinixRoles(filterDiscardPublication);
+
+    setMessage({
+      visible: true,
+      data: messageType as IMessage,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idDeleted]);
+  }, [idDeleted.successfulDiscard]);
 
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRole(e.target.value);
@@ -71,7 +88,7 @@ export function Roles() {
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
-      idDeleted={idDeleted}
+      idDeleted={idDeleted.id}
       searchRole={searchRole}
       setIdDeleted={setIdDeleted}
       showMenu={showMenu}

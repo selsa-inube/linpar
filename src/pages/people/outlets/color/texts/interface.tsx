@@ -51,7 +51,7 @@ export function TextsUI(props: TextUIProps) {
             )}
           </Stack>
           <StyledContainer>
-            <StyledTabsContainer typeTabs={typeTabs}>
+            <StyledTabsContainer $typeTabs={typeTabs}>
               <Stack direction="column" gap="32px">
                 <Tabs
                   onChange={handleTabChange}

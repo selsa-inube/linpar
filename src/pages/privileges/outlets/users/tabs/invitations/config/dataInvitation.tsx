@@ -1,19 +1,21 @@
-import { Stack, Icon } from "@inube/design-system";
 import { Link } from "react-router-dom";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
+import { Stack, Icon } from "@inube/design-system";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 
 import { ResendInvitation } from "../ResendInvitation";
-import { DeleteInvitation } from "../DeleteInvitation";
+
 import { deleteInvitationModal } from "../DeleteInvitation/config/deleteInvitation.config";
+import { DeleteLinixInvitation } from "../DeleteInvitation";
 
 export const actionsConfigInvitation = (
   isHovered: boolean,
   handleResendInvitation: (invitation: IInvitationsEntry) => void,
   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>,
-  smallScreen: boolean
+  smallScreen: boolean,
+  setIdDeleted: (show: string) => void
 ) => {
   const invitationsTableActions = [
     {
@@ -67,11 +69,12 @@ export const actionsConfigInvitation = (
         customerId: string;
         userName: string;
       }) => (
-        <DeleteInvitation
-          deleteInvitation={deleteInvitationModal}
+        <DeleteLinixInvitation
+          deleteLinixInvitationModal={deleteInvitationModal}
           linixInvitation={customerId}
-          userNameInvitation={userName}
-          handleDeleteInvitation={deleteItemData}
+          nameLinixInvitation={userName}
+          handleDeleteLinixInvitation={deleteItemData}
+          setIdDeleted={setIdDeleted}
         />
       ),
       type: "error",

@@ -16,7 +16,7 @@ import { Menu } from "@components/navigation/Menu";
 import { privilegeOptionsConfig } from "@pages/privileges/outlets/options/config/privileges.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
-import { IRol } from "./types";
+import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
@@ -35,9 +35,9 @@ interface IRolesProps {
   message: IMessageState;
   linixRoles: IRol[];
   loading: boolean;
-  idDeleted: string;
+  idDeleted: number;
   searchRole: string;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: IDeleteForMessage) => void;
   showMenu: boolean;
 }
 
@@ -136,7 +136,7 @@ export function RolesUI(props: IRolesProps) {
               filter={searchRole}
             />
           )}
-          {idDeleted && message.visible && (
+          {idDeleted !== 0 && message.visible && (
             <RenderMessage
               message={message}
               handleCloseMessage={handleCloseSectionMessage}

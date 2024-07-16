@@ -9,7 +9,7 @@ import { deleteRolModal } from "../delete-role/config/deleteRol.config";
 import { DeleteRole } from "../delete-role";
 import { activateRoleModal } from "../activate-role/config/activateRole.config";
 import { ActivateRole } from "../activate-role";
-import { IRol } from "../types";
+import { IDeleteForMessage, IRol } from "../types";
 
 export const titlesOptions = [
   {
@@ -42,9 +42,9 @@ export const RolesBreakPointsConfig = [
 
 export const actionsConfigPosition = (
   linixRoles: IRol[],
-  setIdDeleted: (show: string) => void
+  setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
-  const dataDetailsRole = (k_Rol: string) => {
+  const dataDetailsRole = (k_Rol: number) => {
     const data = [linixRoles.find((role) => role.k_Rol === k_Rol)!].map(
       (roleSelected) => ({
         Código: roleSelected?.k_Rol,
@@ -57,17 +57,17 @@ export const actionsConfigPosition = (
     return [...data].shift();
   };
 
-  const selectedData = (k_Rol: string) =>
+  const selectedData = (k_Rol: number) =>
     linixRoles.find((role) => role.k_Rol === k_Rol);
 
   const actionsConfig = [
     {
       id: "i_activo",
       actionName: "Activo",
-      content: ({ k_Rol }: { k_Rol: string }) => {
+      content: ({ k_Rol }: { k_Rol: number }) => {
         const role = selectedData(k_Rol);
         const adjustedRole = {
-          id: role?.k_Rol || "",
+          id: role?.k_Rol || 2,
           active: role?.i_Activo === "Y" || false,
           name: role?.n_Rol || "",
         };
@@ -86,7 +86,7 @@ export const actionsConfigPosition = (
     {
       id: "Details",
       actionName: "Detalles",
-      content: ({ k_Rol }: { k_Rol: string }) => (
+      content: ({ k_Rol }: { k_Rol: number }) => (
         <DetailsModal data={dataDetailsRole(k_Rol)} />
       ),
       type: "secondary",
@@ -94,7 +94,7 @@ export const actionsConfigPosition = (
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ k_Rol }: { k_Rol: string }) => (
+      content: ({ k_Rol }: { k_Rol: number }) => (
         <Link to={`edit/${k_Rol}`} onClick={() => selectedData(k_Rol)}>
           <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
         </Link>
@@ -104,7 +104,7 @@ export const actionsConfigPosition = (
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Rol, n_Rol }: { k_Rol: string; n_Rol: string }) => (
+      content: ({ k_Rol, n_Rol }: { k_Rol: number; n_Rol: string }) => (
         <DeleteRole
           nameRol={n_Rol}
           rol={k_Rol}
