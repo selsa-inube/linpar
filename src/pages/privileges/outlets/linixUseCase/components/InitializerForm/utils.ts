@@ -1,4 +1,4 @@
-import { editLinixUseCase } from "@src/services/linixUseCase/editLinixUseCase";
+import { editLinixUseCase } from "@services/linixUseCase/editLinixUseCase";
 import { IAssignmentFormEntry } from "../../../users/types/forms.types";
 import { UseCase } from "../../types";
 import { formSelectLabel } from "../../config/dataUseCases.config";
@@ -9,7 +9,6 @@ export const editLinixUseCases = async (
   id?: string,
   nameOption?: string
 ) => {
-  console.log("linixUseCaseData", linixUseCaseData);
   const normalizeOpcionesCs =
     nameOption === "clientServerOptions"
       ? optionsData?.map((change: IAssignmentFormEntry) => {
@@ -28,6 +27,24 @@ export const editLinixUseCases = async (
           };
         })
       : [];
+  const normalizeReportesCsPorCasoDeUso =
+    nameOption === "clientServerReports"
+      ? optionsData?.map((change: IAssignmentFormEntry) => {
+          return {
+            transactionOperation: change.isActive ? "Insert" : "Delete",
+            k_Nforma: change.id,
+          };
+        })
+      : [];
+  const normalizeReportesWebPorCasoDeUso =
+    nameOption === "webReports"
+      ? optionsData?.map((change: IAssignmentFormEntry) => {
+          return {
+            transactionOperation: change.isActive ? "Insert" : "Delete",
+            k_Report: change.id,
+          };
+        })
+      : [];
 
   const newoptionsUseCase: UseCase = {
     modifyJustification: "edit",
@@ -40,9 +57,8 @@ export const editLinixUseCases = async (
     k_Nforma: linixUseCaseData.k_Funcio || "",
     opcionesCsPorCasoDeUso: normalizeOpcionesCs,
     opcionesPortalWebPorCasoDeUso: normalizeOpcionesPortalWebPorCaso,
-    //   //   reportesCsPorCasoDeUso?:
-    //   //   reportesWebPorCasoDeUso?:
-    //   //   tiposDeDocumentoPorCasoDeUso?:
+    reportesCsPorCasoDeUso: normalizeReportesCsPorCasoDeUso,
+    reportesWebPorCasoDeUso: normalizeReportesWebPorCasoDeUso,
   };
   let confirmationType = true;
 

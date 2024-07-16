@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-
+import { getDownloadableFormats } from "@services/linixUseCase/downloadableFormats";
+import { getWebOptionsFormats } from "@services/webOptions";
+import { getWebReportsFormats } from "@services/linixUseCase/reportsWeb";
+import { getReportsClientServerFormats } from "@services/linixUseCase/reportsClientServer";
+import { getSelectLinixUseCase } from "@services/linixUseCase/selectLinixUseCase";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
+import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientServerMenuOption";
+import { getLinixUseCase } from "@services/linixUseCase/getLinixUseCase";
+import { formSelectOptionId } from "../config/dataUseCases.config";
 import { EditUserUI } from "./interface";
 import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
 import { dataToAssignmentFormEntry } from "../adding-linix-use-case";
 import { UseCase } from "../types";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
-import { getDownloadableFormats } from "@src/services/linixUseCase/downloadableFormats";
-import { getWebOptionsFormats } from "@src/services/webOptions";
-import { getWebReportsFormats } from "@src/services/linixUseCase/reportsWeb";
-import { getReportsClientServerFormats } from "@src/services/linixUseCase/reportsClientServer";
-import { getSelectLinixUseCase } from "@src/services/linixUseCase/selectLinixUseCase";
-import { Option } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
-import { useAuth0 } from "@auth0/auth0-react";
-import { getClientServerMenuOptionFormats } from "@src/services/linixUseCase/clientServerMenuOption";
-import { getLinixUseCase } from "@src/services/linixUseCase/getLinixUseCase";
-import { formSelectOptionId } from "../config/dataUseCases.config";
 
 export interface IGeneralInformation {
   generalInformation: { entries: UseCase | undefined };
@@ -336,10 +334,7 @@ function EditCaseLinix() {
 
   const prueba = generalInformationData();
 
-  //const bodyForPatch: any = [];
-
   const handleSubmitAssignmentForm = (changes: IAssignmentFormEntry[]) => {
-    //Incluir un reducer para garantizar que doble click no daña el funcionamiento
     const bodyForPatch: any = [];
     changes.forEach((change) => {
       const changeForPatch = {

@@ -1,9 +1,8 @@
-import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
+import { UseCase } from "@pages/privileges/outlets/linixUseCase/types";
 
 const mapEditLinixUseCaseEntityToApi = (
   editUseCase: UseCase
 ): Record<string, string | number | object> => {
-  console.log(editUseCase, "estoy cansado");
   return {
     modifyJustification: "<string>",
     a_Publicc: "<string>",
@@ -17,6 +16,8 @@ const mapEditLinixUseCaseEntityToApi = (
     opcionesPortalWebPorCasoDeUso: Object(
       editUseCase.opcionesPortalWebPorCasoDeUso
     ),
+    reportesCsPorCasoDeUso: Object(editUseCase.reportesCsPorCasoDeUso),
+    reportesWebPorCasoDeUso: Object(editUseCase.reportesWebPorCasoDeUso),
   };
 };
 

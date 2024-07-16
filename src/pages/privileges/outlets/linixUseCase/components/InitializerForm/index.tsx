@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import {
   IAssignmentFormEntry,
   IMessageState,
@@ -9,7 +9,6 @@ import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-li
 import { InitializerFormUI } from "./interface";
 import { editLinixUseCases } from "./utils";
 import { UseCase } from "../../types";
-import { useNavigate } from "react-router-dom";
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];

@@ -11,7 +11,7 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-import { SubjectCard } from "@src/components/cards/SubjectCard";
+import { SubjectCard } from "@components/cards/SubjectCard";
 import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { updateItemData } from "@mocks/utils/dataMock.service";
@@ -184,8 +184,14 @@ function EditUserUI(props: EditUserUIProps) {
               withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.webReports.values}
-              handleSubmit={handleSubmit}
+              handleSubmit={() => {
+                handleSubmitAssignmentForm(csOptionsChange);
+              }}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
               id={id}
+              nameOption="webReports"
+              formData={linixUseCasesEdit}
             />
           )}
 
@@ -216,6 +222,7 @@ function EditUserUI(props: EditUserUIProps) {
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
               id={id}
+              nameOption="clientServerReports"
               formData={linixUseCasesEdit}
             />
           )}

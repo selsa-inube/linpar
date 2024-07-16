@@ -1,10 +1,10 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 
 interface InitializerFormUIProps {
   dataOptionsForms: IAssignmentFormEntry[];
