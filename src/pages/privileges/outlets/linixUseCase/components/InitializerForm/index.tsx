@@ -7,7 +7,7 @@ import {
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
-import { editLinixUseCases } from "./utils";
+import { editLinixUseCases } from "../../EditModal/utils";
 import { UseCase } from "../../types";
 
 interface IInitializerForm {

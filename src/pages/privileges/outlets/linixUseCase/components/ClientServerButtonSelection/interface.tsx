@@ -11,13 +11,14 @@ import {
 
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
+import { IClientServerButton } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";
 
 interface ClientServerButtonSelectionUIProps {
   formik: FormikValues;
   loading: boolean;
   withSubmitButtons?: boolean;
+  hasChanges: (valueCompare: IClientServerButton) => boolean;
   showMessage: IMessageState;
   handleCloseSectionMessage: () => void;
   formInvalid: boolean;
@@ -35,7 +36,9 @@ function RenderFormFields(
 ) {
   const mediaQuery = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuery);
+  console.log(buttonOptions, "buttonOptions");
 
+  console.log(formik.values.csButtonOption);
   return (
     <Grid
       templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
@@ -52,15 +55,15 @@ function RenderFormFields(
           <Select
             label="Opción botón cliente servidor"
             placeholder="Seleccione una opción"
-            name="csButtonOption"
-            id="csButtonOption"
-            value={formik.values.csButtonOption}
-            type="csButtonOption"
+            name="k_option_button"
+            id="k_option_button"
+            value={formik.values.k_option_button}
+            type="k_option_button"
             iconAfter={<MdOutlineModeEdit size={18} />}
             size="compact"
             fullwidth
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeForm("csButtonOption", value.target.outerText)
+              handleChangeForm("k_option_button", value.target.outerText)
             }
             onBlur={formik.handleBlur}
             options={buttonOptions.map((buttonOption) => ({
@@ -98,17 +101,19 @@ function ClientServerButtonSelectionUI(
     formik,
     loading,
     withSubmitButtons,
+    hasChanges,
     formInvalid,
     handleSubmitForm,
     handleChangeForm,
     buttonOptions,
   } = props;
-  return (
-    <>
-      {withSubmitButtons && (
+  if (withSubmitButtons) {
+    return (
+      <>
         <FormButtons
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
+          disabledButtons={!hasChanges(formik.values)}
           loading={loading}
         >
           {RenderFormFields(
@@ -119,15 +124,18 @@ function ClientServerButtonSelectionUI(
             buttonOptions
           )}
         </FormButtons>
+      </>
+    );
+  }
+  return (
+    <>
+      {RenderFormFields(
+        formik,
+        loading,
+        formInvalid,
+        handleChangeForm,
+        buttonOptions
       )}
-      {!withSubmitButtons &&
-        RenderFormFields(
-          formik,
-          loading,
-          formInvalid,
-          handleChangeForm,
-          buttonOptions
-        )}
     </>
   );
 }

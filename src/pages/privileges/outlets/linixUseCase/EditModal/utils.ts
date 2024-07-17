@@ -1,7 +1,7 @@
 import { editLinixUseCase } from "@services/linixUseCase/editLinixUseCase";
-import { IAssignmentFormEntry } from "../../../users/types/forms.types";
-import { UseCase } from "../../types";
-import { formSelectLabel } from "../../config/dataUseCases.config";
+import { IAssignmentFormEntry } from "../../users/types/forms.types";
+import { UseCase } from "../types";
+import { formSelectLabel } from "../config/dataUseCases.config";
 
 export const editLinixUseCases = async (
   linixUseCaseData: UseCase,

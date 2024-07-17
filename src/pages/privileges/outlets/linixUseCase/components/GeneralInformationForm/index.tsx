@@ -15,7 +15,7 @@ import { GeneralInformationFormUI } from "./interface";
 import { generalMessage } from "../../adding-linix-use-case/config/messages.config";
 
 import { UseCase } from "../../types";
-import { editLinixUseCases } from "../InitializerForm/utils";
+import { editLinixUseCases } from "../../EditModal/utils";
 
 const validationSchema = Yup.object({
   n_Usecase: Yup.string().required(validationMessages.required),

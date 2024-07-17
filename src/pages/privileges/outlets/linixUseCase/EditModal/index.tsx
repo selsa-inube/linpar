@@ -16,6 +16,7 @@ import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
 import { dataToAssignmentFormEntry } from "../adding-linix-use-case";
 import { UseCase } from "../types";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
+import { getClientServerButtonDataFormats } from "@src/services/linixUseCase/clientServerButtonData";
 
 export interface IGeneralInformation {
   generalInformation: { entries: UseCase | undefined };
@@ -42,7 +43,7 @@ function EditCaseLinix() {
     clientServerButton: {
       isValid: false,
       values: {
-        csButtonOption: "",
+        k_option_button: "",
       },
     },
     downloadableDocuments: {
@@ -87,6 +88,9 @@ function EditCaseLinix() {
   const [csOptionsChange, setCSOptionsChange] = useState<
     IAssignmentFormEntry[]
   >([]);
+  const [csOptionsButtons, setCsOptionsButtons] = useState<
+    Record<string, unknown>[]
+  >([]);
 
   function generalInformationData() {
     return linixUseCasesEdit.find(
@@ -100,6 +104,7 @@ function EditCaseLinix() {
         }
     );
   }
+
   const [editData, setEditData] = useState<{
     [key: string]: { [key: string]: unknown };
   }>({
@@ -133,6 +138,7 @@ function EditCaseLinix() {
       clientServerReports(),
       clientServerMenuOption(),
       clientSelectLinixUseCase(),
+      clientServerButtonMenuOption(),
     ]).then(() => {
       setLoading(true);
     });
@@ -294,6 +300,23 @@ function EditCaseLinix() {
     }
   };
 
+  const clientServerButtonMenuOption = async () => {
+    if (!user) return;
+    if (csOptionsButtons.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getClientServerButtonDataFormats(
+          generalInformationData()?.k_Funcio || "1"
+        );
+        setCsOptionsButtons(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   const handleSubmit = (values: IAssignmentFormEntry[]) => {
     const editKey = Object.entries(editLinixUseCaseTabsConfig).find(
       ([, config]) => config.id === selectedTab
@@ -345,6 +368,7 @@ function EditCaseLinix() {
     });
   };
 
+  const clienteButtonValueInitial = generalInformationData();
   return (
     <EditUserUI
       linixUseCasesEdit={prueba!}
@@ -365,6 +389,9 @@ function EditCaseLinix() {
       setCsOptionsChange={setCSOptionsChange}
       csOptionsChange={csOptionsChange}
       handleSubmitAssignmentForm={handleSubmitAssignmentForm}
+      filterNForma={generalInformationData()?.k_Funcio as string}
+      csOptionsButtons={csOptionsButtons}
+      clienteButtonInitial={clienteButtonValueInitial!}
     />
   );
 }

@@ -35,7 +35,7 @@ export interface IGeneralInformation {
 }
 
 export interface IClientServerButton {
-  csButtonOption: string;
+  k_option_button: string;
 }
 
 export interface IFormAddLinixUseCase {

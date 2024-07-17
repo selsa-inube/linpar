@@ -9,14 +9,12 @@ import {
   IHandleChangeFormData,
   IClientServerButton,
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
-
 import { ClientServerButtonSelectionUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
 interface ClientServerButtonSelectionProps {
   id?: string;
-
   handleSubmit: (values: IHandleChangeFormData) => void;
   onHasChanges?: (hasChanges: boolean) => void;
   initialValues?: IClientServerButton;
@@ -28,7 +26,8 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     id,
     handleSubmit,
     onHasChanges,
-    initialValues = { csButtonOption: "" },
+
+    initialValues = { k_option_button: "" },
     withSubmitButtons = false,
   } = props;
 
@@ -129,6 +128,8 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
       buttonOptions={buttonOptions}
+      withSubmitButtons={withSubmitButtons}
+      hasChanges={hasChanges}
     />
   );
 }

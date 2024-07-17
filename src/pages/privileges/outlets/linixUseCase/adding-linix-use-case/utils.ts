@@ -53,7 +53,7 @@ export const saveLinixUseCase = async (
     n_Descrip: generalInformation.n_Descrip,
     a_Publicc: "b",
     i_Tipusec: formSelectLabel(generalInformation.i_Tipusec) || "",
-    k_Ncampo: clientServerButton.csButtonOption,
+    k_Ncampo: clientServerButton.k_option_button,
     k_Nforma: filterNForma,
     opcionesPortalWebPorCasoDeUso: normalizeReportsWeb,
     reportesWebPorCasoDeUso: normalizeWebOptions,

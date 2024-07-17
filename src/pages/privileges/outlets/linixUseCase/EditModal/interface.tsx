@@ -22,6 +22,7 @@ import {
   editLinixUseCaseSubjectCardLabels,
 } from "./config/editLinuxUseCase.config";
 import {
+  IClientServerButton,
   IFormAddLinixUseCase,
   IGeneralInformation,
 } from "../adding-linix-use-case/types";
@@ -54,8 +55,10 @@ interface EditUserUIProps {
   csOptions: Record<string, unknown>[];
   setCsOptionsChange: (csOptionsChange: IAssignmentFormEntry[]) => void;
   csOptionsChange: IAssignmentFormEntry[];
+  filterNForma: string;
+  csOptionsButtons: Record<string, unknown>[];
+  clienteButtonInitial: UseCase;
   handleSubmitAssignmentForm: (csOptionsChange: IAssignmentFormEntry[]) => void;
-  //EditOptionsData: Record<string, unknown>[];
 }
 
 function continueModal(
@@ -79,8 +82,10 @@ function EditUserUI(props: EditUserUIProps) {
   const {
     selectedTab,
     selectLinixUseCase,
+    clienteButtonInitial,
     editData,
     id,
+    filterNForma,
     loading,
     handleTabChange,
     handleSubmit,
@@ -94,6 +99,7 @@ function EditUserUI(props: EditUserUIProps) {
     webOptions,
     setCsOptionsChange,
     csOptionsChange,
+
     handleSubmitAssignmentForm,
   } = props;
 
@@ -109,7 +115,7 @@ function EditUserUI(props: EditUserUIProps) {
     type: (currentInformation as { i_Tipusec: string }).i_Tipusec,
     description: (currentInformation as { n_Descrip: string }).n_Descrip,
   };
-
+  console.log(clienteButtonInitial, "clienteButtonInitial");
   return loading ? (
     <StyledContainerLoading>
       <LoadingApp />
@@ -163,10 +169,12 @@ function EditUserUI(props: EditUserUIProps) {
           )}
           {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (
             <ClientServerButtonSelection
-              initialValues={formData.clientServerButton.values}
+              initialValues={
+                clienteButtonInitial as unknown as IClientServerButton
+              }
               handleSubmit={handleSubmit as () => void}
+              id={filterNForma as string}
               withSubmitButtons
-              onHasChanges={handleDataChange}
             />
           )}
           {selectedTab ===

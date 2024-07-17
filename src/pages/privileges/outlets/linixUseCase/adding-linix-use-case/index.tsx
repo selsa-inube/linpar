@@ -65,7 +65,7 @@ function AddingLinixUseCase() {
     clientServerButton: {
       isValid: false,
       values: {
-        csButtonOption: "",
+        k_option_button: "",
       },
     },
     downloadableDocuments: {
