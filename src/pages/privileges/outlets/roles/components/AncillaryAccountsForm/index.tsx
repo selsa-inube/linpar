@@ -1,10 +1,12 @@
 import { FormikProps, useFormik } from "formik";
 import { forwardRef, useImperativeHandle, useState, useEffect } from "react";
-import { AncillaryAccountsFormsUI } from "./interface";
+
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { updateItemData } from "@mocks/utils/dataMock.service";
+
+import { AncillaryAccountsFormsUI } from "./interface";
 export interface IAncillaryAccountsForm {
   officialSector: string;
   commercialSector: string;
@@ -13,7 +15,7 @@ export interface IAncillaryAccountsForm {
 
 interface IAncillaryAccountsFormProps {
   initialValues: IAncillaryAccountsForm;
-  rol_id?: string | number;
+  k_Rol?: string | number;
   onSubmit?: (values: IAncillaryAccountsForm) => void;
   withSubmitButtons?: boolean;
   handleAddRoleFormValid?: (newValue: boolean) => void;
@@ -25,7 +27,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
 ) {
   const {
     initialValues,
-    rol_id,
+    k_Rol,
     onSubmit,
     withSubmitButtons = false,
     handleAddRoleFormValid,
@@ -58,7 +60,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
     await updateItemData({
       key: "k_Rol",
       nameDB: "linix-roles",
-      identifier: rol_id as string,
+      identifier: k_Rol as string,
       editData: editedAccounts,
       property: "cuentasAuxiliaresPorRol",
     })

@@ -120,7 +120,6 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
       k_Rol: rolId,
       k_Tipmov: mapNewTransactionType.id,
       n_Tipmov: mapNewTransactionType.value,
-      i_Privi: true,
     }));
 
   const normalizeUseCases = useCasesValues
@@ -128,14 +127,13 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
     .map((mapNewUseCases) => ({
       k_Rol: rolId,
       k_Usecase: mapNewUseCases.id,
-      i_Privi: true,
     }));
 
   const normalizeBusinessRules = businessRulesValues
     .filter((businessRules) => businessRules.isActive === true)
     .map((mapBusinessRules) => ({
       k_Rol: rolId,
-      k_Regla: mapBusinessRules.value,
+      k_Regla: mapBusinessRules.id,
     }));
 
   const newRole: IRol = {

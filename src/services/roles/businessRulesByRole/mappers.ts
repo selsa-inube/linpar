@@ -5,7 +5,7 @@ const mapBusinessRulesByRoleFormatsApiToEntity = (
     k_Rol: String(reportsClientServerFormat.k_Rol),
     k_Regla: String(reportsClientServerFormat.k_Regla),
     n_Regla: String(reportsClientServerFormat.n_Regla),
-    asignado: Boolean(reportsClientServerFormat.i_Privi),
+    i_Privi: String(reportsClientServerFormat.i_Privi),
   };
   return buildreportsClientServerFormat;
 };

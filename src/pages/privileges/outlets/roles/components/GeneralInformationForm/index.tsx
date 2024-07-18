@@ -26,7 +26,7 @@ export interface IGeneralInformationForm {
 interface IGeneralInformationFormProps {
   linixRoles: Record<string, unknown>[];
   initialValues: IGeneralInformationForm;
-  rol_id?: string | number;
+  k_Rol?: string | number;
   onSubmit?: (values: IGeneralInformationForm) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
@@ -41,7 +41,7 @@ export const GeneralInformationForm = forwardRef(
   ) {
     const {
       initialValues,
-      rol_id,
+      k_Rol,
       onSubmit,
       withSubmitButtons = false,
       linixRoles,
@@ -69,9 +69,9 @@ export const GeneralInformationForm = forwardRef(
     const handleSubmit = async () => {
       setIsLoading(true);
       const editedInfo = {
-        k_Rol: rol_id as string,
+        k_Rol: k_Rol as string,
         n_Rol: formik.values.roleName,
-        k_Tipcon: rol_id as string,
+        k_Tipcon: k_Rol as string,
         k_Aplica: formik.values.application,
         n_Uso: formik.values.description,
       };
@@ -79,7 +79,7 @@ export const GeneralInformationForm = forwardRef(
       await updateItemData({
         key: "k_Rol",
         nameDB: "linix-roles",
-        identifier: rol_id as string,
+        identifier: k_Rol as string,
         editData: editedInfo,
       })
         .then(() => {

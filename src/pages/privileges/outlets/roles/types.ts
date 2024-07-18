@@ -32,7 +32,6 @@ interface ITiposDeMovimientoContablePorRol {
   k_Rol: number;
   k_Tipmov: string;
   n_Tipmov: string;
-  i_Privi: boolean;
 }
 
 export interface IRol {

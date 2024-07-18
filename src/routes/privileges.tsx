@@ -42,7 +42,7 @@ function PrivilegesRoutes() {
 
           <Route path="users/invite" element={<Invite />} />
           <Route path="users/edit/:user_id" element={<EditUsers />} />
-          <Route path="roles/edit/:rol_id" element={<EditRole />} />
+          <Route path="roles/edit/:k_Rol" element={<EditRole />} />
 
           <Route
             path="linixUseCase/edit/:user_id"

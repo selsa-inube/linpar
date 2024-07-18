@@ -16,7 +16,8 @@ import {
 import { InitializerForm } from "../../forms/InitializerForm";
 import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
 import { stepsAddRol } from "../add-role/config/addRol.config";
-import { IAssignmentFormEntry } from "../../users/types/forms.types";
+
+import { IFormAddRole, IRol } from "../types";
 
 interface ITabs {
   id: string;
@@ -32,30 +33,29 @@ interface IEditRoleUIProps {
   selectedTab: string;
   smallScreen: boolean;
   loading: boolean;
-  rol_id: string;
+  k_Rol: string;
+  editData: IRol;
+  dataEditRoleLinixForm: IFormAddRole;
   valuesAncillaryAccounts: IAncillaryAccountsForm;
-  valuesTransactionTypes: IAssignmentFormEntry[];
-  valuesBusinessRules?: any;
-  valuesCreditboardTasks: IAssignmentFormEntry[];
-  valuesUseCases: IAssignmentFormEntry[];
+
   handleUpdateDataSwitchstep: (values: any) => void;
+  linixRoles: Record<string, unknown>[];
 }
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
   const {
     roleCardData,
+    dataEditRoleLinixForm,
+    linixRoles,
     data,
     onTabChange,
     selectedTab,
     dataTabs,
     smallScreen,
     loading,
-    rol_id,
+    k_Rol,
     valuesAncillaryAccounts,
-    valuesTransactionTypes,
-    valuesBusinessRules,
-    valuesCreditboardTasks,
-    valuesUseCases,
+
     handleUpdateDataSwitchstep,
   } = props;
 
@@ -96,66 +96,46 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
           {selectedTab === stepsAddRol.generalInformation.label && (
             <GeneralInformationForm
               initialValues={data}
-              rol_id={rol_id}
+              k_Rol={k_Rol}
               withSubmitButtons
-              linixRoles={data}
+              linixRoles={linixRoles}
             />
           )}
 
           {selectedTab === stepsAddRol.auxiliaryAccounts.label && (
             <AncillaryAccountsForm
               initialValues={valuesAncillaryAccounts}
-              rol_id={rol_id}
+              k_Rol={k_Rol}
               withSubmitButtons
             />
           )}
 
           {selectedTab === stepsAddRol.transactionTypes.label && (
             <InitializerForm
-              dataOptionsForms={valuesTransactionTypes}
+              dataOptionsForms={dataEditRoleLinixForm.transactionTypes.values}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
-              id={rol_id}
-              keyData={"k_Rol"}
-              nameDB={"linix-roles"}
-              property={"tiposDeMovimientoContablePorRol"}
-              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.businessRules.label && (
             <InitializerForm
-              dataOptionsForms={valuesBusinessRules}
+              dataOptionsForms={dataEditRoleLinixForm.businessRules.values}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
-              id={rol_id}
-              keyData={"k_Rol"}
-              nameDB={"linix-roles"}
-              property={"reglasDeNegocioPorRol"}
-              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.crediboardTasks.label && (
             <InitializerForm
-              dataOptionsForms={valuesCreditboardTasks}
+              dataOptionsForms={dataEditRoleLinixForm.crediboardTasks.values}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
-              id={rol_id}
-              keyData={"k_Rol"}
-              nameDB={"linix-roles"}
-              property={"tareasCrediboardPorRol"}
-              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.useCases.label && (
             <InitializerForm
-              dataOptionsForms={valuesUseCases}
+              dataOptionsForms={dataEditRoleLinixForm.useCases.values}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
-              id={rol_id}
-              keyData={"k_Rol"}
-              nameDB={"linix-positions"}
-              property={"casosDeUsoPorRol"}
-              propertyData={"k_Id"}
             />
           )}
         </>
