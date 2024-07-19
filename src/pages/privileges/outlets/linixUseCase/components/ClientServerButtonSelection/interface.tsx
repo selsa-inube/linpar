@@ -106,12 +106,6 @@ function ClientServerButtonSelectionUI(
   if (withSubmitButtons) {
     return (
       <>
-        {/* <FormButtons
-          handleSubmit={handleSubmitForm}
-          handleReset={formik.resetForm}
-          disabledButtons={!hasChanges(formik.values)}
-          loading={loading}
-        > */}
         {RenderFormFields(
           formik,
           loading,
@@ -119,7 +113,6 @@ function ClientServerButtonSelectionUI(
           handleChangeForm,
           buttonOptions
         )}
-        {/* </FormButtons> */}
       </>
     );
   }

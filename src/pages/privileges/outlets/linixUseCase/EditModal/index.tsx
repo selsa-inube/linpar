@@ -382,7 +382,8 @@ function EditCaseLinix() {
       }));
     }
   };
-  function onSubmit() {
+
+  const onSubmit = () => {
     setLoading(true);
     const addnewdata = editLinixUseCases(formData, csOptionsChange);
     addnewdata
@@ -399,20 +400,6 @@ function EditCaseLinix() {
         });
       })
       .finally(() => setLoading(false));
-  }
-
-  const handleSubmitAssignmentForm = (changes: IAssignmentFormEntry[]) => {
-    const bodyForPatch: any = [];
-    changes.forEach((change) => {
-      const changeForPatch = {
-        transactionOperation: change.isActive ? "Insert" : "Delete",
-        k_Opcion: change.id,
-      };
-      bodyForPatch.push(changeForPatch);
-    });
-
-    console.log(bodyForPatch);
-    setCSOptionsChange([]);
   };
 
   return (
@@ -440,7 +427,6 @@ function EditCaseLinix() {
       message={message}
       handleUpdateFormData={handleUpdateFormData}
       onSubmit={onSubmit}
-      handleSubmitAssignmentForm={handleSubmitAssignmentForm}
     />
   );
 }

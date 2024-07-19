@@ -62,13 +62,12 @@ interface EditUserUIProps {
   csOptionsButtons: Record<string, unknown>[];
   handleUpdateFormData: (values: IHandleChangeFormData) => void;
   onSubmit: () => void;
-  handleSubmitAssignmentForm: (values: IAssignmentFormEntry[]) => void;
+
   currentFormHasChanges: boolean;
 }
 
 function EditUserUI(props: EditUserUIProps) {
   const {
-    // currentFormHasChanges,
     selectedTab,
     onCloseSectionMessage,
     selectLinixUseCase,
@@ -78,7 +77,6 @@ function EditUserUI(props: EditUserUIProps) {
     filterNForma,
     loading,
     handleTabChange,
-    linixUseCasesEdit,
     handleDataChange,
     formData,
     csOptions,
@@ -87,7 +85,6 @@ function EditUserUI(props: EditUserUIProps) {
     csOptionsChange,
     handleUpdateFormData,
     onSubmit,
-    // handleSubmitAssignmentForm,
   } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
@@ -166,7 +163,6 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.downloadableDocuments.values}
               handleSubmit={handleUpdateFormData}
-              id={id}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.webReports.id && (
@@ -176,9 +172,6 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
-              id={id}
-              nameOption="webReports"
-              formData={linixUseCasesEdit}
             />
           )}
 
@@ -189,9 +182,6 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
-              id={id}
-              nameOption="webOptions"
-              formData={linixUseCasesEdit}
             />
           )}
           {selectedTab ===
@@ -202,9 +192,6 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
-              id={id}
-              nameOption="clientServerReports"
-              formData={linixUseCasesEdit}
             />
           )}
 
@@ -216,24 +203,21 @@ function EditUserUI(props: EditUserUIProps) {
               handleSubmit={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
-              id={id}
-              nameOption={"clientServerOptions"}
-              formData={linixUseCasesEdit}
             />
           )}
-
-          <Button appearance="gray" onClick={() => {}} type="reset">
-            cancelado
-          </Button>
-          <Button
-            appearance="primary"
-            onClick={onSubmit}
-            loading={loading}
-            type="button"
-          >
-            Guardar
-          </Button>
-
+          <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+            <Button appearance="gray" onClick={() => {}} type="reset">
+              cancelado
+            </Button>
+            <Button
+              appearance="primary"
+              onClick={onSubmit}
+              loading={loading}
+              type="button"
+            >
+              Guardar
+            </Button>
+          </Stack>
           {message.visible && (
             <RenderMessage
               message={message}

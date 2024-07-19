@@ -1,6 +1,12 @@
 import { editLinixUseCase } from "@services/linixUseCase/editLinixUseCase";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
-import { UseCase } from "../types";
+import {
+  OpcionesCsPorCasoDeUso,
+  OpcionesPortalWebPorCasoDeUso,
+  ReportesCsPorCasoDeUso,
+  ReportesWebPorCasoDeUso,
+  UseCase,
+} from "../types";
 import { formSelectLabel } from "../config/dataUseCases.config";
 import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
 
@@ -10,41 +16,50 @@ export const editLinixUseCases = async (
   nameOption?: string
 ) => {
   const normalizeOpcionesCs =
-    nameOption === "clientServerOptions"
-      ? optionsData?.map((change: IAssignmentFormEntry) => {
-          return {
-            transactionOperation: change.isActive ? "Insert" : "Delete",
-            k_Opcion: change.id,
-          };
-        })
-      : [];
+    linixUseCaseData.clientServerOptions.values?.flatMap(
+      (data: IAssignmentFormEntry) => {
+        return optionsData
+          ?.filter((j: IAssignmentFormEntry) => j.id === data.id)
+          .map((j: IAssignmentFormEntry) => ({
+            transactionOperation: j.isActive ? "Insert" : "Delete",
+            k_Opcion: j.id,
+          })) as OpcionesCsPorCasoDeUso[];
+      }
+    );
+
   const normalizeOpcionesPortalWebPorCaso =
-    nameOption === "webOptions"
-      ? optionsData?.map((change: IAssignmentFormEntry) => {
-          return {
-            transactionOperation: change.isActive ? "Insert" : "Delete",
-            k_Funcio: change.id,
-          };
-        })
-      : [];
+    linixUseCaseData.webOptions.values?.flatMap(
+      (data: IAssignmentFormEntry) => {
+        return optionsData
+          ?.filter((j: IAssignmentFormEntry) => j.id === data.id)
+          .map((j: IAssignmentFormEntry) => ({
+            transactionOperation: j.isActive ? "Insert" : "Delete",
+            k_Funcio: j.id,
+          })) as OpcionesPortalWebPorCasoDeUso[];
+      }
+    );
   const normalizeReportesCsPorCasoDeUso =
-    nameOption === "clientServerReports"
-      ? optionsData?.map((change: IAssignmentFormEntry) => {
-          return {
-            transactionOperation: change.isActive ? "Insert" : "Delete",
-            k_Nforma: change.id,
-          };
-        })
-      : [];
+    linixUseCaseData.clientServerReports.values?.flatMap(
+      (data: IAssignmentFormEntry) => {
+        return optionsData
+          ?.filter((j: IAssignmentFormEntry) => j.id === data.id)
+          .map((j: IAssignmentFormEntry) => ({
+            transactionOperation: j.isActive ? "Insert" : "Delete",
+            k_Nforma: j.id,
+          })) as ReportesCsPorCasoDeUso[];
+      }
+    );
   const normalizeReportesWebPorCasoDeUso =
-    nameOption === "webReports"
-      ? optionsData?.map((change: IAssignmentFormEntry) => {
-          return {
-            transactionOperation: change.isActive ? "Insert" : "Delete",
-            k_Report: change.id,
-          };
-        })
-      : [];
+    linixUseCaseData.webReports.values?.flatMap(
+      (data: IAssignmentFormEntry) => {
+        return optionsData
+          ?.filter((j: IAssignmentFormEntry) => j.id === data.id)
+          .map((j: IAssignmentFormEntry) => ({
+            transactionOperation: j.isActive ? "Insert" : "Delete",
+            k_Report: j.id,
+          })) as ReportesWebPorCasoDeUso[];
+      }
+    );
 
   const newoptionsUseCase: UseCase = {
     modifyJustification: "edit",
@@ -57,7 +72,7 @@ export const editLinixUseCases = async (
       "",
     k_Ncampo: "CD387MCERTIDEP.I_CONTIT",
     k_Nforma: linixUseCaseData.generalInformation.values.k_Funcio || "",
-    opcionesCsPorCasoDeUso: normalizeOpcionesCs,
+    opcionesCsPorCasoDeUso: normalizeOpcionesCs || [],
     opcionesPortalWebPorCasoDeUso: normalizeOpcionesPortalWebPorCaso,
     reportesCsPorCasoDeUso: normalizeReportesCsPorCasoDeUso,
     reportesWebPorCasoDeUso: normalizeReportesWebPorCasoDeUso,

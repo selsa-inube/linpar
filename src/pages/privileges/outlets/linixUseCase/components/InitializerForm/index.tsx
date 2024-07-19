@@ -30,14 +30,10 @@ export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms: initialDataOptionsForms,
     handleSubmit,
-    withSubmitButtons = false,
     onHasChanges,
-    // id,
     readOnly = false,
     setChangedData = () => {},
     changeData = [],
-    // nameOption = "",
-    // formData,
   } = props;
   const [formDataOptions, setFormDataOptions] = useState(
     initialDataOptionsForms
@@ -54,31 +50,10 @@ export function InitializerForm(props: IInitializerForm) {
   const handleChangeRenderForm = (renderForm: IAssignmentFormEntry[]) => {
     setFormDataOptions(renderForm);
     if (onHasChanges) onHasChanges(hasChanges(renderForm));
-    if (!withSubmitButtons) handleSubmit(renderForm);
+    handleSubmit(renderForm);
   };
 
   const navigate = useNavigate();
-  // const handleSubmitForm = () => {
-  //   if (!id) return;
-  //   handleSubmit(formDataOptions);
-  //   setIsLoading(true);
-  //   editLinixUseCases(formData!, changeData, nameOption)
-  //     .then(() => {
-  //       setMessage({
-  //         visible: true,
-  //         data: generalMessage.success,
-  //       });
-  //     })
-  //     .catch(() => {
-  //       setMessage({
-  //         visible: true,
-  //         data: generalMessage.failed,
-  //       });
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // };
 
   const handleReset = () => {
     setFormDataOptions(initialFormDataOptions);
@@ -96,11 +71,11 @@ export function InitializerForm(props: IInitializerForm) {
   return (
     <InitializerFormUI
       handleChangeInitializerForm={handleChangeRenderForm}
-      // handleSubmitForm={() => handleSubmitForm()}
+      handleSubmitForm={() => {}}
       handleReset={handleReset}
       isLoading={isLoading}
       dataOptionsForms={formDataOptions}
-      withSubmitButtons={withSubmitButtons}
+      // withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}

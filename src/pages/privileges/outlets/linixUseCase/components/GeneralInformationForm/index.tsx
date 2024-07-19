@@ -73,26 +73,6 @@ export const GeneralInformationForm = forwardRef(
       visible: false,
     });
 
-    // function onSubmit() {
-    //   setLoading(true);
-    //   handleSubmit(formik.values);
-    //   const addnewdata = editLinixUseCases(formik.values as UseCase);
-    //   addnewdata
-    //     .then(() => {
-    //       setMessage({
-    //         visible: true,
-    //         data: generalMessage.success,
-    //       });
-    //     })
-    //     .catch(() => {
-    //       setMessage({
-    //         visible: true,
-    //         data: generalMessage.failed,
-    //       });
-    //     })
-    //     .finally(() => setLoading(false));
-    // }
-
     const formik = useFormik({
       initialValues,
       validationSchema,
