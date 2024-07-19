@@ -4,10 +4,9 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
-import { editLinixUseCases } from "../../EditModal/utils";
+
 import { UseCase } from "../../types";
 
 interface IInitializerForm {
@@ -33,12 +32,12 @@ export function InitializerForm(props: IInitializerForm) {
     handleSubmit,
     withSubmitButtons = false,
     onHasChanges,
-    id,
+    // id,
     readOnly = false,
     setChangedData = () => {},
     changeData = [],
-    nameOption = "",
-    formData,
+    // nameOption = "",
+    // formData,
   } = props;
   const [formDataOptions, setFormDataOptions] = useState(
     initialDataOptionsForms
@@ -59,33 +58,33 @@ export function InitializerForm(props: IInitializerForm) {
   };
 
   const navigate = useNavigate();
-  const handleSubmitForm = () => {
-    if (!id) return;
-    handleSubmit(formDataOptions);
-    setIsLoading(true);
-    editLinixUseCases(formData!, changeData, id, nameOption)
-      .then(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
-        });
-      })
-      .catch(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.failed,
-        });
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
+  // // const handleSubmitForm = () => {
+  // //   if (!id) return;
+  // //   handleSubmit(formDataOptions);
+  // //   setIsLoading(true);
+  // //   editLinixUseCases(formData!, changeData, nameOption)
+  // //     .then(() => {
+  // //       setMessage({
+  // //         visible: true,
+  // //         data: generalMessage.success,
+  // //       });
+  // //     })
+  // //     .catch(() => {
+  // //       setMessage({
+  // //         visible: true,
+  // //         data: generalMessage.failed,
+  // //       });
+  // //     })
+  // //     .finally(() => {
+  // //       setIsLoading(false);
+  // //     });
+  // // };
 
   const handleReset = () => {
     setFormDataOptions(initialFormDataOptions);
     if (onHasChanges) onHasChanges(false);
   };
-
+  setIsLoading(false);
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
@@ -97,7 +96,7 @@ export function InitializerForm(props: IInitializerForm) {
   return (
     <InitializerFormUI
       handleChangeInitializerForm={handleChangeRenderForm}
-      handleSubmitForm={() => handleSubmitForm()}
+      // handleSubmitForm={() => handleSubmitForm()}
       handleReset={handleReset}
       isLoading={isLoading}
       dataOptionsForms={formDataOptions}

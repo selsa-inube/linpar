@@ -2,11 +2,11 @@ import { editLinixUseCase } from "@services/linixUseCase/editLinixUseCase";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
 import { UseCase } from "../types";
 import { formSelectLabel } from "../config/dataUseCases.config";
+import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
 
 export const editLinixUseCases = async (
-  linixUseCaseData: UseCase,
+  linixUseCaseData: IFormAddLinixUseCase,
   optionsData?: IAssignmentFormEntry[],
-  id?: string,
   nameOption?: string
 ) => {
   const normalizeOpcionesCs =
@@ -48,13 +48,15 @@ export const editLinixUseCases = async (
 
   const newoptionsUseCase: UseCase = {
     modifyJustification: "edit",
-    k_Usecase: linixUseCaseData.k_Usecase,
-    n_Usecase: linixUseCaseData.n_Usecase,
-    n_Descrip: linixUseCaseData.n_Descrip,
+    k_Usecase: linixUseCaseData.generalInformation.values.k_Usecase || "",
+    n_Usecase: linixUseCaseData.generalInformation.values.n_Usecase,
+    n_Descrip: linixUseCaseData.generalInformation.values.n_Descrip,
     a_Publicc: "<string>",
-    i_Tipusec: formSelectLabel(linixUseCaseData.i_Tipusec) || "",
+    i_Tipusec:
+      formSelectLabel(linixUseCaseData.generalInformation.values.i_Tipusec) ||
+      "",
     k_Ncampo: "CD387MCERTIDEP.I_CONTIT",
-    k_Nforma: linixUseCaseData.k_Funcio || "",
+    k_Nforma: linixUseCaseData.generalInformation.values.k_Funcio || "",
     opcionesCsPorCasoDeUso: normalizeOpcionesCs,
     opcionesPortalWebPorCasoDeUso: normalizeOpcionesPortalWebPorCaso,
     reportesCsPorCasoDeUso: normalizeReportesCsPorCasoDeUso,

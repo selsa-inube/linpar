@@ -9,7 +9,6 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 
-import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IClientServerButton } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";
@@ -36,9 +35,6 @@ function RenderFormFields(
 ) {
   const mediaQuery = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuery);
-  console.log(buttonOptions, "buttonOptions");
-
-  console.log(formik.values.csButtonOption);
   return (
     <Grid
       templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
@@ -101,29 +97,29 @@ function ClientServerButtonSelectionUI(
     formik,
     loading,
     withSubmitButtons,
-    hasChanges,
+
     formInvalid,
-    handleSubmitForm,
+
     handleChangeForm,
     buttonOptions,
   } = props;
   if (withSubmitButtons) {
     return (
       <>
-        <FormButtons
+        {/* <FormButtons
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
           disabledButtons={!hasChanges(formik.values)}
           loading={loading}
-        >
-          {RenderFormFields(
-            formik,
-            loading,
-            formInvalid,
-            handleChangeForm,
-            buttonOptions
-          )}
-        </FormButtons>
+        > */}
+        {RenderFormFields(
+          formik,
+          loading,
+          formInvalid,
+          handleChangeForm,
+          buttonOptions
+        )}
+        {/* </FormButtons> */}
       </>
     );
   }

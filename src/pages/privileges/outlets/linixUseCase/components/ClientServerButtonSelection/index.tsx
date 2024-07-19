@@ -111,9 +111,9 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     formik.setFieldValue(name, value).then(() => {
       if (withSubmitButtons) return;
       formik.validateForm().then((errors) => {
-        if (!errors || Object.keys(errors).length === 0) {
-          handleSubmit(formikValues);
-        }
+        // if (!errors || Object.keys(errors).length === 0) {
+        handleSubmit(formikValues);
+        // }
       });
     });
   };

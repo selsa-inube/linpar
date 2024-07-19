@@ -26,6 +26,7 @@ export interface IFormAddLinixUseCaseRef {
 }
 
 export interface IGeneralInformation {
+  k_Usecase?: string;
   n_Usecase: string;
   n_Descrip: string;
   i_Tipusec: string;

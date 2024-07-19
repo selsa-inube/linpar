@@ -12,8 +12,7 @@ import {
   inube,
 } from "@inube/design-system";
 import { Text } from "@inubekit/text";
-import { FormButtons } from "@components/forms/submit/FormButtons";
-import { RenderMessage } from "@components/feedback/RenderMessage";
+
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
@@ -212,13 +211,11 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     formik,
     loading,
     withSubmitButtons,
-    hasChanges,
+
     formInvalid,
-    handleSubmitForm,
+
     handleChangeForm,
-    onCloseSectionMessage,
-    message,
-    handleReset,
+
     readOnly,
     csOptions,
     webOptions,
@@ -228,30 +225,30 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   if (withSubmitButtons) {
     return (
       <>
-        <FormButtons
+        {/* <FormButtons
           handleSubmit={handleSubmitForm}
           handleReset={formik.resetForm}
           disabledButtons={!hasChanges(formik.values)}
           loading={loading}
-        >
-          {RenderFormFields(
-            formik,
-            selectLinixUseCase,
-            loading,
-            formInvalid,
-            handleChangeForm,
-            csOptions,
-            webOptions,
-            editform
-          )}
-        </FormButtons>
-        {message.visible && (
+        > */}
+        {RenderFormFields(
+          formik,
+          selectLinixUseCase,
+          loading,
+          formInvalid,
+          handleChangeForm,
+          csOptions,
+          webOptions,
+          editform
+        )}
+        {/* </FormButtons> */}
+        {/* {message.visible && (
           <RenderMessage
             message={message}
             handleCloseMessage={onCloseSectionMessage}
             onMessageClosed={handleReset}
           />
-        )}
+        )} */}
       </>
     );
   }

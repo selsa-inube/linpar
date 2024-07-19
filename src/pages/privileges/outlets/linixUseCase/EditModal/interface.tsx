@@ -7,10 +7,11 @@ import {
   Breadcrumbs,
 } from "@inube/design-system";
 
-import { DecisionModal } from "@components/feedback/DecisionModal";
-
 import { PageTitle } from "@components/PageTitle";
-import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "@pages/privileges/outlets/users/types/forms.types";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
@@ -22,9 +23,8 @@ import {
   editLinixUseCaseSubjectCardLabels,
 } from "./config/editLinuxUseCase.config";
 import {
-  IClientServerButton,
   IFormAddLinixUseCase,
-  IGeneralInformation,
+  IHandleChangeFormData,
 } from "../adding-linix-use-case/types";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
@@ -32,6 +32,8 @@ import { StyledContainerLoading } from "../../users/invite/styles";
 
 import { UseCase } from "../types";
 import { InitializerForm } from "../components/InitializerForm";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { Button } from "@inubekit/button";
 
 interface IControlModal {
   show: boolean;
@@ -46,61 +48,45 @@ interface EditUserUIProps {
   id: string;
   handleTabChange: (tabId: string) => void;
   editData: { [key: string]: { [key: string]: unknown } };
-  handleSubmit: (values: IAssignmentFormEntry[]) => void;
   controlModal: IControlModal;
   handleCloseModal: () => void;
+  message: IMessageState;
   handleDataChange: (hasChanges: boolean) => void;
   handleContinueTab: () => void;
+  onCloseSectionMessage: () => void;
   webOptions: Record<string, unknown>[];
   csOptions: Record<string, unknown>[];
   setCsOptionsChange: (csOptionsChange: IAssignmentFormEntry[]) => void;
   csOptionsChange: IAssignmentFormEntry[];
   filterNForma: string;
   csOptionsButtons: Record<string, unknown>[];
-  clienteButtonInitial: UseCase;
-  handleSubmitAssignmentForm: (csOptionsChange: IAssignmentFormEntry[]) => void;
-}
-
-function continueModal(
-  handleCloseModal: () => void,
-  handleContinueTab: () => void
-) {
-  return (
-    <DecisionModal
-      loading={false}
-      closeModal={handleCloseModal}
-      handleClick={handleContinueTab}
-      title="Continuar sin guardar"
-      description="¿Seguro que desea salir? cualquier cambio no guardado se perderá"
-      actionText="Continuar"
-      appearance="error"
-    />
-  );
+  handleUpdateFormData: (values: IHandleChangeFormData) => void;
+  onSubmit: () => void;
+  handleSubmitAssignmentForm: (values: IAssignmentFormEntry[]) => void;
+  currentFormHasChanges: boolean;
 }
 
 function EditUserUI(props: EditUserUIProps) {
   const {
     selectedTab,
+    onCloseSectionMessage,
     selectLinixUseCase,
-    clienteButtonInitial,
     editData,
     id,
+    message,
     filterNForma,
     loading,
     handleTabChange,
-    handleSubmit,
-    controlModal,
     linixUseCasesEdit,
-    handleCloseModal,
     handleDataChange,
-    handleContinueTab,
     formData,
     csOptions,
     webOptions,
     setCsOptionsChange,
     csOptionsChange,
-
-    handleSubmitAssignmentForm,
+    handleUpdateFormData,
+    onSubmit,
+    // handleSubmitAssignmentForm,
   } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
@@ -115,7 +101,7 @@ function EditUserUI(props: EditUserUIProps) {
     type: (currentInformation as { i_Tipusec: string }).i_Tipusec,
     description: (currentInformation as { n_Descrip: string }).n_Descrip,
   };
-  console.log(clienteButtonInitial, "clienteButtonInitial");
+
   return loading ? (
     <StyledContainerLoading>
       <LoadingApp />
@@ -155,11 +141,10 @@ function EditUserUI(props: EditUserUIProps) {
           />
           {selectedTab === editLinixUseCaseTabsConfig.generalInformation.id && (
             <GeneralInformationForm
-              initialValues={linixUseCasesEdit as IGeneralInformation}
+              initialValues={formData.generalInformation.values}
               csOptions={csOptions}
               webOptions={webOptions}
-              handleSubmit={handleSubmit as () => void}
-              withSubmitButtons
+              handleSubmit={handleUpdateFormData}
               onHasChanges={handleDataChange}
               updateItemData={updateItemData}
               id={id}
@@ -169,32 +154,25 @@ function EditUserUI(props: EditUserUIProps) {
           )}
           {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (
             <ClientServerButtonSelection
-              initialValues={
-                clienteButtonInitial as unknown as IClientServerButton
-              }
-              handleSubmit={handleSubmit as () => void}
+              initialValues={formData.clientServerButton.values}
+              handleSubmit={handleUpdateFormData}
               id={filterNForma as string}
-              withSubmitButtons
             />
           )}
           {selectedTab ===
             editLinixUseCaseTabsConfig.downloadableDocuments.id && (
             <InitializerForm
-              withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.downloadableDocuments.values}
-              handleSubmit={handleSubmit}
+              handleSubmit={handleUpdateFormData}
               id={id}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.webReports.id && (
             <InitializerForm
-              withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.webReports.values}
-              handleSubmit={() => {
-                handleSubmitAssignmentForm(csOptionsChange);
-              }}
+              handleSubmit={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
               id={id}
@@ -205,12 +183,9 @@ function EditUserUI(props: EditUserUIProps) {
 
           {selectedTab === editLinixUseCaseTabsConfig.webOptions.id && (
             <InitializerForm
-              withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.webOptions.values}
-              handleSubmit={() => {
-                handleSubmitAssignmentForm(csOptionsChange);
-              }}
+              handleSubmit={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
               id={id}
@@ -221,12 +196,9 @@ function EditUserUI(props: EditUserUIProps) {
           {selectedTab ===
             editLinixUseCaseTabsConfig.clientServerReports.id && (
             <InitializerForm
-              withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.clientServerReports.values}
-              handleSubmit={() => {
-                handleSubmitAssignmentForm(csOptionsChange);
-              }}
+              handleSubmit={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
               id={id}
@@ -237,26 +209,39 @@ function EditUserUI(props: EditUserUIProps) {
 
           {selectedTab ===
             editLinixUseCaseTabsConfig.clientServerOptions.id && (
-            <>
-              <InitializerForm
-                withSubmitButtons
-                onHasChanges={handleDataChange}
-                dataOptionsForms={formData.clientServerOptions.values}
-                handleSubmit={() => {
-                  handleSubmitAssignmentForm(csOptionsChange);
-                }}
-                changeData={csOptionsChange}
-                setChangedData={setCsOptionsChange}
-                id={id}
-                nameOption={"clientServerOptions"}
-                formData={linixUseCasesEdit}
-              />
-            </>
+            <InitializerForm
+              onHasChanges={handleDataChange}
+              dataOptionsForms={formData.clientServerOptions.values}
+              handleSubmit={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
+              id={id}
+              nameOption={"clientServerOptions"}
+              formData={linixUseCasesEdit}
+            />
+          )}
+
+          <Button appearance="gray" onClick={() => {}} type="reset">
+            cancelado
+          </Button>
+          <Button
+            appearance="primary"
+            onClick={onSubmit}
+            loading={loading}
+            type="button"
+          >
+            Guardar
+          </Button>
+
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={onCloseSectionMessage}
+              onMessageClosed={() => {}}
+            />
           )}
         </Stack>
       </Stack>
-
-      {controlModal.show && continueModal(handleCloseModal, handleContinueTab)}
     </StyledContainer>
   );
 }

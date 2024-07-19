@@ -14,9 +14,6 @@ import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-
 import { GeneralInformationFormUI } from "./interface";
 import { generalMessage } from "../../adding-linix-use-case/config/messages.config";
 
-import { UseCase } from "../../types";
-import { editLinixUseCases } from "../../EditModal/utils";
-
 const validationSchema = Yup.object({
   n_Usecase: Yup.string().required(validationMessages.required),
   i_Tipusec: Yup.string().required(validationMessages.required),
@@ -75,26 +72,26 @@ export const GeneralInformationForm = forwardRef(
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
     });
-
-    function onSubmit() {
-      setLoading(true);
-      const addnewdata = editLinixUseCases(formik.values as UseCase);
-      addnewdata
-        .then(() => {
-          handleSubmit(formik.values);
-          setMessage({
-            visible: true,
-            data: generalMessage.success,
-          });
-        })
-        .catch(() => {
-          setMessage({
-            visible: true,
-            data: generalMessage.failed,
-          });
-        })
-        .finally(() => setLoading(false));
-    }
+    setLoading(false);
+    // function onSubmit() {
+    //   setLoading(true);
+    //   handleSubmit(formik.values);
+    //   const addnewdata = editLinixUseCases(formik.values as UseCase);
+    //   addnewdata
+    //     .then(() => {
+    //       setMessage({
+    //         visible: true,
+    //         data: generalMessage.success,
+    //       });
+    //     })
+    //     .catch(() => {
+    //       setMessage({
+    //         visible: true,
+    //         data: generalMessage.failed,
+    //       });
+    //     })
+    //     .finally(() => setLoading(false));
+    // }
 
     const formik = useFormik({
       initialValues,
@@ -104,7 +101,7 @@ export const GeneralInformationForm = forwardRef(
       onReset: () => {
         if (onHasChanges) onHasChanges(false);
       },
-      onSubmit,
+      onSubmit: () => {},
     });
 
     const handleReset = () => {
@@ -142,13 +139,11 @@ export const GeneralInformationForm = forwardRef(
       formik.setFieldValue(name, value).then(() => {
         if (withSubmitButtons) return;
         formik.validateForm().then((errors) => {
-          if (!errors || Object.keys(errors).length === 0) {
-            handleSubmit && handleSubmit(formikValues);
-            setMessage({
-              visible: true,
-              data: generalMessage.success,
-            });
-          }
+          handleSubmit && handleSubmit(formikValues);
+          setMessage({
+            visible: true,
+            data: generalMessage.success,
+          });
         });
       });
     };

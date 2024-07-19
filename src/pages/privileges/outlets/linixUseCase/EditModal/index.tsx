@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "@pages/privileges/outlets/users/types/forms.types";
 import { getDownloadableFormats } from "@services/linixUseCase/downloadableFormats";
 import { getWebOptionsFormats } from "@services/webOptions";
 import { getWebReportsFormats } from "@services/linixUseCase/reportsWeb";
@@ -10,17 +13,19 @@ import { getSelectLinixUseCase } from "@services/linixUseCase/selectLinixUseCase
 import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientServerMenuOption";
 import { getLinixUseCase } from "@services/linixUseCase/getLinixUseCase";
-import { formSelectOptionId } from "../config/dataUseCases.config";
+
 import { EditUserUI } from "./interface";
-import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
+import {
+  IFormAddLinixUseCase,
+  IHandleChangeFormData,
+} from "../adding-linix-use-case/types";
 import { dataToAssignmentFormEntry } from "../adding-linix-use-case";
 import { UseCase } from "../types";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 import { getClientServerButtonDataFormats } from "@src/services/linixUseCase/clientServerButtonData";
+import { editLinixUseCases } from "./utils";
+import { generalMessage } from "../adding-linix-use-case/config/messages.config";
 
-export interface IGeneralInformation {
-  generalInformation: { entries: UseCase | undefined };
-}
 function EditCaseLinix() {
   const [controlModal, setControlModal] = useState({
     show: false,
@@ -67,7 +72,9 @@ function EditCaseLinix() {
       values: [],
     },
   });
-
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
 
   const [selectedTab, setSelectedTab] = useState(
@@ -92,39 +99,51 @@ function EditCaseLinix() {
     Record<string, unknown>[]
   >([]);
 
-  function generalInformationData() {
-    return linixUseCasesEdit.find(
-      (data) =>
-        data.id === k_Usecase && {
-          n_Usecase: data.n_Usecase,
-          n_Descrip: data.n_Descrip,
-          i_Tipusec: formSelectOptionId(data.i_Tipusec || ""),
-          k_Funcio: data.k_Funcio,
-          k_Opcion: data.k_Opcion,
-        }
-    );
-  }
+  const generalInformationData = linixUseCasesEdit.find(
+    (data) => data.id === k_Usecase
+  );
 
-  const [editData, setEditData] = useState<{
+  const [editData] = useState<{
     [key: string]: { [key: string]: unknown };
   }>({
-    generalInformation: { entries: generalInformationData() },
+    generalInformation: { entries: generalInformationData },
   });
 
   const linixUseCaseData = async () => {
     if (!user) return;
     if (linixUseCasesEdit.length === 0) {
       setLoading(true);
-      try {
-        const newUsers = await getLinixUseCase();
-        setLinixUseCasesEdit(newUsers);
-      } catch (error) {
-        console.info(error);
-      } finally {
-        setLoading(false);
-      }
+      getLinixUseCase()
+        .then((data) => {
+          if (data !== null) {
+            setLinixUseCasesEdit(data as UseCase[]);
+
+            const generalData = data.find((data) => data.id === k_Usecase);
+            setFormData((prevFormData: IFormAddLinixUseCase) => ({
+              ...prevFormData,
+              generalInformation: {
+                isValid: true,
+                values: {
+                  k_Usecase: String(generalData?.k_Usecase) || "",
+                  n_Usecase: String(generalData?.n_Usecase) || "",
+                  n_Descrip: String(generalData?.n_Descrip) || "",
+                  i_Tipusec: String(generalData?.i_Tipusec) || "",
+                  k_Funcio: String(generalData?.k_Funcio) || "",
+                  k_Opcion: String(generalData?.k_Opcion) || "",
+                },
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching general Information:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
+
   useEffect(() => {
     linixUseCaseData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -302,41 +321,31 @@ function EditCaseLinix() {
 
   const clientServerButtonMenuOption = async () => {
     if (!user) return;
-    if (csOptionsButtons.length === 0) {
-      setLoading(true);
-      try {
-        const newUsers = await getClientServerButtonDataFormats(
-          generalInformationData()?.k_Funcio || "1"
-        );
-        setCsOptionsButtons(newUsers);
-      } catch (error) {
-        console.info(error);
-      } finally {
-        setLoading(false);
-      }
+    if (linixUseCasesEdit.length === 0) {
+      getClientServerButtonDataFormats(generalInformationData?.k_Funcio || "1")
+        .then((data) => {
+          setCsOptionsButtons(data);
+          const clientServerData = data.find((data) => data.id === k_Usecase);
+          setFormData((prevFormData: IFormAddLinixUseCase) => ({
+            ...prevFormData,
+            clientServerButton: {
+              isValid: true,
+              values: {
+                k_option_button:
+                  String(clientServerData?.k_option_button) || "",
+              },
+            },
+          }));
+        })
+        .catch((error) => {
+          console.error("Error fetching general Information:", error.message);
+        });
     }
-  };
-
-  const handleSubmit = (values: IAssignmentFormEntry[]) => {
-    const editKey = Object.entries(editLinixUseCaseTabsConfig).find(
-      ([, config]) => config.id === selectedTab
-    )?.[0];
-
-    if (editKey) {
-      setEditData((prevEditData) => ({
-        ...prevEditData,
-        [editKey]: { entries: values },
-      }));
-    }
-
-    setCurrentFormHasChanges(false);
   };
 
   const handleTabChange = (tabId: string) => {
-    setControlModal(
-      currentFormHasChanges ? { show: true, continueTab: tabId } : controlModal
-    );
-    setSelectedTab(currentFormHasChanges ? selectedTab : tabId);
+    setControlModal({ show: true, continueTab: tabId });
+    setSelectedTab(tabId);
   };
 
   const handleCloseModal = () => {
@@ -354,31 +363,68 @@ function EditCaseLinix() {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
   };
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+  };
+  const prueba = generalInformationData;
 
-  const prueba = generalInformationData();
+  const handleUpdateFormData = (values: IHandleChangeFormData) => {
+    const stepKey = Object.entries(editLinixUseCaseTabsConfig).find(
+      ([, config]) => config.id === selectedTab
+    )?.[0];
+
+    if (stepKey) {
+      setFormData((prevFormData: IFormAddLinixUseCase) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
+    }
+  };
+  function onSubmit() {
+    setLoading(true);
+    const addnewdata = editLinixUseCases(formData, csOptionsChange);
+    addnewdata
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+      })
+      .finally(() => setLoading(false));
+  }
 
   const handleSubmitAssignmentForm = (changes: IAssignmentFormEntry[]) => {
     const bodyForPatch: any = [];
     changes.forEach((change) => {
       const changeForPatch = {
         transactionOperation: change.isActive ? "Insert" : "Delete",
-        k_Report: change.id,
+        k_Opcion: change.id,
       };
       bodyForPatch.push(changeForPatch);
     });
+
+    console.log(bodyForPatch);
+    setCSOptionsChange([]);
   };
 
-  const clienteButtonValueInitial = generalInformationData();
   return (
     <EditUserUI
       linixUseCasesEdit={prueba!}
       selectLinixUseCase={selectLinixUseCase}
+      onCloseSectionMessage={handleCloseSectionMessage}
       loading={loading}
       selectedTab={selectedTab}
       formData={formData}
       handleTabChange={handleTabChange}
       editData={editData}
-      handleSubmit={handleSubmit}
       controlModal={controlModal}
       handleDataChange={handleDataChange}
       handleCloseModal={handleCloseModal}
@@ -386,12 +432,15 @@ function EditCaseLinix() {
       handleContinueTab={handleContinueTab}
       csOptions={csOptions}
       id={k_Usecase || "1"}
+      currentFormHasChanges={currentFormHasChanges}
       setCsOptionsChange={setCSOptionsChange}
       csOptionsChange={csOptionsChange}
-      handleSubmitAssignmentForm={handleSubmitAssignmentForm}
-      filterNForma={generalInformationData()?.k_Funcio as string}
+      filterNForma={generalInformationData?.k_Funcio as string}
       csOptionsButtons={csOptionsButtons}
-      clienteButtonInitial={clienteButtonValueInitial!}
+      message={message}
+      handleUpdateFormData={handleUpdateFormData}
+      onSubmit={onSubmit}
+      handleSubmitAssignmentForm={handleSubmitAssignmentForm}
     />
   );
 }

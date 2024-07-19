@@ -1,6 +1,5 @@
-import { FormButtons } from "@components/forms/submit/FormButtons";
 import { AssignmentForm } from "@components/forms/templates/AssignmentForm";
-import { RenderMessage } from "@components/feedback/RenderMessage";
+
 import {
   IAssignmentFormEntry,
   IMessageState,
@@ -9,7 +8,7 @@ import {
 interface InitializerFormUIProps {
   dataOptionsForms: IAssignmentFormEntry[];
   isLoading: boolean;
-  handleSubmitForm: () => void;
+  // handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangeInitializerForm: (
     dataOptionsForms: IAssignmentFormEntry[]
@@ -26,14 +25,14 @@ interface InitializerFormUIProps {
 export function InitializerFormUI(props: InitializerFormUIProps) {
   const {
     dataOptionsForms,
-    isLoading,
-    handleSubmitForm,
-    handleReset,
+    // isLoading,
+    // handleSubmitForm,
+
     handleChangeInitializerForm,
     withSubmitButtons,
-    message,
-    onCloseSectionMessage,
-    hasChanges,
+    // message,
+    // onCloseSectionMessage,
+    // hasChanges,
     readOnly,
     setChangedData = () => {},
     changeData = [],
@@ -42,27 +41,27 @@ export function InitializerFormUI(props: InitializerFormUIProps) {
   if (withSubmitButtons) {
     return (
       <>
-        <FormButtons
+        {/* <FormButtons
           disabledButtons={!hasChanges(dataOptionsForms)}
           handleSubmit={handleSubmitForm}
           handleReset={handleReset}
           loading={isLoading}
-        >
-          <AssignmentForm
-            handleChange={handleChangeInitializerForm}
-            entries={dataOptionsForms}
-            title="Seleccione las opciones que desea asignar:"
-            setChangedData={setChangedData}
-            changeData={changeData}
-          />
-        </FormButtons>
+        > */}
+        <AssignmentForm
+          handleChange={handleChangeInitializerForm}
+          entries={dataOptionsForms}
+          title="Seleccione las opciones que desea asignar:"
+          setChangedData={setChangedData}
+          changeData={changeData}
+        />
+        {/* </FormButtons>
         {message.visible && (
           <RenderMessage
             message={message}
             handleCloseMessage={onCloseSectionMessage}
             onMessageClosed={handleReset}
           />
-        )}
+        )} */}
       </>
     );
   }
