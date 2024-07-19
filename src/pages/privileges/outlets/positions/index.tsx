@@ -1,7 +1,5 @@
-import { useEffect, useContext, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { getAll } from "@mocks/utils/dataMock.service";
-import { PositionsContext } from "@context/positionsContext";
 
 import { PositionsUI } from "./interface";
 import { IPosition } from "./add-position/types";
@@ -18,7 +16,7 @@ export function Positions() {
 
   const [idDeleted, setIdDeleted] = useState("");
 
-  const { positions, setPositions } = useContext(PositionsContext);
+  const [positions, setPositions] = useState<IPosition[]>([]);
 
   useEffect(() => {
     getAll("linix-positions")
@@ -33,7 +31,7 @@ export function Positions() {
       .finally(() => {
         setLoading(false);
       });
-  }, [positions, setPositions]);
+  }, [positions]);
 
   useEffect(() => {
     const filterRecordRemoved = positions.filter(

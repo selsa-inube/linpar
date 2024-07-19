@@ -1,11 +1,11 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { PositionsContext } from "@context/positionsContext";
 import { getAll } from "@mocks/utils/dataMock.service";
 import { EditPositionUI } from "./interface";
 import { IHandleUpdateDataSwitchstep } from "../add-position/types";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 import { editPositionTabsConfig } from "./config/editPosition.config";
+import { initalValuesPositions } from "../add-position/config/initialValues";
 
 export function EditPosition() {
   const { position_id } = useParams();
@@ -15,11 +15,7 @@ export function EditPosition() {
     continueTab: "",
   });
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
-  const { positions } = useContext(PositionsContext);
-
-  const getInformation = positions.find(
-    (position) => position.k_Grupo === position_id
-  );
+  const [loading, setLoading] = useState(true);
 
   const [selectedTab, setSelectedTab] = useState<string>(
     editPositionTabsConfig.generalInformation.id
@@ -28,9 +24,35 @@ export function EditPosition() {
   const [editData, setEditData] = useState<{
     [key: string]: { [key: string]: unknown };
   }>({
-    generalInformation: { entries: getInformation },
+    generalInformation: { entries: initalValuesPositions.generalInformation },
     roles: { entries: [] },
   });
+
+  useEffect(() => {
+    setLoading(true);
+    getAll("linix-positions")
+      .then((data) => {
+        if (data !== null) {
+          const positionsLinix =
+            data &&
+            Object.values(data).find(
+              (position) => position.k_Grupo === position_id
+            );
+          setEditData((prevFormData) => ({
+            ...prevFormData,
+            generalInformation: {
+              entries: positionsLinix,
+            },
+          }));
+        }
+      })
+      .catch((error) => {
+        console.info(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [position_id]);
 
   useEffect(() => {
     getAll("linix-roles")
@@ -101,6 +123,7 @@ export function EditPosition() {
       selectedTab={selectedTab}
       editData={editData}
       id={position_id || ""}
+      loading={loading}
       handleTabChange={handleTabChange}
       handleSubmit={handleSubmit}
       controlModal={controlModal}

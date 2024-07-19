@@ -6,6 +6,13 @@ interface IStyledContainer {
   typeTabs?: boolean;
 }
 
+const StyledContainerLoading = styled.div<IStyledContainer>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 300px;
+`;
+
 const StyledContainer = styled.div<IStyledContainer>`
   padding: ${(props) =>
     props.$smallScreen
@@ -17,4 +24,4 @@ const StyledTabsContainer = styled.div<IStyledContainer>`
   position: ${(props) => (props.typeTabs ? "relative" : "unset")};
 `;
 
-export { StyledContainer, StyledTabsContainer };
+export { StyledContainer, StyledTabsContainer, StyledContainerLoading };
