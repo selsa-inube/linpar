@@ -109,6 +109,18 @@ function EditCaseLinix() {
     generalInformation: { entries: generalInformationData },
   });
 
+  useEffect(() => {
+    setFormData((prevFormData: IFormAddLinixUseCase) => ({
+      ...prevFormData,
+      clientServerButton: {
+        isValid: true,
+        values: {
+          k_option_button: "hola",
+        },
+      },
+    }));
+  }, []);
+
   const linixUseCaseData = async () => {
     if (!user) return;
     if (linixUseCasesEdit.length === 0) {
@@ -117,7 +129,6 @@ function EditCaseLinix() {
         .then((data) => {
           if (data !== null) {
             setLinixUseCasesEdit(data as UseCase[]);
-
             const generalData = data.find((data) => data.id === k_Usecase);
             setFormData((prevFormData: IFormAddLinixUseCase) => ({
               ...prevFormData,
@@ -321,26 +332,26 @@ function EditCaseLinix() {
 
   const clientServerButtonMenuOption = async () => {
     if (!user) return;
-    if (linixUseCasesEdit.length === 0) {
-      getClientServerButtonDataFormats(generalInformationData?.k_Funcio || "1")
-        .then((data) => {
-          setCsOptionsButtons(data);
-          const clientServerData = data.find((data) => data.id === k_Usecase);
-          setFormData((prevFormData: IFormAddLinixUseCase) => ({
-            ...prevFormData,
-            clientServerButton: {
-              isValid: true,
-              values: {
-                k_option_button:
-                  String(clientServerData?.k_option_button) || "",
-              },
+    //if (csOptionsButtons.length === 0) {
+    setLoading(true);
+    getClientServerButtonDataFormats(generalInformationData?.k_Funcio || "1")
+      .then((data) => {
+        setCsOptionsButtons(data);
+
+        setFormData((prevFormData: IFormAddLinixUseCase) => ({
+          ...prevFormData,
+          clientServerButton: {
+            isValid: true,
+            values: {
+              k_option_button: String(generalInformationData?.k_option_button),
             },
-          }));
-        })
-        .catch((error) => {
-          console.error("Error fetching general Information:", error.message);
-        });
-    }
+          },
+        }));
+      })
+      .catch((error) => {
+        console.error("Error fetching general Information:", error.message);
+      });
+    //}
   };
 
   const handleTabChange = (tabId: string) => {
@@ -368,7 +379,7 @@ function EditCaseLinix() {
       visible: false,
     });
   };
-  const prueba = generalInformationData;
+  const editGeneral = generalInformationData;
 
   const handleUpdateFormData = (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(editLinixUseCaseTabsConfig).find(
@@ -382,6 +393,8 @@ function EditCaseLinix() {
       }));
     }
   };
+
+  console.log(formData);
 
   const onSubmit = () => {
     setLoading(true);
@@ -404,7 +417,7 @@ function EditCaseLinix() {
 
   return (
     <EditUserUI
-      linixUseCasesEdit={prueba!}
+      linixUseCasesEdit={editGeneral!}
       selectLinixUseCase={selectLinixUseCase}
       onCloseSectionMessage={handleCloseSectionMessage}
       loading={loading}

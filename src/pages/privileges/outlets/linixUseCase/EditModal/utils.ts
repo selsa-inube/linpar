@@ -12,8 +12,7 @@ import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
 
 export const editLinixUseCases = async (
   linixUseCaseData: IFormAddLinixUseCase,
-  optionsData?: IAssignmentFormEntry[],
-  nameOption?: string
+  optionsData?: IAssignmentFormEntry[]
 ) => {
   const normalizeOpcionesCs =
     linixUseCaseData.clientServerOptions.values?.flatMap(
@@ -70,7 +69,7 @@ export const editLinixUseCases = async (
     i_Tipusec:
       formSelectLabel(linixUseCaseData.generalInformation.values.i_Tipusec) ||
       "",
-    k_Ncampo: "CD387MCERTIDEP.I_CONTIT",
+    k_Ncampo: linixUseCaseData.clientServerButton.values.k_option_button,
     k_Nforma: linixUseCaseData.generalInformation.values.k_Funcio || "",
     opcionesCsPorCasoDeUso: normalizeOpcionesCs || [],
     opcionesPortalWebPorCasoDeUso: normalizeOpcionesPortalWebPorCaso,
