@@ -68,11 +68,11 @@ export const GeneralInformationForm = forwardRef(
       csOptions,
       webOptions,
     } = props;
-    const [loading, setLoading] = useState(false);
+    const [loading] = useState(false);
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
     });
-    setLoading(false);
+
     // function onSubmit() {
     //   setLoading(true);
     //   handleSubmit(formik.values);

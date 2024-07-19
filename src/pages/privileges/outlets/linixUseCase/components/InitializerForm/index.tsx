@@ -43,7 +43,7 @@ export function InitializerForm(props: IInitializerForm) {
     initialDataOptionsForms
   );
   const [initialFormDataOptions] = useState(initialDataOptionsForms);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
@@ -58,33 +58,33 @@ export function InitializerForm(props: IInitializerForm) {
   };
 
   const navigate = useNavigate();
-  // // const handleSubmitForm = () => {
-  // //   if (!id) return;
-  // //   handleSubmit(formDataOptions);
-  // //   setIsLoading(true);
-  // //   editLinixUseCases(formData!, changeData, nameOption)
-  // //     .then(() => {
-  // //       setMessage({
-  // //         visible: true,
-  // //         data: generalMessage.success,
-  // //       });
-  // //     })
-  // //     .catch(() => {
-  // //       setMessage({
-  // //         visible: true,
-  // //         data: generalMessage.failed,
-  // //       });
-  // //     })
-  // //     .finally(() => {
-  // //       setIsLoading(false);
-  // //     });
-  // // };
+  // const handleSubmitForm = () => {
+  //   if (!id) return;
+  //   handleSubmit(formDataOptions);
+  //   setIsLoading(true);
+  //   editLinixUseCases(formData!, changeData, nameOption)
+  //     .then(() => {
+  //       setMessage({
+  //         visible: true,
+  //         data: generalMessage.success,
+  //       });
+  //     })
+  //     .catch(() => {
+  //       setMessage({
+  //         visible: true,
+  //         data: generalMessage.failed,
+  //       });
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // };
 
   const handleReset = () => {
     setFormDataOptions(initialFormDataOptions);
     if (onHasChanges) onHasChanges(false);
   };
-  setIsLoading(false);
+
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
