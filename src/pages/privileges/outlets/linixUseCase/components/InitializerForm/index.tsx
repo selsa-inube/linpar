@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { InitializerFormUI } from "./interface";
-
 import { UseCase } from "../../types";
 
 interface IInitializerForm {
@@ -18,7 +18,6 @@ interface IInitializerForm {
   property?: string;
   propertyData?: string;
   readOnly?: boolean;
-  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   setChangedData?: (changeData: IAssignmentFormEntry[]) => void;
   changeData?: IAssignmentFormEntry[];
@@ -75,7 +74,6 @@ export function InitializerForm(props: IInitializerForm) {
       handleReset={handleReset}
       isLoading={isLoading}
       dataOptionsForms={formDataOptions}
-      // withSubmitButtons={withSubmitButtons}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}

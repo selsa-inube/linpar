@@ -369,8 +369,6 @@ function EditCaseLinix() {
     }
   };
 
-  console.log(formData);
-
   const onSubmit = () => {
     setLoading(true);
     const addnewdata = editLinixUseCases(formData, csOptionsChange);
@@ -387,7 +385,9 @@ function EditCaseLinix() {
           data: generalMessage.failed,
         });
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (

@@ -30,14 +30,12 @@ export const Default = Template.bind({});
 Default.args = {
   dataOptionsForms: aidBudgetsFormEditUser,
   handleSubmit,
-  withSubmitButtons: true,
 };
 
 export const WithoutSubmitButtons = Template.bind({});
 WithoutSubmitButtons.args = {
   dataOptionsForms: aidBudgetsFormEditUser,
   handleSubmit,
-  withSubmitButtons: false,
 };
 
 export default meta;

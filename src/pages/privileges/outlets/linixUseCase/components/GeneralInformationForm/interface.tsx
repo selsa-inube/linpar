@@ -24,7 +24,6 @@ interface GeneralInformationFormUIProps {
   formik: FormikValues;
   selectLinixUseCase: Option[];
   loading: boolean;
-  withSubmitButtons?: boolean;
   message: IMessageState;
   editform: boolean;
   onCloseSectionMessage: () => void;
@@ -210,48 +209,13 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     selectLinixUseCase,
     formik,
     loading,
-    withSubmitButtons,
-
     formInvalid,
-
     handleChangeForm,
-
     readOnly,
     csOptions,
     webOptions,
     editform,
   } = props;
-
-  if (withSubmitButtons) {
-    return (
-      <>
-        {/* <FormButtons
-          handleSubmit={handleSubmitForm}
-          handleReset={formik.resetForm}
-          disabledButtons={!hasChanges(formik.values)}
-          loading={loading}
-        > */}
-        {RenderFormFields(
-          formik,
-          selectLinixUseCase,
-          loading,
-          formInvalid,
-          handleChangeForm,
-          csOptions,
-          webOptions,
-          editform
-        )}
-        {/* </FormButtons> */}
-        {/* {message.visible && (
-          <RenderMessage
-            message={message}
-            handleCloseMessage={onCloseSectionMessage}
-            onMessageClosed={handleReset}
-          />
-        )} */}
-      </>
-    );
-  }
 
   return (
     <>

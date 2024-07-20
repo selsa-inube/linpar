@@ -37,7 +37,6 @@ interface GeneralInformationFormProps {
   onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   csOptions: Record<string, unknown>[];
   webOptions: Record<string, unknown>[];
-  withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
   readOnly?: boolean;
   updateItemData?: (props: functionById) => Promise<unknown>;
@@ -58,7 +57,6 @@ export const GeneralInformationForm = forwardRef(
         k_Funcio: "",
         k_Opcion: "",
       },
-      withSubmitButtons,
       onHasChanges,
       handleSubmit,
       onFormValid,
@@ -117,7 +115,6 @@ export const GeneralInformationForm = forwardRef(
 
       if (onHasChanges) onHasChanges(hasChanges(formikValues));
       formik.setFieldValue(name, value).then(() => {
-        if (withSubmitButtons) return;
         formik.validateForm().then((errors) => {
           handleSubmit && handleSubmit(formikValues);
           setMessage({
@@ -145,7 +142,6 @@ export const GeneralInformationForm = forwardRef(
         handleReset={handleReset}
         formik={formik}
         message={message}
-        withSubmitButtons={withSubmitButtons}
         handleCloseSectionMessage={handleCloseSectionMessage}
         hasChanges={hasChanges}
         onCloseSectionMessage={handleCloseSectionMessage}

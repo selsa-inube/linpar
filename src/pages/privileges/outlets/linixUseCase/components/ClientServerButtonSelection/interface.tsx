@@ -97,9 +97,7 @@ function ClientServerButtonSelectionUI(
     formik,
     loading,
     withSubmitButtons,
-
     formInvalid,
-
     handleChangeForm,
     buttonOptions,
   } = props;

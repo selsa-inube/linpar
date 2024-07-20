@@ -207,7 +207,7 @@ function EditUserUI(props: EditUserUIProps) {
           )}
           <Stack gap={inube.spacing.s200} justifyContent="flex-end">
             <Button appearance="gray" onClick={() => {}} type="reset">
-              cancelado
+              Cancelar
             </Button>
             <Button
               appearance="primary"
