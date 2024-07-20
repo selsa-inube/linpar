@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { IDeleteForMessage, IRol } from "@pages/privileges/outlets/roles/types";
-import { getRoles } from "@src/services/roles/getRoles";
+import { getRoles } from "@services/roles/getRoles";
 
 import { RolesUI } from "./interface";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
-import { IMessage } from "@src/types/messages.types";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
@@ -56,10 +55,10 @@ export function Roles() {
 
     setMessage({
       visible: true,
-      data: messageType as IMessage,
+      data: messageType,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idDeleted.successfulDiscard]);
+  }, [idDeleted]);
 
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRole(e.target.value);
