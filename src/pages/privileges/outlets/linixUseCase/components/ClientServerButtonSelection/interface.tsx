@@ -9,34 +9,21 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 
-import { FormButtons } from "@components/forms/submit/FormButtons";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
+import { IClientServerButton } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";
 
 interface ClientServerButtonSelectionUIProps {
   formik: FormikValues;
   loading: boolean;
   withSubmitButtons?: boolean;
+  hasChanges: (valueCompare: IClientServerButton) => boolean;
   showMessage: IMessageState;
   handleCloseSectionMessage: () => void;
   formInvalid: boolean;
   handleSubmitForm: () => void;
   handleChangeForm: (name: string, value: string) => void;
   buttonOptions: Record<string, unknown>[];
-}
-
-function uniqueButtonOptionsCalculator(
-  buttonOptions: Record<string, unknown>[]
-) {
-  const uniqueButtonList = new Map();
-  buttonOptions.forEach((buttonOption) => {
-    if (!uniqueButtonList.has(buttonOption.CODIGO_BOTON)) {
-      uniqueButtonList.set(buttonOption.CODIGO_BOTON, buttonOption);
-    }
-  });
-
-  return Array.from(uniqueButtonList.values());
 }
 
 function RenderFormFields(
@@ -46,9 +33,8 @@ function RenderFormFields(
   handleChangeForm: (name: string, value: string) => void,
   buttonOptions: Record<string, unknown>[]
 ) {
-  const mediaQuerie = "(max-width: 744px)";
-  const matches = useMediaQuery(mediaQuerie);
-
+  const mediaQuery = "(max-width: 744px)";
+  const matches = useMediaQuery(mediaQuery);
   return (
     <Grid
       templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
@@ -65,23 +51,21 @@ function RenderFormFields(
           <Select
             label="Opción botón cliente servidor"
             placeholder="Seleccione una opción"
-            name="csButtonOption"
-            id="csButtonOption"
-            value={formik.values.csButtonOption}
-            type="csButtonOption"
+            name="k_option_button"
+            id="k_option_button"
+            value={formik.values.k_option_button}
+            type="k_option_button"
             iconAfter={<MdOutlineModeEdit size={18} />}
             size="compact"
             fullwidth
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeForm("csButtonOption", value.target.outerText)
+              handleChangeForm("k_option_button", value.target.outerText)
             }
             onBlur={formik.handleBlur}
-            options={uniqueButtonOptionsCalculator(buttonOptions).map(
-              (buttonOption) => ({
-                id: buttonOption.CODIGO_BOTON,
-                label: buttonOption.DESCRIPCION_BOTON,
-              })
-            )}
+            options={buttonOptions.map((buttonOption) => ({
+              id: buttonOption.CODIGO_BOTON,
+              label: buttonOption.DESCRIPCION_BOTON,
+            }))}
           />
         </StyledSelectContainer>
       </Stack>
@@ -114,35 +98,31 @@ function ClientServerButtonSelectionUI(
     loading,
     withSubmitButtons,
     formInvalid,
-    handleSubmitForm,
     handleChangeForm,
     buttonOptions,
   } = props;
-  return (
-    <>
-      {withSubmitButtons && (
-        <FormButtons
-          handleSubmit={handleSubmitForm}
-          handleReset={formik.resetForm}
-          loading={loading}
-        >
-          {RenderFormFields(
-            formik,
-            loading,
-            formInvalid,
-            handleChangeForm,
-            buttonOptions
-          )}
-        </FormButtons>
-      )}
-      {!withSubmitButtons &&
-        RenderFormFields(
+  if (withSubmitButtons) {
+    return (
+      <>
+        {RenderFormFields(
           formik,
           loading,
           formInvalid,
           handleChangeForm,
           buttonOptions
         )}
+      </>
+    );
+  }
+  return (
+    <>
+      {RenderFormFields(
+        formik,
+        loading,
+        formInvalid,
+        handleChangeForm,
+        buttonOptions
+      )}
     </>
   );
 }

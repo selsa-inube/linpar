@@ -1,11 +1,9 @@
 import { enviroment } from "@src/config/environment";
-import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-
 import { mapDownloadableFormatsApiToEntities } from "./mappers";
 
 const getDownloadableFormats = async (
   k_Usecase: string
-): Promise<IAssignmentFormEntry[]> => {
+): Promise<Record<string, unknown>[]> => {
   const maxRetries = 5;
   const fetchTimeout = 3000;
 

@@ -4,6 +4,8 @@ import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 const mapLinixUseCaseApiToEntity = (
   linixUseCase: Record<string, string | number | object>
 ): UseCase => {
+  const opcionMenu = String(linixUseCase.n_Camprv).split(";");
+
   const buildLinixUseCase: UseCase = {
     id: String(linixUseCase.k_Usecase),
     k_Usecase: String(linixUseCase.k_Usecase),
@@ -13,6 +15,14 @@ const mapLinixUseCaseApiToEntity = (
     i_Tipusec: formSelectOptionId(String(linixUseCase?.i_Tipusec)) || "",
     k_Ncampo: String(linixUseCase.n_Camprv),
     k_Nforma: String(linixUseCase.k_Nforma),
+    k_Funcio: opcionMenu[0],
+    k_option_button: opcionMenu[1] || "",
+    reportesWebPorCasoDeUso: Object(linixUseCase.reportesWebPorCasoDeUso),
+    opcionesPortalWebPorCasoDeUso: Object(
+      linixUseCase.opcionesPortalWebPorCasoDeUso
+    ),
+    reportesCsPorCasoDeUso: Object(linixUseCase.reportesCsPorCasoDeUso),
+    opcionesCsPorCasoDeUso: Object(linixUseCase.opcionesCsPorCasoDeUso),
   };
   return buildLinixUseCase;
 };

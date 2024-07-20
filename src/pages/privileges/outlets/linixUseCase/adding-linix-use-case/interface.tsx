@@ -9,7 +9,7 @@ import {
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
@@ -33,6 +33,7 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { VerificationAddLinixUseCase } from "../components/VerificationForm";
+import { InitializerForm } from "../components/InitializerForm";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -66,6 +67,7 @@ const renderStepContent = (
   handleUpdateFormData: (values: IHandleChangeFormData) => void,
   handleNextStep: (step: number) => void,
   formData: IFormAddLinixUseCase,
+  filterNForma: string,
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>
 ) => {
   return (
@@ -83,8 +85,7 @@ const renderStepContent = (
       )}
       {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
         <ClientServerButtonSelection
-          id={formData.generalInformation.values.k_Opcion}
-          csSelected={formData.generalInformation.values.k_Opcion}
+          id={filterNForma as string}
           handleSubmit={handleUpdateFormData}
           initialValues={formData.clientServerButton.values}
         />
@@ -153,6 +154,7 @@ interface AddingLinixUseCaseUIProps {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   isCurrentFormValid: boolean;
   selectOptions: boolean;
+  filterNForma: string;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -178,22 +180,18 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     webOptions,
     formReferences,
     isCurrentFormValid,
+    filterNForma,
     setCurrentStep,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const optionValidations = () => {
-    const validate = csOptionsButtons.filter(
-      (buttonOptions) =>
-        buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-        formData.generalInformation.values.k_Opcion
-    );
     if (
       currentStep === Object.values(stepsAddingLinixUseCase).length &&
-      validate.length !== 0
+      csOptionsButtons.length !== 0
     ) {
-      saveLinixUseCase(formData);
-    } else if (validate.length === 0 && currentStep === 1) {
+      saveLinixUseCase(formData, filterNForma);
+    } else if (csOptionsButtons.length === 0 && currentStep === 1) {
       handleNextStep(3);
     } else {
       handleNextStep(currentStep + 1);
@@ -231,12 +229,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                       currentStep ===
                       Object.values(stepsAddingLinixUseCase).length
                         ? currentStep - 1
-                        : currentStep === 3 &&
-                          !csOptionsButtons.some(
-                            (buttonOptions) =>
-                              buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-                              formData.generalInformation.values.k_Opcion
-                          )
+                        : currentStep === 3 && csOptionsButtons.length === 0
                         ? 1
                         : currentStep - 1;
                     handlePrevStep(prevStep);
@@ -246,12 +239,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                       currentStep ===
                       Object.values(stepsAddingLinixUseCase).length
                         ? (handleToggleModal(), currentStep)
-                        : currentStep === 1 &&
-                          !csOptionsButtons.some(
-                            (buttonOptions) =>
-                              buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-                              formData.generalInformation.values.k_Opcion
-                          )
+                        : currentStep === 1 && csOptionsButtons.length === 0
                         ? 3
                         : currentStep + 1;
                     handleNextStep(nextStep);
@@ -270,6 +258,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                 handleUpdateFormData,
                 handleNextStep,
                 formData,
+                filterNForma,
                 setCurrentStep
               )}
             </>

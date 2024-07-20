@@ -97,7 +97,7 @@ export const VerificationAddLinixUseCase = (
         attributes: [
           createAttribute(
             "Opción menú cliente-servidor linix: ",
-            data.clientServerButton.values.csButtonOption
+            data.clientServerButton.values.k_option_button
           ),
         ],
       },

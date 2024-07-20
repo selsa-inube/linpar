@@ -26,6 +26,7 @@ export interface IFormAddLinixUseCaseRef {
 }
 
 export interface IGeneralInformation {
+  k_Usecase?: string;
   n_Usecase: string;
   n_Descrip: string;
   i_Tipusec: string;
@@ -35,7 +36,7 @@ export interface IGeneralInformation {
 }
 
 export interface IClientServerButton {
-  csButtonOption: string;
+  k_option_button: string;
 }
 
 export interface IFormAddLinixUseCase {

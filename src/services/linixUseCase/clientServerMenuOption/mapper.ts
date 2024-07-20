@@ -5,7 +5,7 @@ const mapClientServerMenuOptionFormatsApiToEntity = (
     k_Opcion: String(clientServerMenuOptionFormat.k_Opcion),
     DESCRIPCION: String(clientServerMenuOptionFormat.n_Opcion),
     CODIGO_OPCION: String(clientServerMenuOptionFormat.k_Nforma),
-    isActive: Boolean(clientServerMenuOptionFormat.i_Privi),
+    i_Privi: String(clientServerMenuOptionFormat.i_Privi),
   };
   return buildClientServerMenuOptionFormat;
 };

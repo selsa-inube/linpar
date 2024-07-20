@@ -4,7 +4,7 @@ const mapWebOptionsFormatsApiToEntity = (
   const buildWebOptionsFormat: Record<string, unknown> = {
     k_Funcio: String(webOptionsFormat.k_Funcio),
     n_Funcio: String(webOptionsFormat.n_Funcio),
-    isActive: Boolean(webOptionsFormat.i_Privi),
+    i_Privi: String(webOptionsFormat.i_Privi),
   };
   return buildWebOptionsFormat;
 };
