@@ -22,7 +22,7 @@ import {
 import { dataToAssignmentFormEntry } from "../adding-linix-use-case";
 import { UseCase } from "../types";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
-import { getClientServerButtonDataFormats } from "@src/services/linixUseCase/clientServerButtonData";
+
 import { editLinixUseCases } from "./utils";
 import { generalMessage } from "../adding-linix-use-case/config/messages.config";
 
@@ -95,9 +95,7 @@ function EditCaseLinix() {
   const [csOptionsChange, setCSOptionsChange] = useState<
     IAssignmentFormEntry[]
   >([]);
-  const [csOptionsButtons, setCsOptionsButtons] = useState<
-    Record<string, unknown>[]
-  >([]);
+  const [csOptionsButtons] = useState<Record<string, unknown>[]>([]);
 
   const generalInformationData = linixUseCasesEdit.find(
     (data) => data.id === k_Usecase
@@ -110,16 +108,18 @@ function EditCaseLinix() {
   });
 
   useEffect(() => {
-    setFormData((prevFormData: IFormAddLinixUseCase) => ({
-      ...prevFormData,
-      clientServerButton: {
-        isValid: true,
-        values: {
-          k_option_button: "hola",
+    if (generalInformationData) {
+      setFormData((prevFormData: IFormAddLinixUseCase) => ({
+        ...prevFormData,
+        clientServerButton: {
+          isValid: true,
+          values: {
+            k_option_button: String(generalInformationData.k_option_button),
+          },
         },
-      },
-    }));
-  }, []);
+      }));
+    }
+  }, [generalInformationData]);
 
   const linixUseCaseData = async () => {
     if (!user) return;
@@ -168,7 +168,6 @@ function EditCaseLinix() {
       clientServerReports(),
       clientServerMenuOption(),
       clientSelectLinixUseCase(),
-      clientServerButtonMenuOption(),
     ]).then(() => {
       setLoading(true);
     });
@@ -328,30 +327,6 @@ function EditCaseLinix() {
         setLoading(false);
       }
     }
-  };
-
-  const clientServerButtonMenuOption = async () => {
-    if (!user) return;
-    //if (csOptionsButtons.length === 0) {
-    setLoading(true);
-    getClientServerButtonDataFormats(generalInformationData?.k_Funcio || "1")
-      .then((data) => {
-        setCsOptionsButtons(data);
-
-        setFormData((prevFormData: IFormAddLinixUseCase) => ({
-          ...prevFormData,
-          clientServerButton: {
-            isValid: true,
-            values: {
-              k_option_button: String(generalInformationData?.k_option_button),
-            },
-          },
-        }));
-      })
-      .catch((error) => {
-        console.error("Error fetching general Information:", error.message);
-      });
-    //}
   };
 
   const handleTabChange = (tabId: string) => {
