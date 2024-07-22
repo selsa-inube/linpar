@@ -1,24 +1,22 @@
+import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
 
 interface IStyledFieldsetColorCard {
-  requireBackground: boolean;
-  theme: typeof inube;
+  $requireBackground: boolean;
 }
 
 const StyledTokenColorCardContainer = styled.div<IStyledFieldsetColorCard>`
   width: 100%;
-  max-width: ${inube.spacing.s1000};
+  max-width: 80px;
   & > div {
     width: 100%;
     height: 24px;
     max-width: 80px;
 
     border: 1px solid
-      ${({ theme, requireBackground }) =>
-        requireBackground
-          ? theme?.color?.stroke?.divider?.regular ||
-            inube.color.stroke.divider.regular
+      ${({ theme, $requireBackground }) =>
+        $requireBackground
+          ? theme?.color?.stroke?.divider?.regular || inube.palette.neutral.N40
           : "unset"};
     & > div {
       justify-content: center;
@@ -29,10 +27,10 @@ const StyledTokenColorCardContainer = styled.div<IStyledFieldsetColorCard>`
 
 const StyledTextWithTokenContainer = styled.div<IStyledFieldsetColorCard>`
   & > div {
-    border-radius: ${inube.spacing.s100};
-    background-color: ${({ theme, requireBackground }) =>
-      requireBackground
-        ? theme?.color?.text?.dark?.regular || inube.color.text.dark.regular
+    border-radius: 8px;
+    background-color: ${({ theme, $requireBackground }) =>
+      $requireBackground
+        ? theme?.color?.text?.dark?.regular || inube.palette.neutral.N900
         : "unset"};
   }
 `;

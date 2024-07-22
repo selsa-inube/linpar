@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
+
 import { getTokenColor } from "@src/utils/getTokenColor";
+import { inube } from "@inubekit/foundations";
 
 interface IStyledColorTokenCard {
-  tokenName: string;
-  isActive: boolean;
+  $tokenName: string;
+  $isActive: boolean;
   type: "colorPicker" | "tokenPicker";
-  smallScreen: boolean;
+  $smallScreen: boolean;
   width: string;
 }
 
 interface StyledPaletteUI {
-  theme?: typeof inube;
-  hasBackground: boolean;
+  $hasBackground: boolean;
 }
 
 const HiddenColorPicker = styled.input.attrs({ type: "color" })`
@@ -35,17 +35,17 @@ const StyledHoverIcon = styled.div`
 `;
 
 const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
-  display: ${({ smallScreen }) => (smallScreen ? "flex" : "inherit")};
-  align-items: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
-  justify-content: ${({ smallScreen }) => (smallScreen ? "center" : "unset")};
+  display: ${({ $smallScreen }) => ($smallScreen ? "flex" : "inherit")};
+  align-items: ${({ $smallScreen }) => ($smallScreen ? "center" : "unset")};
+  justify-content: ${({ $smallScreen }) => ($smallScreen ? "center" : "unset")};
   width: ${({ width }) => (width ? width : "auto")};
-  height: ${({ smallScreen }) => (smallScreen ? "36px" : "auto")};
+  height: ${({ $smallScreen }) => ($smallScreen ? "36px" : "auto")};
   box-sizing: border-box;
-  border-radius: ${inube.spacing.s100};
+  border-radius: 8px;
   cursor: pointer;
   min-width: max-content;
-  background-color: ${({ tokenName, theme }) =>
-    getTokenColor(tokenName, theme)};
+  background-color: ${({ $tokenName, theme }) =>
+    getTokenColor($tokenName, theme)};
   position: relative;
 
   &:hover ${StyledHoverIcon} {
@@ -54,13 +54,12 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
 `;
 
 const StyledGridContainer = styled.div<StyledPaletteUI>`
-  background-color: ${({ theme, hasBackground }) =>
-    hasBackground
-      ? theme?.color?.surface?.dark?.clear || inube.color.surface.dark.clear
+  background-color: ${({ theme, $hasBackground }) =>
+    $hasBackground
+      ? theme?.color?.surface?.dark?.clear || inube.palette.neutral.N30
       : "unset"};
-  border-radius: ${inube.spacing.s100};
-  padding: ${({ hasBackground }) =>
-    hasBackground ? inube.spacing.s150 : inube.spacing.s0};
+  border-radius: 8px;
+  padding: ${({ $hasBackground }) => ($hasBackground ? "12px" : "0px")};
   width: 100%;
   & div {
     place-content: unset;

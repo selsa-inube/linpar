@@ -1,8 +1,8 @@
 import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
+
 import {
   Stack,
-  Text,
   Textfield,
   Textarea,
   Icon,
@@ -11,21 +11,21 @@ import {
   useMediaQuery,
   inube,
 } from "@inube/design-system";
+import { Text } from "@inubekit/text";
 
-import { FormButtons } from "@components/forms/submit/FormButtons";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { SearchUserCard } from "@src/components/cards/SearchUserCard";
-import { OptionSelect } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
+import { SearchUserCard } from "@components/cards/SearchUserCard";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { StyledSelectContainer } from "./styles";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
+  selectLinixUseCase: Option[];
   loading: boolean;
-  withSubmitButtons?: boolean;
   message: IMessageState;
+  editform: boolean;
   onCloseSectionMessage: () => void;
   handleCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IGeneralInformation) => boolean;
@@ -44,12 +44,14 @@ const searchData = {
 
 function RenderFormFields(
   formik: FormikValues,
+  selectLinixUseCase: Option[],
   loading: boolean,
   formInvalid: boolean,
   handleChangeForm: (name: string, value: string) => void,
   csOptions: Record<string, unknown>[],
   webOptions: Record<string, unknown>[],
-  readOnly?: boolean
+  readOnly?: boolean,
+  editform?: boolean
 ) {
   const mediaQuery = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuery);
@@ -109,7 +111,7 @@ function RenderFormFields(
             onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeForm("i_Tipusec", value.target.outerText)
             }
-            options={OptionSelect}
+            options={selectLinixUseCase}
           />
         </StyledSelectContainer>
       </Stack>
@@ -145,115 +147,88 @@ function RenderFormFields(
               size="14px"
               shape="circle"
             />
-            <Text size="small" margin="8px 0px 0px 4px" appearance="error">
+            <Text size="small" margin="8px 0px 0px 4px" appearance="danger">
               ({formik.errors.position})
             </Text>
           </Stack>
         )}
+
+        {editform && (
+          <SearchUserCard
+            id="webSearch"
+            label="Opción de menú web Linix"
+            placeholder="Seleccione una opción"
+            name="webSearch"
+            title="Búsqueda"
+            infoTitle="Opción de menú web Linix"
+            idModal="searchField"
+            nameModal="searchField"
+            labelModal="Digite la opción a buscar."
+            placeholderModal="Digite el código o nombre del caso de uso."
+            userData={webOptions}
+            searchFieldData={searchData}
+            onReset={() => {}}
+            idLabel="k_Funcio"
+            nameLabel="n_Funcio"
+            onUserSelect={(value: Record<string, unknown>) =>
+              handleChangeForm("k_Funcio", value.k_Funcio as string)
+            }
+            selectedId={formik.values.k_Funcio}
+          />
+        )}
+      </Stack>
+      {editform && (
         <SearchUserCard
-          id="webSearch"
-          label="Opción de menú web Linix"
+          id="csSearch"
+          label="Opción de menú cliente servidor Linix"
           placeholder="Seleccione una opción"
-          name="webSearch"
+          name="csSearch"
           title="Búsqueda"
-          infoTitle="Opción de menú web Linix"
+          infoTitle="Opción de menú cliente servidor Linix"
           idModal="searchField"
           nameModal="searchField"
           labelModal="Digite la opción a buscar."
           placeholderModal="Digite el código o nombre del caso de uso."
-          userData={webOptions}
-          searchFieldData={searchData}
-          onReset={() => {}}
-          idLabel="K_opcion"
-          nameLabel="Nombre_opcion"
           onUserSelect={(value: Record<string, unknown>) =>
-            handleChangeForm("k_Funcio", value.K_opcion as string)
+            handleChangeForm("k_Opcion", value.k_Opcion as string)
           }
-          selectedId={formik.values.k_Funcio}
+          userData={csOptions}
+          searchFieldData={searchData}
+          idLabel="k_Opcion"
+          nameLabel="DESCRIPCION"
+          onReset={() => {}}
+          selectedId={formik.values.k_Opcion}
         />
-      </Stack>
-      <SearchUserCard
-        id="csSearch"
-        label="Opción de menú cliente servidor Linix"
-        placeholder="Seleccione una opción"
-        name="csSearch"
-        title="Búsqueda"
-        infoTitle="Opción de menú cliente servidor Linix"
-        idModal="searchField"
-        nameModal="searchField"
-        labelModal="Digite la opción a buscar."
-        placeholderModal="Digite el código o nombre del caso de uso."
-        onUserSelect={(option: Record<string, unknown>) =>
-          handleChangeForm("k_Opcion", option.CODIGO_OPCION as string)
-        }
-        userData={csOptions}
-        searchFieldData={searchData}
-        idLabel="CODIGO_OPCION"
-        nameLabel="DESCRIPCION"
-        onReset={() => {}}
-        selectedId={formik.values.k_Opcion}
-      />
+      )}
     </Grid>
   );
 }
 
 function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
+    selectLinixUseCase,
     formik,
     loading,
-    withSubmitButtons,
-    hasChanges,
     formInvalid,
-    handleSubmitForm,
     handleChangeForm,
-    onCloseSectionMessage,
-    message,
-    handleReset,
     readOnly,
     csOptions,
     webOptions,
+    editform,
   } = props;
-
-  if (withSubmitButtons) {
-    return (
-      <>
-        <FormButtons
-          handleSubmit={handleSubmitForm}
-          handleReset={formik.resetForm}
-          disabledButtons={!hasChanges(formik.values)}
-          loading={loading}
-        >
-          {RenderFormFields(
-            formik,
-            loading,
-            formInvalid,
-            handleChangeForm,
-            csOptions,
-            webOptions
-          )}
-        </FormButtons>
-        {message.visible && (
-          <RenderMessage
-            message={message}
-            handleCloseMessage={onCloseSectionMessage}
-            onMessageClosed={handleReset}
-          />
-        )}
-      </>
-    );
-  }
 
   return (
     <>
       {RenderFormFields(
         formik,
+        selectLinixUseCase,
         loading,
         formInvalid,
         handleChangeForm,
-
         csOptions,
         webOptions,
-        readOnly
+        readOnly,
+        editform
       )}
     </>
   );

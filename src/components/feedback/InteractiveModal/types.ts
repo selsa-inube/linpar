@@ -11,28 +11,28 @@ interface Action {
 }
 
 interface InteractiveModalProps {
-  portalId: string;
-  title: string;
-  selectedItem?: string;
   closeModal: () => void;
   infoData: { [key: string]: string } | Record<string, string | number>;
-  actions?: Action[];
-  labels?: Field[];
-  infoTitle?: string;
+  portalId: string;
+  title: string;
   actionsTitle?: string;
+  actions?: Action[];
+  divider?: boolean;
+  id?: string;
+  idLabel?: string;
+  infoTitle?: string;
+  label?: string;
+  labels?: Field[];
+  name?: string;
+  nameLabel?: string;
+  onClick?: any;
+  placeholder?: string;
   searchData?:
     | { [key: string]: string }
-    | Record<string, string | number>
-    | any;
-  id?: string;
-  label?: string;
-  name?: string;
-  placeholder?: string;
+    | Record<string, string | number | unknown>[];
+  selectedItem?: string;
+  setValidateCardRemoved?: React.Dispatch<React.SetStateAction<boolean>>;
   type?: ModalTypes;
-  divider?: boolean;
-  onClick?: any;
-  idLabel?: string;
-  nameLabel?: string;
 }
 
 export type { Field, Action, InteractiveModalProps, ModalTypes };

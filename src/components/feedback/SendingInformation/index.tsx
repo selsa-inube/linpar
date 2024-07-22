@@ -15,13 +15,14 @@ import { MdClear } from "react-icons/md";
 import { StyledSectionMessage } from "./styles";
 import { ButtonType } from "./types";
 import { TextAppearance } from "@pages/people/outlets/color/texts/types";
+import { StrokeAppearance } from "@src/pages/people/outlets/color/strokes/types";
 
 export interface ISectionMessageProps {
   children?: React.ReactNode;
   icon: JSX.Element;
   title: string;
   description: string;
-  appearance: TextAppearance;
+  appearance: TextAppearance | StrokeAppearance;
   duration: number;
   closeSectionMessage: () => void;
   buttonType: ButtonType;
@@ -46,15 +47,15 @@ const SectionMessageCustomized = (props: ISectionMessageProps) => {
 
   return (
     <StyledSectionMessage
-      appearance={appearance}
+      $appearance={appearance}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      icon={icon}
-      title={title}
-      description={description}
-      duration={duration}
-      closeSectionMessage={closeSectionMessage}
-      buttonType={buttonType}
+      $icon={icon}
+      $title={title}
+      $description={description}
+      $duration={duration}
+      $closeSectionMessage={closeSectionMessage}
+      $buttonType={buttonType}
     >
       <Stack
         justifyContent="space-between"
@@ -118,7 +119,7 @@ const handleAgree = () => {
 };
 
 interface ISendInformationMessageProps {
-  appearance: TextAppearance;
+  appearance: TextAppearance | StrokeAppearance;
   buttonType?: ButtonType;
 }
 

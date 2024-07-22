@@ -29,7 +29,7 @@ export const EditRole = () => {
 
   const [editData, setEditData] = useState<IRol>({
     i_Activo: "Y",
-    k_Rol: "",
+    k_Rol: 0,
     k_Tipcon: "",
     n_Rol: "",
     n_Uso: "",
@@ -131,13 +131,13 @@ export const EditRole = () => {
   const valuesGeneralInformation = {
     roleName: editData.n_Rol,
     description: editData.n_Uso,
-    aplicationId: editData.k_Aplica,
+    applicationId: editData.k_Aplica,
   };
 
   const valuesAncillaryAccounts = {
     officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
-    commercialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
-    solidaritySector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
+    commercialSector: editData?.cuentasAuxiliaresPorRol?.[1]?.k_Codcta || "",
+    solidaritySector: editData?.cuentasAuxiliaresPorRol?.[2]?.k_Codcta || "",
   };
 
   const valuesTransactionTypes = editData?.tiposDeMovimientoContablePorRol?.map(
@@ -183,14 +183,21 @@ export const EditRole = () => {
     }
   };
 
+  const roleCardData = editData && {
+    code: (editData as { k_Rol: number }).k_Rol,
+    username: (editData as { n_Rol: string }).n_Rol,
+  };
+
   return (
     <EditRoleUI
+      roleCardData={roleCardData}
       data={valuesGeneralInformation}
       onTabChange={handleTabChange}
       selectedTab={selectedTab}
       dataTabs={Tabs}
       smallScreen={smallScreen}
       loading={loading}
+      rol_id={rol_id as string}
       valuesAncillaryAccounts={valuesAncillaryAccounts}
       valuesTransactionTypes={valuesTransactionTypes}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}

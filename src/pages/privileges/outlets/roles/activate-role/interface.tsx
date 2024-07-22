@@ -6,6 +6,9 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { IActivateOptionModal } from "./types";
 import { activateRoleModal } from "./config/activateRole.config";
 
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { RenderMessage } from "@components/feedback/RenderMessage";
+
 interface IActivateRoleUI {
   active: boolean;
   showActivateRole: boolean;
@@ -14,6 +17,9 @@ interface IActivateRoleUI {
   handleActivateRole: () => void;
   showComplete: boolean;
   activateModalConfig: typeof activateRoleModal;
+  message: IMessageState;
+  loading: boolean;
+  onCloseSectionMessage: () => void;
 }
 
 function ActivateRoleModal(props: IActivateOptionModal) {
@@ -57,6 +63,8 @@ export function ActivateRoleUI(props: IActivateRoleUI) {
     handleActivateRole: handleActivateUser,
     showComplete,
     activateModalConfig,
+    message,
+    onCloseSectionMessage,
   } = props;
 
   return (
@@ -76,6 +84,14 @@ export function ActivateRoleUI(props: IActivateRoleUI) {
           handleToggleModal={handleToggleModal}
           handleActivateRole={handleActivateUser}
           activateModalConfig={activateModalConfig}
+        />
+      )}
+
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={onCloseSectionMessage}
+          onMessageClosed={() => {}}
         />
       )}
     </>

@@ -30,7 +30,7 @@ function RespondInvitation() {
 
   const getInvitationInformation = () => {
     return invitationEntriesDataMock.find(
-      (invitation) => invitation.id === invitation_id
+      (invitation) => invitation.customerId === invitation_id
     );
   };
 
@@ -44,10 +44,10 @@ function RespondInvitation() {
 
   const formik = useFormik({
     initialValues: {
-      name: invitation?.username,
-      userID: invitation?.userID,
+      name: invitation?.userName,
+      userID: invitation?.userIdentification,
       email: invitation?.email,
-      phone: invitation?.phone,
+      phone: invitation?.phoneNumber,
       username: "",
       password: "",
       confirmPassword: "",

@@ -9,12 +9,12 @@ import { deleteRolModal } from "../delete-role/config/deleteRol.config";
 import { DeleteRole } from "../delete-role";
 import { activateRoleModal } from "../activate-role/config/activateRole.config";
 import { ActivateRole } from "../activate-role";
-import { IRol } from "../types";
+import { IDeleteForMessage, IRol } from "../types";
 
 export const titlesOptions = [
   {
     id: "k_Rol",
-    titleName: "Code",
+    titleName: "Código",
     priority: 0,
   },
 
@@ -40,8 +40,11 @@ export const RolesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-export const actionsConfigPosition = (linixRoles: IRol[]) => {
-  const dataDetailsRole = (k_Rol: string) => {
+export const actionsConfigPosition = (
+  linixRoles: IRol[],
+  setIdDeleted: (show: IDeleteForMessage) => void
+) => {
+  const dataDetailsRole = (k_Rol: number) => {
     const data = [linixRoles.find((role) => role.k_Rol === k_Rol)!].map(
       (roleSelected) => ({
         Código: roleSelected?.k_Rol,
@@ -54,35 +57,31 @@ export const actionsConfigPosition = (linixRoles: IRol[]) => {
     return [...data].shift();
   };
 
-  const selectedData = (k_Rol: string) =>
+  const selectedData = (k_Rol: number) =>
     linixRoles.find((role) => role.k_Rol === k_Rol);
 
   const actionsConfig = [
     {
-      id: "i_activo",
+      id: "i_Activo",
       actionName: "Activo",
-      content: ({ k_Rol }: { k_Rol: string }) => {
-        const role = selectedData(k_Rol);
-        const adjustedRole = {
-          id: role?.k_Rol || "",
-          active: role?.i_Activo === "Y" || false,
-        };
-
-        return (
-          <ActivateRole
-            handleActivate={() => {}}
-            data={adjustedRole}
-            showComplete={false}
-            activateModalConfig={activateRoleModal}
-          />
-        );
-      },
+      content: (roles: IRol) => (
+        <ActivateRole
+          handleActivate={() => {}}
+          data={{
+            id: roles?.id || 2,
+            active: roles.i_Activo,
+            name: roles.n_Rol,
+          }}
+          showComplete={false}
+          activateModalConfig={activateRoleModal}
+        />
+      ),
       type: "secondary",
     },
     {
       id: "Details",
       actionName: "Detalles",
-      content: ({ k_Rol }: { k_Rol: string }) => (
+      content: ({ k_Rol }: { k_Rol: number }) => (
         <DetailsModal data={dataDetailsRole(k_Rol)} />
       ),
       type: "secondary",
@@ -90,7 +89,7 @@ export const actionsConfigPosition = (linixRoles: IRol[]) => {
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ k_Rol }: { k_Rol: string }) => (
+      content: ({ k_Rol }: { k_Rol: number }) => (
         <Link to={`edit/${k_Rol}`} onClick={() => selectedData(k_Rol)}>
           <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
         </Link>
@@ -100,11 +99,13 @@ export const actionsConfigPosition = (linixRoles: IRol[]) => {
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Rol }: { k_Rol: string }) => (
+      content: ({ k_Rol, n_Rol }: { k_Rol: number; n_Rol: string }) => (
         <DeleteRole
+          nameRol={n_Rol}
           rol={k_Rol}
           deleteRolModal={deleteRolModal}
           handleDeleteRol={deleteItemData}
+          setIdDeleted={setIdDeleted}
         />
       ),
       type: "remove",

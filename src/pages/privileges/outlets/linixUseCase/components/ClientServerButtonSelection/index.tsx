@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
+import { useAuth0 } from "@auth0/auth0-react";
 
+import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { getAll } from "@mocks/utils/dataMock.service";
 import {
   IHandleChangeFormData,
   IClientServerButton,
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
-
 import { ClientServerButtonSelectionUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
 interface ClientServerButtonSelectionProps {
+  id?: string;
   handleSubmit: (values: IHandleChangeFormData) => void;
-  csSelected: string;
   onHasChanges?: (hasChanges: boolean) => void;
   initialValues?: IClientServerButton;
   withSubmitButtons?: boolean;
@@ -23,10 +23,10 @@ interface ClientServerButtonSelectionProps {
 
 function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const {
+    id,
     handleSubmit,
     onHasChanges,
-    csSelected,
-    initialValues = { csButtonOption: "" },
+    initialValues = { k_option_button: "" },
     withSubmitButtons = false,
   } = props;
 
@@ -37,22 +37,27 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const [buttonOptions, setButtonOptions] = useState<Record<string, unknown>[]>(
     []
   );
+  const { user } = useAuth0();
+
+  const clientServerButtonMenuOption = async (id: string) => {
+    if (!user) return;
+    if (buttonOptions.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getClientServerButtonDataFormats(id);
+        setButtonOptions(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    getAll("button-options")
-      .then((data) => {
-        if (data !== null) {
-          setButtonOptions(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching button-options:", error.message);
-      });
-  }, []);
-
-  const filteredButtonOptions = buttonOptions.filter(
-    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === csSelected
-  );
+    clientServerButtonMenuOption(id!);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const onSubmit = () => {
     setLoading(true);
@@ -105,9 +110,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     formik.setFieldValue(name, value).then(() => {
       if (withSubmitButtons) return;
       formik.validateForm().then((errors) => {
-        if (!errors || Object.keys(errors).length === 0) {
-          handleSubmit(formikValues);
-        }
+        handleSubmit(formikValues);
       });
     });
   };
@@ -121,7 +124,9 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
-      buttonOptions={filteredButtonOptions}
+      buttonOptions={buttonOptions}
+      withSubmitButtons={withSubmitButtons}
+      hasChanges={hasChanges}
     />
   );
 }

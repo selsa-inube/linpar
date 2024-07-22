@@ -1,32 +1,22 @@
+import { useEffect, useState } from "react";
+
+import { Table } from "@inube/design-system";
+import { useMediaQuery } from "@inube/design-system";
+import { EMessageType, IMessage } from "@src/types/messages.types";
+import { getAll } from "@mocks/utils/dataMock.service";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { IInvitationsEntry } from "@services/users/invitation.types";
+import { RenderMessage } from "@components/feedback/RenderMessage";
+
 import {
-  Table,
-  useMediaQuery,
-  SectionMessage,
-  Stack,
-} from "@inube/design-system";
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
-import { useState } from "react";
-import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
-import {
-  deleteInvitationMessagesConfig,
   invitationsTableBreakpoints,
   invitationsTableTitles,
 } from "../../config/invitationsTable.config";
-import { CompleteInvitationLink } from "./CompleteInvitationLink";
-import { DeleteInvitation } from "./DeleteInvitation";
-import { ResendInvitation } from "./ResendInvitation";
-import { EMessageType, IMessage } from "@src/types/messages.types";
-import { IGeneralInformationEntry } from "../../types/forms.types";
-import { EAppearance } from "@src/types/colors.types";
-import { StyledMessageContainer } from "./styles";
+import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
+import { actionsConfigInvitation } from "./config/dataInvitation";
 
-const initialMessageState: IMessage = {
-  show: false,
-  title: "",
-  description: "",
-  icon: <></>,
-  appearance: "" as EAppearance,
-};
+import { IMessageState } from "../../types/forms.types";
+import { deleteInvitationMessages } from "./DeleteInvitation/config/deleteInvitation.config";
 
 interface InvitationsTabProps {
   searchText: string;
@@ -34,74 +24,43 @@ interface InvitationsTabProps {
 
 function InvitationsTab(props: InvitationsTabProps) {
   const { searchText } = props;
-  const [message, setMessage] = useState(initialMessageState);
-  const [invitations, setInvitations] = useState(invitationEntriesDataMock);
-
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
+  const [idDeleted, setIdDeleted] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [invitations, setInvitations] = useState<IInvitationsEntry[]>([]);
+  const [isHovered, setIsHovered] = useState(false);
   const smallScreen = useMediaQuery("(max-width: 850px)");
 
-  const invitationsTableActions = [
-    {
-      id: "1",
-      actionName: "Completar",
-      content: (invitation: IGeneralInformationEntry) => (
-        <CompleteInvitationLink
-          invitation={invitation}
-          showComplete={smallScreen}
-        />
-      ),
-      type: "gray",
-    },
-    {
-      id: "2",
-      actionName: "Reenviar",
-      content: (invitation: IGeneralInformationEntry) => (
-        <ResendInvitation
-          invitation={invitation}
-          handleResendInvitation={() => handleResendInvitation(invitation)}
-          showComplete={smallScreen}
-        />
-      ),
-      type: "primary",
-    },
-    {
-      id: "3",
-      actionName: "Eliminar",
-      content: (invitation: IGeneralInformationEntry) => (
-        <DeleteInvitation
-          handleDelete={() => deleteInvitation(invitation)}
-          showComplete={smallScreen}
-        />
-      ),
-      type: "error",
-    },
-  ];
+  useEffect(() => {
+    getAll("linix-invitations")
+      .then((data) => {
+        if (data !== null) {
+          setInvitations(data as IInvitationsEntry[]);
+        }
+      })
+      .catch((error) => {
+        console.info(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [invitations]);
 
-  const deleteInvitation = (invitation: IGeneralInformationEntry) => {
-    // Create fetch request here...
-    let responseType = EMessageType.SUCCESS;
+  useEffect(() => {
+    const filterRecordRemoved = invitations.filter(
+      (invitations) => invitations.customerId !== idDeleted
+    );
+    filterRecordRemoved &&
+      setMessage({
+        visible: true,
+        data: deleteInvitationMessages.success,
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idDeleted]);
 
-    try {
-      setInvitations((prevInvitations) =>
-        prevInvitations.filter(
-          (oldInvitation) => invitation.id !== oldInvitation.id
-        )
-      );
-    } catch (error) {
-      responseType = EMessageType.FAILED;
-    }
-
-    const { icon, title, description, appearance } =
-      deleteInvitationMessagesConfig[responseType];
-
-    handleShowMessage({
-      title,
-      description: description(invitation.username),
-      icon,
-      appearance,
-    });
-  };
-
-  const handleResendInvitation = (invitation: IGeneralInformationEntry) => {
+  const handleResendInvitation = (invitation: IInvitationsEntry) => {
     let messageType = EMessageType.SUCCESS;
 
     try {
@@ -122,44 +81,45 @@ function InvitationsTab(props: InvitationsTabProps) {
   };
 
   const handleShowMessage = (message: IMessage) => {
-    const { title, description, icon, appearance } = message;
     setMessage({
-      show: true,
-      title,
-      description,
-      icon,
-      appearance,
+      visible: true,
+      data: message,
     });
   };
 
   const handleCloseMessage = () => {
-    setMessage(initialMessageState);
+    setMessage({
+      visible: false,
+    });
   };
 
   return (
     <>
-      <Table
-        id="portal"
-        titles={invitationsTableTitles}
-        entries={invitations}
-        actions={invitationsTableActions}
-        breakpoints={invitationsTableBreakpoints}
-        filter={searchText}
-        modalTitle="Invitación"
-      />
-      {message.show && (
-        <StyledMessageContainer>
-          <Stack justifyContent="flex-end" width="100%">
-            <SectionMessage
-              title={message.title}
-              description={message.description}
-              icon={message.icon}
-              appearance={message.appearance}
-              duration={4000}
-              closeSectionMessage={handleCloseMessage}
-            />
-          </Stack>
-        </StyledMessageContainer>
+      {loading ? (
+        <LoadingApp />
+      ) : (
+        <Table
+          id="portal"
+          titles={invitationsTableTitles}
+          entries={invitations}
+          actions={actionsConfigInvitation(
+            isHovered,
+            handleResendInvitation,
+            setIsHovered,
+            smallScreen,
+            setIdDeleted
+          )}
+          breakpoints={invitationsTableBreakpoints}
+          filter={searchText}
+          modalTitle="Invitación"
+        />
+      )}
+      {idDeleted && message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={handleCloseMessage}
+          onMessageClosed={handleCloseMessage}
+        />
       )}
     </>
   );

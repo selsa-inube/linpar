@@ -1,4 +1,7 @@
-import { IAssignmentFormEntry } from "../users/types/forms.types";
+export interface IDeleteForMessage {
+  id: string;
+  successfulDiscard: boolean;
+}
 
 interface OpcionesCsPorCasoDeUso {
   k_Opcion: string;
@@ -20,20 +23,30 @@ interface TiposDeDocumentoPorCasoDeUso {
   k_Docume: string;
 }
 
-interface UseCase {
+export interface IInitialiceFormLinixUseCase {
   id: string;
-  k_Usecase: string;
-  n_Usecase: string;
-  n_Descrip: string;
-  a_Publicc: string;
+  value: string;
+  isActive: boolean;
+}
+
+interface UseCase {
+  id?: string;
+  a_Publicc?: string;
   i_Tipusec: string;
-  k_Ncampo: string;
-  k_Nforma: string;
+  k_Ncampo?: string;
+  k_Nforma?: string;
+  k_Usecase: string;
+  n_Descrip?: string;
+  n_Usecase?: string;
+  k_Funcio?: string;
+  k_Opcion?: string;
+  k_option_button?: string;
   opcionesCsPorCasoDeUso?: OpcionesCsPorCasoDeUso[];
   opcionesPortalWebPorCasoDeUso?: OpcionesPortalWebPorCasoDeUso[];
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];
-  reportesWebPorCasoDeUso?: IAssignmentFormEntry[];
+  reportesWebPorCasoDeUso?: ReportesWebPorCasoDeUso[];
   tiposDeDocumentoPorCasoDeUso?: TiposDeDocumentoPorCasoDeUso[];
+  modifyJustification?: string;
 }
 
 export type {

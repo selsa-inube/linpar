@@ -1,4 +1,4 @@
-import { IActions } from "@src/pages/privileges/outlets/roles/types";
+import { IActions } from "@src/pages/privileges/outlets/linixUseCase/types";
 
 export const mockActions: IActions[] = [
   {

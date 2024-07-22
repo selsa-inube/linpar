@@ -1,3 +1,4 @@
+import { FaUserGear } from "react-icons/fa6";
 import {
   Stack,
   SkeletonLine,
@@ -6,13 +7,15 @@ import {
   Tabs,
 } from "@inube/design-system";
 import { PageTitle } from "@src/components/PageTitle";
+import { SubjectCard } from "@src/components/cards/SubjectCard";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import {
   AncillaryAccountsForm,
   IAncillaryAccountsForm,
 } from "../components/AncillaryAccountsForm";
 import { InitializerForm } from "../../forms/InitializerForm";
-import { editRolConfig, stepsAddRol } from "../add-role/config/addRol.config";
+import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
+import { stepsAddRol } from "../add-role/config/addRol.config";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
 
 interface ITabs {
@@ -22,12 +25,14 @@ interface ITabs {
 }
 
 interface IEditRoleUIProps {
+  roleCardData: { username: string; code: number };
   data: any;
   dataTabs: ITabs[];
   onTabChange: (tabId: string) => void;
   selectedTab: string;
   smallScreen: boolean;
   loading: boolean;
+  rol_id: string;
   valuesAncillaryAccounts: IAncillaryAccountsForm;
   valuesTransactionTypes: IAssignmentFormEntry[];
   valuesBusinessRules?: any;
@@ -38,12 +43,14 @@ interface IEditRoleUIProps {
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
   const {
+    roleCardData,
     data,
     onTabChange,
     selectedTab,
     dataTabs,
     smallScreen,
     loading,
+    rol_id,
     valuesAncillaryAccounts,
     valuesTransactionTypes,
     valuesBusinessRules,
@@ -58,17 +65,26 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s400} direction="column">
-          <Breadcrumbs crumbs={editRolConfig[0].crumbs} />
+          <Breadcrumbs crumbs={editRoleConfig[0].crumbs} />
           <Stack
             justifyContent="space-between"
             alignItems="center"
             gap={inube.spacing.s650}
           >
             <PageTitle
-              title={editRolConfig[0].title}
-              description={editRolConfig[0].description}
+              title={editRoleConfig[0].title}
+              description={editRoleConfig[0].description}
               navigatePage="/privileges/roles"
             />
+
+            {roleCardData && (
+              <SubjectCard
+                subjectData={roleCardData}
+                title="Editar Rol"
+                icon={<FaUserGear />}
+                labels={editRoleCardLabels}
+              />
+            )}
           </Stack>
         </Stack>
         <>
@@ -78,12 +94,18 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             tabs={dataTabs}
           />
           {selectedTab === stepsAddRol.generalInformation.label && (
-            <GeneralInformationForm initialValues={data} withSubmitButtons />
+            <GeneralInformationForm
+              initialValues={data}
+              rol_id={rol_id}
+              withSubmitButtons
+              linixRoles={data}
+            />
           )}
 
           {selectedTab === stepsAddRol.auxiliaryAccounts.label && (
             <AncillaryAccountsForm
               initialValues={valuesAncillaryAccounts}
+              rol_id={rol_id}
               withSubmitButtons
             />
           )}
@@ -93,6 +115,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               dataOptionsForms={valuesTransactionTypes}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
+              id={rol_id}
+              keyData={"k_Rol"}
+              nameDB={"linix-roles"}
+              property={"tiposDeMovimientoContablePorRol"}
+              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.businessRules.label && (
@@ -100,6 +127,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               dataOptionsForms={valuesBusinessRules}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
+              id={rol_id}
+              keyData={"k_Rol"}
+              nameDB={"linix-roles"}
+              property={"reglasDeNegocioPorRol"}
+              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.crediboardTasks.label && (
@@ -107,6 +139,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               dataOptionsForms={valuesCreditboardTasks}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
+              id={rol_id}
+              keyData={"k_Rol"}
+              nameDB={"linix-roles"}
+              property={"tareasCrediboardPorRol"}
+              propertyData={"k_Id"}
             />
           )}
           {selectedTab === stepsAddRol.useCases.label && (
@@ -114,6 +151,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               dataOptionsForms={valuesUseCases}
               handleSubmit={handleUpdateDataSwitchstep}
               withSubmitButtons
+              id={rol_id}
+              keyData={"k_Rol"}
+              nameDB={"linix-positions"}
+              property={"casosDeUsoPorRol"}
+              propertyData={"k_Id"}
             />
           )}
         </>

@@ -1,15 +1,15 @@
 import { MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Icon } from "@inube/design-system";
 
+import { Icon } from "@inube/design-system";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { activatePositionModal } from "../active-position/config/activatePosition.config";
 import { DetailsModal } from "../components/DetailsModal";
-import { DeletePosition } from "../delete-positions";
-import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
 import { ActivatePosition } from "../active-position";
 import { IPosition } from "../add-position/types";
+import { DeletePosition } from "../delete-positions";
+import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
 
 export const titlesOptions = [
   {
@@ -31,7 +31,10 @@ export const PositionsBreakPointsConfig = [
   { breakpoint: "(max-width: 430px)", totalColumns: 1 },
 ];
 
-export const actionsConfigPosition = (linixPosition: IPosition[]) => {
+export const actionsConfigPosition = (
+  linixPosition: IPosition[],
+  setIdDeleted: (show: string) => void
+) => {
   const dataDetailsPosition = (k_Grupo: string) => {
     const data = [
       linixPosition.find((position) => position.k_Grupo === k_Grupo)!,
@@ -39,6 +42,7 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
       Código: positionSelected?.k_Grupo,
       Nombre: positionSelected?.n_Grupo,
       Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
+      Descripción: positionSelected?.n_Uso,
     }));
 
     return [...data].shift();
@@ -90,11 +94,13 @@ export const actionsConfigPosition = (linixPosition: IPosition[]) => {
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Grupo }: { k_Grupo: string }) => (
+      content: ({ k_Grupo, n_Grupo }: { k_Grupo: string; n_Grupo: string }) => (
         <DeletePosition
+          namePosition={n_Grupo}
           linixPosition={k_Grupo}
-          deletePosition={deletePositionModal}
+          deletePositionModal={deletePositionModal}
           handleDeletePosition={deleteItemData}
+          setIdDeleted={setIdDeleted}
         />
       ),
       type: "remove",

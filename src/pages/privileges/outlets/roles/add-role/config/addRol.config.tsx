@@ -78,55 +78,20 @@ export const createRolConfig = [
   },
 ];
 
-export const editRolConfig = [
-  {
-    id: 1,
-    title: "Editar rol",
-    description: "Editar la información del rol",
-    route: "/privileges/roles/edit",
-    crumbs: [
-      {
-        path: "/",
-        label: "Inicio",
-        id: "/home",
-        isActive: false,
-      },
-      {
-        path: "/privileges",
-        label: "Privilegios",
-        id: "/privileges",
-        isActive: false,
-      },
-      {
-        path: "/privileges/roles",
-        label: "roles",
-        id: "/privileges/roles",
-        isActive: false,
-      },
-      {
-        path: "/privileges/roles/edit",
-        label: "Editar rol",
-        id: "/privileges/roles/edit",
-        isActive: true,
-      },
-    ],
-  },
-];
-
-export const finishAssistedRolModalConfig = {
+export const finishAssistedRoleModalConfig = {
   title: "Finalizar registro",
   description: "¿Está seguro de que desea finalizar el proceso de creación?",
   actionText: "Finalizar",
   appearance: EAppearance.SUCCESS,
 };
 
-export const finishAssistedRolMessagesConfig = {
+export const finishAssistedRoleMessagesConfig = {
   success: {
     id: 1,
     icon: <Icon appearance="dark" icons={<MdThumbUpOffAlt />} size="18px" />,
     title: "Creación exitosa",
     description: (value: string) =>
-      `Hemos creado el rol ${value} exitosamente.`,
+      `Hemos creado el Rol '${value}' exitosamente.`,
     appearance: EAppearance.SUCCESS,
   },
   failed: {
@@ -134,7 +99,7 @@ export const finishAssistedRolMessagesConfig = {
     icon: <Icon appearance="dark" icons={<MdErrorOutline />} size="18px" />,
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
-      `Hemos presentado un error creando el rol ${value}.`,
+      `Hemos presentado un error creando el Rol'${value}', por favor contacte a soporte.`,
     appearance: EAppearance.ERROR,
   },
 };

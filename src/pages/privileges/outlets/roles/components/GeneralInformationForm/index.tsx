@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 
-import { getAll } from "@src/mocks/utils/dataMock.service";
+import { updateItemData } from "@mocks/utils/dataMock.service";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
@@ -10,28 +10,28 @@ import { validationMessages } from "@src/validations/validationMessages";
 
 import { GeneralInformationFormUI } from "./interface";
 
-const LOADING_TIMEOUT = 1500;
-
 const validationSchema = Yup.object({
   roleName: Yup.string().required(validationMessages.required),
   description: Yup.string().required(validationMessages.required),
-  aplication: Yup.string().required(validationMessages.required),
+  application: Yup.string().required(validationMessages.required),
 });
 
 export interface IGeneralInformationForm {
   roleName: string;
   description: string;
-  aplication: string;
-  aplicationId: string;
+  application: string;
+  applicationId: string;
 }
 
 interface IGeneralInformationFormProps {
+  linixRoles: Record<string, unknown>[];
   initialValues: IGeneralInformationForm;
+  rol_id?: string | number;
   onSubmit?: (values: IGeneralInformationForm) => void;
   withSubmitButtons?: boolean;
   onHasChanges?: (hasChanges: boolean) => void;
-  handleAddRoleFormValid: (newValue: boolean) => void;
-  currentStep: number;
+  handleAddRoleFormValid?: (newValue: boolean) => void;
+  currentStep?: number;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -41,8 +41,10 @@ export const GeneralInformationForm = forwardRef(
   ) {
     const {
       initialValues,
+      rol_id,
       onSubmit,
       withSubmitButtons = false,
+      linixRoles,
       handleAddRoleFormValid,
     } = props;
     const [isLoading, setIsLoading] = useState(false);
@@ -50,23 +52,6 @@ export const GeneralInformationForm = forwardRef(
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
     });
-
-    const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
-
-    useEffect(() => {
-      setIsLoading(true);
-      setIsLoading(true);
-      getAll("linix-use-cases")
-        .then((data) => {
-          setLinixRoles(data as Record<string, unknown>[]);
-          setIsLoading(false);
-          setLinixRoles(data as Record<string, unknown>[]);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.info(error.message);
-        });
-    }, []);
 
     const formik = useFormik({
       initialValues,
@@ -81,15 +66,39 @@ export const GeneralInformationForm = forwardRef(
     const hasChanges = (valueCompare: IGeneralInformationForm) =>
       JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
       setIsLoading(true);
-      setTimeout(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
+      const editedInfo = {
+        k_Rol: rol_id as string,
+        n_Rol: formik.values.roleName,
+        k_Tipcon: rol_id as string,
+        k_Aplica: formik.values.application,
+        n_Uso: formik.values.description,
+      };
+
+      await updateItemData({
+        key: "k_Rol",
+        nameDB: "linix-roles",
+        identifier: rol_id as string,
+        editData: editedInfo,
+      })
+        .then(() => {
+          setMessage({
+            visible: true,
+            data: generalMessage.success,
+          });
+        })
+        .catch((error) => {
+          setMessage({
+            visible: true,
+            data: generalMessage.failed,
+          });
+
+          console.info(error.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
-        setIsLoading(false);
-      }, LOADING_TIMEOUT);
     };
 
     const handleCloseSectionMessage = () => {

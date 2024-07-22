@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { MdSearch } from "react-icons/md";
-import { Textfield, useMediaQuery } from "@inube/design-system";
-
+import { Textfield } from "@inubekit/textfield";
+import { useMediaQuery } from "@inubekit/hooks";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
-
 import { ILabel } from "./types";
 import { StyledSearchUserCard } from "./styles";
 
@@ -27,6 +26,9 @@ interface SearchUserCardProps {
   nameLabel?: string;
   selectedId?: string;
   required?: boolean;
+  message?: string;
+  status?: string | null;
+  onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 function SearchUserCard(props: SearchUserCardProps) {
@@ -48,24 +50,30 @@ function SearchUserCard(props: SearchUserCardProps) {
     onUserSelect,
     idLabel = "userID",
     nameLabel = "username",
-    selectedId = "",
+    selectedId,
     onReset,
+    message,
+    onBlur,
   } = props;
   const [showModal, setShowModal] = useState(false);
 
-  const [selectedUsername, setSelectedUsername] = useState(selectedId);
+  const [selectedUsername, setSelectedUsername] = useState(
+    String(
+      userData.find((data) => data[idLabel] === selectedId)?.[nameLabel] || ""
+    )
+  );
+
+  const [validateCardRemoved, setValidateCardRemoved] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
   useEffect(() => {
-    if (selectedId.length > 0) {
-      userData.forEach((data) => {
-        if (data[idLabel] === selectedId) {
-          setSelectedUsername(String(data[nameLabel]));
-        }
-      });
-    }
-  }, [idLabel, nameLabel, userData, selectedId]);
+    setSelectedUsername(
+      String(
+        userData.find((data) => data[idLabel] === selectedId)?.[nameLabel] || ""
+      )
+    );
+  }, [idLabel, selectedId, nameLabel, userData]);
 
   const resetSelectedUser = () => {
     setSelectedUsername("");
@@ -77,8 +85,15 @@ function SearchUserCard(props: SearchUserCardProps) {
     }
   }, [onReset]);
 
+  useEffect(() => {
+    if (validateCardRemoved) {
+      setSelectedUsername("");
+    }
+  }, [validateCardRemoved]);
+
   const handleToggleModal = () => {
     setShowModal(!showModal);
+    setValidateCardRemoved(false);
   };
 
   const handleUserSelect = (data: { [key: string]: string | number }) => {
@@ -93,8 +108,8 @@ function SearchUserCard(props: SearchUserCardProps) {
     <>
       <StyledSearchUserCard
         onClick={handleToggleModal}
-        smallScreen={smallScreen}
-        isActive={showModal}
+        $smallScreen={smallScreen}
+        $isActive={showModal}
       >
         <Textfield
           id={id}
@@ -106,14 +121,15 @@ function SearchUserCard(props: SearchUserCardProps) {
           iconAfter={<MdSearch />}
           size="compact"
           fullwidth={true}
-          readOnly
           value={selectedUsername}
+          message={message}
+          onBlur={onBlur}
         />
       </StyledSearchUserCard>
       {showModal && (
         <InteractiveModal
           title={title}
-          selectedItem={selectedUsername}
+          selectedItem={selectedId}
           infoTitle={infoTitle}
           closeModal={handleToggleModal}
           infoData={searchFieldData}
@@ -129,6 +145,7 @@ function SearchUserCard(props: SearchUserCardProps) {
           onClick={handleUserSelect}
           idLabel={idLabel}
           nameLabel={nameLabel}
+          setValidateCardRemoved={setValidateCardRemoved}
         />
       )}
     </>

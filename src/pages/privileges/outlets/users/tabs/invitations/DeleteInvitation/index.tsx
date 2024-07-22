@@ -1,27 +1,52 @@
 import { useState } from "react";
-import { DeleteInvitationUI } from "./interface";
 
-interface DeleteInvitationProps {
-  handleDelete: () => void;
-  showComplete: boolean;
+import { functionById } from "@mocks/utils/dataMock.service";
+
+import { deleteInvitationModal } from "./config/deleteInvitation.config";
+import { DeleteLinixInvitationUI } from "./interface";
+
+interface IDeleteLinixInvitationProps {
+  deleteLinixInvitationModal: typeof deleteInvitationModal;
+  setIdDeleted: (show: string) => void;
+  handleDeleteLinixInvitation: (props: functionById) => Promise<unknown>;
+  nameLinixInvitation: string;
+  linixInvitation: string;
 }
 
-function DeleteInvitation(props: DeleteInvitationProps) {
-  const { handleDelete, showComplete } = props;
-  const [showModal, setShowModal] = useState(false);
+export const DeleteLinixInvitation = (props: IDeleteLinixInvitationProps) => {
+  const {
+    deleteLinixInvitationModal,
+    handleDeleteLinixInvitation,
+    nameLinixInvitation,
+    linixInvitation,
+    setIdDeleted,
+  } = props;
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
+  const [showModal, setShowModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleOnclick = async () => {
+    await handleDeleteLinixInvitation({
+      key: "customerId",
+      nameDB: "linix-invitations",
+      identifier: linixInvitation,
+    });
+    setShowModal(false);
+    setLoading(true);
+    setIdDeleted(linixInvitation);
   };
 
   return (
-    <DeleteInvitationUI
-      handleRemoveInvitation={handleDelete}
-      toggleModal={toggleModal}
+    <DeleteLinixInvitationUI
+      deleteInvitationModal={deleteLinixInvitationModal}
+      handleDeleteLinixInvitation={handleOnclick}
+      hover={isHovered}
+      loading={loading}
+      nameLinixInvitation={nameLinixInvitation}
+      setHover={setIsHovered}
+      setShowModal={setShowModal}
       showModal={showModal}
-      showComplete={showComplete}
     />
   );
-}
-
-export { DeleteInvitation };
+};

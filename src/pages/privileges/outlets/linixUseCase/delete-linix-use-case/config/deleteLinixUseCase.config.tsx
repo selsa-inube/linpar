@@ -1,4 +1,4 @@
-import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
+import { MdOutlineSentimentNeutral, MdThumbUpOffAlt } from "react-icons/md";
 
 import { EAppearance } from "@src/types/colors.types";
 
@@ -17,16 +17,15 @@ export const deleteUserMessages = {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Eliminación exitosa!",
-    description: (id: string) =>
-      `Hemos eliminado con éxito el Caso de Uso ${id}.`,
+    description: "Hemos eliminado con éxito el Caso de Uso",
     appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
-    icon: <MdErrorOutline size={18} />,
-    title: "¡Uy, algo salió mal!",
-    description: (id: string) =>
-      `Hemos presentado problemas eliminando el Caso de Uso ${id}.`,
+    icon: <MdOutlineSentimentNeutral size={18} />,
+    title: "Ups, algo ha salido mal!",
+    description:
+      "Tuvimos problemas para guardar cambios para el caso de uso ya que se encuentra agregado en Roles",
     appearance: EAppearance.ERROR,
   },
 };

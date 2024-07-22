@@ -9,9 +9,10 @@ import {
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { buttonOptionsMock } from "@mocks/privileges/button/buttonOptionsMock.mock";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import {
   CrateLinixUseCaseConfig,
@@ -29,8 +30,10 @@ import {
 
 import { saveLinixUseCase } from "./utils";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
-import { VerificationForm } from "../components/VerificationForm";
+
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
+import { VerificationAddLinixUseCase } from "../components/VerificationForm";
+import { InitializerForm } from "../components/InitializerForm";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -55,6 +58,7 @@ function finishModal(
 
 const renderStepContent = (
   currentStep: number,
+  selectLinixUseCase: Option[],
   formReferences: IFormAddLinixUseCaseRef,
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>,
   csOptions: Record<string, unknown>[],
@@ -62,7 +66,9 @@ const renderStepContent = (
   handleStepChange: (stepId: number) => void,
   handleUpdateFormData: (values: IHandleChangeFormData) => void,
   handleNextStep: (step: number) => void,
-  formData: IFormAddLinixUseCase
+  formData: IFormAddLinixUseCase,
+  filterNForma: string,
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>
 ) => {
   return (
     <>
@@ -71,6 +77,7 @@ const renderStepContent = (
           initialValues={formData.generalInformation.values}
           handleSubmit={handleUpdateFormData}
           csOptions={csOptions}
+          selectLinixUseCase={selectLinixUseCase}
           webOptions={webOptions}
           ref={formReferences.generalInformation}
           onFormValid={setIsCurrentFormValid}
@@ -78,7 +85,7 @@ const renderStepContent = (
       )}
       {currentStep === stepsAddingLinixUseCase.clientServerButton.id && (
         <ClientServerButtonSelection
-          csSelected={formData.generalInformation.values.k_Opcion}
+          id={filterNForma as string}
           handleSubmit={handleUpdateFormData}
           initialValues={formData.clientServerButton.values}
         />
@@ -116,9 +123,9 @@ const renderStepContent = (
         />
       )}
       {currentStep === stepsAddingLinixUseCase.summary.id && (
-        <VerificationForm
-          formData={formData}
-          handleStepChange={handleNextStep}
+        <VerificationAddLinixUseCase
+          steps={formData}
+          setCurrentStep={setCurrentStep}
         />
       )}
     </>
@@ -126,8 +133,11 @@ const renderStepContent = (
 };
 
 interface AddingLinixUseCaseUIProps {
+  selectLinixUseCase: Option[];
+  csOptionsButtons: Record<string, unknown>[];
   message: IMessageState;
   loading: boolean;
+  loadingButton: boolean;
   onCloseSectionMessage: () => void;
   handleFinishForm: () => void;
   handleNextStep: (step: number) => void;
@@ -144,16 +154,22 @@ interface AddingLinixUseCaseUIProps {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   isCurrentFormValid: boolean;
   selectOptions: boolean;
+  filterNForma: string;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
+    selectLinixUseCase,
+    csOptionsButtons,
     message,
     onCloseSectionMessage,
     loading,
+    loadingButton,
     handleFinishForm,
     currentStep,
     handleToggleModal,
+    handlePrevStep,
     showModal,
     handleNextStep,
     formData,
@@ -164,145 +180,147 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     webOptions,
     formReferences,
     isCurrentFormValid,
+    filterNForma,
+    setCurrentStep,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const optionValidations = () => {
-    const validate = buttonOptionsMock.filter(
-      (buttonOptions) =>
-        buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-        formData.generalInformation.values.k_Opcion
-    );
     if (
       currentStep === Object.values(stepsAddingLinixUseCase).length &&
-      validate.length !== 0
+      csOptionsButtons.length !== 0
     ) {
-      saveLinixUseCase(formData);
-    } else if (validate.length === 0 && currentStep === 1) {
+      saveLinixUseCase(formData, filterNForma);
+    } else if (csOptionsButtons.length === 0 && currentStep === 1) {
       handleNextStep(3);
     } else {
       handleNextStep(currentStep + 1);
     }
   };
+
   return (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s400} direction="column">
-          <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
-          <Stack
-            justifyContent="space-between"
-            alignItems="center"
-            gap={inube.spacing.s650}
-          >
-            <PageTitle
-              title={CrateLinixUseCaseConfig[0].title}
-              description={CrateLinixUseCaseConfig[0].description}
-              navigatePage="/privileges/linixUseCase"
-            />
+    <>
+      {loading ? (
+        <LoadingApp />
+      ) : (
+        <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+          <Stack gap={inube.spacing.s600} direction="column">
+            <Stack gap={inube.spacing.s400} direction="column">
+              <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
+              <Stack
+                justifyContent="space-between"
+                alignItems="center"
+                gap={inube.spacing.s650}
+              >
+                <PageTitle
+                  title={CrateLinixUseCaseConfig[0].title}
+                  description={CrateLinixUseCaseConfig[0].description}
+                  navigatePage="/privileges/linixUseCase"
+                />
+              </Stack>
+            </Stack>
+            <>
+              <StyledAssistedContainer $cursorDisabled={!isCurrentFormValid}>
+                <Assisted
+                  steps={Object.values(stepsAddingLinixUseCase)}
+                  currentStepId={currentStep}
+                  handlePrev={() => {
+                    const prevStep =
+                      currentStep ===
+                      Object.values(stepsAddingLinixUseCase).length
+                        ? currentStep - 1
+                        : currentStep === 3 && csOptionsButtons.length === 0
+                        ? 1
+                        : currentStep - 1;
+                    handlePrevStep(prevStep);
+                  }}
+                  handleNext={() => {
+                    const nextStep =
+                      currentStep ===
+                      Object.values(stepsAddingLinixUseCase).length
+                        ? (handleToggleModal(), currentStep)
+                        : currentStep === 1 && csOptionsButtons.length === 0
+                        ? 3
+                        : currentStep + 1;
+                    handleNextStep(nextStep);
+                  }}
+                  titleButtonText={titleButtonTextAssited}
+                />
+              </StyledAssistedContainer>
+              {renderStepContent(
+                currentStep,
+                selectLinixUseCase,
+                formReferences,
+                setIsCurrentFormValid,
+                csOptions,
+                webOptions,
+                handleStepChange,
+                handleUpdateFormData,
+                handleNextStep,
+                formData,
+                filterNForma,
+                setCurrentStep
+              )}
+            </>
+            <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+              <Button
+                onClick={() => {
+                  const prevStep =
+                    currentStep ===
+                    Object.values(stepsAddingLinixUseCase).length
+                      ? currentStep - 1
+                      : currentStep === 3 &&
+                        !csOptionsButtons.some(
+                          (buttonOptions) =>
+                            buttonOptions.OPCION_CLIENTE_SERVIDOR ===
+                            formData.generalInformation.values.k_Opcion
+                        )
+                      ? 1
+                      : currentStep - 1;
+                  handlePrevStep(prevStep);
+                }}
+                type="button"
+                disabled={currentStep === 1}
+                spacing="compact"
+                variant="none"
+                appearance="gray"
+              >
+                Atrás
+              </Button>
+
+              <Button
+                onClick={() => {
+                  if (
+                    currentStep ===
+                    Object.values(stepsAddingLinixUseCase).length
+                  ) {
+                    handleToggleModal();
+                  } else {
+                    optionValidations();
+                  }
+                }}
+                ing="compact"
+                disabled={!isCurrentFormValid}
+              >
+                {currentStep === Object.values(stepsAddingLinixUseCase).length
+                  ? "Enviar"
+                  : "Siguiente"}
+              </Button>
+              {message.visible && (
+                <RenderMessage
+                  message={message}
+                  handleCloseMessage={onCloseSectionMessage}
+                  onMessageClosed={onCloseSectionMessage}
+                />
+              )}
+            </Stack>
           </Stack>
-        </Stack>
-        <>
-          <StyledAssistedContainer cursorDisabled={!isCurrentFormValid}>
-            <Assisted
-              steps={Object.values(stepsAddingLinixUseCase)}
-              currentStepId={currentStep}
-              handlePrev={() => {
-                const prevStep =
-                  currentStep === Object.values(stepsAddingLinixUseCase).length
-                    ? currentStep - 1
-                    : currentStep === 3 &&
-                      !buttonOptionsMock.some(
-                        (buttonOptions) =>
-                          buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-                          formData.generalInformation.values.k_Opcion
-                      )
-                    ? 1
-                    : currentStep - 1;
-                handleNextStep(prevStep);
-              }}
-              handleNext={() => {
-                const nextStep =
-                  currentStep === Object.values(stepsAddingLinixUseCase).length
-                    ? (handleToggleModal(), currentStep)
-                    : currentStep === 1 &&
-                      !buttonOptionsMock.some(
-                        (buttonOptions) =>
-                          buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-                          formData.generalInformation.values.k_Opcion
-                      )
-                    ? 3
-                    : currentStep + 1;
-                handleNextStep(nextStep);
-              }}
-              titleButtonText={titleButtonTextAssited}
-            />
-          </StyledAssistedContainer>
-          {renderStepContent(
-            currentStep,
-            formReferences,
-            setIsCurrentFormValid,
-            csOptions,
-            webOptions,
-            handleStepChange,
-            handleUpdateFormData,
-            handleNextStep,
-            formData
-          )}
-        </>
-        <Stack gap={inube.spacing.s200} justifyContent="flex-end">
-          <Button
-            onClick={() => {
-              const prevStep =
-                currentStep === Object.values(stepsAddingLinixUseCase).length
-                  ? currentStep - 1
-                  : currentStep === 3 &&
-                    !buttonOptionsMock.some(
-                      (buttonOptions) =>
-                        buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-                        formData.generalInformation.values.k_Opcion
-                    )
-                  ? 1
-                  : currentStep - 1;
-              handleNextStep(prevStep);
-            }}
-            type="button"
-            disabled={currentStep === 1}
-            spacing="compact"
-            variant="none"
-            appearance="gray"
-          >
-            Atrás
-          </Button>
 
-          <Button
-            onClick={() => {
-              if (
-                currentStep === Object.values(stepsAddingLinixUseCase).length
-              ) {
-                handleToggleModal();
-              } else {
-                optionValidations();
-              }
-            }}
-            ing="compact"
-            disabled={!isCurrentFormValid}
-          >
-            {currentStep === Object.values(stepsAddingLinixUseCase).length
-              ? "Enviar"
-              : "Siguiente"}
-          </Button>
-          {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={onCloseSectionMessage}
-            />
-          )}
+          {showModal &&
+            finishModal(handleToggleModal, loadingButton, handleFinishForm)}
         </Stack>
-      </Stack>
-
-      {showModal && finishModal(handleToggleModal, loading, handleFinishForm)}
-    </Stack>
+      )}
+    </>
   );
 }
 

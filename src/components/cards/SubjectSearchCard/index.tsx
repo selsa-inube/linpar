@@ -1,14 +1,23 @@
-import { Stack, Text, useMediaQuery } from "@inube/design-system";
 import { useState } from "react";
-import { StyledSubjectSearchCard } from "./styles";
+import { MdClear } from "react-icons/md";
+
+import { Stack } from "@inubekit/stack";
+import { Text } from "@inubekit/text";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Icon } from "@inubekit/icon";
+import { Grid } from "@inubekit/grid";
+
+import { StyledSubjectSearchCard, StyledSubjectSearchCardText } from "./styles";
 
 interface SubjectSearchCardProps {
   subjectSearchData: { [key: string]: string | number };
   onClick: (data: { [key: string]: string | number }) => void;
+  closeIcon?: boolean;
+  closeSearchCard?: () => void;
 }
 
 function SubjectSearchCard(props: SubjectSearchCardProps) {
-  const { subjectSearchData, onClick } = props;
+  const { subjectSearchData, onClick, closeIcon, closeSearchCard } = props;
   const [isActive, setIsActive] = useState(false);
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
@@ -19,21 +28,29 @@ function SubjectSearchCard(props: SubjectSearchCardProps) {
 
   return (
     <>
-      <StyledSubjectSearchCard
-        onClick={handleToggleModal}
-        smallScreen={smallScreen}
-        isActive={isActive}
-      >
-        <Stack justifyContent={"start"} gap={"8px"} padding={"s100 s200"}>
-          <Stack direction="column">
-            <Text type="label" size="medium" textAlign="start">
-              {Object.values(subjectSearchData)[0]}
-            </Text>
-            <Text size="medium" textAlign="start">
-              {Object.values(subjectSearchData)[1]}
-            </Text>
-          </Stack>
-        </Stack>
+      <StyledSubjectSearchCard $smallScreen={smallScreen} $isActive={isActive}>
+        <Grid templateColumns="1fr auto">
+          <StyledSubjectSearchCardText onClick={handleToggleModal}>
+            <Stack direction="column">
+              <Text type="label" size="medium" textAlign="start">
+                {Object.values(subjectSearchData)[0]}
+              </Text>
+              <Text size="medium" textAlign="start">
+                {Object.values(subjectSearchData)[1]}
+              </Text>
+            </Stack>
+          </StyledSubjectSearchCardText>
+          {closeIcon && (
+            <Stack justifyContent="end" padding="8px 16px 0px 0px">
+              <Icon
+                icon={<MdClear />}
+                appearance="dark"
+                size="16px"
+                onClick={closeSearchCard}
+              />
+            </Stack>
+          )}
+        </Grid>
       </StyledSubjectSearchCard>
     </>
   );

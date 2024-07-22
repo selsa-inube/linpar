@@ -5,36 +5,56 @@ import { functionById } from "@src/mocks/utils/dataMock.service";
 import { deleteRolModal } from "./config/deleteRol.config";
 import { DeleteRoleUI } from "./interface";
 
+import { IDeleteForMessage } from "../types";
+import { deleteRol } from "./utils";
+
 interface IDeleteRoleProps {
-  rol: string;
-  handleDeleteRol: (props: functionById) => Promise<unknown>;
   deleteRolModal: typeof deleteRolModal;
+  setIdDeleted: (show: IDeleteForMessage) => void;
+  handleDeleteRol: (props: functionById) => Promise<unknown>;
+  nameRol: string;
+  rol: number;
 }
 
 export const DeleteRole = (props: IDeleteRoleProps) => {
-  const { rol, handleDeleteRol, deleteRolModal } = props;
+  const { deleteRolModal, nameRol, rol, setIdDeleted } = props;
 
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleOnclick = async () => {
-    await handleDeleteRol({
-      key: "k_Rol",
-      nameDB: "linix-roles",
-      identifier: rol,
-    });
+  const handleDelete = () => {
+    setLoading(true);
+    const data = deleteRol(rol, nameRol);
+    data
+      .then(() => {
+        setIdDeleted({
+          id: rol,
+          successfulDiscard: true,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setIdDeleted({
+          id: rol,
+          successfulDiscard: false,
+        });
+      });
+
+    setLoading(false);
     setShowModal(false);
   };
 
   return (
     <DeleteRoleUI
-      showModal={showModal}
-      setShowModal={setShowModal}
-      rol={rol}
-      handleDeleteRol={handleOnclick}
       deleteRolModal={deleteRolModal}
+      handleDeleteRol={handleDelete}
       hover={isHovered}
+      loading={loading}
+      nameRol={nameRol}
       setHover={setIsHovered}
+      setShowModal={setShowModal}
+      showModal={showModal}
     />
   );
 };

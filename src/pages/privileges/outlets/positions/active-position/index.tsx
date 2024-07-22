@@ -4,10 +4,12 @@ import { updateActive } from "@mocks/utils/dataMock.service";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 
-import { activateUserModal } from "../../users/config/activateUser.config";
 import { ActivatePositionUI } from "./interface";
 import { IMessageState } from "../../users/types/forms.types";
-import { activatePositionMessages } from "./config/activatePosition.config";
+import {
+  activatePositionMessages,
+  activatePositionModal,
+} from "./config/activatePosition.config";
 
 export interface IDataActivateOption {
   id: string;
@@ -19,7 +21,7 @@ interface IActivatePositionProps<T extends IDataActivateOption> {
   handleActivate: () => void;
   showComplete: boolean;
   data: T;
-  activateModalConfig: typeof activateUserModal;
+  activateModalConfig: typeof activatePositionModal;
 }
 
 const initialMessageState: IMessage = {

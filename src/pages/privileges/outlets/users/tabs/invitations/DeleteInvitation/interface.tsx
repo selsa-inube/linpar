@@ -1,63 +1,65 @@
-import { DecisionModal } from "@components/feedback/DecisionModal";
-import { Button, Icon } from "@inube/design-system";
 import { MdOutlineDelete } from "react-icons/md";
-import { deleteInvitationModalConfig } from "../../../config/invitationsTable.config";
-import { useState } from "react";
 
-interface DeleteInvitationUIProps {
-  handleRemoveInvitation: () => void;
+import { Icon } from "@inube/design-system";
+import { DecisionModal } from "@components/feedback/DecisionModal";
+import { EMessageType } from "@src/types/messages.types";
+
+import { deleteInvitationModal } from "./config/deleteInvitation.config";
+
+interface DeleteLinixInvitationUIProps {
+  deleteInvitationModal: typeof deleteInvitationModal;
+  handleDeleteLinixInvitation: () => void;
+  hover: boolean;
+  loading: boolean;
+  nameLinixInvitation: string;
+  setHover: (hover: boolean) => void;
+  setShowModal: (show: boolean) => void;
   showModal: boolean;
-  toggleModal: () => void;
-  showComplete: boolean;
 }
 
-function DeleteInvitationUI(props: DeleteInvitationUIProps) {
-  const { handleRemoveInvitation, showModal, toggleModal, showComplete } =
-    props;
-  const [isHovered, setIsHovered] = useState(false);
+export const DeleteLinixInvitationUI = (
+  props: DeleteLinixInvitationUIProps
+) => {
+  const {
+    deleteInvitationModal,
+    handleDeleteLinixInvitation,
+    hover,
+    loading,
+    nameLinixInvitation,
+    setHover,
+    setShowModal,
+    showModal,
+  } = props;
+
+  const messageType = EMessageType.DELETE;
 
   const { title, description, actionText, appearance } =
-    deleteInvitationModalConfig;
+    deleteInvitationModal[messageType!];
 
   return (
     <>
-      {showComplete ? (
-        <Button
-          iconBefore={<MdOutlineDelete />}
-          onClick={toggleModal}
-          variant="none"
-          appearance="error"
-          spacing="compact"
-        >
-          Eliminar
-        </Button>
-      ) : (
-        <div
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <Icon
-            icon={<MdOutlineDelete />}
-            onClick={toggleModal}
-            appearance={isHovered ? "primary" : "dark"}
-            parentHover={isHovered ? true : false}
-            cursorHover
-          />
-        </div>
-      )}
-
+      <div
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        <Icon
+          icon={<MdOutlineDelete />}
+          onClick={() => setShowModal(true)}
+          appearance={hover ? "primary" : "dark"}
+          cursorHover
+        />
+      </div>
       {showModal && (
         <DecisionModal
           title={title}
-          description={description}
+          description={description(nameLinixInvitation)}
           actionText={actionText}
-          closeModal={toggleModal}
-          handleClick={handleRemoveInvitation}
           appearance={appearance}
+          loading={loading}
+          closeModal={() => setShowModal(false)}
+          handleClick={handleDeleteLinixInvitation}
         />
       )}
     </>
   );
-}
-
-export { DeleteInvitationUI };
+};

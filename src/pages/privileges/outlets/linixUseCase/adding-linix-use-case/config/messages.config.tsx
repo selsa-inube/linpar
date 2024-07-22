@@ -12,8 +12,9 @@ const generalMessage = {
   failed: {
     id: 2,
     icon: <MdOutlineSentimentNeutral size={18} />,
-    title: "Oops, something has gone wrong!",
-    description: "We had trouble saving changes for the user LGARZON",
+    title: "Ups, algo ha salido mal!",
+    description:
+      "Tuvimos problemas para guardar cambios para el caso de uso edita algun campo de Opción de menú ",
     appearance: EAppearance.ERROR,
   },
 };
