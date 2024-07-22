@@ -62,25 +62,20 @@ export const actionsConfigPosition = (
 
   const actionsConfig = [
     {
-      id: "i_activo",
+      id: "i_Activo",
       actionName: "Activo",
-      content: ({ k_Rol }: { k_Rol: number }) => {
-        const role = selectedData(k_Rol);
-        const adjustedRole = {
-          id: role?.k_Rol || 2,
-          active: role?.i_Activo === "Y" || false,
-          name: role?.n_Rol || "",
-        };
-
-        return (
-          <ActivateRole
-            handleActivate={() => {}}
-            data={adjustedRole}
-            showComplete={false}
-            activateModalConfig={activateRoleModal}
-          />
-        );
-      },
+      content: (roles: IRol) => (
+        <ActivateRole
+          handleActivate={() => {}}
+          data={{
+            id: roles?.id || 2,
+            active: roles.i_Activo,
+            name: roles.n_Rol,
+          }}
+          showComplete={false}
+          activateModalConfig={activateRoleModal}
+        />
+      ),
       type: "secondary",
     },
     {

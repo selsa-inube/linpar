@@ -4,7 +4,7 @@ const mapwebReportsFormatsApiToEntity = (
   const buildwebReportsFormat: Record<string, unknown> = {
     k_Report: String(webReportsFormat.k_Report),
     n_Report: String(webReportsFormat.n_Report),
-    isActive: Boolean(webReportsFormat.i_Privi),
+    i_Privi: String(webReportsFormat.i_Privi),
   };
   return buildwebReportsFormat;
 };

@@ -9,16 +9,13 @@ import {
   IHandleChangeFormData,
   IClientServerButton,
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
-
 import { ClientServerButtonSelectionUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
 
 interface ClientServerButtonSelectionProps {
   id?: string;
-
   handleSubmit: (values: IHandleChangeFormData) => void;
-  csSelected: string;
   onHasChanges?: (hasChanges: boolean) => void;
   initialValues?: IClientServerButton;
   withSubmitButtons?: boolean;
@@ -29,7 +26,7 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     id,
     handleSubmit,
     onHasChanges,
-    initialValues = { csButtonOption: "" },
+    initialValues = { k_option_button: "" },
     withSubmitButtons = false,
   } = props;
 
@@ -61,10 +58,6 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     clientServerButtonMenuOption(id!);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
-  const filteredButtonOptions = buttonOptions.filter(
-    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === id
-  );
 
   const onSubmit = () => {
     setLoading(true);
@@ -117,12 +110,11 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     formik.setFieldValue(name, value).then(() => {
       if (withSubmitButtons) return;
       formik.validateForm().then((errors) => {
-        if (!errors || Object.keys(errors).length === 0) {
-          handleSubmit(formikValues);
-        }
+        handleSubmit(formikValues);
       });
     });
   };
+
   return (
     <ClientServerButtonSelectionUI
       loading={loading}
@@ -132,7 +124,9 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}
-      buttonOptions={filteredButtonOptions}
+      buttonOptions={buttonOptions}
+      withSubmitButtons={withSubmitButtons}
+      hasChanges={hasChanges}
     />
   );
 }

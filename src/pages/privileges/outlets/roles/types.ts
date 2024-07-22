@@ -36,7 +36,7 @@ interface ITiposDeMovimientoContablePorRol {
 
 export interface IRol {
   id?: number;
-  i_Activo: "Y" | "N";
+  i_Activo: string;
   k_Rol: number;
   k_Tipcon: string;
   n_Rol: string;

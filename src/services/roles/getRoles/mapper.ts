@@ -1,4 +1,4 @@
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/privileges/outlets/roles/types";
 
 const mapRolesUseCaseApiToEntity = (
   roles: Record<string, string | number | object>
@@ -10,7 +10,7 @@ const mapRolesUseCaseApiToEntity = (
     n_Rol: String(roles.n_Rol),
     n_Uso: String(roles.n_Uso),
     k_Aplica: String(roles.k_Aplica),
-    i_Activo: roles.i_Activo ? "Y" : "N",
+    i_Activo: String(roles.i_Activo),
   };
   return buildRolesUseCase;
 };

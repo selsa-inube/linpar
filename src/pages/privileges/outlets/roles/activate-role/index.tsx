@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import { updateActive } from "@mocks/utils/dataMock.service";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import {
   activateRoleMessages,
@@ -8,10 +7,11 @@ import {
 } from "./config/activateRole.config";
 
 import { ActivateRoleUI } from "./interface";
+import { activeRole } from "./utils";
 
 export interface IDataActivateOption {
   id: number;
-  active: boolean;
+  active: string;
   name: string;
 }
 interface IActivateRoleProps<T extends IDataActivateOption> {
@@ -29,28 +29,30 @@ export function ActivateRole<T extends IDataActivateOption>(
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
+  const [loading, setLoading] = useState(false);
 
-  const handleActivateDeactivateRole = async () => {
-    const params = {
-      key: "k_Rol",
-      nameDB: "linix-roles",
-      identifier: props.data.id,
-      editData: { i_Activo: !props.data.active ? "Y" : "N" },
-    };
+  const [changeActive, setchangeActive] = useState(
+    data.active === "Y" ? true : false
+  );
 
-    await updateActive(params)
+  const handleActivateDeactivateRole = () => {
+    setLoading(true);
+    const active = activeRole(props.data.id, changeActive ? "N" : "Y");
+    active
       .then(() => {
+        setchangeActive(!changeActive);
         renderMessage(
           props.data.name,
-          props.data.active ? "deactivate" : "activate"
+          changeActive ? "deactivate" : "activate"
         );
       })
       .catch((error) => {
+        console.error(error);
         renderMessage(props.data.name, "failed");
-      })
-      .finally(() => {
-        setShowActivateRoleModal(false);
       });
+
+    setLoading(false);
+    setShowActivateRoleModal(false);
   };
 
   const renderMessage = (
@@ -83,10 +85,10 @@ export function ActivateRole<T extends IDataActivateOption>(
   const handleToggleModal = () => {
     setShowActivateRoleModal(!showActivateRoleModal);
   };
-
   return (
     <ActivateRoleUI
-      active={data.active}
+      active={changeActive}
+      loading={loading}
       showActivateRole={showActivateRoleModal}
       id={data.name}
       handleToggleModal={handleToggleModal}
