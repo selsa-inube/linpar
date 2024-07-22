@@ -15,7 +15,7 @@ export interface IAncillaryAccountsForm {
 
 interface IAncillaryAccountsFormProps {
   initialValues: IAncillaryAccountsForm;
-  k_Rol?: string | number;
+  k_Rol?: number;
   onSubmit?: (values: IAncillaryAccountsForm) => void;
   withSubmitButtons?: boolean;
   handleAddRoleFormValid?: (newValue: boolean) => void;
@@ -60,7 +60,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
     await updateItemData({
       key: "k_Rol",
       nameDB: "linix-roles",
-      identifier: k_Rol as string,
+      identifier: k_Rol as number,
       editData: editedAccounts,
       property: "cuentasAuxiliaresPorRol",
     })

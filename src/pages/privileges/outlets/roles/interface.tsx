@@ -21,6 +21,7 @@ import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
   RolesBreakPointsConfig,
   actionsConfigPosition,
+  linixRolesData,
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
@@ -38,11 +39,13 @@ interface IRolesProps {
   idDeleted: number;
   searchRole: string;
   setIdDeleted: (show: IDeleteForMessage) => void;
+  dataAplication: (show: string) => void;
   showMenu: boolean;
 }
 
 export function RolesUI(props: IRolesProps) {
   const {
+    dataAplication,
     idDeleted,
     handleCloseMenuInvitation,
     handleCloseSectionMessage,
@@ -130,7 +133,7 @@ export function RolesUI(props: IRolesProps) {
               id="tableRoles"
               titles={titlesOptions}
               actions={actionsConfigPosition(linixRoles, setIdDeleted)}
-              entries={linixRoles}
+              entries={linixRolesData(linixRoles, dataAplication)}
               breakpoints={RolesBreakPointsConfig}
               modalTitle="Roles"
               filter={searchRole}

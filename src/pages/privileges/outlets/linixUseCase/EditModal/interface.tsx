@@ -222,7 +222,7 @@ function EditUserUI(props: EditUserUIProps) {
             <RenderMessage
               message={message}
               handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={() => {}}
+              onMessageClosed={onCloseSectionMessage}
             />
           )}
         </Stack>

@@ -2,7 +2,7 @@ export const initialValuesAddRol = {
   generalInformation: {
     isValid: false,
     values: {
-      roleName: "",
+      n_Rol: "",
       description: "",
       application: "",
       applicationId: "",

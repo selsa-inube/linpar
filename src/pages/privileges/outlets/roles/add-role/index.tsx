@@ -49,8 +49,7 @@ export function AddRol() {
       generalInformation: {
         isValid: true,
         values: {
-          roleName:
-            initialValuesAddRol.generalInformation.values.roleName.trim(),
+          n_Rol: initialValuesAddRol.generalInformation.values.n_Rol.trim(),
           description:
             initialValuesAddRol.generalInformation.values.description.trim(),
           application:

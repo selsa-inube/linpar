@@ -12,6 +12,7 @@ import { EditRoleUI } from "./interface";
 import { IFormAddRole, IRol } from "../types";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 import { initialValuesAddRol } from "../add-role/config/initialValues";
+import { getRoles } from "@src/services/roles/getRoles";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")
@@ -23,40 +24,16 @@ const Tabs = Object.values(stepsAddRol)
 
 export const EditRole = () => {
   const { k_Rol } = useParams();
-
-  const [loading, setLoading] = useState(true);
-  const { user } = useAuth0();
-  const [selectedTab, setSelectedTab] = useState(
-    stepsAddRol.generalInformation.label
-  );
-
-  const smallScreen = useMediaQuery("(max-width: 580px)");
-  const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
-  const [crediboardTasks, setCrediboardTask] = useState<
-    Record<string, unknown>[]
-  >([]);
-
-  const [businessRules, setBusinessRules] = useState<Record<string, unknown>[]>(
-    []
-  );
-  const [useCases, setUseCases] = useState<Record<string, unknown>[]>([]);
-  const [transactionTypes, setTypesOfmovement] = useState<
-    Record<string, unknown>[]
-  >([]);
-
+  const roleID = Number(k_Rol);
   const [dataEditRoleLinixForm, setDataEditRoleLinixForm] =
     useState<IFormAddRole>({
       generalInformation: {
-        isValid: true,
+        isValid: false,
         values: {
-          roleName:
-            initialValuesAddRol.generalInformation.values.roleName.trim(),
-          description:
-            initialValuesAddRol.generalInformation.values.description.trim(),
-          application:
-            initialValuesAddRol.generalInformation.values.application.trim(),
-          applicationId:
-            initialValuesAddRol.generalInformation.values.applicationId.trim(),
+          n_Rol: "",
+          description: "",
+          application: "",
+          applicationId: "",
         },
       },
       ancillaryAccounts: {
@@ -84,19 +61,93 @@ export const EditRole = () => {
         values: [],
       },
     });
-  const [editData, setEditData] = useState<IRol>({
-    i_Activo: "Y",
-    k_Rol: 0,
-    k_Tipcon: "",
-    n_Rol: "",
-    n_Uso: "",
-    k_Aplica: "",
-    cuentasAuxiliaresPorRol: [],
-    casosDeUsoPorRol: [],
-    reglasDeNegocioPorRol: [],
-    tareasCrediboardPorRol: [],
-    tiposDeMovimientoContablePorRol: [],
-  });
+
+  const [loading, setLoading] = useState(true);
+  const { user } = useAuth0();
+  const [selectedTab, setSelectedTab] = useState(
+    stepsAddRol.generalInformation.label
+  );
+
+  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
+  const [rolesEdit, setRolesEdit] = useState<IRol[]>([]);
+  const [crediboardTasks, setCrediboardTask] = useState<
+    Record<string, unknown>[]
+  >([]);
+
+  const [businessRules, setBusinessRules] = useState<Record<string, unknown>[]>(
+    []
+  );
+  const [useCases, setUseCases] = useState<Record<string, unknown>[]>([]);
+  const [transactionTypes, setTypesOfmovement] = useState<
+    Record<string, unknown>[]
+  >([]);
+  const generalInformationData = rolesEdit.find((data) => data.id === roleID);
+  // const [editData, setEditData] = useState<IRol>({
+  //   i_Activo: "Y",
+  //   k_Rol: 0,
+  //   k_Tipcon: "",
+  //   n_Rol: "",
+  //   n_Uso: "",
+  //   k_Aplica: "",
+  //   cuentasAuxiliaresPorRol: [],
+  //   casosDeUsoPorRol: [],
+  //   reglasDeNegocioPorRol: [],
+  //   tareasCrediboardPorRol: [],
+  //   tiposDeMovimientoContablePorRol: [],
+  // });
+
+  const rolesData = async () => {
+    if (!user) return;
+    if (rolesEdit.length === 0) {
+      setLoading(true);
+      getRoles()
+        .then((data) => {
+          if (data !== null) {
+            setRolesEdit(data as IRol[]);
+            const generalData = data.find((data) => data.id === roleID);
+            setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
+              ...prevFormData,
+              generalInformation: {
+                isValid: true,
+                values: {
+                  k_Rol: Number(generalData?.k_Rol) || 0,
+                  n_Rol: String(generalData?.n_Rol) || "",
+                  description: String(generalData?.n_Uso) || "",
+                  application: String(generalData?.k_Aplica) || "",
+                  applicationId: String(generalData?.k_Aplica) || "",
+                },
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching general Information:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  useEffect(() => {
+    rolesData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    Promise.all([
+      aplication(),
+      typesOfMovements(),
+      businessRulesFull(),
+      crediboardsTasks(),
+      rolesuseCases(),
+    ]).then(() => {
+      setLoading(true);
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [k_Rol]);
 
   const aplication = () => {
     if (!user) return;
@@ -108,9 +159,6 @@ export const EditRole = () => {
         })
         .catch((error) => {
           console.info(error);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
@@ -118,6 +166,7 @@ export const EditRole = () => {
   const typesOfMovements = () => {
     if (!user) return;
     if (transactionTypes.length === 0) {
+      setLoading(true);
       getRolFormats(k_Rol || "1")
         .then((data) => {
           if (data !== null) {
@@ -138,9 +187,6 @@ export const EditRole = () => {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
@@ -148,6 +194,7 @@ export const EditRole = () => {
   const businessRulesFull = () => {
     if (!user) return;
     if (businessRules.length === 0) {
+      setLoading(true);
       getBusinessRulesByRoleFormats(k_Rol || "1")
         .then((data) => {
           if (data !== null) {
@@ -168,9 +215,6 @@ export const EditRole = () => {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
@@ -178,6 +222,7 @@ export const EditRole = () => {
   const crediboardsTasks = () => {
     if (!user) return;
     if (crediboardTasks.length === 0) {
+      setLoading(true);
       getCreditboardTasksByRole(k_Rol || "1")
         .then((data) => {
           if (data !== null) {
@@ -198,9 +243,6 @@ export const EditRole = () => {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
@@ -208,6 +250,7 @@ export const EditRole = () => {
   const rolesuseCases = () => {
     if (!user) return;
     if (useCases.length === 0) {
+      setLoading(true);
       getUseCaseByRole(k_Rol || "1")
         .then((data) => {
           if (data !== null) {
@@ -228,78 +271,27 @@ export const EditRole = () => {
         })
         .catch((error) => {
           console.error("Error fetching web options:", error.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   };
-
-  useEffect(() => {
-    setLoading(true);
-
-    Promise.all([
-      aplication(),
-      typesOfMovements(),
-      businessRulesFull(),
-      crediboardsTasks(),
-      rolesuseCases(),
-    ]).then(() => {
-      setLoading(false);
-    });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [k_Rol]);
 
   const handleTabChange = (tabId: string) => {
     setSelectedTab(tabId);
   };
 
-  const valuesGeneralInformation = {
-    roleName: editData.n_Rol,
-    description: editData.n_Uso,
-    applicationId: editData.k_Aplica,
-  };
-
-  const valuesAncillaryAccounts = {
-    officialSector: editData?.cuentasAuxiliaresPorRol?.[0]?.k_Codcta || "",
-    commercialSector: editData?.cuentasAuxiliaresPorRol?.[1]?.k_Codcta || "",
-    solidaritySector: editData?.cuentasAuxiliaresPorRol?.[2]?.k_Codcta || "",
-  };
-
-  const handleUpdateDataSwitchstep = (values: IRol[]) => {
-    const stepKey = Object.entries(stepsAddRol).find(
-      ([, config]) => config.label === selectedTab
-    )?.[0];
-
-    if (stepKey) {
-      setEditData((prevFormData) => ({
-        ...prevFormData,
-        [stepKey]: { values: values },
-      }));
-    }
-  };
-
-  const roleCardData = editData && {
-    code: (editData as { k_Rol: number }).k_Rol,
-    username: (editData as { n_Rol: string }).n_Rol,
-  };
+  const editGeneral = generalInformationData;
 
   return (
     <EditRoleUI
+      rolesEdit={editGeneral!}
       dataEditRoleLinixForm={dataEditRoleLinixForm}
       linixRoles={linixRoles}
-      roleCardData={roleCardData}
-      data={valuesGeneralInformation}
       onTabChange={handleTabChange}
       selectedTab={selectedTab}
       dataTabs={Tabs}
-      editData={editData}
       smallScreen={smallScreen}
       loading={loading}
-      k_Rol={k_Rol || "1"}
-      valuesAncillaryAccounts={valuesAncillaryAccounts}
-      handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
+      id={roleID || 0}
     />
   );
 };

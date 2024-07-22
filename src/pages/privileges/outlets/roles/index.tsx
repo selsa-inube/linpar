@@ -7,11 +7,15 @@ import { getRoles } from "@services/roles/getRoles";
 import { RolesUI } from "./interface";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
+import { getAplicationRoles } from "@src/services/roles/aplicationRoles";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+  const [linixRolesAplication, setLinixRolesAplication] = useState<
+    Record<string, unknown>[]
+  >([]);
   const [linixRoles, setLinixRoles] = useState<IRol[]>([]);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
@@ -39,6 +43,31 @@ export function Roles() {
   };
   useEffect(() => {
     linixRolesData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+  const aplication = () => {
+    if (!user) return;
+    if (linixRolesAplication.length === 0) {
+      setLoading(true);
+      getAplicationRoles()
+        .then((newUsers) => {
+          setLinixRolesAplication(newUsers);
+        })
+        .catch((error) => {
+          console.info(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+  const dataAplication = (id: string) => {
+    return linixRolesAplication.find((aplication) => aplication.k_Aplica === id)
+      ?.n_Aplica;
+  };
+  useEffect(() => {
+    aplication();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
@@ -80,6 +109,7 @@ export function Roles() {
 
   return (
     <RolesUI
+      dataAplication={dataAplication}
       message={message}
       handleSearchRole={handleSearchRoles}
       linixRoles={linixRoles}

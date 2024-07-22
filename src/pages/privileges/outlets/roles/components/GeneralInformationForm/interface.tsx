@@ -17,7 +17,7 @@ import { IGeneralInformationForm } from ".";
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   isLoading?: boolean;
-  handleSubmit: () => void;
+  // handleSubmit: () => void;
   linixRoles: Record<string, unknown>[];
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
@@ -32,7 +32,7 @@ const searchData = {
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
     formik,
-    handleSubmit,
+    // handleSubmit,
     linixRoles,
     withSubmitButtons = false,
     hasChanges,
@@ -64,9 +64,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           <Textfield
             label="Nombre Rol"
             placeholder="Nombe del rol"
-            name="roleName"
-            id="roleName"
-            value={formik.values.roleName}
+            name="n_Rol"
+            id="n_Rol"
+            value={formik.values.n_Rol}
             type="text"
             size="compact"
             fullwidth
@@ -74,11 +74,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             required
             onBlur={formik.handleBlur}
             message={
-              stateValue("roleName") === "invalid"
-                ? formik.errors.roleName
-                : null
+              stateValue("n_Rol") === "invalid" ? formik.errors.n_Rol : null
             }
-            status={stateValue("roleName") === "invalid" ? "invalid" : null}
+            status={stateValue("n_Rol") === "invalid" ? "invalid" : null}
           />
 
           <SearchUserCard
@@ -146,7 +144,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
               !hasChanges(formik.values) ||
               !(Object.keys(formik.errors).length === 0)
             }
-            handleSubmit={handleSubmit}
+            handleSubmit={() => {}}
             handleReset={formik.resetForm}
             loading={isLoading}
             children={""}

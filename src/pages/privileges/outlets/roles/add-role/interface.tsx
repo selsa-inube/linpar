@@ -90,7 +90,7 @@ export function AddRolUI(props: AddRolUIProps) {
   const handleAddRole = async (addRoleData: IFormAddRole) => {
     await saveRole(addRoleData)
       .then(() => {
-        renderMessage(generalInformationValues.roleName, "success");
+        renderMessage(generalInformationValues.n_Rol, "success");
       })
       .catch((error) => {
         renderMessage("", "failed");
@@ -101,7 +101,7 @@ export function AddRolUI(props: AddRolUIProps) {
   };
 
   const renderMessage = (
-    roleName: string | "",
+    n_Rol: string | "",
     type: "success" | "failed" = "failed"
   ) => {
     let messageType;
@@ -116,7 +116,7 @@ export function AddRolUI(props: AddRolUIProps) {
         data: {
           icon: messageType?.icon,
           title: messageType?.title,
-          description: messageType.description(roleName),
+          description: messageType.description(n_Rol),
           appearance: messageType?.appearance,
         },
       });
