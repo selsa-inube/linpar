@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-
-import { Table, useMediaQuery } from "@inube/design-system";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Table } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
@@ -8,7 +9,6 @@ import {
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IGeneralInformationUsersForm } from "@services/users/users.types";
 import { getUsers } from "@services/users/getUsers";
-import { useAuth0 } from "@auth0/auth0-react";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { actionsConfigUsers } from "./config/dataUsers.config";

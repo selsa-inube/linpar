@@ -3,7 +3,8 @@ import { IGeneralInformationUsersForm } from "../users.types";
 const mapUserApiToEntity = (
   users: Record<string, string | number | object>
 ): IGeneralInformationUsersForm => {
-  const buildRolesUseCase: IGeneralInformationUsersForm = {
+  const builUsers: IGeneralInformationUsersForm = {
+    id: String(users.k_Usuari),
     k_Usuari: String(users.k_Usuari),
     n_Usuari: String(users.n_Usuari),
     k_Grupo: String(users.k_Grupo),
@@ -11,7 +12,7 @@ const mapUserApiToEntity = (
     a_Numnit: String(users.a_Numnit),
     i_Activo: String(users.i_Activo),
   };
-  return buildRolesUseCase;
+  return builUsers;
 };
 
 const mapUsersApiToEntities = (
