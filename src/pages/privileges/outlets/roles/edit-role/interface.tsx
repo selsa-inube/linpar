@@ -2,17 +2,16 @@ import { FaUserGear } from "react-icons/fa6";
 import { Stack, Breadcrumbs, inube, Tabs } from "@inube/design-system";
 import { PageTitle } from "@src/components/PageTitle";
 import { SubjectCard } from "@src/components/cards/SubjectCard";
-import { GeneralInformationForm } from "../components/GeneralInformationForm";
-import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
-
-import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
-import { stepsAddRol } from "../add-role/config/addRol.config";
-
-import { IFormAddRole, IHandleChangeFormData, IRol } from "../types";
-import { StyledContainerLoading } from "../../users/invite/styles";
-import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
 import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { GeneralInformationForm } from "../components/GeneralInformationForm";
+import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
+import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
+import { stepsAddRol } from "../add-role/config/addRol.config";
+import { IFormAddRole, IHandleChangeFormData, IRol } from "../types";
+import { StyledContainerLoading } from "../../users/invite/styles";
+
 import {
   IAssignmentFormEntry,
   IMessageState,
@@ -26,8 +25,6 @@ interface ITabs {
 }
 
 interface IEditRoleUIProps {
-  // roleCardData: { username: string; code: number };
-  // data: any;
   rolesEdit: IRol;
   dataTabs: ITabs[];
   onTabChange: (tabId: string) => void;
@@ -60,7 +57,6 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     message,
     onCloseSectionMessage,
     linixRoles,
-    // data,
     onTabChange,
     onSubmit,
     selectedTab,
@@ -68,7 +64,6 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     smallScreen,
     loading,
     id,
-    // valuesAncillaryAccounts,
   } = props;
 
   return loading ? (

@@ -7,6 +7,7 @@ import { getCreditboardTasksByRole } from "@src/services/roles/creditboardTasksB
 import { getUseCaseByRole } from "@services/roles/useCasesByRole";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
 import { getRolFormats } from "@services/roles/ tipoDeMovimientoPorRol";
+import { getRolesCuentasAuxiliares } from "@services/roles/queryAllCuentasAuxiliares";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { EditRoleUI } from "./interface";
 import {
@@ -23,7 +24,6 @@ import {
   IMessageState,
 } from "../../users/types/forms.types";
 import { generalMessage } from "../config/messages.config";
-import { getRolesCuentasAuxiliares } from "@src/services/roles/queryAllCuentasAuxiliares";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")

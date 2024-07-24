@@ -1,4 +1,4 @@
-import { editRoles } from "@src/services/roles/editRoles";
+import { editRoles } from "@services/roles/editRoles";
 import {
   ICasosDeUsoPorRol,
   IFormAddRole,
