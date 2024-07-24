@@ -39,7 +39,6 @@ export function Roles() {
   };
   useEffect(() => {
     linixRolesData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
@@ -57,7 +56,6 @@ export function Roles() {
       visible: true,
       data: messageType,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idDeleted]);
 
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {

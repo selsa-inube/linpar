@@ -80,7 +80,6 @@ export const GeneralInformationForm = forwardRef(
           onFormValid && onFormValid(Object.keys(errors).length === 0);
         });
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formik.values, onFormValid]);
 
     return (

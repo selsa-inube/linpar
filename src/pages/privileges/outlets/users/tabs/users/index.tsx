@@ -46,7 +46,6 @@ function UsersTab(props: UsersTabProps) {
   };
   useEffect(() => {
     linixUsersData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
@@ -58,7 +57,6 @@ function UsersTab(props: UsersTabProps) {
         visible: true,
         data: deleteUserMessages.success,
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idDeleted]);
 
   const handleCloseSectionMessage = () => {
