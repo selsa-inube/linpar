@@ -51,7 +51,6 @@ interface IEditRoleUIProps {
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
   const {
-    handleReset,
     handleDataChange,
     roleCardData,
     setCsOptionsChange,
@@ -158,7 +157,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             />
           )}
           <Stack gap={inube.spacing.s200} justifyContent="flex-end">
-            <Button appearance="gray" onClick={handleReset} type="reset">
+            <Button appearance="gray" onClick={() => {}} type="reset">
               Cancelar
             </Button>
             <Button

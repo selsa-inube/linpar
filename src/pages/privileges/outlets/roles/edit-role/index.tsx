@@ -70,8 +70,6 @@ export const EditRole = () => {
       },
     });
 
-  const [previus, setPrevius] = useState<IFormAddRole | null>();
-
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
   const [selectedTab, setSelectedTab] = useState(
@@ -115,7 +113,7 @@ export const EditRole = () => {
           if (data !== null) {
             setRolesEdit(data as IRol[]);
             const generalData = data.find((data) => data.id === roleID);
-            setPrevius(dataEditRoleLinixForm);
+
             setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
               ...prevFormData,
               generalInformation: {
@@ -147,7 +145,6 @@ export const EditRole = () => {
       getRolesCuentasAuxiliares()
         .then((data) => {
           if (data !== null) {
-            setPrevius(dataEditRoleLinixForm);
             setRolesEditCuantasA(data as ICuentasAuxiliaresPorRol[]);
             const generalData = data.filter((data) => data.id === roleID);
             const commercialSector = generalData.find(
@@ -159,7 +156,7 @@ export const EditRole = () => {
             const solidaritySector = generalData.find(
               (data) => data.i_Tipent === "S"
             );
-            setPrevius(dataEditRoleLinixForm);
+
             setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
               ...prevFormData,
               ancillaryAccounts: {
@@ -361,21 +358,9 @@ export const EditRole = () => {
         [stepKey]: { values: values },
       }));
     }
-    console.log("jdasjdnalndanda", previus);
   };
 
-  const handleReset = () => {
-    Promise.all([
-      aplication(),
-      typesOfMovements(),
-      businessRulesFull(),
-      crediboardsTasks(),
-      rolesuseCases(),
-    ]);
-
-    //console.log("handleReset");
-    // if (onHasChanges) onHasChanges(false);
-  };
+  const handleReset = () => {};
 
   const onSubmit = () => {
     setLoading(true);
@@ -403,8 +388,6 @@ export const EditRole = () => {
     username: dataEditRoleLinixForm.generalInformation.values.n_Rol,
     description: dataEditRoleLinixForm.generalInformation.values.description,
   };
-
-  console.log(dataEditRoleLinixForm, "dataEditRoleLinixForm");
 
   return (
     <EditRoleUI
