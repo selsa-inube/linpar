@@ -46,10 +46,12 @@ interface IEditRoleUIProps {
   message: IMessageState;
   linixRoles: Record<string, unknown>[];
   currentFormHasChanges: boolean;
+  handleReset: () => void;
 }
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
   const {
+    handleReset,
     handleDataChange,
     roleCardData,
     setCsOptionsChange,
@@ -114,10 +116,11 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             />
           )}
 
-          {selectedTab === stepsAddRol.auxiliaryAccounts.label && (
+          {selectedTab === stepsAddRol.ancillaryAccounts.label && (
             <AncillaryAccountsForm
               initialValues={dataEditRoleLinixForm.ancillaryAccounts.values}
               k_Rol={id}
+              handleSubmit={handleUpdateFormData}
             />
           )}
 
@@ -155,7 +158,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             />
           )}
           <Stack gap={inube.spacing.s200} justifyContent="flex-end">
-            <Button appearance="gray" onClick={() => {}} type="reset">
+            <Button appearance="gray" onClick={handleReset} type="reset">
               Cancelar
             </Button>
             <Button

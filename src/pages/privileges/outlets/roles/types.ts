@@ -101,4 +101,5 @@ export interface IFormAddRole {
 
 export type IHandleChangeFormData =
   | IGeneralInformationForm
+  | IAncillaryAccountsForm
   | IAssignmentFormEntry[];

@@ -179,7 +179,7 @@ export function AddRolUI(props: AddRolUIProps) {
                 />
               )}
 
-              {currentStep === stepsAddRol.auxiliaryAccounts.id && (
+              {currentStep === stepsAddRol.ancillaryAccounts.id && (
                 <AncillaryAccountsForm
                   initialValues={ancillaryAccountsValues}
                   ref={formReferences.ancillaryAccounts}

@@ -4,7 +4,10 @@ import { forwardRef, useImperativeHandle, useState, useEffect } from "react";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { AncillaryAccountsFormsUI } from "./interface";
+import { IHandleChangeFormData } from "../../types";
+import { generalMessage } from "../../config/messages.config";
 export interface IAncillaryAccountsForm {
+  id?: number;
   officialSector: string;
   commercialSector: string;
   solidaritySector: string;
@@ -13,9 +16,11 @@ export interface IAncillaryAccountsForm {
 interface IAncillaryAccountsFormProps {
   initialValues: IAncillaryAccountsForm;
   k_Rol?: number;
+  onHasChanges?: (hasChanges: boolean) => void;
   onSubmit?: (values: IAncillaryAccountsForm) => void;
   withSubmitButtons?: boolean;
   handleAddRoleFormValid?: (newValue: boolean) => void;
+  handleSubmit?: (values: IHandleChangeFormData) => void;
 }
 
 export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
@@ -23,7 +28,9 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   ref: React.Ref<FormikProps<IAncillaryAccountsForm>>
 ) {
   const {
+    onHasChanges,
     initialValues,
+    handleSubmit,
     onSubmit,
     withSubmitButtons = false,
     handleAddRoleFormValid,
@@ -43,45 +50,27 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   const hasChanges = (valueCompare: IAncillaryAccountsForm) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-  // const handleSubmit = async () => {
-  //   setIsLoading(true);
-
-  //   const editedAccounts = Object.entries(formik.values).map(
-  //     ([key, value]) => ({
-  //       i_Tipent: key,
-  //       k_Codcta: value,
-  //     })
-  //   );
-
-  //   await updateItemData({
-  //     key: "k_Rol",
-  //     nameDB: "linix-roles",
-  //     identifier: k_Rol as number,
-  //     editData: editedAccounts,
-  //     property: "cuentasAuxiliaresPorRol",
-  //   })
-  //     .then(() => {
-  //       setMessage({
-  //         visible: true,
-  //         data: generalMessage.success,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       setMessage({
-  //         visible: true,
-  //         data: generalMessage.failed,
-  //       });
-
-  //       console.info(error.message);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // };
-
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
+    });
+  };
+
+  const handleChangeForm = (name: string, value: string) => {
+    const formikValues = {
+      ...formik.values,
+      [name]: value,
+    };
+
+    if (onHasChanges) onHasChanges(hasChanges(formikValues));
+    formik.setFieldValue(name, value).then(() => {
+      formik.validateForm().then((errors) => {
+        handleSubmit && handleSubmit(formikValues);
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      });
     });
   };
 
@@ -99,6 +88,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   return (
     <AncillaryAccountsFormsUI
       formik={formik}
+      handleChangeForm={handleChangeForm}
       // handleSubmit={handleSubmit}
       withSubmitButtons={withSubmitButtons}
       hasChanges={hasChanges}

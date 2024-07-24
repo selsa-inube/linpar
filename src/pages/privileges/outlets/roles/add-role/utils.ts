@@ -1,4 +1,4 @@
-import { addRoles } from "@src/services/roles/postRoles";
+import { addRoles } from "@services/roles/postRoles";
 import { stepsAddRol } from "./config/addRol.config";
 import { initialValuesAddRol } from "./config/initialValues";
 import { IFormAddRole, IFormAddRoleRef, IRol } from "../types";
@@ -40,7 +40,7 @@ export const addRoleStepsRules = (
 
       return newAddLinixRole;
     }
-    case stepsAddRol.auxiliaryAccounts.id: {
+    case stepsAddRol.ancillaryAccounts.id: {
       const values = formReferences.ancillaryAccounts.current?.values;
 
       if (!values) return addLinixRole;

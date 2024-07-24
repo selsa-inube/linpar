@@ -14,6 +14,7 @@ const mapEditRolesEntityToApi = (
     ),
     reglasDeNegocioPorRol: Object(editRoles.reglasDeNegocioPorRol),
     casosDeUsoPorRol: Object(editRoles.casosDeUsoPorRol),
+    cuentasAuxiliaresPorRol: Object(editRoles.cuentasAuxiliaresPorRol),
   };
 };
 

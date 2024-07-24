@@ -43,17 +43,26 @@ export const editDataRoles = async (
     }
   );
 
-  // const normalizeAncillaryAccounts = rolesData.ancillaryAccounts.values?.flatMap(
-  //   (data: IAssignmentFormEntry) => {
-  //     return optionsData
-  //       ?.filter((j: IAssignmentFormEntry) => j.id === data.id)
-  //       .map((j: IAssignmentFormEntry) => ({
-  //         transactionOperation: j.isActive ? "Insert" : "Delete",
-  //         k_Usecase: j.id,
-  //       })) as IAncillaryAccountsForm [];
-  //   }
-  // );
-
+  const normalizeAncillaryAccounts = [
+    {
+      k_Rol: rolesData.generalInformation.values.k_Rol || 0,
+      i_Tipent: "C",
+      k_Codcta: rolesData.ancillaryAccounts.values.commercialSector,
+      TransactionOperation: "PartialUpdate",
+    },
+    {
+      k_Rol: rolesData.generalInformation.values.k_Rol || 0,
+      i_Tipent: "O",
+      k_Codcta: rolesData.ancillaryAccounts.values.officialSector,
+      TransactionOperation: "PartialUpdate",
+    },
+    {
+      k_Rol: rolesData.generalInformation.values.k_Rol || 0,
+      i_Tipent: "S",
+      k_Codcta: rolesData.ancillaryAccounts.values.solidaritySector,
+      TransactionOperation: "PartialUpdate",
+    },
+  ];
   const newoptionsUseCase: IRol = {
     modifyJustification: "edit",
     k_Rol: rolesData.generalInformation.values.k_Rol || 0,
@@ -65,7 +74,7 @@ export const editDataRoles = async (
     tiposDeMovimientoContablePorRol: normalizeTransactionTypes,
     reglasDeNegocioPorRol: normalizeReglasNegocio,
     casosDeUsoPorRol: normalizeUseCases,
-    // cuentasAuxiliaresPorRol: normalizeAncillaryAccounts,
+    cuentasAuxiliaresPorRol: normalizeAncillaryAccounts,
   };
   let confirmationType = true;
 
