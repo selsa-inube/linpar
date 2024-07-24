@@ -4,13 +4,20 @@ import { PageTitle } from "@src/components/PageTitle";
 import { SubjectCard } from "@src/components/cards/SubjectCard";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
-import { InitializerForm } from "../../forms/InitializerForm";
+
 import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 
-import { IFormAddRole, IRol } from "../types";
+import { IFormAddRole, IHandleChangeFormData, IRol } from "../types";
 import { StyledContainerLoading } from "../../users/invite/styles";
 import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
+import { Button } from "@inubekit/button";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../users/types/forms.types";
+import { InitializerForm } from "../components/InitializerForm";
 
 interface ITabs {
   id: string;
@@ -29,21 +36,32 @@ interface IEditRoleUIProps {
   loading: boolean;
   id: number;
   dataEditRoleLinixForm: IFormAddRole;
-  // editData: IRol;
-
-  // valuesAncillaryAccounts: IAncillaryAccountsForm;
-
-  // handleUpdateDataSwitchstep: (values: any) => void;
+  onSubmit: () => void;
+  onCloseSectionMessage: () => void;
+  handleUpdateFormData: (values: IHandleChangeFormData) => void;
+  handleDataChange: (hasChanges: boolean) => void;
+  setCsOptionsChange: (csOptionsChange: IAssignmentFormEntry[]) => void;
+  csOptionsChange: IAssignmentFormEntry[];
+  roleCardData: { username: string; code: number | undefined };
+  message: IMessageState;
   linixRoles: Record<string, unknown>[];
+  currentFormHasChanges: boolean;
 }
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
   const {
-    // roleCardData,
+    handleDataChange,
+    roleCardData,
+    setCsOptionsChange,
+    csOptionsChange,
     dataEditRoleLinixForm,
+    handleUpdateFormData,
+    message,
+    onCloseSectionMessage,
     linixRoles,
     // data,
     onTabChange,
+    onSubmit,
     selectedTab,
     dataTabs,
     smallScreen,
@@ -71,13 +89,14 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               description={editRoleConfig[0].description}
               navigatePage="/privileges/roles"
             />
-
-            <SubjectCard
-              subjectData={""}
-              title="Editar Rol"
-              icon={<FaUserGear />}
-              labels={editRoleCardLabels}
-            />
+            {roleCardData && (
+              <SubjectCard
+                subjectData={roleCardData}
+                title="Editar Rol"
+                icon={<FaUserGear />}
+                labels={editRoleCardLabels}
+              />
+            )}
           </Stack>
         </Stack>
         <>
@@ -91,6 +110,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               initialValues={dataEditRoleLinixForm.generalInformation.values}
               k_Rol={id}
               linixRoles={linixRoles}
+              handleSubmit={handleUpdateFormData}
             />
           )}
 
@@ -98,36 +118,60 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             <AncillaryAccountsForm
               initialValues={dataEditRoleLinixForm.ancillaryAccounts.values}
               k_Rol={id}
-              withSubmitButtons
             />
           )}
 
           {selectedTab === stepsAddRol.transactionTypes.label && (
             <InitializerForm
+              onHasChanges={handleDataChange}
               dataOptionsForms={dataEditRoleLinixForm.transactionTypes.values}
-              handleSubmit={() => []}
-              withSubmitButtons
+              handleSubmit={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
             />
           )}
           {selectedTab === stepsAddRol.businessRules.label && (
             <InitializerForm
+              onHasChanges={handleDataChange}
               dataOptionsForms={dataEditRoleLinixForm.businessRules.values}
-              handleSubmit={() => []}
-              withSubmitButtons
+              handleSubmit={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
             />
           )}
           {selectedTab === stepsAddRol.crediboardTasks.label && (
             <InitializerForm
               dataOptionsForms={dataEditRoleLinixForm.crediboardTasks.values}
               handleSubmit={() => []}
-              withSubmitButtons
             />
           )}
           {selectedTab === stepsAddRol.useCases.label && (
             <InitializerForm
+              onHasChanges={handleDataChange}
               dataOptionsForms={dataEditRoleLinixForm.useCases.values}
-              handleSubmit={() => []}
-              withSubmitButtons
+              handleSubmit={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
+            />
+          )}
+          <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+            <Button appearance="gray" onClick={() => {}} type="reset">
+              Cancelar
+            </Button>
+            <Button
+              appearance="primary"
+              onClick={onSubmit}
+              loading={loading}
+              type="button"
+            >
+              Guardar
+            </Button>
+          </Stack>
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={onCloseSectionMessage}
+              onMessageClosed={onCloseSectionMessage}
             />
           )}
         </>

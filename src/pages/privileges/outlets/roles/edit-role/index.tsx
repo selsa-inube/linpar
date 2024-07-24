@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from "@inube/design-system";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRole";
@@ -9,10 +9,21 @@ import { getAplicationRoles } from "@services/roles/aplicationRoles";
 import { getRolFormats } from "@services/roles/ tipoDeMovimientoPorRol";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { EditRoleUI } from "./interface";
-import { IFormAddRole, IRol } from "../types";
+import {
+  ICuentasAuxiliaresPorRol,
+  IFormAddRole,
+  IHandleChangeFormData,
+  IRol,
+} from "../types";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
-import { initialValuesAddRol } from "../add-role/config/initialValues";
 import { getRoles } from "@src/services/roles/getRoles";
+import { editDataRoles } from "./utils";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../users/types/forms.types";
+import { generalMessage } from "../config/messages.config";
+import { getRolesCuentasAuxiliares } from "@src/services/roles/queryAllCuentasAuxiliares";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")
@@ -39,12 +50,9 @@ export const EditRole = () => {
       ancillaryAccounts: {
         isValid: false,
         values: {
-          officialSector:
-            initialValuesAddRol.ancillaryAccounts.values.officialSector.trim(),
-          commercialSector:
-            initialValuesAddRol.ancillaryAccounts.values.commercialSector.trim(),
-          solidaritySector:
-            initialValuesAddRol.ancillaryAccounts.values.solidaritySector.trim(),
+          officialSector: "aa",
+          commercialSector: "",
+          solidaritySector: "",
         },
       },
       transactionTypes: {
@@ -71,10 +79,20 @@ export const EditRole = () => {
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
   const [rolesEdit, setRolesEdit] = useState<IRol[]>([]);
+  const [rolesEditCuantasA, setRolesEditCuantasA] = useState<
+    ICuentasAuxiliaresPorRol[]
+  >([]);
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
   const [crediboardTasks, setCrediboardTask] = useState<
     Record<string, unknown>[]
   >([]);
 
+  const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
+  const [csOptionsChange, setCSOptionsChange] = useState<
+    IAssignmentFormEntry[]
+  >([]);
   const [businessRules, setBusinessRules] = useState<Record<string, unknown>[]>(
     []
   );
@@ -83,19 +101,6 @@ export const EditRole = () => {
     Record<string, unknown>[]
   >([]);
   const generalInformationData = rolesEdit.find((data) => data.id === roleID);
-  // const [editData, setEditData] = useState<IRol>({
-  //   i_Activo: "Y",
-  //   k_Rol: 0,
-  //   k_Tipcon: "",
-  //   n_Rol: "",
-  //   n_Uso: "",
-  //   k_Aplica: "",
-  //   cuentasAuxiliaresPorRol: [],
-  //   casosDeUsoPorRol: [],
-  //   reglasDeNegocioPorRol: [],
-  //   tareasCrediboardPorRol: [],
-  //   tiposDeMovimientoContablePorRol: [],
-  // });
 
   const rolesData = async () => {
     if (!user) return;
@@ -130,8 +135,41 @@ export const EditRole = () => {
     }
   };
 
+  const rolesCuentasAuxiliares = async () => {
+    if (!user) return;
+    if (rolesEditCuantasA.length === 0) {
+      setLoading(true);
+      getRolesCuentasAuxiliares()
+        .then((data) => {
+          if (data !== null) {
+            setRolesEditCuantasA(data as ICuentasAuxiliaresPorRol[]);
+            const generalData = data.find((data) => data.id === roleID);
+            setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
+              ...prevFormData,
+              ancillaryAccounts: {
+                isValid: true,
+                values: {
+                  k_Rol: Number(generalData?.k_Rol) || 0,
+                  officialSector: String(generalData?.k_Codcta) || "",
+                  commercialSector: String(generalData?.k_Codcta) || "",
+                  solidaritySector: String(generalData?.k_Codcta) || "",
+                },
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching general Information:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+  console.log(dataEditRoleLinixForm, "dataEditRoleLinixForm");
   useEffect(() => {
     rolesData();
+    rolesCuentasAuxiliares();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -275,14 +313,73 @@ export const EditRole = () => {
     }
   };
 
+  const navigate = useNavigate();
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+    navigate("/privileges/roles");
+  };
+
   const handleTabChange = (tabId: string) => {
     setSelectedTab(tabId);
   };
 
+  const handleDataChange = (hasChanges: boolean) => {
+    setCurrentFormHasChanges(hasChanges);
+  };
+
   const editGeneral = generalInformationData;
+
+  const handleUpdateFormData = (values: IHandleChangeFormData) => {
+    const stepKey = Object.entries(stepsAddRol).find(
+      ([, config]) => config.label === selectedTab
+    )?.[0];
+
+    if (stepKey) {
+      setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
+    }
+  };
+
+  const onSubmit = () => {
+    setLoading(true);
+    const addnewdata = editDataRoles(dataEditRoleLinixForm, csOptionsChange);
+    addnewdata
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const roleCardData = dataEditRoleLinixForm && {
+    code: dataEditRoleLinixForm.generalInformation.values.k_Rol,
+    username: dataEditRoleLinixForm.generalInformation.values.n_Rol,
+    description: dataEditRoleLinixForm.generalInformation.values.description,
+  };
 
   return (
     <EditRoleUI
+      currentFormHasChanges={currentFormHasChanges}
+      roleCardData={roleCardData}
+      setCsOptionsChange={setCSOptionsChange}
+      csOptionsChange={csOptionsChange}
+      handleDataChange={handleDataChange}
+      handleUpdateFormData={handleUpdateFormData}
+      onCloseSectionMessage={handleCloseSectionMessage}
       rolesEdit={editGeneral!}
       dataEditRoleLinixForm={dataEditRoleLinixForm}
       linixRoles={linixRoles}
@@ -292,6 +389,8 @@ export const EditRole = () => {
       smallScreen={smallScreen}
       loading={loading}
       id={roleID || 0}
+      message={message}
+      onSubmit={onSubmit}
     />
   );
 };

@@ -12,12 +12,13 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
-import { IGeneralInformationForm } from ".";
+import { IGeneralInformationForm } from "../../types";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   isLoading?: boolean;
   // handleSubmit: () => void;
+  handleChangeForm: (name: string, value: string) => void;
   linixRoles: Record<string, unknown>[];
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
@@ -32,6 +33,7 @@ const searchData = {
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const {
     formik,
+    handleChangeForm,
     // handleSubmit,
     linixRoles,
     withSubmitButtons = false,
@@ -70,7 +72,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             type="text"
             size="compact"
             fullwidth
-            onChange={formik.handleChange}
+            onChange={(
+              event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+            ) => handleChangeForm(event.target.name, event.target.value)}
             required
             onBlur={formik.handleBlur}
             message={
@@ -91,11 +95,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             labelModal="Digite el código o nombre de la aplicación."
             placeholderModal="Digite el código o nombre de la aplicación."
             onUserSelect={(value) => {
-              formik.setValues({
-                ...formik.values,
-                applicationId: value.k_Aplica,
-                application: value.n_Aplica,
-              });
+              handleChangeForm("applicationId", value.k_Aplica as string);
             }}
             userData={linixRoles}
             searchFieldData={searchData}
@@ -126,7 +126,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           size="compact"
           fullwidth
           maxLength={20}
-          onChange={formik.handleChange}
+          onChange={(
+            event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+          ) => handleChangeForm(event.target.name, event.target.value)}
           required
           onBlur={formik.handleBlur}
           message={

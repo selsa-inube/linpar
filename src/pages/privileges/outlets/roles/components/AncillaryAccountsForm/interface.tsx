@@ -1,6 +1,5 @@
 import { FormikValues } from "formik";
 import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
-import { FormButtons } from "@components/forms/submit/FormButtons";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
@@ -10,7 +9,7 @@ interface AncillaryAccountsFormsUIProps {
   formik: FormikValues;
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: IAncillaryAccountsForm) => boolean;
-  handleSubmit: (name: string, value: string) => void;
+  // handleSubmit: (name: string, value: string) => void;
   isLoading?: boolean;
   message: IMessageState;
   onCloseSectionMessage: () => void;
@@ -19,10 +18,10 @@ interface AncillaryAccountsFormsUIProps {
 export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
   const {
     formik,
-    withSubmitButtons,
-    hasChanges,
-    handleSubmit,
-    isLoading,
+    // withSubmitButtons,
+    // hasChanges,
+    // handleSubmit,
+    // isLoading,
     message,
     onCloseSectionMessage,
   } = props;
@@ -78,14 +77,14 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
         />
       </Grid>
 
-      {withSubmitButtons && (
+      {/* {withSubmitButtons && (
         <FormButtons
           disabledButtons={!hasChanges(formik.values)}
           handleSubmit={handleSubmit}
           handleReset={handleFormReset}
           loading={isLoading}
         />
-      )}
+      )} */}
 
       {message.visible && (
         <RenderMessage

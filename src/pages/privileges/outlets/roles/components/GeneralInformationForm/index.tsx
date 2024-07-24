@@ -7,20 +7,14 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { validationMessages } from "@src/validations/validationMessages";
 
 import { GeneralInformationFormUI } from "./interface";
+import { IGeneralInformationForm, IHandleChangeFormData } from "../../types";
+import { generalMessage } from "../../config/messages.config";
 
 const validationSchema = Yup.object({
   n_Rol: Yup.string().required(validationMessages.required),
   description: Yup.string().required(validationMessages.required),
-  application: Yup.string().required(validationMessages.required),
+  applicationId: Yup.string().required(validationMessages.required),
 });
-
-export interface IGeneralInformationForm {
-  k_Rol?: number;
-  n_Rol: string;
-  description: string;
-  application: string;
-  applicationId: string;
-}
 
 interface IGeneralInformationFormProps {
   linixRoles: Record<string, unknown>[];
@@ -31,6 +25,7 @@ interface IGeneralInformationFormProps {
   onHasChanges?: (hasChanges: boolean) => void;
   handleAddRoleFormValid?: (newValue: boolean) => void;
   currentStep?: number;
+  handleSubmit?: (values: IHandleChangeFormData) => void;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -40,6 +35,8 @@ export const GeneralInformationForm = forwardRef(
   ) {
     const {
       initialValues,
+      handleSubmit,
+      onHasChanges,
       onSubmit,
       withSubmitButtons = false,
       linixRoles,
@@ -98,6 +95,23 @@ export const GeneralInformationForm = forwardRef(
     //       setIsLoading(false);
     //     });
     // };
+    const handleChangeForm = (name: string, value: string) => {
+      const formikValues = {
+        ...formik.values,
+        [name]: value,
+      };
+
+      if (onHasChanges) onHasChanges(hasChanges(formikValues));
+      formik.setFieldValue(name, value).then(() => {
+        formik.validateForm().then((errors) => {
+          handleSubmit && handleSubmit(formikValues);
+          setMessage({
+            visible: true,
+            data: generalMessage.success,
+          });
+        });
+      });
+    };
 
     const handleCloseSectionMessage = () => {
       setMessage({
@@ -118,7 +132,7 @@ export const GeneralInformationForm = forwardRef(
       <>
         <GeneralInformationFormUI
           formik={formik}
-          // handleSubmit={handleSubmit}
+          handleChangeForm={handleChangeForm}
           linixRoles={linixRoles}
           withSubmitButtons={withSubmitButtons}
           hasChanges={hasChanges}

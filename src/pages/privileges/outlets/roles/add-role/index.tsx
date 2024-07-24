@@ -7,10 +7,15 @@ import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRo
 import { getCreditboardTasksByRole } from "@services/roles/creditboardTasksByRole";
 import { getUseCaseByRole } from "@services/roles/useCasesByRole";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
-import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
+import {
+  IFormAddRole,
+  IFormAddRoleRef,
+  IGeneralInformationForm,
+  IInitialiceFormRole,
+} from "../types";
 import { addRoleStepsRules } from "./utils";
 import { stepsAddRol } from "./config/addRol.config";
-import { IGeneralInformationForm } from "../components/GeneralInformationForm";
+
 import { IAncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
