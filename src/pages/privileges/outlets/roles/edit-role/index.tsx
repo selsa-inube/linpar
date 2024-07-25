@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from "@inube/design-system";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -6,7 +6,7 @@ import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRo
 import { getCreditboardTasksByRole } from "@src/services/roles/creditboardTasksByRole";
 import { getUseCaseByRole } from "@services/roles/useCasesByRole";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
-import { getRolFormats } from "@services/roles/ tipoDeMovimientoPorRol";
+
 import { getRolesCuentasAuxiliares } from "@services/roles/queryAllCuentasAuxiliares";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { EditRoleUI } from "./interface";
@@ -24,6 +24,7 @@ import {
   IMessageState,
 } from "../../users/types/forms.types";
 import { generalMessage } from "../config/messages.config";
+import { getRolFormats } from "@src/services/roles/ tipoDeMovimientoPorRol";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")
@@ -36,39 +37,43 @@ const Tabs = Object.values(stepsAddRol)
 export const EditRole = () => {
   const { k_Rol } = useParams();
   const roleID = Number(k_Rol);
+
+  const initialFormState = {
+    generalInformation: {
+      isValid: false,
+      values: {
+        n_Rol: "",
+        description: "",
+        application: "",
+        applicationId: "",
+      },
+    },
+    ancillaryAccounts: {
+      isValid: false,
+      values: {
+        officialSector: "",
+        commercialSector: "",
+        solidaritySector: "",
+      },
+    },
+    transactionTypes: {
+      isValid: false,
+      values: [],
+    },
+    businessRules: {
+      values: [],
+    },
+    crediboardTasks: {
+      values: [],
+    },
+    useCases: {
+      values: [],
+    },
+  };
+
   const [dataEditRoleLinixForm, setDataEditRoleLinixForm] =
-    useState<IFormAddRole>({
-      generalInformation: {
-        isValid: false,
-        values: {
-          n_Rol: "",
-          description: "",
-          application: "",
-          applicationId: "",
-        },
-      },
-      ancillaryAccounts: {
-        isValid: false,
-        values: {
-          officialSector: "",
-          commercialSector: "",
-          solidaritySector: "",
-        },
-      },
-      transactionTypes: {
-        isValid: false,
-        values: [],
-      },
-      businessRules: {
-        values: [],
-      },
-      crediboardTasks: {
-        values: [],
-      },
-      useCases: {
-        values: [],
-      },
-    });
+    useState<IFormAddRole>(initialFormState);
+  const originalDataEditRoleLinixForm = useRef<IFormAddRole | null>(null);
 
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
@@ -90,8 +95,6 @@ export const EditRole = () => {
   >([]);
 
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
-
-  // const[initialFormDataOptions]=  useState=( )
   const [csOptionsChange, setCSOptionsChange] = useState<
     IAssignmentFormEntry[]
   >([]);
@@ -104,6 +107,27 @@ export const EditRole = () => {
   >([]);
   const generalInformationData = rolesEdit.find((data) => data.id === roleID);
 
+  useEffect(() => {
+    rolesData();
+    rolesCuentasAuxiliares();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (originalDataEditRoleLinixForm.current === null) {
+      Promise.all([
+        aplication(),
+        typesOfMovements(),
+        businessRulesFull(),
+        crediboardsTasks(),
+        rolesuseCases(),
+      ]).then(() => {
+        setLoading(true);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [k_Rol]);
+
   const rolesData = async () => {
     if (!user) return;
     if (rolesEdit.length === 0) {
@@ -113,9 +137,7 @@ export const EditRole = () => {
           if (data !== null) {
             setRolesEdit(data as IRol[]);
             const generalData = data.find((data) => data.id === roleID);
-
-            setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
-              ...prevFormData,
+            const initialFormData = {
               generalInformation: {
                 isValid: true,
                 values: {
@@ -126,7 +148,30 @@ export const EditRole = () => {
                   applicationId: String(generalData?.k_Aplica) || "",
                 },
               },
-            }));
+              ancillaryAccounts: {
+                isValid: false,
+                values: {
+                  officialSector: "",
+                  commercialSector: "",
+                  solidaritySector: "",
+                },
+              },
+              transactionTypes: {
+                isValid: false,
+                values: [],
+              },
+              businessRules: {
+                values: [],
+              },
+              crediboardTasks: {
+                values: [],
+              },
+              useCases: {
+                values: [],
+              },
+            };
+            setDataEditRoleLinixForm(initialFormData);
+            originalDataEditRoleLinixForm.current = initialFormData;
           }
         })
         .catch((error) => {
@@ -169,6 +214,19 @@ export const EditRole = () => {
                 },
               },
             }));
+
+            originalDataEditRoleLinixForm.current = {
+              ...originalDataEditRoleLinixForm.current!,
+              ancillaryAccounts: {
+                isValid: true,
+                values: {
+                  k_Rol: Number(generalData[0]?.k_Rol) || 0,
+                  commercialSector: String(commercialSector?.k_Codcta) || "",
+                  officialSector: String(officialSector?.k_Codcta) || "",
+                  solidaritySector: String(solidaritySector?.k_Codcta) || "",
+                },
+              },
+            };
           }
         })
         .catch((error) => {
@@ -179,25 +237,6 @@ export const EditRole = () => {
         });
     }
   };
-  useEffect(() => {
-    rolesData();
-    rolesCuentasAuxiliares();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    Promise.all([
-      aplication(),
-      typesOfMovements(),
-      businessRulesFull(),
-      crediboardsTasks(),
-      rolesuseCases(),
-    ]).then(() => {
-      setLoading(true);
-    });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [k_Rol]);
 
   const aplication = () => {
     if (!user) return;
@@ -221,7 +260,6 @@ export const EditRole = () => {
         .then((data) => {
           if (data !== null) {
             setTypesOfmovement(data as Record<string, unknown>[]);
-            // setPrevius(dataEditRoleLinixForm);
             setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
               ...prevFormData,
               transactionTypes: {
@@ -234,6 +272,18 @@ export const EditRole = () => {
                 }),
               },
             }));
+            originalDataEditRoleLinixForm.current = {
+              ...originalDataEditRoleLinixForm.current!,
+              transactionTypes: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "CODIGO",
+                  valueLabel: "NOMBRE",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -250,7 +300,6 @@ export const EditRole = () => {
         .then((data) => {
           if (data !== null) {
             setBusinessRules(data as Record<string, unknown>[]);
-
             setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
               ...prevFormData,
               businessRules: {
@@ -263,6 +312,18 @@ export const EditRole = () => {
                 }),
               },
             }));
+            originalDataEditRoleLinixForm.current = {
+              ...originalDataEditRoleLinixForm.current!,
+              businessRules: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Regla",
+                  valueLabel: "n_Regla",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -279,7 +340,6 @@ export const EditRole = () => {
         .then((data) => {
           if (data !== null) {
             setCrediboardTask(data as Record<string, unknown>[]);
-
             setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
               ...prevFormData,
               crediboardTasks: {
@@ -292,6 +352,18 @@ export const EditRole = () => {
                 }),
               },
             }));
+            originalDataEditRoleLinixForm.current = {
+              ...originalDataEditRoleLinixForm.current!,
+              crediboardTasks: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "id",
+                  valueLabel: "value",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -308,7 +380,6 @@ export const EditRole = () => {
         .then((data) => {
           if (data !== null) {
             setUseCases(data as Record<string, unknown>[]);
-
             setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
               ...prevFormData,
               useCases: {
@@ -321,6 +392,18 @@ export const EditRole = () => {
                 }),
               },
             }));
+            originalDataEditRoleLinixForm.current = {
+              ...originalDataEditRoleLinixForm.current!,
+              useCases: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Usecase",
+                  valueLabel: "n_Usecase",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -345,8 +428,6 @@ export const EditRole = () => {
     setCurrentFormHasChanges(hasChanges);
   };
 
-  const editGeneral = generalInformationData;
-
   const handleUpdateFormData = (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.label === selectedTab
@@ -360,7 +441,10 @@ export const EditRole = () => {
     }
   };
 
-  const handleReset = () => {};
+  const handleReset = () => {
+    setDataEditRoleLinixForm(originalDataEditRoleLinixForm.current!);
+    setCurrentFormHasChanges(false);
+  };
 
   const onSubmit = () => {
     setLoading(true);
@@ -399,7 +483,7 @@ export const EditRole = () => {
       handleDataChange={handleDataChange}
       handleUpdateFormData={handleUpdateFormData}
       onCloseSectionMessage={handleCloseSectionMessage}
-      rolesEdit={editGeneral!}
+      rolesEdit={generalInformationData!}
       dataEditRoleLinixForm={dataEditRoleLinixForm}
       linixRoles={linixRoles}
       onTabChange={handleTabChange}

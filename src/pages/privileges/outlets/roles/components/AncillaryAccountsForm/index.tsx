@@ -8,6 +8,7 @@ import { IHandleChangeFormData } from "../../types";
 import { generalMessage } from "../../config/messages.config";
 export interface IAncillaryAccountsForm {
   id?: number;
+  k_Rol?: number;
   officialSector: string;
   commercialSector: string;
   solidaritySector: string;
