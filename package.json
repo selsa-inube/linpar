@@ -24,6 +24,7 @@
     "@inubekit/icon": "^1.6.0",
     "@inubekit/skeleton": "^2.1.0",
     "@inubekit/stack": "^2.2.0",
+    "@inubekit/table": "^5.2.0",
     "@inubekit/text": "^2.3.0",
     "@inubekit/textfield": "^2.2.0",
     "chromatic": "^6.17.1",

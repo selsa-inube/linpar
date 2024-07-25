@@ -57,7 +57,6 @@ function InvitationsTab(props: InvitationsTabProps) {
         visible: true,
         data: deleteInvitationMessages.success,
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idDeleted]);
 
   const handleResendInvitation = (invitation: IInvitationsEntry) => {

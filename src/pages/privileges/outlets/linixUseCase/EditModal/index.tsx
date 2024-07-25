@@ -157,7 +157,6 @@ function EditCaseLinix() {
 
   useEffect(() => {
     linixUseCaseData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -171,7 +170,6 @@ function EditCaseLinix() {
     ]).then(() => {
       setLoading(true);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const usersData = () => {
