@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from "@inube/design-system";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -6,7 +6,7 @@ import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRo
 import { getCreditboardTasksByRole } from "@src/services/roles/creditboardTasksByRole";
 import { getUseCaseByRole } from "@services/roles/useCasesByRole";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
-
+import { getRolFormats } from "@services/roles/ tipoDeMovimientoPorRol";
 import { getRolesCuentasAuxiliares } from "@services/roles/queryAllCuentasAuxiliares";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { EditRoleUI } from "./interface";
@@ -24,7 +24,6 @@ import {
   IMessageState,
 } from "../../users/types/forms.types";
 import { generalMessage } from "../config/messages.config";
-import { getRolFormats } from "@src/services/roles/ tipoDeMovimientoPorRol";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")

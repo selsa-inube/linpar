@@ -7,7 +7,6 @@ import {
 interface InitializerFormUIProps {
   dataOptionsForms: IAssignmentFormEntry[];
   isLoading: boolean;
-  handleSubmitForm: () => void;
   handleReset: () => void;
   handleChangeInitializerForm: (
     dataOptionsForms: IAssignmentFormEntry[]

@@ -69,7 +69,6 @@ export function InitializerForm(props: IInitializerForm) {
   return (
     <InitializerFormUI
       handleChangeInitializerForm={handleChangeRenderForm}
-      handleSubmitForm={() => {}}
       handleReset={handleReset}
       isLoading={isLoading}
       dataOptionsForms={formDataOptions}

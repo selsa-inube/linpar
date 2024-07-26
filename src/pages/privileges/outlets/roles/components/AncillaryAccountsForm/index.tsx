@@ -36,7 +36,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
     withSubmitButtons = false,
     handleAddRoleFormValid,
   } = props;
-  const [isLoading] = useState(false);
+
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
@@ -90,12 +90,10 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
     <AncillaryAccountsFormsUI
       formik={formik}
       handleChangeForm={handleChangeForm}
-      // handleSubmit={handleSubmit}
       withSubmitButtons={withSubmitButtons}
       hasChanges={hasChanges}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
-      isLoading={isLoading}
     />
   );
 });

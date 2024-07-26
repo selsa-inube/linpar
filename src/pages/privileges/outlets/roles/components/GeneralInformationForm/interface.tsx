@@ -6,10 +6,8 @@ import {
   Grid,
   useMediaQuery,
 } from "@inube/design-system";
-import { FormButtons } from "@components/forms/submit/FormButtons";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 import { IGeneralInformationForm } from "../../types";
@@ -17,7 +15,6 @@ import { IGeneralInformationForm } from "../../types";
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   isLoading?: boolean;
-  // handleSubmit: () => void;
   handleChangeForm: (name: string, value: string) => void;
   linixRoles: Record<string, unknown>[];
   withSubmitButtons: boolean;
@@ -31,17 +28,7 @@ const searchData = {
 };
 
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const {
-    formik,
-    handleChangeForm,
-    // handleSubmit,
-    linixRoles,
-    withSubmitButtons = false,
-    hasChanges,
-    isLoading,
-    message,
-    onCloseSectionMessage,
-  } = props;
+  const { formik, handleChangeForm, linixRoles } = props;
 
   const isMobile = useMediaQuery("(max-width: 750px)");
 
@@ -139,27 +126,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           status={stateValue("description") === "invalid" ? "invalid" : null}
         />
       </Grid>
-      {withSubmitButtons && (
-        <>
-          <FormButtons
-            disabledButtons={
-              !hasChanges(formik.values) ||
-              !(Object.keys(formik.errors).length === 0)
-            }
-            handleSubmit={() => {}}
-            handleReset={formik.resetForm}
-            loading={isLoading}
-            children={""}
-          />
-          {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={formik.resetForm}
-            />
-          )}
-        </>
-      )}
     </form>
   );
 }

@@ -42,7 +42,6 @@ export const GeneralInformationForm = forwardRef(
       linixRoles,
       handleAddRoleFormValid,
     } = props;
-    const [isLoading] = useState(false);
 
     const [message, setMessage] = useState<IMessageState>({
       visible: false,
@@ -61,40 +60,6 @@ export const GeneralInformationForm = forwardRef(
     const hasChanges = (valueCompare: IGeneralInformationForm) =>
       JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-    // const handleSubmit = async () => {
-    //   setIsLoading(true);
-    //   const editedInfo = {
-    //     k_Rol: k_Rol as string,
-    //     n_Rol: formik.values.n_Rol,
-    //     k_Tipcon: k_Rol as string,
-    //     k_Aplica: formik.values.application,
-    //     n_Uso: formik.values.description,
-    //   };
-
-    //   await updateItemData({
-    //     key: "k_Rol",
-    //     nameDB: "linix-roles",
-    //     identifier: k_Rol as string,
-    //     editData: editedInfo,
-    //   })
-    //     .then(() => {
-    //       setMessage({
-    //         visible: true,
-    //         data: generalMessage.success,
-    //       });
-    //     })
-    //     .catch((error) => {
-    //       setMessage({
-    //         visible: true,
-    //         data: generalMessage.failed,
-    //       });
-
-    //       console.info(error.message);
-    //     })
-    //     .finally(() => {
-    //       setIsLoading(false);
-    //     });
-    // };
     const handleChangeForm = (name: string, value: string) => {
       const formikValues = {
         ...formik.values,
@@ -138,7 +103,6 @@ export const GeneralInformationForm = forwardRef(
           hasChanges={hasChanges}
           message={message}
           onCloseSectionMessage={handleCloseSectionMessage}
-          isLoading={isLoading}
         />
       </>
     );
