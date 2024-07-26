@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from "@inube/design-system";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRole";
-import { getCreditboardTasksByRole } from "@src/services/roles/creditboardTasksByRole";
+
 import { getUseCaseByRole } from "@services/roles/useCasesByRole";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
 import { getRolFormats } from "@services/roles/ tipoDeMovimientoPorRol";
@@ -74,7 +74,7 @@ export const EditRole = () => {
     useState<IFormAddRole>(initialFormState);
   const originalDataEditRoleLinixForm = useRef<IFormAddRole | null>(null);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth0();
   const [selectedTab, setSelectedTab] = useState(
     stepsAddRol.generalInformation.label
@@ -89,9 +89,6 @@ export const EditRole = () => {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [crediboardTasks, setCrediboardTask] = useState<
-    Record<string, unknown>[]
-  >([]);
 
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
   const [csOptionsChange, setCSOptionsChange] = useState<
@@ -113,17 +110,15 @@ export const EditRole = () => {
   }, []);
 
   useEffect(() => {
-    if (originalDataEditRoleLinixForm.current === null) {
-      Promise.all([
-        aplication(),
-        typesOfMovements(),
-        businessRulesFull(),
-        crediboardsTasks(),
-        rolesuseCases(),
-      ]).then(() => {
-        setLoading(true);
-      });
-    }
+    Promise.all([
+      typesOfMovements(),
+      businessRulesFull(),
+      rolesuseCases(),
+      aplication(),
+    ]).then(() => {
+      setLoading(true);
+    });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [k_Rol]);
 
@@ -136,7 +131,8 @@ export const EditRole = () => {
           if (data !== null) {
             setRolesEdit(data as IRol[]);
             const generalData = data.find((data) => data.id === roleID);
-            const initialFormData = {
+            setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
+              ...prevFormData,
               generalInformation: {
                 isValid: true,
                 values: {
@@ -147,30 +143,20 @@ export const EditRole = () => {
                   applicationId: String(generalData?.k_Aplica) || "",
                 },
               },
-              ancillaryAccounts: {
-                isValid: false,
+            }));
+            originalDataEditRoleLinixForm.current = {
+              ...originalDataEditRoleLinixForm.current!,
+              generalInformation: {
+                isValid: true,
                 values: {
-                  officialSector: "",
-                  commercialSector: "",
-                  solidaritySector: "",
+                  k_Rol: Number(generalData?.k_Rol) || 0,
+                  n_Rol: String(generalData?.n_Rol) || "",
+                  description: String(generalData?.n_Uso) || "",
+                  application: String(generalData?.k_Aplica) || "",
+                  applicationId: String(generalData?.k_Aplica) || "",
                 },
               },
-              transactionTypes: {
-                isValid: false,
-                values: [],
-              },
-              businessRules: {
-                values: [],
-              },
-              crediboardTasks: {
-                values: [],
-              },
-              useCases: {
-                values: [],
-              },
             };
-            setDataEditRoleLinixForm(initialFormData);
-            originalDataEditRoleLinixForm.current = initialFormData;
           }
         })
         .catch((error) => {
@@ -331,46 +317,6 @@ export const EditRole = () => {
     }
   };
 
-  const crediboardsTasks = () => {
-    if (!user) return;
-    if (crediboardTasks.length === 0) {
-      setLoading(true);
-      getCreditboardTasksByRole(k_Rol || "1")
-        .then((data) => {
-          if (data !== null) {
-            setCrediboardTask(data as Record<string, unknown>[]);
-            setDataEditRoleLinixForm((prevFormData: IFormAddRole) => ({
-              ...prevFormData,
-              crediboardTasks: {
-                isValid: true,
-                values: dataToAssignmentFormEntry({
-                  dataOptions: data as Record<string, unknown>[],
-                  idLabel: "id",
-                  valueLabel: "value",
-                  isActiveLabel: "i_Privi",
-                }),
-              },
-            }));
-            originalDataEditRoleLinixForm.current = {
-              ...originalDataEditRoleLinixForm.current!,
-              crediboardTasks: {
-                isValid: true,
-                values: dataToAssignmentFormEntry({
-                  dataOptions: data as Record<string, unknown>[],
-                  idLabel: "id",
-                  valueLabel: "value",
-                  isActiveLabel: "i_Privi",
-                }),
-              },
-            };
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching web options:", error.message);
-        });
-    }
-  };
-
   const rolesuseCases = () => {
     if (!user) return;
     if (useCases.length === 0) {
@@ -469,7 +415,6 @@ export const EditRole = () => {
   const roleCardData = dataEditRoleLinixForm && {
     code: dataEditRoleLinixForm.generalInformation.values.k_Rol,
     username: dataEditRoleLinixForm.generalInformation.values.n_Rol,
-    description: dataEditRoleLinixForm.generalInformation.values.description,
   };
 
   return (

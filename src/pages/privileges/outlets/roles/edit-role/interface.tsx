@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
 import { Stack, Breadcrumbs, inube, Tabs } from "@inube/design-system";
 import { PageTitle } from "@src/components/PageTitle";
@@ -11,7 +12,6 @@ import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { IFormAddRole, IHandleChangeFormData, IRol } from "../types";
 import { StyledContainerLoading } from "../../users/invite/styles";
-
 import {
   IAssignmentFormEntry,
   IMessageState,
@@ -47,6 +47,8 @@ interface IEditRoleUIProps {
 }
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
+  const [key, setKey] = useState(0);
+
   const {
     handleReset,
     handleDataChange,
@@ -65,14 +67,23 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     smallScreen,
     loading,
     id,
+    currentFormHasChanges,
   } = props;
+
+  const forceReRender = () => {
+    setKey((prevKey) => prevKey + 1);
+  };
 
   return loading ? (
     <StyledContainerLoading>
       <LoadingApp />
     </StyledContainerLoading>
   ) : (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+    <Stack
+      key={key}
+      direction="column"
+      padding={smallScreen ? "s200" : "s400 s800"}
+    >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s400} direction="column">
           <Breadcrumbs crumbs={editRoleConfig[0].crumbs} />
@@ -108,6 +119,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               k_Rol={id}
               linixRoles={linixRoles}
               handleSubmit={handleUpdateFormData}
+              onHasChanges={handleDataChange}
             />
           )}
 
@@ -116,6 +128,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               initialValues={dataEditRoleLinixForm.ancillaryAccounts.values}
               k_Rol={id}
               handleSubmit={handleUpdateFormData}
+              onHasChanges={handleDataChange}
             />
           )}
 
@@ -141,6 +154,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             <InitializerForm
               dataOptionsForms={dataEditRoleLinixForm.crediboardTasks.values}
               handleSubmit={() => []}
+              onHasChanges={handleDataChange}
             />
           )}
           {selectedTab === stepsAddRol.useCases.label && (
@@ -153,7 +167,15 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             />
           )}
           <Stack gap={inube.spacing.s200} justifyContent="flex-end">
-            <Button appearance="gray" onClick={handleReset} type="reset">
+            <Button
+              appearance="gray"
+              disabled={!currentFormHasChanges}
+              onClick={() => {
+                handleReset();
+                forceReRender();
+              }}
+              type="reset"
+            >
               Cancelar
             </Button>
             <Button
@@ -161,6 +183,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               onClick={onSubmit}
               loading={loading}
               type="button"
+              disabled={!currentFormHasChanges}
             >
               Guardar
             </Button>

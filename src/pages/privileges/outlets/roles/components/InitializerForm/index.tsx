@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { InitializerFormUI } from "./interface";
-import { IRol } from "../../types";
 import {
   IAssignmentFormEntry,
   IMessageState,
-} from "../../../users/types/forms.types";
+} from "@pages/privileges/outlets/users/types/forms.types";
+
+import { InitializerFormUI } from "./interface";
+import { IRol } from "../../types";
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
@@ -63,12 +64,13 @@ export function InitializerForm(props: IInitializerForm) {
       visible: false,
     });
 
-    navigate("/privileges/roles");
+    navigate("/privileges/linixUseCase");
   };
 
   return (
     <InitializerFormUI
       handleChangeInitializerForm={handleChangeRenderForm}
+      handleSubmitForm={() => {}}
       handleReset={handleReset}
       isLoading={isLoading}
       dataOptionsForms={formDataOptions}
