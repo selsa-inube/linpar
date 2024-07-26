@@ -21,7 +21,7 @@ interface IAncillaryAccountsFormProps {
   onSubmit?: (values: IAncillaryAccountsForm) => void;
   withSubmitButtons?: boolean;
   handleAddRoleFormValid?: (newValue: boolean) => void;
-  handleSubmit?: (values: IHandleChangeFormData) => void;
+  onFormValueChange?: (values: IHandleChangeFormData) => void;
 }
 
 export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
@@ -31,7 +31,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   const {
     onHasChanges,
     initialValues,
-    handleSubmit,
+    onFormValueChange,
     onSubmit,
     withSubmitButtons = false,
     handleAddRoleFormValid,
@@ -66,7 +66,7 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
     if (onHasChanges) onHasChanges(hasChanges(formikValues));
     formik.setFieldValue(name, value).then(() => {
       formik.validateForm().then((errors) => {
-        handleSubmit && handleSubmit(formikValues);
+        onFormValueChange && onFormValueChange(formikValues);
         setMessage({
           visible: true,
           data: generalMessage.success,

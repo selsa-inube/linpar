@@ -66,7 +66,6 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     dataTabs,
     smallScreen,
     loading,
-    id,
     currentFormHasChanges,
   } = props;
 
@@ -116,9 +115,8 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
           {selectedTab === stepsAddRol.generalInformation.label && (
             <GeneralInformationForm
               initialValues={dataEditRoleLinixForm.generalInformation.values}
-              k_Rol={id}
               linixRoles={linixRoles}
-              handleSubmit={handleUpdateFormData}
+              onFormValueChange={handleUpdateFormData}
               onHasChanges={handleDataChange}
             />
           )}
@@ -126,8 +124,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
           {selectedTab === stepsAddRol.ancillaryAccounts.label && (
             <AncillaryAccountsForm
               initialValues={dataEditRoleLinixForm.ancillaryAccounts.values}
-              k_Rol={id}
-              handleSubmit={handleUpdateFormData}
+              onFormValueChange={handleUpdateFormData}
               onHasChanges={handleDataChange}
             />
           )}
@@ -136,7 +133,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             <InitializerForm
               onHasChanges={handleDataChange}
               dataOptionsForms={dataEditRoleLinixForm.transactionTypes.values}
-              handleSubmit={handleUpdateFormData}
+              onFormValueChange={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
             />
@@ -145,7 +142,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             <InitializerForm
               onHasChanges={handleDataChange}
               dataOptionsForms={dataEditRoleLinixForm.businessRules.values}
-              handleSubmit={handleUpdateFormData}
+              onFormValueChange={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
             />
@@ -153,7 +150,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
           {selectedTab === stepsAddRol.crediboardTasks.label && (
             <InitializerForm
               dataOptionsForms={dataEditRoleLinixForm.crediboardTasks.values}
-              handleSubmit={() => []}
+              onFormValueChange={() => []}
               onHasChanges={handleDataChange}
             />
           )}
@@ -161,7 +158,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
             <InitializerForm
               onHasChanges={handleDataChange}
               dataOptionsForms={dataEditRoleLinixForm.useCases.values}
-              handleSubmit={handleUpdateFormData}
+              onFormValueChange={handleUpdateFormData}
               changeData={csOptionsChange}
               setChangedData={setCsOptionsChange}
             />

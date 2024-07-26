@@ -11,7 +11,7 @@ import { IRol } from "../../types";
 
 interface IInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
-  handleSubmit: (renderForm: IAssignmentFormEntry[]) => void;
+  onFormValueChange: (renderForm: IAssignmentFormEntry[]) => void;
   id?: string;
   keyData?: string;
   nameDB?: string;
@@ -28,7 +28,7 @@ interface IInitializerForm {
 export function InitializerForm(props: IInitializerForm) {
   const {
     dataOptionsForms: initialDataOptionsForms,
-    handleSubmit,
+    onFormValueChange,
     onHasChanges,
     readOnly = false,
     setChangedData = () => {},
@@ -49,7 +49,7 @@ export function InitializerForm(props: IInitializerForm) {
   const handleChangeRenderForm = (renderForm: IAssignmentFormEntry[]) => {
     setFormDataOptions(renderForm);
     if (onHasChanges) onHasChanges(hasChanges(renderForm));
-    handleSubmit(renderForm);
+    onFormValueChange(renderForm);
   };
 
   const navigate = useNavigate();

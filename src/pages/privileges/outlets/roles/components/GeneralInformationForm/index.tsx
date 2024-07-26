@@ -25,7 +25,7 @@ interface IGeneralInformationFormProps {
   onHasChanges?: (hasChanges: boolean) => void;
   handleAddRoleFormValid?: (newValue: boolean) => void;
   currentStep?: number;
-  handleSubmit?: (values: IHandleChangeFormData) => void;
+  onFormValueChange?: (values: IHandleChangeFormData) => void;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -35,7 +35,7 @@ export const GeneralInformationForm = forwardRef(
   ) {
     const {
       initialValues,
-      handleSubmit,
+      onFormValueChange,
       onHasChanges,
       onSubmit,
       withSubmitButtons = false,
@@ -69,7 +69,7 @@ export const GeneralInformationForm = forwardRef(
       if (onHasChanges) onHasChanges(hasChanges(formikValues));
       formik.setFieldValue(name, value).then(() => {
         formik.validateForm().then((errors) => {
-          handleSubmit && handleSubmit(formikValues);
+          onFormValueChange && onFormValueChange(formikValues);
           setMessage({
             visible: true,
             data: generalMessage.success,
