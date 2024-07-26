@@ -9,7 +9,6 @@ interface AncillaryAccountsFormsUIProps {
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: IAncillaryAccountsForm) => boolean;
   handleChangeForm: (name: string, value: string) => void;
-
   message: IMessageState;
   onCloseSectionMessage: () => void;
 }
