@@ -54,12 +54,15 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
 
   const smallScreen = useMediaQuery("(max-width: 650px)");
 
-  const filteredRows = entries.filter(
-    (entry) =>
-      entry.value.toLowerCase().includes(filter.toLowerCase()) ||
-      entry.id.includes(filter.toLowerCase())
-  );
-  const dataValidations = entries.length === 0;
+  const filteredRows =
+    entries &&
+    entries.filter(
+      (entry) =>
+        entry.value.toLowerCase().includes(filter.toLowerCase()) ||
+        entry.id.includes(filter.toLowerCase())
+    );
+  const dataValidations =
+    (entries && entries.length === 0) || typeof entries === "undefined";
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -111,7 +114,8 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                   spacing="compact"
                   onClick={() => handleToggleAllEntries(false)}
                   disabled={
-                    !entries.some((entry) => entry.isActive) || dataValidations
+                    (entries && entries.some((entry) => entry.isActive)) ||
+                    dataValidations
                   }
                 >
                   Desasignar todos
@@ -131,17 +135,18 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
           ) : (
             <StyledEntriesContainer>
               <Stack direction="column" gap={inube.spacing.s200} margin={"s0"}>
-                {filteredRows.map((entry) => (
-                  <Stack alignItems="center" key={entry.id}>
-                    <Switch
-                      id={entry.id}
-                      label={`${entry.id} - ${entry.value}`}
-                      checked={entry.isActive}
-                      onChange={() => handleToggleEntry(entry.id)}
-                      size="large"
-                    />
-                  </Stack>
-                ))}
+                {filteredRows &&
+                  filteredRows.map((entry) => (
+                    <Stack alignItems="center" key={entry.id}>
+                      <Switch
+                        id={entry.id}
+                        label={`${entry.id} - ${entry.value}`}
+                        checked={entry.isActive}
+                        onChange={() => handleToggleEntry(entry.id)}
+                        size="large"
+                      />
+                    </Stack>
+                  ))}
               </Stack>
             </StyledEntriesContainer>
           )}
