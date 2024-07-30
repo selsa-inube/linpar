@@ -42,7 +42,6 @@ function LinixUseCase() {
   };
   useEffect(() => {
     linixUseCaseData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
@@ -61,7 +60,6 @@ function LinixUseCase() {
         visible: true,
         data: messageType,
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idDeleted]);
 
   const handleSearchUseCase = (event: React.ChangeEvent<HTMLInputElement>) => {

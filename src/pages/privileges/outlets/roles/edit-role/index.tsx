@@ -106,7 +106,6 @@ export const EditRole = () => {
   useEffect(() => {
     rolesData();
     rolesCuentasAuxiliares();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -118,8 +117,6 @@ export const EditRole = () => {
     ]).then(() => {
       setLoading(true);
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [k_Rol]);
 
   const rolesData = async () => {
