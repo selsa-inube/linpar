@@ -12,7 +12,8 @@ interface IRolByPosition {
 }
 
 export interface IPosition {
-  i_Activo: "Y" | "N";
+  id?: string;
+  i_Activo: string;
   k_Grupo: string;
   n_Grupo: string;
   n_Uso: string;

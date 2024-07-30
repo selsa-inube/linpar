@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAll } from "@mocks/utils/dataMock.service";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { getPositions } from "@services/positions/getPositons";
 import { PositionsUI } from "./interface";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
@@ -17,21 +17,25 @@ export function Positions() {
   const [idDeleted, setIdDeleted] = useState("");
 
   const [positions, setPositions] = useState<IPosition[]>([]);
+  const { user } = useAuth0();
 
-  useEffect(() => {
-    getAll("linix-positions")
-      .then((data) => {
-        if (data !== null) {
-          setPositions(data as IPosition[]);
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
+  const linixPositionsData = async () => {
+    if (!user) return;
+    if (positions.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getPositions();
+        setPositions(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [positions]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixPositionsData();
+  }, [user]);
 
   useEffect(() => {
     const filterRecordRemoved = positions.filter(
