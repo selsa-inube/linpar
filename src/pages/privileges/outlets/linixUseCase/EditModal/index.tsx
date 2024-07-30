@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   IAssignmentFormEntry,
@@ -347,10 +347,12 @@ function EditCaseLinix() {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
   };
+  const navigate = useNavigate();
   const handleCloseSectionMessage = () => {
     setMessage({
       visible: false,
     });
+    navigate("/privileges/linixUseCase");
   };
   const editGeneral = generalInformationData;
 

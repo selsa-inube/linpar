@@ -1,22 +1,22 @@
+import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
-import {
-  Stack,
-  SkeletonLine,
-  Breadcrumbs,
-  inube,
-  Tabs,
-} from "@inube/design-system";
+import { Stack, Breadcrumbs, inube, Tabs } from "@inube/design-system";
 import { PageTitle } from "@src/components/PageTitle";
 import { SubjectCard } from "@src/components/cards/SubjectCard";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { Button } from "@inubekit/button";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
-import {
-  AncillaryAccountsForm,
-  IAncillaryAccountsForm,
-} from "../components/AncillaryAccountsForm";
-import { InitializerForm } from "../../forms/InitializerForm";
+import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
 import { stepsAddRol } from "../add-role/config/addRol.config";
-import { IAssignmentFormEntry } from "../../users/types/forms.types";
+import { IFormAddRole, IHandleChangeFormData, IRol } from "../types";
+import { StyledContainerLoading } from "../../users/invite/styles";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../users/types/forms.types";
+import { InitializerForm } from "../components/InitializerForm";
 
 interface ITabs {
   id: string;
@@ -25,44 +25,64 @@ interface ITabs {
 }
 
 interface IEditRoleUIProps {
-  roleCardData: { username: string; code: number };
-  data: any;
+  rolesEdit: IRol;
   dataTabs: ITabs[];
   onTabChange: (tabId: string) => void;
   selectedTab: string;
   smallScreen: boolean;
   loading: boolean;
-  rol_id: string;
-  valuesAncillaryAccounts: IAncillaryAccountsForm;
-  valuesTransactionTypes: IAssignmentFormEntry[];
-  valuesBusinessRules?: any;
-  valuesCreditboardTasks: IAssignmentFormEntry[];
-  valuesUseCases: IAssignmentFormEntry[];
-  handleUpdateDataSwitchstep: (values: any) => void;
+  id: number;
+  dataEditRoleLinixForm: IFormAddRole;
+  onSubmit: () => void;
+  onCloseSectionMessage: () => void;
+  handleUpdateFormData: (values: IHandleChangeFormData) => void;
+  handleDataChange: (hasChanges: boolean) => void;
+  setCsOptionsChange: (csOptionsChange: IAssignmentFormEntry[]) => void;
+  csOptionsChange: IAssignmentFormEntry[];
+  roleCardData: { username: string; code: number | undefined };
+  message: IMessageState;
+  linixRoles: Record<string, unknown>[];
+  currentFormHasChanges: boolean;
+  handleReset: () => void;
 }
 
 export const EditRoleUI = (props: IEditRoleUIProps) => {
+  const [key, setKey] = useState(0);
+
   const {
+    handleReset,
+    handleDataChange,
     roleCardData,
-    data,
+    setCsOptionsChange,
+    csOptionsChange,
+    dataEditRoleLinixForm,
+    handleUpdateFormData,
+    message,
+    onCloseSectionMessage,
+    linixRoles,
     onTabChange,
+    onSubmit,
     selectedTab,
     dataTabs,
     smallScreen,
     loading,
-    rol_id,
-    valuesAncillaryAccounts,
-    valuesTransactionTypes,
-    valuesBusinessRules,
-    valuesCreditboardTasks,
-    valuesUseCases,
-    handleUpdateDataSwitchstep,
+    currentFormHasChanges,
   } = props;
 
+  const forceReRender = () => {
+    setKey((prevKey) => prevKey + 1);
+  };
+
   return loading ? (
-    <SkeletonLine animated />
+    <StyledContainerLoading>
+      <LoadingApp />
+    </StyledContainerLoading>
   ) : (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+    <Stack
+      key={key}
+      direction="column"
+      padding={smallScreen ? "s200" : "s400 s800"}
+    >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s400} direction="column">
           <Breadcrumbs crumbs={editRoleConfig[0].crumbs} />
@@ -76,7 +96,6 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               description={editRoleConfig[0].description}
               navigatePage="/privileges/roles"
             />
-
             {roleCardData && (
               <SubjectCard
                 subjectData={roleCardData}
@@ -95,67 +114,82 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
           />
           {selectedTab === stepsAddRol.generalInformation.label && (
             <GeneralInformationForm
-              initialValues={data}
-              rol_id={rol_id}
-              withSubmitButtons
-              linixRoles={data}
+              initialValues={dataEditRoleLinixForm.generalInformation.values}
+              linixRoles={linixRoles}
+              onFormValueChange={handleUpdateFormData}
+              onHasChanges={handleDataChange}
             />
           )}
 
-          {selectedTab === stepsAddRol.auxiliaryAccounts.label && (
+          {selectedTab === stepsAddRol.ancillaryAccounts.label && (
             <AncillaryAccountsForm
-              initialValues={valuesAncillaryAccounts}
-              rol_id={rol_id}
-              withSubmitButtons
+              initialValues={dataEditRoleLinixForm.ancillaryAccounts.values}
+              onFormValueChange={handleUpdateFormData}
+              onHasChanges={handleDataChange}
             />
           )}
 
           {selectedTab === stepsAddRol.transactionTypes.label && (
             <InitializerForm
-              dataOptionsForms={valuesTransactionTypes}
-              handleSubmit={handleUpdateDataSwitchstep}
-              withSubmitButtons
-              id={rol_id}
-              keyData={"k_Rol"}
-              nameDB={"linix-roles"}
-              property={"tiposDeMovimientoContablePorRol"}
-              propertyData={"k_Id"}
+              onHasChanges={handleDataChange}
+              dataOptionsForms={dataEditRoleLinixForm.transactionTypes.values}
+              onFormValueChange={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
             />
           )}
           {selectedTab === stepsAddRol.businessRules.label && (
             <InitializerForm
-              dataOptionsForms={valuesBusinessRules}
-              handleSubmit={handleUpdateDataSwitchstep}
-              withSubmitButtons
-              id={rol_id}
-              keyData={"k_Rol"}
-              nameDB={"linix-roles"}
-              property={"reglasDeNegocioPorRol"}
-              propertyData={"k_Id"}
+              onHasChanges={handleDataChange}
+              dataOptionsForms={dataEditRoleLinixForm.businessRules.values}
+              onFormValueChange={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
             />
           )}
           {selectedTab === stepsAddRol.crediboardTasks.label && (
             <InitializerForm
-              dataOptionsForms={valuesCreditboardTasks}
-              handleSubmit={handleUpdateDataSwitchstep}
-              withSubmitButtons
-              id={rol_id}
-              keyData={"k_Rol"}
-              nameDB={"linix-roles"}
-              property={"tareasCrediboardPorRol"}
-              propertyData={"k_Id"}
+              dataOptionsForms={dataEditRoleLinixForm.crediboardTasks.values}
+              onFormValueChange={() => []}
+              onHasChanges={handleDataChange}
             />
           )}
           {selectedTab === stepsAddRol.useCases.label && (
             <InitializerForm
-              dataOptionsForms={valuesUseCases}
-              handleSubmit={handleUpdateDataSwitchstep}
-              withSubmitButtons
-              id={rol_id}
-              keyData={"k_Rol"}
-              nameDB={"linix-positions"}
-              property={"casosDeUsoPorRol"}
-              propertyData={"k_Id"}
+              onHasChanges={handleDataChange}
+              dataOptionsForms={dataEditRoleLinixForm.useCases.values}
+              onFormValueChange={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
+            />
+          )}
+          <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+            <Button
+              appearance="gray"
+              disabled={!currentFormHasChanges}
+              onClick={() => {
+                handleReset();
+                forceReRender();
+              }}
+              type="reset"
+            >
+              Cancelar
+            </Button>
+            <Button
+              appearance="primary"
+              onClick={onSubmit}
+              loading={loading}
+              type="button"
+              disabled={!currentFormHasChanges}
+            >
+              Guardar
+            </Button>
+          </Stack>
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={onCloseSectionMessage}
+              onMessageClosed={onCloseSectionMessage}
             />
           )}
         </>

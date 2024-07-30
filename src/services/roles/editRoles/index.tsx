@@ -1,0 +1,45 @@
+import { enviroment } from "@src/config/environment";
+import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { mapEditRolesEntityToApi } from "./mappers";
+
+const editRoles = async (editRole: IRol): Promise<IRol | undefined> => {
+  const requestUrl = `${enviroment.ICLIENT_API_URL_PERSISTENCE_POST}/roles`;
+
+  try {
+    const options: RequestInit = {
+      method: "PATCH",
+      headers: {
+        "X-Action": "ModificarRol",
+        "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(mapEditRolesEntityToApi(editRole)),
+    };
+
+    const res = await fetch(requestUrl, options);
+
+    if (res.status === 204) {
+      return;
+    }
+
+    let data;
+    try {
+      data = await res.json();
+    } catch (error) {
+      throw new Error("Failed to parse response JSON");
+    }
+
+    if (!res.ok) {
+      const errorMessage = `Error al modificar caso de uso linix. Status: ${
+        res.status
+      }, Data: ${JSON.stringify(data)}`;
+      throw new Error(errorMessage);
+    }
+    return data;
+  } catch (error) {
+    console.error("Failed to edit linix use case:", error);
+    throw error;
+  }
+};
+
+export { editRoles };
