@@ -25,7 +25,7 @@ export const titlesOptions = [
   },
 
   {
-    id: "n_Uso",
+    id: "k_Aplica",
     titleName: "Aplicación",
     priority: 2,
   },
@@ -40,6 +40,16 @@ export const RolesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
+export const linixRolesData = (
+  roles: IRol[],
+  filterAplication: (show: string) => void
+) =>
+  roles.map((entry) => ({
+    ...entry,
+    k_Rol: entry.k_Rol,
+    n_Rol: entry.n_Rol,
+    k_Aplica: filterAplication(entry.k_Aplica),
+  }));
 export const actionsConfigPosition = (
   linixRoles: IRol[],
   setIdDeleted: (show: IDeleteForMessage) => void
@@ -49,7 +59,7 @@ export const actionsConfigPosition = (
       (roleSelected) => ({
         Código: roleSelected?.k_Rol,
         Nombre: roleSelected?.n_Rol,
-        Aplicación: roleSelected?.n_Uso,
+        Aplicación: roleSelected?.k_Aplica,
         Activo: roleSelected?.i_Activo === "Y" ? "active" : "inactive",
       })
     );
@@ -57,8 +67,8 @@ export const actionsConfigPosition = (
     return [...data].shift();
   };
 
-  const selectedData = (k_Rol: number) =>
-    linixRoles.find((role) => role.k_Rol === k_Rol);
+  // const selectedData = (k_Rol: number) =>
+  //   linixRoles.find((role) => role.k_Rol === k_Rol);
 
   const actionsConfig = [
     {
@@ -90,8 +100,8 @@ export const actionsConfigPosition = (
       id: "Edit",
       actionName: "Editar",
       content: ({ k_Rol }: { k_Rol: number }) => (
-        <Link to={`edit/${k_Rol}`} onClick={() => selectedData(k_Rol)}>
-          <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
+        <Link to={`edit/${k_Rol}`}>
+          <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
         </Link>
       ),
       type: "primary",

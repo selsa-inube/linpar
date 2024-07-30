@@ -109,7 +109,6 @@ function AddingLinixUseCase() {
 
   useEffect(() => {
     clientServerButtonMenuOption();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.generalInformation.values.k_Opcion]);
 
   useEffect(() => {
@@ -123,7 +122,6 @@ function AddingLinixUseCase() {
     ]).then(() => {
       setLoading(false);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const usersData = () => {

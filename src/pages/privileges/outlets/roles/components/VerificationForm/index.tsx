@@ -63,7 +63,7 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
         attributes: [
           createAttribute(
             "Nombre del rol: ",
-            data.generalInformation.values.roleName
+            data.generalInformation.values.n_Rol
           ),
           createAttribute(
             "Descripción: ",

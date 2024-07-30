@@ -5,7 +5,7 @@ const mapCreditboardTasksByRoleFormatsApiToEntity = (
     k_Rol: String(reportsClientServerFormat.k_Rol),
     id: String(reportsClientServerFormat.id),
     value: String(reportsClientServerFormat.value),
-    isActive: Boolean(reportsClientServerFormat.isActive),
+    i_Privi: String(reportsClientServerFormat.i_Privi),
   };
   return buildreportsClientServerFormat;
 };

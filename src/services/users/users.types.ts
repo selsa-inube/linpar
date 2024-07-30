@@ -1,6 +1,7 @@
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 
 export interface IGeneralInformationUsersForm {
+  id?: string;
   k_Usuari: string;
   n_Usuari: string;
   k_Grupo: string;

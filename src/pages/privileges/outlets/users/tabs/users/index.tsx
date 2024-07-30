@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-
-import { Table, useMediaQuery } from "@inube/design-system";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Table } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IGeneralInformationUsersForm } from "@services/users/users.types";
-import { getAll } from "@mocks/utils/dataMock.service";
+import { getUsers } from "@services/users/getUsers";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { actionsConfigUsers } from "./config/dataUsers.config";
@@ -27,21 +28,25 @@ function UsersTab(props: UsersTabProps) {
   });
   const [idDeleted, setIdDeleted] = useState("");
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth0();
 
-  useEffect(() => {
-    getAll("linix-users")
-      .then((data) => {
-        if (data !== null) {
-          setUsers(data as IGeneralInformationUsersForm[]);
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
+  const linixUsersData = async () => {
+    if (!user) return;
+    if (users.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getUsers();
+        setUsers(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [users]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixUsersData();
+  }, [user]);
 
   useEffect(() => {
     const filterRecordRemoved = users.filter(
@@ -52,7 +57,6 @@ function UsersTab(props: UsersTabProps) {
         visible: true,
         data: deleteUserMessages.success,
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idDeleted]);
 
   const handleCloseSectionMessage = () => {

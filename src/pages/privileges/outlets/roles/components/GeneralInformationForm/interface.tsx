@@ -6,18 +6,16 @@ import {
   Grid,
   useMediaQuery,
 } from "@inube/design-system";
-import { FormButtons } from "@components/forms/submit/FormButtons";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
-import { IGeneralInformationForm } from ".";
+import { IGeneralInformationForm } from "../../types";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   isLoading?: boolean;
-  handleSubmit: () => void;
+  handleChangeForm: (name: string, value: string) => void;
   linixRoles: Record<string, unknown>[];
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: IGeneralInformationForm) => boolean;
@@ -30,16 +28,7 @@ const searchData = {
 };
 
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const {
-    formik,
-    handleSubmit,
-    linixRoles,
-    withSubmitButtons = false,
-    hasChanges,
-    isLoading,
-    message,
-    onCloseSectionMessage,
-  } = props;
+  const { formik, handleChangeForm, linixRoles } = props;
 
   const isMobile = useMediaQuery("(max-width: 750px)");
 
@@ -64,21 +53,21 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           <Textfield
             label="Nombre Rol"
             placeholder="Nombe del rol"
-            name="roleName"
-            id="roleName"
-            value={formik.values.roleName}
+            name="n_Rol"
+            id="n_Rol"
+            value={formik.values.n_Rol}
             type="text"
             size="compact"
             fullwidth
-            onChange={formik.handleChange}
+            onChange={(
+              event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+            ) => handleChangeForm(event.target.name, event.target.value)}
             required
             onBlur={formik.handleBlur}
             message={
-              stateValue("roleName") === "invalid"
-                ? formik.errors.roleName
-                : null
+              stateValue("n_Rol") === "invalid" ? formik.errors.n_Rol : null
             }
-            status={stateValue("roleName") === "invalid" ? "invalid" : null}
+            status={stateValue("n_Rol") === "invalid" ? "invalid" : null}
           />
 
           <SearchUserCard
@@ -93,11 +82,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             labelModal="Digite el código o nombre de la aplicación."
             placeholderModal="Digite el código o nombre de la aplicación."
             onUserSelect={(value) => {
-              formik.setValues({
-                ...formik.values,
-                applicationId: value.k_Aplica,
-                application: value.n_Aplica,
-              });
+              handleChangeForm("applicationId", value.k_Aplica as string);
             }}
             userData={linixRoles}
             searchFieldData={searchData}
@@ -128,7 +113,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           size="compact"
           fullwidth
           maxLength={20}
-          onChange={formik.handleChange}
+          onChange={(
+            event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+          ) => handleChangeForm(event.target.name, event.target.value)}
           required
           onBlur={formik.handleBlur}
           message={
@@ -139,27 +126,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           status={stateValue("description") === "invalid" ? "invalid" : null}
         />
       </Grid>
-      {withSubmitButtons && (
-        <>
-          <FormButtons
-            disabledButtons={
-              !hasChanges(formik.values) ||
-              !(Object.keys(formik.errors).length === 0)
-            }
-            handleSubmit={handleSubmit}
-            handleReset={formik.resetForm}
-            loading={isLoading}
-            children={""}
-          />
-          {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={formik.resetForm}
-            />
-          )}
-        </>
-      )}
     </form>
   );
 }

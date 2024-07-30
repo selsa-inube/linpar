@@ -5,7 +5,7 @@ const mapTipoDeMovimientoPorRolFormatsApiToEntity = (
     k_Rol: String(reportsClientServerFormat.k_Rol),
     CODIGO: String(reportsClientServerFormat.k_Tipmov),
     NOMBRE: String(reportsClientServerFormat.n_Tipmov),
-    asignado: Boolean(reportsClientServerFormat.i_Privi),
+    i_Privi: String(reportsClientServerFormat.i_Privi),
   };
   return buildreportsClientServerFormat;
 };

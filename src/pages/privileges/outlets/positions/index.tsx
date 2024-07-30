@@ -42,7 +42,6 @@ export function Positions() {
         visible: true,
         data: generalMessage.success,
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idDeleted]);
 
   const handleSearchPositions = (e: React.ChangeEvent<HTMLInputElement>) => {
