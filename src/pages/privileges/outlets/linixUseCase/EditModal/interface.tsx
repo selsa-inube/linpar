@@ -75,7 +75,7 @@ function EditUserUI(props: EditUserUIProps) {
     onCloseSectionMessage,
     selectLinixUseCase,
     userCardData,
-
+    currentFormHasChanges,
     id,
     message,
     filterNForma,
@@ -97,6 +97,8 @@ function EditUserUI(props: EditUserUIProps) {
   const forceReRender = () => {
     setKey((prevKey) => prevKey + 1);
   };
+
+  console.log("currentFormHasChanges", currentFormHasChanges);
 
   return loading ? (
     <StyledContainerLoading>
@@ -150,6 +152,7 @@ function EditUserUI(props: EditUserUIProps) {
           )}
           {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (
             <ClientServerButtonSelection
+              onHasChanges={handleDataChange}
               initialValues={formData.clientServerButton.values}
               handleSubmit={handleUpdateFormData}
               id={filterNForma as string}
@@ -206,6 +209,7 @@ function EditUserUI(props: EditUserUIProps) {
           <Stack gap={inube.spacing.s200} justifyContent="flex-end">
             <Button
               appearance="gray"
+              disabled={!currentFormHasChanges}
               onClick={() => {
                 handleReset();
                 forceReRender();
@@ -216,6 +220,7 @@ function EditUserUI(props: EditUserUIProps) {
             </Button>
             <Button
               appearance="primary"
+              disabled={!currentFormHasChanges}
               onClick={onSubmit}
               loading={loading}
               type="button"
