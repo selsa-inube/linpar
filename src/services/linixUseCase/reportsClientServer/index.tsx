@@ -1,4 +1,4 @@
-import { enviroment } from "@src/config/environment";
+import { environment } from "@src/config/environment";
 import { mapReportsClientServerFormatsApiToEntities } from "./mappers";
 
 const getReportsClientServerFormats = async (
@@ -7,14 +7,14 @@ const getReportsClientServerFormats = async (
   const maxRetries = 5;
   const fetchTimeout = 3000;
 
-  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY_PROCESS}/casos-de-uso/${k_Usecase}`;
+  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/casos-de-uso/${k_Usecase}`;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
-      Realm: enviroment.REALM,
+      Realm: environment.REALM,
       "X-Action": "SearchReportesCsPorCasoDeUsoFull",
-      "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

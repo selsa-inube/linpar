@@ -1,9 +1,9 @@
 const IS_PRODUCTION = import.meta.env.PROD;
-const AUTH_REDIRECT_URI = import.meta.env.VITE_AUTH_REDIRECT_URI;
+const AUTH_REDIRECT_URI = import.meta.env.VITE_AUTH0_REDIRECT_URI;
 
-const enviroment = {
-  CLIENT_ID: import.meta.env.VITE_AUTH_CLIENT_ID,
-  CLIENT_SECRET: import.meta.env.VITE_AUTH_CLIENT_SECRET,
+const environment = {
+  CLIENT_ID: import.meta.env.VITE_AUTH0_CLIENT_ID,
+  CLIENT_SECRET: import.meta.env.VITE_AUTH0_CLIENT_SECRET,
   REALM: import.meta.env.VITE_AUTH_REALM,
   PROVIDER: import.meta.env.VITE_AUTH_PROVIDER,
   REDIRECT_URI: IS_PRODUCTION ? window.location.origin : AUTH_REDIRECT_URI,
@@ -15,6 +15,7 @@ const enviroment = {
   TEMP_BUSINESS_UNIT: "LINIX",
   ICLIENT_API_URL_QUERY_USERS_PROCESS: import.meta.env
     .VITE_IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE,
+  AUTH0_DOMAIN: import.meta.env.VITE_AUTH0_DOMAIN,
 };
 
-export { enviroment };
+export { environment };

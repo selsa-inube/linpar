@@ -1,16 +1,16 @@
-import { enviroment } from "@src/config/environment";
+import { environment } from "@src/config/environment";
 import { IRol } from "@src/pages/privileges/outlets/roles/types";
 import { mapRolesUseCaseApiToEntities } from "./mapper";
 
 const getRoles = async (): Promise<IRol[]> => {
-  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY_PROCESS}/roles`;
+  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/roles`;
 
   try {
     const options: RequestInit = {
       method: "GET",
       headers: {
         "X-Action": "QueryAllRoles",
-        "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
     };
