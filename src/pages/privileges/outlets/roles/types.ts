@@ -1,26 +1,27 @@
 import { FormikProps } from "formik";
 
 import { IAncillaryAccountsForm } from "./components/AncillaryAccountsForm";
-import { IGeneralInformationForm } from "./components/GeneralInformationForm";
+import { IAssignmentFormEntry } from "../users/types/forms.types";
 
 export interface IDeleteForMessage {
   id: number;
   successfulDiscard: boolean;
 }
 
-interface ICasosDeUsoPorRol {
-  k_Rol: number;
+export interface ICasosDeUsoPorRol {
+  k_Rol?: number;
   k_Usecase: string;
 }
-interface ICuentasAuxiliaresPorRol {
+export interface ICuentasAuxiliaresPorRol {
+  id?: number;
   i_Tipent: string;
   k_Codcta: string;
   k_Rol: number;
 }
 
-interface IReglasDeNegocioPorRol {
+export interface IReglasDeNegocioPorRol {
   k_Regla: string;
-  k_Rol: number;
+  k_Rol?: number;
 }
 
 interface ITareasCrediboardPorRol {
@@ -28,15 +29,15 @@ interface ITareasCrediboardPorRol {
   tarea: string;
 }
 
-interface ITiposDeMovimientoContablePorRol {
-  k_Rol: number;
+export interface ITiposDeMovimientoContablePorRol {
+  k_Rol?: number;
   k_Tipmov: string;
-  n_Tipmov: string;
-  i_Privi: boolean;
+  n_Tipmov?: string;
 }
 
 export interface IRol {
   id?: number;
+  modifyJustification?: string;
   i_Activo: string;
   k_Rol: number;
   k_Tipcon: string;
@@ -61,6 +62,13 @@ export interface IStep {
   description: string;
 }
 
+export interface IGeneralInformationForm {
+  k_Rol?: number;
+  n_Rol: string;
+  description: string;
+  application: string;
+  applicationId: string;
+}
 interface IGeneralInformation {
   isValid: boolean;
   values: IGeneralInformationForm;
@@ -90,3 +98,8 @@ export interface IFormAddRole {
   crediboardTasks: IOptionInitialiceForm;
   useCases: IOptionInitialiceForm;
 }
+
+export type IHandleChangeFormData =
+  | IGeneralInformationForm
+  | IAncillaryAccountsForm
+  | IAssignmentFormEntry[];

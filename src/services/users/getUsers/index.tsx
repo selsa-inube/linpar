@@ -1,16 +1,16 @@
-import { enviroment } from "@src/config/environment";
+import { environment } from "@src/config/environment";
 
 import { mapUsersApiToEntities } from "./mappers";
 import { IGeneralInformationUsersForm } from "../users.types";
 
 const getUsers = async (): Promise<IGeneralInformationUsersForm[]> => {
-  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY_USERS_PROCESS}/usuario-full`;
+  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_USERS_PROCESS}/usuario-full`;
 
   try {
     const options: RequestInit = {
       method: "GET",
       headers: {
-        "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

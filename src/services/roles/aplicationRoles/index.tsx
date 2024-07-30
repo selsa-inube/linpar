@@ -1,18 +1,18 @@
-import { enviroment } from "@src/config/environment";
+import { environment } from "@src/config/environment";
 import { mapAplicationRolesFormatsApiToEntities } from "./mappers";
 
 const getAplicationRoles = async (): Promise<Record<string, unknown>[]> => {
   const maxRetries = 5;
   const fetchTimeout = 3000;
 
-  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY_PROCESS}/aplicaciones`;
+  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/aplicaciones`;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
-      Realm: enviroment.REALM,
+      Realm: environment.REALM,
       "X-Action": "SearchAllAplicacion",
-      "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

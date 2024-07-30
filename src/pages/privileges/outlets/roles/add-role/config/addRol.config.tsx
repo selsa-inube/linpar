@@ -9,7 +9,7 @@ export const stepsAddRol = {
     label: "Información general",
     description: "Por favor completa la información general.",
   },
-  auxiliaryAccounts: {
+  ancillaryAccounts: {
     id: 2,
     label: "Cuentas Mayores",
     description: "Por favor completa la información de cuentas mayores.",

@@ -1,21 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
-
-import { IFormAddRole, IFormAddRoleRef, IInitialiceFormRole } from "../types";
+import { getRolFormats } from "@services/roles/ tipoDeMovimientoPorRol";
+import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRole";
+import { getCreditboardTasksByRole } from "@services/roles/creditboardTasksByRole";
+import { getUseCaseByRole } from "@services/roles/useCasesByRole";
+import { getAplicationRoles } from "@services/roles/aplicationRoles";
+import {
+  IFormAddRole,
+  IFormAddRoleRef,
+  IGeneralInformationForm,
+  IInitialiceFormRole,
+} from "../types";
 import { addRoleStepsRules } from "./utils";
 import { stepsAddRol } from "./config/addRol.config";
-import { IGeneralInformationForm } from "../components/GeneralInformationForm";
+
 import { IAncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
-import { getRolFormats } from "@src/services/roles/ tipoDeMovimientoPorRol";
-import { useAuth0 } from "@auth0/auth0-react";
-import { getBusinessRulesByRoleFormats } from "@src/services/roles/businessRulesByRole";
-import { getCreditboardTasksByRole } from "@src/services/roles/creditboardTasksByRole";
-import { getUseCaseByRole } from "@src/services/roles/useCasesByRole";
-import { getAplicationRoles } from "@src/services/roles/aplicationRoles";
 
 const steps = Object.values(stepsAddRol);
 
@@ -51,8 +54,7 @@ export function AddRol() {
       generalInformation: {
         isValid: true,
         values: {
-          roleName:
-            initialValuesAddRol.generalInformation.values.roleName.trim(),
+          n_Rol: initialValuesAddRol.generalInformation.values.n_Rol.trim(),
           description:
             initialValuesAddRol.generalInformation.values.description.trim(),
           application:
@@ -113,7 +115,7 @@ export function AddRol() {
                   dataOptions: data as Record<string, unknown>[],
                   idLabel: "CODIGO",
                   valueLabel: "NOMBRE",
-                  isActiveLabel: "asignado",
+                  isActiveLabel: "i_Privi",
                 }),
               },
             }));
@@ -143,7 +145,7 @@ export function AddRol() {
                   dataOptions: data as Record<string, unknown>[],
                   idLabel: "k_Regla",
                   valueLabel: "n_Regla",
-                  isActiveLabel: "asignado",
+                  isActiveLabel: "i_Privi",
                 }),
               },
             }));
@@ -190,7 +192,7 @@ export function AddRol() {
                   dataOptions: data as Record<string, unknown>[],
                   idLabel: "id",
                   valueLabel: "value",
-                  isActiveLabel: "isActive",
+                  isActiveLabel: "i_Privi",
                 }),
               },
             }));

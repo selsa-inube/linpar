@@ -1,16 +1,17 @@
 import { environment } from "@src/config/environment";
+import { ICuentasAuxiliaresPorRol } from "@src/pages/privileges/outlets/roles/types";
+import { mapRolesCuentasAuxiliaresApiToEntities } from "./mappers";
 
-import { mapLinixUseCaseApiToEntities } from "./mapper";
-import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
-
-const getLinixUseCase = async (): Promise<UseCase[]> => {
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/casos-de-uso`;
+const getRolesCuentasAuxiliares = async (): Promise<
+  ICuentasAuxiliaresPorRol[]
+> => {
+  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/roles`;
 
   try {
     const options: RequestInit = {
       method: "GET",
       headers: {
-        "X-Action": "SearchAllCasoDeUso",
+        "X-Action": "QueryAllCuentasAuxiliaresPorRol",
         "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -29,7 +30,7 @@ const getLinixUseCase = async (): Promise<UseCase[]> => {
     }
 
     const normalizedUser = Array.isArray(data)
-      ? mapLinixUseCaseApiToEntities(data)
+      ? mapRolesCuentasAuxiliaresApiToEntities(data)
       : [];
 
     return normalizedUser;
@@ -40,4 +41,4 @@ const getLinixUseCase = async (): Promise<UseCase[]> => {
   return [];
 };
 
-export { getLinixUseCase };
+export { getRolesCuentasAuxiliares };

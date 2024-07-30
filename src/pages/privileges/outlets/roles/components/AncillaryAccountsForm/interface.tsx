@@ -1,37 +1,22 @@
 import { FormikValues } from "formik";
 import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
-import { FormButtons } from "@components/forms/submit/FormButtons";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IAncillaryAccountsForm } from ".";
 
 interface AncillaryAccountsFormsUIProps {
   formik: FormikValues;
   withSubmitButtons: boolean;
   hasChanges: (valueCompare: IAncillaryAccountsForm) => boolean;
-  handleSubmit: (name: string, value: string) => void;
-  isLoading?: boolean;
+  handleChangeForm: (name: string, value: string) => void;
   message: IMessageState;
   onCloseSectionMessage: () => void;
 }
 
 export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
-  const {
-    formik,
-    withSubmitButtons,
-    hasChanges,
-    handleSubmit,
-    isLoading,
-    message,
-    onCloseSectionMessage,
-  } = props;
+  const { handleChangeForm, formik } = props;
 
   const isMobile = useMediaQuery("(max-width: 750px)");
-
-  const handleFormReset = () => {
-    formik.resetForm();
-  };
 
   return (
     <form>
@@ -42,18 +27,6 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
         autoRows="unset"
       >
         <Textfield
-          label="Sector oficial"
-          placeholder="#######, #######, ..."
-          name="officialSector"
-          id="officialSector"
-          value={formik.values.officialSector}
-          type="text"
-          size="compact"
-          fullwidth
-          onChange={formik.handleChange}
-        />
-
-        <Textfield
           label="Sector comercial"
           placeholder="#######, #######, ..."
           name="commercialSector"
@@ -62,7 +35,23 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           type="text"
           size="compact"
           fullwidth
-          onChange={formik.handleChange}
+          onChange={(
+            event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+          ) => handleChangeForm(event.target.name, event.target.value)}
+        />
+        <Textfield
+          label="Sector oficial"
+          placeholder="#######, #######, ..."
+          name="officialSector"
+          id="officialSector"
+          value={formik.values.officialSector}
+          type="text"
+          size="compact"
+          fullwidth
+          onBlur={formik.handleBlur}
+          onChange={(
+            event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+          ) => handleChangeForm(event.target.name, event.target.value)}
         />
 
         <Textfield
@@ -74,26 +63,11 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           type="text"
           size="compact"
           fullwidth
-          onChange={formik.handleChange}
+          onChange={(
+            event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+          ) => handleChangeForm(event.target.name, event.target.value)}
         />
       </Grid>
-
-      {withSubmitButtons && (
-        <FormButtons
-          disabledButtons={!hasChanges(formik.values)}
-          handleSubmit={handleSubmit}
-          handleReset={handleFormReset}
-          loading={isLoading}
-        />
-      )}
-
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={onCloseSectionMessage}
-          onMessageClosed={handleFormReset}
-        />
-      )}
     </form>
   );
 }

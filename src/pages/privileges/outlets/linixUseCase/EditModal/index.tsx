@@ -433,7 +433,6 @@ function EditCaseLinix() {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
   };
-
   const navigate = useNavigate();
   const handleCloseSectionMessage = () => {
     setMessage({

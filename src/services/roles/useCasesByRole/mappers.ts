@@ -5,7 +5,7 @@ const mapUseCasesByRoleByRoleFormatsApiToEntity = (
     k_Rol: String(rolesUseCaseByRolesFormat.k_Rol),
     k_Usecase: String(rolesUseCaseByRolesFormat.k_Usecase),
     n_Usecase: String(rolesUseCaseByRolesFormat.n_Usecase),
-    i_Privi: Boolean(rolesUseCaseByRolesFormat.i_Privi),
+    i_Privi: String(rolesUseCaseByRolesFormat.i_Privi),
   };
   return buildRolesUseCaseByRolesFormat;
 };

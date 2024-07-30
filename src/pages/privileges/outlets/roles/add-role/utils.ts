@@ -1,4 +1,4 @@
-import { addRoles } from "@src/services/roles/postRoles";
+import { addRoles } from "@services/roles/postRoles";
 import { stepsAddRol } from "./config/addRol.config";
 import { initialValuesAddRol } from "./config/initialValues";
 import { IFormAddRole, IFormAddRoleRef, IRol } from "../types";
@@ -30,7 +30,7 @@ export const addRoleStepsRules = (
           isValid: false,
           values: {
             ...initialValuesAddRol.generalInformation,
-            roleName: values.roleName,
+            n_Rol: values.n_Rol,
             description: values.description,
             application: values.application,
             applicationId: values.applicationId,
@@ -40,7 +40,7 @@ export const addRoleStepsRules = (
 
       return newAddLinixRole;
     }
-    case stepsAddRol.auxiliaryAccounts.id: {
+    case stepsAddRol.ancillaryAccounts.id: {
       const values = formReferences.ancillaryAccounts.current?.values;
 
       if (!values) return addLinixRole;
@@ -120,7 +120,6 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
       k_Rol: rolId,
       k_Tipmov: mapNewTransactionType.id,
       n_Tipmov: mapNewTransactionType.value,
-      i_Privi: true,
     }));
 
   const normalizeUseCases = useCasesValues
@@ -128,22 +127,21 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
     .map((mapNewUseCases) => ({
       k_Rol: rolId,
       k_Usecase: mapNewUseCases.id,
-      i_Privi: true,
     }));
 
   const normalizeBusinessRules = businessRulesValues
     .filter((businessRules) => businessRules.isActive === true)
     .map((mapBusinessRules) => ({
       k_Rol: rolId,
-      k_Regla: mapBusinessRules.value,
+      k_Regla: mapBusinessRules.id,
     }));
 
   const newRole: IRol = {
     i_Activo: "Y",
     k_Rol: rolId,
     k_Tipcon: addRoleFormValid.generalInformation.values.applicationId,
-    n_Rol: addRoleFormValid.generalInformation.values.roleName,
-    n_Uso: addRoleFormValid.generalInformation.values.application,
+    n_Rol: addRoleFormValid.generalInformation.values.n_Rol,
+    n_Uso: addRoleFormValid.generalInformation.values.description,
     k_Aplica: addRoleFormValid.generalInformation.values.applicationId,
     tiposDeMovimientoContablePorRol: normalizeTransactionTypes,
     reglasDeNegocioPorRol: normalizeBusinessRules,

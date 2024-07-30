@@ -1,11 +1,14 @@
 import { FormikProps, useFormik } from "formik";
 import { forwardRef, useImperativeHandle, useState, useEffect } from "react";
-import { AncillaryAccountsFormsUI } from "./interface";
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
-import { updateItemData } from "@mocks/utils/dataMock.service";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+
+import { AncillaryAccountsFormsUI } from "./interface";
+import { IHandleChangeFormData } from "../../types";
+import { generalMessage } from "../../config/messages.config";
 export interface IAncillaryAccountsForm {
+  id?: number;
+  k_Rol?: number;
   officialSector: string;
   commercialSector: string;
   solidaritySector: string;
@@ -13,10 +16,12 @@ export interface IAncillaryAccountsForm {
 
 interface IAncillaryAccountsFormProps {
   initialValues: IAncillaryAccountsForm;
-  rol_id?: string | number;
+  k_Rol?: number;
+  onHasChanges?: (hasChanges: boolean) => void;
   onSubmit?: (values: IAncillaryAccountsForm) => void;
   withSubmitButtons?: boolean;
   handleAddRoleFormValid?: (newValue: boolean) => void;
+  onFormValueChange?: (values: IHandleChangeFormData) => void;
 }
 
 export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
@@ -24,13 +29,14 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   ref: React.Ref<FormikProps<IAncillaryAccountsForm>>
 ) {
   const {
+    onHasChanges,
     initialValues,
-    rol_id,
+    onFormValueChange,
     onSubmit,
     withSubmitButtons = false,
     handleAddRoleFormValid,
   } = props;
-  const [isLoading, setIsLoading] = useState(false);
+
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
@@ -45,45 +51,27 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   const hasChanges = (valueCompare: IAncillaryAccountsForm) =>
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
-  const handleSubmit = async () => {
-    setIsLoading(true);
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+  };
 
-    const editedAccounts = Object.entries(formik.values).map(
-      ([key, value]) => ({
-        i_Tipent: key,
-        k_Codcta: value,
-      })
-    );
+  const handleChangeForm = (name: string, value: string) => {
+    const formikValues = {
+      ...formik.values,
+      [name]: value,
+    };
 
-    await updateItemData({
-      key: "k_Rol",
-      nameDB: "linix-roles",
-      identifier: rol_id as string,
-      editData: editedAccounts,
-      property: "cuentasAuxiliaresPorRol",
-    })
-      .then(() => {
+    if (onHasChanges) onHasChanges(hasChanges(formikValues));
+    formik.setFieldValue(name, value).then(() => {
+      formik.validateForm().then((errors) => {
+        onFormValueChange && onFormValueChange(formikValues);
         setMessage({
           visible: true,
           data: generalMessage.success,
         });
-      })
-      .catch((error) => {
-        setMessage({
-          visible: true,
-          data: generalMessage.failed,
-        });
-
-        console.info(error.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
-  };
-
-  const handleCloseSectionMessage = () => {
-    setMessage({
-      visible: false,
     });
   };
 
@@ -100,12 +88,11 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   return (
     <AncillaryAccountsFormsUI
       formik={formik}
-      handleSubmit={handleSubmit}
+      handleChangeForm={handleChangeForm}
       withSubmitButtons={withSubmitButtons}
       hasChanges={hasChanges}
       message={message}
       onCloseSectionMessage={handleCloseSectionMessage}
-      isLoading={isLoading}
     />
   );
 });

@@ -1,23 +1,19 @@
 import { environment } from "@src/config/environment";
 import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { mapEditRolesEntityToApi } from "./mappers";
 
-import { IdeleteRoles } from "./types";
-import { mapRolesDeleteEntityToApi } from "./mappers";
-
-const deleteRoles = async (
-  deletedRol: IdeleteRoles
-): Promise<IRol | undefined> => {
+const editRoles = async (editRole: IRol): Promise<IRol | undefined> => {
   const requestUrl = `${environment.ICLIENT_API_URL_PERSISTENCE_POST}/roles`;
 
   try {
     const options: RequestInit = {
-      method: "DELETE",
+      method: "PATCH",
       headers: {
-        "X-Action": "EliminarRol",
+        "X-Action": "ModificarRol",
         "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
-      body: JSON.stringify(mapRolesDeleteEntityToApi(deletedRol)),
+      body: JSON.stringify(mapEditRolesEntityToApi(editRole)),
     };
 
     const res = await fetch(requestUrl, options);
@@ -34,16 +30,16 @@ const deleteRoles = async (
     }
 
     if (!res.ok) {
-      const errorMessage = `Error al eliminar el rol. Status: ${
+      const errorMessage = `Error al modificar caso de uso linix. Status: ${
         res.status
       }, Data: ${JSON.stringify(data)}`;
       throw new Error(errorMessage);
     }
     return data;
   } catch (error) {
-    console.error("Failed to delete roles:", error);
+    console.error("Failed to edit linix use case:", error);
     throw error;
   }
 };
 
-export { deleteRoles };
+export { editRoles };

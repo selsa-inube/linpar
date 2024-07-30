@@ -1,19 +1,19 @@
 import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
-import { enviroment } from "@src/config/environment";
+import { environment } from "@src/config/environment";
 import { mapEditLinixUseCaseEntityToApi } from "./mapper";
 
 const editLinixUseCase = async (
   editUseCase: UseCase
 ): Promise<UseCase | undefined> => {
-  const requestUrl = `${enviroment.ICLIENT_API_URL_PERSISTENCE_POST}/casos-de-uso`;
+  const requestUrl = `${environment.ICLIENT_API_URL_PERSISTENCE_POST}/casos-de-uso`;
 
   try {
     const options: RequestInit = {
       method: "PATCH",
       headers: {
         "X-Action": "ModificarCasoDeUso",
-        "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapEditLinixUseCaseEntityToApi(editUseCase)),
