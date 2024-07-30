@@ -1,18 +1,18 @@
-import { enviroment } from "@src/config/environment";
+import { environment } from "@src/config/environment";
 
 import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { mapSelectLinixUseCaseApiToEntities } from "./mappers";
 
 const getSelectLinixUseCase = async (): Promise<Option[]> => {
-  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY_PROCESS}/enumerators/dmitipusec`;
+  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/enumerators/dmitipusec`;
 
   try {
     const options: RequestInit = {
       method: "GET",
       headers: {
         "X-Action": "GetEnum",
-        "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

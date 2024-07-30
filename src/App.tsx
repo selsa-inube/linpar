@@ -18,13 +18,12 @@ import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
-
-const redirect_uri = window.location.origin;
+import { environment } from "./config/environment";
 
 function LogOut() {
   localStorage.clear();
   const { logout } = useAuth0();
-  logout({ logoutParams: { returnTo: redirect_uri } });
+  logout({ logoutParams: { returnTo: environment.REDIRECT_URI } });
   return <AppPage />;
 }
 

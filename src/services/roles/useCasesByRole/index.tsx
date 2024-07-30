@@ -1,4 +1,4 @@
-import { enviroment } from "@src/config/environment";
+import { environment } from "@src/config/environment";
 import { mapUseCasesByRoleByRoleFormatsApiToEntities } from "./mappers";
 
 const getUseCaseByRole = async (
@@ -7,14 +7,14 @@ const getUseCaseByRole = async (
   const maxRetries = 5;
   const fetchTimeout = 3000;
 
-  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY_PROCESS}/roles/${k_Rol}`;
+  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/roles/${k_Rol}`;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
-      Realm: enviroment.REALM,
+      Realm: environment.REALM,
       "X-Action": "QueryCasosDeUsoPorRolFull",
-      "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
   };
