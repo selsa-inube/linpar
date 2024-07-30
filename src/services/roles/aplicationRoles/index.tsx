@@ -5,7 +5,7 @@ const getAplicationRoles = async (): Promise<Record<string, unknown>[]> => {
   const maxRetries = 5;
   const fetchTimeout = 3000;
 
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/aplicaciones`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/aplicaciones`;
 
   const options: RequestInit = {
     method: "GET",

@@ -5,7 +5,7 @@ import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-
 import { mapSelectLinixUseCaseApiToEntities } from "./mappers";
 
 const getSelectLinixUseCase = async (): Promise<Option[]> => {
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/enumerators/dmitipusec`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/enumerators/dmitipusec`;
 
   try {
     const options: RequestInit = {

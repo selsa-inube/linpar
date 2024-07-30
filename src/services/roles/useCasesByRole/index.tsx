@@ -7,7 +7,7 @@ const getUseCaseByRole = async (
   const maxRetries = 5;
   const fetchTimeout = 3000;
 
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/roles/${k_Rol}`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/roles/${k_Rol}`;
 
   const options: RequestInit = {
     method: "GET",
