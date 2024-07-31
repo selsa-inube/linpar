@@ -114,28 +114,27 @@ function RenderFormFields(
             options={selectLinixUseCase}
           />
         </StyledSelectContainer>
+        <Textarea
+          label="Descripción"
+          placeholder="Ingrese la descripción del caso de uso."
+          name="n_Descrip"
+          id="n_Descrip"
+          value={formik.values.n_Descrip}
+          type="text"
+          onBlur={formik.handleBlur}
+          required
+          message={
+            stateValue("n_Descrip") === "invalid" && formik.errors.n_Descrip
+          }
+          status={stateValue("n_Descrip")}
+          size="compact"
+          maxLength={120}
+          fullwidth
+          onChange={(
+            event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+          ) => handleChangeForm(event.target.name, event.target.value)}
+        />
       </Stack>
-
-      <Textarea
-        label="Descripción"
-        placeholder="Ingrese la descripción del caso de uso."
-        name="n_Descrip"
-        id="n_Descrip"
-        value={formik.values.n_Descrip}
-        type="text"
-        onBlur={formik.handleBlur}
-        required
-        message={
-          stateValue("n_Descrip") === "invalid" && formik.errors.n_Descrip
-        }
-        status={stateValue("n_Descrip")}
-        size="compact"
-        maxLength={120}
-        fullwidth
-        onChange={(
-          event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-        ) => handleChangeForm(event.target.name, event.target.value)}
-      />
 
       <Stack direction="column" gap={inube.spacing.s100}>
         {formik.errors.position && formInvalid && (

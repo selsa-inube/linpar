@@ -34,8 +34,6 @@ function EditCaseLinix() {
 
   const { k_Usecase } = useParams();
 
-  // const [formData, setFormData] = useState<IFormAddLinixUseCase>({
-
   const initialGeneralFormState = {
     generalInformation: {
       isValid: false,
