@@ -1,14 +1,10 @@
 import { TfiMenuAlt } from "react-icons/tfi";
-import {
-  Stack,
-  Tabs,
-  useMediaQueries,
-  inube,
-  Breadcrumbs,
-} from "@inube/design-system";
-import { Button } from "@inubekit/button";
 import { useState } from "react";
-
+import { Button } from "@inubekit/button";
+import { useMediaQueries } from "@inubekit/hooks";
+import { Stack } from "@inubekit/stack";
+import { Tabs } from "@inubekit/tabs";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { PageTitle } from "@components/PageTitle";
 import {
   IAssignmentFormEntry,
@@ -98,21 +94,19 @@ function EditUserUI(props: EditUserUIProps) {
     setKey((prevKey) => prevKey + 1);
   };
 
-  console.log("currentFormHasChanges", currentFormHasChanges);
-
   return loading ? (
     <StyledContainerLoading>
       <LoadingApp />
     </StyledContainerLoading>
   ) : (
     <StyledContainer $smallScreen={smallScreen} key={key}>
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s200} direction="column">
+      <Stack gap={"48px"} direction="column">
+        <Stack gap={"16px"} direction="column">
           <Breadcrumbs crumbs={editLinixUseCaseConfig[0].crumbs} />
           <Stack
             justifyContent="space-between"
             alignItems="center"
-            gap={inube.spacing.s400}
+            gap={"32px"}
           >
             <PageTitle
               title="Editar un caso de uso"
@@ -130,11 +124,11 @@ function EditUserUI(props: EditUserUIProps) {
             )}
           </Stack>
         </Stack>
-        <Stack gap={inube.spacing.s400} direction="column">
+        <Stack gap={"32px"} direction="column">
           <Tabs
             tabs={Object.values(editLinixUseCaseTabsConfig)}
             selectedTab={selectedTab}
-            type={typeTabs ? "select" : "tabs"}
+            scroll={typeTabs ? true : false}
             onChange={handleTabChange}
           />
           {selectedTab === editLinixUseCaseTabsConfig.generalInformation.id && (
@@ -206,7 +200,7 @@ function EditUserUI(props: EditUserUIProps) {
               setChangedData={setCsOptionsChange}
             />
           )}
-          <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+          <Stack gap={"16px"} justifyContent="flex-end">
             <Button
               appearance="gray"
               disabled={!currentFormHasChanges}
