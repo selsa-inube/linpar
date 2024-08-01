@@ -1,5 +1,7 @@
 const IS_PRODUCTION = import.meta.env.PROD;
 const AUTH_REDIRECT_URI = import.meta.env.VITE_AUTH0_REDIRECT_URI;
+export const retries = 5;
+export const timeout = 3000;
 
 const environment = {
   CLIENT_ID: import.meta.env.VITE_AUTH0_CLIENT_ID,
