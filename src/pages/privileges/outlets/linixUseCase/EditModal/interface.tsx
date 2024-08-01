@@ -1,12 +1,10 @@
 import { TfiMenuAlt } from "react-icons/tfi";
-import {
-  Stack,
-  Tabs,
-  useMediaQueries,
-  inube,
-  Breadcrumbs,
-} from "@inube/design-system";
-
+import { useState } from "react";
+import { Button } from "@inubekit/button";
+import { useMediaQueries } from "@inubekit/hooks";
+import { Stack } from "@inubekit/stack";
+import { Tabs } from "@inubekit/tabs";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { PageTitle } from "@components/PageTitle";
 import {
   IAssignmentFormEntry,
@@ -16,6 +14,7 @@ import { SubjectCard } from "@components/cards/SubjectCard";
 import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { updateItemData } from "@mocks/utils/dataMock.service";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 import {
@@ -32,8 +31,6 @@ import { StyledContainerLoading } from "../../users/invite/styles";
 
 import { UseCase } from "../types";
 import { InitializerForm } from "../components/InitializerForm";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
-import { Button } from "@inubekit/button";
 
 interface IControlModal {
   show: boolean;
@@ -41,13 +38,13 @@ interface IControlModal {
 }
 interface EditUserUIProps {
   selectedTab: string;
+  handleReset: () => void;
   selectLinixUseCase: Option[];
   linixUseCasesEdit: UseCase;
   formData: IFormAddLinixUseCase;
   loading: boolean;
   id: string;
   handleTabChange: (tabId: string) => void;
-  editData: { [key: string]: { [key: string]: unknown } };
   controlModal: IControlModal;
   handleCloseModal: () => void;
   message: IMessageState;
@@ -62,16 +59,19 @@ interface EditUserUIProps {
   csOptionsButtons: Record<string, unknown>[];
   handleUpdateFormData: (values: IHandleChangeFormData) => void;
   onSubmit: () => void;
-
+  userCardData: { username: string; code: string | undefined };
   currentFormHasChanges: boolean;
 }
 
 function EditUserUI(props: EditUserUIProps) {
+  const [key, setKey] = useState(0);
   const {
     selectedTab,
+    handleReset,
     onCloseSectionMessage,
     selectLinixUseCase,
-    editData,
+    userCardData,
+    currentFormHasChanges,
     id,
     message,
     filterNForma,
@@ -89,15 +89,9 @@ function EditUserUI(props: EditUserUIProps) {
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
-  const {
-    generalInformation: { entries: currentInformation },
-  } = editData;
 
-  const userCardData = currentInformation && {
-    username: (currentInformation as { n_Usecase: string }).n_Usecase,
-    code: (currentInformation as { k_Usecase: string }).k_Usecase,
-    type: (currentInformation as { i_Tipusec: string }).i_Tipusec,
-    description: (currentInformation as { n_Descrip: string }).n_Descrip,
+  const forceReRender = () => {
+    setKey((prevKey) => prevKey + 1);
   };
 
   return loading ? (
@@ -105,14 +99,14 @@ function EditUserUI(props: EditUserUIProps) {
       <LoadingApp />
     </StyledContainerLoading>
   ) : (
-    <StyledContainer $smallScreen={smallScreen}>
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s200} direction="column">
+    <StyledContainer $smallScreen={smallScreen} key={key}>
+      <Stack gap={"48px"} direction="column">
+        <Stack gap={"16px"} direction="column">
           <Breadcrumbs crumbs={editLinixUseCaseConfig[0].crumbs} />
           <Stack
             justifyContent="space-between"
             alignItems="center"
-            gap={inube.spacing.s400}
+            gap={"32px"}
           >
             <PageTitle
               title="Editar un caso de uso"
@@ -130,11 +124,11 @@ function EditUserUI(props: EditUserUIProps) {
             )}
           </Stack>
         </Stack>
-        <Stack gap={inube.spacing.s400} direction="column">
+        <Stack gap={"32px"} direction="column">
           <Tabs
             tabs={Object.values(editLinixUseCaseTabsConfig)}
             selectedTab={selectedTab}
-            type={typeTabs ? "select" : "tabs"}
+            scroll={typeTabs ? true : false}
             onChange={handleTabChange}
           />
           {selectedTab === editLinixUseCaseTabsConfig.generalInformation.id && (
@@ -152,6 +146,7 @@ function EditUserUI(props: EditUserUIProps) {
           )}
           {selectedTab === editLinixUseCaseTabsConfig.clientServerButton.id && (
             <ClientServerButtonSelection
+              onHasChanges={handleDataChange}
               initialValues={formData.clientServerButton.values}
               handleSubmit={handleUpdateFormData}
               id={filterNForma as string}
@@ -161,7 +156,7 @@ function EditUserUI(props: EditUserUIProps) {
             editLinixUseCaseTabsConfig.downloadableDocuments.id && (
             <InitializerForm
               onHasChanges={handleDataChange}
-              dataOptionsForms={formData.downloadableDocuments.values}
+              dataOptionsForms={formData.downloadableDocuments?.values}
               handleSubmit={handleUpdateFormData}
             />
           )}
@@ -205,12 +200,21 @@ function EditUserUI(props: EditUserUIProps) {
               setChangedData={setCsOptionsChange}
             />
           )}
-          <Stack gap={inube.spacing.s200} justifyContent="flex-end">
-            <Button appearance="gray" onClick={() => {}} type="reset">
+          <Stack gap={"16px"} justifyContent="flex-end">
+            <Button
+              appearance="gray"
+              disabled={!currentFormHasChanges}
+              onClick={() => {
+                handleReset();
+                forceReRender();
+              }}
+              type="reset"
+            >
               Cancelar
             </Button>
             <Button
               appearance="primary"
+              disabled={!currentFormHasChanges}
               onClick={onSubmit}
               loading={loading}
               type="button"
