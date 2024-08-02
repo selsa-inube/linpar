@@ -16,6 +16,8 @@ import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-c
 
 import { IMessageState } from "../../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getRolesPorCargo } from "@src/services/positions/rolesPorCargo";
 
 export function AddPosition() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -29,7 +31,10 @@ export function AddPosition() {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-
+  const [rolesPorCargos, setrolesPorCargo] = useState<
+    Record<string, unknown>[]
+  >([]);
+  const { user } = useAuth0();
   const navigate = useNavigate();
 
   const [dataAddPositionLinixForm, setDataAddPositionLinixForm] =
@@ -38,33 +43,41 @@ export function AddPosition() {
         isValid: false,
         values: initalValuesPositions.generalInformation,
       },
-      roles: {
+      rolesPorCargos: {
         isValid: false,
         values: [],
       },
     });
 
+  const rolesPorCargo = () => {
+    if (!user) return;
+    if (rolesPorCargos.length === 0) {
+      getRolesPorCargo("1")
+        .then((data) => {
+          if (data !== null) {
+            setrolesPorCargo(data as Record<string, unknown>[]);
+            setDataAddPositionLinixForm((prevFormData: IFormAddPosition) => ({
+              ...prevFormData,
+              rolesPorCargos: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Rol",
+                  valueLabel: "n_Rol",
+                  isActiveLabel: "i_Tierol",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        });
+    }
+  };
+
   useEffect(() => {
-    getAll("linix-roles")
-      .then((data) => {
-        if (data !== null) {
-          setDataAddPositionLinixForm((prevFormData) => ({
-            ...prevFormData,
-            roles: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "k_Rol",
-                valueLabel: "n_Rol",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching roles:", error.message);
-      });
+    rolesPorCargo();
   }, []);
 
   const generalInformationRef =
@@ -74,12 +87,12 @@ export function AddPosition() {
     generalInformation: generalInformationRef,
   };
 
-  const validateActiveRoles = () => {
-    const validateAct = dataAddPositionLinixForm.roles.values.some(
-      (x) => x.isActive === true
-    );
-    return currentStep === 2 && !validateAct;
-  };
+  // const validateActiveRoles = () => {
+  //   const validateAct = dataAddPositionLinixForm.rolesPorCargos.values.some(
+  //     (x) => x.isActive === true
+  //   );
+  //   return currentStep === 2 && !validateAct;
+  // };
 
   const handleStepChange = (stepId: number) => {
     const newAddPosition = addPositionStepsRules(
@@ -175,7 +188,7 @@ export function AddPosition() {
       handleToggleModal={handleToggleModal}
       handleFinishForm={handleFinishForm}
       handleCloseSectionMessage={handleCloseSectionMessage}
-      validateActiveRoles={validateActiveRoles}
+      // validateActiveRoles={validateActiveRoles}
     />
   );
 }

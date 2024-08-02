@@ -1,6 +1,7 @@
 import localforage from "localforage";
 import { stepsAddPosition } from "./config/addPosition.config";
 import { IFormAddPosition, IFormAddPositionRef, IPosition } from "./types";
+import { addPositions } from "@src/services/positions/postPositions";
 
 const addPositionStepsRules = (
   currentStep: number,
@@ -28,35 +29,35 @@ const addPositionStepsRules = (
   });
 };
 
-export const saveLinixPositions = (addLinixPositions: IFormAddPosition) => {
+export const saveLinixPositions = async (
+  addLinixPositions: IFormAddPosition
+) => {
   const {
     generalInformation: { values: generalInformation },
-    roles: { values: roles },
+    rolesPorCargos: { values: rolesPorCargos },
   } = addLinixPositions;
-
-  const normalizeRoles = roles
-    .filter((rol) => rol.isActive === true)
-    .map((rol) => ({
-      k_Rol: rol.value,
+  const positionsId = Math.floor(Math.random() * 100).toString();
+  const normalizeRolesPorCargo = rolesPorCargos
+    .filter((rolesPorCargos) => rolesPorCargos.isActive === true)
+    .map((rolesPorCargos) => ({
+      k_Grupo: positionsId,
+      k_Rol: rolesPorCargos.id,
     }));
-
   const newLinixPosition: IPosition = {
-    k_Grupo: "",
     n_Grupo: generalInformation.n_Grupo,
-    i_Activo: "Y",
     n_Uso: generalInformation.n_Uso,
-    rolesPorCargo: normalizeRoles,
+    k_Grupo: positionsId,
+    rolesPorCargo: normalizeRolesPorCargo,
   };
-  localforage.getItem("linix-positions").then((data) => {
-    if (data) {
-      localforage.setItem("linix-positions", [
-        ...(data as IFormAddPosition[]),
-        newLinixPosition,
-      ]);
-    } else {
-      localforage.setItem("linix-positions", [newLinixPosition]);
-    }
-  });
+  let confirmationType = true;
+  try {
+    await addPositions(newLinixPosition);
+  } catch (error) {
+    confirmationType = false;
+    throw error;
+  }
+
+  return confirmationType;
 };
 
 export { addPositionStepsRules };

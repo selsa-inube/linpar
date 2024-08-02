@@ -1,4 +1,4 @@
-import { IPosition } from "@src/pages/privileges/outlets/positions/add-position/types";
+import { IPosition } from "@pages/privileges/outlets/positions/add-position/types";
 
 const mapPositionsEntityToApi = (
   position: IPosition

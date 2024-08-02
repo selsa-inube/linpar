@@ -50,7 +50,10 @@ export const VerificationAddPosition = (props: IControllerAccordionProps) => {
       },
       roles: {
         title: "Roles",
-        attributes: filterAndMapData(data.roles?.values || [], "isActive"),
+        attributes: filterAndMapData(
+          data.rolesPorCargos?.values || [],
+          "isActive"
+        ),
       },
     },
   }));
