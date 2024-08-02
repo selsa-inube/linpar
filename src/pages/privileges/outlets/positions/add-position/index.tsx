@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormikProps } from "formik";
-import { getAll } from "@mocks/utils/dataMock.service";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getRolesPorCargo } from "@services/positions/rolesPorCargo";
+
 import { IGeneralInformationEntry } from "../components/GeneralInformationForm";
 import { stepsAddPosition } from "./config/addPosition.config";
 import {
@@ -16,8 +18,6 @@ import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-c
 
 import { IMessageState } from "../../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
-import { useAuth0 } from "@auth0/auth0-react";
-import { getRolesPorCargo } from "@src/services/positions/rolesPorCargo";
 
 export function AddPosition() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -86,13 +86,6 @@ export function AddPosition() {
   const formReferences: IFormAddPositionRef = {
     generalInformation: generalInformationRef,
   };
-
-  // const validateActiveRoles = () => {
-  //   const validateAct = dataAddPositionLinixForm.rolesPorCargos.values.some(
-  //     (x) => x.isActive === true
-  //   );
-  //   return currentStep === 2 && !validateAct;
-  // };
 
   const handleStepChange = (stepId: number) => {
     const newAddPosition = addPositionStepsRules(
@@ -188,7 +181,6 @@ export function AddPosition() {
       handleToggleModal={handleToggleModal}
       handleFinishForm={handleFinishForm}
       handleCloseSectionMessage={handleCloseSectionMessage}
-      // validateActiveRoles={validateActiveRoles}
     />
   );
 }

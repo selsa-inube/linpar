@@ -1,7 +1,6 @@
-import localforage from "localforage";
+import { addPositions } from "@services/positions/postPositions";
 import { stepsAddPosition } from "./config/addPosition.config";
 import { IFormAddPosition, IFormAddPositionRef, IPosition } from "./types";
-import { addPositions } from "@src/services/positions/postPositions";
 
 const addPositionStepsRules = (
   currentStep: number,
