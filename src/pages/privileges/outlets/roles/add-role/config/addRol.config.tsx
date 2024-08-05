@@ -24,18 +24,13 @@ export const stepsAddRol = {
     label: "Reglas de Negocio",
     description: "Asigna las reglas de negocio para este rol.",
   },
-  crediboardTasks: {
-    id: 5,
-    label: "Tareas crediboard",
-    description: "Asigna las tareas crediboard para este rol.",
-  },
   useCases: {
-    id: 6,
+    id: 5,
     label: "Casos de uso",
     description: "Asigna los casos de uso para este rol.",
   },
   summary: {
-    id: 7,
+    id: 6,
     label: "Verificación",
     description:
       "Verifica las opciones activadas, si es necesario cámbialas o por el contrario si todo está correcto dale enviar.",

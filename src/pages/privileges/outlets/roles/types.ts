@@ -95,7 +95,6 @@ export interface IFormAddRole {
   ancillaryAccounts: IAncillaryAccounts;
   transactionTypes: IOptionInitialiceForm;
   businessRules: IOptionInitialiceForm;
-  crediboardTasks: IOptionInitialiceForm;
   useCases: IOptionInitialiceForm;
 }
 

@@ -80,7 +80,6 @@ export function AddRolUI(props: AddRolUIProps) {
     ancillaryAccounts: { values: ancillaryAccountsValues },
     transactionTypes: { values: transactionTypesValues },
     businessRules: { values: businessRulesValues },
-    crediboardTasks: { values: crediboardTasksValues },
     useCases: { values: useCasesValues },
   } = addRoleFormValid;
 
@@ -195,12 +194,6 @@ export function AddRolUI(props: AddRolUIProps) {
               {currentStep === stepsAddRol.businessRules.id && (
                 <InitializerForm
                   dataOptionsForms={businessRulesValues}
-                  handleSubmit={handleUpdateDataSwitchstep}
-                />
-              )}
-              {currentStep === stepsAddRol.crediboardTasks.id && (
-                <InitializerForm
-                  dataOptionsForms={crediboardTasksValues}
                   handleSubmit={handleUpdateDataSwitchstep}
                 />
               )}
