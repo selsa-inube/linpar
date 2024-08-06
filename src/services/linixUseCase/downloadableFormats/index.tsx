@@ -36,7 +36,9 @@ const getDownloadableFormats = async (
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(`Error al obtener los casos de uso: ${res.status}`);
+        throw new Error(
+          `Error al obtener los formatos descargables: ${res.status}`
+        );
       }
 
       const normalizedDownloadableFormats = Array.isArray(data)
@@ -47,7 +49,7 @@ const getDownloadableFormats = async (
     } catch (error) {
       if (attempt === maxRetries) {
         throw new Error(
-          "Todos los intentos fallaron. No se pudieron obtener los créditos del usuario."
+          "Todos los intentos fallaron. No se pudieron obtener los formatos descargables."
         );
       }
     }

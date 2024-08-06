@@ -23,7 +23,7 @@ const story = {
 };
 
 const DynamicThemeWrapper = ({ children }: any) => {
-  const [setTheme] = useState({ ...inube.color.palette }); //theme
+  const [setTheme] = useState({ ...inube.color.palette });
   const [selectedTokenName, setSelectedTokenName] = useState("N900");
   const [toggleActive, setToggleActive] = useState(false);
 
