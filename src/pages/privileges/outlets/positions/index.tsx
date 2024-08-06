@@ -5,16 +5,20 @@ import { PositionsUI } from "./interface";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./delete-positions/config/messages.config";
+import { IDeleteForMessage } from "./types";
 
 export function Positions() {
   const [searchPosition, setSearchPosition] = useState<string>("");
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: "",
+    successfulDiscard: false,
+  });
 
   const [positions, setPositions] = useState<IPosition[]>([]);
   const { user } = useAuth0();
@@ -39,8 +43,10 @@ export function Positions() {
 
   useEffect(() => {
     const filterRecordRemoved = positions.filter(
-      (positions) => positions.k_Grupo !== idDeleted
+      (positions) => positions.k_Grupo !== idDeleted.id
     );
+
+    idDeleted.successfulDiscard && setPositions(filterRecordRemoved);
     filterRecordRemoved &&
       setMessage({
         visible: true,
@@ -75,7 +81,7 @@ export function Positions() {
       linixPosition={positions}
       loading={loading}
       message={message}
-      idDeleted={idDeleted}
+      idDeleted={idDeleted.id}
       setIdDeleted={setIdDeleted}
     />
   );

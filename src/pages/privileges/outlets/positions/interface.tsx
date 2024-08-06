@@ -25,6 +25,7 @@ import { StyledContainer } from "./styles";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
+import { IDeleteForMessage } from "./types";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -35,7 +36,7 @@ interface IPositionsProps {
   linixPosition: IPosition[];
   handleCloseSectionMessage: () => void;
   loading: boolean;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: IDeleteForMessage) => void;
   message: IMessageState;
   idDeleted: string;
 }
