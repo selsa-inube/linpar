@@ -1,9 +1,9 @@
 import { StoryFn } from "@storybook/react";
+import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { TokenColorCard, ITokenColorCardProps } from ".";
 import { inube } from "@inube/design-system";
 import { inube as newInube } from "@inubekit/foundations";
-import React, { useState } from "react";
+import { TokenColorCard, ITokenColorCardProps } from ".";
 
 const story = {
   component: [TokenColorCard],
