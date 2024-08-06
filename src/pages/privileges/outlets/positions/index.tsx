@@ -42,16 +42,19 @@ export function Positions() {
   }, [user]);
 
   useEffect(() => {
+    const messageType = idDeleted.successfulDiscard
+      ? generalMessage.success
+      : generalMessage.failed;
     const filterRecordRemoved = positions.filter(
       (positions) => positions.k_Grupo !== idDeleted.id
     );
 
     idDeleted.successfulDiscard && setPositions(filterRecordRemoved);
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: generalMessage.success,
-      });
+
+    setMessage({
+      visible: true,
+      data: messageType,
+    });
   }, [idDeleted]);
 
   const handleSearchPositions = (e: React.ChangeEvent<HTMLInputElement>) => {
