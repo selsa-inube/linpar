@@ -68,6 +68,8 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
     e.preventDefault();
   };
 
+  const hasActiveEntries = entries.some((entry) => entry.isActive);
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Fieldset title={title}>
@@ -113,10 +115,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                 <Button
                   spacing="compact"
                   onClick={() => handleToggleAllEntries(false)}
-                  disabled={
-                    (entries && entries.some((entry) => entry.isActive)) ||
-                    dataValidations
-                  }
+                  disabled={!hasActiveEntries || dataValidations}
                 >
                   Desasignar todos
                 </Button>

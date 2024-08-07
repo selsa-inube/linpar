@@ -67,9 +67,6 @@ export const actionsConfigPosition = (
     return [...data].shift();
   };
 
-  // const selectedData = (k_Rol: number) =>
-  //   linixRoles.find((role) => role.k_Rol === k_Rol);
-
   const actionsConfig = [
     {
       id: "i_Activo",

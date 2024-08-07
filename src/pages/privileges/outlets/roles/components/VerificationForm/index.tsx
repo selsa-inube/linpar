@@ -108,13 +108,7 @@ export const VerificationAddRole = (props: IControllerAccordionProps) => {
           "isActive"
         ),
       },
-      crediboardTasks: {
-        title: "Tareas de crediboard",
-        attributes: filterAndMapData(
-          data.crediboardTasks?.values || [],
-          "isActive"
-        ),
-      },
+
       useCases: {
         title: "Casos de uso",
         attributes: filterAndMapData(data.useCases?.values || [], "isActive"),
