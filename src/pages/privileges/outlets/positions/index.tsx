@@ -1,47 +1,60 @@
 import { useEffect, useState } from "react";
-import { getAll } from "@mocks/utils/dataMock.service";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { getPositions } from "@services/positions/getPositons";
 import { PositionsUI } from "./interface";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./delete-positions/config/messages.config";
+import { IDeleteForMessage } from "./types";
 
 export function Positions() {
   const [searchPosition, setSearchPosition] = useState<string>("");
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: "",
+    successfulDiscard: false,
+  });
 
   const [positions, setPositions] = useState<IPosition[]>([]);
+  const { user } = useAuth0();
 
-  useEffect(() => {
-    getAll("linix-positions")
-      .then((data) => {
-        if (data !== null) {
-          setPositions(data as IPosition[]);
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
+  const linixPositionsData = async () => {
+    if (!user) return;
+    if (positions.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getPositions();
+        setPositions(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [positions]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixPositionsData();
+  }, [user]);
 
   useEffect(() => {
+    const messageType = idDeleted.successfulDiscard
+      ? generalMessage.success
+      : generalMessage.failed;
     const filterRecordRemoved = positions.filter(
-      (positions) => positions.k_Grupo !== idDeleted
+      (positions) => positions.k_Grupo !== idDeleted.id
     );
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: generalMessage.success,
-      });
+
+    idDeleted.successfulDiscard && setPositions(filterRecordRemoved);
+
+    setMessage({
+      visible: true,
+      data: messageType,
+    });
   }, [idDeleted]);
 
   const handleSearchPositions = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +84,7 @@ export function Positions() {
       linixPosition={positions}
       loading={loading}
       message={message}
-      idDeleted={idDeleted}
+      idDeleted={idDeleted.id}
       setIdDeleted={setIdDeleted}
     />
   );

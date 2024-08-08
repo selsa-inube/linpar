@@ -5,7 +5,7 @@ import { mapRolesCuentasAuxiliaresApiToEntities } from "./mappers";
 const getRolesCuentasAuxiliares = async (): Promise<
   ICuentasAuxiliaresPorRol[]
 > => {
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/roles`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/roles`;
 
   try {
     const options: RequestInit = {

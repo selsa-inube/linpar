@@ -3,7 +3,7 @@ import { IRol } from "@src/pages/privileges/outlets/roles/types";
 import { mapRolesEntityToApi } from "./mappers";
 
 const addRoles = async (roles: IRol): Promise<IRol | undefined> => {
-  const requestUrl = `${environment.ICLIENT_API_URL_PERSISTENCE_POST}/roles`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/roles`;
 
   try {
     const options: RequestInit = {

@@ -4,43 +4,51 @@ import { functionById } from "@mocks/utils/dataMock.service";
 
 import { DeletePositionUI } from "./interface";
 import { deletePositionModal } from "./config/deletePositions.config";
+import { deletePosition } from "./utils";
+import { IDeleteForMessage } from "../types";
 
 interface IDeletePositionProps {
   deletePositionModal: typeof deletePositionModal;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: IDeleteForMessage) => void;
   handleDeletePosition: (props: functionById) => Promise<unknown>;
   namePosition: string;
   linixPosition: string;
 }
 
 export const DeletePosition = (props: IDeletePositionProps) => {
-  const {
-    deletePositionModal,
-    handleDeletePosition,
-    namePosition,
-    linixPosition,
-    setIdDeleted,
-  } = props;
+  const { deletePositionModal, namePosition, linixPosition, setIdDeleted } =
+    props;
 
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleOnclick = async () => {
-    await handleDeletePosition({
-      key: "k_Grupo",
-      nameDB: "linix-positions",
-      identifier: linixPosition,
-    });
-    setShowModal(false);
+  const handeletePosition = () => {
     setLoading(true);
-    setIdDeleted(linixPosition);
+    const data = deletePosition(linixPosition);
+    data
+      .then(() => {
+        setIdDeleted({
+          id: linixPosition,
+          successfulDiscard: true,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setIdDeleted({
+          id: linixPosition,
+          successfulDiscard: false,
+        });
+      });
+
+    setLoading(false);
+    setShowModal(false);
   };
 
   return (
     <DeletePositionUI
       deletePositionModal={deletePositionModal}
-      handleDeletePosition={handleOnclick}
+      handleDeletePosition={handeletePosition}
       hover={isHovered}
       loading={loading}
       namePosition={namePosition}
