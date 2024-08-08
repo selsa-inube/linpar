@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
@@ -34,7 +34,7 @@ function EditCaseLinix() {
 
   const { k_Usecase } = useParams();
 
-  const [formData, setFormData] = useState<IFormAddLinixUseCase>({
+  const initialGeneralFormState = {
     generalInformation: {
       isValid: false,
       values: {
@@ -71,7 +71,17 @@ function EditCaseLinix() {
       isValid: false,
       values: [],
     },
-  });
+  };
+
+  const [formData, setFormData] = useState<IFormAddLinixUseCase>(
+    initialGeneralFormState
+  );
+  const [downloadableDocuments, setDownloadableDocuments] = useState<
+    Record<string, unknown>[]
+  >([]);
+  const originalDataEditLinixUseCaseForm = useRef<IFormAddLinixUseCase | null>(
+    null
+  );
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
@@ -85,9 +95,6 @@ function EditCaseLinix() {
   const [selectLinixUseCase, setSelectLinixUseCase] = useState<Option[]>([]);
   const [csOptions, setCsOptions] = useState<Record<string, unknown>[]>([]);
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
-  const [downloadableDocuments, setDownloadableDocuments] = useState<
-    Record<string, unknown>[]
-  >([]);
   const [csReports, setCsReports] = useState<Record<string, unknown>[]>([]);
   const { user } = useAuth0();
   const [loading, setLoading] = useState(false);
@@ -101,12 +108,6 @@ function EditCaseLinix() {
     (data) => data.id === k_Usecase
   );
 
-  const [editData] = useState<{
-    [key: string]: { [key: string]: unknown };
-  }>({
-    generalInformation: { entries: generalInformationData },
-  });
-
   useEffect(() => {
     if (generalInformationData) {
       setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -118,8 +119,36 @@ function EditCaseLinix() {
           },
         },
       }));
+      originalDataEditLinixUseCaseForm.current = {
+        ...originalDataEditLinixUseCaseForm.current!,
+        clientServerButton: {
+          isValid: true,
+          values: {
+            k_option_button: String(generalInformationData.k_option_button),
+          },
+        },
+      };
     }
   }, [generalInformationData]);
+
+  useEffect(() => {
+    linixUseCaseData();
+  }, []);
+  useEffect(() => {
+    usersData();
+  }, []);
+
+  useEffect(() => {
+    Promise.all([
+      webOptionsData(),
+      webReportsData(),
+      clientServerReports(),
+      clientServerMenuOption(),
+      clientSelectLinixUseCase(),
+    ]).then(() => {
+      setLoading(true);
+    });
+  }, []);
 
   const linixUseCaseData = async () => {
     if (!user) return;
@@ -144,6 +173,20 @@ function EditCaseLinix() {
                 },
               },
             }));
+            originalDataEditLinixUseCaseForm.current = {
+              ...originalDataEditLinixUseCaseForm.current!,
+              generalInformation: {
+                isValid: true,
+                values: {
+                  k_Usecase: String(generalData?.k_Usecase) || "",
+                  n_Usecase: String(generalData?.n_Usecase) || "",
+                  n_Descrip: String(generalData?.n_Descrip) || "",
+                  i_Tipusec: String(generalData?.i_Tipusec) || "",
+                  k_Funcio: String(generalData?.k_Funcio) || "",
+                  k_Opcion: String(generalData?.k_Opcion) || "",
+                },
+              },
+            };
           }
         })
         .catch((error) => {
@@ -154,23 +197,6 @@ function EditCaseLinix() {
         });
     }
   };
-
-  useEffect(() => {
-    linixUseCaseData();
-  }, []);
-
-  useEffect(() => {
-    Promise.all([
-      webOptionsData(),
-      usersData(),
-      webReportsData(),
-      clientServerReports(),
-      clientServerMenuOption(),
-      clientSelectLinixUseCase(),
-    ]).then(() => {
-      setLoading(true);
-    });
-  }, []);
 
   const usersData = () => {
     if (!user) return;
@@ -190,10 +216,22 @@ function EditCaseLinix() {
                   dataOptions: data as unknown as Record<string, unknown>[],
                   idLabel: "id",
                   valueLabel: "value",
-                  isActiveLabel: "isActive",
+                  isActiveLabel: "i_Privi",
                 }),
               },
             }));
+            originalDataEditLinixUseCaseForm.current = {
+              ...originalDataEditLinixUseCaseForm.current!,
+              downloadableDocuments: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "id",
+                  valueLabel: "value",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -221,6 +259,18 @@ function EditCaseLinix() {
                 }),
               },
             }));
+            originalDataEditLinixUseCaseForm.current = {
+              ...originalDataEditLinixUseCaseForm.current!,
+              webOptions: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Funcio",
+                  valueLabel: "n_Funcio",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -248,6 +298,18 @@ function EditCaseLinix() {
                 }),
               },
             }));
+            originalDataEditLinixUseCaseForm.current = {
+              ...originalDataEditLinixUseCaseForm.current!,
+              webReports: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Report",
+                  valueLabel: "n_Report",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -276,6 +338,18 @@ function EditCaseLinix() {
                 }),
               },
             }));
+            originalDataEditLinixUseCaseForm.current = {
+              ...originalDataEditLinixUseCaseForm.current!,
+              clientServerReports: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Nforma",
+                  valueLabel: "n_Descri",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -304,6 +378,18 @@ function EditCaseLinix() {
                 }),
               },
             }));
+            originalDataEditLinixUseCaseForm.current = {
+              ...originalDataEditLinixUseCaseForm.current!,
+              clientServerOptions: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Opcion",
+                  valueLabel: "DESCRIPCION",
+                  isActiveLabel: "i_Privi",
+                }),
+              },
+            };
           }
         })
         .catch((error) => {
@@ -321,8 +407,6 @@ function EditCaseLinix() {
         setSelectLinixUseCase(newUsers);
       } catch (error) {
         console.info(error);
-      } finally {
-        setLoading(false);
       }
     }
   };
@@ -369,6 +453,11 @@ function EditCaseLinix() {
     }
   };
 
+  const handleReset = () => {
+    setFormData(originalDataEditLinixUseCaseForm.current!);
+    setCurrentFormHasChanges(false);
+  };
+
   const onSubmit = () => {
     setLoading(true);
     const addnewdata = editLinixUseCases(formData, csOptionsChange);
@@ -389,9 +478,15 @@ function EditCaseLinix() {
         setLoading(false);
       });
   };
-
+  const userCardData = formData && {
+    code: formData.generalInformation.values.k_Usecase,
+    username: formData.generalInformation.values.n_Usecase,
+    type: formData.generalInformation.values.i_Tipusec,
+    description: formData.generalInformation.values.n_Descrip,
+  };
   return (
     <EditUserUI
+      handleReset={handleReset}
       linixUseCasesEdit={editGeneral!}
       selectLinixUseCase={selectLinixUseCase}
       onCloseSectionMessage={handleCloseSectionMessage}
@@ -399,7 +494,6 @@ function EditCaseLinix() {
       selectedTab={selectedTab}
       formData={formData}
       handleTabChange={handleTabChange}
-      editData={editData}
       controlModal={controlModal}
       handleDataChange={handleDataChange}
       handleCloseModal={handleCloseModal}
@@ -415,6 +509,7 @@ function EditCaseLinix() {
       message={message}
       handleUpdateFormData={handleUpdateFormData}
       onSubmit={onSubmit}
+      userCardData={userCardData}
     />
   );
 }
