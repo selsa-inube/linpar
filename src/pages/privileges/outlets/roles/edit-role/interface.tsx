@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
 import { Stack, Breadcrumbs, inube, Tabs } from "@inube/design-system";
-import { PageTitle } from "@src/components/PageTitle";
-import { SubjectCard } from "@src/components/cards/SubjectCard";
-import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { PageTitle } from "@components/PageTitle";
+import { SubjectCard } from "@components/cards/SubjectCard";
+import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
@@ -147,13 +147,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               setChangedData={setCsOptionsChange}
             />
           )}
-          {selectedTab === stepsAddRol.crediboardTasks.label && (
-            <InitializerForm
-              dataOptionsForms={dataEditRoleLinixForm.crediboardTasks.values}
-              onFormValueChange={() => []}
-              onHasChanges={handleDataChange}
-            />
-          )}
+
           {selectedTab === stepsAddRol.useCases.label && (
             <InitializerForm
               onHasChanges={handleDataChange}
