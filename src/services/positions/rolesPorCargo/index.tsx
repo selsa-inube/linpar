@@ -1,17 +1,19 @@
 import { environment, retries, timeout } from "@src/config/environment";
-import { mapAplicationRolesFormatsApiToEntities } from "./mappers";
+import { mapRolesPorCargoApiToEntities } from "./mappers";
 
-const getAplicationRoles = async (): Promise<Record<string, unknown>[]> => {
+const getRolesPorCargo = async (
+  k_Rol: string
+): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
 
-  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/aplicaciones`;
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE}/cargos/roles-por-cargo-full/${k_Rol}`;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
       Realm: environment.REALM,
-      "X-Action": "SearchAllAplicacion",
+      "X-Action": "QueryRolesPorCargoFull",
       "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -36,21 +38,21 @@ const getAplicationRoles = async (): Promise<Record<string, unknown>[]> => {
       }
 
       if (!res.ok) {
-        throw new Error(`Error al obtener los roles: ${res.status}`);
+        throw new Error(`Error al obtener los RolesPorCargos: ${res.status}`);
       }
 
       const data = await res.json();
 
-      const normalizedRolFormats = Array.isArray(data)
-        ? mapAplicationRolesFormatsApiToEntities(data)
+      const normalizedRolesPorCargoFullFormats = Array.isArray(data)
+        ? mapRolesPorCargoApiToEntities(data)
         : [];
 
-      return normalizedRolFormats;
+      return normalizedRolesPorCargoFullFormats;
     } catch (error: any) {
       clearTimeout(timeoutId);
       if (attempt === maxRetries) {
         throw new Error(
-          `Todos los intentos fallaron. No se pudieron obtener los roles: ${error.message}`
+          `Todos los intentos fallaron. No se pudieron obtener los RolesPorCargos: ${error.message}`
         );
       }
     }
@@ -59,4 +61,4 @@ const getAplicationRoles = async (): Promise<Record<string, unknown>[]> => {
   return [];
 };
 
-export { getAplicationRoles };
+export { getRolesPorCargo };

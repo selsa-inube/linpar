@@ -1,13 +1,13 @@
-import { environment } from "@src/config/environment";
+import { environment, retries, timeout } from "@src/config/environment";
 import { mapClientServerMenuOptionFormatsApiToEntities } from "./mapper";
 
 const getClientServerMenuOptionFormats = async (
   k_Usecase: string
 ): Promise<Record<string, unknown>[]> => {
-  const maxRetries = 5;
-  const fetchTimeout = 3000;
+  const maxRetries = retries;
+  const fetchTimeout = timeout;
 
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/casos-de-uso/${k_Usecase}`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/casos-de-uso/${k_Usecase}`;
 
   const options: RequestInit = {
     method: "GET",
