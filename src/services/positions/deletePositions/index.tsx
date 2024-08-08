@@ -33,14 +33,14 @@ const deletePositions = async (
     }
 
     if (!res.ok) {
-      const errorMessage = `Error al eliminar el Caso de Uso. Status: ${
+      const errorMessage = `Error al eliminar el Cargo: ${
         res.status
       }, Data: ${JSON.stringify(data)}`;
       throw new Error(errorMessage);
     }
     return data;
   } catch (error) {
-    console.error("Failed to delete Caso de Uso:", error);
+    console.error("Failed to delete cargo:", error);
     throw error;
   }
 };
