@@ -7,7 +7,7 @@ import { mapRolesDeleteEntityToApi } from "./mappers";
 const deleteRoles = async (
   deletedRol: IdeleteRoles
 ): Promise<IRol | undefined> => {
-  const requestUrl = `${environment.ICLIENT_API_URL_PERSISTENCE_POST}/roles`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/roles`;
 
   try {
     const options: RequestInit = {

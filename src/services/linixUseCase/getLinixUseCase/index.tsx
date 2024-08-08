@@ -4,7 +4,7 @@ import { mapLinixUseCaseApiToEntities } from "./mapper";
 import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
 const getLinixUseCase = async (): Promise<UseCase[]> => {
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/casos-de-uso`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/casos-de-uso`;
 
   try {
     const options: RequestInit = {

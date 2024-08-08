@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { updateActive } from "@mocks/utils/dataMock.service";
 import { EAppearance } from "@src/types/colors.types";
-import { EMessageType, IMessage } from "@src/types/messages.types";
+import { IMessage } from "@src/types/messages.types";
 
 import { ActivatePositionUI } from "./interface";
 import { IMessageState } from "../../users/types/forms.types";
@@ -10,10 +9,11 @@ import {
   activatePositionMessages,
   activatePositionModal,
 } from "./config/activatePosition.config";
+import { activatePositions } from "./utils";
 
 export interface IDataActivateOption {
   id: string;
-  active: boolean;
+  active: string;
   name: string;
 }
 
@@ -43,46 +43,52 @@ export function ActivatePosition<T extends IDataActivateOption>(
     data: initialMessageState,
   });
 
-  const handleActivateDeactivatePosition = async () => {
-    let messageType = EMessageType.FAILED;
-    const params = {
-      key: "k_Grupo",
-      nameDB: "linix-positions",
-      identifier: props.data.id,
-      editData: { i_Activo: !props.data.active ? "Y" : "N" },
-    };
+  const [loading, setLoading] = useState(false);
 
-    try {
-      await updateActive(params);
-      handleToggleModal();
-      if (params.editData.i_Activo === "Y") {
-        messageType = EMessageType.ACTIVATION;
-      }
+  const [changeActive, setchangeActive] = useState(
+    data.active === "Y" ? true : false
+  );
 
-      if (params.editData.i_Activo === "N") {
-        messageType = EMessageType.DEACTIVATION;
-      }
-    } catch (error) {
-      console.error("Error inesperado:", error);
-    }
+  const handleActivatePosition = () => {
+    setLoading(true);
+    const active = activatePositions(props.data.id, changeActive ? "N" : "Y");
+    active
+      .then(() => {
+        setchangeActive(!changeActive);
+        renderMessage(
+          props.data.name,
+          changeActive ? "deactivate" : "activate"
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+        renderMessage(props.data.name, "failed");
+      });
 
-    const { title, description, icon, appearance } =
-      activatePositionMessages[messageType];
-
-    handleShowMessage({
-      title,
-      description: description(data.name),
-      icon,
-      appearance,
-    });
+    setLoading(false);
+    setShowActivatePositionModal(false);
   };
 
-  const handleShowMessage = (message: IMessage) => {
-    const { title, description, icon, appearance } = message;
-    setMessage({
-      visible: true,
-      data: { show: true, title, description, icon, appearance },
-    });
+  const renderMessage = (
+    k_Grupo: string,
+    type: "activate" | "deactivate" | "failed" = "failed"
+  ) => {
+    let messageType;
+    if (type === "activate") messageType = activatePositionMessages.activation;
+    if (type === "deactivate")
+      messageType = activatePositionMessages.deactivation;
+    if (type === "failed") messageType = activatePositionMessages.failed;
+
+    messageType &&
+      setMessage({
+        visible: true,
+        data: {
+          icon: messageType?.icon,
+          title: messageType?.title,
+          description: messageType.description(k_Grupo),
+          appearance: messageType?.appearance,
+        },
+      });
   };
 
   const handleToggleModal = () => {
@@ -97,11 +103,12 @@ export function ActivatePosition<T extends IDataActivateOption>(
 
   return (
     <ActivatePositionUI
-      active={data.active}
+      active={changeActive}
+      loading={loading}
       showActivatePosition={showActivatePositionModal}
       id={data.id}
       handleToggleModal={handleToggleModal}
-      handleActivatePosition={handleActivateDeactivatePosition}
+      handleActivatePosition={handleActivatePosition}
       showComplete={showComplete}
       activateModalConfig={activateModalConfig}
       message={message}

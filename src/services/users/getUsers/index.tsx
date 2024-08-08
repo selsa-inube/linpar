@@ -4,12 +4,13 @@ import { mapUsersApiToEntities } from "./mappers";
 import { IGeneralInformationUsersForm } from "../users.types";
 
 const getUsers = async (): Promise<IGeneralInformationUsersForm[]> => {
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_USERS_PROCESS}/usuario-full`;
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE}/usuarios`;
 
   try {
     const options: RequestInit = {
       method: "GET",
       headers: {
+        "X-Action": "QueryUsuariosFull",
         "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
