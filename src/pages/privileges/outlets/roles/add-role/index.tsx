@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { getRolFormats } from "@services/roles/ tipoDeMovimientoPorRol";
 import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRole";
-import { getCreditboardTasksByRole } from "@services/roles/creditboardTasksByRole";
 import { getUseCaseByRole } from "@services/roles/useCasesByRole";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
 import {
@@ -39,10 +38,6 @@ export function AddRol() {
   const [businessRules, setBusinessRules] = useState<Record<string, unknown>[]>(
     []
   );
-
-  const [crediboardTasks, setCrediboardTask] = useState<
-    Record<string, unknown>[]
-  >([]);
 
   const [useCases, setUseCases] = useState<Record<string, unknown>[]>([]);
   const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
@@ -80,9 +75,6 @@ export function AddRol() {
       businessRules: {
         values: [],
       },
-      crediboardTasks: {
-        values: [],
-      },
       useCases: {
         values: [],
       },
@@ -92,7 +84,6 @@ export function AddRol() {
     Promise.all([
       typesOfMovements(),
       businessRulesFull(),
-      crediboardsTasks(),
       rolesuseCases(),
       aplication(),
     ]).then(() => {
@@ -170,36 +161,6 @@ export function AddRol() {
         })
         .catch((error) => {
           console.info(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  };
-
-  const crediboardsTasks = () => {
-    if (!user) return;
-    if (crediboardTasks.length === 0) {
-      getCreditboardTasksByRole("1")
-        .then((data) => {
-          if (data !== null) {
-            setCrediboardTask(data as Record<string, unknown>[]);
-            setDataAddRoleLinixForm((prevFormData: IFormAddRole) => ({
-              ...prevFormData,
-              crediboardTasks: {
-                isValid: true,
-                values: dataToAssignmentFormEntry({
-                  dataOptions: data as Record<string, unknown>[],
-                  idLabel: "id",
-                  valueLabel: "value",
-                  isActiveLabel: "i_Privi",
-                }),
-              },
-            }));
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching web options:", error.message);
         })
         .finally(() => {
           setLoading(false);
