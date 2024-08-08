@@ -1,17 +1,15 @@
 import { environment } from "@src/config/environment";
+import { IPosition } from "@pages/privileges/outlets/positions/add-position/types";
+import { mapPositionsApiToEntities } from "./mappers";
 
-import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
-
-import { mapSelectLinixUseCaseApiToEntities } from "./mappers";
-
-const getSelectLinixUseCase = async (): Promise<Option[]> => {
-  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/enumerators/dmitipusec`;
+const getPositions = async (): Promise<IPosition[]> => {
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE}/cargos`;
 
   try {
     const options: RequestInit = {
       method: "GET",
       headers: {
-        "X-Action": "GetEnum",
+        "X-Action": "SearchAllCargos",
         "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -30,7 +28,7 @@ const getSelectLinixUseCase = async (): Promise<Option[]> => {
     }
 
     const normalizedUser = Array.isArray(data)
-      ? mapSelectLinixUseCaseApiToEntities(data)
+      ? mapPositionsApiToEntities(data)
       : [];
 
     return normalizedUser;
@@ -41,4 +39,4 @@ const getSelectLinixUseCase = async (): Promise<Option[]> => {
   return [];
 };
 
-export { getSelectLinixUseCase };
+export { getPositions };

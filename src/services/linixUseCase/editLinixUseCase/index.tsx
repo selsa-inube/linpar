@@ -6,7 +6,7 @@ import { mapEditLinixUseCaseEntityToApi } from "./mapper";
 const editLinixUseCase = async (
   editUseCase: UseCase
 ): Promise<UseCase | undefined> => {
-  const requestUrl = `${environment.ICLIENT_API_URL_PERSISTENCE_POST}/casos-de-uso`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/casos-de-uso`;
 
   try {
     const options: RequestInit = {

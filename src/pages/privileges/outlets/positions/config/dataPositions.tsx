@@ -14,7 +14,7 @@ import { deletePositionModal } from "../delete-positions/config/deletePositions.
 export const titlesOptions = [
   {
     id: "k_Grupo",
-    titleName: "Code",
+    titleName: "Código",
     priority: 0,
   },
   {
