@@ -8,7 +8,7 @@ export const titleButtonTextAssited = {
   finish: "Enviar",
 };
 interface IRolByPosition {
-  k_Rol: string;
+  k_Rol: number;
 }
 
 export interface IPosition {

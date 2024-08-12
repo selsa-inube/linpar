@@ -40,7 +40,7 @@ export const saveLinixPositions = async (
     .filter((rolesPorCargos) => rolesPorCargos.isActive === true)
     .map((rolesPorCargos) => ({
       k_Grupo: positionsId,
-      k_Rol: rolesPorCargos.id,
+      k_Rol: Number(rolesPorCargos.id),
     }));
   const newLinixPosition: IPosition = {
     n_Grupo: generalInformation.n_Grupo,
