@@ -1,26 +1,71 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getAll } from "@mocks/utils/dataMock.service";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { useAuth0 } from "@auth0/auth0-react";
+import { getPositions } from "@services/positions/getPositons";
+import { getRolesPorCargo } from "@services/positions/rolesPorCargo";
+
 import { EditPositionUI } from "./interface";
-import { IHandleUpdateDataSwitchstep } from "../add-position/types";
+import {
+  IFormAddPosition,
+  IHandleUpdateDataSwitchstep,
+  IPosition,
+} from "../add-position/types";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 import { editPositionTabsConfig } from "./config/editPosition.config";
 import { initalValuesPositions } from "../add-position/config/initialValues";
 
-export function EditPosition() {
-  const { position_id } = useParams();
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../users/types/forms.types";
+import { generalMessage } from "../add-position/config/messages.config";
+import { editPositions } from "./utils";
 
+export function EditPosition() {
+  const { k_Grupo } = useParams();
+
+  const initialGeneralFormState = {
+    generalInformation: {
+      isValid: false,
+      values: {
+        k_Grupo: "",
+        n_Grupo: "",
+        n_Uso: "",
+      },
+    },
+    rolesPorCargos: {
+      isValid: false,
+      values: [],
+    },
+  };
+  const [formData, setFormData] = useState<IFormAddPosition>(
+    initialGeneralFormState
+  );
+
+  const [positionsEdit, setPositionssEdit] = useState<IPosition[]>([]);
+  const [rolesPorCargo, setRolesPorCargos] = useState<
+    Record<string, unknown>[]
+  >([]);
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
   const [controlModal, setControlModal] = useState({
     show: false,
     continueTab: "",
   });
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [csOptionsChange, setCSOptionsChange] = useState<
+    IAssignmentFormEntry[]
+  >([]);
 
   const [selectedTab, setSelectedTab] = useState<string>(
     editPositionTabsConfig.generalInformation.id
   );
+  const originalDataEditPositionsForm = useRef<IFormAddPosition | null>(null);
 
+  const { user } = useAuth0();
   const [editData, setEditData] = useState<{
     [key: string]: { [key: string]: unknown };
   }>({
@@ -28,53 +73,94 @@ export function EditPosition() {
     roles: { entries: [] },
   });
 
+  const generalInformationData = positionsEdit.find(
+    (data) => data.id === k_Grupo
+  );
   useEffect(() => {
-    setLoading(true);
-    getAll("linix-positions")
-      .then((data) => {
-        if (data !== null) {
-          const positionsLinix =
-            data &&
-            Object.values(data).find(
-              (position) => position.k_Grupo === position_id
-            );
-          setEditData((prevFormData) => ({
-            ...prevFormData,
-            generalInformation: {
-              entries: positionsLinix,
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [position_id]);
-
-  useEffect(() => {
-    getAll("linix-roles")
-      .then((data) => {
-        if (data !== null) {
-          setEditData((prevDataEditPositionForm) => ({
-            ...prevDataEditPositionForm,
-            roles: {
-              entries: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "k_Rol",
-                valueLabel: "n_Rol",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching roles:", error.message);
-      });
+    positionsData();
   }, []);
+  useEffect(() => {
+    rolesPorCargos();
+  }, []);
+  const positionsData = async () => {
+    if (!user) return;
+    if (positionsEdit.length === 0) {
+      setLoading(true);
+      getPositions()
+        .then((data) => {
+          if (data !== null) {
+            setPositionssEdit(data as IPosition[]);
+            const generalData = data.find((data) => data.id === k_Grupo);
+            setFormData((prevFormData: IFormAddPosition) => ({
+              ...prevFormData,
+              generalInformation: {
+                isValid: true,
+                values: {
+                  k_Grupo: String(generalData?.k_Grupo) || "",
+                  n_Grupo: String(generalData?.n_Grupo) || "",
+                  n_Uso: String(generalData?.n_Uso) || "",
+                },
+              },
+            }));
+            originalDataEditPositionsForm.current = {
+              ...originalDataEditPositionsForm.current!,
+              generalInformation: {
+                isValid: true,
+                values: {
+                  k_Grupo: String(generalData?.k_Grupo) || "",
+                  n_Grupo: String(generalData?.n_Grupo) || "",
+                  n_Uso: String(generalData?.n_Uso) || "",
+                },
+              },
+            };
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching general Information:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+  const rolesPorCargos = () => {
+    if (!user) return;
+    if (rolesPorCargo.length === 0) {
+      getRolesPorCargo(k_Grupo || "1")
+        .then((data) => {
+          if (data !== null) {
+            setRolesPorCargos(data as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddPosition) => ({
+              ...prevFormData,
+              rolesPorCargos: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Rol",
+                  valueLabel: "n_Rol",
+                  isActiveLabel: "i_Tierol",
+                }),
+              },
+            }));
+            originalDataEditPositionsForm.current = {
+              ...originalDataEditPositionsForm.current!,
+              rolesPorCargos: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Rol",
+                  valueLabel: "n_Rol",
+                  isActiveLabel: "i_Tierol",
+                }),
+              },
+            };
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching web options:", error.message);
+        });
+    }
+  };
 
   const handleSubmit = (values: IHandleUpdateDataSwitchstep) => {
     const editKey = Object.entries(editPositionTabsConfig).find(
@@ -91,15 +177,8 @@ export function EditPosition() {
   };
 
   const handleTabChange = (tabId: string) => {
-    let modalUpdate = controlModal;
-    let selectTab = tabId;
-
-    if (currentFormHasChanges) {
-      modalUpdate = { show: true, continueTab: tabId };
-      selectTab = selectedTab;
-    }
-    setControlModal(modalUpdate);
-    setSelectedTab(selectTab);
+    setControlModal({ show: true, continueTab: tabId });
+    setSelectedTab(tabId);
   };
 
   const handleCloseModal = () => {
@@ -117,12 +196,71 @@ export function EditPosition() {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
   };
+  const navigate = useNavigate();
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+    navigate("/privileges/positions");
+  };
+  const editGeneral = generalInformationData;
 
+  const handleUpdateFormData = (values: IHandleUpdateDataSwitchstep) => {
+    const stepKey = Object.entries(editPositionTabsConfig).find(
+      ([, config]) => config.id === selectedTab
+    )?.[0];
+
+    if (stepKey) {
+      setFormData((prevFormData: IFormAddPosition) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
+    }
+  };
+  const handleReset = () => {
+    setFormData(originalDataEditPositionsForm.current!);
+    setCurrentFormHasChanges(false);
+  };
+
+  const onSubmit = () => {
+    setLoading(true);
+    const addnewdata = editPositions(formData, csOptionsChange);
+    addnewdata
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  const userCardData = formData && {
+    code: formData.generalInformation.values.k_Grupo,
+    username: formData.generalInformation.values.n_Grupo,
+    description: formData.generalInformation.values.n_Uso,
+  };
   return (
     <EditPositionUI
+      setCsOptionsChange={setCSOptionsChange}
+      positionsEdit={editGeneral!}
+      handleUpdateFormData={handleUpdateFormData}
+      onSubmit={onSubmit}
+      onCloseSectionMessage={handleCloseSectionMessage}
+      handleReset={handleReset}
+      currentFormHasChanges={currentFormHasChanges}
+      formData={formData}
       selectedTab={selectedTab}
       editData={editData}
-      id={position_id || ""}
+      csOptionsChange={csOptionsChange}
+      id={k_Grupo || "1"}
       loading={loading}
       handleTabChange={handleTabChange}
       handleSubmit={handleSubmit}
@@ -130,6 +268,8 @@ export function EditPosition() {
       handleDataChange={handleDataChange}
       handleCloseModal={handleCloseModal}
       handleContinueTab={handleContinueTab}
+      message={message}
+      userCardData={userCardData}
     />
   );
 }

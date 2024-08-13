@@ -31,7 +31,7 @@ const addPositionStepsRules = (
 export const saveLinixPositions = (addLinixPositions: IFormAddPosition) => {
   const {
     generalInformation: { values: generalInformation },
-    roles: { values: roles },
+    rolesPorCargos: { values: roles },
   } = addLinixPositions;
 
   const normalizeRoles = roles

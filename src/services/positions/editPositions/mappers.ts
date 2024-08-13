@@ -8,6 +8,7 @@ const mapEditCargosEntityToApi = (
     n_Grupo: String(editCargo.n_Grupo),
     n_Uso: String(editCargo.n_Uso),
     k_Grupo: String(editCargo.k_Grupo),
+    rolesPorCargo: Object(editCargo.rolesPorCargo),
   };
 };
 

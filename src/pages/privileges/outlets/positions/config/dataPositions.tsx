@@ -85,7 +85,7 @@ export const actionsConfigPosition = (
       id: "Edit",
       actionName: "Editar",
       content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <Link to={`edit/${k_Grupo}`} onClick={() => selectedData(k_Grupo)}>
+        <Link to={`edit/${k_Grupo}`}>
           <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
         </Link>
       ),

@@ -38,7 +38,7 @@ export function AddPosition() {
         isValid: false,
         values: initalValuesPositions.generalInformation,
       },
-      roles: {
+      rolesPorCargos: {
         isValid: false,
         values: [],
       },
@@ -75,7 +75,7 @@ export function AddPosition() {
   };
 
   const validateActiveRoles = () => {
-    const validateAct = dataAddPositionLinixForm.roles.values.some(
+    const validateAct = dataAddPositionLinixForm.rolesPorCargos.values.some(
       (x) => x.isActive === true
     );
     return currentStep === 2 && !validateAct;
