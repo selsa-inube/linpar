@@ -1,13 +1,13 @@
-import { environment } from "@src/config/environment";
+import { environment, retries, timeout } from "@src/config/environment";
 import { mapTipoDeMovimientoPorRolFormatsApiToEntities } from "./mapper";
 
 const getRolFormats = async (
   k_Rol: string
 ): Promise<Record<string, unknown>[]> => {
-  const maxRetries = 5;
-  const fetchTimeout = 3000;
+  const maxRetries = retries;
+  const fetchTimeout = timeout;
 
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/roles/${k_Rol}`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/roles/${k_Rol}`;
 
   const options: RequestInit = {
     method: "GET",
