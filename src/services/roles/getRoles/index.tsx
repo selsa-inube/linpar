@@ -3,10 +3,9 @@ import { IRol } from "@src/pages/privileges/outlets/roles/types";
 import { mapRolesUseCaseApiToEntities } from "./mapper";
 
 const getRoles = async (): Promise<IRol[]> => {
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/roles`;
+
   try {
-    const queryParams = new URLSearchParams({
-      sort: "n_Rol",
-    });
     const options: RequestInit = {
       method: "GET",
       headers: {
@@ -15,9 +14,6 @@ const getRoles = async (): Promise<IRol[]> => {
         "Content-type": "application/json; charset=UTF-8",
       },
     };
-    const requestUrl = `${
-      environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS
-    }/roles?${queryParams.toString()}`;
 
     const res = await fetch(requestUrl, options);
 
