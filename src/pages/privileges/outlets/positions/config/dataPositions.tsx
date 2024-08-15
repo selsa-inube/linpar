@@ -56,22 +56,18 @@ export const actionsConfigPosition = (
     {
       id: "i_activo",
       actionName: "Activo",
-      content: ({ k_Grupo }: { k_Grupo: string }) => {
-        const position = selectedData(k_Grupo);
-        const adjustedPosition = {
-          id: position?.k_Grupo || "",
-          active: position?.i_Activo === "Y" || false,
-          name: position?.n_Grupo || "",
-        };
-        return (
-          <ActivatePosition
-            handleActivate={() => {}}
-            data={adjustedPosition}
-            showComplete={false}
-            activateModalConfig={activatePositionModal}
-          />
-        );
-      },
+      content: (cargos: IPosition) => (
+        <ActivatePosition
+          handleActivate={() => {}}
+          data={{
+            id: cargos.k_Grupo,
+            active: cargos.i_Activo,
+            name: cargos.n_Grupo,
+          }}
+          showComplete={false}
+          activateModalConfig={activatePositionModal}
+        />
+      ),
       type: "secondary",
     },
     {

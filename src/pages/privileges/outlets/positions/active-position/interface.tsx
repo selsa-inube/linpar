@@ -11,6 +11,7 @@ interface IActivatePositionUI {
   id: string;
   message: IMessageState;
   showComplete: boolean;
+  loading: boolean;
   activateModalConfig: typeof activatePositionModal;
   handleToggleModal: () => void;
   handleActivatePosition: () => void;
