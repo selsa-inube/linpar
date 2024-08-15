@@ -1,12 +1,12 @@
 import { environment } from "@src/config/environment";
+
 import { mapLinixUseCaseApiToEntities } from "./mapper";
 import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
 const getLinixUseCase = async (): Promise<UseCase[]> => {
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/casos-de-uso`;
+
   try {
-    const queryParams = new URLSearchParams({
-      sort: "n_Usecase",
-    });
     const options: RequestInit = {
       method: "GET",
       headers: {
@@ -15,9 +15,6 @@ const getLinixUseCase = async (): Promise<UseCase[]> => {
         "Content-type": "application/json; charset=UTF-8",
       },
     };
-    const requestUrl = `${
-      environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS
-    }/casos-de-uso?${queryParams.toString()}`;
 
     const res = await fetch(requestUrl, options);
 

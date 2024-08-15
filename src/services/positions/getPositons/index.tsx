@@ -7,7 +7,6 @@ const getPositions = async (): Promise<IPosition[]> => {
     const queryParams = new URLSearchParams({
       page: "1",
       per_page: "200",
-      sort: "n_Grupo",
     });
     const options: RequestInit = {
       method: "GET",
