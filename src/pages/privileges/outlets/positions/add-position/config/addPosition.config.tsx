@@ -8,7 +8,7 @@ export const stepsAddPosition = {
     label: "Información general",
     description: "Por favor completa la información general.",
   },
-  roles: {
+  rolesPorCargos: {
     id: 2,
     label: "Roles",
     description: "Por favor completa la información de roles.",

@@ -28,7 +28,7 @@ function filterAndMapData(
         item[isActiveKey as string as keyof IOptionInitialiceEntry] === true
     )
     .map((item: IOptionInitialiceEntry) =>
-      createAttribute(item.value, item.value)
+      createAttribute(item.id + ": ", item.value)
     );
 }
 export const VerificationAddPosition = (props: IControllerAccordionProps) => {
@@ -50,7 +50,10 @@ export const VerificationAddPosition = (props: IControllerAccordionProps) => {
       },
       roles: {
         title: "Roles",
-        attributes: filterAndMapData(data.roles?.values || [], "isActive"),
+        attributes: filterAndMapData(
+          data.rolesPorCargos?.values || [],
+          "isActive"
+        ),
       },
     },
   }));
