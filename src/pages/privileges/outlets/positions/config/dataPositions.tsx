@@ -10,6 +10,7 @@ import { ActivatePosition } from "../active-position";
 import { IPosition } from "../add-position/types";
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
+import { IDeleteForMessage } from "../types";
 
 export const titlesOptions = [
   {
@@ -33,7 +34,7 @@ export const PositionsBreakPointsConfig = [
 
 export const actionsConfigPosition = (
   linixPosition: IPosition[],
-  setIdDeleted: (show: string) => void
+  setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
   const dataDetailsPosition = (k_Grupo: string) => {
     const data = [
@@ -94,13 +95,13 @@ export const actionsConfigPosition = (
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Grupo, n_Grupo }: { k_Grupo: string; n_Grupo: string }) => (
+      content: ({ k_Grupo }: { k_Grupo: string }) => (
         <DeletePosition
-          namePosition={n_Grupo}
           linixPosition={k_Grupo}
           deletePositionModal={deletePositionModal}
           handleDeletePosition={deleteItemData}
           setIdDeleted={setIdDeleted}
+          namePosition={k_Grupo}
         />
       ),
       type: "remove",
