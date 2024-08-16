@@ -10,6 +10,7 @@ import { ActivatePosition } from "../active-position";
 import { IPosition } from "../add-position/types";
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
+import { IDeleteForMessage } from "../types";
 
 export const titlesOptions = [
   {
@@ -33,7 +34,7 @@ export const PositionsBreakPointsConfig = [
 
 export const actionsConfigPosition = (
   linixPosition: IPosition[],
-  setIdDeleted: (show: string) => void
+  setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
   const dataDetailsPosition = (k_Grupo: string) => {
     const data = [
@@ -48,29 +49,22 @@ export const actionsConfigPosition = (
     return [...data].shift();
   };
 
-  const selectedData = (k_Grupo: string) =>
-    linixPosition.find((position) => position.k_Grupo === k_Grupo);
-
   const actionsConfig = [
     {
       id: "i_activo",
       actionName: "Activo",
-      content: ({ k_Grupo }: { k_Grupo: string }) => {
-        const position = selectedData(k_Grupo);
-        const adjustedPosition = {
-          id: position?.k_Grupo || "",
-          active: position?.i_Activo === "Y" || false,
-          name: position?.n_Grupo || "",
-        };
-        return (
-          <ActivatePosition
-            handleActivate={() => {}}
-            data={adjustedPosition}
-            showComplete={false}
-            activateModalConfig={activatePositionModal}
-          />
-        );
-      },
+      content: (cargos: IPosition) => (
+        <ActivatePosition
+          handleActivate={() => {}}
+          data={{
+            id: cargos.k_Grupo,
+            active: cargos.i_Activo,
+            name: cargos.n_Grupo,
+          }}
+          showComplete={false}
+          activateModalConfig={activatePositionModal}
+        />
+      ),
       type: "secondary",
     },
     {
@@ -94,13 +88,13 @@ export const actionsConfigPosition = (
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Grupo, n_Grupo }: { k_Grupo: string; n_Grupo: string }) => (
+      content: ({ k_Grupo }: { k_Grupo: string }) => (
         <DeletePosition
-          namePosition={n_Grupo}
           linixPosition={k_Grupo}
           deletePositionModal={deletePositionModal}
           handleDeletePosition={deleteItemData}
           setIdDeleted={setIdDeleted}
+          namePosition={k_Grupo}
         />
       ),
       type: "remove",

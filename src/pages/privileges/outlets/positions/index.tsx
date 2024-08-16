@@ -5,16 +5,20 @@ import { PositionsUI } from "./interface";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./delete-positions/config/messages.config";
+import { IDeleteForMessage } from "./types";
 
 export function Positions() {
   const [searchPosition, setSearchPosition] = useState<string>("");
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: "",
+    successfulDiscard: false,
+  });
 
   const [positions, setPositions] = useState<IPosition[]>([]);
   const { user } = useAuth0();
@@ -38,14 +42,19 @@ export function Positions() {
   }, [user]);
 
   useEffect(() => {
+    const messageType = idDeleted.successfulDiscard
+      ? generalMessage.success
+      : generalMessage.failed;
     const filterRecordRemoved = positions.filter(
-      (positions) => positions.k_Grupo !== idDeleted
+      (positions) => positions.k_Grupo !== idDeleted.id
     );
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: generalMessage.success,
-      });
+
+    idDeleted.successfulDiscard && setPositions(filterRecordRemoved);
+
+    setMessage({
+      visible: true,
+      data: messageType,
+    });
   }, [idDeleted]);
 
   const handleSearchPositions = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +84,7 @@ export function Positions() {
       linixPosition={positions}
       loading={loading}
       message={message}
-      idDeleted={idDeleted}
+      idDeleted={idDeleted.id}
       setIdDeleted={setIdDeleted}
     />
   );

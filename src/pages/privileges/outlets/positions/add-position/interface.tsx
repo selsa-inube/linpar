@@ -46,7 +46,7 @@ const renderStepContent = (
           onFormValid={setIsCurrentFormValid}
         />
       )}
-      {currentStep === stepsAddPosition.roles.id && (
+      {currentStep === stepsAddPosition.rolesPorCargos.id && (
         <InitializerForm
           dataOptionsForms={dataAddPositionLinixForm.rolesPorCargos.values}
           handleSubmit={handleUpdateDataSwitchstep}
@@ -79,7 +79,6 @@ interface AddPositionUIProps {
   handleToggleModal: () => void;
   handleFinishForm: () => void;
   handleCloseSectionMessage: () => void;
-  validateActiveRoles: () => boolean;
 }
 
 export function AddPositionUI(props: AddPositionUIProps) {
@@ -100,14 +99,13 @@ export function AddPositionUI(props: AddPositionUIProps) {
     handleToggleModal,
     handleFinishForm,
     handleCloseSectionMessage,
-    validateActiveRoles,
   } = props;
 
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  const disabled = !isCurrentFormValid || validateActiveRoles();
+  const disabled = !isCurrentFormValid;
 
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>

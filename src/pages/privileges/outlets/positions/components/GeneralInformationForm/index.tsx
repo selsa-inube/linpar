@@ -17,7 +17,9 @@ export interface IGeneralInformationEntry {
 }
 
 const validationSchema = Yup.object({
-  n_Grupo: Yup.string().required(validationMessages.required),
+  n_Grupo: Yup.string()
+    .required(validationMessages.required)
+    .max(45, "Se excedio el numero de caracteres (45)"),
   n_Uso: Yup.string().required(validationMessages.required),
 });
 
