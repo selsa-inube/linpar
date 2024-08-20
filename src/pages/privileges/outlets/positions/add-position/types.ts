@@ -22,7 +22,7 @@ export interface IPosition {
   id?: string;
   i_Activo?: string;
   modifyJustification?: string;
-  k_Grupo: string;
+  k_Grupo?: string;
   n_Grupo: string;
   n_Uso: string;
   rolesPorCargo?: IRolByPosition[];
