@@ -13,7 +13,7 @@ import { activatePositions } from "./utils";
 
 export interface IDataActivateOption {
   id: string;
-  active: string;
+  active?: string;
   name: string;
 }
 

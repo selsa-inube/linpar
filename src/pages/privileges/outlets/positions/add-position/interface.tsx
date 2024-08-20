@@ -8,8 +8,8 @@ import {
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
-import { DecisionModal } from "@src/components/feedback/DecisionModal";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { DecisionModal } from "@components/feedback/DecisionModal";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import {
   createPositionConfig,

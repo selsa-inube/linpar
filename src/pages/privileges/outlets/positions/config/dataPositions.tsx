@@ -49,9 +49,6 @@ export const actionsConfigPosition = (
     return [...data].shift();
   };
 
-  const selectedData = (k_Grupo: string) =>
-    linixPosition.find((position) => position.k_Grupo === k_Grupo);
-
   const actionsConfig = [
     {
       id: "i_activo",
@@ -82,7 +79,7 @@ export const actionsConfigPosition = (
       id: "Edit",
       actionName: "Editar",
       content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <Link to={`edit/${k_Grupo}`} onClick={() => selectedData(k_Grupo)}>
+        <Link to={`edit/${k_Grupo}`}>
           <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
         </Link>
       ),
