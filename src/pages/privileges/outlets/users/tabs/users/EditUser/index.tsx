@@ -1,11 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
-import { getAll } from "@mocks/utils/dataMock.service";
-import { IFormAddUsers } from "@services/users/users.types";
+import { getUsers } from "@services/users/getUsers";
+import { getSucursales } from "@services/users/sucursales";
+import { getProyectos } from "@services/users/proyectos";
+import { getUnidadesPresupuestales } from "@services/users/unidadesPresupuestales";
+import { getNomina } from "@services/users/nomina";
+import { getPositions } from "@services/users/getPositons";
+import {
+  IFormAddUsers,
+  IGeneralInformationUsersForm,
+} from "@services/users/users.types";
 
 import { EditUserUI } from "./interface";
 
@@ -15,9 +23,9 @@ function EditUsers() {
     continueTab: "",
   });
 
-  const { user_id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState<IFormAddUsers>({
+  const { k_Usuari } = useParams();
+  const [loading, setLoading] = useState(false);
+  const initialGeneralFormState = {
     generalInformation: {
       isValid: false,
       values: {
@@ -50,156 +58,260 @@ function EditUsers() {
       isValid: false,
       values: [],
     },
-  });
-
+  };
+  const [formData, setFormData] = useState<IFormAddUsers>(
+    initialGeneralFormState
+  );
+  const { user } = useAuth0();
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
+  const [usersEdit, setUsersEdit] = useState<IGeneralInformationUsersForm[]>(
+    []
+  );
+  const originalDataEditUserForm = useRef<IFormAddUsers | null>(null);
 
-  const [positionsOptions, setPositionsOptions] = useState<
+  const [branches, setBranches] = useState<Record<string, unknown>[]>([]);
+  const [projects, setProjects] = useState<Record<string, unknown>[]>([]);
+  const [positions, setPositions] = useState<Record<string, unknown>[]>([]);
+  const [aidBudgetUnits, setAidBudgetUnits] = useState<
     Record<string, unknown>[]
   >([]);
-
+  const [payrolls, setPayrolls] = useState<Record<string, unknown>[]>([]);
   const [selectedTab, setSelectedTab] = useState(
     editUserTabsConfig.generalInformation.id
   );
-
   useEffect(() => {
-    setLoading(true);
-    getAll("linix-users")
-      .then((data) => {
-        if (data !== null) {
-          const invitationsLinix =
-            data &&
-            Object.values(data).find(
-              (invitation) => invitation.k_Usuari === user_id
-            );
-          setFormData((prevFormData) => ({
-            ...prevFormData,
-            generalInformation: {
-              isValid: false,
-              values: invitationsLinix,
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-    getAll("linix-positions")
-      .then((data) => {
-        if (data !== null) {
-          setPositionsOptions(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
-  }, [user_id]);
+    linixUsersCaseData();
+  }, []);
   useEffect(() => {
-    getAll("linix-users-branches")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevDataEditPositionForm) => ({
-            ...prevDataEditPositionForm,
-            branches: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching roles:", error.message);
-      });
-    getAll("linix-users-projects")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevDataEditPositionForm) => ({
-            ...prevDataEditPositionForm,
-            projects: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching roles:", error.message);
-      });
-    getAll("linix-users-events")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevDataEditPositionForm) => ({
-            ...prevDataEditPositionForm,
-            events: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching roles:", error.message);
-      });
-    getAll("linix-users-aidBudgetUnits")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevDataEditPositionForm) => ({
-            ...prevDataEditPositionForm,
-            aidBudgetUnits: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching roles:", error.message);
-      });
-    getAll("linix-users-payrolls")
-      .then((data) => {
-        if (data !== null) {
-          setFormData((prevDataEditPositionForm) => ({
-            ...prevDataEditPositionForm,
-            payrolls: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching roles:", error.message);
-      });
+    cargosData();
   }, []);
 
+  useEffect(() => {
+    Promise.all([
+      branchesData(),
+      projectsData(),
+      aidBudgetUnitsData(),
+      payrollsData(),
+    ]).then(() => {
+      setLoading(true);
+    });
+  }, []);
+
+  const linixUsersCaseData = async () => {
+    if (!user) return;
+    if (usersEdit.length === 0) {
+      setLoading(true);
+      getUsers()
+        .then((data) => {
+          if (data !== null) {
+            setUsersEdit(data as IGeneralInformationUsersForm[]);
+            const generalData = data.find((data) => data.id === k_Usuari);
+            setFormData((prevFormData: IFormAddUsers) => ({
+              ...prevFormData,
+              generalInformation: {
+                isValid: true,
+                values: {
+                  k_Usuari: String(generalData?.k_Usuari) || "",
+                  n_Usuari: String(generalData?.n_Usuari) || "",
+                  k_Grupo: String(generalData?.k_Grupo) || "",
+                  n_Grupo: String(generalData?.n_Grupo) || "",
+                  a_Numnit: String(generalData?.a_Numnit) || "",
+                  i_Activo: String(generalData?.i_Activo) || "",
+                },
+              },
+            }));
+            originalDataEditUserForm.current = {
+              ...originalDataEditUserForm.current!,
+              generalInformation: {
+                isValid: true,
+                values: {
+                  k_Usuari: String(generalData?.k_Usuari) || "",
+                  n_Usuari: String(generalData?.n_Usuari) || "",
+                  k_Grupo: String(generalData?.k_Grupo) || "",
+                  n_Grupo: String(generalData?.n_Grupo) || "",
+                  a_Numnit: String(generalData?.a_Numnit) || "",
+                  i_Activo: String(generalData?.i_Activo) || "",
+                },
+              },
+            };
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching general Information:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+  const cargosData = () => {
+    if (!user) return;
+    if (positions.length === 0) {
+      setLoading(true);
+      getPositions()
+        .then((newUsers) => {
+          setPositions(newUsers);
+        })
+        .catch((error) => {
+          console.info(error);
+        });
+    }
+  };
+
+  const branchesData = () => {
+    if (!user) return;
+    if (branches.length === 0) {
+      getSucursales(k_Usuari || "1")
+        .then((data) => {
+          if (data !== null) {
+            setBranches(data as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddUsers) => ({
+              ...prevFormData,
+              branches: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Sucurs",
+                  valueLabel: "n_Sucurs",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            }));
+            originalDataEditUserForm.current = {
+              ...originalDataEditUserForm.current!,
+              branches: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Sucurs",
+                  valueLabel: "n_Sucurs",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            };
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching branches:", error.message);
+        });
+    }
+  };
+
+  const projectsData = () => {
+    if (!user) return;
+    if (projects.length === 0) {
+      getProyectos(k_Usuari || "1")
+        .then((data) => {
+          if (data !== null) {
+            setProjects(data as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddUsers) => ({
+              ...prevFormData,
+              projects: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Numdoc",
+                  valueLabel: "n_Objeto",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            }));
+            originalDataEditUserForm.current = {
+              ...originalDataEditUserForm.current!,
+              projects: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Numdoc",
+                  valueLabel: "n_Objeto",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            };
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching projects:", error.message);
+        });
+    }
+  };
+  const aidBudgetUnitsData = () => {
+    if (!user) return;
+    if (aidBudgetUnits.length === 0) {
+      getUnidadesPresupuestales(k_Usuari || "1")
+        .then((data) => {
+          if (data !== null) {
+            setAidBudgetUnits(data as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddUsers) => ({
+              ...prevFormData,
+              aidBudgetUnits: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Unidad",
+                  valueLabel: "n_Unidad",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            }));
+            originalDataEditUserForm.current = {
+              ...originalDataEditUserForm.current!,
+              aidBudgetUnits: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Unidad",
+                  valueLabel: "n_Unidad",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            };
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching aidBudgetUnits:", error.message);
+        });
+    }
+  };
+
+  const payrollsData = () => {
+    if (!user) return;
+    if (payrolls.length === 0) {
+      getNomina(k_Usuari || "1")
+        .then((data) => {
+          if (data !== null) {
+            setPayrolls(data as Record<string, unknown>[]);
+            setFormData((prevFormData: IFormAddUsers) => ({
+              ...prevFormData,
+              payrolls: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Tipnom",
+                  valueLabel: "n_Tipnom",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            }));
+            originalDataEditUserForm.current = {
+              ...originalDataEditUserForm.current!,
+              payrolls: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as Record<string, unknown>[],
+                  idLabel: "k_Tipnom",
+                  valueLabel: "n_Tipnom",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            };
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching aidBudgetUnits:", error.message);
+        });
+    }
+  };
   const handleSubmit = (values: IAssignmentFormEntry[]) => {
     const editKey = Object.entries(editUserTabsConfig).find(
       ([, config]) => config.id === selectedTab
@@ -248,8 +360,8 @@ function EditUsers() {
       handleDataChange={handleDataChange}
       handleCloseModal={handleCloseModal}
       handleContinueTab={handleContinueTab}
-      id={user_id || ""}
-      positionsOptions={positionsOptions}
+      id={k_Usuari || ""}
+      positions={positions}
       loading={loading}
     />
   );

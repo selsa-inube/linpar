@@ -1,5 +1,19 @@
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 
+interface Ibranches {
+  k_Sucurs: string;
+}
+
+export interface IGeneralInformation {
+  id?: string;
+  k_Usuari: string;
+  n_Usuari: string;
+  k_Grupo: string;
+  n_Grupo: string;
+  a_Numnit: string;
+  i_Activo: string;
+}
+
 export interface IGeneralInformationUsersForm {
   id?: string;
   k_Usuari: string;
@@ -8,6 +22,8 @@ export interface IGeneralInformationUsersForm {
   n_Grupo: string;
   a_Numnit: string;
   i_Activo: string;
+  modifyJustification?: string;
+  branches?: Ibranches[];
 }
 
 export interface IFormAddUsers {

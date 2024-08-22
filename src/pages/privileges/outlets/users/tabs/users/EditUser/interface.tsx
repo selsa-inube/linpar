@@ -8,7 +8,7 @@ import {
   Breadcrumbs,
 } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
+
 import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
@@ -23,12 +23,14 @@ import {
   editLinixUsersConfig,
 } from "./config/editLinuxUsers.config";
 
+import { InitializerForm } from "../InitializerForm";
+
 interface IControlModal {
   show: boolean;
   continueTab: string;
 }
 interface EditUserUIProps {
-  positionsOptions: Record<string, unknown>[];
+  positions: Record<string, unknown>[];
   selectedTab: string;
   loading: boolean;
   formData: IFormAddUsers;
@@ -60,7 +62,7 @@ function continueModal(
 
 function EditUserUI(props: EditUserUIProps) {
   const {
-    positionsOptions,
+    positions,
     selectedTab,
     loading,
     id,
@@ -81,7 +83,6 @@ function EditUserUI(props: EditUserUIProps) {
 
   const userCardData = currentInformation && {
     username: (currentInformation as { n_Usuari: string }).n_Usuari,
-    code: (currentInformation as { a_Numnit: string }).a_Numnit,
   };
 
   return loading ? (
@@ -121,77 +122,40 @@ function EditUserUI(props: EditUserUIProps) {
           />
           {selectedTab === editLinixUserTabsConfig.generalInformation.id && (
             <GeneralInformationForm
-              initialValues={currentInformation}
+              initialValues={formData.generalInformation.values}
               handleSubmit={handleSubmit as () => void}
               withSubmitButtons
-              positionsOptions={positionsOptions}
+              positions={positions}
               onHasChanges={handleDataChange}
               id={id}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.branches.id && (
             <InitializerForm
-              withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.branches.values}
               handleSubmit={handleSubmit}
-              id={id}
-              keyData={"k_Usuari"}
-              nameDB={"linix-users"}
-              property={"sucursales"}
-              propertyData={"id"}
             />
           )}
-          {selectedTab === editLinixUserTabsConfig.projects.id && (
+          {selectedTab === editLinixUserTabsConfig.projectsOrEvents.id && (
             <InitializerForm
-              withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.projects.values}
               handleSubmit={handleSubmit}
-              id={id}
-              keyData={"k_Usuari"}
-              nameDB={"linix-users"}
-              property={"proyectos"}
-              propertyData={"id"}
-            />
-          )}
-          {selectedTab === editLinixUserTabsConfig.event.id && (
-            <InitializerForm
-              withSubmitButtons
-              onHasChanges={handleDataChange}
-              dataOptionsForms={formData.events.values}
-              handleSubmit={handleSubmit}
-              id={id}
-              keyData={"k_Usuari"}
-              nameDB={"linix-users"}
-              property={"eventos"}
-              propertyData={"id"}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.aidBudgetUnits.id && (
             <InitializerForm
-              withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.aidBudgetUnits.values}
               handleSubmit={handleSubmit}
-              id={id}
-              keyData={"k_Usuari"}
-              nameDB={"linix-users"}
-              property={"unidadesPresupuestales"}
-              propertyData={"id"}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.payrolls.id && (
             <InitializerForm
-              withSubmitButtons
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.payrolls.values}
               handleSubmit={handleSubmit}
-              id={id}
-              keyData={"k_Usuari"}
-              nameDB={"linix-users"}
-              property={"nomina"}
-              propertyData={"id"}
             />
           )}
         </Stack>

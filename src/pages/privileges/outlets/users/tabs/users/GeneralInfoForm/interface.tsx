@@ -1,12 +1,9 @@
 import { FormikValues } from "formik";
 
-import { Grid, Textfield, useMediaQuery } from "@inube/design-system";
-import { RenderMessage } from "@components/feedback/RenderMessage";
-import { FormButtons } from "@components/forms/submit/FormButtons";
+import { Grid, useMediaQuery } from "@inube/design-system";
+import { Textfield } from "@inubekit/textfield";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
-import { IGeneralInformationUsersForm } from ".";
 
 function stateValue(formik: FormikValues, attribute: string) {
   if (!formik.touched[attribute]) return undefined;
@@ -16,13 +13,10 @@ function stateValue(formik: FormikValues, attribute: string) {
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
-  positionsOptions: Record<string, unknown>[];
+  positions: Record<string, unknown>[];
   message: IMessageState;
-  disabledButtons: (valueCompare: IGeneralInformationUsersForm) => boolean;
   handleCloseSectionMessage: () => void;
-  handleChangeForm: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
+  handleChangeForm: (name: string, value: string) => void;
   handleSubmitForm: () => void;
   handleReset: () => void;
   loading?: boolean;
@@ -30,17 +24,7 @@ interface GeneralInformationFormUIProps {
 }
 
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const {
-    formik,
-    loading,
-    positionsOptions,
-    withSubmitButtons,
-    message,
-    disabledButtons,
-    handleCloseSectionMessage,
-    handleReset,
-    handleSubmitForm,
-  } = props;
+  const { formik, positions } = props;
   const searchData = {
     "Digite el código o nombre de la aplicación:": "",
   };
@@ -64,7 +48,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             type="text"
             size="compact"
             fullwidth
-            readOnly
             disabled
           />
           <Textfield
@@ -75,7 +58,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             type="text"
             size="compact"
             fullwidth
-            readOnly
             disabled
           />
           <SearchUserCard
@@ -89,7 +71,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             nameModal="searchField"
             labelModal="Digite la opción a buscar."
             placeholderModal="Digite el código o nombre del cargo."
-            userData={positionsOptions}
+            userData={positions}
             searchFieldData={searchData}
             onReset={() => {}}
             idLabel="k_Grupo"
@@ -101,7 +83,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
                 position: value.n_Grupo,
               });
             }}
-            selectedId={formik.values.positionId}
+            selectedId={formik.values.k_Grupo}
             message={
               stateValue(formik, "position") === "invalid" &&
               formik.errors.position
@@ -112,21 +94,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           />
         </Grid>
       </form>
-      {withSubmitButtons && (
-        <FormButtons
-          handleSubmit={handleSubmitForm}
-          handleReset={formik.resetForm}
-          disabledButtons={!disabledButtons(formik.values)}
-          loading={loading}
-        />
-      )}
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleReset}
-        />
-      )}
     </>
   );
 }

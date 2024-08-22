@@ -36,7 +36,7 @@ function PrivilegesRoutes() {
         <Route path="positions/edit/:k_Grupo" element={<EditPosition />} />
 
         <Route path="users/invite" element={<Invite />} />
-        <Route path="users/edit/:user_id" element={<EditUsers />} />
+        <Route path="users/edit/:k_Usuari" element={<EditUsers />} />
         <Route path="roles/edit/:k_Rol" element={<EditRole />} />
 
         <Route
