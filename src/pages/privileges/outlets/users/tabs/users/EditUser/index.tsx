@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/config/editUserTabs.config";
-import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "@pages/privileges/outlets/users/types/forms.types";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { getUsers } from "@services/users/getUsers";
 import { getSucursales } from "@services/users/sucursales";
@@ -13,9 +16,13 @@ import { getPositions } from "@services/users/getPositons";
 import {
   IFormAddUsers,
   IGeneralInformationUsersForm,
+  IHandleChangeFormData,
 } from "@services/users/users.types";
 
 import { EditUserUI } from "./interface";
+import { editUsersData } from "./utils";
+import { generalMessage } from "./config/messages.config";
+import { editLinixUserTabsConfig } from "./config/editUsersTabs.config";
 
 function EditUsers() {
   const [controlModal, setControlModal] = useState({
@@ -42,7 +49,7 @@ function EditUsers() {
       isValid: false,
       values: [],
     },
-    projects: {
+    projectsOrEvents: {
       isValid: false,
       values: [],
     },
@@ -67,17 +74,25 @@ function EditUsers() {
   const [usersEdit, setUsersEdit] = useState<IGeneralInformationUsersForm[]>(
     []
   );
+  const generalInformationData = usersEdit.find((data) => data.id === k_Usuari);
+
   const originalDataEditUserForm = useRef<IFormAddUsers | null>(null);
 
   const [branches, setBranches] = useState<Record<string, unknown>[]>([]);
+  const [csOptionsChange, setCSOptionsChange] = useState<
+    IAssignmentFormEntry[]
+  >([]);
   const [projects, setProjects] = useState<Record<string, unknown>[]>([]);
   const [positions, setPositions] = useState<Record<string, unknown>[]>([]);
   const [aidBudgetUnits, setAidBudgetUnits] = useState<
     Record<string, unknown>[]
   >([]);
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
   const [payrolls, setPayrolls] = useState<Record<string, unknown>[]>([]);
   const [selectedTab, setSelectedTab] = useState(
-    editUserTabsConfig.generalInformation.id
+    editLinixUserTabsConfig.generalInformation.id
   );
   useEffect(() => {
     linixUsersCaseData();
@@ -206,24 +221,24 @@ function EditUsers() {
             setProjects(data as Record<string, unknown>[]);
             setFormData((prevFormData: IFormAddUsers) => ({
               ...prevFormData,
-              projects: {
+              projectsOrEvents: {
                 isValid: true,
                 values: dataToAssignmentFormEntry({
                   dataOptions: data as Record<string, unknown>[],
                   idLabel: "k_Numdoc",
-                  valueLabel: "n_Objeto",
+                  valueLabel: "k_Tipodr",
                   isActiveLabel: "i_Privil",
                 }),
               },
             }));
             originalDataEditUserForm.current = {
               ...originalDataEditUserForm.current!,
-              projects: {
+              projectsOrEvents: {
                 isValid: true,
                 values: dataToAssignmentFormEntry({
                   dataOptions: data as Record<string, unknown>[],
                   idLabel: "k_Numdoc",
-                  valueLabel: "n_Objeto",
+                  valueLabel: "k_Tipodr",
                   isActiveLabel: "i_Privil",
                 }),
               },
@@ -313,7 +328,7 @@ function EditUsers() {
     }
   };
   const handleSubmit = (values: IAssignmentFormEntry[]) => {
-    const editKey = Object.entries(editUserTabsConfig).find(
+    const editKey = Object.entries(editLinixUserTabsConfig).find(
       ([, config]) => config.id === selectedTab
     )?.[0];
 
@@ -327,11 +342,18 @@ function EditUsers() {
     setCurrentFormHasChanges(false);
   };
 
+  const navigate = useNavigate();
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+    navigate("/privileges/users");
+  };
+  const editGeneral = generalInformationData;
+
   const handleTabChange = (tabId: string) => {
-    setControlModal(
-      currentFormHasChanges ? { show: true, continueTab: tabId } : controlModal
-    );
-    setSelectedTab(currentFormHasChanges ? selectedTab : tabId);
+    setControlModal({ show: true, continueTab: tabId });
+    setSelectedTab(tabId);
   };
 
   const handleCloseModal = () => {
@@ -349,11 +371,50 @@ function EditUsers() {
     setCurrentFormHasChanges(false);
     setSelectedTab(controlModal.continueTab);
   };
+  const handleUpdateFormData = (values: IHandleChangeFormData) => {
+    const stepKey = Object.entries(editLinixUserTabsConfig).find(
+      ([, config]) => config.id === selectedTab
+    )?.[0];
+
+    if (stepKey) {
+      setFormData((prevFormData: IFormAddUsers) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
+    }
+  };
+  const handleReset = () => {
+    setFormData(originalDataEditUserForm.current!);
+    setCurrentFormHasChanges(false);
+  };
+
+  const onSubmit = () => {
+    setLoading(true);
+    const addnewdata = editUsersData(formData, csOptionsChange);
+    addnewdata
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   return (
     <EditUserUI
+      usersEdit={editGeneral!}
       selectedTab={selectedTab}
       formData={formData}
+      message={message}
       handleTabChange={handleTabChange}
       handleSubmit={handleSubmit}
       controlModal={controlModal}
@@ -361,8 +422,15 @@ function EditUsers() {
       handleCloseModal={handleCloseModal}
       handleContinueTab={handleContinueTab}
       id={k_Usuari || ""}
+      currentFormHasChanges={currentFormHasChanges}
       positions={positions}
       loading={loading}
+      handleReset={handleReset}
+      onSubmit={onSubmit}
+      onCloseSectionMessage={handleCloseSectionMessage}
+      handleUpdateFormData={handleUpdateFormData}
+      csOptionsChange={csOptionsChange}
+      setCsOptionsChange={setCSOptionsChange}
     />
   );
 }

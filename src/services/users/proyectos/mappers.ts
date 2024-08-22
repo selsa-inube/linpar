@@ -3,7 +3,7 @@ const mapProyectosFormatsApiToEntity = (
 ): Record<string, unknown> => {
   const buildProyectosFormat: Record<string, unknown> = {
     k_Numdoc: String(proyectosFormat.k_Numdoc),
-    n_Objeto: String(proyectosFormat.n_Objeto),
+    k_Tipodr: String(proyectosFormat.k_Tipodr),
     i_Privil: String(proyectosFormat.i_Privil),
   };
   return buildProyectosFormat;

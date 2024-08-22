@@ -5,7 +5,10 @@ import * as Yup from "yup";
 import { validationMessages } from "@validations/validationMessages";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { generalMessage } from "@pages/privileges/outlets/positions/add-position/config/messages.config";
-import { IGeneralInformation } from "@services/users/users.types";
+import {
+  IGeneralInformation,
+  IHandleChangeFormData,
+} from "@services/users/users.types";
 
 import { GeneralInformationFormUI } from "./interface";
 
@@ -23,7 +26,7 @@ interface IGeneralInformationFormProps {
   id?: string;
   loading?: boolean;
   withSubmitButtons?: boolean;
-  handleSubmit?: (values: IGeneralInformationUsersForm) => void;
+  handleSubmit: (values: IHandleChangeFormData) => void;
   onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   onHasChanges?: (hasChanges: boolean) => void;
 }

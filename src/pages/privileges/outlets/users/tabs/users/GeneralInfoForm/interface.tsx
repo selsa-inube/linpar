@@ -24,7 +24,7 @@ interface GeneralInformationFormUIProps {
 }
 
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const { formik, positions } = props;
+  const { formik, positions, handleChangeForm } = props;
   const searchData = {
     "Digite el código o nombre de la aplicación:": "",
   };
@@ -45,6 +45,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             name="n_Usuari"
             id="n_Usuari"
             value={formik.values.n_Usuari}
+            // onChange={(
+            //   event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+            // ) => handleChangeForm(event.target.name, event.target.value)}
             type="text"
             size="compact"
             fullwidth
@@ -76,13 +79,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             onReset={() => {}}
             idLabel="k_Grupo"
             nameLabel="n_Grupo"
-            onUserSelect={(value) => {
-              formik.setValues({
-                ...formik.values,
-                positionId: value.k_Grupo,
-                position: value.n_Grupo,
-              });
-            }}
+            onUserSelect={(value: Record<string, unknown>) =>
+              handleChangeForm("k_Grupo", value.k_Grupo as string)
+            }
             selectedId={formik.values.k_Grupo}
             message={
               stateValue(formik, "position") === "invalid" &&

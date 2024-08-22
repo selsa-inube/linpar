@@ -64,7 +64,7 @@ export function InitializerForm(props: IInitializerForm) {
       visible: false,
     });
 
-    navigate("/privileges/linixUseCase");
+    navigate("/privileges/users");
   };
 
   return (

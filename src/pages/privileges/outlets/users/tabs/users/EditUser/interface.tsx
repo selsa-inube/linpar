@@ -7,13 +7,19 @@ import {
   inube,
   Breadcrumbs,
 } from "@inube/design-system";
-import { DecisionModal } from "@components/feedback/DecisionModal";
 
 import { PageTitle } from "@components/PageTitle";
-import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { SubjectCard } from "@components/cards/SubjectCard";
-import { IFormAddUsers } from "@services/users/users.types";
+import {
+  IFormAddUsers,
+  IGeneralInformationUsersForm,
+  IHandleChangeFormData,
+} from "@services/users/users.types";
 
 import { StyledContainer } from "./styles";
 import { GeneralInformationForm } from "../GeneralInfoForm";
@@ -24,6 +30,9 @@ import {
 } from "./config/editLinuxUsers.config";
 
 import { InitializerForm } from "../InitializerForm";
+import { Button } from "@inubekit/button";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { useState } from "react";
 
 interface IControlModal {
   show: boolean;
@@ -34,6 +43,7 @@ interface EditUserUIProps {
   selectedTab: string;
   loading: boolean;
   formData: IFormAddUsers;
+  onSubmit: () => void;
   id: string;
   handleTabChange: (tabId: string) => void;
   handleSubmit: (values: IAssignmentFormEntry[]) => void;
@@ -41,37 +51,36 @@ interface EditUserUIProps {
   handleCloseModal: () => void;
   handleDataChange: (hasChanges: boolean) => void;
   handleContinueTab: () => void;
-}
-
-function continueModal(
-  handleCloseModal: () => void,
-  handleContinueTab: () => void
-) {
-  return (
-    <DecisionModal
-      loading={false}
-      closeModal={handleCloseModal}
-      handleClick={handleContinueTab}
-      title="Continuar sin guardar"
-      description="¿Seguro que desea salir? cualquier cambio no guardado se perderá"
-      actionText="Continuar"
-      appearance="error"
-    />
-  );
+  currentFormHasChanges: boolean;
+  handleReset: () => void;
+  usersEdit: IGeneralInformationUsersForm;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
+  handleUpdateFormData: (values: IHandleChangeFormData) => void;
+  csOptionsChange: IAssignmentFormEntry[];
+  setCsOptionsChange: (csOptionsChange: IAssignmentFormEntry[]) => void;
 }
 
 function EditUserUI(props: EditUserUIProps) {
+  const [key, setKey] = useState(0);
   const {
+    message,
+    handleUpdateFormData,
     positions,
+    onCloseSectionMessage,
     selectedTab,
+    onSubmit,
     loading,
+    currentFormHasChanges,
     id,
+    handleReset,
     handleTabChange,
-    handleSubmit,
-    controlModal,
-    handleCloseModal,
+
+    csOptionsChange,
+    setCsOptionsChange,
+
     handleDataChange,
-    handleContinueTab,
+
     formData,
   } = props;
 
@@ -84,11 +93,13 @@ function EditUserUI(props: EditUserUIProps) {
   const userCardData = currentInformation && {
     username: (currentInformation as { n_Usuari: string }).n_Usuari,
   };
-
+  const forceReRender = () => {
+    setKey((prevKey) => prevKey + 1);
+  };
   return loading ? (
     <LoadingApp />
   ) : (
-    <StyledContainer smallScreen={smallScreen}>
+    <StyledContainer smallScreen={smallScreen} key={key}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s200} direction="column">
           <Breadcrumbs crumbs={editLinixUsersConfig[0].crumbs} />
@@ -117,14 +128,13 @@ function EditUserUI(props: EditUserUIProps) {
           <Tabs
             tabs={Object.values(editLinixUserTabsConfig)}
             selectedTab={selectedTab}
-            type={typeTabs ? "select" : "tabs"}
+            scroll={typeTabs ? true : false}
             onChange={handleTabChange}
           />
           {selectedTab === editLinixUserTabsConfig.generalInformation.id && (
             <GeneralInformationForm
               initialValues={formData.generalInformation.values}
-              handleSubmit={handleSubmit as () => void}
-              withSubmitButtons
+              handleSubmit={handleUpdateFormData}
               positions={positions}
               onHasChanges={handleDataChange}
               id={id}
@@ -134,34 +144,70 @@ function EditUserUI(props: EditUserUIProps) {
             <InitializerForm
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.branches.values}
-              handleSubmit={handleSubmit}
+              handleSubmit={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.projectsOrEvents.id && (
             <InitializerForm
               onHasChanges={handleDataChange}
-              dataOptionsForms={formData.projects.values}
-              handleSubmit={handleSubmit}
+              dataOptionsForms={formData.projectsOrEvents.values}
+              handleSubmit={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.aidBudgetUnits.id && (
             <InitializerForm
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.aidBudgetUnits.values}
-              handleSubmit={handleSubmit}
+              handleSubmit={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
             />
           )}
           {selectedTab === editLinixUserTabsConfig.payrolls.id && (
             <InitializerForm
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.payrolls.values}
-              handleSubmit={handleSubmit}
+              handleSubmit={handleUpdateFormData}
+              changeData={csOptionsChange}
+              setChangedData={setCsOptionsChange}
+            />
+          )}
+
+          <Stack gap={"16px"} justifyContent="flex-end">
+            <Button
+              appearance="gray"
+              disabled={!currentFormHasChanges}
+              onClick={() => {
+                handleReset();
+                forceReRender();
+              }}
+              type="reset"
+            >
+              Cancelar
+            </Button>
+            <Button
+              appearance="primary"
+              disabled={!currentFormHasChanges}
+              onClick={onSubmit}
+              loading={loading}
+              type="button"
+            >
+              Guardar
+            </Button>
+          </Stack>
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={onCloseSectionMessage}
+              onMessageClosed={onCloseSectionMessage}
             />
           )}
         </Stack>
       </Stack>
-
-      {controlModal.show && continueModal(handleCloseModal, handleContinueTab)}
     </StyledContainer>
   );
 }
