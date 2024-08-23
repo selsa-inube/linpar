@@ -1,11 +1,10 @@
 import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
 import { Stack, Text, Icon, Grid, useMediaQuery } from "@inube/design-system";
-
+import { Select } from "@inubekit/select";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IClientServerButton } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";
-import { Select } from "@inubekit/select";
 
 interface ClientServerButtonSelectionUIProps {
   formik: FormikValues;
