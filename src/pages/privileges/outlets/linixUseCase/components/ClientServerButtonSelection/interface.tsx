@@ -1,14 +1,7 @@
-import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
+import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
-import {
-  Stack,
-  Text,
-  Icon,
-  Select,
-  Grid,
-  useMediaQuery,
-} from "@inube/design-system";
-
+import { Stack, Text, Icon, Grid, useMediaQuery } from "@inube/design-system";
+import { Select } from "@inubekit/select";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IClientServerButton } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";
@@ -54,17 +47,14 @@ function RenderFormFields(
             name="k_option_button"
             id="k_option_button"
             value={formik.values.k_option_button}
-            type="k_option_button"
-            iconAfter={<MdOutlineModeEdit size={18} />}
             size="compact"
             fullwidth
-            onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeForm("k_option_button", value.target.outerText)
-            }
+            onChange={handleChangeForm}
             onBlur={formik.handleBlur}
-            options={buttonOptions.map((buttonOption) => ({
+            options={buttonOptions.map((buttonOption: any) => ({
               id: buttonOption.CODIGO_BOTON,
               label: buttonOption.DESCRIPCION_BOTON,
+              value: buttonOption.CODIGO_BOTON,
             }))}
           />
         </StyledSelectContainer>

@@ -7,6 +7,7 @@ const mapSelectLinixUseCase = (
   const buildSelectLinixUseCase: Option = {
     id: String(selectLinixUseCase.code),
     label: selectLinixUseCases[String(selectLinixUseCase.description)],
+    value: selectLinixUseCases[String(selectLinixUseCase.description)],
   };
   return buildSelectLinixUseCase;
 };
