@@ -9,12 +9,11 @@ import { deleteLinixUsersModal } from "../DeleteModal/config/deleteLinixUsers.co
 import { ActivateUsers } from "../ActivateFormOptions";
 import { activateUsersModal } from "../ActivateFormOptions/config/activateUsers.config";
 import { DeleteLinixUsers } from "../DeleteModal";
-import { IDeleteForMessage } from "../types";
 
 export const actionsConfigUsers = (
   smallScreen: boolean,
   users: IGeneralInformationUsersForm[],
-  setIdDeleted: (show: IDeleteForMessage) => void
+  setIdDeleted: (show: string) => void
 ) => {
   const selectedData = (k_Usuari: string) =>
     users.find((user) => user.k_Usuari === k_Usuari);
@@ -53,13 +52,19 @@ export const actionsConfigUsers = (
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Usuari }: { k_Usuari: string }) => (
+      content: ({
+        k_Usuari,
+        n_Usuari,
+      }: {
+        k_Usuari: string;
+        n_Usuari: string;
+      }) => (
         <DeleteLinixUsers
           linixUsers={k_Usuari}
           deleteLinixUsersModal={deleteLinixUsersModal}
           handleDeleteLinixUser={deleteItemData}
           setIdDeleted={setIdDeleted}
-          nameLinixuser={k_Usuari}
+          nameLinixuser={n_Usuari}
         />
       ),
       type: "remove",
