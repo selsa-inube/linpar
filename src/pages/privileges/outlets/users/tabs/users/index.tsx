@@ -93,7 +93,7 @@ function UsersTab(props: UsersTabProps) {
           modalTitle="Usuario"
         />
       )}
-      {idDeleted && idDeleted.successfulDiscard && message.visible && (
+      {idDeleted && idDeleted.id && message.visible && (
         <RenderMessage
           message={message}
           handleCloseMessage={handleCloseSectionMessage}
