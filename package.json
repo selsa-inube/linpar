@@ -23,7 +23,7 @@
     "@inubekit/grid": "^2.1.0",
     "@inubekit/hooks": "^1.2.0",
     "@inubekit/icon": "^1.6.0",
-    "@inubekit/select": "^6.10.0",
+    "@inubekit/select": "^6.12.1",
     "@inubekit/skeleton": "^2.1.0",
     "@inubekit/stack": "^2.2.0",
     "@inubekit/table": "^5.2.0",

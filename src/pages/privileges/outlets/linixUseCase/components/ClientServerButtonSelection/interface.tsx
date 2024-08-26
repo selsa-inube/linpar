@@ -51,11 +51,13 @@ function RenderFormFields(
             fullwidth
             onChange={handleChangeForm}
             onBlur={formik.handleBlur}
-            options={buttonOptions.map((buttonOption: any) => ({
-              id: buttonOption.CODIGO_BOTON,
-              label: buttonOption.DESCRIPCION_BOTON,
-              value: buttonOption.CODIGO_BOTON,
-            }))}
+            options={buttonOptions.map(
+              (buttonOption: Record<string, unknown>) => ({
+                id: buttonOption.CODIGO_BOTON as string,
+                label: buttonOption.DESCRIPCION_BOTON as string,
+                value: buttonOption.CODIGO_BOTON as string,
+              })
+            )}
           />
         </StyledSelectContainer>
       </Stack>
