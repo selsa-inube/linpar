@@ -11,7 +11,6 @@ const deleteUser = async (linixUsers: string): Promise<boolean> => {
     await deleteUsers(linixUsersData);
   } catch (error) {
     confirmationDelete = false;
-    console.log(confirmationDelete);
     throw error;
   }
 
