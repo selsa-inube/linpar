@@ -38,19 +38,16 @@ export const actionsConfigPosition = (
 ) => {
   const dataDetailsPosition = (k_Grupo: string) => {
     const data = [
-      linixPosition.find((position) => position.k_Grupo === k_Grupo)!,
+      linixPosition.find((position) => position.k_Grupo === k_Grupo),
     ].map((positionSelected) => ({
-      Código: positionSelected?.k_Grupo,
-      Nombre: positionSelected?.n_Grupo,
+      Código: positionSelected?.k_Grupo || "",
+      Nombre: positionSelected?.n_Grupo || "",
       Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
-      Descripción: positionSelected?.n_Uso,
+      Descripción: positionSelected?.n_Uso || "",
     }));
 
     return [...data].shift();
   };
-
-  const selectedData = (k_Grupo: string) =>
-    linixPosition.find((position) => position.k_Grupo === k_Grupo);
 
   const actionsConfig = [
     {
@@ -60,7 +57,7 @@ export const actionsConfigPosition = (
         <ActivatePosition
           handleActivate={() => {}}
           data={{
-            id: cargos.k_Grupo,
+            id: cargos.k_Grupo || "",
             active: cargos.i_Activo,
             name: cargos.n_Grupo,
           }}
@@ -74,7 +71,7 @@ export const actionsConfigPosition = (
       id: "Details",
       actionName: "Detalles",
       content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <DetailsModal data={dataDetailsPosition(k_Grupo)} />
+        <DetailsModal data={dataDetailsPosition(k_Grupo) || {}} />
       ),
       type: "secondary",
     },
@@ -82,7 +79,7 @@ export const actionsConfigPosition = (
       id: "Edit",
       actionName: "Editar",
       content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <Link to={`edit/${k_Grupo}`} onClick={() => selectedData(k_Grupo)}>
+        <Link to={`edit/${k_Grupo}`}>
           <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
         </Link>
       ),

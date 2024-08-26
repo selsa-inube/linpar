@@ -35,7 +35,7 @@ export const OptionSelect: Option[] = [
 
   {
     id: "Q",
-    label: "Consultar",
-    value: "Consultar",
+    label: "Consulta",
+    value: "Consulta",
   },
 ];

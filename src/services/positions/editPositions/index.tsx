@@ -1,19 +1,21 @@
 import { environment } from "@src/config/environment";
-import { IRol } from "@pages/privileges/outlets/roles/types";
-import { mapEditRolesEntityToApi } from "./mappers";
+import { IPosition } from "@pages/privileges/outlets/positions/add-position/types";
+import { mapEditCargosEntityToApi } from "./mappers";
 
-const editRoles = async (editRole: IRol): Promise<IRol | undefined> => {
-  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/roles`;
+const editCargos = async (
+  editCargos: IPosition
+): Promise<IPosition | undefined> => {
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_PERSISTENCE_PROCESS_SERVICE}/cargos`;
 
   try {
     const options: RequestInit = {
       method: "PATCH",
       headers: {
-        "X-Action": "ModificarRol",
+        "X-Action": "ModificarCargo",
         "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
-      body: JSON.stringify(mapEditRolesEntityToApi(editRole)),
+      body: JSON.stringify(mapEditCargosEntityToApi(editCargos)),
     };
 
     const res = await fetch(requestUrl, options);
@@ -30,16 +32,16 @@ const editRoles = async (editRole: IRol): Promise<IRol | undefined> => {
     }
 
     if (!res.ok) {
-      const errorMessage = `Error al modificar caso de uso linix. Status: ${
+      const errorMessage = `Error al modificar el Cargo: ${
         res.status
       }, Data: ${JSON.stringify(data)}`;
       throw new Error(errorMessage);
     }
     return data;
   } catch (error) {
-    console.error("Failed to edit linix use case:", error);
+    console.error("Failed to edit cargo:", error);
     throw error;
   }
 };
 
-export { editRoles };
+export { editCargos };
