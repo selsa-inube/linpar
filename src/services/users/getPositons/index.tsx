@@ -2,8 +2,11 @@ import { environment } from "@src/config/environment";
 import { mapPositionsApiToEntities } from "./mappers";
 
 const getPositions = async (): Promise<Record<string, unknown>[]> => {
-  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE}/cargos`;
   try {
+    const queryParams = new URLSearchParams({
+      page: "1",
+      per_page: "1000",
+    });
     const options: RequestInit = {
       method: "GET",
       headers: {
@@ -12,7 +15,9 @@ const getPositions = async (): Promise<Record<string, unknown>[]> => {
         "Content-type": "application/json; charset=UTF-8",
       },
     };
-
+    const requestUrl = `${
+      environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE
+    }/cargos?${queryParams.toString()}`;
     const res = await fetch(requestUrl, options);
 
     if (res.status === 204) {
