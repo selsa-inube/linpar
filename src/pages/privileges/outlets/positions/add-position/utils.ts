@@ -35,17 +35,15 @@ export const saveLinixPositions = async (
     generalInformation: { values: generalInformation },
     rolesPorCargos: { values: rolesPorCargos },
   } = addLinixPositions;
-  const positionsId = Math.floor(Math.random() * 100).toString();
+
   const normalizeRolesPorCargo = rolesPorCargos
     .filter((rolesPorCargos) => rolesPorCargos.isActive === true)
     .map((rolesPorCargos) => ({
-      k_Grupo: positionsId,
       k_Rol: Number(rolesPorCargos.id),
     }));
   const newLinixPosition: IPosition = {
     n_Grupo: generalInformation.n_Grupo,
     n_Uso: generalInformation.n_Uso,
-    k_Grupo: positionsId,
     rolesPorCargo: normalizeRolesPorCargo,
   };
   let confirmationType = true;

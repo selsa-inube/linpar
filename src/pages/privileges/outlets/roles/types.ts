@@ -14,9 +14,9 @@ export interface ICasosDeUsoPorRol {
 }
 export interface ICuentasAuxiliaresPorRol {
   id?: number;
+  k_Rol?: number;
   i_Tipent: string;
   k_Codcta: string;
-  k_Rol: number;
 }
 
 export interface IReglasDeNegocioPorRol {
@@ -34,7 +34,7 @@ export interface IRol {
   id?: number;
   modifyJustification?: string;
   i_Activo: string;
-  k_Rol: number;
+  k_Rol?: number;
   k_Tipcon: string;
   n_Rol: string;
   n_Uso: string;
