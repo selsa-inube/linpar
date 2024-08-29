@@ -1,13 +1,11 @@
 import { environment } from "@src/config/environment";
-import { IPosition } from "@pages/privileges/outlets/positions/add-position/types";
 import { mapPositionsApiToEntities } from "./mappers";
 
-const getPositions = async (): Promise<IPosition[]> => {
+const getPositions = async (): Promise<Record<string, unknown>[]> => {
   try {
     const queryParams = new URLSearchParams({
       page: "1",
-      per_page: "200",
-      sort: "n_Grupo",
+      per_page: "1000",
     });
     const options: RequestInit = {
       method: "GET",

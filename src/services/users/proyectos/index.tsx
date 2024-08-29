@@ -1,19 +1,19 @@
 import { environment, retries, timeout } from "@src/config/environment";
-import { mapRolesPorCargoApiToEntities } from "./mappers";
+import { mapProyectosFormatsApiToEntities } from "./mappers";
 
-const getRolesPorCargo = async (
-  k_Rol: string
+const getProyectos = async (
+  k_Usu: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
 
-  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_POCESS_SERVICE}/cargos/roles-por-cargo-full/${k_Rol}`;
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_POCESS_SERVICE}/usuarios/${k_Usu}`;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
       Realm: environment.REALM,
-      "X-Action": "QueryRolesPorCargoFull",
+      "X-Action": "QueryProyectosOEventosByUsuarioFull",
       "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -38,21 +38,21 @@ const getRolesPorCargo = async (
       }
 
       if (!res.ok) {
-        throw new Error(`Error al obtener los RolesPorCargos: ${res.status}`);
+        throw new Error(`Error al obtener los proyectos: ${res.status}`);
       }
 
       const data = await res.json();
 
-      const normalizedRolesPorCargoFullFormats = Array.isArray(data)
-        ? mapRolesPorCargoApiToEntities(data)
+      const normalizedWebReportsFormats = Array.isArray(data)
+        ? mapProyectosFormatsApiToEntities(data)
         : [];
 
-      return normalizedRolesPorCargoFullFormats;
+      return normalizedWebReportsFormats;
     } catch (error: any) {
       clearTimeout(timeoutId);
       if (attempt === maxRetries) {
         throw new Error(
-          `Todos los intentos fallaron. No se pudieron obtener los RolesPorCargos: ${error.message}`
+          `Todos los intentos fallaron. No se pudieron obtener los proyectos: ${error.message}`
         );
       }
     }
@@ -61,4 +61,4 @@ const getRolesPorCargo = async (
   return [];
 };
 
-export { getRolesPorCargo };
+export { getProyectos };
