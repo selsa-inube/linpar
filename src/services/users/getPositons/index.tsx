@@ -16,7 +16,7 @@ const getPositions = async (): Promise<Record<string, unknown>[]> => {
       },
     };
     const requestUrl = `${
-      environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE
+      environment.IPRIVILEGES_LINIX_API_URL_QUERY_POCESS_SERVICE
     }/cargos?${queryParams.toString()}`;
     const res = await fetch(requestUrl, options);
 

@@ -7,7 +7,7 @@ const getUnidadesPresupuestales = async (
   const maxRetries = retries;
   const fetchTimeout = timeout;
 
-  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE}/usuarios/${k_Usu}`;
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_POCESS_SERVICE}/usuarios/${k_Usu}`;
 
   const options: RequestInit = {
     method: "GET",

@@ -7,7 +7,7 @@ const getRolesPorCargo = async (
   const maxRetries = retries;
   const fetchTimeout = timeout;
 
-  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE}/cargos/roles-por-cargo-full/${k_Rol}`;
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_POCESS_SERVICE}/cargos/roles-por-cargo-full/${k_Rol}`;
 
   const options: RequestInit = {
     method: "GET",
