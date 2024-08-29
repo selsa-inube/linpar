@@ -1,6 +1,5 @@
 import { MdThumbUpOffAlt, MdOutlineSentimentNeutral } from "react-icons/md";
 import { EAppearance } from "@src/types/colors.types";
-import React from "react";
 
 const generalMessage = {
   success: {

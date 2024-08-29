@@ -1,7 +1,6 @@
 import { forwardRef, useEffect, useState } from "react";
 import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
-
 import { validationMessages } from "@validations/validationMessages";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { generalMessage } from "@pages/privileges/outlets/positions/add-position/config/messages.config";

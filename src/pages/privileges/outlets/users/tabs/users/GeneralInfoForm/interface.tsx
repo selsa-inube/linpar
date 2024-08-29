@@ -45,9 +45,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             name="n_Usuari"
             id="n_Usuari"
             value={formik.values.n_Usuari}
-            // onChange={(
-            //   event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-            // ) => handleChangeForm(event.target.name, event.target.value)}
             type="text"
             size="compact"
             fullwidth

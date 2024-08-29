@@ -1,5 +1,6 @@
 import { MdPersonOutline } from "react-icons/md";
-
+import { useState } from "react";
+import { Button } from "@inubekit/button";
 import {
   Stack,
   Tabs,
@@ -7,7 +8,6 @@ import {
   inube,
   Breadcrumbs,
 } from "@inube/design-system";
-
 import { PageTitle } from "@components/PageTitle";
 import {
   IAssignmentFormEntry,
@@ -15,12 +15,12 @@ import {
 } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { SubjectCard } from "@components/cards/SubjectCard";
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import {
   IFormAddUsers,
   IGeneralInformationUsersForm,
   IHandleChangeFormData,
 } from "@services/users/users.types";
-
 import { StyledContainer } from "./styles";
 import { GeneralInformationForm } from "../GeneralInfoForm";
 import { editLinixUserTabsConfig } from "./config/editUsersTabs.config";
@@ -30,9 +30,6 @@ import {
 } from "./config/editLinuxUsers.config";
 
 import { InitializerForm } from "../InitializerForm";
-import { Button } from "@inubekit/button";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
-import { useState } from "react";
 
 interface IControlModal {
   show: boolean;
@@ -75,10 +72,8 @@ function EditUserUI(props: EditUserUIProps) {
     id,
     handleReset,
     handleTabChange,
-
     csOptionsChange,
     setCsOptionsChange,
-
     handleDataChange,
 
     formData,

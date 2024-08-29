@@ -42,7 +42,6 @@ function RenderFormFields(
   selectLinixUseCase: Option[],
   loading: boolean,
   formInvalid: boolean,
-
   handleChangeForm: (name: string, value: string) => void,
   csOptions: Record<string, unknown>[],
   webOptions: Record<string, unknown>[],
@@ -201,7 +200,6 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     selectLinixUseCase,
     formik,
     loading,
-
     formInvalid,
     handleChangeForm,
     readOnly,
@@ -216,7 +214,6 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         formik,
         selectLinixUseCase,
         loading,
-
         formInvalid,
         handleChangeForm,
         csOptions,

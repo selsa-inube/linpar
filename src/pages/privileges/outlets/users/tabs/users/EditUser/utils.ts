@@ -1,4 +1,4 @@
-import { editUsers } from "@src/services/users/editUsers";
+import { editUsers } from "@services/users/editUsers";
 import {
   Ibranches,
   IFormAddUsers,
@@ -6,7 +6,7 @@ import {
   Iproyects,
   ItiposDeNomina,
   IunidadesPresupuestalesDeAuxilios,
-} from "@src/services/users/users.types";
+} from "@services/users/users.types";
 import { IAssignmentFormEntry } from "../../../types/forms.types";
 
 export const editUsersData = async (
