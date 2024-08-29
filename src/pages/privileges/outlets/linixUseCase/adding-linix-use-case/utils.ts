@@ -17,38 +17,32 @@ export const saveLinixUseCase = async (
     clientServerReports: { values: clientServerReports },
     clientServerOptions: { values: clientServerOptions },
   } = linixUseCaseData;
-  const linixId = Math.floor(Math.random() * 100).toString();
 
   const normalizeReportsWeb = webOptions
     .filter((webOptions) => webOptions.isActive === true)
     .map((webOptions) => ({
-      k_Usecase: linixId,
       k_Funcio: webOptions.id,
     }));
 
   const normalizeWebOptions = webReports
     .filter((webReports) => webReports.isActive === true)
     .map((webReports) => ({
-      k_Usecase: linixId,
       k_Report: webReports.id,
     }));
 
   const normalizeReportesCsPorCasoDeUso = clientServerReports
     .filter((clientServerReport) => clientServerReport.isActive === true)
     .map((clientServerReport) => ({
-      k_Usecase: linixId,
       k_Nforma: clientServerReport.id,
     }));
 
   const normalizeWebOptionsCsPorCasoDeUso = clientServerOptions
     .filter((clientServerOption) => clientServerOption.isActive === true)
     .map((clientServerOption) => ({
-      k_Usecase: linixId,
       k_Opcion: clientServerOption.id,
     }));
 
   const newLinixUseCase: UseCase = {
-    k_Usecase: linixId,
     n_Usecase: generalInformation.n_Usecase,
     n_Descrip: generalInformation.n_Descrip,
     a_Publicc: "b",

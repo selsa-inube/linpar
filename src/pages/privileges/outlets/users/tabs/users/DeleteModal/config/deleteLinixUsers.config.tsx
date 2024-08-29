@@ -5,8 +5,8 @@ import { EAppearance } from "@src/types/colors.types";
 export const deleteLinixUsersModal = {
   delete: {
     title: "Eliminar Usuario",
-    description: (n_Usuari: string) =>
-      `¿Está seguro de que desea eliminar el Usuario ${n_Usuari}?`,
+    description: (k_Usuari: string) =>
+      `¿Está seguro de que desea eliminar el Usuario ${k_Usuari}?`,
     actionText: "Eliminar",
     appearance: EAppearance.ERROR,
   },
@@ -25,7 +25,7 @@ export const deleteUserMessages = {
     icon: <MdErrorOutline size={18} />,
     title:
       "¡Tuvimos problemas para eliminar el usuario, por favor intenta nuevamente!",
-    description: " ",
+    description: "Tuvimos problemas para eliminar",
     appearance: EAppearance.ERROR,
   },
 };

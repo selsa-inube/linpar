@@ -4,43 +4,51 @@ import { functionById } from "@mocks/utils/dataMock.service";
 
 import { deleteLinixUsersModal } from "./config/deleteLinixUsers.config";
 import { DeleteLinixUserUI } from "./interface";
+import { deleteUser } from "./utils";
+import { IDeleteForMessage } from "../types";
 
 interface IDeleteLinixUserProps {
   deleteLinixUsersModal: typeof deleteLinixUsersModal;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: IDeleteForMessage) => void;
   handleDeleteLinixUser: (props: functionById) => Promise<unknown>;
   nameLinixuser: string;
   linixUsers: string;
 }
 
 export const DeleteLinixUsers = (props: IDeleteLinixUserProps) => {
-  const {
-    deleteLinixUsersModal,
-    handleDeleteLinixUser,
-    nameLinixuser,
-    linixUsers,
-    setIdDeleted,
-  } = props;
+  const { deleteLinixUsersModal, nameLinixuser, linixUsers, setIdDeleted } =
+    props;
 
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleOnclick = async () => {
-    await handleDeleteLinixUser({
-      key: "k_Usuari",
-      nameDB: "linix-users",
-      identifier: linixUsers,
-    });
-    setShowModal(false);
+  const handeleteUsers = () => {
     setLoading(true);
-    setIdDeleted(linixUsers);
+    const data = deleteUser(linixUsers);
+    data
+      .then(() => {
+        setIdDeleted({
+          id: linixUsers,
+          successfulDiscard: true,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setIdDeleted({
+          id: linixUsers,
+          successfulDiscard: false,
+        });
+      });
+
+    setLoading(false);
+    setShowModal(false);
   };
 
   return (
     <DeleteLinixUserUI
       deleteLinixUsersModal={deleteLinixUsersModal}
-      handleDeleteLinixUser={handleOnclick}
+      handleDeleteLinixUser={handeleteUsers}
       hover={isHovered}
       loading={loading}
       nameLinixuser={nameLinixuser}

@@ -35,7 +35,7 @@ interface UseCase {
   i_Tipusec: string;
   k_Ncampo?: string;
   k_Nforma?: string;
-  k_Usecase: string;
+  k_Usecase?: string;
   n_Descrip?: string;
   n_Usecase?: string;
   k_Funcio?: string;
