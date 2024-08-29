@@ -9,16 +9,12 @@ const editLinixUserTabsConfig = {
     label: "Sucursales",
     isDisabled: false,
   },
-  projects: {
-    id: "projects",
-    label: "Proyectos",
+  projectsOrEvents: {
+    id: "projectsOrEvents",
+    label: "Proyectos o Eventos",
     isDisabled: false,
   },
-  event: {
-    id: "events",
-    label: "Eventos",
-    isDisabled: false,
-  },
+
   aidBudgetUnits: {
     id: "aidBudgetUnits",
     label: "Unidades presupuestales de auxilios",

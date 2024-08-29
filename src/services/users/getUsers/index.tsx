@@ -4,7 +4,7 @@ import { mapUsersApiToEntities } from "./mappers";
 import { IGeneralInformationUsersForm } from "../users.types";
 
 const getUsers = async (): Promise<IGeneralInformationUsersForm[]> => {
-  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE}/usuarios`;
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_POCESS_SERVICE}/usuarios`;
 
   try {
     const options: RequestInit = {
