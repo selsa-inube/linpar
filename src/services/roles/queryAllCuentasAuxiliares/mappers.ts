@@ -7,7 +7,6 @@ const mapRolesCuentasAuxiliaresApiToEntity = (
     id: Number(rolesCuentasA.k_Rol),
     i_Tipent: String(rolesCuentasA.i_Tipent),
     k_Codcta: String(rolesCuentasA.k_Codcta),
-    k_Rol: Number(rolesCuentasA.k_Rol),
   };
   return buildRolesUseCase;
 };

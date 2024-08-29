@@ -1,13 +1,13 @@
-import { environment } from "@src/config/environment";
+import { environment, retries, timeout } from "@src/config/environment";
 import { mapReportsClientServerFormatsApiToEntities } from "./mappers";
 
 const getReportsClientServerFormats = async (
   k_Usecase: string
 ): Promise<Record<string, unknown>[]> => {
-  const maxRetries = 5;
-  const fetchTimeout = 3000;
+  const maxRetries = retries;
+  const fetchTimeout = timeout;
 
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/casos-de-uso/${k_Usecase}`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/casos-de-uso/${k_Usecase}`;
 
   const options: RequestInit = {
     method: "GET",
@@ -38,7 +38,9 @@ const getReportsClientServerFormats = async (
       }
 
       if (!res.ok) {
-        throw new Error(`Error al obtener los casos de uso: ${res.status}`);
+        throw new Error(
+          `Error al obtener los reportes clientes servidor: ${res.status}`
+        );
       }
 
       const data = await res.json();
@@ -52,7 +54,7 @@ const getReportsClientServerFormats = async (
       clearTimeout(timeoutId);
       if (attempt === maxRetries) {
         throw new Error(
-          `Todos los intentos fallaron. No se pudieron obtener los créditos del usuario. Último error: ${error.message}`
+          `Todos los intentos fallaron. No se pudieron obtener los reportes clientes servidor: ${error.message}`
         );
       }
     }

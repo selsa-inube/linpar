@@ -5,7 +5,7 @@ import { Icon } from "@inube/design-system";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
 
 interface IDetailsModalProps {
-  data?: { [key: string]: string | number };
+  data: { [key: string]: string | number };
 }
 
 export const DetailsModal = (props: IDetailsModalProps) => {

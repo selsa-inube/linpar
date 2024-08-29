@@ -7,13 +7,22 @@ export const titleButtonTextAssited = {
   after: "Siguiente",
   finish: "Enviar",
 };
-interface IRolByPosition {
-  k_Rol: string;
+export interface IRolByPosition {
+  k_Rol: number;
 }
 
+export interface IGeneralInformation {
+  id?: string;
+  i_Activo?: string;
+  k_Grupo?: string;
+  n_Grupo: string;
+  n_Uso: string;
+}
 export interface IPosition {
-  i_Activo: "Y" | "N";
-  k_Grupo: string;
+  id?: string;
+  i_Activo?: string;
+  modifyJustification?: string;
+  k_Grupo?: string;
   n_Grupo: string;
   n_Uso: string;
   rolesPorCargo?: IRolByPosition[];
@@ -33,7 +42,7 @@ export interface IOptionInitialiceEntry {
 
 export interface IFormAddPosition {
   generalInformation: { isValid: boolean; values: IGeneralInformationEntry };
-  roles: { isValid: boolean; values: IOptionInitialiceEntry[] };
+  rolesPorCargos: { isValid: boolean; values: IOptionInitialiceEntry[] };
 }
 
 export interface IFormAddPositionRef {

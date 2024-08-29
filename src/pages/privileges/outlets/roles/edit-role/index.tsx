@@ -7,6 +7,7 @@ import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRo
 import { getUseCaseByRole } from "@services/roles/useCasesByRole";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
 import { getRolFormats } from "@services/roles/ tipoDeMovimientoPorRol";
+import { getRoles } from "@services/roles/getRoles";
 import { getRolesCuentasAuxiliares } from "@services/roles/queryAllCuentasAuxiliares";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { EditRoleUI } from "./interface";
@@ -17,7 +18,7 @@ import {
   IRol,
 } from "../types";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
-import { getRoles } from "@src/services/roles/getRoles";
+
 import { editDataRoles } from "./utils";
 import {
   IAssignmentFormEntry,
@@ -60,9 +61,6 @@ export const EditRole = () => {
       values: [],
     },
     businessRules: {
-      values: [],
-    },
-    crediboardTasks: {
       values: [],
     },
     useCases: {

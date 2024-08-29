@@ -57,7 +57,7 @@ export const actionsConfigPosition = (
   const dataDetailsRole = (k_Rol: number) => {
     const data = [linixRoles.find((role) => role.k_Rol === k_Rol)!].map(
       (roleSelected) => ({
-        Código: roleSelected?.k_Rol,
+        Código: roleSelected?.k_Rol || "",
         Nombre: roleSelected?.n_Rol,
         Aplicación: roleSelected?.k_Aplica,
         Activo: roleSelected?.i_Activo === "Y" ? "active" : "inactive",
@@ -66,9 +66,6 @@ export const actionsConfigPosition = (
 
     return [...data].shift();
   };
-
-  // const selectedData = (k_Rol: number) =>
-  //   linixRoles.find((role) => role.k_Rol === k_Rol);
 
   const actionsConfig = [
     {
@@ -92,7 +89,7 @@ export const actionsConfigPosition = (
       id: "Details",
       actionName: "Detalles",
       content: ({ k_Rol }: { k_Rol: number }) => (
-        <DetailsModal data={dataDetailsRole(k_Rol)} />
+        <DetailsModal data={dataDetailsRole(k_Rol) || {}} />
       ),
       type: "secondary",
     },

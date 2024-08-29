@@ -80,7 +80,7 @@ function DecisionModal(props: DecisionModalProps) {
               onClick={closeModal}
               spacing={smallScreen ? "compact" : undefined}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               loading={isLoading}

@@ -1,9 +1,9 @@
 import { environment } from "@src/config/environment";
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/privileges/outlets/roles/types";
 import { mapEditRolesEntityToApi } from "./mappers";
 
 const editRoles = async (editRole: IRol): Promise<IRol | undefined> => {
-  const requestUrl = `${environment.ICLIENT_API_URL_PERSISTENCE_POST}/roles`;
+  const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/roles`;
 
   try {
     const options: RequestInit = {

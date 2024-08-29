@@ -4,7 +4,7 @@ export const editPositionTabsConfig = {
     label: "Información general",
     isDisabled: false,
   },
-  roles: {
+  rolesPorCargos: {
     id: "roles",
     label: "Roles",
     isDisabled: false,
@@ -43,5 +43,34 @@ export const editPositionConfig = [
         isActive: true,
       },
     ],
+  },
+];
+
+export const editPositionCardLabels = [
+  {
+    id: "code",
+    titleName: "Código",
+    priority: 0,
+  },
+  {
+    id: "username",
+    titleName: "Nombre",
+    priority: 1,
+  },
+
+  {
+    id: "type",
+    titleName: "Tipo",
+    priority: 2,
+  },
+  {
+    id: "description",
+    titleName: "Descripicion",
+    priority: 3,
+  },
+  {
+    id: "csButton",
+    titleName: "Opción botón cliente servidor",
+    priority: 4,
   },
 ];

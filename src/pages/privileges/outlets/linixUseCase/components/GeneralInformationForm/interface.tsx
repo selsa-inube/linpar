@@ -1,18 +1,13 @@
-import { MdOutlineError, MdOutlineModeEdit } from "react-icons/md";
+import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
-
-import {
-  Stack,
-  Textfield,
-  Textarea,
-  Icon,
-  Select,
-  Grid,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
 import { Text } from "@inubekit/text";
-
+import { Icon } from "@inubekit/icon";
+import { Select } from "@inubekit/select";
+import { Textfield } from "@inubekit/textfield";
+import { Textarea } from "@inubekit/textarea";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Stack } from "@inubekit/stack";
+import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/types";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
@@ -47,6 +42,7 @@ function RenderFormFields(
   selectLinixUseCase: Option[],
   loading: boolean,
   formInvalid: boolean,
+
   handleChangeForm: (name: string, value: string) => void,
   csOptions: Record<string, unknown>[],
   webOptions: Record<string, unknown>[],
@@ -58,20 +54,19 @@ function RenderFormFields(
   const stateValue = (fieldName: string) => {
     if (!formik.touched[fieldName]) return "pending";
     if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
-    return "valid";
   };
 
   return (
     <Grid
       templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
-      gap="s200 s300"
+      gap="16px 24px"
       width="100%"
       autoRows="unset"
     >
       <Stack
         direction="column"
         justifyContent="space-between"
-        padding="s050 s0"
+        padding="4px 0px"
       >
         <Textfield
           label="Nombre del caso de uso "
@@ -103,14 +98,13 @@ function RenderFormFields(
             message={
               stateValue("i_Tipusec") === "invalid" && formik.errors.i_Tipusec
             }
-            status={stateValue("i_Tipusec")}
-            iconAfter={<MdOutlineModeEdit size={18} />}
+            invalid={
+              stateValue("i_Tipusec") === "invalid" && formik.errors.i_Tipusec
+            }
             size="compact"
             fullwidth
             required
-            onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeForm("i_Tipusec", value.target.outerText)
-            }
+            onChange={handleChangeForm}
             options={selectLinixUseCase}
           />
         </StyledSelectContainer>
@@ -122,14 +116,12 @@ function RenderFormFields(
         name="n_Descrip"
         id="n_Descrip"
         value={formik.values.n_Descrip}
-        type="text"
         onBlur={formik.handleBlur}
         required
         message={
           stateValue("n_Descrip") === "invalid" && formik.errors.n_Descrip
         }
         status={stateValue("n_Descrip")}
-        size="compact"
         maxLength={120}
         fullwidth
         onChange={(
@@ -137,11 +129,11 @@ function RenderFormFields(
         ) => handleChangeForm(event.target.name, event.target.value)}
       />
 
-      <Stack direction="column" gap={inube.spacing.s100}>
+      <Stack direction="column" gap={"8px"}>
         {formik.errors.position && formInvalid && (
-          <Stack alignItems="center" margin="s0 s0 s0 s150">
+          <Stack alignItems="center" margin="0 0 0 12px">
             <Icon
-              appearance={"error"}
+              appearance={"warning"}
               icon={<MdOutlineError />}
               spacing="wide"
               size="14px"
@@ -209,6 +201,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     selectLinixUseCase,
     formik,
     loading,
+
     formInvalid,
     handleChangeForm,
     readOnly,
@@ -223,6 +216,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         formik,
         selectLinixUseCase,
         loading,
+
         formInvalid,
         handleChangeForm,
         csOptions,

@@ -94,21 +94,16 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
     businessRules: { values: businessRulesValues },
   } = addRoleFormValid;
 
-  const rolId = Math.floor(Math.random() * 100);
-
   const normalizeAncillaryAccounts = [
     {
-      k_Rol: rolId,
       i_Tipent: "C",
       k_Codcta: ancillaryAccountsValues.commercialSector,
     },
     {
-      k_Rol: rolId,
       i_Tipent: "O",
       k_Codcta: ancillaryAccountsValues.officialSector,
     },
     {
-      k_Rol: rolId,
       i_Tipent: "S",
       k_Codcta: ancillaryAccountsValues.solidaritySector,
     },
@@ -117,7 +112,6 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
   const normalizeTransactionTypes = transactionTypesValues
     .filter((transactionTypesValue) => transactionTypesValue.isActive === true)
     .map((mapNewTransactionType) => ({
-      k_Rol: rolId,
       k_Tipmov: mapNewTransactionType.id,
       n_Tipmov: mapNewTransactionType.value,
     }));
@@ -125,20 +119,18 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
   const normalizeUseCases = useCasesValues
     .filter((useCasesValue) => useCasesValue.isActive === true)
     .map((mapNewUseCases) => ({
-      k_Rol: rolId,
       k_Usecase: mapNewUseCases.id,
     }));
 
   const normalizeBusinessRules = businessRulesValues
     .filter((businessRules) => businessRules.isActive === true)
     .map((mapBusinessRules) => ({
-      k_Rol: rolId,
       k_Regla: mapBusinessRules.id,
     }));
 
   const newRole: IRol = {
     i_Activo: "Y",
-    k_Rol: rolId,
+
     k_Tipcon: addRoleFormValid.generalInformation.values.applicationId,
     n_Rol: addRoleFormValid.generalInformation.values.n_Rol,
     n_Uso: addRoleFormValid.generalInformation.values.description,

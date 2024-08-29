@@ -1,14 +1,15 @@
-import { Grid, Textfield, Textarea } from "@inube/design-system";
-import { RenderMessage } from "@components/feedback/RenderMessage";
-import { FormButtons } from "@components/forms/submit/FormButtons";
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FormikValues } from "formik";
+import { Grid } from "@inube/design-system";
+import { Textfield } from "@inubekit/textfield";
+import { Textarea } from "@inubekit/textarea";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+
 import { IGeneralInformationEntry } from ".";
 
 function stateValue(formik: FormikValues, attribute: string) {
-  if (!formik.touched[attribute]) return undefined;
+  if (!formik.touched[attribute]) return "pending";
   if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
-  return "valid";
+  return undefined;
 }
 
 interface GeneralInformationFormUIProps {
@@ -16,9 +17,7 @@ interface GeneralInformationFormUIProps {
   message: IMessageState;
   disabledButtons: (valueCompare: IGeneralInformationEntry) => boolean;
   handleCloseSectionMessage: () => void;
-  handleChangeForm: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
+  handleChangeForm: (name: string, value: string) => void;
   handleSubmitForm: () => void;
   handleReset: () => void;
   loading?: boolean;
@@ -26,17 +25,7 @@ interface GeneralInformationFormUIProps {
 }
 
 export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const {
-    formik,
-    loading,
-    withSubmitButtons,
-    message,
-    disabledButtons,
-    handleCloseSectionMessage,
-    handleReset,
-    handleChangeForm,
-    handleSubmitForm,
-  } = props;
+  const { formik, handleChangeForm } = props;
 
   return (
     <>
@@ -52,15 +41,16 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             size="compact"
             fullwidth
             message={
-              stateValue(formik, "n_Grupo") === "valid"
+              stateValue(formik, "n_Grupo") !== "invalid" &&
+              stateValue(formik, "n_Grupo") !== undefined
                 ? "El nombre del cargo es valido"
                 : formik.errors.n_Grupo
             }
             status={stateValue(formik, "n_Grupo")}
             onBlur={formik.handleBlur}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeForm(event)
-            }
+            onChange={(
+              event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+            ) => handleChangeForm(event.target.name, event.target.value)}
             required
           />
 
@@ -71,39 +61,22 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             id="n_Uso"
             value={formik.values.n_Uso}
             message={
-              stateValue(formik, "n_Uso") === "valid"
+              stateValue(formik, "n_Uso") !== "invalid" &&
+              stateValue(formik, "n_Uso") !== "pending"
                 ? "La descripción del cargo es valido"
                 : formik.errors.n_Uso
             }
             status={stateValue(formik, "n_Uso")}
-            type="text"
-            size="compact"
             fullwidth
             maxLength={100}
             onBlur={formik.handleBlur}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeForm(event)
-            }
+            onChange={(
+              event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+            ) => handleChangeForm(event.target.name, event.target.value)}
             required
           />
         </Grid>
       </form>
-      {withSubmitButtons && (
-        <FormButtons
-          handleSubmit={handleSubmitForm}
-          handleReset={formik.resetForm}
-          disabledButtons={!disabledButtons(formik.values)}
-          loading={loading}
-          children=""
-        />
-      )}
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleReset}
-        />
-      )}
     </>
   );
 }

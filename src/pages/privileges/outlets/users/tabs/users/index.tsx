@@ -15,6 +15,7 @@ import { actionsConfigUsers } from "./config/dataUsers.config";
 
 import { IMessageState } from "../../types/forms.types";
 import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
+import { IDeleteForMessage } from "./types";
 
 interface UsersTabProps {
   searchText: string;
@@ -26,7 +27,11 @@ function UsersTab(props: UsersTabProps) {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: "",
+    successfulDiscard: false,
+  });
+
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
 
@@ -49,14 +54,20 @@ function UsersTab(props: UsersTabProps) {
   }, [user]);
 
   useEffect(() => {
-    const filterRecordRemoved = users.filter(
-      (users) => users.k_Usuari !== idDeleted
+    const messageType = idDeleted.successfulDiscard
+      ? deleteUserMessages.success
+      : deleteUserMessages.failed;
+
+    const filterDiscardPublication = users.filter(
+      (user) => user.k_Usuari !== idDeleted.id
     );
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: deleteUserMessages.success,
-      });
+
+    idDeleted.successfulDiscard && setUsers(filterDiscardPublication);
+
+    setMessage({
+      visible: true,
+      data: messageType,
+    });
   }, [idDeleted]);
 
   const handleCloseSectionMessage = () => {
@@ -82,7 +93,7 @@ function UsersTab(props: UsersTabProps) {
           modalTitle="Usuario"
         />
       )}
-      {idDeleted && message.visible && (
+      {idDeleted && idDeleted.id && message.visible && (
         <RenderMessage
           message={message}
           handleCloseMessage={handleCloseSectionMessage}

@@ -14,19 +14,14 @@ export interface ICasosDeUsoPorRol {
 }
 export interface ICuentasAuxiliaresPorRol {
   id?: number;
+  k_Rol?: number;
   i_Tipent: string;
   k_Codcta: string;
-  k_Rol: number;
 }
 
 export interface IReglasDeNegocioPorRol {
   k_Regla: string;
   k_Rol?: number;
-}
-
-interface ITareasCrediboardPorRol {
-  k_Rol: number;
-  tarea: string;
 }
 
 export interface ITiposDeMovimientoContablePorRol {
@@ -39,7 +34,7 @@ export interface IRol {
   id?: number;
   modifyJustification?: string;
   i_Activo: string;
-  k_Rol: number;
+  k_Rol?: number;
   k_Tipcon: string;
   n_Rol: string;
   n_Uso: string;
@@ -47,7 +42,6 @@ export interface IRol {
   casosDeUsoPorRol?: ICasosDeUsoPorRol[];
   cuentasAuxiliaresPorRol?: ICuentasAuxiliaresPorRol[];
   reglasDeNegocioPorRol?: IReglasDeNegocioPorRol[];
-  tareasCrediboardPorRol?: ITareasCrediboardPorRol[];
   tiposDeMovimientoContablePorRol?: ITiposDeMovimientoContablePorRol[];
 }
 
@@ -95,7 +89,6 @@ export interface IFormAddRole {
   ancillaryAccounts: IAncillaryAccounts;
   transactionTypes: IOptionInitialiceForm;
   businessRules: IOptionInitialiceForm;
-  crediboardTasks: IOptionInitialiceForm;
   useCases: IOptionInitialiceForm;
 }
 

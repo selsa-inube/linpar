@@ -10,11 +10,12 @@ import { ActivatePosition } from "../active-position";
 import { IPosition } from "../add-position/types";
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
+import { IDeleteForMessage } from "../types";
 
 export const titlesOptions = [
   {
     id: "k_Grupo",
-    titleName: "Code",
+    titleName: "Código",
     priority: 0,
   },
   {
@@ -33,51 +34,44 @@ export const PositionsBreakPointsConfig = [
 
 export const actionsConfigPosition = (
   linixPosition: IPosition[],
-  setIdDeleted: (show: string) => void
+  setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
   const dataDetailsPosition = (k_Grupo: string) => {
     const data = [
-      linixPosition.find((position) => position.k_Grupo === k_Grupo)!,
+      linixPosition.find((position) => position.k_Grupo === k_Grupo),
     ].map((positionSelected) => ({
-      Código: positionSelected?.k_Grupo,
-      Nombre: positionSelected?.n_Grupo,
+      Código: positionSelected?.k_Grupo || "",
+      Nombre: positionSelected?.n_Grupo || "",
       Activo: positionSelected?.i_Activo === "Y" ? "activo" : "inactivo",
-      Descripción: positionSelected?.n_Uso,
+      Descripción: positionSelected?.n_Uso || "",
     }));
 
     return [...data].shift();
   };
 
-  const selectedData = (k_Grupo: string) =>
-    linixPosition.find((position) => position.k_Grupo === k_Grupo);
-
   const actionsConfig = [
     {
       id: "i_activo",
       actionName: "Activo",
-      content: ({ k_Grupo }: { k_Grupo: string }) => {
-        const position = selectedData(k_Grupo);
-        const adjustedPosition = {
-          id: position?.k_Grupo || "",
-          active: position?.i_Activo === "Y" || false,
-          name: position?.n_Grupo || "",
-        };
-        return (
-          <ActivatePosition
-            handleActivate={() => {}}
-            data={adjustedPosition}
-            showComplete={false}
-            activateModalConfig={activatePositionModal}
-          />
-        );
-      },
+      content: (cargos: IPosition) => (
+        <ActivatePosition
+          handleActivate={() => {}}
+          data={{
+            id: cargos.k_Grupo || "",
+            active: cargos.i_Activo,
+            name: cargos.n_Grupo,
+          }}
+          showComplete={false}
+          activateModalConfig={activatePositionModal}
+        />
+      ),
       type: "secondary",
     },
     {
       id: "Details",
       actionName: "Detalles",
       content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <DetailsModal data={dataDetailsPosition(k_Grupo)} />
+        <DetailsModal data={dataDetailsPosition(k_Grupo) || {}} />
       ),
       type: "secondary",
     },
@@ -85,7 +79,7 @@ export const actionsConfigPosition = (
       id: "Edit",
       actionName: "Editar",
       content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <Link to={`edit/${k_Grupo}`} onClick={() => selectedData(k_Grupo)}>
+        <Link to={`edit/${k_Grupo}`}>
           <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
         </Link>
       ),
@@ -94,13 +88,13 @@ export const actionsConfigPosition = (
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Grupo, n_Grupo }: { k_Grupo: string; n_Grupo: string }) => (
+      content: ({ k_Grupo }: { k_Grupo: string }) => (
         <DeletePosition
-          namePosition={n_Grupo}
           linixPosition={k_Grupo}
           deletePositionModal={deletePositionModal}
           handleDeletePosition={deleteItemData}
           setIdDeleted={setIdDeleted}
+          namePosition={k_Grupo}
         />
       ),
       type: "remove",

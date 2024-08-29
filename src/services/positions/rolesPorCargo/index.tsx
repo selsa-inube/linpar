@@ -1,19 +1,19 @@
-import { environment } from "@src/config/environment";
-import { mapCreditboardTasksByRoleFormatsApiToEntities } from "./mappers";
+import { environment, retries, timeout } from "@src/config/environment";
+import { mapRolesPorCargoApiToEntities } from "./mappers";
 
-const getCreditboardTasksByRole = async (
+const getRolesPorCargo = async (
   k_Rol: string
 ): Promise<Record<string, unknown>[]> => {
-  const maxRetries = 5;
-  const fetchTimeout = 3000;
+  const maxRetries = retries;
+  const fetchTimeout = timeout;
 
-  const requestUrl = `${environment.ICLIENT_API_URL_QUERY_PROCESS}/roles/${k_Rol}`;
+  const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_DATA_SERVICE}/cargos/roles-por-cargo-full/${k_Rol}`;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
       Realm: environment.REALM,
-      "X-Action": "TareasDeCrediboardPorRolFull",
+      "X-Action": "QueryRolesPorCargoFull",
       "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -38,21 +38,21 @@ const getCreditboardTasksByRole = async (
       }
 
       if (!res.ok) {
-        throw new Error(`Error al obtener los roles: ${res.status}`);
+        throw new Error(`Error al obtener los RolesPorCargos: ${res.status}`);
       }
 
       const data = await res.json();
 
-      const normalizedRolFormats = Array.isArray(data)
-        ? mapCreditboardTasksByRoleFormatsApiToEntities(data)
+      const normalizedRolesPorCargoFullFormats = Array.isArray(data)
+        ? mapRolesPorCargoApiToEntities(data)
         : [];
 
-      return normalizedRolFormats;
+      return normalizedRolesPorCargoFullFormats;
     } catch (error: any) {
       clearTimeout(timeoutId);
       if (attempt === maxRetries) {
         throw new Error(
-          `Todos los intentos fallaron. No se pudieron obtener los roles: ${error.message}`
+          `Todos los intentos fallaron. No se pudieron obtener los RolesPorCargos: ${error.message}`
         );
       }
     }
@@ -61,4 +61,4 @@ const getCreditboardTasksByRole = async (
   return [];
 };
 
-export { getCreditboardTasksByRole };
+export { getRolesPorCargo };
