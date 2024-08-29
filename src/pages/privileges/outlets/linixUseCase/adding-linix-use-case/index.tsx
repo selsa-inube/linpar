@@ -108,7 +108,11 @@ function AddingLinixUseCase() {
   }, [webOptions, csOptions]);
 
   useEffect(() => {
-    clientServerButtonMenuOption();
+    if (formData.generalInformation.values.k_Opcion) {
+      clientServerButtonMenuOption();
+    } else {
+      setCsOptionsButtons([]);
+    }
   }, [formData.generalInformation.values.k_Opcion]);
 
   useEffect(() => {
@@ -308,32 +312,12 @@ function AddingLinixUseCase() {
       ([, config]) => config.id === currentStep
     )?.[0];
     if (stepKey) {
+      setFormData((prevFormData: IFormAddLinixUseCase) => ({
+        ...prevFormData,
+        [stepKey]: { values: values, isValid: true },
+      }));
       if (stepKey === "generalInformation") {
-        const updatedData: IFormAddLinixUseCase = {
-          ...formData,
-        };
-        Object.assign(updatedData[stepKey].values, values);
-        Object.assign(
-          updatedData.webOptions.values,
-          formData.webOptions.values.map((option) =>
-            option.id === (values as IGeneralInformation).k_Funcio
-              ? { ...option, isActive: true }
-              : option
-          )
-        );
-        Object.assign(
-          updatedData.clientServerOptions.values,
-          formData.clientServerOptions.values.map((option) =>
-            option.id === (values as IGeneralInformation).k_Opcion
-              ? { ...option, isActive: true }
-              : option
-          )
-        );
-      } else {
-        setFormData((prevFormData: IFormAddLinixUseCase) => ({
-          ...prevFormData,
-          [stepKey]: { values: values },
-        }));
+        setCsOptionsButtons([]);
       }
     }
   };
