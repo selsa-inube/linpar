@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { Table } from "@inube/design-system";
 import { useMediaQuery } from "@inube/design-system";
 import { EMessageType, IMessage } from "@src/types/messages.types";
-import { getAll } from "@mocks/utils/dataMock.service";
+import { getInvitations } from "@services/invitations/getInvitations";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
@@ -32,21 +32,24 @@ function InvitationsTab(props: InvitationsTabProps) {
   const [invitations, setInvitations] = useState<IInvitationsEntry[]>([]);
   const [isHovered, setIsHovered] = useState(false);
   const smallScreen = useMediaQuery("(max-width: 850px)");
-
-  useEffect(() => {
-    getAll("linix-invitations")
-      .then((data) => {
-        if (data !== null) {
-          setInvitations(data as IInvitationsEntry[]);
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
+  const { user } = useAuth0();
+  const linixInvitationsData = async () => {
+    if (!user) return;
+    if (invitations.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getInvitations();
+        setInvitations(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [invitations]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixInvitationsData();
+  }, [user]);
 
   useEffect(() => {
     const filterRecordRemoved = invitations.filter(
