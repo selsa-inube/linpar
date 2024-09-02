@@ -63,11 +63,17 @@ export const actionsConfigInvitation = (
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ invitationId }: { invitationId: string }) => (
+      content: ({
+        invitationId,
+        userIdentification,
+      }: {
+        invitationId: string;
+        userIdentification: string;
+      }) => (
         <DeleteLinixInvitation
           deleteLinixInvitationModal={deleteInvitationModal}
           linixInvitation={invitationId}
-          nameLinixInvitation={invitationId}
+          nameLinixInvitation={userIdentification}
           handleDeleteLinixInvitation={deleteItemData}
           setIdDeleted={setIdDeleted}
         />

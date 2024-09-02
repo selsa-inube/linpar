@@ -48,16 +48,6 @@ export const DeleteLinixInvitation = (props: IDeleteLinixInvitationProps) => {
     setLoading(false);
     setShowModal(false);
   };
-  // const handleOnclick = async () => {
-  //   await handleDeleteLinixInvitation({
-  //     key: "customerId",
-  //     nameDB: "linix-invitations",
-  //     identifier: linixInvitation,
-  //   });
-  //   setShowModal(false);
-  //   setLoading(true);
-  //   setIdDeleted(linixInvitation);
-  // };
 
   return (
     <DeleteLinixInvitationUI
