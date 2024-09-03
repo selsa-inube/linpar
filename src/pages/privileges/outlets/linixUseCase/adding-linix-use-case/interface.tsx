@@ -235,13 +235,17 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                     handlePrevStep(prevStep);
                   }}
                   handleNext={() => {
-                    const nextStep =
+                    let nextStep = currentStep + 1;
+                    if (
                       currentStep ===
                       Object.values(stepsAddingLinixUseCase).length
-                        ? (handleToggleModal(), currentStep)
-                        : currentStep === 1 && csOptionsButtons.length === 0
-                        ? 3
-                        : currentStep + 1;
+                    ) {
+                      handleToggleModal();
+                      return;
+                    }
+                    if (currentStep === 1 && csOptionsButtons.length === 0) {
+                      nextStep = 3;
+                    }
                     handleNextStep(nextStep);
                   }}
                   titleButtonText={titleButtonTextAssited}
