@@ -4,10 +4,12 @@ import { functionById } from "@mocks/utils/dataMock.service";
 
 import { deleteInvitationModal } from "./config/deleteInvitation.config";
 import { DeleteLinixInvitationUI } from "./interface";
+import { deleteInvitations } from "./utils";
+import { IDeleteForMessage } from "../../users/types";
 
 interface IDeleteLinixInvitationProps {
   deleteLinixInvitationModal: typeof deleteInvitationModal;
-  setIdDeleted: (show: string) => void;
+  setIdDeleted: (show: IDeleteForMessage) => void;
   handleDeleteLinixInvitation: (props: functionById) => Promise<unknown>;
   nameLinixInvitation: string;
   linixInvitation: string;
@@ -16,7 +18,6 @@ interface IDeleteLinixInvitationProps {
 export const DeleteLinixInvitation = (props: IDeleteLinixInvitationProps) => {
   const {
     deleteLinixInvitationModal,
-    handleDeleteLinixInvitation,
     nameLinixInvitation,
     linixInvitation,
     setIdDeleted,
@@ -26,21 +27,32 @@ export const DeleteLinixInvitation = (props: IDeleteLinixInvitationProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleOnclick = async () => {
-    await handleDeleteLinixInvitation({
-      key: "customerId",
-      nameDB: "linix-invitations",
-      identifier: linixInvitation,
-    });
-    setShowModal(false);
+  const handeleteLinixInvitation = () => {
     setLoading(true);
-    setIdDeleted(linixInvitation);
+    const data = deleteInvitations(linixInvitation);
+    data
+      .then(() => {
+        setIdDeleted({
+          id: linixInvitation,
+          successfulDiscard: true,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setIdDeleted({
+          id: linixInvitation,
+          successfulDiscard: false,
+        });
+      });
+
+    setLoading(false);
+    setShowModal(false);
   };
 
   return (
     <DeleteLinixInvitationUI
       deleteInvitationModal={deleteLinixInvitationModal}
-      handleDeleteLinixInvitation={handleOnclick}
+      handleDeleteLinixInvitation={handeleteLinixInvitation}
       hover={isHovered}
       loading={loading}
       nameLinixInvitation={nameLinixInvitation}

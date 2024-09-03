@@ -17,6 +17,7 @@ import { actionsConfigInvitation } from "./config/dataInvitation";
 
 import { IMessageState } from "../../types/forms.types";
 import { deleteInvitationMessages } from "./DeleteInvitation/config/deleteInvitation.config";
+import { IDeleteForMessage } from "../users/types";
 
 interface InvitationsTabProps {
   searchText: string;
@@ -27,7 +28,10 @@ function InvitationsTab(props: InvitationsTabProps) {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: "",
+    successfulDiscard: false,
+  });
   const [loading, setLoading] = useState(true);
   const [invitations, setInvitations] = useState<IInvitationsEntry[]>([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -52,14 +56,20 @@ function InvitationsTab(props: InvitationsTabProps) {
   }, [user]);
 
   useEffect(() => {
-    const filterRecordRemoved = invitations.filter(
-      (invitations) => invitations.customerId !== idDeleted
+    const messageType = idDeleted.successfulDiscard
+      ? deleteInvitationMessages.success
+      : deleteInvitationMessages.failed;
+
+    const filterDiscardPublication = invitations.filter(
+      (invitations) => invitations.invitationId !== idDeleted.id
     );
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: deleteInvitationMessages.success,
-      });
+
+    idDeleted.successfulDiscard && setInvitations(filterDiscardPublication);
+
+    setMessage({
+      visible: true,
+      data: messageType,
+    });
   }, [idDeleted]);
 
   const handleResendInvitation = (invitation: IInvitationsEntry) => {
@@ -116,7 +126,7 @@ function InvitationsTab(props: InvitationsTabProps) {
           modalTitle="Invitación"
         />
       )}
-      {idDeleted && message.visible && (
+      {idDeleted && idDeleted.id && message.visible && (
         <RenderMessage
           message={message}
           handleCloseMessage={handleCloseMessage}
