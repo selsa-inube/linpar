@@ -5,9 +5,9 @@ const mapInvitationEntityToApi = (
 ): Record<string, string | number | object> => {
   return {
     email: String(invitation.email),
-    phoneNumber: "221321",
+    phoneNumber: String(invitation.phoneNumber),
     publicCode: "LINIX",
-    userIdentification: "9525392",
+    userIdentification: String(invitation.userIdentification),
   };
 };
 

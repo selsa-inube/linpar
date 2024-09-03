@@ -11,9 +11,9 @@ export const saveLinixInvitations = async (
 
   const newLinixInvitation: IInvitationsEntry = {
     email: addLinixInvitations.email,
-    phoneNumber: "221321",
+    phoneNumber: addLinixInvitations.phoneNumber,
     publicCode: "LINIX",
-    userIdentification: "95248900",
+    userIdentification: addLinixInvitations.userIdentification,
   };
   let confirmationType = true;
   try {

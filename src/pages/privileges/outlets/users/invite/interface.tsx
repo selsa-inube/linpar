@@ -97,6 +97,15 @@ function InviteUI(props: InviteUIProps) {
     setIsUserSelected(true);
   };
 
+  const areAllFieldsFilled = () => {
+    return (
+      formik.values.userIdentification &&
+      formik.values.phoneNumber &&
+      formik.values.email &&
+      isUserSelected
+    );
+  };
+
   return loadingPage ? (
     <StyledContainerLoading>
       <LoadingApp />
@@ -178,7 +187,7 @@ function InviteUI(props: InviteUIProps) {
                 type="email"
                 message={
                   stateValue(formik, "email") === "valid"
-                    ? "El correo electrónico es valido"
+                    ? "El correo electrónico es válido"
                     : formik.errors.email
                 }
                 disabled={loading}
@@ -195,7 +204,7 @@ function InviteUI(props: InviteUIProps) {
               iconBefore={<MdOutlineShortcut size={18} />}
               loading={loading}
               onClick={handleSubmit}
-              disabled={!isUserSelected}
+              disabled={!areAllFieldsFilled()}
             >
               Enviar
             </Button>

@@ -2,16 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "@inube/design-system";
+import { useAuth0 } from "@auth0/auth0-react";
 
+import { useMediaQuery } from "@inube/design-system";
+import { getSearchAllTercero } from "@services/invitations/thirdPartiesNamesUsernames";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
+import { userSearchCardData } from "@mocks/apps/privileges/users/usersSearchField.mock";
 
 import { InviteUI } from "./interface";
-import { IInvitationUser, IInviteFormValues } from "./types";
-import { userSearchCardData } from "@src/mocks/apps/privileges/users/usersSearchField.mock";
+import { IInviteFormValues } from "./types";
 import { saveLinixInvitations } from "./utils";
-import { getAll } from "@src/mocks/utils/dataMock.service";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -30,33 +31,37 @@ const validationSchema = Yup.object({
 
 function Invite() {
   const [loading, setLoading] = useState(false);
-  const [loadingPage, setLoadingPage] = useState(false);
+  const { user } = useAuth0();
+  const [loadingPage] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
   const [dataInvitationUsers, setDataInvitationUsers] = useState<
-    IInvitationUser[]
+    Record<string, unknown>[]
   >([]);
-
   const resetSearchUserRef = useRef(() => {});
   const navigate = useNavigate();
 
   const screenMovil = useMediaQuery("(max-width: 744px)");
-
   useEffect(() => {
-    setLoadingPage(true);
-    getAll("linix-invitation-users")
-      .then((data) => {
-        if (data !== null) {
-          setDataInvitationUsers(data as IInvitationUser[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching invitation users:", error.message);
-      })
-      .finally(() => {
-        setLoadingPage(false);
-      });
+    rolesTerceros();
   }, []);
+  const rolesTerceros = () => {
+    if (!user) return;
+    if (dataInvitationUsers.length === 0) {
+      setLoading(true);
+      getSearchAllTercero()
+        .then((newUsers) => {
+          setDataInvitationUsers(newUsers);
+        })
+        .catch((error) => {
+          console.info(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
   const handleResetSearchUser = (resetFunction: () => void) => {
     resetSearchUserRef.current = resetFunction;
   };
