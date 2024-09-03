@@ -2,7 +2,6 @@ import { Switch } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { activatePositionModal } from "./config/activatePosition.config";
-
 import { IMessageState } from "../../users/types/forms.types";
 
 interface IActivatePositionUI {
