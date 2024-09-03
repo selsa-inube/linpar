@@ -90,14 +90,10 @@ function InviteUI(props: InviteUIProps) {
   const matches = useMediaQueries(mediaQueries);
   const [isUserSelected, setIsUserSelected] = useState(false);
 
-  const checkIfAnyFieldIsEmpty = () => {
-    return !formik.values.userIdentification || !formik.values.phoneNumber;
-  };
-
   const handleUserSelect = (userData: Record<string, string | number>) => {
     formik.setFieldValue("userName", userData.userName);
     formik.setFieldValue("userIdentification", userData.userIdentification);
-    formik.setFieldValue("phoneNumber", userData.phoneNumber);
+
     setIsUserSelected(true);
   };
 
@@ -166,11 +162,11 @@ function InviteUI(props: InviteUIProps) {
                 name="phoneNumber"
                 id="phoneNumber"
                 value={formik.values.phoneNumber}
-                type="tel"
+                type="number"
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                readOnly
+                onChange={formik.handleChange}
               />
 
               <Textfield
@@ -191,7 +187,6 @@ function InviteUI(props: InviteUIProps) {
                 status={stateValue(formik, "email")}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                readOnly={isUserSelected && checkIfAnyFieldIsEmpty()}
               />
             </Grid>
             <Button
@@ -200,6 +195,7 @@ function InviteUI(props: InviteUIProps) {
               iconBefore={<MdOutlineShortcut size={18} />}
               loading={loading}
               onClick={handleSubmit}
+              disabled={!isUserSelected}
             >
               Enviar
             </Button>

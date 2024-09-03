@@ -2,12 +2,13 @@ import { IOptionInitialiceEntry } from "@pages/privileges/outlets/positions/add-
 
 export interface IInvitationsEntry {
   id?: string;
-  customerId: string;
+  customerId?: string;
   email: string;
   phoneNumber: string;
-  status: string;
+  publicCode?: string;
+  status?: string;
   userIdentification: string;
-  userName: string;
+  userName?: string;
   dateEnd?: string;
   dateStart?: string;
   invitationId?: string;
