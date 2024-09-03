@@ -318,6 +318,26 @@ function AddingLinixUseCase() {
       }));
       if (stepKey === "generalInformation") {
         setCsOptionsButtons([]);
+        const updatedData: IFormAddLinixUseCase = {
+          ...formData,
+        };
+        Object.assign(updatedData[stepKey].values, values);
+        Object.assign(
+          updatedData.webOptions.values,
+          formData.webOptions.values.map((option) =>
+            option.id === (values as IGeneralInformation).k_Funcio
+              ? { ...option, isActive: true }
+              : option
+          )
+        );
+        Object.assign(
+          updatedData.clientServerOptions.values,
+          formData.clientServerOptions.values.map((option) =>
+            option.id === (values as IGeneralInformation).k_Opcion
+              ? { ...option, isActive: true }
+              : option
+          )
+        );
       }
     }
   };
