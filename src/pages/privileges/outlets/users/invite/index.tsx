@@ -25,7 +25,11 @@ const initialValues: IInviteFormValues = {
 
 const validationSchema = Yup.object({
   userIdentification: validationRules.identification,
-  phoneNumber: validationRules.phone.required(validationMessages.required),
+  phoneNumber: validationRules.phone
+    .required(validationMessages.required)
+    .test("len", "El número de teléfono debe tener 10 dígitos", (val) =>
+      Boolean(val && val.toString().length === 10)
+    ),
   email: validationRules.email.required(validationMessages.required),
 });
 
@@ -68,6 +72,7 @@ function Invite() {
   const formik = useFormik({
     initialValues,
     validationSchema,
+    validateOnBlur: true,
     validateOnChange: false,
     onSubmit: () => {
       setLoading(true);

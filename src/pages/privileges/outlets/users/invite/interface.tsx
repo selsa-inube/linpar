@@ -175,7 +175,18 @@ function InviteUI(props: InviteUIProps) {
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
+                message={
+                  formik.errors.phoneNumber && formik.touched.phoneNumber
+                    ? formik.errors.phoneNumber
+                    : ""
+                }
+                status={
+                  formik.errors.phoneNumber && formik.touched.phoneNumber
+                    ? "invalid"
+                    : undefined
+                }
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
 
               <Textfield
