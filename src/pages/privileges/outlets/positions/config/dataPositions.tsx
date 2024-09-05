@@ -11,6 +11,7 @@ import { IPosition } from "../add-position/types";
 import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
 import { IDeleteForMessage } from "../types";
+import { CenteredTd } from "../../users/tabs/users/styles";
 
 export const titlesOptions = [
   {
@@ -54,16 +55,18 @@ export const actionsConfigPosition = (
       id: "i_activo",
       actionName: "Activo",
       content: (cargos: IPosition) => (
-        <ActivatePosition
-          handleActivate={() => {}}
-          data={{
-            id: cargos.k_Grupo || "",
-            active: cargos.i_Activo,
-            name: cargos.n_Grupo,
-          }}
-          showComplete={false}
-          activateModalConfig={activatePositionModal}
-        />
+        <CenteredTd>
+          <ActivatePosition
+            handleActivate={() => {}}
+            data={{
+              id: cargos.k_Grupo || "",
+              active: cargos.i_Activo,
+              name: cargos.n_Grupo,
+            }}
+            showComplete={false}
+            activateModalConfig={activatePositionModal}
+          />
+        </CenteredTd>
       ),
       type: "secondary",
     },

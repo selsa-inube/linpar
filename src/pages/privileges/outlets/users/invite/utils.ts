@@ -1,38 +1,29 @@
 import { IInvitationsEntry } from "@services/users/invitation.types";
-import localforage from "localforage";
-import { IInviteFormValues } from "./types";
 
-export const saveLinixInvitations = (addLinixInvitation: IInviteFormValues) => {
-  const today = new Date();
-  const formatDateStart = today.toISOString();
+import { addLinixInvitation } from "@services/invitations/postInvitations";
 
+export const saveLinixInvitations = async (
+  addLinixInvitations: IInvitationsEntry,
+  user: string
+) => {
   const dateEnd = new Date();
   const nextMonth = new Date(dateEnd).getMonth() + 1;
   dateEnd.setMonth(nextMonth);
-  const formatDateEnd = dateEnd.toISOString();
 
   const newLinixInvitation: IInvitationsEntry = {
-    customerId: "",
-    dateEnd: formatDateEnd,
-    dateStart: formatDateStart,
-    email: addLinixInvitation.email,
-    invitationId: "",
-    password: "",
-    phoneNumber: addLinixInvitation.phoneNumber,
-    requestingUser: "",
-    status: "pending",
-    userAccountId: "ACD0017EW65WS874125S",
-    userIdentification: addLinixInvitation.userIdentification,
-    userName: addLinixInvitation.userName,
+    email: addLinixInvitations.email,
+    phoneNumber: addLinixInvitations.phoneNumber,
+    publicCode: "LINIX",
+    userIdentification: addLinixInvitations.userIdentification,
   };
-  localforage.getItem("linix-invitations").then((data) => {
-    if (data) {
-      localforage.setItem("linix-invitations", [
-        ...(data as IInviteFormValues[]),
-        newLinixInvitation,
-      ]);
-    } else {
-      localforage.setItem("linix-invitations", [newLinixInvitation]);
-    }
-  });
+  let confirmationType = true;
+  try {
+    await addLinixInvitation(newLinixInvitation, user);
+  } catch (error) {
+    confirmationType = false;
+
+    throw error;
+  }
+
+  return confirmationType;
 };

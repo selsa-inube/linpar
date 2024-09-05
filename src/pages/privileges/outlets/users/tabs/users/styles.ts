@@ -7,4 +7,10 @@ const StyledMessageContainer = styled.div`
   z-index: 2;
 `;
 
-export { StyledMessageContainer };
+const CenteredTd = styled.td`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export { StyledMessageContainer, CenteredTd };

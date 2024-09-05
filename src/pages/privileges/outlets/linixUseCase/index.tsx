@@ -48,18 +48,10 @@ function LinixUseCase() {
     const messageType = idDeleted.successfulDiscard
       ? deleteUserMessages.success
       : deleteUserMessages.failed;
-
-    const filterRecordRemoved = linixUseCases.filter(
-      (linixUseCases) => linixUseCases.k_Usecase !== idDeleted.id
-    );
-
-    idDeleted.successfulDiscard && setLinixUseCases(filterRecordRemoved);
-
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: messageType,
-      });
+    setMessage({
+      visible: true,
+      data: messageType,
+    });
   }, [idDeleted]);
 
   const handleSearchUseCase = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,6 +69,11 @@ function LinixUseCase() {
     setMessage({
       visible: false,
     });
+    const filterRecordRemoved = linixUseCases.filter(
+      (linixUseCases) => linixUseCases.k_Usecase !== idDeleted.id
+    );
+
+    idDeleted.successfulDiscard && setLinixUseCases(filterRecordRemoved);
   };
 
   const handleClick: HandleClickFunction = (id: string) => {

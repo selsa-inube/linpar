@@ -60,12 +60,6 @@ function InvitationsTab(props: InvitationsTabProps) {
       ? deleteInvitationMessages.success
       : deleteInvitationMessages.failed;
 
-    const filterDiscardPublication = invitations.filter(
-      (invitations) => invitations.invitationId !== idDeleted.id
-    );
-
-    idDeleted.successfulDiscard && setInvitations(filterDiscardPublication);
-
     setMessage({
       visible: true,
       data: messageType,
@@ -103,6 +97,11 @@ function InvitationsTab(props: InvitationsTabProps) {
     setMessage({
       visible: false,
     });
+
+    const filterDiscardPublication = invitations.filter(
+      (invitations) => invitations.invitationId !== idDeleted.id
+    );
+    idDeleted.successfulDiscard && setInvitations(filterDiscardPublication);
   };
 
   return (

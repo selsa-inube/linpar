@@ -2,7 +2,6 @@ import { Switch } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { activatePositionModal } from "./config/activatePosition.config";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
 import { IMessageState } from "../../users/types/forms.types";
 
 interface IActivatePositionUI {
@@ -23,12 +22,10 @@ export function ActivatePositionUI(props: IActivatePositionUI) {
     active,
     showActivatePosition: showActivatePositionModal,
     id,
-    message,
     showComplete,
     activateModalConfig,
     handleToggleModal,
     handleActivatePosition,
-    handleCloseSectionMessage,
   } = props;
 
   let messageType = EMessageType.DEACTIVATION;
@@ -61,13 +58,6 @@ export function ActivatePositionUI(props: IActivatePositionUI) {
           appearance={appearance}
           closeModal={handleToggleModal}
           handleClick={handleActivatePosition}
-        />
-      )}
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleCloseSectionMessage}
         />
       )}
     </>
