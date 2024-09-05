@@ -307,37 +307,81 @@ function AddingLinixUseCase() {
     }
   };
 
-  const handleUpdateFormData = (values: IHandleChangeFormData) => {
+  const handleUpdateFormData = async (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(stepsAddingLinixUseCase).find(
       ([, config]) => config.id === currentStep
     )?.[0];
+
     if (stepKey) {
+      const hasFunctioChanged =
+        stepKey === "generalInformation" &&
+        formData.generalInformation.values.k_Funcio !==
+          (values as IGeneralInformation).k_Funcio;
+      const hasOpcionChanged =
+        stepKey === "generalInformation" &&
+        formData.generalInformation.values.k_Opcion !==
+          (values as IGeneralInformation).k_Opcion;
+
       setFormData((prevFormData: IFormAddLinixUseCase) => ({
         ...prevFormData,
         [stepKey]: { values: values, isValid: true },
       }));
-      if (stepKey === "generalInformation") {
+
+      if (hasOpcionChanged && filterNForma) {
+        const newUsers = await getClientServerButtonDataFormats(
+          filterNForma as string
+        );
+
+        if (Array.isArray(newUsers)) {
+          setFormData((prevFormData: IFormAddLinixUseCase) => {
+            const updatedFormData = { ...prevFormData };
+
+            updatedFormData.clientServerButton = {
+              ...prevFormData.clientServerButton,
+              values: {
+                ...prevFormData.clientServerButton.values,
+                k_option_button: "",
+              },
+              isValid: false,
+            };
+
+            return updatedFormData;
+          });
+        }
+      }
+
+      if (
+        (hasFunctioChanged || hasOpcionChanged) &&
+        stepKey === "generalInformation"
+      ) {
         setCsOptionsButtons([]);
-        const updatedData: IFormAddLinixUseCase = {
-          ...formData,
-        };
-        Object.assign(updatedData[stepKey].values, values);
-        Object.assign(
-          updatedData.webOptions.values,
-          formData.webOptions.values.map((option) =>
-            option.id === (values as IGeneralInformation).k_Funcio
-              ? { ...option, isActive: true }
-              : option
-          )
-        );
-        Object.assign(
-          updatedData.clientServerOptions.values,
-          formData.clientServerOptions.values.map((option) =>
-            option.id === (values as IGeneralInformation).k_Opcion
-              ? { ...option, isActive: true }
-              : option
-          )
-        );
+        setFormData((prevFormData: IFormAddLinixUseCase) => {
+          const updatedFormData = { ...prevFormData };
+
+          if (hasFunctioChanged) {
+            Object.assign(
+              updatedFormData.webOptions.values,
+              formData.webOptions.values.map((option) =>
+                option.id === (values as IGeneralInformation).k_Funcio
+                  ? { ...option, isActive: true }
+                  : { ...option, isActive: false }
+              )
+            );
+          }
+
+          if (hasOpcionChanged) {
+            Object.assign(
+              updatedFormData.clientServerOptions.values,
+              formData.clientServerOptions.values.map((option) =>
+                option.id === (values as IGeneralInformation).k_Opcion
+                  ? { ...option, isActive: true }
+                  : { ...option, isActive: false }
+              )
+            );
+          }
+
+          return updatedFormData;
+        });
       }
     }
   };
@@ -419,7 +463,11 @@ function AddingLinixUseCase() {
   });
   const navigate = useNavigate();
   const handleFinishForm = () => {
-    const addnewdata = saveLinixUseCase(formData, filterNForma as string);
+    const addnewdata = saveLinixUseCase(
+      formData,
+      filterNForma as string,
+      csOptionsButtons
+    );
     addnewdata
       .then(() => {
         setMessage({

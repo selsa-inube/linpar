@@ -71,67 +71,84 @@ export const VerificationAddLinixUseCase = (
     return clientServerId;
   };
 
-  const dataVerificationStep: IDataVerificationStep[] = [steps].map((data) => ({
-    sections: {
-      generalInformation: {
-        title: "Información general",
-        attributes: [
-          createAttribute(
-            "Nombre del caso de uso:",
-            data.generalInformation.values.n_Usecase
+  const ancillaryAccountsSection = () => {
+    const optionButton = steps.clientServerButton.values.k_option_button;
+    return optionButton
+      ? {
+          title: "Opción menú cliente-servidor linix",
+          attributes: [
+            createAttribute(
+              "Opción menú cliente-servidor linix: ",
+              optionButton
+            ),
+          ],
+        }
+      : null;
+  };
+
+  const dataVerificationStep: IDataVerificationStep[] = [steps].map((data) => {
+    const ancillaryAccounts = ancillaryAccountsSection();
+
+    return {
+      sections: {
+        generalInformation: {
+          title: "Información general",
+          attributes: [
+            createAttribute(
+              "Nombre del caso de uso:",
+              data.generalInformation.values.n_Usecase
+            ),
+            createAttribute(
+              "Descripción: ",
+              data.generalInformation.values.n_Descrip
+            ),
+            createAttribute(
+              "Tipo de caso de uso: ",
+              data.generalInformation.values.i_Tipusec
+            ),
+            createAttribute("Opción Web:", webOptions()),
+            createAttribute("Opción Cliente Servidor:", clientServerOptions()),
+          ],
+        },
+        ...(ancillaryAccounts && { ancillaryAccounts }),
+        downloadableDocuments: {
+          title: "Formatos descargables",
+          attributes: filterAndMapData(
+            data.downloadableDocuments?.values || [],
+            "isActive"
           ),
-          createAttribute(
-            "Descripción: ",
-            data.generalInformation.values.n_Descrip
+        },
+        webReports: {
+          title: "Reportes Web",
+          attributes: filterAndMapData(
+            data.webReports?.values || [],
+            "isActive"
           ),
-          createAttribute(
-            "Tipo de caso de uso: ",
-            data.generalInformation.values.i_Tipusec
+        },
+        webOptions: {
+          title: "Opciones Web",
+          attributes: filterAndMapData(
+            data.webOptions?.values || [],
+            "isActive"
           ),
-          createAttribute("Opción Web:", webOptions()),
-          createAttribute("Opción Cliente Servidor:", clientServerOptions()),
-        ],
-      },
-      ancillaryAccounts: {
-        title: "Opción menú cliente-servidor linix",
-        attributes: [
-          createAttribute(
-            "Opción menú cliente-servidor linix: ",
-            data.clientServerButton.values.k_option_button
+        },
+        clientServerReports: {
+          title: "Reportes cliente servidor",
+          attributes: filterAndMapData(
+            data.clientServerReports?.values || [],
+            "isActive"
           ),
-        ],
+        },
+        clientServerOptions: {
+          title: "Opciones cliente servidor",
+          attributes: filterAndMapData(
+            data.clientServerOptions?.values || [],
+            "isActive"
+          ),
+        },
       },
-      downloadableDocuments: {
-        title: "Formatos descargables",
-        attributes: filterAndMapData(
-          data.downloadableDocuments?.values || [],
-          "isActive"
-        ),
-      },
-      webReports: {
-        title: "Reportes Web",
-        attributes: filterAndMapData(data.webReports?.values || [], "isActive"),
-      },
-      webOptions: {
-        title: "Opciones Web",
-        attributes: filterAndMapData(data.webOptions?.values || [], "isActive"),
-      },
-      clientServerReports: {
-        title: "Reportes cliente servidor",
-        attributes: filterAndMapData(
-          data.clientServerReports?.values || [],
-          "isActive"
-        ),
-      },
-      clientServerOptions: {
-        title: "Opciones cliente servidor",
-        attributes: filterAndMapData(
-          data.clientServerOptions?.values || [],
-          "isActive"
-        ),
-      },
-    },
-  }));
+    };
+  });
 
   const keySections = dataVerificationStep.flatMap((step) =>
     Object.keys(step.sections)

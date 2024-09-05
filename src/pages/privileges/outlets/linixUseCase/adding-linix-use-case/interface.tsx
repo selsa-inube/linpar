@@ -190,7 +190,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
       currentStep === Object.values(stepsAddingLinixUseCase).length &&
       csOptionsButtons.length !== 0
     ) {
-      saveLinixUseCase(formData, filterNForma);
+      saveLinixUseCase(formData, filterNForma, csOptionsButtons);
     } else if (csOptionsButtons.length === 0 && currentStep === 1) {
       handleNextStep(3);
     } else {
