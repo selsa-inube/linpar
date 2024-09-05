@@ -1,4 +1,6 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { useLocation } from "react-router-dom";
+
 import {
   Breadcrumbs,
   Button,
@@ -8,7 +10,7 @@ import {
   Textfield,
   useMediaQuery,
 } from "@inube/design-system";
-
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
@@ -18,10 +20,6 @@ import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
 import { StyledContainer } from "./styles";
-import { RenderMessage } from "@components/feedback/RenderMessage";
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { getStaffPortalByBusinessManager } from "@src/services/IsaasPortal";
 
 interface UsersUIProps {
   isSelected: string;
@@ -53,12 +51,6 @@ export function UsersUI(props: UsersUIProps) {
   const label = privilegeOptionsConfig.find(
     (item) => item.url === location.pathname
   );
-  useEffect(() => {
-    (async () => {
-      const result = await getStaffPortalByBusinessManager();
-      console.log(result);
-    })();
-  }, []);
 
   return (
     <>
