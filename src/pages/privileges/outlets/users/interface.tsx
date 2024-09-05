@@ -20,6 +20,8 @@ import { UsersTab } from "./tabs/users";
 import { StyledContainer } from "./styles";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { getStaffPortalByBusinessManager } from "@src/services/IsaasPortal";
 
 interface UsersUIProps {
   isSelected: string;
@@ -51,6 +53,12 @@ export function UsersUI(props: UsersUIProps) {
   const label = privilegeOptionsConfig.find(
     (item) => item.url === location.pathname
   );
+  useEffect(() => {
+    (async () => {
+      const result = await getStaffPortalByBusinessManager();
+      console.log(result);
+    })();
+  }, []);
 
   return (
     <>
