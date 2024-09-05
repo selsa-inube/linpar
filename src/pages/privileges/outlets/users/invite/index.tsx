@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 
 import { useMediaQuery } from "@inube/design-system";
 import { getSearchAllTercero } from "@services/invitations/thirdPartiesNamesUsernames";
@@ -13,6 +12,7 @@ import { userSearchCardData } from "@mocks/apps/privileges/users/usersSearchFiel
 import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
 import { saveLinixInvitations } from "./utils";
+import { AppContext } from "@src/context/AppContext";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -35,17 +35,22 @@ const validationSchema = Yup.object({
 
 function Invite() {
   const [loading, setLoading] = useState(false);
-  const { user } = useAuth0();
   const [loadingPage] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
   const [dataInvitationUsers, setDataInvitationUsers] = useState<
     Record<string, unknown>[]
   >([]);
+
+  const { user } = useContext(AppContext);
+
   const resetSearchUserRef = useRef(() => {});
   const navigate = useNavigate();
 
   const screenMovil = useMediaQuery("(max-width: 744px)");
+
+  const name = user.username?.split(" ");
+
   useEffect(() => {
     rolesTerceros();
   }, []);
@@ -79,7 +84,7 @@ function Invite() {
       setTimeout(() => {
         setLoading(false);
         setFormInvalid(false);
-        saveLinixInvitations(formik.values);
+        saveLinixInvitations(formik.values, name[0] as string);
         setShowMessage(true);
         formik.resetForm();
         resetSearchUserRef.current();

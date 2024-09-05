@@ -3,7 +3,8 @@ import { environment } from "@src/config/environment";
 import { mapInvitationEntityToApi } from "./mappers";
 
 const addLinixInvitation = async (
-  linixInvitation: IInvitationsEntry
+  linixInvitation: IInvitationsEntry,
+  username: string
 ): Promise<IInvitationsEntry | undefined> => {
   const requestUrl = `${environment.IROLE_LINIX_USER_SIGNUP_INVITATION_QUERY_PERSISTENCE_SERVICE}/users-signup-invitations`;
 
@@ -14,7 +15,7 @@ const addLinixInvitation = async (
         "X-Action": "AddUserSignupInvitation",
         "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
-        "X-User-Name": "LICON",
+        "X-User-Name": username,
       },
       body: JSON.stringify(mapInvitationEntityToApi(linixInvitation)),
     };

@@ -3,7 +3,8 @@ import { IInvitationsEntry } from "@services/users/invitation.types";
 import { addLinixInvitation } from "@services/invitations/postInvitations";
 
 export const saveLinixInvitations = async (
-  addLinixInvitations: IInvitationsEntry
+  addLinixInvitations: IInvitationsEntry,
+  user: string
 ) => {
   const dateEnd = new Date();
   const nextMonth = new Date(dateEnd).getMonth() + 1;
@@ -17,7 +18,7 @@ export const saveLinixInvitations = async (
   };
   let confirmationType = true;
   try {
-    await addLinixInvitation(newLinixInvitation);
+    await addLinixInvitation(newLinixInvitation, user);
   } catch (error) {
     confirmationType = false;
 
