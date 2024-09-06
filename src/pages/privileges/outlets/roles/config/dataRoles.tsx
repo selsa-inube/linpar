@@ -10,6 +10,7 @@ import { DeleteRole } from "../delete-role";
 import { activateRoleModal } from "../activate-role/config/activateRole.config";
 import { ActivateRole } from "../activate-role";
 import { IDeleteForMessage, IRol } from "../types";
+import { CenteredTd } from "../../users/tabs/users/styles";
 
 export const titlesOptions = [
   {
@@ -72,16 +73,18 @@ export const actionsConfigPosition = (
       id: "i_Activo",
       actionName: "Activo",
       content: (roles: IRol) => (
-        <ActivateRole
-          handleActivate={() => {}}
-          data={{
-            id: roles?.id || 2,
-            active: roles.i_Activo,
-            name: roles.n_Rol,
-          }}
-          showComplete={false}
-          activateModalConfig={activateRoleModal}
-        />
+        <CenteredTd>
+          <ActivateRole
+            handleActivate={() => {}}
+            data={{
+              id: roles?.id || 2,
+              active: roles.i_Activo,
+              name: roles.n_Rol,
+            }}
+            showComplete={false}
+            activateModalConfig={activateRoleModal}
+          />
+        </CenteredTd>
       ),
       type: "secondary",
     },

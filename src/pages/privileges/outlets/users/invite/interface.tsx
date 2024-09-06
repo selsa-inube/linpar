@@ -90,15 +90,20 @@ function InviteUI(props: InviteUIProps) {
   const matches = useMediaQueries(mediaQueries);
   const [isUserSelected, setIsUserSelected] = useState(false);
 
-  const checkIfAnyFieldIsEmpty = () => {
-    return !formik.values.userIdentification || !formik.values.phoneNumber;
-  };
-
   const handleUserSelect = (userData: Record<string, string | number>) => {
     formik.setFieldValue("userName", userData.userName);
     formik.setFieldValue("userIdentification", userData.userIdentification);
-    formik.setFieldValue("phoneNumber", userData.phoneNumber);
+
     setIsUserSelected(true);
+  };
+
+  const areAllFieldsFilled = () => {
+    return (
+      formik.values.userIdentification &&
+      formik.values.phoneNumber &&
+      formik.values.email &&
+      isUserSelected
+    );
   };
 
   return loadingPage ? (
@@ -166,11 +171,22 @@ function InviteUI(props: InviteUIProps) {
                 name="phoneNumber"
                 id="phoneNumber"
                 value={formik.values.phoneNumber}
-                type="tel"
+                type="number"
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                readOnly
+                message={
+                  formik.errors.phoneNumber && formik.touched.phoneNumber
+                    ? formik.errors.phoneNumber
+                    : ""
+                }
+                status={
+                  formik.errors.phoneNumber && formik.touched.phoneNumber
+                    ? "invalid"
+                    : undefined
+                }
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
 
               <Textfield
@@ -182,7 +198,7 @@ function InviteUI(props: InviteUIProps) {
                 type="email"
                 message={
                   stateValue(formik, "email") === "valid"
-                    ? "El correo electrónico es valido"
+                    ? "El correo electrónico es válido"
                     : formik.errors.email
                 }
                 disabled={loading}
@@ -191,7 +207,6 @@ function InviteUI(props: InviteUIProps) {
                 status={stateValue(formik, "email")}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                readOnly={isUserSelected && checkIfAnyFieldIsEmpty()}
               />
             </Grid>
             <Button
@@ -200,6 +215,7 @@ function InviteUI(props: InviteUIProps) {
               iconBefore={<MdOutlineShortcut size={18} />}
               loading={loading}
               onClick={handleSubmit}
+              disabled={!areAllFieldsFilled()}
             >
               Enviar
             </Button>

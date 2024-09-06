@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { Table } from "@inube/design-system";
 import { useMediaQuery } from "@inube/design-system";
 import { EMessageType, IMessage } from "@src/types/messages.types";
-import { getAll } from "@mocks/utils/dataMock.service";
+import { getInvitations } from "@services/invitations/getInvitations";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
@@ -17,6 +17,7 @@ import { actionsConfigInvitation } from "./config/dataInvitation";
 
 import { IMessageState } from "../../types/forms.types";
 import { deleteInvitationMessages } from "./DeleteInvitation/config/deleteInvitation.config";
+import { IDeleteForMessage } from "../users/types";
 
 interface InvitationsTabProps {
   searchText: string;
@@ -27,36 +28,42 @@ function InvitationsTab(props: InvitationsTabProps) {
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
-  const [idDeleted, setIdDeleted] = useState("");
+  const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
+    id: "",
+    successfulDiscard: false,
+  });
   const [loading, setLoading] = useState(true);
   const [invitations, setInvitations] = useState<IInvitationsEntry[]>([]);
   const [isHovered, setIsHovered] = useState(false);
   const smallScreen = useMediaQuery("(max-width: 850px)");
-
-  useEffect(() => {
-    getAll("linix-invitations")
-      .then((data) => {
-        if (data !== null) {
-          setInvitations(data as IInvitationsEntry[]);
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
+  const { user } = useAuth0();
+  const linixInvitationsData = async () => {
+    if (!user) return;
+    if (invitations.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getInvitations();
+        setInvitations(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [invitations]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixInvitationsData();
+  }, [user]);
 
   useEffect(() => {
-    const filterRecordRemoved = invitations.filter(
-      (invitations) => invitations.customerId !== idDeleted
-    );
-    filterRecordRemoved &&
-      setMessage({
-        visible: true,
-        data: deleteInvitationMessages.success,
-      });
+    const messageType = idDeleted.successfulDiscard
+      ? deleteInvitationMessages.success
+      : deleteInvitationMessages.failed;
+
+    setMessage({
+      visible: true,
+      data: messageType,
+    });
   }, [idDeleted]);
 
   const handleResendInvitation = (invitation: IInvitationsEntry) => {
@@ -90,6 +97,11 @@ function InvitationsTab(props: InvitationsTabProps) {
     setMessage({
       visible: false,
     });
+
+    const filterDiscardPublication = invitations.filter(
+      (invitations) => invitations.invitationId !== idDeleted.id
+    );
+    idDeleted.successfulDiscard && setInvitations(filterDiscardPublication);
   };
 
   return (
@@ -113,7 +125,7 @@ function InvitationsTab(props: InvitationsTabProps) {
           modalTitle="Invitación"
         />
       )}
-      {idDeleted && message.visible && (
+      {idDeleted && idDeleted.id && message.visible && (
         <RenderMessage
           message={message}
           handleCloseMessage={handleCloseMessage}

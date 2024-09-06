@@ -58,12 +58,6 @@ function UsersTab(props: UsersTabProps) {
       ? deleteUserMessages.success
       : deleteUserMessages.failed;
 
-    const filterDiscardPublication = users.filter(
-      (user) => user.k_Usuari !== idDeleted.id
-    );
-
-    idDeleted.successfulDiscard && setUsers(filterDiscardPublication);
-
     setMessage({
       visible: true,
       data: messageType,
@@ -74,6 +68,11 @@ function UsersTab(props: UsersTabProps) {
     setMessage({
       visible: false,
     });
+    const filterDiscardPublication = users.filter(
+      (user) => user.k_Usuari !== idDeleted.id
+    );
+
+    idDeleted.successfulDiscard && setUsers(filterDiscardPublication);
   };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");

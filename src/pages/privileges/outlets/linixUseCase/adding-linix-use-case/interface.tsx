@@ -190,7 +190,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
       currentStep === Object.values(stepsAddingLinixUseCase).length &&
       csOptionsButtons.length !== 0
     ) {
-      saveLinixUseCase(formData, filterNForma);
+      saveLinixUseCase(formData, filterNForma, csOptionsButtons);
     } else if (csOptionsButtons.length === 0 && currentStep === 1) {
       handleNextStep(3);
     } else {
@@ -235,13 +235,17 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                     handlePrevStep(prevStep);
                   }}
                   handleNext={() => {
-                    const nextStep =
+                    let nextStep = currentStep + 1;
+                    if (
                       currentStep ===
                       Object.values(stepsAddingLinixUseCase).length
-                        ? (handleToggleModal(), currentStep)
-                        : currentStep === 1 && csOptionsButtons.length === 0
-                        ? 3
-                        : currentStep + 1;
+                    ) {
+                      handleToggleModal();
+                      return;
+                    }
+                    if (currentStep === 1 && csOptionsButtons.length === 0) {
+                      nextStep = 3;
+                    }
                     handleNextStep(nextStep);
                   }}
                   titleButtonText={titleButtonTextAssited}

@@ -10,6 +10,7 @@ import { ActivateUsers } from "../ActivateFormOptions";
 import { activateUsersModal } from "../ActivateFormOptions/config/activateUsers.config";
 import { DeleteLinixUsers } from "../DeleteModal";
 import { IDeleteForMessage } from "../types";
+import { CenteredTd } from "../styles";
 
 export const actionsConfigUsers = (
   smallScreen: boolean,
@@ -18,9 +19,10 @@ export const actionsConfigUsers = (
 ) => {
   const selectedData = (k_Usuari: string) =>
     users.find((user) => user.k_Usuari === k_Usuari);
+
   const invitationsTableActions = [
     {
-      id: " i_Activo",
+      id: "i_Activo",
       actionName: "Activo",
       content: ({ k_Usuari }: { k_Usuari: string }) => {
         const Users = selectedData(k_Usuari);
@@ -30,12 +32,14 @@ export const actionsConfigUsers = (
           name: Users?.n_Usuari || "",
         };
         return (
-          <ActivateUsers
-            handleActivate={() => {}}
-            data={adjustedUsers}
-            showComplete={false}
-            activateModalConfig={activateUsersModal}
-          />
+          <CenteredTd>
+            <ActivateUsers
+              handleActivate={() => {}}
+              data={adjustedUsers}
+              showComplete={false}
+              activateModalConfig={activateUsersModal}
+            />
+          </CenteredTd>
         );
       },
       type: "secondary",

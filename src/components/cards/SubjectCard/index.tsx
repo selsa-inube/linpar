@@ -24,6 +24,13 @@ function SubjectCard(props: SubjectCardProps) {
     setShowModal(!showModal);
   };
 
+  const truncateText = (text: string) => {
+    if (typeof text === "string") {
+      return text.length > 20 ? `${text.slice(0, 20)}...` : text;
+    }
+    return text || "";
+  };
+
   return (
     <>
       <StyledSubjectCard
@@ -39,10 +46,10 @@ function SubjectCard(props: SubjectCardProps) {
           {!smallScreen && (
             <Stack direction="column">
               <Text type="label" size="medium" textAlign="end">
-                {Object.values(subjectData)[0]}
+                {truncateText(Object.values(subjectData)[0] as string)}
               </Text>
               <Text size="small" textAlign="end">
-                {Object.values(subjectData)[1]}
+                {truncateText(Object.values(subjectData)[1] as string)}
               </Text>
             </Stack>
           )}

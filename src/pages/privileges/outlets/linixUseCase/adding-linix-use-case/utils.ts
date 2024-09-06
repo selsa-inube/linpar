@@ -7,7 +7,8 @@ import { formSelectLabel } from "../config/dataUseCases.config";
 
 export const saveLinixUseCase = async (
   linixUseCaseData: IFormAddLinixUseCase,
-  filterNForma: string
+  filterNForma: string,
+  csOptionButton: Record<string, unknown>[]
 ) => {
   const {
     generalInformation: { values: generalInformation },
@@ -42,12 +43,16 @@ export const saveLinixUseCase = async (
       k_Opcion: clientServerOption.id,
     }));
 
+  const normalizeWebOptionsButtons = csOptionButton.find(
+    (option) => option.CODIGO_BOTON === clientServerButton.k_option_button
+  );
+
   const newLinixUseCase: UseCase = {
     n_Usecase: generalInformation.n_Usecase,
     n_Descrip: generalInformation.n_Descrip,
     a_Publicc: "b",
     i_Tipusec: formSelectLabel(generalInformation.i_Tipusec) || "",
-    k_Ncampo: clientServerButton.k_option_button,
+    k_Ncampo: (normalizeWebOptionsButtons?.DESCRIPCION_BOTON as string) || "",
     k_Nforma: filterNForma,
     opcionesPortalWebPorCasoDeUso: normalizeReportsWeb,
     reportesWebPorCasoDeUso: normalizeWebOptions,

@@ -9,13 +9,14 @@ import { ResendInvitation } from "../ResendInvitation";
 
 import { deleteInvitationModal } from "../DeleteInvitation/config/deleteInvitation.config";
 import { DeleteLinixInvitation } from "../DeleteInvitation";
+import { IDeleteForMessage } from "../../users/types";
 
 export const actionsConfigInvitation = (
   isHovered: boolean,
   handleResendInvitation: (invitation: IInvitationsEntry) => void,
   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>,
   smallScreen: boolean,
-  setIdDeleted: (show: string) => void
+  setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
   const invitationsTableActions = [
     {
@@ -63,16 +64,16 @@ export const actionsConfigInvitation = (
       id: "Delete",
       actionName: "Eliminar",
       content: ({
-        customerId,
-        userName,
+        invitationId,
+        userIdentification,
       }: {
-        customerId: string;
-        userName: string;
+        invitationId: string;
+        userIdentification: string;
       }) => (
         <DeleteLinixInvitation
           deleteLinixInvitationModal={deleteInvitationModal}
-          linixInvitation={customerId}
-          nameLinixInvitation={userName}
+          linixInvitation={invitationId}
+          nameLinixInvitation={userIdentification}
           handleDeleteLinixInvitation={deleteItemData}
           setIdDeleted={setIdDeleted}
         />

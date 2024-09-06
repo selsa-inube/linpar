@@ -7,7 +7,7 @@ const resendInvitationModal = {
   title: "Reenviar Invitación",
   description: ({ userName }: IInvitationsEntry) =>
     `¿Esta seguro de que quiere reenviar la invitación ${userName} ?`,
-  textAction: "Resend",
+  textAction: "Reenviar",
   appearance: EAppearance.SUCCESS,
 };
 

@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "@inube/design-system";
 
+import { useMediaQuery } from "@inube/design-system";
+import { getSearchAllTercero } from "@services/invitations/thirdPartiesNamesUsernames";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
-
+import { userSearchCardData } from "@mocks/apps/privileges/users/usersSearchField.mock";
+import { AppContext } from "@src/context/AppContext";
 import { InviteUI } from "./interface";
-import { IInvitationUser, IInviteFormValues } from "./types";
-import { userSearchCardData } from "@src/mocks/apps/privileges/users/usersSearchField.mock";
+import { IInviteFormValues } from "./types";
 import { saveLinixInvitations } from "./utils";
-import { getAll } from "@src/mocks/utils/dataMock.service";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -24,52 +24,66 @@ const initialValues: IInviteFormValues = {
 
 const validationSchema = Yup.object({
   userIdentification: validationRules.identification,
-  phoneNumber: validationRules.phone.required(validationMessages.required),
+  phoneNumber: validationRules.phone
+    .required(validationMessages.required)
+    .test("len", "El número de teléfono debe tener 10 dígitos", (val) =>
+      Boolean(val && val.toString().length === 10)
+    ),
   email: validationRules.email.required(validationMessages.required),
 });
 
 function Invite() {
   const [loading, setLoading] = useState(false);
-  const [loadingPage, setLoadingPage] = useState(false);
+  const [loadingPage] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
   const [dataInvitationUsers, setDataInvitationUsers] = useState<
-    IInvitationUser[]
+    Record<string, unknown>[]
   >([]);
+
+  const { user } = useContext(AppContext);
 
   const resetSearchUserRef = useRef(() => {});
   const navigate = useNavigate();
 
   const screenMovil = useMediaQuery("(max-width: 744px)");
 
+  const name = user.username?.split(" ");
+
   useEffect(() => {
-    setLoadingPage(true);
-    getAll("linix-invitation-users")
-      .then((data) => {
-        if (data !== null) {
-          setDataInvitationUsers(data as IInvitationUser[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching invitation users:", error.message);
-      })
-      .finally(() => {
-        setLoadingPage(false);
-      });
+    rolesTerceros();
   }, []);
+  const rolesTerceros = () => {
+    if (!user) return;
+    if (dataInvitationUsers.length === 0) {
+      setLoading(true);
+      getSearchAllTercero()
+        .then((newUsers) => {
+          setDataInvitationUsers(newUsers);
+        })
+        .catch((error) => {
+          console.info(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
   const handleResetSearchUser = (resetFunction: () => void) => {
     resetSearchUserRef.current = resetFunction;
   };
   const formik = useFormik({
     initialValues,
     validationSchema,
+    validateOnBlur: true,
     validateOnChange: false,
     onSubmit: () => {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
         setFormInvalid(false);
-        saveLinixInvitations(formik.values);
+        saveLinixInvitations(formik.values, name[0] as string);
         setShowMessage(true);
         formik.resetForm();
         resetSearchUserRef.current();

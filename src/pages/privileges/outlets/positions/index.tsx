@@ -45,11 +45,6 @@ export function Positions() {
     const messageType = idDeleted.successfulDiscard
       ? generalMessage.success
       : generalMessage.failed;
-    const filterRecordRemoved = positions.filter(
-      (positions) => positions.k_Grupo !== idDeleted.id
-    );
-
-    idDeleted.successfulDiscard && setPositions(filterRecordRemoved);
 
     setMessage({
       visible: true,
@@ -71,6 +66,11 @@ export function Positions() {
     setMessage({
       visible: false,
     });
+    const filterRecordRemoved = positions.filter(
+      (positions) => positions.k_Grupo !== idDeleted.id
+    );
+
+    idDeleted.successfulDiscard && setPositions(filterRecordRemoved);
   };
 
   return (

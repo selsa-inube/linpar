@@ -3,11 +3,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { IDeleteForMessage, IRol } from "@pages/privileges/outlets/roles/types";
 import { getRoles } from "@services/roles/getRoles";
-
+import { getAplicationRoles } from "@services/roles/aplicationRoles";
 import { RolesUI } from "./interface";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
-import { getAplicationRoles } from "@src/services/roles/aplicationRoles";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
@@ -73,12 +72,6 @@ export function Roles() {
       ? generalMessage.success
       : generalMessage.failed;
 
-    const filterDiscardPublication = linixRoles.filter(
-      (roles) => roles.id !== idDeleted.id
-    );
-
-    idDeleted.successfulDiscard && setLinixRoles(filterDiscardPublication);
-
     setMessage({
       visible: true,
       data: messageType,
@@ -101,6 +94,11 @@ export function Roles() {
     setMessage({
       visible: false,
     });
+    const filterDiscardPublication = linixRoles.filter(
+      (roles) => roles.id !== idDeleted.id
+    );
+
+    idDeleted.successfulDiscard && setLinixRoles(filterDiscardPublication);
   };
 
   return (
