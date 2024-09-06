@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import {
   Route,
   RouterProvider,
@@ -17,8 +17,10 @@ import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { PeopleRoutes } from "./routes/people";
-import { Login } from "./pages/login";
+
 import { environment } from "./config/environment";
+import { ConsultationPortal } from "./pages/consultationPortal";
+import { ConsultationPortalRoutes } from "./routes/consultationPortal";
 
 function LogOut() {
   localStorage.clear();
@@ -28,8 +30,12 @@ function LogOut() {
 }
 
 function FirstPage() {
-  const { user } = useContext(AppContext);
-  return user.company.length === 0 ? <Login /> : <AppPage />;
+  const { linparContext } = useContext(AppContext);
+  return linparContext.company.length === 0 ? (
+    <ConsultationPortal />
+  ) : (
+    <AppPage />
+  );
 }
 
 const router = createBrowserRouter(
@@ -37,6 +43,7 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<FirstPage />} errorElement={<ErrorPage />} />
       <Route path="login/*" element={<LoginRoutes />} />
+      <Route path="consultation/*" element={<ConsultationPortalRoutes />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="people/*" element={<PeopleRoutes />} />
       <Route path="logout" element={<LogOut />} />
@@ -49,18 +56,19 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+  initializeDataDB();
+  // const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
 
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      loginWithRedirect();
-      initializeDataDB();
-    }
-  }, [isLoading, isAuthenticated, loginWithRedirect]);
+  // useEffect(() => {
+  //   // if (!isLoading && !isAuthenticated) {
+  //   //   loginWithRedirect();
+  //   //   initializeDataDB();
+  //   // }
+  // }, [isLoading, isAuthenticated, loginWithRedirect]);
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //   return null;
+  // }
   return (
     <AppContextProvider>
       <GlobalStyles />

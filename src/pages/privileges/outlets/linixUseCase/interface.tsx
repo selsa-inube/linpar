@@ -26,6 +26,8 @@ import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
 import { IMessageState } from "../users/types/forms.types";
+import { useEffect } from "react";
+import { getStaffPortalByBusinessManager } from "@src/services/staffPortal";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -64,6 +66,12 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const label = privilegeOptionsConfig.find(
     (item) => item.url === location.pathname
   );
+  useEffect(() => {
+    (async () => {
+      const result = await getStaffPortalByBusinessManager();
+      console.log(result);
+    })();
+  }, []);
 
   return (
     <Stack

@@ -18,7 +18,7 @@ interface IClient {
 }
 
 interface IAppContext {
-  user: IUser;
+  linparContext: IUser;
   handleClientChange: (client: IClient) => void;
 }
 
