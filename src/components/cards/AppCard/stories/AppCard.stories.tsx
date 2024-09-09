@@ -1,5 +1,5 @@
-import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
+import { StoryFn, Meta } from "@storybook/react";
 
 import { AppCard, AppCardProps } from "..";
 import { MdContacts } from "react-icons/md";

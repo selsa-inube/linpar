@@ -2,8 +2,8 @@ import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 import { Icon } from "@inubekit/icon";
 
-import { StyledAppCard } from "./styles";
 import { tokens } from "@src/design/tokens";
+import { StyledAppCard } from "./styles";
 
 interface AppCardProps {
   label: string;
