@@ -46,11 +46,11 @@ const StyledTitle = styled.div`
 const StyledContainerCards = styled.div`
   box-sizing: border-box;
   max-width: 1400px;
-  margin: 40px auto;
-  padding: 0px 32px;
+  margin: ${tokens.spacing.s500} auto;
+  padding: ${tokens.spacing.s0} ${tokens.spacing.s400};
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: ${tokens.spacing.s300};
 `;
 
 export {
