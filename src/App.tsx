@@ -10,7 +10,6 @@ import { ErrorPage } from "@components/layout/ErrorPage";
 import { AppPage } from "@components/layout/AppPage";
 import AppContextProvider, { AppContext } from "@context/AppContext";
 import { GlobalStyles } from "@styles/global";
-import { initializeDataDB } from "@mocks/utils/initializeDataDB";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
@@ -74,9 +73,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (hasRedirected) {
-      return;
-    }
+    if (hasRedirected) return;
 
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
@@ -90,10 +87,13 @@ function App() {
       if (portalDataFiltered.length > 0) {
         if (!isLoading && !isAuthenticated) {
           loginWithRedirect();
-          initializeDataDB();
+        } else if (isAuthenticated) {
+          setHasRedirected(true);
+        } else {
+          setHasError(true);
         }
-        setHasError(false);
-        setHasRedirected(true);
+      } else {
+        setHasError(true);
       }
     } else {
       setHasError(true);
@@ -105,8 +105,11 @@ function App() {
     loginWithRedirect,
     hasRedirected,
   ]);
+  if (isLoading) {
+    return null;
+  }
 
-  if (hasError) {
+  if (hasError && !isAuthenticated) {
     return <ErrorPage />;
   }
 
