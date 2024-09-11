@@ -2,7 +2,7 @@ import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 import { Icon } from "@inubekit/icon";
 
-import { tokens } from "@src/design/tokens";
+import { tokens } from "@design/tokens";
 import { StyledAppCard } from "./styles";
 
 interface AppCardProps {
@@ -26,7 +26,7 @@ function AppCard(props: AppCardProps) {
         </Text>
       </Stack>
       <Stack justifyContent="flex-end">
-        <Icon icon={icon} appearance="dark" />
+        <Icon icon={icon} appearance="dark" size="24px" />
       </Stack>
     </StyledAppCard>
   );

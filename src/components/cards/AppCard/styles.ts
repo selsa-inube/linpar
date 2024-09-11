@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { inube } from "@inubekit/foundations";
-import { tokens } from "@src/design/tokens";
+import { tokens } from "@design/tokens";
 
 const StyledAppCard = styled(Link)`
   box-sizing: border-box;
