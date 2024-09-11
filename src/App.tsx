@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import {
   Route,
   RouterProvider,
@@ -17,10 +17,10 @@ import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { PeopleRoutes } from "./routes/people";
-
+import { Login } from "./pages/login";
 import { environment } from "./config/environment";
-import { ConsultationPortal } from "./pages/consultationPortal";
-import { ConsultationPortalRoutes } from "./routes/consultationPortal";
+import { getStaffPortalByBusinessManager } from "./services/staffPortal";
+import { IStaffPortalByBusinessManager } from "./services/staffPortal/types";
 
 function LogOut() {
   localStorage.clear();
@@ -31,11 +31,7 @@ function LogOut() {
 
 function FirstPage() {
   const { linparContext } = useContext(AppContext);
-  return linparContext.company.length === 0 ? (
-    <ConsultationPortal />
-  ) : (
-    <AppPage />
-  );
+  return linparContext.company.length === 0 ? <Login /> : <AppPage />;
 }
 
 const router = createBrowserRouter(
@@ -43,7 +39,6 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<FirstPage />} errorElement={<ErrorPage />} />
       <Route path="login/*" element={<LoginRoutes />} />
-      <Route path="consultation/*" element={<ConsultationPortalRoutes />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="people/*" element={<PeopleRoutes />} />
       <Route path="logout" element={<LogOut />} />
@@ -56,19 +51,69 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  initializeDataDB();
-  // const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+  const [portalData, setPortalData] = useState<IStaffPortalByBusinessManager[]>(
+    []
+  );
+  const [hasError, setHasError] = useState(false);
+  const [hasRedirected, setHasRedirected] = useState(false);
 
-  // useEffect(() => {
-  //   // if (!isLoading && !isAuthenticated) {
-  //   //   loginWithRedirect();
-  //   //   initializeDataDB();
-  //   // }
-  // }, [isLoading, isAuthenticated, loginWithRedirect]);
+  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
 
-  // if (!isAuthenticated) {
-  //   return null;
-  // }
+  const validateConsultation = async () => {
+    try {
+      const newData = await getStaffPortalByBusinessManager();
+      setPortalData(newData);
+    } catch (error) {
+      console.info(error);
+      setHasError(true);
+    }
+  };
+
+  useEffect(() => {
+    validateConsultation();
+  }, []);
+
+  useEffect(() => {
+    if (hasRedirected) {
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const paramValue = params.get("portal");
+
+    if (portalData.length > 0) {
+      const portalDataFiltered = portalData.filter(
+        (data) => data.staffPortalId === paramValue
+      );
+
+      if (portalDataFiltered.length > 0) {
+        if (!isLoading && !isAuthenticated) {
+          loginWithRedirect();
+          initializeDataDB();
+        }
+        setHasError(false);
+        setHasRedirected(true);
+      }
+    } else {
+      setHasError(true);
+    }
+  }, [
+    portalData,
+    isLoading,
+    isAuthenticated,
+    loginWithRedirect,
+    hasRedirected,
+  ]);
+
+  if (hasError) {
+    return <ErrorPage />;
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
   return (
     <AppContextProvider>
       <GlobalStyles />
