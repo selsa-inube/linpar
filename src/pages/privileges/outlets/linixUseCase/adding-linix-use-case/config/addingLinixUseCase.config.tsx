@@ -88,6 +88,14 @@ const finishAssistedModalConfig = {
   appearance: EAppearance.SUCCESS,
 };
 
+const finishAssistedModalConfigWithErrors = {
+  title: "Error al finalizar registro",
+  description:
+    "Hubo un error al finalizar el proceso de creación, por favor verifique los datos e intente de nuevo.",
+  actionText: "volver a formulario",
+  appearance: EAppearance.SUCCESS,
+};
+
 const finishAssistedMessagesConfig = {
   success: {
     id: 1,
@@ -112,4 +120,5 @@ export {
   finishAssistedMessagesConfig,
   finishAssistedModalConfig,
   stepsAddingLinixUseCase,
+  finishAssistedModalConfigWithErrors,
 };
