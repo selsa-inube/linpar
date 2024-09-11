@@ -91,7 +91,7 @@ const finishAssistedModalConfig = {
 const finishAssistedModalConfigWithErrors = {
   title: "Error al finalizar registro",
   description:
-    "Hubo un error al finalizar el proceso de creación, por favor verifique los datos e intente de nuevo.",
+    "Imposible ejecutar la accion porque, debido a la modificación, el caso de uso quedó sin  opcion web y sin opcion cliente-servidor y al menos una de ellas es requerida. Por favor valide los datos y vuelva a enviar.",
   actionText: "volver a formulario",
   appearance: EAppearance.SUCCESS,
 };
