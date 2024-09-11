@@ -67,7 +67,7 @@ function Home(props: HomeProps) {
     setShowUserMenu(false);
   };
 
-  console.log(data); //
+  console.log(data); // se utilizara data para mostrar los datos de las cards en la siguiente tarea
 
   return (
     <StyledContainer>
