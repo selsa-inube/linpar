@@ -50,6 +50,7 @@ const navigationConfig = {
   title: "MENU",
   sections: {
     administrate: {
+      name: "",
       links: {
         privileges: {
           id: "privileges",

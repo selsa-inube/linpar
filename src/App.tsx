@@ -19,6 +19,7 @@ import { PrivilegesRoutes } from "./routes/privileges";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
 import { environment } from "./config/environment";
+import { Home } from "./pages/home";
 
 function LogOut() {
   localStorage.clear();
@@ -29,7 +30,7 @@ function LogOut() {
 
 function FirstPage() {
   const { user } = useContext(AppContext);
-  return user.company.length === 0 ? <Login /> : <AppPage />;
+  return user.company.length === 0 ? <Login /> : <Home />;
 }
 
 const router = createBrowserRouter(
