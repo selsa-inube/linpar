@@ -46,6 +46,9 @@ const appsConfig = [
   },
 ];
 
+const removeBussinessUnit = ["catalogs"];
+const bussinessUnitOptionTotal = ["sistemasenlinea"];
+
 const navigationConfig = {
   title: "MENU",
   sections: {
@@ -74,4 +77,10 @@ const logoutConfig = {
   logoutTitle: "Cerrar sesión",
 };
 
-export { appsConfig, navigationConfig, logoutConfig };
+export {
+  appsConfig,
+  navigationConfig,
+  logoutConfig,
+  removeBussinessUnit,
+  bussinessUnitOptionTotal,
+};

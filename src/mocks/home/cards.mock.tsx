@@ -4,14 +4,14 @@ import { ICardData } from "@pages/home/types";
 
 const mockAppCards: ICardData[] = [
   {
-    id: "1",
+    id: "privilegios",
     label: "Privilegios",
     description: "Modifica las propiedades y permisos de tu cuenta.",
     icon: <MdVpnKey />,
     url: "/privileges",
   },
   {
-    id: "2",
+    id: "catalogs",
     label: "Catálogos Generales",
     description: "Modifica los catálogos generales.",
     icon: <MdBuild />,

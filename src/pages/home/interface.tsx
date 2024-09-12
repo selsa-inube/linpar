@@ -8,7 +8,11 @@ import { AppContext } from "@context/AppContext";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { LogoutModal } from "@components/feedback/LogoutModal";
-import { navigationConfig } from "@components/layout/AppPage/config/apps.config";
+import {
+  bussinessUnitOptionTotal,
+  navigationConfig,
+  removeBussinessUnit,
+} from "@components/layout/AppPage/config/apps.config";
 import { AppCard } from "@components/cards/AppCard";
 import { ICardData } from "./types";
 import {
@@ -71,6 +75,11 @@ function HomeUI(props: HomeProps) {
     setShowUserMenu(false);
   };
 
+  const filterDataConfig = () => {
+    if (bussinessUnitOptionTotal.includes(user.company)) return data;
+    return data?.filter((card) => !removeBussinessUnit.includes(card.id));
+  };
+
   return (
     <StyledContainer>
       <StyledHeaderContainer>
@@ -116,8 +125,8 @@ function HomeUI(props: HomeProps) {
         />
       </StyledTitle>
       <StyledContainerCards>
-        {user.company === "sistemasenlinea" ? (
-          data?.map((card, index) => (
+        {data &&
+          filterDataConfig()?.map((card, index) => (
             <Stack key={index}>
               <AppCard
                 key={card.id}
@@ -127,16 +136,7 @@ function HomeUI(props: HomeProps) {
                 url={card.url}
               />
             </Stack>
-          ))
-        ) : (
-          <AppCard
-            key={data?.[0].id}
-            label={data?.[0].label || ""}
-            description={data?.[0].description || ""}
-            icon={data?.[0].icon || <></>}
-            url={data?.[0].url || ""}
-          />
-        )}
+          ))}
       </StyledContainerCards>
     </StyledContainer>
   );
