@@ -31,13 +31,13 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function Home(props: HomeProps) {
-  const { data } = props;
   const { user } = useContext(AppContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   const username = user.username.split(" ")[0];
+
   const handleClickOutside = (event: MouseEvent) => {
     if (
       userMenuRef.current &&
@@ -66,8 +66,6 @@ function Home(props: HomeProps) {
     setShowLogoutModal(!showLogoutModal);
     setShowUserMenu(false);
   };
-
-  console.log(data); // se utilizara data para mostrar los datos de las cards en la siguiente tarea
 
   return (
     <StyledContainer>
