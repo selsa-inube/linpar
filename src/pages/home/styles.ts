@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledHeaderContainer = styled.div`
-  div > div {
+  & div > div {
     cursor: pointer;
   }
 `;
@@ -41,6 +41,27 @@ const StyledLogo = styled.img`
 
 const StyledTitle = styled.div`
   padding: ${tokens.spacing.s400} ${tokens.spacing.s1600} ${tokens.spacing.s800};
+
+  @media screen and (max-width: 805px) {
+    padding: ${tokens.spacing.s400} ${tokens.spacing.s1000}
+      ${tokens.spacing.s800};
+  }
+`;
+
+const StyledContainerCards = styled.div`
+  box-sizing: border-box;
+  max-width: 1400px;
+  padding: ${tokens.spacing.s0} ${tokens.spacing.s1400} ${tokens.spacing.s400}
+    170px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${tokens.spacing.s300};
+
+  @media screen and (max-width: 805px) {
+    justify-content: center;
+    padding: ${tokens.spacing.s0} ${tokens.spacing.s1200} ${tokens.spacing.s400}
+      ${tokens.spacing.s1000};
+  }
 `;
 
 export {
@@ -50,4 +71,5 @@ export {
   StyledTitle,
   StyledContentImg,
   StyledLogo,
+  StyledContainerCards,
 };
