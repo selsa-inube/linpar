@@ -1,4 +1,4 @@
-import { MdMoney, MdVpnKey } from "react-icons/md";
+import { MdBuild, MdVpnKey } from "react-icons/md";
 
 import { ICardData } from "@pages/home/types";
 
@@ -14,7 +14,7 @@ const mockAppCards: ICardData[] = [
     id: "2",
     label: "Catálogos Generales",
     description: "Modifica los catálogos generales.",
-    icon: <MdMoney />,
+    icon: <MdBuild />,
     url: "/catalogs",
   },
 ];
