@@ -1,31 +1,81 @@
 import { useState } from "react";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { ResendInvitationUI } from "./interface";
+import { resendNotification } from "@src/services/invitations/resendNotification";
+import { IMessageState } from "../../../types/forms.types";
+import { EMessageType, IMessage } from "@src/types/messages.types";
+import { resendInvitationMessages } from "../../../config/resendInvitationUser.config";
 
 interface ResendInvitationProps {
   invitation: IInvitationsEntry;
-  handleResendInvitation: () => void;
   showComplete: boolean;
 }
 
 function ResendInvitation(props: ResendInvitationProps) {
-  const { invitation, handleResendInvitation, showComplete } = props;
+  const { invitation, showComplete } = props;
   const [showResendInvModal, setShowResendInvModal] = useState(false);
+  const [isLoadingResend, setIsLoadingResend] = useState(false);
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
+  const [resendInvitationData, setResendInvitationData] = useState<
+    string | undefined
+  >("");
+
+  const handleShowMessage = (message: IMessage) => {
+    setMessage({
+      visible: true,
+      data: message,
+    });
+  };
+
+  const resendInvitation = async () => {
+    setIsLoadingResend(true);
+    let messageType = EMessageType.SUCCESS;
+    try {
+      const newResend = await resendNotification(
+        invitation?.invitationId || ""
+      );
+      setResendInvitationData(newResend);
+    } catch (error) {
+      console.info(error);
+      messageType = EMessageType.FAILED;
+    } finally {
+      setIsLoadingResend(false);
+    }
+
+    const { title, description, icon, appearance } =
+      resendInvitationMessages[messageType];
+
+    handleShowMessage({
+      title,
+      description: description(invitation),
+      icon,
+      appearance,
+    });
+  };
 
   const toggleModal = () => {
     setShowResendInvModal(!showResendInvModal);
   };
 
-  const resendInvitationUser = () => {
-    handleResendInvitation();
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
   };
+
   return (
     <ResendInvitationUI
       showResendInvModal={showResendInvModal}
+      resendInvitationData={resendInvitationData}
       toggleModal={toggleModal}
-      resendInvitationUser={resendInvitationUser}
       invitation={invitation}
       showComplete={showComplete}
+      resendInvitation={resendInvitation}
+      message={message}
+      onCloseSectionMessage={handleCloseSectionMessage}
+      isLoadingResend={isLoadingResend}
     />
   );
 }
