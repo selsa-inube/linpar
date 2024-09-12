@@ -61,6 +61,7 @@ function HomeUI(props: HomeProps) {
     const handleToggleuserMenu = () => {
       setShowUserMenu(!showUserMenu);
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     selectUser?.addEventListener("mouseup", handleToggleuserMenu);
 
