@@ -1,5 +1,5 @@
 import { environment } from "@src/config/environment";
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IRol } from "@src/pages/catalogs/outlets/roles/types";
 import { mapRolesEntityToApi } from "./mappers";
 
 const addRoles = async (roles: IRol): Promise<IRol | undefined> => {

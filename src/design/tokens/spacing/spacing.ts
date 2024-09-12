@@ -15,6 +15,7 @@ const spacing = {
   s600: "48px",
   s800: "64px",
   s1000: "80px",
+  s1600: "128px",
 };
 
 export { spacing };
