@@ -17,6 +17,7 @@ import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-
 import {
   CrateLinixUseCaseConfig,
   finishAssistedModalConfig,
+  finishAssistedModalConfigWithErrors,
   stepsAddingLinixUseCase,
 } from "./config/addingLinixUseCase.config";
 import { StyledAssistedContainer } from "./styles";
@@ -38,10 +39,15 @@ import { InitializerForm } from "../components/InitializerForm";
 function finishModal(
   handleCloseModal: () => void,
   loading: boolean,
-  handleFinishForm: () => void
+  handleFinishForm: () => void,
+  withErrors: boolean,
+  resetCurrentStep: () => void
 ) {
-  const { title, description, actionText, appearance } =
-    finishAssistedModalConfig;
+  const modalConfig = withErrors
+    ? finishAssistedModalConfigWithErrors
+    : finishAssistedModalConfig;
+
+  const { title, description, actionText, appearance } = modalConfig;
 
   return (
     <DecisionModal
@@ -51,7 +57,7 @@ function finishModal(
       loading={loading}
       appearance={appearance}
       closeModal={handleCloseModal}
-      handleClick={handleFinishForm}
+      handleClick={withErrors ? resetCurrentStep : handleFinishForm}
     />
   );
 }
@@ -185,6 +191,10 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+  const resetCurrentStep = () => {
+    setCurrentStep(1);
+  };
+
   const optionValidations = () => {
     if (
       currentStep === Object.values(stepsAddingLinixUseCase).length &&
@@ -321,7 +331,14 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
           </Stack>
 
           {showModal &&
-            finishModal(handleToggleModal, loadingButton, handleFinishForm)}
+            finishModal(
+              handleToggleModal,
+              loadingButton,
+              handleFinishForm,
+              formData.generalInformation.values.k_Opcion === "" &&
+                formData.generalInformation.values.k_Funcio === "",
+              resetCurrentStep
+            )}
         </Stack>
       )}
     </>

@@ -108,6 +108,8 @@ function EditCaseLinix() {
     (data) => data.id === k_Usecase
   );
 
+  const [optionId, setOptionId] = useState<string>("");
+
   useEffect(() => {
     if (generalInformationData) {
       setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -440,10 +442,72 @@ function EditCaseLinix() {
   };
   const editGeneral = generalInformationData;
 
-  const handleUpdateFormData = (values: IHandleChangeFormData) => {
+  const handleUpdateFormData = async (values: IHandleChangeFormData) => {
     const stepKey = Object.entries(editLinixUseCaseTabsConfig).find(
       ([, config]) => config.id === selectedTab
     )?.[0];
+
+    if (stepKey === "clientServerOptions") {
+      const previousActiveOption = Object.values(values).find(
+        (option: any) => option.isActive
+      );
+
+      const newOptionsForms = await getClientServerMenuOptionFormats(
+        previousActiveOption?.id as string
+      );
+
+      const previousActiveOptionByID = (id: any) =>
+        newOptionsForms.find((option: any) => option.k_Opcion === id);
+
+      const hasOpcionChanged = (id: any) => {
+        const options = Object.values(values);
+        return options.find((option: any) => option.k_Opcion !== id);
+      };
+
+      if (hasOpcionChanged(previousActiveOption?.id)) {
+        const previousOption = previousActiveOptionByID(
+          previousActiveOption?.id
+        );
+        if (previousOption) {
+          setOptionId(previousOption.CODIGO_OPCION as string);
+          setFormData((prevFormData: any) => ({
+            ...prevFormData,
+            generalInformation: {
+              ...prevFormData.generalInformation,
+              values: {
+                ...prevFormData.generalInformation.values,
+                k_Funcio: previousOption.CODIGO_OPCION,
+              },
+              isValid: false,
+            },
+          }));
+        }
+      } else {
+        setOptionId("AH");
+        setFormData((prevFormData: any) => ({
+          ...prevFormData,
+          generalInformation: {
+            ...prevFormData.generalInformation,
+            values: {
+              ...prevFormData.generalInformation.values,
+              k_Funcio: "",
+            },
+            isValid: false,
+          },
+        }));
+      }
+
+      setFormData((prevFormData: IFormAddLinixUseCase) => ({
+        ...prevFormData,
+        clientServerButton: {
+          ...prevFormData.clientServerButton,
+          values: {
+            k_option_button: "",
+          },
+          isValid: false,
+        },
+      }));
+    }
 
     if (stepKey) {
       setFormData((prevFormData: IFormAddLinixUseCase) => ({
@@ -484,6 +548,7 @@ function EditCaseLinix() {
     type: formData.generalInformation.values.i_Tipusec,
     description: formData.generalInformation.values.n_Descrip,
   };
+
   return (
     <EditUserUI
       handleReset={handleReset}
@@ -504,7 +569,9 @@ function EditCaseLinix() {
       currentFormHasChanges={currentFormHasChanges}
       setCsOptionsChange={setCSOptionsChange}
       csOptionsChange={csOptionsChange}
-      filterNForma={generalInformationData?.k_Funcio as string}
+      filterNForma={
+        optionId ? optionId : (generalInformationData?.k_Funcio as string)
+      }
       csOptionsButtons={csOptionsButtons}
       message={message}
       handleUpdateFormData={handleUpdateFormData}
