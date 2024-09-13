@@ -4,12 +4,13 @@ import { CheckingCredentials } from "@pages/login/outlets/CheckingCredentials";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
-import { ErrorNotClient } from "@pages/login/errors/ErrorNotClient";
+
 import { Login } from "@pages/login";
 
 import { IBussinessUnit } from "@context/AppContext/types";
 import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
-import { BussinessUnits } from "@pages/login/outlets/Clients";
+import { BussinessUnits } from "@src/pages/login/outlets/bussinessUnits";
+import { ErrorNotBussinessUnit } from "@src/pages/login/errors/ErrorNotBusinessManager";
 
 export interface IBussinessUnits {
   bussinessUnits: IBussinessUnit[];
@@ -24,13 +25,16 @@ function LoginRoutes() {
           element={<CheckingCredentials bussinessUnits={bussinessUnits} />}
         />
         <Route
-          path="/:user_id/clients"
+          path="/:user_id/bussiness-units"
           element={<BussinessUnits bussinessUnits={bussinessUnits} />}
         />
         <Route path="loading-app" element={<LoadingApp />} />
       </Route>
       <Route path="error/not-available" element={<ErrorNotAvailable />} />
-      <Route path="error/not-related-clients" element={<ErrorNotClient />} />
+      <Route
+        path="error/not-related-bussiness-units"
+        element={<ErrorNotBussinessUnit />}
+      />
       <Route path="/*" element={<ErrorPage />} />
     </Routes>
   );

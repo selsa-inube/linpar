@@ -19,7 +19,7 @@ interface IBussinessUnit {
 
 interface IAppContext {
   user: IUser;
-  handleClientChange: (bussinessUnit: IBussinessUnit) => void;
+  handleBussinessUnitChange: (bussinessUnit: IBussinessUnit) => void;
 }
 
 interface AppContextProviderProps {

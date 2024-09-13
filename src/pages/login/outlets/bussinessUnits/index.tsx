@@ -5,29 +5,30 @@ import { AppContext } from "@context/AppContext";
 import { IBussinessUnit } from "@context/AppContext/types";
 import { IBussinessUnits } from "@src/routes/login";
 import { BussinessUnitsUI } from "./interface";
-import { IClientState } from "./types";
+import { IBussinessUnitState } from "./types";
 
 function BussinessUnits({ bussinessUnits }: IBussinessUnits) {
   const [search, setSearch] = useState("");
-  const [clientLocal, setClientLocal] = useState<IClientState>({
-    ref: null,
-    value: true,
-  });
+  const [bussinessUnitLocal, setBussinessUnitLocal] =
+    useState<IBussinessUnitState>({
+      ref: null,
+      value: true,
+    });
 
   const navigate = useNavigate();
-  const { handleClientChange } = useContext(AppContext);
+  const { handleBussinessUnitChange } = useContext(AppContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (clientLocal.ref) {
-      clientLocal.ref.checked = false;
+    if (bussinessUnitLocal.ref) {
+      bussinessUnitLocal.ref.checked = false;
     }
-    setClientLocal({ ref: null, value: true });
+    setBussinessUnitLocal({ ref: null, value: true });
     setSearch(event.target.value);
   };
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setClientLocal({ ref: event.target, value: false });
-    handleClientChange(
+    setBussinessUnitLocal({ ref: event.target, value: false });
+    handleBussinessUnitChange(
       bussinessUnits.filter(
         (bussinessUnit0) => bussinessUnit0.name === event.target.value
       )[0]
@@ -42,23 +43,24 @@ function BussinessUnits({ bussinessUnits }: IBussinessUnits) {
     bussinessUnits: IBussinessUnit[],
     search: string
   ) {
-    return bussinessUnits.filter((client) => {
-      const clientName = client.name.toUpperCase();
-      const clientSigla = client.sigla.toUpperCase();
+    return bussinessUnits.filter((bussinessUnit) => {
+      const bussinessUnitName = bussinessUnit.name.toUpperCase();
+      const bussinessUnitSigla = bussinessUnit.sigla.toUpperCase();
       const searchTerm = search.toUpperCase();
       return (
-        clientName.includes(searchTerm) || clientSigla.includes(searchTerm)
+        bussinessUnitName.includes(searchTerm) ||
+        bussinessUnitSigla.includes(searchTerm)
       );
     });
   }
 
   return (
     <BussinessUnitsUI
-      clients={bussinessUnits}
+      bussinessUnits={bussinessUnits}
       search={search}
-      client={clientLocal}
+      bussinessUnit={bussinessUnitLocal}
       handleSearchChange={handleSearchChange}
-      handleClientChange={handleCChange}
+      handleBussinessUnitChange={handleCChange}
       filterBussinessUnits={filterBussinessUnits}
       handleSubmit={handleSubmit}
     />

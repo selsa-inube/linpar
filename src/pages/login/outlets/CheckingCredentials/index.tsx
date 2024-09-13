@@ -20,11 +20,11 @@ function CheckingCredentials({
 
       if (user) {
         if (!bussinessUnits || bussinessUnits.length === 0) {
-          navigate("/login/error/not-related-clients");
+          navigate("/login/error/not-related-bussiness-units");
         } else if (bussinessUnits.length === 1) {
           navigate("/login/loading-app");
         } else {
-          navigate(`/login/${user.id}/clients`);
+          navigate(`/login/${user.id}/bussiness-units`);
         }
       } else {
         navigate("/login/error/not-available");

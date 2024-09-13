@@ -7,26 +7,26 @@ import { IAppContext, AppContextProviderProps, IBussinessUnit } from "./types";
 
 export const AppContext = createContext<IAppContext>({
   user: { username: "", id: "", company: "", operator: { name: "", logo: "" } },
-  handleClientChange: () => {},
+  handleBussinessUnitChange: () => {},
 });
 
 export default function AppContextProvider(props: AppContextProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
-  const [clientSigla, setClientSigla] = useState(
-    localStorage.getItem("clientSigla") || ""
+  const [BussinessUnitSigla, setBussinessUnitSigla] = useState(
+    localStorage.getItem("BussinessUnitSigla") || ""
   );
 
-  function handleClientChange(client: IBussinessUnit) {
-    const { sigla } = client;
-    setClientSigla(sigla);
+  function handleBussinessUnitChange(BussinessUnit: IBussinessUnit) {
+    const { sigla } = BussinessUnit;
+    setBussinessUnitSigla(sigla);
   }
 
   useEffect(() => {
-    localStorage.setItem("clientSigla", clientSigla);
-  }, [clientSigla]);
+    localStorage.setItem("BussinessUnitSigla", BussinessUnitSigla);
+  }, [BussinessUnitSigla]);
 
-  const company = clientSigla;
+  const company = BussinessUnitSigla;
 
   const userContext: IAppContext = {
     user: {
@@ -38,7 +38,7 @@ export default function AppContextProvider(props: AppContextProviderProps) {
         logo: linparLogo,
       },
     },
-    handleClientChange,
+    handleBussinessUnitChange,
   };
   return (
     <AppContext.Provider value={userContext}>{children}</AppContext.Provider>

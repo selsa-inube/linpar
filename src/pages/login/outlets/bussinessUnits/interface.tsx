@@ -1,26 +1,27 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
-
-import { IClientState } from "./types";
-
+import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit ";
+import { IBussinessUnit } from "@src/context/AppContext/types";
 import {
   StyledBussinessUnits,
   StyledBussinessUnitsList,
   StyledNoResults,
   StyledBussinessUnitsItem,
 } from "./styles";
-import { RadioBusinessUnit } from "@src/components/cards/RadioBusinessUnit ";
-import { IBussinessUnit } from "@src/context/AppContext/types";
+
+import { IBussinessUnitState } from "./types";
 
 interface BussinessUnitsUIProps {
-  clients: IBussinessUnit[];
+  bussinessUnits: IBussinessUnit[];
   search: string;
-  client: IClientState;
+  bussinessUnit: IBussinessUnitState;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClientChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleBussinessUnitChange: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
   filterBussinessUnits: (
-    clients: IBussinessUnit[],
+    bussinessUnits: IBussinessUnit[],
     search: string
   ) => IBussinessUnit[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -38,15 +39,15 @@ function NoResultsMessage({ search }: { search: string }) {
 }
 
 function BussinessUnitsUI({
-  clients,
+  bussinessUnits,
   search,
-  client,
+  bussinessUnit,
   handleSearchChange,
   filterBussinessUnits,
-  handleClientChange,
+  handleBussinessUnitChange,
   handleSubmit,
 }: BussinessUnitsUIProps) {
-  const filteredBussinessUnits = filterBussinessUnits(clients, search);
+  const filteredBussinessUnits = filterBussinessUnits(bussinessUnits, search);
 
   return (
     <StyledBussinessUnits>
@@ -58,7 +59,7 @@ function BussinessUnitsUI({
       </Text>
       <form>
         <Stack direction="column" alignItems="center">
-          {clients.length > 10 && (
+          {bussinessUnits.length > 10 && (
             <Textfield
               placeholder="Buscar..."
               type="search"
@@ -73,28 +74,32 @@ function BussinessUnitsUI({
           {filteredBussinessUnits.length === 0 && (
             <NoResultsMessage search={search} />
           )}
-          <StyledBussinessUnitsList $scroll={clients.length > 5}>
+          <StyledBussinessUnitsList $scroll={bussinessUnits.length > 5}>
             <Stack
               direction="column"
               padding="s0 s100"
               alignItems="center"
               gap={inube.spacing.s100}
             >
-              {filteredBussinessUnits.map((client) => (
-                <StyledBussinessUnitsItem key={client.id}>
+              {filteredBussinessUnits.map((bussinessUnit) => (
+                <StyledBussinessUnitsItem key={bussinessUnit.id}>
                   <RadioBusinessUnit
-                    name="client"
-                    label={client.name}
-                    id={client.id}
-                    value={client.name}
-                    logo={client.logo}
-                    handleChange={handleClientChange}
+                    name="bussinessUnit"
+                    label={bussinessUnit.name}
+                    id={bussinessUnit.id}
+                    value={bussinessUnit.name}
+                    logo={bussinessUnit.logo}
+                    handleChange={handleBussinessUnitChange}
                   />
                 </StyledBussinessUnitsItem>
               ))}
             </Stack>
           </StyledBussinessUnitsList>
-          <Button type="button" disabled={client.value} onClick={handleSubmit}>
+          <Button
+            type="button"
+            disabled={bussinessUnit.value}
+            onClick={handleSubmit}
+          >
             Continuar
           </Button>
         </Stack>
