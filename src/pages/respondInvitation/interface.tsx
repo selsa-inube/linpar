@@ -15,19 +15,24 @@ import {
   Textfield,
   useMediaQuery,
 } from "@inube/design-system";
-
+import { IBussinessUnit } from "@src/context/AppContext/types";
 import { Fieldset } from "@components/inputs/Fieldset";
 import {
   Styledlmage,
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
-import { IClient } from "@context/AppContext/types";
 
-const renderHead = (clientData: IClient, smallScreen?: boolean) => {
+const renderHead = (
+  bussinessUnitsData: IBussinessUnit,
+  smallScreen?: boolean
+) => {
   return (
     <>
-      <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
+      <Styledlmage
+        src={bussinessUnitsData.logo}
+        alt={`Logo ${bussinessUnitsData.name}`}
+      />
       <Stack direction="column" gap={smallScreen ? "16px" : "36px"}>
         <Stack direction="column">
           <Text type="headline" size="small">
@@ -228,11 +233,11 @@ interface RespondInvitationUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  clientData: IClient;
+  bussinessUnitsData: IBussinessUnit;
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {
-  const { loading, formik, handleSubmitForm, clientData } = props;
+  const { loading, formik, handleSubmitForm, bussinessUnitsData } = props;
 
   const smallScreen = useMediaQuery("(max-width: 744px)");
 
@@ -240,7 +245,10 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     return (
       <StyledContainerForm>
         <Stack direction="column" gap="32px" padding="s200">
-          <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
+          <Styledlmage
+            src={bussinessUnitsData.logo}
+            alt={`Logo ${bussinessUnitsData.name}`}
+          />
           {renderForm(formik, loading, handleSubmitForm, smallScreen)}
         </Stack>
       </StyledContainerForm>
@@ -251,7 +259,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     <Grid templateColumns="1fr 2fr">
       <StyledContainerHeader>
         <Stack direction="column" gap="36px" padding="s800">
-          {renderHead(clientData)}
+          {renderHead(bussinessUnitsData)}
         </Stack>
       </StyledContainerHeader>
       <StyledContainerForm>

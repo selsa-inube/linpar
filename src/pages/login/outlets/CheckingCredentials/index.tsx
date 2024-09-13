@@ -2,9 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { CheckingCredentialsUI } from "./interface";
 import { useCallback, useContext, useEffect } from "react";
 import { AppContext } from "@context/AppContext";
-import { IClient } from "@context/AppContext/types";
+import { IBussinessUnit } from "@src/context/AppContext/types";
 
-function CheckingCredentials({ clients }: { clients: IClient[] }) {
+function CheckingCredentials({
+  bussinessUnits,
+}: {
+  bussinessUnits: IBussinessUnit[];
+}) {
   const navigate = useNavigate();
   const { user } = useContext(AppContext);
 
@@ -15,9 +19,9 @@ function CheckingCredentials({ clients }: { clients: IClient[] }) {
       }
 
       if (user) {
-        if (!clients || clients.length === 0) {
+        if (!bussinessUnits || bussinessUnits.length === 0) {
           navigate("/login/error/not-related-clients");
-        } else if (clients.length === 1) {
+        } else if (bussinessUnits.length === 1) {
           navigate("/login/loading-app");
         } else {
           navigate(`/login/${user.id}/clients`);
@@ -28,7 +32,7 @@ function CheckingCredentials({ clients }: { clients: IClient[] }) {
     } catch (error) {
       navigate("/login/error/not-available");
     }
-  }, [user, navigate, clients]);
+  }, [user, navigate, bussinessUnits]);
 
   useEffect(() => {
     const timer = setTimeout(checkCredentials, 2000);

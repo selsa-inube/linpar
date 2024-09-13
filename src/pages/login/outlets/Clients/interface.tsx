@@ -1,23 +1,28 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
-import { RadioClient } from "@components/cards/RadioClient";
-import { IClientState } from "./types";
-import { IClient } from "@context/AppContext/types";
-import {
-  StyledClients,
-  StyledClientsList,
-  StyledNoResults,
-  StyledClientsItem,
-} from "./styles";
 
-interface ClientsUIProps {
-  clients: IClient[];
+import { IClientState } from "./types";
+
+import {
+  StyledBussinessUnits,
+  StyledBussinessUnitsList,
+  StyledNoResults,
+  StyledBussinessUnitsItem,
+} from "./styles";
+import { RadioBusinessUnit } from "@src/components/cards/RadioBusinessUnit ";
+import { IBussinessUnit } from "@src/context/AppContext/types";
+
+interface BussinessUnitsUIProps {
+  clients: IBussinessUnit[];
   search: string;
   client: IClientState;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleClientChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  filterClients: (clients: IClient[], search: string) => IClient[];
+  filterBussinessUnits: (
+    clients: IBussinessUnit[],
+    search: string
+  ) => IBussinessUnit[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
@@ -32,24 +37,24 @@ function NoResultsMessage({ search }: { search: string }) {
   );
 }
 
-function ClientsUI({
+function BussinessUnitsUI({
   clients,
   search,
   client,
   handleSearchChange,
-  filterClients,
+  filterBussinessUnits,
   handleClientChange,
   handleSubmit,
-}: ClientsUIProps) {
-  const filteredClients = filterClients(clients, search);
+}: BussinessUnitsUIProps) {
+  const filteredBussinessUnits = filterBussinessUnits(clients, search);
 
   return (
-    <StyledClients>
+    <StyledBussinessUnits>
       <Text type="title" as="h2" textAlign="center">
-        Clientes
+        Unidad de Negocios
       </Text>
       <Text size="medium" textAlign="center">
-        Selecciona la empresa a la que vas a representar
+        Seleccione la Unidad de Negocio
       </Text>
       <form>
         <Stack direction="column" alignItems="center">
@@ -57,25 +62,27 @@ function ClientsUI({
             <Textfield
               placeholder="Buscar..."
               type="search"
-              name="searchClients"
-              id="searchClients"
+              name="searchBussinessUnits"
+              id="searchBussinessUnits"
               value={search}
               fullwidth={true}
               onChange={handleSearchChange}
               iconBefore={<MdSearch size={22} />}
             />
           )}
-          {filteredClients.length === 0 && <NoResultsMessage search={search} />}
-          <StyledClientsList $scroll={clients.length > 5}>
+          {filteredBussinessUnits.length === 0 && (
+            <NoResultsMessage search={search} />
+          )}
+          <StyledBussinessUnitsList $scroll={clients.length > 5}>
             <Stack
               direction="column"
               padding="s0 s100"
               alignItems="center"
               gap={inube.spacing.s100}
             >
-              {filteredClients.map((client) => (
-                <StyledClientsItem key={client.id}>
-                  <RadioClient
+              {filteredBussinessUnits.map((client) => (
+                <StyledBussinessUnitsItem key={client.id}>
+                  <RadioBusinessUnit
                     name="client"
                     label={client.name}
                     id={client.id}
@@ -83,17 +90,17 @@ function ClientsUI({
                     logo={client.logo}
                     handleChange={handleClientChange}
                   />
-                </StyledClientsItem>
+                </StyledBussinessUnitsItem>
               ))}
             </Stack>
-          </StyledClientsList>
+          </StyledBussinessUnitsList>
           <Button type="button" disabled={client.value} onClick={handleSubmit}>
             Continuar
           </Button>
         </Stack>
       </form>
-    </StyledClients>
+    </StyledBussinessUnits>
   );
 }
 
-export { ClientsUI };
+export { BussinessUnitsUI };

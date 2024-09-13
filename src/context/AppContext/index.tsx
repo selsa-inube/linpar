@@ -3,8 +3,7 @@ import { createContext, useState, useEffect } from "react";
 import linparLogo from "@assets/images/linpar.png";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { IAppContext, AppContextProviderProps } from "./types";
-import { IClient } from "./types";
+import { IAppContext, AppContextProviderProps, IBussinessUnit } from "./types";
 
 export const AppContext = createContext<IAppContext>({
   user: { username: "", id: "", company: "", operator: { name: "", logo: "" } },
@@ -18,7 +17,7 @@ export default function AppContextProvider(props: AppContextProviderProps) {
     localStorage.getItem("clientSigla") || ""
   );
 
-  function handleClientChange(client: IClient) {
+  function handleClientChange(client: IBussinessUnit) {
     const { sigla } = client;
     setClientSigla(sigla);
   }

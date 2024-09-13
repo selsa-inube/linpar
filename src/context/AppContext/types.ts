@@ -10,7 +10,7 @@ interface IUser {
   operator: IOperator;
 }
 
-interface IClient {
+interface IBussinessUnit {
   id: string;
   name: string;
   sigla: string;
@@ -19,11 +19,11 @@ interface IClient {
 
 interface IAppContext {
   user: IUser;
-  handleClientChange: (client: IClient) => void;
+  handleClientChange: (bussinessUnit: IBussinessUnit) => void;
 }
 
 interface AppContextProviderProps {
   children: React.ReactNode;
 }
 
-export type { IAppContext, IClient, AppContextProviderProps };
+export type { IAppContext, IBussinessUnit, AppContextProviderProps };

@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
-import { ClientsUI } from "./interface";
-import { IClientState } from "./types";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "@context/AppContext";
-import { IClient } from "@context/AppContext/types";
-import { IClients } from "@src/routes/login";
 
-function Clients({ clients }: IClients) {
+import { AppContext } from "@context/AppContext";
+import { IBussinessUnit } from "@context/AppContext/types";
+import { IBussinessUnits } from "@src/routes/login";
+import { BussinessUnitsUI } from "./interface";
+import { IClientState } from "./types";
+
+function BussinessUnits({ bussinessUnits }: IBussinessUnits) {
   const [search, setSearch] = useState("");
   const [clientLocal, setClientLocal] = useState<IClientState>({
     ref: null,
@@ -27,7 +28,9 @@ function Clients({ clients }: IClients) {
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClientLocal({ ref: event.target, value: false });
     handleClientChange(
-      clients.filter((client0) => client0.name === event.target.value)[0]
+      bussinessUnits.filter(
+        (bussinessUnit0) => bussinessUnit0.name === event.target.value
+      )[0]
     );
   };
 
@@ -35,8 +38,11 @@ function Clients({ clients }: IClients) {
     navigate("/login/loading-app");
   };
 
-  function filterClients(clients: IClient[], search: string) {
-    return clients.filter((client) => {
+  function filterBussinessUnits(
+    bussinessUnits: IBussinessUnit[],
+    search: string
+  ) {
+    return bussinessUnits.filter((client) => {
       const clientName = client.name.toUpperCase();
       const clientSigla = client.sigla.toUpperCase();
       const searchTerm = search.toUpperCase();
@@ -47,16 +53,16 @@ function Clients({ clients }: IClients) {
   }
 
   return (
-    <ClientsUI
-      clients={clients}
+    <BussinessUnitsUI
+      clients={bussinessUnits}
       search={search}
       client={clientLocal}
       handleSearchChange={handleSearchChange}
       handleClientChange={handleCChange}
-      filterClients={filterClients}
+      filterBussinessUnits={filterBussinessUnits}
       handleSubmit={handleSubmit}
     />
   );
 }
 
-export { Clients };
+export { BussinessUnits };
