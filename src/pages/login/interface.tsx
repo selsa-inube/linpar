@@ -7,6 +7,8 @@ import {
   StyledOutletContainer,
   StyledImage,
 } from "./styles";
+import { useContext } from "react";
+import { LinparContext } from "@src/context/AppContext";
 
 function LoginUI() {
   const {
@@ -18,6 +20,8 @@ function LoginUI() {
     "(min-width: 769px) and (max-width: 992px)",
     "(min-width: 993px) and (max-width: 2200px)",
   ]);
+  const { linparData } = useContext(LinparContext);
+  console.log("linparData", linparData);
 
   return (
     <Grid

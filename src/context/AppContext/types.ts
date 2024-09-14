@@ -26,4 +26,27 @@ interface AppContextProviderProps {
   children: React.ReactNode;
 }
 
-export type { IAppContext, IClient, AppContextProviderProps };
+interface ILinparData {
+  abbreviatedName: string;
+  staffPortalCatalogId: string;
+  businessManagerId: string;
+  publicCode: string;
+  urlBrand: string;
+  urlLogo: string;
+  user: IUser;
+  handleClientChange?: (client: IClient) => void;
+}
+
+interface ILinparContext {
+  linparData: ILinparData;
+  setLinparData: React.Dispatch<React.SetStateAction<ILinparData>>;
+  setClientSigla: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export type {
+  IAppContext,
+  IClient,
+  AppContextProviderProps,
+  ILinparData,
+  ILinparContext,
+};

@@ -8,7 +8,7 @@ import {
 
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { AppPage } from "@components/layout/AppPage";
-import AppContextProvider, { AppContext } from "@context/AppContext";
+import { LinparContext, LinparProvider } from "@context/AppContext";
 import { GlobalStyles } from "@styles/global";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -20,6 +20,9 @@ import { Login } from "./pages/login";
 import { environment } from "./config/environment";
 import { getStaffPortalByBusinessManager } from "./services/staffPortal";
 import { IStaffPortalByBusinessManager } from "./services/staffPortal/types";
+import { getBusinessmanagers } from "./services/businessManager";
+import { IBusinessmanagers } from "./services/businessManager/types";
+import { encrypt } from "./utils/encrypt";
 
 function LogOut() {
   localStorage.clear();
@@ -29,8 +32,8 @@ function LogOut() {
 }
 
 function FirstPage() {
-  const { linparContext } = useContext(AppContext);
-  return linparContext.company.length === 0 ? <Login /> : <AppPage />;
+  const { linparData } = useContext(LinparContext);
+  return linparData.user.company.length === 0 ? <Login /> : <AppPage />;
 }
 
 const router = createBrowserRouter(
@@ -49,9 +52,16 @@ const router = createBrowserRouter(
   )
 );
 
+const url = new URL(window.location.href);
+const params = new URLSearchParams(url.search);
+const paramValue = params.get("portal");
+
 function App() {
   const [portalData, setPortalData] = useState<IStaffPortalByBusinessManager[]>(
     []
+  );
+  const [businessManagers, setBusinessManagers] = useState<IBusinessmanagers>(
+    {} as IBusinessmanagers
   );
   const [hasError, setHasError] = useState(false);
   const [hasRedirected, setHasRedirected] = useState(false);
@@ -72,26 +82,47 @@ function App() {
     validateConsultation();
   }, []);
 
+  const portalDataFiltered = portalData.filter(
+    (data) => data.staffPortalId === paramValue
+  );
+
+  const validateBusinessManagers = async () => {
+    const foundBusiness = portalDataFiltered.find(
+      (bussines) => bussines
+    )?.businessManagerId;
+
+    if (portalDataFiltered.length > 0 && foundBusiness) {
+      try {
+        const newData = await getBusinessmanagers(foundBusiness);
+        setBusinessManagers(newData);
+      } catch (error) {
+        console.info(error);
+        setHasError(true);
+      }
+    } else {
+      console.error();
+    }
+  };
+
+  useEffect(() => {
+    validateBusinessManagers();
+  }, [portalData]);
+
   useEffect(() => {
     if (hasRedirected) return;
 
-    const url = new URL(window.location.href);
-    const params = new URLSearchParams(url.search);
-    const paramValue = params.get("portal");
-
     if (portalData.length > 0) {
-      const portalDataFiltered = portalData.filter(
-        (data) => data.staffPortalId === paramValue
-      );
-
-      if (portalDataFiltered.length > 0) {
-        if (!isLoading && !isAuthenticated) {
-          loginWithRedirect();
-        } else if (isAuthenticated) {
-          setHasRedirected(true);
-        } else {
-          setHasError(true);
-        }
+      if (
+        portalDataFiltered.length > 0 &&
+        businessManagers &&
+        !isLoading &&
+        !isAuthenticated
+      ) {
+        const encryptedParamValue = encrypt(paramValue!);
+        localStorage.setItem("portalCode", encryptedParamValue);
+        loginWithRedirect();
+      } else if (isAuthenticated) {
+        setHasRedirected(true);
       } else {
         setHasError(true);
       }
@@ -99,6 +130,7 @@ function App() {
       setHasError(true);
     }
   }, [
+    businessManagers,
     portalData,
     isLoading,
     isAuthenticated,
@@ -118,10 +150,10 @@ function App() {
   }
 
   return (
-    <AppContextProvider>
+    <LinparProvider>
       <GlobalStyles />
       <RouterProvider router={router} />
-    </AppContextProvider>
+    </LinparProvider>
   );
 }
 

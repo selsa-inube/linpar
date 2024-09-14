@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { ClientsUI } from "./interface";
 import { IClientState } from "./types";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "@context/AppContext";
+import { LinparContext } from "@context/AppContext";
 import { IClient } from "@context/AppContext/types";
 import { IClients } from "@src/routes/login";
 
@@ -14,7 +14,7 @@ function Clients({ clients }: IClients) {
   });
 
   const navigate = useNavigate();
-  const { handleClientChange } = useContext(AppContext);
+  const { linparData } = useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (clientLocal.ref) {
@@ -26,9 +26,11 @@ function Clients({ clients }: IClients) {
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClientLocal({ ref: event.target, value: false });
-    handleClientChange(
-      clients.filter((client0) => client0.name === event.target.value)[0]
-    );
+    if (linparData && linparData.handleClientChange) {
+      linparData.handleClientChange(
+        clients.filter((client0) => client0.name === event.target.value)[0]
+      );
+    }
   };
 
   const handleSubmit = () => {

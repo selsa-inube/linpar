@@ -1,27 +1,71 @@
-import { createContext, useState, useEffect } from "react";
-
-import linparLogo from "@assets/images/linpar.png";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { IAppContext, AppContextProviderProps } from "./types";
-import { IClient } from "./types";
+import linparLogo from "@assets/images/linpar.png";
+import { IClient, ILinparContext, ILinparData } from "./types";
+import { getBusinessmanagers } from "@services/businessManager";
+import { IBusinessmanagers } from "@services/businessManager/types";
+import { decrypt } from "@src/utils/encrypt";
 
-export const AppContext = createContext<IAppContext>({
-  linparContext: {
-    username: "",
-    id: "",
-    company: "",
-    operator: { name: "", logo: "" },
-  },
-  handleClientChange: () => {},
-});
+const LinparContext = createContext<ILinparContext>({} as ILinparContext);
 
-export default function AppContextProvider(props: AppContextProviderProps) {
+interface LinparProviderProps {
+  children: React.ReactNode;
+}
+
+function LinparProvider(props: LinparProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
+
+  const [businessManagers, setBusinessManagers] = useState<IBusinessmanagers>(
+    {} as IBusinessmanagers
+  );
+
   const [clientSigla, setClientSigla] = useState(
     localStorage.getItem("clientSigla") || ""
   );
+
+  const [linparData, setLinparData] = useState<ILinparData>({
+    abbreviatedName: "",
+    staffPortalCatalogId: "",
+    businessManagerId: "",
+    publicCode: "",
+    urlBrand: "",
+    urlLogo: "",
+    user: {
+      username: user?.name || "",
+      id: user?.id || "abc123",
+      company: "",
+      operator: { name: "Linpar", logo: linparLogo },
+    },
+    handleClientChange: () => {},
+  });
+
+  const portalId = localStorage.getItem("portalCode");
+  let portalCode = "";
+  if (portalId) {
+    portalCode = decrypt(portalId);
+  }
+
+  const validateBusinessManagers = async () => {
+    if (!portalCode) {
+      return;
+    }
+    try {
+      const newData = await getBusinessmanagers(portalCode);
+      setBusinessManagers(newData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    validateBusinessManagers();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("clientSigla", clientSigla);
+  }, [clientSigla]);
 
   function handleClientChange(client: IClient) {
     const { sigla } = client;
@@ -29,24 +73,33 @@ export default function AppContextProvider(props: AppContextProviderProps) {
   }
 
   useEffect(() => {
-    localStorage.setItem("clientSigla", clientSigla);
-  }, [clientSigla]);
+    setLinparData((prev) => ({
+      ...prev,
+      abbreviatedName: businessManagers.abbreviatedName || "",
+      businessManagerId: businessManagers.businessManagerId || "",
+      publicCode: businessManagers.publicCode || "",
+      company: "sistemasenlinea",
+      urlBrand: businessManagers.urlBrand || "",
+      urlLogo: "hola",
+      handleClientChange,
+    }));
+  }, [businessManagers]);
 
-  const company = clientSigla;
+  const linparContext = useMemo(
+    () => ({
+      linparData,
+      setLinparData,
+      setClientSigla,
+    }),
+    [linparData, setLinparData, setClientSigla]
+  );
 
-  const userContext: IAppContext = {
-    linparContext: {
-      username: `${user?.name}`,
-      id: "abc123",
-      company: company,
-      operator: {
-        name: "Linpar",
-        logo: linparLogo,
-      },
-    },
-    handleClientChange,
-  };
   return (
-    <AppContext.Provider value={userContext}>{children}</AppContext.Provider>
+    <LinparContext.Provider value={linparContext}>
+      {children}
+    </LinparContext.Provider>
   );
 }
+
+export { LinparContext, LinparProvider };
+export type { LinparProviderProps };
