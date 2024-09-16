@@ -88,6 +88,14 @@ const finishAssistedModalConfig = {
   appearance: EAppearance.SUCCESS,
 };
 
+const finishAssistedModalConfigWithErrors = {
+  title: "Error al finalizar registro",
+  description:
+    "Imposible ejecutar la accion porque, debido a la modificación, el caso de uso quedó sin  opcion web y sin opcion cliente-servidor y al menos una de ellas es requerida. Por favor valide los datos y vuelva a enviar.",
+  actionText: "volver a formulario",
+  appearance: EAppearance.SUCCESS,
+};
+
 const finishAssistedMessagesConfig = {
   success: {
     id: 1,
@@ -112,4 +120,5 @@ export {
   finishAssistedMessagesConfig,
   finishAssistedModalConfig,
   stepsAddingLinixUseCase,
+  finishAssistedModalConfigWithErrors,
 };

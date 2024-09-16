@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { CheckingCredentialsUI } from "./interface";
 import { useCallback, useContext, useEffect } from "react";
+
 import { LinparContext } from "@context/AppContext";
 import { IClient } from "@context/AppContext/types";
+
+import { CheckingCredentialsUI } from "./interface";
 
 function CheckingCredentials({ clients }: { clients: IClient[] }) {
   const navigate = useNavigate();

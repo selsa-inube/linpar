@@ -1,8 +1,7 @@
-import { PrivilegesUI } from "./interface";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import { LinparContext } from "@src/context/AppContext";
-
+import { LinparContext } from "@context/AppContext";
+import { PrivilegesUI } from "./interface";
 function Privileges() {
   const navigate = useNavigate();
   const location = useLocation();

@@ -321,7 +321,59 @@ function AddingLinixUseCase() {
         stepKey === "generalInformation" &&
         formData.generalInformation.values.k_Opcion !==
           (values as IGeneralInformation).k_Opcion;
+      if (
+        stepKey === "webOptions" ||
+        stepKey === "clientServerOptions" ||
+        stepKey === "clientServerReports"
+      ) {
+        const activeOption = Object.values(values).find(
+          (option: any) => option.isActive
+        );
+        if (activeOption) {
+          setFormData((prevFormData: IFormAddLinixUseCase) => {
+            const updatedFormData = { ...prevFormData };
 
+            updatedFormData.generalInformation.values = {
+              ...prevFormData.generalInformation.values,
+              k_Funcio:
+                stepKey === "webOptions"
+                  ? activeOption.id
+                  : prevFormData.generalInformation.values.k_Funcio,
+              k_Opcion:
+                stepKey !== "webOptions"
+                  ? activeOption.id
+                  : prevFormData.generalInformation.values.k_Opcion,
+            };
+
+            return updatedFormData;
+          });
+        } else {
+          setFormData((prevFormData: IFormAddLinixUseCase) => {
+            const updatedFormData = { ...prevFormData };
+            updatedFormData.generalInformation.values = {
+              ...prevFormData.generalInformation.values,
+              k_Funcio:
+                stepKey === "webOptions"
+                  ? ""
+                  : prevFormData.generalInformation.values.k_Funcio,
+              k_Opcion:
+                stepKey !== "webOptions"
+                  ? ""
+                  : prevFormData.generalInformation.values.k_Opcion,
+            };
+            updatedFormData.clientServerButton = {
+              ...prevFormData.clientServerButton,
+              values: {
+                ...prevFormData.clientServerButton.values,
+                k_option_button: "",
+              },
+              isValid: false,
+            };
+
+            return updatedFormData;
+          });
+        }
+      }
       setFormData((prevFormData: IFormAddLinixUseCase) => ({
         ...prevFormData,
         [stepKey]: { values: values, isValid: true },

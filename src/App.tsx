@@ -23,6 +23,7 @@ import { IStaffPortalByBusinessManager } from "./services/staffPortal/types";
 import { getBusinessmanagers } from "./services/businessManager";
 import { IBusinessmanagers } from "./services/businessManager/types";
 import { encrypt } from "./utils/encrypt";
+import { Home } from "./pages/home";
 
 function LogOut() {
   localStorage.clear();
@@ -33,7 +34,7 @@ function LogOut() {
 
 function FirstPage() {
   const { linparData } = useContext(LinparContext);
-  return linparData.user.company.length === 0 ? <Login /> : <AppPage />;
+  return linparData.user.company.length === 0 ? <Login /> : <Home />;
 }
 
 const router = createBrowserRouter(

@@ -4,21 +4,30 @@ import { Button, Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { IMessageState } from "../../../types/forms.types";
 
 interface ResendInvitationUIProps {
   showResendInvModal: boolean;
   toggleModal: () => void;
-  resendInvitationUser: () => void;
   invitation: IInvitationsEntry;
   showComplete: boolean;
+  resendInvitation: (invitationId: IInvitationsEntry) => void;
+  message: IMessageState;
+  resendInvitationData: string | undefined;
+  isLoadingResend: boolean;
+  onCloseSectionMessage: () => void;
 }
 
 function ResendInvitationUI(props: ResendInvitationUIProps) {
   const {
     showResendInvModal,
+    resendInvitation,
     toggleModal,
-    resendInvitationUser,
+    onCloseSectionMessage,
+    isLoadingResend,
     invitation,
+    message,
     showComplete,
   } = props;
   const { title, description, textAction, appearance } = resendInvitationModal;
@@ -33,6 +42,7 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
           variant="none"
           appearance="gray"
           spacing="compact"
+          loading={isLoadingResend}
         >
           Reenviar
         </Button>
@@ -59,7 +69,14 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
           actionText={textAction}
           appearance={appearance}
           closeModal={toggleModal}
-          handleClick={resendInvitationUser}
+          handleClick={() => resendInvitation(invitation)}
+        />
+      )}
+      {message.visible && (
+        <RenderMessage
+          message={message}
+          handleCloseMessage={onCloseSectionMessage}
+          onMessageClosed={() => {}}
         />
       )}
     </>

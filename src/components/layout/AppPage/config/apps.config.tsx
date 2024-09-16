@@ -46,10 +46,14 @@ const appsConfig = [
   },
 ];
 
+const removeBussinessUnit = ["catalogs"];
+const bussinessUnitOptionTotal = ["sistemasenlinea"];
+
 const navigationConfig = {
   title: "MENU",
   sections: {
     administrate: {
+      name: "",
       links: {
         privileges: {
           id: "privileges",
@@ -73,4 +77,10 @@ const logoutConfig = {
   logoutTitle: "Cerrar sesión",
 };
 
-export { appsConfig, navigationConfig, logoutConfig };
+export {
+  appsConfig,
+  navigationConfig,
+  logoutConfig,
+  removeBussinessUnit,
+  bussinessUnitOptionTotal,
+};
