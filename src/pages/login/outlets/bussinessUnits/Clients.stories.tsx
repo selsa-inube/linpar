@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-
-import { businessUnitDataMock } from "@src/mocks/login/businessUnit.mock";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 import { BussinessUnits } from ".";
 
 const story = {

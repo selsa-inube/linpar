@@ -15,7 +15,7 @@ import {
   Textfield,
   useMediaQuery,
 } from "@inube/design-system";
-import { IBussinessUnit } from "@src/context/AppContext/types";
+import { IBussinessUnit } from "@context/AppContext/types";
 import { Fieldset } from "@components/inputs/Fieldset";
 import {
   Styledlmage,

@@ -1,7 +1,7 @@
-import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
+import { StoryFn } from "@storybook/react";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 import { ErrorInvitationExpired, ErrorInvitationExpiredProps } from "./index";
-import { businessUnitDataMock } from "@src/mocks/login/businessUnit.mock";
 
 const story = {
   components: [ErrorInvitationExpired],

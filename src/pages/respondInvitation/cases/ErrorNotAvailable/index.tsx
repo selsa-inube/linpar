@@ -1,5 +1,5 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
-import { IBussinessUnit } from "@src/context/AppContext/types";
+import { IBussinessUnit } from "@context/AppContext/types";
 
 interface ErrorNotAvailableProps {
   bussinessUnitsData?: IBussinessUnit;

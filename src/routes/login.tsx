@@ -1,16 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { CheckingCredentials } from "@pages/login/outlets/CheckingCredentials";
-
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
-
 import { Login } from "@pages/login";
-
 import { IBussinessUnit } from "@context/AppContext/types";
 import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
-import { BussinessUnits } from "@src/pages/login/outlets/bussinessUnits";
-import { ErrorNotBussinessUnit } from "@src/pages/login/errors/ErrorNotBusinessManager";
+import { BussinessUnits } from "@pages/login/outlets/bussinessUnits";
+import { ErrorNotBussinessUnit } from "@pages/login/errors/ErrorNotBusinessManager";
 
 export interface IBussinessUnits {
   bussinessUnits: IBussinessUnit[];

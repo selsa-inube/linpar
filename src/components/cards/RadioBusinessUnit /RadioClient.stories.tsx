@@ -1,4 +1,4 @@
-import { businessUnitDataMock } from "@src/mocks/login/businessUnit.mock";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 import { RadioBusinessUnit, RadioBusinessUnitProps } from "./index";
 
 const story = {

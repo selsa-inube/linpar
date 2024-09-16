@@ -2,7 +2,7 @@ import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit ";
-import { IBussinessUnit } from "@src/context/AppContext/types";
+import { IBussinessUnit } from "@context/AppContext/types";
 import {
   StyledBussinessUnits,
   StyledBussinessUnitsList,

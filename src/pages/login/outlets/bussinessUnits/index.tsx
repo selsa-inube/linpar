@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AppContext } from "@context/AppContext";
 import { IBussinessUnit } from "@context/AppContext/types";
-import { IBussinessUnits } from "@src/routes/login";
+import { IBussinessUnits } from "@routes/login";
 import { BussinessUnitsUI } from "./interface";
 import { IBussinessUnitState } from "./types";
 
