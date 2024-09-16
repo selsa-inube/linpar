@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Table } from "@inube/design-system";
 import { useMediaQuery } from "@inube/design-system";
-import { EMessageType, IMessage } from "@src/types/messages.types";
 import { getInvitations } from "@services/invitations/getInvitations";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IInvitationsEntry } from "@services/users/invitation.types";
@@ -12,9 +11,7 @@ import {
   invitationsTableBreakpoints,
   invitationsTableTitles,
 } from "../../config/invitationsTable.config";
-import { resendInvitationMessages } from "../../config/resendInvitationUser.config";
 import { actionsConfigInvitation } from "./config/dataInvitation";
-
 import { IMessageState } from "../../types/forms.types";
 import { deleteInvitationMessages } from "./DeleteInvitation/config/deleteInvitation.config";
 import { IDeleteForMessage } from "../users/types";
@@ -66,33 +63,6 @@ function InvitationsTab(props: InvitationsTabProps) {
     });
   }, [idDeleted]);
 
-  const handleResendInvitation = (invitation: IInvitationsEntry) => {
-    let messageType = EMessageType.SUCCESS;
-
-    try {
-      handleCloseMessage();
-    } catch (error) {
-      messageType = EMessageType.FAILED;
-    }
-
-    const { title, description, icon, appearance } =
-      resendInvitationMessages[messageType];
-
-    handleShowMessage({
-      title,
-      description: description(invitation),
-      icon,
-      appearance,
-    });
-  };
-
-  const handleShowMessage = (message: IMessage) => {
-    setMessage({
-      visible: true,
-      data: message,
-    });
-  };
-
   const handleCloseMessage = () => {
     setMessage({
       visible: false,
@@ -115,7 +85,6 @@ function InvitationsTab(props: InvitationsTabProps) {
           entries={invitations}
           actions={actionsConfigInvitation(
             isHovered,
-            handleResendInvitation,
             setIsHovered,
             smallScreen,
             setIdDeleted

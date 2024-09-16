@@ -20,6 +20,7 @@ import { Login } from "./pages/login";
 import { environment } from "./config/environment";
 import { getStaffPortalByBusinessManager } from "./services/staffPortal";
 import { IStaffPortalByBusinessManager } from "./services/staffPortal/types";
+import { Home } from "./pages/home";
 
 function LogOut() {
   localStorage.clear();
@@ -30,7 +31,7 @@ function LogOut() {
 
 function FirstPage() {
   const { linparContext } = useContext(AppContext);
-  return linparContext.company.length === 0 ? <Login /> : <AppPage />;
+  return linparContext.company.length === 0 ? <Login /> : <Home />;
 }
 
 const router = createBrowserRouter(

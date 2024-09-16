@@ -13,7 +13,6 @@ import { IDeleteForMessage } from "../../users/types";
 
 export const actionsConfigInvitation = (
   isHovered: boolean,
-  handleResendInvitation: (invitation: IInvitationsEntry) => void,
   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>,
   smallScreen: boolean,
   setIdDeleted: (show: IDeleteForMessage) => void
@@ -52,11 +51,7 @@ export const actionsConfigInvitation = (
       id: "Resend",
       actionName: "Reenviar",
       content: (invitation: IInvitationsEntry) => (
-        <ResendInvitation
-          invitation={invitation}
-          handleResendInvitation={() => handleResendInvitation(invitation)}
-          showComplete={smallScreen}
-        />
+        <ResendInvitation invitation={invitation} showComplete={smallScreen} />
       ),
       type: "primary",
     },
