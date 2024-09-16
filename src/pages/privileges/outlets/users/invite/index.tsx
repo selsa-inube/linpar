@@ -8,7 +8,7 @@ import { getSearchAllTercero } from "@services/invitations/thirdPartiesNamesUser
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { userSearchCardData } from "@mocks/apps/privileges/users/usersSearchField.mock";
-import { LinparContext } from "@src/context/AppContext";
+import { LinparContext } from "@context/AppContext";
 import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
 import { saveLinixInvitations } from "./utils";

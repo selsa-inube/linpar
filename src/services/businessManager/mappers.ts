@@ -10,6 +10,7 @@ const mapResendApiToEntity = (
     abbreviatedName: String(resend.abbreviatedName),
     descriptionUse: String(resend.descriptionUse),
     urlBrand: String(resend.urlBrand),
+    urlLogo: String(resend.urlLogo),
     customerId: String(resend.customerId),
   };
   return buildResend;

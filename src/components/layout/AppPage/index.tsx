@@ -30,7 +30,6 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function AppPage() {
-  localStorage.removeItem("portalCode");
   const { linparData } = useContext(LinparContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);

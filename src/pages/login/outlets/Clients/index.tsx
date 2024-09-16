@@ -14,7 +14,8 @@ function Clients({ clients }: IClients) {
   });
 
   const navigate = useNavigate();
-  const { linparData } = useContext(LinparContext);
+  const { setLinparData, linparData, setClientSigla } =
+    useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (clientLocal.ref) {
@@ -26,11 +27,16 @@ function Clients({ clients }: IClients) {
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClientLocal({ ref: event.target, value: false });
-    if (linparData && linparData.handleClientChange) {
-      linparData.handleClientChange(
-        clients.filter((client0) => client0.name === event.target.value)[0]
-      );
-    }
+    const selectOption = clients.filter(
+      (client0) => client0.name === event.target.value
+    )[0].sigla;
+    const user = linparData.user || {};
+
+    setLinparData((prev) => ({
+      ...prev,
+      user: { ...user, company: selectOption },
+    }));
+    setClientSigla(selectOption);
   };
 
   const handleSubmit = () => {

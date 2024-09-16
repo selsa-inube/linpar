@@ -5,5 +5,6 @@ export interface IBusinessmanagers {
   abbreviatedName: string;
   descriptionUse: string;
   urlBrand: string;
+  urlLogo: string;
   customerId: string;
 }

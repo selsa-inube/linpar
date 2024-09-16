@@ -44,8 +44,8 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [tokenWithRef, dispatch] = useReducer(tokenReducer, {});
   const [loading, setLoading] = useState(true);
 
-  const { linparData } = useContext(LinparContext);
-  const clientName = linparData.user.company.toLowerCase();
+  const { clientSigla } = useContext(LinparContext);
+  const clientName = clientSigla.toLowerCase();
 
   useEffect(() => {
     getTokens(clientName)

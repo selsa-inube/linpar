@@ -2,10 +2,11 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import linparLogo from "@assets/images/linpar.png";
-import { IClient, ILinparContext, ILinparData } from "./types";
-import { getBusinessmanagers } from "@services/businessManager";
 import { IBusinessmanagers } from "@services/businessManager/types";
+import { IStaffPortalByBusinessManager } from "@services/staffPortal/types";
 import { decrypt } from "@src/utils/encrypt";
+import { validateBusinessManagers, validateConsultation } from "./utils";
+import { ILinparContext, ILinparData } from "./types";
 
 const LinparContext = createContext<ILinparContext>({} as ILinparContext);
 
@@ -16,7 +17,9 @@ interface LinparProviderProps {
 function LinparProvider(props: LinparProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
-
+  const [portalData, setPortalData] = useState<IStaffPortalByBusinessManager[]>(
+    []
+  );
   const [businessManagers, setBusinessManagers] = useState<IBusinessmanagers>(
     {} as IBusinessmanagers
   );
@@ -24,6 +27,10 @@ function LinparProvider(props: LinparProviderProps) {
   const [clientSigla, setClientSigla] = useState(
     localStorage.getItem("clientSigla") || ""
   );
+
+  useEffect(() => {
+    localStorage.setItem("clientSigla", clientSigla);
+  }, [clientSigla]);
 
   const [linparData, setLinparData] = useState<ILinparData>({
     abbreviatedName: "",
@@ -35,10 +42,9 @@ function LinparProvider(props: LinparProviderProps) {
     user: {
       username: user?.name || "",
       id: user?.id || "abc123",
-      company: "",
+      company: clientSigla,
       operator: { name: "Linpar", logo: linparLogo },
     },
-    handleClientChange: () => {},
   });
 
   const portalId = localStorage.getItem("portalCode");
@@ -47,51 +53,47 @@ function LinparProvider(props: LinparProviderProps) {
     portalCode = decrypt(portalId);
   }
 
-  const validateBusinessManagers = async () => {
-    if (!portalCode) {
-      return;
-    }
-    try {
-      const newData = await getBusinessmanagers(portalCode);
-      setBusinessManagers(newData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    validateBusinessManagers();
+    validateConsultation().then((data) => {
+      setPortalData(data);
+    });
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("clientSigla", clientSigla);
-  }, [clientSigla]);
+    const portalDataFiltered = portalData.filter(
+      (data) => data.staffPortalId === portalCode
+    );
+    const foundBusiness = portalDataFiltered.find(
+      (bussines) => bussines
+    )?.businessManagerId;
 
-  function handleClientChange(client: IClient) {
-    const { sigla } = client;
-    setClientSigla(sigla);
-  }
+    if (portalDataFiltered.length > 0 && foundBusiness) {
+      validateBusinessManagers(foundBusiness).then((data) => {
+        setBusinessManagers(data);
+      });
+    }
+  }, [portalData]);
 
   useEffect(() => {
+    if (!businessManagers) return;
     setLinparData((prev) => ({
       ...prev,
       abbreviatedName: businessManagers.abbreviatedName || "",
       businessManagerId: businessManagers.businessManagerId || "",
       publicCode: businessManagers.publicCode || "",
-      company: "sistemasenlinea",
       urlBrand: businessManagers.urlBrand || "",
-      urlLogo: "hola",
-      handleClientChange,
+      urlLogo: businessManagers.urlLogo || "",
     }));
   }, [businessManagers]);
 
   const linparContext = useMemo(
     () => ({
       linparData,
+      clientSigla,
       setLinparData,
       setClientSigla,
     }),
-    [linparData, setLinparData, setClientSigla]
+    [linparData, clientSigla, setLinparData, setClientSigla]
   );
 
   return (
