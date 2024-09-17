@@ -11,7 +11,7 @@ export const AppContext = createContext<IAppContext>({
     username: "",
     id: "",
     company: "",
-    operator: { name: "", logo: "" },
+    businessManager: { name: "", logo: "" },
   },
   handleClientChange: () => {},
 });
@@ -39,7 +39,7 @@ export default function AppContextProvider(props: AppContextProviderProps) {
       username: `${user?.name}`,
       id: "abc123",
       company: company,
-      operator: {
+      businessManager: {
         name: "Linpar",
         logo: linparLogo,
       },
