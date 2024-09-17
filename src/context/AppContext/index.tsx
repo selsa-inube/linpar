@@ -43,7 +43,7 @@ function LinparProvider(props: LinparProviderProps) {
       username: user?.name || "",
       id: user?.id || "abc123",
       company: clientSigla,
-      operator: { name: "Linpar", logo: linparLogo },
+      businessManager: { name: "Linpar", logo: linparLogo },
     },
   });
 

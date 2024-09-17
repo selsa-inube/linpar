@@ -5,30 +5,29 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { AppPage } from "@components/layout/AppPage";
 import { LinparContext, LinparProvider } from "@context/AppContext";
 import { GlobalStyles } from "@styles/global";
-import { useAuth0 } from "@auth0/auth0-react";
-
+import { Login } from "@pages/login";
+import { getStaffPortalByBusinessManager } from "@services/staffPortal";
+import { IStaffPortalByBusinessManager } from "@services/staffPortal/types";
+import { getBusinessmanagers } from "@services/businessManager";
+import { IBusinessmanagers } from "@services/businessManager/types";
+import { Home } from "@pages/home";
+import { environment } from "./config/environment";
+import { encrypt } from "./utils/encrypt";
 import { RespondInvitationRoutes } from "./routes/respondInvitation";
 import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { PeopleRoutes } from "./routes/people";
-import { Login } from "./pages/login";
-import { environment } from "./config/environment";
-import { getStaffPortalByBusinessManager } from "./services/staffPortal";
-import { IStaffPortalByBusinessManager } from "./services/staffPortal/types";
-import { getBusinessmanagers } from "./services/businessManager";
-import { IBusinessmanagers } from "./services/businessManager/types";
-import { encrypt } from "./utils/encrypt";
-import { Home } from "./pages/home";
 
 function LogOut() {
   localStorage.clear();
   const { logout } = useAuth0();
-  logout({ logoutParams: { returnTo: environment.REDIRECT_URI } });
+  logout({ logoutParams: { returnTo: environment.GOOGLE_REDIRECT_URI } });
   return <AppPage />;
 }
 
@@ -58,9 +57,10 @@ const params = new URLSearchParams(url.search);
 const paramValue = params.get("portal");
 
 function App() {
-  const [portalData, setPortalData] = useState<IStaffPortalByBusinessManager[]>(
-    []
-  );
+  const [portalPublicCode, setPortalPublicCode] = useState<
+    IStaffPortalByBusinessManager[]
+  >([]);
+
   const [businessManagers, setBusinessManagers] = useState<IBusinessmanagers>(
     {} as IBusinessmanagers
   );
@@ -71,8 +71,8 @@ function App() {
 
   const validateConsultation = async () => {
     try {
-      const newData = await getStaffPortalByBusinessManager();
-      setPortalData(newData);
+      const StaffPortalData = await getStaffPortalByBusinessManager();
+      setPortalPublicCode(StaffPortalData);
     } catch (error) {
       console.info(error);
       setHasError(true);
@@ -83,16 +83,16 @@ function App() {
     validateConsultation();
   }, []);
 
-  const portalDataFiltered = portalData.filter(
+  const portalPublicCodeFiltered = portalPublicCode.filter(
     (data) => data.staffPortalId === paramValue
   );
 
   const validateBusinessManagers = async () => {
-    const foundBusiness = portalDataFiltered.find(
+    const foundBusiness = portalPublicCodeFiltered.find(
       (bussines) => bussines
     )?.businessManagerId;
 
-    if (portalDataFiltered.length > 0 && foundBusiness) {
+    if (portalPublicCodeFiltered.length > 0 && foundBusiness) {
       try {
         const newData = await getBusinessmanagers(foundBusiness);
         setBusinessManagers(newData);
@@ -107,14 +107,14 @@ function App() {
 
   useEffect(() => {
     validateBusinessManagers();
-  }, [portalData]);
+  }, [portalPublicCode]);
 
   useEffect(() => {
     if (hasRedirected) return;
 
-    if (portalData.length > 0) {
+    if (portalPublicCode.length > 0) {
       if (
-        portalDataFiltered.length > 0 &&
+        portalPublicCodeFiltered.length > 0 &&
         businessManagers &&
         !isLoading &&
         !isAuthenticated
@@ -132,7 +132,7 @@ function App() {
     }
   }, [
     businessManagers,
-    portalData,
+    portalPublicCode,
     isLoading,
     isAuthenticated,
     loginWithRedirect,

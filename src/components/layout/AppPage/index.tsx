@@ -73,7 +73,7 @@ function AppPage() {
           <Header
             portalId="portal"
             navigation={navigationConfig}
-            logoURL={renderLogo(linparData.user.operator.logo)}
+            logoURL={renderLogo(linparData.user.businessManager.logo)}
             userName={linparData.user.username}
             client={linparData.user.company}
           />
