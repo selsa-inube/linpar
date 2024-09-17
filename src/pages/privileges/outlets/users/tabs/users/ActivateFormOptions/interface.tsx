@@ -1,7 +1,6 @@
 import { Switch } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { activateUsersModal } from "./config/activateUsers.config";
 import { IMessageState } from "../../../types/forms.types";
@@ -16,6 +15,7 @@ interface IActivateUsersUI {
   handleToggleModal: () => void;
   handleActivateUsers: () => void;
   handleCloseSectionMessage: () => void;
+  loading: boolean;
 }
 
 export function ActivateUsersUI(props: IActivateUsersUI) {
@@ -23,12 +23,10 @@ export function ActivateUsersUI(props: IActivateUsersUI) {
     active,
     showActivateUsers: showactivateUsersModal,
     id,
-    message,
     showComplete,
     activateModalConfig,
     handleToggleModal,
     handleActivateUsers,
-    handleCloseSectionMessage,
   } = props;
 
   let messageType = EMessageType.DEACTIVATION;
@@ -61,13 +59,6 @@ export function ActivateUsersUI(props: IActivateUsersUI) {
           appearance={appearance}
           closeModal={handleToggleModal}
           handleClick={handleActivateUsers}
-        />
-      )}
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleCloseSectionMessage}
         />
       )}
     </>
