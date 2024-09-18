@@ -2,7 +2,7 @@ interface ICardData {
   id: string;
   label: string;
   description: string;
-  icon: JSX.Element;
+  icon: string | JSX.Element;
   url: string;
 }
 

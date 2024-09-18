@@ -1,6 +1,7 @@
-import { MdBuild, MdVpnKey } from "react-icons/md";
+import { MdVpnKey } from "react-icons/md";
 
 import { ICardData } from "@pages/home/types";
+import catalogs from "@assets/images/catalogs.svg";
 
 const mockAppCards: ICardData[] = [
   {
@@ -14,7 +15,14 @@ const mockAppCards: ICardData[] = [
     id: "catalogs",
     label: "Catálogos Generales",
     description: "Modifica los catálogos generales.",
-    icon: <MdBuild />,
+    icon: (
+      <img
+        src={catalogs}
+        alt="Descripción de la imagen"
+        width="25"
+        height="25"
+      />
+    ),
     url: "/catalogs",
   },
 ];
