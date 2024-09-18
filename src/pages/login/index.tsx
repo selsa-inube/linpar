@@ -6,7 +6,7 @@ import { AppContext } from "@context/AppContext";
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useContext(AppContext);
+  const { linparContext } = useContext(AppContext);
 
   useEffect(() => {
     if (
@@ -14,9 +14,9 @@ function Login() {
       location.pathname === "/login/" ||
       location.pathname === "/"
     ) {
-      navigate(`/login/${user.id}/checking-credentials/`);
+      navigate(`/login/${linparContext.id}/checking-credentials/`);
     }
-  }, [location, navigate, user]);
+  }, [location, navigate, linparContext]);
 
   return <LoginUI />;
 }

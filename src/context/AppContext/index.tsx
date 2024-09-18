@@ -7,7 +7,12 @@ import { IAppContext, AppContextProviderProps } from "./types";
 import { IClient } from "./types";
 
 export const AppContext = createContext<IAppContext>({
-  user: { username: "", id: "", company: "", operator: { name: "", logo: "" } },
+  linparContext: {
+    username: "",
+    id: "",
+    company: "",
+    businessManager: { name: "", logo: "" },
+  },
   handleClientChange: () => {},
 });
 
@@ -30,11 +35,11 @@ export default function AppContextProvider(props: AppContextProviderProps) {
   const company = clientSigla;
 
   const userContext: IAppContext = {
-    user: {
+    linparContext: {
       username: `${user?.name}`,
       id: "abc123",
       company: company,
-      operator: {
+      businessManager: {
         name: "Linpar",
         logo: linparLogo,
       },

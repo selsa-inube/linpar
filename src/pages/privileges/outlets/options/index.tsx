@@ -7,10 +7,10 @@ import { useContext } from "react";
 import { privilegeOptionsConfig } from "./config/privileges.config";
 
 function PrivilegesOptions() {
-  const { user } = useContext(AppContext);
+  const { linparContext } = useContext(AppContext);
 
   const allowedOptions =
-    user.company !== "sistemasenlinea"
+    linparContext.company !== "sistemasenlinea"
       ? ["Usuarios Linix", "Cargos Linix"]
       : ["Usuarios Linix", "Casos de uso Linix", "Roles Linix", "Cargos Linix"];
 

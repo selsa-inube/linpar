@@ -30,7 +30,7 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function AppPage() {
-  const { user } = useContext(AppContext);
+  const { linparContext } = useContext(AppContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -73,14 +73,17 @@ function AppPage() {
           <Header
             portalId="portal"
             navigation={navigationConfig}
-            logoURL={renderLogo(user.operator.logo)}
-            userName={user.username}
-            client={user.company}
+            logoURL={renderLogo(linparContext.businessManager.logo)}
+            userName={linparContext.username}
+            client={linparContext.company}
           />
         </StyledHeaderContainer>
         {showUserMenu && (
           <StyledMenuContainer ref={userMenuRef}>
-            <MenuUser userName={user.username} businessUnit={user.company} />
+            <MenuUser
+              userName={linparContext.username}
+              businessUnit={linparContext.company}
+            />
             <MenuSection
               sections={[
                 {

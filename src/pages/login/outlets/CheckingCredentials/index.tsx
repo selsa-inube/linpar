@@ -6,21 +6,21 @@ import { IClient } from "@context/AppContext/types";
 
 function CheckingCredentials({ clients }: { clients: IClient[] }) {
   const navigate = useNavigate();
-  const { user } = useContext(AppContext);
+  const { linparContext } = useContext(AppContext);
 
   const checkCredentials = useCallback(async () => {
     try {
-      if (!user) {
+      if (!linparContext) {
         return;
       }
 
-      if (user) {
+      if (linparContext) {
         if (!clients || clients.length === 0) {
           navigate("/login/error/not-related-clients");
         } else if (clients.length === 1) {
           navigate("/login/loading-app");
         } else {
-          navigate(`/login/${user.id}/clients`);
+          navigate(`/login/${linparContext.id}/clients`);
         }
       } else {
         navigate("/login/error/not-available");
@@ -28,7 +28,7 @@ function CheckingCredentials({ clients }: { clients: IClient[] }) {
     } catch (error) {
       navigate("/login/error/not-available");
     }
-  }, [user, navigate, clients]);
+  }, [linparContext, navigate, clients]);
 
   useEffect(() => {
     const timer = setTimeout(checkCredentials, 2000);
