@@ -40,12 +40,12 @@ const renderLogo = (imgUrl: string) => {
 function HomeUI(props: HomeProps) {
   const { data } = props;
 
-  const { user } = useContext(AppContext);
+  const { linparContext } = useContext(AppContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
-  const username = user.username.split(" ")[0];
+  const username = linparContext.username.split(" ")[0];
   const handleClickOutside = (event: MouseEvent) => {
     if (
       userMenuRef.current &&
@@ -76,7 +76,7 @@ function HomeUI(props: HomeProps) {
   };
 
   const filterDataConfig = () => {
-    if (bussinessUnitOptionTotal.includes(user.company)) return data;
+    if (bussinessUnitOptionTotal.includes(linparContext.company)) return data;
     return data?.filter((card) => !removeBussinessUnit.includes(card.id));
   };
 
@@ -86,14 +86,17 @@ function HomeUI(props: HomeProps) {
         <Header
           portalId="portal"
           navigation={navigationConfig}
-          logoURL={renderLogo(user.operator.logo)}
-          userName={user.username}
-          client={user.company}
+          logoURL={renderLogo(linparContext.businessManager.logo)}
+          userName={linparContext.username}
+          client={linparContext.company}
         />
       </StyledHeaderContainer>
       {showUserMenu && (
         <StyledMenuContainer ref={userMenuRef}>
-          <MenuUser userName={user.username} businessUnit={user.company} />
+          <MenuUser
+            userName={linparContext.username}
+            businessUnit={linparContext.company}
+          />
           <MenuSection
             sections={[
               {

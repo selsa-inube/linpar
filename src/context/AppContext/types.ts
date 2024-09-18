@@ -1,4 +1,4 @@
-interface IOperator {
+interface IbusinessManager {
   name: string;
   logo: string;
 }
@@ -7,7 +7,7 @@ interface IUser {
   username: string;
   id: string;
   company: string;
-  operator: IOperator;
+  businessManager: IbusinessManager;
 }
 
 interface IClient {
@@ -18,7 +18,7 @@ interface IClient {
 }
 
 interface IAppContext {
-  user: IUser;
+  linparContext: IUser;
   handleClientChange: (client: IClient) => void;
 }
 

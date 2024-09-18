@@ -41,20 +41,20 @@ function Invite() {
     Record<string, unknown>[]
   >([]);
 
-  const { user } = useContext(AppContext);
+  const { linparContext } = useContext(AppContext);
 
   const resetSearchUserRef = useRef(() => {});
   const navigate = useNavigate();
 
   const screenMovil = useMediaQuery("(max-width: 744px)");
 
-  const name = user.username?.split(" ");
+  const name = linparContext.username?.split(" ");
 
   useEffect(() => {
     rolesTerceros();
   }, []);
   const rolesTerceros = () => {
-    if (!user) return;
+    if (!linparContext) return;
     if (dataInvitationUsers.length === 0) {
       setLoading(true);
       getSearchAllTercero()

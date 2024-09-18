@@ -43,8 +43,8 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
 const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [tokenWithRef, dispatch] = useReducer(tokenReducer, {});
   const [loading, setLoading] = useState(true);
-  const { user } = useContext(AppContext);
-  const clientName = user.company.toLowerCase();
+  const { linparContext } = useContext(AppContext);
+  const clientName = linparContext.company.toLowerCase();
 
   useEffect(() => {
     getTokens(clientName)
