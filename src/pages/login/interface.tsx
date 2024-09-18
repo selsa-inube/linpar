@@ -37,7 +37,7 @@ function LoginUI() {
               Bienvenido
             </Text>
             <Text as="h1" type="headline" size="large">
-              iSetting Portal
+              Linpar Portal
             </Text>
           </Stack>
           <StyledImage

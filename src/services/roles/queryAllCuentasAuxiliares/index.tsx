@@ -1,5 +1,5 @@
 import { environment } from "@src/config/environment";
-import { ICuentasAuxiliaresPorRol } from "@src/pages/privileges/outlets/roles/types";
+import { ICuentasAuxiliaresPorRol } from "@src/pages/catalogs/outlets/roles/types";
 import { mapRolesCuentasAuxiliaresApiToEntities } from "./mappers";
 
 const getRolesCuentasAuxiliares = async (): Promise<

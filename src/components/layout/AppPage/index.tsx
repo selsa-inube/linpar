@@ -8,7 +8,12 @@ import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
 
-import { navigationConfig, logoutConfig } from "./config/apps.config";
+import {
+  navigationConfig,
+  logoutConfig,
+  removeBussinessUnit,
+  bussinessUnitOptionTotal,
+} from "./config/apps.config";
 
 import {
   StyledAppPage,
@@ -66,6 +71,19 @@ function AppPage() {
     setShowUserMenu(false);
   };
 
+  const filterNavigationConfig = () => {
+    if (bussinessUnitOptionTotal.includes(user.company))
+      return navigationConfig;
+    const DataConfig = { ...navigationConfig };
+    removeBussinessUnit.forEach((unit) => {
+      delete DataConfig.sections.administrate.links[
+        unit as keyof typeof DataConfig.sections.administrate.links
+      ];
+    });
+
+    return DataConfig;
+  };
+
   return (
     <StyledAppPage>
       <Grid templateRows="auto 1fr" height="100vh" justifyContent="unset">
@@ -113,7 +131,7 @@ function AppPage() {
             {!smallScreen && (
               <StyledContainerNav>
                 <Nav
-                  navigation={navigationConfig}
+                  navigation={filterNavigationConfig()}
                   logoutPath={logoutConfig.logoutPath}
                   logoutTitle={logoutConfig.logoutTitle}
                 />

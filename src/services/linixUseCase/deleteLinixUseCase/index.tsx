@@ -1,5 +1,5 @@
 import { environment } from "@src/config/environment";
-import { UseCase } from "@pages/privileges/outlets/linixUseCase/types";
+import { UseCase } from "@pages/catalogs/outlets/linixUseCase/types";
 import { IdeleteLinixUseCase } from "./types";
 import { mapLinixUseCaseDeleteEntityToApi } from "./mappers";
 

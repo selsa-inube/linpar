@@ -20,6 +20,7 @@ import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
 import { environment } from "./config/environment";
 import { Home } from "./pages/home";
+import { CatalogsRoutes } from "./routes/catalogs";
 
 function LogOut() {
   localStorage.clear();
@@ -39,6 +40,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<FirstPage />} errorElement={<ErrorPage />} />
       <Route path="login/*" element={<LoginRoutes />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
+      <Route path="catalogs/*" element={<CatalogsRoutes />} />
       <Route path="people/*" element={<PeopleRoutes />} />
       <Route path="logout" element={<LogOut />} />
       <Route

@@ -1,6 +1,6 @@
 import { environment } from "@src/config/environment";
 
-import { Option } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
+import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 import { mapSelectLinixUseCaseApiToEntities } from "./mappers";
 
