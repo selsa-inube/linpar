@@ -22,7 +22,7 @@ function CheckingCredentials({ clients }: { clients: IClient[] }) {
         } else if (clients.length === 1) {
           navigate("/login/loading-app");
         } else {
-          navigate(`/login/${linparData.user.id}/clients`);
+          navigate(`/login/${linparData.user.userAccount}/clients`);
         }
       } else {
         navigate("/login/error/not-available");

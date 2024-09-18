@@ -30,11 +30,11 @@ function Clients({ clients }: IClients) {
     const selectOption = clients.filter(
       (client0) => client0.name === event.target.value
     )[0].sigla;
-    const user = linparData.user || {};
+    const businessUnit = linparData.businessUnit || {};
 
     setLinparData((prev) => ({
       ...prev,
-      user: { ...user, company: selectOption },
+      businessUnit: { ...businessUnit, abbreviatedName: selectOption },
     }));
     setClientSigla(selectOption);
   };

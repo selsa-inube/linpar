@@ -1,7 +1,6 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import linparLogo from "@assets/images/linpar.png";
 import { IBusinessmanagers } from "@services/businessManager/types";
 import { IStaffPortalByBusinessManager } from "@services/staffPortal/types";
 import { decrypt } from "@src/utils/encrypt";
@@ -33,17 +32,26 @@ function LinparProvider(props: LinparProviderProps) {
   }, [clientSigla]);
 
   const [linparData, setLinparData] = useState<ILinparData>({
-    abbreviatedName: "",
-    staffPortalCatalogId: "",
-    businessManagerId: "",
-    publicCode: "",
-    urlBrand: "",
-    urlLogo: "",
+    portal: {
+      abbreviatedName: "",
+      staffPortalCatalogId: "",
+      businessManagerId: "",
+    },
+    businessManager: {
+      publicCode: "",
+      abbreviatedName: "",
+      urlBrand: "",
+      urlLogo: "",
+    },
+    businessUnit: {
+      publicCode: "",
+      abbreviatedName: clientSigla,
+      businessUnit: "",
+      urlLogo: "",
+    },
     user: {
-      username: user?.name || "",
-      id: user?.id || "abc123",
-      company: clientSigla,
-      businessManager: { name: "Linpar", logo: linparLogo },
+      userAccount: "abc123",
+      userName: user?.name || "",
     },
   });
 
@@ -76,13 +84,25 @@ function LinparProvider(props: LinparProviderProps) {
 
   useEffect(() => {
     if (!businessManagers) return;
+
+    const portalDataFiltered = portalData.find(
+      (data) => data.staffPortalId === portalCode
+    );
     setLinparData((prev) => ({
       ...prev,
-      abbreviatedName: businessManagers.abbreviatedName || "",
-      businessManagerId: businessManagers.businessManagerId || "",
-      publicCode: businessManagers.publicCode || "",
-      urlBrand: businessManagers.urlBrand || "",
-      urlLogo: businessManagers.urlLogo || "",
+      portal: {
+        ...prev.portal,
+        abbreviatedName: portalDataFiltered?.abbreviatedName || "",
+        staffPortalCatalogId: portalDataFiltered?.staffPortalId || "",
+        businessManagerId: portalDataFiltered?.businessManagerId || "",
+      },
+      businessManager: {
+        ...prev.businessManager,
+        publicCode: businessManagers.publicCode || "",
+        abbreviatedName: businessManagers.abbreviatedName || "",
+        urlBrand: businessManagers.urlBrand || "",
+        urlLogo: businessManagers.urlLogo || "",
+      },
     }));
   }, [businessManagers]);
 

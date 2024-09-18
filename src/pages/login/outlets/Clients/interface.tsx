@@ -2,8 +2,9 @@ import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioClient } from "@components/cards/RadioClient";
-import { IClientState } from "./types";
 import { IClient } from "@context/AppContext/types";
+import { IClientState } from "./types";
+
 import {
   StyledClients,
   StyledClientsList,

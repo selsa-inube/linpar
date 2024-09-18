@@ -33,7 +33,11 @@ function LogOut() {
 
 function FirstPage() {
   const { linparData } = useContext(LinparContext);
-  return linparData.user.company.length === 0 ? <Login /> : <Home />;
+  return linparData.businessUnit.abbreviatedName.length === 0 ? (
+    <Login />
+  ) : (
+    <Home />
+  );
 }
 
 const router = createBrowserRouter(

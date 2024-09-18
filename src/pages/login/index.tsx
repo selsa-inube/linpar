@@ -14,7 +14,7 @@ function Login() {
       location.pathname === "/login/" ||
       location.pathname === "/"
     ) {
-      navigate(`/login/${linparData.user.id}/checking-credentials/`);
+      navigate(`/login/${linparData.user.userAccount}/checking-credentials/`);
     }
   }, [location, navigate, linparData]);
 

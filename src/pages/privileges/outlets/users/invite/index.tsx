@@ -48,7 +48,7 @@ function Invite() {
 
   const screenMovil = useMediaQuery("(max-width: 744px)");
 
-  const name = linparData.user.username?.split(" ");
+  const name = linparData.user.userName?.split(" ");
 
   useEffect(() => {
     rolesTerceros();
