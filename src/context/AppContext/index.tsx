@@ -12,7 +12,7 @@ interface LinparProviderProps {
   children: React.ReactNode;
 }
 
-function LinparProvider(props: LinparProviderProps) {
+function LinparContextProvider(props: LinparProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
   const [portalData, setPortalData] = useState<IStaffPortalByBusinessManager[]>(
@@ -122,5 +122,5 @@ function LinparProvider(props: LinparProviderProps) {
   );
 }
 
-export { LinparContext, LinparProvider };
+export { LinparContext, LinparContextProvider };
 export type { LinparProviderProps };

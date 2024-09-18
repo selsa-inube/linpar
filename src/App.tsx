@@ -9,7 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { AppPage } from "@components/layout/AppPage";
-import { LinparContext, LinparProvider } from "@context/AppContext";
+import { LinparContext, LinparContextProvider } from "@context/AppContext";
 import { GlobalStyles } from "@styles/global";
 import { Login } from "@pages/login";
 import { getStaffPortalByBusinessManager } from "@services/staffPortal";
@@ -58,7 +58,7 @@ const router = createBrowserRouter(
 
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
-const paramValue = params.get("portal");
+const portalCode = params.get("portal");
 
 function App() {
   const [portalPublicCode, setPortalPublicCode] = useState<
@@ -88,7 +88,7 @@ function App() {
   }, []);
 
   const portalPublicCodeFiltered = portalPublicCode.filter(
-    (data) => data.staffPortalId === paramValue
+    (data) => data.staffPortalId === portalCode
   );
 
   const validateBusinessManagers = async () => {
@@ -123,7 +123,7 @@ function App() {
         !isLoading &&
         !isAuthenticated
       ) {
-        const encryptedParamValue = encrypt(paramValue!);
+        const encryptedParamValue = encrypt(portalCode!);
         localStorage.setItem("portalCode", encryptedParamValue);
         loginWithRedirect();
       } else if (isAuthenticated) {
@@ -155,10 +155,10 @@ function App() {
   }
 
   return (
-    <LinparProvider>
+    <LinparContextProvider>
       <GlobalStyles />
       <RouterProvider router={router} />
-    </LinparProvider>
+    </LinparContextProvider>
   );
 }
 
