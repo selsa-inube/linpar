@@ -41,7 +41,7 @@ const activeUsers = async (
     }
     return data;
   } catch (error) {
-    console.error("Failed to delete user:", error);
+    console.error("Failed to activate user:", error);
     throw error;
   }
 };
