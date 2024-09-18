@@ -17,12 +17,12 @@ import { IStaffPortalByBusinessManager } from "@services/staffPortal/types";
 import { getBusinessmanagers } from "@services/businessManager";
 import { IBusinessmanagers } from "@services/businessManager/types";
 import { Home } from "@pages/home";
-import { environment } from "./config/environment";
-import { encrypt } from "./utils/encrypt";
-import { RespondInvitationRoutes } from "./routes/respondInvitation";
-import { LoginRoutes } from "./routes/login";
-import { PrivilegesRoutes } from "./routes/privileges";
-import { PeopleRoutes } from "./routes/people";
+import { environment } from "@config/environment";
+import { encrypt } from "@utils/encrypt";
+import { RespondInvitationRoutes } from "@routes/respondInvitation";
+import { LoginRoutes } from "@routes/login";
+import { PrivilegesRoutes } from "@routes/privileges";
+import { PeopleRoutes } from "@routes/people";
 
 function LogOut() {
   localStorage.clear();
