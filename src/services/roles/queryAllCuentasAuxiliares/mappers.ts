@@ -1,4 +1,4 @@
-import { ICuentasAuxiliaresPorRol } from "@pages/catalogs/outlets/roles/types";
+import { ICuentasAuxiliaresPorRol } from "@pages/privileges/outlets/roles/types";
 
 const mapRolesCuentasAuxiliaresApiToEntity = (
   rolesCuentasA: Record<string, string | number | object>

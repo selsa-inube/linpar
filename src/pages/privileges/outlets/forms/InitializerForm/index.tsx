@@ -4,7 +4,7 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { generalMessage } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
+import { generalMessage } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/messages.config";
 
 import { InitializerFormUI } from "./interface";
 import { updateItemData } from "@mocks/utils/dataMock.service";

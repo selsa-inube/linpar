@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getPositions } from "@services/positions/getPositons";
 import { getRolesPorCargo } from "@services/positions/rolesPorCargo";
-import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
 
 import { EditPositionUI } from "./interface";
 import {
@@ -12,7 +11,7 @@ import {
   IHandleUpdateDataSwitchstep,
   IPosition,
 } from "../add-position/types";
-
+import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 import { editPositionTabsConfig } from "./config/editPosition.config";
 import { initalValuesPositions } from "../add-position/config/initialValues";
 

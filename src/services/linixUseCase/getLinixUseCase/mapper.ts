@@ -1,5 +1,5 @@
-import { formSelectOptionId } from "@pages/catalogs/outlets/linixUseCase/config/dataUseCases.config";
-import { UseCase } from "@pages/catalogs/outlets/linixUseCase/types";
+import { formSelectOptionId } from "@src/pages/privileges/outlets/linixUseCase/config/dataUseCases.config";
+import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
 const mapLinixUseCaseApiToEntity = (
   linixUseCase: Record<string, string | number | object>
