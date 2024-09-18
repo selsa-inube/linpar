@@ -76,11 +76,11 @@ function App() {
 
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
-    const paramValue = params.get("portal");
+    const portalCode = params.get("portal");
 
     if (portalPublicCode.length > 0) {
       const portalDataFiltered = portalPublicCode.filter(
-        (data) => data.staffPortalId === paramValue
+        (data) => data.staffPortalId === portalCode
       );
 
       if (portalDataFiltered.length > 0) {
