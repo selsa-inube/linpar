@@ -49,7 +49,7 @@ function LinparContextProvider(props: LinparProviderProps) {
       urlLogo: "",
     },
     user: {
-      userAccount: "abc123",
+      userAccount: user?.name || "",
       userName: user?.name || "",
     },
   });

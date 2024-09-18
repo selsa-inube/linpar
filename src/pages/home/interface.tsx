@@ -92,15 +92,11 @@ function HomeUI(props: HomeProps) {
           navigation={navigationConfig}
           logoURL={renderLogo(linparData.businessUnit.urlLogo)}
           userName={linparData.user.userName}
-          client={linparData.businessUnit.abbreviatedName}
         />
       </StyledHeaderContainer>
       {showUserMenu && (
         <StyledMenuContainer ref={userMenuRef}>
-          <MenuUser
-            userName={linparData.user.userName}
-            businessUnit={linparData.businessUnit.abbreviatedName}
-          />
+          <MenuUser userName={linparData.user.userName} />
           <MenuSection
             sections={[
               {
