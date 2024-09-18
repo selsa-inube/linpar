@@ -113,7 +113,7 @@ function HomeUI(props: HomeProps) {
           />
         </StyledMenuContainer>
       )}
-      ,
+
       {showLogoutModal && (
         <LogoutModal
           logoutPath="/logout"

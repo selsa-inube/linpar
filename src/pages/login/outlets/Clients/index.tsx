@@ -29,14 +29,20 @@ function Clients({ clients }: IClients) {
     setClientLocal({ ref: event.target, value: false });
     const selectOption = clients.filter(
       (client0) => client0.name === event.target.value
-    )[0].sigla;
+    );
     const businessUnit = linparData.businessUnit || {};
 
     setLinparData((prev) => ({
       ...prev,
-      businessUnit: { ...businessUnit, abbreviatedName: selectOption },
+      businessUnit: {
+        ...businessUnit,
+        abbreviatedName: selectOption[0].sigla,
+        urlLogo: selectOption[0].logo,
+        businessUnit: selectOption[0].sigla,
+        publicCode: selectOption[0].id,
+      },
     }));
-    setBusinessUnitSigla(selectOption);
+    setBusinessUnitSigla(selectOption[0].sigla);
   };
 
   const handleSubmit = () => {
