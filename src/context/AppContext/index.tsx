@@ -22,13 +22,13 @@ function LinparContextProvider(props: LinparProviderProps) {
     {} as IBusinessmanagers
   );
 
-  const [clientSigla, setClientSigla] = useState(
-    localStorage.getItem("clientSigla") || ""
+  const [businessUnitSigla, setBusinessUnitSigla] = useState(
+    localStorage.getItem("businessUnitSigla") || ""
   );
 
   useEffect(() => {
-    localStorage.setItem("clientSigla", clientSigla);
-  }, [clientSigla]);
+    localStorage.setItem("businessUnitSigla", businessUnitSigla);
+  }, [businessUnitSigla]);
 
   const [linparData, setLinparData] = useState<ILinparData>({
     portal: {
@@ -44,7 +44,7 @@ function LinparContextProvider(props: LinparProviderProps) {
     },
     businessUnit: {
       publicCode: "",
-      abbreviatedName: clientSigla,
+      abbreviatedName: businessUnitSigla,
       businessUnit: "",
       urlLogo: "",
     },
@@ -108,11 +108,11 @@ function LinparContextProvider(props: LinparProviderProps) {
   const linparContext = useMemo(
     () => ({
       linparData,
-      clientSigla,
+      businessUnitSigla,
       setLinparData,
-      setClientSigla,
+      setBusinessUnitSigla,
     }),
-    [linparData, clientSigla, setLinparData, setClientSigla]
+    [linparData, businessUnitSigla, setLinparData, setBusinessUnitSigla]
   );
 
   return (

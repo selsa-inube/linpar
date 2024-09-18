@@ -14,7 +14,7 @@ function Clients({ clients }: IClients) {
   });
 
   const navigate = useNavigate();
-  const { setLinparData, linparData, setClientSigla } =
+  const { setLinparData, linparData, setBusinessUnitSigla } =
     useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +36,7 @@ function Clients({ clients }: IClients) {
       ...prev,
       businessUnit: { ...businessUnit, abbreviatedName: selectOption },
     }));
-    setClientSigla(selectOption);
+    setBusinessUnitSigla(selectOption);
   };
 
   const handleSubmit = () => {

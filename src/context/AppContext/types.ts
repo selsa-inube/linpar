@@ -37,9 +37,9 @@ interface ILinparData {
 
 interface ILinparContext {
   linparData: ILinparData;
-  clientSigla: string;
+  businessUnitSigla: string;
   setLinparData: React.Dispatch<React.SetStateAction<ILinparData>>;
-  setClientSigla: React.Dispatch<React.SetStateAction<string>>;
+  setBusinessUnitSigla: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export type { IClient, ILinparData, ILinparContext };
