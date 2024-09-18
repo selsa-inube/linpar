@@ -1,4 +1,4 @@
-import { IRol } from "@pages/catalogs/outlets/roles/types";
+import { IRol } from "@pages/privileges/outlets/roles/types";
 
 const mapRolesUseCaseApiToEntity = (
   roles: Record<string, string | number | object>

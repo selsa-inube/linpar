@@ -1,5 +1,5 @@
-import { selectLinixUseCases } from "@mocks/catalogs/linixUseCases/utils.mock";
-import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
+import { selectLinixUseCases } from "@mocks/privileges/linixUseCases/utils.mock";
+import { Option } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 const mapSelectLinixUseCase = (
   selectLinixUseCase: Record<string, string | number | object>

@@ -6,13 +6,13 @@ import { getAll } from "@mocks/utils/dataMock.service";
 import { EMessageType } from "@src/types/messages.types";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { updateItemData } from "@mocks/utils/dataMock.service";
+import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { CompleteInvitationUI } from "./interface";
 import { completeInvitationData, completeInvitationStepsRules } from "./utils";
 import { IFormCompleteInvitation, IFormCompleteInvitationRef } from "./types";
 import { IAssignmentFormEntry } from "../../../types/forms.types";
-import { dataToAssignmentFormEntry } from "@src/pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
 
 function CompleteInvitation() {
   const { invitation_id } = useParams<{ invitation_id: string }>();

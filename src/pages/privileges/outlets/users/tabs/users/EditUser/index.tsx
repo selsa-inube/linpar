@@ -6,7 +6,7 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
+import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { getUsers } from "@services/users/getUsers";
 import { getSucursales } from "@services/users/sucursales";
 import { getProyectos } from "@services/users/proyectos";
