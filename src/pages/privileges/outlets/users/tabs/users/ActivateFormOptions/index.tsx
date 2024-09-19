@@ -74,8 +74,6 @@ export function ActivateUsers<T extends IDataActivateOption>(
     type: "activate" | "deactivate" | "failed" = "failed"
   ) => {
     let messageType;
-    if (type === "activate") messageType = activateUsersMessages.activation;
-    if (type === "deactivate") messageType = activateUsersMessages.deactivation;
     if (type === "failed") messageType = activateUsersMessages.failed;
 
     messageType &&
