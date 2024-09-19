@@ -8,7 +8,7 @@ import { StyledAppCard } from "./styles";
 interface AppCardProps {
   label: string;
   description: string;
-  icon: JSX.Element;
+  icon: string | JSX.Element;
   url: string;
 }
 
