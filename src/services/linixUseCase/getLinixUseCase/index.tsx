@@ -1,4 +1,4 @@
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { mapLinixUseCaseApiToEntities } from "./mapper";
 import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 

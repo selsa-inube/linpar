@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { LoginUI } from "./interface";
 import { LinparContext } from "@context/AppContext";
+import { LoginUI } from "./interface";
 
 function Login() {
   const navigate = useNavigate();

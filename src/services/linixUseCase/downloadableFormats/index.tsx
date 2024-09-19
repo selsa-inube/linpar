@@ -1,4 +1,4 @@
-import { environment, retries, timeout } from "@src/config/environment";
+import { environment, retries, timeout } from "@config/environment";
 import { mapDownloadableFormatsApiToEntities } from "./mappers";
 
 const getDownloadableFormats = async (

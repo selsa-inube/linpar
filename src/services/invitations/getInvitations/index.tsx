@@ -1,4 +1,4 @@
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { mapInvitationsApiToEntities } from "./mappers";
 

@@ -1,4 +1,4 @@
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { ICuentasAuxiliaresPorRol } from "@src/pages/privileges/outlets/roles/types";
 import { mapRolesCuentasAuxiliaresApiToEntities } from "./mappers";
 

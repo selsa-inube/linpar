@@ -1,4 +1,4 @@
-import { environment, retries, timeout } from "@src/config/environment";
+import { environment, retries, timeout } from "@config/environment";
 import { mapNominaFormatsApiToEntities } from "./mappers";
 
 const getNomina = async (k_Usu: string): Promise<Record<string, unknown>[]> => {

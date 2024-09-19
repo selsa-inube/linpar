@@ -1,4 +1,4 @@
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { mapPositionsApiToEntities } from "./mappers";
 
 const getPositions = async (): Promise<Record<string, unknown>[]> => {
