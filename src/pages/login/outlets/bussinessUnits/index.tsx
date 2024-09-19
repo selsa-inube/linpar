@@ -1,9 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { AppContext } from "@context/AppContext";
-import { IBussinessUnit } from "@context/AppContext/types";
+import { LinparContext } from "@context/AppContext";
 import { IBussinessUnits } from "@routes/login";
+import { IBusinessUnit } from "../../types";
 import { BussinessUnitsUI } from "./interface";
 import { IBussinessUnitState } from "./types";
 
@@ -16,7 +15,8 @@ function BussinessUnits({ bussinessUnits }: IBussinessUnits) {
     });
 
   const navigate = useNavigate();
-  const { handleBussinessUnitChange } = useContext(AppContext);
+  const { setLinparData, linparData, setBusinessUnitSigla } =
+    useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (bussinessUnitLocal.ref) {
@@ -28,11 +28,22 @@ function BussinessUnits({ bussinessUnits }: IBussinessUnits) {
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBussinessUnitLocal({ ref: event.target, value: false });
-    handleBussinessUnitChange(
-      bussinessUnits.filter(
-        (bussinessUnit0) => bussinessUnit0.name === event.target.value
-      )[0]
+    const selectOption = bussinessUnits.filter(
+      (bussinessUnit0) => bussinessUnit0.name === event.target.value
     );
+    const businessUnit = linparData.businessUnit || {};
+
+    setLinparData((prev) => ({
+      ...prev,
+      businessUnit: {
+        ...businessUnit,
+        abbreviatedName: selectOption[0].sigla,
+        urlLogo: selectOption[0].logo,
+        businessUnit: selectOption[0].sigla,
+        publicCode: selectOption[0].id,
+      },
+    }));
+    setBusinessUnitSigla(selectOption[0].sigla);
   };
 
   const handleSubmit = () => {
@@ -40,7 +51,7 @@ function BussinessUnits({ bussinessUnits }: IBussinessUnits) {
   };
 
   function filterBussinessUnits(
-    bussinessUnits: IBussinessUnit[],
+    bussinessUnits: IBusinessUnit[],
     search: string
   ) {
     return bussinessUnits.filter((bussinessUnit) => {

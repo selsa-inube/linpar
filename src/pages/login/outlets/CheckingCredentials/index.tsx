@@ -1,30 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import { useCallback, useContext, useEffect } from "react";
+
+import { LinparContext } from "@context/AppContext";
+
 import { CheckingCredentialsUI } from "./interface";
-import { AppContext } from "@context/AppContext";
-import { IBussinessUnit } from "@context/AppContext/types";
+import { IBusinessUnit } from "../../types";
 
 function CheckingCredentials({
   bussinessUnits,
 }: {
-  bussinessUnits: IBussinessUnit[];
+  bussinessUnits: IBusinessUnit[];
 }) {
   const navigate = useNavigate();
-  const { user } = useContext(AppContext);
+  const { linparData } = useContext(LinparContext);
 
   const checkCredentials = useCallback(async () => {
     try {
-      if (!user) {
+      if (!linparData) {
         return;
       }
 
-      if (user) {
+      if (linparData) {
         if (!bussinessUnits || bussinessUnits.length === 0) {
           navigate("/login/error/not-related-bussiness-units");
         } else if (bussinessUnits.length === 1) {
           navigate("/login/loading-app");
         } else {
-          navigate(`/login/${user.id}/bussiness-units`);
+          navigate(`/login/${linparData.user.userAccount}/bussiness-units`);
         }
       } else {
         navigate("/login/error/not-available");
@@ -32,7 +34,7 @@ function CheckingCredentials({
     } catch (error) {
       navigate("/login/error/not-available");
     }
-  }, [user, navigate, bussinessUnits]);
+  }, [linparData, navigate, bussinessUnits]);
 
   useEffect(() => {
     const timer = setTimeout(checkCredentials, 2000);

@@ -1,46 +1,126 @@
-import { createContext, useState, useEffect } from "react";
-
-import linparLogo from "@assets/images/linpar.png";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IBusinessmanagers } from "@services/businessManager/types";
+import { IStaffPortalByBusinessManager } from "@services/staffPortal/types";
+import { decrypt } from "@src/utils/encrypt";
+import { validateBusinessManagers, validateConsultation } from "./utils";
+import { ILinparContext, ILinparData } from "./types";
 
-import { IAppContext, AppContextProviderProps, IBussinessUnit } from "./types";
+const LinparContext = createContext<ILinparContext>({} as ILinparContext);
 
-export const AppContext = createContext<IAppContext>({
-  user: { username: "", id: "", company: "", operator: { name: "", logo: "" } },
-  handleBussinessUnitChange: () => {},
-});
+interface LinparProviderProps {
+  children: React.ReactNode;
+}
 
-export default function AppContextProvider(props: AppContextProviderProps) {
+function LinparContextProvider(props: LinparProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
-  const [BussinessUnitSigla, setBussinessUnitSigla] = useState(
-    localStorage.getItem("BussinessUnitSigla") || ""
+  const [portalData, setPortalData] = useState<IStaffPortalByBusinessManager[]>(
+    []
+  );
+  const [businessManagers, setBusinessManagers] = useState<IBusinessmanagers>(
+    {} as IBusinessmanagers
   );
 
-  function handleBussinessUnitChange(BussinessUnit: IBussinessUnit) {
-    const { sigla } = BussinessUnit;
-    setBussinessUnitSigla(sigla);
+  const [businessUnitSigla, setBusinessUnitSigla] = useState(
+    localStorage.getItem("businessUnitSigla") || ""
+  );
+
+  useEffect(() => {
+    localStorage.setItem("businessUnitSigla", businessUnitSigla);
+  }, [businessUnitSigla]);
+
+  const [linparData, setLinparData] = useState<ILinparData>({
+    portal: {
+      abbreviatedName: "",
+      staffPortalCatalogId: "",
+      businessManagerId: "",
+    },
+    businessManager: {
+      publicCode: "",
+      abbreviatedName: "",
+      urlBrand: "",
+      urlLogo: "",
+    },
+    businessUnit: {
+      publicCode: "",
+      abbreviatedName: businessUnitSigla,
+      businessUnit: "",
+      urlLogo: "",
+    },
+    user: {
+      userAccount: user?.name || "",
+      userName: user?.name || "",
+    },
+  });
+
+  const portalId = localStorage.getItem("portalCode");
+  let portalCode = "";
+  if (portalId) {
+    portalCode = decrypt(portalId);
   }
 
   useEffect(() => {
-    localStorage.setItem("BussinessUnitSigla", BussinessUnitSigla);
-  }, [BussinessUnitSigla]);
+    validateConsultation().then((data) => {
+      setPortalData(data);
+    });
+  }, []);
 
-  const company = BussinessUnitSigla;
+  useEffect(() => {
+    const portalDataFiltered = portalData.filter(
+      (data) => data.staffPortalId === portalCode
+    );
+    const foundBusiness = portalDataFiltered.find(
+      (bussines) => bussines
+    )?.businessManagerId;
 
-  const userContext: IAppContext = {
-    user: {
-      username: `${user?.name}`,
-      id: "abc123",
-      company: company,
-      operator: {
-        name: "Linpar",
-        logo: linparLogo,
+    if (portalDataFiltered.length > 0 && foundBusiness) {
+      validateBusinessManagers(foundBusiness).then((data) => {
+        setBusinessManagers(data);
+      });
+    }
+  }, [portalData]);
+
+  useEffect(() => {
+    if (!businessManagers) return;
+
+    const portalDataFiltered = portalData.find(
+      (data) => data.staffPortalId === portalCode
+    );
+    setLinparData((prev) => ({
+      ...prev,
+      portal: {
+        ...prev.portal,
+        abbreviatedName: portalDataFiltered?.abbreviatedName || "",
+        staffPortalCatalogId: portalDataFiltered?.staffPortalId || "",
+        businessManagerId: portalDataFiltered?.businessManagerId || "",
       },
-    },
-    handleBussinessUnitChange,
-  };
+      businessManager: {
+        ...prev.businessManager,
+        publicCode: businessManagers.publicCode || "",
+        abbreviatedName: businessManagers.abbreviatedName || "",
+        urlBrand: businessManagers.urlBrand || "",
+        urlLogo: businessManagers.urlLogo || "",
+      },
+    }));
+  }, [businessManagers]);
+
+  const linparContext = useMemo(
+    () => ({
+      linparData,
+      businessUnitSigla,
+      setLinparData,
+      setBusinessUnitSigla,
+    }),
+    [linparData, businessUnitSigla, setLinparData, setBusinessUnitSigla]
+  );
+
   return (
-    <AppContext.Provider value={userContext}>{children}</AppContext.Provider>
+    <LinparContext.Provider value={linparContext}>
+      {children}
+    </LinparContext.Provider>
   );
 }
+
+export { LinparContext, LinparContextProvider };
+export type { LinparProviderProps };

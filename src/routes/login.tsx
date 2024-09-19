@@ -4,13 +4,14 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
 import { Login } from "@pages/login";
-import { IBussinessUnit } from "@context/AppContext/types";
+
 import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 import { BussinessUnits } from "@pages/login/outlets/bussinessUnits";
 import { ErrorNotBussinessUnit } from "@pages/login/errors/ErrorNotBusinessManager";
+import { IBusinessUnit } from "@pages/login/types";
 
 export interface IBussinessUnits {
-  bussinessUnits: IBussinessUnit[];
+  bussinessUnits: IBusinessUnit[];
 }
 function LoginRoutes() {
   const bussinessUnits = businessUnitDataMock;

@@ -2,7 +2,7 @@ import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit ";
-import { IBussinessUnit } from "@context/AppContext/types";
+
 import {
   StyledBussinessUnits,
   StyledBussinessUnitsList,
@@ -11,9 +11,10 @@ import {
 } from "./styles";
 
 import { IBussinessUnitState } from "./types";
+import { IBusinessUnit } from "../../types";
 
 interface BussinessUnitsUIProps {
-  bussinessUnits: IBussinessUnit[];
+  bussinessUnits: IBusinessUnit[];
   search: string;
   bussinessUnit: IBussinessUnitState;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,9 +22,9 @@ interface BussinessUnitsUIProps {
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
   filterBussinessUnits: (
-    bussinessUnits: IBussinessUnit[],
+    bussinessUnits: IBusinessUnit[],
     search: string
-  ) => IBussinessUnit[];
+  ) => IBusinessUnit[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 

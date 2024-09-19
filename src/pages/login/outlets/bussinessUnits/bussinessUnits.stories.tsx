@@ -5,7 +5,7 @@ import { BussinessUnits } from ".";
 
 const story = {
   components: [BussinessUnits],
-  title: "layouts/login/outlets/clients",
+  title: "layouts/login/outlets/bussinessUnits",
   parameters: {
     layout: "fullscreen",
   },

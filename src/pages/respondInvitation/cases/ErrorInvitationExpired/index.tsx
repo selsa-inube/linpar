@@ -1,9 +1,9 @@
 import Expired from "@assets/images/Expired.png";
 import { ErrorPage } from "@components/layout/ErrorPage";
-import { IBussinessUnit } from "@context/AppContext/types";
+import { IBusinessUnit } from "@pages/login/types";
 
 interface ErrorInvitationExpiredProps {
-  bussinessUnitsData?: IBussinessUnit;
+  bussinessUnitsData?: IBusinessUnit;
 }
 
 function ErrorInvitationExpired(props: ErrorInvitationExpiredProps) {

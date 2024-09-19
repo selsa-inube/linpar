@@ -15,16 +15,17 @@ import {
   Textfield,
   useMediaQuery,
 } from "@inube/design-system";
-import { IBussinessUnit } from "@context/AppContext/types";
+
 import { Fieldset } from "@components/inputs/Fieldset";
 import {
   Styledlmage,
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
+import { IBusinessUnit } from "../login/types";
 
 const renderHead = (
-  bussinessUnitsData: IBussinessUnit,
+  bussinessUnitsData: IBusinessUnit,
   smallScreen?: boolean
 ) => {
   return (
@@ -233,7 +234,7 @@ interface RespondInvitationUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  bussinessUnitsData: IBussinessUnit;
+  bussinessUnitsData: IBusinessUnit;
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {

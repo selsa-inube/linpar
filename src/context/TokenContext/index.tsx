@@ -17,7 +17,7 @@ import {
   getTokens,
   updateIdTokens,
 } from "@mocks/themeService/themeService.mock";
-import { AppContext } from "@context/AppContext";
+import { LinparContext } from "@context/AppContext";
 
 const defaultTokenValue: ITokenContextProps = {
   tokenWithRef: {},
@@ -43,8 +43,9 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
 const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [tokenWithRef, dispatch] = useReducer(tokenReducer, {});
   const [loading, setLoading] = useState(true);
-  const { user } = useContext(AppContext);
-  const clientName = user.company.toLowerCase();
+
+  const { businessUnitSigla } = useContext(LinparContext);
+  const clientName = businessUnitSigla.toLowerCase();
 
   useEffect(() => {
     getTokens(clientName)

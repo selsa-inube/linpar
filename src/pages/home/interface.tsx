@@ -4,7 +4,7 @@ import { Header } from "@inubekit/header";
 import { Stack } from "@inubekit/stack";
 
 import { PageTitle } from "@components/PageTitle";
-import { AppContext } from "@context/AppContext";
+
 import { MenuUser } from "@components/navigation/MenuUser";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { LogoutModal } from "@components/feedback/LogoutModal";
@@ -24,6 +24,7 @@ import {
   StyledMenuContainer,
   StyledTitle,
 } from "./styles";
+import { LinparContext } from "@src/context/AppContext";
 
 interface HomeProps {
   data?: ICardData[];
@@ -40,12 +41,12 @@ const renderLogo = (imgUrl: string) => {
 function HomeUI(props: HomeProps) {
   const { data } = props;
 
-  const { user } = useContext(AppContext);
+  const { linparData } = useContext(LinparContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
-  const username = user.username.split(" ")[0];
+  const username = linparData.user.userName.split(" ")[0];
   const handleClickOutside = (event: MouseEvent) => {
     if (
       userMenuRef.current &&
@@ -76,7 +77,10 @@ function HomeUI(props: HomeProps) {
   };
 
   const filterDataConfig = () => {
-    if (bussinessUnitOptionTotal.includes(user.company)) return data;
+    if (
+      bussinessUnitOptionTotal.includes(linparData.businessUnit.abbreviatedName)
+    )
+      return data;
     return data?.filter((card) => !removeBussinessUnit.includes(card.id));
   };
 
@@ -86,14 +90,13 @@ function HomeUI(props: HomeProps) {
         <Header
           portalId="portal"
           navigation={navigationConfig}
-          logoURL={renderLogo(user.operator.logo)}
-          userName={user.username}
-          client={user.company}
+          logoURL={renderLogo(linparData.businessUnit.urlLogo)}
+          userName={linparData.user.userName}
         />
       </StyledHeaderContainer>
       {showUserMenu && (
         <StyledMenuContainer ref={userMenuRef}>
-          <MenuUser userName={user.username} businessUnit={user.company} />
+          <MenuUser userName={linparData.user.userName} />
           <MenuSection
             sections={[
               {
@@ -110,7 +113,7 @@ function HomeUI(props: HomeProps) {
           />
         </StyledMenuContainer>
       )}
-      ,
+
       {showLogoutModal && (
         <LogoutModal
           logoutPath="/logout"

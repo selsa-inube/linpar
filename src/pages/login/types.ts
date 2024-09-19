@@ -9,5 +9,10 @@ interface IUser {
   phone: string;
   clients: number[];
 }
-
-export type { IUser };
+interface IBusinessUnit {
+  id: string;
+  name: string;
+  sigla: string;
+  logo: string;
+}
+export type { IUser, IBusinessUnit };
