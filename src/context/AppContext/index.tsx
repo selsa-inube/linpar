@@ -2,7 +2,7 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IBusinessmanagers } from "@services/businessManager/types";
 import { IStaffPortalByBusinessManager } from "@services/staffPortal/types";
-import { decrypt } from "@src/utils/encrypt";
+import { decrypt } from "@utils/encrypt";
 import { validateBusinessManagers, validateConsultation } from "./utils";
 import { ILinparContext, ILinparData } from "./types";
 
