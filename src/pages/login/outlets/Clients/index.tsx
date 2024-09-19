@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { ClientsUI } from "./interface";
-import { IClientState } from "./types";
 import { useNavigate } from "react-router-dom";
 import { LinparContext } from "@context/AppContext";
 import { IClient } from "@context/AppContext/types";
-import { IClients } from "@src/routes/login";
+import { IClients } from "@routes/login";
+import { ClientsUI } from "./interface";
+import { IClientState } from "./types";
 
 function Clients({ clients }: IClients) {
   const [search, setSearch] = useState("");

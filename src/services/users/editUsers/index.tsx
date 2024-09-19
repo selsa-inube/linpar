@@ -1,4 +1,4 @@
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { IGeneralInformationUsersForm } from "../users.types";
 import { mapEditUsersEntityToApi } from "./mappers";
 

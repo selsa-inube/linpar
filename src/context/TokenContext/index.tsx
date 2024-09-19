@@ -5,19 +5,19 @@ import React, {
   useState,
   useContext,
 } from "react";
-
 import { inube } from "@inube/design-system";
+
+import {
+  getTokens,
+  updateIdTokens,
+} from "@mocks/themeService/themeService.mock";
+import { LinparContext } from "@context/AppContext";
 import {
   IHandleSubmitProps,
   ITokenContextProps,
   TokenActions,
   actionTypes,
 } from "./types";
-import {
-  getTokens,
-  updateIdTokens,
-} from "@mocks/themeService/themeService.mock";
-import { LinparContext } from "@context/AppContext";
 
 const defaultTokenValue: ITokenContextProps = {
   tokenWithRef: {},

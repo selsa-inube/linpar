@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
+import selsaLogo from "@assets/images/selsa.png";
 import { Grid, Stack, Text, useMediaQueries } from "@inube/design-system";
 import { LinparContext } from "@context/AppContext";
-import selsaLogo from "../../assets/images/selsa.png";
 
 import {
   StyledWelcomeContainer,

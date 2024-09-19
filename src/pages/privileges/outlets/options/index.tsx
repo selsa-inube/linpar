@@ -1,4 +1,4 @@
-import { appsConfig } from "@src/components/layout/AppPage/config/apps.config";
+import { appsConfig } from "@components/layout/AppPage/config/apps.config";
 import { PrivilegesOptionsUI } from "@pages/privileges/outlets/options/interface";
 import { privilegeOptionsConfig } from "./config/privileges.config";
 

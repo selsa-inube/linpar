@@ -1,5 +1,5 @@
 import { IInvitationsEntry } from "@services/users/invitation.types";
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { mapInvitationEntityToApi } from "./mappers";
 
 const addLinixInvitation = async (
