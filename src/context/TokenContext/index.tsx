@@ -45,10 +45,10 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [loading, setLoading] = useState(true);
 
   const { businessUnitSigla } = useContext(LinparContext);
-  const clientName = businessUnitSigla.toLowerCase();
+  const businessName = businessUnitSigla.toLowerCase();
 
   useEffect(() => {
-    getTokens(clientName)
+    getTokens(businessName)
       .then((tokenData: typeof inube) => {
         dispatch({
           type: actionTypes.SET_TOKEN,
@@ -60,13 +60,13 @@ const TokenProvider = ({ children }: ITokenProviderProps) => {
         console.error("Failed to fetch token data:", error);
         setLoading(false);
       });
-  }, [clientName]);
+  }, [businessName]);
 
   const handleSubmit = (props: IHandleSubmitProps) => {
     const { domain, block, tokenUpdate } = props;
     let newTokens = { ...tokenWithRef };
     Object.assign(newTokens[domain][block], tokenUpdate);
-    updateIdTokens(clientName, newTokens).then((tokenData: typeof inube) => {
+    updateIdTokens(businessName, newTokens).then((tokenData: typeof inube) => {
       dispatch({ type: actionTypes.SET_TOKEN, payload: tokenData.tokens });
     });
   };
