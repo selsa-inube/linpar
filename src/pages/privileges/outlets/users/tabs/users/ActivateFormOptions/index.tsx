@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { updateActive } from "@mocks/utils/dataMock.service";
 import { EAppearance } from "@src/types/colors.types";
-import { EMessageType, IMessage } from "@src/types/messages.types";
+import { IMessage } from "@src/types/messages.types";
 
 import { ActivateUsersUI } from "./interface";
 import { IMessageState } from "../../../types/forms.types";
@@ -10,10 +9,11 @@ import {
   activateUsersMessages,
   activateUsersModal,
 } from "./config/activateUsers.config";
+import { activatePositions } from "./utils";
 
 export interface IDataActivateOption {
   id: string;
-  active: boolean;
+  active?: string;
   name: string;
 }
 
@@ -36,52 +36,56 @@ export function ActivateUsers<T extends IDataActivateOption>(
   props: IActivateUsersProps<T>
 ) {
   const { data, showComplete, activateModalConfig } = props;
+
   const [showActivateUsersModal, setShowActivateUsersModal] = useState(false);
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
     data: initialMessageState,
   });
 
-  const handleActivateDeactivateUsers = async () => {
-    let messageType = EMessageType.FAILED;
-    const params = {
-      key: "k_Usuari",
-      nameDB: "linix-users",
-      identifier: props.data.id,
-      editData: { i_Activo: !props.data.active ? "Y" : "N" },
-    };
+  const [loading, setLoading] = useState(false);
 
-    try {
-      await updateActive(params);
-      handleToggleModal();
-      if (params.editData.i_Activo === "Y") {
-        messageType = EMessageType.ACTIVATION;
-      }
+  const [changeActive, setchangeActive] = useState(
+    data.active === "Y" ? true : false
+  );
 
-      if (params.editData.i_Activo === "N") {
-        messageType = EMessageType.DEACTIVATION;
-      }
-    } catch (error) {
-      console.error("Error inesperado:", error);
-    }
+  const handleActivateUsers = () => {
+    setLoading(true);
+    const active = activatePositions(props.data.id, changeActive ? "N" : "Y");
+    active
+      .then(() => {
+        setchangeActive(!changeActive);
+        renderMessage(
+          props.data.name,
+          changeActive ? "deactivate" : "activate"
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+        renderMessage(props.data.name, "failed");
+      });
 
-    const { title, description, icon, appearance } =
-      activateUsersMessages[messageType];
-
-    handleShowMessage({
-      title,
-      description: description(data.name),
-      icon,
-      appearance,
-    });
+    setLoading(false);
+    setShowActivateUsersModal(false);
   };
 
-  const handleShowMessage = (message: IMessage) => {
-    const { title, description, icon, appearance } = message;
-    setMessage({
-      visible: true,
-      data: { show: true, title, description, icon, appearance },
-    });
+  const renderMessage = (
+    k_Usuari: string,
+    type: "activate" | "deactivate" | "failed" = "failed"
+  ) => {
+    let messageType;
+    if (type === "failed") messageType = activateUsersMessages.failed;
+
+    messageType &&
+      setMessage({
+        visible: true,
+        data: {
+          icon: messageType?.icon,
+          title: messageType?.title,
+          description: messageType.description(k_Usuari),
+          appearance: messageType?.appearance,
+        },
+      });
   };
 
   const handleToggleModal = () => {
@@ -96,11 +100,12 @@ export function ActivateUsers<T extends IDataActivateOption>(
 
   return (
     <ActivateUsersUI
-      active={data.active}
+      active={changeActive}
+      loading={loading}
       showActivateUsers={showActivateUsersModal}
       id={data.id}
       handleToggleModal={handleToggleModal}
-      handleActivateUsers={handleActivateDeactivateUsers}
+      handleActivateUsers={handleActivateUsers}
       showComplete={showComplete}
       activateModalConfig={activateModalConfig}
       message={message}

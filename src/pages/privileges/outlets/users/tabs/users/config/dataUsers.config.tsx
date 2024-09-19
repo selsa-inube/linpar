@@ -17,31 +17,24 @@ export const actionsConfigUsers = (
   users: IGeneralInformationUsersForm[],
   setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
-  const selectedData = (k_Usuari: string) =>
-    users.find((user) => user.k_Usuari === k_Usuari);
-
   const invitationsTableActions = [
     {
       id: "i_Activo",
       actionName: "Activo",
-      content: ({ k_Usuari }: { k_Usuari: string }) => {
-        const Users = selectedData(k_Usuari);
-        const adjustedUsers = {
-          id: Users?.k_Usuari || "",
-          active: Users?.i_Activo === "Y" || false,
-          name: Users?.n_Usuari || "",
-        };
-        return (
-          <CenteredTd>
-            <ActivateUsers
-              handleActivate={() => {}}
-              data={adjustedUsers}
-              showComplete={false}
-              activateModalConfig={activateUsersModal}
-            />
-          </CenteredTd>
-        );
-      },
+      content: (users: IGeneralInformationUsersForm) => (
+        <CenteredTd>
+          <ActivateUsers
+            handleActivate={() => {}}
+            data={{
+              id: users.k_Usuari,
+              active: users.i_Activo,
+              name: users.n_Usuari,
+            }}
+            showComplete={false}
+            activateModalConfig={activateUsersModal}
+          />
+        </CenteredTd>
+      ),
       type: "secondary",
     },
     {
