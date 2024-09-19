@@ -3,7 +3,7 @@ import { IInvitationsEntry } from "@services/users/invitation.types";
 import { mapInvitationsApiToEntities } from "./mappers";
 
 const getInvitations = async (): Promise<IInvitationsEntry[]> => {
-  const requestUrl = `${environment.IROLE_LINIX_USER_SIGNUP_INVITATION_QUERY_PROCESS_SERVICE}/users-signup-invitations`;
+  const requestUrl = `${environment.IROLE_LINIX_USER_SIGNUP_INVITATION_QUERY_PROCESS_SERVICE}/users-signup-invitations/business-units/LINIX`;
 
   try {
     const options: RequestInit = {
