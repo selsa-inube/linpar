@@ -1,6 +1,6 @@
 import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { mapLinixUseCaseEntityToApi } from "./mappers";
 
 const addLinixUseCase = async (

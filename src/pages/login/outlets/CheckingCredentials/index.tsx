@@ -1,26 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import { CheckingCredentialsUI } from "./interface";
 import { useCallback, useContext, useEffect } from "react";
-import { AppContext } from "@context/AppContext";
+
+import { LinparContext } from "@context/AppContext";
 import { IClient } from "@context/AppContext/types";
+
+import { CheckingCredentialsUI } from "./interface";
 
 function CheckingCredentials({ clients }: { clients: IClient[] }) {
   const navigate = useNavigate();
-  const { linparContext } = useContext(AppContext);
+  const { linparData } = useContext(LinparContext);
 
   const checkCredentials = useCallback(async () => {
     try {
-      if (!linparContext) {
+      if (!linparData) {
         return;
       }
 
-      if (linparContext) {
+      if (linparData) {
         if (!clients || clients.length === 0) {
           navigate("/login/error/not-related-clients");
         } else if (clients.length === 1) {
           navigate("/login/loading-app");
         } else {
-          navigate(`/login/${linparContext.id}/clients`);
+          navigate(`/login/${linparData.user.userAccount}/clients`);
         }
       } else {
         navigate("/login/error/not-available");
@@ -28,7 +30,7 @@ function CheckingCredentials({ clients }: { clients: IClient[] }) {
     } catch (error) {
       navigate("/login/error/not-available");
     }
-  }, [linparContext, navigate, clients]);
+  }, [linparData, navigate, clients]);
 
   useEffect(() => {
     const timer = setTimeout(checkCredentials, 2000);

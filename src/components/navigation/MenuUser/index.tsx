@@ -7,7 +7,7 @@ interface MenuUserProps {
 }
 
 function MenuUser(props: MenuUserProps) {
-  const { userName, businessUnit = "Linix", avatar = true } = props;
+  const { userName, businessUnit = "", avatar = true } = props;
 
   return (
     <Stack gap={inube.spacing.s150} padding="s150 s200">

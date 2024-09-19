@@ -3,7 +3,7 @@ import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
 import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
 
-import { AppContext } from "@context/AppContext";
+import { LinparContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
@@ -30,7 +30,7 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function AppPage() {
-  const { linparContext } = useContext(AppContext);
+  const { linparData } = useContext(LinparContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -73,17 +73,13 @@ function AppPage() {
           <Header
             portalId="portal"
             navigation={navigationConfig}
-            logoURL={renderLogo(linparContext.businessManager.logo)}
-            userName={linparContext.username}
-            client={linparContext.company}
+            logoURL={renderLogo(linparData.businessUnit.urlLogo)}
+            userName={linparData.user.userName}
           />
         </StyledHeaderContainer>
         {showUserMenu && (
           <StyledMenuContainer ref={userMenuRef}>
-            <MenuUser
-              userName={linparContext.username}
-              businessUnit={linparContext.company}
-            />
+            <MenuUser userName={linparData.user.userName} />
             <MenuSection
               sections={[
                 {

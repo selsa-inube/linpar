@@ -1,15 +1,3 @@
-interface IbusinessManager {
-  name: string;
-  logo: string;
-}
-
-interface IUser {
-  username: string;
-  id: string;
-  company: string;
-  businessManager: IbusinessManager;
-}
-
 interface IClient {
   id: string;
   name: string;
@@ -17,13 +5,41 @@ interface IClient {
   logo: string;
 }
 
-interface IAppContext {
-  linparContext: IUser;
-  handleClientChange: (client: IClient) => void;
+interface IPortal {
+  abbreviatedName: string;
+  staffPortalCatalogId: string;
+  businessManagerId: string;
+}
+interface IBusinessManager {
+  publicCode: string;
+  abbreviatedName: string;
+  urlBrand: string;
+  urlLogo: string;
 }
 
-interface AppContextProviderProps {
-  children: React.ReactNode;
+interface IUser {
+  userAccount: string;
+  userName: string;
 }
 
-export type { IAppContext, IClient, AppContextProviderProps };
+interface IBusinessUnit {
+  publicCode: string;
+  abbreviatedName: string;
+  businessUnit: string;
+  urlLogo: string;
+}
+interface ILinparData {
+  portal: IPortal;
+  businessManager: IBusinessManager;
+  businessUnit: IBusinessUnit;
+  user: IUser;
+}
+
+interface ILinparContext {
+  linparData: ILinparData;
+  businessUnitSigla: string;
+  setLinparData: React.Dispatch<React.SetStateAction<ILinparData>>;
+  setBusinessUnitSigla: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export type { IClient, ILinparData, ILinparContext };

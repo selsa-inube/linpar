@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { LinparContext } from "@context/AppContext";
+import { IClient } from "@context/AppContext/types";
+import { IClients } from "@routes/login";
 import { ClientsUI } from "./interface";
 import { IClientState } from "./types";
-import { useNavigate } from "react-router-dom";
-import { AppContext } from "@context/AppContext";
-import { IClient } from "@context/AppContext/types";
-import { IClients } from "@src/routes/login";
 
 function Clients({ clients }: IClients) {
   const [search, setSearch] = useState("");
@@ -14,7 +14,8 @@ function Clients({ clients }: IClients) {
   });
 
   const navigate = useNavigate();
-  const { handleClientChange } = useContext(AppContext);
+  const { setLinparData, linparData, setBusinessUnitSigla } =
+    useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (clientLocal.ref) {
@@ -26,9 +27,22 @@ function Clients({ clients }: IClients) {
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClientLocal({ ref: event.target, value: false });
-    handleClientChange(
-      clients.filter((client0) => client0.name === event.target.value)[0]
+    const selectOption = clients.filter(
+      (client0) => client0.name === event.target.value
     );
+    const businessUnit = linparData.businessUnit || {};
+
+    setLinparData((prev) => ({
+      ...prev,
+      businessUnit: {
+        ...businessUnit,
+        abbreviatedName: selectOption[0].sigla,
+        urlLogo: selectOption[0].logo,
+        businessUnit: selectOption[0].sigla,
+        publicCode: selectOption[0].id,
+      },
+    }));
+    setBusinessUnitSigla(selectOption[0].sigla);
   };
 
   const handleSubmit = () => {

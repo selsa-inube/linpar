@@ -8,7 +8,7 @@ import { getSearchAllTercero } from "@services/invitations/thirdPartiesNamesUser
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { userSearchCardData } from "@mocks/apps/privileges/users/usersSearchField.mock";
-import { AppContext } from "@src/context/AppContext";
+import { LinparContext } from "@context/AppContext";
 import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
 import { saveLinixInvitations } from "./utils";
@@ -41,20 +41,20 @@ function Invite() {
     Record<string, unknown>[]
   >([]);
 
-  const { linparContext } = useContext(AppContext);
+  const { linparData } = useContext(LinparContext);
 
   const resetSearchUserRef = useRef(() => {});
   const navigate = useNavigate();
 
   const screenMovil = useMediaQuery("(max-width: 744px)");
 
-  const name = linparContext.username?.split(" ");
+  const name = linparData.user.userName?.split(" ");
 
   useEffect(() => {
     rolesTerceros();
   }, []);
   const rolesTerceros = () => {
-    if (!linparContext) return;
+    if (!LinparContext) return;
     if (dataInvitationUsers.length === 0) {
       setLoading(true);
       getSearchAllTercero()

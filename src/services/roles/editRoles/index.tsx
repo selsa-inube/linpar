@@ -1,4 +1,4 @@
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { IRol } from "@pages/privileges/outlets/roles/types";
 import { mapEditRolesEntityToApi } from "./mappers";
 

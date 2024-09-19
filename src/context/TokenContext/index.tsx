@@ -5,19 +5,19 @@ import React, {
   useState,
   useContext,
 } from "react";
-
 import { inube } from "@inube/design-system";
+
+import {
+  getTokens,
+  updateIdTokens,
+} from "@mocks/themeService/themeService.mock";
+import { LinparContext } from "@context/AppContext";
 import {
   IHandleSubmitProps,
   ITokenContextProps,
   TokenActions,
   actionTypes,
 } from "./types";
-import {
-  getTokens,
-  updateIdTokens,
-} from "@mocks/themeService/themeService.mock";
-import { AppContext } from "@context/AppContext";
 
 const defaultTokenValue: ITokenContextProps = {
   tokenWithRef: {},
@@ -43,8 +43,9 @@ const tokenReducer = (state: typeof inube, action: TokenActions) => {
 const TokenProvider = ({ children }: ITokenProviderProps) => {
   const [tokenWithRef, dispatch] = useReducer(tokenReducer, {});
   const [loading, setLoading] = useState(true);
-  const { linparContext } = useContext(AppContext);
-  const clientName = linparContext.company.toLowerCase();
+
+  const { businessUnitSigla } = useContext(LinparContext);
+  const clientName = businessUnitSigla.toLowerCase();
 
   useEffect(() => {
     getTokens(clientName)
