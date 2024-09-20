@@ -35,4 +35,4 @@ interface ILinparContext {
   setBusinessUnitSigla: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export type { ILinparData, ILinparContext };
+export type { ILinparData, ILinparContext, IBusinessUnit };

@@ -15,8 +15,7 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
   });
 
   const navigate = useNavigate();
-  const { setLinparData, linparData, setBusinessUnitSigla } =
-    useContext(LinparContext);
+  const { setBusinessUnitSigla } = useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (businessUnitLocal.ref) {
@@ -28,22 +27,11 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClientLocal({ ref: event.target, value: false });
-    const selectOption = businessUnits.filter(
+    const selectOption = businessUnits.find(
       (businessUnit0) => businessUnit0.name === event.target.value
     );
-    const businessUnit = linparData.businessUnit || {};
-
-    setLinparData((prev) => ({
-      ...prev,
-      businessUnit: {
-        ...businessUnit,
-        abbreviatedName: selectOption[0].sigla,
-        urlLogo: selectOption[0].logo,
-        businessUnit: selectOption[0].sigla,
-        publicCode: selectOption[0].id,
-      },
-    }));
-    setBusinessUnitSigla(selectOption[0].sigla);
+    const selectJSON = JSON.stringify(selectOption);
+    selectOption && setBusinessUnitSigla(selectJSON);
   };
 
   const handleSubmit = () => {

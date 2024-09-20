@@ -30,6 +30,8 @@ function LinparContextProvider(props: LinparProviderProps) {
     localStorage.setItem("businessUnitSigla", businessUnitSigla);
   }, [businessUnitSigla]);
 
+  const bussinessUnit = businessUnitSigla ? JSON.parse(businessUnitSigla) : "";
+
   const [linparData, setLinparData] = useState<ILinparData>({
     portal: {
       abbreviatedName: "",
@@ -43,10 +45,10 @@ function LinparContextProvider(props: LinparProviderProps) {
       urlLogo: "",
     },
     businessUnit: {
-      publicCode: "",
-      abbreviatedName: businessUnitSigla,
-      businessUnit: "",
-      urlLogo: "",
+      publicCode: bussinessUnit.id,
+      abbreviatedName: bussinessUnit.sigla || "",
+      businessUnit: bussinessUnit.sigla,
+      urlLogo: bussinessUnit.logo,
     },
     user: {
       userAccount: user?.name || "",
