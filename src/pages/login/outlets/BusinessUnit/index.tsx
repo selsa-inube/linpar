@@ -2,14 +2,14 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LinparContext } from "@context/AppContext";
 
-import { IClients } from "@routes/login";
-import { ClientsUI } from "./interface";
-import { IClientState } from "./types";
+import { IBusinessUnits } from "@routes/login";
+import { BusinessUnitsUI } from "./interface";
+import { IBusinessUnitstate } from "./types";
 import { IBusinessUnit } from "../../types";
 
-function Clients({ clients }: IClients) {
+function BusinessUnits({ businessUnits }: IBusinessUnits) {
   const [search, setSearch] = useState("");
-  const [clientLocal, setClientLocal] = useState<IClientState>({
+  const [businessUnitLocal, setClientLocal] = useState<IBusinessUnitstate>({
     ref: null,
     value: true,
   });
@@ -19,8 +19,8 @@ function Clients({ clients }: IClients) {
     useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (clientLocal.ref) {
-      clientLocal.ref.checked = false;
+    if (businessUnitLocal.ref) {
+      businessUnitLocal.ref.checked = false;
     }
     setClientLocal({ ref: null, value: true });
     setSearch(event.target.value);
@@ -28,8 +28,8 @@ function Clients({ clients }: IClients) {
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClientLocal({ ref: event.target, value: false });
-    const selectOption = clients.filter(
-      (client0) => client0.name === event.target.value
+    const selectOption = businessUnits.filter(
+      (businessUnit0) => businessUnit0.name === event.target.value
     );
     const businessUnit = linparData.businessUnit || {};
 
@@ -50,28 +50,29 @@ function Clients({ clients }: IClients) {
     navigate("/login/loading-app");
   };
 
-  function filterClients(clients: IBusinessUnit[], search: string) {
-    return clients.filter((client) => {
-      const clientName = client.name.toUpperCase();
-      const clientSigla = client.sigla.toUpperCase();
+  function filterBusinessUnits(businessUnit: IBusinessUnit[], search: string) {
+    return businessUnit.filter((businessUnit) => {
+      const businessUnitName = businessUnit.name.toUpperCase();
+      const businessUnitSigla = businessUnit.sigla.toUpperCase();
       const searchTerm = search.toUpperCase();
       return (
-        clientName.includes(searchTerm) || clientSigla.includes(searchTerm)
+        businessUnitName.includes(searchTerm) ||
+        businessUnitSigla.includes(searchTerm)
       );
     });
   }
 
   return (
-    <ClientsUI
-      clients={clients}
+    <BusinessUnitsUI
+      businessUnits={businessUnits}
       search={search}
-      client={clientLocal}
+      businessUnit={businessUnitLocal}
       handleSearchChange={handleSearchChange}
       handleClientChange={handleCChange}
-      filterClients={filterClients}
+      filterBusinessUnits={filterBusinessUnits}
       handleSubmit={handleSubmit}
     />
   );
 }
 
-export { Clients };
+export { BusinessUnits };

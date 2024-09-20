@@ -1,11 +1,11 @@
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
-import { clientsDataMock } from "@mocks/login/clients.mock";
-import { validationMessages } from "@validations/validationMessages";
-import { validationRules } from "@validations/validationRules";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
+import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
+import { validationMessages } from "@validations/validationMessages";
+import { validationRules } from "@validations/validationRules";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 import { ErrorInvitationExpired } from "./cases/ErrorInvitationExpired";
 import { ErrorNotAvailable } from "./cases/ErrorNotAvailable";
 import { RespondInvitationUI } from "./interface";
@@ -36,7 +36,9 @@ function RespondInvitation() {
 
   const getClientData = () => {
     if (!client_id) return;
-    return clientsDataMock.find((clientMock) => clientMock.id === client_id);
+    return businessUnitDataMock.find(
+      (businessMock) => businessMock.id === client_id
+    );
   };
 
   const clientData = getClientData();

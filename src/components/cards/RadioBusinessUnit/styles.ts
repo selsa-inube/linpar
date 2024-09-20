@@ -1,7 +1,7 @@
 import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
 
-const StyledRadioClient = styled.label`
+const StyledRadioBusinessUnit = styled.label`
   & div {
     box-sizing: border-box;
     min-height: 58px;
@@ -36,4 +36,4 @@ const StyledImage = styled.img`
   }
 `;
 
-export { StyledRadioClient, StyledImage, StyledRadio };
+export { StyledRadioBusinessUnit, StyledImage, StyledRadio };

@@ -1,7 +1,7 @@
-import { clientsDataMock } from "@mocks/login/clients.mock";
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { ErrorNotAvailable, ErrorNotAvailableProps } from "./index";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 
 const story = {
   components: [ErrorNotAvailable],
@@ -24,7 +24,7 @@ const Template: StoryFn<ErrorNotAvailableProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  clientData: clientsDataMock[0],
+  clientData: businessUnitDataMock[0],
 };
 
 export const WithoutClient = Template.bind({});

@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Clients } from ".";
-import { clientsDataMock } from "@mocks/login/clients.mock";
+import { BusinessUnits } from ".";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 
 const story = {
-  components: [Clients],
-  title: "layouts/login/outlets/clients",
+  components: [BusinessUnits],
+  title: "layouts/login/outlets/businessUnits",
   parameters: {
     layout: "fullscreen",
   },
@@ -18,7 +18,7 @@ const story = {
   ],
 };
 
-const Default = () => <Clients clients={clientsDataMock} />;
+const Default = () => <BusinessUnits businessUnits={businessUnitDataMock} />;
 
 export { Default };
 export default story;

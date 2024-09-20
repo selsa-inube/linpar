@@ -1,24 +1,27 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
-import { RadioClient } from "@components/cards/RadioClient";
-import { IClientState } from "./types";
+import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
+import { IBusinessUnitstate } from "./types";
 
 import {
-  StyledClients,
-  StyledClientsList,
+  StyledBusinessUnits,
+  StyledBusinessUnitsList,
   StyledNoResults,
-  StyledClientsItem,
+  StyledBusinessUnitsItem,
 } from "./styles";
 import { IBusinessUnit } from "../../types";
 
-interface ClientsUIProps {
-  clients: IBusinessUnit[];
+interface BusinessUnitsUIProps {
+  businessUnits: IBusinessUnit[];
   search: string;
-  client: IClientState;
+  businessUnit: IBusinessUnitstate;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleClientChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  filterClients: (clients: IBusinessUnit[], search: string) => IBusinessUnit[];
+  filterBusinessUnits: (
+    businessUnits: IBusinessUnit[],
+    search: string
+  ) => IBusinessUnit[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
@@ -33,68 +36,74 @@ function NoResultsMessage({ search }: { search: string }) {
   );
 }
 
-function ClientsUI({
-  clients,
+function BusinessUnitsUI({
+  businessUnits,
   search,
-  client,
+  businessUnit,
   handleSearchChange,
-  filterClients,
+  filterBusinessUnits,
   handleClientChange,
   handleSubmit,
-}: ClientsUIProps) {
-  const filteredClients = filterClients(clients, search);
+}: BusinessUnitsUIProps) {
+  const filteredBusinessUnits = filterBusinessUnits(businessUnits, search);
 
   return (
-    <StyledClients>
+    <StyledBusinessUnits>
       <Text type="title" as="h2" textAlign="center">
-        Clientes
+        Unidad de Negocios
       </Text>
       <Text size="medium" textAlign="center">
-        Selecciona la empresa a la que vas a representar
+        Seleccione la Unidad de Negocio
       </Text>
       <form>
         <Stack direction="column" alignItems="center">
-          {clients.length > 10 && (
+          {businessUnits.length > 10 && (
             <Textfield
               placeholder="Buscar..."
               type="search"
-              name="searchClients"
-              id="searchClients"
+              name="searchBusinessUnits"
+              id="searchBusinessUnits"
               value={search}
               fullwidth={true}
               onChange={handleSearchChange}
               iconBefore={<MdSearch size={22} />}
             />
           )}
-          {filteredClients.length === 0 && <NoResultsMessage search={search} />}
-          <StyledClientsList $scroll={clients.length > 5}>
+          {filteredBusinessUnits.length === 0 && (
+            <NoResultsMessage search={search} />
+          )}
+          <StyledBusinessUnitsList $scroll={businessUnits.length > 5}>
             <Stack
               direction="column"
               padding="s0 s100"
               alignItems="center"
               gap={inube.spacing.s100}
             >
-              {filteredClients.map((client) => (
-                <StyledClientsItem key={client.id}>
-                  <RadioClient
-                    name="client"
-                    label={client.name}
-                    id={client.id}
-                    value={client.name}
-                    logo={client.logo}
+              {filteredBusinessUnits.map((businessUnit) => (
+                <StyledBusinessUnitsItem key={businessUnit.id}>
+                  <RadioBusinessUnit
+                    name="businessUnit"
+                    label={businessUnit.name}
+                    id={businessUnit.id}
+                    value={businessUnit.name}
+                    logo={businessUnit.logo}
                     handleChange={handleClientChange}
                   />
-                </StyledClientsItem>
+                </StyledBusinessUnitsItem>
               ))}
             </Stack>
-          </StyledClientsList>
-          <Button type="button" disabled={client.value} onClick={handleSubmit}>
+          </StyledBusinessUnitsList>
+          <Button
+            type="button"
+            disabled={businessUnit.value}
+            onClick={handleSubmit}
+          >
             Continuar
           </Button>
         </Stack>
       </form>
-    </StyledClients>
+    </StyledBusinessUnits>
   );
 }
 
-export { ClientsUI };
+export { BusinessUnitsUI };

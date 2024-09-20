@@ -1,6 +1,6 @@
-interface IClientState {
+interface IBusinessUnitstate {
   ref: (EventTarget & HTMLInputElement) | null;
   value: boolean;
 }
 
-export type { IClientState };
+export type { IBusinessUnitstate };

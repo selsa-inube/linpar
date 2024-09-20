@@ -5,9 +5,9 @@ function ErrorNotClient() {
   return (
     <ErrorPage
       image={clientNotFound}
-      imageAlt="Cliente no encontrado"
+      imageAlt="Unidad de negocio no encontrada"
       heading="No hay resultados..."
-      description="Su usuario no tiene clientes relacionados, consulte con su administrador."
+      description="Su usuario no tiene unidades de negocio relacionados, consulte con su administrador."
     />
   );
 }
