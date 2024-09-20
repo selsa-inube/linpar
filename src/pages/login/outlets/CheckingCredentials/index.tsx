@@ -1,26 +1,32 @@
 import { useNavigate } from "react-router-dom";
-import { CheckingCredentialsUI } from "./interface";
 import { useCallback, useContext, useEffect } from "react";
-import { AppContext } from "@context/AppContext";
-import { IClient } from "@context/AppContext/types";
 
-function CheckingCredentials({ clients }: { clients: IClient[] }) {
+import { LinparContext } from "@context/AppContext";
+
+import { CheckingCredentialsUI } from "./interface";
+import { IBusinessUnit } from "../../types";
+
+function CheckingCredentials({
+  bussinessUnits,
+}: {
+  bussinessUnits: IBusinessUnit[];
+}) {
   const navigate = useNavigate();
-  const { user } = useContext(AppContext);
+  const { linparData } = useContext(LinparContext);
 
   const checkCredentials = useCallback(async () => {
     try {
-      if (!user) {
+      if (!linparData) {
         return;
       }
 
-      if (user) {
-        if (!clients || clients.length === 0) {
-          navigate("/login/error/not-related-clients");
-        } else if (clients.length === 1) {
+      if (linparData) {
+        if (!bussinessUnits || bussinessUnits.length === 0) {
+          navigate("/login/error/not-related-bussiness-units");
+        } else if (bussinessUnits.length === 1) {
           navigate("/login/loading-app");
         } else {
-          navigate(`/login/${user.id}/clients`);
+          navigate(`/login/${linparData.user.userAccount}/bussiness-units`);
         }
       } else {
         navigate("/login/error/not-available");
@@ -28,7 +34,7 @@ function CheckingCredentials({ clients }: { clients: IClient[] }) {
     } catch (error) {
       navigate("/login/error/not-available");
     }
-  }, [user, navigate, clients]);
+  }, [linparData, navigate, bussinessUnits]);
 
   useEffect(() => {
     const timer = setTimeout(checkCredentials, 2000);

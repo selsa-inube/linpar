@@ -1,29 +1,38 @@
-interface IOperator {
-  name: string;
-  logo: string;
+interface IPortal {
+  abbreviatedName: string;
+  staffPortalCatalogId: string;
+  businessManagerId: string;
+}
+interface IBusinessManager {
+  publicCode: string;
+  abbreviatedName: string;
+  urlBrand: string;
+  urlLogo: string;
 }
 
 interface IUser {
-  username: string;
-  id: string;
-  company: string;
-  operator: IOperator;
+  userAccount: string;
+  userName: string;
 }
 
-interface IClient {
-  id: string;
-  name: string;
-  sigla: string;
-  logo: string;
+interface IBusinessUnit {
+  publicCode: string;
+  abbreviatedName: string;
+  businessUnit: string;
+  urlLogo: string;
 }
-
-interface IAppContext {
+interface ILinparData {
+  portal: IPortal;
+  businessManager: IBusinessManager;
+  businessUnit: IBusinessUnit;
   user: IUser;
-  handleClientChange: (client: IClient) => void;
 }
 
-interface AppContextProviderProps {
-  children: React.ReactNode;
+interface ILinparContext {
+  linparData: ILinparData;
+  businessUnitSigla: string;
+  setLinparData: React.Dispatch<React.SetStateAction<ILinparData>>;
+  setBusinessUnitSigla: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export type { IAppContext, IClient, AppContextProviderProps };
+export type { ILinparData, ILinparContext };

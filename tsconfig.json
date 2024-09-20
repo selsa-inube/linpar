@@ -26,7 +26,10 @@
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
       "@validations/*": ["./src/validations/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@design/*": ["src/design/*"],
+      "@config/*": ["src/config/*"],
+      "@routes/*": ["src/routes/*"]
     },
     "types": ["vite/client"]
   },

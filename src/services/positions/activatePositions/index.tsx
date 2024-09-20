@@ -1,4 +1,4 @@
-import { environment } from "@src/config/environment";
+import { environment } from "@config/environment";
 import { IPosition } from "@pages/privileges/outlets/positions/add-position/types";
 import { IactivePositions } from "./types";
 import { mapPositionsActiveEntityToApi } from "./mappers";

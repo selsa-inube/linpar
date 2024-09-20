@@ -1,12 +1,12 @@
 import { useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { LinparContext } from "@context/AppContext";
 import { LoginUI } from "./interface";
-import { AppContext } from "@context/AppContext";
 
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useContext(AppContext);
+  const { linparData } = useContext(LinparContext);
 
   useEffect(() => {
     if (
@@ -14,9 +14,9 @@ function Login() {
       location.pathname === "/login/" ||
       location.pathname === "/"
     ) {
-      navigate(`/login/${user.id}/checking-credentials/`);
+      navigate(`/login/${linparData.user.userAccount}/checking-credentials/`);
     }
-  }, [location, navigate, user]);
+  }, [location, navigate, linparData]);
 
   return <LoginUI />;
 }

@@ -1,10 +1,10 @@
 import { Switch } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import { activateUsersModal } from "./config/activateUsers.config";
 import { IMessageState } from "../../../types/forms.types";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
 
 interface IActivateUsersUI {
   active: boolean;
@@ -16,6 +16,7 @@ interface IActivateUsersUI {
   handleToggleModal: () => void;
   handleActivateUsers: () => void;
   handleCloseSectionMessage: () => void;
+  loading: boolean;
 }
 
 export function ActivateUsersUI(props: IActivateUsersUI) {
