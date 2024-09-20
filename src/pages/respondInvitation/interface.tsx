@@ -22,9 +22,9 @@ import {
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
-import { IClient } from "@context/AppContext/types";
+import { IBusinessUnit } from "../login/types";
 
-const renderHead = (clientData: IClient, smallScreen?: boolean) => {
+const renderHead = (clientData: IBusinessUnit, smallScreen?: boolean) => {
   return (
     <>
       <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
@@ -228,7 +228,7 @@ interface RespondInvitationUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  clientData: IClient;
+  clientData: IBusinessUnit;
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {

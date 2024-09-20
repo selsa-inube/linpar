@@ -1,8 +1,8 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
-import { IClient } from "@context/AppContext/types";
+import { IBusinessUnit } from "@pages/login/types";
 
 interface ErrorNotAvailableProps {
-  clientData?: IClient;
+  clientData?: IBusinessUnit;
 }
 
 function ErrorNotAvailable(props: ErrorNotAvailableProps) {

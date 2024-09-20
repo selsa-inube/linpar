@@ -2,7 +2,6 @@ import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioClient } from "@components/cards/RadioClient";
-import { IClient } from "@context/AppContext/types";
 import { IClientState } from "./types";
 
 import {
@@ -11,14 +10,15 @@ import {
   StyledNoResults,
   StyledClientsItem,
 } from "./styles";
+import { IBusinessUnit } from "../../types";
 
 interface ClientsUIProps {
-  clients: IClient[];
+  clients: IBusinessUnit[];
   search: string;
   client: IClientState;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleClientChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  filterClients: (clients: IClient[], search: string) => IClient[];
+  filterClients: (clients: IBusinessUnit[], search: string) => IBusinessUnit[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 

@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LinparContext } from "@context/AppContext";
-import { IClient } from "@context/AppContext/types";
+
 import { IClients } from "@routes/login";
 import { ClientsUI } from "./interface";
 import { IClientState } from "./types";
+import { IBusinessUnit } from "../../types";
 
 function Clients({ clients }: IClients) {
   const [search, setSearch] = useState("");
@@ -49,7 +50,7 @@ function Clients({ clients }: IClients) {
     navigate("/login/loading-app");
   };
 
-  function filterClients(clients: IClient[], search: string) {
+  function filterClients(clients: IBusinessUnit[], search: string) {
     return clients.filter((client) => {
       const clientName = client.name.toUpperCase();
       const clientSigla = client.sigla.toUpperCase();
