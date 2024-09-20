@@ -1,7 +1,6 @@
 import Completed from "@assets/images/Completed.png";
 import { ErrorPage } from "@components/layout/ErrorPage";
-
-import { businessUnitDataMock } from "@src/mocks/login/businessUnit.mock";
+import { clientsDataMock } from "@mocks/login/clients.mock";
 import { useParams } from "react-router-dom";
 
 function ConfirmationRegisterComplete() {
@@ -9,9 +8,7 @@ function ConfirmationRegisterComplete() {
 
   const getClientData = () => {
     if (!client_id) return;
-    return businessUnitDataMock.find(
-      (clientMock) => clientMock.id === client_id
-    );
+    return clientsDataMock.find((clientMock) => clientMock.id === client_id);
   };
 
   const clientData = getClientData();
