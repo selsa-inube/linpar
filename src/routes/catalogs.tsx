@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { Catalogs } from "@pages/catalogs";
+
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { LinixUseCase } from "@pages/catalogs/outlets/linixUseCase";
 import { Roles } from "@pages/catalogs/outlets/roles";
@@ -7,7 +9,6 @@ import { AddRol } from "@pages/catalogs/outlets/roles/add-role";
 import { EditRole } from "@pages/catalogs/outlets/roles/edit-role";
 import { EditCaseLinix } from "@pages/catalogs/outlets/linixUseCase/EditModal";
 import { CatalogsOptions } from "@pages/catalogs/outlets/options";
-import { Catalogs } from "@pages/catalogs";
 
 function CatalogsRoutes() {
   return (
