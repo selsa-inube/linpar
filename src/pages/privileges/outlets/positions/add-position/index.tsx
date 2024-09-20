@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FormikProps } from "formik";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRolesPorCargo } from "@services/positions/rolesPorCargo";
+import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
 
 import { IGeneralInformationEntry } from "../components/GeneralInformationForm";
 import { stepsAddPosition } from "./config/addPosition.config";
@@ -14,7 +15,6 @@ import {
 import { initalValuesPositions } from "./config/initialValues";
 import { addPositionStepsRules, saveLinixPositions } from "./utils";
 import { AddPositionUI } from "./interface";
-import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 
 import { IMessageState } from "../../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";

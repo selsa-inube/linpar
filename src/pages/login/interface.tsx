@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { useContext } from "react";
 import selsaLogo from "@assets/images/selsa.png";
 import { Grid, Stack, Text, useMediaQueries } from "@inube/design-system";
-import { LinparContext } from "@context/AppContext";
 
 import {
   StyledWelcomeContainer,
@@ -20,8 +18,6 @@ function LoginUI() {
     "(min-width: 769px) and (max-width: 992px)",
     "(min-width: 993px) and (max-width: 2200px)",
   ]);
-  const { linparData } = useContext(LinparContext);
-  console.log("linparData", linparData);
 
   return (
     <Grid
