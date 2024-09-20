@@ -22,18 +22,12 @@ import {
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
-import { IBusinessUnit } from "../login/types";
+import { IClient } from "@context/AppContext/types";
 
-const renderHead = (
-  bussinessUnitsData: IBusinessUnit,
-  smallScreen?: boolean
-) => {
+const renderHead = (clientData: IClient, smallScreen?: boolean) => {
   return (
     <>
-      <Styledlmage
-        src={bussinessUnitsData.logo}
-        alt={`Logo ${bussinessUnitsData.name}`}
-      />
+      <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
       <Stack direction="column" gap={smallScreen ? "16px" : "36px"}>
         <Stack direction="column">
           <Text type="headline" size="small">
@@ -234,11 +228,11 @@ interface RespondInvitationUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  bussinessUnitsData: IBusinessUnit;
+  clientData: IClient;
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {
-  const { loading, formik, handleSubmitForm, bussinessUnitsData } = props;
+  const { loading, formik, handleSubmitForm, clientData } = props;
 
   const smallScreen = useMediaQuery("(max-width: 744px)");
 
@@ -246,10 +240,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     return (
       <StyledContainerForm>
         <Stack direction="column" gap="32px" padding="s200">
-          <Styledlmage
-            src={bussinessUnitsData.logo}
-            alt={`Logo ${bussinessUnitsData.name}`}
-          />
+          <Styledlmage src={clientData.logo} alt={`Logo ${clientData.name}`} />
           {renderForm(formik, loading, handleSubmitForm, smallScreen)}
         </Stack>
       </StyledContainerForm>
@@ -260,7 +251,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     <Grid templateColumns="1fr 2fr">
       <StyledContainerHeader>
         <Stack direction="column" gap="36px" padding="s800">
-          {renderHead(bussinessUnitsData)}
+          {renderHead(clientData)}
         </Stack>
       </StyledContainerHeader>
       <StyledContainerForm>

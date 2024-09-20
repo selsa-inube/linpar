@@ -1,6 +1,6 @@
-import { BrowserRouter } from "react-router-dom";
+import { clientsDataMock } from "@mocks/login/clients.mock";
 import { StoryFn } from "@storybook/react";
-import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
+import { BrowserRouter } from "react-router-dom";
 import { ErrorInvitationExpired, ErrorInvitationExpiredProps } from "./index";
 
 const story = {
@@ -24,9 +24,9 @@ const Template: StoryFn<ErrorInvitationExpiredProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  bussinessUnitsData: businessUnitDataMock[0],
+  clientData: clientsDataMock[0],
 };
 
-export const WithoutBussinessUnits = Template.bind({});
+export const WithoutClient = Template.bind({});
 
 export default story;

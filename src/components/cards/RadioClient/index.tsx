@@ -2,9 +2,9 @@ import { Grid } from "@inubekit/grid";
 import { useMediaQueries } from "@inubekit/hooks";
 import { Text } from "@inubekit/text";
 
-import { StyledRadioBusinessUnit, StyledRadio, StyledImage } from "./styles";
+import { StyledRadioClient, StyledRadio, StyledImage } from "./styles";
 
-interface RadioBusinessUnitProps {
+interface RadioClientProps {
   name: string;
   id: string;
   value: string;
@@ -13,13 +13,13 @@ interface RadioBusinessUnitProps {
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-function RadioBusinessUnit(props: RadioBusinessUnitProps) {
+function RadioClient(props: RadioClientProps) {
   const { name, id, value, label, logo, handleChange } = props;
 
   const mediaQueries = ["(max-width: 532px)", "(max-width: 460px)"];
   const matches = useMediaQueries(mediaQueries);
   return (
-    <StyledRadioBusinessUnit>
+    <StyledRadioClient>
       <Grid
         templateColumns={
           matches["(max-width: 460px)"] ? "auto 1fr" : "auto 1fr 130px"
@@ -41,9 +41,9 @@ function RadioBusinessUnit(props: RadioBusinessUnitProps) {
         <Text size="medium">{label}</Text>
         <StyledImage src={logo} alt="Logo de empresa" />
       </Grid>
-    </StyledRadioBusinessUnit>
+    </StyledRadioClient>
   );
 }
 
-export { RadioBusinessUnit };
-export type { RadioBusinessUnitProps };
+export { RadioClient };
+export type { RadioClientProps };

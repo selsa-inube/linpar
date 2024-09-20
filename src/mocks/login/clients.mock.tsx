@@ -1,6 +1,4 @@
-import { IBusinessUnit } from "@pages/login/types";
-
-const businessUnitDataMock: IBusinessUnit[] = [
+const clientsDataMock = [
   // {
   //   id: 1,
   //   name: "Fondo de Empleados y Trabajadores de la Universidad del Valle",
@@ -63,4 +61,4 @@ const businessUnitDataMock: IBusinessUnit[] = [
   // },
 ];
 
-export { businessUnitDataMock };
+export { clientsDataMock };

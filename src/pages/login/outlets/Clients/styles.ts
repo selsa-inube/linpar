@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
-interface StyledBussinessUnitsListProps {
+interface StyledClientsListProps {
   $scroll?: boolean;
 }
 
-const StyledBussinessUnits = styled.div`
+const StyledClients = styled.div`
   & form {
     & > div {
       margin: ${({ theme }) =>
@@ -25,7 +25,7 @@ const StyledBussinessUnits = styled.div`
   }
 `;
 
-const StyledBussinessUnitsList = styled.div<StyledBussinessUnitsListProps>`
+const StyledClientsList = styled.div<StyledClientsListProps>`
   & > div {
     list-style: none;
     min-height: 300px;
@@ -45,13 +45,8 @@ const StyledNoResults = styled.div`
     }`};
 `;
 
-const StyledBussinessUnitsItem = styled.li`
+const StyledClientsItem = styled.li`
   width: 100%;
 `;
 
-export {
-  StyledBussinessUnits,
-  StyledBussinessUnitsList,
-  StyledNoResults,
-  StyledBussinessUnitsItem,
-};
+export { StyledClients, StyledClientsList, StyledNoResults, StyledClientsItem };

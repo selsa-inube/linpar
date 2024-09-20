@@ -16,7 +16,7 @@ const story = {
   ],
 };
 
-const Default = () => <CheckingCredentials bussinessUnits={[]} />;
+const Default = () => <CheckingCredentials clients={[]} />;
 
 export { Default };
 export default story;
