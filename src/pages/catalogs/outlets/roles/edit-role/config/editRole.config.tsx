@@ -3,7 +3,7 @@ const editRoleConfig = [
     id: 1,
     title: "Editar rol",
     description: "Editar la información del rol",
-    route: "/catalags/roles/edit",
+    route: "/catalogs/roles/edit",
     crumbs: [
       {
         path: "/",
@@ -12,21 +12,21 @@ const editRoleConfig = [
         isActive: false,
       },
       {
-        path: "/catalags",
+        path: "/catalogs",
         label: "Catálogos Generales",
-        id: "/catalags",
+        id: "/catalogs",
         isActive: false,
       },
       {
-        path: "/catalags/roles",
+        path: "/catalogs/roles",
         label: "roles",
-        id: "/catalags/roles",
+        id: "/catalogs/roles",
         isActive: false,
       },
       {
-        path: "/catalags/roles/edit",
+        path: "/catalogs/roles/edit",
         label: "Editar rol",
-        id: "/catalags/roles/edit",
+        id: "/catalogs/roles/edit",
         isActive: true,
       },
     ],
