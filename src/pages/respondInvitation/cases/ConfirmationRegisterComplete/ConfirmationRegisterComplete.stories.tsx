@@ -13,7 +13,7 @@ const Default = () => (
   <MemoryRouter initialEntries={["/path/1"]}>
     <Routes>
       <Route
-        path="/path/:client_id"
+        path="/path/:businessUnit_id"
         element={<ConfirmationRegisterComplete />}
       />
     </Routes>

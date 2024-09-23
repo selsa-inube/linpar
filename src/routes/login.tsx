@@ -4,7 +4,7 @@ import { BusinessUnits } from "@src/pages/login/outlets/BusinessUnit";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { ErrorPage } from "@components/layout/ErrorPage";
 import { ErrorNotAvailable } from "@pages/login/errors/ErrorNotAvailable";
-import { ErrorNotClient } from "@src/pages/login/errors/ErrorNotBusinessUnit";
+import { ErrorNotBusinessUnit } from "@pages/login/errors/ErrorNotBusinessUnit";
 import { Login } from "@pages/login";
 
 import { IBusinessUnit } from "@pages/login/types";
@@ -31,7 +31,7 @@ function LoginRoutes() {
       <Route path="error/not-available" element={<ErrorNotAvailable />} />
       <Route
         path="error/not-related-businessUnits"
-        element={<ErrorNotClient />}
+        element={<ErrorNotBusinessUnit />}
       />
       <Route path="/*" element={<ErrorPage />} />
     </Routes>

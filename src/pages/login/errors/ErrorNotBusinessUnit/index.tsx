@@ -1,7 +1,7 @@
 import { ErrorPage } from "@components/layout/ErrorPage";
 import clientNotFound from "@assets/images/Expired.png";
 
-function ErrorNotClient() {
+function ErrorNotBusinessUnit() {
   return (
     <ErrorPage
       image={clientNotFound}
@@ -12,4 +12,4 @@ function ErrorNotClient() {
   );
 }
 
-export { ErrorNotClient };
+export { ErrorNotBusinessUnit };

@@ -5,13 +5,13 @@ import { ErrorNotAvailable } from "@pages/respondInvitation/cases/ErrorNotAvaila
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-function getClientTheme(clientId?: string) {
-  if (!clientId) {
+function getClientTheme(businessUnitId?: string) {
+  if (!businessUnitId) {
     return {};
   }
 
   const theme = themeClientsMock.find(
-    (theme) => theme.clientId === parseInt(clientId)
+    (theme) => theme.businessUnitId === parseInt(businessUnitId)
   );
 
   if (!theme) {
@@ -22,17 +22,17 @@ function getClientTheme(clientId?: string) {
 }
 
 function RespondInvitationRoutes() {
-  const { client_id } = useParams();
+  const { businessUnit_id } = useParams();
   const navigate = useNavigate();
-  const clientTheme = getClientTheme(client_id);
+  const businessUnitTheme = getClientTheme(businessUnit_id);
 
-  if (!client_id || !clientTheme) {
+  if (!businessUnit_id || !businessUnitTheme) {
     navigate("/respond-invitation");
     return null;
   }
 
   return (
-    <ThemeProvider theme={clientTheme}>
+    <ThemeProvider theme={businessUnitTheme}>
       <Routes>
         <Route path="/" element={<RespondInvitation />} />
         <Route
