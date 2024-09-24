@@ -9,10 +9,11 @@ import { IBusinessUnit } from "../../types";
 
 function BusinessUnits({ businessUnits }: IBusinessUnits) {
   const [search, setSearch] = useState("");
-  const [businessUnitLocal, setClientLocal] = useState<IBusinessUnitstate>({
-    ref: null,
-    value: true,
-  });
+  const [businessUnitLocal, setBusinessUnitLocal] =
+    useState<IBusinessUnitstate>({
+      ref: null,
+      value: true,
+    });
 
   const navigate = useNavigate();
   const { setBusinessUnitSigla } = useContext(LinparContext);
@@ -21,12 +22,12 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
     if (businessUnitLocal.ref) {
       businessUnitLocal.ref.checked = false;
     }
-    setClientLocal({ ref: null, value: true });
+    setBusinessUnitLocal({ ref: null, value: true });
     setSearch(event.target.value);
   };
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setClientLocal({ ref: event.target, value: false });
+    setBusinessUnitLocal({ ref: event.target, value: false });
     const selectOption = businessUnits.find(
       (businessUnit0) => businessUnit0.name === event.target.value
     );
@@ -56,7 +57,7 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
       search={search}
       businessUnit={businessUnitLocal}
       handleSearchChange={handleSearchChange}
-      handleClientChange={handleCChange}
+      handleBussinessUnitChange={handleCChange}
       filterBusinessUnits={filterBusinessUnits}
       handleSubmit={handleSubmit}
     />

@@ -17,7 +17,9 @@ interface BusinessUnitsUIProps {
   search: string;
   businessUnit: IBusinessUnitstate;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClientChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleBussinessUnitChange: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
   filterBusinessUnits: (
     businessUnits: IBusinessUnit[],
     search: string
@@ -42,7 +44,7 @@ function BusinessUnitsUI({
   businessUnit,
   handleSearchChange,
   filterBusinessUnits,
-  handleClientChange,
+  handleBussinessUnitChange,
   handleSubmit,
 }: BusinessUnitsUIProps) {
   const filteredBusinessUnits = filterBusinessUnits(businessUnits, search);
@@ -87,7 +89,7 @@ function BusinessUnitsUI({
                     id={businessUnit.id}
                     value={businessUnit.name}
                     logo={businessUnit.logo}
-                    handleChange={handleClientChange}
+                    handleChange={handleBussinessUnitChange}
                   />
                 </StyledBusinessUnitsItem>
               ))}
