@@ -14,7 +14,10 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import { IInvitationsEntry } from "@services/users/invitation.types";
+import {
+  IFormCompleteInvitation,
+  IInvitationsEntry,
+} from "@services/users/invitation.types";
 
 import {
   CompleteInvitationUserConfig,
@@ -27,14 +30,14 @@ import { StyledContainerAssisted, StyledContainerLoading } from "./styles";
 import { GeneralInformationForm } from "./GeneralInformation";
 
 import {
-  IFormCompleteInvitation,
   IFormCompleteInvitationRef,
   IStep,
   titleButtonTextAssited,
 } from "./types";
 import { IAssignmentFormEntry } from "../../../types/forms.types";
-
 import { VerificationAddInvitation } from "../verificationForm";
+
+// import { VerificationAddInvitation } from "../verificationForm";
 
 export interface IVerificationData {
   id: string;
@@ -69,7 +72,7 @@ interface CompleteInvitationUIProps {
   invitationData: IFormCompleteInvitation;
   isCurrentFormValid: boolean;
   loading: boolean;
-  positionsOptions: Record<string, unknown>[];
+  positions: Record<string, unknown>[];
   showModal: boolean;
   steps: IStep[];
   handleCompleteInvitation: () => void;
@@ -88,7 +91,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
     isCurrentFormValid,
     invitationData,
     loading,
-    positionsOptions,
+    positions,
     showModal,
     steps,
     handleCompleteInvitation,
@@ -147,7 +150,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         </Stack>
         {currentInformation ? (
           <>
-            <StyledContainerAssisted cursorDisabled={!isCurrentFormValid}>
+            <StyledContainerAssisted cursorDisabled={false}>
               <Assisted
                 steps={Object.values(stepsRegisterUserConfig)}
                 currentStepId={currentStep}
@@ -163,10 +166,10 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
 
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
-                initialValues={currentInformation}
-                ref={formReferences.generalInformation}
                 onFormValid={setIsCurrentFormValid}
-                positionsOptions={positionsOptions}
+                initialValues={invitationData.generalInformation.values}
+                positions={positions}
+                ref={formReferences.generalInformation}
               />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
@@ -175,15 +178,9 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
                 handleSubmit={handleSubmit}
               />
             )}
-            {currentStep === stepsRegisterUserConfig.projects.id && (
+            {currentStep === stepsRegisterUserConfig.projectsEvents.id && (
               <InitializerForm
-                dataOptionsForms={invitationData.projects.values}
-                handleSubmit={handleSubmit}
-              />
-            )}
-            {currentStep === stepsRegisterUserConfig.events.id && (
-              <InitializerForm
-                dataOptionsForms={invitationData.events.values}
+                dataOptionsForms={invitationData.proyectsEvents.values}
                 handleSubmit={handleSubmit}
               />
             )}
@@ -199,13 +196,13 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
                 handleSubmit={handleSubmit}
               />
             )}
+
             {currentStep === stepsRegisterUserConfig.verification.id && (
               <VerificationAddInvitation
                 steps={invitationData}
                 setCurrentStep={setCurrentStep}
               />
             )}
-
             <Stack gap={inube.spacing.s200} justifyContent="flex-end">
               <Button
                 onClick={handlePrevStep}

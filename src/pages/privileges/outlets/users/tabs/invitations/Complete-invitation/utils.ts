@@ -53,69 +53,62 @@ export interface InvitationEntry {
   payrolls: { id: string }[];
 }
 
-export const completeInvitationData = (
-  invitationData: IFormCompleteInvitation
-) => {
-  const {
-    generalInformation: { values: generalInformation },
-    branches: { values: branches },
-    projects: { values: projects },
-    events: { values: events },
-    aidBudgetUnits: { values: aidBudgetUnits },
-    payrolls: { values: payrolls },
-  } = invitationData;
+// export const completeInvitationData = (
+//   invitationData: IFormCompleteInvitation
+// ) => {
+//   const {
+//     generalInformation: { values: generalInformation },
+//     branches: { values: branches },
+//     proyectsEvents: { values: proyectEvents },
+//     aidBudgetUnits: { values: aidBudgetUnits },
+//     payrolls: { values: payrolls },
+//   } = invitationData;
 
-  const normalizeBranches = branches
-    .filter((branch) => branch.isActive === true)
-    .map((branch) => ({
-      id: branch.value,
-    }));
+//   const normalizeBranches = branches
+//     .filter((branch) => branch.isActive === true)
+//     .map((branch) => ({
+//       id: branch.value,
+//     }));
 
-  const normalizeProjects = projects
-    .filter((project) => project.isActive === true)
-    .map((project) => ({
-      id: project.value,
-    }));
+//   const normalizeProjects = proyectEvents
+//     .filter((event) => event.isActive === true)
+//     .map((event) => ({
+//       id: event.value,
+//     }));
 
-  const normalizeEvents = events
-    .filter((event) => event.isActive === true)
-    .map((event) => ({
-      id: event.value,
-    }));
+//   const normalizeAidBudgetUnits = aidBudgetUnits
+//     .filter((event) => event.isActive === true)
+//     .map((event) => ({
+//       id: event.value,
+//     }));
 
-  const normalizeAidBudgetUnits = aidBudgetUnits
-    .filter((event) => event.isActive === true)
-    .map((event) => ({
-      id: event.value,
-    }));
+//   const normalizePayrolls = payrolls
+//     .filter((event) => event.isActive === true)
+//     .map((event) => ({
+//       id: event.value,
+//     }));
 
-  const normalizePayrolls = payrolls
-    .filter((event) => event.isActive === true)
-    .map((event) => ({
-      id: event.value,
-    }));
+//   const completeInvitationUser: InvitationEntry = {
+//     customerId: generalInformation?.customerId,
+//     dateEnd: generalInformation?.dateEnd,
+//     dateStart: generalInformation?.dateStart,
+//     email: generalInformation?.email,
+//     invitationId: generalInformation?.invitationId,
+//     password: generalInformation?.password,
+//     phoneNumber: generalInformation?.phoneNumber,
+//     position: generalInformation?.position,
+//     positionId: generalInformation?.positionId,
+//     requestingUser: generalInformation?.requestingUser,
+//     status: generalInformation?.status,
+//     userAccountId: generalInformation?.userAccountId,
+//     userIdentification: generalInformation?.userIdentification,
+//     userName: generalInformation?.userName,
+//     branches: normalizeBranches,
+//     projects: normalizeProjects,
+//     events: normalizeEvents,
+//     aidBudgetUnits: normalizeAidBudgetUnits,
+//     payrolls: normalizePayrolls,
+//   };
 
-  const completeInvitationUser: InvitationEntry = {
-    customerId: generalInformation?.customerId,
-    dateEnd: generalInformation?.dateEnd,
-    dateStart: generalInformation?.dateStart,
-    email: generalInformation?.email,
-    invitationId: generalInformation?.invitationId,
-    password: generalInformation?.password,
-    phoneNumber: generalInformation?.phoneNumber,
-    position: generalInformation?.position,
-    positionId: generalInformation?.positionId,
-    requestingUser: generalInformation?.requestingUser,
-    status: generalInformation?.status,
-    userAccountId: generalInformation?.userAccountId,
-    userIdentification: generalInformation?.userIdentification,
-    userName: generalInformation?.userName,
-    branches: normalizeBranches,
-    projects: normalizeProjects,
-    events: normalizeEvents,
-    aidBudgetUnits: normalizeAidBudgetUnits,
-    payrolls: normalizePayrolls,
-  };
-
-  return completeInvitationUser;
-};
+//   return completeInvitationUser;
+// };

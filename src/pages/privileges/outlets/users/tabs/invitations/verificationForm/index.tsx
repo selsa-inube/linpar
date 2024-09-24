@@ -58,7 +58,7 @@ export const VerificationAddInvitation = (props: IControllerAccordionProps) => {
           ),
           createAttribute(
             "Cargo:",
-            data.generalInformation.values?.position ?? ""
+            data.generalInformation.values?.userIdentification ?? ""
           ),
         ],
       },
@@ -66,16 +66,15 @@ export const VerificationAddInvitation = (props: IControllerAccordionProps) => {
         title: "Sucursales:",
         attributes: filterAndMapData(data.branches?.values || [], "isActive"),
       },
-      projects: {
+      projectsEvents: {
         title: "Proyectos:",
-        attributes: filterAndMapData(data.projects?.values || [], "isActive"),
-      },
-      events: {
-        title: "Eventos:",
-        attributes: filterAndMapData(data.events?.values || [], "isActive"),
+        attributes: filterAndMapData(
+          data.proyectsEvents?.values || [],
+          "isActive"
+        ),
       },
       aidBudgetUnits: {
-        title: "Unidades de ayuda:",
+        title: "Unidades presupuestales de auxilios:",
         attributes: filterAndMapData(
           data.aidBudgetUnits?.values || [],
           "isActive"

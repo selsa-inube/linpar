@@ -4,7 +4,7 @@ const mapInvitationsApiToEntity = (
   invitations: Record<string, string | number | object>
 ): IInvitationsEntry => {
   const builInvitations: IInvitationsEntry = {
-    id: String(invitations.userIdentification),
+    id: String(invitations.invitationId),
     invitationId: String(invitations.invitationId),
     customerId: String(invitations.customerId),
     email: String(invitations.email),
@@ -15,6 +15,8 @@ const mapInvitationsApiToEntity = (
     dateEnd: String(invitations.dateEnd),
     dateStart: String(invitations.dateStart),
     requestingUser: String(invitations.requestingUser),
+    userAccountId: String(invitations.userAccountId),
+    password: String(invitations.password),
   };
   return builInvitations;
 };

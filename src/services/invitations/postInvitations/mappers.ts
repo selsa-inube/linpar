@@ -6,7 +6,7 @@ const mapInvitationEntityToApi = (
   return {
     email: String(invitation.email),
     phoneNumber: String(invitation.phoneNumber),
-    publicCode: "LINIX",
+    businessUnitPublicCode: "LINIX",
     userIdentification: String(invitation.userIdentification),
   };
 };

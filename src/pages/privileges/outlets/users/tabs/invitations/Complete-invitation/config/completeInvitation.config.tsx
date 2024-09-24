@@ -17,30 +17,25 @@ const stepsRegisterUserConfig = {
     label: "Sucursales",
     description: "Asigna las sucursales que el usuario administrará",
   },
-  projects: {
+  projectsEvents: {
     id: 3,
-    label: "Proyectos",
-    description: "Agrega los proyectos que el usuario administrará.",
-  },
-  events: {
-    id: 4,
-    label: "Eventos",
-    description: "Agrega los Eventos que el usuario administrará.",
+    label: "Proyectos y eventos",
+    description: "Asigna los proyectos y eventos que el usuario administrará.",
   },
   aidBudgetUnits: {
-    id: 5,
-    label: "Unidades de ayuda",
+    id: 4,
+    label: "Unidades presupuestales de auxilios",
     description:
       "Configura las unidades presupuestarias de ayuda que el usuario administrará.",
   },
   payrolls: {
-    id: 6,
+    id: 5,
     label: "Nómina",
     description:
       "Configura la nómina del usuario, incluyendo detalles como el salario base, deducciones y beneficios.",
   },
   verification: {
-    id: 7,
+    id: 6,
     label: "Verificación",
     description: "Proceso final de verificacion",
     isVerification: true,
