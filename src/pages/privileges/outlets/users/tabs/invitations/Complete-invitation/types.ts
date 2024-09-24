@@ -1,5 +1,8 @@
 import { FormikProps } from "formik";
-import { IInvitationsEntry } from "@services/users/invitation.types";
+import {
+  IInvitation,
+  IInvitationsEntry,
+} from "@services/users/invitation.types";
 
 export interface IStep {
   id: number;
@@ -22,7 +25,7 @@ export interface IOptionInitialiceEntry {
 export interface IFormCompleteInvitation {
   generalInformation: {
     isValid: boolean;
-    values: IInvitationsEntry | undefined;
+    values: IInvitation;
   };
   branches: { isValid: boolean; values: IOptionInitialiceEntry[] };
   proyectsEvents: { isValid: boolean; values: IOptionInitialiceEntry[] };

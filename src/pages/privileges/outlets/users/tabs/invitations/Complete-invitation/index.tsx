@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { EMessageType } from "@src/types/messages.types";
 import {
   IFormCompleteInvitation,
+  IInvitation,
   IInvitationsEntry,
 } from "@services/users/invitation.types";
 // import { updateItemData } from "@mocks/utils/dataMock.service";
@@ -26,6 +27,7 @@ import { dataToAssignmentFormEntry } from "@src/pages/privileges/outlets/linixUs
 import { getProyectos } from "@src/services/users/proyectos";
 import { getUnidadesPresupuestales } from "@src/services/users/unidadesPresupuestales";
 import { getNomina } from "@src/services/users/nomina";
+import { completeInvitationStepsRules } from "./utils";
 
 function CompleteInvitation() {
   const { invitationId } = useParams();
@@ -144,6 +146,7 @@ function CompleteInvitation() {
             }
           }
         })
+
         .catch((error) => {
           console.error("Error fetching general Information:", error.message);
         })
@@ -277,74 +280,36 @@ function CompleteInvitation() {
     }
   };
 
-  // const payrollsData = () => {
-  //   if (!user) return;
-  //   if (payrolls.length === 0) {
-  //     getNomina(k_Usuari || "1")
-  //       .then((data) => {
-  //         if (data !== null) {
-  //           setPayrolls(data as Record<string, unknown>[]);
-  //           setFormData((prevFormData: IFormAddUsers) => ({
-  //             ...prevFormData,
-  //             payrolls: {
-  //               isValid: true,
-  //               values: dataToAssignmentFormEntry({
-  //                 dataOptions: data as Record<string, unknown>[],
-  //                 idLabel: "k_Tipnom",
-  //                 valueLabel: "n_Tipnom",
-  //                 isActiveLabel: "i_Privil",
-  //               }),
-  //             },
-  //           }));
-  //           originalDataEditUserForm.current = {
-  //             ...originalDataEditUserForm.current!,
-  //             payrolls: {
-  //               isValid: true,
-  //               values: dataToAssignmentFormEntry({
-  //                 dataOptions: data as Record<string, unknown>[],
-  //                 idLabel: "k_Tipnom",
-  //                 valueLabel: "n_Tipnom",
-  //                 isActiveLabel: "i_Privil",
-  //               }),
-  //             },
-  //           };
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching aidBudgetUnits:", error.message);
-  //       });
-  //   }
-  // };
-  const generalInformationRef = useRef<FormikProps<IInvitationsEntry>>(null);
+  const generalInformationRef = useRef<FormikProps<IInvitation>>(null);
 
   const formReferences: IFormCompleteInvitationRef = {
     generalInformation: generalInformationRef,
   };
 
   const handleStepChange = (stepId: number) => {
-    // const newCompleteInvitation = completeInvitationStepsRules(
-    //   currentStep,
-    //   invitationData,
-    //   formReferences,
-    //   isCurrentFormValid
-    // );
+    const newCompleteInvitation = completeInvitationStepsRules(
+      currentStep,
+      invitationData,
+      formReferences,
+      isCurrentFormValid
+    );
 
-    // setInvitationData(newCompleteInvitation);
+    setInvitationData(newCompleteInvitation);
 
     const changeStepKey = Object.entries(stepsRegisterUserConfig).find(
       ([, config]) => config.id === currentStep
     )?.[0];
 
-    if (!changeStepKey) return;
+    if (!newCompleteInvitation) return;
 
-    // const changeIsVerification = stepId === steps.length;
+    const changeIsVerification = stepId === steps.length;
 
-    // setIsCurrentFormValid(
-    //   changeIsVerification ||
-    //     newCompleteInvitation[changeStepKey as keyof IFormCompleteInvitation]
-    //       ?.isValid ||
-    //     false
-    // );
+    setIsCurrentFormValid(
+      changeIsVerification ||
+        newCompleteInvitation[changeStepKey as keyof IFormCompleteInvitation]
+          ?.isValid ||
+        false
+    );
 
     setCurrentStep(stepId);
 
@@ -367,7 +332,7 @@ function CompleteInvitation() {
   const handleNextStep = () => {
     console.log("currentStep", currentStep);
     console.log("steps", steps.length);
-    if (currentStep === steps.length) {
+    if (currentStep + 1 <= steps.length && isCurrentFormValid) {
       handleToggleModal();
     }
     if (currentStep + 1 <= steps.length) {

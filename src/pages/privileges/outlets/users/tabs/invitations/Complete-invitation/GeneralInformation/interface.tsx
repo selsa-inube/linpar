@@ -2,12 +2,14 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
 import { Stack, Textfield, Grid, useMediaQuery } from "@inube/design-system";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
+import { IMessageState } from "../../../../types/forms.types";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   loading: boolean;
   handleChangeForm: (name: string, value: string) => void;
   positions: Record<string, unknown>[];
+  message: IMessageState;
 }
 
 function stateValue(
@@ -127,9 +129,9 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             onReset={() => {}}
             idLabel="k_Grupo"
             nameLabel="n_Grupo"
-            onUserSelect={(value: Record<string, unknown>) =>
-              handleChangeForm("k_Grupo", value.k_Grupo as string)
-            }
+            onUserSelect={(value) => {
+              handleChangeForm("k_Grupo", value.k_Grupo as string);
+            }}
             selectedId={formik.values.k_Grupo}
             message={
               stateValue(formik, "positions") === "invalid" &&
