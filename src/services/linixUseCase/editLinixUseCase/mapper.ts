@@ -7,8 +7,10 @@ const mapEditLinixUseCaseEntityToApi = (
     modifyJustification: "<string>",
     a_Publicc: "<string>",
     i_Tipusec: String(editUseCase.i_Tipusec),
-    k_Ncampo: String(editUseCase.k_Ncampo),
-    k_Nforma: String(editUseCase.k_Nforma),
+    botonClienteServidor: {
+      k_Ncampo: String(editUseCase.k_Ncampo),
+      k_Nforma: String(editUseCase.k_Nforma),
+    },
     k_Usecase: String(editUseCase.k_Usecase),
     n_Descrip: String(editUseCase.n_Descrip),
     n_Usecase: String(editUseCase.n_Usecase),
