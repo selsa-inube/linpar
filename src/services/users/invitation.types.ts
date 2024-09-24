@@ -1,5 +1,12 @@
-import { IOptionInitialiceEntry } from "@pages/privileges/outlets/positions/add-position/types";
-
+export interface IInvitation {
+  id?: string;
+  email: string;
+  userIdentification: string;
+  phoneNumber: string;
+  userName?: string;
+  invitationId?: string;
+  customerId?: string;
+}
 export interface IInvitationsEntry {
   id?: string;
   customerId?: string;
@@ -19,8 +26,29 @@ export interface IInvitationsEntry {
   requestingUser?: string;
   userAccountId?: string;
   branches?: IOptionInitialiceEntry[];
-  projects?: IOptionInitialiceEntry[];
-  events?: IOptionInitialiceEntry[];
+  proyectsEvents?: IOptionInitialiceEntry[];
   aidBudgetUnits?: IOptionInitialiceEntry[];
   payrolls?: IOptionInitialiceEntry[];
 }
+
+export interface IOptionInitialiceEntry {
+  id: string;
+  value: string;
+  isActive: boolean;
+}
+
+export interface IFormCompleteInvitation {
+  generalInformation: {
+    isValid: boolean;
+    values: IInvitationsEntry;
+  };
+  branches: { isValid: boolean; values: IOptionInitialiceEntry[] };
+  proyectsEvents: { isValid: boolean; values: IOptionInitialiceEntry[] };
+  aidBudgetUnits: { isValid: boolean; values: IOptionInitialiceEntry[] };
+  payrolls: { isValid: boolean; values: IOptionInitialiceEntry[] };
+}
+
+export type IHandleChangeFormData =
+  | IInvitation
+  | IInvitationsEntry
+  | IOptionInitialiceEntry[];

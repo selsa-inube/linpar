@@ -25,8 +25,7 @@ export interface IFormCompleteInvitation {
     values: IInvitationsEntry | undefined;
   };
   branches: { isValid: boolean; values: IOptionInitialiceEntry[] };
-  projects: { isValid: boolean; values: IOptionInitialiceEntry[] };
-  events: { isValid: boolean; values: IOptionInitialiceEntry[] };
+  proyectsEvents: { isValid: boolean; values: IOptionInitialiceEntry[] };
   aidBudgetUnits: { isValid: boolean; values: IOptionInitialiceEntry[] };
   payrolls: { isValid: boolean; values: IOptionInitialiceEntry[] };
 }

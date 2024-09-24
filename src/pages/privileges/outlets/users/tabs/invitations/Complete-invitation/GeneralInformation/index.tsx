@@ -3,7 +3,10 @@ import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
-import { IInvitationsEntry } from "@services/users/invitation.types";
+import {
+  IInvitation,
+  IInvitationsEntry,
+} from "@services/users/invitation.types";
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;
@@ -11,13 +14,13 @@ const LOADING_TIMEOUT = 1500;
 const validationSchema = Yup.object({
   email: validationRules.email.required(validationMessages.required),
   phoneNumber: validationRules.phone.required(validationMessages.required),
-  position: Yup.string().required(validationMessages.required),
+  positions: Yup.string().required(validationMessages.required),
 });
 
 interface IGeneralInformationFormProps {
-  initialValues: IInvitationsEntry;
-  positionsOptions: Record<string, unknown>[];
-  handleSubmit?: (values: IInvitationsEntry) => void;
+  initialValues: IInvitation;
+  positions: Record<string, unknown>[];
+  handleSubmit?: (values: IInvitation) => void;
   onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   onHasChanges?: (hasChanges: boolean) => void;
 }
@@ -25,11 +28,11 @@ interface IGeneralInformationFormProps {
 export const GeneralInformationForm = forwardRef(
   function GeneralInformationForm(
     props: IGeneralInformationFormProps,
-    ref: React.Ref<FormikProps<IInvitationsEntry>>
+    ref: React.Ref<FormikProps<IInvitation>>
   ) {
     const {
       initialValues,
-      positionsOptions,
+      positions,
       handleSubmit,
       onFormValid,
       onHasChanges,
@@ -41,7 +44,7 @@ export const GeneralInformationForm = forwardRef(
       initialValues,
       validationSchema,
       validateOnChange: false,
-
+      validateOnBlur: true,
       onReset: () => {
         if (onHasChanges) onHasChanges(false);
       },
@@ -87,7 +90,7 @@ export const GeneralInformationForm = forwardRef(
         loading={loading}
         formik={formik}
         handleChangeForm={handleChangeForm}
-        positionsOptions={positionsOptions}
+        positions={positions}
       />
     );
   }

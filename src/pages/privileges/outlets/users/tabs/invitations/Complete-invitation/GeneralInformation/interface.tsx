@@ -7,7 +7,7 @@ interface GeneralInformationFormUIProps {
   formik: FormikValues;
   loading: boolean;
   handleChangeForm: (name: string, value: string) => void;
-  positionsOptions: Record<string, unknown>[];
+  positions: Record<string, unknown>[];
 }
 
 function stateValue(
@@ -20,7 +20,7 @@ function stateValue(
 }
 
 function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const { formik, loading, positionsOptions, handleChangeForm } = props;
+  const { formik, loading, positions, handleChangeForm } = props;
 
   const mediaQuerie = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuerie);
@@ -112,34 +112,30 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
 
         <Stack direction="column" gap="8px">
           <SearchUserCard
-            id="position"
+            id="positions"
             label="Cargo"
             placeholder="Seleccione una opción"
-            name="position"
+            name="positions"
             title="Búsqueda"
             infoTitle="Opción de Cargo"
             idModal="searchField"
             nameModal="searchField"
             labelModal="Digite la opción a buscar."
             placeholderModal="Digite el código o nombre del cargo."
-            userData={positionsOptions}
+            userData={positions}
             searchFieldData={searchData}
             onReset={() => {}}
             idLabel="k_Grupo"
             nameLabel="n_Grupo"
-            onUserSelect={(value) => {
-              formik.setValues({
-                ...formik.values,
-                positionId: value.k_Grupo,
-                position: value.n_Grupo,
-              });
-            }}
-            selectedId={formik.values.positionId}
+            onUserSelect={(value: Record<string, unknown>) =>
+              handleChangeForm("k_Grupo", value.k_Grupo as string)
+            }
+            selectedId={formik.values.k_Grupo}
             message={
-              stateValue(formik, "position") === "invalid" &&
+              stateValue(formik, "positions") === "invalid" &&
               formik.errors.position
             }
-            status={stateValue(formik, "position")}
+            status={stateValue(formik, "positions")}
             onBlur={formik.handleBlur}
             required
           />

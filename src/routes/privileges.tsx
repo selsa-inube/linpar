@@ -44,7 +44,7 @@ function PrivilegesRoutes() {
           element={<EditCaseLinix />}
         />
         <Route
-          path="users/complete-invitation/:invitation_id"
+          path="users/complete-invitation/:invitationId"
           element={<CompleteInvitation />}
         />
       </Route>
