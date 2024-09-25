@@ -1,6 +1,6 @@
+import { UseCase } from "@pages/catalogs/outlets/linixUseCase/types";
 import { environment } from "@config/environment";
 import { mapLinixUseCaseApiToEntities } from "./mapper";
-import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
 const getLinixUseCase = async (): Promise<UseCase[]> => {
   try {
