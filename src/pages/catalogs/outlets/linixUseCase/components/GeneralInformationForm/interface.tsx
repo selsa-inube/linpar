@@ -126,7 +126,12 @@ function RenderFormFields(
         fullwidth
         onChange={(
           event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-        ) => handleChangeForm(event.target.name, event.target.value)}
+        ) => {
+          const { value } = event.target;
+          if (value.length <= 120) {
+            handleChangeForm(event.target.name, value);
+          }
+        }}
       />
 
       <Stack direction="column" gap={"8px"}>

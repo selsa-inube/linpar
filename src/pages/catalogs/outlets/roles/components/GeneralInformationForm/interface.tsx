@@ -112,7 +112,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           type="text"
           size="compact"
           fullwidth
-          maxLength={30} // Limita el número de caracteres
+          maxLength={30}
           onChange={(
             event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
           ) => {

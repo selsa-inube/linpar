@@ -189,9 +189,15 @@ export const EditRole = () => {
                 isValid: true,
                 values: {
                   k_Rol: Number(generalData[0]?.k_Rol) || 0,
-                  commercialSector: String(commercialSector?.k_Codcta) || "",
-                  officialSector: String(officialSector?.k_Codcta) || "",
-                  solidaritySector: String(solidaritySector?.k_Codcta) || "",
+                  commercialSector: commercialSector?.k_Codcta
+                    ? String(commercialSector?.k_Codcta)
+                    : "",
+                  officialSector: officialSector?.k_Codcta
+                    ? String(officialSector?.k_Codcta)
+                    : "",
+                  solidaritySector: solidaritySector?.k_Codcta
+                    ? String(solidaritySector?.k_Codcta)
+                    : "",
                 },
               },
             }));
@@ -202,9 +208,15 @@ export const EditRole = () => {
                 isValid: true,
                 values: {
                   k_Rol: Number(generalData[0]?.k_Rol) || 0,
-                  commercialSector: String(commercialSector?.k_Codcta) || "",
-                  officialSector: String(officialSector?.k_Codcta) || "",
-                  solidaritySector: String(solidaritySector?.k_Codcta) || "",
+                  commercialSector: commercialSector?.k_Codcta
+                    ? String(commercialSector?.k_Codcta)
+                    : "",
+                  officialSector: officialSector?.k_Codcta
+                    ? String(officialSector?.k_Codcta)
+                    : "",
+                  solidaritySector: solidaritySector?.k_Codcta
+                    ? String(solidaritySector?.k_Codcta)
+                    : "",
                 },
               },
             };
@@ -417,7 +429,6 @@ export const EditRole = () => {
     code: dataEditRoleLinixForm.generalInformation.values.k_Rol,
     username: dataEditRoleLinixForm.generalInformation.values.n_Rol,
   };
-
   return (
     <EditRoleUI
       handleReset={handleReset}
