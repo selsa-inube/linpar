@@ -35,7 +35,7 @@ function LoginUI() {
         >
           <Stack direction="column" alignItems="center">
             <Text as="h1" type="headline" size="large">
-              Bienvenido Linpar
+              Bienvenido a Linpar
             </Text>
           </Stack>
           <StyledImage

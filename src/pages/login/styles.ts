@@ -16,7 +16,7 @@ const StyledOutletContainer = styled(StyledWelcomeContainer)`
 
 const StyledImage = styled.img<IStyledImage>`
   width: ${({ width }) => width};
-  max-width: 120px;
+  max-width: 1200px;
 `;
 
 export { StyledWelcomeContainer, StyledOutletContainer, StyledImage };
