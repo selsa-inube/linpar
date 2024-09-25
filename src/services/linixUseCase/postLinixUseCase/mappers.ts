@@ -7,7 +7,8 @@ const mapLinixUseCaseEntityToApi = (
     i_Tipusec: String(linixUseCase.i_Tipusec),
     botonClienteServidor: {
       k_Ncampo: String(linixUseCase.k_Ncampo),
-      k_Nforma: String(linixUseCase.k_Nforma),
+      k_Nforma:
+        linixUseCase.k_Ncampo === "" ? "" : String(linixUseCase.k_Nforma),
     },
     n_Descrip: String(linixUseCase.n_Descrip),
     n_Usecase: String(linixUseCase.n_Usecase),
