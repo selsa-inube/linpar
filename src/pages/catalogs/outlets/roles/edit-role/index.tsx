@@ -389,7 +389,12 @@ export const EditRole = () => {
 
   const onSubmit = () => {
     setLoading(true);
-    const addnewdata = editDataRoles(dataEditRoleLinixForm, csOptionsChange);
+    const addnewdata = editDataRoles(
+      dataEditRoleLinixForm,
+      rolesEditCuantasA,
+      csOptionsChange,
+      roleID
+    );
     addnewdata
       .then(() => {
         setMessage({

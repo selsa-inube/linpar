@@ -112,14 +112,21 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           type="text"
           size="compact"
           fullwidth
-          maxLength={20}
+          maxLength={30} // Limita el número de caracteres
           onChange={(
             event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-          ) => handleChangeForm(event.target.name, event.target.value)}
+          ) => {
+            const { value } = event.target;
+            if (value.length <= 30) {
+              handleChangeForm(event.target.name, value);
+            }
+          }}
           required
           onBlur={formik.handleBlur}
           message={
-            stateValue("description") === "invalid"
+            formik.values.description.length > 30
+              ? "Excediste el límite"
+              : stateValue("description") === "invalid"
               ? formik.errors.description
               : null
           }
