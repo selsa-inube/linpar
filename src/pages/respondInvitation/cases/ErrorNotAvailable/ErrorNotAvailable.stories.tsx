@@ -24,7 +24,7 @@ const Template: StoryFn<ErrorNotAvailableProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  clientData: businessUnitDataMock[0],
+  bussinessData: businessUnitDataMock[0],
 };
 
 export const WithoutClient = Template.bind({});

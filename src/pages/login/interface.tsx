@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { Grid, Stack, Text, useMediaQueries } from "@inube/design-system";
-import { LinparContext } from "@context/AppContext";
 
 import {
   StyledWelcomeContainer,
   StyledOutletContainer,
   StyledImage,
 } from "./styles";
+import { LinparContext } from "@src/context/AppContext";
 
 function LoginUI() {
   const {
@@ -20,8 +20,6 @@ function LoginUI() {
     "(min-width: 993px) and (max-width: 2200px)",
   ]);
   const { linparData } = useContext(LinparContext);
-  console.log("linparData", linparData);
-
   return (
     <Grid
       templateColumns={screenMobile ? "1fr" : "repeat(2, 1fr)"}

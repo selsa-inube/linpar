@@ -7,7 +7,7 @@ interface IUser {
   active: boolean;
   email: string;
   phone: string;
-  clients: number[];
+  businessUnits: number[];
 }
 
 interface IBusinessUnit {

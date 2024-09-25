@@ -1,4 +1,5 @@
 import { MdPerson, MdVpnKey } from "react-icons/md";
+import catalogs from "@assets/images/catalogs.svg";
 
 const appsConfig = [
   {
@@ -24,6 +25,27 @@ const appsConfig = [
   },
   {
     id: 2,
+    label: "Catálogos Generales",
+    description: "Opciones de configuración de catálogos generales.",
+    icon: <img src={catalogs} alt="catalogs" width="25" height="25" />,
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/catalogs",
+        label: "Catálogos Generales",
+        id: "/catalogs",
+        isActive: true,
+      },
+    ],
+    url: "/catalogs",
+  },
+  {
+    id: 3,
     label: "Personas",
     description:
       "Opciones de configuración relacionadas con el portal de clientes.",
@@ -60,6 +82,12 @@ const navigationConfig = {
           label: "Privilegios",
           icon: <MdVpnKey />,
           path: "/privileges",
+        },
+        catalogs: {
+          id: "catalogs",
+          label: "Catálogos Generales",
+          icon: <img src={catalogs} alt="catalogs" width="25" height="25" />,
+          path: "/catalogs",
         },
         people: {
           id: "people",
