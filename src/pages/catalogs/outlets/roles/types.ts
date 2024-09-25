@@ -17,6 +17,7 @@ export interface ICuentasAuxiliaresPorRol {
   k_Rol?: number;
   i_Tipent: string;
   k_Codcta: string;
+  TransactionOperation?: string;
 }
 
 export interface IReglasDeNegocioPorRol {

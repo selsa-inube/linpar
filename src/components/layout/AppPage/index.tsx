@@ -35,7 +35,7 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function AppPage() {
-  const { linparData } = useContext(LinparContext);
+  const { businessUnitSigla, linparData } = useContext(LinparContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -67,18 +67,19 @@ function AppPage() {
   }, [showUserMenu]);
 
   const filterNavigationConfig = () => {
-    if (
-      bussinessUnitOptionTotal.includes(linparData.businessUnit.abbreviatedName)
-    )
+    const businessUnit = JSON.parse(businessUnitSigla);
+    if (bussinessUnitOptionTotal.includes(businessUnit.sigla)) {
       return navigationConfig;
-    const DataConfig = { ...navigationConfig };
-    removeBussinessUnit.forEach((unit) => {
-      delete DataConfig.sections.administrate.links[
-        unit as keyof typeof DataConfig.sections.administrate.links
-      ];
-    });
+    } else {
+      const DataConfig = { ...navigationConfig };
+      removeBussinessUnit.forEach((unit) => {
+        delete DataConfig.sections.administrate.links[
+          unit as keyof typeof DataConfig.sections.administrate.links
+        ];
+      });
 
-    return DataConfig;
+      return DataConfig;
+    }
   };
 
   const handleToggleLogoutModal = () => {

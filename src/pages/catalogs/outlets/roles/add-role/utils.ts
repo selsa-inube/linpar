@@ -94,20 +94,44 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
     businessRules: { values: businessRulesValues },
   } = addRoleFormValid;
 
-  const normalizeAncillaryAccounts = [
-    {
-      i_Tipent: "C",
-      k_Codcta: ancillaryAccountsValues.commercialSector,
-    },
-    {
-      i_Tipent: "O",
-      k_Codcta: ancillaryAccountsValues.officialSector,
-    },
-    {
-      i_Tipent: "S",
-      k_Codcta: ancillaryAccountsValues.solidaritySector,
-    },
-  ];
+  console.log(ancillaryAccountsValues);
+
+  const validateAncillaryAccounts = () => {
+    const normalizeAncillaryAccounts = [];
+
+    if (ancillaryAccountsValues.commercialSector)
+      normalizeAncillaryAccounts.push({
+        i_Tipent: "C",
+        k_Codcta: ancillaryAccountsValues.commercialSector,
+      });
+    if (ancillaryAccountsValues.officialSector)
+      normalizeAncillaryAccounts.push({
+        i_Tipent: "O",
+        k_Codcta: ancillaryAccountsValues.officialSector,
+      });
+    if (ancillaryAccountsValues.solidaritySector)
+      normalizeAncillaryAccounts.push({
+        i_Tipent: "S",
+        k_Codcta: ancillaryAccountsValues.solidaritySector,
+      });
+
+    return normalizeAncillaryAccounts;
+  };
+
+  // const normalizeAncillaryAccounts = [
+  //   {
+  //     i_Tipent: "C",
+  //     k_Codcta: ancillaryAccountsValues.commercialSector,
+  //   },
+  //   {
+  //     i_Tipent: "O",
+  //     k_Codcta: ancillaryAccountsValues.officialSector,
+  //   },
+  //   {
+  //     i_Tipent: "S",
+  //     k_Codcta: ancillaryAccountsValues.solidaritySector,
+  //   },
+  // ];
 
   const normalizeTransactionTypes = transactionTypesValues
     .filter((transactionTypesValue) => transactionTypesValue.isActive === true)
@@ -130,7 +154,6 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
 
   const newRole: IRol = {
     i_Activo: "Y",
-
     k_Tipcon: addRoleFormValid.generalInformation.values.applicationId,
     n_Rol: addRoleFormValid.generalInformation.values.n_Rol,
     n_Uso: addRoleFormValid.generalInformation.values.description,
@@ -138,7 +161,7 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
     tiposDeMovimientoContablePorRol: normalizeTransactionTypes,
     reglasDeNegocioPorRol: normalizeBusinessRules,
     casosDeUsoPorRol: normalizeUseCases,
-    cuentasAuxiliaresPorRol: normalizeAncillaryAccounts,
+    cuentasAuxiliaresPorRol: validateAncillaryAccounts(),
   };
 
   let confirmationType = true;
