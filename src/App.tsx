@@ -33,12 +33,9 @@ function LogOut() {
 }
 
 function FirstPage() {
-  const { linparData } = useContext(LinparContext);
-  return linparData.businessUnit.abbreviatedName.length === 0 ? (
-    <Login />
-  ) : (
-    <Home />
-  );
+  const { businessUnitSigla } = useContext(LinparContext);
+
+  return businessUnitSigla.length === 0 ? <Login /> : <Home />;
 }
 
 const router = createBrowserRouter(
@@ -51,7 +48,7 @@ const router = createBrowserRouter(
       <Route path="people/*" element={<PeopleRoutes />} />
       <Route path="logout" element={<LogOut />} />
       <Route
-        path="respond-invitation/:client_id/:invitation_id/*"
+        path="respond-invitation/:businessUnit_id/:invitation_id/*"
         element={<RespondInvitationRoutes />}
       />
     </>

@@ -1,4 +1,4 @@
-const clientsDataMock = [
+const businessUnitDataMock = [
   // {
   //   id: 1,
   //   name: "Fondo de Empleados y Trabajadores de la Universidad del Valle",
@@ -61,4 +61,4 @@ const clientsDataMock = [
   // },
 ];
 
-export { clientsDataMock };
+export { businessUnitDataMock };

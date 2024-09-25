@@ -1,10 +1,3 @@
-interface IClient {
-  id: string;
-  name: string;
-  sigla: string;
-  logo: string;
-}
-
 interface IPortal {
   abbreviatedName: string;
   staffPortalCatalogId: string;
@@ -42,4 +35,4 @@ interface ILinparContext {
   setBusinessUnitSigla: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export type { IClient, ILinparData, ILinparContext };
+export type { ILinparData, ILinparContext, IBusinessUnit };
