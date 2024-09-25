@@ -1,11 +1,11 @@
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
-import { clientsDataMock } from "@mocks/login/clients.mock";
-import { validationMessages } from "@validations/validationMessages";
-import { validationRules } from "@validations/validationRules";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
+import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
+import { validationMessages } from "@validations/validationMessages";
+import { validationRules } from "@validations/validationRules";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 import { ErrorInvitationExpired } from "./cases/ErrorInvitationExpired";
 import { ErrorNotAvailable } from "./cases/ErrorNotAvailable";
 import { RespondInvitationUI } from "./interface";
@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 });
 
 function RespondInvitation() {
-  const { client_id, invitation_id } = useParams();
+  const { bussinessUnit_id, invitation_id } = useParams();
   const [loading, setLoading] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
   const navigate = useNavigate();
@@ -34,12 +34,14 @@ function RespondInvitation() {
     );
   };
 
-  const getClientData = () => {
-    if (!client_id) return;
-    return clientsDataMock.find((clientMock) => clientMock.id === client_id);
+  const getBusinessData = () => {
+    if (!bussinessUnit_id) return;
+    return businessUnitDataMock.find(
+      (businessMock) => businessMock.id === bussinessUnit_id
+    );
   };
 
-  const clientData = getClientData();
+  const bussinessData = getBusinessData();
   const invitation = getInvitationInformation();
 
   const formik = useFormik({
@@ -59,7 +61,7 @@ function RespondInvitation() {
       setLoading(true);
       setTimeout(() => {
         navigate(
-          `/respond-invitation/${client_id}/${invitation_id}/confirmation-register-complete`
+          `/respond-invitation/${bussinessUnit_id}/${invitation_id}/confirmation-register-complete`
         );
         setLoading(false);
       }, LOADING_TIMEOUT);
@@ -75,17 +77,17 @@ function RespondInvitation() {
     });
   };
 
-  if (!invitation || !clientData) {
-    return <ErrorNotAvailable clientData={clientData} />;
+  if (!invitation || !bussinessData) {
+    return <ErrorNotAvailable bussinessData={bussinessData} />;
   }
 
   if (invitation.status === "Sent") {
-    return <ErrorInvitationExpired clientData={clientData} />;
+    return <ErrorInvitationExpired bussinessData={bussinessData} />;
   }
 
   return (
     <RespondInvitationUI
-      clientData={clientData}
+      bussinessData={bussinessData}
       loading={loading}
       formik={formik}
       formInvalid={formInvalid}

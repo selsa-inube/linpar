@@ -8,7 +8,12 @@ import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
 
-import { navigationConfig, logoutConfig } from "./config/apps.config";
+import {
+  navigationConfig,
+  logoutConfig,
+  bussinessUnitOptionTotal,
+  removeBussinessUnit,
+} from "./config/apps.config";
 
 import {
   StyledAppPage,
@@ -61,6 +66,21 @@ function AppPage() {
     };
   }, [showUserMenu]);
 
+  const filterNavigationConfig = () => {
+    if (
+      bussinessUnitOptionTotal.includes(linparData.businessUnit.abbreviatedName)
+    )
+      return navigationConfig;
+    const DataConfig = { ...navigationConfig };
+    removeBussinessUnit.forEach((unit) => {
+      delete DataConfig.sections.administrate.links[
+        unit as keyof typeof DataConfig.sections.administrate.links
+      ];
+    });
+
+    return DataConfig;
+  };
+
   const handleToggleLogoutModal = () => {
     setShowLogoutModal(!showLogoutModal);
     setShowUserMenu(false);
@@ -112,7 +132,7 @@ function AppPage() {
             {!smallScreen && (
               <StyledContainerNav>
                 <Nav
-                  navigation={navigationConfig}
+                  navigation={filterNavigationConfig()}
                   logoutPath={logoutConfig.logoutPath}
                   logoutTitle={logoutConfig.logoutTitle}
                 />
