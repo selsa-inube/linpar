@@ -94,8 +94,6 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
     businessRules: { values: businessRulesValues },
   } = addRoleFormValid;
 
-  console.log(ancillaryAccountsValues);
-
   const validateAncillaryAccounts = () => {
     const normalizeAncillaryAccounts = [];
 
@@ -117,21 +115,6 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
 
     return normalizeAncillaryAccounts;
   };
-
-  // const normalizeAncillaryAccounts = [
-  //   {
-  //     i_Tipent: "C",
-  //     k_Codcta: ancillaryAccountsValues.commercialSector,
-  //   },
-  //   {
-  //     i_Tipent: "O",
-  //     k_Codcta: ancillaryAccountsValues.officialSector,
-  //   },
-  //   {
-  //     i_Tipent: "S",
-  //     k_Codcta: ancillaryAccountsValues.solidaritySector,
-  //   },
-  // ];
 
   const normalizeTransactionTypes = transactionTypesValues
     .filter((transactionTypesValue) => transactionTypesValue.isActive === true)
