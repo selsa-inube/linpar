@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
 import { Header, Grid, useMediaQuery } from "@inube/design-system";
-
+import { Nav } from "@inubekit/nav";
 import { LinparContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
@@ -25,7 +25,6 @@ import {
   StyledMenuContainer,
   StyledHeaderContainer,
 } from "./styles";
-import { Nav } from "@inubekit/nav";
 
 const renderLogo = (imgUrl: string) => {
   return (
