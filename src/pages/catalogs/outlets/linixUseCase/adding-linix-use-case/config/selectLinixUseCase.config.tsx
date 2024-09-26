@@ -2,6 +2,7 @@ export interface Option {
   id: string;
   label: string;
   value: string;
+  isActive?: boolean;
 }
 
 export const OptionSelect: Option[] = [

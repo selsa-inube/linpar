@@ -18,6 +18,7 @@ import { stepsAddRol } from "./config/addRol.config";
 import { IAncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
+import { SortableItem } from "./types";
 
 const steps = Object.values(stepsAddRol);
 
@@ -260,6 +261,20 @@ export function AddRol() {
       }));
     }
   };
+
+  const sortByIsActive = (arrays: SortableItem[][]) => {
+    arrays.forEach((array) =>
+      array.sort((a, b) =>
+        b.isActive === a.isActive ? 0 : b.isActive ? 1 : -1
+      )
+    );
+  };
+
+  sortByIsActive([
+    dataAddRoleLinixForm.transactionTypes.values as SortableItem[],
+    dataAddRoleLinixForm.businessRules.values as SortableItem[],
+    dataAddRoleLinixForm.useCases.values as SortableItem[],
+  ]);
 
   return (
     <AddRolUI

@@ -26,6 +26,7 @@ import { editDataRoles } from "./utils";
 
 import { generalMessage } from "../config/messages.config";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
+import { SortableItem } from "../add-role/types";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")
@@ -429,6 +430,20 @@ export const EditRole = () => {
     code: dataEditRoleLinixForm.generalInformation.values.k_Rol,
     username: dataEditRoleLinixForm.generalInformation.values.n_Rol,
   };
+
+  const sortByIsActive = (arrays: SortableItem[][]) => {
+    arrays.forEach((array) =>
+      array.sort((a, b) =>
+        b.isActive === a.isActive ? 0 : b.isActive ? 1 : -1
+      )
+    );
+  };
+
+  sortByIsActive([
+    dataEditRoleLinixForm.transactionTypes.values as SortableItem[],
+    dataEditRoleLinixForm.businessRules.values as SortableItem[],
+    dataEditRoleLinixForm.useCases.values as SortableItem[],
+  ]);
   return (
     <EditRoleUI
       handleReset={handleReset}
