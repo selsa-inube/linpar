@@ -15,6 +15,7 @@ import { ICardData } from "./types";
 import {
   StyledContainer,
   StyledContainerCards,
+  StyledContainerSection,
   StyledContentImg,
   StyledFooter,
   StyledHeaderContainer,
@@ -119,28 +120,30 @@ function HomeUI(props: HomeProps) {
             handleShowBlanket={handleToggleLogoutModal}
           />
         )}
-        <StyledTitle>
-          <PageTitle
-            title={`Bienvenido, ${username}`}
-            description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
-            icon={<MdOutlineDoorFront />}
-          />
-        </StyledTitle>
-        <StyledContainerCards>
-          {data &&
-            filterDataConfig()?.map((card, index) => (
-              <AppCard
-                key={card.id}
-                label={card.label}
-                description={card.description}
-                icon={card.icon}
-                url={card.url}
-              />
-            ))}
-        </StyledContainerCards>
-        <StyledFooter>
-          <StyledLogo src={linparData.businessManager.urlBrand} />
-        </StyledFooter>
+        <StyledContainerSection>
+          <StyledTitle>
+            <PageTitle
+              title={`Bienvenido, ${username}`}
+              description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
+              icon={<MdOutlineDoorFront />}
+            />
+          </StyledTitle>
+          <StyledContainerCards>
+            {data &&
+              filterDataConfig()?.map((card, index) => (
+                <AppCard
+                  key={card.id}
+                  label={card.label}
+                  description={card.description}
+                  icon={card.icon}
+                  url={card.url}
+                />
+              ))}
+          </StyledContainerCards>
+          <StyledFooter>
+            <StyledLogo src={linparData.businessManager.urlBrand} />
+          </StyledFooter>
+        </StyledContainerSection>
       </StyledContainer>
     </>
   );

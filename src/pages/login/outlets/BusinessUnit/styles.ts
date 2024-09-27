@@ -25,6 +25,12 @@ const StyledBusinessUnits = styled.div`
   }
 `;
 
+const StyledBusinessUnitsText = styled.div`
+  @media screen and (max-width: 532px) {
+    padding-top: 80px;
+  }
+`;
+
 const StyledBusinessUnitsList = styled.div<StyledBusinessUnitsListProps>`
   & > div {
     list-style: none;
@@ -54,4 +60,5 @@ export {
   StyledBusinessUnitsList,
   StyledNoResults,
   StyledBusinessUnitsItem,
+  StyledBusinessUnitsText,
 };

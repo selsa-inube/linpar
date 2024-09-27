@@ -9,6 +9,7 @@ import {
   StyledBusinessUnitsList,
   StyledNoResults,
   StyledBusinessUnitsItem,
+  StyledBusinessUnitsText,
 } from "./styles";
 import { IBusinessUnit } from "../../types";
 
@@ -51,12 +52,14 @@ function BusinessUnitsUI({
 
   return (
     <StyledBusinessUnits>
-      <Text type="title" as="h2" textAlign="center">
-        Unidad de Negocios
-      </Text>
-      <Text size="medium" textAlign="center">
-        Seleccione la Unidad de Negocio
-      </Text>
+      <StyledBusinessUnitsText>
+        <Text type="title" as="h2" textAlign="center">
+          Unidad de Negocios
+        </Text>
+        <Text size="medium" textAlign="center">
+          Seleccione la Unidad de Negocio
+        </Text>
+      </StyledBusinessUnitsText>
       <form>
         <Stack direction="column" alignItems="center">
           {businessUnits.length > 10 && (
