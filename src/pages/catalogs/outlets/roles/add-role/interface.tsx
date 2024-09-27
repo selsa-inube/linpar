@@ -154,7 +154,7 @@ export function AddRolUI(props: AddRolUIProps) {
               </Stack>
             </Stack>
             <>
-              <StyledContainerAssisted cursorDisabled={!isAddRoleFormValid}>
+              <StyledContainerAssisted $cursorDisabled={!isAddRoleFormValid}>
                 <Assisted
                   steps={steps}
                   currentStepId={currentStep}
