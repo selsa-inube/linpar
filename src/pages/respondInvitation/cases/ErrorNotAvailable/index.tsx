@@ -2,16 +2,16 @@ import { ErrorPage } from "@components/layout/ErrorPage";
 import { IBusinessUnit } from "@pages/login/types";
 
 interface ErrorNotAvailableProps {
-  bussinessUnitsData?: IBusinessUnit;
+  bussinessData?: IBusinessUnit;
 }
 
 function ErrorNotAvailable(props: ErrorNotAvailableProps) {
-  const { bussinessUnitsData } = props;
+  const { bussinessData } = props;
 
   return (
     <ErrorPage
-      logo={bussinessUnitsData && bussinessUnitsData.logo}
-      logoAlt={bussinessUnitsData && `Logo ${bussinessUnitsData.name}`}
+      logo={bussinessData && bussinessData.logo}
+      logoAlt={bussinessData && `Logo ${bussinessData.name}`}
     />
   );
 }

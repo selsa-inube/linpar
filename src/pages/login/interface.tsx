@@ -1,14 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
-import selsaLogo from "@assets/images/selsa.png";
 import { Grid, Stack, Text, useMediaQueries } from "@inube/design-system";
-import { LinparContext } from "@context/AppContext";
 
 import {
   StyledWelcomeContainer,
   StyledOutletContainer,
   StyledImage,
 } from "./styles";
+import { LinparContext } from "@src/context/AppContext";
 
 function LoginUI() {
   const {
@@ -21,8 +20,6 @@ function LoginUI() {
     "(min-width: 993px) and (max-width: 2200px)",
   ]);
   const { linparData } = useContext(LinparContext);
-  console.log("linparData", linparData);
-
   return (
     <Grid
       templateColumns={screenMobile ? "1fr" : "repeat(2, 1fr)"}
@@ -36,16 +33,13 @@ function LoginUI() {
           height="100%"
           gap={screenMobile ? "16px" : "32px"}
         >
-          <Stack direction="column">
-            <Text type="headline" size="small" textAlign="center">
-              Bienvenido
-            </Text>
+          <Stack direction="column" alignItems="center">
             <Text as="h1" type="headline" size="large">
-              iSetting Portal
+              Bienvenido a Linpar
             </Text>
           </Stack>
           <StyledImage
-            src={selsaLogo}
+            src={linparData.businessManager.urlLogo}
             alt="Sistemas Enlinea"
             width={screenDesktop ? "240px" : screenTablet ? "200px" : "160px"}
           />

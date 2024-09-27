@@ -13,7 +13,7 @@ const Default = () => (
   <MemoryRouter initialEntries={["/path/1/11"]}>
     <Routes>
       <Route
-        path="/path/:client_id/:invitation_id"
+        path="/path/:businessUnit_id/:invitation_id"
         element={<RespondInvitation />}
       />
     </Routes>
@@ -24,7 +24,7 @@ const ExpiredInvitation = () => (
   <MemoryRouter initialEntries={["/path/1/10"]}>
     <Routes>
       <Route
-        path="/path/:client_id/:invitation_id"
+        path="/path/:businessUnit_id/:invitation_id"
         element={<RespondInvitation />}
       />
     </Routes>
@@ -35,7 +35,7 @@ const ErrorWithClient = () => (
   <MemoryRouter initialEntries={["/path/1/0000"]}>
     <Routes>
       <Route
-        path="/path/:client_id/:invitation_id"
+        path="/path/:businessUnit_id/:invitation_id"
         element={<RespondInvitation />}
       />
     </Routes>

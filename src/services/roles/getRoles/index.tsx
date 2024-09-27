@@ -1,5 +1,5 @@
 import { environment } from "@config/environment";
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/catalogs/outlets/roles/types";
 import { mapRolesUseCaseApiToEntities } from "./mapper";
 
 const getRoles = async (): Promise<IRol[]> => {

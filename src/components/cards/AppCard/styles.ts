@@ -6,7 +6,7 @@ import { tokens } from "@design/tokens";
 const StyledAppCard = styled(Link)`
   box-sizing: border-box;
   padding: ${tokens.spacing.s300};
-  min-height: 170px;
+  height: 170px;
   width: 250px;
   display: flex;
   flex-direction: column;

@@ -7,12 +7,14 @@ interface IUser {
   active: boolean;
   email: string;
   phone: string;
-  clients: number[];
+  businessUnits: number[];
 }
+
 interface IBusinessUnit {
   id: string;
   name: string;
   sigla: string;
   logo: string;
 }
+
 export type { IUser, IBusinessUnit };

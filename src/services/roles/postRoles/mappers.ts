@@ -1,4 +1,4 @@
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/catalogs/outlets/roles/types";
 
 const mapRolesEntityToApi = (
   roles: IRol

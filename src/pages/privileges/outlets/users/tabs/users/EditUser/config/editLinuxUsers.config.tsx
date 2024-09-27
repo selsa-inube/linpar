@@ -5,7 +5,7 @@ const editLinixUsersConfig = [
     id: 1,
     title: "Agregar un caso de uso",
     description: "Completa la información para agregar un caso de uso",
-    route: "/privileges/linixUseCase/adding-linix-use-case",
+    route: "/catalogs/linixUseCase/adding-linix-use-case",
     crumbs: [
       {
         path: "/",
@@ -14,21 +14,21 @@ const editLinixUsersConfig = [
         isActive: false,
       },
       {
-        path: "/privileges",
-        label: "Privilegios",
-        id: "/privileges",
+        path: "/catalogs",
+        label: "Catálogos Generales",
+        id: "/catalogs",
         isActive: false,
       },
       {
-        path: "/privileges/users",
+        path: "/catalogs/users",
         label: "Usuarios Linix",
-        id: "/privileges/users",
+        id: "/catalogs/users",
         isActive: false,
       },
       {
-        path: "/privileges/users/edit/:user_id",
+        path: "/catalogs/users/edit/:user_id",
         label: "Edicion de usuario",
-        id: "/privileges/users/edit",
+        id: "/catalogs/users/edit",
         isActive: true,
       },
     ],

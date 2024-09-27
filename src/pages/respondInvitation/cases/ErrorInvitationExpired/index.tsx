@@ -3,18 +3,18 @@ import { ErrorPage } from "@components/layout/ErrorPage";
 import { IBusinessUnit } from "@pages/login/types";
 
 interface ErrorInvitationExpiredProps {
-  bussinessUnitsData?: IBusinessUnit;
+  bussinessData?: IBusinessUnit;
 }
 
 function ErrorInvitationExpired(props: ErrorInvitationExpiredProps) {
-  const { bussinessUnitsData } = props;
+  const { bussinessData } = props;
 
   return (
     <ErrorPage
-      logo={bussinessUnitsData && bussinessUnitsData.logo}
-      logoAlt={bussinessUnitsData && `Logo ${bussinessUnitsData.name}`}
+      logo={bussinessData && bussinessData.logo}
+      logoAlt={bussinessData && `Logo ${bussinessData.name}`}
       heading="!Lo sentimos! no hay resultados..."
-      description="Su usuario no tiene bussinessUnitses relacionados, por favor consulte con su administrador."
+      description="Su usuario no tiene clientes relacionados, por favor consulte con su administrador."
       imageAlt="No hay resultados."
       image={Expired}
     />

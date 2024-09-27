@@ -1,10 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { MdLogout, MdOutlineDoorFront } from "react-icons/md";
 import { Header } from "@inubekit/header";
-import { Stack } from "@inubekit/stack";
-
 import { PageTitle } from "@components/PageTitle";
-
 import { MenuUser } from "@components/navigation/MenuUser";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { LogoutModal } from "@components/feedback/LogoutModal";
@@ -19,6 +16,7 @@ import {
   StyledContainer,
   StyledContainerCards,
   StyledContentImg,
+  StyledFooter,
   StyledHeaderContainer,
   StyledLogo,
   StyledMenuContainer,
@@ -85,52 +83,52 @@ function HomeUI(props: HomeProps) {
   };
 
   return (
-    <StyledContainer>
-      <StyledHeaderContainer>
-        <Header
-          portalId="portal"
-          navigation={navigationConfig}
-          logoURL={renderLogo(linparData.businessUnit.urlLogo)}
-          userName={linparData.user.userName}
-        />
-      </StyledHeaderContainer>
-      {showUserMenu && (
-        <StyledMenuContainer ref={userMenuRef}>
-          <MenuUser userName={linparData.user.userName} />
-          <MenuSection
-            sections={[
-              {
-                links: [
-                  {
-                    title: "Cerrar sesión",
-                    iconBefore: <MdLogout />,
-                    onClick: handleToggleLogoutModal,
-                  },
-                ],
-              },
-            ]}
-            divider={true}
+    <>
+      <StyledContainer>
+        <StyledHeaderContainer>
+          <Header
+            portalId="portal"
+            navigation={navigationConfig}
+            logoURL={renderLogo(linparData.businessUnit.urlLogo)}
+            userName={linparData.user.userName}
           />
-        </StyledMenuContainer>
-      )}
+        </StyledHeaderContainer>
+        {showUserMenu && (
+          <StyledMenuContainer ref={userMenuRef}>
+            <MenuUser userName={linparData.user.userName} />
+            <MenuSection
+              sections={[
+                {
+                  links: [
+                    {
+                      title: "Cerrar sesión",
+                      iconBefore: <MdLogout />,
+                      onClick: handleToggleLogoutModal,
+                    },
+                  ],
+                },
+              ]}
+              divider={true}
+            />
+          </StyledMenuContainer>
+        )}
 
-      {showLogoutModal && (
-        <LogoutModal
-          logoutPath="/logout"
-          handleShowBlanket={handleToggleLogoutModal}
-        />
-      )}
-      <StyledTitle>
-        <PageTitle
-          title={`Bienvenido, ${username}`}
-          description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
-          icon={<MdOutlineDoorFront />}
-        />
-      </StyledTitle>
-      <StyledContainerCards>
-        {data &&
-          filterDataConfig()?.map((card, index) => (
-            <Stack key={index}>
+        {showLogoutModal && (
+          <LogoutModal
+            logoutPath="/logout"
+            handleShowBlanket={handleToggleLogoutModal}
+          />
+        )}
+        <StyledTitle>
+          <PageTitle
+            title={`Bienvenido, ${username}`}
+            description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
+            icon={<MdOutlineDoorFront />}
+          />
+        </StyledTitle>
+        <StyledContainerCards>
+          {data &&
+            filterDataConfig()?.map((card, index) => (
               <AppCard
                 key={card.id}
                 label={card.label}
@@ -138,10 +136,13 @@ function HomeUI(props: HomeProps) {
                 icon={card.icon}
                 url={card.url}
               />
-            </Stack>
-          ))}
-      </StyledContainerCards>
-    </StyledContainer>
+            ))}
+        </StyledContainerCards>
+        <StyledFooter>
+          <StyledLogo src={linparData.businessManager.urlBrand} />
+        </StyledFooter>
+      </StyledContainer>
+    </>
   );
 }
 
