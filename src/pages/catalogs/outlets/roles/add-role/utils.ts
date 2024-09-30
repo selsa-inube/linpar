@@ -94,8 +94,6 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
     businessRules: { values: businessRulesValues },
   } = addRoleFormValid;
 
-  console.log(ancillaryAccountsValues);
-
   const validateAncillaryAccounts = () => {
     const normalizeAncillaryAccounts = [];
 

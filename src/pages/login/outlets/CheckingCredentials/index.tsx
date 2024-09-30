@@ -12,7 +12,7 @@ function CheckingCredentials({
   businessUnits: IBusinessUnit[];
 }) {
   const navigate = useNavigate();
-  const { linparData } = useContext(LinparContext);
+  const { linparData, setBusinessUnitSigla } = useContext(LinparContext);
 
   const checkCredentials = useCallback(async () => {
     try {
@@ -24,6 +24,10 @@ function CheckingCredentials({
         if (!businessUnits || businessUnits.length === 0) {
           navigate("/login/error/not-related-businessUnits");
         } else if (businessUnits.length === 1) {
+          const prueba = businessUnits[0];
+          const selectJSON = JSON.stringify(prueba);
+          businessUnits && setBusinessUnitSigla(selectJSON);
+
           navigate("/login/loading-app");
         } else {
           navigate(`/login/${linparData.user.userAccount}/businessUnits`);
