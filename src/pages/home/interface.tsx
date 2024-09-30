@@ -140,10 +140,10 @@ function HomeUI(props: HomeProps) {
                 />
               ))}
           </StyledContainerCards>
-          <StyledFooter>
-            <StyledLogo src={linparData.businessManager.urlBrand} />
-          </StyledFooter>
         </StyledContainerSection>
+        <StyledFooter>
+          <StyledLogo src={linparData.businessManager.urlBrand} />
+        </StyledFooter>
       </StyledContainer>
     </>
   );
