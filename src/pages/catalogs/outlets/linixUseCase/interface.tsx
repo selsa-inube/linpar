@@ -1,5 +1,12 @@
 import { useLocation } from "react-router-dom";
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import {
+  MdModeEdit,
+  MdOutlineAssignmentTurnedIn,
+  MdOutlineDelete,
+  MdOutlineMoreHoriz,
+  MdPersonAddAlt,
+  MdSearch,
+} from "react-icons/md";
 
 import {
   Breadcrumbs,
@@ -27,6 +34,8 @@ import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
 
+import { DecisionModalActions } from "@src/components/cards/DecisionModalActions";
+
 interface LinixUseCaseUIProps {
   searchUseCase: string;
   handleSearchUseCase: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -39,14 +48,19 @@ interface LinixUseCaseUIProps {
   handleClick: HandleClickFunction;
   selectedData: SelectedDataFunction;
   loading: boolean;
+  onCloseModal: () => void;
   idDeleted: string;
+  showOpenModal: boolean;
   setIdDeleted: (show: IDeleteForMessage) => void;
+  handleCloseModal: () => void;
 }
 export type SelectedDataFunction = (k_Usecase: string) => UseCase;
 export type HandleClickFunction = (id: string) => void;
 export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const {
     idDeleted,
+    handleCloseModal,
+    showOpenModal,
     message,
     searchUseCase,
     handleCloseSectionMessage,
@@ -135,6 +149,19 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               breakpoints={useCasesBreakPointsConfig}
               filter={searchUseCase}
               modalTitle="Caso de uso"
+              content={
+                <DecisionModalActions
+                  labels={["Detalles", "Editar", "Eliminar"]}
+                  icons={[
+                    [<MdOutlineAssignmentTurnedIn />],
+                    [<MdModeEdit />],
+                    [<MdOutlineDelete />],
+                  ]}
+                  url={""}
+                  onClose={handleCloseModal}
+                  showModal={showOpenModal}
+                />
+              }
             />
           )}
           {idDeleted && message.visible && (

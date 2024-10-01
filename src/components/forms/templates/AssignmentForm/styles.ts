@@ -9,6 +9,7 @@ const StyledEntriesContainer = styled.div`
   & > div {
     max-height: 300px;
     overflow-y: auto;
+    //width: 290px; paar el responsive
   }
 `;
 

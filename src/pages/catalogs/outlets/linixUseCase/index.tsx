@@ -15,6 +15,7 @@ import { deleteUserMessages } from "./delete-linix-use-case/config/deleteLinixUs
 function LinixUseCase() {
   const [searchUseCase, setSearchUseCase] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [loading, setLoading] = useState(true);
   const [linixUseCases, setLinixUseCases] = useState<UseCase[]>([]);
   const [message, setMessage] = useState<IMessageState>({
@@ -62,6 +63,10 @@ function LinixUseCase() {
     setShowMenu(false);
   };
 
+  const handleCloseModal = () => {
+    setShowModal(!showModal);
+  };
+
   const handleToggleMenuInvitation = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
   };
@@ -96,8 +101,11 @@ function LinixUseCase() {
       loading={loading}
       handleClick={handleClick}
       selectedData={selectedData}
+      showOpenModal={showModal}
       setIdDeleted={setIdDeleted}
       idDeleted={idDeleted.id}
+      onCloseModal={handleCloseModal}
+      handleCloseModal={handleCloseModal}
     />
   );
 }
