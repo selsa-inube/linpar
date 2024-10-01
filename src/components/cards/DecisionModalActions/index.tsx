@@ -1,13 +1,9 @@
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 import { Icon } from "@inubekit/icon";
-import { MdClose } from "react-icons/md";
+
 import { tokens } from "@design/tokens";
-import {
-  StyleContainerActions,
-  StyledAppCard,
-  StyledIconClosed,
-} from "./styles";
+import { StyleContainerActions, StyledAppCard } from "./styles";
 
 interface AppCardProps {
   labels: string[];
@@ -18,15 +14,11 @@ interface AppCardProps {
 }
 
 function DecisionModalActions(props: AppCardProps) {
-  const { labels, icons, url, showModal, onClose } = props;
-  console.log(showModal);
+  const { labels, icons, url } = props;
+
   return (
     <StyledAppCard to={url}>
       <Stack direction="column" gap={tokens.spacing.s150}>
-        <StyledIconClosed>
-          <MdClose size="20px" onClick={onClose} />
-        </StyledIconClosed>
-
         {labels.map((label, index) => (
           <StyleContainerActions key={index}>
             <Stack direction="row" gap={tokens.spacing.s100}>

@@ -6,8 +6,8 @@ import { tokens } from "@design/tokens";
 const StyledAppCard = styled(Link)`
   box-sizing: border-box;
   position: absolute;
-  right: 50px;
-  transform: translateY(-20%);
+  right: 60px;
+  transform: translateY(-5%);
   background-color: #ffffff;
   padding: 10px 5px;
   height: auto;
