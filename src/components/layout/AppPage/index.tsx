@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
-import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
-
+import { Header, Grid, useMediaQuery } from "@inube/design-system";
+import { Nav } from "@inubekit/nav";
 import { LinparContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
@@ -136,6 +136,7 @@ function AppPage() {
                   navigation={filterNavigationConfig()}
                   logoutPath={logoutConfig.logoutPath}
                   logoutTitle={logoutConfig.logoutTitle}
+                  footerLogo={linparData.businessManager.urlBrand}
                 />
               </StyledContainerNav>
             )}
