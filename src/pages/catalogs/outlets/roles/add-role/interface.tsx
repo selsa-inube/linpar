@@ -131,7 +131,7 @@ export function AddRolUI(props: AddRolUIProps) {
     });
     navigate("/catalogs/roles");
   };
-  console.log("addRoleData", addRoleFormValid.ancillaryAccounts);
+
   return (
     <>
       {loading ? (
@@ -154,7 +154,7 @@ export function AddRolUI(props: AddRolUIProps) {
               </Stack>
             </Stack>
             <>
-              <StyledContainerAssisted cursorDisabled={!isAddRoleFormValid}>
+              <StyledContainerAssisted $cursorDisabled={!isAddRoleFormValid}>
                 <Assisted
                   steps={steps}
                   currentStepId={currentStep}

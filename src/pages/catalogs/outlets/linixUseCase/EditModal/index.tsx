@@ -549,6 +549,22 @@ function EditCaseLinix() {
     description: formData.generalInformation.values.n_Descrip,
   };
 
+  const sortByIsActive = (arrays: any[]) => {
+    arrays.forEach((array: any[]) =>
+      array.sort(
+        (a: { isActive: number }, b: { isActive: number }) =>
+          b.isActive - a.isActive
+      )
+    );
+  };
+  sortByIsActive([
+    formData.clientServerOptions.values,
+    formData.webOptions.values,
+    formData.clientServerReports.values,
+    formData.webReports.values,
+    formData.downloadableDocuments.values,
+  ]);
+
   return (
     <EditUserUI
       handleReset={handleReset}
