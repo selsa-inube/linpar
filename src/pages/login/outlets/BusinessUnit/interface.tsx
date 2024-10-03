@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
@@ -11,6 +11,7 @@ import {
   StyledBusinessUnitsItem,
 } from "./styles";
 import { IBusinessUnit } from "../../types";
+import { getBusinessUnitsPortalStaff } from "@src/services/businessUnitsPortalStaff";
 
 interface BusinessUnitsUIProps {
   businessUnits: IBusinessUnit[];
@@ -48,6 +49,12 @@ function BusinessUnitsUI({
   handleSubmit,
 }: BusinessUnitsUIProps) {
   const filteredBusinessUnits = filterBusinessUnits(businessUnits, search);
+  useEffect(() => {
+    (async () => {
+      const result = await getBusinessUnitsPortalStaff();
+      console.log(result);
+    })();
+  }, []);
 
   return (
     <StyledBusinessUnits>
