@@ -11,7 +11,7 @@ const StyledEntriesContainer = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 480px) {
     & > div {
       width: 270px;
     }
@@ -22,6 +22,7 @@ const StyledEntriesContainer = styled.div`
 `;
 
 const StyledOptionsContainer = styled.div`
+  position: relative;
   height: ${inube.spacing.s300};
   text-align: right;
 `;

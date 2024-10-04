@@ -111,7 +111,7 @@ const TableLinparUI = (props: TableLinparUIProps) => {
               ))
             ) : (
               <Tr>
-                <Td colSpan={titles.length + actions.length}>
+                <Td type="custom" colSpan={titles.length + actions.length}>
                   <Text type="body" size="small" appearance="dark" ellipsis>
                     No se encontró información
                   </Text>
