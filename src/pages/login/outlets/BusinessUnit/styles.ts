@@ -27,7 +27,6 @@ const StyledBusinessUnits = styled.div`
 
 const StyledBusinessUnitsText = styled.div`
   @media screen and (max-width: 532px) {
-    padding-top: 80px;
   }
 `;
 

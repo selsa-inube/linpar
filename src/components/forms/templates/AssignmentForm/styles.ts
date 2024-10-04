@@ -9,7 +9,15 @@ const StyledEntriesContainer = styled.div`
   & > div {
     max-height: 300px;
     overflow-y: auto;
-    //width: 290px; paar el responsive
+    overflow-x: hidden;
+  }
+  @media (max-width: 1200px) {
+    & > div {
+      width: 270px;
+    }
+    & > div > div > div > label:nth-child(2) {
+      width: 200px;
+    }
   }
 `;
 

@@ -85,7 +85,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
+        <ThemeProvider theme={{ ...newInube, ...newInube.typography }}>
           <Stack direction="column" gap={inube.spacing.s350}>
             {formType === "navLink" && (
               <StyledNavLinkContainer>

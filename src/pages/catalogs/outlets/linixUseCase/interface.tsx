@@ -1,12 +1,5 @@
 import { useLocation } from "react-router-dom";
-import {
-  MdModeEdit,
-  MdOutlineAssignmentTurnedIn,
-  MdOutlineDelete,
-  MdOutlineMoreHoriz,
-  MdPersonAddAlt,
-  MdSearch,
-} from "react-icons/md";
+import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import {
   Breadcrumbs,
@@ -15,7 +8,6 @@ import {
   Stack,
   Textfield,
   useMediaQuery,
-  Table,
   inube,
 } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
@@ -33,8 +25,8 @@ import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
-
-import { DecisionModalActions } from "@src/components/cards/DecisionModalActions";
+import { TableLinpar } from "@src/components/data/TableLinpar";
+import { IEntry } from "@src/components/data/TableLinpar/types";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -48,19 +40,14 @@ interface LinixUseCaseUIProps {
   handleClick: HandleClickFunction;
   selectedData: SelectedDataFunction;
   loading: boolean;
-  onCloseModal: () => void;
   idDeleted: string;
-  showOpenModal: boolean;
   setIdDeleted: (show: IDeleteForMessage) => void;
-  handleCloseModal: () => void;
 }
 export type SelectedDataFunction = (k_Usecase: string) => UseCase;
 export type HandleClickFunction = (id: string) => void;
 export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const {
     idDeleted,
-    handleCloseModal,
-    showOpenModal,
     message,
     searchUseCase,
     handleCloseSectionMessage,
@@ -141,27 +128,14 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
           {loading ? (
             <LoadingApp />
           ) : (
-            <Table
+            <TableLinpar
               id="tableLinixUseCases"
               titles={titlesOptions}
               actions={actionsConfigLinixUseCase(linixUseCases, setIdDeleted)}
-              entries={linixUseCases}
+              entries={linixUseCases as IEntry[]}
               breakpoints={useCasesBreakPointsConfig}
               filter={searchUseCase}
-              modalTitle="Caso de uso"
-              content={
-                <DecisionModalActions
-                  labels={["Detalles", "Editar", "Eliminar"]}
-                  icons={[
-                    [<MdOutlineAssignmentTurnedIn />],
-                    [<MdModeEdit />],
-                    [<MdOutlineDelete />],
-                  ]}
-                  url={""}
-                  onClose={handleCloseModal}
-                  showModal={showOpenModal}
-                />
-              }
+              isLoading={loading}
             />
           )}
           {idDeleted && message.visible && (

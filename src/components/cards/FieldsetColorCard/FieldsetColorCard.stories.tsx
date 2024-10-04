@@ -28,7 +28,7 @@ const FieldsetColorCardWrapper = ({
   category: string;
   initialPalette: typeof inube.palette;
 }) => {
-  const [textConfig, setTextConfig] = useState(inube.text);
+  const [textConfig, setTextConfig] = useState(inube);
   const [toggleActive, setToggleActive] = useState(false);
   const handleTokenChange = () => {
     const updatedTextConfig = { ...textConfig };

@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
 const StyledLink = styled(Link)`
+  & > div {
+    width: 170px;
+  }
+  & > div,
+  svg {
+    color: #091e42;
+  }
   text-decoration: none;
   color: ${({ theme }) =>
     theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};

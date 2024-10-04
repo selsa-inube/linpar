@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
-import { CenteredTd } from "@pages/privileges/outlets/users/tabs/users/styles";
+import { Text } from "@inubekit/text";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { DetailsModal } from "../components/DetailsModal";
@@ -11,6 +11,8 @@ import { DeleteRole } from "../delete-role";
 import { activateRoleModal } from "../activate-role/config/activateRole.config";
 import { ActivateRole } from "../activate-role";
 import { IDeleteForMessage, IRol } from "../types";
+import { IEntry } from "@src/components/data/TableLinpar/types";
+import { StyledContainerEdit, StyledContainerIcon } from "../styles";
 
 export const titlesOptions = [
   {
@@ -47,6 +49,7 @@ export const linixRolesData = (
 ) =>
   roles.map((entry) => ({
     ...entry,
+    id: entry.k_Rol?.toString(),
     k_Rol: entry.k_Rol,
     n_Rol: entry.n_Rol,
     k_Aplica: filterAplication(entry.k_Aplica),
@@ -72,47 +75,52 @@ export const actionsConfigPosition = (
     {
       id: "i_Activo",
       actionName: "Activo",
-      content: (roles: IRol) => (
-        <CenteredTd>
-          <ActivateRole
-            handleActivate={() => {}}
-            data={{
-              id: roles?.id || 2,
-              active: roles.i_Activo,
-              name: roles.n_Rol,
-            }}
-            showComplete={false}
-            activateModalConfig={activateRoleModal}
-          />
-        </CenteredTd>
+      content: (entry: IEntry) => (
+        <ActivateRole
+          handleActivate={() => {}}
+          data={{
+            id: Number(entry.id) || 2,
+            active: entry.i_Activo,
+            name: entry.n_Rol,
+          }}
+          showComplete={false}
+          activateModalConfig={activateRoleModal}
+        />
       ),
       type: "secondary",
     },
     {
       id: "Details",
       actionName: "Detalles",
-      content: ({ k_Rol }: { k_Rol: number }) => (
-        <DetailsModal data={dataDetailsRole(k_Rol) || {}} />
+      content: (entry: IEntry) => (
+        <DetailsModal data={dataDetailsRole(entry.k_Rol) || {}} />
       ),
       type: "secondary",
     },
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ k_Rol }: { k_Rol: number }) => (
-        <Link to={`edit/${k_Rol}`}>
-          <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
-        </Link>
+      content: (entry: IEntry) => (
+        <StyledContainerEdit>
+          <Link to={`edit/${entry.k_Rol}`}>
+            <StyledContainerIcon>
+              <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+            </StyledContainerIcon>
+            <Text size="small" type="body">
+              Editar
+            </Text>
+          </Link>
+        </StyledContainerEdit>
       ),
       type: "primary",
     },
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Rol, n_Rol }: { k_Rol: number; n_Rol: string }) => (
+      content: (entry: IEntry) => (
         <DeleteRole
-          nameRol={n_Rol}
-          rol={k_Rol}
+          nameRol={entry.n_Rol}
+          rol={entry.k_Rol}
           deleteRolModal={deleteRolModal}
           handleDeleteRol={deleteItemData}
           setIdDeleted={setIdDeleted}

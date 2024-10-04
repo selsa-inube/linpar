@@ -65,7 +65,7 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={newInube.text}>
+        <ThemeProvider theme={newInube}>
           <Stack direction="column" gap={inube.spacing.s350}>
             {textCards.map(([key, config]: [string, ITextCardConfig]) => (
               <FieldsetColorCard

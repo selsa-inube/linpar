@@ -13,7 +13,7 @@ import { Icon } from "@inubekit/icon";
 
 import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
 import { Popup } from "@components/feedback/Popup";
-import { getTokenColor } from "@src/utils/getTokenColor";
+import { getTokenColor } from "@utils/getTokenColor";
 
 import {
   StyledColorTokenCard,
@@ -111,7 +111,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
           gap="12px"
           width={type === "colorPicker" ? "100%" : "auto"}
         >
-          <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
+          <ThemeProvider theme={{ ...newInube, ...newInube.typography }}>
             <StyledDivText>
               <Text
                 type="label"

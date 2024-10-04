@@ -11,15 +11,18 @@ import { LinparContext } from "@src/context/AppContext";
 
 function LoginUI() {
   const {
+    "(max-width: 769px)": screenSmallMobile,
     "(max-width: 768px)": screenMobile,
     "(min-width: 769px) and (max-width: 992px)": screenTablet,
     "(min-width: 993px) and (max-width: 2200px)": screenDesktop,
   }: { [key: string]: boolean } = useMediaQueries([
+    "(max-width: 769px)",
     "(max-width: 768px)",
     "(min-width: 769px) and (max-width: 992px)",
     "(min-width: 993px) and (max-width: 2200px)",
   ]);
   const { linparData } = useContext(LinparContext);
+
   return (
     <Grid
       templateColumns={screenMobile ? "1fr" : "repeat(2, 1fr)"}
@@ -49,7 +52,13 @@ function LoginUI() {
         <Stack
           alignItems="center"
           justifyContent="center"
-          height={screenMobile ? "70vh" : "-webkit-fill-available"}
+          height={
+            screenSmallMobile
+              ? "auto"
+              : screenMobile
+              ? "70vh"
+              : "-webkit-fill-available"
+          }
           padding="s400 s200"
         >
           <Outlet />
