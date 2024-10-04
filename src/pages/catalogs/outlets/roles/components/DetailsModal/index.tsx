@@ -14,6 +14,7 @@ export const DetailsModal = (props: IDetailsModalProps) => {
 
   const [showModal, setShowModal] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1201);
+
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
@@ -26,25 +27,30 @@ export const DetailsModal = (props: IDetailsModalProps) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   return (
     <>
-      <StyledContainer onClick={isMobile ? handleToggleModal : undefined}>
+      {/* Apply onClick always */}
+      <StyledContainer onClick={handleToggleModal}>
         <StyledContainerIcon>
           <Icon icon={<MdOutlineAssignmentTurnedIn />} appearance="dark" />
         </StyledContainerIcon>
+
+        {/* Conditionally show text based on screen size */}
         {isMobile && (
           <Text size="small" type="body">
             Detalles
           </Text>
         )}
       </StyledContainer>
+
       {showModal && data && (
         <InteractiveModal
           portalId="portal"
           title="Detalles Rol"
           infoData={data}
           infoTitle="Información"
-          closeModal={() => setShowModal(false)}
+          closeModal={handleToggleModal}
         />
       )}
     </>

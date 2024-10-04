@@ -29,7 +29,7 @@ export function DetailsModal(props: IDetailsModalProps) {
 
   return (
     <>
-      <StyledContainer onClick={isMobile ? handleToggleModal : undefined}>
+      <StyledContainer onClick={handleToggleModal}>
         <StyledContainerIcon>
           <Icon icon={<MdOutlineAssignmentTurnedIn />} appearance="dark" />
         </StyledContainerIcon>

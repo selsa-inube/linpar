@@ -5,6 +5,7 @@ export const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   @media (max-width: 560px) {
     cursor: pointer;
