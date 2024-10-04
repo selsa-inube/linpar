@@ -26,6 +26,7 @@ import { editDataRoles } from "./utils";
 
 import { generalMessage } from "../config/messages.config";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
+import { SortableItem } from "../add-role/types";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")
@@ -189,9 +190,15 @@ export const EditRole = () => {
                 isValid: true,
                 values: {
                   k_Rol: Number(generalData[0]?.k_Rol) || 0,
-                  commercialSector: String(commercialSector?.k_Codcta) || "",
-                  officialSector: String(officialSector?.k_Codcta) || "",
-                  solidaritySector: String(solidaritySector?.k_Codcta) || "",
+                  commercialSector: commercialSector?.k_Codcta
+                    ? String(commercialSector?.k_Codcta)
+                    : "",
+                  officialSector: officialSector?.k_Codcta
+                    ? String(officialSector?.k_Codcta)
+                    : "",
+                  solidaritySector: solidaritySector?.k_Codcta
+                    ? String(solidaritySector?.k_Codcta)
+                    : "",
                 },
               },
             }));
@@ -202,9 +209,15 @@ export const EditRole = () => {
                 isValid: true,
                 values: {
                   k_Rol: Number(generalData[0]?.k_Rol) || 0,
-                  commercialSector: String(commercialSector?.k_Codcta) || "",
-                  officialSector: String(officialSector?.k_Codcta) || "",
-                  solidaritySector: String(solidaritySector?.k_Codcta) || "",
+                  commercialSector: commercialSector?.k_Codcta
+                    ? String(commercialSector?.k_Codcta)
+                    : "",
+                  officialSector: officialSector?.k_Codcta
+                    ? String(officialSector?.k_Codcta)
+                    : "",
+                  solidaritySector: solidaritySector?.k_Codcta
+                    ? String(solidaritySector?.k_Codcta)
+                    : "",
                 },
               },
             };
@@ -418,6 +431,19 @@ export const EditRole = () => {
     username: dataEditRoleLinixForm.generalInformation.values.n_Rol,
   };
 
+  const sortByIsActive = (arrays: SortableItem[][]) => {
+    arrays.forEach((array) =>
+      array.sort((a, b) =>
+        b.isActive === a.isActive ? 0 : b.isActive ? 1 : -1
+      )
+    );
+  };
+
+  sortByIsActive([
+    dataEditRoleLinixForm.transactionTypes.values as SortableItem[],
+    dataEditRoleLinixForm.businessRules.values as SortableItem[],
+    dataEditRoleLinixForm.useCases.values as SortableItem[],
+  ]);
   return (
     <EditRoleUI
       handleReset={handleReset}

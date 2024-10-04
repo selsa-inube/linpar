@@ -3,3 +3,7 @@ export const titleButtonTextAssited = {
   after: "Siguiente",
   finish: "Enviar",
 };
+
+export interface SortableItem {
+  isActive: boolean;
+}

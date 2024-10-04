@@ -78,12 +78,13 @@ export const AncillaryAccountsForm = forwardRef(function AncillaryAccountsForm(
   useImperativeHandle(ref, () => formik);
 
   useEffect(() => {
-    if (formik.values) {
-      formik.validateForm();
-    }
-  }, [formik.values]);
+    const validateForm = async () => {
+      await formik.validateForm();
+      if (handleAddRoleFormValid) handleAddRoleFormValid(formik.isValid);
+    };
 
-  if (handleAddRoleFormValid) handleAddRoleFormValid(formik.isValid);
+    validateForm();
+  }, [formik.values, handleAddRoleFormValid]);
 
   return (
     <AncillaryAccountsFormsUI
