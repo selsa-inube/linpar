@@ -111,7 +111,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
           gap="12px"
           width={type === "colorPicker" ? "100%" : "auto"}
         >
-          <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
+          <ThemeProvider theme={{ ...newInube, ...newInube.typography }}>
             <StyledDivText>
               <Text
                 type="label"

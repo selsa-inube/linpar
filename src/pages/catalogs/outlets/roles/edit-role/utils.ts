@@ -116,15 +116,21 @@ export const editDataRoles = async (
       (account) => account.i_Tipent === "S"
     );
 
-    if (!hasCommercialSector) {
+    if (
+      rolesData.ancillaryAccounts.values.commercialSector &&
+      !hasCommercialSector
+    ) {
       ancillaryAccounts.push({
         k_Rol: rolesData.generalInformation.values.k_Rol || 0,
         i_Tipent: "C",
-        k_Codcta: rolesData.ancillaryAccounts.values.commercialSector || "",
+        k_Codcta: rolesData.ancillaryAccounts.values.commercialSector,
         TransactionOperation: "Insert",
       });
     }
-    if (!hasOfficialSector) {
+    if (
+      rolesData.ancillaryAccounts.values.officialSector &&
+      !hasOfficialSector
+    ) {
       ancillaryAccounts.push({
         k_Rol: rolesData.generalInformation.values.k_Rol || 0,
         i_Tipent: "O",
@@ -132,7 +138,10 @@ export const editDataRoles = async (
         TransactionOperation: "Insert",
       });
     }
-    if (!hasSolidaritySector) {
+    if (
+      rolesData.ancillaryAccounts.values.solidaritySector &&
+      !hasSolidaritySector
+    ) {
       ancillaryAccounts.push({
         k_Rol: rolesData.generalInformation.values.k_Rol || 0,
         i_Tipent: "S",

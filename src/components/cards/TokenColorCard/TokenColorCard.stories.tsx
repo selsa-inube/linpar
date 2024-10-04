@@ -45,7 +45,7 @@ const DynamicThemeWrapper = ({ children }: any) => {
   };
 
   return (
-    <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
+    <ThemeProvider theme={{ ...newInube, ...newInube.typography }}>
       {React.cloneElement(children, {
         onColorChange: handleColorChange,
         tokenName: selectedTokenName,

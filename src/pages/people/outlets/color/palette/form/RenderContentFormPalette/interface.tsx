@@ -67,7 +67,7 @@ function RenderContentFormPaletteUI(props: RenderContentFormPaletteUIProps) {
         loading={isLoading}
       >
         <ThemeProvider
-          theme={{ updatedTheme, ...newInube.text, ...newInube.typography }}
+          theme={{ updatedTheme, ...newInube, ...newInube.typography }}
         >
           <RenderCategoryGrid
             templateColumns={

@@ -90,7 +90,9 @@ export const GeneralInformationForm = forwardRef(
       }
     }, [formik.values]);
 
-    if (handleAddRoleFormValid) handleAddRoleFormValid(formik.isValid);
+    useEffect(() => {
+      if (handleAddRoleFormValid) handleAddRoleFormValid(formik.isValid);
+    }, [formik.isValid, handleAddRoleFormValid]);
 
     return (
       <>
