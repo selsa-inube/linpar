@@ -30,13 +30,11 @@ export const DetailsModal = (props: IDetailsModalProps) => {
 
   return (
     <>
-      {/* Apply onClick always */}
       <StyledContainer onClick={handleToggleModal}>
         <StyledContainerIcon>
           <Icon icon={<MdOutlineAssignmentTurnedIn />} appearance="dark" />
         </StyledContainerIcon>
 
-        {/* Conditionally show text based on screen size */}
         {isMobile && (
           <Text size="small" type="body">
             Detalles
