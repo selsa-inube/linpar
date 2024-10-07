@@ -16,7 +16,7 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
     });
 
   const navigate = useNavigate();
-  const { setBusinessUnitSigla } = useContext(LinparContext);
+  const { setBusinessUnitSigla, linparData } = useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (businessUnitLocal.ref) {
@@ -28,6 +28,7 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
 
   const handleCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBusinessUnitLocal({ ref: event.target, value: false });
+
     const selectOption = businessUnits.find(
       (businessUnit0) => businessUnit0.name === event.target.value
     );
@@ -60,6 +61,7 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
       handleBussinessUnitChange={handleCChange}
       filterBusinessUnits={filterBusinessUnits}
       handleSubmit={handleSubmit}
+      linparData={linparData}
     />
   );
 }

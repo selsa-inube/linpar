@@ -33,6 +33,10 @@ function ErrorPage(props: ErrorPageProps) {
   const mediaQueries = ["(max-width: 1000px)", "(max-width: 600px)"];
   const matches = useMediaQueries(mediaQueries);
 
+  const handleRedirect = () => {
+    window.location.href = "https://www.google.com";
+  };
+
   return (
     <Stack
       padding={matches["(max-width: 600px)"] ? "s400" : "s1000"}
@@ -55,7 +59,12 @@ function ErrorPage(props: ErrorPageProps) {
               {description}
             </Text>
           </Stack>
-          <Button iconBefore={<MdChevronLeft size={18} />}>Exit</Button>
+          <Button
+            iconBefore={<MdChevronLeft size={18} />}
+            onClick={handleRedirect}
+          >
+            Exit
+          </Button>
         </Stack>
         <StyledErrorImage src={image} alt={imageAlt} />
       </Grid>

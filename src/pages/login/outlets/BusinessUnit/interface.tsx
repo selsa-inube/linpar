@@ -1,7 +1,7 @@
-import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
+import { ILinparData } from "@context/AppContext/types";
 import { IBusinessUnitstate } from "./types";
 
 import {
@@ -26,6 +26,7 @@ interface BusinessUnitsUIProps {
     search: string
   ) => IBusinessUnit[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  linparData: ILinparData;
 }
 
 function NoResultsMessage({ search }: { search: string }) {
