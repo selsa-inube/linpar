@@ -131,7 +131,6 @@ export function AddRolUI(props: AddRolUIProps) {
     });
     navigate("/catalogs/roles");
   };
-
   return (
     <>
       {loading ? (

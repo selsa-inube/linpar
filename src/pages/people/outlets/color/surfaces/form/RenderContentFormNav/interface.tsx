@@ -86,7 +86,7 @@ function RenderContentFormSurfaceNavUI(
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
+        <ThemeProvider theme={{ ...newInube, ...newInube.typography }}>
           <Stack gap={inube.spacing.s350} direction={flexDirection}>
             <StyledNav $smallScreen={isSmallScreen}>
               <Nav navigation={mockNav} logoutTitle="Logout" />
