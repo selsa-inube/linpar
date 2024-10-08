@@ -22,7 +22,7 @@ import { encrypt } from "@utils/encrypt";
 import { RespondInvitationRoutes } from "@routes/respondInvitation";
 import { LoginRoutes } from "@routes/login";
 import { PrivilegesRoutes } from "@routes/privileges";
-import { PeopleRoutes } from "@routes/people";
+
 import { CatalogsRoutes } from "./routes/catalogs";
 
 function LogOut() {
@@ -45,7 +45,6 @@ const router = createBrowserRouter(
       <Route path="login/*" element={<LoginRoutes />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="catalogs/*" element={<CatalogsRoutes />} />
-      <Route path="people/*" element={<PeopleRoutes />} />
       <Route path="logout" element={<LogOut />} />
       <Route
         path="respond-invitation/:businessUnit_id/:invitation_id/*"
