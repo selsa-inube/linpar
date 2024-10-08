@@ -67,7 +67,7 @@ function showActionTitle(
       </Th>
     ))
   ) : (
-    <Th>{mobileTitle ? mobileTitle : "Abrir"}</Th>
+    <Th>{mobileTitle ? mobileTitle : "Open"}</Th>
   );
 }
 
