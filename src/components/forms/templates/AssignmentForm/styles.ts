@@ -10,7 +10,9 @@ const StyledEntriesContainer = styled.div`
     max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
+    width: 100%;
   }
+
   @media (max-width: 480px) {
     & > div {
       width: 270px;
@@ -27,4 +29,15 @@ const StyledOptionsContainer = styled.div`
   text-align: right;
 `;
 
-export { StyledEntriesContainer, StyledForm, StyledOptionsContainer };
+const StyledToggle = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+`;
+
+export {
+  StyledEntriesContainer,
+  StyledForm,
+  StyledOptionsContainer,
+  StyledToggle,
+};

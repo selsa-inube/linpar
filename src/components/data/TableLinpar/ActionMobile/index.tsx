@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOpenInNew } from "react-icons/md";
 import { Icon } from "@inubekit/icon";
 
@@ -10,12 +10,25 @@ interface ActionMobileProps {
   entry: IEntry;
 }
 
+let isModalOpen = false;
+
 const ActionMobile = (props: ActionMobileProps) => {
   const { actions, entry } = props;
   const [showModal, setShowModal] = useState(false);
+  useEffect(() => {
+    isModalOpen = false;
+  }, []);
 
   const handleToggleModal = () => {
-    setShowModal(!showModal);
+    if (!isModalOpen) {
+      setShowModal(true);
+      isModalOpen = true;
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    isModalOpen = false;
   };
 
   return (
@@ -30,7 +43,7 @@ const ActionMobile = (props: ActionMobileProps) => {
         <ActionsModal
           actions={actions}
           entry={entry}
-          onClose={handleToggleModal}
+          onClose={handleCloseModal}
         />
       )}
     </>

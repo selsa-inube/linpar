@@ -2,7 +2,6 @@ import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
   Button,
   Stack,
-  Switch,
   Textfield,
   Icon,
   Grid,
@@ -19,8 +18,11 @@ import {
   StyledEntriesContainer,
   StyledForm,
   StyledOptionsContainer,
+  StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
+import { Toggle } from "@inubekit/toggle";
+import { Label } from "@inubekit/label";
 
 interface AssignmentFormUIProps {
   title: string;
@@ -136,15 +138,20 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               <Stack direction="column" gap={inube.spacing.s200} margin={"s0"}>
                 {filteredRows &&
                   filteredRows.map((entry) => (
-                    <Stack alignItems="center" key={entry.id}>
-                      <Switch
-                        id={entry.id}
-                        label={`${entry.id} - ${entry.value}`}
+                    <StyledToggle>
+                      <Toggle
                         checked={entry.isActive}
+                        id="approval"
+                        margin="0px"
+                        name="approval"
                         onChange={() => handleToggleEntry(entry.id)}
-                        size="large"
+                        padding="0px"
+                        size="small"
                       />
-                    </Stack>
+                      <Label htmlFor="approval" size="medium">
+                        {`${entry.id} - ${entry.value}`}
+                      </Label>
+                    </StyledToggle>
                   ))}
               </Stack>
             </StyledEntriesContainer>

@@ -22,17 +22,6 @@ const meta: Meta<typeof DecisionModalActions> = {
 const Template: StoryFn<AppCardProps> = (args) => {
   return <DecisionModalActions {...args} />;
 };
-//const [isVisible, setIsVisible] = useState(true);
-
-//const handleClose = () => {
-//setIsVisible(false);
-//};
-
-// return isVisible ? (
-//   <DecisionModalActions {...args} onClose={handleClose} />
-// ) : (
-//   <></>
-// );
 
 export const Default = Template.bind({});
 Default.args = {
@@ -44,7 +33,6 @@ Default.args = {
     [<MdOutlineAssignmentTurnedIn />],
   ],
   url: "/privileges",
-  //onClose: () => {},
 };
 
 export default meta;
