@@ -1,7 +1,6 @@
 import { Stack, Text, useMediaQuery, Grid, inube } from "@inube/design-system";
 import { StyledGridContainer, StyledTokenColorCardContainer } from "./styles";
 import { TokenColorCard } from "@components/cards/TokenColorCard";
-import { categoryTranslations } from "@pages/people/outlets/color/palette/config/palette.config";
 import { ThemeProvider } from "styled-components";
 
 interface renderCategoryGridProps {
@@ -50,9 +49,7 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
               size={fontSize}
               textAlign="start"
               appearance="dark"
-            >
-              {categoryTranslations[category] || category}
-            </Text>
+            ></Text>
           </ThemeProvider>
         )}
         <StyledGridContainer $hasBackground={hasBackground}>
