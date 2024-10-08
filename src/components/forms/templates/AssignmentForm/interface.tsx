@@ -138,17 +138,17 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               <Stack direction="column" gap={inube.spacing.s200} margin={"s0"}>
                 {filteredRows &&
                   filteredRows.map((entry) => (
-                    <StyledToggle>
+                    <StyledToggle key={entry.id}>
                       <Toggle
                         checked={entry.isActive}
-                        id="approval"
+                        id={`approval-${entry.id}`}
                         margin="0px"
                         name="approval"
                         onChange={() => handleToggleEntry(entry.id)}
                         padding="0px"
                         size="small"
                       />
-                      <Label htmlFor="approval" size="medium">
+                      <Label htmlFor={`approval-${entry.id}`} size="medium">
                         {`${entry.id} - ${entry.value}`}
                       </Label>
                     </StyledToggle>
