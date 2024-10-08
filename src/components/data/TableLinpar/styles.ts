@@ -15,6 +15,10 @@ const StyledContainerTable = styled.div<IStyledContainer>`
     $entriesLength &&
     $entriesLength > $pageLength &&
     `1px solid ${inube.palette.neutral.N40}`};
+  & > td,
+  div {
+    justify-content: center;
+  }
 `;
 
 export { StyledContainerTable };

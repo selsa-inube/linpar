@@ -86,7 +86,7 @@ export function ActivateRoleUI(props: IActivateRoleUI) {
 
       {isMobile && (
         <Text size="small" type="body">
-          {active ? "Activo" : "Desactivo"}
+          {active ? "Activo" : "Inactivo"}
         </Text>
       )}
 
