@@ -109,6 +109,8 @@ function LinparContextProvider(props: LinparProviderProps) {
     if (businessUnitSigla) {
       const businessUnit = JSON.parse(businessUnitSigla);
 
+      localStorage.setItem("busnessUnit", businessUnit.businessUnitPublicCode);
+
       setLinparData((prev) => ({
         ...prev,
         businessUnit: {
