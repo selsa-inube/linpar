@@ -1,4 +1,3 @@
-import { selectLinixUseCases } from "@mocks/catalogs/linixUseCases/utils.mock";
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 const mapSelectLinixUseCase = (
@@ -6,8 +5,8 @@ const mapSelectLinixUseCase = (
 ): Option => {
   const buildSelectLinixUseCase: Option = {
     id: String(selectLinixUseCase.code),
-    label: selectLinixUseCases[String(selectLinixUseCase.description)],
-    value: selectLinixUseCases[String(selectLinixUseCase.description)],
+    label: String(selectLinixUseCase.description),
+    value: String(selectLinixUseCase.description),
   };
   return buildSelectLinixUseCase;
 };

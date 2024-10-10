@@ -1,11 +1,11 @@
-import { MdPersonAddAlt } from "react-icons/md";
 import { Icon } from "@inube/design-system";
+import { FaUserGear } from "react-icons/fa6";
 
 export const menuInvitationLinks = [
   {
     id: "Create-role",
     label: "Agregar Roles",
     path: "/catalogs/roles/add-role",
-    icon: <Icon icon={<MdPersonAddAlt />} size="16px" appearance="dark" />,
+    icon: <Icon icon={<FaUserGear />} size="16px" appearance="dark" />,
   },
 ];

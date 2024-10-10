@@ -13,7 +13,7 @@ import { Icon } from "@inubekit/icon";
 
 import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
 import { Popup } from "@components/feedback/Popup";
-import { getTokenColor } from "@src/utils/getTokenColor";
+import { getTokenColor } from "@utils/getTokenColor";
 
 import {
   StyledColorTokenCard,

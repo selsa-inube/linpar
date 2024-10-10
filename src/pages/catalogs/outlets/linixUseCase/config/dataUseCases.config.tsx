@@ -3,12 +3,14 @@ import { MdModeEdit } from "react-icons/md";
 
 import { Icon } from "@inube/design-system";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
-
+import { Text } from "@inubekit/text";
 import { deleteLinixUseCaseModal } from "../delete-linix-use-case/config/deleteLinixUseCase.config";
 import { DetailsModal } from "../components/DetailsModal";
 import { IDeleteForMessage, UseCase } from "../types";
 import { DeleteLinixUseCase } from "../delete-linix-use-case";
 import { OptionSelect } from "../adding-linix-use-case/config/selectLinixUseCase.config";
+import { IEntry } from "@src/components/data/TableLinpar/types";
+import { StyledContainerEdit, StyledContainerIcon } from "../styles";
 
 export const formSelectLabel = (value: string) => {
   return OptionSelect.find((option: any) => value === option.label)?.id;
@@ -41,9 +43,7 @@ const useCasesBreakPointsConfig = [
   { breakpoint: "(min-width: 1091px)", totalColumns: 4 },
   { breakpoint: "(max-width: 1090px)", totalColumns: 3 },
   { breakpoint: "(max-width: 1002px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 837px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 550px)", totalColumns: 2 },
-  { breakpoint: "(max-width: 360px)", totalColumns: 1 },
+  { breakpoint: "(max-width: 837px)", totalColumns: 1 },
 ];
 
 export const actionsConfigLinixUseCase = (
@@ -69,37 +69,38 @@ export const actionsConfigLinixUseCase = (
     {
       id: "Details",
       actionName: "Detalles",
-      content: ({ k_Usecase }: { k_Usecase: string }) => (
-        <DetailsModal data={dataDetailsLinixUseCase(k_Usecase)} />
+      content: (entry: IEntry) => (
+        <DetailsModal data={dataDetailsLinixUseCase(entry.k_Usecase)} />
       ),
       type: "secondary",
     },
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ k_Usecase }: { k_Usecase: string }) => (
-        <Link to={`edit/${k_Usecase}`}>
-          <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
-        </Link>
+      content: (entry: IEntry) => (
+        <StyledContainerEdit>
+          <Link to={`edit/${entry.k_Usecase}`}>
+            <StyledContainerIcon>
+              <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+            </StyledContainerIcon>
+            <Text size="small" type="body">
+              Editar
+            </Text>
+          </Link>
+        </StyledContainerEdit>
       ),
       type: "primary",
     },
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({
-        k_Usecase,
-        n_Usecase,
-      }: {
-        k_Usecase: string;
-        n_Usecase: string;
-      }) => (
+      content: (entry: IEntry) => (
         <DeleteLinixUseCase
-          linixUseCase={k_Usecase}
+          linixUseCase={entry.k_Usecase}
           deleteLinixUseCaseModal={deleteLinixUseCaseModal}
           handleDeleteLinixUseCase={deleteItemData}
           setIdDeleted={setIdDeleted}
-          nameLinixuseCase={n_Usecase}
+          nameLinixuseCase={entry.n_Usecase}
         />
       ),
       type: "remove",

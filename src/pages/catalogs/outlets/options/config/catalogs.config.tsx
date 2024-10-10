@@ -4,7 +4,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 const catalogsOptionsConfig = [
   {
     id: 1,
-    icon: <TfiMenuAlt />,
+    icon: <TfiMenuAlt size={"20px"} />,
     label: "Casos de uso Linix",
     description: "Completa la información para agregar el caso de uso Linix",
     url: "/catalogs/linixUseCase",

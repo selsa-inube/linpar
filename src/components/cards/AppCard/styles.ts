@@ -34,7 +34,7 @@ const StyledAppCard = styled(Link)`
   @media (max-width: 400px) {
     padding: ${tokens.spacing.s200};
     width: 100%;
-    min-height: 100px;
+    height: 120px;
     gap: ${tokens.spacing.s100};
 
     div {
