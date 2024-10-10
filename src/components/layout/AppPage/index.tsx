@@ -68,7 +68,9 @@ function AppPage() {
 
   const filterNavigationConfig = () => {
     const businessUnit = JSON.parse(businessUnitSigla);
-    if (bussinessUnitOptionTotal.includes(businessUnit.sigla)) {
+    if (
+      bussinessUnitOptionTotal.includes(businessUnit.businessUnitPublicCode)
+    ) {
       return navigationConfig;
     } else {
       const DataConfig = { ...navigationConfig };

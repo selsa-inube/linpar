@@ -77,12 +77,15 @@ function HomeUI(props: HomeProps) {
 
   const filterDataConfig = () => {
     if (
-      bussinessUnitOptionTotal.includes(linparData.businessUnit.abbreviatedName)
+      bussinessUnitOptionTotal.includes(
+        linparData.businessUnit.businessUnitPublicCode
+      )
     )
       return data;
     return data?.filter((card) => !removeBussinessUnit.includes(card.id));
   };
 
+  console.log("linparData home", linparData);
   return (
     <>
       <StyledContainer>

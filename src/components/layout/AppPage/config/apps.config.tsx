@@ -69,7 +69,7 @@ const appsConfig = [
 ];
 
 const removeBussinessUnit = ["catalogs"];
-const bussinessUnitOptionTotal = ["sistemasenlinea"];
+const bussinessUnitOptionTotal = ["860514047"];
 
 const navigationConfig = {
   title: "MENU",

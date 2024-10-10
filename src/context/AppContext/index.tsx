@@ -31,6 +31,7 @@ function LinparContextProvider(props: LinparProviderProps) {
       abbreviatedName: "",
       staffPortalCatalogId: "",
       businessManagerId: "",
+      publicCode: "",
     },
     businessManager: {
       publicCode: "",
@@ -39,9 +40,9 @@ function LinparContextProvider(props: LinparProviderProps) {
       urlLogo: "",
     },
     businessUnit: {
-      publicCode: "",
+      businessUnitPublicCode: "",
       abbreviatedName: "",
-      businessUnit: "",
+      languageId: "",
       urlLogo: "",
     },
     user: {
@@ -90,6 +91,7 @@ function LinparContextProvider(props: LinparProviderProps) {
         abbreviatedName: portalDataFiltered?.abbreviatedName || "",
         staffPortalCatalogId: portalDataFiltered?.staffPortalId || "",
         businessManagerId: portalDataFiltered?.businessManagerId || "",
+        publicCode: portalDataFiltered?.publicCode || "",
       },
       businessManager: {
         ...prev.businessManager,
@@ -111,10 +113,10 @@ function LinparContextProvider(props: LinparProviderProps) {
         ...prev,
         businessUnit: {
           ...prev.businessUnit,
-          publicCode: businessUnit.id,
-          abbreviatedName: businessUnit.sigla,
-          businessUnit: businessUnit.sigla,
-          urlLogo: businessUnit.logo,
+          abbreviatedName: businessUnit.abbreviatedName,
+          businessUnitPublicCode: businessUnit.businessUnitPublicCode,
+          languageId: businessUnit.languageId,
+          urlLogo: businessUnit.urlLogo,
         },
       }));
     }
