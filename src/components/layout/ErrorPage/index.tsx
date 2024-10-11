@@ -5,7 +5,12 @@ import {
   useMediaQueries,
   Grid,
 } from "@inube/design-system";
-import { StyledCompanyLogo, StyledErrorImage } from "./styles";
+import {
+  StyledCompany,
+  StyledCompanyLogo,
+  StyledContainer,
+  StyledErrorImage,
+} from "./styles";
 import { MdChevronLeft } from "react-icons/md";
 
 import selsaLogo from "@assets/images/selsa.png";
@@ -38,12 +43,10 @@ function ErrorPage(props: ErrorPageProps) {
   };
 
   return (
-    <Stack
-      padding={matches["(max-width: 600px)"] ? "s400" : "s1000"}
-      gap={matches["(max-width: 1000px)"] ? "64px" : "120px"}
-      direction="column"
-    >
-      <StyledCompanyLogo src={logo} alt={logoAlt} />
+    <StyledContainer>
+      <StyledCompany>
+        <StyledCompanyLogo src={logo} alt={logoAlt} />
+      </StyledCompany>
       <Grid
         templateRows={matches["(max-width: 600px)"] ? "repeat(2, 1fr)" : "1fr"}
         templateColumns={
@@ -68,7 +71,7 @@ function ErrorPage(props: ErrorPageProps) {
         </Stack>
         <StyledErrorImage src={image} alt={imageAlt} />
       </Grid>
-    </Stack>
+    </StyledContainer>
   );
 }
 
