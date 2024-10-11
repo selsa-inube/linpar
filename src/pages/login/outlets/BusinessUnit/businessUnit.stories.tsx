@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 import { BusinessUnits } from ".";
-// import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 
 const story = {
   components: [BusinessUnits],
@@ -18,7 +18,7 @@ const story = {
   ],
 };
 
-// const Default = () => <BusinessUnits businessUnits={businessUnitDataMock} />;
+const Default = () => <BusinessUnits businessUnits={businessUnitDataMock} />;
 
-// export { Default };
+export { Default };
 export default story;

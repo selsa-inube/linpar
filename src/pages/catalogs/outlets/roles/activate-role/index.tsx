@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { LinparContext } from "@context/AppContext";
 import {
   activateRoleMessages,
   activateRoleModal,
@@ -35,9 +36,15 @@ export function ActivateRole<T extends IDataActivateOption>(
     data.active === "Y" ? true : false
   );
 
+  const { linparData } = useContext(LinparContext);
+
   const handleActivateDeactivateRole = () => {
     setLoading(true);
-    const active = activeRole(props.data.id, changeActive ? "N" : "Y");
+    const active = activeRole(
+      props.data.id,
+      changeActive ? "N" : "Y",
+      linparData.businessUnit.businessUnitPublicCode
+    );
     active
       .then(() => {
         setchangeActive(!changeActive);

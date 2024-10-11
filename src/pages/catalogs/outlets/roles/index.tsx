@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { IDeleteForMessage, IRol } from "@pages/catalogs/outlets/roles/types";
 import { getRoles } from "@services/roles/getRoles";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { LinparContext } from "@context/AppContext";
 import { RolesUI } from "./interface";
 
 import { generalMessage } from "./config/messages.config";
@@ -26,13 +27,15 @@ export function Roles() {
   });
 
   const { user } = useAuth0();
-
+  const { linparData } = useContext(LinparContext);
   const linixRolesData = async () => {
     if (!user) return;
     if (linixRoles.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getRoles();
+        const newUsers = await getRoles(
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setLinixRoles(newUsers);
       } catch (error) {
         console.info(error);
@@ -48,7 +51,7 @@ export function Roles() {
     if (!user) return;
     if (linixRolesAplication.length === 0) {
       setLoading(true);
-      getAplicationRoles()
+      getAplicationRoles(linparData.businessUnit.businessUnitPublicCode)
         .then((newUsers) => {
           setLinixRolesAplication(newUsers);
         })

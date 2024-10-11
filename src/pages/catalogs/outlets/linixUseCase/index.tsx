@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { getLinixUseCase } from "@services/linixUseCase/getLinixUseCase";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { LinparContext } from "@context/AppContext";
 import {
   LinixUseCaseUI,
   SelectedDataFunction,
@@ -25,13 +26,16 @@ function LinixUseCase() {
     successfulDiscard: false,
   });
   const { user } = useAuth0();
+  const { linparData } = useContext(LinparContext);
 
   const linixUseCaseData = async () => {
     if (!user) return;
     if (linixUseCases.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getLinixUseCase();
+        const newUsers = await getLinixUseCase(
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setLinixUseCases(newUsers);
       } catch (error) {
         console.info(error);

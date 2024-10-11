@@ -12,6 +12,7 @@ import { IFormAddLinixUseCase } from "../adding-linix-use-case/types";
 
 export const editLinixUseCases = async (
   linixUseCaseData: IFormAddLinixUseCase,
+  businessUnit: string,
   optionsData?: IAssignmentFormEntry[]
 ) => {
   const normalizeOpcionesCs =
@@ -79,7 +80,7 @@ export const editLinixUseCases = async (
   let confirmationType = true;
 
   try {
-    await editLinixUseCase(newoptionsUseCase);
+    await editLinixUseCase(newoptionsUseCase, businessUnit);
   } catch (error) {
     confirmationType = false;
 

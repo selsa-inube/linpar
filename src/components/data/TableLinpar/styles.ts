@@ -15,6 +15,16 @@ const StyledContainerTable = styled.div<IStyledContainer>`
     $entriesLength &&
     $entriesLength > $pageLength &&
     `1px solid ${inube.palette.neutral.N40}`};
+  & > td,
+  div {
+    justify-content: center;
+  }
+  @media (max-width: 1200px) {
+    & > td,
+    div {
+      justify-content: flex-start;
+    }
+  }
 `;
 
 export { StyledContainerTable };

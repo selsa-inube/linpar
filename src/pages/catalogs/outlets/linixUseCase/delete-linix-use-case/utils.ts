@@ -3,7 +3,8 @@ import { IdeleteLinixUseCase } from "@services/linixUseCase/deleteLinixUseCase/t
 
 const deleteUseCase = async (
   linixUseCase: string,
-  nameLinixuseCase: string
+  nameLinixuseCase: string,
+  businessUnit: string
 ): Promise<boolean> => {
   let confirmationDelete = true;
   const linixUseCaseData: IdeleteLinixUseCase = {
@@ -12,7 +13,7 @@ const deleteUseCase = async (
     removalJustification: "Lincon",
   };
   try {
-    await deleteLinixUseCase(linixUseCaseData);
+    await deleteLinixUseCase(linixUseCaseData, businessUnit);
   } catch (error) {
     confirmationDelete = false;
     throw error;

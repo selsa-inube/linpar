@@ -20,7 +20,7 @@ interface IBusinessUnit {
   businessUnitPublicCode: string;
   abbreviatedName: string;
   urlLogo: string;
-  languageId?: string;
+  languageId: string;
   descriptionUse?: string;
   firstMonthOfFiscalYear?: string;
 }

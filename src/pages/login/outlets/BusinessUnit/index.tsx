@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LinparContext } from "@context/AppContext";
-
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { BusinessUnitsUI } from "./interface";
 import { IBusinessUnitstate } from "./types";
@@ -39,13 +38,13 @@ function BusinessUnits(props: BusinessUnitsProps) {
     const selectOption = businessUnits.find(
       (businessUnit0) => businessUnit0.abbreviatedName === event.target.value
     );
-    setSelectedBusinessUnit(selectOption || null); // Save the selected business unit in state
+    setSelectedBusinessUnit(selectOption || null);
   };
 
   const handleSubmit = () => {
     if (selectedBusinessUnit) {
       const selectJSON = JSON.stringify(selectedBusinessUnit);
-      setBusinessUnitSigla(selectJSON); // Move the setBusinessUnitSigla here
+      setBusinessUnitSigla(selectJSON);
     }
     navigate("/login/loading-app");
   };

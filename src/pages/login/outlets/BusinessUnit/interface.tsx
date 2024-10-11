@@ -2,6 +2,7 @@ import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { IBusinessUnitstate } from "./types";
 
 import {
@@ -10,7 +11,6 @@ import {
   StyledNoResults,
   StyledBusinessUnitsItem,
 } from "./styles";
-import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 
 interface BusinessUnitsUIProps {
   businessUnits: IBusinessUnitsPortalStaff[];
@@ -47,10 +47,6 @@ function BusinessUnitsUI({
   handleBussinessUnitChange,
   handleSubmit,
 }: BusinessUnitsUIProps) {
-  // const filteredBusinessUnits = filterBusinessUnits(businessUnits, search);
-
-  console.log(businessUnits);
-
   return (
     <StyledBusinessUnits>
       <Text type="title" as="h2" textAlign="center">

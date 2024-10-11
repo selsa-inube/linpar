@@ -10,12 +10,14 @@ function Login() {
   const { linparData, setBusinessUnitSigla } = useContext(LinparContext);
 
   useEffect(() => {
-    validateBusinessUnities(
-      linparData.portal.publicCode,
-      linparData.user.userAccount
-    ).then((data) => {
-      setBusinessUnitSigla(JSON.stringify(data));
-    });
+    if (linparData.portal.publicCode) {
+      validateBusinessUnities(
+        linparData.portal.publicCode,
+        linparData.user.userAccount
+      ).then((data) => {
+        setBusinessUnitSigla(JSON.stringify(data));
+      });
+    }
   }, [linparData.portal.publicCode]);
 
   useEffect(() => {

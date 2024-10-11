@@ -11,6 +11,7 @@ import {
   removeBussinessUnit,
 } from "@components/layout/AppPage/config/apps.config";
 import { AppCard } from "@components/cards/AppCard";
+import { LinparContext } from "@context/AppContext";
 import { ICardData } from "./types";
 import {
   StyledContainer,
@@ -23,7 +24,6 @@ import {
   StyledMenuContainer,
   StyledTitle,
 } from "./styles";
-import { LinparContext } from "@src/context/AppContext";
 
 interface HomeProps {
   data?: ICardData[];
@@ -85,7 +85,6 @@ function HomeUI(props: HomeProps) {
     return data?.filter((card) => !removeBussinessUnit.includes(card.id));
   };
 
-  console.log("linparData home", linparData);
   return (
     <>
       <StyledContainer>
