@@ -1,20 +1,10 @@
-import {
-  Stack,
-  Button,
-  Text,
-  useMediaQueries,
-  Grid,
-} from "@inube/design-system";
-import {
-  StyledCompany,
-  StyledCompanyLogo,
-  StyledContainer,
-  StyledErrorImage,
-} from "./styles";
+import { StyledCompanyLogo, StyledErrorImage } from "./styles";
 import { MdChevronLeft } from "react-icons/md";
-
+import { Button, Text, Grid } from "@inube/design-system";
+import { useMediaQueries } from "@inubekit/hooks";
 import selsaLogo from "@assets/images/selsa.png";
 import errorImage from "@assets/images/timeout.png";
+import { Stack } from "@inubekit/stack";
 
 interface ErrorPageProps {
   logo?: string;
@@ -43,10 +33,12 @@ function ErrorPage(props: ErrorPageProps) {
   };
 
   return (
-    <StyledContainer>
-      <StyledCompany>
-        <StyledCompanyLogo src={logo} alt={logoAlt} />
-      </StyledCompany>
+    <Stack
+      padding={matches["(max-width: 600px)"] ? "32px" : "80px 80px 0px 80px"}
+      gap={matches["(max-width: 1000px)"] ? "64px" : "20px"}
+      direction="column"
+    >
+      <StyledCompanyLogo src={logo} alt={logoAlt} />
       <Grid
         templateRows={matches["(max-width: 600px)"] ? "repeat(2, 1fr)" : "1fr"}
         templateColumns={
@@ -71,7 +63,7 @@ function ErrorPage(props: ErrorPageProps) {
         </Stack>
         <StyledErrorImage src={image} alt={imageAlt} />
       </Grid>
-    </StyledContainer>
+    </Stack>
   );
 }
 
