@@ -74,6 +74,10 @@ const TableLinparUI = (props: TableLinparUIProps) => {
 
   const numberActions = actions ? actions.length : 0;
 
+  const truncateText = (text: string) => {
+    return text.length > 10 ? text.slice(0, 10) + "..." : text;
+  };
+
   return (
     <Table>
       <Colgroup>
@@ -102,8 +106,10 @@ const TableLinparUI = (props: TableLinparUIProps) => {
                     <Td
                       key={`e-${entry[title.id]}`}
                       align={entry.action ? "center" : "left"}
+                      className="truncate-text"
                     >
-                      {entry[title.id]}
+                      {truncateText(entry[title.id])}{" "}
+                      {/* Aplica la función aquí */}
                     </Td>
                   ))}
                   {ShowAction(actions, entry, mediaActionOpen)}

@@ -15,10 +15,18 @@ const StyledContainerTable = styled.div<IStyledContainer>`
     $entriesLength &&
     $entriesLength > $pageLength &&
     `1px solid ${inube.palette.neutral.N40}`};
+
   & > td,
   div {
     justify-content: center;
   }
+
+  & .truncate-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   @media (max-width: 1200px) {
     & > td,
     div {

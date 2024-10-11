@@ -585,7 +585,6 @@ function EditCaseLinix() {
     formData.webOptions.values,
     formData.clientServerReports.values,
     formData.webReports.values,
-    formData.downloadableDocuments.values,
   ]);
 
   return (
