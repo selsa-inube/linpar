@@ -108,8 +108,9 @@ const TableLinparUI = (props: TableLinparUIProps) => {
                       align={entry.action ? "center" : "left"}
                       className="truncate-text"
                     >
-                      {truncateText(entry[title.id])}{" "}
-                      {/* Aplica la función aquí */}
+                      {index >= 1003
+                        ? truncateText(entry[title.id])
+                        : entry[title.id]}{" "}
                     </Td>
                   ))}
                   {ShowAction(actions, entry, mediaActionOpen)}
@@ -127,6 +128,7 @@ const TableLinparUI = (props: TableLinparUIProps) => {
           </>
         )}
       </Tbody>
+
       {filteredEntries.length > pageLength && (
         <Tfoot>
           <Tr border="bottom">

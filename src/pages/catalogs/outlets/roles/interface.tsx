@@ -64,6 +64,15 @@ export function RolesUI(props: IRolesProps) {
   const label = catalogsOptionsConfig.find(
     (item) => item.url === location.pathname
   );
+  const dynamicTitlesOptions = smallScreen
+    ? [
+        {
+          id: "n_Rol",
+          titleName: "Nombre",
+          priority: 1,
+        },
+      ]
+    : titlesOptions;
 
   return (
     <Stack
@@ -131,7 +140,7 @@ export function RolesUI(props: IRolesProps) {
           ) : (
             <TableLinpar
               id="tableRoles"
-              titles={titlesOptions}
+              titles={dynamicTitlesOptions}
               actions={actionsConfigPosition(linixRoles, setIdDeleted)}
               entries={linixRolesData(linixRoles, dataAplication) as IEntry[]}
               breakpoints={RolesBreakPointsConfig}
