@@ -25,6 +25,8 @@ function AssignmentForm(props: AssignmentFormProps) {
   const [showMenu, setShowMenu] = useState(false);
   const [isAssignAll, setIsAssignAll] = useState(false);
 
+  const [copyEntries] = useState(entries);
+
   const menuOptions: IOption[] = [
     {
       id: "allocate-all",
@@ -47,7 +49,6 @@ function AssignmentForm(props: AssignmentFormProps) {
     const changedEntries = newEntries.filter(
       (entry, index) => entry.isActive !== entries[index].isActive
     );
-
     setIsAssignAll(allocate);
     handleChange(newEntries);
     if (changedEntries.length > 0) {
@@ -63,17 +64,19 @@ function AssignmentForm(props: AssignmentFormProps) {
           isActive: !entry.isActive,
         };
 
-        if (updatedEntry.isActive !== entry.isActive) {
-          const updatedChangedData = [
-            ...changeData.filter((e) => e.id !== entry.id),
-            updatedEntry,
-          ];
-          setChangedData(updatedChangedData);
-        }
+        const updatedChangedData = copyEntries.reduce((acc, copy) => {
+          if (
+            copy.id === updatedEntry.id &&
+            copy.isActive !== updatedEntry.isActive
+          ) {
+            return [...acc.filter((e) => e.id !== entry.id), updatedEntry];
+          }
+          return acc.filter((e) => e.id !== updatedEntry.id);
+        }, changeData);
 
+        setChangedData(updatedChangedData);
         return updatedEntry;
       }
-
       return entry;
     });
 

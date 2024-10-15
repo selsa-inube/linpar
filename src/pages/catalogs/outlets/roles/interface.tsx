@@ -146,7 +146,7 @@ export function RolesUI(props: IRolesProps) {
               breakpoints={RolesBreakPointsConfig}
               filter={searchRole}
               isLoading={loading}
-              widthPercentageTotalColumns={70}
+              widthPercentageTotalColumns={85}
             />
           )}
           {idDeleted !== 0 && message.visible && (

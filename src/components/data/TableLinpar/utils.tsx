@@ -99,9 +99,15 @@ const widthColmnsData = (
 ) => {
   const size = widthPercentageTotalColumns
     ? widthPercentageTotalColumns / TitleColumns.length
-    : 75 / TitleColumns.length;
+    : 75 / TitleColumns.length - 1;
 
-  return TitleColumns.map((title) => <Col key={title.id} width={`${size}%`} />);
+  const copyTitleColumns = [...TitleColumns];
+
+  copyTitleColumns.shift();
+
+  return copyTitleColumns.map((title) => (
+    <Col key={title.id} width={`${size}%`} />
+  ));
 };
 
 export {

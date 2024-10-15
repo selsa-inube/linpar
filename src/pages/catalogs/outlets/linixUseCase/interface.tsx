@@ -146,6 +146,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               breakpoints={useCasesBreakPointsConfig}
               filter={searchUseCase}
               isLoading={loading}
+              widthPercentageTotalColumns={80}
             />
           )}
           {idDeleted && message.visible && (

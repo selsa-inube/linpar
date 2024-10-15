@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useMediaQueries, useMediaQuery } from "@inubekit/hooks";
 import { Text } from "@inubekit/text";
 import {
+  Col,
   Colgroup,
   Pagination,
   Table,
@@ -59,6 +60,7 @@ const TableLinparUI = (props: TableLinparUIProps) => {
   } = props;
 
   const mediaActionOpen = useMediaQuery("(max-width: 1200px)");
+  const isMobileView = useMediaQuery("(max-width: 560px)");
 
   const queriesArray = useMemo(
     () => breakpoints && breakpoints.map((breakpoint) => breakpoint.breakpoint),
@@ -74,13 +76,15 @@ const TableLinparUI = (props: TableLinparUIProps) => {
 
   const numberActions = actions ? actions.length : 0;
 
-  const truncateText = (text: string) => {
-    return text.length > 10 ? text.slice(0, 10) + "..." : text;
+  const truncateText = (text: string, isMobileView: boolean) => {
+    const limit = isMobileView ? 10 : 30;
+    return text.length > limit ? text.slice(0, limit) + "..." : text;
   };
 
   return (
     <Table>
       <Colgroup>
+        {!mediaActionOpen && <Col width="100px" />}
         {widthColmnsData(TitleColumns, widthPercentageTotalColumns)}
       </Colgroup>
 
@@ -108,9 +112,7 @@ const TableLinparUI = (props: TableLinparUIProps) => {
                       align={entry.action ? "center" : "left"}
                       className="truncate-text"
                     >
-                      {index >= 1003
-                        ? truncateText(entry[title.id])
-                        : entry[title.id]}{" "}
+                      {truncateText(entry[title.id], isMobileView)}{" "}
                     </Td>
                   ))}
                   {ShowAction(actions, entry, mediaActionOpen)}

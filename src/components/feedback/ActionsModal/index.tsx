@@ -25,9 +25,7 @@ function ActionsModal(props: ActionsModalProps) {
         </StyledIconClosed>
         {actions.map((action, index) => (
           <StyleContainerActions key={index}>
-            <Stack direction="row" gap={tokens.spacing.s100}>
-              {action.content(entry)}
-            </Stack>
+            {action.content(entry)}
           </StyleContainerActions>
         ))}
       </Stack>
