@@ -1,11 +1,11 @@
-import { StyledCompanyLogo, StyledErrorImage } from "./styles";
 import { MdChevronLeft } from "react-icons/md";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Text, Grid } from "@inube/design-system";
 import { useMediaQueries } from "@inubekit/hooks";
 import selsaLogo from "@assets/images/selsa.png";
 import errorImage from "@assets/images/timeout.png";
 import { Stack } from "@inubekit/stack";
-import { useAuth0 } from "@auth0/auth0-react";
+import { StyledCompanyLogo, StyledErrorImage } from "./styles";
 
 interface ErrorPageProps {
   logo?: string;

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { MdOpenInNew } from "react-icons/md";
 import { Icon } from "@inubekit/icon";
-
+import { ActionsModal } from "@components/feedback/ActionsModal";
 import { IAction, IEntry } from "../types";
-import { ActionsModal } from "@src/components/feedback/ActionsModal";
 
 interface ActionMobileProps {
   actions: IAction[];
