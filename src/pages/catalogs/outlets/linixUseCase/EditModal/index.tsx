@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
@@ -13,6 +13,7 @@ import { getSelectLinixUseCase } from "@services/linixUseCase/selectLinixUseCase
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientServerMenuOption";
 import { getLinixUseCase } from "@services/linixUseCase/getLinixUseCase";
+import { LinparContext } from "@context/AppContext";
 
 import { EditUserUI } from "./interface";
 import {
@@ -107,7 +108,7 @@ function EditCaseLinix() {
   const generalInformationData = linixUseCasesEdit.find(
     (data) => data.id === k_Usecase
   );
-
+  const { linparData } = useContext(LinparContext);
   const [optionId, setOptionId] = useState<string>("");
 
   useEffect(() => {
@@ -156,7 +157,7 @@ function EditCaseLinix() {
     if (!user) return;
     if (linixUseCasesEdit.length === 0) {
       setLoading(true);
-      getLinixUseCase()
+      getLinixUseCase(linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setLinixUseCasesEdit(data as UseCase[]);
@@ -204,7 +205,10 @@ function EditCaseLinix() {
     if (!user) return;
     if (downloadableDocuments.length === 0) {
       setLoading(true);
-      getDownloadableFormats(k_Usecase || "1")
+      getDownloadableFormats(
+        k_Usecase || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setDownloadableDocuments(
@@ -245,7 +249,10 @@ function EditCaseLinix() {
   const webOptionsData = () => {
     if (!user) return;
     if (webOptions.length === 0) {
-      getWebOptionsFormats(k_Usecase || "1")
+      getWebOptionsFormats(
+        k_Usecase || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setWebOptions(data as Record<string, unknown>[]);
@@ -284,7 +291,10 @@ function EditCaseLinix() {
     if (!user) return;
     if (webReports.length === 0) {
       setLoading(true);
-      getWebReportsFormats(k_Usecase || "1")
+      getWebReportsFormats(
+        k_Usecase || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setWebReports(data as unknown as Record<string, unknown>[]);
@@ -324,7 +334,10 @@ function EditCaseLinix() {
     if (!user) return;
     if (csReports.length === 0) {
       setLoading(true);
-      getReportsClientServerFormats(k_Usecase || "1")
+      getReportsClientServerFormats(
+        k_Usecase || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setCsReports(data as unknown as Record<string, unknown>[]);
@@ -364,7 +377,10 @@ function EditCaseLinix() {
     if (!user) return;
     if (csOptions.length === 0) {
       setLoading(true);
-      getClientServerMenuOptionFormats(k_Usecase || "1")
+      getClientServerMenuOptionFormats(
+        k_Usecase || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setCsOptions(data as unknown as Record<string, unknown>[]);
@@ -405,7 +421,9 @@ function EditCaseLinix() {
     if (selectLinixUseCase.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getSelectLinixUseCase();
+        const newUsers = await getSelectLinixUseCase(
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setSelectLinixUseCase(newUsers);
       } catch (error) {
         console.info(error);
@@ -453,7 +471,8 @@ function EditCaseLinix() {
       );
 
       const newOptionsForms = await getClientServerMenuOptionFormats(
-        previousActiveOption?.id as string
+        previousActiveOption?.id as string,
+        linparData.businessUnit.businessUnitPublicCode
       );
 
       const previousActiveOptionByID = (id: any) =>
@@ -524,7 +543,11 @@ function EditCaseLinix() {
 
   const onSubmit = () => {
     setLoading(true);
-    const addnewdata = editLinixUseCases(formData, csOptionsChange);
+    const addnewdata = editLinixUseCases(
+      formData,
+      linparData.businessUnit.businessUnitPublicCode,
+      csOptionsChange
+    );
     addnewdata
       .then(() => {
         setMessage({
@@ -548,6 +571,21 @@ function EditCaseLinix() {
     type: formData.generalInformation.values.i_Tipusec,
     description: formData.generalInformation.values.n_Descrip,
   };
+
+  const sortByIsActive = (arrays: any[]) => {
+    arrays.forEach((array: any[]) =>
+      array.sort(
+        (a: { isActive: number }, b: { isActive: number }) =>
+          b.isActive - a.isActive
+      )
+    );
+  };
+  sortByIsActive([
+    formData.clientServerOptions.values,
+    formData.webOptions.values,
+    formData.clientServerReports.values,
+    formData.webReports.values,
+  ]);
 
   return (
     <EditUserUI

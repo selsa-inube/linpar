@@ -37,7 +37,7 @@ function RespondInvitation() {
   const getBusinessData = () => {
     if (!bussinessUnit_id) return;
     return businessUnitDataMock.find(
-      (businessMock) => businessMock.id === bussinessUnit_id
+      (businessMock) => businessMock.businessUnitPublicCode === bussinessUnit_id
     );
   };
 

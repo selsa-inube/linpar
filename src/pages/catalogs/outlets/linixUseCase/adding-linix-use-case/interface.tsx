@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Assisted,
   Breadcrumbs,
@@ -13,6 +14,7 @@ import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
+import { LinparContext } from "@context/AppContext";
 
 import {
   CrateLinixUseCaseConfig,
@@ -194,13 +196,18 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const resetCurrentStep = () => {
     setCurrentStep(1);
   };
-
+  const { linparData } = useContext(LinparContext);
   const optionValidations = () => {
     if (
       currentStep === Object.values(stepsAddingLinixUseCase).length &&
       csOptionsButtons.length !== 0
     ) {
-      saveLinixUseCase(formData, filterNForma, csOptionsButtons);
+      saveLinixUseCase(
+        formData,
+        filterNForma,
+        linparData.businessUnit.businessUnitPublicCode,
+        csOptionsButtons
+      );
     } else if (csOptionsButtons.length === 0 && currentStep === 1) {
       handleNextStep(3);
     } else {

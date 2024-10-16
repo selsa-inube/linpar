@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from "@inube/design-system";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -26,6 +26,8 @@ import { editDataRoles } from "./utils";
 
 import { generalMessage } from "../config/messages.config";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
+import { SortableItem } from "../add-role/types";
+import { LinparContext } from "@src/context/AppContext";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")
@@ -101,7 +103,7 @@ export const EditRole = () => {
     Record<string, unknown>[]
   >([]);
   const generalInformationData = rolesEdit.find((data) => data.id === roleID);
-
+  const { linparData } = useContext(LinparContext);
   useEffect(() => {
     rolesData();
     rolesCuentasAuxiliares();
@@ -122,7 +124,7 @@ export const EditRole = () => {
     if (!user) return;
     if (rolesEdit.length === 0) {
       setLoading(true);
-      getRoles()
+      getRoles(linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setRolesEdit(data as IRol[]);
@@ -168,7 +170,7 @@ export const EditRole = () => {
     if (!user) return;
     if (rolesEditCuantasA.length === 0) {
       setLoading(true);
-      getRolesCuentasAuxiliares()
+      getRolesCuentasAuxiliares(linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setRolesEditCuantasA(data as ICuentasAuxiliaresPorRol[]);
@@ -189,9 +191,15 @@ export const EditRole = () => {
                 isValid: true,
                 values: {
                   k_Rol: Number(generalData[0]?.k_Rol) || 0,
-                  commercialSector: String(commercialSector?.k_Codcta) || "",
-                  officialSector: String(officialSector?.k_Codcta) || "",
-                  solidaritySector: String(solidaritySector?.k_Codcta) || "",
+                  commercialSector: commercialSector?.k_Codcta
+                    ? String(commercialSector?.k_Codcta)
+                    : "",
+                  officialSector: officialSector?.k_Codcta
+                    ? String(officialSector?.k_Codcta)
+                    : "",
+                  solidaritySector: solidaritySector?.k_Codcta
+                    ? String(solidaritySector?.k_Codcta)
+                    : "",
                 },
               },
             }));
@@ -202,9 +210,15 @@ export const EditRole = () => {
                 isValid: true,
                 values: {
                   k_Rol: Number(generalData[0]?.k_Rol) || 0,
-                  commercialSector: String(commercialSector?.k_Codcta) || "",
-                  officialSector: String(officialSector?.k_Codcta) || "",
-                  solidaritySector: String(solidaritySector?.k_Codcta) || "",
+                  commercialSector: commercialSector?.k_Codcta
+                    ? String(commercialSector?.k_Codcta)
+                    : "",
+                  officialSector: officialSector?.k_Codcta
+                    ? String(officialSector?.k_Codcta)
+                    : "",
+                  solidaritySector: solidaritySector?.k_Codcta
+                    ? String(solidaritySector?.k_Codcta)
+                    : "",
                 },
               },
             };
@@ -223,7 +237,7 @@ export const EditRole = () => {
     if (!user) return;
     if (linixRoles.length === 0) {
       setLoading(true);
-      getAplicationRoles()
+      getAplicationRoles(linparData.businessUnit.businessUnitPublicCode)
         .then((newUsers) => {
           setLinixRoles(newUsers);
         })
@@ -237,7 +251,10 @@ export const EditRole = () => {
     if (!user) return;
     if (transactionTypes.length === 0) {
       setLoading(true);
-      getRolFormats(k_Rol || "1")
+      getRolFormats(
+        k_Rol || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setTypesOfmovement(data as Record<string, unknown>[]);
@@ -277,7 +294,10 @@ export const EditRole = () => {
     if (!user) return;
     if (businessRules.length === 0) {
       setLoading(true);
-      getBusinessRulesByRoleFormats(k_Rol || "1")
+      getBusinessRulesByRoleFormats(
+        k_Rol || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setBusinessRules(data as Record<string, unknown>[]);
@@ -317,7 +337,10 @@ export const EditRole = () => {
     if (!user) return;
     if (useCases.length === 0) {
       setLoading(true);
-      getUseCaseByRole(k_Rol || "1")
+      getUseCaseByRole(
+        k_Rol || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setUseCases(data as Record<string, unknown>[]);
@@ -392,6 +415,7 @@ export const EditRole = () => {
     const addnewdata = editDataRoles(
       dataEditRoleLinixForm,
       rolesEditCuantasA,
+      linparData.businessUnit.businessUnitPublicCode,
       csOptionsChange,
       roleID
     );
@@ -418,6 +442,19 @@ export const EditRole = () => {
     username: dataEditRoleLinixForm.generalInformation.values.n_Rol,
   };
 
+  const sortByIsActive = (arrays: SortableItem[][]) => {
+    arrays.forEach((array) =>
+      array.sort((a, b) =>
+        b.isActive === a.isActive ? 0 : b.isActive ? 1 : -1
+      )
+    );
+  };
+
+  sortByIsActive([
+    dataEditRoleLinixForm.transactionTypes.values as SortableItem[],
+    dataEditRoleLinixForm.businessRules.values as SortableItem[],
+    dataEditRoleLinixForm.useCases.values as SortableItem[],
+  ]);
   return (
     <EditRoleUI
       handleReset={handleReset}

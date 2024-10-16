@@ -1,7 +1,11 @@
 import { activeRoles } from "@services/roles/activeRole";
 import { IactiveRoles } from "@services/roles/activeRole/types";
 
-const activeRole = async (id: number, active: string): Promise<boolean> => {
+const activeRole = async (
+  id: number,
+  active: string,
+  rolesBusinessUnit: string
+): Promise<boolean> => {
   let confirmationActive = true;
   const rolData: IactiveRoles = {
     k_Rol: id,
@@ -9,7 +13,7 @@ const activeRole = async (id: number, active: string): Promise<boolean> => {
     modifyJustification: "Lincon",
   };
   try {
-    await activeRoles(rolData);
+    await activeRoles(rolData, rolesBusinessUnit);
   } catch (error) {
     confirmationActive = false;
     throw error;

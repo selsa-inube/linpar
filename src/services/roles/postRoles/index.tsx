@@ -2,7 +2,10 @@ import { environment } from "@config/environment";
 import { IRol } from "@pages/catalogs/outlets/roles/types";
 import { mapRolesEntityToApi } from "./mappers";
 
-const addRoles = async (roles: IRol): Promise<IRol | undefined> => {
+const addRoles = async (
+  roles: IRol,
+  rolesBusinessUnit: string
+): Promise<IRol | undefined> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/roles`;
 
   try {
@@ -10,7 +13,7 @@ const addRoles = async (roles: IRol): Promise<IRol | undefined> => {
       method: "POST",
       headers: {
         "X-Action": "AgregarRol",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": rolesBusinessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapRolesEntityToApi(roles)),

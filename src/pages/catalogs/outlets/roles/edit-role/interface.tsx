@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
-import { Stack, Breadcrumbs, inube, Tabs } from "@inube/design-system";
+import { Stack, Breadcrumbs, inube } from "@inube/design-system";
+import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
@@ -17,6 +18,7 @@ import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { IFormAddRole, IHandleChangeFormData, IRol } from "../types";
 import { InitializerForm } from "../components/InitializerForm";
+import { useMediaQueries } from "@inubekit/hooks";
 
 interface ITabs {
   id: string;
@@ -64,7 +66,6 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     onSubmit,
     selectedTab,
     dataTabs,
-    smallScreen,
     loading,
     currentFormHasChanges,
   } = props;
@@ -72,6 +73,8 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
   const forceReRender = () => {
     setKey((prevKey) => prevKey + 1);
   };
+  const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
+    useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
 
   return loading ? (
     <StyledContainerLoading>
@@ -110,6 +113,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
           <Tabs
             onChange={onTabChange}
             selectedTab={selectedTab}
+            scroll={typeTabs ? true : false}
             tabs={dataTabs}
           />
           {selectedTab === stepsAddRol.generalInformation.label && (

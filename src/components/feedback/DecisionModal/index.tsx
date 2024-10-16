@@ -2,14 +2,13 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 
+import { TextAppearance } from "@src/types/Text.types";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 import { Blanket } from "@inubekit/blanket";
 import { Icon } from "@inubekit/icon";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Button } from "@inubekit/button";
-
-import { TextAppearance } from "@pages/people/outlets/color/texts/types";
 
 import { StyledModal } from "./styles";
 

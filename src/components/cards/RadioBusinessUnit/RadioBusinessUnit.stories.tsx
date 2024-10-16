@@ -14,11 +14,11 @@ const Default = (args: RadioBusinessUnitProps) => (
 );
 
 Default.args = {
-  id: businessUnitDataMock[2].id,
+  id: businessUnitDataMock[2].businessUnitPublicCode,
   name: "BusinessUnit",
-  value: businessUnitDataMock[2].name,
-  label: businessUnitDataMock[2].name,
-  logo: businessUnitDataMock[2].logo,
+  value: businessUnitDataMock[2].abbreviatedName,
+  label: businessUnitDataMock[2].abbreviatedName,
+  logo: businessUnitDataMock[2].urlLogo,
 };
 
 export default story;

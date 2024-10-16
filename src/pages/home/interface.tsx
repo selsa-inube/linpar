@@ -11,10 +11,12 @@ import {
   removeBussinessUnit,
 } from "@components/layout/AppPage/config/apps.config";
 import { AppCard } from "@components/cards/AppCard";
+import { LinparContext } from "@context/AppContext";
 import { ICardData } from "./types";
 import {
   StyledContainer,
   StyledContainerCards,
+  StyledContainerSection,
   StyledContentImg,
   StyledFooter,
   StyledHeaderContainer,
@@ -22,7 +24,6 @@ import {
   StyledMenuContainer,
   StyledTitle,
 } from "./styles";
-import { LinparContext } from "@src/context/AppContext";
 
 interface HomeProps {
   data?: ICardData[];
@@ -76,7 +77,9 @@ function HomeUI(props: HomeProps) {
 
   const filterDataConfig = () => {
     if (
-      bussinessUnitOptionTotal.includes(linparData.businessUnit.abbreviatedName)
+      bussinessUnitOptionTotal.includes(
+        linparData.businessUnit.businessUnitPublicCode
+      )
     )
       return data;
     return data?.filter((card) => !removeBussinessUnit.includes(card.id));
@@ -119,25 +122,27 @@ function HomeUI(props: HomeProps) {
             handleShowBlanket={handleToggleLogoutModal}
           />
         )}
-        <StyledTitle>
-          <PageTitle
-            title={`Bienvenido, ${username}`}
-            description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
-            icon={<MdOutlineDoorFront />}
-          />
-        </StyledTitle>
-        <StyledContainerCards>
-          {data &&
-            filterDataConfig()?.map((card, index) => (
-              <AppCard
-                key={card.id}
-                label={card.label}
-                description={card.description}
-                icon={card.icon}
-                url={card.url}
-              />
-            ))}
-        </StyledContainerCards>
+        <StyledContainerSection>
+          <StyledTitle>
+            <PageTitle
+              title={`Bienvenido, ${username}`}
+              description="Selecciona una opción para empezar a ajustar la configuración de tu software Linix"
+              icon={<MdOutlineDoorFront />}
+            />
+          </StyledTitle>
+          <StyledContainerCards>
+            {data &&
+              filterDataConfig()?.map((card, index) => (
+                <AppCard
+                  key={card.id}
+                  label={card.label}
+                  description={card.description}
+                  icon={card.icon}
+                  url={card.url}
+                />
+              ))}
+          </StyledContainerCards>
+        </StyledContainerSection>
         <StyledFooter>
           <StyledLogo src={linparData.businessManager.urlBrand} />
         </StyledFooter>

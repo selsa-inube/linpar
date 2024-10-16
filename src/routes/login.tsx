@@ -8,23 +8,27 @@ import { ErrorNotBusinessUnit } from "@pages/login/errors/ErrorNotBusinessUnit";
 import { Login } from "@pages/login";
 
 import { IBusinessUnit } from "@pages/login/types";
-import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
+
+import { useContext } from "react";
+import { LinparContext } from "@src/context/AppContext";
 
 export interface IBusinessUnits {
   businessUnits: IBusinessUnit[];
 }
 function LoginRoutes() {
-  const businessUnits = businessUnitDataMock;
+  const { businessUnitSigla } = useContext(LinparContext);
+  const business = businessUnitSigla && JSON.parse(businessUnitSigla);
+
   return (
     <Routes>
       <Route path="/" element={<Login />}>
         <Route
           path="/:user_id/checking-credentials"
-          element={<CheckingCredentials businessUnits={businessUnits} />}
+          element={<CheckingCredentials businessUnits={business} />}
         />
         <Route
           path="/:user_id/businessUnits"
-          element={<BusinessUnits businessUnits={businessUnits} />}
+          element={<BusinessUnits businessUnits={business} />}
         />
         <Route path="loading-app" element={<LoadingApp />} />
       </Route>

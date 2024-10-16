@@ -86,8 +86,8 @@ function EditUserUI(props: EditUserUIProps) {
     onSubmit,
   } = props;
 
-  const { "(max-width: 580px)": smallScreen, "(max-width: 1073px)": typeTabs } =
-    useMediaQueries(["(max-width: 580px)", "(max-width: 1073px)"]);
+  const { "(max-width: 580px)": smallScreen, "(max-width: 1600px)": typeTabs } =
+    useMediaQueries(["(max-width: 580px)", "(max-width: 1600px)"]);
 
   const forceReRender = () => {
     setKey((prevKey) => prevKey + 1);

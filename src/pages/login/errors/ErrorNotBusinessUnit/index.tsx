@@ -7,7 +7,7 @@ function ErrorNotBusinessUnit() {
       image={clientNotFound}
       imageAlt="Unidad de negocio no encontrada"
       heading="No hay resultados..."
-      description="Su usuario no tiene unidades de negocio relacionados, consulte con su administrador."
+      description="El usuario NO tiene la configuracion requerida para acceder a este portal"
     />
   );
 }

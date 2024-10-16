@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,7 @@ import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientS
 import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { getSelectLinixUseCase } from "@services/linixUseCase/selectLinixUseCase";
+import { LinparContext } from "@context/AppContext";
 
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
@@ -102,7 +103,7 @@ function AddingLinixUseCase() {
     Record<string, unknown>[]
   >([]);
   const { user } = useAuth0();
-
+  const { linparData } = useContext(LinparContext);
   useEffect(() => {
     setSelectOptions(webOptions.length === 0 && csOptions.length === 0);
   }, [webOptions, csOptions]);
@@ -132,7 +133,10 @@ function AddingLinixUseCase() {
     if (!user) return;
     if (downloadableDocuments.length === 0) {
       setLoading(true);
-      getDownloadableFormats("1")
+      getDownloadableFormats(
+        "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setDownloadableDocuments(
@@ -161,7 +165,7 @@ function AddingLinixUseCase() {
   const webOptionsData = () => {
     if (!user) return;
     if (webOptions.length === 0) {
-      getWebOptionsFormats("1")
+      getWebOptionsFormats("1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setWebOptions(data as Record<string, unknown>[]);
@@ -189,7 +193,7 @@ function AddingLinixUseCase() {
     if (!user) return;
     if (webReports.length === 0) {
       setLoading(true);
-      getWebReportsFormats("1")
+      getWebReportsFormats("1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setWebReports(data as unknown as Record<string, unknown>[]);
@@ -217,7 +221,10 @@ function AddingLinixUseCase() {
     if (!user) return;
     if (csReports.length === 0) {
       setLoading(true);
-      getReportsClientServerFormats("1")
+      getReportsClientServerFormats(
+        "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setCsReports(data as unknown as Record<string, unknown>[]);
@@ -245,7 +252,10 @@ function AddingLinixUseCase() {
     if (!user) return;
     if (csOptions.length === 0) {
       setLoading(true);
-      getClientServerMenuOptionFormats("1")
+      getClientServerMenuOptionFormats(
+        "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setCsOptions(data as unknown as Record<string, unknown>[]);
@@ -281,7 +291,8 @@ function AddingLinixUseCase() {
       setLoading(true);
       try {
         const newUsers = await getClientServerButtonDataFormats(
-          filterNForma as string
+          filterNForma as string,
+          linparData.businessUnit.businessUnitPublicCode
         );
         setCsOptionsButtons(newUsers);
       } catch (error) {
@@ -297,7 +308,9 @@ function AddingLinixUseCase() {
     if (selectLinixUseCase.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getSelectLinixUseCase();
+        const newUsers = await getSelectLinixUseCase(
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setSelectLinixUseCase(newUsers);
       } catch (error) {
         console.info(error);
@@ -381,7 +394,8 @@ function AddingLinixUseCase() {
 
       if (hasOpcionChanged && filterNForma) {
         const newUsers = await getClientServerButtonDataFormats(
-          filterNForma as string
+          filterNForma as string,
+          linparData.businessUnit.businessUnitPublicCode
         );
 
         if (Array.isArray(newUsers)) {
@@ -518,6 +532,7 @@ function AddingLinixUseCase() {
     const addnewdata = saveLinixUseCase(
       formData,
       filterNForma as string,
+      linparData.businessUnit.businessUnitPublicCode,
       csOptionsButtons
     );
     addnewdata
@@ -542,6 +557,22 @@ function AddingLinixUseCase() {
     });
     navigate("/catalogs/linixUseCase");
   };
+
+  const sortByIsActive = (arrays: any[]) => {
+    arrays.forEach((array: any[]) =>
+      array.sort(
+        (a: { isActive: number }, b: { isActive: number }) =>
+          b.isActive - a.isActive
+      )
+    );
+  };
+  sortByIsActive([
+    formData.clientServerOptions.values,
+    formData.webOptions.values,
+    formData.clientServerReports.values,
+    formData.webReports.values,
+    formData.downloadableDocuments.values,
+  ]);
 
   return (
     <AddingLinixUseCaseUI

@@ -4,7 +4,8 @@ import { environment } from "@config/environment";
 import { mapEditLinixUseCaseEntityToApi } from "./mapper";
 
 const editLinixUseCase = async (
-  editUseCase: UseCase
+  editUseCase: UseCase,
+  businessUnit: string
 ): Promise<UseCase | undefined> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/casos-de-uso`;
 
@@ -13,7 +14,7 @@ const editLinixUseCase = async (
       method: "PATCH",
       headers: {
         "X-Action": "ModificarCasoDeUso",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapEditLinixUseCaseEntityToApi(editUseCase)),

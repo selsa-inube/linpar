@@ -2,7 +2,6 @@ import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
   Button,
   Stack,
-  Switch,
   Textfield,
   Icon,
   Grid,
@@ -19,8 +18,11 @@ import {
   StyledEntriesContainer,
   StyledForm,
   StyledOptionsContainer,
+  StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
+import { Toggle } from "@inubekit/toggle";
+import { Label } from "@inubekit/label";
 
 interface AssignmentFormUIProps {
   title: string;
@@ -69,6 +71,8 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
   };
 
   const hasActiveEntries = entries.some((entry) => entry.isActive);
+
+  const hasInactiveEntries = entries.some((entry) => !entry.isActive);
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -122,7 +126,9 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                 <Button
                   spacing="compact"
                   onClick={() => handleToggleAllEntries(true)}
-                  disabled={isAssignAll || dataValidations}
+                  disabled={
+                    isAssignAll || dataValidations || !hasInactiveEntries
+                  }
                 >
                   Asignar todos
                 </Button>
@@ -136,15 +142,20 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               <Stack direction="column" gap={inube.spacing.s200} margin={"s0"}>
                 {filteredRows &&
                   filteredRows.map((entry) => (
-                    <Stack alignItems="center" key={entry.id}>
-                      <Switch
-                        id={entry.id}
-                        label={`${entry.id} - ${entry.value}`}
+                    <StyledToggle key={entry.id}>
+                      <Toggle
                         checked={entry.isActive}
+                        id={`approval-${entry.id}`}
+                        margin="0px"
+                        name="approval"
                         onChange={() => handleToggleEntry(entry.id)}
-                        size="large"
+                        padding="0px"
+                        size="small"
                       />
-                    </Stack>
+                      <Label htmlFor={`approval-${entry.id}`} size="medium">
+                        {`${entry.id} - ${entry.value}`}
+                      </Label>
+                    </StyledToggle>
                   ))}
               </Stack>
             </StyledEntriesContainer>

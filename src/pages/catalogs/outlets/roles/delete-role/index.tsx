@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { functionById } from "@mocks/utils/dataMock.service";
-
+import { LinparContext } from "@context/AppContext";
 import { deleteRolModal } from "./config/deleteRol.config";
 import { DeleteRoleUI } from "./interface";
 
@@ -22,10 +22,14 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const { linparData } = useContext(LinparContext);
   const handleDelete = () => {
     setLoading(true);
-    const data = deleteRol(rol, nameRol);
+    const data = deleteRol(
+      rol,
+      nameRol,
+      linparData.businessUnit.businessUnitPublicCode
+    );
     data
       .then(() => {
         setIdDeleted({

@@ -9,11 +9,15 @@ const StyledOption = styled.button`
     `${inube.spacing.s075} ${inube.spacing.s150}`};
   border: none;
   background-color: ${({ theme }) =>
-    theme?.color?.stroke?.light?.clear || inube.color.stroke.light.clear};
+    theme?.color?.stroke?.light?.clear || inube.color.stroke.light.hover};
   cursor: pointer;
   &:hover {
+    border-left: 2px solid
+      ${({ theme }) =>
+        theme?.color?.stroke?.primary?.regular ||
+        inube.color.stroke.primary.regular};
     background-color: ${({ theme }) =>
-      theme?.color?.stroke?.gray?.regular || inube.color.stroke.gray.regular};
+      theme?.color?.stroke?.gray?.hover || inube.color.stroke.light.regular};
   }
 `;
 

@@ -1,4 +1,4 @@
-import { MdPerson, MdVpnKey } from "react-icons/md";
+import { MdVpnKey } from "react-icons/md";
 import catalogs from "@assets/images/catalogs.svg";
 
 const appsConfig = [
@@ -44,32 +44,10 @@ const appsConfig = [
     ],
     url: "/catalogs",
   },
-  {
-    id: 3,
-    label: "Personas",
-    description:
-      "Opciones de configuración relacionadas con el portal de clientes.",
-    icon: <MdPerson />,
-    crumbs: [
-      {
-        path: "/",
-        label: "Inicio",
-        id: "/",
-        isActive: false,
-      },
-      {
-        path: "/people",
-        label: "Personas",
-        id: "/people",
-        isActive: true,
-      },
-    ],
-    url: "/people",
-  },
 ];
 
 const removeBussinessUnit = ["catalogs"];
-const bussinessUnitOptionTotal = ["sistemasenlinea"];
+const bussinessUnitOptionTotal = ["860514047"];
 
 const navigationConfig = {
   title: "MENU",
@@ -88,12 +66,6 @@ const navigationConfig = {
           label: "Catálogos Generales",
           icon: <img src={catalogs} alt="catalogs" width="25" height="25" />,
           path: "/catalogs",
-        },
-        people: {
-          id: "people",
-          label: "Personas",
-          icon: <MdPerson />,
-          path: "/people",
         },
       },
     },

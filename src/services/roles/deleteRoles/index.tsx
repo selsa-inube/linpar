@@ -5,7 +5,8 @@ import { IdeleteRoles } from "./types";
 import { mapRolesDeleteEntityToApi } from "./mappers";
 
 const deleteRoles = async (
-  deletedRol: IdeleteRoles
+  deletedRol: IdeleteRoles,
+  rolesBusinessUnit: string
 ): Promise<IRol | undefined> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/roles`;
 
@@ -14,7 +15,7 @@ const deleteRoles = async (
       method: "DELETE",
       headers: {
         "X-Action": "EliminarRol",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": rolesBusinessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapRolesDeleteEntityToApi(deletedRol)),

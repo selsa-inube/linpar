@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { useAuth0 } from "@auth0/auth0-react";
 import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
@@ -6,6 +6,7 @@ import { getRolFormats } from "@services/roles/tipoDeMovimientoPorRol";
 import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRole";
 import { getUseCaseByRole } from "@services/roles/useCasesByRole";
 import { getAplicationRoles } from "@services/roles/aplicationRoles";
+import { LinparContext } from "@context/AppContext";
 import {
   IFormAddRole,
   IFormAddRoleRef,
@@ -18,6 +19,7 @@ import { stepsAddRol } from "./config/addRol.config";
 import { IAncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { AddRolUI } from "./interface";
 import { initialValuesAddRol } from "./config/initialValues";
+import { SortableItem } from "./types";
 
 const steps = Object.values(stepsAddRol);
 
@@ -43,7 +45,7 @@ export function AddRol() {
   const [linixRoles, setLinixRoles] = useState<Record<string, unknown>[]>([]);
 
   const { user } = useAuth0();
-
+  const { linparData } = useContext(LinparContext);
   const [dataAddRoleLinixForm, setDataAddRoleLinixForm] =
     useState<IFormAddRole>({
       generalInformation: {
@@ -94,7 +96,7 @@ export function AddRol() {
   const typesOfMovements = () => {
     if (!user) return;
     if (transactionTypes.length === 0) {
-      getRolFormats("1")
+      getRolFormats("1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setTypesOfmovement(data as Record<string, unknown>[]);
@@ -124,7 +126,10 @@ export function AddRol() {
   const businessRulesFull = () => {
     if (!user) return;
     if (businessRules.length === 0) {
-      getBusinessRulesByRoleFormats("1")
+      getBusinessRulesByRoleFormats(
+        "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setBusinessRules(data as Record<string, unknown>[]);
@@ -155,7 +160,7 @@ export function AddRol() {
     if (!user) return;
     if (linixRoles.length === 0) {
       setLoading(true);
-      getAplicationRoles()
+      getAplicationRoles(linparData.businessUnit.businessUnitPublicCode)
         .then((newUsers) => {
           setLinixRoles(newUsers);
         })
@@ -171,7 +176,7 @@ export function AddRol() {
   const rolesuseCases = () => {
     if (!user) return;
     if (useCases.length === 0) {
-      getUseCaseByRole("1")
+      getUseCaseByRole("1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setUseCases(data as Record<string, unknown>[]);
@@ -260,6 +265,20 @@ export function AddRol() {
       }));
     }
   };
+
+  const sortByIsActive = (arrays: SortableItem[][]) => {
+    arrays.forEach((array) =>
+      array.sort((a, b) =>
+        b.isActive === a.isActive ? 0 : b.isActive ? 1 : -1
+      )
+    );
+  };
+
+  sortByIsActive([
+    dataAddRoleLinixForm.transactionTypes.values as SortableItem[],
+    dataAddRoleLinixForm.businessRules.values as SortableItem[],
+    dataAddRoleLinixForm.useCases.values as SortableItem[],
+  ]);
 
   return (
     <AddRolUI

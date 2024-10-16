@@ -1,10 +1,11 @@
 import { MdArrowBack } from "react-icons/md";
-import { Button, Grid, Stack, inube } from "@inube/design-system";
+import { Button, Stack, inube } from "@inube/design-system";
 
 import { BoxAttribute } from "@components/data/BoxAttirbute";
 import { Accordion } from "@components/data/Accordion";
 
 import { IDataVerificationStep } from ".";
+import { SyledContainerCard } from "./styles";
 
 interface IVerificationAddRoleUIProps {
   dataVerificationStep: IDataVerificationStep[];
@@ -14,7 +15,7 @@ interface IVerificationAddRoleUIProps {
 }
 
 export const VerificationAddRoleUI = (props: IVerificationAddRoleUIProps) => {
-  const { dataVerificationStep, keySections, isMobile, setCurrentStep } = props;
+  const { dataVerificationStep, keySections, setCurrentStep } = props;
 
   return (
     <Stack gap={inube.spacing.s100} direction="column">
@@ -27,12 +28,7 @@ export const VerificationAddRoleUI = (props: IVerificationAddRoleUIProps) => {
                 key={keySection}
                 title={dataStept.sections[keySection].title}
               >
-                <Grid
-                  templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
-                  width="-webkit-fill-available"
-                  autoRows="auto"
-                  gap="s200"
-                >
+                <SyledContainerCard>
                   {dataStept.sections[keySection].attributes.map(
                     (attribute) => (
                       <BoxAttribute
@@ -42,7 +38,8 @@ export const VerificationAddRoleUI = (props: IVerificationAddRoleUIProps) => {
                       />
                     )
                   )}
-                </Grid>
+                </SyledContainerCard>
+
                 <Stack justifyContent="flex-end" width="100%">
                   <Button
                     variant="none"
