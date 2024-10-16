@@ -1,9 +1,12 @@
 import { MdOutlineDelete } from "react-icons/md";
 import { Icon } from "@inube/design-system";
-
+import { Text } from "@inubekit/text";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
 import { deleteRolModal } from "./config/deleteRol.config";
+import { useEffect, useState } from "react";
+
+import { StyledContainerIcon, StyledContainer } from "./styles";
 
 interface DeleteRoleUIProps {
   deleteRolModal: typeof deleteRolModal;
@@ -28,10 +31,19 @@ export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
     showModal,
   } = props;
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1201);
   const messageType = EMessageType.DELETE;
-
   const { title, description, actionText, appearance } =
     deleteRolModal[messageType!];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1201);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -39,12 +51,21 @@ export const DeleteRoleUI = (props: DeleteRoleUIProps) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <Icon
-          icon={<MdOutlineDelete />}
-          onClick={() => setShowModal(true)}
-          appearance={hover ? "primary" : "dark"}
-          cursorHover
-        />
+        <StyledContainer>
+          <StyledContainerIcon>
+            <Icon
+              icon={<MdOutlineDelete />}
+              onClick={() => setShowModal(true)}
+              appearance={hover ? "primary" : "dark"}
+              cursorHover
+            />
+          </StyledContainerIcon>
+          {isMobile && (
+            <Text size="small" type="body" onClick={() => setShowModal(true)}>
+              Eliminar
+            </Text>
+          )}
+        </StyledContainer>
       </div>
       {showModal && (
         <DecisionModal

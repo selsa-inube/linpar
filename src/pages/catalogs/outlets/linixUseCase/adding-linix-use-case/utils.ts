@@ -8,6 +8,7 @@ import { formSelectLabel } from "../config/dataUseCases.config";
 export const saveLinixUseCase = async (
   linixUseCaseData: IFormAddLinixUseCase,
   filterNForma: string,
+  businessUnit: string,
   csOptionButton: Record<string, unknown>[]
 ) => {
   const {
@@ -62,7 +63,7 @@ export const saveLinixUseCase = async (
   };
   let confirmationType = true;
   try {
-    await addLinixUseCase(newLinixUseCase);
+    await addLinixUseCase(newLinixUseCase, businessUnit);
   } catch (error) {
     confirmationType = false;
 

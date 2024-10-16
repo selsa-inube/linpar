@@ -1,11 +1,11 @@
-import { MdPersonAddAlt } from "react-icons/md";
+import { TfiMenuAlt } from "react-icons/tfi";
 
 const menuInvitationLinks = [
   {
     id: "invite-user",
-    label: "Invitar usuario",
-    path: "/catalogs/linixUseCase",
-    icon: <MdPersonAddAlt size={16} />,
+    label: "Agrega caso de uso",
+    path: "adding-linix-use-case",
+    icon: <TfiMenuAlt size={16} />,
   },
 ];
 

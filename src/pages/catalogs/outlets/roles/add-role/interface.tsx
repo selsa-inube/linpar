@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -16,7 +16,7 @@ import { DecisionModal } from "@components/feedback/DecisionModal";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-
+import { LinparContext } from "@context/AppContext";
 import {
   IFormAddRole,
   IFormAddRoleRef,
@@ -72,7 +72,7 @@ export function AddRolUI(props: AddRolUIProps) {
     visible: false,
   });
   const navigate = useNavigate();
-
+  const { linparData } = useContext(LinparContext);
   const smallScreen = useMediaQuery("(max-width: 580px)");
 
   const {
@@ -87,7 +87,7 @@ export function AddRolUI(props: AddRolUIProps) {
     finishAssistedRoleModalConfig;
 
   const handleAddRole = async (addRoleData: IFormAddRole) => {
-    await saveRole(addRoleData)
+    await saveRole(addRoleData, linparData.businessUnit.businessUnitPublicCode)
       .then(() => {
         renderMessage(generalInformationValues.n_Rol, "success");
       })

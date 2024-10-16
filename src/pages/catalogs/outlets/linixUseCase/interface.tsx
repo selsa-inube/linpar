@@ -8,7 +8,6 @@ import {
   Stack,
   Textfield,
   useMediaQuery,
-  Table,
   inube,
 } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
@@ -26,6 +25,8 @@ import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
+import { TableLinpar } from "@src/components/data/TableLinpar";
+import { IEntry } from "@src/components/data/TableLinpar/types";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -127,14 +128,14 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
           {loading ? (
             <LoadingApp />
           ) : (
-            <Table
+            <TableLinpar
               id="tableLinixUseCases"
               titles={titlesOptions}
               actions={actionsConfigLinixUseCase(linixUseCases, setIdDeleted)}
-              entries={linixUseCases}
+              entries={linixUseCases as IEntry[]}
               breakpoints={useCasesBreakPointsConfig}
               filter={searchUseCase}
-              modalTitle="Caso de uso"
+              isLoading={loading}
             />
           )}
           {idDeleted && message.visible && (

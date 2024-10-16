@@ -1,7 +1,8 @@
+import React from "react";
 import { MdSearch } from "react-icons/md";
 import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
-import { ILinparData } from "@context/AppContext/types";
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { IBusinessUnitstate } from "./types";
 
 import {
@@ -10,10 +11,9 @@ import {
   StyledNoResults,
   StyledBusinessUnitsItem,
 } from "./styles";
-import { IBusinessUnit } from "../../types";
 
 interface BusinessUnitsUIProps {
-  businessUnits: IBusinessUnit[];
+  businessUnits: IBusinessUnitsPortalStaff[];
   search: string;
   businessUnit: IBusinessUnitstate;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,11 +21,10 @@ interface BusinessUnitsUIProps {
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
   filterBusinessUnits: (
-    businessUnits: IBusinessUnit[],
+    businessUnits: IBusinessUnitsPortalStaff[],
     search: string
-  ) => IBusinessUnit[];
+  ) => IBusinessUnitsPortalStaff[];
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  linparData: ILinparData;
 }
 
 function NoResultsMessage({ search }: { search: string }) {
@@ -48,8 +47,6 @@ function BusinessUnitsUI({
   handleBussinessUnitChange,
   handleSubmit,
 }: BusinessUnitsUIProps) {
-  const filteredBusinessUnits = filterBusinessUnits(businessUnits, search);
-
   return (
     <StyledBusinessUnits>
       <Text type="title" as="h2" textAlign="center">
@@ -72,7 +69,7 @@ function BusinessUnitsUI({
               iconBefore={<MdSearch size={22} />}
             />
           )}
-          {filteredBusinessUnits.length === 0 && (
+          {filterBusinessUnits(businessUnits, search).length === 0 && (
             <NoResultsMessage search={search} />
           )}
           <StyledBusinessUnitsList $scroll={businessUnits.length > 5}>
@@ -82,18 +79,22 @@ function BusinessUnitsUI({
               alignItems="center"
               gap={inube.spacing.s100}
             >
-              {filteredBusinessUnits.map((businessUnit) => (
-                <StyledBusinessUnitsItem key={businessUnit.id}>
-                  <RadioBusinessUnit
-                    name="businessUnit"
-                    label={businessUnit.name}
-                    id={businessUnit.id}
-                    value={businessUnit.name}
-                    logo={businessUnit.logo}
-                    handleChange={handleBussinessUnitChange}
-                  />
-                </StyledBusinessUnitsItem>
-              ))}
+              {filterBusinessUnits(businessUnits, search).map(
+                (businessUnit) => (
+                  <StyledBusinessUnitsItem
+                    key={businessUnit.businessUnitPublicCode}
+                  >
+                    <RadioBusinessUnit
+                      name="businessUnit"
+                      label={businessUnit.abbreviatedName}
+                      id={businessUnit.businessUnitPublicCode}
+                      value={businessUnit.abbreviatedName}
+                      logo={businessUnit.urlLogo}
+                      handleChange={handleBussinessUnitChange}
+                    />
+                  </StyledBusinessUnitsItem>
+                )
+              )}
             </Stack>
           </StyledBusinessUnitsList>
           <Button

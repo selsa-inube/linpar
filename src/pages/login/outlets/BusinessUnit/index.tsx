@@ -1,13 +1,16 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LinparContext } from "@context/AppContext";
-
-import { IBusinessUnits } from "@routes/login";
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { BusinessUnitsUI } from "./interface";
 import { IBusinessUnitstate } from "./types";
-import { IBusinessUnit } from "../../types";
 
-function BusinessUnits({ businessUnits }: IBusinessUnits) {
+interface BusinessUnitsProps {
+  businessUnits: IBusinessUnitsPortalStaff[];
+}
+
+function BusinessUnits(props: BusinessUnitsProps) {
+  const { businessUnits } = props;
   const [search, setSearch] = useState("");
   const [businessUnitLocal, setBusinessUnitLocal] =
     useState<IBusinessUnitstate>({
@@ -15,8 +18,11 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
       value: true,
     });
 
+  const [selectedBusinessUnit, setSelectedBusinessUnit] =
+    useState<IBusinessUnitsPortalStaff | null>(null);
+
   const navigate = useNavigate();
-  const { setBusinessUnitSigla, linparData } = useContext(LinparContext);
+  const { setBusinessUnitSigla } = useContext(LinparContext);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (businessUnitLocal.ref) {
@@ -30,21 +36,30 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
     setBusinessUnitLocal({ ref: event.target, value: false });
 
     const selectOption = businessUnits.find(
-      (businessUnit0) => businessUnit0.name === event.target.value
+      (businessUnit0) => businessUnit0.abbreviatedName === event.target.value
     );
-    const selectJSON = JSON.stringify(selectOption);
-    selectOption && setBusinessUnitSigla(selectJSON);
+    setSelectedBusinessUnit(selectOption || null);
   };
 
   const handleSubmit = () => {
+    if (selectedBusinessUnit) {
+      const selectJSON = JSON.stringify(selectedBusinessUnit);
+      setBusinessUnitSigla(selectJSON);
+    }
     navigate("/login/loading-app");
   };
 
-  function filterBusinessUnits(businessUnit: IBusinessUnit[], search: string) {
-    return businessUnit.filter((businessUnit) => {
-      const businessUnitName = businessUnit.name.toUpperCase();
-      const businessUnitSigla = businessUnit.sigla.toUpperCase();
-      const searchTerm = search.toUpperCase();
+  function filterBusinessUnits(
+    businessUnits: IBusinessUnitsPortalStaff[],
+    search: string
+  ) {
+    const searchTerm = search?.toUpperCase();
+
+    return businessUnits.filter((unit) => {
+      const businessUnitName = unit?.abbreviatedName?.toUpperCase() || "";
+      const businessUnitSigla =
+        unit?.businessUnitPublicCode?.toUpperCase() || "";
+
       return (
         businessUnitName.includes(searchTerm) ||
         businessUnitSigla.includes(searchTerm)
@@ -54,14 +69,13 @@ function BusinessUnits({ businessUnits }: IBusinessUnits) {
 
   return (
     <BusinessUnitsUI
-      businessUnits={businessUnits}
+      businessUnits={Object.values(businessUnits)}
       search={search}
       businessUnit={businessUnitLocal}
       handleSearchChange={handleSearchChange}
       handleBussinessUnitChange={handleCChange}
       filterBusinessUnits={filterBusinessUnits}
       handleSubmit={handleSubmit}
-      linparData={linparData}
     />
   );
 }

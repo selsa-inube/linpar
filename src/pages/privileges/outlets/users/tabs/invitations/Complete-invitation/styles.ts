@@ -23,5 +23,18 @@ export const StyledContainerLoading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 300px;
+  padding: 200px;
+
+  @media (max-width: 560px) {
+    width: 200px;
+    height: auto;
+    padding: 100px 100px;
+  }
+
+  @media (max-width: 1200px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 150px;
+  }
 `;

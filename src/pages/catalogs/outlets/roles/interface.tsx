@@ -7,7 +7,6 @@ import {
   Stack,
   Textfield,
   useMediaQuery,
-  Table,
   inube,
 } from "@inube/design-system";
 
@@ -16,6 +15,7 @@ import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { TableLinpar } from "@components/data/TableLinpar";
 import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
@@ -26,6 +26,7 @@ import {
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
+import { IEntry } from "@src/components/data/TableLinpar/types";
 
 interface IRolesProps {
   handleCloseMenuInvitation: () => void;
@@ -128,14 +129,15 @@ export function RolesUI(props: IRolesProps) {
           {loading ? (
             <LoadingApp />
           ) : (
-            <Table
+            <TableLinpar
               id="tableRoles"
               titles={titlesOptions}
               actions={actionsConfigPosition(linixRoles, setIdDeleted)}
-              entries={linixRolesData(linixRoles, dataAplication)}
+              entries={linixRolesData(linixRoles, dataAplication) as IEntry[]}
               breakpoints={RolesBreakPointsConfig}
-              modalTitle="Roles"
               filter={searchRole}
+              isLoading={loading}
+              widthPercentageTotalColumns={70}
             />
           )}
           {idDeleted !== 0 && message.visible && (

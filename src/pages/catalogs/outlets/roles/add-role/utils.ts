@@ -86,7 +86,10 @@ export const addRoleStepsRules = (
   });
 };
 
-export const saveRole = async (addRoleFormValid: IFormAddRole) => {
+export const saveRole = async (
+  addRoleFormValid: IFormAddRole,
+  rolesBusinessUnit: string
+) => {
   const {
     ancillaryAccounts: { values: ancillaryAccountsValues },
     transactionTypes: { values: transactionTypesValues },
@@ -149,7 +152,7 @@ export const saveRole = async (addRoleFormValid: IFormAddRole) => {
 
   let confirmationType = true;
   try {
-    await addRoles(newRole);
+    await addRoles(newRole, rolesBusinessUnit);
   } catch (error) {
     confirmationType = false;
     throw error;

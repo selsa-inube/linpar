@@ -12,6 +12,7 @@ import {
 export const editDataRoles = async (
   rolesData: IFormAddRole,
   rolesEditCuantasA: ICuentasAuxiliaresPorRol[],
+  rolesBusinessUnit: string,
   optionsData?: IAssignmentFormEntry[],
   roleID?: number
 ) => {
@@ -169,7 +170,7 @@ export const editDataRoles = async (
   let confirmationType = true;
 
   try {
-    await editRoles(newoptionsUseCase);
+    await editRoles(newoptionsUseCase, rolesBusinessUnit);
   } catch (error) {
     confirmationType = false;
 

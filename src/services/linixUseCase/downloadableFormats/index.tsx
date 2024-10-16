@@ -2,7 +2,8 @@ import { environment, retries, timeout } from "@config/environment";
 import { mapDownloadableFormatsApiToEntities } from "./mappers";
 
 const getDownloadableFormats = async (
-  k_Usecase: string
+  k_Usecase: string,
+  businessUnit: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
@@ -19,7 +20,7 @@ const getDownloadableFormats = async (
         headers: {
           Realm: environment.REALM,
           "X-Action": "SearchTiposDeDocumentoPorCasoDeUsoFull",
-          "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+          "X-Business-Unit": businessUnit,
           "Content-type": "application/json; charset=UTF-8",
         },
         signal: controller.signal,
