@@ -2,7 +2,8 @@ import { environment, retries, timeout } from "@config/environment";
 import { mapReportsClientServerFormatsApiToEntities } from "./mappers";
 
 const getReportsClientServerFormats = async (
-  k_Usecase: string
+  k_Usecase: string,
+  businessUnit: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
@@ -14,7 +15,7 @@ const getReportsClientServerFormats = async (
     headers: {
       Realm: environment.REALM,
       "X-Action": "SearchReportesCsPorCasoDeUsoFull",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": businessUnit,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

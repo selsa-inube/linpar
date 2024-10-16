@@ -1,10 +1,11 @@
+import { useState, useEffect } from "react";
 import { MdOutlineDelete } from "react-icons/md";
-
 import { Icon } from "@inube/design-system";
+import { Text } from "@inubekit/text";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
-
 import { deleteLinixUseCaseModal } from "./config/deleteLinixUseCase.config";
+import { StyledContainer, StyledContainerIcon } from "./styles";
 
 interface DeleteLinixUseCaseUIProps {
   deleteLinixUseCaseModal: typeof deleteLinixUseCaseModal;
@@ -24,16 +25,25 @@ export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
     hover,
     loading,
     linixUseCase,
-
     setHover,
     setShowModal,
     showModal,
   } = props;
 
-  const messageType = EMessageType.DELETE;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1201);
 
+  const messageType = EMessageType.DELETE;
   const { title, description, actionText, appearance } =
     deleteLinixUseCaseModal[messageType!];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1201);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -41,12 +51,21 @@ export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <Icon
-          icon={<MdOutlineDelete />}
-          onClick={() => setShowModal(true)}
-          appearance={hover ? "primary" : "dark"}
-          cursorHover
-        />
+        <StyledContainer>
+          <StyledContainerIcon>
+            <Icon
+              icon={<MdOutlineDelete />}
+              onClick={() => setShowModal(true)}
+              appearance={hover ? "primary" : "dark"}
+              cursorHover
+            />
+          </StyledContainerIcon>
+          {isMobile && (
+            <Text size="small" type="body" onClick={() => setShowModal(true)}>
+              Eliminar
+            </Text>
+          )}
+        </StyledContainer>
       </div>
       {showModal && (
         <DecisionModal

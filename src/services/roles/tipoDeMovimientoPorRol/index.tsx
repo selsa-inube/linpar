@@ -2,7 +2,8 @@ import { environment, retries, timeout } from "@config/environment";
 import { mapTipoDeMovimientoPorRolFormatsApiToEntities } from "./mapper";
 
 const getRolFormats = async (
-  k_Rol: string
+  k_Rol: string,
+  rolesBusinessUnit: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
@@ -14,7 +15,7 @@ const getRolFormats = async (
     headers: {
       Realm: environment.REALM,
       "X-Action": "QueryTiposDeMovimientoPorRolFull",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": rolesBusinessUnit,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

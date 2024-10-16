@@ -2,7 +2,8 @@ import { environment, retries, timeout } from "@config/environment";
 import { mapClientServerButtonDataFormatsApiToEntities } from "./mappers";
 
 const getClientServerButtonDataFormats = async (
-  id: string
+  id: string,
+  businessUnit: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
@@ -14,7 +15,7 @@ const getClientServerButtonDataFormats = async (
     headers: {
       Realm: environment.REALM,
       "X-Action": "SearchAllBotonesPorFormaCs",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": businessUnit,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

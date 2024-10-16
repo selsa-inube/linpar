@@ -1,15 +1,10 @@
-import {
-  Stack,
-  Button,
-  Text,
-  useMediaQueries,
-  Grid,
-} from "@inube/design-system";
 import { StyledCompanyLogo, StyledErrorImage } from "./styles";
 import { MdChevronLeft } from "react-icons/md";
-
+import { Button, Text, Grid } from "@inube/design-system";
+import { useMediaQueries } from "@inubekit/hooks";
 import selsaLogo from "@assets/images/selsa.png";
 import errorImage from "@assets/images/timeout.png";
+import { Stack } from "@inubekit/stack";
 
 interface ErrorPageProps {
   logo?: string;
@@ -39,8 +34,8 @@ function ErrorPage(props: ErrorPageProps) {
 
   return (
     <Stack
-      padding={matches["(max-width: 600px)"] ? "s400" : "s1000"}
-      gap={matches["(max-width: 1000px)"] ? "64px" : "120px"}
+      padding={matches["(max-width: 600px)"] ? "32px" : "80px 80px 0px 80px"}
+      gap={matches["(max-width: 1000px)"] ? "64px" : "20px"}
       direction="column"
     >
       <StyledCompanyLogo src={logo} alt={logoAlt} />

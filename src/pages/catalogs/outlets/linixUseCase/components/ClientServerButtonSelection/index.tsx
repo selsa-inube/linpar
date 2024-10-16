@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { LinparContext } from "@context/AppContext";
 import {
   IHandleChangeFormData,
   IClientServerButton,
@@ -38,13 +39,17 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
     []
   );
   const { user } = useAuth0();
+  const { linparData } = useContext(LinparContext);
 
   const clientServerButtonMenuOption = async (id: string) => {
     if (!user) return;
     if (buttonOptions.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getClientServerButtonDataFormats(id);
+        const newUsers = await getClientServerButtonDataFormats(
+          id,
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setButtonOptions(newUsers);
       } catch (error) {
         console.info(error);

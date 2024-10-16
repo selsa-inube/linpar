@@ -43,24 +43,35 @@ function AssignmentForm(props: AssignmentFormProps) {
       ...entry,
       isActive: allocate,
     }));
+
+    const changedEntries = newEntries.filter(
+      (entry, index) => entry.isActive !== entries[index].isActive
+    );
+
     setIsAssignAll(allocate);
     handleChange(newEntries);
+    if (changedEntries.length > 0) {
+      setChangedData(changedEntries);
+    }
   };
 
   const handleToggleEntry = (id: string) => {
     const newEntries = entries.map((entry) => {
       if (entry.id === id) {
-        setChangedData([
-          ...changeData,
-          {
-            ...entry,
-            isActive: !entry.isActive,
-          },
-        ]);
-        return {
+        const updatedEntry = {
           ...entry,
           isActive: !entry.isActive,
         };
+
+        if (updatedEntry.isActive !== entry.isActive) {
+          const updatedChangedData = [
+            ...changeData.filter((e) => e.id !== entry.id),
+            updatedEntry,
+          ];
+          setChangedData(updatedChangedData);
+        }
+
+        return updatedEntry;
       }
 
       return entry;

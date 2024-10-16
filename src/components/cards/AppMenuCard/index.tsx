@@ -24,8 +24,7 @@ function AppMenuCard(props: AppMenuCardProps) {
             cursorHover={true}
             icon={icon}
             spacing="wide"
-            size="24px"
-            shape="circle"
+            size="36px"
           />
           <Stack gap="4px" direction="column" width="100%">
             <Text textAlign="center" type="title" size="medium">

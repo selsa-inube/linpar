@@ -1,11 +1,11 @@
+import { useEffect, useState } from "react";
 import { Switch } from "@inube/design-system";
-
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
 import { IActivateOptionModal } from "./types";
 import { activateRoleModal } from "./config/activateRole.config";
+import { Text } from "@inubekit/text";
 
 interface IActivateRoleUI {
   active: boolean;
@@ -63,6 +63,17 @@ export function ActivateRoleUI(props: IActivateRoleUI) {
     activateModalConfig,
   } = props;
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1201);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1201);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <Switch
@@ -72,6 +83,12 @@ export function ActivateRoleUI(props: IActivateRoleUI) {
         label={showComplete ? "Activar" : ""}
         padding={`s0 s0 s0 ${showComplete ? "s200" : "s0"}`}
       />
+
+      {isMobile && (
+        <Text size="small" type="body">
+          {active ? "Activo" : "Inactivo"}
+        </Text>
+      )}
 
       {showActivateRoleModal && (
         <ActivateRoleModal

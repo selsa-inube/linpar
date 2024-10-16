@@ -4,7 +4,9 @@ import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-ca
 
 import { mapSelectLinixUseCaseApiToEntities } from "./mappers";
 
-const getSelectLinixUseCase = async (): Promise<Option[]> => {
+const getSelectLinixUseCase = async (
+  businessUnit: string
+): Promise<Option[]> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/enumerators/dmitipusec`;
 
   try {
@@ -12,7 +14,7 @@ const getSelectLinixUseCase = async (): Promise<Option[]> => {
       method: "GET",
       headers: {
         "X-Action": "GetEnum",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

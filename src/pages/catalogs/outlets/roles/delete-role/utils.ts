@@ -1,7 +1,11 @@
 import { deleteRoles } from "@services/roles/deleteRoles";
 import { IdeleteRoles } from "@services/roles/deleteRoles/types";
 
-const deleteRol = async (rol: number, nameRol: string): Promise<boolean> => {
+const deleteRol = async (
+  rol: number,
+  nameRol: string,
+  rolesBusinessUnit: string
+): Promise<boolean> => {
   let confirmationDelete = true;
   const rolData: IdeleteRoles = {
     k_Rol: rol,
@@ -9,7 +13,7 @@ const deleteRol = async (rol: number, nameRol: string): Promise<boolean> => {
     removalJustification: "Lincon",
   };
   try {
-    await deleteRoles(rolData);
+    await deleteRoles(rolData, rolesBusinessUnit);
   } catch (error) {
     confirmationDelete = false;
     throw error;

@@ -17,19 +17,22 @@ import {
 } from "@inube/design-system";
 
 import { Fieldset } from "@components/inputs/Fieldset";
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import {
   Styledlmage,
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
-import { IBusinessUnit } from "../login/types";
 
-const renderHead = (bussinessData: IBusinessUnit, smallScreen?: boolean) => {
+const renderHead = (
+  bussinessData: IBusinessUnitsPortalStaff,
+  smallScreen?: boolean
+) => {
   return (
     <>
       <Styledlmage
-        src={bussinessData.logo}
-        alt={`Logo ${bussinessData.name}`}
+        src={bussinessData.urlLogo}
+        alt={`Logo ${bussinessData.abbreviatedName}`}
       />
       <Stack direction="column" gap={smallScreen ? "16px" : "36px"}>
         <Stack direction="column">
@@ -231,7 +234,7 @@ interface RespondInvitationUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  bussinessData: IBusinessUnit;
+  bussinessData: IBusinessUnitsPortalStaff;
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {
@@ -244,8 +247,8 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
       <StyledContainerForm>
         <Stack direction="column" gap="32px" padding="s200">
           <Styledlmage
-            src={bussinessData.logo}
-            alt={`Logo ${bussinessData.name}`}
+            src={bussinessData.urlLogo}
+            alt={`Logo ${bussinessData.abbreviatedName}`}
           />
           {renderForm(formik, loading, handleSubmitForm, smallScreen)}
         </Stack>

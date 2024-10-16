@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { functionById } from "@mocks/utils/dataMock.service";
+import { LinparContext } from "@context/AppContext";
 
 import { deleteLinixUseCaseModal } from "./config/deleteLinixUseCase.config";
 import { DeleteLinixUseCaseUI } from "./interface";
@@ -26,10 +27,14 @@ export const DeleteLinixUseCase = (props: IDeleteLinixUseCaseProps) => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const { linparData } = useContext(LinparContext);
   const handleLinixUseCase = () => {
     setLoading(true);
-    const data = deleteUseCase(linixUseCase, nameLinixuseCase);
+    const data = deleteUseCase(
+      linixUseCase,
+      nameLinixuseCase,
+      linparData.businessUnit.businessUnitPublicCode
+    );
     data
       .then(() => {
         setIdDeleted({

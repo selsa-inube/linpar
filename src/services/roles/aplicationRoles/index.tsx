@@ -1,7 +1,9 @@
 import { environment, retries, timeout } from "@config/environment";
 import { mapAplicationRolesFormatsApiToEntities } from "./mappers";
 
-const getAplicationRoles = async (): Promise<Record<string, unknown>[]> => {
+const getAplicationRoles = async (
+  rolesBusinessUnit: string
+): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
 
@@ -12,7 +14,7 @@ const getAplicationRoles = async (): Promise<Record<string, unknown>[]> => {
     headers: {
       Realm: environment.REALM,
       "X-Action": "SearchAllAplicacion",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": rolesBusinessUnit,
       "Content-type": "application/json; charset=UTF-8",
     },
   };
