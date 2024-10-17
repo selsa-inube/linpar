@@ -47,7 +47,7 @@ const appsConfig = [
 ];
 
 const removeBussinessUnit = ["catalogs"];
-const bussinessUnitOptionTotal = ["860514047"];
+const bussinessUnitOptionTotal = ["1"];
 
 const navigationConfig = {
   title: "MENU",
