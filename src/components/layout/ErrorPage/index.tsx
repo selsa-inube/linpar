@@ -1,4 +1,5 @@
 import { MdChevronLeft } from "react-icons/md";
+import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Text, Grid } from "@inube/design-system";
 import { useMediaQueries } from "@inubekit/hooks";
@@ -29,6 +30,9 @@ function ErrorPage(props: ErrorPageProps) {
   const mediaQueries = ["(max-width: 1000px)", "(max-width: 600px)"];
   const matches = useMediaQueries(mediaQueries);
   const { logout } = useAuth0();
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   const handleRedirect = () => {
     localStorage.clear();
     logout({ logoutParams: { returnTo: "https://www.google.com" } });

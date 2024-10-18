@@ -63,15 +63,18 @@ function AssignmentForm(props: AssignmentFormProps) {
           ...entry,
           isActive: !entry.isActive,
         };
-
         const updatedChangedData = copyEntries.reduce((acc, copy) => {
-          if (
-            copy.id === updatedEntry.id &&
-            copy.isActive !== updatedEntry.isActive
-          ) {
-            return [...acc.filter((e) => e.id !== entry.id), updatedEntry];
+          if (copy.id === updatedEntry.id) {
+            if (copy.isActive !== updatedEntry.isActive) {
+              return [
+                ...acc.filter((e) => e.id !== updatedEntry.id),
+                updatedEntry,
+              ];
+            } else {
+              return acc.filter((e) => e.id !== updatedEntry.id);
+            }
           }
-          return acc.filter((e) => e.id !== updatedEntry.id);
+          return acc;
         }, changeData);
 
         setChangedData(updatedChangedData);

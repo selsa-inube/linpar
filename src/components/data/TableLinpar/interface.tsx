@@ -21,6 +21,7 @@ import {
   widthColmnsData,
 } from "./utils";
 import { IAction, IBreakpoint, IEntry, ITitle } from "./types";
+import { StyledText } from "./styles";
 
 interface TableLinparUIProps {
   actions: IAction[];
@@ -60,7 +61,6 @@ const TableLinparUI = (props: TableLinparUIProps) => {
   } = props;
 
   const mediaActionOpen = useMediaQuery("(max-width: 1200px)");
-  const isMobileView = useMediaQuery("(max-width: 560px)");
 
   const queriesArray = useMemo(
     () => breakpoints && breakpoints.map((breakpoint) => breakpoint.breakpoint),
@@ -75,11 +75,6 @@ const TableLinparUI = (props: TableLinparUIProps) => {
   );
 
   const numberActions = actions ? actions.length : 0;
-
-  const truncateText = (text: string, isMobileView: boolean) => {
-    const limit = isMobileView ? 10 : 30;
-    return text.length > limit ? text.slice(0, limit) + "..." : text;
-  };
 
   return (
     <Table>
@@ -110,9 +105,8 @@ const TableLinparUI = (props: TableLinparUIProps) => {
                     <Td
                       key={`e-${entry[title.id]}`}
                       align={entry.action ? "center" : "left"}
-                      className="truncate-text"
                     >
-                      {truncateText(entry[title.id], isMobileView)}{" "}
+                      <StyledText>{entry[title.id]}</StyledText>
                     </Td>
                   ))}
                   {ShowAction(actions, entry, mediaActionOpen)}
