@@ -60,8 +60,8 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
     entries &&
     entries.filter(
       (entry) =>
-        entry.value.toLowerCase().includes(filter.toLowerCase()) ||
-        entry.id.includes(filter.toLowerCase())
+        entry.id.toLowerCase().includes(filter.toLowerCase()) ||
+        entry.value.toLowerCase().includes(filter.toLowerCase())
     );
   const dataValidations =
     (entries && entries.length === 0) || typeof entries === "undefined";

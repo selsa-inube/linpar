@@ -1,5 +1,4 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
-import { Icon } from "@inube/design-system";
 
 import { EAppearance } from "@src/types/colors.types";
 
@@ -83,15 +82,15 @@ export const finishAssistedRoleModalConfig = {
 export const finishAssistedRoleMessagesConfig = {
   success: {
     id: 1,
-    icon: <Icon appearance="dark" icons={<MdThumbUpOffAlt />} size="18px" />,
-    title: "Creación exitosa",
+    icon: <MdThumbUpOffAlt size={18} />,
+    title: "Cambios guardados con éxito!",
     description: (value: string) =>
       `Hemos creado el Rol '${value}' exitosamente.`,
     appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
-    icon: <Icon appearance="dark" icons={<MdErrorOutline />} size="18px" />,
+    icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
       `Hemos presentado un error creando el Rol'${value}', por favor contacte a soporte.`,

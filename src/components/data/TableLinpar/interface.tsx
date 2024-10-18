@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useMediaQueries, useMediaQuery } from "@inubekit/hooks";
 import { Text } from "@inubekit/text";
 import {
+  Col,
   Colgroup,
   Pagination,
   Table,
@@ -20,6 +21,7 @@ import {
   widthColmnsData,
 } from "./utils";
 import { IAction, IBreakpoint, IEntry, ITitle } from "./types";
+import { StyledText } from "./styles";
 
 interface TableLinparUIProps {
   actions: IAction[];
@@ -74,13 +76,10 @@ const TableLinparUI = (props: TableLinparUIProps) => {
 
   const numberActions = actions ? actions.length : 0;
 
-  const truncateText = (text: string) => {
-    return text.length > 10 ? text.slice(0, 10) + "..." : text;
-  };
-
   return (
     <Table>
       <Colgroup>
+        {!mediaActionOpen && <Col width="100px" />}
         {widthColmnsData(TitleColumns, widthPercentageTotalColumns)}
       </Colgroup>
 
@@ -106,10 +105,8 @@ const TableLinparUI = (props: TableLinparUIProps) => {
                     <Td
                       key={`e-${entry[title.id]}`}
                       align={entry.action ? "center" : "left"}
-                      className="truncate-text"
                     >
-                      {truncateText(entry[title.id])}{" "}
-                      {/* Aplica la función aquí */}
+                      <StyledText>{entry[title.id]}</StyledText>
                     </Td>
                   ))}
                   {ShowAction(actions, entry, mediaActionOpen)}
@@ -127,6 +124,7 @@ const TableLinparUI = (props: TableLinparUIProps) => {
           </>
         )}
       </Tbody>
+
       {filteredEntries.length > pageLength && (
         <Tfoot>
           <Tr border="bottom">

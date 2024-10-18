@@ -60,11 +60,21 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     showMenu,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const smallScreen = useMediaQuery("(max-width: 837px)");
   const location = useLocation();
   const label = catalogsOptionsConfig.find(
     (item) => item.url === location.pathname
   );
+
+  const dynamicTitlesOptions = smallScreen
+    ? [
+        {
+          id: "n_Usecase",
+          titleName: "Nombre",
+          priority: 1,
+        },
+      ]
+    : titlesOptions;
 
   return (
     <Stack
@@ -130,12 +140,13 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
           ) : (
             <TableLinpar
               id="tableLinixUseCases"
-              titles={titlesOptions}
+              titles={dynamicTitlesOptions}
               actions={actionsConfigLinixUseCase(linixUseCases, setIdDeleted)}
               entries={linixUseCases as IEntry[]}
               breakpoints={useCasesBreakPointsConfig}
               filter={searchUseCase}
               isLoading={loading}
+              widthPercentageTotalColumns={80}
             />
           )}
           {idDeleted && message.visible && (
