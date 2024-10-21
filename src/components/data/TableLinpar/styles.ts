@@ -21,17 +21,21 @@ const StyledContainerTable = styled.div<IStyledContainer>`
     justify-content: center;
   }
 
-  & .truncate-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
   @media (max-width: 1200px) {
     & > td,
     div {
       justify-content: flex-start;
     }
+  }
+`;
+
+export const StyledText = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 560px) {
+    max-width: 100px;
   }
 `;
 

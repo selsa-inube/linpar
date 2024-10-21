@@ -12,6 +12,10 @@ const StyledModal = styled.div<IStyledModal>`
   height: auto;
   border-radius: 8px;
   margin: 16px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 `;
 
 export { StyledModal };

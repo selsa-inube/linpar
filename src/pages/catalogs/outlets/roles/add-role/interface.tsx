@@ -243,16 +243,15 @@ export function AddRolUI(props: AddRolUIProps) {
                   handleClick={() => handleAddRole(addRoleFormValid)}
                 />
               )}
-
-              {message.visible && (
-                <RenderMessage
-                  message={message}
-                  handleCloseMessage={handleCloseSectionMessage}
-                  onMessageClosed={handleCloseSectionMessage}
-                />
-              )}
             </Stack>
           </Stack>
+          {message.visible && (
+            <RenderMessage
+              message={message}
+              handleCloseMessage={handleCloseSectionMessage}
+              onMessageClosed={handleCloseSectionMessage}
+            />
+          )}
         </Stack>
       )}
     </>

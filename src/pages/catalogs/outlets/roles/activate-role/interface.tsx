@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Switch } from "@inube/design-system";
+import { Text } from "@inubekit/text";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IActivateOptionModal } from "./types";
 import { activateRoleModal } from "./config/activateRole.config";
-import { Text } from "@inubekit/text";
 
 interface IActivateRoleUI {
   active: boolean;

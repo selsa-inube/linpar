@@ -157,6 +157,7 @@ function EditUserUI(props: EditUserUIProps) {
               onHasChanges={handleDataChange}
               dataOptionsForms={formData.downloadableDocuments?.values}
               handleSubmit={handleUpdateFormData}
+              setChangedData={setCsOptionsChange}
             />
           )}
           {selectedTab === editLinixUseCaseTabsConfig.webReports.id && (

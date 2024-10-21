@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdOpenInNew } from "react-icons/md";
 import { Icon } from "@inubekit/icon";
-
 import { ActionsModal } from "@components/feedback/ActionsModal";
 import { IAction, IEntry } from "../types";
 
@@ -15,6 +14,7 @@ let isModalOpen = false;
 const ActionMobile = (props: ActionMobileProps) => {
   const { actions, entry } = props;
   const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     isModalOpen = false;
   }, []);
