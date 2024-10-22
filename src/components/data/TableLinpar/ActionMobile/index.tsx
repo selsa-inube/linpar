@@ -40,11 +40,13 @@ const ActionMobile = (props: ActionMobileProps) => {
         onClick={handleToggleModal}
       />
       {showModal && (
-        <ActionsModal
-          actions={actions}
-          entry={entry}
-          onClose={handleCloseModal}
-        />
+        <div id="actionModal">
+          <ActionsModal
+            actions={actions}
+            entry={entry}
+            onClose={handleCloseModal}
+          />
+        </div>
       )}
     </>
   );

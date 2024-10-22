@@ -90,6 +90,11 @@ const InteractiveModal = ({
     );
   }
 
+  const handleCloseModal = () => {
+    closeModal();
+    smallScreen && window.location.reload();
+  };
+
   return createPortal(
     <Blanket>
       <StyledModal $smallScreen={smallScreen} type={type}>
@@ -105,7 +110,7 @@ const InteractiveModal = ({
                 spacing="wide"
                 size="24px"
                 cursorHover
-                onClick={closeModal}
+                onClick={handleCloseModal}
               />
             </Stack>
             {infoTitle && (
