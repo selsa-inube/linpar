@@ -6,7 +6,7 @@ import { tokens } from "@design/tokens";
 const StyledAppCard = styled(Link)`
   box-sizing: border-box;
   padding: ${tokens.spacing.s300};
-  min-height: 170px;
+  height: 170px;
   width: 250px;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ const StyledAppCard = styled(Link)`
   @media (max-width: 400px) {
     padding: ${tokens.spacing.s200};
     width: 100%;
-    min-height: 100px;
+    height: 120px;
     gap: ${tokens.spacing.s100};
 
     div {

@@ -1,8 +1,11 @@
 import { environment } from "@config/environment";
-import { IRol } from "@pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/catalogs/outlets/roles/types";
 import { mapEditRolesEntityToApi } from "./mappers";
 
-const editRoles = async (editRole: IRol): Promise<IRol | undefined> => {
+const editRoles = async (
+  editRole: IRol,
+  rolesBusinessUnit: string
+): Promise<IRol | undefined> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/roles`;
 
   try {
@@ -10,7 +13,7 @@ const editRoles = async (editRole: IRol): Promise<IRol | undefined> => {
       method: "PATCH",
       headers: {
         "X-Action": "ModificarRol",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": rolesBusinessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapEditRolesEntityToApi(editRole)),

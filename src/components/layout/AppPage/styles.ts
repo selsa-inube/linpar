@@ -32,10 +32,16 @@ const StyledLogo = styled.img`
   max-width: 100px;
 `;
 
-const StyledContainerNav = styled.div`
+const StyledContainerNav = styled.nav`
   max-height: calc(100vh - 50px);
-`;
 
+  footer {
+    padding-bottom: 70px;
+  }
+  img {
+    max-width: 90px;
+  }
+`;
 const StyledMenuContainer = styled.div`
   position: absolute;
   top: 48px;

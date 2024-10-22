@@ -1,8 +1,8 @@
 import { environment } from "@config/environment";
-import { IRol } from "@src/pages/privileges/outlets/roles/types";
+import { IRol } from "@pages/catalogs/outlets/roles/types";
 import { mapRolesUseCaseApiToEntities } from "./mapper";
 
-const getRoles = async (): Promise<IRol[]> => {
+const getRoles = async (rolesBusinessUnit: string): Promise<IRol[]> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/roles`;
 
   try {
@@ -10,7 +10,7 @@ const getRoles = async (): Promise<IRol[]> => {
       method: "GET",
       headers: {
         "X-Action": "QueryAllRoles",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": rolesBusinessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

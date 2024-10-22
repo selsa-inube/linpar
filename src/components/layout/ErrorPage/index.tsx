@@ -1,15 +1,12 @@
-import {
-  Stack,
-  Button,
-  Text,
-  useMediaQueries,
-  Grid,
-} from "@inube/design-system";
-import { StyledCompanyLogo, StyledErrorImage } from "./styles";
 import { MdChevronLeft } from "react-icons/md";
-
+import { useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Text, Grid } from "@inube/design-system";
+import { useMediaQueries } from "@inubekit/hooks";
 import selsaLogo from "@assets/images/selsa.png";
 import errorImage from "@assets/images/timeout.png";
+import { Stack } from "@inubekit/stack";
+import { StyledCompanyLogo, StyledErrorImage } from "./styles";
 
 interface ErrorPageProps {
   logo?: string;
@@ -32,11 +29,19 @@ function ErrorPage(props: ErrorPageProps) {
 
   const mediaQueries = ["(max-width: 1000px)", "(max-width: 600px)"];
   const matches = useMediaQueries(mediaQueries);
+  const { logout } = useAuth0();
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+  const handleRedirect = () => {
+    localStorage.clear();
+    logout({ logoutParams: { returnTo: "https://www.google.com" } });
+  };
 
   return (
     <Stack
-      padding={matches["(max-width: 600px)"] ? "s400" : "s1000"}
-      gap={matches["(max-width: 1000px)"] ? "64px" : "120px"}
+      padding={matches["(max-width: 600px)"] ? "32px" : "80px 80px 0px 80px"}
+      gap={matches["(max-width: 1000px)"] ? "64px" : "20px"}
       direction="column"
     >
       <StyledCompanyLogo src={logo} alt={logoAlt} />
@@ -55,7 +60,12 @@ function ErrorPage(props: ErrorPageProps) {
               {description}
             </Text>
           </Stack>
-          <Button iconBefore={<MdChevronLeft size={18} />}>Exit</Button>
+          <Button
+            iconBefore={<MdChevronLeft size={18} />}
+            onClick={handleRedirect}
+          >
+            Exit
+          </Button>
         </Stack>
         <StyledErrorImage src={image} alt={imageAlt} />
       </Grid>

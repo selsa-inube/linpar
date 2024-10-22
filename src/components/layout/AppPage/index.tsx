@@ -1,14 +1,19 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
-import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
-
+import { Header, Grid, useMediaQuery } from "@inube/design-system";
+import { Nav } from "@inubekit/nav";
 import { LinparContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
 
-import { navigationConfig, logoutConfig } from "./config/apps.config";
+import {
+  navigationConfig,
+  logoutConfig,
+  bussinessUnitOptionTotal,
+  removeBussinessUnit,
+} from "./config/apps.config";
 
 import {
   StyledAppPage,
@@ -30,7 +35,7 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function AppPage() {
-  const { linparData } = useContext(LinparContext);
+  const { businessUnitSigla, linparData } = useContext(LinparContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -60,6 +65,24 @@ function AppPage() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showUserMenu]);
+
+  const filterNavigationConfig = () => {
+    const businessUnit = JSON.parse(businessUnitSigla);
+    if (
+      bussinessUnitOptionTotal.includes(businessUnit.businessUnitPublicCode)
+    ) {
+      return navigationConfig;
+    } else {
+      const DataConfig = { ...navigationConfig };
+      removeBussinessUnit.forEach((unit) => {
+        delete DataConfig.sections.administrate.links[
+          unit as keyof typeof DataConfig.sections.administrate.links
+        ];
+      });
+
+      return DataConfig;
+    }
+  };
 
   const handleToggleLogoutModal = () => {
     setShowLogoutModal(!showLogoutModal);
@@ -112,9 +135,10 @@ function AppPage() {
             {!smallScreen && (
               <StyledContainerNav>
                 <Nav
-                  navigation={navigationConfig}
+                  navigation={filterNavigationConfig()}
                   logoutPath={logoutConfig.logoutPath}
                   logoutTitle={logoutConfig.logoutTitle}
+                  footerLogo={linparData.businessManager.urlBrand}
                 />
               </StyledContainerNav>
             )}

@@ -17,22 +17,22 @@ import {
 } from "@inube/design-system";
 
 import { Fieldset } from "@components/inputs/Fieldset";
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import {
   Styledlmage,
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
-import { IBusinessUnit } from "../login/types";
 
 const renderHead = (
-  bussinessUnitsData: IBusinessUnit,
+  bussinessData: IBusinessUnitsPortalStaff,
   smallScreen?: boolean
 ) => {
   return (
     <>
       <Styledlmage
-        src={bussinessUnitsData.logo}
-        alt={`Logo ${bussinessUnitsData.name}`}
+        src={bussinessData.urlLogo}
+        alt={`Logo ${bussinessData.abbreviatedName}`}
       />
       <Stack direction="column" gap={smallScreen ? "16px" : "36px"}>
         <Stack direction="column">
@@ -234,11 +234,11 @@ interface RespondInvitationUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  bussinessUnitsData: IBusinessUnit;
+  bussinessData: IBusinessUnitsPortalStaff;
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {
-  const { loading, formik, handleSubmitForm, bussinessUnitsData } = props;
+  const { loading, formik, handleSubmitForm, bussinessData } = props;
 
   const smallScreen = useMediaQuery("(max-width: 744px)");
 
@@ -247,8 +247,8 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
       <StyledContainerForm>
         <Stack direction="column" gap="32px" padding="s200">
           <Styledlmage
-            src={bussinessUnitsData.logo}
-            alt={`Logo ${bussinessUnitsData.name}`}
+            src={bussinessData.urlLogo}
+            alt={`Logo ${bussinessData.abbreviatedName}`}
           />
           {renderForm(formik, loading, handleSubmitForm, smallScreen)}
         </Stack>
@@ -260,7 +260,7 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     <Grid templateColumns="1fr 2fr">
       <StyledContainerHeader>
         <Stack direction="column" gap="36px" padding="s800">
-          {renderHead(bussinessUnitsData)}
+          {renderHead(bussinessData)}
         </Stack>
       </StyledContainerHeader>
       <StyledContainerForm>

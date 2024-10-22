@@ -7,12 +7,12 @@ import { CheckingCredentialsUI } from "./interface";
 import { IBusinessUnit } from "../../types";
 
 function CheckingCredentials({
-  bussinessUnits,
+  businessUnits,
 }: {
-  bussinessUnits: IBusinessUnit[];
+  businessUnits: IBusinessUnit[];
 }) {
   const navigate = useNavigate();
-  const { linparData } = useContext(LinparContext);
+  const { linparData, setBusinessUnitSigla } = useContext(LinparContext);
 
   const checkCredentials = useCallback(async () => {
     try {
@@ -21,12 +21,16 @@ function CheckingCredentials({
       }
 
       if (linparData) {
-        if (!bussinessUnits || bussinessUnits.length === 0) {
-          navigate("/login/error/not-related-bussiness-units");
-        } else if (bussinessUnits.length === 1) {
+        if (!businessUnits || businessUnits.length === 0) {
+          navigate("/login/error/not-related-businessUnits");
+        } else if (businessUnits.length === 1) {
+          const selectedBusinessUnit = businessUnits[0];
+          const selectJSON = JSON.stringify(selectedBusinessUnit);
+          businessUnits && setBusinessUnitSigla(selectJSON);
+
           navigate("/login/loading-app");
         } else {
-          navigate(`/login/${linparData.user.userAccount}/bussiness-units`);
+          navigate(`/login/${linparData.user.userAccount}/businessUnits`);
         }
       } else {
         navigate("/login/error/not-available");
@@ -34,7 +38,7 @@ function CheckingCredentials({
     } catch (error) {
       navigate("/login/error/not-available");
     }
-  }, [linparData, navigate, bussinessUnits]);
+  }, [linparData, navigate, businessUnits]);
 
   useEffect(() => {
     const timer = setTimeout(checkCredentials, 2000);

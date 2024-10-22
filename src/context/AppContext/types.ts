@@ -2,6 +2,7 @@ interface IPortal {
   abbreviatedName: string;
   staffPortalCatalogId: string;
   businessManagerId: string;
+  publicCode: string;
 }
 interface IBusinessManager {
   publicCode: string;
@@ -16,10 +17,12 @@ interface IUser {
 }
 
 interface IBusinessUnit {
-  publicCode: string;
+  businessUnitPublicCode: string;
   abbreviatedName: string;
-  businessUnit: string;
   urlLogo: string;
+  languageId: string;
+  descriptionUse?: string;
+  firstMonthOfFiscalYear?: string;
 }
 interface ILinparData {
   portal: IPortal;
@@ -35,4 +38,4 @@ interface ILinparContext {
   setBusinessUnitSigla: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export type { ILinparData, ILinparContext };
+export type { ILinparData, ILinparContext, IBusinessUnit };

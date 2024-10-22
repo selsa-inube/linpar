@@ -1,8 +1,9 @@
+import { UseCase } from "@pages/catalogs/outlets/linixUseCase/types";
 import { environment } from "@config/environment";
-import { mapLinixUseCaseApiToEntities } from "./mapper";
-import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
 
-const getLinixUseCase = async (): Promise<UseCase[]> => {
+import { mapLinixUseCaseApiToEntities } from "./mapper";
+
+const getLinixUseCase = async (businessUnit: string): Promise<UseCase[]> => {
   try {
     const queryParams = new URLSearchParams({
       sort: "n_Usecase",
@@ -11,7 +12,7 @@ const getLinixUseCase = async (): Promise<UseCase[]> => {
       method: "GET",
       headers: {
         "X-Action": "SearchAllCasoDeUso",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

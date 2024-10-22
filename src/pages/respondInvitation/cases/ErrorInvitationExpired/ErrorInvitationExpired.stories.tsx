@@ -24,9 +24,9 @@ const Template: StoryFn<ErrorInvitationExpiredProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  bussinessUnitsData: businessUnitDataMock[0],
+  bussinessData: businessUnitDataMock[0],
 };
 
-export const WithoutBussinessUnits = Template.bind({});
+export const WithoutClient = Template.bind({});
 
 export default story;

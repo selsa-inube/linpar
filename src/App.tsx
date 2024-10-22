@@ -22,7 +22,8 @@ import { encrypt } from "@utils/encrypt";
 import { RespondInvitationRoutes } from "@routes/respondInvitation";
 import { LoginRoutes } from "@routes/login";
 import { PrivilegesRoutes } from "@routes/privileges";
-import { PeopleRoutes } from "@routes/people";
+
+import { CatalogsRoutes } from "./routes/catalogs";
 
 function LogOut() {
   localStorage.clear();
@@ -32,12 +33,9 @@ function LogOut() {
 }
 
 function FirstPage() {
-  const { linparData } = useContext(LinparContext);
-  return linparData.businessUnit.abbreviatedName.length === 0 ? (
-    <Login />
-  ) : (
-    <Home />
-  );
+  const { businessUnitSigla } = useContext(LinparContext);
+
+  return businessUnitSigla.length === 0 ? <Login /> : <Home />;
 }
 
 const router = createBrowserRouter(
@@ -46,10 +44,10 @@ const router = createBrowserRouter(
       <Route path="/" element={<FirstPage />} errorElement={<ErrorPage />} />
       <Route path="login/*" element={<LoginRoutes />} />
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
-      <Route path="people/*" element={<PeopleRoutes />} />
+      <Route path="catalogs/*" element={<CatalogsRoutes />} />
       <Route path="logout" element={<LogOut />} />
       <Route
-        path="respond-invitation/:client_id/:invitation_id/*"
+        path="respond-invitation/:businessUnit_id/:invitation_id/*"
         element={<RespondInvitationRoutes />}
       />
     </>

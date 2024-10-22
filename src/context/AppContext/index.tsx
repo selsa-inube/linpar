@@ -12,6 +12,13 @@ interface LinparProviderProps {
   children: React.ReactNode;
 }
 
+interface BusinessUnit {
+  businessUnitPublicCode: string;
+  abbreviatedName: string;
+  languageId: string;
+  urlLogo: string;
+}
+
 function LinparContextProvider(props: LinparProviderProps) {
   const { children } = props;
   const { user } = useAuth0();
@@ -21,20 +28,23 @@ function LinparContextProvider(props: LinparProviderProps) {
   const [businessManagers, setBusinessManagers] = useState<IBusinessmanagers>(
     {} as IBusinessmanagers
   );
-
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") || ""
   );
 
-  useEffect(() => {
-    localStorage.setItem("businessUnitSigla", businessUnitSigla);
-  }, [businessUnitSigla]);
+  let businessUnit: BusinessUnit | null = null;
+  try {
+    businessUnit = JSON.parse(businessUnitSigla || "{}") as BusinessUnit;
+  } catch (error) {
+    console.error("Error parsing businessUnitSigla: ", error);
+  }
 
   const [linparData, setLinparData] = useState<ILinparData>({
     portal: {
       abbreviatedName: "",
       staffPortalCatalogId: "",
       businessManagerId: "",
+      publicCode: "",
     },
     businessManager: {
       publicCode: "",
@@ -43,10 +53,10 @@ function LinparContextProvider(props: LinparProviderProps) {
       urlLogo: "",
     },
     businessUnit: {
-      publicCode: "",
-      abbreviatedName: businessUnitSigla,
-      businessUnit: "",
-      urlLogo: "",
+      businessUnitPublicCode: businessUnit?.businessUnitPublicCode || "",
+      abbreviatedName: businessUnit?.abbreviatedName || "",
+      languageId: businessUnit?.languageId || "",
+      urlLogo: businessUnit?.urlLogo || "",
     },
     user: {
       userAccount: user?.name || "",
@@ -94,6 +104,7 @@ function LinparContextProvider(props: LinparProviderProps) {
         abbreviatedName: portalDataFiltered?.abbreviatedName || "",
         staffPortalCatalogId: portalDataFiltered?.staffPortalId || "",
         businessManagerId: portalDataFiltered?.businessManagerId || "",
+        publicCode: portalDataFiltered?.publicCode || "",
       },
       businessManager: {
         ...prev.businessManager,
@@ -104,6 +115,31 @@ function LinparContextProvider(props: LinparProviderProps) {
       },
     }));
   }, [businessManagers]);
+
+  useEffect(() => {
+    localStorage.setItem("businessUnitSigla", businessUnitSigla);
+
+    if (businessUnitSigla) {
+      let businessUnit: BusinessUnit | null = null;
+      try {
+        businessUnit = JSON.parse(businessUnitSigla) as BusinessUnit;
+      } catch (error) {
+        console.error("Error parsing businessUnitSigla: ", error);
+        return;
+      }
+
+      setLinparData((prev) => ({
+        ...prev,
+        businessUnit: {
+          ...prev.businessUnit,
+          abbreviatedName: businessUnit?.abbreviatedName || "",
+          businessUnitPublicCode: businessUnit?.businessUnitPublicCode || "",
+          languageId: businessUnit?.languageId || "",
+          urlLogo: businessUnit?.urlLogo || "",
+        },
+      }));
+    }
+  }, [businessUnitSigla]);
 
   const linparContext = useMemo(
     () => ({

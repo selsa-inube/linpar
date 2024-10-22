@@ -1,14 +1,14 @@
 import { inube, presente } from "@inube/design-system";
 
-const themeClientsMock = [
+const themeBussinessUnitMock = [
   {
-    clientId: 1,
+    bussinessId: 1,
     ...inube,
   },
   {
-    client: 2,
+    bussinessId: 2,
     ...presente,
   },
 ];
 
-export { themeClientsMock };
+export { themeBussinessUnitMock };
