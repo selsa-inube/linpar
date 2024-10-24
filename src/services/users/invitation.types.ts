@@ -9,6 +9,7 @@ export interface IInvitationsEntry {
   status?: string;
   userIdentification: string;
   userName?: string;
+  businessUnitPublicCode?: string;
   dateEnd?: string;
   dateStart?: string;
   invitationId?: string;
