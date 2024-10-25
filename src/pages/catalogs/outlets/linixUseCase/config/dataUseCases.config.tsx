@@ -100,11 +100,11 @@ export const actionsConfigLinixUseCase = (
       actionName: "Eliminar",
       content: (entry: IEntry) => (
         <DeleteLinixUseCase
-          linixUseCase={entry.n_Usecase}
+          nameLinixuseCase={entry.n_Usecase}
+          linixUseCase={entry.k_Usecase}
           deleteLinixUseCaseModal={deleteLinixUseCaseModal}
           handleDeleteLinixUseCase={deleteItemData}
           setIdDeleted={setIdDeleted}
-          nameLinixuseCase={entry.n_Usecase}
         />
       ),
       type: "remove",

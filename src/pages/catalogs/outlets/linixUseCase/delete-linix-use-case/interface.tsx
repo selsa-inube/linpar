@@ -13,6 +13,7 @@ interface DeleteLinixUseCaseUIProps {
   hover: boolean;
   loading: boolean;
   linixUseCase: string;
+  nameLinixuseCase: string;
   setHover: (hover: boolean) => void;
   setShowModal: (show: boolean) => void;
   showModal: boolean;
@@ -24,7 +25,7 @@ export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
     handleDeleteLinixUseCase,
     hover,
     loading,
-    linixUseCase,
+    nameLinixuseCase,
     setHover,
     setShowModal,
     showModal,
@@ -70,7 +71,7 @@ export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
       {showModal && (
         <DecisionModal
           title={title}
-          description={description(linixUseCase)}
+          description={description(nameLinixuseCase)}
           actionText={actionText}
           appearance={appearance}
           loading={loading}

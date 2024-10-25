@@ -68,6 +68,7 @@ export const DeleteLinixUseCase = (props: IDeleteLinixUseCaseProps) => {
       setShowModal={setShowModal}
       showModal={showModal}
       linixUseCase={linixUseCase}
+      nameLinixuseCase={nameLinixuseCase}
     />
   );
 };
