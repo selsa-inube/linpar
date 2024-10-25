@@ -57,7 +57,7 @@ function Invite() {
     if (!LinparContext) return;
     if (dataInvitationUsers.length === 0) {
       setLoading(true);
-      getSearchAllTercero()
+      getSearchAllTercero(linparData.businessUnit.businessUnitPublicCode)
         .then((newUsers) => {
           setDataInvitationUsers(newUsers);
         })

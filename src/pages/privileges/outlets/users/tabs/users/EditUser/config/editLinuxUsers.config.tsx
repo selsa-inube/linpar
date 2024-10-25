@@ -14,15 +14,15 @@ const editLinixUsersConfig = [
         isActive: false,
       },
       {
-        path: "/catalogs",
-        label: "Catálogos Generales",
-        id: "/catalogs",
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
         isActive: false,
       },
       {
-        path: "/catalogs/users",
+        path: "/privileges/users",
         label: "Usuarios Linix",
-        id: "/catalogs/users",
+        id: "/privileges/users",
         isActive: false,
       },
       {

@@ -3,7 +3,9 @@ import { environment } from "@config/environment";
 import { mapUsersApiToEntities } from "./mappers";
 import { IGeneralInformationUsersForm } from "../users.types";
 
-const getUsers = async (): Promise<IGeneralInformationUsersForm[]> => {
+const getUsers = async (
+  businessUnitPublicCode: string
+): Promise<IGeneralInformationUsersForm[]> => {
   const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_POCESS_SERVICE}/usuarios`;
 
   try {
@@ -11,7 +13,7 @@ const getUsers = async (): Promise<IGeneralInformationUsersForm[]> => {
       method: "GET",
       headers: {
         "X-Action": "QueryUsuariosFull",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

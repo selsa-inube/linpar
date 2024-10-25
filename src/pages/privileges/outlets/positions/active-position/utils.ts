@@ -3,7 +3,8 @@ import { activePositions } from "@services/positions/activatePositions";
 
 const activatePositions = async (
   id: string,
-  active: string
+  active: string,
+  businessUnitPublicCode: string
 ): Promise<boolean> => {
   let confirmationActive = true;
   const positionsData: IactivePositions = {
@@ -12,7 +13,7 @@ const activatePositions = async (
     modifyJustification: "Lincon",
   };
   try {
-    await activePositions(positionsData);
+    await activePositions(positionsData, businessUnitPublicCode);
   } catch (error) {
     confirmationActive = false;
     throw error;

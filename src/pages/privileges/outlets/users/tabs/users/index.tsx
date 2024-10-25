@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Table } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
@@ -16,6 +16,7 @@ import { actionsConfigUsers } from "./config/dataUsers.config";
 import { IMessageState } from "../../types/forms.types";
 import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
 import { IDeleteForMessage } from "./types";
+import { LinparContext } from "@src/context/AppContext";
 
 interface UsersTabProps {
   searchText: string;
@@ -34,13 +35,16 @@ function UsersTab(props: UsersTabProps) {
 
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
+  const { linparData } = useContext(LinparContext);
 
   const linixUsersData = async () => {
     if (!user) return;
     if (users.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getUsers();
+        const newUsers = await getUsers(
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setUsers(newUsers);
       } catch (error) {
         console.info(error);

@@ -2,7 +2,8 @@ import { environment, retries, timeout } from "@config/environment";
 import { mapUnidadesPresupuestalesFormatsApiToEntities } from "./mappers";
 
 const getUnidadesPresupuestales = async (
-  k_Usu: string
+  k_Usu: string,
+  businessUnitPublicCode: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
@@ -14,7 +15,7 @@ const getUnidadesPresupuestales = async (
     headers: {
       Realm: environment.REALM,
       "X-Action": "QueryUnidadesPresupuestalesDeAuxilioByUsuarioFull",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": businessUnitPublicCode,
       "Content-type": "application/json; charset=UTF-8",
     },
   };
