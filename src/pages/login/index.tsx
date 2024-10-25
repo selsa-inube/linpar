@@ -7,7 +7,7 @@ import { validateBusinessUnities } from "./utils";
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { linparData, setBusinessUnitSigla } = useContext(LinparContext);
+  const { linparData, setBusinessUnitsToTheStaff } = useContext(LinparContext);
 
   useEffect(() => {
     if (linparData.portal.publicCode) {
@@ -15,7 +15,7 @@ function Login() {
         linparData.portal.publicCode,
         linparData.user.userAccount
       ).then((data) => {
-        setBusinessUnitSigla(JSON.stringify(data));
+        setBusinessUnitsToTheStaff(data);
       });
     }
   }, [linparData.portal.publicCode]);
