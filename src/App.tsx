@@ -25,8 +25,7 @@ import { LoginRoutes } from "@routes/login";
 import { PrivilegesRoutes } from "@routes/privileges";
 
 import { CatalogsRoutes } from "./routes/catalogs";
-import { theme } from "./mocks/design/theme";
-import { ThemeProvider } from "styled-components";
+import { ThemeProviderWrapper } from "./context/ThemeContext";
 
 function LogOut() {
   localStorage.clear();
@@ -157,10 +156,10 @@ function App() {
 
   return (
     <LinparContextProvider>
-      <ThemeProvider theme={theme}>
+      <ThemeProviderWrapper>
         <GlobalStyles />
         <RouterProvider router={router} />
-      </ThemeProvider>
+      </ThemeProviderWrapper>
     </LinparContextProvider>
   );
 }

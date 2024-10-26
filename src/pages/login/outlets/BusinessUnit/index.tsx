@@ -4,6 +4,7 @@ import { LinparContext } from "@context/AppContext";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { BusinessUnitsUI } from "./interface";
 import { IBusinessUnitstate } from "./types";
+import { ThemeName, useTheme } from "@src/context/ThemeContext";
 
 interface BusinessUnitsProps {
   businessUnits: IBusinessUnitsPortalStaff[];
@@ -24,7 +25,7 @@ function BusinessUnits(props: BusinessUnitsProps) {
 
   const navigate = useNavigate();
   const { setBusinessUnitSigla } = useContext(LinparContext);
-
+  const { setThemeName } = useTheme();
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (businessUnitLocal.ref) {
       businessUnitLocal.ref.checked = false;
@@ -40,6 +41,9 @@ function BusinessUnits(props: BusinessUnitsProps) {
       (businessUnit0) => businessUnit0.abbreviatedName === event.target.value
     );
     setSelectedBusinessUnit(selectOption || null);
+    if (selectOption) {
+      setThemeName(selectOption.abbreviatedName as ThemeName);
+    }
   };
 
   const handleSubmit = () => {
