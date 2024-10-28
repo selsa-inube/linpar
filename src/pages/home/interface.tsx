@@ -93,7 +93,10 @@ function HomeUI(props: HomeProps) {
             portalId="portal"
             navigation={navigationConfig}
             logoURL={renderLogo(linparData.businessUnit.urlLogo)}
-            userName={linparData.user.userName}
+            user={{
+              username: linparData.user.userName,
+            }}
+            menu={[]}
           />
         </StyledHeaderContainer>
         {showUserMenu && (

@@ -10,9 +10,9 @@ import { LogoutModal } from "@components/feedback/LogoutModal";
 
 import {
   navigationConfig,
-  logoutConfig,
   bussinessUnitOptionTotal,
   removeBussinessUnit,
+  AppsConfig,
 } from "./config/apps.config";
 
 import {
@@ -39,7 +39,7 @@ function AppPage() {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
-
+  const { actionConfig } = AppsConfig();
   const smallScreen = useMediaQuery("(max-width: 849px)");
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -71,9 +71,9 @@ function AppPage() {
     if (
       bussinessUnitOptionTotal.includes(businessUnit.businessUnitPublicCode)
     ) {
-      return navigationConfig;
+      return navigationConfig.items;
     } else {
-      const DataConfig = { ...navigationConfig };
+      const DataConfig = { ...navigationConfig.items };
       removeBussinessUnit.forEach((unit) => {
         delete DataConfig.sections.administrate.links[
           unit as keyof typeof DataConfig.sections.administrate.links
@@ -136,8 +136,7 @@ function AppPage() {
               <StyledContainerNav>
                 <Nav
                   navigation={filterNavigationConfig()}
-                  logoutPath={logoutConfig.logoutPath}
-                  logoutTitle={logoutConfig.logoutTitle}
+                  actions={actionConfig}
                   footerLogo={linparData.businessManager.urlBrand}
                 />
               </StyledContainerNav>

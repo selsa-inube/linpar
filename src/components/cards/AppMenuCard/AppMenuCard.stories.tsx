@@ -1,8 +1,8 @@
-import { AppMenuCard, AppMenuCardProps } from "./index";
-
 import { BrowserRouter } from "react-router-dom";
 import { StoryFn } from "@storybook/react";
-import { appsConfig } from "@components/layout/AppPage/config/apps.config";
+import { AppsConfig } from "@components/layout/AppPage/config/apps.config";
+
+import { AppMenuCard, AppMenuCardProps } from "./index";
 
 const story = {
   components: [AppMenuCard],
@@ -17,7 +17,7 @@ const story = {
 };
 
 const Default = (args: AppMenuCardProps) => <AppMenuCard {...args} />;
-
+const { appsConfig } = AppsConfig();
 Default.args = {
   icon: appsConfig[0].icon,
   label: "users",

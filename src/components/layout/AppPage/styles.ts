@@ -34,7 +34,9 @@ const StyledLogo = styled.img`
 
 const StyledContainerNav = styled.nav`
   max-height: calc(100vh - 50px);
-
+  nav {
+    height: 100vh;
+  }
   footer {
     padding-bottom: 70px;
   }
