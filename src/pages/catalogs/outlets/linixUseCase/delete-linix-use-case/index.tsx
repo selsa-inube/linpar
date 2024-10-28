@@ -53,6 +53,10 @@ export const DeleteLinixUseCase = (props: IDeleteLinixUseCaseProps) => {
     setLoading(false);
     setShowModal(false);
   };
+  const elem = document.getElementById("actionModal");
+  if (elem) {
+    elem.parentNode!.removeChild(elem);
+  }
 
   return (
     <DeleteLinixUseCaseUI
@@ -64,6 +68,7 @@ export const DeleteLinixUseCase = (props: IDeleteLinixUseCaseProps) => {
       setShowModal={setShowModal}
       showModal={showModal}
       linixUseCase={linixUseCase}
+      nameLinixuseCase={nameLinixuseCase}
     />
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { functionById } from "@mocks/utils/dataMock.service";
 
@@ -6,6 +6,7 @@ import { deleteLinixUsersModal } from "./config/deleteLinixUsers.config";
 import { DeleteLinixUserUI } from "./interface";
 import { deleteUser } from "./utils";
 import { IDeleteForMessage } from "../types";
+import { LinparContext } from "@src/context/AppContext";
 
 interface IDeleteLinixUserProps {
   deleteLinixUsersModal: typeof deleteLinixUsersModal;
@@ -22,10 +23,14 @@ export const DeleteLinixUsers = (props: IDeleteLinixUserProps) => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { linparData } = useContext(LinparContext);
 
   const handeleteUsers = () => {
     setLoading(true);
-    const data = deleteUser(linixUsers);
+    const data = deleteUser(
+      linixUsers,
+      linparData.businessUnit.businessUnitPublicCode
+    );
     data
       .then(() => {
         setIdDeleted({

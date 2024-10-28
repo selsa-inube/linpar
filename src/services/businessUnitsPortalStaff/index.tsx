@@ -12,7 +12,7 @@ const getBusinessUnitsPortalStaff = async (
     const options: RequestInit = {
       method: "GET",
       headers: {
-        "X-Action": "SearchBusinessUnitsForAnOfficer",
+        "X-Action": "SearchBusinessUnitsForAnOfficerLinpar",
         "Content-type": "application/json; charset=UTF-8",
       },
     };

@@ -4,7 +4,8 @@ import { IdeleteInvitations } from "./types";
 import { mapInvitationsDeleteEntityToApi } from "./mappers";
 
 const deleteInvitation = async (
-  deleteInvitation: IdeleteInvitations
+  deleteInvitation: IdeleteInvitations,
+  businessUnitPublicCode: string
 ): Promise<IInvitationsEntry | undefined> => {
   const requestUrl = `${environment.IROLE_LINIX_USER_SIGNUP_INVITATION_QUERY_PERSISTENCE_SERVICE}/users-signup-invitations`;
 
@@ -13,7 +14,7 @@ const deleteInvitation = async (
       method: "DELETE",
       headers: {
         "X-Action": "RemoveUserSignupInvitation",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapInvitationsDeleteEntityToApi(deleteInvitation)),

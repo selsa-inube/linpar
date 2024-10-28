@@ -12,7 +12,6 @@ const getStaffPortalByBusinessManager = async (): Promise<
       method: "GET",
       headers: {
         "X-Action": "SearchAllStaffPortalsByBusinessManager",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

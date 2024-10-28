@@ -18,8 +18,8 @@ export const OptionSelect: Option[] = [
   },
   {
     id: "D",
-    label: "Borrar",
-    value: "Borrar",
+    label: "Eliminar",
+    value: "Eliminar",
   },
 
   {

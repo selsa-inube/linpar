@@ -3,7 +3,8 @@ import { activeUsers } from "@services/users/pacthUsers";
 
 const activatePositions = async (
   id: string,
-  active: string
+  active: string,
+  businessUnitPublicCode: string
 ): Promise<boolean> => {
   let confirmationActive = true;
   const usersData: IactiveUsers = {
@@ -11,7 +12,7 @@ const activatePositions = async (
     i_Activo: active,
   };
   try {
-    await activeUsers(usersData);
+    await activeUsers(usersData, businessUnitPublicCode);
   } catch (error) {
     confirmationActive = false;
     throw error;

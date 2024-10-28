@@ -29,7 +29,8 @@ const addPositionStepsRules = (
 };
 
 export const saveLinixPositions = async (
-  addLinixPositions: IFormAddPosition
+  addLinixPositions: IFormAddPosition,
+  businessUnitPublicCode: string
 ) => {
   const {
     generalInformation: { values: generalInformation },
@@ -48,7 +49,7 @@ export const saveLinixPositions = async (
   };
   let confirmationType = true;
   try {
-    await addPositions(newLinixPosition);
+    await addPositions(newLinixPosition, businessUnitPublicCode);
   } catch (error) {
     confirmationType = false;
     throw error;

@@ -16,8 +16,8 @@ export interface IBusinessUnits {
   businessUnits: IBusinessUnit[];
 }
 function LoginRoutes() {
-  const { businessUnitSigla } = useContext(LinparContext);
-  const business = businessUnitSigla && JSON.parse(businessUnitSigla);
+  const { businessUnitsToTheStaff } = useContext(LinparContext);
+  const business = businessUnitsToTheStaff;
 
   return (
     <Routes>

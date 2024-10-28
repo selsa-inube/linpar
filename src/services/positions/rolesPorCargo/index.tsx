@@ -2,7 +2,8 @@ import { environment, retries, timeout } from "@config/environment";
 import { mapRolesPorCargoApiToEntities } from "./mappers";
 
 const getRolesPorCargo = async (
-  k_Rol: string
+  k_Rol: string,
+  businessUnitPublicCode: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
@@ -14,7 +15,7 @@ const getRolesPorCargo = async (
     headers: {
       Realm: environment.REALM,
       "X-Action": "QueryRolesPorCargoFull",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": businessUnitPublicCode,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

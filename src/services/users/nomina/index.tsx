@@ -1,7 +1,10 @@
 import { environment, retries, timeout } from "@config/environment";
 import { mapNominaFormatsApiToEntities } from "./mappers";
 
-const getNomina = async (k_Usu: string): Promise<Record<string, unknown>[]> => {
+const getNomina = async (
+  k_Usu: string,
+  businessUnitPublicCode: string
+): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
   const requestUrl = `${environment.IPRIVILEGES_LINIX_API_URL_QUERY_POCESS_SERVICE}/usuarios/${k_Usu}`;
@@ -11,7 +14,7 @@ const getNomina = async (k_Usu: string): Promise<Record<string, unknown>[]> => {
     headers: {
       Realm: environment.REALM,
       "X-Action": "QueryTiposDeNominaByUsuarioFull",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": businessUnitPublicCode,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

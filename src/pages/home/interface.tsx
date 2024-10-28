@@ -39,7 +39,6 @@ const renderLogo = (imgUrl: string) => {
 
 function HomeUI(props: HomeProps) {
   const { data } = props;
-
   const { linparData } = useContext(LinparContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);

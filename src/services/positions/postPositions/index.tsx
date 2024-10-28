@@ -3,7 +3,8 @@ import { IPosition } from "@src/pages/privileges/outlets/positions/add-position/
 import { mapPositionsEntityToApi } from "./mappers";
 
 const addPositions = async (
-  positions: IPosition
+  positions: IPosition,
+  businessUnitPublicCode: string
 ): Promise<IPosition | undefined> => {
   const requestUrl = `${environment.IPRIVILEGES_LINIX_API_PERSISTENCE_PROCESS_SERVICE}/cargos`;
 
@@ -12,7 +13,7 @@ const addPositions = async (
       method: "POST",
       headers: {
         "X-Action": "AgregarCargo",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapPositionsEntityToApi(positions)),

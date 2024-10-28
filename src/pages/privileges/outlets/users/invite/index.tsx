@@ -57,7 +57,7 @@ function Invite() {
     if (!LinparContext) return;
     if (dataInvitationUsers.length === 0) {
       setLoading(true);
-      getSearchAllTercero()
+      getSearchAllTercero(linparData.businessUnit.businessUnitPublicCode)
         .then((newUsers) => {
           setDataInvitationUsers(newUsers);
         })
@@ -83,7 +83,11 @@ function Invite() {
       setTimeout(() => {
         setLoading(false);
         setFormInvalid(false);
-        saveLinixInvitations(formik.values, name[0] as string);
+        saveLinixInvitations(
+          formik.values,
+          name[0] as string,
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setShowMessage(true);
         formik.resetForm();
         resetSearchUserRef.current();

@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { useCallback, useContext, useEffect } from "react";
 
 import { LinparContext } from "@context/AppContext";
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 
 import { CheckingCredentialsUI } from "./interface";
-import { IBusinessUnit } from "../../types";
 
 function CheckingCredentials({
   businessUnits,
 }: {
-  businessUnits: IBusinessUnit[];
+  businessUnits: IBusinessUnitsPortalStaff[];
 }) {
   const navigate = useNavigate();
   const { linparData, setBusinessUnitSigla } = useContext(LinparContext);
