@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Table } from "@inube/design-system";
 import { useMediaQuery } from "@inube/design-system";
@@ -15,6 +15,7 @@ import { actionsConfigInvitation } from "./config/dataInvitation";
 import { IMessageState } from "../../types/forms.types";
 import { deleteInvitationMessages } from "./DeleteInvitation/config/deleteInvitation.config";
 import { IDeleteForMessage } from "../users/types";
+import { LinparContext } from "@src/context/AppContext";
 
 interface InvitationsTabProps {
   searchText: string;
@@ -34,12 +35,15 @@ function InvitationsTab(props: InvitationsTabProps) {
   const [isHovered, setIsHovered] = useState(false);
   const smallScreen = useMediaQuery("(max-width: 850px)");
   const { user } = useAuth0();
+  const { linparData } = useContext(LinparContext);
   const linixInvitationsData = async () => {
     if (!user) return;
     if (invitations.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getInvitations();
+        const newUsers = await getInvitations(
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setInvitations(newUsers);
       } catch (error) {
         console.info(error);

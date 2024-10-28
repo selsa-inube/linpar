@@ -1,6 +1,7 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IBusinessmanagers } from "@services/businessManager/types";
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { IStaffPortalByBusinessManager } from "@services/staffPortal/types";
 import { decrypt } from "@utils/encrypt";
 import { validateBusinessManagers, validateConsultation } from "./utils";
@@ -31,7 +32,9 @@ function LinparContextProvider(props: LinparProviderProps) {
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") || ""
   );
-
+  const [businessUnitsToTheStaff, setBusinessUnitsToTheStaff] = useState<
+    IBusinessUnitsPortalStaff[]
+  >([]);
   let businessUnit: BusinessUnit | null = null;
   try {
     businessUnit = JSON.parse(businessUnitSigla || "{}") as BusinessUnit;
@@ -119,7 +122,7 @@ function LinparContextProvider(props: LinparProviderProps) {
   useEffect(() => {
     localStorage.setItem("businessUnitSigla", businessUnitSigla);
 
-    if (businessUnitSigla) {
+    if (businessUnitsToTheStaff && businessUnitSigla) {
       let businessUnit: BusinessUnit | null = null;
       try {
         businessUnit = JSON.parse(businessUnitSigla) as BusinessUnit;
@@ -145,10 +148,19 @@ function LinparContextProvider(props: LinparProviderProps) {
     () => ({
       linparData,
       businessUnitSigla,
+      businessUnitsToTheStaff,
       setLinparData,
       setBusinessUnitSigla,
+      setBusinessUnitsToTheStaff,
     }),
-    [linparData, businessUnitSigla, setLinparData, setBusinessUnitSigla]
+    [
+      linparData,
+      businessUnitSigla,
+      businessUnitsToTheStaff,
+      setLinparData,
+      setBusinessUnitSigla,
+      setBusinessUnitsToTheStaff,
+    ]
   );
 
   return (

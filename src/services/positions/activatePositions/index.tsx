@@ -4,7 +4,8 @@ import { IactivePositions } from "./types";
 import { mapPositionsActiveEntityToApi } from "./mappers";
 
 const activePositions = async (
-  activePositions: IactivePositions
+  activePositions: IactivePositions,
+  businessUnitPublicCode: string
 ): Promise<IPosition | undefined> => {
   const requestUrl = `${environment.IPRIVILEGES_LINIX_API_PERSISTENCE_PROCESS_SERVICE}/cargos`;
 
@@ -13,7 +14,7 @@ const activePositions = async (
       method: "PATCH",
       headers: {
         "X-Action": "CambiarEstadoCargo",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapPositionsActiveEntityToApi(activePositions)),

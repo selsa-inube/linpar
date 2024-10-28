@@ -1,7 +1,9 @@
 import { environment, retries, timeout } from "@config/environment";
 import { mapthirdPartyUsersFormatsApiToEntities } from "./mappers";
 
-const getSearchAllTercero = async (): Promise<Record<string, unknown>[]> => {
+const getSearchAllTercero = async (
+  businessUnitPublicCode: string
+): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
 
@@ -14,7 +16,7 @@ const getSearchAllTercero = async (): Promise<Record<string, unknown>[]> => {
     headers: {
       Realm: environment.REALM,
       "X-Action": "SearchAllTercero",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": businessUnitPublicCode,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

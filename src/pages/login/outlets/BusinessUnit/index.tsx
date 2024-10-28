@@ -11,7 +11,6 @@ interface BusinessUnitsProps {
 
 function BusinessUnits(props: BusinessUnitsProps) {
   const { businessUnits } = props;
-  localStorage.clear();
   const [search, setSearch] = useState("");
   const [businessUnitLocal, setBusinessUnitLocal] =
     useState<IBusinessUnitstate>({

@@ -5,7 +5,8 @@ import { IGeneralInformationUsersForm } from "../users.types";
 import { mapUsersDeleteEntityToApi } from "./mappers";
 
 const deleteUsers = async (
-  deleteUsers: IdeleteUsers
+  deleteUsers: IdeleteUsers,
+  businessUnitPublicCode: string
 ): Promise<IGeneralInformationUsersForm | undefined> => {
   const requestUrl = `${environment.IPRIVILEGES_LINIX_API_PERSISTENCE_PROCESS_SERVICE}/usuarios`;
 
@@ -14,7 +15,7 @@ const deleteUsers = async (
       method: "DELETE",
       headers: {
         "X-Action": "EliminarUsuario",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapUsersDeleteEntityToApi(deleteUsers)),

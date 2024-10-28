@@ -8,6 +8,7 @@ import {
 
 export const editPositions = async (
   positionData: IFormAddPosition,
+  businessUnitPublicCode: string,
   optionsData?: IAssignmentFormEntry[]
 ) => {
   const normalizeRolesPorCargos = positionData.rolesPorCargos.values?.flatMap(
@@ -32,7 +33,7 @@ export const editPositions = async (
   let confirmationType = true;
 
   try {
-    await editCargos(newoptionsUseCase);
+    await editCargos(newoptionsUseCase, businessUnitPublicCode);
   } catch (error) {
     confirmationType = false;
     throw error;

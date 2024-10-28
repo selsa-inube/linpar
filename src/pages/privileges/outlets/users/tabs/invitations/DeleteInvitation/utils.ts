@@ -1,7 +1,10 @@
 import { IdeleteInvitations } from "@services/invitations/deleteInvitations/types";
 import { deleteInvitation } from "@services/invitations/deleteInvitations";
 
-const deleteInvitations = async (linixInvitation: string): Promise<boolean> => {
+const deleteInvitations = async (
+  linixInvitation: string,
+  businessUnitPublicCode: string
+): Promise<boolean> => {
   let confirmationDelete = true;
   const linixInvitations: IdeleteInvitations = {
     invitationId: linixInvitation,
@@ -9,7 +12,7 @@ const deleteInvitations = async (linixInvitation: string): Promise<boolean> => {
     removalJustification: "Eliminacion",
   };
   try {
-    await deleteInvitation(linixInvitations);
+    await deleteInvitation(linixInvitations, businessUnitPublicCode);
   } catch (error) {
     confirmationDelete = false;
     throw error;

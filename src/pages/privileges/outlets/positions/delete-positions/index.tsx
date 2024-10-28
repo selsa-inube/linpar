@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { functionById } from "@mocks/utils/dataMock.service";
 
@@ -6,6 +6,7 @@ import { DeletePositionUI } from "./interface";
 import { deletePositionModal } from "./config/deletePositions.config";
 import { deletePosition } from "./utils";
 import { IDeleteForMessage } from "../types";
+import { LinparContext } from "@src/context/AppContext";
 
 interface IDeletePositionProps {
   deletePositionModal: typeof deletePositionModal;
@@ -22,10 +23,13 @@ export const DeletePosition = (props: IDeletePositionProps) => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const { linparData } = useContext(LinparContext);
   const handeletePosition = () => {
     setLoading(true);
-    const data = deletePosition(linixPosition);
+    const data = deletePosition(
+      linixPosition,
+      linparData.businessUnit.businessUnitPublicCode
+    );
     data
       .then(() => {
         setIdDeleted({

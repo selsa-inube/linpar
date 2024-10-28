@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { ResendInvitationUI } from "./interface";
 import { resendNotification } from "@src/services/invitations/resendNotification";
 import { IMessageState } from "../../../types/forms.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { resendInvitationMessages } from "../../../config/resendInvitationUser.config";
+import { LinparContext } from "@src/context/AppContext";
 
 interface ResendInvitationProps {
   invitation: IInvitationsEntry;
@@ -21,6 +22,7 @@ function ResendInvitation(props: ResendInvitationProps) {
   const [resendInvitationData, setResendInvitationData] = useState<
     string | undefined
   >("");
+  const { linparData } = useContext(LinparContext);
 
   const handleShowMessage = (message: IMessage) => {
     setMessage({
@@ -34,7 +36,8 @@ function ResendInvitation(props: ResendInvitationProps) {
     let messageType = EMessageType.SUCCESS;
     try {
       const newResend = await resendNotification(
-        invitation?.invitationId || ""
+        invitation?.invitationId || "",
+        linparData.businessUnit.businessUnitPublicCode
       );
       setResendInvitationData(newResend);
     } catch (error) {

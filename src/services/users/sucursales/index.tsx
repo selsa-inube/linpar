@@ -2,7 +2,8 @@ import { environment, retries, timeout } from "@config/environment";
 import { mapSucursalesFormatsApiToEntities } from "./mappers";
 
 const getSucursales = async (
-  k_Usu: string
+  k_Usu: string,
+  businessUnitPublicCode: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = retries;
   const fetchTimeout = timeout;
@@ -14,7 +15,7 @@ const getSucursales = async (
     headers: {
       Realm: environment.REALM,
       "X-Action": "QuerySucursalesByUsuarioFull",
-      "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+      "X-Business-Unit": businessUnitPublicCode,
       "Content-type": "application/json; charset=UTF-8",
     },
   };

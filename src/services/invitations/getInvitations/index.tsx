@@ -2,15 +2,17 @@ import { environment } from "@config/environment";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { mapInvitationsApiToEntities } from "./mappers";
 
-const getInvitations = async (): Promise<IInvitationsEntry[]> => {
-  const requestUrl = `${environment.IROLE_LINIX_USER_SIGNUP_INVITATION_QUERY_PROCESS_SERVICE}/users-signup-invitations`;
+const getInvitations = async (
+  businessUnitPublicCode: string
+): Promise<IInvitationsEntry[]> => {
+  const requestUrl = `${environment.IROLE_LINIX_USER_SIGNUP_INVITATION_QUERY_PROCESS_SERVICE}/users-signup-invitations/business-units/${businessUnitPublicCode}`;
 
   try {
     const options: RequestInit = {
       method: "GET",
       headers: {
         "X-Action": "SearchAllUsersSignupInvitations",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

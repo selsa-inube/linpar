@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getPositions } from "@services/positions/getPositons";
 import { PositionsUI } from "./interface";
@@ -6,6 +6,7 @@ import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./delete-positions/config/messages.config";
 import { IDeleteForMessage } from "./types";
+import { LinparContext } from "@src/context/AppContext";
 
 export function Positions() {
   const [searchPosition, setSearchPosition] = useState<string>("");
@@ -22,13 +23,15 @@ export function Positions() {
 
   const [positions, setPositions] = useState<IPosition[]>([]);
   const { user } = useAuth0();
-
+  const { linparData } = useContext(LinparContext);
   const linixPositionsData = async () => {
     if (!user) return;
     if (positions.length === 0) {
       setLoading(true);
       try {
-        const newUsers = await getPositions();
+        const newUsers = await getPositions(
+          linparData.businessUnit.businessUnitPublicCode
+        );
         setPositions(newUsers);
       } catch (error) {
         console.info(error);
