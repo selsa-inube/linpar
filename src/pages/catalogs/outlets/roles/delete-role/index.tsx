@@ -49,6 +49,11 @@ export const DeleteRole = (props: IDeleteRoleProps) => {
     setShowModal(false);
   };
 
+  const elem = document.getElementById("actionModal");
+  if (elem) {
+    elem.parentNode!.removeChild(elem);
+  }
+
   return (
     <DeleteRoleUI
       deleteRolModal={deleteRolModal}
