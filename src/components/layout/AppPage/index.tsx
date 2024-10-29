@@ -1,18 +1,20 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
-import { Header, Grid, useMediaQuery } from "@inube/design-system";
+import { Grid, useMediaQuery } from "@inube/design-system";
 import { Nav } from "@inubekit/nav";
 import { LinparContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
+import { Header } from "@inubekit/header";
 
 import {
   navigationConfig,
   bussinessUnitOptionTotal,
   removeBussinessUnit,
   AppsConfig,
+  userMenu,
 } from "./config/apps.config";
 
 import {
@@ -97,7 +99,10 @@ function AppPage() {
             portalId="portal"
             navigation={navigationConfig}
             logoURL={renderLogo(linparData.businessUnit.urlLogo)}
-            userName={linparData.user.userName}
+            user={{
+              username: linparData.user.userName,
+            }}
+            menu={userMenu}
           />
         </StyledHeaderContainer>
         {showUserMenu && (

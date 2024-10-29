@@ -62,7 +62,7 @@ const AppsConfig = () => {
   return { appsConfig, actionConfig };
 };
 const removeBussinessUnit = ["catalogs"];
-const bussinessUnitOptionTotal = ["1"];
+const bussinessUnitOptionTotal = ["860514047"];
 
 const navigationConfig = {
   items: {
@@ -88,9 +88,24 @@ const navigationConfig = {
     },
   },
 };
-
+const userMenu = [
+  {
+    id: "section",
+    title: "",
+    links: [
+      {
+        id: "logout",
+        title: "Cerrar sesión",
+        path: "/logout",
+        iconBefore: <MdLogout />,
+      },
+    ],
+    divider: true,
+  },
+];
 export {
   AppsConfig,
+  userMenu,
   navigationConfig,
   removeBussinessUnit,
   bussinessUnitOptionTotal,

@@ -1,7 +1,7 @@
 import { tokensWithReference } from "./tokensWithReference";
 
 const theme = {
-  ...tokensWithReference["sistemasenlinea"],
+  ...tokensWithReference["presente"],
 };
 
 export { theme };

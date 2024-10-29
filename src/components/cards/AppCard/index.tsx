@@ -26,7 +26,7 @@ function AppCard(props: AppCardProps) {
         </Text>
       </Stack>
       <Stack justifyContent="flex-end">
-        <Icon icon={icon} appearance="dark" size="24px" />
+        <Icon icon={icon} cursorHover={true} appearance="dark" size="24px" />
       </Stack>
     </StyledAppCard>
   );

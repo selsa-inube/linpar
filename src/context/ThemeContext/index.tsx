@@ -2,12 +2,13 @@ import {
   createContext,
   useContext,
   useState,
+  useEffect,
   Dispatch,
   SetStateAction,
   ReactNode,
 } from "react";
-import { tokensWithReference } from "@src/mocks/design/tokensWithReference";
 import { ThemeProvider } from "styled-components";
+import { tokensWithReference } from "@mocks/design/tokensWithReference";
 
 type ThemeName = keyof typeof tokensWithReference;
 
@@ -21,14 +22,20 @@ interface ThemeProviderWrapperProps {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  themeName: "sistemasenlinea",
+  themeName: "presente",
   setThemeName: () => {},
 });
 
 export const ThemeProviderWrapper = ({
   children,
 }: ThemeProviderWrapperProps) => {
-  const [themeName, setThemeName] = useState<ThemeName>("sistemasenlinea");
+  const savedTheme =
+    (localStorage.getItem("themeName") as ThemeName) || "presente";
+  const [themeName, setThemeName] = useState<ThemeName>(savedTheme);
+
+  useEffect(() => {
+    localStorage.setItem("themeName", themeName);
+  }, [themeName]);
 
   const theme = {
     ...tokensWithReference[themeName],

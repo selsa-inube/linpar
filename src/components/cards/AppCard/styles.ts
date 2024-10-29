@@ -13,21 +13,14 @@ const StyledAppCard = styled(Link)`
   justify-content: space-between;
   border-radius: ${tokens.spacing.s050};
   text-decoration: none;
-  color: ${({ theme }) =>
-    theme?.color?.stroke.dark.regular || inube.palette.neutral.N900};
-  border: 1px solid
-    ${({ theme }) =>
-      theme?.color?.stroke.dark.regular || inube.palette.neutral.N30};
   box-shadow: 3px 3px 5px 1px
     ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+      theme?.card?.shadow?.color?.regular || inube.palette.neutral.N70};
+
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
-    background-color: ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+    background-color: ${inube.palette.neutral.N30};
     box-shadow: none;
   }
 

@@ -9,6 +9,7 @@ import {
   bussinessUnitOptionTotal,
   navigationConfig,
   removeBussinessUnit,
+  userMenu,
 } from "@components/layout/AppPage/config/apps.config";
 import { AppCard } from "@components/cards/AppCard";
 import { LinparContext } from "@context/AppContext";
@@ -95,7 +96,7 @@ function HomeUI(props: HomeProps) {
             user={{
               username: linparData.user.userName,
             }}
-            menu={[]}
+            menu={userMenu}
           />
         </StyledHeaderContainer>
         {showUserMenu && (

@@ -1,16 +1,11 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 
-import {
-  Breadcrumbs,
-  Button,
-  Icon,
-  Stack,
-  Tabs,
-  Textfield,
-  useMediaQuery,
-} from "@inube/design-system";
+import { Breadcrumbs, Icon, Stack, Textfield } from "@inube/design-system";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { Button } from "@inubekit/button";
+import { Tabs } from "@inubekit/tabs";
+import { useMediaQueries } from "@inubekit/hooks";
 import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
 import { privilegeOptionsConfig } from "../options/config/privileges.config";
@@ -46,7 +41,8 @@ export function UsersUI(props: UsersUIProps) {
     handleCloseMessage,
   } = props;
 
-  const smallScreen = useMediaQuery("(max-width: 580px)");
+  const { "(max-width: 580px)": smallScreen, "(max-width: 1600px)": typeTabs } =
+    useMediaQueries(["(max-width: 580px)", "(max-width: 1600px)"]);
   const location = useLocation();
   const label = privilegeOptionsConfig.find(
     (item) => item.url === location.pathname
@@ -77,7 +73,7 @@ export function UsersUI(props: UsersUIProps) {
               tabs={Object.values(privilegeUserTabsConfig)}
               selectedTab={isSelected}
               onChange={handleTabChange}
-              type={smallScreen ? "select" : "tabs"}
+              scroll={typeTabs ? true : false}
             />
             <Stack justifyContent="space-between" alignItems="center">
               <Textfield
