@@ -29,7 +29,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const searchData = {
     "Digite el código o nombre de la aplicación:": "",
   };
-
+  console.log(formik.values.k_Grupo, "Cargos");
   return (
     <>
       <Grid

@@ -14,7 +14,9 @@ import { generalMessage } from "../../../users/EditUser/config/messages.config";
 const validationSchema = Yup.object({
   email: validationRules.email.required(validationMessages.required),
   phoneNumber: validationRules.phone.required(validationMessages.required),
-  positions: Yup.string().required(validationMessages.required),
+  positions: Yup.array()
+    .min(1, validationMessages.required)
+    .required(validationMessages.required),
 });
 
 interface IGeneralInformationFormProps {

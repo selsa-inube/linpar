@@ -80,12 +80,16 @@ interface CompleteInvitationUIProps {
   handlePrevStep: (step: number) => void;
   handleSubmit: (values: IInvitationsEntry | IAssignmentFormEntry[]) => void;
   handleToggleModal: () => void;
+  handlePreviousStep: () => void;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  isAddRoleFormValid?: boolean;
 }
 
 function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const {
+    handlePreviousStep,
+    // isAddRoleFormValid,
     currentStep,
     formReferences,
     isCurrentFormValid,
@@ -122,6 +126,8 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         email: "",
         dateStart: "",
       };
+
+  console.log(invitationData.generalInformation.values, "aquiiiiiiiiiii");
 
   return loading ? (
     <StyledContainerLoading>
@@ -205,10 +211,10 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
             )}
             <Stack gap={inube.spacing.s200} justifyContent="flex-end">
               <Button
-                onClick={handlePrevStep}
+                onClick={handlePreviousStep}
                 type="button"
                 disabled={currentStep === steps[0].id}
-                spacing="compact"
+                spacing="wide"
                 variant="none"
                 appearance="gray"
               >
@@ -216,8 +222,12 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               </Button>
 
               <Button
-                onClick={handleNextStep}
-                spacing="compact"
+                onClick={
+                  currentStep === steps.length
+                    ? handleToggleModal
+                    : handleNextStep
+                }
+                spacing="wide"
                 disabled={!isCurrentFormValid}
               >
                 {currentStep === steps.length ? "Enviar" : "Siguiente"}

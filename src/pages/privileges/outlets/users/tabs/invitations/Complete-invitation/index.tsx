@@ -46,7 +46,7 @@ function CompleteInvitation() {
   const [showModal, setShowModal] = useState(false);
   const [payrolls, setPayrolls] = useState<Record<string, unknown>[]>([]);
   const [branches, setBranches] = useState<Record<string, unknown>[]>([]);
-
+  // const [isAddRoleFormValid, setIsAddRoleFormValid] = useState(false);
   const [positions, setPositions] = useState<Record<string, unknown>[]>([]);
   const [projects, setProjects] = useState<Record<string, unknown>[]>([]);
   const [aidBudgetUnits, setAidBudgetUnits] = useState<
@@ -97,6 +97,8 @@ function CompleteInvitation() {
   //     setLoading(false);
   //   });
   // }, [])
+
+  console.log(invitationId, "invitationId");
   const linixInvitation = async () => {
     if (!user) return;
     if (invitedUsers.length === 0) {
@@ -107,6 +109,7 @@ function CompleteInvitation() {
             console.log("Datos de invitación:", data);
             setInvitedUsers(data as IInvitationsEntry[]);
             const generalData = data.find((data) => data.id === invitationId);
+            console.log(generalData, "estoy aquiii");
             if (generalData) {
               setInvitationData((prevFormData: IFormCompleteInvitation) => ({
                 ...prevFormData,
@@ -375,10 +378,14 @@ function CompleteInvitation() {
     setShowModal(!showModal);
   };
 
+  const handlePreviousStep = () => {
+    handleStepChange(currentStep - 1);
+  };
   console.log("invitationData", invitationData);
   return (
     <CompleteInvitationUI
       currentStep={currentStep}
+      handlePreviousStep={handlePreviousStep}
       formReferences={formReferences}
       invitationData={invitationData}
       isCurrentFormValid={isCurrentFormValid}
@@ -393,6 +400,7 @@ function CompleteInvitation() {
       handleCompleteInvitation={handleCompleteInvitation}
       setIsCurrentFormValid={setIsCurrentFormValid}
       setCurrentStep={setCurrentStep}
+      // isAddRoleFormValid={isAddRoleFormValid}
     />
   );
 }
