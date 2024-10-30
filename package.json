@@ -16,6 +16,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "@inube/design-system": "^5.15.0",
+    "@inubekit/assisted": "4.33.0",
     "@inubekit/blanket": "^2.25.0",
     "@inubekit/breadcrumbs": "^2.34.0",
     "@inubekit/button": "^4.44.1",

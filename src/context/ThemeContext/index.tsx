@@ -22,7 +22,7 @@ interface ThemeProviderWrapperProps {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  themeName: "presente",
+  themeName: "sistemasenlinea",
   setThemeName: () => {},
 });
 
@@ -30,7 +30,7 @@ export const ThemeProviderWrapper = ({
   children,
 }: ThemeProviderWrapperProps) => {
   const savedTheme =
-    (localStorage.getItem("themeName") as ThemeName) || "presente";
+    (localStorage.getItem("themeName") as ThemeName) || "sistemasenlinea";
   const [themeName, setThemeName] = useState<ThemeName>(savedTheme);
 
   useEffect(() => {

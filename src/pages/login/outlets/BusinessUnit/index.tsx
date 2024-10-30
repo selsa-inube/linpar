@@ -41,7 +41,11 @@ function BusinessUnits(props: BusinessUnitsProps) {
     );
     setSelectedBusinessUnit(selectOption || null);
     if (selectOption) {
-      setThemeName(selectOption.abbreviatedName as ThemeName);
+      if (selectOption.abbreviatedName === "Sistemas Enlínea S.A.") {
+        setThemeName("sistemasenlinea");
+      } else {
+        setThemeName(selectOption.abbreviatedName as ThemeName);
+      }
     }
   };
 
