@@ -356,6 +356,93 @@ const presente = {
       },
     },
   },
+  assisted: {
+    title: {
+      appearance: "dark",
+    },
+    description: {
+      appearance: "gray",
+    },
+    track: {
+      color: inube.palette.neutral.N30,
+    },
+    bar: {
+      color: inube.palette.yellow.Y400,
+    },
+    background: {
+      color: inube.palette.neutral.N10,
+    },
+    button: {
+      appearance: "warning",
+    },
+    step: {
+      color: inube.palette.yellow.Y400,
+    },
+  },
+  text: {
+    primary: {
+      content: {
+        color: {
+          regular: inube.palette.yellow.Y400,
+          disabled: inube.palette.neutral.N90,
+          hover: inube.palette.yellow.Y300,
+        },
+      },
+    },
+  },
+  input: {
+    border: {
+      color: {
+        regular: inube.palette.neutral.N40,
+        disabled: inube.palette.neutral.N40,
+        focus: inube.palette.yellow.Y300,
+        invalid: inube.palette.red.R400,
+      },
+    },
+    background: {
+      color: {
+        regular: inube.palette.neutral.N0,
+        disabled: inube.palette.neutral.N10,
+      },
+    },
+    content: {
+      color: {
+        regular: inube.palette.neutral.N900,
+        disabled: inube.palette.neutral.N70,
+      },
+    },
+    placeholder: {
+      color: {
+        regular: inube.palette.neutral.N300,
+      },
+    },
+    message: {
+      appearance: "danger",
+    },
+    required: {
+      appearance: "danger",
+    },
+    option: {
+      appearance: {
+        regular: "dark",
+        hover: "warning",
+      },
+      background: {
+        regular: inube.palette.neutral.N0,
+        hover: inube.palette.neutral.N30,
+      },
+    },
+  },
+  label: {
+    content: {
+      color: {
+        regular: "dark",
+        disabled: "dark",
+        focus: "warning",
+        invalid: "danger",
+      },
+    },
+  },
 };
 
 export { presente };

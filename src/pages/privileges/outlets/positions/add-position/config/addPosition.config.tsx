@@ -2,25 +2,28 @@ import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 import { EAppearance } from "@src/types/colors.types";
 
-export const stepsAddPosition = {
-  generalInformation: {
-    id: 1,
-    label: "Información general",
+export const stepsAddPosition = [
+  {
+    id: "generalInformation",
+    number: 1,
+    name: "Información general",
     description: "Por favor completa la información general.",
   },
-  rolesPorCargos: {
-    id: 2,
-    label: "Roles",
+  {
+    id: "roles",
+    number: 2,
+    name: "Roles",
     description: "Por favor completa la información de roles.",
   },
-  summary: {
-    id: 3,
-    label: "Verificación",
+  {
+    id: "verificacion",
+    number: 3,
+    name: "Verificación",
     description:
       "Verifica las opciones activadas, si es necesario cámbialas o por el contrario si todo está correcto dale enviar.",
     isVerification: true,
   },
-};
+];
 
 export const createPositionConfig = [
   {

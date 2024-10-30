@@ -12,19 +12,16 @@ const addPositionStepsRules = (
     ...currentDataAddPositionLinixForm,
   };
 
-  const stepKey = Object.entries(stepsAddPosition).find(
-    ([, config]) => config.id === currentStep
-  )?.[0];
-
+  const stepKey = stepsAddPosition[currentStep];
   if (!stepKey) return currentDataAddPositionLinixForm;
 
-  if (stepKey !== "generalInformation") return currentDataAddPositionLinixForm;
-
-  const values = formReferences[stepKey]?.current?.values;
+  if (stepKey.id !== "general") return currentDataAddPositionLinixForm;
+  console.log("formReferences: ", formReferences);
+  const values = formReferences[stepKey.id]?.current?.values;
 
   return (newDataAddPositionLinixForm = {
     ...newDataAddPositionLinixForm,
-    [stepKey]: { isValid: isCurrentFormValid, values: values! },
+    [stepKey.id]: { isValid: isCurrentFormValid, values: values! },
   });
 };
 

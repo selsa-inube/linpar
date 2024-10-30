@@ -21,11 +21,12 @@ import { generalMessage } from "./config/messages.config";
 import { LinparContext } from "@src/context/AppContext";
 
 export function AddPosition() {
-  const [currentStep, setCurrentStep] = useState<number>(
-    stepsAddPosition.generalInformation.id
-  );
+  const [currentStepNumber, setCurrentStepNumber] = useState<number>(1);
 
   const steps = Object.values(stepsAddPosition);
+  const currentStep = steps.find(
+    (step: { number: number }) => step.number === currentStepNumber
+  );
   const [loading, setLoading] = useState(false);
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -90,56 +91,55 @@ export function AddPosition() {
   };
 
   const handleStepChange = (stepId: number) => {
+    console.log(
+      "from index add: ",
+      dataAddPositionLinixForm,
+      " formReferences ",
+      formReferences,
+      " stepId ",
+      stepId,
+      " currentStepNumber ",
+      currentStepNumber,
+      " isCurrentFormValid ",
+      isCurrentFormValid
+    );
+
     const newAddPosition = addPositionStepsRules(
-      currentStep,
+      currentStepNumber,
       dataAddPositionLinixForm,
       formReferences,
       isCurrentFormValid
     );
 
-    setDataAddPositionLinixForm(newAddPosition);
+    setDataAddPositionLinixForm((prevData) => ({
+      ...prevData,
+      ...newAddPosition,
+    }));
 
-    const changeStepKey = Object.entries(stepsAddPosition).find(
-      ([, config]) => config.id === currentStep
-    )?.[0];
-
-    if (!changeStepKey) return;
-
-    const changeIsVerification = stepId === steps.length;
-
-    setIsCurrentFormValid(
-      changeIsVerification ||
-        newAddPosition[changeStepKey as keyof IFormAddPosition]?.isValid ||
-        currentStep === 3 ||
-        false
-    );
-
-    setCurrentStep(stepId);
-
+    setCurrentStepNumber(stepId);
     document.getElementsByTagName("main")[0].scrollTo(0, 0);
   };
 
   const handleNextStep = () => {
-    if (currentStep === steps.length) {
+    if (currentStepNumber === steps.length) {
       handleToggleModal();
     }
-    if (currentStep + 1 <= steps.length && isCurrentFormValid) {
-      handleStepChange(currentStep + 1);
+    if (currentStepNumber < steps.length && isCurrentFormValid) {
+      handleStepChange(currentStepNumber + 1);
     }
   };
 
   const handlePreviousStep = () => {
-    handleStepChange(currentStep - 1);
+    if (currentStepNumber > 1) {
+      handleStepChange(currentStepNumber - 1);
+    }
   };
 
   function handleUpdateDataSwitchstep(values: IHandleUpdateDataSwitchstep) {
-    const stepKey = Object.entries(stepsAddPosition).find(
-      ([, config]) => config.id === currentStep
-    )?.[0];
-    if (stepKey) {
+    if (currentStep) {
       setDataAddPositionLinixForm({
         ...dataAddPositionLinixForm,
-        [stepKey]: { values },
+        [currentStep.number]: { values },
       });
     }
   }
@@ -170,7 +170,7 @@ export function AddPosition() {
 
   return (
     <AddPositionUI
-      steps={steps}
+      step={steps}
       currentStep={currentStep}
       isCurrentFormValid={isCurrentFormValid}
       dataAddPositionLinixForm={dataAddPositionLinixForm}
@@ -182,7 +182,6 @@ export function AddPosition() {
       handleNextStep={handleNextStep}
       handlePreviousStep={handlePreviousStep}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
-      setCurrentStep={setCurrentStep}
       handleToggleModal={handleToggleModal}
       handleFinishForm={handleFinishForm}
       handleCloseSectionMessage={handleCloseSectionMessage}

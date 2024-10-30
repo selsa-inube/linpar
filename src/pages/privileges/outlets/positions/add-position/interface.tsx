@@ -1,11 +1,4 @@
-import {
-  Assisted,
-  Breadcrumbs,
-  Button,
-  Stack,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
+import { Breadcrumbs, Stack, useMediaQuery, inube } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@components/feedback/DecisionModal";
@@ -20,17 +13,17 @@ import {
   IFormAddPosition,
   IFormAddPositionRef,
   IOptionInitialiceEntry,
-  IStep,
   titleButtonTextAssited,
 } from "./types";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
-import { StyledContainerAssisted } from "./styles";
 import { InitializerForm } from "../../forms/InitializerForm";
 import { VerificationAddPosition } from "../components/VerificationForm";
 import { IMessageState } from "../../users/types/forms.types";
+import { Assisted, IAssistedStep } from "@inubekit/assisted";
+import { Button } from "@inubekit/button";
 
 const renderStepContent = (
-  currentStep: number,
+  currentStep: any,
   formReferences: IFormAddPositionRef,
   dataAddPositionLinixForm: IFormAddPosition,
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>,
@@ -39,20 +32,20 @@ const renderStepContent = (
 ) => {
   return (
     <>
-      {currentStep === stepsAddPosition.generalInformation.id && (
+      {currentStep.number === stepsAddPosition[0].number && (
         <GeneralInformationForm
           initialValues={dataAddPositionLinixForm.generalInformation.values}
           ref={formReferences.generalInformation}
           onFormValid={setIsCurrentFormValid}
         />
       )}
-      {currentStep === stepsAddPosition.rolesPorCargos.id && (
+      {currentStep.number === stepsAddPosition[1].number && (
         <InitializerForm
           dataOptionsForms={dataAddPositionLinixForm.rolesPorCargos.values}
           handleSubmit={handleUpdateDataSwitchstep}
         />
       )}
-      {currentStep === stepsAddPosition.summary.id && (
+      {currentStep.number === stepsAddPosition[2].number && (
         <VerificationAddPosition
           steps={dataAddPositionLinixForm}
           setCurrentStep={setCurrentStep}
@@ -63,8 +56,8 @@ const renderStepContent = (
 };
 
 interface AddPositionUIProps {
-  currentStep: number;
-  steps: IStep[];
+  currentStep: any;
+  step: IAssistedStep[];
   showModal: boolean;
   isCurrentFormValid: boolean;
   dataAddPositionLinixForm: IFormAddPosition;
@@ -75,7 +68,6 @@ interface AddPositionUIProps {
   handleNextStep: () => void;
   handlePreviousStep: () => void;
   handleUpdateDataSwitchstep: (values: IOptionInitialiceEntry[]) => void;
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   handleToggleModal: () => void;
   handleFinishForm: () => void;
   handleCloseSectionMessage: () => void;
@@ -84,7 +76,7 @@ interface AddPositionUIProps {
 export function AddPositionUI(props: AddPositionUIProps) {
   const {
     currentStep,
-    steps,
+    step,
     showModal,
     isCurrentFormValid,
     dataAddPositionLinixForm,
@@ -95,7 +87,6 @@ export function AddPositionUI(props: AddPositionUIProps) {
     handleNextStep,
     handlePreviousStep,
     handleUpdateDataSwitchstep,
-    setCurrentStep,
     handleToggleModal,
     handleFinishForm,
     handleCloseSectionMessage,
@@ -106,7 +97,6 @@ export function AddPositionUI(props: AddPositionUIProps) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const disabled = !isCurrentFormValid;
-
   return (
     <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
       <Stack gap={inube.spacing.s600} direction="column">
@@ -125,29 +115,29 @@ export function AddPositionUI(props: AddPositionUIProps) {
           </Stack>
         </Stack>
         <>
-          <StyledContainerAssisted $cursorDisabled={disabled}>
-            <Assisted
-              steps={steps}
-              currentStepId={currentStep}
-              handlePrev={handlePreviousStep}
-              handleNext={handleNextStep}
-              titleButtonText={titleButtonTextAssited}
-            />
-          </StyledContainerAssisted>
+          <Assisted
+            step={currentStep}
+            onBackClick={handlePreviousStep}
+            onNextClick={handleNextStep}
+            onSubmitClick={handleNextStep}
+            controls={titleButtonTextAssited}
+            totalSteps={step.length}
+            disableBack={currentStep === 1}
+          />
           {renderStepContent(
             currentStep,
             formReferences,
             dataAddPositionLinixForm,
             setIsCurrentFormValid,
             handleUpdateDataSwitchstep,
-            setCurrentStep
+            currentStep.number
           )}
         </>
         <Stack gap={inube.spacing.s200} justifyContent="flex-end">
           <Button
             onClick={handlePreviousStep}
             type="button"
-            disabled={currentStep === steps[0].id}
+            disabled={currentStep === step[0].id}
             spacing="compact"
             variant="none"
             appearance="gray"
@@ -160,7 +150,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
             spacing="compact"
             disabled={disabled}
           >
-            {currentStep === steps.length ? "Enviar" : "Siguiente"}
+            {currentStep === step.length ? "Enviar" : "Siguiente"}
           </Button>
         </Stack>
       </Stack>

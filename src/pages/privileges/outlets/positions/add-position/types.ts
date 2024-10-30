@@ -3,9 +3,9 @@ import { IGeneralInformationEntry } from "../components/GeneralInformationForm";
 import { IAssignmentFormEntry } from "../../users/types/forms.types";
 
 export const titleButtonTextAssited = {
-  before: "Anterior",
-  after: "Siguiente",
-  finish: "Enviar",
+  goBackText: "Anterior",
+  goNextText: "Siguiente",
+  submitText: "Enviar",
 };
 export interface IRolByPosition {
   k_Rol: number;
@@ -26,12 +26,6 @@ export interface IPosition {
   n_Grupo: string;
   n_Uso: string;
   rolesPorCargo?: IRolByPosition[];
-}
-
-export interface IStep {
-  id: number;
-  label: string;
-  description: string;
 }
 
 export interface IOptionInitialiceEntry {

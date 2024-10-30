@@ -3,7 +3,6 @@ import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import {
   Breadcrumbs,
-  Button,
   Icon,
   Stack,
   Textfield,
@@ -26,6 +25,7 @@ import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { IDeleteForMessage } from "./types";
+import { Button } from "@inubekit/button";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
