@@ -11,6 +11,7 @@ import { IAssignmentFormEntry } from "../../../types/forms.types";
 
 export const editUsersData = async (
   usersData: IFormAddUsers,
+  businessUnitPublicCode: string,
   optionsData?: IAssignmentFormEntry[]
 ) => {
   const normalizeBranches = usersData.branches.values?.flatMap(
@@ -68,7 +69,7 @@ export const editUsersData = async (
   let confirmationType = true;
 
   try {
-    await editUsers(newoptionsUseCase);
+    await editUsers(newoptionsUseCase, businessUnitPublicCode);
   } catch (error) {
     confirmationType = false;
 

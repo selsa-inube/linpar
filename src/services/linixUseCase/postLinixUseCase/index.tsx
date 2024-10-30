@@ -1,10 +1,11 @@
-import { UseCase } from "@src/pages/privileges/outlets/linixUseCase/types";
+import { UseCase } from "@pages/catalogs/outlets/linixUseCase/types";
 
 import { environment } from "@config/environment";
 import { mapLinixUseCaseEntityToApi } from "./mappers";
 
 const addLinixUseCase = async (
-  linixUseCase: UseCase
+  linixUseCase: UseCase,
+  businessUnit: string
 ): Promise<UseCase | undefined> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/casos-de-uso`;
 
@@ -13,7 +14,7 @@ const addLinixUseCase = async (
       method: "POST",
       headers: {
         "X-Action": "AgregarCasoDeUso",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapLinixUseCaseEntityToApi(linixUseCase)),

@@ -2,7 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import { PageTitle, PageTitleProps } from "./index";
 
 import { StoryFn } from "@storybook/react";
-import { appsConfig } from "../layout/AppPage/config/apps.config";
+import { AppsConfig } from "../layout/AppPage/config/apps.config";
 
 const story = {
   component: [PageTitle],
@@ -17,7 +17,7 @@ const story = {
 };
 
 const Template: StoryFn<PageTitleProps> = (args) => <PageTitle {...args} />;
-
+const { appsConfig } = AppsConfig();
 export const Default = Template.bind({});
 Default.args = {
   title: appsConfig[0].label,

@@ -2,14 +2,13 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 
+import { TextAppearance } from "@src/types/Text.types";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 import { Blanket } from "@inubekit/blanket";
 import { Icon } from "@inubekit/icon";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Button } from "@inubekit/button";
-
-import { TextAppearance } from "@pages/people/outlets/color/texts/types";
 
 import { StyledModal } from "./styles";
 
@@ -52,6 +51,11 @@ function DecisionModal(props: DecisionModalProps) {
     );
   };
 
+  const handleCloseModal = () => {
+    closeModal();
+    smallScreen && window.location.reload();
+  };
+
   return createPortal(
     <Blanket>
       <StyledModal $smallScreen={smallScreen}>
@@ -68,7 +72,7 @@ function DecisionModal(props: DecisionModalProps) {
               icon={<MdClear />}
               appearance="dark"
               size="24px"
-              onClick={closeModal}
+              onClick={handleCloseModal}
             />
           </Stack>
           <Text appearance="gray" size={smallScreen ? "medium" : undefined}>
@@ -77,7 +81,7 @@ function DecisionModal(props: DecisionModalProps) {
           <Stack justifyContent="flex-end" gap="8px">
             <Button
               appearance="gray"
-              onClick={closeModal}
+              onClick={handleCloseModal}
               spacing={smallScreen ? "compact" : undefined}
             >
               Cancelar

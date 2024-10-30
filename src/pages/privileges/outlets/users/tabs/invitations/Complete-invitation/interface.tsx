@@ -150,7 +150,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         </Stack>
         {currentInformation ? (
           <>
-            <StyledContainerAssisted cursorDisabled={false}>
+            <StyledContainerAssisted $cursorDisabled={!isCurrentFormValid}>
               <Assisted
                 steps={Object.values(stepsRegisterUserConfig)}
                 currentStepId={currentStep}

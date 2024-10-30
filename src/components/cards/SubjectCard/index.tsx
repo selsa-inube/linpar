@@ -64,7 +64,7 @@ function SubjectCard(props: SubjectCardProps) {
               icon={icon}
               size="24px"
               shape="circle"
-              spacing="none"
+              spacing="narrow"
             />
           </Stack>
         </Stack>

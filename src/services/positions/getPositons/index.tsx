@@ -2,7 +2,9 @@ import { environment } from "@config/environment";
 import { IPosition } from "@pages/privileges/outlets/positions/add-position/types";
 import { mapPositionsApiToEntities } from "./mappers";
 
-const getPositions = async (): Promise<IPosition[]> => {
+const getPositions = async (
+  businessUnitPublicCode: string
+): Promise<IPosition[]> => {
   try {
     const queryParams = new URLSearchParams({
       page: "1",
@@ -13,7 +15,7 @@ const getPositions = async (): Promise<IPosition[]> => {
       method: "GET",
       headers: {
         "X-Action": "SearchAllCargos",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

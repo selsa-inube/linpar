@@ -1,10 +1,10 @@
 import { environment } from "@config/environment";
-import { ICuentasAuxiliaresPorRol } from "@src/pages/privileges/outlets/roles/types";
+import { ICuentasAuxiliaresPorRol } from "@pages/catalogs/outlets/roles/types";
 import { mapRolesCuentasAuxiliaresApiToEntities } from "./mappers";
 
-const getRolesCuentasAuxiliares = async (): Promise<
-  ICuentasAuxiliaresPorRol[]
-> => {
+const getRolesCuentasAuxiliares = async (
+  rolesBusinessUnit: string
+): Promise<ICuentasAuxiliaresPorRol[]> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_QUERY_PROCESS}/roles`;
 
   try {
@@ -12,7 +12,7 @@ const getRolesCuentasAuxiliares = async (): Promise<
       method: "GET",
       headers: {
         "X-Action": "QueryAllCuentasAuxiliaresPorRol",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": rolesBusinessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
     };

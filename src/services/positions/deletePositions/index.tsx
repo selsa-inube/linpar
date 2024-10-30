@@ -4,7 +4,8 @@ import { IdeletePositions } from "./types";
 import { mapPositionsDeleteEntityToApi } from "./mappers";
 
 const deletePositions = async (
-  deletePositions: IdeletePositions
+  deletePositions: IdeletePositions,
+  businessUnitPublicCode: string
 ): Promise<IPosition | undefined> => {
   const requestUrl = `${environment.IPRIVILEGES_LINIX_API_PERSISTENCE_PROCESS_SERVICE}/cargos`;
 
@@ -13,7 +14,7 @@ const deletePositions = async (
       method: "DELETE",
       headers: {
         "X-Action": "EliminarCargo",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapPositionsDeleteEntityToApi(deletePositions)),

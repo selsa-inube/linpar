@@ -2,7 +2,8 @@ import { environment } from "@config/environment";
 import { mapResendEntityToApi } from "./mappers";
 
 const resendNotification = async (
-  linixResend: string
+  linixResend: string,
+  businessUnitPublicCode: string
 ): Promise<string | undefined> => {
   const requestUrl = `${environment.IROLE_LINIX_USER_SIGNUP_INVITATION_QUERY_PERSISTENCE_SERVICE}/users-signup-invitations`;
 
@@ -11,7 +12,7 @@ const resendNotification = async (
       method: "POST",
       headers: {
         "X-Action": "ResendNotification",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapResendEntityToApi(linixResend)),

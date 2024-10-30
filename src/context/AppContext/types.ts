@@ -1,7 +1,10 @@
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
+
 interface IPortal {
   abbreviatedName: string;
   staffPortalCatalogId: string;
   businessManagerId: string;
+  publicCode: string;
 }
 interface IBusinessManager {
   publicCode: string;
@@ -16,10 +19,12 @@ interface IUser {
 }
 
 interface IBusinessUnit {
-  publicCode: string;
+  businessUnitPublicCode: string;
   abbreviatedName: string;
-  businessUnit: string;
   urlLogo: string;
+  languageId: string;
+  descriptionUse?: string;
+  firstMonthOfFiscalYear?: string;
 }
 interface ILinparData {
   portal: IPortal;
@@ -31,8 +36,12 @@ interface ILinparData {
 interface ILinparContext {
   linparData: ILinparData;
   businessUnitSigla: string;
+  businessUnitsToTheStaff: IBusinessUnitsPortalStaff[];
   setLinparData: React.Dispatch<React.SetStateAction<ILinparData>>;
   setBusinessUnitSigla: React.Dispatch<React.SetStateAction<string>>;
+  setBusinessUnitsToTheStaff: React.Dispatch<
+    React.SetStateAction<IBusinessUnitsPortalStaff[]>
+  >;
 }
 
-export type { ILinparData, ILinparContext };
+export type { ILinparData, ILinparContext, IBusinessUnit };

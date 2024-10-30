@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -9,8 +9,6 @@ import {
   IInvitation,
   IInvitationsEntry,
 } from "@services/users/invitation.types";
-// import { updateItemData } from "@mocks/utils/dataMock.service";
-// import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 
@@ -18,16 +16,19 @@ import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { IFormCompleteInvitationRef } from "./types";
 import { IAssignmentFormEntry } from "../../../types/forms.types";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getInvitations } from "@src/services/invitations/getInvitations";
+
 import { CompleteInvitationUI } from "./interface";
 import { getPositions } from "@services/positions/getPositons";
 // import { IPosition } from "@src/pages/privileges/outlets/positions/add-position/types";
 import { getSucursales } from "@src/services/users/sucursales";
-import { dataToAssignmentFormEntry } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case";
+
 import { getProyectos } from "@src/services/users/proyectos";
 import { getUnidadesPresupuestales } from "@src/services/users/unidadesPresupuestales";
 import { getNomina } from "@src/services/users/nomina";
 import { completeInvitationStepsRules } from "./utils";
+import { getInvitations } from "@src/services/invitations/getInvitations";
+import { dataToAssignmentFormEntry } from "@src/pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
+import { LinparContext } from "@src/context/AppContext";
 
 function CompleteInvitation() {
   const { invitationId } = useParams();
@@ -45,6 +46,7 @@ function CompleteInvitation() {
   const [showModal, setShowModal] = useState(false);
   const [payrolls, setPayrolls] = useState<Record<string, unknown>[]>([]);
   const [branches, setBranches] = useState<Record<string, unknown>[]>([]);
+
   const [positions, setPositions] = useState<Record<string, unknown>[]>([]);
   const [projects, setProjects] = useState<Record<string, unknown>[]>([]);
   const [aidBudgetUnits, setAidBudgetUnits] = useState<
@@ -73,7 +75,7 @@ function CompleteInvitation() {
   const [invitationData, setInvitationData] = useState<IFormCompleteInvitation>(
     initialGeneralFormState
   );
-
+  const { linparData } = useContext(LinparContext);
   const steps = Object.values(stepsRegisterUserConfig);
   useEffect(() => {
     linixInvitation();
@@ -99,7 +101,7 @@ function CompleteInvitation() {
     if (!user) return;
     if (invitedUsers.length === 0) {
       setLoading(true);
-      getInvitations()
+      getInvitations(linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             console.log("Datos de invitación:", data);
@@ -160,7 +162,7 @@ function CompleteInvitation() {
     if (!user) return;
     if (positions.length === 0) {
       setLoading(true);
-      getPositions()
+      getPositions(linparData.businessUnit.businessUnitPublicCode)
         .then((newUsers) => {
           setPositions(newUsers as keyof unknown as Record<string, unknown>[]);
         })
@@ -173,7 +175,7 @@ function CompleteInvitation() {
     if (!user) return;
     if (branches.length === 0) {
       setLoading(true);
-      getSucursales("1")
+      getSucursales("1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setBranches(data as unknown as Record<string, unknown>[]);
@@ -200,7 +202,7 @@ function CompleteInvitation() {
     if (!user) return;
     if (projects.length === 0) {
       setLoading(true);
-      getProyectos("1")
+      getProyectos("1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setProjects(data as unknown as Record<string, unknown>[]);
@@ -228,7 +230,10 @@ function CompleteInvitation() {
     if (!user) return;
     if (aidBudgetUnits.length === 0) {
       setLoading(true);
-      getUnidadesPresupuestales("1")
+      getUnidadesPresupuestales(
+        "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setAidBudgetUnits(data as unknown as Record<string, unknown>[]);
@@ -256,7 +261,7 @@ function CompleteInvitation() {
     if (!user) return;
     if (payrolls.length === 0) {
       setLoading(true);
-      getNomina("1")
+      getNomina("1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setPayrolls(data as unknown as Record<string, unknown>[]);

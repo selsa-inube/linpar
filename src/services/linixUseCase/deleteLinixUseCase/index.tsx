@@ -1,10 +1,11 @@
 import { environment } from "@config/environment";
-import { UseCase } from "@pages/privileges/outlets/linixUseCase/types";
+import { UseCase } from "@pages/catalogs/outlets/linixUseCase/types";
 import { IdeleteLinixUseCase } from "./types";
 import { mapLinixUseCaseDeleteEntityToApi } from "./mappers";
 
 const deleteLinixUseCase = async (
-  deleteLinixUseCase: IdeleteLinixUseCase
+  deleteLinixUseCase: IdeleteLinixUseCase,
+  businessUnit: string
 ): Promise<UseCase | undefined> => {
   const requestUrl = `${environment.IUTILITIES_LINIX_CATALOGOS_GENERALES_API_URL_PERSISTENCE_PROCESS}/casos-de-uso`;
 
@@ -13,7 +14,7 @@ const deleteLinixUseCase = async (
       method: "DELETE",
       headers: {
         "X-Action": "EliminarCasoDeUso",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnit,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(

@@ -3,7 +3,8 @@ import { IGeneralInformationUsersForm } from "../users.types";
 import { mapEditUsersEntityToApi } from "./mappers";
 
 const editUsers = async (
-  editUser: IGeneralInformationUsersForm
+  editUser: IGeneralInformationUsersForm,
+  businessUnitPublicCode: string
 ): Promise<IGeneralInformationUsersForm | undefined> => {
   const requestUrl = `${environment.IPRIVILEGES_LINIX_API_PERSISTENCE_PROCESS_SERVICE}/usuarios`;
 
@@ -12,7 +13,7 @@ const editUsers = async (
       method: "PATCH",
       headers: {
         "X-Action": "ModificarUsuario",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapEditUsersEntityToApi(editUser)),

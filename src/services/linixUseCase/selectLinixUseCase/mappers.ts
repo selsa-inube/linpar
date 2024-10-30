@@ -1,13 +1,12 @@
-import { selectLinixUseCases } from "@mocks/privileges/linixUseCases/utils.mock";
-import { Option } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
+import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 
 const mapSelectLinixUseCase = (
   selectLinixUseCase: Record<string, string | number | object>
 ): Option => {
   const buildSelectLinixUseCase: Option = {
     id: String(selectLinixUseCase.code),
-    label: selectLinixUseCases[String(selectLinixUseCase.description)],
-    value: selectLinixUseCases[String(selectLinixUseCase.description)],
+    label: String(selectLinixUseCase.description),
+    value: String(selectLinixUseCase.description),
   };
   return buildSelectLinixUseCase;
 };

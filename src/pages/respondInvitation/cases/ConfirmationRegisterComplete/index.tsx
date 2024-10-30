@@ -1,24 +1,23 @@
+import { useParams } from "react-router-dom";
 import Completed from "@assets/images/Completed.png";
 import { ErrorPage } from "@components/layout/ErrorPage";
-
-import { businessUnitDataMock } from "@src/mocks/login/businessUnit.mock";
-import { useParams } from "react-router-dom";
+import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 
 function ConfirmationRegisterComplete() {
-  const { client_id } = useParams();
+  const { bussinessData_id } = useParams();
 
   const getClientData = () => {
-    if (!client_id) return;
+    if (!bussinessData_id) return;
     return businessUnitDataMock.find(
-      (clientMock) => clientMock.id === client_id
+      (businessMock) => businessMock.businessUnitPublicCode === bussinessData_id
     );
   };
 
-  const clientData = getClientData();
+  const bussinessData = getClientData();
   return (
     <ErrorPage
-      logo={clientData && clientData.logo}
-      logoAlt={clientData && `Logo ${clientData.name}`}
+      logo={bussinessData && bussinessData.urlLogo}
+      logoAlt={bussinessData && `Logo ${bussinessData.abbreviatedName}`}
       heading={`!Gracias! Registro completado...`}
       description="Hemos enviado la información, revisa tu correo electrónico para ingresar a nuestra plataforma."
       imageAlt="Su registro se ha realizado correctamente."

@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { getPositions } from "@services/positions/getPositons";
 import { getRolesPorCargo } from "@services/positions/rolesPorCargo";
+import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
 
 import { EditPositionUI } from "./interface";
 import {
@@ -11,7 +12,7 @@ import {
   IHandleUpdateDataSwitchstep,
   IPosition,
 } from "../add-position/types";
-import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
+
 import { editPositionTabsConfig } from "./config/editPosition.config";
 import { initalValuesPositions } from "../add-position/config/initialValues";
 
@@ -21,6 +22,7 @@ import {
 } from "../../users/types/forms.types";
 import { generalMessage } from "../add-position/config/messages.config";
 import { editPositions } from "./utils";
+import { LinparContext } from "@src/context/AppContext";
 
 export function EditPosition() {
   const { k_Grupo } = useParams();
@@ -66,6 +68,7 @@ export function EditPosition() {
   const originalDataEditPositionsForm = useRef<IFormAddPosition | null>(null);
 
   const { user } = useAuth0();
+  const { linparData } = useContext(LinparContext);
   const [editData, setEditData] = useState<{
     [key: string]: { [key: string]: unknown };
   }>({
@@ -86,7 +89,7 @@ export function EditPosition() {
     if (!user) return;
     if (positionsEdit.length === 0) {
       setLoading(true);
-      getPositions()
+      getPositions(linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setPositionssEdit(data as IPosition[]);
@@ -126,7 +129,10 @@ export function EditPosition() {
   const rolesPorCargos = () => {
     if (!user) return;
     if (rolesPorCargo.length === 0) {
-      getRolesPorCargo(k_Grupo || "1")
+      getRolesPorCargo(
+        k_Grupo || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setRolesPorCargos(data as Record<string, unknown>[]);
@@ -224,7 +230,11 @@ export function EditPosition() {
 
   const onSubmit = () => {
     setLoading(true);
-    const addnewdata = editPositions(formData, csOptionsChange);
+    const addnewdata = editPositions(
+      formData,
+      linparData.businessUnit.businessUnitPublicCode,
+      csOptionsChange
+    );
     addnewdata
       .then(() => {
         setMessage({

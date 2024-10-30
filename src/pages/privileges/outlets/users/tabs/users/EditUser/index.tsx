@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -6,7 +6,7 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
+import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
 import { getUsers } from "@services/users/getUsers";
 import { getSucursales } from "@services/users/sucursales";
 import { getProyectos } from "@services/users/proyectos";
@@ -23,6 +23,7 @@ import { EditUserUI } from "./interface";
 import { editUsersData } from "./utils";
 import { generalMessage } from "./config/messages.config";
 import { editLinixUserTabsConfig } from "./config/editUsersTabs.config";
+import { LinparContext } from "@src/context/AppContext";
 
 function EditUsers() {
   const [controlModal, setControlModal] = useState({
@@ -94,6 +95,7 @@ function EditUsers() {
   const [selectedTab, setSelectedTab] = useState(
     editLinixUserTabsConfig.generalInformation.id
   );
+  const { linparData } = useContext(LinparContext);
   useEffect(() => {
     linixUsersCaseData();
   }, []);
@@ -116,7 +118,7 @@ function EditUsers() {
     if (!user) return;
     if (usersEdit.length === 0) {
       setLoading(true);
-      getUsers()
+      getUsers(linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setUsersEdit(data as IGeneralInformationUsersForm[]);
@@ -163,7 +165,7 @@ function EditUsers() {
     if (!user) return;
     if (positions.length === 0) {
       setLoading(true);
-      getPositions()
+      getPositions(linparData.businessUnit.businessUnitPublicCode)
         .then((newUsers) => {
           setPositions(newUsers);
         })
@@ -176,7 +178,10 @@ function EditUsers() {
   const branchesData = () => {
     if (!user) return;
     if (branches.length === 0) {
-      getSucursales(k_Usuari || "1")
+      getSucursales(
+        k_Usuari || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setBranches(data as Record<string, unknown>[]);
@@ -215,7 +220,10 @@ function EditUsers() {
   const projectsData = () => {
     if (!user) return;
     if (projects.length === 0) {
-      getProyectos(k_Usuari || "1")
+      getProyectos(
+        k_Usuari || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setProjects(data as Record<string, unknown>[]);
@@ -253,7 +261,10 @@ function EditUsers() {
   const aidBudgetUnitsData = () => {
     if (!user) return;
     if (aidBudgetUnits.length === 0) {
-      getUnidadesPresupuestales(k_Usuari || "1")
+      getUnidadesPresupuestales(
+        k_Usuari || "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
         .then((data) => {
           if (data !== null) {
             setAidBudgetUnits(data as Record<string, unknown>[]);
@@ -292,7 +303,7 @@ function EditUsers() {
   const payrollsData = () => {
     if (!user) return;
     if (payrolls.length === 0) {
-      getNomina(k_Usuari || "1")
+      getNomina(k_Usuari || "1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setPayrolls(data as Record<string, unknown>[]);
@@ -390,7 +401,11 @@ function EditUsers() {
 
   const onSubmit = () => {
     setLoading(true);
-    const addnewdata = editUsersData(formData, csOptionsChange);
+    const addnewdata = editUsersData(
+      formData,
+      linparData.businessUnit.businessUnitPublicCode,
+      csOptionsChange
+    );
     addnewdata
       .then(() => {
         setMessage({

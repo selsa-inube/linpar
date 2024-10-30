@@ -3,7 +3,8 @@ import { IPosition } from "@pages/privileges/outlets/positions/add-position/type
 import { mapEditCargosEntityToApi } from "./mappers";
 
 const editCargos = async (
-  editCargos: IPosition
+  editCargos: IPosition,
+  businessUnitPublicCode: string
 ): Promise<IPosition | undefined> => {
   const requestUrl = `${environment.IPRIVILEGES_LINIX_API_PERSISTENCE_PROCESS_SERVICE}/cargos`;
 
@@ -12,7 +13,7 @@ const editCargos = async (
       method: "PATCH",
       headers: {
         "X-Action": "ModificarCargo",
-        "X-Business-Unit": environment.TEMP_BUSINESS_UNIT,
+        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapEditCargosEntityToApi(editCargos)),

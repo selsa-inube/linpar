@@ -1,14 +1,21 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
-import { Header, Nav, Grid, useMediaQuery } from "@inube/design-system";
-
+import { Grid, useMediaQuery } from "@inube/design-system";
+import { Nav } from "@inubekit/nav";
 import { LinparContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
+import { Header } from "@inubekit/header";
 
-import { navigationConfig, logoutConfig } from "./config/apps.config";
+import {
+  navigationConfig,
+  bussinessUnitOptionTotal,
+  removeBussinessUnit,
+  AppsConfig,
+  userMenu,
+} from "./config/apps.config";
 
 import {
   StyledAppPage,
@@ -30,11 +37,11 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function AppPage() {
-  const { linparData } = useContext(LinparContext);
+  const { businessUnitSigla, linparData } = useContext(LinparContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
-
+  const { actionConfig } = AppsConfig();
   const smallScreen = useMediaQuery("(max-width: 849px)");
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -61,6 +68,24 @@ function AppPage() {
     };
   }, [showUserMenu]);
 
+  const filterNavigationConfig = () => {
+    const businessUnit = JSON.parse(businessUnitSigla);
+    if (
+      bussinessUnitOptionTotal.includes(businessUnit.businessUnitPublicCode)
+    ) {
+      return navigationConfig.items;
+    } else {
+      const DataConfig = { ...navigationConfig.items };
+      removeBussinessUnit.forEach((unit) => {
+        delete DataConfig.sections.administrate.links[
+          unit as keyof typeof DataConfig.sections.administrate.links
+        ];
+      });
+
+      return DataConfig;
+    }
+  };
+
   const handleToggleLogoutModal = () => {
     setShowLogoutModal(!showLogoutModal);
     setShowUserMenu(false);
@@ -74,7 +99,10 @@ function AppPage() {
             portalId="portal"
             navigation={navigationConfig}
             logoURL={renderLogo(linparData.businessUnit.urlLogo)}
-            userName={linparData.user.userName}
+            user={{
+              username: linparData.user.userName,
+            }}
+            menu={userMenu}
           />
         </StyledHeaderContainer>
         {showUserMenu && (
@@ -112,9 +140,9 @@ function AppPage() {
             {!smallScreen && (
               <StyledContainerNav>
                 <Nav
-                  navigation={navigationConfig}
-                  logoutPath={logoutConfig.logoutPath}
-                  logoutTitle={logoutConfig.logoutTitle}
+                  navigation={filterNavigationConfig()}
+                  actions={actionConfig}
+                  footerLogo={linparData.businessManager.urlBrand}
                 />
               </StyledContainerNav>
             )}

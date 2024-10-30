@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormikProps } from "formik";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRolesPorCargo } from "@services/positions/rolesPorCargo";
+import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
 
 import { IGeneralInformationEntry } from "../components/GeneralInformationForm";
 import { stepsAddPosition } from "./config/addPosition.config";
@@ -14,10 +15,10 @@ import {
 import { initalValuesPositions } from "./config/initialValues";
 import { addPositionStepsRules, saveLinixPositions } from "./utils";
 import { AddPositionUI } from "./interface";
-import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 
 import { IMessageState } from "../../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
+import { LinparContext } from "@src/context/AppContext";
 
 export function AddPosition() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -36,6 +37,7 @@ export function AddPosition() {
   >([]);
   const { user } = useAuth0();
   const navigate = useNavigate();
+  const { linparData } = useContext(LinparContext);
 
   const [dataAddPositionLinixForm, setDataAddPositionLinixForm] =
     useState<IFormAddPosition>({
@@ -52,7 +54,7 @@ export function AddPosition() {
   const rolesPorCargo = () => {
     if (!user) return;
     if (rolesPorCargos.length === 0) {
-      getRolesPorCargo("1")
+      getRolesPorCargo("1", linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
             setrolesPorCargo(data as Record<string, unknown>[]);
@@ -155,7 +157,10 @@ export function AddPosition() {
   };
 
   const handleFinishForm = () => {
-    saveLinixPositions(dataAddPositionLinixForm);
+    saveLinixPositions(
+      dataAddPositionLinixForm,
+      linparData.businessUnit.businessUnitPublicCode
+    );
     handleToggleModal();
     setMessage({
       visible: true,

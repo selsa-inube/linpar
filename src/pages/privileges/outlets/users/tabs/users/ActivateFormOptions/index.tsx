@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { EAppearance } from "@src/types/colors.types";
 import { IMessage } from "@src/types/messages.types";
@@ -10,6 +10,7 @@ import {
   activateUsersModal,
 } from "./config/activateUsers.config";
 import { activatePositions } from "./utils";
+import { LinparContext } from "@src/context/AppContext";
 
 export interface IDataActivateOption {
   id: string;
@@ -48,10 +49,14 @@ export function ActivateUsers<T extends IDataActivateOption>(
   const [changeActive, setchangeActive] = useState(
     data.active === "Y" ? true : false
   );
-
+  const { linparData } = useContext(LinparContext);
   const handleActivateUsers = () => {
     setLoading(true);
-    const active = activatePositions(props.data.id, changeActive ? "N" : "Y");
+    const active = activatePositions(
+      props.data.id,
+      changeActive ? "N" : "Y",
+      linparData.businessUnit.businessUnitPublicCode
+    );
     active
       .then(() => {
         setchangeActive(!changeActive);
