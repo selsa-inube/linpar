@@ -30,9 +30,9 @@ import {
 } from "./styles";
 import { BusinessUnitChange } from "@src/components/inputs/BusinessUnitChange";
 import { Icon } from "@inubekit/icon";
-import { useTheme } from "styled-components";
+
 import { IBusinessUnitsPortalStaff } from "@src/services/businessUnitsPortalStaff/types";
-import { ThemeName } from "@src/context/ThemeContext";
+import { ThemeName, useTheme } from "@src/context/ThemeContext";
 
 const renderLogo = (imgUrl: string) => {
   return (
@@ -90,6 +90,8 @@ function AppPage() {
   const handleLogoClick = (businessUnit: IBusinessUnitsPortalStaff) => {
     const selectJSON = JSON.stringify(businessUnit);
     setBusinessUnitSigla(selectJSON);
+
+    navigate("/");
     setSelectedClient(businessUnit.abbreviatedName);
     if (businessUnit.abbreviatedName === "Sistemas Enlínea S.A.") {
       setThemeName("sistemasenlinea");
@@ -97,7 +99,6 @@ function AppPage() {
       setThemeName(businessUnit.abbreviatedName as ThemeName);
     }
     setCollapse(false);
-    navigate("/");
   };
   const filterNavigationConfig = () => {
     const businessUnit = JSON.parse(businessUnitSigla);
