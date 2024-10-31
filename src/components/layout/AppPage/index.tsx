@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { MdLogout } from "react-icons/md";
-import { Outlet } from "react-router-dom";
+import { MdOutlineChevronRight } from "react-icons/md";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Grid, useMediaQuery } from "@inube/design-system";
 import { Nav } from "@inubekit/nav";
 import { LinparContext } from "@context/AppContext";
-import { MenuSection } from "@components/navigation/MenuSection";
-import { MenuUser } from "@components/navigation/MenuUser";
-import { LogoutModal } from "@components/feedback/LogoutModal";
+// import { MenuSection } from "@components/navigation/MenuSection";
+// import { MenuUser } from "@components/navigation/MenuUser";
+// import { LogoutModal } from "@components/feedback/LogoutModal";
 import { Header } from "@inubekit/header";
 
 import {
@@ -24,9 +24,15 @@ import {
   StyledLogo,
   StyledMain,
   StyledContainerNav,
-  StyledMenuContainer,
   StyledHeaderContainer,
+  StyledCollapse,
+  StyledCollapseIcon,
 } from "./styles";
+import { BusinessUnitChange } from "@src/components/inputs/BusinessUnitChange";
+import { Icon } from "@inubekit/icon";
+import { useTheme } from "styled-components";
+import { IBusinessUnitsPortalStaff } from "@src/services/businessUnitsPortalStaff/types";
+import { ThemeName } from "@src/context/ThemeContext";
 
 const renderLogo = (imgUrl: string) => {
   return (
@@ -37,12 +43,25 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function AppPage() {
-  const { businessUnitSigla, linparData } = useContext(LinparContext);
+  const {
+    linparData,
+    businessUnitsToTheStaff,
+    businessUnitSigla,
+    setBusinessUnitSigla,
+  } = useContext(LinparContext);
+  const { setThemeName } = useTheme();
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  // const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { actionConfig } = AppsConfig();
+  const [collapse, setCollapse] = useState(false);
+  const [selectedClient, setSelectedClient] = useState<string>("");
+  const collapseMenuRef = useRef<HTMLDivElement>(null);
+  const businessUnitChangeRef = useRef<HTMLDivElement>(null);
+  const isTablet = useMediaQuery("(max-width: 944px)");
   const smallScreen = useMediaQuery("(max-width: 849px)");
+
+  const navigate = useNavigate();
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -68,6 +87,18 @@ function AppPage() {
     };
   }, [showUserMenu]);
 
+  const handleLogoClick = (businessUnit: IBusinessUnitsPortalStaff) => {
+    const selectJSON = JSON.stringify(businessUnit);
+    setBusinessUnitSigla(selectJSON);
+    setSelectedClient(businessUnit.abbreviatedName);
+    if (businessUnit.abbreviatedName === "Sistemas Enlínea S.A.") {
+      setThemeName("sistemasenlinea");
+    } else {
+      setThemeName(businessUnit.abbreviatedName as ThemeName);
+    }
+    setCollapse(false);
+    navigate("/");
+  };
   const filterNavigationConfig = () => {
     const businessUnit = JSON.parse(businessUnitSigla);
     if (
@@ -86,10 +117,10 @@ function AppPage() {
     }
   };
 
-  const handleToggleLogoutModal = () => {
-    setShowLogoutModal(!showLogoutModal);
-    setShowUserMenu(false);
-  };
+  // const handleToggleLogoutModal = () => {
+  //   setShowLogoutModal(!showLogoutModal);
+  //   setShowUserMenu(false);
+  // };
 
   return (
     <StyledAppPage>
@@ -104,33 +135,34 @@ function AppPage() {
             }}
             menu={userMenu}
           />
-        </StyledHeaderContainer>
-        {showUserMenu && (
-          <StyledMenuContainer ref={userMenuRef}>
-            <MenuUser userName={linparData.user.userName} />
-            <MenuSection
-              sections={[
-                {
-                  links: [
-                    {
-                      title: "Cerrar sesión",
-                      iconBefore: <MdLogout />,
-                      onClick: handleToggleLogoutModal,
-                    },
-                  ],
-                },
-              ]}
-              divider={true}
-            />
-          </StyledMenuContainer>
-        )}
 
-        {showLogoutModal && (
-          <LogoutModal
-            logoutPath="/logout"
-            handleShowBlanket={handleToggleLogoutModal}
-          />
-        )}
+          {businessUnitsToTheStaff.length > 1 && (
+            <>
+              <StyledCollapseIcon
+                $collapse={collapse}
+                onClick={() => setCollapse(!collapse)}
+                $isTablet={isTablet}
+                ref={collapseMenuRef}
+              >
+                <Icon
+                  icon={<MdOutlineChevronRight />}
+                  appearance="primary"
+                  size="24px"
+                  cursorHover
+                />
+              </StyledCollapseIcon>
+              {collapse && (
+                <StyledCollapse ref={businessUnitChangeRef}>
+                  <BusinessUnitChange
+                    businessUnits={businessUnitsToTheStaff}
+                    onLogoClick={handleLogoClick}
+                    selectedClient={selectedClient}
+                  />
+                </StyledCollapse>
+              )}
+            </>
+          )}
+        </StyledHeaderContainer>
 
         <StyledContainer>
           <Grid

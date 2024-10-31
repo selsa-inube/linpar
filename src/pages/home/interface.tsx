@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { MdLogout, MdOutlineDoorFront } from "react-icons/md";
+import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
 import { Header } from "@inubekit/header";
 import { PageTitle } from "@components/PageTitle";
-import { MenuUser } from "@components/navigation/MenuUser";
-import { MenuSection } from "@components/navigation/MenuSection";
-import { LogoutModal } from "@components/feedback/LogoutModal";
+// import { MenuUser } from "@components/navigation/MenuUser";
+// import { MenuSection } from "@components/navigation/MenuSection";
+// import { LogoutModal } from "@components/feedback/LogoutModal";
 import {
   bussinessUnitOptionTotal,
   navigationConfig,
@@ -15,6 +15,8 @@ import { AppCard } from "@components/cards/AppCard";
 import { LinparContext } from "@context/AppContext";
 import { ICardData } from "./types";
 import {
+  StyledCollapse,
+  StyledCollapseIcon,
   StyledContainer,
   StyledContainerCards,
   StyledContainerSection,
@@ -22,9 +24,13 @@ import {
   StyledFooter,
   StyledHeaderContainer,
   StyledLogo,
-  StyledMenuContainer,
   StyledTitle,
 } from "./styles";
+import { Icon } from "@inubekit/icon";
+import { IBusinessUnitsPortalStaff } from "@src/services/businessUnitsPortalStaff/types";
+import { useMediaQuery } from "@inubekit/hooks";
+import { BusinessUnitChange } from "@components/inputs/BusinessUnitChange";
+import { ThemeName, useTheme } from "@src/context/ThemeContext";
 
 interface HomeProps {
   data?: ICardData[];
@@ -40,10 +46,18 @@ const renderLogo = (imgUrl: string) => {
 
 function HomeUI(props: HomeProps) {
   const { data } = props;
-  const { linparData } = useContext(LinparContext);
+  const { linparData, businessUnitsToTheStaff, setBusinessUnitSigla } =
+    useContext(LinparContext);
+  const { setThemeName } = useTheme();
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  // const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
+
+  const [collapse, setCollapse] = useState(false);
+  const [selectedClient, setSelectedClient] = useState<string>("");
+  const collapseMenuRef = useRef<HTMLDivElement>(null);
+  const businessUnitChangeRef = useRef<HTMLDivElement>(null);
+  const isTablet = useMediaQuery("(max-width: 944px)");
 
   const username = linparData.user.userName.split(" ")[0];
   const handleClickOutside = (event: MouseEvent) => {
@@ -70,11 +84,22 @@ function HomeUI(props: HomeProps) {
     };
   }, [showUserMenu]);
 
-  const handleToggleLogoutModal = () => {
-    setShowLogoutModal(!showLogoutModal);
-    setShowUserMenu(false);
-  };
+  // const handleToggleLogoutModal = () => {
+  //   setShowLogoutModal(!showLogoutModal);
+  //   setShowUserMenu(false);
+  // };
 
+  const handleLogoClick = (businessUnit: IBusinessUnitsPortalStaff) => {
+    const selectJSON = JSON.stringify(businessUnit);
+    setBusinessUnitSigla(selectJSON);
+    setSelectedClient(businessUnit.abbreviatedName);
+    if (businessUnit.abbreviatedName === "Sistemas Enlínea S.A.") {
+      setThemeName("sistemasenlinea");
+    } else {
+      setThemeName(businessUnit.abbreviatedName as ThemeName);
+    }
+    setCollapse(false);
+  };
   const filterDataConfig = () => {
     if (
       bussinessUnitOptionTotal.includes(
@@ -98,33 +123,34 @@ function HomeUI(props: HomeProps) {
             }}
             menu={userMenu}
           />
+          {businessUnitsToTheStaff.length > 1 && (
+            <>
+              <StyledCollapseIcon
+                $collapse={collapse}
+                onClick={() => setCollapse(!collapse)}
+                $isTablet={isTablet}
+                ref={collapseMenuRef}
+              >
+                <Icon
+                  icon={<MdOutlineChevronRight />}
+                  appearance="primary"
+                  size="24px"
+                  cursorHover
+                />
+              </StyledCollapseIcon>
+              {collapse && (
+                <StyledCollapse ref={businessUnitChangeRef}>
+                  <BusinessUnitChange
+                    businessUnits={businessUnitsToTheStaff}
+                    onLogoClick={handleLogoClick}
+                    selectedClient={selectedClient}
+                  />
+                </StyledCollapse>
+              )}
+            </>
+          )}
         </StyledHeaderContainer>
-        {showUserMenu && (
-          <StyledMenuContainer ref={userMenuRef}>
-            <MenuUser userName={linparData.user.userName} />
-            <MenuSection
-              sections={[
-                {
-                  links: [
-                    {
-                      title: "Cerrar sesión",
-                      iconBefore: <MdLogout />,
-                      onClick: handleToggleLogoutModal,
-                    },
-                  ],
-                },
-              ]}
-              divider={true}
-            />
-          </StyledMenuContainer>
-        )}
 
-        {showLogoutModal && (
-          <LogoutModal
-            logoutPath="/logout"
-            handleShowBlanket={handleToggleLogoutModal}
-          />
-        )}
         <StyledContainerSection>
           <StyledTitle>
             <PageTitle
