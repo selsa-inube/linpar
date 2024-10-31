@@ -63,6 +63,7 @@ function CompleteInvitation() {
         userName: "",
         invitationId: "",
         password: "",
+        positions: "",
         userAccountId: "",
       },
     },
@@ -79,7 +80,6 @@ function CompleteInvitation() {
   const steps = Object.values(stepsRegisterUserConfig);
   useEffect(() => {
     linixInvitation();
-    console.log("Updated Invitation Data:", invitationData);
   }, []);
 
   useEffect(() => {
@@ -98,7 +98,6 @@ function CompleteInvitation() {
   //   });
   // }, [])
 
-  console.log(invitationId, "invitationId");
   const linixInvitation = async () => {
     if (!user) return;
     if (invitedUsers.length === 0) {
@@ -106,10 +105,8 @@ function CompleteInvitation() {
       getInvitations(linparData.businessUnit.businessUnitPublicCode)
         .then((data) => {
           if (data !== null) {
-            console.log("Datos de invitación:", data);
             setInvitedUsers(data as IInvitationsEntry[]);
             const generalData = data.find((data) => data.id === invitationId);
-            console.log(generalData, "estoy aquiii");
             if (generalData) {
               setInvitationData((prevFormData: IFormCompleteInvitation) => ({
                 ...prevFormData,
@@ -304,46 +301,54 @@ function CompleteInvitation() {
 
     setInvitationData(newCompleteInvitation);
 
-    const changeStepKey = Object.entries(stepsRegisterUserConfig).find(
-      ([, config]) => config.id === currentStep
-    )?.[0];
+    // const changeStepKey = Object.entries(stepsRegisterUserConfig).find(
+    //   ([, config]) => config.id === currentStep
+    // )?.[0];
 
     if (!newCompleteInvitation) return;
 
-    const changeIsVerification = stepId === steps.length;
+    // const changeIsVerification = stepId === steps.length;
 
     setIsCurrentFormValid(
-      changeIsVerification ||
-        newCompleteInvitation[changeStepKey as keyof IFormCompleteInvitation]
-          ?.isValid ||
-        false
+      true
+      //changeIsVerification ||
+      //newCompleteInvitation[changeStepKey as keyof IFormCompleteInvitation]
+      //  ?.isValid ||
+      //false
     );
 
     setCurrentStep(stepId);
 
     document.getElementsByTagName("main")[0].scrollTo(0, 0);
   };
-
-  const handleSubmit = (values: IInvitationsEntry | IAssignmentFormEntry[]) => {
+  const handleSubmit = (values: IAssignmentFormEntry[]) => {
     const stepKey = Object.entries(stepsRegisterUserConfig).find(
       ([, config]) => config.id === currentStep
     )?.[0];
 
     if (stepKey) {
-      setInvitationData({
-        ...invitationData,
-        [stepKey]: { values },
-      });
+      setInvitationData((prevFormData) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
     }
   };
 
+  // const handleSubmit = (values: IInvitationsEntry | IAssignmentFormEntry[]) => {
+  //   const stepKey = Object.entries(stepsRegisterUserConfig).find(
+  //     ([, config]) => config.id === currentStep
+  //   )?.[0];
+
+  //   if (stepKey) {
+  //     setInvitationData({
+  //       ...invitationData,
+  //       [stepKey]: { values },
+  //     });
+  //   }
+  // };
+
   const handleNextStep = () => {
-    console.log("currentStep", currentStep);
-    console.log("steps", steps.length);
     if (currentStep + 1 <= steps.length && isCurrentFormValid) {
-      handleToggleModal();
-    }
-    if (currentStep + 1 <= steps.length) {
       handleStepChange(currentStep + 1);
     }
   };
@@ -378,14 +383,14 @@ function CompleteInvitation() {
     setShowModal(!showModal);
   };
 
-  const handlePreviousStep = () => {
-    handleStepChange(currentStep - 1);
-  };
-  console.log("invitationData", invitationData);
+  // const handlePreviousStep = () => {
+  //   handleStepChange(currentStep - 1);
+  // };
+  console.log(currentStep, "dsadsa");
   return (
     <CompleteInvitationUI
       currentStep={currentStep}
-      handlePreviousStep={handlePreviousStep}
+      handlePreviousStep={handlePrevStep}
       formReferences={formReferences}
       invitationData={invitationData}
       isCurrentFormValid={isCurrentFormValid}

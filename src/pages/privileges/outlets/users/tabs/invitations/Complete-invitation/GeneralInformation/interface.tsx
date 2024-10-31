@@ -29,7 +29,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   const searchData = {
     "Digite el código o nombre de la aplicación:": "",
   };
-  console.log(formik.values.k_Grupo, "Cargos");
+
   return (
     <>
       <Grid
@@ -99,7 +99,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           status={stateValue(formik, "phoneNumber")}
           message={
             stateValue(formik, "phoneNumber") === "invalid" &&
-            formik.errors.phone
+            formik.errors.phoneNumber
           }
           disabled={loading}
           size="compact"
@@ -130,14 +130,14 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             idLabel="k_Grupo"
             nameLabel="n_Grupo"
             onUserSelect={(value) => {
-              handleChangeForm("k_Grupo", value.k_Grupo as string);
+              handleChangeForm("positionsId", value.k_Grupo as string);
             }}
-            selectedId={formik.values.k_Grupo}
+            selectedId={formik.values.positionsId}
             message={
-              stateValue(formik, "positions") === "invalid" &&
+              stateValue(formik, "positionsId") === "invalid" &&
               formik.errors.position
             }
-            status={stateValue(formik, "positions")}
+            status={stateValue(formik, "positionsId")}
             onBlur={formik.handleBlur}
             required
           />

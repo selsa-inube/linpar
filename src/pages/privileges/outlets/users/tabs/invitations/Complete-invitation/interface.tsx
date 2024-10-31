@@ -14,10 +14,7 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import {
-  IFormCompleteInvitation,
-  IInvitationsEntry,
-} from "@services/users/invitation.types";
+import { IFormCompleteInvitation } from "@services/users/invitation.types";
 
 import {
   CompleteInvitationUserConfig,
@@ -78,7 +75,7 @@ interface CompleteInvitationUIProps {
   handleCompleteInvitation: () => void;
   handleNextStep: (step: number) => void;
   handlePrevStep: (step: number) => void;
-  handleSubmit: (values: IInvitationsEntry | IAssignmentFormEntry[]) => void;
+  handleSubmit: (values: IAssignmentFormEntry[]) => void;
   handleToggleModal: () => void;
   handlePreviousStep: () => void;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
@@ -126,8 +123,6 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
         email: "",
         dateStart: "",
       };
-
-  console.log(invitationData.generalInformation.values, "aquiiiiiiiiiii");
 
   return loading ? (
     <StyledContainerLoading>

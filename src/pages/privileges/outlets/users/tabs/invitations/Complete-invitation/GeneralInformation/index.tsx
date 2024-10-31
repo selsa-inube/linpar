@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import { validationMessages } from "@validations/validationMessages";
-import { validationRules } from "@validations/validationRules";
+
 import {
   IInvitation,
   IInvitationsEntry,
@@ -12,11 +12,14 @@ import { IMessageState } from "../../../../types/forms.types";
 import { generalMessage } from "../../../users/EditUser/config/messages.config";
 
 const validationSchema = Yup.object({
-  email: validationRules.email.required(validationMessages.required),
-  phoneNumber: validationRules.phone.required(validationMessages.required),
-  positions: Yup.array()
-    .min(1, validationMessages.required)
-    .required(validationMessages.required),
+  // phoneNumber: validationRules.phone
+  //   .required(validationMessages.required)
+  //   .test(
+  //     "len",
+  //     "El número de teléfono debe tener exactamente 10 dígitos",
+  //     (val) => (val ? val.toString().length === 10 : false)
+  //   ),
+  positionsId: Yup.string().required(validationMessages.required),
 });
 
 interface IGeneralInformationFormProps {
@@ -85,7 +88,7 @@ export const GeneralInformationForm = forwardRef(
         });
       }
     }, [formik.values, onFormValid]);
-
+    console.log(positions, "validPosition");
     return (
       <GeneralInformationFormUI
         loading={loading}
