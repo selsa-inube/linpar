@@ -2,9 +2,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
 import { Header } from "@inubekit/header";
 import { PageTitle } from "@components/PageTitle";
-// import { MenuUser } from "@components/navigation/MenuUser";
-// import { MenuSection } from "@components/navigation/MenuSection";
-// import { LogoutModal } from "@components/feedback/LogoutModal";
+import { Icon } from "@inubekit/icon";
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
+import { useMediaQuery } from "@inubekit/hooks";
+import { BusinessUnitChange } from "@components/inputs/BusinessUnitChange";
+import { ThemeName, useTheme } from "@context/ThemeContext";
 import {
   bussinessUnitOptionTotal,
   navigationConfig,
@@ -26,11 +28,6 @@ import {
   StyledLogo,
   StyledTitle,
 } from "./styles";
-import { Icon } from "@inubekit/icon";
-import { IBusinessUnitsPortalStaff } from "@src/services/businessUnitsPortalStaff/types";
-import { useMediaQuery } from "@inubekit/hooks";
-import { BusinessUnitChange } from "@components/inputs/BusinessUnitChange";
-import { ThemeName, useTheme } from "@src/context/ThemeContext";
 
 interface HomeProps {
   data?: ICardData[];
@@ -50,7 +47,6 @@ function HomeUI(props: HomeProps) {
     useContext(LinparContext);
   const { setThemeName } = useTheme();
   const [showUserMenu, setShowUserMenu] = useState(false);
-  // const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   const [collapse, setCollapse] = useState(false);
@@ -83,11 +79,6 @@ function HomeUI(props: HomeProps) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showUserMenu]);
-
-  // const handleToggleLogoutModal = () => {
-  //   setShowLogoutModal(!showLogoutModal);
-  //   setShowUserMenu(false);
-  // };
 
   const handleLogoClick = (businessUnit: IBusinessUnitsPortalStaff) => {
     const selectJSON = JSON.stringify(businessUnit);

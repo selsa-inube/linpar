@@ -4,11 +4,12 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { Grid, useMediaQuery } from "@inube/design-system";
 import { Nav } from "@inubekit/nav";
 import { LinparContext } from "@context/AppContext";
-// import { MenuSection } from "@components/navigation/MenuSection";
-// import { MenuUser } from "@components/navigation/MenuUser";
-// import { LogoutModal } from "@components/feedback/LogoutModal";
 import { Header } from "@inubekit/header";
+import { BusinessUnitChange } from "@components/inputs/BusinessUnitChange";
+import { Icon } from "@inubekit/icon";
 
+import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
+import { ThemeName, useTheme } from "@context/ThemeContext";
 import {
   navigationConfig,
   bussinessUnitOptionTotal,
@@ -28,11 +29,6 @@ import {
   StyledCollapse,
   StyledCollapseIcon,
 } from "./styles";
-import { BusinessUnitChange } from "@src/components/inputs/BusinessUnitChange";
-import { Icon } from "@inubekit/icon";
-
-import { IBusinessUnitsPortalStaff } from "@src/services/businessUnitsPortalStaff/types";
-import { ThemeName, useTheme } from "@src/context/ThemeContext";
 
 const renderLogo = (imgUrl: string) => {
   return (
@@ -51,7 +47,6 @@ function AppPage() {
   } = useContext(LinparContext);
   const { setThemeName } = useTheme();
   const [showUserMenu, setShowUserMenu] = useState(false);
-  // const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { actionConfig } = AppsConfig();
   const [collapse, setCollapse] = useState(false);
@@ -117,11 +112,6 @@ function AppPage() {
       return DataConfig;
     }
   };
-
-  // const handleToggleLogoutModal = () => {
-  //   setShowLogoutModal(!showLogoutModal);
-  //   setShowUserMenu(false);
-  // };
 
   return (
     <StyledAppPage>
