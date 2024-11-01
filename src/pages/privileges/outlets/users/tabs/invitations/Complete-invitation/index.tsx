@@ -1,34 +1,29 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
-
-// import { getAll } from "@mocks/utils/dataMock.service";
-import { EMessageType } from "@src/types/messages.types";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   IFormCompleteInvitation,
   IInvitation,
   IInvitationsEntry,
 } from "@services/users/invitation.types";
-
-import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
-
-// import { completeInvitationStepsRules } from "./utils"; // completeInvitationData
-import { IFormCompleteInvitationRef } from "./types";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
-import { useAuth0 } from "@auth0/auth0-react";
-
-import { CompleteInvitationUI } from "./interface";
 import { getPositions } from "@services/positions/getPositons";
-// import { IPosition } from "@src/pages/privileges/outlets/positions/add-position/types";
-import { getSucursales } from "@src/services/users/sucursales";
-
-import { getProyectos } from "@src/services/users/proyectos";
-import { getUnidadesPresupuestales } from "@src/services/users/unidadesPresupuestales";
-import { getNomina } from "@src/services/users/nomina";
-import { completeInvitationStepsRules } from "./utils";
-import { getInvitations } from "@src/services/invitations/getInvitations";
-import { dataToAssignmentFormEntry } from "@src/pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
-import { LinparContext } from "@src/context/AppContext";
+import { getSucursales } from "@services/users/sucursales";
+import { getProyectos } from "@services/users/proyectos";
+import { getUnidadesPresupuestales } from "@services/users/unidadesPresupuestales";
+import { getNomina } from "@services/users/nomina";
+import { completeInvitationData, completeInvitationStepsRules } from "./utils";
+import { getInvitations } from "@services/invitations/getInvitations";
+import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
+import { LinparContext } from "@context/AppContext";
+import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
+import { IFormCompleteInvitationRef } from "./types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
+import { CompleteInvitationUI } from "./interface";
+import { generalMessage } from "../../users/EditUser/config/messages.config";
 
 function CompleteInvitation() {
   const { invitationId } = useParams();
@@ -46,7 +41,7 @@ function CompleteInvitation() {
   const [showModal, setShowModal] = useState(false);
   const [payrolls, setPayrolls] = useState<Record<string, unknown>[]>([]);
   const [branches, setBranches] = useState<Record<string, unknown>[]>([]);
-  // const [isAddRoleFormValid, setIsAddRoleFormValid] = useState(false);
+
   const [positions, setPositions] = useState<Record<string, unknown>[]>([]);
   const [projects, setProjects] = useState<Record<string, unknown>[]>([]);
   const [aidBudgetUnits, setAidBudgetUnits] = useState<
@@ -64,6 +59,7 @@ function CompleteInvitation() {
         invitationId: "",
         password: "",
         positions: "",
+        positionsId: "",
         userAccountId: "",
       },
     },
@@ -71,11 +67,15 @@ function CompleteInvitation() {
     proyectsEvents: { isValid: true, values: [] },
     aidBudgetUnits: { isValid: true, values: [] },
     payrolls: { isValid: true, values: [] },
+    payrollPayments: { isValid: true, values: [] },
   };
 
   const [invitationData, setInvitationData] = useState<IFormCompleteInvitation>(
     initialGeneralFormState
   );
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
   const { linparData } = useContext(LinparContext);
   const steps = Object.values(stepsRegisterUserConfig);
   useEffect(() => {
@@ -89,14 +89,6 @@ function CompleteInvitation() {
     aidBudgetUnitsData();
     payrollsData();
   }, []);
-
-  // useEffect(() => {
-  //   Promise.all([
-  //     branchesData()
-  //   ]).then(() => {
-  //     setLoading(false);
-  //   });
-  // }, [])
 
   const linixInvitation = async () => {
     if (!user) return;
@@ -301,21 +293,9 @@ function CompleteInvitation() {
 
     setInvitationData(newCompleteInvitation);
 
-    // const changeStepKey = Object.entries(stepsRegisterUserConfig).find(
-    //   ([, config]) => config.id === currentStep
-    // )?.[0];
-
     if (!newCompleteInvitation) return;
 
-    // const changeIsVerification = stepId === steps.length;
-
-    setIsCurrentFormValid(
-      true
-      //changeIsVerification ||
-      //newCompleteInvitation[changeStepKey as keyof IFormCompleteInvitation]
-      //  ?.isValid ||
-      //false
-    );
+    setIsCurrentFormValid(true);
 
     setCurrentStep(stepId);
 
@@ -334,19 +314,6 @@ function CompleteInvitation() {
     }
   };
 
-  // const handleSubmit = (values: IInvitationsEntry | IAssignmentFormEntry[]) => {
-  //   const stepKey = Object.entries(stepsRegisterUserConfig).find(
-  //     ([, config]) => config.id === currentStep
-  //   )?.[0];
-
-  //   if (stepKey) {
-  //     setInvitationData({
-  //       ...invitationData,
-  //       [stepKey]: { values },
-  //     });
-  //   }
-  // };
-
   const handleNextStep = () => {
     if (currentStep + 1 <= steps.length && isCurrentFormValid) {
       handleStepChange(currentStep + 1);
@@ -357,39 +324,43 @@ function CompleteInvitation() {
     handleStepChange(currentStep - 1);
   };
 
-  // const CompleteInvitation = async () => {
-  //   await updateItemData({
-  //     key: "customerId",
-  //     nameDB: "linix-invitations",
-  //     identifier: invitationData.generalInformation.values?.customerId!,
-  //     editData: completeInvitationData(invitationData),
-  //   });
-  // };
-
   const handleCompleteInvitation = () => {
-    if (invitationData.generalInformation.values) {
-      CompleteInvitation();
-      navigate("/privileges/users", {
-        state: {
-          messageType: EMessageType.SUCCESS,
-          username: invitationData.generalInformation.values.userName,
-          tab: "privileges-invitations",
-        },
+    const addnewdata = completeInvitationData(
+      invitationData,
+      linparData.businessUnit.businessUnitPublicCode
+    );
+    addnewdata
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
       });
-    }
+    handleToggleModal();
+  };
+
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+    navigate("/privileges/users");
   };
 
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
 
-  // const handlePreviousStep = () => {
-  //   handleStepChange(currentStep - 1);
-  // };
-  console.log(currentStep, "dsadsa");
   return (
     <CompleteInvitationUI
       currentStep={currentStep}
+      message={message}
+      onCloseSectionMessage={handleCloseSectionMessage}
       handlePreviousStep={handlePrevStep}
       formReferences={formReferences}
       invitationData={invitationData}
@@ -405,7 +376,6 @@ function CompleteInvitation() {
       handleCompleteInvitation={handleCompleteInvitation}
       setIsCurrentFormValid={setIsCurrentFormValid}
       setCurrentStep={setCurrentStep}
-      // isAddRoleFormValid={isAddRoleFormValid}
     />
   );
 }

@@ -31,6 +31,7 @@ export interface IFormCompleteInvitation {
   proyectsEvents: { isValid: boolean; values: IOptionInitialiceEntry[] };
   aidBudgetUnits: { isValid: boolean; values: IOptionInitialiceEntry[] };
   payrolls: { isValid: boolean; values: IOptionInitialiceEntry[] };
+  payrollPayments: { isValid: boolean; values: IOptionInitialiceEntry[] };
 }
 
 export interface IFormCompleteInvitationRef {

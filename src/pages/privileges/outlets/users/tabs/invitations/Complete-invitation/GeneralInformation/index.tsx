@@ -12,13 +12,6 @@ import { IMessageState } from "../../../../types/forms.types";
 import { generalMessage } from "../../../users/EditUser/config/messages.config";
 
 const validationSchema = Yup.object({
-  // phoneNumber: validationRules.phone
-  //   .required(validationMessages.required)
-  //   .test(
-  //     "len",
-  //     "El número de teléfono debe tener exactamente 10 dígitos",
-  //     (val) => (val ? val.toString().length === 10 : false)
-  //   ),
   positionsId: Yup.string().required(validationMessages.required),
 });
 
@@ -40,7 +33,6 @@ export const GeneralInformationForm = forwardRef(
     const {
       initialValues,
       positions,
-      // handleSubmit,
       onFormValid,
       onHasChanges,
       onFormValueChange,
@@ -68,7 +60,6 @@ export const GeneralInformationForm = forwardRef(
         ...formik.values,
         [name]: value,
       };
-      console.log("eeeee", name, value);
       if (onHasChanges) onHasChanges(hasChanges(formikValues));
       formik.setFieldValue(name, value).then(() => {
         formik.validateForm().then((errors) => {
@@ -88,7 +79,7 @@ export const GeneralInformationForm = forwardRef(
         });
       }
     }, [formik.values, onFormValid]);
-    console.log(positions, "validPosition");
+
     return (
       <GeneralInformationFormUI
         loading={loading}

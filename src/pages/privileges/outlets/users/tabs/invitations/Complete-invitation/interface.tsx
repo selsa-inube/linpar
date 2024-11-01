@@ -15,7 +15,7 @@ import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IFormCompleteInvitation } from "@services/users/invitation.types";
-
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
@@ -31,10 +31,11 @@ import {
   IStep,
   titleButtonTextAssited,
 } from "./types";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { VerificationAddInvitation } from "../verificationForm";
-
-// import { VerificationAddInvitation } from "../verificationForm";
 
 export interface IVerificationData {
   id: string;
@@ -69,6 +70,7 @@ interface CompleteInvitationUIProps {
   invitationData: IFormCompleteInvitation;
   isCurrentFormValid: boolean;
   loading: boolean;
+  message: IMessageState;
   positions: Record<string, unknown>[];
   showModal: boolean;
   steps: IStep[];
@@ -81,12 +83,14 @@ interface CompleteInvitationUIProps {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   isAddRoleFormValid?: boolean;
+  onCloseSectionMessage: () => void;
 }
 
 function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const {
     handlePreviousStep,
-    // isAddRoleFormValid,
+    onCloseSectionMessage,
+    message,
     currentStep,
     formReferences,
     isCurrentFormValid,
@@ -227,6 +231,13 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               >
                 {currentStep === steps.length ? "Enviar" : "Siguiente"}
               </Button>
+              {message.visible && (
+                <RenderMessage
+                  message={message}
+                  handleCloseMessage={onCloseSectionMessage}
+                  onMessageClosed={onCloseSectionMessage}
+                />
+              )}
             </Stack>
           </>
         ) : (
