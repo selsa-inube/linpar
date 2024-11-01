@@ -1,6 +1,5 @@
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
-  Button,
   Stack,
   Textfield,
   Icon,
@@ -14,6 +13,10 @@ import { Menu } from "@components/navigation/Menu";
 import { IOption } from "@components/navigation/Menu/types";
 import { Fieldset } from "@components/inputs/Fieldset";
 
+import { Toggle } from "@inubekit/toggle";
+import { Label } from "@inubekit/label";
+import { Button } from "@inubekit/button";
+
 import {
   StyledEntriesContainer,
   StyledForm,
@@ -21,8 +24,6 @@ import {
   StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
-import { Toggle } from "@inubekit/toggle";
-import { Label } from "@inubekit/label";
 
 interface AssignmentFormUIProps {
   title: string;

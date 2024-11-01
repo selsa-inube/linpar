@@ -3,7 +3,6 @@ import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import {
   Breadcrumbs,
-  Button,
   Icon,
   Stack,
   Textfield,
@@ -15,7 +14,7 @@ import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-
+import { Button } from "@inubekit/button";
 import {
   actionsConfigPosition,
   PositionsBreakPointsConfig,

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button } from "@inubekit/button";
 import {
   Stack,
-  Tabs,
   useMediaQueries,
   inube,
   Breadcrumbs,
@@ -16,6 +15,7 @@ import {
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { Tabs } from "@inubekit/tabs";
 import {
   IFormAddUsers,
   IGeneralInformationUsersForm,

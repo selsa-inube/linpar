@@ -11,10 +11,11 @@ export const StyledContainerAssisted = styled.div<IStyledContainerAssisted>`
       $cursorDisabled ? "not-allowed" : "pointer"};
   }
   & div > div:nth-child(3) button div p,
-  & div > div:nth-child(3) button div figure {
+  & div > div:nth-child(3) button div figure,
+  & div > div:nth-child(3) button div svg {
     color: ${({ $cursorDisabled }) =>
       $cursorDisabled
         ? inube.color.text.dark.disabled
-        : inube.color.text.primary.regular};
+        : inube.color.text.warning.regular};
   }
 `;
