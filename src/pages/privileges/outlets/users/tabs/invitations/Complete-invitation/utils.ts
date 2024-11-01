@@ -1,5 +1,5 @@
-import { addLinixCompletion } from "@services/invitations/completarInvitacion";
 import { IUser } from "@services/users/invitation.types";
+import { addLinixCompletion } from "@services/invitations/completarInvitacion";
 import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
 import { IFormCompleteInvitation, IFormCompleteInvitationRef } from "./types";
 
