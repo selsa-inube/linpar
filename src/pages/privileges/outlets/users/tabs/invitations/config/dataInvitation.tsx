@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
-import { Stack, Icon } from "@inube/design-system";
+import { Icon } from "@inube/design-system";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 
@@ -10,6 +10,7 @@ import { ResendInvitation } from "../ResendInvitation";
 import { deleteInvitationModal } from "../DeleteInvitation/config/deleteInvitation.config";
 import { DeleteLinixInvitation } from "../DeleteInvitation";
 import { IDeleteForMessage } from "../../users/types";
+import { Stack } from "@inubekit/stack";
 
 export const actionsConfigInvitation = (
   isHovered: boolean,
@@ -29,11 +30,7 @@ export const actionsConfigInvitation = (
         status: string;
       }) => (
         <Link to={`complete-invitation/${invitationId}`}>
-          <Stack
-            justifyContent="space-around"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
+          <Stack justifyContent="space-around">
             <Icon
               appearance={isHovered ? "primary" : "dark"}
               parentHover={isHovered ? true : false}

@@ -3,7 +3,6 @@ import { MdPersonOutline } from "react-icons/md";
 import {
   Assisted,
   Breadcrumbs,
-  Stack,
   useMediaQuery,
   Button,
   inube,
@@ -35,6 +34,7 @@ import {
 import { IAssignmentFormEntry } from "../../../types/forms.types";
 
 import { VerificationAddInvitation } from "../verificationForm";
+import { Stack } from "@inubekit/stack";
 
 export interface IVerificationData {
   id: string;

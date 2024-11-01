@@ -4,7 +4,6 @@ import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   Breadcrumbs,
   Icon,
-  Stack,
   Textfield,
   useMediaQuery,
   Table,
@@ -25,6 +24,7 @@ import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { IDeleteForMessage } from "./types";
+import { Stack } from "@inubekit/stack";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -65,7 +65,7 @@ export function PositionsUI(props: IPositionsProps) {
     <Stack
       direction="column"
       width="-webkit-fill-available"
-      padding={smallScreen ? "s300" : "s400 s800"}
+      padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s300} direction="column">
