@@ -9,13 +9,12 @@ import {
 
 import {
   Button,
-  Grid,
   Stack,
   Text,
   Textfield,
   useMediaQuery,
 } from "@inube/design-system";
-
+import { Grid } from "@inubekit/grid";
 import { Fieldset } from "@components/inputs/Fieldset";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import {

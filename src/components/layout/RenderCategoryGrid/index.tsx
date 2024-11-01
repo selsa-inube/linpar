@@ -1,7 +1,8 @@
-import { Stack, Text, useMediaQuery, Grid, inube } from "@inube/design-system";
+import { Stack, Text, useMediaQuery, inube } from "@inube/design-system";
 import { StyledGridContainer, StyledTokenColorCardContainer } from "./styles";
 import { TokenColorCard } from "@components/cards/TokenColorCard";
 import { ThemeProvider } from "styled-components";
+import { Grid } from "@inubekit/grid";
 
 interface renderCategoryGridProps {
   autoFlow?: string;
@@ -21,7 +22,6 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
   const {
     autoColumns = "unset",
     autoRows = "unset",
-    autoFlow = "row",
     categories,
     gap = "s150",
     hasBackground = false,
@@ -59,7 +59,6 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
             gap={"s050"}
             autoColumns={autoColumns}
             autoRows={autoRows}
-            autoFlow={autoFlow}
           >
             {Object.entries(tokens).map(([tokenName]) => (
               <StyledTokenColorCardContainer
@@ -87,7 +86,6 @@ function RenderCategoryGrid(props: renderCategoryGridProps) {
       gap={gap}
       autoColumns={autoColumns}
       autoRows={autoRows}
-      autoFlow={autoFlow}
     >
       {Object.entries(categories).map(([tokenName]) => (
         <Stack key={tokenName} gap="16px" direction="column">

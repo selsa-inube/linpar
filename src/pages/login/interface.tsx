@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
-import { Grid, Stack, Text, useMediaQueries } from "@inube/design-system";
-
+import { Stack, Text, useMediaQueries } from "@inube/design-system";
+import { LinparContext } from "@context/AppContext";
+import { Grid } from "@inubekit/grid";
 import {
   StyledWelcomeContainer,
   StyledOutletContainer,
   StyledImage,
 } from "./styles";
-import { LinparContext } from "@src/context/AppContext";
 
 function LoginUI() {
   const {

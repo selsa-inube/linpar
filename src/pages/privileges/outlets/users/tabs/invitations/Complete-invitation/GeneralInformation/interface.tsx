@@ -1,7 +1,8 @@
 import { MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Stack, Textfield, Grid, useMediaQuery } from "@inube/design-system";
+import { Stack, Textfield, useMediaQuery } from "@inube/design-system";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
+import { Grid } from "@inubekit/grid";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -32,7 +33,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     <>
       <Grid
         templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
-        gap={"s300"}
+        gap="24px"
         margin={"s0 s0 s400 s0"}
         width={"100%"}
         autoRows="unset"

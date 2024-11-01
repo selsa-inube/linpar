@@ -3,7 +3,6 @@ import {
   Stack,
   Textfield,
   Icon,
-  Grid,
   useMediaQuery,
   inube,
 } from "@inube/design-system";
@@ -16,6 +15,7 @@ import { Fieldset } from "@components/inputs/Fieldset";
 import { Toggle } from "@inubekit/toggle";
 import { Label } from "@inubekit/label";
 import { Button } from "@inubekit/button";
+import { Grid } from "@inubekit/grid";
 
 import {
   StyledEntriesContainer,

@@ -1,7 +1,8 @@
 import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Stack, Text, Icon, Grid, useMediaQuery } from "@inube/design-system";
+import { Stack, Text, Icon, useMediaQuery } from "@inube/design-system";
 import { Select } from "@inubekit/select";
+import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IClientServerButton } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";

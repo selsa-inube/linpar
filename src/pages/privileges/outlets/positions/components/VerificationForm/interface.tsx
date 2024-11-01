@@ -1,7 +1,8 @@
 import { MdArrowBack } from "react-icons/md";
-import { Button, Grid, Stack, inube } from "@inube/design-system";
+import { Button, Stack, inube } from "@inube/design-system";
 
 import { BoxAttribute } from "@components/data/BoxAttirbute";
+import { Grid } from "@inubekit/grid";
 import { Accordion } from "@components/data/Accordion";
 import { IDataVerificationStep } from "./types";
 
