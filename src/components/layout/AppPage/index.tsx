@@ -1,18 +1,20 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { MdLogout } from "react-icons/md";
 import { Outlet } from "react-router-dom";
-import { Header, Grid, useMediaQuery } from "@inube/design-system";
+import { Grid, useMediaQuery } from "@inube/design-system";
 import { Nav } from "@inubekit/nav";
 import { LinparContext } from "@context/AppContext";
 import { MenuSection } from "@components/navigation/MenuSection";
 import { MenuUser } from "@components/navigation/MenuUser";
 import { LogoutModal } from "@components/feedback/LogoutModal";
+import { Header } from "@inubekit/header";
 
 import {
   navigationConfig,
-  logoutConfig,
   bussinessUnitOptionTotal,
   removeBussinessUnit,
+  AppsConfig,
+  userMenu,
 } from "./config/apps.config";
 
 import {
@@ -39,7 +41,7 @@ function AppPage() {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
-
+  const { actionConfig } = AppsConfig();
   const smallScreen = useMediaQuery("(max-width: 849px)");
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -71,9 +73,9 @@ function AppPage() {
     if (
       bussinessUnitOptionTotal.includes(businessUnit.businessUnitPublicCode)
     ) {
-      return navigationConfig;
+      return navigationConfig.items;
     } else {
-      const DataConfig = { ...navigationConfig };
+      const DataConfig = { ...navigationConfig.items };
       removeBussinessUnit.forEach((unit) => {
         delete DataConfig.sections.administrate.links[
           unit as keyof typeof DataConfig.sections.administrate.links
@@ -97,7 +99,10 @@ function AppPage() {
             portalId="portal"
             navigation={navigationConfig}
             logoURL={renderLogo(linparData.businessUnit.urlLogo)}
-            userName={linparData.user.userName}
+            user={{
+              username: linparData.user.userName,
+            }}
+            menu={userMenu}
           />
         </StyledHeaderContainer>
         {showUserMenu && (
@@ -136,8 +141,7 @@ function AppPage() {
               <StyledContainerNav>
                 <Nav
                   navigation={filterNavigationConfig()}
-                  logoutPath={logoutConfig.logoutPath}
-                  logoutTitle={logoutConfig.logoutTitle}
+                  actions={actionConfig}
                   footerLogo={linparData.businessManager.urlBrand}
                 />
               </StyledContainerNav>

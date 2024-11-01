@@ -5,6 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { ErrorPage } from "@components/layout/ErrorPage";
@@ -24,6 +25,7 @@ import { LoginRoutes } from "@routes/login";
 import { PrivilegesRoutes } from "@routes/privileges";
 
 import { CatalogsRoutes } from "./routes/catalogs";
+import { ThemeProviderWrapper } from "./context/ThemeContext";
 
 function LogOut() {
   localStorage.clear();
@@ -154,8 +156,10 @@ function App() {
 
   return (
     <LinparContextProvider>
-      <GlobalStyles />
-      <RouterProvider router={router} />
+      <ThemeProviderWrapper>
+        <GlobalStyles />
+        <RouterProvider router={router} />
+      </ThemeProviderWrapper>
     </LinparContextProvider>
   );
 }

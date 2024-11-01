@@ -10,16 +10,6 @@ const StyledAppMenuCard = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) =>
     theme?.color?.stroke.dark.regular || inube.palette.neutral.N900};
-  :hover {
-    & svg {
-      color: ${({ theme }) =>
-        theme?.color?.stroke.primary.regular || inube.palette.blue.B400};
-    }
-    & picture {
-      background-color: ${({ theme }) =>
-        theme?.color?.surface.gray.regular || inube.palette.neutral.N30};
-    }
-  }
 
   @media (max-width: 580px) {
     display: flex;
