@@ -1,9 +1,10 @@
 import { MdClear } from "react-icons/md";
-import { Stack, Text, Icon, inube } from "@inube/design-system";
+import { ThemeProvider } from "styled-components";
 import { useMediaQuery } from "@inubekit/hooks";
+import { Text, Icon, inube } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { StyledPopup } from "./styles";
 import { PopupProps } from "./types";
-import { ThemeProvider } from "styled-components";
 
 const Popup = (props: PopupProps) => {
   const { title, closeModal, children, fieldsetRef } = props;

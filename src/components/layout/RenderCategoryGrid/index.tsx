@@ -1,8 +1,9 @@
-import { Stack, Text, Grid, inube } from "@inube/design-system";
-import { useMediaQuery } from "@inubekit/hooks";
-import { StyledGridContainer, StyledTokenColorCardContainer } from "./styles";
-import { TokenColorCard } from "@components/cards/TokenColorCard";
 import { ThemeProvider } from "styled-components";
+import { Stack } from "@inubekit/stack";
+import { Text, Grid, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
+import { TokenColorCard } from "@components/cards/TokenColorCard";
+import { StyledGridContainer, StyledTokenColorCardContainer } from "./styles";
 
 interface renderCategoryGridProps {
   autoFlow?: string;

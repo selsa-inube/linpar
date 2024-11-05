@@ -1,6 +1,8 @@
 import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Stack, Text, Icon, Grid } from "@inube/design-system";
+
+import { Text, Icon, Grid } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Select } from "@inubekit/select";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
@@ -39,7 +41,7 @@ function RenderFormFields(
       <Stack
         direction="column"
         justifyContent="space-between"
-        padding="s050 s0"
+        padding="4px 0px"
       >
         <StyledSelectContainer>
           <Select

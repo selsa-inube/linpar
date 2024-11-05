@@ -2,8 +2,10 @@ import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
-import { Stack, Text, Blanket, Textfield, Icon } from "@inube/design-system";
+
+import { Text, Blanket, Textfield, Icon } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
+import { Stack } from "@inubekit/stack";
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
 

@@ -32,9 +32,14 @@ function LinparContextProvider(props: LinparProviderProps) {
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") || ""
   );
+
   const [businessUnitsToTheStaff, setBusinessUnitsToTheStaff] = useState<
     IBusinessUnitsPortalStaff[]
-  >([]);
+  >(() => {
+    const savedBusinessUnits = localStorage.getItem("businessUnitsToTheStaff");
+    return savedBusinessUnits ? JSON.parse(savedBusinessUnits) : [];
+  });
+
   let businessUnit: BusinessUnit | null = null;
   try {
     businessUnit = JSON.parse(businessUnitSigla || "{}") as BusinessUnit;
@@ -143,6 +148,13 @@ function LinparContextProvider(props: LinparProviderProps) {
       }));
     }
   }, [businessUnitSigla]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "businessUnitsToTheStaff",
+      JSON.stringify(businessUnitsToTheStaff)
+    );
+  }, [businessUnitsToTheStaff]);
 
   const linparContext = useMemo(
     () => ({

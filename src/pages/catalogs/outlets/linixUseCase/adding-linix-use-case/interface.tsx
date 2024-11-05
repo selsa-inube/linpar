@@ -1,16 +1,10 @@
 import { useContext } from "react";
-import {
-  Assisted,
-  Breadcrumbs,
-  Stack,
-  inube,
-  Button,
-} from "@inube/design-system";
+import { Assisted, Breadcrumbs, inube, Button } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-
+import { Stack } from "@inubekit/stack";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
@@ -220,7 +214,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
       {loading ? (
         <LoadingApp />
       ) : (
-        <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+        <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
           <Stack gap={inube.spacing.s600} direction="column">
             <Stack gap={inube.spacing.s400} direction="column">
               <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
