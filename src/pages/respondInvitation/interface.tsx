@@ -11,11 +11,10 @@ import {
   Button,
   Grid,
   Stack,
-  Text,
   Textfield,
   useMediaQuery,
 } from "@inube/design-system";
-
+import { Text } from "@inubekit/text";
 import { Fieldset } from "@components/inputs/Fieldset";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import {

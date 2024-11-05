@@ -1,17 +1,17 @@
 import { createPortal } from "react-dom";
+import { SetStateAction, useState } from "react";
 import { MdClear } from "react-icons/md";
+import { Text } from "@inubekit/text";
 import {
   Stack,
-  Text,
   Blanket,
   useMediaQuery,
   Textfield,
   Icon,
 } from "@inube/design-system";
+import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
-import { SetStateAction, useState } from "react";
-import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 
 const InteractiveModal = ({
   actions = [],

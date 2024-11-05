@@ -1,7 +1,8 @@
 import { MdChevronLeft } from "react-icons/md";
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button, Text, Grid } from "@inube/design-system";
+import { Button, Grid } from "@inube/design-system";
+import { Text } from "@inubekit/text";
 import { useMediaQueries } from "@inubekit/hooks";
 import selsaLogo from "@assets/images/selsa.png";
 import errorImage from "@assets/images/timeout.png";
