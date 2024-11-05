@@ -1,6 +1,10 @@
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import { Stack, Icon, Grid, useMediaQuery, inube } from "@inube/design-system";
+
+import { Icon, Grid, useMediaQuery, inube } from "@inube/design-system";
+
 import { Text } from "@inubekit/text";
+import { Input } from "@inubekit/input";
+import { Stack } from "@inubekit/stack";
 
 import { Menu } from "@components/navigation/Menu";
 import { IOption } from "@components/navigation/Menu/types";
@@ -17,7 +21,6 @@ import {
   StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
-import { Input } from "@inubekit/input";
 
 interface AssignmentFormUIProps {
   title: string;

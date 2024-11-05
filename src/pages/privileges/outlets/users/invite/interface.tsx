@@ -1,22 +1,23 @@
 import { MdOutlineShortcut } from "react-icons/md";
+import { useState } from "react";
 import { FormikValues } from "formik";
 import {
   Breadcrumbs,
   Button,
   Grid,
   SectionMessage,
-  Stack,
   useMediaQueries,
 } from "@inube/design-system";
-import { useState } from "react";
+
 import { EMessageType } from "@src/types/messages.types";
+import { Input } from "@inubekit/input";
+import { Stack } from "@inubekit/stack";
 import { PageTitle } from "@components/PageTitle";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledContainerLoading, StyledMessageContainer } from "./styles";
-import { Input } from "@inubekit/input";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -111,7 +112,7 @@ function InviteUI(props: InviteUIProps) {
       <LoadingApp />
     </StyledContainerLoading>
   ) : (
-    <Stack direction="column" padding="s400 s800">
+    <Stack direction="column" padding="32px 64px">
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={usersInvitationsConfig[0].crumbs} />

@@ -1,10 +1,10 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-
-import { Breadcrumbs, Icon, Stack } from "@inube/design-system";
+import { Breadcrumbs, Icon } from "@inube/design-system";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Input } from "@inubekit/input";
 import { Button } from "@inubekit/button";
+import { Stack } from "@inubekit/stack";
 import { Tabs } from "@inubekit/tabs";
 import { useMediaQueries } from "@inubekit/hooks";
 import { Menu } from "@components/navigation/Menu";
@@ -54,7 +54,7 @@ export function UsersUI(props: UsersUIProps) {
       <Stack
         direction="column"
         width="-webkit-fill-available"
-        padding={smallScreen ? "s300" : "s400 s800"}
+        padding={smallScreen ? "24px" : "32px 64px"}
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">

@@ -7,7 +7,9 @@ import {
   MdShortcut,
 } from "react-icons/md";
 
-import { Button, Grid, Stack, Text, useMediaQuery } from "@inube/design-system";
+import { Button, Grid, Text, useMediaQuery } from "@inube/design-system";
+import { Input } from "@inubekit/input";
+import { Stack } from "@inubekit/stack";
 
 import { Fieldset } from "@components/inputs/Fieldset";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
@@ -16,7 +18,6 @@ import {
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
-import { Input } from "@inubekit/input";
 
 const renderHead = (
   bussinessData: IBusinessUnitsPortalStaff,

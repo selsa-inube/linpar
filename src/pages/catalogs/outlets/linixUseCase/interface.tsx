@@ -5,7 +5,6 @@ import {
   Breadcrumbs,
   Button,
   Icon,
-  Stack,
   useMediaQuery,
   inube,
 } from "@inube/design-system";
@@ -18,6 +17,7 @@ import { TableLinpar } from "@src/components/data/TableLinpar";
 import { IEntry } from "@src/components/data/TableLinpar/types";
 import { Input } from "@inubekit/input";
 
+import { Stack } from "@inubekit/stack";
 import { IDeleteForMessage, UseCase } from "./types";
 import {
   actionsConfigLinixUseCase,
@@ -80,7 +80,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     <Stack
       direction="column"
       width="-webkit-fill-available"
-      padding={smallScreen ? "s300" : "s400 s800"}
+      padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s300} direction="column">

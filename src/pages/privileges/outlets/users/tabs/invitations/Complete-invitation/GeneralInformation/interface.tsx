@@ -1,14 +1,19 @@
 import { MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Stack, Grid, useMediaQuery } from "@inube/design-system";
-import { SearchUserCard } from "@components/cards/SearchUserCard";
+
 import { Input } from "@inubekit/input";
+import { SearchUserCard } from "@components/cards/SearchUserCard";
+import { Stack } from "@inubekit/stack";
+import { Grid, useMediaQuery } from "@inube/design-system";
+
+import { IMessageState } from "../../../../types/forms.types";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   loading: boolean;
   handleChangeForm: (name: string, value: string) => void;
-  positionsOptions: Record<string, unknown>[];
+  positions: Record<string, unknown>[];
+  message: IMessageState;
 }
 
 function stateValue(
@@ -21,7 +26,7 @@ function stateValue(
 }
 
 function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
-  const { formik, loading, positionsOptions, handleChangeForm } = props;
+  const { formik, loading, positions, handleChangeForm } = props;
 
   const mediaQuerie = "(max-width: 744px)";
   const matches = useMediaQuery(mediaQuerie);
@@ -97,7 +102,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           status={stateValue(formik, "phoneNumber")}
           message={
             stateValue(formik, "phoneNumber") === "invalid" &&
-            formik.errors.phone
+            formik.errors.phoneNumber
           }
           disabled={loading}
           size="compact"
@@ -111,34 +116,30 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
 
         <Stack direction="column" gap="8px">
           <SearchUserCard
-            id="position"
+            id="positions"
             label="Cargo"
             placeholder="Seleccione una opción"
-            name="position"
+            name="positions"
             title="Búsqueda"
             infoTitle="Opción de Cargo"
             idModal="searchField"
             nameModal="searchField"
             labelModal="Digite la opción a buscar."
             placeholderModal="Digite el código o nombre del cargo."
-            userData={positionsOptions}
+            userData={positions}
             searchFieldData={searchData}
             onReset={() => {}}
             idLabel="k_Grupo"
             nameLabel="n_Grupo"
             onUserSelect={(value) => {
-              formik.setValues({
-                ...formik.values,
-                positionId: value.k_Grupo,
-                position: value.n_Grupo,
-              });
+              handleChangeForm("positionsId", value.k_Grupo as string);
             }}
-            selectedId={formik.values.positionId}
+            selectedId={formik.values.positionsId}
             message={
-              stateValue(formik, "position") === "invalid" &&
+              stateValue(formik, "positionsId") === "invalid" &&
               formik.errors.position
             }
-            status={stateValue(formik, "position")}
+            status={stateValue(formik, "positionsId")}
             onBlur={formik.handleBlur}
             required
           />

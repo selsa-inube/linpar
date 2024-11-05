@@ -1,4 +1,5 @@
-import { Stack, Text } from "@inube/design-system";
+import { Text } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { StyledLink } from "./styles";
 
 interface MenuLinkprops {

@@ -1,7 +1,8 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { Button, Text, Stack, inube } from "@inube/design-system";
+import { Button, Text, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
+import { Stack } from "@inubekit/stack";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { Input } from "@inubekit/input";
 import { IBusinessUnitstate } from "./types";

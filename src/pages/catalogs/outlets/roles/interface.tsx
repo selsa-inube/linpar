@@ -4,11 +4,10 @@ import {
   Breadcrumbs,
   Button,
   Icon,
-  Stack,
   useMediaQuery,
   inube,
 } from "@inube/design-system";
-
+import { Stack } from "@inubekit/stack";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
@@ -78,7 +77,7 @@ export function RolesUI(props: IRolesProps) {
     <Stack
       direction="column"
       width="-webkit-fill-available"
-      padding={smallScreen ? "s300" : "s400 s800"}
+      padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s300} direction="column">

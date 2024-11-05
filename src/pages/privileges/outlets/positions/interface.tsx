@@ -4,7 +4,6 @@ import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
   Breadcrumbs,
   Icon,
-  Stack,
   useMediaQuery,
   Table,
   inube,
@@ -14,6 +13,7 @@ import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
+import { Stack } from "@inubekit/stack";
 import { Input } from "@inubekit/input";
 import {
   actionsConfigPosition,
@@ -65,7 +65,7 @@ export function PositionsUI(props: IPositionsProps) {
     <Stack
       direction="column"
       width="-webkit-fill-available"
-      padding={smallScreen ? "s300" : "s400 s800"}
+      padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s300} direction="column">

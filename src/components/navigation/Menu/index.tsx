@@ -1,5 +1,5 @@
-import { Stack } from "@inube/design-system";
 import { useEffect, useRef } from "react";
+import { Stack } from "@inubekit/stack";
 import { MenuLink } from "../MenuLink";
 import { MenuOption } from "../MenuOption";
 import { StyledMenu, StyledMenuContainer } from "./styles";

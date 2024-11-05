@@ -1,209 +1,283 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
-
-import { getAll } from "@mocks/utils/dataMock.service";
-import { EMessageType } from "@src/types/messages.types";
-import { IInvitationsEntry } from "@services/users/invitation.types";
-import { updateItemData } from "@mocks/utils/dataMock.service";
-import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
-
-import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
-import { CompleteInvitationUI } from "./interface";
+import { useAuth0 } from "@auth0/auth0-react";
+import {
+  IFormCompleteInvitation,
+  IInvitation,
+  IInvitationsEntry,
+} from "@services/users/invitation.types";
+import { getPositions } from "@services/positions/getPositons";
+import { getSucursales } from "@services/users/sucursales";
+import { getProyectos } from "@services/users/proyectos";
+import { getUnidadesPresupuestales } from "@services/users/unidadesPresupuestales";
+import { getNomina } from "@services/users/nomina";
 import { completeInvitationData, completeInvitationStepsRules } from "./utils";
-import { IFormCompleteInvitation, IFormCompleteInvitationRef } from "./types";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
+import { getInvitations } from "@services/invitations/getInvitations";
+import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
+import { LinparContext } from "@context/AppContext";
+import { stepsRegisterUserConfig } from "./config/completeInvitation.config";
+import { IFormCompleteInvitationRef } from "./types";
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
+import { CompleteInvitationUI } from "./interface";
+import { generalMessage } from "../../users/EditUser/config/messages.config";
 
 function CompleteInvitation() {
-  const { invitation_id } = useParams<{ invitation_id: string }>();
-
+  const { invitationId } = useParams();
+  const { user } = useAuth0();
   const navigate = useNavigate();
-  const [positionsOptions, setPositionsOptions] = useState<
-    Record<string, unknown>[]
-  >([]);
+
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
   const [currentStep, setCurrentStep] = useState<number>(
     stepsRegisterUserConfig.generalInformation.id
   );
+  const originalDataInvitationForm = useRef<IFormCompleteInvitation | null>(
+    null
+  );
+  const [invitedUsers, setInvitedUsers] = useState<IInvitationsEntry[]>([]);
   const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [payrolls, setPayrolls] = useState<Record<string, unknown>[]>([]);
+  const [branches, setBranches] = useState<Record<string, unknown>[]>([]);
+
+  const [positions, setPositions] = useState<Record<string, unknown>[]>([]);
+  const [projects, setProjects] = useState<Record<string, unknown>[]>([]);
+  const [aidBudgetUnits, setAidBudgetUnits] = useState<
+    Record<string, unknown>[]
+  >([]);
+  const [loading, setLoading] = useState(false);
+  const initialGeneralFormState = {
+    generalInformation: {
+      isValid: false,
+      values: {
+        email: "",
+        phoneNumber: "",
+        userIdentification: "",
+        userName: "",
+        invitationId: "",
+        password: "",
+        positions: "",
+        positionsId: "",
+        userAccountId: "",
+      },
+    },
+    branches: { isValid: false, values: [] },
+    proyectsEvents: { isValid: true, values: [] },
+    aidBudgetUnits: { isValid: true, values: [] },
+    payrolls: { isValid: true, values: [] },
+    payrollPayments: { isValid: true, values: [] },
+  };
 
   const [invitationData, setInvitationData] = useState<IFormCompleteInvitation>(
-    {
-      generalInformation: {
-        isValid: false,
-        values: {
-          customerId: "",
-          email: "",
-          phoneNumber: "",
-          status: "",
-          userIdentification: "",
-          userName: "",
-          dateEnd: "",
-          dateStart: "",
-          invitationId: "",
-          password: "",
-          positionId: "",
-          position: "",
-          requestingUser: "",
-          userAccountId: "",
-        },
-      },
-      branches: { isValid: true, values: [] },
-      projects: { isValid: true, values: [] },
-      events: { isValid: true, values: [] },
-      aidBudgetUnits: { isValid: true, values: [] },
-      payrolls: { isValid: true, values: [] },
-    }
+    initialGeneralFormState
   );
-
+  const [message, setMessage] = useState<IMessageState>({
+    visible: false,
+  });
+  const { linparData } = useContext(LinparContext);
   const steps = Object.values(stepsRegisterUserConfig);
-
   useEffect(() => {
-    setLoading(true);
-    getAll("linix-invitations")
-      .then((data) => {
-        if (data !== null) {
-          const invitationsLinix =
-            data &&
-            Object.values(data).find(
-              (invitation) => invitation.invitationId === invitation_id
-            );
-          setInvitationData((prevFormData) => ({
-            ...prevFormData,
-            generalInformation: {
-              isValid: false,
-              values: invitationsLinix,
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.info(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-
-    getAll("linix-positions")
-      .then((data) => {
-        if (data !== null) {
-          setPositionsOptions(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching web-options:", error.message);
-      });
-  }, [invitation_id]);
-
-  useEffect(() => {
-    getAll("linix-invitation-branches")
-      .then((data) => {
-        if (data !== null) {
-          setInvitationData((prevInvitationData) => ({
-            ...prevInvitationData,
-            branches: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching branches:", error.message);
-      });
-
-    getAll("linix-invitation-projects")
-      .then((data) => {
-        if (data !== null) {
-          setInvitationData((prevInvitationData) => ({
-            ...prevInvitationData,
-            projects: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching projects:", error.message);
-      });
-
-    getAll("linix-invitation-events")
-      .then((data) => {
-        if (data !== null) {
-          setInvitationData((prevInvitationData) => ({
-            ...prevInvitationData,
-            events: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching events:", error.message);
-      });
-
-    getAll("linix-invitation-aidBudgetUnits")
-      .then((data) => {
-        if (data !== null) {
-          setInvitationData((prevInvitationData) => ({
-            ...prevInvitationData,
-            aidBudgetUnits: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching aidBudgetUnits:", error.message);
-      });
-
-    getAll("linix-invitation-payrolls")
-      .then((data) => {
-        if (data !== null) {
-          setInvitationData((prevInvitationData) => ({
-            ...prevInvitationData,
-            payrolls: {
-              isValid: true,
-              values: dataToAssignmentFormEntry({
-                dataOptions: data as Record<string, unknown>[],
-                idLabel: "id",
-                valueLabel: "value",
-                isActiveLabel: "asignado",
-              }),
-            },
-          }));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching payrolls:", error.message);
-      });
+    linixInvitation();
   }, []);
 
-  const generalInformationRef = useRef<FormikProps<IInvitationsEntry>>(null);
+  useEffect(() => {
+    cargosData();
+    branchesData();
+    projectsData();
+    aidBudgetUnitsData();
+    payrollsData();
+  }, []);
+
+  const linixInvitation = async () => {
+    if (!user) return;
+    if (invitedUsers.length === 0) {
+      setLoading(true);
+      getInvitations(linparData.businessUnit.businessUnitPublicCode)
+        .then((data) => {
+          if (data !== null) {
+            setInvitedUsers(data as IInvitationsEntry[]);
+            const generalData = data.find((data) => data.id === invitationId);
+            if (generalData) {
+              setInvitationData((prevFormData: IFormCompleteInvitation) => ({
+                ...prevFormData,
+                generalInformation: {
+                  isValid: true,
+                  values: {
+                    invitationId: String(generalData.invitationId) || "",
+                    email: String(generalData.email) || "",
+                    phoneNumber: String(generalData.phoneNumber) || "",
+                    userIdentification:
+                      String(generalData.userIdentification) || "",
+                    userName: String(generalData.userName) || "",
+                    password: String(generalData.password) || "",
+                    userAccountId: String(generalData.userAccountId) || "",
+                  },
+                },
+              }));
+              originalDataInvitationForm.current = {
+                ...originalDataInvitationForm.current!,
+                generalInformation: {
+                  isValid: true,
+                  values: {
+                    invitationId: String(generalData.invitationId) || "",
+                    email: String(generalData.email) || "",
+                    phoneNumber: String(generalData.phoneNumber) || "",
+                    userIdentification:
+                      String(generalData.userIdentification) || "",
+                    userName: String(generalData.userName) || "",
+                    password: String(generalData.password) || "",
+                    userAccountId: String(generalData.userAccountId) || "",
+                  },
+                },
+              };
+            } else {
+              console.error(
+                "No se encontró la invitación con el ID:",
+                invitationId
+              );
+            }
+          }
+        })
+
+        .catch((error) => {
+          console.error("Error fetching general Information:", error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  const cargosData = () => {
+    if (!user) return;
+    if (positions.length === 0) {
+      setLoading(true);
+      getPositions(linparData.businessUnit.businessUnitPublicCode)
+        .then((newUsers) => {
+          setPositions(newUsers as keyof unknown as Record<string, unknown>[]);
+        })
+        .catch((error) => {
+          console.info(error);
+        });
+    }
+  };
+  const branchesData = () => {
+    if (!user) return;
+    if (branches.length === 0) {
+      setLoading(true);
+      getSucursales("1", linparData.businessUnit.businessUnitPublicCode)
+        .then((data) => {
+          if (data !== null) {
+            setBranches(data as unknown as Record<string, unknown>[]);
+            setInvitationData((prevFormData: IFormCompleteInvitation) => ({
+              ...prevFormData,
+              branches: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Sucurs",
+                  valueLabel: "n_Sucurs",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching branches:", error.message);
+        });
+    }
+  };
+  const projectsData = () => {
+    if (!user) return;
+    if (projects.length === 0) {
+      setLoading(true);
+      getProyectos("1", linparData.businessUnit.businessUnitPublicCode)
+        .then((data) => {
+          if (data !== null) {
+            setProjects(data as unknown as Record<string, unknown>[]);
+            setInvitationData((prevFormData: IFormCompleteInvitation) => ({
+              ...prevFormData,
+              proyectsEvents: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Numdoc",
+                  valueLabel: "k_Tipodr",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching branches:", error.message);
+        });
+    }
+  };
+
+  const aidBudgetUnitsData = () => {
+    if (!user) return;
+    if (aidBudgetUnits.length === 0) {
+      setLoading(true);
+      getUnidadesPresupuestales(
+        "1",
+        linparData.businessUnit.businessUnitPublicCode
+      )
+        .then((data) => {
+          if (data !== null) {
+            setAidBudgetUnits(data as unknown as Record<string, unknown>[]);
+            setInvitationData((prevFormData: IFormCompleteInvitation) => ({
+              ...prevFormData,
+              aidBudgetUnits: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Unidad",
+                  valueLabel: "n_Unidad",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching branches:", error.message);
+        });
+    }
+  };
+
+  const payrollsData = () => {
+    if (!user) return;
+    if (payrolls.length === 0) {
+      setLoading(true);
+      getNomina("1", linparData.businessUnit.businessUnitPublicCode)
+        .then((data) => {
+          if (data !== null) {
+            setPayrolls(data as unknown as Record<string, unknown>[]);
+            setInvitationData((prevFormData: IFormCompleteInvitation) => ({
+              ...prevFormData,
+              payrolls: {
+                isValid: true,
+                values: dataToAssignmentFormEntry({
+                  dataOptions: data as unknown as Record<string, unknown>[],
+                  idLabel: "k_Tipnom",
+                  valueLabel: "n_Tipnom",
+                  isActiveLabel: "i_Privil",
+                }),
+              },
+            }));
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching branches:", error.message);
+        });
+    }
+  };
+
+  const generalInformationRef = useRef<FormikProps<IInvitation>>(null);
 
   const formReferences: IFormCompleteInvitationRef = {
     generalInformation: generalInformationRef,
@@ -219,43 +293,28 @@ function CompleteInvitation() {
 
     setInvitationData(newCompleteInvitation);
 
-    const changeStepKey = Object.entries(stepsRegisterUserConfig).find(
-      ([, config]) => config.id === currentStep
-    )?.[0];
+    if (!newCompleteInvitation) return;
 
-    if (!changeStepKey) return;
-
-    const changeIsVerification = stepId === steps.length;
-
-    setIsCurrentFormValid(
-      changeIsVerification ||
-        newCompleteInvitation[changeStepKey as keyof IFormCompleteInvitation]
-          ?.isValid ||
-        true
-    );
+    setIsCurrentFormValid(true);
 
     setCurrentStep(stepId);
 
     document.getElementsByTagName("main")[0].scrollTo(0, 0);
   };
-
-  const handleSubmit = (values: IInvitationsEntry | IAssignmentFormEntry[]) => {
+  const handleSubmit = (values: IAssignmentFormEntry[]) => {
     const stepKey = Object.entries(stepsRegisterUserConfig).find(
       ([, config]) => config.id === currentStep
     )?.[0];
 
     if (stepKey) {
-      setInvitationData({
-        ...invitationData,
-        [stepKey]: { values },
-      });
+      setInvitationData((prevFormData) => ({
+        ...prevFormData,
+        [stepKey]: { values: values },
+      }));
     }
   };
 
   const handleNextStep = () => {
-    if (currentStep === steps.length) {
-      handleToggleModal();
-    }
     if (currentStep + 1 <= steps.length && isCurrentFormValid) {
       handleStepChange(currentStep + 1);
     }
@@ -265,26 +324,32 @@ function CompleteInvitation() {
     handleStepChange(currentStep - 1);
   };
 
-  const CompleteInvitation = async () => {
-    await updateItemData({
-      key: "customerId",
-      nameDB: "linix-invitations",
-      identifier: invitationData.generalInformation.values?.customerId!,
-      editData: completeInvitationData(invitationData),
-    });
+  const handleCompleteInvitation = () => {
+    const addnewdata = completeInvitationData(
+      invitationData,
+      linparData.businessUnit.businessUnitPublicCode
+    );
+    addnewdata
+      .then(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.success,
+        });
+      })
+      .catch(() => {
+        setMessage({
+          visible: true,
+          data: generalMessage.failed,
+        });
+      });
+    handleToggleModal();
   };
 
-  const handleCompleteInvitation = () => {
-    if (invitationData.generalInformation.values) {
-      CompleteInvitation();
-      navigate("/privileges/users", {
-        state: {
-          messageType: EMessageType.SUCCESS,
-          username: invitationData.generalInformation.values.userName,
-          tab: "privileges-invitations",
-        },
-      });
-    }
+  const handleCloseSectionMessage = () => {
+    setMessage({
+      visible: false,
+    });
+    navigate("/privileges/users");
   };
 
   const handleToggleModal = () => {
@@ -294,11 +359,14 @@ function CompleteInvitation() {
   return (
     <CompleteInvitationUI
       currentStep={currentStep}
+      message={message}
+      onCloseSectionMessage={handleCloseSectionMessage}
+      handlePreviousStep={handlePrevStep}
       formReferences={formReferences}
       invitationData={invitationData}
       isCurrentFormValid={isCurrentFormValid}
       loading={loading}
-      positionsOptions={positionsOptions}
+      positions={positions}
       handleSubmit={handleSubmit}
       handlePrevStep={handlePrevStep}
       handleNextStep={handleNextStep}
