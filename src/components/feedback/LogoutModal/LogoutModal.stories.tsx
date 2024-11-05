@@ -2,8 +2,9 @@ import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import { action } from "@storybook/addon-actions";
-import { Button, Stack } from "@inube/design-system";
+import { Button } from "@inube/design-system";
 import { ILogoutModalProps, LogoutModal } from ".";
+import { Stack } from "@inubekit/stack";
 
 const story = {
   title: "components/feedback/logout",
@@ -27,7 +28,7 @@ const Default = (args: ILogoutModalProps) => {
   };
 
   return (
-    <Stack padding="s300">
+    <Stack padding="24px">
       <Button onClick={handleShowBlanket}>Cerrar sesión</Button>
       {showBlanket && (
         <LogoutModal {...args} handleShowBlanket={handleShowBlanket} />

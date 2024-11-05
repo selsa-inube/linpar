@@ -1,11 +1,6 @@
 import { FormikValues } from "formik";
-import {
-  Stack,
-  Textfield,
-  Textarea,
-  useMediaQuery,
-} from "@inube/design-system";
-
+import { Textfield, Textarea, useMediaQuery } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
@@ -47,7 +42,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
         <Stack
           direction="column"
           justifyContent="space-between"
-          padding="s050 s0"
+          padding="4px 0px"
         >
           <Textfield
             label="Nombre Rol"
