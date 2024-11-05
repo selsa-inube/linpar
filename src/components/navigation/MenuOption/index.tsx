@@ -1,5 +1,6 @@
-import { Stack, Text } from "@inube/design-system";
+import { Text } from "@inube/design-system";
 import { StyledOption } from "./styles";
+import { Stack } from "@inubekit/stack";
 
 interface MenuOptionProps {
   label: string;

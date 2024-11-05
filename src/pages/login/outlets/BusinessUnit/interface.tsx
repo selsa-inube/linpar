@@ -1,6 +1,6 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
+import { Button, Text, Textfield, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { IBusinessUnitstate } from "./types";
@@ -11,6 +11,7 @@ import {
   StyledNoResults,
   StyledBusinessUnitsItem,
 } from "./styles";
+import { Stack } from "@inubekit/stack";
 
 interface BusinessUnitsUIProps {
   businessUnits: IBusinessUnitsPortalStaff[];

@@ -5,7 +5,6 @@ import {
   Button,
   Grid,
   SectionMessage,
-  Stack,
   Textfield,
   useMediaQueries,
 } from "@inube/design-system";
@@ -17,6 +16,7 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledContainerLoading, StyledMessageContainer } from "./styles";
+import { Stack } from "@inubekit/stack";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -111,7 +111,7 @@ function InviteUI(props: InviteUIProps) {
       <LoadingApp />
     </StyledContainerLoading>
   ) : (
-    <Stack direction="column" padding="s400 s800">
+    <Stack direction="column" padding="32px 64px">
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={usersInvitationsConfig[0].crumbs} />

@@ -2,7 +2,6 @@ import { useContext } from "react";
 import {
   Assisted,
   Breadcrumbs,
-  Stack,
   useMediaQuery,
   inube,
   Button,
@@ -37,6 +36,7 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { VerificationAddLinixUseCase } from "../components/VerificationForm";
 import { InitializerForm } from "../components/InitializerForm";
+import { Stack } from "@inubekit/stack";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -220,7 +220,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
       {loading ? (
         <LoadingApp />
       ) : (
-        <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+        <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
           <Stack gap={inube.spacing.s600} direction="column">
             <Stack gap={inube.spacing.s400} direction="column">
               <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />

@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { FormikProps, useFormik } from "formik";
-import * as Yup from "yup";
+import { object, string } from "yup";
+
 import { validationMessages } from "@validations/validationMessages";
 
 import {
@@ -11,8 +12,8 @@ import { GeneralInformationFormUI } from "./interface";
 import { IMessageState } from "../../../../types/forms.types";
 import { generalMessage } from "../../../users/EditUser/config/messages.config";
 
-const validationSchema = Yup.object({
-  positionsId: Yup.string().required(validationMessages.required),
+const validationSchema = object({
+  positionsId: string().required(validationMessages.required),
 });
 
 interface IGeneralInformationFormProps {

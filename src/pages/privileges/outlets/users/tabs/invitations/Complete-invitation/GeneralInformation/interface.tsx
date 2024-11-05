@@ -1,7 +1,8 @@
 import { MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Stack, Textfield, Grid, useMediaQuery } from "@inube/design-system";
+import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
+import { Stack } from "@inubekit/stack";
 import { IMessageState } from "../../../../types/forms.types";
 
 interface GeneralInformationFormUIProps {

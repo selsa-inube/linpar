@@ -1,6 +1,5 @@
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
-  Stack,
   Textfield,
   Icon,
   Grid,
@@ -24,6 +23,7 @@ import {
   StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
+import { Stack } from "@inubekit/stack";
 
 interface AssignmentFormUIProps {
   title: string;

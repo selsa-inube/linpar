@@ -1,4 +1,5 @@
-import { Button, Stack, Text, useMediaQuery } from "@inube/design-system";
+import { Button, Text, useMediaQuery } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 
 interface ItemNotFoundProps {
   image: string;

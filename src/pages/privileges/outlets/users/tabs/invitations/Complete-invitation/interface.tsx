@@ -3,7 +3,6 @@ import { MdPersonOutline } from "react-icons/md";
 import {
   Assisted,
   Breadcrumbs,
-  Stack,
   useMediaQuery,
   Button,
   inube,
@@ -16,6 +15,7 @@ import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IFormCompleteInvitation } from "@services/users/invitation.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
+import { Stack } from "@inubekit/stack";
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
@@ -133,7 +133,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
       <LoadingApp />
     </StyledContainerLoading>
   ) : (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+    <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={CompleteInvitationUserConfig[0].crumbs} />

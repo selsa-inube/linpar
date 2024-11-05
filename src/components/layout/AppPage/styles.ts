@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { inube } from "@inube/design-system";
 
+interface IStyledCollapseIcon {
+  $collapse: boolean;
+  $isTablet: boolean;
+}
+
 const StyledAppPage = styled.div`
   display: inherit;
   box-sizing: border-box;
@@ -58,6 +63,21 @@ const StyledMenuContainer = styled.div`
     theme.color?.surface?.light?.clear || inube.color.surface.light.clear};
 `;
 
+const StyledCollapseIcon = styled.div<IStyledCollapseIcon>`
+  display: flex;
+  transition: all 500ms ease;
+  position: absolute;
+  top: 13.5px;
+  transform: ${({ $collapse }) =>
+    $collapse ? "rotate(-90deg)" : "rotate(90deg)"};
+  left: ${({ $isTablet }) => ($isTablet ? "150px" : "142px")};
+`;
+
+const StyledCollapse = styled.div`
+  position: absolute;
+  margin-top: 5px;
+`;
+
 export {
   StyledAppPage,
   StyledHeaderContainer,
@@ -67,4 +87,6 @@ export {
   StyledMain,
   StyledContainerNav,
   StyledMenuContainer,
+  StyledCollapseIcon,
+  StyledCollapse,
 };

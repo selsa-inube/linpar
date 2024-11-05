@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
-import { Stack } from "@inube/design-system";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 import { Icon } from "@inubekit/icon";
 import { IInvitationsEntry } from "@services/users/invitation.types";
-
+import { Stack } from "@inubekit/stack";
 import { ResendInvitation } from "../ResendInvitation";
 import { deleteInvitationModal } from "../DeleteInvitation/config/deleteInvitation.config";
 import { DeleteLinixInvitation } from "../DeleteInvitation";
@@ -37,11 +36,7 @@ export const actionsConfigInvitation = (
           }}
           style={{ pointerEvents: status === "sent" ? "none" : "auto" }}
         >
-          <Stack
-            justifyContent="space-around"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
+          <Stack justifyContent="space-around">
             <Icon
               appearance={isHovered ? "primary" : "dark"}
               parentHover={isHovered ? true : false}
