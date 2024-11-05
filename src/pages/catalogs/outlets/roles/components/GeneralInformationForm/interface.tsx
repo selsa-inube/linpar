@@ -1,16 +1,11 @@
 import { FormikValues } from "formik";
-import {
-  Stack,
-  Textfield,
-  Textarea,
-  Grid,
-  useMediaQuery,
-} from "@inube/design-system";
+import { Stack, Textarea, Grid, useMediaQuery } from "@inube/design-system";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IGeneralInformationForm } from "../../types";
+import { Input } from "@inubekit/input";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -50,7 +45,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           justifyContent="space-between"
           padding="s050 s0"
         >
-          <Textfield
+          <Input
             label="Nombre Rol"
             placeholder="Nombe del rol"
             name="n_Rol"
@@ -67,7 +62,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             message={
               stateValue("n_Rol") === "invalid" ? formik.errors.n_Rol : null
             }
-            status={stateValue("n_Rol") === "invalid" ? "invalid" : null}
+            status={stateValue("n_Rol") === "invalid" ? "invalid" : undefined}
           />
 
           <SearchUserCard

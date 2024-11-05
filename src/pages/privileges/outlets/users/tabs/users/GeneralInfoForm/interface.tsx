@@ -1,9 +1,10 @@
 import { FormikValues } from "formik";
 
 import { Grid, useMediaQuery } from "@inube/design-system";
-import { Textfield } from "@inubekit/textfield";
+
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { Input } from "@inubekit/input";
 
 function stateValue(formik: FormikValues, attribute: string) {
   if (!formik.touched[attribute]) return undefined;
@@ -39,7 +40,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           width="100%"
           autoRows="unset"
         >
-          <Textfield
+          <Input
             label="Nombre Cargo"
             placeholder="Nombre del cargo"
             name="n_Usuari"
@@ -50,7 +51,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             fullwidth
             disabled
           />
-          <Textfield
+          <Input
             label="Identificación"
             name="a_Numnit"
             id="a_Numnit"

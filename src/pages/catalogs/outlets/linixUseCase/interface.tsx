@@ -6,7 +6,6 @@ import {
   Button,
   Icon,
   Stack,
-  Textfield,
   useMediaQuery,
   inube,
 } from "@inube/design-system";
@@ -15,6 +14,9 @@ import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { TableLinpar } from "@src/components/data/TableLinpar";
+import { IEntry } from "@src/components/data/TableLinpar/types";
+import { Input } from "@inubekit/input";
 
 import { IDeleteForMessage, UseCase } from "./types";
 import {
@@ -25,8 +27,6 @@ import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
-import { TableLinpar } from "@src/components/data/TableLinpar";
-import { IEntry } from "@src/components/data/TableLinpar/types";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -97,7 +97,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
         </Stack>
         <Stack gap={inube.spacing.s400} direction="column">
           <Stack justifyContent="space-between" alignItems="center">
-            <Textfield
+            <Input
               name="searchLinixUseCases"
               id="searchLinixUseCases"
               placeholder="Buscar..."

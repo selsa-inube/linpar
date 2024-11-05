@@ -1,6 +1,8 @@
+import { MdClose } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { Blanket } from "@inubekit/blanket";
 import {
   Button,
-  Blanket,
   Stack,
   Text,
   inube,
@@ -8,8 +10,6 @@ import {
   useMediaQuery,
 } from "@inube/design-system";
 import { StyledBackdropBlanket, StyledModal } from "./styles";
-import { MdClose } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 interface ILogoutModalProps {
   handleShowBlanket: () => void;

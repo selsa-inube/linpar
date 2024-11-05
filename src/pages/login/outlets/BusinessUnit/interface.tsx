@@ -1,8 +1,9 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { Button, Text, Textfield, Stack, inube } from "@inube/design-system";
+import { Button, Text, Stack, inube } from "@inube/design-system";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
+import { Input } from "@inubekit/input";
 import { IBusinessUnitstate } from "./types";
 
 import {
@@ -58,7 +59,7 @@ function BusinessUnitsUI({
       <form>
         <Stack direction="column" alignItems="center">
           {businessUnits.length > 10 && (
-            <Textfield
+            <Input
               placeholder="Buscar..."
               type="search"
               name="searchBusinessUnits"

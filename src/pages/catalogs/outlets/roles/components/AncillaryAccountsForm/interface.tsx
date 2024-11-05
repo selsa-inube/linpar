@@ -1,6 +1,6 @@
 import { FormikValues } from "formik";
-import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
-
+import { Grid, useMediaQuery } from "@inube/design-system";
+import { Input } from "@inubekit/input";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IAncillaryAccountsForm } from ".";
 
@@ -26,7 +26,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
         width={"100%"}
         autoRows="unset"
       >
-        <Textfield
+        <Input
           label="Sector comercial"
           placeholder="#######, #######, ..."
           name="commercialSector"
@@ -39,7 +39,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
             event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
           ) => handleChangeForm(event.target.name, event.target.value)}
         />
-        <Textfield
+        <Input
           label="Sector oficial"
           placeholder="#######, #######, ..."
           name="officialSector"
@@ -54,7 +54,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
           ) => handleChangeForm(event.target.name, event.target.value)}
         />
 
-        <Textfield
+        <Input
           label="Sector solidario"
           placeholder="#######, #######, ..."
           name="solidaritySector"

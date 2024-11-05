@@ -3,9 +3,10 @@ import { FormikValues } from "formik";
 import { Text } from "@inubekit/text";
 import { Icon } from "@inubekit/icon";
 import { Select } from "@inubekit/select";
-import { Textfield } from "@inubekit/textfield";
+
 import { Textarea } from "@inubekit/textarea";
 import { useMediaQuery } from "@inubekit/hooks";
+import { Input } from "@inubekit/input";
 import { Stack } from "@inubekit/stack";
 import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
@@ -68,7 +69,7 @@ function RenderFormFields(
         justifyContent="space-between"
         padding="4px 0px"
       >
-        <Textfield
+        <Input
           label="Nombre del caso de uso "
           placeholder="Digite un nombre para el caso de uso."
           name="n_Usecase"

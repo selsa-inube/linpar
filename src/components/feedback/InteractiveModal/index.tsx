@@ -1,17 +1,12 @@
 import { createPortal } from "react-dom";
-import { MdClear } from "react-icons/md";
-import {
-  Stack,
-  Text,
-  Blanket,
-  useMediaQuery,
-  Textfield,
-  Icon,
-} from "@inube/design-system";
-import { StyledModal, StyledDivider } from "./styles";
-import { InteractiveModalProps } from "./types";
 import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
+import { Input } from "@inubekit/input";
+import { Blanket } from "@inubekit/blanket";
+import { MdClear } from "react-icons/md";
+import { Stack, Text, useMediaQuery, Icon } from "@inube/design-system";
+import { StyledModal, StyledDivider } from "./styles";
+import { InteractiveModalProps } from "./types";
 
 const InteractiveModal = ({
   actions = [],
@@ -128,7 +123,7 @@ const InteractiveModal = ({
                 labels.map(
                   (field) =>
                     infoData[field.id] && (
-                      <Textfield
+                      <Input
                         key={field.id}
                         label={field.titleName}
                         name={field.id}
@@ -143,7 +138,7 @@ const InteractiveModal = ({
                 )
               ) : (
                 Object.keys(infoData).map((index) => (
-                  <Textfield
+                  <Input
                     key={index}
                     label={index}
                     name={index}
@@ -159,9 +154,9 @@ const InteractiveModal = ({
               )
             ) : (
               <>
-                <Textfield
+                <Input
                   key="searchField"
-                  id={id}
+                  id={id || ""}
                   label={label}
                   name={name}
                   placeholder={placeholder}

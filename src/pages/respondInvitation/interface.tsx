@@ -7,14 +7,7 @@ import {
   MdShortcut,
 } from "react-icons/md";
 
-import {
-  Button,
-  Grid,
-  Stack,
-  Text,
-  Textfield,
-  useMediaQuery,
-} from "@inube/design-system";
+import { Button, Grid, Stack, Text, useMediaQuery } from "@inube/design-system";
 
 import { Fieldset } from "@components/inputs/Fieldset";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
@@ -23,6 +16,7 @@ import {
   StyledContainerHeader,
   StyledContainerForm,
 } from "./styles";
+import { Input } from "@inubekit/input";
 
 const renderHead = (
   bussinessData: IBusinessUnitsPortalStaff,
@@ -58,7 +52,7 @@ const renderForm = (
   const stateValue = (fieldName: string) => {
     if (!formik.touched[fieldName]) return "pending";
     if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
-    return "valid";
+    return undefined;
   };
 
   return (
@@ -78,7 +72,7 @@ const renderForm = (
           icon={<MdPersonOutline size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-            <Textfield
+            <Input
               id="name"
               name="name"
               label="Nombre"
@@ -90,7 +84,7 @@ const renderForm = (
               disabled
               readOnly
             />
-            <Textfield
+            <Input
               id="userID"
               name="userID"
               label="Identificación"
@@ -110,7 +104,7 @@ const renderForm = (
           icon={<MdOutlinePhone size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-            <Textfield
+            <Input
               id="phone"
               name="phone"
               label="Número de teléfono"
@@ -130,7 +124,7 @@ const renderForm = (
               onBlur={formik.handleBlur}
               fullwidth
             />
-            <Textfield
+            <Input
               id="email"
               label="Correo"
               name="email"
@@ -154,7 +148,7 @@ const renderForm = (
         </Fieldset>
         <Fieldset title="Contraseña" icon={<MdOutlineShield size={24} />}>
           <Stack direction="column" gap="16px">
-            <Textfield
+            <Input
               id="username"
               name="username"
               label="Nombre de Usuario"
@@ -174,7 +168,7 @@ const renderForm = (
               onBlur={formik.handleBlur}
             />
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-              <Textfield
+              <Input
                 id="password"
                 label="Contraseña"
                 name="password"
@@ -192,7 +186,7 @@ const renderForm = (
                 status={stateValue("password")}
                 onBlur={formik.handleBlur}
               />
-              <Textfield
+              <Input
                 id="confirmPassword"
                 label="Confirmar Contraseña"
                 name="confirmPassword"

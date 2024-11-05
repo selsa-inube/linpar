@@ -6,7 +6,6 @@ import {
   Grid,
   SectionMessage,
   Stack,
-  Textfield,
   useMediaQueries,
 } from "@inube/design-system";
 import { useState } from "react";
@@ -17,6 +16,7 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledContainerLoading, StyledMessageContainer } from "./styles";
+import { Input } from "@inubekit/input";
 
 interface InviteUIProps {
   formik: FormikValues;
@@ -152,7 +152,7 @@ function InviteUI(props: InviteUIProps) {
                 onUserSelect={handleUserSelect}
                 onReset={onReset}
               />
-              <Textfield
+              <Input
                 label="Identificación"
                 placeholder="Ingrese su número de identificación"
                 name="userIdentification"
@@ -165,7 +165,7 @@ function InviteUI(props: InviteUIProps) {
                 readOnly
               />
 
-              <Textfield
+              <Input
                 label="Número de teléfono"
                 placeholder="Ingrese su número telefónico"
                 name="phoneNumber"
@@ -189,7 +189,7 @@ function InviteUI(props: InviteUIProps) {
                 onBlur={formik.handleBlur}
               />
 
-              <Textfield
+              <Input
                 label="Correo"
                 placeholder="Ingrese su dirección de correo electrónico"
                 name="email"
@@ -204,7 +204,11 @@ function InviteUI(props: InviteUIProps) {
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                status={stateValue(formik, "email")}
+                status={
+                  stateValue(formik, "email") === "invalid"
+                    ? "invalid"
+                    : undefined
+                }
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />

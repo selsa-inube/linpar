@@ -1,12 +1,5 @@
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import {
-  Stack,
-  Textfield,
-  Icon,
-  Grid,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
+import { Stack, Icon, Grid, useMediaQuery, inube } from "@inube/design-system";
 import { Text } from "@inubekit/text";
 
 import { Menu } from "@components/navigation/Menu";
@@ -24,6 +17,7 @@ import {
   StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
+import { Input } from "@inubekit/input";
 
 interface AssignmentFormUIProps {
   title: string;
@@ -84,7 +78,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
             gap="s200"
             alignItems="center"
           >
-            <Textfield
+            <Input
               type="search"
               iconBefore={<MdSearch size={22} />}
               placeholder="Buscar..."

@@ -5,7 +5,6 @@ import {
   Breadcrumbs,
   Icon,
   Stack,
-  Textfield,
   useMediaQuery,
   Table,
   inube,
@@ -15,6 +14,7 @@ import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
+import { Input } from "@inubekit/input";
 import {
   actionsConfigPosition,
   PositionsBreakPointsConfig,
@@ -82,7 +82,7 @@ export function PositionsUI(props: IPositionsProps) {
         </Stack>
         <Stack gap={inube.spacing.s400} direction="column">
           <Stack justifyContent="space-between" alignItems="center">
-            <Textfield
+            <Input
               name="searchPositions"
               id="searchPositions"
               placeholder="Buscar..."
