@@ -7,15 +7,8 @@ import {
   MdShortcut,
 } from "react-icons/md";
 
-import {
-  Button,
-  Grid,
-  Stack,
-  Text,
-  Textfield,
-  useMediaQuery,
-} from "@inube/design-system";
-
+import { Button, Grid, Stack, Text, Textfield } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { Fieldset } from "@components/inputs/Fieldset";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import {

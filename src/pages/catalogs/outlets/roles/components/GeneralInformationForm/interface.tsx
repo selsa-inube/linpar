@@ -1,12 +1,6 @@
 import { FormikValues } from "formik";
-import {
-  Stack,
-  Textfield,
-  Textarea,
-  Grid,
-  useMediaQuery,
-} from "@inube/design-system";
-
+import { Stack, Textfield, Textarea, Grid } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
 import { SearchUserCard } from "@components/cards/SearchUserCard";

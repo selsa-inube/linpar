@@ -3,10 +3,10 @@ import {
   Assisted,
   Breadcrumbs,
   Stack,
-  useMediaQuery,
   inube,
   Button,
 } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";

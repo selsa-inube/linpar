@@ -6,10 +6,10 @@ import {
   Icon,
   Stack,
   Textfield,
-  useMediaQuery,
   Table,
   inube,
 } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";

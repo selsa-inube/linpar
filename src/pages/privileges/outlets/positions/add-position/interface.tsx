@@ -1,4 +1,5 @@
-import { Breadcrumbs, Stack, useMediaQuery, inube } from "@inube/design-system";
+import { Breadcrumbs, Stack, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { Assisted } from "@inubekit/assisted";
 import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@components/feedback/DecisionModal";

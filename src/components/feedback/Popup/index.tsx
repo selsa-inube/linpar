@@ -1,5 +1,6 @@
 import { MdClear } from "react-icons/md";
-import { Stack, Text, Icon, useMediaQuery, inube } from "@inube/design-system";
+import { Stack, Text, Icon, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { StyledPopup } from "./styles";
 import { PopupProps } from "./types";
 import { ThemeProvider } from "styled-components";

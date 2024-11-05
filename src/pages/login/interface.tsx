@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
-import { Grid, Stack, Text, useMediaQueries } from "@inube/design-system";
+import { Grid, Stack, Text } from "@inube/design-system";
+import { useMediaQueries } from "@inubekit/hooks";
 
 import {
   StyledWelcomeContainer,

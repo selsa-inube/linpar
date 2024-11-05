@@ -5,8 +5,8 @@ import {
   Text,
   inube,
   Icon,
-  useMediaQuery,
 } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { StyledBackdropBlanket, StyledModal } from "./styles";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";

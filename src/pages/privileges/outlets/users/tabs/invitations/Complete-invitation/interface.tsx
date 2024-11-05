@@ -4,10 +4,10 @@ import {
   Assisted,
   Breadcrumbs,
   Stack,
-  useMediaQuery,
   Button,
   inube,
 } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";

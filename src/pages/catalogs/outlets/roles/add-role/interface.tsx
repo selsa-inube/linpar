@@ -6,10 +6,9 @@ import {
   Breadcrumbs,
   Button,
   Stack,
-  useMediaQuery,
   inube,
 } from "@inube/design-system";
-
+import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { DecisionModal } from "@components/feedback/DecisionModal";

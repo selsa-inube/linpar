@@ -1,6 +1,7 @@
 import { FormikValues } from "formik";
 
-import { Grid, useMediaQuery } from "@inube/design-system";
+import { Grid } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { Textfield } from "@inubekit/textfield";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";

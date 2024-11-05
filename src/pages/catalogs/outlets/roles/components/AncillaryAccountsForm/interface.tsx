@@ -1,6 +1,6 @@
 import { FormikValues } from "formik";
-import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
-
+import { Textfield, Grid } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IAncillaryAccountsForm } from ".";
 
