@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import {
   Assisted,
-  Breadcrumbs,
   Stack,
   useMediaQuery,
   inube,
@@ -15,7 +14,7 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { LinparContext } from "@context/AppContext";
-
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   CrateLinixUseCaseConfig,
   finishAssistedModalConfig,

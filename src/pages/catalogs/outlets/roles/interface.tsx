@@ -1,21 +1,21 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import {
-  Breadcrumbs,
   Button,
-  Icon,
   Stack,
   Textfield,
   useMediaQuery,
   inube,
 } from "@inube/design-system";
-
+import { Icon } from "@inubekit/icon";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { TableLinpar } from "@components/data/TableLinpar";
+import { IEntry } from "@components/data/TableLinpar/types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
@@ -26,7 +26,6 @@ import {
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
-import { IEntry } from "@src/components/data/TableLinpar/types";
 
 interface IRolesProps {
   handleCloseMenuInvitation: () => void;

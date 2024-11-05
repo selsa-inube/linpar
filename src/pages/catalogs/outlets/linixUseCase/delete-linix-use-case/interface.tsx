@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MdOutlineDelete } from "react-icons/md";
-import { Icon } from "@inube/design-system";
+import { Icon } from "@inubekit/icon";
 import { Text } from "@inubekit/text";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
@@ -58,6 +58,7 @@ export const DeleteLinixUseCaseUI = (props: DeleteLinixUseCaseUIProps) => {
               icon={<MdOutlineDelete />}
               onClick={() => setShowModal(true)}
               appearance={hover ? "primary" : "dark"}
+              size="16px"
               cursorHover
             />
           </StyledContainerIcon>

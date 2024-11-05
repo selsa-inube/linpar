@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import {
   Assisted,
-  Breadcrumbs,
   Button,
   Stack,
   useMediaQuery,
@@ -17,6 +16,7 @@ import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { LinparContext } from "@context/AppContext";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   IFormAddRole,
   IFormAddRoleRef,
@@ -215,7 +215,7 @@ export function AddRolUI(props: AddRolUIProps) {
                 onClick={handlePreviousStep}
                 type="button"
                 disabled={currentStep === steps[0].id}
-                spacing="wide"
+                spacing="narrow"
                 variant="none"
                 appearance="gray"
               >

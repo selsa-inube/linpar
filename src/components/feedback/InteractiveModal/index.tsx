@@ -6,12 +6,12 @@ import {
   Blanket,
   useMediaQuery,
   Textfield,
-  Icon,
 } from "@inube/design-system";
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
 import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
+import { Icon } from "@inubekit/icon";
 
 const InteractiveModal = ({
   actions = [],
@@ -107,7 +107,7 @@ const InteractiveModal = ({
               <Icon
                 appearance={"dark"}
                 icon={<MdClear />}
-                spacing="wide"
+                spacing="narrow"
                 size="24px"
                 cursorHover
                 onClick={handleCloseModal}

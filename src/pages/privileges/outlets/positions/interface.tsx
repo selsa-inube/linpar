@@ -2,19 +2,19 @@ import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import {
-  Breadcrumbs,
-  Icon,
   Stack,
   Textfield,
   useMediaQuery,
   Table,
   inube,
 } from "@inube/design-system";
+import { Icon } from "@inubekit/icon";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   actionsConfigPosition,
   PositionsBreakPointsConfig,

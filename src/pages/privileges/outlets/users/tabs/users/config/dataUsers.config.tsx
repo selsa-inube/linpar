@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 
-import { Icon } from "@inube/design-system";
+import { Icon } from "@inubekit/icon";
 import { IGeneralInformationUsersForm } from "@services/users/users.types";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
@@ -42,7 +42,12 @@ export const actionsConfigUsers = (
       actionName: "Editar",
       content: ({ k_Usuari }: { k_Usuari: string }) => (
         <Link to={`edit/${k_Usuari}`}>
-          <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+          <Icon
+            appearance="dark"
+            cursorHover
+            icon={<MdModeEdit />}
+            size="16px"
+          />
         </Link>
       ),
       type: "primary",

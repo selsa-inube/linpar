@@ -1,7 +1,6 @@
 import { MdOutlineShortcut } from "react-icons/md";
 import { FormikValues } from "formik";
 import {
-  Breadcrumbs,
   Button,
   Grid,
   SectionMessage,
@@ -11,6 +10,7 @@ import {
 } from "@inube/design-system";
 import { useState } from "react";
 import { EMessageType } from "@src/types/messages.types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { PageTitle } from "@components/PageTitle";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";

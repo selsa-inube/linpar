@@ -1,5 +1,5 @@
-import { Icon } from "@inube/design-system";
 import { FaUserGear } from "react-icons/fa6";
+import { Icon } from "@inubekit/icon";
 
 export const menuInvitationLinks = [
   {

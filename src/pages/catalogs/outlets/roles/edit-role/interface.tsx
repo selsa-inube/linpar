@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
-import { Stack, Breadcrumbs, inube } from "@inube/design-system";
+import { Stack, inube } from "@inube/design-system";
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 import { useMediaQueries } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { StyledContainerLoading } from "@pages/privileges/outlets/users/tabs/invitations/Complete-invitation/styles";
 import {
   IAssignmentFormEntry,

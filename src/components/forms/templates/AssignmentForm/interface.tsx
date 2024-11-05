@@ -2,7 +2,6 @@ import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
   Stack,
   Textfield,
-  Icon,
   Grid,
   useMediaQuery,
   inube,
@@ -24,6 +23,7 @@ import {
   StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
+import { Icon } from "@inubekit/icon";
 
 interface AssignmentFormUIProps {
   title: string;
@@ -103,7 +103,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                 <Icon
                   icon={<MdOutlineMoreHoriz />}
                   appearance="dark"
-                  spacing="none"
+                  spacing="narrow"
                   size="24px"
                   shape="circle"
                   onClick={handleToggleMenuInvitation}

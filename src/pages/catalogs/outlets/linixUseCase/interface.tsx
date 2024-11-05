@@ -2,9 +2,7 @@ import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import {
-  Breadcrumbs,
   Button,
-  Icon,
   Stack,
   Textfield,
   useMediaQuery,
@@ -15,6 +13,9 @@ import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { TableLinpar } from "@components/data/TableLinpar";
+import { IEntry } from "@components/data/TableLinpar/types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 
 import { IDeleteForMessage, UseCase } from "./types";
 import {
@@ -25,8 +26,7 @@ import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
-import { TableLinpar } from "@src/components/data/TableLinpar";
-import { IEntry } from "@src/components/data/TableLinpar/types";
+import { Icon } from "@inubekit/icon";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;

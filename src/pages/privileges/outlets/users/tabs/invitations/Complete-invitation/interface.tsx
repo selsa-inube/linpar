@@ -2,7 +2,6 @@ import { MdPersonOutline } from "react-icons/md";
 
 import {
   Assisted,
-  Breadcrumbs,
   Stack,
   useMediaQuery,
   Button,
@@ -15,7 +14,7 @@ import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IInvitationsEntry } from "@services/users/invitation.types";
-
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,

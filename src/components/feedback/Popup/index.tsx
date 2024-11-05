@@ -1,8 +1,9 @@
 import { MdClear } from "react-icons/md";
-import { Stack, Text, Icon, useMediaQuery, inube } from "@inube/design-system";
+import { ThemeProvider } from "styled-components";
+import { Icon } from "@inubekit/icon";
+import { Stack, Text, useMediaQuery, inube } from "@inube/design-system";
 import { StyledPopup } from "./styles";
 import { PopupProps } from "./types";
-import { ThemeProvider } from "styled-components";
 
 const Popup = (props: PopupProps) => {
   const { title, closeModal, children, fieldsetRef } = props;
@@ -49,7 +50,7 @@ const Popup = (props: PopupProps) => {
             <Icon
               appearance={"dark"}
               icon={<MdClear />}
-              spacing="wide"
+              spacing="narrow"
               size="24px"
               cursorHover
               onClick={closeModal}

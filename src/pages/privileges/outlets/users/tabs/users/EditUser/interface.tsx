@@ -1,12 +1,7 @@
 import { MdPersonOutline } from "react-icons/md";
 import { useState } from "react";
 import { Button } from "@inubekit/button";
-import {
-  Stack,
-  useMediaQueries,
-  inube,
-  Breadcrumbs,
-} from "@inube/design-system";
+import { Stack, useMediaQueries, inube } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
 import {
   IAssignmentFormEntry,
@@ -21,6 +16,7 @@ import {
   IGeneralInformationUsersForm,
   IHandleChangeFormData,
 } from "@services/users/users.types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { StyledContainer } from "./styles";
 import { GeneralInformationForm } from "../GeneralInfoForm";
 import { editLinixUserTabsConfig } from "./config/editUsersTabs.config";

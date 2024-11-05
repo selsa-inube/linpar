@@ -1,17 +1,13 @@
 import { useState } from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
-import {
-  Stack,
-  useMediaQueries,
-  inube,
-  Breadcrumbs,
-} from "@inube/design-system";
+import { Stack, useMediaQueries, inube } from "@inube/design-system";
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { PageTitle } from "@components/PageTitle";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   IAssignmentFormEntry,
   IMessageState,

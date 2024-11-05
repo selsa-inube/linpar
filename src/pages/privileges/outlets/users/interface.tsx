@@ -1,10 +1,12 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 
-import { Breadcrumbs, Icon, Stack, Textfield } from "@inube/design-system";
+import { Stack, Textfield } from "@inube/design-system";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Button } from "@inubekit/button";
 import { Tabs } from "@inubekit/tabs";
+import { Icon } from "@inubekit/icon";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { useMediaQueries } from "@inubekit/hooks";
 import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
