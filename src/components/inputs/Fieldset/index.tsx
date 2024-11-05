@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "@inubekit/icon";
-import { Stack, Text } from "@inube/design-system";
+import { Text } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { StyledFieldset } from "./styles";
 
 export interface FieldsetProps {
@@ -16,7 +17,7 @@ function Fieldset(props: FieldsetProps) {
   return (
     <StyledFieldset ref={fieldsetRef}>
       <legend>
-        <Stack padding="s050" alignItems="center">
+        <Stack padding="4px" alignItems="center">
           <Icon icon={icon} appearance="gray" />
           <Text type="title" size="small" appearance="gray">
             {title}

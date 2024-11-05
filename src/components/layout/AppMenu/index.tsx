@@ -1,4 +1,4 @@
-import { Stack } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { PageTitle } from "@components/PageTitle";
 import { StyledAppMenu } from "./styles";
@@ -17,7 +17,7 @@ function AppMenu(props: AppMenuProps) {
   return (
     <StyledAppMenu>
       <Breadcrumbs crumbs={appRoute} />
-      <Stack margin="s300 s0 s600 s0">
+      <Stack margin="24px 0px 48px 0px">
         <PageTitle
           title={appName}
           description={appDescription}

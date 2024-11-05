@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
-import { Stack, inube } from "@inube/design-system";
+
+import { inube } from "@inube/design-system";
+
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 import { useMediaQueries } from "@inubekit/hooks";
+import { Stack } from "@inubekit/stack";
 import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
@@ -85,7 +88,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     <Stack
       key={key}
       direction="column"
-      padding={smallScreen ? "s200" : "s400 s800"}
+      padding={smallScreen ? "16px" : "32px 64px"}
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s400} direction="column">

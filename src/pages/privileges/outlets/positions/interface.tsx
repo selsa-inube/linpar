@@ -1,13 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-
-import {
-  Stack,
-  Textfield,
-  useMediaQuery,
-  Table,
-  inube,
-} from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
+import { Textfield, useMediaQuery, Table, inube } from "@inube/design-system";
 import { Icon } from "@inubekit/icon";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
@@ -65,7 +59,7 @@ export function PositionsUI(props: IPositionsProps) {
     <Stack
       direction="column"
       width="-webkit-fill-available"
-      padding={smallScreen ? "s300" : "s400 s800"}
+      padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s300} direction="column">

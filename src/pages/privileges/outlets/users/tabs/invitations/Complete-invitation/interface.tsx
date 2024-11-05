@@ -1,20 +1,18 @@
 import { MdPersonOutline } from "react-icons/md";
 
-import {
-  Assisted,
-  Stack,
-  useMediaQuery,
-  Button,
-  inube,
-} from "@inube/design-system";
+import { Assisted, useMediaQuery, Button, inube } from "@inube/design-system";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import { IInvitationsEntry } from "@services/users/invitation.types";
+
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { IFormCompleteInvitation } from "@services/users/invitation.types";
+import { RenderMessage } from "@components/feedback/RenderMessage";
+import { Stack } from "@inubekit/stack";
+
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
@@ -26,13 +24,14 @@ import { StyledContainerAssisted, StyledContainerLoading } from "./styles";
 import { GeneralInformationForm } from "./GeneralInformation";
 
 import {
-  IFormCompleteInvitation,
   IFormCompleteInvitationRef,
   IStep,
   titleButtonTextAssited,
 } from "./types";
-import { IAssignmentFormEntry } from "../../../types/forms.types";
-
+import {
+  IAssignmentFormEntry,
+  IMessageState,
+} from "../../../types/forms.types";
 import { VerificationAddInvitation } from "../verificationForm";
 
 export interface IVerificationData {
@@ -68,26 +67,33 @@ interface CompleteInvitationUIProps {
   invitationData: IFormCompleteInvitation;
   isCurrentFormValid: boolean;
   loading: boolean;
-  positionsOptions: Record<string, unknown>[];
+  message: IMessageState;
+  positions: Record<string, unknown>[];
   showModal: boolean;
   steps: IStep[];
   handleCompleteInvitation: () => void;
   handleNextStep: (step: number) => void;
   handlePrevStep: (step: number) => void;
-  handleSubmit: (values: IInvitationsEntry | IAssignmentFormEntry[]) => void;
+  handleSubmit: (values: IAssignmentFormEntry[]) => void;
   handleToggleModal: () => void;
+  handlePreviousStep: () => void;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  isAddRoleFormValid?: boolean;
+  onCloseSectionMessage: () => void;
 }
 
 function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const {
+    handlePreviousStep,
+    onCloseSectionMessage,
+    message,
     currentStep,
     formReferences,
     isCurrentFormValid,
     invitationData,
     loading,
-    positionsOptions,
+    positions,
     showModal,
     steps,
     handleCompleteInvitation,
@@ -124,7 +130,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
       <LoadingApp />
     </StyledContainerLoading>
   ) : (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+    <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
       <Stack gap="48px" direction="column">
         <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={CompleteInvitationUserConfig[0].crumbs} />
@@ -162,10 +168,10 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
 
             {currentStep === stepsRegisterUserConfig.generalInformation.id && (
               <GeneralInformationForm
-                initialValues={currentInformation}
-                ref={formReferences.generalInformation}
                 onFormValid={setIsCurrentFormValid}
-                positionsOptions={positionsOptions}
+                initialValues={invitationData.generalInformation.values}
+                positions={positions}
+                ref={formReferences.generalInformation}
               />
             )}
             {currentStep === stepsRegisterUserConfig.branches.id && (
@@ -174,15 +180,9 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
                 handleSubmit={handleSubmit}
               />
             )}
-            {currentStep === stepsRegisterUserConfig.projects.id && (
+            {currentStep === stepsRegisterUserConfig.projectsEvents.id && (
               <InitializerForm
-                dataOptionsForms={invitationData.projects.values}
-                handleSubmit={handleSubmit}
-              />
-            )}
-            {currentStep === stepsRegisterUserConfig.events.id && (
-              <InitializerForm
-                dataOptionsForms={invitationData.events.values}
+                dataOptionsForms={invitationData.proyectsEvents.values}
                 handleSubmit={handleSubmit}
               />
             )}
@@ -198,19 +198,19 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
                 handleSubmit={handleSubmit}
               />
             )}
+
             {currentStep === stepsRegisterUserConfig.verification.id && (
               <VerificationAddInvitation
                 steps={invitationData}
                 setCurrentStep={setCurrentStep}
               />
             )}
-
             <Stack gap={inube.spacing.s200} justifyContent="flex-end">
               <Button
-                onClick={handlePrevStep}
+                onClick={handlePreviousStep}
                 type="button"
                 disabled={currentStep === steps[0].id}
-                spacing="compact"
+                spacing="wide"
                 variant="none"
                 appearance="gray"
               >
@@ -218,12 +218,23 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               </Button>
 
               <Button
-                onClick={handleNextStep}
-                spacing="compact"
+                onClick={
+                  currentStep === steps.length
+                    ? handleToggleModal
+                    : handleNextStep
+                }
+                spacing="wide"
                 disabled={!isCurrentFormValid}
               >
                 {currentStep === steps.length ? "Enviar" : "Siguiente"}
               </Button>
+              {message.visible && (
+                <RenderMessage
+                  message={message}
+                  handleCloseMessage={onCloseSectionMessage}
+                  onMessageClosed={onCloseSectionMessage}
+                />
+              )}
             </Stack>
           </>
         ) : (

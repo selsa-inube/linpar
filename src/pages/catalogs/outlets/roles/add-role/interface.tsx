@@ -1,13 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {
-  Assisted,
-  Button,
-  Stack,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
+import { Assisted, Button, useMediaQuery, inube } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
@@ -35,6 +29,7 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { VerificationAddRole } from "../components/VerificationForm";
 import { saveRole } from "./utils";
+import { Stack } from "@inubekit/stack";
 
 interface AddRolUIProps {
   addRoleFormValid: IFormAddRole;
@@ -136,7 +131,7 @@ export function AddRolUI(props: AddRolUIProps) {
       {loading ? (
         <LoadingApp />
       ) : (
-        <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+        <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
           <Stack gap={inube.spacing.s600} direction="column">
             <Stack gap={inube.spacing.s400} direction="column">
               <Breadcrumbs crumbs={createRolConfig[0].crumbs} />

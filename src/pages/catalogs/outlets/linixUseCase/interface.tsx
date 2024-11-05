@@ -1,13 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
-import {
-  Button,
-  Stack,
-  Textfield,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
+import { Button, Textfield, useMediaQuery, inube } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
@@ -16,6 +10,8 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { TableLinpar } from "@components/data/TableLinpar";
 import { IEntry } from "@components/data/TableLinpar/types";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { Icon } from "@inubekit/icon";
+import { Stack } from "@inubekit/stack";
 
 import { IDeleteForMessage, UseCase } from "./types";
 import {
@@ -26,7 +22,6 @@ import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
-import { Icon } from "@inubekit/icon";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -80,7 +75,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     <Stack
       direction="column"
       width="-webkit-fill-available"
-      padding={smallScreen ? "s300" : "s400 s800"}
+      padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s300} direction="column">

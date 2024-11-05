@@ -1,4 +1,5 @@
-import { Stack, useMediaQuery, inube } from "@inube/design-system";
+import { useMediaQuery, inube } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { Assisted } from "@inubekit/assisted";
 import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@components/feedback/DecisionModal";
@@ -102,7 +103,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
   const disabled = !isCurrentFormValid;
 
   return (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+    <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s400} direction="column">
           <Breadcrumbs crumbs={createPositionConfig[0].crumbs} />

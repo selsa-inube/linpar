@@ -1,5 +1,6 @@
-import { Stack, Text, useMediaQuery } from "@inube/design-system";
+import { Text, useMediaQuery } from "@inube/design-system";
 import { Icon } from "@inubekit/icon";
+import { Stack } from "@inubekit/stack";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 

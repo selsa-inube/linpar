@@ -1,11 +1,5 @@
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import {
-  Stack,
-  Textfield,
-  Grid,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
+import { Textfield, Grid, useMediaQuery, inube } from "@inube/design-system";
 import { Text } from "@inubekit/text";
 
 import { Menu } from "@components/navigation/Menu";
@@ -15,7 +9,8 @@ import { Fieldset } from "@components/inputs/Fieldset";
 import { Toggle } from "@inubekit/toggle";
 import { Label } from "@inubekit/label";
 import { Button } from "@inubekit/button";
-
+import { Icon } from "@inubekit/icon";
+import { Stack } from "@inubekit/stack";
 import {
   StyledEntriesContainer,
   StyledForm,
@@ -23,7 +18,6 @@ import {
   StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
-import { Icon } from "@inubekit/icon";
 
 interface AssignmentFormUIProps {
   title: string;

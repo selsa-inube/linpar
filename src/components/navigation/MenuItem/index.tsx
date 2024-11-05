@@ -1,7 +1,8 @@
-import { Icon, Text, Stack, inube } from "@inube/design-system";
+import { Icon, Text, inube } from "@inube/design-system";
 
 import { StyledMenuItemLink } from "./styles";
 import { MenuItemSpacingType } from "./types";
+import { Stack } from "@inubekit/stack";
 
 interface MenuItemProps {
   title: string;

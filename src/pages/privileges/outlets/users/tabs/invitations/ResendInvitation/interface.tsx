@@ -57,7 +57,6 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
             parentHover={isHovered ? true : false}
             icon={<MdOutlineShortcut />}
             disabled={invitation.status === "Sent"}
-            size="16px"
             cursorHover
             onClick={toggleModal}
           />

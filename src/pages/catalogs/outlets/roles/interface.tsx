@@ -1,15 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import {
-  Button,
-  Stack,
-  Textfield,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
+import { Button, Textfield, useMediaQuery, inube } from "@inube/design-system";
 import { Icon } from "@inubekit/icon";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
+import { Stack } from "@inubekit/stack";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
@@ -77,7 +72,7 @@ export function RolesUI(props: IRolesProps) {
     <Stack
       direction="column"
       width="-webkit-fill-available"
-      padding={smallScreen ? "s300" : "s400 s800"}
+      padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s300} direction="column">

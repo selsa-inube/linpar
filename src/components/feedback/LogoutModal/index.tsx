@@ -4,11 +4,11 @@ import { Icon } from "@inubekit/icon";
 import {
   Button,
   Blanket,
-  Stack,
   Text,
   inube,
   useMediaQuery,
 } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { StyledBackdropBlanket, StyledModal } from "./styles";
 
 interface ILogoutModalProps {

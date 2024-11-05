@@ -1,6 +1,7 @@
-import { Stack, SectionMessage } from "@inube/design-system";
-import { StyledMessageContainer } from "./styles";
+import { SectionMessage } from "@inube/design-system";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
+import { StyledMessageContainer } from "./styles";
+import { Stack } from "@inubekit/stack";
 
 interface IRenderMessageProps {
   message: IUsersMessage;
