@@ -1,4 +1,5 @@
-import { Button, Stack, inube } from "@inube/design-system";
+import { Button, inube } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { ThemeProvider } from "styled-components";
 
 interface FormButtonsProps {

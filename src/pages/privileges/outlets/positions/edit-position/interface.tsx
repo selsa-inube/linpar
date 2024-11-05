@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
-import {
-  Stack,
-  useMediaQueries,
-  inube,
-  Breadcrumbs,
-} from "@inube/design-system";
+import { useMediaQueries, inube, Breadcrumbs } from "@inube/design-system";
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 
@@ -32,6 +27,7 @@ import {
   IPosition,
 } from "../add-position/types";
 import { InitializerForm } from "../components/InitializerForm";
+import { Stack } from "@inubekit/stack";
 
 interface EditPositionUIProps {
   selectedTab: string;

@@ -1,5 +1,7 @@
-import { Stack, Spinner } from "@inube/design-system";
 import { Text } from "@inubekit/text";
+import { Spinner } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
+
 function CheckingCredentialsUI() {
   return (
     <Stack gap="16px" direction="column">

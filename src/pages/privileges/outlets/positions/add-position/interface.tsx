@@ -1,4 +1,4 @@
-import { Breadcrumbs, Stack, useMediaQuery, inube } from "@inube/design-system";
+import { Breadcrumbs, useMediaQuery, inube } from "@inube/design-system";
 import { Assisted } from "@inubekit/assisted";
 import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@components/feedback/DecisionModal";
@@ -21,6 +21,7 @@ import { StyledContainerAssisted } from "./styles";
 import { InitializerForm } from "../../forms/InitializerForm";
 import { VerificationAddPosition } from "../components/VerificationForm";
 import { IMessageState } from "../../users/types/forms.types";
+import { Stack } from "@inubekit/stack";
 
 const renderStepContent = (
   currentStep: number,
@@ -101,7 +102,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
   const disabled = !isCurrentFormValid;
 
   return (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+    <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s400} direction="column">
           <Breadcrumbs crumbs={createPositionConfig[0].crumbs} />

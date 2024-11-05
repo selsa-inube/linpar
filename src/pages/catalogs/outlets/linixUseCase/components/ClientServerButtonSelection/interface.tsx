@@ -1,7 +1,8 @@
 import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Stack, Icon, Grid, useMediaQuery } from "@inube/design-system";
 import { Text } from "@inubekit/text";
+import { Icon, Grid, useMediaQuery } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { Select } from "@inubekit/select";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IClientServerButton } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/types";
@@ -39,7 +40,7 @@ function RenderFormFields(
       <Stack
         direction="column"
         justifyContent="space-between"
-        padding="s050 s0"
+        padding="4px 0px"
       >
         <StyledSelectContainer>
           <Select

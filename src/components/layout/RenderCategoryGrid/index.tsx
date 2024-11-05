@@ -1,5 +1,6 @@
 import { ThemeProvider } from "styled-components";
-import { Stack, useMediaQuery, Grid, inube } from "@inube/design-system";
+import { useMediaQuery, Grid, inube } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 import { TokenColorCard } from "@components/cards/TokenColorCard";
 import { StyledGridContainer, StyledTokenColorCardContainer } from "./styles";

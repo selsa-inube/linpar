@@ -1,7 +1,7 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 
-import { Breadcrumbs, Icon, Stack, Textfield } from "@inube/design-system";
+import { Breadcrumbs, Icon, Textfield } from "@inube/design-system";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Button } from "@inubekit/button";
 import { Tabs } from "@inubekit/tabs";
@@ -15,6 +15,7 @@ import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
 import { StyledContainer } from "./styles";
+import { Stack } from "@inubekit/stack";
 
 interface UsersUIProps {
   isSelected: string;
@@ -53,7 +54,7 @@ export function UsersUI(props: UsersUIProps) {
       <Stack
         direction="column"
         width="-webkit-fill-available"
-        padding={smallScreen ? "s300" : "s400 s800"}
+        padding={smallScreen ? "24px" : "32px 64px"}
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
