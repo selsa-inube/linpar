@@ -1,11 +1,5 @@
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import {
-  Textfield,
-  Icon,
-  Grid,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
+import { Textfield, Icon, useMediaQuery, inube } from "@inube/design-system";
 import { Text } from "@inubekit/text";
 
 import { Menu } from "@components/navigation/Menu";
@@ -15,6 +9,7 @@ import { Fieldset } from "@components/inputs/Fieldset";
 import { Toggle } from "@inubekit/toggle";
 import { Label } from "@inubekit/label";
 import { Button } from "@inubekit/button";
+import { Grid } from "@inubekit/grid";
 
 import {
   StyledEntriesContainer,

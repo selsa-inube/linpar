@@ -1,11 +1,12 @@
 import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Text, Icon, Grid, useMediaQuery } from "@inube/design-system";
+import { Text, Icon, useMediaQuery } from "@inube/design-system";
 import { Select } from "@inubekit/select";
+import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { Stack } from "@inubekit/stack";
 import { IClientServerButton } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";
-import { Stack } from "@inubekit/stack";
 
 interface ClientServerButtonSelectionUIProps {
   formik: FormikValues;
@@ -65,7 +66,7 @@ function RenderFormFields(
 
       <Stack direction="column" gap="8px">
         {formik.errors.position && formInvalid && (
-          <Stack alignItems="center" margin="s0 s0 s0 s150">
+          <Stack alignItems="center" margin="0px 0px 0px 12px">
             <Icon
               appearance={"error"}
               icon={<MdOutlineError />}

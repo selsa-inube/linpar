@@ -3,7 +3,6 @@ import { FormikValues } from "formik";
 import {
   Breadcrumbs,
   Button,
-  Grid,
   SectionMessage,
   Textfield,
   useMediaQueries,
@@ -11,6 +10,7 @@ import {
 import { useState } from "react";
 import { EMessageType } from "@src/types/messages.types";
 import { PageTitle } from "@components/PageTitle";
+import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
@@ -127,7 +127,7 @@ function InviteUI(props: InviteUIProps) {
               templateColumns={
                 matches["(max-width: 1111px)"] ? "1fr" : "repeat(2, 1fr)"
               }
-              gap={"s300"}
+              gap="24px"
               margin={"s0 s0 s400 s0"}
               width={"100%"}
               autoRows="unset"
