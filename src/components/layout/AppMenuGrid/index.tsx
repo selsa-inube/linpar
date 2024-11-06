@@ -1,6 +1,7 @@
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
-import { Grid, useMediaQuery } from "@inube/design-system";
+import { useMediaQuery } from "@inube/design-system";
 import { AppMenuCardProps } from "@components/cards/AppMenuCard";
+import { Grid } from "@inubekit/grid";
 
 interface AppMenuGridProps {
   appOptions: AppMenuCardProps[];

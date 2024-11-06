@@ -1,11 +1,10 @@
 import { MdArrowBack } from "react-icons/md";
-
-import { Button, Grid, inube } from "@inube/design-system";
+import { Button, inube } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
 import { BoxAttribute } from "@components/data/BoxAttirbute";
 import { Accordion } from "@components/data/Accordion";
-
+import { Grid } from "@inubekit/grid";
 import { IDataVerificationStep } from ".";
-import { Stack } from "@inubekit/stack";
 
 interface IVerificationAddLinixUseCaseUIProps {
   dataVerificationStep: IDataVerificationStep[];

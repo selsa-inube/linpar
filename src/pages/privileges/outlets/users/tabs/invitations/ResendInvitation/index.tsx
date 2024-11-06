@@ -1,15 +1,16 @@
 import { useContext, useState } from "react";
 import { IInvitationsEntry } from "@services/users/invitation.types";
-import { ResendInvitationUI } from "./interface";
-import { resendNotification } from "@src/services/invitations/resendNotification";
-import { IMessageState } from "../../../types/forms.types";
+import { resendNotification } from "@services/invitations/resendNotification";
+import { LinparContext } from "@context/AppContext";
 import { EMessageType, IMessage } from "@src/types/messages.types";
+import { ResendInvitationUI } from "./interface";
+import { IMessageState } from "../../../types/forms.types";
 import { resendInvitationMessages } from "../../../config/resendInvitationUser.config";
-import { LinparContext } from "@src/context/AppContext";
 
 interface ResendInvitationProps {
   invitation: IInvitationsEntry;
   showComplete: boolean;
+  disabled: boolean;
 }
 
 function ResendInvitation(props: ResendInvitationProps) {

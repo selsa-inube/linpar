@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
 
-import { Grid, useMediaQueries } from "@inube/design-system";
+import { useMediaQueries } from "@inube/design-system";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
 import { LinparContext } from "@context/AppContext";
+import { Grid } from "@inubekit/grid";
 
 import {
   StyledWelcomeContainer,
@@ -62,7 +63,7 @@ function LoginUI() {
               ? "70vh"
               : "-webkit-fill-available"
           }
-          padding="s400 s200"
+          padding="32px 16px"
         >
           <Outlet />
         </Stack>

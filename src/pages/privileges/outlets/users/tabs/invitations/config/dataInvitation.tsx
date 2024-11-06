@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
-import { Icon } from "@inube/design-system";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
+import { Icon } from "@inubekit/icon";
 import { IInvitationsEntry } from "@services/users/invitation.types";
-
+import { Stack } from "@inubekit/stack";
 import { ResendInvitation } from "../ResendInvitation";
-
 import { deleteInvitationModal } from "../DeleteInvitation/config/deleteInvitation.config";
 import { DeleteLinixInvitation } from "../DeleteInvitation";
 import { IDeleteForMessage } from "../../users/types";
-import { Stack } from "@inubekit/stack";
 
 export const actionsConfigInvitation = (
   isHovered: boolean,
@@ -29,14 +27,23 @@ export const actionsConfigInvitation = (
         invitationId: string;
         status: string;
       }) => (
-        <Link to={`complete-invitation/${invitationId}`}>
+        <Link
+          to={status !== "sent" ? `complete-invitation/${invitationId}` : "#"}
+          onClick={(e) => {
+            if (status === "sent") {
+              e.preventDefault();
+            }
+          }}
+          style={{ pointerEvents: status === "sent" ? "none" : "auto" }}
+        >
           <Stack justifyContent="space-around">
             <Icon
               appearance={isHovered ? "primary" : "dark"}
               parentHover={isHovered ? true : false}
               icon={<MdOutlineAssignmentTurnedIn />}
-              disabled={status === "Sent"}
+              disabled={status === "sent"}
               cursorHover
+              size="16px"
             />
           </Stack>
         </Link>
@@ -48,7 +55,11 @@ export const actionsConfigInvitation = (
       id: "Resend",
       actionName: "Reenviar",
       content: (invitation: IInvitationsEntry) => (
-        <ResendInvitation invitation={invitation} showComplete={smallScreen} />
+        <ResendInvitation
+          invitation={invitation}
+          showComplete={smallScreen}
+          disabled={invitation.status === "processed"}
+        />
       ),
       type: "primary",
     },

@@ -1,9 +1,9 @@
 import { FormikValues } from "formik";
-import { Grid } from "@inube/design-system";
+
 import { Textfield } from "@inubekit/textfield";
 import { Textarea } from "@inubekit/textarea";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
+import { Grid } from "@inubekit/grid";
 import { IGeneralInformationEntry } from ".";
 
 function stateValue(formik: FormikValues, attribute: string) {
@@ -30,7 +30,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
   return (
     <>
       <form>
-        <Grid templateColumns="1fr" gap="s200" width="100%" autoRows="unset">
+        <Grid templateColumns="1fr" gap="16px" width="100%" autoRows="unset">
           <Textfield
             label="Nombre Cargo"
             placeholder="Nombre del cargo"
