@@ -5,14 +5,15 @@ import {
   Button,
   SectionMessage,
   Textfield,
-  useMediaQueries,
 } from "@inube/design-system";
+
 import { useState } from "react";
 import { EMessageType } from "@src/types/messages.types";
 import { PageTitle } from "@components/PageTitle";
 import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { useMediaQueries } from "@inubekit/hooks";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledContainerLoading, StyledMessageContainer } from "./styles";

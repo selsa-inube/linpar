@@ -1,8 +1,9 @@
 import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Text } from "@inubekit/text";
+import { Icon } from "@inube/design-system";
 import { Stack } from "@inubekit/stack";
-import { Icon, useMediaQuery } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Text } from "@inubekit/text";
 import { Select } from "@inubekit/select";
 import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";

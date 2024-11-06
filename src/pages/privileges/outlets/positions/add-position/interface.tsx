@@ -1,4 +1,6 @@
-import { Breadcrumbs, useMediaQuery, inube } from "@inube/design-system";
+import { Breadcrumbs, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Stack } from "@inubekit/stack";
 import { Assisted } from "@inubekit/assisted";
 import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@components/feedback/DecisionModal";
@@ -21,7 +23,6 @@ import { StyledContainerAssisted } from "./styles";
 import { InitializerForm } from "../../forms/InitializerForm";
 import { VerificationAddPosition } from "../components/VerificationForm";
 import { IMessageState } from "../../users/types/forms.types";
-import { Stack } from "@inubekit/stack";
 
 const renderStepContent = (
   currentStep: number,

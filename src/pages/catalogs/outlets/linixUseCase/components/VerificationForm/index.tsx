@@ -1,5 +1,4 @@
-import { useMediaQuery } from "@inube/design-system";
-
+import { useMediaQuery } from "@inubekit/hooks";
 import { IFormAddLinixUseCase } from "../../adding-linix-use-case/types";
 import { IInitialiceFormLinixUseCase } from "../../types";
 import { VerificationAddLinixUseCaseUI } from "./interface";

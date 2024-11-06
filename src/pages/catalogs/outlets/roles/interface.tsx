@@ -5,10 +5,9 @@ import {
   Button,
   Icon,
   Textfield,
-  useMediaQuery,
   inube,
 } from "@inube/design-system";
-
+import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";

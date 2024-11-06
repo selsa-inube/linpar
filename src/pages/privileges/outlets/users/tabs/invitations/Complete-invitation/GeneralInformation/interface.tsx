@@ -1,9 +1,9 @@
 import { MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
-
+import { useMediaQuery } from "@inubekit/hooks";
 import { Grid } from "@inubekit/grid";
+import { Textfield } from "@inube/design-system";
 
-import { Textfield, useMediaQuery } from "@inube/design-system";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { Stack } from "@inubekit/stack";
 import { IMessageState } from "../../../../types/forms.types";

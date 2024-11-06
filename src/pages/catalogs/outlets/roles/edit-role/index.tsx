@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useMediaQuery } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getBusinessRulesByRoleFormats } from "@services/roles/businessRulesByRole";
 

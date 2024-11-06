@@ -1,14 +1,8 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {
-  Assisted,
-  Breadcrumbs,
-  Button,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
-
+import { Assisted, Breadcrumbs, Button, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { DecisionModal } from "@components/feedback/DecisionModal";
@@ -16,6 +10,8 @@ import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { LinparContext } from "@context/AppContext";
+import { Stack } from "@inubekit/stack";
+
 import {
   IFormAddRole,
   IFormAddRoleRef,
@@ -34,7 +30,6 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { VerificationAddRole } from "../components/VerificationForm";
 import { saveRole } from "./utils";
-import { Stack } from "@inubekit/stack";
 
 interface AddRolUIProps {
   addRoleFormValid: IFormAddRole;

@@ -1,12 +1,7 @@
 import { MdPersonOutline } from "react-icons/md";
 
-import {
-  Assisted,
-  Breadcrumbs,
-  useMediaQuery,
-  Button,
-  inube,
-} from "@inube/design-system";
+import { Assisted, Breadcrumbs, Button, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
