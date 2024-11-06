@@ -1,11 +1,11 @@
 import { FormikValues } from "formik";
-import { Textfield, Textarea, Grid, useMediaQuery } from "@inube/design-system";
+import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
+import { Stack } from "@inubekit/stack";
+import { Textarea } from "@inubekit/textarea";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IGeneralInformationForm } from "../../types";
-import { Stack } from "@inubekit/stack";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -104,8 +104,6 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           name="description"
           id="description"
           value={formik.values.description}
-          type="text"
-          size="compact"
           fullwidth
           maxLength={30}
           onChange={(
@@ -125,7 +123,9 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
               ? formik.errors.description
               : null
           }
-          status={stateValue("description") === "invalid" ? "invalid" : null}
+          status={
+            stateValue("description") === "invalid" ? "invalid" : undefined
+          }
         />
       </Grid>
     </form>
