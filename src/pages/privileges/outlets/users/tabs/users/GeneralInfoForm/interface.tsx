@@ -1,6 +1,7 @@
 import { FormikValues } from "formik";
 
-import { Grid, useMediaQuery } from "@inube/design-system";
+import { Grid } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { Textfield } from "@inubekit/textfield";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
@@ -35,7 +36,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
       <form>
         <Grid
           templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
-          gap="s200 s300"
+          gap="16px 24px"
           width="100%"
           autoRows="unset"
         >

@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { Assisted, useMediaQuery, inube, Button } from "@inube/design-system";
+import { Assisted, inube, Button } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";

@@ -1,11 +1,12 @@
 import { FormikValues } from "formik";
-import { Textfield, Textarea, Grid, useMediaQuery } from "@inube/design-system";
 
+import { Textfield, Textarea } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Stack } from "@inubekit/stack";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
+import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IGeneralInformationForm } from "../../types";
-import { Stack } from "@inubekit/stack";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
@@ -36,7 +37,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     <form>
       <Grid
         templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
-        gap="s0 s300"
+        gap="0px 24px"
         width={"100%"}
         autoRows="unset"
       >

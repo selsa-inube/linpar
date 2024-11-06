@@ -1,13 +1,10 @@
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Icon } from "@inubekit/icon";
-import {
-  Button,
-  Blanket,
-  Text,
-  inube,
-  useMediaQuery,
-} from "@inube/design-system";
+import { Button, Blanket, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Text } from "@inubekit/text";
+
 import { Stack } from "@inubekit/stack";
 import { StyledBackdropBlanket, StyledModal } from "./styles";
 
@@ -24,7 +21,7 @@ function LogoutModal(props: ILogoutModalProps) {
     <StyledBackdropBlanket>
       <Blanket>
         <StyledModal $smallScreen={smallScreen}>
-          <Stack direction="column" gap={inube.spacing.s300} padding="s300">
+          <Stack direction="column" gap={inube.spacing.s300} padding="24px">
             <Stack direction="column" gap={inube.spacing.s300}>
               <Stack direction="row" justifyContent="space-between">
                 <Text

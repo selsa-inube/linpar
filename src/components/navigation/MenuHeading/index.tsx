@@ -1,5 +1,5 @@
-import { Text, inube } from "@inube/design-system";
-
+import { inube } from "@inube/design-system";
+import { Text } from "@inubekit/text";
 interface MenuHeadingProps {
   title: string;
 }

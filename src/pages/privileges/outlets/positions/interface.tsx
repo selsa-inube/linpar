@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { Stack } from "@inubekit/stack";
-import { Textfield, useMediaQuery, Table, inube } from "@inube/design-system";
+import { Textfield, Table, inube } from "@inube/design-system";
 import { Icon } from "@inubekit/icon";
+import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";

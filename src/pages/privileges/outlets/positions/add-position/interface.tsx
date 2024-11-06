@@ -1,4 +1,5 @@
-import { useMediaQuery, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
 import { Assisted } from "@inubekit/assisted";
 import { PageTitle } from "@components/PageTitle";

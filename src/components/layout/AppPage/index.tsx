@@ -1,8 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
+
 import { MdOutlineChevronRight } from "react-icons/md";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Grid, useMediaQuery } from "@inube/design-system";
+
+import { Grid } from "@inube/design-system";
+
 import { Nav } from "@inubekit/nav";
+import { useMediaQuery } from "@inubekit/hooks";
+
 import { LinparContext } from "@context/AppContext";
 import { Header } from "@inubekit/header";
 import { BusinessUnitChange } from "@components/inputs/BusinessUnitChange";
