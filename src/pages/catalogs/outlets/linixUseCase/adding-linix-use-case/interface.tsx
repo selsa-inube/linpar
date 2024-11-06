@@ -1,20 +1,15 @@
 import { useContext } from "react";
-import {
-  Assisted,
-  Breadcrumbs,
-  useMediaQuery,
-  inube,
-  Button,
-} from "@inube/design-system";
+import { Assisted, inube, Button } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-
+import { Stack } from "@inubekit/stack";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { LinparContext } from "@context/AppContext";
-
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   CrateLinixUseCaseConfig,
   finishAssistedModalConfig,
@@ -36,7 +31,6 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { VerificationAddLinixUseCase } from "../components/VerificationForm";
 import { InitializerForm } from "../components/InitializerForm";
-import { Stack } from "@inubekit/stack";
 
 function finishModal(
   handleCloseModal: () => void,

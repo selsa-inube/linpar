@@ -1,6 +1,7 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
-import { Icon } from "@inube/design-system";
+
 import { EAppearance } from "@src/types/colors.types";
+import { Icon } from "@inubekit/icon";
 
 export const stepsAddPosition = {
   generalInformation: {
@@ -67,7 +68,7 @@ export const finishAssistedPositionModalConfig = {
 export const finishAssistedPositionMessagesConfig = {
   success: {
     id: 1,
-    icon: <Icon appearance="dark" icons={<MdThumbUpOffAlt />} size="18px" />,
+    icon: <Icon appearance="dark" icon={<MdThumbUpOffAlt />} size="18px" />,
     title: "Creación exitosa",
     description: (value: string) =>
       `Hemos creado el cargo ${value} exitosamente.`,
@@ -75,7 +76,7 @@ export const finishAssistedPositionMessagesConfig = {
   },
   failed: {
     id: 2,
-    icon: <Icon appearance="dark" icons={<MdErrorOutline />} size="18px" />,
+    icon: <Icon appearance="dark" icon={<MdErrorOutline />} size="18px" />,
     title: "¡Uy, algo ha salido mal!",
     description: (value: string) =>
       `Hemos presentado un error creando el cargo ${value}.`,

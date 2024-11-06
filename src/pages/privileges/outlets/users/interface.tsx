@@ -1,10 +1,12 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-
-import { Breadcrumbs, Icon, Textfield } from "@inube/design-system";
+import { Searchfield } from "@inubekit/input";
+import { Stack } from "@inubekit/stack";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Button } from "@inubekit/button";
 import { Tabs } from "@inubekit/tabs";
+import { Icon } from "@inubekit/icon";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { useMediaQueries } from "@inubekit/hooks";
 import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
@@ -15,7 +17,6 @@ import { IUsersMessage } from "./types/users.types";
 import { InvitationsTab } from "./tabs/invitations";
 import { UsersTab } from "./tabs/users";
 import { StyledContainer } from "./styles";
-import { Stack } from "@inubekit/stack";
 
 interface UsersUIProps {
   isSelected: string;
@@ -77,7 +78,7 @@ export function UsersUI(props: UsersUIProps) {
               scroll={typeTabs ? true : false}
             />
             <Stack justifyContent="space-between" alignItems="center">
-              <Textfield
+              <Searchfield
                 name="searchUser"
                 id="searchUser"
                 placeholder="Buscar..."

@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
-import { Icon } from "@inube/design-system";
 
 import { Text } from "@inubekit/text";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
-
+import { Icon } from "@inubekit/icon";
+import { IEntry } from "@components/data/TableLinpar/types";
 import { DetailsModal } from "../components/DetailsModal";
 import { deleteRolModal } from "../delete-role/config/deleteRol.config";
 import { DeleteRole } from "../delete-role";
 import { activateRoleModal } from "../activate-role/config/activateRole.config";
 import { ActivateRole } from "../activate-role";
 import { IDeleteForMessage, IRol } from "../types";
-import { IEntry } from "@src/components/data/TableLinpar/types";
+
 import { StyledContainerEdit, StyledContainerIcon } from "../styles";
 
 export const titlesOptions = [
@@ -104,7 +104,12 @@ export const actionsConfigPosition = (
         <StyledContainerEdit>
           <Link to={`edit/${entry.k_Rol}`}>
             <StyledContainerIcon>
-              <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+              <Icon
+                appearance="dark"
+                cursorHover
+                icon={<MdModeEdit />}
+                size="16px"
+              />
             </StyledContainerIcon>
             <Text size="small" type="body">
               Editar

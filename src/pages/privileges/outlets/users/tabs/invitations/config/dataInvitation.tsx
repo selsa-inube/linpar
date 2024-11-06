@@ -58,7 +58,9 @@ export const actionsConfigInvitation = (
         <ResendInvitation
           invitation={invitation}
           showComplete={smallScreen}
-          disabled={invitation.status === "processed"}
+          disabled={
+            invitation.status === "processed" || invitation.status === "pending"
+          }
         />
       ),
       type: "primary",

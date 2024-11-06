@@ -1,9 +1,10 @@
 import { FormikValues } from "formik";
-import { Textfield, Grid, useMediaQuery } from "@inube/design-system";
-
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { Textfield } from "@inubekit/input";
+import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
+import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { Textarea } from "@inubekit/textarea";
+import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IGeneralInformationForm } from "../../types";
 
@@ -36,7 +37,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     <form>
       <Grid
         templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
-        gap="s0 s300"
+        gap="0px 24px"
         width={"100%"}
         autoRows="unset"
       >
@@ -62,7 +63,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             message={
               stateValue("n_Rol") === "invalid" ? formik.errors.n_Rol : null
             }
-            status={stateValue("n_Rol") === "invalid" ? "invalid" : null}
+            status={stateValue("n_Rol") === "invalid" ? "invalid" : undefined}
           />
 
           <SearchUserCard

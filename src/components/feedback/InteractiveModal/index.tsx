@@ -2,14 +2,12 @@ import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
+import { Text } from "@inubekit/text";
+import { Searchfield, Textfield } from "@inubekit/input";
+import { Blanket } from "@inubekit/blanket";
+import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
-import {
-  Text,
-  Blanket,
-  useMediaQuery,
-  Textfield,
-  Icon,
-} from "@inube/design-system";
+import { Icon } from "@inubekit/icon";
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
 
@@ -107,7 +105,7 @@ const InteractiveModal = ({
               <Icon
                 appearance={"dark"}
                 icon={<MdClear />}
-                spacing="wide"
+                spacing="narrow"
                 size="24px"
                 cursorHover
                 onClick={handleCloseModal}
@@ -159,9 +157,9 @@ const InteractiveModal = ({
               )
             ) : (
               <>
-                <Textfield
+                <Searchfield
                   key="searchField"
-                  id={id}
+                  id={id || ""}
                   label={label}
                   name={name}
                   placeholder={placeholder}

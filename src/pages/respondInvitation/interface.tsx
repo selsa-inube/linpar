@@ -6,14 +6,16 @@ import {
   MdPersonOutline,
   MdShortcut,
 } from "react-icons/md";
-
 import {
-  Button,
-  Grid,
-  Text,
+  Numberfield,
+  Emailfield,
   Textfield,
-  useMediaQuery,
-} from "@inube/design-system";
+  Phonefield,
+} from "@inubekit/input";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Text } from "@inubekit/text";
+import { Button } from "@inube/design-system";
+import { Grid } from "@inubekit/grid";
 import { Stack } from "@inubekit/stack";
 import { Fieldset } from "@components/inputs/Fieldset";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
@@ -57,9 +59,8 @@ const renderForm = (
   const stateValue = (fieldName: string) => {
     if (!formik.touched[fieldName]) return "pending";
     if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
-    return "valid";
+    return undefined;
   };
-
   return (
     <Stack direction="column" gap={smallScreen ? "32px" : "48px"}>
       <Stack direction="column">
@@ -89,7 +90,7 @@ const renderForm = (
               disabled
               readOnly
             />
-            <Textfield
+            <Numberfield
               id="userID"
               name="userID"
               label="Identificación"
@@ -109,7 +110,7 @@ const renderForm = (
           icon={<MdOutlinePhone size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-            <Textfield
+            <Phonefield
               id="phone"
               name="phone"
               label="Número de teléfono"
@@ -129,7 +130,7 @@ const renderForm = (
               onBlur={formik.handleBlur}
               fullwidth
             />
-            <Textfield
+            <Emailfield
               id="email"
               label="Correo"
               name="email"
@@ -173,7 +174,7 @@ const renderForm = (
               onBlur={formik.handleBlur}
             />
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-              <Textfield
+              <Numberfield
                 id="password"
                 label="Contraseña"
                 name="password"
@@ -191,7 +192,7 @@ const renderForm = (
                 status={stateValue("password")}
                 onBlur={formik.handleBlur}
               />
-              <Textfield
+              <Numberfield
                 id="confirmPassword"
                 label="Confirmar Contraseña"
                 name="confirmPassword"

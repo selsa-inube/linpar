@@ -1,18 +1,21 @@
 import { useState } from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
-import { useMediaQueries, inube, Breadcrumbs } from "@inube/design-system";
+
+import { useMediaQueries, inube } from "@inube/design-system";
+
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { PageTitle } from "@components/PageTitle";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-
+import { Stack } from "@inubekit/stack";
 import { StyledContainer, StyledContainerLoading } from "./styles";
 import {
   editPositionCardLabels,
@@ -27,7 +30,6 @@ import {
   IPosition,
 } from "../add-position/types";
 import { InitializerForm } from "../components/InitializerForm";
-import { Stack } from "@inubekit/stack";
 
 interface EditPositionUIProps {
   selectedTab: string;

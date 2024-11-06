@@ -1,7 +1,7 @@
 import { MdPersonOutline } from "react-icons/md";
 import { useState } from "react";
 import { Button } from "@inubekit/button";
-import { useMediaQueries, inube, Breadcrumbs } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
 import {
   IAssignmentFormEntry,
@@ -11,12 +11,15 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Tabs } from "@inubekit/tabs";
+import { useMediaQueries } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
+
 import {
   IFormAddUsers,
   IGeneralInformationUsersForm,
   IHandleChangeFormData,
 } from "@services/users/users.types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { StyledContainer } from "./styles";
 import { GeneralInformationForm } from "../GeneralInfoForm";
 import { editLinixUserTabsConfig } from "./config/editUsersTabs.config";

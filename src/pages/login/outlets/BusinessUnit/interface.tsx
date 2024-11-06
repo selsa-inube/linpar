@@ -1,17 +1,18 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { Button, Text, Textfield, inube } from "@inube/design-system";
+import { Button, inube } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
+import { Searchfield } from "@inubekit/input";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { IBusinessUnitstate } from "./types";
-
+import { Text } from "@inubekit/text";
 import {
   StyledBusinessUnits,
   StyledBusinessUnitsList,
   StyledNoResults,
   StyledBusinessUnitsItem,
 } from "./styles";
-import { Stack } from "@inubekit/stack";
 
 interface BusinessUnitsUIProps {
   businessUnits: IBusinessUnitsPortalStaff[];
@@ -59,7 +60,7 @@ function BusinessUnitsUI({
       <form>
         <Stack direction="column" alignItems="center">
           {businessUnits.length > 10 && (
-            <Textfield
+            <Searchfield
               placeholder="Buscar..."
               type="search"
               name="searchBusinessUnits"

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 
-import { Icon } from "@inube/design-system";
+import { Icon } from "@inubekit/icon";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 import { Text } from "@inubekit/text";
 import { deleteLinixUseCaseModal } from "../delete-linix-use-case/config/deleteLinixUseCase.config";
@@ -85,7 +85,12 @@ export const actionsConfigLinixUseCase = (
         <StyledContainerEdit>
           <Link to={`edit/${entry.k_Usecase}`}>
             <StyledContainerIcon>
-              <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
+              <Icon
+                appearance="dark"
+                cursorHover
+                icon={<MdModeEdit />}
+                size="16px"
+              />
             </StyledContainerIcon>
             <Text size="small" type="body">
               Editar

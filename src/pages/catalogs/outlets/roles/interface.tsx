@@ -1,20 +1,19 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import {
-  Breadcrumbs,
-  Button,
-  Icon,
-  Textfield,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
 
+import { Icon } from "@inubekit/icon";
+import { Button, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Searchfield } from "@inubekit/input";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
+import { Stack } from "@inubekit/stack";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { TableLinpar } from "@components/data/TableLinpar";
+import { IEntry } from "@components/data/TableLinpar/types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
@@ -25,8 +24,6 @@ import {
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
-import { IEntry } from "@src/components/data/TableLinpar/types";
-import { Stack } from "@inubekit/stack";
 
 interface IRolesProps {
   handleCloseMenuInvitation: () => void;
@@ -95,7 +92,7 @@ export function RolesUI(props: IRolesProps) {
         </Stack>
         <Stack gap={inube.spacing.s400} direction="column">
           <Stack justifyContent="space-between" alignItems="center">
-            <Textfield
+            <Searchfield
               name="searchLinixUseCases"
               id="searchLinixUseCases"
               placeholder="Buscar..."

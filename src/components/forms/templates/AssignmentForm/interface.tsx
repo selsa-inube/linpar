@@ -1,21 +1,18 @@
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import {
-  Textfield,
-  Icon,
-  Grid,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
-import { Text } from "@inubekit/text";
+import { inube } from "@inube/design-system";
 
+import { Text } from "@inubekit/text";
+import { Searchfield } from "@inubekit/input";
+import { Stack } from "@inubekit/stack";
 import { Menu } from "@components/navigation/Menu";
 import { IOption } from "@components/navigation/Menu/types";
 import { Fieldset } from "@components/inputs/Fieldset";
-
 import { Toggle } from "@inubekit/toggle";
 import { Label } from "@inubekit/label";
 import { Button } from "@inubekit/button";
-
+import { Icon } from "@inubekit/icon";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Grid } from "@inubekit/grid";
 import {
   StyledEntriesContainer,
   StyledForm,
@@ -23,7 +20,6 @@ import {
   StyledToggle,
 } from "./styles";
 import { IEntry } from "./types";
-import { Stack } from "@inubekit/stack";
 
 interface AssignmentFormUIProps {
   title: string;
@@ -84,7 +80,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
             gap="s200"
             alignItems="center"
           >
-            <Textfield
+            <Searchfield
               type="search"
               iconBefore={<MdSearch size={22} />}
               placeholder="Buscar..."
@@ -103,7 +99,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                 <Icon
                   icon={<MdOutlineMoreHoriz />}
                   appearance="dark"
-                  spacing="none"
+                  spacing="narrow"
                   size="24px"
                   shape="circle"
                   onClick={handleToggleMenuInvitation}

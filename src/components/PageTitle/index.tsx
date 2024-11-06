@@ -1,7 +1,9 @@
+import { Icon } from "@inubekit/icon";
+import { Stack } from "@inubekit/stack";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { Text, useMediaQuery, Icon } from "@inube/design-system";
-import { Stack } from "@inubekit/stack";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Text } from "@inubekit/text";
 
 interface PageTitleProps {
   title: string;
@@ -25,7 +27,7 @@ function PageTitle(props: PageTitleProps) {
               appearance="dark"
               cursorHover={true}
               icon={icon}
-              spacing="none"
+              spacing="narrow"
               size="20px"
             />
           ) : (
@@ -33,7 +35,7 @@ function PageTitle(props: PageTitleProps) {
               appearance="dark"
               cursorHover={true}
               icon={<MdArrowBack />}
-              spacing="none"
+              spacing="narrow"
               size="20px"
               onClick={() =>
                 navigatePage ? navigate(navigatePage) : navigate(-1)

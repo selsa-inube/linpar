@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 
 import { VerificationAddPositionUI } from "./interface";
 import { IAttributes, IDataVerificationStep } from "./types";

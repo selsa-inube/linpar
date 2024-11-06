@@ -25,6 +25,7 @@
     "@inubekit/header": "^3.0.0",
     "@inubekit/hooks": "^1.2.0",
     "@inubekit/icon": "^2.18.1",
+    "@inubekit/input": "^1.6.3",
     "@inubekit/label": "^3.1.1",
     "@inubekit/nav": "^5.3.1",
     "@inubekit/select": "^6.35.0",

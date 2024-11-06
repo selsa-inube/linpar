@@ -1,13 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import {
-  Assisted,
-  Breadcrumbs,
-  Button,
-  useMediaQuery,
-  inube,
-} from "@inube/design-system";
+import { Assisted, inube, Button } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
@@ -16,6 +10,8 @@ import { RenderMessage } from "@components/feedback/RenderMessage";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { LinparContext } from "@context/AppContext";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { Stack } from "@inubekit/stack";
 import {
   IFormAddRole,
   IFormAddRoleRef,
@@ -34,7 +30,6 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { VerificationAddRole } from "../components/VerificationForm";
 import { saveRole } from "./utils";
-import { Stack } from "@inubekit/stack";
 
 interface AddRolUIProps {
   addRoleFormValid: IFormAddRole;
@@ -215,7 +210,7 @@ export function AddRolUI(props: AddRolUIProps) {
                 onClick={handlePreviousStep}
                 type="button"
                 disabled={currentStep === steps[0].id}
-                spacing="wide"
+                spacing="narrow"
                 variant="none"
                 appearance="gray"
               >

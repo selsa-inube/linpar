@@ -1,18 +1,15 @@
 import { MdOutlineShortcut } from "react-icons/md";
 import { FormikValues } from "formik";
-import {
-  Breadcrumbs,
-  Button,
-  Grid,
-  SectionMessage,
-  Textfield,
-  useMediaQueries,
-} from "@inube/design-system";
 import { useState } from "react";
+import { Button, SectionMessage } from "@inube/design-system";
+import { Numberfield, Emailfield, Phonefield } from "@inubekit/input";
 import { EMessageType } from "@src/types/messages.types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { PageTitle } from "@components/PageTitle";
+import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { useMediaQueries } from "@inubekit/hooks";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledContainerLoading, StyledMessageContainer } from "./styles";
@@ -127,7 +124,7 @@ function InviteUI(props: InviteUIProps) {
               templateColumns={
                 matches["(max-width: 1111px)"] ? "1fr" : "repeat(2, 1fr)"
               }
-              gap={"s300"}
+              gap="24px"
               margin={"s0 s0 s400 s0"}
               width={"100%"}
               autoRows="unset"
@@ -152,7 +149,7 @@ function InviteUI(props: InviteUIProps) {
                 onUserSelect={handleUserSelect}
                 onReset={onReset}
               />
-              <Textfield
+              <Numberfield
                 label="Identificación"
                 placeholder="Ingrese su número de identificación"
                 name="userIdentification"
@@ -165,7 +162,7 @@ function InviteUI(props: InviteUIProps) {
                 readOnly
               />
 
-              <Textfield
+              <Phonefield
                 label="Número de teléfono"
                 placeholder="Ingrese su número telefónico"
                 name="phoneNumber"
@@ -189,7 +186,7 @@ function InviteUI(props: InviteUIProps) {
                 onBlur={formik.handleBlur}
               />
 
-              <Textfield
+              <Emailfield
                 label="Correo"
                 placeholder="Ingrese su dirección de correo electrónico"
                 name="email"
@@ -204,7 +201,11 @@ function InviteUI(props: InviteUIProps) {
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                status={stateValue(formik, "email")}
+                status={
+                  stateValue(formik, "email") === "invalid"
+                    ? "invalid"
+                    : undefined
+                }
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />

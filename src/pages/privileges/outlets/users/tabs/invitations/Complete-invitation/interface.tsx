@@ -1,21 +1,20 @@
 import { MdPersonOutline } from "react-icons/md";
 
-import {
-  Assisted,
-  Breadcrumbs,
-  useMediaQuery,
-  Button,
-  inube,
-} from "@inube/design-system";
+import { Assisted, Button, inube } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
+
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IFormCompleteInvitation } from "@services/users/invitation.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Stack } from "@inubekit/stack";
+
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,

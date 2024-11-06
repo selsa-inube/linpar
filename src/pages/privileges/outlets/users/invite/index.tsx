@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 
-import { useMediaQuery } from "@inube/design-system";
+import { useMediaQuery } from "@inubekit/hooks";
 import { getSearchAllTercero } from "@services/invitations/thirdPartiesNamesUsernames";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
