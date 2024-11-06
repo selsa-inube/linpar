@@ -1,19 +1,15 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-
-import {
-  Breadcrumbs,
-  Icon,
-  Textfield,
-  Table,
-  inube,
-} from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
+import { Textfield, Table, inube } from "@inube/design-system";
+import { Icon } from "@inubekit/icon";
 import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   actionsConfigPosition,
   PositionsBreakPointsConfig,
@@ -24,7 +20,6 @@ import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { IDeleteForMessage } from "./types";
-import { Stack } from "@inubekit/stack";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;

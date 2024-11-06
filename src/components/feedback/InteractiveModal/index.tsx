@@ -1,14 +1,12 @@
 import { createPortal } from "react-dom";
-
 import { MdClear } from "react-icons/md";
-
 import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 import { Text } from "@inubekit/text";
-import { Blanket, Textfield, Icon } from "@inube/design-system";
+import { Blanket, Textfield } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
-
+import { Icon } from "@inubekit/icon";
 import { StyledModal, StyledDivider } from "./styles";
 import { InteractiveModalProps } from "./types";
 
@@ -106,7 +104,7 @@ const InteractiveModal = ({
               <Icon
                 appearance={"dark"}
                 icon={<MdClear />}
-                spacing="wide"
+                spacing="narrow"
                 size="24px"
                 cursorHover
                 onClick={handleCloseModal}

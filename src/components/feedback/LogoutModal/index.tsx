@@ -1,8 +1,10 @@
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Button, Blanket, inube, Icon } from "@inube/design-system";
+import { Icon } from "@inubekit/icon";
+import { Button, Blanket, inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Text } from "@inubekit/text";
+
 import { Stack } from "@inubekit/stack";
 import { StyledBackdropBlanket, StyledModal } from "./styles";
 

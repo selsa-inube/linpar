@@ -1,4 +1,4 @@
-import { Breadcrumbs, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
 import { Assisted } from "@inubekit/assisted";
@@ -6,6 +6,7 @@ import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Button } from "@inubekit/button";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   createPositionConfig,
   finishAssistedModalConfig,

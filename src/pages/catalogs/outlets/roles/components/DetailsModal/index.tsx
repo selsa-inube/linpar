@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
-import { Icon } from "@inube/design-system";
+
 import { Text } from "@inubekit/text";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
+import { Icon } from "@inubekit/icon";
 import { StyledContainer, StyledContainerIcon } from "./styles";
 
 interface IDetailsModalProps {
@@ -32,7 +33,11 @@ export const DetailsModal = (props: IDetailsModalProps) => {
     <>
       <StyledContainer onClick={handleToggleModal}>
         <StyledContainerIcon>
-          <Icon icon={<MdOutlineAssignmentTurnedIn />} appearance="dark" />
+          <Icon
+            icon={<MdOutlineAssignmentTurnedIn />}
+            appearance="dark"
+            size="16px"
+          />
         </StyledContainerIcon>
 
         {isMobile && (

@@ -1,19 +1,19 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
-import {
-  Breadcrumbs,
-  Button,
-  Icon,
-  Textfield,
-  inube,
-} from "@inube/design-system";
+import { Button, Textfield, inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
+
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
+import { TableLinpar } from "@components/data/TableLinpar";
+import { IEntry } from "@components/data/TableLinpar/types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { Icon } from "@inubekit/icon";
+import { Stack } from "@inubekit/stack";
 
 import { IDeleteForMessage, UseCase } from "./types";
 import {
@@ -24,9 +24,6 @@ import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
-import { TableLinpar } from "@src/components/data/TableLinpar";
-import { IEntry } from "@src/components/data/TableLinpar/types";
-import { Stack } from "@inubekit/stack";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;

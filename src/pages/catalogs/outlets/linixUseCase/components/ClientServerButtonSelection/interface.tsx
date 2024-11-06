@@ -7,7 +7,6 @@ import { Text } from "@inubekit/text";
 import { Select } from "@inubekit/select";
 import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-
 import { IClientServerButton } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";
 
@@ -71,9 +70,9 @@ function RenderFormFields(
         {formik.errors.position && formInvalid && (
           <Stack alignItems="center" margin="0px 0px 0px 12px">
             <Icon
-              appearance={"error"}
+              appearance={"danger"}
               icon={<MdOutlineError />}
-              spacing="wide"
+              spacing="narrow"
               size="14px"
               shape="circle"
             />

@@ -1,14 +1,10 @@
 import { MdOutlineShortcut } from "react-icons/md";
 import { FormikValues } from "formik";
-import {
-  Breadcrumbs,
-  Button,
-  SectionMessage,
-  Textfield,
-} from "@inube/design-system";
+import { Button, SectionMessage, Textfield } from "@inube/design-system";
 
 import { useState } from "react";
 import { EMessageType } from "@src/types/messages.types";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { PageTitle } from "@components/PageTitle";
 import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";

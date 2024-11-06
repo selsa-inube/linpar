@@ -1,7 +1,9 @@
 import React from "react";
-import { Icon } from "@inube/design-system";
+
+import { Icon } from "@inubekit/icon";
 import { Stack } from "@inubekit/stack";
 import { Text } from "@inubekit/text";
+
 import { StyledFieldset } from "./styles";
 
 export interface FieldsetProps {

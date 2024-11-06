@@ -1,9 +1,8 @@
 import { MdOutlineDelete } from "react-icons/md";
 
-import { Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
-
+import { Icon } from "@inubekit/icon";
 import { deleteInvitationModal } from "./config/deleteInvitation.config";
 
 interface DeleteLinixInvitationUIProps {
@@ -47,6 +46,7 @@ export const DeleteLinixInvitationUI = (
           onClick={() => setShowModal(true)}
           appearance={hover ? "primary" : "dark"}
           cursorHover
+          size="16px"
         />
       </div>
       {showModal && (

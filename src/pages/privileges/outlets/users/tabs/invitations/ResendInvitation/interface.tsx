@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { MdOutlineShortcut } from "react-icons/md";
-import { Button, Icon } from "@inube/design-system";
+import { Button } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { IInvitationsEntry } from "@services/users/invitation.types";
+import { Icon } from "@inubekit/icon";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
 import { IMessageState } from "../../../types/forms.types";
@@ -55,10 +56,7 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
             appearance={isHovered ? "primary" : "dark"}
             parentHover={isHovered ? true : false}
             icon={<MdOutlineShortcut />}
-            disabled={
-              invitation.status === "processed" ||
-              invitation.status === "pending"
-            }
+            disabled={invitation.status === "Sent"}
             cursorHover
             onClick={toggleModal}
           />

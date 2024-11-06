@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
-import { Breadcrumbs, inube } from "@inube/design-system";
+
+import { inube } from "@inube/design-system";
+
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 import { useMediaQueries } from "@inubekit/hooks";
+import { Stack } from "@inubekit/stack";
 import { PageTitle } from "@components/PageTitle";
 import { SubjectCard } from "@components/cards/SubjectCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { StyledContainerLoading } from "@pages/privileges/outlets/users/tabs/invitations/Complete-invitation/styles";
 import {
   IAssignmentFormEntry,
@@ -19,7 +23,6 @@ import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { IFormAddRole, IHandleChangeFormData, IRol } from "../types";
 import { InitializerForm } from "../components/InitializerForm";
-import { Stack } from "@inubekit/stack";
 
 interface ITabs {
   id: string;
