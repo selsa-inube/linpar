@@ -1,5 +1,5 @@
-import { Button } from "@inube/design-system";
 import { useState } from "react";
+import { Button } from "@inubekit/button";
 import { Popup } from ".";
 import { PopupProps } from "./types";
 

@@ -1,12 +1,13 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { Button, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 import { Stack } from "@inubekit/stack";
 import { Searchfield } from "@inubekit/input";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { IBusinessUnitstate } from "./types";
 import { Text } from "@inubekit/text";
+import { Button } from "@inubekit/button";
 import {
   StyledBusinessUnits,
   StyledBusinessUnitsList,
@@ -26,7 +27,7 @@ interface BusinessUnitsUIProps {
     businessUnits: IBusinessUnitsPortalStaff[],
     search: string
   ) => IBusinessUnitsPortalStaff[];
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: () => void;
 }
 
 function NoResultsMessage({ search }: { search: string }) {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdOutlineShortcut } from "react-icons/md";
-import { Button } from "@inube/design-system";
+import { Button } from "@inubekit/button";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { Icon } from "@inubekit/icon";
