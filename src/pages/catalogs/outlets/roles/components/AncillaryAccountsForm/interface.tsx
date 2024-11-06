@@ -1,6 +1,7 @@
 import { FormikValues } from "formik";
-import { Textfield, Grid } from "@inube/design-system";
+import { Textfield } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
+import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IAncillaryAccountsForm } from ".";
 
@@ -22,7 +23,7 @@ export function AncillaryAccountsFormsUI(props: AncillaryAccountsFormsUIProps) {
     <form>
       <Grid
         templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
-        gap="s300"
+        gap="24px"
         width={"100%"}
         autoRows="unset"
       >

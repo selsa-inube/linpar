@@ -1,4 +1,5 @@
-import { Text, Avatar, inube } from "@inube/design-system";
+import { Avatar, inube } from "@inube/design-system";
+import { Text } from "@inubekit/text";
 import { Stack } from "@inubekit/stack";
 
 interface MenuUserProps {

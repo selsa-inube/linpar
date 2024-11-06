@@ -36,7 +36,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
       <form>
         <Grid
           templateColumns={matches ? "1fr" : "repeat(2, 1fr)"}
-          gap="s200 s300"
+          gap="16px 24px"
           width="100%"
           autoRows="unset"
         >

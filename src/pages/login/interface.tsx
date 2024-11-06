@@ -3,8 +3,10 @@ import { useContext } from "react";
 
 import { useMediaQueries } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
-import { Grid, Text } from "@inube/design-system";
 import { LinparContext } from "@context/AppContext";
+import { Text } from "@inubekit/text";
+
+import { Grid } from "@inubekit/grid";
 
 import {
   StyledWelcomeContainer,
@@ -62,7 +64,7 @@ function LoginUI() {
               ? "70vh"
               : "-webkit-fill-available"
           }
-          padding="s400 s200"
+          padding="32px 16px"
         >
           <Outlet />
         </Stack>

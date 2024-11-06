@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
-import { Text, Icon } from "@inube/design-system";
+import { Icon } from "@inube/design-system";
+
+import { Text } from "@inubekit/text";
 
 interface PageTitleProps {
   title: string;
