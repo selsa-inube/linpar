@@ -58,6 +58,7 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
             icon={<MdOutlineShortcut />}
             disabled={invitation.status === "Sent"}
             cursorHover
+            size="16px"
             onClick={toggleModal}
           />
         </div>

@@ -2,9 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 import { MdOutlineChevronRight } from "react-icons/md";
 import { Outlet, useNavigate } from "react-router-dom";
-
-import { Grid } from "@inube/design-system";
-
+import { Grid } from "@inubekit/grid";
 import { Nav } from "@inubekit/nav";
 import { useMediaQuery } from "@inubekit/hooks";
 

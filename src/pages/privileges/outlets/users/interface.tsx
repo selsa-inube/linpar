@@ -1,6 +1,6 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-import { Textfield } from "@inube/design-system";
+import { Searchfield } from "@inubekit/input";
 import { Stack } from "@inubekit/stack";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Button } from "@inubekit/button";
@@ -78,7 +78,7 @@ export function UsersUI(props: UsersUIProps) {
               scroll={typeTabs ? true : false}
             />
             <Stack justifyContent="space-between" alignItems="center">
-              <Textfield
+              <Searchfield
                 name="searchUser"
                 id="searchUser"
                 placeholder="Buscar..."

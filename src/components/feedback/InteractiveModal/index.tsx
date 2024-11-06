@@ -3,7 +3,8 @@ import { MdClear } from "react-icons/md";
 import { SetStateAction, useState } from "react";
 import { SubjectSearchCard } from "@components/cards/SubjectSearchCard";
 import { Text } from "@inubekit/text";
-import { Blanket, Textfield } from "@inube/design-system";
+import { Searchfield, Textfield } from "@inubekit/input";
+import { Blanket } from "@inubekit/blanket";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
 import { Icon } from "@inubekit/icon";
@@ -156,9 +157,9 @@ const InteractiveModal = ({
               )
             ) : (
               <>
-                <Textfield
+                <Searchfield
                   key="searchField"
-                  id={id}
+                  id={id || ""}
                   label={label}
                   name={name}
                   placeholder={placeholder}
