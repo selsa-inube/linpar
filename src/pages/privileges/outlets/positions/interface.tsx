@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { Stack } from "@inubekit/stack";
-import { Textfield, Table, inube } from "@inube/design-system";
+import { Table, inube } from "@inube/design-system";
 import { Icon } from "@inubekit/icon";
+import { Searchfield } from "@inubekit/input";
 import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
@@ -77,7 +78,7 @@ export function PositionsUI(props: IPositionsProps) {
         </Stack>
         <Stack gap={inube.spacing.s400} direction="column">
           <Stack justifyContent="space-between" alignItems="center">
-            <Textfield
+            <Searchfield
               name="searchPositions"
               id="searchPositions"
               placeholder="Buscar..."

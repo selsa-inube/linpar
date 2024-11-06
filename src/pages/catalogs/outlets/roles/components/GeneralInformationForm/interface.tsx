@@ -1,6 +1,7 @@
 import { FormikValues } from "formik";
 
-import { Textfield, Textarea } from "@inube/design-system";
+import { Textarea } from "@inube/design-system";
+import { Textfield } from "@inubekit/input";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
@@ -63,7 +64,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             message={
               stateValue("n_Rol") === "invalid" ? formik.errors.n_Rol : null
             }
-            status={stateValue("n_Rol") === "invalid" ? "invalid" : null}
+            status={stateValue("n_Rol") === "invalid" ? "invalid" : undefined}
           />
 
           <SearchUserCard

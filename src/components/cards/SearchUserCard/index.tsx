@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdSearch } from "react-icons/md";
-import { Textfield } from "@inubekit/textfield";
+import { Searchfield } from "@inubekit/input";
 import { useMediaQuery } from "@inubekit/hooks";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { ILabel } from "./types";
@@ -111,7 +111,7 @@ function SearchUserCard(props: SearchUserCardProps) {
         $smallScreen={smallScreen}
         $isActive={showModal}
       >
-        <Textfield
+        <Searchfield
           id={id}
           label={label}
           name={name}

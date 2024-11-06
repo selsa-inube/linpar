@@ -1,6 +1,6 @@
 import { FormikValues } from "formik";
 
-import { Textfield } from "@inubekit/textfield";
+import { Textfield } from "@inubekit/input";
 import { Textarea } from "@inubekit/textarea";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { Grid } from "@inubekit/grid";

@@ -2,7 +2,12 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { FormikValues } from "formik";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Grid } from "@inubekit/grid";
-import { Textfield } from "@inube/design-system";
+import {
+  Numberfield,
+  Emailfield,
+  Textfield,
+  Phonefield,
+} from "@inubekit/input";
 
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { Stack } from "@inubekit/stack";
@@ -19,10 +24,10 @@ interface GeneralInformationFormUIProps {
 function stateValue(
   formik: GeneralInformationFormUIProps["formik"],
   attribute: string
-) {
+): "pending" | "invalid" | undefined {
   if (!formik.touched[attribute]) return "pending";
   if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
-  return "valid";
+  return undefined;
 }
 
 function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
@@ -56,7 +61,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           readOnly
         />
 
-        <Textfield
+        <Numberfield
           label="Identificación"
           placeholder="Ingrese su número de identificación"
           name="userIdentification"
@@ -69,7 +74,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           readOnly
         />
 
-        <Textfield
+        <Emailfield
           label="Correo"
           placeholder="Ingrese su dirección de correo electrónico"
           name="email"
@@ -84,7 +89,6 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           disabled={loading}
           size="compact"
           fullwidth
-          state={stateValue(formik, "email")}
           onChange={(
             event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
           ) => handleChangeForm(event.target.name, event.target.value)}
@@ -92,7 +96,7 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           required
         />
 
-        <Textfield
+        <Phonefield
           label="Número de teléfono"
           placeholder="Ingrese su número telefónico"
           name="phoneNumber"
@@ -108,7 +112,6 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
           disabled={loading}
           size="compact"
           fullwidth
-          state={stateValue(formik, "phone")}
           onChange={(
             event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
           ) => handleChangeForm(event.target.name, event.target.value)}

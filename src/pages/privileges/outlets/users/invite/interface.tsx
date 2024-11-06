@@ -1,8 +1,8 @@
 import { MdOutlineShortcut } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Button, SectionMessage, Textfield } from "@inube/design-system";
-
 import { useState } from "react";
+import { Button, SectionMessage } from "@inube/design-system";
+import { Numberfield, Emailfield, Phonefield } from "@inubekit/input";
 import { EMessageType } from "@src/types/messages.types";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { PageTitle } from "@components/PageTitle";
@@ -149,7 +149,7 @@ function InviteUI(props: InviteUIProps) {
                 onUserSelect={handleUserSelect}
                 onReset={onReset}
               />
-              <Textfield
+              <Numberfield
                 label="Identificación"
                 placeholder="Ingrese su número de identificación"
                 name="userIdentification"
@@ -162,7 +162,7 @@ function InviteUI(props: InviteUIProps) {
                 readOnly
               />
 
-              <Textfield
+              <Phonefield
                 label="Número de teléfono"
                 placeholder="Ingrese su número telefónico"
                 name="phoneNumber"
@@ -186,7 +186,7 @@ function InviteUI(props: InviteUIProps) {
                 onBlur={formik.handleBlur}
               />
 
-              <Textfield
+              <Emailfield
                 label="Correo"
                 placeholder="Ingrese su dirección de correo electrónico"
                 name="email"
@@ -201,7 +201,11 @@ function InviteUI(props: InviteUIProps) {
                 disabled={loading}
                 size="compact"
                 fullwidth={true}
-                status={stateValue(formik, "email")}
+                status={
+                  stateValue(formik, "email") === "invalid"
+                    ? "invalid"
+                    : undefined
+                }
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />

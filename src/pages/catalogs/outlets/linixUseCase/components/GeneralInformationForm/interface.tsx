@@ -3,7 +3,7 @@ import { FormikValues } from "formik";
 import { Text } from "@inubekit/text";
 import { Icon } from "@inubekit/icon";
 import { Select } from "@inubekit/select";
-import { Textfield } from "@inubekit/textfield";
+import { Textfield } from "@inubekit/input";
 import { Textarea } from "@inubekit/textarea";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";

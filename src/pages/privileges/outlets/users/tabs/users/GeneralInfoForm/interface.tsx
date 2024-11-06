@@ -1,8 +1,7 @@
 import { FormikValues } from "formik";
-
-import { Grid } from "@inube/design-system";
+import { Grid } from "@inubekit/grid";
 import { useMediaQuery } from "@inubekit/hooks";
-import { Textfield } from "@inubekit/textfield";
+import { Numberfield, Textfield } from "@inubekit/input";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 
@@ -51,7 +50,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             fullwidth
             disabled
           />
-          <Textfield
+          <Numberfield
             label="Identificación"
             name="a_Numnit"
             id="a_Numnit"
