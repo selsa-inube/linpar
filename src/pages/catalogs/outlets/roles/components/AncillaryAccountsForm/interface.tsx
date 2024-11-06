@@ -1,5 +1,5 @@
 import { FormikValues } from "formik";
-import { Textfield } from "@inubekit/textfield";
+import { Textfield } from "@inubekit/input";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
