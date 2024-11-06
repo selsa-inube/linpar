@@ -1,7 +1,9 @@
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { Text, useMediaQuery, Icon } from "@inube/design-system";
+
+import { Text } from "@inubekit/text";
 import { Stack } from "@inubekit/stack";
+import { useMediaQuery, Icon } from "@inube/design-system";
 
 interface PageTitleProps {
   title: string;

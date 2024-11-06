@@ -1,10 +1,12 @@
 import { MdOutlineError } from "react-icons/md";
 import { FormikValues } from "formik";
-import { Text, Icon, useMediaQuery } from "@inube/design-system";
+import { Text } from "@inubekit/text";
+import { Stack } from "@inubekit/stack";
+import { Icon, useMediaQuery } from "@inube/design-system";
 import { Select } from "@inubekit/select";
 import { Grid } from "@inubekit/grid";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { Stack } from "@inubekit/stack";
+
 import { IClientServerButton } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/types";
 import { StyledSelectContainer } from "./styles";
 
@@ -74,7 +76,7 @@ function RenderFormFields(
               size="14px"
               shape="circle"
             />
-            <Text size="small" margin="8px 0px 0px 4px" appearance="error">
+            <Text size="small" margin="8px 0px 0px 4px" appearance="danger">
               ({formik.errors.position})
             </Text>
           </Stack>

@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
 
-import { Text, useMediaQueries } from "@inube/design-system";
+import { useMediaQueries } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
+import { Text } from "@inubekit/text";
 import { LinparContext } from "@context/AppContext";
 import { Grid } from "@inubekit/grid";
-import { Stack } from "@inubekit/stack";
+
 import {
   StyledWelcomeContainer,
   StyledOutletContainer,
