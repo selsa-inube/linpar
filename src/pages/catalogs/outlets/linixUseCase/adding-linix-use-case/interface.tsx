@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Assisted, inube, Button } from "@inube/design-system";
+import { Assisted, inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
@@ -9,6 +9,7 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { LinparContext } from "@context/AppContext";
+import { Button } from "@inubekit/button";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
   CrateLinixUseCaseConfig,
@@ -314,7 +315,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                     optionValidations();
                   }
                 }}
-                ing="compact"
                 disabled={!isCurrentFormValid}
               >
                 {currentStep === Object.values(stepsAddingLinixUseCase).length

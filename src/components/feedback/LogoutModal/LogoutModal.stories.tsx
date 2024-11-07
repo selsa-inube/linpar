@@ -2,9 +2,9 @@ import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import { action } from "@storybook/addon-actions";
-import { Button } from "@inube/design-system";
-import { ILogoutModalProps, LogoutModal } from ".";
+import { Button } from "@inubekit/button";
 import { Stack } from "@inubekit/stack";
+import { ILogoutModalProps, LogoutModal } from ".";
 
 const story = {
   title: "components/feedback/logout",

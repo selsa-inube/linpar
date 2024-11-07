@@ -1,12 +1,12 @@
 import { MdArrowBack } from "react-icons/md";
-import { Button, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 
 import { BoxAttribute } from "@components/data/BoxAttirbute";
 import { Accordion } from "@components/data/Accordion";
-
+import { Stack } from "@inubekit/stack";
+import { Button } from "@inubekit/button";
 import { IDataVerificationStep } from ".";
 import { SyledContainerCard } from "./styles";
-import { Stack } from "@inubekit/stack";
 
 interface IVerificationAddRoleUIProps {
   dataVerificationStep: IDataVerificationStep[];

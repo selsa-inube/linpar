@@ -4,9 +4,9 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { Icon } from "@inubekit/icon";
 import { Text } from "@inubekit/text";
 import { useMediaQuery } from "@inubekit/hooks";
-import { Divider } from "@components/layout/Divider";
 
 import { StyledContainer, StyledHead } from "./styles";
+import { Divider } from "@inubekit/divider";
 
 export interface IAccordionProps {
   title: string;
