@@ -1,5 +1,5 @@
-import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
+import { inube } from "@inubekit/foundations";
 
 interface IStyledModal {
   $smallScreen: boolean;

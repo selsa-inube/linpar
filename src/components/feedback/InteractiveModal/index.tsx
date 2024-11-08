@@ -8,8 +8,9 @@ import { Blanket } from "@inubekit/blanket";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
 import { Icon } from "@inubekit/icon";
-import { StyledModal, StyledDivider } from "./styles";
+import { StyledModal } from "./styles";
 import { InteractiveModalProps } from "./types";
+import { Divider } from "@inubekit/divider";
 
 const InteractiveModal = ({
   actions = [],
@@ -120,7 +121,7 @@ const InteractiveModal = ({
               searchData &&
               Object.values(searchData).map(renderCard)}
 
-            {divider && <StyledDivider $smallScreen={smallScreen} />}
+            {divider && <Divider dashed />}
             {type === "fields" ? (
               hasLabels ? (
                 labels.map(

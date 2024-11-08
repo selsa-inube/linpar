@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 
 const Styledlmage = styled.img`
   width: 157px;
@@ -9,11 +9,11 @@ const Styledlmage = styled.img`
 
 const StyledContainerHeader = styled.div`
   background-color: ${({ theme }) =>
-    theme?.color?.surface?.dark?.clear || inube.color.surface.dark.clear};
+    theme?.palette?.neutral?.N30 || inube.palette.neutral.N30};
 `;
 const StyledContainerForm = styled.div`
   background-color: ${({ theme }) =>
-    theme?.color?.surface?.light?.clear || inube.color.surface.light.clear};
+    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
 `;
 
 export { Styledlmage, StyledContainerHeader, StyledContainerForm };

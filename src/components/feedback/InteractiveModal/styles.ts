@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 
 interface IStyledRespondInvitation {
   $smallScreen: boolean;
@@ -8,32 +8,22 @@ interface IStyledRespondInvitation {
 
 const StyledModal = styled.div<IStyledRespondInvitation>`
   background-color: ${({ theme }) =>
-    theme?.color?.stroke?.light?.regular || inube.color.stroke.light.regular};
+    theme?.color?.stroke?.light?.regular || inube.palette.neutral.N10};
   min-width: ${({ $smallScreen }) => ($smallScreen ? "100%" : "450px")};
   min-height: ${({ $smallScreen }) => ($smallScreen ? "100vh" : "auto")};
   height: auto;
-  border-radius: ${({ $smallScreen }) =>
-    $smallScreen ? inube.spacing.s0 : inube.spacing.s100};
+  border-radius: ${({ $smallScreen }) => ($smallScreen ? "0" : "8px")};
 
   & > div {
-    padding: ${({ $smallScreen }) =>
-      $smallScreen ? inube.spacing.s200 : inube.spacing.s300};
+    padding: ${({ $smallScreen }) => ($smallScreen ? "16px" : "24px")};
     ${({ type }) =>
       type !== "fields" &&
       `
       & > div > div > div > label  {
-        margin: 0 0 ${inube.spacing.s250} 0;
+        margin: 0 0 ${"20px"} 0;
       }
     `}
   }
 `;
 
-const StyledDivider = styled.div<IStyledRespondInvitation>`
-  border-radius: ${inube.spacing.s0};
-  border: 1px dashed
-    ${({ theme }) =>
-      theme?.color?.stroke?.divider?.regular ||
-      inube.color.stroke.divider.regular};
-`;
-
-export { StyledModal, StyledDivider };
+export { StyledModal };

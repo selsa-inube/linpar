@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 
 interface IStyledModal {
   $smallScreen: boolean;
@@ -14,12 +14,12 @@ const StyledBackdropBlanket = styled.div`
 `;
 
 const StyledModal = styled.div<IStyledModal>`
-  background-color: ${inube.color.surface.light.clear};
+  background-color: ${inube.palette.neutral.N0};
   height: 100%;
   max-height: 180px;
   width: ${({ $smallScreen }) => ($smallScreen ? "312px" : "400px")};
-  border-radius: ${({ theme }) => theme?.spacing?.s100 || inube.spacing.s100};
-  margin: ${({ theme }) => theme?.spacing?.s200 || inube.spacing.s200};
+  border-radius: "8px";
+  margin: "16px";
   z-index: 3;
 `;
 

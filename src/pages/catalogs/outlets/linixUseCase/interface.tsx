@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
-import { inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
 import { PageTitle } from "@components/PageTitle";
@@ -79,8 +78,8 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
       width="-webkit-fill-available"
       padding={smallScreen ? "24px" : "32px 64px"}
     >
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s300} direction="column">
+      <Stack gap="48px" direction="column">
+        <Stack gap="24px" direction="column">
           {label && (
             <>
               <Breadcrumbs crumbs={label.crumbs} />
@@ -92,7 +91,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             </>
           )}
         </Stack>
-        <Stack gap={inube.spacing.s400} direction="column">
+        <Stack gap="32px" direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Searchfield
               name="searchLinixUseCases"

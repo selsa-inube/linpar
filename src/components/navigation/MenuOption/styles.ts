@@ -1,23 +1,19 @@
+import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
 
 const StyledOption = styled.button`
   color: ${({ theme }) =>
-    theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
-  padding: ${({ theme }) =>
-    `${theme?.spacing?.s075} ${theme?.spacing?.s150}` ||
-    `${inube.spacing.s075} ${inube.spacing.s150}`};
+    theme?.palette?.neutral?.N300 || inube.palette.neutral.N300};
+  padding: "6px 12px";
   border: none;
   background-color: ${({ theme }) =>
-    theme?.color?.stroke?.light?.clear || inube.color.stroke.light.hover};
+    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
   cursor: pointer;
   &:hover {
     border-left: 2px solid
-      ${({ theme }) =>
-        theme?.color?.stroke?.primary?.regular ||
-        inube.color.stroke.primary.regular};
+      ${({ theme }) => theme?.palette?.blue?.B400 || inube.palette.blue.B400};
     background-color: ${({ theme }) =>
-      theme?.color?.stroke?.gray?.hover || inube.color.stroke.light.regular};
+      theme?.palette?.neutral?.N10 || inube.palette.neutral.N10};
   }
 `;
 

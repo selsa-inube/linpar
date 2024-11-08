@@ -1,7 +1,6 @@
 import { MdPersonOutline } from "react-icons/md";
 import { useState } from "react";
 import { Button } from "@inubekit/button";
-import { inube } from "@inube/design-system";
 import { PageTitle } from "@components/PageTitle";
 import {
   IAssignmentFormEntry,
@@ -94,14 +93,10 @@ function EditUserUI(props: EditUserUIProps) {
     <LoadingApp />
   ) : (
     <StyledContainer smallScreen={smallScreen} key={key}>
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s200} direction="column">
+      <Stack gap="48px" direction="column">
+        <Stack gap="16px" direction="column">
           <Breadcrumbs crumbs={editLinixUsersConfig[0].crumbs} />
-          <Stack
-            justifyContent="space-between"
-            alignItems="center"
-            gap={inube.spacing.s400}
-          >
+          <Stack justifyContent="space-between" alignItems="center" gap="32px">
             <PageTitle
               title="Edicion de usuario"
               navigatePage="/privileges/users"
@@ -118,7 +113,7 @@ function EditUserUI(props: EditUserUIProps) {
             )}
           </Stack>
         </Stack>
-        <Stack gap={inube.spacing.s400} direction="column">
+        <Stack gap="32px" direction="column">
           <Tabs
             tabs={Object.values(editLinixUserTabsConfig)}
             selectedTab={selectedTab}

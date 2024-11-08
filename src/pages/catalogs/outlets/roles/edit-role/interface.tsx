@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
-import { inube } from "@inube/design-system";
+
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 import { useMediaQueries } from "@inubekit/hooks";
@@ -88,14 +88,10 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
       direction="column"
       padding={smallScreen ? "16px" : "32px 64px"}
     >
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s400} direction="column">
+      <Stack gap="48px" direction="column">
+        <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={editRoleConfig[0].crumbs} />
-          <Stack
-            justifyContent="space-between"
-            alignItems="center"
-            gap={inube.spacing.s650}
-          >
+          <Stack justifyContent="space-between" alignItems="center" gap="48px">
             <PageTitle
               title={editRoleConfig[0].title}
               description={editRoleConfig[0].description}
@@ -163,7 +159,7 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               setChangedData={setCsOptionsChange}
             />
           )}
-          <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+          <Stack gap="16px" justifyContent="flex-end">
             <Button
               appearance="gray"
               disabled={!currentFormHasChanges}
