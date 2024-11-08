@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { LinparContext } from "@src/context/AppContext";
+import { EAppearance } from "@src/types/colors.types";
+import { useFlag } from "@inubekit/flag";
 
 import {
   IAssignmentFormEntry,
@@ -23,7 +26,6 @@ import { EditUserUI } from "./interface";
 import { editUsersData } from "./utils";
 import { generalMessage } from "./config/messages.config";
 import { editLinixUserTabsConfig } from "./config/editUsersTabs.config";
-import { LinparContext } from "@src/context/AppContext";
 
 function EditUsers() {
   const [controlModal, setControlModal] = useState({
@@ -95,6 +97,7 @@ function EditUsers() {
   const [selectedTab, setSelectedTab] = useState(
     editLinixUserTabsConfig.generalInformation.id
   );
+  const { addFlag } = useFlag();
   const { linparData } = useContext(LinparContext);
   useEffect(() => {
     linixUsersCaseData();
@@ -408,20 +411,27 @@ function EditUsers() {
     );
     addnewdata
       .then(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
+        addFlag({
+          title: generalMessage.success.title,
+          description: generalMessage.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
         });
       })
       .catch(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.failed,
+        addFlag({
+          title: generalMessage.failed.title,
+          description: generalMessage.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
         });
       })
       .finally(() => {
         setLoading(false);
       });
+    setTimeout(() => {
+      navigate("/privileges/users");
+    }, 6000);
   };
 
   return (

@@ -6,7 +6,6 @@ import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { TableLinpar } from "@components/data/TableLinpar";
@@ -44,10 +43,7 @@ export type SelectedDataFunction = (k_Usecase: string) => UseCase;
 export type HandleClickFunction = (id: string) => void;
 export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const {
-    idDeleted,
-    message,
     searchUseCase,
-    handleCloseSectionMessage,
     handleSearchUseCase,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
@@ -144,13 +140,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               filter={searchUseCase}
               isLoading={loading}
               widthPercentageTotalColumns={80}
-            />
-          )}
-          {idDeleted && message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={handleCloseSectionMessage}
-              onMessageClosed={handleCloseSectionMessage}
             />
           )}
         </Stack>

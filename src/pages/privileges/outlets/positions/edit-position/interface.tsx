@@ -7,7 +7,6 @@ import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 
 import { SubjectCard } from "@components/cards/SubjectCard";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { PageTitle } from "@components/PageTitle";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
@@ -64,8 +63,6 @@ export function EditPositionUI(props: EditPositionUIProps) {
     userCardData,
     handleUpdateFormData,
     onSubmit,
-    onCloseSectionMessage,
-    message,
     csOptionsChange,
     formData,
     selectedTab,
@@ -156,13 +153,6 @@ export function EditPositionUI(props: EditPositionUIProps) {
               Guardar
             </Button>
           </Stack>
-          {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={onCloseSectionMessage}
-            />
-          )}
         </Stack>
       </Stack>
     </StyledContainer>

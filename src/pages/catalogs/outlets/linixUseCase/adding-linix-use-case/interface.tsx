@@ -3,7 +3,6 @@ import { Assisted, inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Stack } from "@inubekit/stack";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
@@ -165,8 +164,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
   const {
     selectLinixUseCase,
     csOptionsButtons,
-    message,
-    onCloseSectionMessage,
     loading,
     loadingButton,
     handleFinishForm,
@@ -321,13 +318,13 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                   ? "Enviar"
                   : "Siguiente"}
               </Button>
-              {message.visible && (
+              {/* {message.visible && (
                 <RenderMessage
                   message={message}
                   handleCloseMessage={onCloseSectionMessage}
                   onMessageClosed={onCloseSectionMessage}
                 />
-              )}
+              )} */}
             </Stack>
           </Stack>
 

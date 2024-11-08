@@ -5,7 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getPositions } from "@services/positions/getPositons";
 import { getRolesPorCargo } from "@services/positions/rolesPorCargo";
 import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
-
+import { LinparContext } from "@src/context/AppContext";
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 import { EditPositionUI } from "./interface";
 import {
   IFormAddPosition,
@@ -22,7 +24,6 @@ import {
 } from "../../users/types/forms.types";
 import { generalMessage } from "../add-position/config/messages.config";
 import { editPositions } from "./utils";
-import { LinparContext } from "@src/context/AppContext";
 
 export function EditPosition() {
   const { k_Grupo } = useParams();
@@ -56,6 +57,7 @@ export function EditPosition() {
     show: false,
     continueTab: "",
   });
+  const { addFlag } = useFlag();
   const [currentFormHasChanges, setCurrentFormHasChanges] = useState(false);
   const [loading, setLoading] = useState(false);
   const [csOptionsChange, setCSOptionsChange] = useState<
@@ -237,20 +239,27 @@ export function EditPosition() {
     );
     addnewdata
       .then(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
+        addFlag({
+          title: generalMessage.success.title,
+          description: generalMessage.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
         });
       })
       .catch(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.failed,
+        addFlag({
+          title: generalMessage.failed.title,
+          description: generalMessage.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
         });
       })
       .finally(() => {
         setLoading(false);
       });
+    setTimeout(() => {
+      navigate("/privileges/positions");
+    }, 6000);
   };
   const userCardData = formData && {
     code: formData.generalInformation.values.k_Grupo,

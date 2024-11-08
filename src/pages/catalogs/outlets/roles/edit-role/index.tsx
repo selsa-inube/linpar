@@ -13,6 +13,9 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
+import { LinparContext } from "@src/context/AppContext";
+import { EAppearance } from "@src/types/colors.types";
+import { useFlag } from "@inubekit/flag";
 import { stepsAddRol } from "../add-role/config/addRol.config";
 import { EditRoleUI } from "./interface";
 import {
@@ -27,7 +30,6 @@ import { editDataRoles } from "./utils";
 import { generalMessage } from "../config/messages.config";
 import { dataToAssignmentFormEntry } from "../../linixUseCase/adding-linix-use-case";
 import { SortableItem } from "../add-role/types";
-import { LinparContext } from "@src/context/AppContext";
 
 const Tabs = Object.values(stepsAddRol)
   .filter((item) => item.label !== "Verificación")
@@ -40,7 +42,7 @@ const Tabs = Object.values(stepsAddRol)
 export const EditRole = () => {
   const { k_Rol } = useParams();
   const roleID = Number(k_Rol);
-
+  const { addFlag } = useFlag();
   const initialFormState = {
     generalInformation: {
       isValid: false,
@@ -421,20 +423,27 @@ export const EditRole = () => {
     );
     addnewdata
       .then(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
+        addFlag({
+          title: generalMessage.success.title,
+          description: generalMessage.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
         });
       })
       .catch(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.failed,
+        addFlag({
+          title: generalMessage.failed.title,
+          description: generalMessage.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
         });
       })
       .finally(() => {
         setLoading(false);
       });
+    setTimeout(() => {
+      navigate("/catalogs/roles");
+    }, 6000);
   };
 
   const roleCardData = dataEditRoleLinixForm && {
