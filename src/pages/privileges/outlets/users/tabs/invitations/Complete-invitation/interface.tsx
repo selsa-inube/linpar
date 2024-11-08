@@ -1,6 +1,6 @@
 import { MdPersonOutline } from "react-icons/md";
 
-import { Assisted, Button, inube } from "@inube/design-system";
+import { Assisted, inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 
 import { SubjectCard } from "@components/cards/SubjectCard";
@@ -13,7 +13,7 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IFormCompleteInvitation } from "@services/users/invitation.types";
 import { Stack } from "@inubekit/stack";
-
+import { Button } from "@inubekit/button";
 import {
   CompleteInvitationUserConfig,
   completeInvitationSubjectCardLabels,
@@ -217,11 +217,13 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               </Button>
 
               <Button
-                onClick={
-                  currentStep === steps.length
-                    ? handleToggleModal
-                    : handleNextStep
-                }
+                onClick={() => {
+                  if (currentStep === steps.length) {
+                    handleToggleModal();
+                  } else {
+                    handleNextStep(currentStep + 1);
+                  }
+                }}
                 spacing="wide"
                 disabled={!isCurrentFormValid}
               >

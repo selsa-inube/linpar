@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
-import { Button, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
 import { PageTitle } from "@components/PageTitle";
@@ -13,7 +13,7 @@ import { IEntry } from "@components/data/TableLinpar/types";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { Icon } from "@inubekit/icon";
 import { Stack } from "@inubekit/stack";
-
+import { Button } from "@inubekit/button";
 import { IDeleteForMessage, UseCase } from "./types";
 import {
   actionsConfigLinixUseCase,

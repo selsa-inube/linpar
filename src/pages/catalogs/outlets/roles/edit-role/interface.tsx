@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { FaUserGear } from "react-icons/fa6";
-
 import { inube } from "@inube/design-system";
-
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 import { useMediaQueries } from "@inubekit/hooks";

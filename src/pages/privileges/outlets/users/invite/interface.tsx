@@ -1,10 +1,12 @@
 import { MdOutlineShortcut } from "react-icons/md";
 import { FormikValues } from "formik";
 import { useState } from "react";
-import { Button, SectionMessage } from "@inube/design-system";
+import { SectionMessage } from "@inube/design-system";
 import { Numberfield, Emailfield, Phonefield } from "@inubekit/input";
 import { EMessageType } from "@src/types/messages.types";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { Stack } from "@inubekit/stack";
+import { Button } from "@inubekit/button";
 import { PageTitle } from "@components/PageTitle";
 import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
@@ -13,7 +15,6 @@ import { useMediaQueries } from "@inubekit/hooks";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
 import { StyledContainerLoading, StyledMessageContainer } from "./styles";
-import { Stack } from "@inubekit/stack";
 
 interface InviteUIProps {
   formik: FormikValues;

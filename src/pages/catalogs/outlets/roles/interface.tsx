@@ -2,9 +2,10 @@ import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import { Icon } from "@inubekit/icon";
-import { Button, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
+import { Button } from "@inubekit/button";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { Stack } from "@inubekit/stack";

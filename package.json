@@ -21,6 +21,7 @@
     "@inubekit/breadcrumbs": "^2.34.0",
     "@inubekit/button": "^4.44.1",
     "@inubekit/flag": "^7.9.0",
+    "@inubekit/divider": "^0.16.1",
     "@inubekit/foundations": "^5.11.3",
     "@inubekit/grid": "^2.14.1",
     "@inubekit/header": "^3.0.0",

@@ -14,7 +14,7 @@ import {
 } from "@inubekit/input";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Text } from "@inubekit/text";
-import { Button } from "@inube/design-system";
+import { Button } from "@inubekit/button";
 import { Grid } from "@inubekit/grid";
 import { Stack } from "@inubekit/stack";
 import { Fieldset } from "@components/inputs/Fieldset";
@@ -216,7 +216,6 @@ const renderForm = (
         <Stack justifyContent="flex-end">
           <Button
             iconBefore={<MdShortcut size={18} />}
-            size="compact"
             appearance="success"
             loading={loading}
             onClick={handleSubmitForm}
