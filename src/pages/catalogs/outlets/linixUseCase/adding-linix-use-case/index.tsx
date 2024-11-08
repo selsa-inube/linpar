@@ -16,7 +16,8 @@ import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientS
 import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { getSelectLinixUseCase } from "@services/linixUseCase/selectLinixUseCase";
 import { LinparContext } from "@context/AppContext";
-
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 import { stepsAddingLinixUseCase } from "./config/addingLinixUseCase.config";
 import { AddingLinixUseCaseUI } from "./interface";
 import {
@@ -45,7 +46,7 @@ function AddingLinixUseCase() {
   const [currentStep, setCurrentStep] = useState<number>(
     stepsAddingLinixUseCase.generalInformation.id
   );
-
+  const { addFlag } = useFlag();
   const [selectOptions, setSelectOptions] = useState(false);
   const steps = Object.values(stepsAddingLinixUseCase);
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
@@ -537,17 +538,24 @@ function AddingLinixUseCase() {
     );
     addnewdata
       .then(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
+        addFlag({
+          title: generalMessage.success.title,
+          description: generalMessage.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
         });
       })
       .catch(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.failed,
+        addFlag({
+          title: generalMessage.failed.title,
+          description: generalMessage.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
         });
       });
+    setTimeout(() => {
+      navigate("/catalogs/linixUseCase");
+    }, 6000);
     handleToggleModal();
   };
 

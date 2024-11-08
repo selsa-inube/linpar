@@ -16,7 +16,6 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { GeneralInformationForm } from "../components/GeneralInformationForm";
 import { AncillaryAccountsForm } from "../components/AncillaryAccountsForm";
 import { editRoleConfig, editRoleCardLabels } from "./config/editRole.config";
@@ -63,8 +62,6 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
     csOptionsChange,
     dataEditRoleLinixForm,
     handleUpdateFormData,
-    message,
-    onCloseSectionMessage,
     linixRoles,
     onTabChange,
     onSubmit,
@@ -187,13 +184,13 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               Guardar
             </Button>
           </Stack>
-          {message.visible && (
+          {/* {message.visible && (
             <RenderMessage
               message={message}
               handleCloseMessage={onCloseSectionMessage}
               onMessageClosed={onCloseSectionMessage}
             />
-          )}
+          )} */}
         </>
       </Stack>
     </Stack>

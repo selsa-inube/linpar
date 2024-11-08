@@ -10,7 +10,6 @@ import { Menu } from "@components/navigation/Menu";
 import { Stack } from "@inubekit/stack";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { TableLinpar } from "@components/data/TableLinpar";
 import { IEntry } from "@components/data/TableLinpar/types";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
@@ -43,12 +42,9 @@ interface IRolesProps {
 export function RolesUI(props: IRolesProps) {
   const {
     dataAplication,
-    idDeleted,
     handleCloseMenuInvitation,
-    handleCloseSectionMessage,
     handleSearchRole,
     handleToggleMenuInvitation,
-    message,
     linixRoles,
     loading,
     searchRole,
@@ -146,13 +142,13 @@ export function RolesUI(props: IRolesProps) {
               widthPercentageTotalColumns={85}
             />
           )}
-          {idDeleted !== 0 && message.visible && (
+          {/* {idDeleted !== 0 && message.visible && (
             <RenderMessage
               message={message}
               handleCloseMessage={handleCloseSectionMessage}
               onMessageClosed={handleCloseSectionMessage}
             />
-          )}
+          )} */}
         </Stack>
       </Stack>
     </Stack>

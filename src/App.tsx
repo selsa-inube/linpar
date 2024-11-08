@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-
+import { FlagProvider } from "@inubekit/flag";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { ErrorPage } from "@components/layout/ErrorPage";
@@ -157,8 +157,10 @@ function App() {
   return (
     <LinparContextProvider>
       <ThemeProviderWrapper>
-        <GlobalStyles />
-        <RouterProvider router={router} />
+        <FlagProvider>
+          <GlobalStyles />
+          <RouterProvider router={router} />
+        </FlagProvider>
       </ThemeProviderWrapper>
     </LinparContextProvider>
   );

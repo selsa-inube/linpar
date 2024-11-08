@@ -5,17 +5,17 @@ import { useMediaQuery } from "@inubekit/hooks";
 import { getInvitations } from "@services/invitations/getInvitations";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IInvitationsEntry } from "@services/users/invitation.types";
-import { RenderMessage } from "@components/feedback/RenderMessage";
+import { LinparContext } from "@src/context/AppContext";
+import { EAppearance } from "@src/types/colors.types";
+import { useFlag } from "@inubekit/flag";
 
 import {
   invitationsTableBreakpoints,
   invitationsTableTitles,
 } from "../../config/invitationsTable.config";
 import { actionsConfigInvitation } from "./config/dataInvitation";
-import { IMessageState } from "../../types/forms.types";
 import { deleteInvitationMessages } from "./DeleteInvitation/config/deleteInvitation.config";
 import { IDeleteForMessage } from "../users/types";
-import { LinparContext } from "@src/context/AppContext";
 
 interface InvitationsTabProps {
   searchText: string;
@@ -23,9 +23,7 @@ interface InvitationsTabProps {
 
 function InvitationsTab(props: InvitationsTabProps) {
   const { searchText } = props;
-  const [message, setMessage] = useState<IMessageState>({
-    visible: false,
-  });
+  const { addFlag } = useFlag();
   const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
     id: "",
     successfulDiscard: false,
@@ -57,26 +55,30 @@ function InvitationsTab(props: InvitationsTabProps) {
   }, [user]);
 
   useEffect(() => {
-    const messageType = idDeleted.successfulDiscard
-      ? deleteInvitationMessages.success
-      : deleteInvitationMessages.failed;
-
-    setMessage({
-      visible: true,
-      data: messageType,
-    });
+    if (idDeleted.id) {
+      if (idDeleted.successfulDiscard) {
+        addFlag({
+          title: deleteInvitationMessages.success.title,
+          description: deleteInvitationMessages.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
+        });
+        setTimeout(() => {
+          const filterDiscardPublication = invitations.filter(
+            (invitations) => invitations.invitationId !== idDeleted.id
+          );
+          setInvitations(filterDiscardPublication);
+        }, 5000);
+      } else {
+        addFlag({
+          title: deleteInvitationMessages.failed.title,
+          description: deleteInvitationMessages.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
+        });
+      }
+    }
   }, [idDeleted]);
-
-  const handleCloseMessage = () => {
-    setMessage({
-      visible: false,
-    });
-
-    const filterDiscardPublication = invitations.filter(
-      (invitations) => invitations.invitationId !== idDeleted.id
-    );
-    idDeleted.successfulDiscard && setInvitations(filterDiscardPublication);
-  };
 
   return (
     <>
@@ -96,13 +98,6 @@ function InvitationsTab(props: InvitationsTabProps) {
           breakpoints={invitationsTableBreakpoints}
           filter={searchText}
           modalTitle="Invitación"
-        />
-      )}
-      {idDeleted && idDeleted.id && message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseMessage}
-          onMessageClosed={handleCloseMessage}
         />
       )}
     </>

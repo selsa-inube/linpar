@@ -9,6 +9,8 @@ import { LinparContext } from "@context/AppContext";
 import { RolesUI } from "./interface";
 
 import { generalMessage } from "./config/messages.config";
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
@@ -25,7 +27,7 @@ export function Roles() {
     id: 0,
     successfulDiscard: false,
   });
-
+  const { addFlag } = useFlag();
   const { user } = useAuth0();
   const { linparData } = useContext(LinparContext);
   const linixRolesData = async () => {
@@ -72,14 +74,30 @@ export function Roles() {
   }, [user]);
 
   useEffect(() => {
-    const messageType = idDeleted.successfulDiscard
-      ? generalMessage.success
-      : generalMessage.failed;
+    if (idDeleted.id) {
+      if (idDeleted.successfulDiscard) {
+        addFlag({
+          title: generalMessage.success.title,
+          description: generalMessage.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
+        });
+        setTimeout(() => {
+          const filterDiscardPublication = linixRoles.filter(
+            (roles) => roles.id !== idDeleted.id
+          );
 
-    setMessage({
-      visible: true,
-      data: messageType,
-    });
+          setLinixRoles(filterDiscardPublication);
+        }, 5000);
+      } else {
+        addFlag({
+          title: generalMessage.failed.title,
+          description: generalMessage.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
+        });
+      }
+    }
   }, [idDeleted]);
 
   const handleSearchRoles = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -12,7 +12,6 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IFormCompleteInvitation } from "@services/users/invitation.types";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Stack } from "@inubekit/stack";
 
 import {
@@ -88,8 +87,6 @@ interface CompleteInvitationUIProps {
 function CompleteInvitationUI(props: CompleteInvitationUIProps) {
   const {
     handlePreviousStep,
-    onCloseSectionMessage,
-    message,
     currentStep,
     formReferences,
     isCurrentFormValid,
@@ -230,13 +227,6 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
               >
                 {currentStep === steps.length ? "Enviar" : "Siguiente"}
               </Button>
-              {message.visible && (
-                <RenderMessage
-                  message={message}
-                  handleCloseMessage={onCloseSectionMessage}
-                  onMessageClosed={onCloseSectionMessage}
-                />
-              )}
             </Stack>
           </>
         ) : (

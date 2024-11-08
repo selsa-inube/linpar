@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getPositions } from "@services/positions/getPositons";
+import { LinparContext } from "@src/context/AppContext";
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 import { PositionsUI } from "./interface";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./delete-positions/config/messages.config";
 import { IDeleteForMessage } from "./types";
-import { LinparContext } from "@src/context/AppContext";
 
 export function Positions() {
   const [searchPosition, setSearchPosition] = useState<string>("");
@@ -23,6 +25,7 @@ export function Positions() {
 
   const [positions, setPositions] = useState<IPosition[]>([]);
   const { user } = useAuth0();
+  const { addFlag } = useFlag();
   const { linparData } = useContext(LinparContext);
   const linixPositionsData = async () => {
     if (!user) return;
@@ -45,14 +48,29 @@ export function Positions() {
   }, [user]);
 
   useEffect(() => {
-    const messageType = idDeleted.successfulDiscard
-      ? generalMessage.success
-      : generalMessage.failed;
-
-    setMessage({
-      visible: true,
-      data: messageType,
-    });
+    if (idDeleted.id) {
+      if (idDeleted.successfulDiscard) {
+        addFlag({
+          title: generalMessage.success.title,
+          description: generalMessage.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
+        });
+        setTimeout(() => {
+          const filterRecordRemoved = positions.filter(
+            (positions) => positions.k_Grupo !== idDeleted.id
+          );
+          setPositions(filterRecordRemoved);
+        }, 5000);
+      } else {
+        addFlag({
+          title: generalMessage.failed.title,
+          description: generalMessage.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
+        });
+      }
+    }
   }, [idDeleted]);
 
   const handleSearchPositions = (e: React.ChangeEvent<HTMLInputElement>) => {

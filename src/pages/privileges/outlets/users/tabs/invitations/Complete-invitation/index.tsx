@@ -7,6 +7,8 @@ import {
   IInvitation,
   IInvitationsEntry,
 } from "@services/users/invitation.types";
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 import { getPositions } from "@services/positions/getPositons";
 import { getSucursales } from "@services/users/sucursales";
 import { getProyectos } from "@services/users/proyectos";
@@ -73,6 +75,7 @@ function CompleteInvitation() {
   const [invitationData, setInvitationData] = useState<IFormCompleteInvitation>(
     initialGeneralFormState
   );
+  const { addFlag } = useFlag();
   const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
@@ -331,17 +334,24 @@ function CompleteInvitation() {
     );
     addnewdata
       .then(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
+        addFlag({
+          title: generalMessage.success.title,
+          description: generalMessage.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
         });
       })
       .catch(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.failed,
+        addFlag({
+          title: generalMessage.failed.title,
+          description: generalMessage.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
         });
       });
+    setTimeout(() => {
+      navigate("/privileges/users");
+    }, 6000);
     handleToggleModal();
   };
 

@@ -9,7 +9,6 @@ import {
 } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { SubjectCard } from "@components/cards/SubjectCard";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Tabs } from "@inubekit/tabs";
 import { useMediaQueries } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
@@ -60,10 +59,8 @@ interface EditUserUIProps {
 function EditUserUI(props: EditUserUIProps) {
   const [key, setKey] = useState(0);
   const {
-    message,
     handleUpdateFormData,
     positions,
-    onCloseSectionMessage,
     selectedTab,
     onSubmit,
     loading,
@@ -193,13 +190,6 @@ function EditUserUI(props: EditUserUIProps) {
               Guardar
             </Button>
           </Stack>
-          {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={onCloseSectionMessage}
-            />
-          )}
         </Stack>
       </Stack>
     </StyledContainer>
