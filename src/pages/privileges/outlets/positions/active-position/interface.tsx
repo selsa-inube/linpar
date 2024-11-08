@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { Toggle } from "@inubekit/toggle";
+import { Text } from "@inubekit/text";
 import { activatePositionModal } from "./config/activatePosition.config";
 import { IMessageState } from "../../users/types/forms.types";
 
@@ -40,16 +42,33 @@ export function ActivatePositionUI(props: IActivatePositionUI) {
     appearance,
   } = activateModalConfig[messageType];
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1201);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1201);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <Toggle
         checked={active}
         onChange={handleToggleModal}
         id={id}
+        size={"small"}
         name={showComplete ? "Activar" : ""}
-        padding={`s0 s0 s0 ${showComplete ? "s200" : "s0"}`}
+        padding={`0px 0px 0px ${showComplete ? "16px" : "s0"}`}
       />
 
+      {isMobile && (
+        <Text size="small" type="body">
+          {active ? "Activo" : "Inactivo"}
+        </Text>
+      )}
       {showActivatePositionModal && (
         <DecisionModal
           title={title}

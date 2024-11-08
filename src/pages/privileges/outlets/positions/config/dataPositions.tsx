@@ -1,6 +1,6 @@
 import { MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
-
+import { Text } from "@inubekit/text";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 import { Icon } from "@inubekit/icon";
 import { activatePositionModal } from "../active-position/config/activatePosition.config";
@@ -11,6 +11,8 @@ import { DeletePosition } from "../delete-positions";
 import { deletePositionModal } from "../delete-positions/config/deletePositions.config";
 import { IDeleteForMessage } from "../types";
 import { CenteredTd } from "../../users/tabs/users/styles";
+import { IEntry } from "@src/components/data/TableLinpar/types";
+import { StyledContainerEdit, StyledContainerIcon } from "../styles";
 
 export const titlesOptions = [
   {
@@ -53,7 +55,7 @@ export const actionsConfigPosition = (
     {
       id: "i_activo",
       actionName: "Activo",
-      content: (cargos: IPosition) => (
+      content: (cargos: IEntry) => (
         <CenteredTd>
           <ActivatePosition
             handleActivate={() => {}}
@@ -72,31 +74,43 @@ export const actionsConfigPosition = (
     {
       id: "Details",
       actionName: "Detalles",
-      content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <DetailsModal data={dataDetailsPosition(k_Grupo) || {}} />
+      content: (entry: IEntry) => (
+        <DetailsModal data={dataDetailsPosition(entry.k_Grupo) || {}} />
       ),
       type: "secondary",
     },
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ k_Grupo }: { k_Grupo: string }) => (
-        <Link to={`edit/${k_Grupo}`}>
-          <Icon icon={<MdModeEdit />} size="16px" appearance="dark" />
-        </Link>
+      content: (entry: IEntry) => (
+        <StyledContainerEdit>
+          <Link to={`edit/${entry.k_Grupo}`}>
+            <StyledContainerIcon>
+              <Icon
+                appearance="dark"
+                cursorHover
+                icon={<MdModeEdit />}
+                size="16px"
+              />
+            </StyledContainerIcon>
+            <Text size="small" type="body">
+              Editar
+            </Text>
+          </Link>
+        </StyledContainerEdit>
       ),
       type: "primary",
     },
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Grupo }: { k_Grupo: string }) => (
+      content: (entry: IEntry) => (
         <DeletePosition
-          linixPosition={k_Grupo}
+          linixPosition={entry.k_Grupo}
           deletePositionModal={deletePositionModal}
           handleDeletePosition={deleteItemData}
           setIdDeleted={setIdDeleted}
-          namePosition={k_Grupo}
+          namePosition={entry.k_Grupo}
         />
       ),
       type: "remove",

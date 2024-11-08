@@ -1,22 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Table } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
+import { IEntry } from "@components/data/TableLinpar/types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IGeneralInformationUsersForm } from "@services/users/users.types";
 import { getUsers } from "@services/users/getUsers";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-
+import { LinparContext } from "@context/AppContext";
+import { TableLinpar } from "@components/data/TableLinpar";
 import { actionsConfigUsers } from "./config/dataUsers.config";
-
 import { IMessageState } from "../../types/forms.types";
 import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
 import { IDeleteForMessage } from "./types";
-import { LinparContext } from "@src/context/AppContext";
 
 interface UsersTabProps {
   searchText: string;
@@ -81,19 +80,29 @@ function UsersTab(props: UsersTabProps) {
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
 
+  const dynamicTitlesOptions = smallScreen
+    ? [
+        {
+          id: "a_Numnit",
+          titleName: "Identificación",
+          priority: 1,
+        },
+      ]
+    : usersTitlesConfig;
   return (
     <>
       {loading ? (
         <LoadingApp />
       ) : (
-        <Table
+        <TableLinpar
           id="portal"
-          titles={usersTitlesConfig}
+          titles={dynamicTitlesOptions}
           actions={actionsConfigUsers(smallScreen, users, setIdDeleted)}
-          entries={users}
+          entries={users as IEntry[]}
           breakpoints={usersBreakPointsConfig}
           filter={searchText}
-          modalTitle="Usuario"
+          isLoading={loading}
+          widthPercentageTotalColumns={80}
         />
       )}
       {idDeleted && idDeleted.id && message.visible && (

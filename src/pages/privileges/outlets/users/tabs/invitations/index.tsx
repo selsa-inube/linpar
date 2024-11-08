@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Table } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { getInvitations } from "@services/invitations/getInvitations";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
-
+import { LinparContext } from "@context/AppContext";
+import { TableLinpar } from "@components/data/TableLinpar";
+import { IEntry } from "@components/data/TableLinpar/types";
 import {
   invitationsTableBreakpoints,
   invitationsTableTitles,
@@ -15,7 +16,6 @@ import { actionsConfigInvitation } from "./config/dataInvitation";
 import { IMessageState } from "../../types/forms.types";
 import { deleteInvitationMessages } from "./DeleteInvitation/config/deleteInvitation.config";
 import { IDeleteForMessage } from "../users/types";
-import { LinparContext } from "@src/context/AppContext";
 
 interface InvitationsTabProps {
   searchText: string;
@@ -83,10 +83,10 @@ function InvitationsTab(props: InvitationsTabProps) {
       {loading ? (
         <LoadingApp />
       ) : (
-        <Table
+        <TableLinpar
           id="portal"
           titles={invitationsTableTitles}
-          entries={invitations}
+          entries={invitations as IEntry[]}
           actions={actionsConfigInvitation(
             isHovered,
             setIsHovered,
@@ -95,7 +95,8 @@ function InvitationsTab(props: InvitationsTabProps) {
           )}
           breakpoints={invitationsTableBreakpoints}
           filter={searchText}
-          modalTitle="Invitación"
+          isLoading={loading}
+          widthPercentageTotalColumns={80}
         />
       )}
       {idDeleted && idDeleted.id && message.visible && (
