@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Switch } from "@inube/design-system";
+
 import { Text } from "@inubekit/text";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
+import { Toggle } from "@inubekit/toggle";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { IActivateOptionModal } from "./types";
 import { activateRoleModal } from "./config/activateRole.config";
+import { StyledActive } from "./styles";
 
 interface IActivateRoleUI {
   active: boolean;
@@ -76,13 +78,16 @@ export function ActivateRoleUI(props: IActivateRoleUI) {
 
   return (
     <>
-      <Switch
-        checked={active}
-        onChange={handleToggleModal}
-        id={id}
-        label={showComplete ? "Activar" : ""}
-        padding={`s0 s0 s0 ${showComplete ? "s200" : "s0"}`}
-      />
+      <StyledActive>
+        <Toggle
+          checked={active}
+          onChange={handleToggleModal}
+          id={id}
+          size={"small"}
+          name={showComplete ? "Activar" : ""}
+          padding={`0px 0px 0px ${showComplete ? "16px" : "0px"}`}
+        />
+      </StyledActive>
 
       {isMobile && (
         <Text size="small" type="body">

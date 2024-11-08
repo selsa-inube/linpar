@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Table } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { getInvitations } from "@services/invitations/getInvitations";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
@@ -8,6 +7,8 @@ import { IInvitationsEntry } from "@services/users/invitation.types";
 import { LinparContext } from "@src/context/AppContext";
 import { EAppearance } from "@src/types/colors.types";
 import { useFlag } from "@inubekit/flag";
+import { TableLinpar } from "@components/data/TableLinpar";
+import { IEntry } from "@components/data/TableLinpar/types";
 
 import {
   invitationsTableBreakpoints,
@@ -85,10 +86,10 @@ function InvitationsTab(props: InvitationsTabProps) {
       {loading ? (
         <LoadingApp />
       ) : (
-        <Table
+        <TableLinpar
           id="portal"
           titles={invitationsTableTitles}
-          entries={invitations}
+          entries={invitations as IEntry[]}
           actions={actionsConfigInvitation(
             isHovered,
             setIsHovered,
@@ -97,7 +98,8 @@ function InvitationsTab(props: InvitationsTabProps) {
           )}
           breakpoints={invitationsTableBreakpoints}
           filter={searchText}
-          modalTitle="Invitación"
+          isLoading={loading}
+          widthPercentageTotalColumns={80}
         />
       )}
     </>

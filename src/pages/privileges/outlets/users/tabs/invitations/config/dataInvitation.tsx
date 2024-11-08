@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
-
 import { deleteItemData } from "@mocks/utils/dataMock.service";
+import { IEntry } from "@src/components/data/TableLinpar/types";
 import { Icon } from "@inubekit/icon";
 import { IInvitationsEntry } from "@services/users/invitation.types";
 import { Stack } from "@inubekit/stack";
@@ -20,28 +20,26 @@ export const actionsConfigInvitation = (
     {
       id: "Complete",
       actionName: "Completar",
-      content: ({
-        invitationId,
-        status,
-      }: {
-        invitationId: string;
-        status: string;
-      }) => (
+      content: (entry: IEntry) => (
         <Link
-          to={status !== "sent" ? `complete-invitation/${invitationId}` : "#"}
+          to={
+            entry.status !== "sent"
+              ? `complete-invitation/${entry.invitationId}`
+              : "#"
+          }
           onClick={(e) => {
-            if (status === "sent") {
+            if (entry.status === "sent") {
               e.preventDefault();
             }
           }}
-          style={{ pointerEvents: status === "sent" ? "none" : "auto" }}
+          style={{ pointerEvents: entry.status === "sent" ? "none" : "auto" }}
         >
           <Stack justifyContent="space-around">
             <Icon
               appearance={isHovered ? "primary" : "dark"}
               parentHover={isHovered ? true : false}
               icon={<MdOutlineAssignmentTurnedIn />}
-              disabled={status === "sent"}
+              disabled={entry.status === "sent"}
               cursorHover
               size="16px"
             />
@@ -54,9 +52,9 @@ export const actionsConfigInvitation = (
     {
       id: "Resend",
       actionName: "Reenviar",
-      content: (invitation: IInvitationsEntry) => (
+      content: (invitation: IEntry) => (
         <ResendInvitation
-          invitation={invitation}
+          invitation={invitation as IInvitationsEntry}
           showComplete={smallScreen}
           disabled={
             invitation.status === "processed" || invitation.status === "pending"
@@ -68,17 +66,11 @@ export const actionsConfigInvitation = (
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({
-        invitationId,
-        userIdentification,
-      }: {
-        invitationId: string;
-        userIdentification: string;
-      }) => (
+      content: (entry: IEntry) => (
         <DeleteLinixInvitation
           deleteLinixInvitationModal={deleteInvitationModal}
-          linixInvitation={invitationId}
-          nameLinixInvitation={userIdentification}
+          linixInvitation={entry.invitationId}
+          nameLinixInvitation={entry.userIdentification}
           handleDeleteLinixInvitation={deleteItemData}
           setIdDeleted={setIdDeleted}
         />

@@ -1,10 +1,11 @@
-import { Switch } from "@inube/design-system";
+import { useEffect, useState } from "react";
+import { Toggle } from "@inubekit/toggle";
 import { EMessageType } from "@src/types/messages.types";
+import { Text } from "@inubekit/text";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { activateUsersModal } from "./config/activateUsers.config";
 import { IMessageState } from "../../../types/forms.types";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
 
 interface IActivateUsersUI {
   active: boolean;
@@ -44,16 +45,31 @@ export function ActivateUsersUI(props: IActivateUsersUI) {
     appearance,
   } = activateModalConfig[messageType];
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1201);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1201);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <>
-      <Switch
+      <Toggle
         checked={active}
         onChange={handleToggleModal}
         id={id}
-        label={showComplete ? "Activar" : ""}
-        padding={`s0 s0 s0 ${showComplete ? "s200" : "s0"}`}
+        size={"small"}
+        name={showComplete ? "Activar" : ""}
+        padding={`0px 0px 0px ${showComplete ? "16px" : "s0"}`}
       />
-
+      {isMobile && (
+        <Text size="small" type="body">
+          {active ? "Activo" : "Inactivo"}
+        </Text>
+      )}
       {showactivateUsersModal && (
         <DecisionModal
           title={title}

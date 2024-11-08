@@ -1,15 +1,17 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { Stack } from "@inubekit/stack";
-import { Table, inube } from "@inube/design-system";
+import { inube } from "@inube/design-system";
 import { Icon } from "@inubekit/icon";
 import { Searchfield } from "@inubekit/input";
 import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
+import { TableLinpar } from "@components/data/TableLinpar";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { IEntry } from "@components/data/TableLinpar/types";
 import {
   actionsConfigPosition,
   PositionsBreakPointsConfig,
@@ -114,14 +116,15 @@ export function PositionsUI(props: IPositionsProps) {
           {loading ? (
             <LoadingApp />
           ) : (
-            <Table
+            <TableLinpar
               id="tablePositions"
               titles={titlesOptions}
               actions={actionsConfigPosition(linixPosition, setIdDeleted)}
-              entries={linixPosition}
+              entries={linixPosition as IEntry[]}
               breakpoints={PositionsBreakPointsConfig}
-              modalTitle="Positions"
               filter={searchPosition}
+              isLoading={loading}
+              widthPercentageTotalColumns={130}
             />
           )}
         </Stack>

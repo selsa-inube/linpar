@@ -79,7 +79,15 @@ const TableLinparUI = (props: TableLinparUIProps) => {
   return (
     <Table>
       <Colgroup>
-        {!mediaActionOpen && <Col width="100px" />}
+        {!mediaActionOpen && (
+          <Col
+            width={
+              TitleColumns[1] && TitleColumns[1].id === "k_Usuari"
+                ? "200px"
+                : "100px"
+            }
+          />
+        )}
         {widthColmnsData(TitleColumns, widthPercentageTotalColumns)}
       </Colgroup>
 

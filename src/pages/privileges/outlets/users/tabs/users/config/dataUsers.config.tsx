@@ -4,13 +4,18 @@ import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inubekit/icon";
 import { IGeneralInformationUsersForm } from "@services/users/users.types";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
-
+import { Text } from "@inubekit/text";
 import { deleteLinixUsersModal } from "../DeleteModal/config/deleteLinixUsers.config";
 import { ActivateUsers } from "../ActivateFormOptions";
 import { activateUsersModal } from "../ActivateFormOptions/config/activateUsers.config";
 import { DeleteLinixUsers } from "../DeleteModal";
 import { IDeleteForMessage } from "../types";
-import { CenteredTd } from "../styles";
+import {
+  CenteredTd,
+  StyledContainerEdit,
+  StyledContainerIcon,
+} from "../styles";
+import { IEntry } from "@src/components/data/TableLinpar/types";
 
 export const actionsConfigUsers = (
   smallScreen: boolean,
@@ -21,14 +26,14 @@ export const actionsConfigUsers = (
     {
       id: "i_Activo",
       actionName: "Activo",
-      content: (users: IGeneralInformationUsersForm) => (
+      content: (entry: IEntry) => (
         <CenteredTd>
           <ActivateUsers
             handleActivate={() => {}}
             data={{
-              id: users.k_Usuari,
-              active: users.i_Activo,
-              name: users.n_Usuari,
+              id: entry.k_Usuari || "",
+              active: entry.i_Activo,
+              name: entry.n_Usuario,
             }}
             showComplete={false}
             activateModalConfig={activateUsersModal}
@@ -40,28 +45,35 @@ export const actionsConfigUsers = (
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ k_Usuari }: { k_Usuari: string }) => (
-        <Link to={`edit/${k_Usuari}`}>
-          <Icon
-            appearance="dark"
-            cursorHover
-            icon={<MdModeEdit />}
-            size="16px"
-          />
-        </Link>
+      content: (entry: IEntry) => (
+        <StyledContainerEdit>
+          <Link to={`edit/${entry.k_Usuari}`}>
+            <StyledContainerIcon>
+              <Icon
+                appearance="dark"
+                cursorHover
+                icon={<MdModeEdit />}
+                size="16px"
+              />
+            </StyledContainerIcon>
+            <Text size="small" type="body">
+              Editar
+            </Text>
+          </Link>
+        </StyledContainerEdit>
       ),
       type: "primary",
     },
     {
       id: "Delete",
       actionName: "Eliminar",
-      content: ({ k_Usuari }: { k_Usuari: string }) => (
+      content: (entry: IEntry) => (
         <DeleteLinixUsers
-          linixUsers={k_Usuari}
+          linixUsers={entry.k_Usuari}
           deleteLinixUsersModal={deleteLinixUsersModal}
           handleDeleteLinixUser={deleteItemData}
           setIdDeleted={setIdDeleted}
-          nameLinixuser={k_Usuari}
+          nameLinixuser={entry.k_Usuari}
         />
       ),
       type: "remove",

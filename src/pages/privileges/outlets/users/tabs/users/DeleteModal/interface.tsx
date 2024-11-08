@@ -1,10 +1,12 @@
 import { MdOutlineDelete } from "react-icons/md";
-
+import { useEffect, useState } from "react";
 import { Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { EMessageType } from "@src/types/messages.types";
-
+import { Text } from "@inubekit/text";
 import { deleteLinixUsersModal } from "./config/deleteLinixUsers.config";
+
+import { StyledContainer, StyledContainerIcon } from "./styles";
 
 interface DeleteLinixUserUIProps {
   deleteLinixUsersModal: typeof deleteLinixUsersModal;
@@ -33,6 +35,16 @@ export const DeleteLinixUserUI = (props: DeleteLinixUserUIProps) => {
 
   const { title, description, actionText, appearance } =
     deleteLinixUsersModal[messageType!];
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1201);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1201);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -40,12 +52,22 @@ export const DeleteLinixUserUI = (props: DeleteLinixUserUIProps) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <Icon
-          icon={<MdOutlineDelete />}
-          onClick={() => setShowModal(true)}
-          appearance={hover ? "primary" : "dark"}
-          cursorHover
-        />
+        <StyledContainer>
+          <StyledContainerIcon>
+            <Icon
+              icon={<MdOutlineDelete />}
+              onClick={() => setShowModal(true)}
+              appearance={hover ? "primary" : "dark"}
+              cursorHover
+              size="16px"
+            />
+          </StyledContainerIcon>
+          {isMobile && (
+            <Text size="small" type="body" onClick={() => setShowModal(true)}>
+              Eliminar
+            </Text>
+          )}
+        </StyledContainer>
       </div>
       {showModal && (
         <DecisionModal
