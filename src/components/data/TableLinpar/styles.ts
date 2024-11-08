@@ -17,7 +17,7 @@ const StyledContainerTable = styled.div<IStyledContainer>`
     `1px solid ${inube.palette.neutral.N40}`};
 
   & > td,
-  div {
+  & > div {
     justify-content: center;
   }
 

@@ -1,10 +1,9 @@
-import { Switch } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-
+import { RenderMessage } from "@components/feedback/RenderMessage";
 import { activateUsersModal } from "./config/activateUsers.config";
 import { IMessageState } from "../../../types/forms.types";
-import { RenderMessage } from "@src/components/feedback/RenderMessage";
+import { Toggle } from "@inubekit/toggle";
 
 interface IActivateUsersUI {
   active: boolean;
@@ -46,11 +45,11 @@ export function ActivateUsersUI(props: IActivateUsersUI) {
 
   return (
     <>
-      <Switch
+      <Toggle
         checked={active}
         onChange={handleToggleModal}
         id={id}
-        label={showComplete ? "Activar" : ""}
+        name={showComplete ? "Activar" : ""}
         padding={`s0 s0 s0 ${showComplete ? "s200" : "s0"}`}
       />
 

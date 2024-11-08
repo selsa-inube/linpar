@@ -1,6 +1,6 @@
-import { Switch } from "@inube/design-system";
 import { EMessageType } from "@src/types/messages.types";
 import { DecisionModal } from "@components/feedback/DecisionModal";
+import { Toggle } from "@inubekit/toggle";
 import { activatePositionModal } from "./config/activatePosition.config";
 import { IMessageState } from "../../users/types/forms.types";
 
@@ -42,11 +42,11 @@ export function ActivatePositionUI(props: IActivatePositionUI) {
 
   return (
     <>
-      <Switch
+      <Toggle
         checked={active}
         onChange={handleToggleModal}
         id={id}
-        label={showComplete ? "Activar" : ""}
+        name={showComplete ? "Activar" : ""}
         padding={`s0 s0 s0 ${showComplete ? "s200" : "s0"}`}
       />
 
