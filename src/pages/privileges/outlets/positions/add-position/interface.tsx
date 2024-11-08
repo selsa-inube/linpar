@@ -1,10 +1,8 @@
-import { inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Stack } from "@inubekit/stack";
 import { Assisted } from "@inubekit/assisted";
 import { PageTitle } from "@components/PageTitle";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Button } from "@inubekit/button";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import {
@@ -86,7 +84,6 @@ export function AddPositionUI(props: AddPositionUIProps) {
     dataAddPositionLinixForm,
     formReferences,
     loading,
-    message,
     setIsCurrentFormValid,
     handleNextStep,
     handlePreviousStep,
@@ -94,7 +91,6 @@ export function AddPositionUI(props: AddPositionUIProps) {
     setCurrentStep,
     handleToggleModal,
     handleFinishForm,
-    handleCloseSectionMessage,
   } = props;
 
   const { title, description, actionText, appearance } =
@@ -105,14 +101,10 @@ export function AddPositionUI(props: AddPositionUIProps) {
 
   return (
     <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s400} direction="column">
+      <Stack gap="48px" direction="column">
+        <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={createPositionConfig[0].crumbs} />
-          <Stack
-            justifyContent="space-between"
-            alignItems="center"
-            gap={inube.spacing.s650}
-          >
+          <Stack justifyContent="space-between" alignItems="center" gap="48px">
             <PageTitle
               title={createPositionConfig[0].title}
               description={createPositionConfig[0].description}
@@ -139,7 +131,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
             setCurrentStep
           )}
         </>
-        <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+        <Stack gap="16px" justifyContent="flex-end">
           <Button
             onClick={handlePreviousStep}
             type="button"
@@ -169,13 +161,6 @@ export function AddPositionUI(props: AddPositionUIProps) {
           appearance={appearance}
           closeModal={handleToggleModal}
           handleClick={handleFinishForm}
-        />
-      )}
-      {message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleCloseSectionMessage}
         />
       )}
     </Stack>

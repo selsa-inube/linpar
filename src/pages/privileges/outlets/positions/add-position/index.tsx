@@ -4,6 +4,9 @@ import { FormikProps } from "formik";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getRolesPorCargo } from "@services/positions/rolesPorCargo";
 import { dataToAssignmentFormEntry } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-case";
+import { LinparContext } from "@src/context/AppContext";
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 
 import { IGeneralInformationEntry } from "../components/GeneralInformationForm";
 import { stepsAddPosition } from "./config/addPosition.config";
@@ -18,7 +21,6 @@ import { AddPositionUI } from "./interface";
 
 import { IMessageState } from "../../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
-import { LinparContext } from "@src/context/AppContext";
 
 export function AddPosition() {
   const [currentStep, setCurrentStep] = useState<number>(
@@ -38,7 +40,7 @@ export function AddPosition() {
   const { user } = useAuth0();
   const navigate = useNavigate();
   const { linparData } = useContext(LinparContext);
-
+  const { addFlag } = useFlag();
   const [dataAddPositionLinixForm, setDataAddPositionLinixForm] =
     useState<IFormAddPosition>({
       generalInformation: {
@@ -162,10 +164,15 @@ export function AddPosition() {
       linparData.businessUnit.businessUnitPublicCode
     );
     handleToggleModal();
-    setMessage({
-      visible: true,
-      data: generalMessage.success,
+    addFlag({
+      title: generalMessage.success.title,
+      description: generalMessage.success.description,
+      appearance: EAppearance.SUCCESS,
+      duration: 5000,
     });
+    setTimeout(() => {
+      navigate("/privileges/positions");
+    }, 6000);
   };
 
   return (

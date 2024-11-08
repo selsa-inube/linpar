@@ -1,9 +1,7 @@
 import { MdOutlineShortcut } from "react-icons/md";
 import { FormikValues } from "formik";
 import { useState } from "react";
-import { SectionMessage } from "@inube/design-system";
 import { Numberfield, Emailfield, Phonefield } from "@inubekit/input";
-import { EMessageType } from "@src/types/messages.types";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { Stack } from "@inubekit/stack";
 import { Button } from "@inubekit/button";
@@ -12,13 +10,11 @@ import { Grid } from "@inubekit/grid";
 import { SearchUserCard } from "@components/cards/SearchUserCard";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { useMediaQueries } from "@inubekit/hooks";
-import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
 import { usersInvitationsConfig } from "./config/usersInvitations.config";
-import { StyledContainerLoading, StyledMessageContainer } from "./styles";
+import { StyledContainerLoading } from "./styles";
 
 interface InviteUIProps {
   formik: FormikValues;
-  formInvalid: boolean;
   handleCloseSectionMessage: () => void;
   handleSubmit: () => void;
   loading: boolean;
@@ -30,40 +26,6 @@ interface InviteUIProps {
   usersInfo: Record<string, string | number | any>[];
 }
 
-function renderMessages(
-  showMessage: boolean,
-  formInvalid: boolean,
-  handleCloseSectionMessage: () => void
-) {
-  if (!showMessage) {
-    return null;
-  }
-
-  let messageType: EMessageType = EMessageType.SUCCESS;
-
-  if (formInvalid) {
-    messageType = EMessageType.FAILED;
-  }
-
-  const { title, description, icon, appearance } =
-    messageInvitationSentConfig[messageType];
-
-  return (
-    <StyledMessageContainer>
-      <Stack justifyContent="flex-end" width="100%">
-        <SectionMessage
-          title={title}
-          description={description}
-          icon={icon}
-          appearance={appearance}
-          duration={4000}
-          closeSectionMessage={handleCloseSectionMessage}
-        />
-      </Stack>
-    </StyledMessageContainer>
-  );
-}
-
 function stateValue(formik: FormikValues, attribute: string) {
   if (!formik.touched[attribute]) return undefined;
   if (formik.touched[attribute] && formik.errors[attribute]) return "invalid";
@@ -73,15 +35,12 @@ function stateValue(formik: FormikValues, attribute: string) {
 function InviteUI(props: InviteUIProps) {
   const {
     formik,
-    formInvalid,
     loading,
     loadingPage,
-    handleCloseSectionMessage,
     handleSubmit,
     onReset,
     searchFieldData,
     usersInfo,
-    showMessage,
   } = props;
 
   const mediaQueries = ["(max-width: 1111px)", "(max-width: 565px)"];
@@ -224,7 +183,7 @@ function InviteUI(props: InviteUIProps) {
           </Stack>
         </form>
       </Stack>
-      {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)}
+      {/* {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)} */}
     </Stack>
   );
 }

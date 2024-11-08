@@ -7,7 +7,6 @@ import { Searchfield } from "@inubekit/input";
 import { useMediaQuery } from "@inubekit/hooks";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { TableLinpar } from "@components/data/TableLinpar";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
@@ -44,12 +43,9 @@ export function PositionsUI(props: IPositionsProps) {
     showMenu,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
-    handleCloseSectionMessage,
     searchPosition,
     linixPosition,
     loading,
-    message,
-    idDeleted,
     setIdDeleted,
   } = props;
 
@@ -129,13 +125,6 @@ export function PositionsUI(props: IPositionsProps) {
               filter={searchPosition}
               isLoading={loading}
               widthPercentageTotalColumns={130}
-            />
-          )}
-          {idDeleted && message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={handleCloseSectionMessage}
-              onMessageClosed={handleCloseSectionMessage}
             />
           )}
         </Stack>

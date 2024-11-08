@@ -12,6 +12,8 @@ import {
 import { IDeleteForMessage, UseCase } from "./types";
 
 import { deleteUserMessages } from "./delete-linix-use-case/config/deleteLinixUseCase.config";
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 
 function LinixUseCase() {
   const [searchUseCase, setSearchUseCase] = useState("");
@@ -27,7 +29,7 @@ function LinixUseCase() {
   });
   const { user } = useAuth0();
   const { linparData } = useContext(LinparContext);
-
+  const { addFlag } = useFlag();
   const linixUseCaseData = async () => {
     if (!user) return;
     if (linixUseCases.length === 0) {
@@ -49,13 +51,30 @@ function LinixUseCase() {
   }, [user]);
 
   useEffect(() => {
-    const messageType = idDeleted.successfulDiscard
-      ? deleteUserMessages.success
-      : deleteUserMessages.failed;
-    setMessage({
-      visible: true,
-      data: messageType,
-    });
+    if (idDeleted.id) {
+      if (idDeleted.successfulDiscard) {
+        addFlag({
+          title: deleteUserMessages.success.title,
+          description: deleteUserMessages.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
+        });
+        setTimeout(() => {
+          const filterRecordRemoved = linixUseCases.filter(
+            (linixUseCases) => linixUseCases.k_Usecase !== idDeleted.id
+          );
+
+          setLinixUseCases(filterRecordRemoved);
+        }, 5000);
+      } else {
+        addFlag({
+          title: deleteUserMessages.failed.title,
+          description: deleteUserMessages.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
+        });
+      }
+    }
   }, [idDeleted]);
 
   const handleSearchUseCase = (event: React.ChangeEvent<HTMLInputElement>) => {

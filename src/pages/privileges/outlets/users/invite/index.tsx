@@ -12,6 +12,9 @@ import { LinparContext } from "@context/AppContext";
 import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
 import { saveLinixInvitations } from "./utils";
+import { useFlag } from "@inubekit/flag";
+import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
+import { EAppearance } from "@src/types/colors.types";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -36,7 +39,7 @@ function Invite() {
   const [loading, setLoading] = useState(false);
   const [loadingPage] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  const [formInvalid, setFormInvalid] = useState(false);
+
   const [dataInvitationUsers, setDataInvitationUsers] = useState<
     Record<string, unknown>[]
   >([]);
@@ -49,7 +52,7 @@ function Invite() {
   const screenMovil = useMediaQuery("(max-width: 744px)");
 
   const name = linparData.user.userName?.split(" ");
-
+  const { addFlag } = useFlag();
   useEffect(() => {
     rolesTerceros();
   }, []);
@@ -82,13 +85,17 @@ function Invite() {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-        setFormInvalid(false);
         saveLinixInvitations(
           formik.values,
           name[0] as string,
           linparData.businessUnit.businessUnitPublicCode
         );
-        setShowMessage(true);
+        addFlag({
+          title: messageInvitationSentConfig.success.title,
+          description: messageInvitationSentConfig.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
+        });
         formik.resetForm();
         resetSearchUserRef.current();
         setTimeout(() => {
@@ -103,8 +110,12 @@ function Invite() {
   const handleSubmit = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length > 0) {
-        setShowMessage(true);
-        setFormInvalid(true);
+        addFlag({
+          title: messageInvitationSentConfig.failed.title,
+          description: messageInvitationSentConfig.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
+        });
       }
       formik.handleSubmit();
     });
@@ -119,7 +130,6 @@ function Invite() {
       loading={loading}
       formik={formik}
       loadingPage={loadingPage}
-      formInvalid={formInvalid}
       showMessage={showMessage}
       handleCloseSectionMessage={handleCloseSectionMessage}
       handleSubmit={handleSubmit}

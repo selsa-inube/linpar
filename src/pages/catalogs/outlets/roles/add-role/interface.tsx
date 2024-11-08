@@ -6,12 +6,12 @@ import { Button } from "@inubekit/button";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { RenderMessage } from "@components/feedback/RenderMessage";
-import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { LinparContext } from "@context/AppContext";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { Stack } from "@inubekit/stack";
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 import {
   IFormAddRole,
   IFormAddRoleRef,
@@ -63,13 +63,10 @@ export function AddRolUI(props: AddRolUIProps) {
     handleAddRoleFormValid,
   } = props;
   const [showModal, setShowModal] = useState(false);
-  const [message, setMessage] = useState<IMessageState>({
-    visible: false,
-  });
   const navigate = useNavigate();
   const { linparData } = useContext(LinparContext);
   const smallScreen = useMediaQuery("(max-width: 580px)");
-
+  const { addFlag } = useFlag();
   const {
     generalInformation: { values: generalInformationValues },
     ancillaryAccounts: { values: ancillaryAccountsValues },
@@ -80,52 +77,41 @@ export function AddRolUI(props: AddRolUIProps) {
 
   const { title, description, actionText, appearance } =
     finishAssistedRoleModalConfig;
-
   const handleAddRole = async (addRoleData: IFormAddRole) => {
     await saveRole(addRoleData, linparData.businessUnit.businessUnitPublicCode)
       .then(() => {
-        renderMessage(generalInformationValues.n_Rol, "success");
+        addFlag({
+          title: finishAssistedRoleMessagesConfig.success.title,
+          description: finishAssistedRoleMessagesConfig.success.description(
+            generalInformationValues.n_Rol
+          ),
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
+        });
       })
       .catch((error) => {
-        renderMessage("", "failed");
+        addFlag({
+          title: finishAssistedRoleMessagesConfig.failed.title,
+          description: finishAssistedRoleMessagesConfig.failed.description(
+            generalInformationValues.n_Rol
+          ),
+          appearance: EAppearance.DANGER,
+          duration: 5000,
+        });
       })
       .finally(() => {
         handleToggleModal();
       });
-  };
 
-  const renderMessage = (
-    n_Rol: string | "",
-    type: "success" | "failed" = "failed"
-  ) => {
-    let messageType;
-    if (type === "success")
-      messageType = finishAssistedRoleMessagesConfig.success;
-    if (type === "failed")
-      messageType = finishAssistedRoleMessagesConfig.failed;
-
-    messageType &&
-      setMessage({
-        visible: true,
-        data: {
-          icon: messageType?.icon,
-          title: messageType?.title,
-          description: messageType.description(n_Rol),
-          appearance: messageType?.appearance,
-        },
-      });
+    setTimeout(() => {
+      navigate("/catalogs/roles");
+    }, 6000);
   };
 
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
 
-  const handleCloseSectionMessage = () => {
-    setMessage({
-      visible: false,
-    });
-    navigate("/catalogs/roles");
-  };
   return (
     <>
       {loading ? (
@@ -239,13 +225,6 @@ export function AddRolUI(props: AddRolUIProps) {
               )}
             </Stack>
           </Stack>
-          {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={handleCloseSectionMessage}
-              onMessageClosed={handleCloseSectionMessage}
-            />
-          )}
         </Stack>
       )}
     </>

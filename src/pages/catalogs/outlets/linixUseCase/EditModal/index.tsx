@@ -14,7 +14,7 @@ import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-ca
 import { getClientServerMenuOptionFormats } from "@services/linixUseCase/clientServerMenuOption";
 import { getLinixUseCase } from "@services/linixUseCase/getLinixUseCase";
 import { LinparContext } from "@context/AppContext";
-
+import { useFlag } from "@inubekit/flag";
 import { EditUserUI } from "./interface";
 import {
   IFormAddLinixUseCase,
@@ -26,6 +26,7 @@ import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 
 import { editLinixUseCases } from "./utils";
 import { generalMessage } from "../adding-linix-use-case/config/messages.config";
+import { EAppearance } from "@src/types/colors.types";
 
 function EditCaseLinix() {
   const [controlModal, setControlModal] = useState({
@@ -98,6 +99,7 @@ function EditCaseLinix() {
   const [webOptions, setWebOptions] = useState<Record<string, unknown>[]>([]);
   const [csReports, setCsReports] = useState<Record<string, unknown>[]>([]);
   const { user } = useAuth0();
+  const { addFlag } = useFlag();
   const [loading, setLoading] = useState(false);
   const [linixUseCasesEdit, setLinixUseCasesEdit] = useState<UseCase[]>([]);
   const [csOptionsChange, setCSOptionsChange] = useState<
@@ -550,20 +552,27 @@ function EditCaseLinix() {
     );
     addnewdata
       .then(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.success,
+        addFlag({
+          title: generalMessage.success.title,
+          description: generalMessage.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
         });
       })
       .catch(() => {
-        setMessage({
-          visible: true,
-          data: generalMessage.failed,
+        addFlag({
+          title: generalMessage.failed.title,
+          description: generalMessage.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
         });
       })
       .finally(() => {
         setLoading(false);
       });
+    setTimeout(() => {
+      navigate("/catalogs/linixUseCase");
+    }, 6000);
   };
   const userCardData = formData && {
     code: formData.generalInformation.values.k_Usecase,

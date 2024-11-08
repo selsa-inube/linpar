@@ -2,7 +2,6 @@ import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { Searchfield } from "@inubekit/input";
 import { Stack } from "@inubekit/stack";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { Button } from "@inubekit/button";
 import { Tabs } from "@inubekit/tabs";
 import { Icon } from "@inubekit/icon";
@@ -39,8 +38,6 @@ export function UsersUI(props: UsersUIProps) {
     showMenu,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
-    message,
-    handleCloseMessage,
   } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1600px)": typeTabs } =
@@ -125,13 +122,6 @@ export function UsersUI(props: UsersUIProps) {
             )}
           </Stack>
         </Stack>
-        {message.visible && (
-          <RenderMessage
-            message={message}
-            handleCloseMessage={handleCloseMessage}
-            onMessageClosed={() => {}}
-          />
-        )}
       </Stack>
     </>
   );

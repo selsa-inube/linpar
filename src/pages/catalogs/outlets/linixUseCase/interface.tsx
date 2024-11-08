@@ -1,12 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
-import { inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
 import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { TableLinpar } from "@components/data/TableLinpar";
@@ -44,10 +42,7 @@ export type SelectedDataFunction = (k_Usecase: string) => UseCase;
 export type HandleClickFunction = (id: string) => void;
 export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   const {
-    idDeleted,
-    message,
     searchUseCase,
-    handleCloseSectionMessage,
     handleSearchUseCase,
     handleCloseMenuInvitation,
     handleToggleMenuInvitation,
@@ -79,8 +74,8 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
       width="-webkit-fill-available"
       padding={smallScreen ? "24px" : "32px 64px"}
     >
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s300} direction="column">
+      <Stack gap="48px" direction="column">
+        <Stack gap="24px" direction="column">
           {label && (
             <>
               <Breadcrumbs crumbs={label.crumbs} />
@@ -92,7 +87,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
             </>
           )}
         </Stack>
-        <Stack gap={inube.spacing.s400} direction="column">
+        <Stack gap="32px" direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Searchfield
               name="searchLinixUseCases"
@@ -144,13 +139,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               filter={searchUseCase}
               isLoading={loading}
               widthPercentageTotalColumns={80}
-            />
-          )}
-          {idDeleted && message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={handleCloseSectionMessage}
-              onMessageClosed={handleCloseSectionMessage}
             />
           )}
         </Stack>

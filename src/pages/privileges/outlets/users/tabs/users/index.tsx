@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { EAppearance } from "@src/types/colors.types";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMediaQuery } from "@inubekit/hooks";
 import {
@@ -6,16 +8,15 @@ import {
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { IEntry } from "@components/data/TableLinpar/types";
+import { TableLinpar } from "@components/data/TableLinpar";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IGeneralInformationUsersForm } from "@services/users/users.types";
 import { getUsers } from "@services/users/getUsers";
-import { RenderMessage } from "@components/feedback/RenderMessage";
 import { LinparContext } from "@context/AppContext";
-import { TableLinpar } from "@components/data/TableLinpar";
+import { useFlag } from "@inubekit/flag";
 import { actionsConfigUsers } from "./config/dataUsers.config";
-import { IMessageState } from "../../types/forms.types";
-import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
 import { IDeleteForMessage } from "./types";
+import { deleteUserMessages } from "./DeleteModal/config/deleteLinixUsers.config";
 
 interface UsersTabProps {
   searchText: string;
@@ -24,9 +25,7 @@ interface UsersTabProps {
 function UsersTab(props: UsersTabProps) {
   const { searchText } = props;
   const [users, setUsers] = useState<IGeneralInformationUsersForm[]>([]);
-  const [message, setMessage] = useState<IMessageState>({
-    visible: false,
-  });
+  const navigate = useNavigate();
   const [idDeleted, setIdDeleted] = useState<IDeleteForMessage>({
     id: "",
     successfulDiscard: false,
@@ -35,7 +34,7 @@ function UsersTab(props: UsersTabProps) {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
   const { linparData } = useContext(LinparContext);
-
+  const { addFlag } = useFlag();
   const linixUsersData = async () => {
     if (!user) return;
     if (users.length === 0) {
@@ -57,26 +56,34 @@ function UsersTab(props: UsersTabProps) {
   }, [user]);
 
   useEffect(() => {
-    const messageType = idDeleted.successfulDiscard
-      ? deleteUserMessages.success
-      : deleteUserMessages.failed;
+    if (idDeleted.id) {
+      if (idDeleted.successfulDiscard) {
+        addFlag({
+          title: deleteUserMessages.success.title,
+          description: deleteUserMessages.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
+        });
+        setTimeout(() => {
+          const filterDiscardPublication = users.filter(
+            (user) => user.k_Usuari !== idDeleted.id
+          );
 
-    setMessage({
-      visible: true,
-      data: messageType,
-    });
+          setUsers(filterDiscardPublication);
+        }, 5000);
+      } else {
+        addFlag({
+          title: deleteUserMessages.failed.title,
+          description: deleteUserMessages.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
+        });
+      }
+      setTimeout(() => {
+        navigate("/privileges/users");
+      }, 6000);
+    }
   }, [idDeleted]);
-
-  const handleCloseSectionMessage = () => {
-    setMessage({
-      visible: false,
-    });
-    const filterDiscardPublication = users.filter(
-      (user) => user.k_Usuari !== idDeleted.id
-    );
-
-    idDeleted.successfulDiscard && setUsers(filterDiscardPublication);
-  };
 
   const smallScreen = useMediaQuery("(max-width: 850px)");
 
@@ -103,13 +110,6 @@ function UsersTab(props: UsersTabProps) {
           filter={searchText}
           isLoading={loading}
           widthPercentageTotalColumns={80}
-        />
-      )}
-      {idDeleted && idDeleted.id && message.visible && (
-        <RenderMessage
-          message={message}
-          handleCloseMessage={handleCloseSectionMessage}
-          onMessageClosed={handleCloseSectionMessage}
         />
       )}
     </>

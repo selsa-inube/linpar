@@ -1,5 +1,4 @@
 import { MdArrowBack } from "react-icons/md";
-import { inube } from "@inube/design-system";
 import { Stack } from "@inubekit/stack";
 import { BoxAttribute } from "@components/data/BoxAttirbute";
 import { Accordion } from "@components/data/Accordion";
@@ -20,7 +19,7 @@ export const VerificationAddPositionUI = (
   const { dataVerificationStep, keySections, isMobile, setCurrentStep } = props;
 
   return (
-    <Stack gap={inube.spacing.s100} direction="column">
+    <Stack gap="8px" direction="column">
       {dataVerificationStep.map((dataStept) =>
         keySections.map((keySection, index) => (
           <Accordion

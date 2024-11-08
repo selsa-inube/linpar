@@ -4,6 +4,7 @@ const appereanceText = [
   "warning",
   "success",
   "information",
+  "danger",
   "help",
   "dark",
   "gray",
