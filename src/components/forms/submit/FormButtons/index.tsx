@@ -1,7 +1,5 @@
-import { inube } from "@inube/design-system";
 import { Button } from "@inubekit/button";
 import { Stack } from "@inubekit/stack";
-import { ThemeProvider } from "styled-components";
 
 interface FormButtonsProps {
   handleReset: () => void;
@@ -37,28 +35,26 @@ function FormButtons(props: FormButtonsProps) {
   }
 
   return (
-    <Stack direction="column" gap={inube.spacing.s300}>
+    <Stack direction="column" gap="24px">
       <Stack direction="column">{children}</Stack>
-      <Stack justifyContent="flex-end" gap={inube.spacing.s100}>
-        <ThemeProvider theme={inube}>
-          <Button
-            appearance="gray"
-            disabled={disableCancel}
-            onClick={handleReset}
-            type="reset"
-          >
-            {cancelButtonText}
-          </Button>
-          <Button
-            appearance="primary"
-            onClick={handleSubmit}
-            loading={loading}
-            disabled={disabledButtons}
-            type="button"
-          >
-            {submitButtonText}
-          </Button>
-        </ThemeProvider>
+      <Stack justifyContent="flex-end" gap="8px">
+        <Button
+          appearance="gray"
+          disabled={disableCancel}
+          onClick={handleReset}
+          type="reset"
+        >
+          {cancelButtonText}
+        </Button>
+        <Button
+          appearance="primary"
+          onClick={handleSubmit}
+          loading={loading}
+          disabled={disabledButtons}
+          type="button"
+        >
+          {submitButtonText}
+        </Button>
       </Stack>
     </Stack>
   );

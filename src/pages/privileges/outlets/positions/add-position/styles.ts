@@ -1,4 +1,4 @@
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
 
 interface IStyledContainerAssisted {
@@ -14,6 +14,6 @@ export const StyledContainerAssisted = styled.div<IStyledContainerAssisted>`
   & div > div:nth-child(3) button div figure,
   & div > div:nth-child(3) button div svg {
     color: ${({ $cursorDisabled }) =>
-      $cursorDisabled ? inube.color.text.dark.disabled : inube};
+      $cursorDisabled && inube.palette.neutral.N90};
   }
 `;

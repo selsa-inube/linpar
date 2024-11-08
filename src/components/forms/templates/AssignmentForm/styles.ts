@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
 
 const StyledForm = styled.form`
   width: 100%;
@@ -25,7 +24,7 @@ const StyledEntriesContainer = styled.div`
 
 const StyledOptionsContainer = styled.div`
   position: relative;
-  height: ${inube.spacing.s300};
+  height: "24px";
   text-align: right;
 `;
 

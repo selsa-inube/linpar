@@ -1,17 +1,16 @@
 import styled from "styled-components";
-
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 
 interface IStyledImage {
   width?: string;
 }
 
 const StyledWelcomeContainer = styled.div`
-  background-color: ${inube.color.surface.dark.clear};
+  background-color: ${inube.palette.neutral.N30};
 `;
 
 const StyledOutletContainer = styled(StyledWelcomeContainer)`
-  background-color: ${inube.color.surface.light.clear};
+  background-color: ${inube.palette.neutral.N0};
 `;
 
 const StyledImage = styled.img<IStyledImage>`

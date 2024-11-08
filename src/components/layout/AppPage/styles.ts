@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 
 interface IStyledCollapseIcon {
   $collapse: boolean;
@@ -60,7 +60,7 @@ const StyledMenuContainer = styled.div`
   box-shadow: 0px 2px 3px 0px #091e4221;
   box-shadow: 0px 6px 10px 4px #091e4221;
   background-color: ${({ theme }) =>
-    theme.color?.surface?.light?.clear || inube.color.surface.light.clear};
+    theme.palette.neutral.N0 || inube.palette.neutral.N0};
 `;
 
 const StyledCollapseIcon = styled.div<IStyledCollapseIcon>`

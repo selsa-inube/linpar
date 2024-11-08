@@ -1,9 +1,10 @@
-import { inube, presente } from "@inube/design-system";
+import { presente } from "../design/tokensWithReference/presente";
+import { sistemasenlinea } from "../design/tokensWithReference/sistemasEnlinea";
 
 const themeBussinessUnitMock = [
   {
     bussinessId: 1,
-    ...inube,
+    ...sistemasenlinea,
   },
   {
     bussinessId: 2,

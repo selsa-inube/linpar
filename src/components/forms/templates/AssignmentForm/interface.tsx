@@ -1,5 +1,4 @@
 import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
-import { inube } from "@inube/design-system";
 
 import { Text } from "@inubekit/text";
 import { Searchfield } from "@inubekit/input";
@@ -74,7 +73,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Fieldset title={title}>
-        <Stack direction="column" gap={inube.spacing.s400}>
+        <Stack direction="column" gap={"32px"}>
           <Grid
             templateColumns={smallScreen ? "auto 1fr" : "32% 1fr"}
             gap="s200"
@@ -136,7 +135,7 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
             <Text>No se encuentran datos para seleccionar.</Text>
           ) : (
             <StyledEntriesContainer>
-              <Stack direction="column" gap={inube.spacing.s200} margin={"s0"}>
+              <Stack direction="column" gap="16px" margin="0">
                 {filteredRows &&
                   filteredRows.map((entry) => (
                     <StyledToggle key={entry.id}>

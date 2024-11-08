@@ -1,23 +1,20 @@
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
-
+import { inube } from "@inubekit/foundations";
 interface IStyledAssistedContainer {
   $cursorDisabled: boolean;
 }
 
 const StyledAssistedContainer = styled.div<IStyledAssistedContainer>`
-  border-radius: ${({ theme }) => theme?.spacing?.s100 || inube.spacing.s100};
-  padding: ${({ theme }) => theme?.spacing?.s200 || inube.spacing.s200};
+  border-radius: 8px;
+  padding: 16px;
   background-color: ${({ theme }) =>
-    theme?.color?.surface?.gray?.clear || inube.color.surface.gray.clear};
+    theme?.palette?.neutral?.N10 || inube.palette.neutral.N10};
   & div > div:nth-child(3) button div p,
   & div > div:nth-child(3) button div figure {
     cursor: ${({ $cursorDisabled }) =>
       $cursorDisabled ? "not-allowed" : "pointer"};
     color: ${({ $cursorDisabled }) =>
-      $cursorDisabled
-        ? inube.color.text.dark.disabled
-        : inube.color.text.primary.regular};
+      $cursorDisabled ? inube.palette.neutral.N90 : inube.palette.blue.B400};
   }
 `;
 

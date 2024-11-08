@@ -1,6 +1,6 @@
+import { inube } from "@inubekit/foundations";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
 
 const StyledLink = styled(Link)`
   & > div {
@@ -12,16 +12,16 @@ const StyledLink = styled(Link)`
   }
   text-decoration: none;
   color: ${({ theme }) =>
-    theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
+    theme?.palette?.neutral?.N300 || inube.palette.neutral.N300};
   display: inline-block;
-  padding: ${inube.spacing.s075} ${inube.spacing.s150};
+  padding: "6px 12px";
   border: none;
   background-color: ${({ theme }) =>
-    theme?.color?.stroke?.light?.clear || inube.color.stroke.light.clear};
+    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.color.surface.gray.regular};
+      theme?.palette?.neutral?.N300 || inube.palette.neutral.N300};
   }
 `;
 

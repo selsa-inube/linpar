@@ -1,7 +1,6 @@
 import localforage from "localforage";
 
 import { intializedData } from "@src/mocks/utils/dataMock.service";
-import { intializedTokenData } from "@mocks/themeService/themeService.mock";
 
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
 import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
@@ -13,8 +12,6 @@ import { projectsFormInvitation } from "@mocks/apps/privileges/invitations/proje
 
 export function initializeDataDB() {
   localforage.clear();
-
-  intializedTokenData();
 
   intializedData<typeof invitationEntriesDataMock[number]>(
     "linix-invitations",

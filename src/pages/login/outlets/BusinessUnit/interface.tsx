@@ -1,6 +1,5 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import { inube } from "@inube/design-system";
 import { Stack } from "@inubekit/stack";
 import { Searchfield } from "@inubekit/input";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
@@ -80,7 +79,7 @@ function BusinessUnitsUI({
               direction="column"
               padding="s0 s100"
               alignItems="center"
-              gap={inube.spacing.s100}
+              gap="8px"
             >
               {filterBusinessUnits(businessUnits, search).map(
                 (businessUnit) => (

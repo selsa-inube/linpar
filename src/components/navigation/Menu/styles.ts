@@ -1,14 +1,10 @@
+import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
-
-interface IStyledMenuProps {
-  theme?: typeof inube;
-}
 
 const StyledMenu = styled.div`
   position: absolute;
-  right: ${inube.spacing.s0};
-  top: ${inube.spacing.s250};
+  right: "0px";
+  top: "20px";
 `;
 
 const StyledMenuContainer = styled.div`
@@ -17,20 +13,16 @@ const StyledMenuContainer = styled.div`
   width: fit-content;
   max-width: 200px;
   min-width: 160px;
-  box-shadow: ${inube.spacing.s0} 1px ${inube.spacing.s025}
-      ${({ theme }: IStyledMenuProps) =>
-        theme?.color?.stroke?.light?.disabled ||
-        inube.color.stroke.light.disabled},
-    ${inube.spacing.s0} ${inube.spacing.s025} ${inube.spacing.s075}
-      ${inube.spacing.s025}
-      ${({ theme }: IStyledMenuProps) =>
-        theme?.color?.stroke?.divider?.regular ||
-        inube.color.stroke.divider.regular};
-  background-color: ${({ theme }: IStyledMenuProps) =>
-    theme?.color?.stroke?.light?.clear || inube.color.stroke.light.clear};
-  border-radius: ${inube.spacing.s050};
-  background-color: #fff;
-  padding: ${inube.spacing.s050} ${inube.spacing.s025};
+  box-shadow: "0, 2px"
+      ${({ theme }) =>
+        theme?.palette?.neutral?.N90 || inube.palette.neutral.N90},
+    "0, 2px,6px,2px"
+      ${({ theme }) =>
+        theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
+  background-color: ${({ theme }) =>
+    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
+  border-radius: "4px";
+  padding: "4px 2px";
 `;
 
 export { StyledMenu, StyledMenuContainer };
