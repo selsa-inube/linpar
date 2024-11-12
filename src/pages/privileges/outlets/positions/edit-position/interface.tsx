@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { TfiMenuAlt } from "react-icons/tfi";
 
-import { useMediaQueries, inube } from "@inube/design-system";
-
 import { Tabs } from "@inubekit/tabs";
 import { Button } from "@inubekit/button";
 
@@ -29,6 +27,7 @@ import {
   IPosition,
 } from "../add-position/types";
 import { InitializerForm } from "../components/InitializerForm";
+import { useMediaQueries } from "@inubekit/hooks";
 
 interface EditPositionUIProps {
   selectedTab: string;
@@ -84,14 +83,10 @@ export function EditPositionUI(props: EditPositionUIProps) {
     </StyledContainerLoading>
   ) : (
     <StyledContainer $smallScreen={smallScreen} key={key}>
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s200} direction="column">
+      <Stack gap="48px" direction="column">
+        <Stack gap="32px" direction="column">
           <Breadcrumbs crumbs={editPositionConfig[0].crumbs} />
-          <Stack
-            justifyContent="space-between"
-            alignItems="center"
-            gap={inube.spacing.s400}
-          >
+          <Stack justifyContent="space-between" alignItems="center" gap="32px">
             <PageTitle
               title="Editar un cargo"
               navigatePage="/privileges/positions"
@@ -107,7 +102,7 @@ export function EditPositionUI(props: EditPositionUIProps) {
             )}
           </Stack>
         </Stack>
-        <Stack gap={inube.spacing.s400} direction="column">
+        <Stack gap="32px" direction="column">
           <Tabs
             tabs={Object.values(editPositionTabsConfig)}
             selectedTab={selectedTab}

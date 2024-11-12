@@ -178,13 +178,6 @@ export const EditRoleUI = (props: IEditRoleUIProps) => {
               Guardar
             </Button>
           </Stack>
-          {/* {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={onCloseSectionMessage}
-            />
-          )} */}
         </>
       </Stack>
     </Stack>

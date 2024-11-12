@@ -1,7 +1,7 @@
+import { useState } from "react";
+import { Button } from "@inubekit/button";
 import { InteractiveModal } from ".";
 import { InteractiveModalProps } from "./types";
-import { Button } from "@inube/design-system";
-import { useState } from "react";
 
 const story = {
   title: "Components/Feedback/InteractiveModal",
