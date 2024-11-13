@@ -3,14 +3,13 @@ import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
 import { Header } from "@inubekit/header";
 import { PageTitle } from "@components/PageTitle";
 import { Icon } from "@inubekit/icon";
+import { Text } from "@inubekit/text";
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { useMediaQuery } from "@inubekit/hooks";
 import { BusinessUnitChange } from "@components/inputs/BusinessUnitChange";
 import { ThemeName, useTheme } from "@context/ThemeContext";
 import {
-  bussinessUnitOptionTotal,
   navigationConfig,
-  removeBussinessUnit,
   userMenu,
 } from "@components/layout/AppPage/config/apps.config";
 import { AppCard } from "@components/cards/AppCard";
@@ -31,6 +30,7 @@ import {
 
 interface HomeProps {
   data?: ICardData[];
+  loading?: boolean;
 }
 
 const renderLogo = (imgUrl: string) => {
@@ -42,7 +42,7 @@ const renderLogo = (imgUrl: string) => {
 };
 
 function HomeUI(props: HomeProps) {
-  const { data } = props;
+  const { data, loading } = props;
   const { linparData, businessUnitsToTheStaff, setBusinessUnitSigla } =
     useContext(LinparContext);
   const { setThemeName } = useTheme();
@@ -91,29 +91,31 @@ function HomeUI(props: HomeProps) {
     }
     setCollapse(false);
   };
-  const filterDataConfig = () => {
-    if (
-      bussinessUnitOptionTotal.includes(
-        linparData.businessUnit.businessUnitPublicCode
-      )
-    )
-      return data;
-    return data?.filter((card) => !removeBussinessUnit.includes(card.id));
-  };
+  // const filterDataConfig = () => {
+  //   if (
+  //     bussinessUnitOptionTotal.includes(
+  //       linparData.businessUnit.businessUnitPublicCode
+  //     )
+  //   )
+  //     return data;
+  //   return data?.filter((card) => !removeBussinessUnit.includes(card.id));
+  // };
 
   return (
     <>
       <StyledContainer>
         <StyledHeaderContainer>
-          <Header
-            portalId="portal"
-            navigation={navigationConfig}
-            logoURL={renderLogo(linparData.businessUnit.urlLogo)}
-            user={{
-              username: linparData.user.userName,
-            }}
-            menu={userMenu}
-          />
+          {data && data?.length > 0 && (
+            <Header
+              portalId="portal"
+              navigation={navigationConfig}
+              logoURL={renderLogo(linparData.businessUnit.urlLogo)}
+              user={{
+                username: linparData.user.userName,
+              }}
+              menu={userMenu}
+            />
+          )}
           {businessUnitsToTheStaff.length > 1 && (
             <>
               <StyledCollapseIcon
@@ -151,16 +153,31 @@ function HomeUI(props: HomeProps) {
             />
           </StyledTitle>
           <StyledContainerCards>
-            {data &&
-              filterDataConfig()?.map((card, index) => (
-                <AppCard
-                  key={card.id}
-                  label={card.label}
-                  description={card.description}
-                  icon={card.icon}
-                  url={card.url}
-                />
-              ))}
+            {loading ? (
+              <>
+                <AppCard loading={loading} />
+                <AppCard loading={loading} />
+              </>
+            ) : (
+              <>
+                {data && data?.length > 0 ? (
+                  data?.map((card) => (
+                    <AppCard
+                      key={card.id}
+                      label={card.label}
+                      description={card.description}
+                      icon={card.icon}
+                      url={card.url}
+                      loading={loading}
+                    />
+                  ))
+                ) : (
+                  <Text type="body" size="medium">
+                    No se encontró información
+                  </Text>
+                )}{" "}
+              </>
+            )}
           </StyledContainerCards>
         </StyledContainerSection>
         <StyledFooter>
