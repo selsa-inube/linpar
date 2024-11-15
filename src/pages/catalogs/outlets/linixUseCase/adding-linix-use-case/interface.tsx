@@ -318,13 +318,6 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                   ? "Enviar"
                   : "Siguiente"}
               </Button>
-              {/* {message.visible && (
-                <RenderMessage
-                  message={message}
-                  handleCloseMessage={onCloseSectionMessage}
-                  onMessageClosed={onCloseSectionMessage}
-                />
-              )} */}
             </Stack>
           </Stack>
 

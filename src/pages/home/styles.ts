@@ -26,6 +26,7 @@ const StyledContainerSection = styled.div`
 `;
 
 const StyledHeaderContainer = styled.div`
+  position: relative;
   & div > div {
     cursor: pointer;
   }

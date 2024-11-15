@@ -13,13 +13,7 @@ import { Icon } from "@inubekit/icon";
 
 import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
 import { ThemeName, useTheme } from "@context/ThemeContext";
-import {
-  navigationConfig,
-  bussinessUnitOptionTotal,
-  removeBussinessUnit,
-  AppsConfig,
-  userMenu,
-} from "./config/apps.config";
+import { navigationConfig, AppsConfig, userMenu } from "./config/apps.config";
 
 import {
   StyledAppPage,
@@ -32,6 +26,8 @@ import {
   StyledCollapse,
   StyledCollapseIcon,
 } from "./styles";
+import { useOptionsByBusinessunits } from "@src/hooks/useObject";
+import { decrypt } from "@src/utils/encrypt";
 
 const renderLogo = (imgUrl: string) => {
   return (
@@ -58,8 +54,15 @@ function AppPage() {
   const businessUnitChangeRef = useRef<HTMLDivElement>(null);
   const isTablet = useMediaQuery("(max-width: 944px)");
   const smallScreen = useMediaQuery("(max-width: 849px)");
+  const portalId = localStorage.getItem("portalCode");
+  const staffPortalId = portalId ? decrypt(portalId) : "";
 
   const navigate = useNavigate();
+
+  const { optionsCards } = useOptionsByBusinessunits(
+    staffPortalId,
+    businessUnitSigla
+  );
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -98,23 +101,6 @@ function AppPage() {
     }
     setCollapse(false);
   };
-  const filterNavigationConfig = () => {
-    const businessUnit = JSON.parse(businessUnitSigla);
-    if (
-      bussinessUnitOptionTotal.includes(businessUnit.businessUnitPublicCode)
-    ) {
-      return navigationConfig.items;
-    } else {
-      const DataConfig = { ...navigationConfig.items };
-      removeBussinessUnit.forEach((unit) => {
-        delete DataConfig.sections.administrate.links[
-          unit as keyof typeof DataConfig.sections.administrate.links
-        ];
-      });
-
-      return DataConfig;
-    }
-  };
 
   return (
     <StyledAppPage>
@@ -122,10 +108,11 @@ function AppPage() {
         <StyledHeaderContainer>
           <Header
             portalId="portal"
-            navigation={navigationConfig}
+            navigation={navigationConfig(optionsCards)}
             logoURL={renderLogo(linparData.businessUnit.urlLogo)}
             user={{
               username: linparData.user.userName,
+              breakpoint: "600px",
             }}
             menu={userMenu}
           />
@@ -166,7 +153,7 @@ function AppPage() {
             {!smallScreen && (
               <StyledContainerNav>
                 <Nav
-                  navigation={filterNavigationConfig()}
+                  navigation={navigationConfig(optionsCards).items}
                   actions={actionConfig}
                   footerLogo={linparData.businessManager.urlBrand}
                 />

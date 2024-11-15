@@ -5,13 +5,13 @@ import { decrypt } from "@src/utils/encrypt";
 import { useOptionsByBusinessunits } from "@src/hooks/useObject";
 
 function Home() {
-  const { linparData } = useContext(LinparContext);
+  const { businessUnitSigla } = useContext(LinparContext);
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
 
   const { optionsCards, loading } = useOptionsByBusinessunits(
     staffPortalId,
-    linparData.businessUnit.businessUnitPublicCode
+    businessUnitSigla
   );
   return <HomeUI data={optionsCards} loading={loading} />;
 }

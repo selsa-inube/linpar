@@ -6,7 +6,7 @@ const StyledAppMenu = styled.div`
   padding: 32px 64px;
 
   @media (max-width: 490px) {
-    padding: "16px";
+    padding: 16px;
   }
 `;
 

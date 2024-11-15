@@ -1,15 +1,14 @@
-import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
-import { PageTitle } from "@components/PageTitle";
+
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { TableLinpar } from "@components/data/TableLinpar";
 import { IEntry } from "@components/data/TableLinpar/types";
-import { Breadcrumbs } from "@inubekit/breadcrumbs";
+
 import { Icon } from "@inubekit/icon";
 import { Stack } from "@inubekit/stack";
 import { Button } from "@inubekit/button";
@@ -21,7 +20,6 @@ import {
 import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
-import { catalogsOptionsConfig } from "../options/config/catalogs.config";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -53,10 +51,10 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 837px)");
-  const location = useLocation();
-  const label = catalogsOptionsConfig.find(
-    (item) => item.url === location.pathname
-  );
+  // const location = useLocation();
+  // const label = catalogsOptionsConfig.find(
+  //   (item) => item.url === location.pathname
+  // );
 
   const dynamicTitlesOptions = smallScreen
     ? [
@@ -75,7 +73,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
       padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap="48px" direction="column">
-        <Stack gap="24px" direction="column">
+        {/* <Stack gap="24px" direction="column">
           {label && (
             <>
               <Breadcrumbs crumbs={label.crumbs} />
@@ -86,7 +84,7 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               />
             </>
           )}
-        </Stack>
+        </Stack> */}
         <Stack gap="32px" direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Searchfield

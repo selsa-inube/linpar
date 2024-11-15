@@ -56,6 +56,7 @@ function HomeUI(props: HomeProps) {
   const isTablet = useMediaQuery("(max-width: 944px)");
 
   const username = linparData.user.userName.split(" ")[0];
+
   const handleClickOutside = (event: MouseEvent) => {
     if (
       userMenuRef.current &&
@@ -91,31 +92,21 @@ function HomeUI(props: HomeProps) {
     }
     setCollapse(false);
   };
-  // const filterDataConfig = () => {
-  //   if (
-  //     bussinessUnitOptionTotal.includes(
-  //       linparData.businessUnit.businessUnitPublicCode
-  //     )
-  //   )
-  //     return data;
-  //   return data?.filter((card) => !removeBussinessUnit.includes(card.id));
-  // };
-
   return (
     <>
       <StyledContainer>
         <StyledHeaderContainer>
-          {data && data?.length > 0 && (
-            <Header
-              portalId="portal"
-              navigation={navigationConfig}
-              logoURL={renderLogo(linparData.businessUnit.urlLogo)}
-              user={{
-                username: linparData.user.userName,
-              }}
-              menu={userMenu}
-            />
-          )}
+          <Header
+            portalId="portal"
+            navigation={navigationConfig(data || [])}
+            logoURL={renderLogo(linparData.businessUnit.urlLogo)}
+            user={{
+              username: linparData.user.userName,
+              breakpoint: "600px",
+            }}
+            menu={userMenu}
+          />
+
           {businessUnitsToTheStaff.length > 1 && (
             <>
               <StyledCollapseIcon

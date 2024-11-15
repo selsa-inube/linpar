@@ -22,6 +22,7 @@ import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { IDeleteForMessage } from "./types";
+import { menuInvitationLinks } from "./config/menuInvitation.config";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -99,7 +100,10 @@ export function PositionsUI(props: IPositionsProps) {
                   appearance="dark"
                 />
                 {showMenu && (
-                  <Menu options={[]} handleClose={handleCloseMenuInvitation} />
+                  <Menu
+                    options={menuInvitationLinks}
+                    handleClose={handleCloseMenuInvitation}
+                  />
                 )}
               </StyledContainer>
             ) : (
@@ -107,7 +111,7 @@ export function PositionsUI(props: IPositionsProps) {
                 iconBefore={<MdPersonAddAlt />}
                 spacing="wide"
                 type="link"
-                path="/privileges/positions/add-position"
+                path="/privileges/positions/adding-positions"
               >
                 Agregar cargo
               </Button>

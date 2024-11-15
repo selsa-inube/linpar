@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import { Icon } from "@inubekit/icon";
@@ -6,14 +5,13 @@ import { Icon } from "@inubekit/icon";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
 import { Button } from "@inubekit/button";
-import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { Stack } from "@inubekit/stack";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { TableLinpar } from "@components/data/TableLinpar";
 import { IEntry } from "@components/data/TableLinpar/types";
-import { Breadcrumbs } from "@inubekit/breadcrumbs";
+
 import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
@@ -23,7 +21,6 @@ import {
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
-import { catalogsOptionsConfig } from "../options/config/catalogs.config";
 
 interface IRolesProps {
   handleCloseMenuInvitation: () => void;
@@ -54,10 +51,10 @@ export function RolesUI(props: IRolesProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  const location = useLocation();
-  const label = catalogsOptionsConfig.find(
-    (item) => item.url === location.pathname
-  );
+  // const location = useLocation();
+  // const label = catalogsOptionsConfig.find(
+  //   (item) => item.url === location.pathname
+  // );
   const dynamicTitlesOptions = smallScreen
     ? [
         {
@@ -76,7 +73,7 @@ export function RolesUI(props: IRolesProps) {
     >
       <Stack gap="48px" direction="column">
         <Stack gap="24px" direction="column">
-          {label && (
+          {/* {label && (
             <>
               <Breadcrumbs crumbs={label.crumbs} />
               <PageTitle
@@ -85,7 +82,7 @@ export function RolesUI(props: IRolesProps) {
                 navigatePage="/catalogs"
               />
             </>
-          )}
+          )} */}
         </Stack>
         <Stack gap="32px" direction="column">
           <Stack justifyContent="space-between" alignItems="center">

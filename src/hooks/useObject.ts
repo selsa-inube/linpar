@@ -1,11 +1,15 @@
 import { getStaffPortalByBusinessManager } from "@src/services/cards";
 import { IPortalStaff } from "@src/services/cards/types";
-import { normalizeOptionsByPublicCode } from "@src/utils/options";
+import {
+  normalizeOptionsByPublicCode,
+  normalizesubOptionsByPublicCode,
+} from "@utils/options";
 import { useState, useEffect } from "react";
 
 export const useOptionsByBusinessunits = (
   staffPortalId: string,
-  businessUnitPublicCode: string
+  businessUnitSigla: string,
+  publicCodeParent?: string
 ) => {
   const [optionsData, setOptionsData] = useState<IPortalStaff[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -15,9 +19,10 @@ export const useOptionsByBusinessunits = (
     const fetchOptionsByBusinessUnits = async () => {
       setLoading(true);
       try {
+        const businessUnit = JSON.parse(businessUnitSigla || "{}");
         const newOptions = await getStaffPortalByBusinessManager(
           staffPortalId,
-          businessUnitPublicCode
+          businessUnit.businessUnitPublicCode
         );
         setOptionsData(newOptions);
       } catch (error) {
@@ -29,7 +34,7 @@ export const useOptionsByBusinessunits = (
     };
 
     fetchOptionsByBusinessUnits();
-  }, []);
+  }, [businessUnitSigla]);
 
   const optionsCards = optionsData
     .filter((option) => normalizeOptionsByPublicCode(option.publicCode))
@@ -44,5 +49,29 @@ export const useOptionsByBusinessunits = (
       };
     });
 
-  return { optionsCards, hasError, loading };
+  const subOptions = optionsData
+    .filter((option) => option.publicCode === publicCodeParent)
+    .flatMap((option) =>
+      option.subOption.map((item) => {
+        const normalizedSubOption = normalizesubOptionsByPublicCode(
+          option.publicCode,
+          item.publicCode
+        );
+
+        return {
+          parentCode: option.publicCode,
+          id: normalizedSubOption?.publicCodeOption,
+          icon: normalizedSubOption?.icon,
+          label: item.abbreviatedName,
+          description: item.descriptionUse,
+          url: normalizedSubOption?.url || "",
+          domain: normalizedSubOption?.domain || "",
+          crumbs: normalizedSubOption?.crumbs,
+        };
+      })
+    );
+
+  console.log(subOptions);
+
+  return { optionsCards, subOptions, hasError, loading };
 };

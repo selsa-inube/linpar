@@ -51,14 +51,16 @@ function BusinessUnitsUI({
 }: BusinessUnitsUIProps) {
   return (
     <StyledBusinessUnits>
-      <Text type="title" as="h2" textAlign="center">
-        Unidad de Negocios
-      </Text>
-      <Text size="medium" textAlign="center">
-        Seleccione la Unidad de Negocio
-      </Text>
+      <Stack direction="column">
+        <Text type="title" as="h2" textAlign="center">
+          Unidad de Negocios
+        </Text>
+        <Text size="medium" textAlign="center">
+          Seleccione la Unidad de Negocio
+        </Text>
+      </Stack>
       <form>
-        <Stack direction="column" alignItems="center">
+        <Stack direction="column" alignItems="center" gap="16px">
           {businessUnits.length > 10 && (
             <Searchfield
               placeholder="Buscar..."

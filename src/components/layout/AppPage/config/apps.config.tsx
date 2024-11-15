@@ -1,6 +1,7 @@
 import { MdLogout, MdVpnKey } from "react-icons/md";
 import catalogs from "@assets/images/catalogs.svg";
 import { useAuth0 } from "@auth0/auth0-react";
+import { ICardData } from "@src/pages/home/types";
 
 const AppsConfig = () => {
   const { logout } = useAuth0();
@@ -64,30 +65,41 @@ const AppsConfig = () => {
 const removeBussinessUnit = ["catalogs"];
 const bussinessUnitOptionTotal = ["860514047"];
 
-const navigationConfig = {
-  items: {
-    title: "MENU",
-    sections: {
-      administrate: {
-        name: "",
-        links: {
-          privileges: {
-            id: "privileges",
-            label: "Privilegios",
-            icon: <MdVpnKey />,
-            path: "/privileges",
-          },
-          catalogs: {
-            id: "catalogs",
-            label: "Catálogos Generales",
-            icon: <img src={catalogs} alt="catalogs" width="25" height="25" />,
-            path: "/catalogs",
-          },
+const createNavLink = (
+  option: ICardData | undefined,
+  defaultIcon: JSX.Element
+) => ({
+  id: option?.id || "",
+  label: option?.label || "",
+  icon: option?.icon || defaultIcon,
+  path: option?.url || "",
+});
+
+const navigationConfig = (options: ICardData[]) => {
+  const linkNav = options.reduce<
+    Record<string, ReturnType<typeof createNavLink>>
+  >((acc, option) => {
+    const navLink = createNavLink(option, <MdVpnKey />);
+    acc[navLink.id] = navLink;
+    return acc;
+  }, {});
+
+  const nav = {
+    items: {
+      title: "MENU",
+      sections: {
+        administrate: {
+          name: "",
+          links: linkNav,
         },
       },
     },
-  },
+    breakpoint: "600px",
+  };
+
+  return nav;
 };
+
 const userMenu = [
   {
     id: "section",
