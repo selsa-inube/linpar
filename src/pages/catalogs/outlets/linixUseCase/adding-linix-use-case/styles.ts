@@ -10,7 +10,7 @@ const StyledAssistedContainer = styled.div<IStyledAssistedContainer>`
   background-color: ${({ theme }) =>
     theme?.palette?.neutral?.N10 || inube.palette.neutral.N10};
   & div > div:nth-child(3) button div p,
-  & div > div:nth-child(3) button div figure {
+  & div > div:nth-child(3) button div figure svg {
     cursor: ${({ $cursorDisabled }) =>
       $cursorDisabled ? "not-allowed" : "pointer"};
     color: ${({ $cursorDisabled }) =>

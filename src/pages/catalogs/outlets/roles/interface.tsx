@@ -143,13 +143,6 @@ export function RolesUI(props: IRolesProps) {
               widthPercentageTotalColumns={85}
             />
           )}
-          {/* {idDeleted !== 0 && message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={handleCloseSectionMessage}
-              onMessageClosed={handleCloseSectionMessage}
-            />
-          )} */}
         </Stack>
       </Stack>
     </Stack>

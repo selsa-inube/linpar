@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Icon } from "@inubekit/icon";
 import { Stack } from "@inubekit/stack";
-import { Text } from "@inube/design-system";
+import { Text } from "@inubekit/text";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
 import { StyledSubjectCard } from "./styles";
 import { ILabel } from "./types";

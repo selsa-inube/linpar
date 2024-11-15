@@ -1,6 +1,5 @@
 import { MdPersonOutline } from "react-icons/md";
 
-import { Assisted, inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 
 import { SubjectCard } from "@components/cards/SubjectCard";
@@ -9,7 +8,7 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-
+import { Assisted } from "@inubekit/assisted";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IFormCompleteInvitation } from "@services/users/invitation.types";
 import { Stack } from "@inubekit/stack";
@@ -204,7 +203,7 @@ function CompleteInvitationUI(props: CompleteInvitationUIProps) {
                 setCurrentStep={setCurrentStep}
               />
             )}
-            <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+            <Stack gap="16px" justifyContent="flex-end">
               <Button
                 onClick={handlePreviousStep}
                 type="button"
