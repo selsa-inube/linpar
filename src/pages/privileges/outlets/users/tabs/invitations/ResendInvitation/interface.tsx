@@ -42,7 +42,7 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
           onClick={toggleModal}
           variant="none"
           appearance="gray"
-          spacing="compact"
+          spacing="wide"
           loading={isLoadingResend}
         >
           Reenviar

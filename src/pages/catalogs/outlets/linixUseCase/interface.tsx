@@ -1,9 +1,6 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
-import { LinparContext } from "@context/AppContext";
-import { useOptionsByBusinessunits } from "@src/hooks/useObject";
-import { decrypt } from "@src/utils/encrypt";
+
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
 
@@ -27,6 +24,7 @@ import {
 import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
+import { useSubOptions } from "@src/hooks/useSubOptions";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -42,6 +40,7 @@ interface LinixUseCaseUIProps {
   loading: boolean;
   idDeleted: string;
   setIdDeleted: (show: IDeleteForMessage) => void;
+  catalogName: string;
 }
 export type SelectedDataFunction = (k_Usecase: string) => UseCase;
 export type HandleClickFunction = (id: string) => void;
@@ -55,20 +54,15 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     loading,
     setIdDeleted,
     showMenu,
+    catalogName,
   } = props;
 
-  const { businessUnitSigla } = useContext(LinparContext);
-  const portalId = localStorage.getItem("portalCode");
-  const staffPortalId = portalId ? decrypt(portalId) : "";
-  const { subOptions } = useOptionsByBusinessunits(
-    staffPortalId,
-    businessUnitSigla,
-    "catalogosgeneraleslinix"
-  );
+  const { subOptions } = useSubOptions(catalogName);
+
   const smallScreen = useMediaQuery("(max-width: 837px)");
   const location = useLocation();
 
-  const label = catalogsOptionsConfig(subOptions).find(
+  const data = catalogsOptionsConfig(subOptions).find(
     (item, index) => item[index]?.url === location.pathname
   );
 
@@ -90,12 +84,12 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     >
       <Stack gap="48px" direction="column">
         <Stack gap="24px" direction="column">
-          {label && (
+          {data && (
             <>
-              <Breadcrumbs crumbs={label[0].crumbs} />
+              <Breadcrumbs crumbs={data[0].crumbs} />
               <PageTitle
-                title={label[0].label}
-                description={label[0].description}
+                title={data[0].label}
+                description={data[0].description}
                 navigatePage="/catalogs"
               />
             </>

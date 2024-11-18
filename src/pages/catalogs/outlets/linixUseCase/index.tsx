@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
 import { getLinixUseCase } from "@services/linixUseCase/getLinixUseCase";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { LinparContext } from "@context/AppContext";
@@ -12,8 +13,6 @@ import {
 import { IDeleteForMessage, UseCase } from "./types";
 
 import { deleteUserMessages } from "./delete-linix-use-case/config/deleteLinixUseCase.config";
-import { useFlag } from "@inubekit/flag";
-import { EAppearance } from "@src/types/colors.types";
 
 function LinixUseCase() {
   const [searchUseCase, setSearchUseCase] = useState("");
@@ -121,6 +120,7 @@ function LinixUseCase() {
       selectedData={selectedData}
       setIdDeleted={setIdDeleted}
       idDeleted={idDeleted.id}
+      catalogName="catalogosgeneraleslinix"
     />
   );
 }

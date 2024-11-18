@@ -1,8 +1,5 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { useContext } from "react";
-import { decrypt } from "@src/utils/encrypt";
-import { useOptionsByBusinessunits } from "@src/hooks/useObject";
 import { Stack } from "@inubekit/stack";
 import { inube } from "@inube/design-system";
 import { Icon } from "@inubekit/icon";
@@ -15,7 +12,6 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IEntry } from "@components/data/TableLinpar/types";
-import { LinparContext } from "@context/AppContext";
 import {
   actionsConfigPosition,
   PositionsBreakPointsConfig,
@@ -27,6 +23,7 @@ import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { IDeleteForMessage } from "./types";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
+import { useSubOptions } from "@src/hooks/useSubOptions";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -40,6 +37,7 @@ interface IPositionsProps {
   setIdDeleted: (show: IDeleteForMessage) => void;
   message: IMessageState;
   idDeleted: string;
+  catalogName: string;
 }
 
 export function PositionsUI(props: IPositionsProps) {
@@ -52,19 +50,13 @@ export function PositionsUI(props: IPositionsProps) {
     linixPosition,
     loading,
     setIdDeleted,
+    catalogName,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const location = useLocation();
-  const { businessUnitSigla } = useContext(LinparContext);
-  const portalId = localStorage.getItem("portalCode");
-  const staffPortalId = portalId ? decrypt(portalId) : "";
-  const { subOptions } = useOptionsByBusinessunits(
-    staffPortalId,
-    businessUnitSigla,
-    "gestionprivilegios"
-  );
-  const label = privilegeOptionsConfig(subOptions).find(
+  const { subOptions } = useSubOptions(catalogName);
+  const data = privilegeOptionsConfig(subOptions).find(
     (item, index) => item[index]?.url === location.pathname
   );
 
@@ -76,12 +68,12 @@ export function PositionsUI(props: IPositionsProps) {
     >
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s300} direction="column">
-          {label && (
+          {data && (
             <>
-              <Breadcrumbs crumbs={label[0].crumbs} />
+              <Breadcrumbs crumbs={data[0].crumbs} />
               <PageTitle
-                title={label[0].label}
-                description={label[0].description}
+                title={data[0].label}
+                description={data[0].description}
                 navigatePage="/privileges"
               />
             </>

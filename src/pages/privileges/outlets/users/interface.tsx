@@ -1,15 +1,12 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { useSubOptions } from "@src/hooks/useSubOptions";
 import { Searchfield } from "@inubekit/input";
 import { Stack } from "@inubekit/stack";
 import { Button } from "@inubekit/button";
 import { Tabs } from "@inubekit/tabs";
 import { Icon } from "@inubekit/icon";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
-import { LinparContext } from "@context/AppContext";
-import { decrypt } from "@utils/encrypt";
-import { useOptionsByBusinessunits } from "@src/hooks/useObject";
 import { useMediaQueries } from "@inubekit/hooks";
 import { Menu } from "@components/navigation/Menu";
 import { PageTitle } from "@components/PageTitle";
@@ -31,6 +28,7 @@ interface UsersUIProps {
   handleCloseMenuInvitation: () => void;
   message: IUsersMessage;
   handleCloseMessage: () => void;
+  catalogName: string;
 }
 
 export function UsersUI(props: UsersUIProps) {
@@ -42,20 +40,14 @@ export function UsersUI(props: UsersUIProps) {
     showMenu,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
+    catalogName,
   } = props;
 
   const { "(max-width: 580px)": smallScreen, "(max-width: 1600px)": typeTabs } =
     useMediaQueries(["(max-width: 580px)", "(max-width: 1600px)"]);
   const location = useLocation();
-  const { businessUnitSigla } = useContext(LinparContext);
-  const portalId = localStorage.getItem("portalCode");
-  const staffPortalId = portalId ? decrypt(portalId) : "";
-  const { subOptions } = useOptionsByBusinessunits(
-    staffPortalId,
-    businessUnitSigla,
-    "gestionprivilegios"
-  );
-  const label = privilegeOptionsConfig(subOptions).find(
+  const { subOptions } = useSubOptions(catalogName);
+  const data = privilegeOptionsConfig(subOptions).find(
     (item) => item[1]?.url === location.pathname
   );
 
@@ -68,12 +60,12 @@ export function UsersUI(props: UsersUIProps) {
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
-            {label && (
+            {data && (
               <>
-                <Breadcrumbs crumbs={label[1].crumbs} />
+                <Breadcrumbs crumbs={data[1].crumbs} />
                 <PageTitle
-                  title={label[1].label}
-                  description={label[1].description}
+                  title={data[1].label}
+                  description={data[1].description}
                   navigatePage="/privileges"
                 />
               </>

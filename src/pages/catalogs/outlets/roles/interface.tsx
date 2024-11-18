@@ -1,5 +1,4 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Icon } from "@inubekit/icon";
 
@@ -8,15 +7,13 @@ import { Searchfield } from "@inubekit/input";
 import { Button } from "@inubekit/button";
 import { Menu } from "@components/navigation/Menu";
 import { Stack } from "@inubekit/stack";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { TableLinpar } from "@components/data/TableLinpar";
 import { IEntry } from "@components/data/TableLinpar/types";
-import { useOptionsByBusinessunits } from "@src/hooks/useObject";
-import { LinparContext } from "@context/AppContext";
-import { decrypt } from "@src/utils/encrypt";
-import { PageTitle } from "@src/components/PageTitle";
-import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { PageTitle } from "@components/PageTitle";
+
 import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
@@ -28,6 +25,7 @@ import {
 import { StyledContainer } from "./styles";
 
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
+import { useSubOptions } from "@src/hooks/useSubOptions";
 
 interface IRolesProps {
   handleCloseMenuInvitation: () => void;
@@ -42,6 +40,7 @@ interface IRolesProps {
   setIdDeleted: (show: IDeleteForMessage) => void;
   dataAplication: (show: string) => void;
   showMenu: boolean;
+  catalogName: string;
 }
 
 export function RolesUI(props: IRolesProps) {
@@ -55,20 +54,14 @@ export function RolesUI(props: IRolesProps) {
     searchRole,
     setIdDeleted,
     showMenu,
+    catalogName,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  const { businessUnitSigla } = useContext(LinparContext);
-  const portalId = localStorage.getItem("portalCode");
-  const staffPortalId = portalId ? decrypt(portalId) : "";
-  const { subOptions } = useOptionsByBusinessunits(
-    staffPortalId,
-    businessUnitSigla,
-    "catalogosgeneraleslinix"
-  );
+  const { subOptions } = useSubOptions(catalogName);
   const location = useLocation();
 
-  const label = catalogsOptionsConfig(subOptions).find(
+  const data = catalogsOptionsConfig(subOptions).find(
     (item) => item[1]?.url === location.pathname
   );
   const dynamicTitlesOptions = smallScreen
@@ -89,12 +82,12 @@ export function RolesUI(props: IRolesProps) {
     >
       <Stack gap="48px" direction="column">
         <Stack gap="24px" direction="column">
-          {label && (
+          {data && (
             <>
-              <Breadcrumbs crumbs={label[1].crumbs} />
+              <Breadcrumbs crumbs={data[1].crumbs} />
               <PageTitle
-                title={label[1].label}
-                description={label[1].description}
+                title={data[1].label}
+                description={data[1].description}
                 navigatePage="/catalogs"
               />
             </>
