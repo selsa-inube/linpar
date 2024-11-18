@@ -219,13 +219,6 @@ function EditUserUI(props: EditUserUIProps) {
               Guardar
             </Button>
           </Stack>
-          {/* {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={onCloseSectionMessage}
-            />
-          )} */}
         </Stack>
       </Stack>
     </StyledContainer>

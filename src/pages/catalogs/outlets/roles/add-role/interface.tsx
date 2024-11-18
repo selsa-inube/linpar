@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Assisted, inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Button } from "@inubekit/button";
 import { PageTitle } from "@components/PageTitle";
@@ -11,6 +10,7 @@ import { LinparContext } from "@context/AppContext";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { Stack } from "@inubekit/stack";
 import { useFlag } from "@inubekit/flag";
+import { Assisted } from "@inubekit/assisted";
 import { EAppearance } from "@src/types/colors.types";
 import {
   IFormAddRole,
@@ -118,13 +118,13 @@ export function AddRolUI(props: AddRolUIProps) {
         <LoadingApp />
       ) : (
         <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
-          <Stack gap={inube.spacing.s600} direction="column">
-            <Stack gap={inube.spacing.s400} direction="column">
+          <Stack gap="48px" direction="column">
+            <Stack gap="32px" direction="column">
               <Breadcrumbs crumbs={createRolConfig[0].crumbs} />
               <Stack
                 justifyContent="space-between"
                 alignItems="center"
-                gap={inube.spacing.s650}
+                gap="48px"
               >
                 <PageTitle
                   title={createRolConfig[0].title}

@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 import { Stack } from "@inubekit/stack";
-import { inube } from "@inube/design-system";
+
 import { Icon } from "@inubekit/icon";
 import { Searchfield } from "@inubekit/input";
 import { useMediaQuery } from "@inubekit/hooks";
@@ -66,8 +66,8 @@ export function PositionsUI(props: IPositionsProps) {
       width="-webkit-fill-available"
       padding={smallScreen ? "24px" : "32px 64px"}
     >
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s300} direction="column">
+      <Stack gap="48px" direction="column">
+        <Stack gap="24px" direction="column">
           {data && (
             <>
               <Breadcrumbs crumbs={data[0].crumbs} />
@@ -79,7 +79,7 @@ export function PositionsUI(props: IPositionsProps) {
             </>
           )}
         </Stack>
-        <Stack gap={inube.spacing.s400} direction="column">
+        <Stack gap="32px" direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Searchfield
               name="searchPositions"

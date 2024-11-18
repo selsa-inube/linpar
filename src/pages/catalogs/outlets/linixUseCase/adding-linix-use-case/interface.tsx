@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Assisted, inube } from "@inube/design-system";
 import { useMediaQuery } from "@inubekit/hooks";
 import { DecisionModal } from "@components/feedback/DecisionModal";
 import { PageTitle } from "@components/PageTitle";
@@ -10,6 +9,7 @@ import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-ca
 import { LinparContext } from "@context/AppContext";
 import { Button } from "@inubekit/button";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { Assisted } from "@inubekit/assisted";
 import {
   CrateLinixUseCaseConfig,
   finishAssistedModalConfig,
@@ -213,13 +213,13 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
         <LoadingApp />
       ) : (
         <Stack direction="column" padding={smallScreen ? "16px" : "32px 64px"}>
-          <Stack gap={inube.spacing.s600} direction="column">
-            <Stack gap={inube.spacing.s400} direction="column">
+          <Stack gap="48px" direction="column">
+            <Stack gap="32px" direction="column">
               <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
               <Stack
                 justifyContent="space-between"
                 alignItems="center"
-                gap={inube.spacing.s650}
+                gap="48px"
               >
                 <PageTitle
                   title={CrateLinixUseCaseConfig[0].title}
@@ -275,7 +275,7 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
                 setCurrentStep
               )}
             </>
-            <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+            <Stack gap="16px" justifyContent="flex-end">
               <Button
                 onClick={() => {
                   const prevStep =

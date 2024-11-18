@@ -183,7 +183,6 @@ function InviteUI(props: InviteUIProps) {
           </Stack>
         </form>
       </Stack>
-      {/* {renderMessages(showMessage, formInvalid, handleCloseSectionMessage)} */}
     </Stack>
   );
 }
