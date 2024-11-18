@@ -1,5 +1,6 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-
+import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { Icon } from "@inubekit/icon";
 
 import { useMediaQuery } from "@inubekit/hooks";
@@ -11,7 +12,11 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { TableLinpar } from "@components/data/TableLinpar";
 import { IEntry } from "@components/data/TableLinpar/types";
-
+import { useOptionsByBusinessunits } from "@src/hooks/useObject";
+import { LinparContext } from "@context/AppContext";
+import { decrypt } from "@src/utils/encrypt";
+import { PageTitle } from "@src/components/PageTitle";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
@@ -21,6 +26,8 @@ import {
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
+
+import { catalogsOptionsConfig } from "../options/config/catalogs.config";
 
 interface IRolesProps {
   handleCloseMenuInvitation: () => void;
@@ -51,10 +58,19 @@ export function RolesUI(props: IRolesProps) {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
-  // const location = useLocation();
-  // const label = catalogsOptionsConfig.find(
-  //   (item) => item.url === location.pathname
-  // );
+  const { businessUnitSigla } = useContext(LinparContext);
+  const portalId = localStorage.getItem("portalCode");
+  const staffPortalId = portalId ? decrypt(portalId) : "";
+  const { subOptions } = useOptionsByBusinessunits(
+    staffPortalId,
+    businessUnitSigla,
+    "catalogosgeneraleslinix"
+  );
+  const location = useLocation();
+
+  const label = catalogsOptionsConfig(subOptions).find(
+    (item) => item[1]?.url === location.pathname
+  );
   const dynamicTitlesOptions = smallScreen
     ? [
         {
@@ -73,16 +89,16 @@ export function RolesUI(props: IRolesProps) {
     >
       <Stack gap="48px" direction="column">
         <Stack gap="24px" direction="column">
-          {/* {label && (
+          {label && (
             <>
-              <Breadcrumbs crumbs={label.crumbs} />
+              <Breadcrumbs crumbs={label[1].crumbs} />
               <PageTitle
-                title={label.label}
-                description={label.description}
+                title={label[1].label}
+                description={label[1].description}
                 navigatePage="/catalogs"
               />
             </>
-          )} */}
+          )}
         </Stack>
         <Stack gap="32px" direction="column">
           <Stack justifyContent="space-between" alignItems="center">
@@ -140,13 +156,6 @@ export function RolesUI(props: IRolesProps) {
               widthPercentageTotalColumns={85}
             />
           )}
-          {/* {idDeleted !== 0 && message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={handleCloseSectionMessage}
-              onMessageClosed={handleCloseSectionMessage}
-            />
-          )} */}
         </Stack>
       </Stack>
     </Stack>

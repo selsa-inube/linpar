@@ -1,5 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { useContext } from "react";
+import { decrypt } from "@src/utils/encrypt";
+import { useOptionsByBusinessunits } from "@src/hooks/useObject";
 import { Stack } from "@inubekit/stack";
 import { inube } from "@inube/design-system";
 import { Icon } from "@inubekit/icon";
@@ -12,6 +15,7 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IEntry } from "@components/data/TableLinpar/types";
+import { LinparContext } from "@context/AppContext";
 import {
   actionsConfigPosition,
   PositionsBreakPointsConfig,
@@ -52,8 +56,16 @@ export function PositionsUI(props: IPositionsProps) {
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const location = useLocation();
-  const label = privilegeOptionsConfig.find(
-    (item) => item.url === location.pathname
+  const { businessUnitSigla } = useContext(LinparContext);
+  const portalId = localStorage.getItem("portalCode");
+  const staffPortalId = portalId ? decrypt(portalId) : "";
+  const { subOptions } = useOptionsByBusinessunits(
+    staffPortalId,
+    businessUnitSigla,
+    "gestionprivilegios"
+  );
+  const label = privilegeOptionsConfig(subOptions).find(
+    (item, index) => item[index]?.url === location.pathname
   );
 
   return (
@@ -66,10 +78,10 @@ export function PositionsUI(props: IPositionsProps) {
         <Stack gap={inube.spacing.s300} direction="column">
           {label && (
             <>
-              <Breadcrumbs crumbs={label.crumbs} />
+              <Breadcrumbs crumbs={label[0].crumbs} />
               <PageTitle
-                title={label.label}
-                description={label.description}
+                title={label[0].label}
+                description={label[0].description}
                 navigatePage="/privileges"
               />
             </>

@@ -1,5 +1,9 @@
 import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-
+import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { LinparContext } from "@context/AppContext";
+import { useOptionsByBusinessunits } from "@src/hooks/useObject";
+import { decrypt } from "@src/utils/encrypt";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
 
@@ -12,6 +16,9 @@ import { IEntry } from "@components/data/TableLinpar/types";
 import { Icon } from "@inubekit/icon";
 import { Stack } from "@inubekit/stack";
 import { Button } from "@inubekit/button";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { PageTitle } from "@components/PageTitle";
+import { catalogsOptionsConfig } from "../options/config/catalogs.config";
 import { IDeleteForMessage, UseCase } from "./types";
 import {
   actionsConfigLinixUseCase,
@@ -50,11 +57,20 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     showMenu,
   } = props;
 
+  const { businessUnitSigla } = useContext(LinparContext);
+  const portalId = localStorage.getItem("portalCode");
+  const staffPortalId = portalId ? decrypt(portalId) : "";
+  const { subOptions } = useOptionsByBusinessunits(
+    staffPortalId,
+    businessUnitSigla,
+    "catalogosgeneraleslinix"
+  );
   const smallScreen = useMediaQuery("(max-width: 837px)");
-  // const location = useLocation();
-  // const label = catalogsOptionsConfig.find(
-  //   (item) => item.url === location.pathname
-  // );
+  const location = useLocation();
+
+  const label = catalogsOptionsConfig(subOptions).find(
+    (item, index) => item[index]?.url === location.pathname
+  );
 
   const dynamicTitlesOptions = smallScreen
     ? [
@@ -73,18 +89,18 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
       padding={smallScreen ? "24px" : "32px 64px"}
     >
       <Stack gap="48px" direction="column">
-        {/* <Stack gap="24px" direction="column">
+        <Stack gap="24px" direction="column">
           {label && (
             <>
-              <Breadcrumbs crumbs={label.crumbs} />
+              <Breadcrumbs crumbs={label[0].crumbs} />
               <PageTitle
-                title={label.label}
-                description={label.description}
+                title={label[0].label}
+                description={label[0].description}
                 navigatePage="/catalogs"
               />
             </>
           )}
-        </Stack> */}
+        </Stack>
         <Stack gap="32px" direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Searchfield

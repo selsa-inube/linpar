@@ -1,10 +1,10 @@
-import { getStaffPortalByBusinessManager } from "@src/services/cards";
-import { IPortalStaff } from "@src/services/cards/types";
+import { useState, useEffect } from "react";
+import { getStaffPortalByBusinessManager } from "@services/cards";
+import { IPortalStaff } from "@services/cards/types";
 import {
   normalizeOptionsByPublicCode,
   normalizesubOptionsByPublicCode,
 } from "@utils/options";
-import { useState, useEffect } from "react";
 
 export const useOptionsByBusinessunits = (
   staffPortalId: string,
@@ -52,12 +52,11 @@ export const useOptionsByBusinessunits = (
   const subOptions = optionsData
     .filter((option) => option.publicCode === publicCodeParent)
     .flatMap((option) =>
-      option.subOption.map((item) => {
+      option.subOption.map((item, index) => {
         const normalizedSubOption = normalizesubOptionsByPublicCode(
           option.publicCode,
           item.publicCode
         );
-
         return {
           parentCode: option.publicCode,
           id: normalizedSubOption?.publicCodeOption,
@@ -70,8 +69,6 @@ export const useOptionsByBusinessunits = (
         };
       })
     );
-
-  console.log(subOptions);
 
   return { optionsCards, subOptions, hasError, loading };
 };

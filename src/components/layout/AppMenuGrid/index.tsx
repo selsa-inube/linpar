@@ -1,6 +1,6 @@
 import { AppMenuCard } from "@components/cards/AppMenuCard/index";
 
-import { Grid } from "@inube/design-system";
+import { Grid } from "@inubekit/grid";
 import { useMediaQuery } from "@inubekit/hooks";
 
 import { AppMenuCardProps } from "@components/cards/AppMenuCard";

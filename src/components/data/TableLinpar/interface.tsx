@@ -61,7 +61,7 @@ const TableLinparUI = (props: TableLinparUIProps) => {
   } = props;
 
   const mediaActionOpen = useMediaQuery("(max-width: 1200px)");
-
+  const smallScreen = useMediaQuery("(max-width: 1600px)");
   const queriesArray = useMemo(
     () => breakpoints && breakpoints.map((breakpoint) => breakpoint.breakpoint),
     [breakpoints]
@@ -77,7 +77,7 @@ const TableLinparUI = (props: TableLinparUIProps) => {
   const numberActions = actions ? actions.length : 0;
 
   return (
-    <Table>
+    <Table tableLayout={smallScreen ? "auto" : "fixed"}>
       <Colgroup>
         {!mediaActionOpen && (
           <Col

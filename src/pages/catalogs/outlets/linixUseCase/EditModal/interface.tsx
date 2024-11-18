@@ -15,7 +15,6 @@ import { Option } from "@pages/catalogs/outlets/linixUseCase/adding-linix-use-ca
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { updateItemData } from "@mocks/utils/dataMock.service";
 import { StyledContainerLoading } from "@pages/privileges/outlets/users/tabs/invitations/Complete-invitation/styles";
-// import { RenderMessage } from "@components/feedback/RenderMessage";
 import { StyledContainer } from "./styles";
 import { editLinixUseCaseTabsConfig } from "./config/editUseCaseTabs.config";
 import {
