@@ -24,10 +24,10 @@ function PrivilegesOptions() {
 
   return (
     <PrivilegesOptionsUI
-      appName={appsConfig[1].label}
-      appDescription={appsConfig[1].description}
+      appName={appsConfig[0].label}
+      appDescription={appsConfig[0].description}
       appOptions={catalogsOptions}
-      appRoute={appsConfig[1].crumbs}
+      appRoute={appsConfig[0].crumbs}
     />
   );
 }

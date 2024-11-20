@@ -58,7 +58,7 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
             icon={<MdOutlineShortcut />}
             disabled={
               invitation.status === "processed" ||
-              invitation.status === "pending"
+              invitation.status === "Pending"
             }
             cursorHover
             size="16px"

@@ -1,5 +1,4 @@
 import React from "react";
-import { MdSearch } from "react-icons/md";
 import { Stack } from "@inubekit/stack";
 import { Searchfield } from "@inubekit/input";
 import { RadioBusinessUnit } from "@components/cards/RadioBusinessUnit";
@@ -70,7 +69,6 @@ function BusinessUnitsUI({
               value={search}
               fullwidth={true}
               onChange={handleSearchChange}
-              iconBefore={<MdSearch size={22} />}
             />
           )}
           {filterBusinessUnits(businessUnits, search).length === 0 && (

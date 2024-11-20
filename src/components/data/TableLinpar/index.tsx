@@ -28,7 +28,7 @@ const TableLinpar = (props: ITableLinpar) => {
     filter = "",
     isLoading,
     mobileTitle,
-    pageLength = 80,
+    pageLength = 50,
     breakpoints,
     widthPercentageTotalColumns,
   } = props;

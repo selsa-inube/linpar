@@ -22,42 +22,45 @@ export const actionsConfigInvitation = (
     {
       id: "Complete",
       actionName: "Completar",
-      content: (entry: IEntry) => (
-        <StyledContainerEdit>
-          <Link
-            to={
-              entry.status !== "sent"
-                ? `complete-invitation/${entry.invitationId}`
-                : "#"
-            }
-            onClick={(e) => {
-              if (entry.status === "sent") {
-                e.preventDefault();
-              }
-            }}
-            style={{ pointerEvents: entry.status === "sent" ? "none" : "auto" }}
-          >
-            <Stack justifyContent="space-around">
-              <Icon
-                appearance={isHovered ? "primary" : "dark"}
-                parentHover={isHovered ? true : false}
-                icon={<MdOutlineAssignmentTurnedIn />}
-                disabled={entry.status === "sent"}
-                cursorHover
-                size="16px"
-              />
-              {smallScreen && (
-                <Text size="small" disabled={entry.status === "sent"}>
-                  Completar
-                </Text>
-              )}
-            </Stack>
-          </Link>
-        </StyledContainerEdit>
-      ),
+      content: (entry: IEntry) => {
+        const isDisabled =
+          entry.status === "sent" || entry.status === "processed";
+
+        return (
+          <StyledContainerEdit>
+            {!isDisabled ? (
+              <Link to={`complete-invitation/${entry.invitationId}`}>
+                <Stack justifyContent="space-around">
+                  <Icon
+                    appearance={isHovered ? "primary" : "dark"}
+                    parentHover={isHovered}
+                    icon={<MdOutlineAssignmentTurnedIn />}
+                    cursorHover
+                    size="16px"
+                  />
+                  {smallScreen && <Text size="small">Completar</Text>}
+                </Stack>
+              </Link>
+            ) : (
+              <Stack justifyContent="space-around">
+                <Icon
+                  appearance="dark"
+                  icon={<MdOutlineAssignmentTurnedIn />}
+                  disabled
+                  size="16px"
+                />
+                {smallScreen && (
+                  <Text size="small" disabled>
+                    Completar
+                  </Text>
+                )}
+              </Stack>
+            )}
+          </StyledContainerEdit>
+        );
+      },
       type: "gray",
     },
-
     {
       id: "Resend",
       actionName: "Reenviar",

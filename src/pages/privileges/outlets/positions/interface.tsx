@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { MdOutlineMoreHoriz, MdPersonAddAlt } from "react-icons/md";
 import { Stack } from "@inubekit/stack";
 
 import { Icon } from "@inubekit/icon";
@@ -86,7 +86,6 @@ export function PositionsUI(props: IPositionsProps) {
               id="searchPositions"
               placeholder="Buscar..."
               type="search"
-              iconBefore={<MdSearch />}
               size="compact"
               value={searchPosition}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

@@ -1,4 +1,4 @@
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { MdOutlineMoreHoriz, MdPersonAddAlt } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { useSubOptions } from "@src/hooks/useSubOptions";
 import { Searchfield } from "@inubekit/input";
@@ -84,7 +84,6 @@ export function UsersUI(props: UsersUIProps) {
                 id="searchUser"
                 placeholder="Buscar..."
                 type="search"
-                iconBefore={<MdSearch />}
                 size="compact"
                 value={searchText}
                 onChange={handleSearchText}

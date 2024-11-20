@@ -111,7 +111,7 @@ const TableLinparUI = (props: TableLinparUIProps) => {
                 <Tr key={index}>
                   {TitleColumns.map((title) => (
                     <Td
-                      key={`e-${entry[title.id]}`}
+                      key={`e-${index}-${title.id}`}
                       align={entry.action ? "center" : "left"}
                     >
                       <StyledText>{entry[title.id]}</StyledText>

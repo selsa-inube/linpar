@@ -1,4 +1,4 @@
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { MdOutlineMoreHoriz, MdPersonAddAlt } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { Icon } from "@inubekit/icon";
 
@@ -100,7 +100,6 @@ export function RolesUI(props: IRolesProps) {
               id="searchLinixUseCases"
               placeholder="Buscar..."
               type="search"
-              iconBefore={<MdSearch />}
               size="compact"
               value={searchRole}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

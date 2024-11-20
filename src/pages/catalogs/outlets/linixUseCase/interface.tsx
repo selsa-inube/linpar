@@ -1,4 +1,4 @@
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { MdOutlineMoreHoriz, MdPersonAddAlt } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 
 import { useMediaQuery } from "@inubekit/hooks";
@@ -102,7 +102,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               id="searchLinixUseCases"
               placeholder="Buscar..."
               type="search"
-              iconBefore={<MdSearch />}
               size="compact"
               value={searchUseCase}
               onChange={handleSearchUseCase}
