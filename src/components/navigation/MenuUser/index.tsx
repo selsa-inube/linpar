@@ -1,6 +1,6 @@
-import { Avatar } from "@inube/design-system";
 import { Text } from "@inubekit/text";
 import { Stack } from "@inubekit/stack";
+import { Avatar } from "@inubekit/avatar";
 
 interface MenuUserProps {
   userName: string;
