@@ -107,6 +107,7 @@ export function Positions() {
       message={message}
       idDeleted={idDeleted.id}
       setIdDeleted={setIdDeleted}
+      catalogName="gestionprivilegios"
     />
   );
 }

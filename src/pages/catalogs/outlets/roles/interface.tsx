@@ -1,19 +1,19 @@
+import { MdOutlineMoreHoriz, MdPersonAddAlt } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-
 import { Icon } from "@inubekit/icon";
 
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
 import { Button } from "@inubekit/button";
-import { PageTitle } from "@components/PageTitle";
 import { Menu } from "@components/navigation/Menu";
 import { Stack } from "@inubekit/stack";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { TableLinpar } from "@components/data/TableLinpar";
 import { IEntry } from "@components/data/TableLinpar/types";
-import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { PageTitle } from "@components/PageTitle";
+
 import { IDeleteForMessage, IRol } from "./types";
 import { menuInvitationLinks } from "./config/MenuAddRole";
 import {
@@ -23,7 +23,9 @@ import {
   titlesOptions,
 } from "./config/dataRoles";
 import { StyledContainer } from "./styles";
+
 import { catalogsOptionsConfig } from "../options/config/catalogs.config";
+import { useSubOptions } from "@src/hooks/useSubOptions";
 
 interface IRolesProps {
   handleCloseMenuInvitation: () => void;
@@ -38,6 +40,7 @@ interface IRolesProps {
   setIdDeleted: (show: IDeleteForMessage) => void;
   dataAplication: (show: string) => void;
   showMenu: boolean;
+  catalogName: string;
 }
 
 export function RolesUI(props: IRolesProps) {
@@ -51,12 +54,15 @@ export function RolesUI(props: IRolesProps) {
     searchRole,
     setIdDeleted,
     showMenu,
+    catalogName,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
+  const { subOptions } = useSubOptions(catalogName);
   const location = useLocation();
-  const label = catalogsOptionsConfig.find(
-    (item) => item.url === location.pathname
+
+  const data = catalogsOptionsConfig(subOptions).find(
+    (item) => item[1]?.url === location.pathname
   );
   const dynamicTitlesOptions = smallScreen
     ? [
@@ -76,12 +82,12 @@ export function RolesUI(props: IRolesProps) {
     >
       <Stack gap="48px" direction="column">
         <Stack gap="24px" direction="column">
-          {label && (
+          {data && (
             <>
-              <Breadcrumbs crumbs={label.crumbs} />
+              <Breadcrumbs crumbs={data[1].crumbs} />
               <PageTitle
-                title={label.label}
-                description={label.description}
+                title={data[1].label}
+                description={data[1].description}
                 navigatePage="/catalogs"
               />
             </>
@@ -94,7 +100,6 @@ export function RolesUI(props: IRolesProps) {
               id="searchLinixUseCases"
               placeholder="Buscar..."
               type="search"
-              iconBefore={<MdSearch />}
               size="compact"
               value={searchRole}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

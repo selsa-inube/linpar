@@ -1,18 +1,21 @@
+import { MdOutlineMoreHoriz, MdPersonAddAlt } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
 
 import { useMediaQuery } from "@inubekit/hooks";
 import { Searchfield } from "@inubekit/input";
-import { PageTitle } from "@components/PageTitle";
+
 import { Menu } from "@components/navigation/Menu";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { TableLinpar } from "@components/data/TableLinpar";
 import { IEntry } from "@components/data/TableLinpar/types";
-import { Breadcrumbs } from "@inubekit/breadcrumbs";
+
 import { Icon } from "@inubekit/icon";
 import { Stack } from "@inubekit/stack";
 import { Button } from "@inubekit/button";
+import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { PageTitle } from "@components/PageTitle";
+import { catalogsOptionsConfig } from "../options/config/catalogs.config";
 import { IDeleteForMessage, UseCase } from "./types";
 import {
   actionsConfigLinixUseCase,
@@ -21,7 +24,7 @@ import {
 import { titlesOptions } from "./config/dataUseCases.config";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
 import { StyledContainer } from "./styles";
-import { catalogsOptionsConfig } from "../options/config/catalogs.config";
+import { useSubOptions } from "@src/hooks/useSubOptions";
 
 interface LinixUseCaseUIProps {
   searchUseCase: string;
@@ -37,6 +40,7 @@ interface LinixUseCaseUIProps {
   loading: boolean;
   idDeleted: string;
   setIdDeleted: (show: IDeleteForMessage) => void;
+  catalogName: string;
 }
 export type SelectedDataFunction = (k_Usecase: string) => UseCase;
 export type HandleClickFunction = (id: string) => void;
@@ -50,12 +54,16 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     loading,
     setIdDeleted,
     showMenu,
+    catalogName,
   } = props;
+
+  const { subOptions } = useSubOptions(catalogName);
 
   const smallScreen = useMediaQuery("(max-width: 837px)");
   const location = useLocation();
-  const label = catalogsOptionsConfig.find(
-    (item) => item.url === location.pathname
+
+  const data = catalogsOptionsConfig(subOptions).find(
+    (item, index) => item[index]?.url === location.pathname
   );
 
   const dynamicTitlesOptions = smallScreen
@@ -76,12 +84,12 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
     >
       <Stack gap="48px" direction="column">
         <Stack gap="24px" direction="column">
-          {label && (
+          {data && (
             <>
-              <Breadcrumbs crumbs={label.crumbs} />
+              <Breadcrumbs crumbs={data[0].crumbs} />
               <PageTitle
-                title={label.label}
-                description={label.description}
+                title={data[0].label}
+                description={data[0].description}
                 navigatePage="/catalogs"
               />
             </>
@@ -94,7 +102,6 @@ export function LinixUseCaseUI(props: LinixUseCaseUIProps) {
               id="searchLinixUseCases"
               placeholder="Buscar..."
               type="search"
-              iconBefore={<MdSearch />}
               size="compact"
               value={searchUseCase}
               onChange={handleSearchUseCase}

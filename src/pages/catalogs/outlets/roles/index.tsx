@@ -137,6 +137,7 @@ export function Roles() {
       searchRole={searchRole}
       setIdDeleted={setIdDeleted}
       showMenu={showMenu}
+      catalogName="catalogosgeneraleslinix"
     />
   );
 }

@@ -22,7 +22,7 @@ export const actionsConfigUsers = (
   users: IGeneralInformationUsersForm[],
   setIdDeleted: (show: IDeleteForMessage) => void
 ) => {
-  const invitationsTableActions = [
+  const usersTableActions = [
     {
       id: "i_Activo",
       actionName: "Activo",
@@ -79,5 +79,5 @@ export const actionsConfigUsers = (
       type: "remove",
     },
   ];
-  return invitationsTableActions;
+  return usersTableActions;
 };

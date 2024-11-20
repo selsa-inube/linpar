@@ -104,8 +104,8 @@ function UsersTab(props: UsersTabProps) {
         <TableLinpar
           id="portal"
           titles={dynamicTitlesOptions}
-          actions={actionsConfigUsers(smallScreen, users, setIdDeleted)}
           entries={users as IEntry[]}
+          actions={actionsConfigUsers(smallScreen, users, setIdDeleted)}
           breakpoints={usersBreakPointsConfig}
           filter={searchText}
           isLoading={loading}

@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import { MdOutlineMoreHoriz, MdPersonAddAlt } from "react-icons/md";
 import { Stack } from "@inubekit/stack";
 
 import { Icon } from "@inubekit/icon";
@@ -22,6 +22,8 @@ import { privilegeOptionsConfig } from "../options/config/privileges.config";
 import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { IDeleteForMessage } from "./types";
+import { menuInvitationLinks } from "./config/menuInvitation.config";
+import { useSubOptions } from "@src/hooks/useSubOptions";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -35,6 +37,7 @@ interface IPositionsProps {
   setIdDeleted: (show: IDeleteForMessage) => void;
   message: IMessageState;
   idDeleted: string;
+  catalogName: string;
 }
 
 export function PositionsUI(props: IPositionsProps) {
@@ -47,12 +50,14 @@ export function PositionsUI(props: IPositionsProps) {
     linixPosition,
     loading,
     setIdDeleted,
+    catalogName,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const location = useLocation();
-  const label = privilegeOptionsConfig.find(
-    (item) => item.url === location.pathname
+  const { subOptions } = useSubOptions(catalogName);
+  const data = privilegeOptionsConfig(subOptions).find(
+    (item, index) => item[index]?.url === location.pathname
   );
 
   return (
@@ -63,12 +68,12 @@ export function PositionsUI(props: IPositionsProps) {
     >
       <Stack gap="48px" direction="column">
         <Stack gap="24px" direction="column">
-          {label && (
+          {data && (
             <>
-              <Breadcrumbs crumbs={label.crumbs} />
+              <Breadcrumbs crumbs={data[0].crumbs} />
               <PageTitle
-                title={label.label}
-                description={label.description}
+                title={data[0].label}
+                description={data[0].description}
                 navigatePage="/privileges"
               />
             </>
@@ -81,7 +86,6 @@ export function PositionsUI(props: IPositionsProps) {
               id="searchPositions"
               placeholder="Buscar..."
               type="search"
-              iconBefore={<MdSearch />}
               size="compact"
               value={searchPosition}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -99,7 +103,10 @@ export function PositionsUI(props: IPositionsProps) {
                   appearance="dark"
                 />
                 {showMenu && (
-                  <Menu options={[]} handleClose={handleCloseMenuInvitation} />
+                  <Menu
+                    options={menuInvitationLinks}
+                    handleClose={handleCloseMenuInvitation}
+                  />
                 )}
               </StyledContainer>
             ) : (
@@ -107,7 +114,7 @@ export function PositionsUI(props: IPositionsProps) {
                 iconBefore={<MdPersonAddAlt />}
                 spacing="wide"
                 type="link"
-                path="/privileges/positions/add-position"
+                path="/privileges/positions/adding-positions"
               >
                 Agregar cargo
               </Button>

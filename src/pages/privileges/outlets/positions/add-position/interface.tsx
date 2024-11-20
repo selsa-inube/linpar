@@ -96,6 +96,9 @@ export function AddPositionUI(props: AddPositionUIProps) {
   const { title, description, actionText, appearance } =
     finishAssistedModalConfig;
 
+  const isSmallScreen = useMediaQuery("(max-width: 500px)");
+  const size = isSmallScreen ? "small" : "large";
+
   const smallScreen = useMediaQuery("(max-width: 580px)");
   const disabled = !isCurrentFormValid;
 
@@ -120,6 +123,7 @@ export function AddPositionUI(props: AddPositionUIProps) {
               handlePrev={handlePreviousStep}
               handleNext={handleNextStep}
               titleButtonText={titleButtonTextAssited}
+              size={size}
             />
           </StyledContainerAssisted>
           {renderStepContent(

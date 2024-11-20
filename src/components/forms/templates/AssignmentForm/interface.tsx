@@ -1,4 +1,4 @@
-import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
+import { MdOutlineMoreHoriz } from "react-icons/md";
 
 import { Text } from "@inubekit/text";
 import { Searchfield } from "@inubekit/input";
@@ -81,7 +81,6 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
           >
             <Searchfield
               type="search"
-              iconBefore={<MdSearch size={22} />}
               placeholder="Buscar..."
               name="search"
               id="search"

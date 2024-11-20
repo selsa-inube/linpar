@@ -74,6 +74,7 @@ function Users() {
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       message={message}
       handleCloseMessage={handleCloseMessage}
+      catalogName="gestionprivilegios"
     />
   );
 }

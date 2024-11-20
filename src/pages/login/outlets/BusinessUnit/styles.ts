@@ -5,6 +5,9 @@ interface StyledBusinessUnitsListProps {
 }
 
 const StyledBusinessUnits = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   & form {
     & > div {
       margin: "48px 0";

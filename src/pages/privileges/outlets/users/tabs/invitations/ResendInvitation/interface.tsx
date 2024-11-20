@@ -42,7 +42,7 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
           onClick={toggleModal}
           variant="none"
           appearance="gray"
-          spacing="compact"
+          spacing="wide"
           loading={isLoadingResend}
         >
           Reenviar
@@ -58,7 +58,7 @@ function ResendInvitationUI(props: ResendInvitationUIProps) {
             icon={<MdOutlineShortcut />}
             disabled={
               invitation.status === "processed" ||
-              invitation.status === "pending"
+              invitation.status === "Pending"
             }
             cursorHover
             size="16px"
