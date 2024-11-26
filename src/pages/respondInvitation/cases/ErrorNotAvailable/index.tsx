@@ -1,7 +1,7 @@
-import { ErrorPageRespondInvitation } from "@src/components/layout/ErrorPageRespondInvitation";
+import { ErrorPageRespondInvitation } from "@components/layout/ErrorPageRespondInvitation";
 
 function ErrorNotAvailable() {
-  return <ErrorPageRespondInvitation logo={""} logoAlt={""} />;
+  return <ErrorPageRespondInvitation />;
 }
 
 export { ErrorNotAvailable };

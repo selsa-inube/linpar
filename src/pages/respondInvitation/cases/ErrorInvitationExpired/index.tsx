@@ -4,8 +4,6 @@ import { ErrorPageRespondInvitation } from "@src/components/layout/ErrorPageResp
 function ErrorInvitationExpired() {
   return (
     <ErrorPageRespondInvitation
-      logo={""}
-      logoAlt={""}
       heading="!Lo sentimos! no hay resultados..."
       description="Su usuario no tiene clientes relacionados, por favor consulte con su administrador."
       imageAlt="No hay resultados."

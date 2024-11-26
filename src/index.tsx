@@ -5,6 +5,7 @@ import { environment } from "@config/environment";
 import { RespondInvitationRoutesWrapper } from "@routes/respondInvitation";
 import { FlagProvider } from "@inubekit/flag";
 import App from "./App";
+import { GlobalStyles } from "./styles/global";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
@@ -26,6 +27,7 @@ root.render(
       >
         <React.Suspense fallback={<div>Loading...</div>}>
           <FlagProvider>
+            <GlobalStyles />
             <RespondInvitationRoutesWrapper />
           </FlagProvider>
         </React.Suspense>

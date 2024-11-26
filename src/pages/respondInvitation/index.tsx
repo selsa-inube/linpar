@@ -27,9 +27,18 @@ function RespondInvitation() {
   const [formInvalid, setFormInvalid] = useState(false);
   const navigate = useNavigate();
   const [invitationId, setInvitationId] = useState<string>("");
+  const isFormUnchanged = () => {
+    return JSON.stringify(formik.values) === JSON.stringify(initialValues);
+  };
+  const isFormValidAndChanged = () => {
+    const hasErrors = Object.keys(formik.errors).length > 0;
+    const allFieldsFilled = Object.values(formik.values).every(
+      (value) => value.trim() !== ""
+    );
+    return !hasErrors && allFieldsFilled && !isFormUnchanged();
+  };
 
   const location = useLocation();
-
   useEffect(() => {
     const fetchInvitationData = async () => {
       setLoading(true);
@@ -39,7 +48,7 @@ function RespondInvitation() {
         const data = await getSearchByToken(token || "");
         if (data) {
           setInvitationId(data.invitationId || "");
-          const initialData = {
+          setInitialValues({
             userName: String(data.userName) || "",
             userIdentification: String(data.userIdentification) || "",
             userAccountId: String(data.userAccountId) || "",
@@ -47,8 +56,16 @@ function RespondInvitation() {
             phoneNumber: String(data.phoneNumber) || "",
             password: "",
             confirmPassword: "",
-          };
-          formik.setValues(initialData);
+          });
+          formik.setValues({
+            userName: String(data.userName) || "",
+            userIdentification: String(data.userIdentification) || "",
+            userAccountId: String(data.userAccountId) || "",
+            email: String(data.email) || "",
+            phoneNumber: String(data.phoneNumber) || "",
+            password: "",
+            confirmPassword: "",
+          });
         }
       } catch (error) {
         console.error("Error fetching general Information:", error);
@@ -60,16 +77,18 @@ function RespondInvitation() {
     fetchInvitationData();
   }, [location.search]);
 
+  const [initialValues, setInitialValues] = useState({
+    userName: "",
+    userIdentification: "",
+    userAccountId: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const formik = useFormik({
-    initialValues: {
-      userName: "",
-      userIdentification: "",
-      userAccountId: "",
-      email: "",
-      phoneNumber: "",
-      password: "",
-      confirmPassword: "",
-    },
+    initialValues,
     validationSchema,
     validateOnBlur: true,
     validateOnChange: false,
@@ -90,6 +109,7 @@ function RespondInvitation() {
         }, 5000);
       }, LOADING_TIMEOUT);
     },
+    enableReinitialize: true,
   });
 
   const handleSubmit = () => {
@@ -107,6 +127,9 @@ function RespondInvitation() {
       }
     });
   };
+  const handleCancel = () => {
+    formik.resetForm({ values: initialValues });
+  };
 
   return (
     <RespondInvitationUI
@@ -114,6 +137,9 @@ function RespondInvitation() {
       formik={formik}
       formInvalid={formInvalid}
       handleSubmitForm={handleSubmit}
+      handleCancel={handleCancel}
+      isFormUnchanged={isFormUnchanged()}
+      isFormValidAndChanged={isFormValidAndChanged()}
     />
   );
 }

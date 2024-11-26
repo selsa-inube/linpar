@@ -4,20 +4,21 @@ import {
   MdOutlinePhone,
   MdOutlineShield,
   MdPersonOutline,
-  MdShortcut,
 } from "react-icons/md";
 import { Fieldset } from "@components/inputs/Fieldset";
 import { Stack } from "@inubekit/stack";
 import { Textfield } from "@inubekit/textfield";
 import { Text } from "@inubekit/text";
 import { Button } from "@inubekit/button";
-import { Grid } from "@inubekit/grid";
 import { useMediaQuery } from "@inubekit/hooks";
 import { Styledlmage, StyledContainerForm } from "./styles";
 const renderForm = (
   formik: FormikValues,
   loading: boolean,
   handleSubmitForm: () => void,
+  handleCancel?: () => void,
+  isFormUnchanged?: boolean,
+  isFormValidAndChanged?: boolean,
   smallScreen?: boolean
 ) => {
   const stateValue = (fieldName: string) => {
@@ -53,7 +54,6 @@ const renderForm = (
               size="compact"
               fullwidth
               disabled
-              // readOnly
             />
             <Textfield
               id="userIdentification"
@@ -142,6 +142,7 @@ const renderForm = (
                 type="password"
                 size="compact"
                 placeholder="Contraseña"
+                value={formik.values.password}
                 fullwidth
                 onChange={formik.handleChange}
                 message={
@@ -162,6 +163,7 @@ const renderForm = (
                 fullwidth
                 placeholder="Confirmar Contraseña"
                 onChange={formik.handleChange}
+                value={formik.values.confirmPassword}
                 message={
                   stateValue("confirmPassword") === "invalid"
                     ? formik.errors.confirmPassword
@@ -174,12 +176,18 @@ const renderForm = (
             </Stack>
           </Stack>
         </Fieldset>
-        <Stack justifyContent="flex-end">
+        <Stack justifyContent="flex-end" gap="8px">
           <Button
-            iconBefore={<MdShortcut size={18} />}
-            appearance="success"
+            onClick={handleCancel}
+            appearance="gray"
+            disabled={isFormUnchanged}
+          >
+            Cancelar
+          </Button>
+          <Button
             loading={loading}
             onClick={() => handleSubmitForm()}
+            disabled={!isFormValidAndChanged}
           >
             Enviar
           </Button>
@@ -194,17 +202,27 @@ interface RespondInvitationUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   handleSubmitForm: () => void;
+  handleCancel: () => void;
+  isFormUnchanged: boolean;
+  isFormValidAndChanged: boolean;
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {
-  const { loading, formik, handleSubmitForm } = props;
+  const {
+    loading,
+    formik,
+    handleSubmitForm,
+    handleCancel,
+    isFormUnchanged,
+    isFormValidAndChanged,
+  } = props;
 
   const smallScreen = useMediaQuery("(max-width: 744px)");
 
   if (smallScreen) {
     return (
       <StyledContainerForm>
-        <Stack direction="column" gap="32px" padding="s200">
+        <Stack direction="column" gap="32px">
           <Styledlmage src="./assets/images/selsa.png" />
           {renderForm(formik, loading, handleSubmitForm)}
         </Stack>
@@ -213,13 +231,16 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
   }
 
   return (
-    <Grid templateColumns="1fr 2fr">
-      <StyledContainerForm>
-        <Stack direction="column" gap="48px" padding="s800">
-          {renderForm(formik, loading, handleSubmitForm)}
-        </Stack>
-      </StyledContainerForm>
-    </Grid>
+    <Stack direction="column" gap="48px" padding="24px">
+      {renderForm(
+        formik,
+        loading,
+        handleSubmitForm,
+        handleCancel,
+        isFormUnchanged,
+        isFormValidAndChanged
+      )}
+    </Stack>
   );
 }
 
