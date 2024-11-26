@@ -1,20 +1,7 @@
-import { ErrorPage } from "@components/layout/ErrorPage";
-import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
+import { ErrorPageRespondInvitation } from "@src/components/layout/ErrorPageRespondInvitation";
 
-interface ErrorNotAvailableProps {
-  bussinessData?: IBusinessUnitsPortalStaff;
-}
-
-function ErrorNotAvailable(props: ErrorNotAvailableProps) {
-  const { bussinessData } = props;
-
-  return (
-    <ErrorPage
-      logo={bussinessData && bussinessData.urlLogo}
-      logoAlt={bussinessData && `Logo ${bussinessData.abbreviatedName}`}
-    />
-  );
+function ErrorNotAvailable() {
+  return <ErrorPageRespondInvitation logo={""} logoAlt={""} />;
 }
 
 export { ErrorNotAvailable };
-export type { ErrorNotAvailableProps };

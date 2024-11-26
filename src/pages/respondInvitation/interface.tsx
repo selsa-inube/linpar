@@ -6,50 +6,14 @@ import {
   MdPersonOutline,
   MdShortcut,
 } from "react-icons/md";
-import {
-  Numberfield,
-  Emailfield,
-  Textfield,
-  Phonefield,
-} from "@inubekit/input";
-import { useMediaQuery } from "@inubekit/hooks";
+import { Fieldset } from "@components/inputs/Fieldset";
+import { Stack } from "@inubekit/stack";
+import { Textfield } from "@inubekit/textfield";
 import { Text } from "@inubekit/text";
 import { Button } from "@inubekit/button";
 import { Grid } from "@inubekit/grid";
-import { Stack } from "@inubekit/stack";
-import { Fieldset } from "@components/inputs/Fieldset";
-import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
-import {
-  Styledlmage,
-  StyledContainerHeader,
-  StyledContainerForm,
-} from "./styles";
-
-const renderHead = (
-  bussinessData: IBusinessUnitsPortalStaff,
-  smallScreen?: boolean
-) => {
-  return (
-    <>
-      <Styledlmage
-        src={bussinessData.urlLogo}
-        alt={`Logo ${bussinessData.abbreviatedName}`}
-      />
-      <Stack direction="column" gap={smallScreen ? "16px" : "36px"}>
-        <Stack direction="column">
-          <Text type="headline" size="small">
-            Bienvenido
-          </Text>
-          <Text type="headline">Portal de Clientes</Text>
-        </Stack>
-        <Text appearance="gray">
-          Complete su invitación y pase a formar parte de la comunidad.
-        </Text>
-      </Stack>
-    </>
-  );
-};
-
+import { useMediaQuery } from "@inubekit/hooks";
+import { Styledlmage, StyledContainerForm } from "./styles";
 const renderForm = (
   formik: FormikValues,
   loading: boolean,
@@ -61,6 +25,7 @@ const renderForm = (
     if (formik.touched[fieldName] && formik.errors[fieldName]) return "invalid";
     return undefined;
   };
+
   return (
     <Stack direction="column" gap={smallScreen ? "32px" : "48px"}>
       <Stack direction="column">
@@ -79,29 +44,28 @@ const renderForm = (
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
             <Textfield
-              id="name"
-              name="name"
+              id="userName"
+              name="userName"
               label="Nombre"
               placeholder="Ingresa su nombre completo"
-              value={formik.values.name}
+              value={formik.values.userName}
               type="text"
               size="compact"
               fullwidth
               disabled
-              readOnly
+              // readOnly
             />
-            <Numberfield
-              id="userID"
-              name="userID"
+            <Textfield
+              id="userIdentification"
+              name="userIdentification"
               label="Identificación"
               placeholder="Ingrese su número de identificación"
-              value={formik.values.userID}
+              value={formik.values.userIdentification}
               type="number"
               size="compact"
               fullwidth
               onChange={formik.handleChange}
               disabled
-              readOnly
             />
           </Stack>
         </Fieldset>
@@ -110,27 +74,26 @@ const renderForm = (
           icon={<MdOutlinePhone size={24} />}
         >
           <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-            <Phonefield
-              id="phone"
-              name="phone"
+            <Textfield
+              id="phoneNumber"
+              name="phoneNumber"
               label="Número de teléfono"
               placeholder="Ingrese su número telefónico"
-              value={formik.values.phone}
+              value={formik.values.phoneNumber}
               type="tel"
               iconAfter={<MdOutlineModeEdit />}
               message={
-                stateValue("phone") === "invalid"
-                  ? formik.errors.phone
+                stateValue("phoneNumber") === "invalid"
+                  ? formik.errors.phoneNumber
                   : "El número de teléfono ingresado es válido"
               }
               disabled={loading}
               size="compact"
-              status={stateValue("phone")}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               fullwidth
             />
-            <Emailfield
+            <Textfield
               id="email"
               label="Correo"
               name="email"
@@ -145,7 +108,6 @@ const renderForm = (
               }
               disabled={loading}
               size="compact"
-              status={stateValue("email")}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               fullwidth
@@ -155,26 +117,25 @@ const renderForm = (
         <Fieldset title="Contraseña" icon={<MdOutlineShield size={24} />}>
           <Stack direction="column" gap="16px">
             <Textfield
-              id="username"
-              name="username"
+              id="userAccountId"
+              name="userAccountId"
               label="Nombre de Usuario"
               placeholder="Ingresa su nombre completo"
-              value={formik.values.username}
+              value={formik.values.userAccountId}
               type="text"
               size="compact"
               fullwidth
               onChange={formik.handleChange}
               message={
-                stateValue("username") === "invalid"
-                  ? formik.errors.username
+                stateValue("userAccountId") === "invalid"
+                  ? formik.errors.userAccountId
                   : "El nombre usuario ingresado es válido"
               }
               disabled={loading}
-              status={stateValue("username")}
               onBlur={formik.handleBlur}
             />
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>
-              <Numberfield
+              <Textfield
                 id="password"
                 label="Contraseña"
                 name="password"
@@ -192,7 +153,7 @@ const renderForm = (
                 status={stateValue("password")}
                 onBlur={formik.handleBlur}
               />
-              <Numberfield
+              <Textfield
                 id="confirmPassword"
                 label="Confirmar Contraseña"
                 name="confirmPassword"
@@ -218,7 +179,7 @@ const renderForm = (
             iconBefore={<MdShortcut size={18} />}
             appearance="success"
             loading={loading}
-            onClick={handleSubmitForm}
+            onClick={() => handleSubmitForm()}
           >
             Enviar
           </Button>
@@ -233,11 +194,10 @@ interface RespondInvitationUIProps {
   formik: FormikValues;
   formInvalid: boolean;
   handleSubmitForm: () => void;
-  bussinessData: IBusinessUnitsPortalStaff;
 }
 
 function RespondInvitationUI(props: RespondInvitationUIProps) {
-  const { loading, formik, handleSubmitForm, bussinessData } = props;
+  const { loading, formik, handleSubmitForm } = props;
 
   const smallScreen = useMediaQuery("(max-width: 744px)");
 
@@ -245,11 +205,8 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
     return (
       <StyledContainerForm>
         <Stack direction="column" gap="32px" padding="s200">
-          <Styledlmage
-            src={bussinessData.urlLogo}
-            alt={`Logo ${bussinessData.abbreviatedName}`}
-          />
-          {renderForm(formik, loading, handleSubmitForm, smallScreen)}
+          <Styledlmage src="./assets/images/selsa.png" />
+          {renderForm(formik, loading, handleSubmitForm)}
         </Stack>
       </StyledContainerForm>
     );
@@ -257,11 +214,6 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
 
   return (
     <Grid templateColumns="1fr 2fr">
-      <StyledContainerHeader>
-        <Stack direction="column" gap="36px" padding="s800">
-          {renderHead(bussinessData)}
-        </Stack>
-      </StyledContainerHeader>
       <StyledContainerForm>
         <Stack direction="column" gap="48px" padding="s800">
           {renderForm(formik, loading, handleSubmitForm)}

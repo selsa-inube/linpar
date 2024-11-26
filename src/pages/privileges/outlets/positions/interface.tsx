@@ -12,6 +12,7 @@ import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { Button } from "@inubekit/button";
 import { Breadcrumbs } from "@inubekit/breadcrumbs";
 import { IEntry } from "@components/data/TableLinpar/types";
+import { useSubOptions } from "@src/hooks/useSubOptions";
 import {
   actionsConfigPosition,
   PositionsBreakPointsConfig,
@@ -23,7 +24,6 @@ import { IPosition } from "./add-position/types";
 import { IMessageState } from "../users/types/forms.types";
 import { IDeleteForMessage } from "./types";
 import { menuInvitationLinks } from "./config/menuInvitation.config";
-import { useSubOptions } from "@src/hooks/useSubOptions";
 
 interface IPositionsProps {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -114,7 +114,7 @@ export function PositionsUI(props: IPositionsProps) {
                 iconBefore={<MdPersonAddAlt />}
                 spacing="wide"
                 type="link"
-                path="/privileges/positions/adding-positions"
+                path="/privileges/positions/add-position"
               >
                 Agregar cargo
               </Button>

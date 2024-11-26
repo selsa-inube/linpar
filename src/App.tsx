@@ -19,10 +19,8 @@ import { IBusinessmanagers } from "@services/businessManager/types";
 import { Home } from "@pages/home";
 import { environment } from "@config/environment";
 import { encrypt } from "@utils/encrypt";
-import { RespondInvitationRoutes } from "@routes/respondInvitation";
 import { LoginRoutes } from "@routes/login";
 import { PrivilegesRoutes } from "@routes/privileges";
-
 import { CatalogsRoutes } from "./routes/catalogs";
 import { ThemeProviderWrapper } from "./context/ThemeContext";
 
@@ -47,16 +45,13 @@ const router = createBrowserRouter(
       <Route path="privileges/*" element={<PrivilegesRoutes />} />
       <Route path="catalogs/*" element={<CatalogsRoutes />} />
       <Route path="logout" element={<LogOut />} />
-      <Route
-        path="respond-invitation/:businessUnit_id/:invitation_id/*"
-        element={<RespondInvitationRoutes />}
-      />
     </>
   )
 );
 
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
+
 const portalCode = params.get("portal");
 
 function App() {
@@ -141,6 +136,7 @@ function App() {
     loginWithRedirect,
     hasRedirected,
   ]);
+
   if (isLoading) {
     return null;
   }

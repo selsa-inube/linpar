@@ -1,10 +1,9 @@
 import { environment } from "@config/environment";
-import { IUsersSignupInvitation } from "./types";
 import { mapSignupInvitationEntityToApi } from "./mappers";
+import { IUsersSignupInvitation } from "./types";
 
 const editSignupInvitations = async (
-  signupInvitation: IUsersSignupInvitation,
-  businessUnitPublicCode: string
+  signupInvitation: IUsersSignupInvitation
 ): Promise<IUsersSignupInvitation | undefined> => {
   const requestUrl = `${environment.IROLE_LINIX_USER_SIGNUP_INVITATION_QUERY_PERSISTENCE_SERVICE}/users-signup-invitations`;
 
@@ -13,7 +12,6 @@ const editSignupInvitations = async (
       method: "PATCH",
       headers: {
         "X-Action": "AutoUserSignup",
-        "X-Business-Unit": businessUnitPublicCode,
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(mapSignupInvitationEntityToApi(signupInvitation)),
