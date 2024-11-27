@@ -139,6 +139,7 @@ const renderForm = (
                   : "El nombre usuario ingresado es válido"
               }
               disabled={loading}
+              status={stateValue("userAccountId")}
               onBlur={formik.handleBlur}
             />
             <Stack gap="16px" direction={smallScreen ? "column" : "row"}>

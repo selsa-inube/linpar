@@ -13,12 +13,18 @@ const LOADING_TIMEOUT = 1000;
 
 const validationSchema = object({
   password: string()
-    .min(6, "La contraseña debe tener al menos 6 caracteres.")
+    .min(1, "La contraseña debe tener al menos 1 carácter.")
+    .max(6, "La contraseña no puede tener más de 6 caracteres.")
     .required("La contraseña es obligatoria."),
   confirmPassword: string()
     .oneOf([ref("password")], "Las contraseñas deben coincidir.")
-    .min(6, "La confirmación de contraseña debe tener al menos 6 caracteres.")
+    .min(1, "La confirmación de contraseña debe tener al menos 1 carácter.")
+    .max(6, "La confirmación de contraseña no puede tener más de 6 caracteres.")
     .required("La confirmación de contraseña es obligatoria."),
+  userAccountId: string()
+    .min(1, "El ID de cuenta debe tener al menos 1 carácter.")
+    .max(6, "El ID de cuenta no puede tener más de 6 caracteres.")
+    .required("El ID de cuenta es obligatorio."),
 });
 
 function RespondInvitation() {
