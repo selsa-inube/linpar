@@ -11,7 +11,14 @@ import { Textfield } from "@inubekit/textfield";
 import { Text } from "@inubekit/text";
 import { Button } from "@inubekit/button";
 import { useMediaQuery } from "@inubekit/hooks";
-import { Styledlmage, StyledContainerForm } from "./styles";
+import { Blanket } from "@inubekit/blanket";
+import {
+  Styledlmage,
+  StyledContainerForm,
+  Content,
+  StyledContainerBlanket,
+} from "./styles";
+
 const renderForm = (
   formik: FormikValues,
   loading: boolean,
@@ -231,16 +238,26 @@ function RespondInvitationUI(props: RespondInvitationUIProps) {
   }
 
   return (
-    <Stack direction="column" gap="48px" padding="24px">
-      {renderForm(
-        formik,
-        loading,
-        handleSubmitForm,
-        handleCancel,
-        isFormUnchanged,
-        isFormValidAndChanged
-      )}
-    </Stack>
+    <StyledContainerBlanket>
+      <Blanket>
+        <Stack justifyContent="center" alignItems="center">
+          <StyledContainerForm>
+            <Content>
+              <Stack direction="column" gap="48px" padding="24px">
+                {renderForm(
+                  formik,
+                  loading,
+                  handleSubmitForm,
+                  handleCancel,
+                  isFormUnchanged,
+                  isFormValidAndChanged
+                )}
+              </Stack>
+            </Content>
+          </StyledContainerForm>
+        </Stack>
+      </Blanket>
+    </StyledContainerBlanket>
   );
 }
 

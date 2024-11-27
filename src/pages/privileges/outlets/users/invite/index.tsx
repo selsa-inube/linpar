@@ -9,14 +9,12 @@ import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { userSearchCardData } from "@mocks/apps/privileges/users/usersSearchField.mock";
 import { LinparContext } from "@context/AppContext";
+import { EAppearance } from "@src/types/colors.types";
+import { useFlag } from "@inubekit/flag";
 import { InviteUI } from "./interface";
 import { IInviteFormValues } from "./types";
 import { saveLinixInvitations } from "./utils";
-import { useFlag } from "@inubekit/flag";
 import { messageInvitationSentConfig } from "./config/messageInvitationSent.config";
-import { EAppearance } from "@src/types/colors.types";
-
-const LOADING_TIMEOUT = 1500;
 
 const initialValues: IInviteFormValues = {
   userName: "",
@@ -83,27 +81,42 @@ function Invite() {
     validateOnChange: false,
     onSubmit: () => {
       setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        saveLinixInvitations(
-          formik.values,
-          name[0] as string,
-          linparData.businessUnit.businessUnitPublicCode
-        );
-        addFlag({
-          title: messageInvitationSentConfig.success.title,
-          description: messageInvitationSentConfig.success.description,
-          appearance: EAppearance.SUCCESS,
-          duration: 5000,
-        });
-        formik.resetForm();
-        resetSearchUserRef.current();
-        setTimeout(() => {
-          navigate(`/privileges/users`, {
-            state: { tab: "privileges-invitations" },
+      saveLinixInvitations(
+        formik.values,
+        name[0] as string,
+        linparData.businessUnit.businessUnitPublicCode
+      )
+        .then(() => {
+          addFlag({
+            title: messageInvitationSentConfig.success.title,
+            description: messageInvitationSentConfig.success.description,
+            appearance: EAppearance.SUCCESS,
+            duration: 5000,
           });
-        }, 5000);
-      }, LOADING_TIMEOUT);
+          formik.resetForm();
+          resetSearchUserRef.current();
+          setTimeout(() => {
+            navigate(`/privileges/users`, {
+              state: { tab: "privileges-invitations" },
+            });
+          }, 5000);
+        })
+        .catch((error) => {
+          addFlag({
+            title: "Error al enviar la invitación",
+            description: "No se pudo completar la invitación.",
+            appearance: EAppearance.DANGER,
+            duration: 5000,
+          });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+      setTimeout(() => {
+        navigate(`/privileges/users`, {
+          state: { tab: "privileges-invitations" },
+        });
+      }, 5000);
     },
   });
 

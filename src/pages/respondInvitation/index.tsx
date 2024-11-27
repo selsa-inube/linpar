@@ -45,30 +45,41 @@ function RespondInvitation() {
       try {
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get("X-Token-Process");
-        const data = await getSearchByToken(token || "");
-        if (data) {
-          setInvitationId(data.invitationId || "");
-          setInitialValues({
-            userName: String(data.userName) || "",
-            userIdentification: String(data.userIdentification) || "",
-            userAccountId: String(data.userAccountId) || "",
-            email: String(data.email) || "",
-            phoneNumber: String(data.phoneNumber) || "",
-            password: "",
-            confirmPassword: "",
-          });
-          formik.setValues({
-            userName: String(data.userName) || "",
-            userIdentification: String(data.userIdentification) || "",
-            userAccountId: String(data.userAccountId) || "",
-            email: String(data.email) || "",
-            phoneNumber: String(data.phoneNumber) || "",
-            password: "",
-            confirmPassword: "",
-          });
+
+        if (!token) {
+          navigate("/error-invitation-expired");
+          return;
         }
+
+        const data = await getSearchByToken(token);
+
+        if (!data || !data.invitationId) {
+          navigate("/error-invitation-expired");
+          return;
+        }
+
+        setInvitationId(data.invitationId || "");
+        setInitialValues({
+          userName: String(data.userName) || "",
+          userIdentification: String(data.userIdentification) || "",
+          userAccountId: String(data.userAccountId) || "",
+          email: String(data.email) || "",
+          phoneNumber: String(data.phoneNumber) || "",
+          password: "",
+          confirmPassword: "",
+        });
+        formik.setValues({
+          userName: String(data.userName) || "",
+          userIdentification: String(data.userIdentification) || "",
+          userAccountId: String(data.userAccountId) || "",
+          email: String(data.email) || "",
+          phoneNumber: String(data.phoneNumber) || "",
+          password: "",
+          confirmPassword: "",
+        });
       } catch (error) {
-        console.error("Error fetching general Information:", error);
+        console.error("Error fetching invitation data:", error);
+        navigate("/error-invitation-expired");
       } finally {
         setLoading(false);
       }
