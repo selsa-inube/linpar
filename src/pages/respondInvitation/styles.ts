@@ -13,7 +13,30 @@ const StyledContainerHeader = styled.div`
 `;
 const StyledContainerForm = styled.div`
   background-color: ${({ theme }) =>
-    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
+    theme?.palette?.neutral?.N10 || inube.palette.neutral.N10};
+  border-radius: 15px;
+  border: 1px solid
+    ${({ theme }) => theme?.palette?.neutral?.N90 || inube.palette.neutral.N90};
+  margin: 50px auto;
 `;
 
-export { Styledlmage, StyledContainerHeader, StyledContainerForm };
+const Content = styled.div`
+  position: relative;
+  z-index: 2;
+  width: 800px;
+  opacity: 1;
+`;
+
+const StyledContainerBlanket = styled.div`
+  & > div {
+    z-index: 0;
+  }
+`;
+
+export {
+  Styledlmage,
+  StyledContainerHeader,
+  StyledContainerForm,
+  StyledContainerBlanket,
+  Content,
+};

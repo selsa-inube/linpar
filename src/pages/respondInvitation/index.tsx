@@ -1,97 +1,162 @@
 import { useFormik } from "formik";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import * as Yup from "yup";
-import { invitationEntriesDataMock } from "@mocks/apps/privileges/invitations/invitations.mock";
-import { validationMessages } from "@validations/validationMessages";
-import { validationRules } from "@validations/validationRules";
-import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
-import { ErrorInvitationExpired } from "./cases/ErrorInvitationExpired";
-import { ErrorNotAvailable } from "./cases/ErrorNotAvailable";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { string, object, ref } from "yup";
+import { getSearchByToken } from "@services/signupInvitations/searchByTokenUserSignupInvitation";
+import { useFlag } from "@inubekit/flag";
+import { EAppearance } from "@src/types/colors.types";
+import { messageInvitationSentConfig } from "../privileges/outlets/users/invite/config/messageInvitationSent.config";
 import { RespondInvitationUI } from "./interface";
+import { invitation } from "./utils";
 
 const LOADING_TIMEOUT = 1000;
 
-const validationSchema = Yup.object({
-  email: validationRules.email.required(validationMessages.required),
-  phone: validationRules.phone.required(validationMessages.required),
-  username: validationRules.username.required(validationMessages.required),
-  password: validationRules.password.required(validationMessages.required),
-  confirmPassword: validationRules.confirmPassword.required(
-    validationMessages.required
-  ),
+const validationSchema = object({
+  password: string()
+    .min(1, "La contraseña debe tener al menos 1 carácter.")
+    .max(6, "La contraseña no puede tener más de 6 caracteres.")
+    .required("La contraseña es obligatoria."),
+  confirmPassword: string()
+    .oneOf([ref("password")], "Las contraseñas deben coincidir.")
+    .min(1, "La confirmación de contraseña debe tener al menos 1 carácter.")
+    .max(6, "La confirmación de contraseña no puede tener más de 6 caracteres.")
+    .required("La confirmación de contraseña es obligatoria."),
+  userAccountId: string()
+    .min(1, "El ID de cuenta debe tener al menos 1 carácter.")
+    .max(6, "El ID de cuenta no puede tener más de 6 caracteres.")
+    .required("El ID de cuenta es obligatorio."),
 });
 
 function RespondInvitation() {
-  const { bussinessUnit_id, invitation_id } = useParams();
+  const { addFlag } = useFlag();
   const [loading, setLoading] = useState(false);
   const [formInvalid, setFormInvalid] = useState(false);
   const navigate = useNavigate();
-
-  const getInvitationInformation = () => {
-    return invitationEntriesDataMock.find(
-      (invitation) => invitation.customerId === invitation_id
+  const [invitationId, setInvitationId] = useState<string>("");
+  const isFormUnchanged = () => {
+    return JSON.stringify(formik.values) === JSON.stringify(initialValues);
+  };
+  const isFormValidAndChanged = () => {
+    const hasErrors = Object.keys(formik.errors).length > 0;
+    const allFieldsFilled = Object.values(formik.values).every(
+      (value) => value.trim() !== ""
     );
+    return !hasErrors && allFieldsFilled && !isFormUnchanged();
   };
 
-  const getBusinessData = () => {
-    if (!bussinessUnit_id) return;
-    return businessUnitDataMock.find(
-      (businessMock) => businessMock.businessUnitPublicCode === bussinessUnit_id
-    );
-  };
+  const location = useLocation();
+  useEffect(() => {
+    const fetchInvitationData = async () => {
+      setLoading(true);
+      try {
+        const queryParams = new URLSearchParams(location.search);
+        const token = queryParams.get("X-Token-Process");
 
-  const bussinessData = getBusinessData();
-  const invitation = getInvitationInformation();
+        if (!token) {
+          navigate("/error-invitation-expired");
+          return;
+        }
+
+        const data = await getSearchByToken(token);
+
+        if (!data || !data.invitationId) {
+          navigate("/error-invitation-expired");
+          return;
+        }
+
+        setInvitationId(data.invitationId || "");
+        setInitialValues({
+          userName: String(data.userName) || "",
+          userIdentification: String(data.userIdentification) || "",
+          userAccountId: String(data.userAccountId) || "",
+          email: String(data.email) || "",
+          phoneNumber: String(data.phoneNumber) || "",
+          password: "",
+          confirmPassword: "",
+        });
+        formik.setValues({
+          userName: String(data.userName) || "",
+          userIdentification: String(data.userIdentification) || "",
+          userAccountId: String(data.userAccountId) || "",
+          email: String(data.email) || "",
+          phoneNumber: String(data.phoneNumber) || "",
+          password: "",
+          confirmPassword: "",
+        });
+      } catch (error) {
+        console.error("Error fetching invitation data:", error);
+        navigate("/error-invitation-expired");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInvitationData();
+  }, [location.search]);
+
+  const [initialValues, setInitialValues] = useState({
+    userName: "",
+    userIdentification: "",
+    userAccountId: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const formik = useFormik({
-    initialValues: {
-      name: invitation?.userName,
-      userID: invitation?.userIdentification,
-      email: invitation?.email,
-      phone: invitation?.phoneNumber,
-      username: "",
-      password: "",
-      confirmPassword: "",
-    },
+    initialValues,
     validationSchema,
+    validateOnBlur: true,
     validateOnChange: false,
-
     onSubmit: () => {
       setLoading(true);
       setTimeout(() => {
-        navigate(
-          `/respond-invitation/${bussinessUnit_id}/${invitation_id}/confirmation-register-complete`
-        );
         setLoading(false);
+        invitation(formik.values, invitationId);
+        addFlag({
+          title: messageInvitationSentConfig.success.title,
+          description: messageInvitationSentConfig.success.description,
+          appearance: EAppearance.SUCCESS,
+          duration: 5000,
+        });
+        formik.resetForm();
+        setTimeout(() => {
+          navigate(`/confirmation-register-complete`);
+        }, 5000);
       }, LOADING_TIMEOUT);
     },
+    enableReinitialize: true,
   });
 
-  const handleSubmitForm = () => {
+  const handleSubmit = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length > 0) {
         setFormInvalid(true);
+        addFlag({
+          title: messageInvitationSentConfig.failed.title,
+          description: messageInvitationSentConfig.failed.description,
+          appearance: EAppearance.DANGER,
+          duration: 5000,
+        });
+      } else {
+        formik.handleSubmit();
       }
-      formik.submitForm();
     });
   };
-
-  if (!invitation || !bussinessData) {
-    return <ErrorNotAvailable bussinessData={bussinessData} />;
-  }
-
-  if (invitation.status === "Sent") {
-    return <ErrorInvitationExpired bussinessData={bussinessData} />;
-  }
+  const handleCancel = () => {
+    formik.resetForm({ values: initialValues });
+  };
 
   return (
     <RespondInvitationUI
-      bussinessData={bussinessData}
       loading={loading}
       formik={formik}
       formInvalid={formInvalid}
-      handleSubmitForm={handleSubmitForm}
+      handleSubmitForm={handleSubmit}
+      handleCancel={handleCancel}
+      isFormUnchanged={isFormUnchanged()}
+      isFormValidAndChanged={isFormValidAndChanged()}
     />
   );
 }

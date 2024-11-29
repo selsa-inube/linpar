@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { ErrorNotAvailable, ErrorNotAvailableProps } from "./index";
+import { ErrorNotAvailable } from "./index";
 import { businessUnitDataMock } from "@mocks/login/businessUnit.mock";
 
 const story = {
@@ -18,9 +18,7 @@ const story = {
   ],
 };
 
-const Template: StoryFn<ErrorNotAvailableProps> = (args) => (
-  <ErrorNotAvailable {...args} />
-);
+const Template: StoryFn<any> = (args) => <ErrorNotAvailable {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

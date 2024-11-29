@@ -1,18 +1,9 @@
 import Expired from "@assets/images/Expired.png";
-import { ErrorPage } from "@components/layout/ErrorPage";
-import { IBusinessUnitsPortalStaff } from "@services/businessUnitsPortalStaff/types";
+import { ErrorPageRespondInvitation } from "@src/components/layout/ErrorPageRespondInvitation";
 
-interface ErrorInvitationExpiredProps {
-  bussinessData?: IBusinessUnitsPortalStaff;
-}
-
-function ErrorInvitationExpired(props: ErrorInvitationExpiredProps) {
-  const { bussinessData } = props;
-
+function ErrorInvitationExpired() {
   return (
-    <ErrorPage
-      logo={bussinessData && bussinessData.urlLogo}
-      logoAlt={bussinessData && `Logo ${bussinessData.abbreviatedName}`}
+    <ErrorPageRespondInvitation
       heading="!Lo sentimos! no hay resultados..."
       description="Su usuario no tiene clientes relacionados, por favor consulte con su administrador."
       imageAlt="No hay resultados."
@@ -22,4 +13,3 @@ function ErrorInvitationExpired(props: ErrorInvitationExpiredProps) {
 }
 
 export { ErrorInvitationExpired };
-export type { ErrorInvitationExpiredProps };
